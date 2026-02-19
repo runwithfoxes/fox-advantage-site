@@ -45,8 +45,8 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
 
   if (isUnlocked) {
     return (
-      <div className={`font-mono text-sm ${variant === "dark" ? "text-white/50" : "text-[var(--text-muted)]"}`}>
-        <p>✓ You have access. <a href="#chapters" className="text-[var(--orange)] underline underline-offset-2">Start reading →</a></p>
+      <div className="gate-success">
+        <p>✓ <a href="/the-fox-advantage.pdf" download className="gate-download-link">Download your PDF →</a></p>
       </div>
     );
   }
@@ -56,17 +56,23 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
     setStatus("loading");
 
     try {
-      // Submit to Substack via their iframe-based subscribe endpoint
-      // We create a hidden iframe and POST to Substack's subscribe form
+      // Submit to Substack in a hidden iframe so the main page doesn't navigate
       const iframe = document.createElement("iframe");
-      iframe.name = "substack-subscribe";
-      iframe.style.display = "none";
+      iframe.name = "substack-subscribe-" + Date.now();
+      iframe.style.cssText = "position:absolute;width:0;height:0;border:0;left:-9999px";
       document.body.appendChild(iframe);
+
+      // Wait for iframe to be ready
+      await new Promise<void>((resolve) => {
+        iframe.onload = () => resolve();
+        setTimeout(resolve, 100);
+      });
 
       const form = document.createElement("form");
       form.method = "POST";
       form.action = "https://runwithfoxes.substack.com/api/v1/free";
-      form.target = "substack-subscribe";
+      form.target = iframe.name;
+      form.style.display = "none";
 
       const emailInput = document.createElement("input");
       emailInput.type = "hidden";
@@ -83,52 +89,37 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
       document.body.appendChild(form);
       form.submit();
 
-      // Clean up
       setTimeout(() => {
-        document.body.removeChild(form);
-        document.body.removeChild(iframe);
-      }, 3000);
+        form.remove();
+        iframe.remove();
+      }, 5000);
 
-      // Unlock access regardless of Substack response
-      // (the subscription happens async in the iframe)
       setStatus("success");
       unlock();
     } catch {
-      // Even if Substack fails, unlock access
-      // The worst case is they get access without being subscribed
       setStatus("success");
       unlock();
     }
   };
 
-  const isDark = variant === "dark";
-
   return (
     <div>
       {status === "success" ? (
-        <div className={`font-mono text-sm ${isDark ? "text-white/70" : "text-[var(--text)]"}`}>
-          <p>✓ You&apos;re in. <a href="#chapters" className="text-[var(--orange)] underline underline-offset-2">Start reading →</a></p>
+        <div className="gate-success">
+          <p>✓ <a href="/the-fox-advantage.pdf" download className="gate-download-link">Download your PDF →</a></p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex gap-3 max-w-[520px]">
+        <form onSubmit={handleSubmit} className="gate-form">
           <input
             type="email"
+            className="gate-input"
             placeholder="your@email.com"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`flex-1 px-5 py-4 font-mono text-[13px] font-light outline-none transition-colors
-              ${isDark
-                ? "bg-white/[0.06] border border-white/[0.12] text-white placeholder:text-white/25 focus:border-[var(--orange)]"
-                : "bg-white border border-[var(--border)] text-[var(--text)] placeholder:text-[var(--text-muted)] focus:border-[var(--orange)]"
-              }`}
           />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="px-8 py-4 font-mono text-xs font-normal tracking-[2px] uppercase bg-[var(--orange)] text-white border-none cursor-pointer transition-colors hover:bg-[#E06A1A] disabled:opacity-50 whitespace-nowrap"
-          >
-            {status === "loading" ? "..." : "get access"}
+          <button type="submit" className="gate-button" disabled={status === "loading"}>
+            {status === "loading" ? "..." : "download pdf"}
           </button>
         </form>
       )}
