@@ -2,10 +2,10 @@
 
 ## The Short Version
 
-You make changes in Claude Code. You push to GitHub. Vercel sees the push and deploys automatically. That's it.
+You make changes in Claude Code. It commits and pushes to GitHub. Vercel sees the push and deploys automatically. That's it. Site is live at **runwithfoxes.com**.
 
 ```
-Claude Code (edit) → GitHub (push) → Vercel (auto-deploy) → live site
+Claude Code (edit) → GitHub (push) → Vercel (auto-deploy) → runwithfoxes.com
 ```
 
 ---
@@ -16,57 +16,47 @@ Claude Code (edit) → GitHub (push) → Vercel (auto-deploy) → live site
 |-------|-------|-----|
 | Code | Your laptop | `/Users/pauldervan/projects/fox-advantage-site/next-site/` |
 | Git repo | GitHub | `github.com/runwithfoxes/fox-advantage-site` |
-| Hosting | Vercel | Vercel dashboard (auto-deploys from GitHub) |
-| Domain | Your registrar | `runwithfoxes.com` (point DNS at Vercel) |
+| Hosting | Vercel | `vercel.com` (auto-deploys from GitHub) |
+| Domain | Vercel DNS | `runwithfoxes.com` (nameservers point to Vercel) |
+| Email subscribers | Substack | `runwithfoxes.substack.com` → Subscribers |
 
 ---
 
-## Making Changes
+## Making a Change to the Site
 
-### 1. Open Claude Code
+### Step 1: Open Claude Code
 
-All editing happens here. You don't need to touch GitHub or Vercel directly for content changes.
+Open Claude Code on your laptop. Navigate to the project folder or just tell Claude what you want changed. All editing happens here. You don't need to touch GitHub or Vercel.
 
-**To change text on the landing page:**
-- File: `src/components/Landing.tsx`
-- This has the hero, about, parts, chapters, download, author, and projects sections
-- Just tell Claude Code what you want changed
+**Examples of things you can say:**
+- "Change the hero subtitle text"
+- "Add a new project card for Heineken"
+- "Make the fonts bigger on mobile"
+- "Ungating chapter 13"
 
-**To change how it looks:**
-- File: `src/app/globals.css`
-- All styling lives here, including mobile rules
+### Step 2: Claude makes the change
 
-**To change chapter content:**
-- Markdown files in `content/chapters/`
-- Each chapter is a `.md` file
+Claude edits the files, tests locally, commits and pushes to GitHub.
 
-**To add a new fox image:**
-- See `public/fox/HOW-TO-MAKE-FOX-IMAGES.md` for the full recipe
-- Generate with SeedReam, remove background, drop into `public/fox/`
-- Add to the `FOX_POSES` array in `src/components/ChapterReader.tsx`
+### Step 3: Site updates automatically
 
-### 2. Test locally
+Vercel picks up the push. Your site updates at runwithfoxes.com in about 60 seconds.
 
-Claude Code can start the dev server for you. Or run it yourself:
+**That's the whole workflow.** You never need to log into GitHub or Vercel for content changes.
 
-```bash
-cd /Users/pauldervan/projects/fox-advantage-site/next-site
-npm run dev
-```
+---
 
-Then open `http://localhost:3000` in your browser.
+## What You'd Change and Where
 
-### 3. Push to go live
-
-Once you're happy, tell Claude Code to commit and push. Or do it yourself:
-
-```bash
-git add -A
-git commit -m "describe what changed"
-git push
-```
-
-Vercel picks up the push automatically. Your site updates in about 60 seconds.
+| I want to... | File to edit |
+|--------------|-------------|
+| Change landing page text | `src/components/Landing.tsx` |
+| Add or edit a project card | `src/components/Landing.tsx` |
+| Change how it looks (CSS) | `src/app/globals.css` |
+| Edit a chapter | `src/content/chapters/chXX-slug.md` |
+| Add a fox image | `public/fox/` (see `HOW-TO-MAKE-FOX-IMAGES.md`) |
+| Change chapter gating | `src/lib/chapters.ts` (change `part >= 3` threshold) |
+| Change the signup text | `src/components/EmailGate.tsx` and `Landing.tsx` |
 
 ---
 
@@ -78,27 +68,74 @@ next-site/
 │   ├── app/
 │   │   ├── globals.css          ← all styling
 │   │   ├── layout.tsx           ← fonts, meta tags
-│   │   └── page.tsx             ← landing page route
+│   │   ├── page.tsx             ← landing page route
+│   │   └── api/                 ← API routes (if added later)
 │   ├── components/
-│   │   ├── Landing.tsx          ← landing page content
-│   │   ├── ChapterReader.tsx    ← chapter page layout + fox rotation
-│   │   └── EmailGate.tsx        ← email signup form
+│   │   ├── Landing.tsx          ← landing page (hero, about, parts, chapters, projects, author, signup)
+│   │   ├── ChapterReader.tsx    ← free chapter page layout + fox rotation
+│   │   ├── ChapterGate.tsx      ← gated chapter "coming soon" page
+│   │   └── EmailGate.tsx        ← email signup form (posts to Substack)
 │   └── lib/
-│       └── chapters.ts          ← loads markdown chapters
-├── content/
+│       └── chapters.ts          ← chapter data, gating logic, helpers
+├── src/content/
 │   └── chapters/                ← 41 markdown chapter files
 ├── public/
 │   ├── fox/                     ← all fox images
 │   │   └── HOW-TO-MAKE-FOX-IMAGES.md
 │   └── Paul_photo.jpg
+├── SITE-GUIDE.md                ← this file
 └── package.json
 ```
 
 ---
 
+## Chapter Gating
+
+Currently, **Parts 1 and 2 (chapters 1-12) are free** to read. **Parts 3 and 4 (chapters 13-41) show a "coming soon" gate** instead of the chapter content. The markdown for gated chapters is never sent to the browser.
+
+### How gating works
+
+In `src/lib/chapters.ts`, there's a function:
+
+```ts
+export function isChapterGated(chapter: Chapter): boolean {
+  return chapter.part >= 3;
+}
+```
+
+Every chapter has a `part` number (1-4). If the part is 3 or higher, the chapter is gated.
+
+### To ungating all chapters (when the book is ready)
+
+Change the function to always return false:
+
+```ts
+export function isChapterGated(chapter: Chapter): boolean {
+  return false;
+}
+```
+
+Or tell Claude Code: "Ungating all chapters, the book is ready."
+
+### To ungating just Part 3
+
+Change `>= 3` to `>= 4`:
+
+```ts
+return chapter.part >= 4;
+```
+
+### What happens on gated chapters
+
+- The chapter title still shows in the landing page list (with a "coming soon" tag)
+- Clicking it takes you to a page that says "This chapter isn't published yet" with a "get notified" button
+- The button links to the email signup section
+
+---
+
 ## Adding or Editing Projects
 
-The projects section is in `src/components/Landing.tsx`. Each project is a card like this:
+The projects section is in `src/components/Landing.tsx`. Each project is a card:
 
 ```tsx
 <div className="project-card">
@@ -110,45 +147,31 @@ The projects section is in `src/components/Landing.tsx`. Each project is a card 
 
 To add a new one, copy a card block and change the tag, name, and description. Tags so far: `\brand`, `\book`, `\teaching`, `\ai`. Make up new ones as needed.
 
-The grid automatically handles layout. Two columns on desktop, one on mobile.
+Two columns on desktop, one column on mobile. Automatic.
 
 ---
 
-## Custom Domain (runwithfoxes.com)
+## Email Signup
 
-### Step 1: Add domain in Vercel
+The signup form posts to `https://runwithfoxes.substack.com/api/v1/free` via a hidden iframe. It subscribes people to your Substack newsletter.
 
-1. Go to your Vercel dashboard (vercel.com)
-2. Click your project (fox-advantage-site)
-3. Go to **Settings** → **Domains**
-4. Type `runwithfoxes.com` and click **Add**
-5. Vercel will show you the DNS records you need
+**To check subscribers:** Log into `runwithfoxes.substack.com` → Subscribers.
 
-### Step 2: Update DNS at your registrar
+After signing up, the browser stores `fox_access = true` in localStorage so the form doesn't show again. Clearing browser data or using incognito brings the form back.
 
-Wherever you bought `runwithfoxes.com` (GoDaddy, Namecheap, Cloudflare, etc.):
+---
 
-**Option A — If Vercel asks for an A record:**
-- Type: `A`
-- Name: `@`
-- Value: `76.76.21.21`
+## Domain and DNS
 
-**Option B — If Vercel asks for a CNAME:**
-- Type: `CNAME`
-- Name: `www`
-- Value: `cname.vercel-dns.com`
+The domain is managed through Vercel, not GoDaddy.
 
-You'll probably want both: the A record for `runwithfoxes.com` and the CNAME for `www.runwithfoxes.com`.
+- **Nameservers** were switched from GoDaddy to Vercel (`ns1.vercel-dns.com`, `ns2.vercel-dns.com`)
+- **DNS records** are managed in Vercel dashboard → your project → Settings → Domains → "View DNS Records"
+- **GoDaddy** still owns the domain registration, but doesn't control DNS anymore
+- **Email records** (MX, SPF, Microsoft CNAMEs) are set up in Vercel DNS to keep your Outlook/Smartlead email working
+- **SSL** is automatic via Let's Encrypt
 
-### Step 3: Wait
-
-DNS takes anywhere from 5 minutes to 48 hours. Usually under 30 minutes. Vercel will show a green tick when it's working. SSL certificate is automatic.
-
-### Where to do this
-
-- **Vercel dashboard**: Add the domain to your project
-- **Your domain registrar**: Update the DNS records
-- You do NOT need Claude Code or GitHub for this part
+If you ever need to change DNS records, do it in Vercel, not GoDaddy.
 
 ---
 
@@ -158,19 +181,23 @@ DNS takes anywhere from 5 minutes to 48 hours. Usually under 30 minutes. Vercel 
 |--------------|---------|
 | Change text on the site | Tell Claude Code what to change |
 | Add a project card | Tell Claude Code, or edit `Landing.tsx` |
+| Ungating chapters | Tell Claude Code, or change `chapters.ts` |
 | Add a fox image | Follow `public/fox/HOW-TO-MAKE-FOX-IMAGES.md` |
-| Fix mobile layout | Tell Claude Code the issue, or edit `globals.css` |
-| See changes live | Push to GitHub (Vercel auto-deploys) |
-| Add custom domain | Vercel dashboard + DNS registrar |
-| Check deployment status | Vercel dashboard |
+| Fix mobile layout | Tell Claude Code the issue |
+| See changes live | Claude Code pushes, Vercel auto-deploys in ~60s |
+| Check email subscribers | Log into `runwithfoxes.substack.com` → Subscribers |
+| Check deployment status | `vercel.com` → your project |
 | Run locally | `npm run dev` then open `localhost:3000` |
+| Change DNS records | Vercel dashboard → Domains → DNS Records |
 
 ---
 
 ## Things Still To Do
 
-- [ ] **Custom domain**: Point `runwithfoxes.com` at Vercel
-- [ ] **PDF download**: The email gate collects emails but there's no actual PDF yet at `/public/the-fox-advantage.pdf`
+- [x] ~~Custom domain: runwithfoxes.com~~ (done)
+- [x] ~~Email signup working~~ (done, posts to Substack)
+- [x] ~~Chapter gating~~ (done, Parts 3 & 4 gated)
+- [x] ~~Projects section~~ (done)
 - [ ] **SEO / social sharing**: No page titles, descriptions, or Open Graph images yet
 - [ ] **More fox poses**: See the pose ideas in `HOW-TO-MAKE-FOX-IMAGES.md`
 - [ ] **New Replicate API token**: Old one was disabled when the repo went public. Create a new one at replicate.com and store in a `.env` file (not committed to git)
