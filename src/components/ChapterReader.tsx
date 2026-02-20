@@ -97,12 +97,6 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
         <Link href="/">#home</Link>
         <Link href="/#chapters" className="active">chapters.md</Link>
         <Link href="/#signup">/download_full_book</Link>
-        {prev && (
-          <Link href={`/chapter/${prev.slug}`}>← prev</Link>
-        )}
-        {next && (
-          <Link href={`/chapter/${next.slug}`} className="cta-bar">next →</Link>
-        )}
       </div>
     </div>
   );
