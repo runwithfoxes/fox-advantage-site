@@ -66,8 +66,8 @@ function LandingContent({ parts }: Props) {
         <a href="#" className="logo">\<span>fox</span>_advantage</a>
         <nav>
           <a href="#about" className="active">#about</a>
-          <a href="#parts">/parts</a>
           <a href="#chapters">chapters.md</a>
+          <a href="#projects">/projects</a>
           <a href="#author">author.txt</a>
           <a href="#signup" className="cta-bar">/download_full_book</a>
         </nav>
@@ -190,13 +190,55 @@ function LandingContent({ parts }: Props) {
         </div>
       </section>
 
+      <div className="container"><hr className="divider" /></div>
+
+      {/* PROJECTS */}
+      <section id="projects">
+        <div className="container">
+          <div className="section-label">// projects</div>
+          <h2 className="section-title">Things I&apos;ve built</h2>
+          <div className="projects-grid">
+            <div className="project-card">
+              <div className="project-tag">\brand</div>
+              <div className="project-name">National Lottery</div>
+              <div className="project-desc">Marketer of the Year. Rebuilt the brand, delivered 21:1 ROI.</div>
+            </div>
+            <div className="project-card">
+              <div className="project-tag">\brand</div>
+              <div className="project-name">O2 &ldquo;48&rdquo;</div>
+              <div className="project-desc">Created a youth brand from scratch inside Telefonica. Grew to 12% market share.</div>
+            </div>
+            <div className="project-card">
+              <div className="project-tag">\brand</div>
+              <div className="project-name">Indeed</div>
+              <div className="project-desc">Led global brand for the world&apos;s biggest job site. $400M budget across 20+ markets.</div>
+            </div>
+            <div className="project-card">
+              <div className="project-tag">\book</div>
+              <div className="project-name">Run with Foxes</div>
+              <div className="project-desc">First book, published 2020. Making better decisions in marketing using behavioural science. On Amazon.</div>
+            </div>
+            <div className="project-card">
+              <div className="project-tag">\teaching</div>
+              <div className="project-name">Smurfit UCD</div>
+              <div className="project-desc">Teaching marketing strategy to MBA and MSc students at Ireland&apos;s top business school.</div>
+            </div>
+            <div className="project-card">
+              <div className="project-tag">\ai</div>
+              <div className="project-name">AI Writers</div>
+              <div className="project-desc">Built a team of AI agents. Max writes copy, Alex schedules content, Klara runs the office.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="footer-spacer" />
 
       {/* BOTTOM BAR */}
       <div className="bottom-bar">
         <a href="#" className="active">#top</a>
         <a href="#chapters">chapters.md</a>
-        <a href="#author">author.txt</a>
+        <a href="#projects">/projects</a>
         <a href="#signup" className="cta-bar">download full book</a>
       </div>
     </>
