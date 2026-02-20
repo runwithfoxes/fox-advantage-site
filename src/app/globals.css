@@ -149,6 +149,12 @@ section {
   width: 340px;
   height: auto;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.2)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+  background: transparent !important;
+}
+
+.hero-book img,
+.hero-book span {
+  background: transparent !important;
 }
 
 .hero-book img {
@@ -161,7 +167,8 @@ section {
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 3px;
-  color: var(--text-muted);
+  color: var(--text);
+  opacity: 0.5;
   text-transform: uppercase;
   margin-bottom: 32px;
 }
@@ -184,9 +191,9 @@ section {
 .hero-sub {
   font-family: var(--mono);
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.8;
-  color: var(--text-muted);
+  color: var(--text);
   max-width: 520px;
   margin-bottom: 48px;
 }
@@ -1095,7 +1102,7 @@ section {
   }
 
   .chapter-prose {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.9;
     max-width: 100%;
   }
@@ -1172,11 +1179,11 @@ section {
   }
 
   .hero-sub {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .hero-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
   }
 
@@ -1189,7 +1196,7 @@ section {
   }
 
   .part-desc {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .chapter-item {
@@ -1198,7 +1205,7 @@ section {
   }
 
   .chapter-title {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .chapter-arrow {
@@ -1210,22 +1217,22 @@ section {
   }
 
   .gate-text {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .gate-button {
-    padding: 14px 24px;
-    font-size: 11px;
+    padding: 16px 24px;
+    font-size: 12px;
     width: 100%;
   }
 
   .gate-input {
-    padding: 14px 16px;
-    font-size: 12px;
+    padding: 16px 16px;
+    font-size: 14px;
   }
 
   .about-text {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .about-aside {
@@ -1249,7 +1256,7 @@ section {
   }
 
   .author-bio {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .author-links {
@@ -1286,7 +1293,7 @@ section {
   }
 
   .chapter-prose {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .chapter-bottom-bar a {
