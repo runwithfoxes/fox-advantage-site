@@ -12,15 +12,20 @@ interface Props {
 
 function ChapterItem({ chapter }: { chapter: Chapter }) {
   const num = String(chapter.number).padStart(2, "0");
+  const gated = chapter.part >= 3;
 
   return (
     <Link
       href={`/chapter/${chapter.slug}`}
-      className="chapter-item no-underline"
+      className={`chapter-item no-underline${gated ? " chapter-item-gated" : ""}`}
     >
       <span className="chapter-num">{num}</span>
       <span className="chapter-title">{chapter.title}</span>
-      <span className="chapter-arrow">→</span>
+      {gated ? (
+        <span className="chapter-tag-soon">coming soon</span>
+      ) : (
+        <span className="chapter-arrow">→</span>
+      )}
     </Link>
   );
 }

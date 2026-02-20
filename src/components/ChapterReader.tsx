@@ -82,7 +82,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
             )}
             {next ? (
               <Link href={`/chapter/${next.slug}`} className="chapter-footer-next">
-                <div className="chapter-footer-label">next →</div>
+                <div className="chapter-footer-label">next{next.part >= 3 ? " (coming soon)" : ""} →</div>
                 <div className="chapter-footer-title">{next.title}</div>
               </Link>
             ) : (

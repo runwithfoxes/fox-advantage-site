@@ -74,6 +74,22 @@ const chapterMap: {
   { file: "ch47-more-doing-less-discussing.md", number: 41, title: "A Growth Marketing team of one", part: 4, partName: "Marketing for Leaders" },
 ];
 
+export function isChapterGated(chapter: Chapter): boolean {
+  return chapter.part >= 3;
+}
+
+export function getChapterMeta(slug: string): Chapter | null {
+  const mapping = chapterMap.find((ch) => ch.file.replace(".md", "") === slug);
+  if (!mapping) return null;
+  return {
+    slug,
+    number: mapping.number,
+    title: mapping.title,
+    part: mapping.part,
+    partName: mapping.partName,
+  };
+}
+
 export function getAllChapters(): Chapter[] {
   return chapterMap.map((ch) => ({
     slug: ch.file.replace(".md", ""),

@@ -461,6 +461,26 @@ section {
   color: var(--orange);
 }
 
+/* ---- GATED CHAPTER ITEMS ---- */
+.chapter-item-gated .chapter-title {
+  color: var(--text-muted);
+}
+
+.chapter-item-gated:hover .chapter-title {
+  color: var(--text-muted);
+}
+
+.chapter-tag-soon {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
 /* ---- GATE / SIGNUP ---- */
 .gate-section {
   background: var(--charcoal);
