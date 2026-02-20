@@ -205,7 +205,7 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="project-card">
               <div className="project-tag">\brand</div>
-              <div className="project-name">O2 &ldquo;48&rdquo;</div>
+              <div className="project-name">48</div>
               <div className="project-desc">Created a youth brand from scratch inside Telefonica. Grew to 12% market share.</div>
             </div>
             <div className="project-card">
