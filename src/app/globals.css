@@ -668,8 +668,8 @@ section {
   }
 
   .hero {
-    padding-top: 140px;
-    padding-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 80px;
     min-height: auto;
   }
 
@@ -1065,7 +1065,7 @@ section {
   }
 
   .chapter-main {
-    padding: 96px 20px 120px;
+    padding: 72px 20px 120px;
   }
 
   .chapter-inner {
@@ -1095,8 +1095,8 @@ section {
   }
 
   .chapter-prose {
-    font-size: 14px;
-    line-height: 1.85;
+    font-size: 15px;
+    line-height: 1.9;
     max-width: 100%;
   }
 
@@ -1172,7 +1172,7 @@ section {
   }
 
   .hero-sub {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .hero-label {
@@ -1210,7 +1210,7 @@ section {
   }
 
   .gate-text {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .gate-button {
@@ -1225,7 +1225,7 @@ section {
   }
 
   .about-text {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .about-aside {
@@ -1269,8 +1269,8 @@ section {
   }
 
   .hero {
-    padding-top: 110px;
-    padding-bottom: 80px;
+    padding-top: 90px;
+    padding-bottom: 64px;
   }
 
   .hero-fox-img {
@@ -1278,7 +1278,7 @@ section {
   }
 
   .chapter-main {
-    padding: 88px 16px 100px;
+    padding: 68px 16px 100px;
   }
 
   .chapter-fox-hero {
@@ -1286,7 +1286,7 @@ section {
   }
 
   .chapter-prose {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .chapter-bottom-bar a {
