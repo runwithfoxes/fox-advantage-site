@@ -145,6 +145,12 @@ section {
   align-items: center;
 }
 
+.hero-fox-img {
+  width: 340px;
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.2)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+}
+
 .hero-book img {
   width: 320px;
   height: auto;
@@ -516,6 +522,31 @@ section {
   margin-top: 16px;
 }
 
+/* ---- GATE LAYOUT WITH FOX ---- */
+.gate-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 80px;
+  align-items: center;
+}
+
+.gate-content {
+  min-width: 0;
+}
+
+.gate-fox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gate-fox-img {
+  width: 260px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+}
+
 /* ---- AUTHOR ---- */
 .author-grid {
   display: grid;
@@ -675,6 +706,23 @@ section {
 
   .gate-form {
     flex-direction: column;
+  }
+
+  .gate-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .gate-fox {
+    order: -1;
+  }
+
+  .gate-fox-img {
+    width: 160px;
+  }
+
+  .hero-fox-img {
+    width: 240px;
   }
 
   .hero-meta {
@@ -921,6 +969,20 @@ section {
   background: #E06A1A;
 }
 
+/* ---- CHAPTER FOX HERO ---- */
+.chapter-fox-hero {
+  float: right;
+  width: 180px;
+  margin: 0 -60px 16px 24px;
+  shape-outside: margin-box;
+}
+
+.chapter-fox-hero-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+}
+
 /* ---- CHAPTER READER PROSE ---- */
 .chapter-prose {
   font-family: 'JetBrains Mono', monospace;
@@ -985,4 +1047,255 @@ section {
   border: none;
   border-top: 1px solid var(--border);
   margin: 48px 0;
+}
+
+/* ---- MOBILE: CHAPTER READER ---- */
+@media (max-width: 768px) {
+  .chapter-nav {
+    padding: 12px 20px;
+  }
+
+  .chapter-nav-back {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .chapter-nav-count {
+    font-size: 10px;
+  }
+
+  .chapter-main {
+    padding: 96px 20px 120px;
+  }
+
+  .chapter-inner {
+    max-width: 100%;
+  }
+
+  .chapter-header {
+    margin-bottom: 40px;
+  }
+
+  .chapter-heading {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+
+  .chapter-part-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  /* Fox: switch from float-right to centered block above prose on mobile */
+  .chapter-fox-hero {
+    float: none;
+    width: 140px;
+    margin: 0 auto 24px;
+    shape-outside: none;
+    text-align: center;
+  }
+
+  .chapter-prose {
+    font-size: 14px;
+    line-height: 1.85;
+    max-width: 100%;
+  }
+
+  .chapter-prose h1 { font-size: 26px; }
+  .chapter-prose h2 { font-size: 22px; }
+  .chapter-prose h3 { font-size: 18px; }
+
+  .chapter-prose h1,
+  .chapter-prose h2,
+  .chapter-prose h3 {
+    margin-top: 36px;
+    margin-bottom: 16px;
+  }
+
+  .chapter-prose blockquote {
+    padding-left: 16px;
+    margin: 24px 0;
+  }
+
+  .chapter-prose ul,
+  .chapter-prose ol {
+    padding-left: 20px;
+  }
+
+  .chapter-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .chapter-footer-next {
+    text-align: left;
+  }
+
+  .chapter-footer-title {
+    font-size: 16px;
+  }
+
+  .chapter-bottom-bar {
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chapter-bottom-bar a {
+    padding: 12px 14px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* Gate overlay on chapter pages */
+  .chapter-gate-inner {
+    padding: 0 20px;
+  }
+
+  .chapter-gate-title {
+    font-size: 24px;
+  }
+
+  .chapter-gate-text {
+    font-size: 13px;
+  }
+}
+
+/* ---- MOBILE: LANDING PAGE EXTRAS ---- */
+@media (max-width: 768px) {
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+  }
+
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .part-card {
+    padding: 32px 24px;
+  }
+
+  .part-name {
+    font-size: 20px;
+  }
+
+  .part-desc {
+    font-size: 11px;
+  }
+
+  .chapter-item {
+    gap: 16px;
+    padding: 16px 0;
+  }
+
+  .chapter-title {
+    font-size: 16px;
+  }
+
+  .chapter-arrow {
+    display: none;
+  }
+
+  .gate-section {
+    padding: 80px 0;
+  }
+
+  .gate-text {
+    font-size: 13px;
+  }
+
+  .gate-button {
+    padding: 14px 24px;
+    font-size: 11px;
+    width: 100%;
+  }
+
+  .gate-input {
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+
+  .about-text {
+    font-size: 13px;
+  }
+
+  .about-aside {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+  }
+
+  .about-aside .stat-number {
+    font-size: 36px;
+  }
+
+  .author-info {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .author-name {
+    font-size: 26px;
+  }
+
+  .author-bio {
+    font-size: 12px;
+  }
+
+  .author-links {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-spacer {
+    height: 60px;
+  }
+}
+
+/* ---- SMALL PHONES (iPhone SE etc) ---- */
+@media (max-width: 380px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding-top: 110px;
+    padding-bottom: 80px;
+  }
+
+  .hero-fox-img {
+    width: 180px;
+  }
+
+  .chapter-main {
+    padding: 88px 16px 100px;
+  }
+
+  .chapter-fox-hero {
+    width: 110px;
+  }
+
+  .chapter-prose {
+    font-size: 13px;
+  }
+
+  .chapter-bottom-bar a {
+    padding: 10px 10px;
+    font-size: 10px;
+  }
+
+  .bottom-bar a {
+    padding: 10px 10px;
+    font-size: 10px;
+  }
 }

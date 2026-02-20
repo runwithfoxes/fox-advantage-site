@@ -88,7 +88,7 @@ function LandingContent({ parts }: Props) {
             </div>
           </div>
           <div className="hero-book">
-            <Image src="/book_cover.JPG" alt="The Fox Advantage book cover" width={320} height={427} priority />
+            <Image src="/fox/fox-book.png" alt="Grumpy fox holding The Fox Advantage" width={340} height={480} priority className="hero-fox-img" />
           </div>
         </div>
       </section>
