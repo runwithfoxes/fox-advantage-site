@@ -36,18 +36,18 @@ function DownloadSection() {
   return (
     <section id="signup" className="gate-section">
       <div className="container">
-        <div className="section-label">/ download_full_book</div>
+        <div className="section-label">/ get_the_book</div>
         {isUnlocked ? (
           <>
-            <h2 className="section-title">You&apos;re all set.</h2>
-            <EmailGateForm variant="dark" />
+            <h2 className="section-title">You&apos;re on the list.</h2>
+            <p className="gate-text">We&apos;ll send you the full book when it&apos;s ready.</p>
           </>
         ) : (
           <>
-            <h2 className="section-title">Download the full book.<br />For free.</h2>
-            <p className="gate-text">All 41 chapters as a single PDF. Drop your email and it&apos;s yours.</p>
+            <h2 className="section-title">Get the full book<br />when it drops.</h2>
+            <p className="gate-text">Parts 1 and 2 are live now. Drop your email and we&apos;ll send the rest when it&apos;s ready.</p>
             <EmailGateForm variant="dark" />
-            <p className="gate-note">Just the book. Unsubscribe whenever.</p>
+            <p className="gate-note">No spam. Just the book when it&apos;s ready.</p>
           </>
         )}
       </div>
@@ -74,7 +74,7 @@ function LandingContent({ parts }: Props) {
           <a href="#chapters">chapters.md</a>
           <a href="#projects">/projects</a>
           <a href="#author">author.txt</a>
-          <a href="#signup" className="cta-bar">/download_full_book</a>
+          <a href="#signup" className="cta-bar">/get_the_book</a>
         </nav>
       </header>
 
@@ -89,7 +89,7 @@ function LandingContent({ parts }: Props) {
               <div><span>\</span> 41 chapters</div>
               <div><span>\</span> 4 parts</div>
               <div><span>\</span> free to read</div>
-              <a href="#signup" className="hero-meta-link"><span>\</span> download_full_book</a>
+              <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
           </div>
           <div className="hero-book">
@@ -244,7 +244,7 @@ function LandingContent({ parts }: Props) {
         <a href="#" className="active">#top</a>
         <a href="#chapters">chapters.md</a>
         <a href="#projects">/projects</a>
-        <a href="#signup" className="cta-bar">download full book</a>
+        <a href="#signup" className="cta-bar">get the book</a>
       </div>
     </>
   );

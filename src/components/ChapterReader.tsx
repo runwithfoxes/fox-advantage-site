@@ -96,7 +96,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
       <div className="chapter-bottom-bar">
         <Link href="/">#home</Link>
         <Link href="/#chapters" className="active">chapters.md</Link>
-        <Link href="/#signup">/download_full_book</Link>
+        <Link href="/#signup">/get_the_book</Link>
       </div>
     </div>
   );

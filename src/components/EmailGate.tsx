@@ -46,7 +46,7 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
   if (isUnlocked) {
     return (
       <div className="gate-success">
-        <p>✓ <a href="/the-fox-advantage.pdf" download className="gate-download-link">Download your PDF →</a></p>
+        <p>✓ You&apos;re on the list. We&apos;ll send the full book when it&apos;s ready.</p>
       </div>
     );
   }
@@ -106,7 +106,7 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
     <div>
       {status === "success" ? (
         <div className="gate-success">
-          <p>✓ <a href="/the-fox-advantage.pdf" download className="gate-download-link">Download your PDF →</a></p>
+          <p>✓ You&apos;re on the list. We&apos;ll send the full book when it&apos;s ready.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="gate-form">
@@ -119,7 +119,7 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
             onChange={(e) => setEmail(e.target.value)}
           />
           <button type="submit" className="gate-button" disabled={status === "loading"}>
-            {status === "loading" ? "..." : "download pdf"}
+            {status === "loading" ? "..." : "notify me"}
           </button>
         </form>
       )}
