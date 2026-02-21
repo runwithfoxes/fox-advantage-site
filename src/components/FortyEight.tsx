@@ -38,8 +38,8 @@ export default function FortyEightPage() {
               48 · A youth brand that didn&apos;t ask to be liked
             </p>
             <p className="proj-lede">
-              We built a mobile brand inside Telefonica that used exclusion as a
-              brand asset. Only 18&ndash;22 year-olds could join. The ads got
+              We built a mobile brand inside Telefonica that used scarcity as a
+              strategy. Only 18&ndash;22 year-olds could join. The ads got
               banned. We hit 12% market share in year one.
             </p>
             <div className="proj-hero-meta">
@@ -48,7 +48,7 @@ export default function FortyEightPage() {
             </div>
             <div className="proj-hero-image-stacked">
               <Image
-                src="/projects/48/poster.jpeg"
+                src="/projects/48/poster2.jpeg"
                 alt="48 Go Conquer campaign poster"
                 width={720}
                 height={1080}
