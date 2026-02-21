@@ -108,14 +108,12 @@ export default function FortyEightPage() {
               <p>&ldquo;So, nobody can join until they are 18. And at 22, we kick them out.&rdquo;</p>
               <p className="proj-pullquote-pause">Silence.</p>
               <p>&ldquo;Right, so Paul, firstly that&apos;s not even legal.&rdquo;</p>
-            </blockquote>
-            <div className="proj-prose">
-              <p>
+              <p className="proj-pullquote-coda">
                 In most companies, the concept would have been killed on that
                 first call. In fairness to the board, it wasn&apos;t. They
                 didn&apos;t change a thing.
               </p>
-            </div>
+            </blockquote>
           </div>
         </div>
       </section>
@@ -140,16 +138,47 @@ export default function FortyEightPage() {
               </p>
             </div>
           </div>
-          <div className="proj-body proj-hero-center">
-            <div className="proj-hero-image-stacked">
-              <Image
-                src="/projects/48/rejection-letter.png"
-                alt="48 rejection letter sent to applicants"
-                width={600}
-                height={800}
-                className="proj-hero-img"
-              />
-              <div className="proj-image-caption">The actual rejection letter.</div>
+          <div className="proj-body">
+            <div className="proj-letter">
+              <div className="proj-letter-header">
+                <span className="proj-letter-logo">48</span> Go Conquer
+              </div>
+              <p>Hi Gavin,</p>
+              <p>
+                This is going to be tough but I need you to know that it&apos;s
+                not you. It&apos;s me.
+              </p>
+              <p>
+                Before we can activate your 48 sim card, I need you to email me
+                a photo of your passport, clearly showing your date of birth.
+              </p>
+              <p>
+                Sadly, 48 is only for 18 to 22 year olds. I know, don&apos;t
+                cry. We can&apos;t check everyone, because I have a life. We do
+                spot checks.
+              </p>
+              <p>This is one of those spot checks. Lucky you.</p>
+              <p>
+                If you are 48 material, please take a quick snap of your
+                passport and send it to us and you&apos;re sorted.
+              </p>
+              <p>
+                If not, send me a sexy photo so I can at least have something to
+                remember you by because we&apos;re going to have to break up.
+                <br />
+                (But I&apos;d really like it if we can still be friends?)
+              </p>
+              <p>
+                Love,
+                <br />
+                Susan @ 48 Crew
+              </p>
+              <p className="proj-letter-ps">
+                P.S. If I&apos;m honest, this wasn&apos;t so difficult for me
+                in the end, but thankfully we are currently recruiting for a
+                Head of Rejection, someone who gets their kicks from this kind
+                of thing.
+              </p>
             </div>
           </div>
           <div className="proj-video-stack">
@@ -169,7 +198,7 @@ export default function FortyEightPage() {
             <div className="proj-prose" style={{ marginTop: 32 }}>
               <p>
                 The ads got pulled due to complaints. Which was, of course,
-                more earned media for a brand nobody had heard of a week
+                more earned media for a brand nobody had heard of 3 months
                 earlier.
               </p>
             </div>
