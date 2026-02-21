@@ -29,7 +29,7 @@ function AnimatedNumber({ value, duration = 1200 }: { value: number; duration?: 
     let raf: number;
     const tick = (now: number) => {
       const t = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      const ease = 1 - Math.pow(1 - t, 5); // ease-out quintic — really slows into final number
       setDisplay(Math.round(ease * value));
       if (t < 1) raf = requestAnimationFrame(tick);
     };
@@ -147,7 +147,7 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <AnimatedNumber value={54} duration={1400} />
+                <AnimatedNumber value={54} duration={1800} />
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
