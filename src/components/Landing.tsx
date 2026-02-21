@@ -258,11 +258,13 @@ function LandingContent({ parts }: Props) {
               <div className="project-name">National Lottery</div>
               <div className="project-desc">Rebuilding Distinctive Brand Assets. Dream Inspector, new identity, and Marketer of the Year.</div>
             </div>
-            <div className="project-card">
-              <div className="project-tag">\brand</div>
-              <div className="project-name">48</div>
-              <div className="project-desc">Created a youth brand from scratch inside Telefonica. Grew to 12% market share.</div>
-            </div>
+            <Link href="/48" className="project-card project-card-link no-underline">
+              <div className="project-tag">\fame_strategy</div>
+              <div className="project-name">Fame Strategy in action</div>
+              <div className="project-sub">48 · Youth brand creation</div>
+              <div className="project-desc">Built a mobile brand inside Telefonica that used exclusion as a brand asset. 12% youth market share in year one.</div>
+              <div className="project-more">read more →</div>
+            </Link>
             <div className="project-card">
               <div className="project-tag">\brand</div>
               <div className="project-name">Indeed</div>
