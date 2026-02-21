@@ -78,22 +78,24 @@ function RevenueChart() {
   const gap = 28;
   const total = revenueData.length * barW + (revenueData.length - 1) * gap;
   const startX = (500 - total) / 2;
+  const topPad = 25;
   const chartH = 260;
+  const baseY = topPad + chartH;
 
   return (
     <div ref={ref} className="moty-chart-wrap">
       <div className="moty-chart-heading">Year-on-year revenue (€M)</div>
-      <svg viewBox="0 0 500 310" className="moty-chart-svg">
+      <svg viewBox={`0 0 500 ${baseY + 30}`} className="moty-chart-svg">
         {revenueData.map((d, i) => {
           const barH = (d.value / maxVal) * chartH;
           const x = startX + i * (barW + gap);
-          const y = chartH - barH;
+          const y = baseY - barH;
           const isHero = d.year === "2021";
           return (
             <g key={d.year}>
               <rect
                 x={x}
-                y={visible ? y : chartH}
+                y={visible ? y : baseY}
                 width={barW}
                 height={visible ? barH : 0}
                 fill={isHero ? "var(--orange)" : "#E0E0DC"}
@@ -104,7 +106,7 @@ function RevenueChart() {
               />
               <text
                 x={x + barW / 2}
-                y={visible ? y - 8 : chartH - 8}
+                y={visible ? y - 8 : baseY - 8}
                 textAnchor="middle"
                 fill={isHero ? "var(--orange)" : "var(--text-muted)"}
                 style={{
@@ -119,7 +121,7 @@ function RevenueChart() {
               </text>
               <text
                 x={x + barW / 2}
-                y={chartH + 20}
+                y={baseY + 20}
                 textAnchor="middle"
                 fill="var(--text-muted)"
                 style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300 }}
@@ -217,23 +219,25 @@ function DistinctiveAssetsChart() {
   const gap = 22;
   const total = assetsData.length * barW + (assetsData.length - 1) * gap;
   const startX = (500 - total) / 2;
+  const topPad = 25;
   const chartH = 250;
+  const baseY = topPad + chartH;
 
   return (
     <div ref={ref} className="moty-chart-wrap">
       <div className="moty-chart-heading">
         Distinctive brand assets (spontaneous linkage %)
       </div>
-      <svg viewBox="0 0 500 310" className="moty-chart-svg">
+      <svg viewBox={`0 0 500 ${baseY + 30}`} className="moty-chart-svg">
         {assetsData.map((d, i) => {
           const barH = (d.value / maxVal) * chartH;
           const x = startX + i * (barW + gap);
-          const y = chartH - barH;
+          const y = baseY - barH;
           return (
             <g key={d.label}>
               <rect
                 x={x}
-                y={visible ? y : chartH}
+                y={visible ? y : baseY}
                 width={barW}
                 height={visible ? barH : 0}
                 fill="var(--orange)"
@@ -244,7 +248,7 @@ function DistinctiveAssetsChart() {
               />
               <text
                 x={x + barW / 2}
-                y={visible ? y - 8 : chartH - 8}
+                y={visible ? y - 8 : baseY - 8}
                 textAnchor="middle"
                 fill="var(--text)"
                 style={{
@@ -259,7 +263,7 @@ function DistinctiveAssetsChart() {
               </text>
               <text
                 x={x + barW / 2}
-                y={chartH + 18}
+                y={baseY + 18}
                 textAnchor="middle"
                 fill="var(--text-muted)"
                 style={{
