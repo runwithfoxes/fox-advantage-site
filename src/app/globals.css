@@ -229,9 +229,9 @@ section {
 /* ---- SECTION HEADERS ---- */
 .section-label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: var(--text-muted);
   text-transform: uppercase;
   margin-bottom: 16px;
