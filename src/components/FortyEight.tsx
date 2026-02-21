@@ -3,9 +3,9 @@
 import Link from "next/link";
 
 const stats = [
-  { value: "12%", label: "Youth market share", sub: "Within the first year" },
-  { value: "18–22", label: "Age-locked product", sub: "Too old? You're out." },
-  { value: "0", label: "Apologies", sub: "The complaints were the point" },
+  { value: "63%", label: "Youth brand awareness", sub: "Within six months of launch" },
+  { value: "48%", label: "Communication awareness", sub: "Highest in category among youth" },
+  { value: "11", label: "People", sub: "The entire team that ran 48" },
 ];
 
 export default function FortyEightPage() {
@@ -58,18 +58,26 @@ export default function FortyEightPage() {
         <div className="container">
           <div className="proj-body">
             <div className="section-label">// the_problem</div>
-            <h2 className="proj-section-title">Everyone was chasing the same people</h2>
+            <h2 className="proj-section-title">O2 was a brand for their parents</h2>
             <div className="proj-prose">
               <p>
-                In 2012, every mobile operator in Ireland was fighting for the
-                youth market. Same deals, same messaging, same race to the
-                bottom on price. The category had no edges. Vodafone, Three,
-                Meteor, O2. Pick one. It didn&apos;t really matter which.
+                O2 had about a third of Ireland as customers, but by 2011 we
+                were losing ground with younger segments. They thought we were
+                a bit pricy. This was broadly true. They didn&apos;t dislike us,
+                but the brand wasn&apos;t for them.
               </p>
               <p>
-                O2 had decent market share overall, but among 18&ndash;22
-                year-olds we were getting nowhere. Standard playbook wasn&apos;t
-                working. So we stopped running the standard playbook.
+                At least two other companies had tried launching low-cost mobile
+                networks in Ireland in the previous 18 months. Both offered the
+                lowest prices in the market. Both failed quickly and quietly.
+                Lower prices alone weren&apos;t enough. People satisfice. They
+                don&apos;t always choose the cheapest. They choose what feels
+                safe. And nobody was going to risk switching to an unknown brand
+                if it meant losing touch with their mates.
+              </p>
+              <p>
+                So the question wasn&apos;t how do we be cheaper. It was how do
+                we get talked about?
               </p>
             </div>
           </div>
@@ -80,33 +88,98 @@ export default function FortyEightPage() {
         <hr className="divider" />
       </div>
 
-      {/* THE INSIGHT */}
+      {/* THE IDEA */}
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_insight</div>
-            <h2 className="proj-section-title">Exclusion as a brand asset</h2>
+            <div className="section-label">// the_idea</div>
+            <h2 className="proj-section-title">Firstly Paul, that&apos;s not even legal</h2>
             <div className="proj-prose">
               <p>
-                Most brands chase love. We chased fame. We borrowed from
-                challenger brand playbooks: scarcity, earned media, tribal
-                language, strong semiotics. We didn&apos;t design comms. We
-                designed behaviour.
+                A small group of us spent a week in Soho creating the brand.
+                We&apos;d brought in people from WhatIf Innovation, a handful
+                of creatives, and a bunch of teenagers. We leaned into Adam
+                Morgan&apos;s challenger brand playbook, specifically the idea
+                of scarcity. Google had done something similar with Gmail,
+                making it invite-only at launch. We wondered if we could build
+                scarcity into the core of the brand itself.
               </p>
               <p>
-                The product itself was the provocation. Only 18&ndash;22
-                year-olds could join. Too young? Locked out. Too old? Kicked
-                out. It created curiosity, urgency, and debate. The brand felt
-                underground, even though it was backed by a telco.
+                The winning idea: a mobile network only for 18&ndash;22
+                year-olds. Too young? Locked out. Too old? Kicked out.
+                The brand was called 48, for the 48 best months of their lives.
               </p>
             </div>
             <blockquote className="proj-pullquote">
               <p>
-                &ldquo;We made a limited-age product no one else would dare
-                launch. The campaign didn&apos;t ask to be liked. It demanded
-                to be noticed.&rdquo;
+                &ldquo;So, nobody can join the network until they are 18.
+                And at 22, we kick them out.&rdquo;
+                <br /><br />
+                Silence.
+                <br /><br />
+                &ldquo;Right, so Paul, firstly that&apos;s not even legal.&rdquo;
               </p>
             </blockquote>
+            <div className="proj-prose">
+              <p>
+                Susan was right to raise it. You can&apos;t actually stop people
+                from joining. That would be discrimination. But as long as we
+                never stopped anybody, we weren&apos;t doing anything illegal. We
+                were going to get complaints. That didn&apos;t bother us. In most
+                companies, the concept would have been killed on that first call.
+                In fairness to the board, it wasn&apos;t. They didn&apos;t change
+                a thing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container">
+        <hr className="divider" />
+      </div>
+
+      {/* THE BRAND */}
+      <section className="proj-section">
+        <div className="container">
+          <div className="proj-body">
+            <div className="section-label">// the_brand</div>
+            <h2 className="proj-section-title">Everything was stripped back</h2>
+            <div className="proj-prose">
+              <p>
+                While our competitors had over 50 high street stores, we had
+                none. They had large call centres. Ours was online. They had
+                hundreds of price plans. We had two. We didn&apos;t sell
+                handsets. We gave away SIM cards. Most networks had thousands of
+                employees. We had eleven people.
+              </p>
+              <p>
+                All this stripped-out complexity let us offer incredibly low
+                prices. But we knew cheap signals poor quality. So the role of
+                everything we did was to say we were cheap while signalling
+                that we were not a risky, poor-quality brand.
+              </p>
+            </div>
+            <div className="proj-callout">
+              <div className="proj-callout-number">0</div>
+              <div className="proj-callout-label">
+                quarter-page ads. That was the rule.
+              </div>
+              <div className="proj-callout-note">
+                If you can&apos;t afford a full page, don&apos;t advertise there.
+                Give the budget back. We built conspicuous waste into every
+                touchpoint.
+              </div>
+            </div>
+            <div className="proj-prose">
+              <p>
+                Our TV ads were high-quality, movie-like, 50-second
+                productions. We bought only large billboards and long-format
+                radio. Full-page ads in youth magazines. Minimal, confident SIM
+                card packaging. Everything oozed with confidence. When asked,
+                teenagers saw 48 as a big brand on a par with our competitors.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -123,16 +196,19 @@ export default function FortyEightPage() {
             <h2 className="proj-section-title">Built to provoke</h2>
             <div className="proj-prose">
               <p>
-                The launch campaign leaned into the tension. Age restriction
-                wasn&apos;t a footnote in the terms and conditions. It was
-                the entire point. The creative was designed to generate
-                complaints, conversation, and coverage.
+                Before the advertising even started, we fanned the flames.
+                Debates broke out on social media about the legalities of
+                it. People on forums were threatening to sue. We seeded
+                photographs of rejection letters telling people they
+                didn&apos;t get in. We advertised for and recruited a Head of
+                Rejection, whose job was to not let people join.
               </p>
               <p>
-                It worked. The ads got banned. We created so many complaints
-                that the campaign became a news story in its own right. Which,
-                of course, was more earned media for a brand nobody had heard
-                of a week earlier.
+                Our customer care agents were trained to flirt and banter. In
+                customer emails, we explained that we were &ldquo;running
+                background checks&rdquo; and wanted to make sure they were
+                &ldquo;not some sort of drug lord&rdquo;. Everything was
+                reviewed through one lens: would this get talked about?
               </p>
             </div>
           </div>
@@ -152,9 +228,10 @@ export default function FortyEightPage() {
           <div className="proj-body">
             <div className="proj-prose" style={{ marginTop: 32 }}>
               <p>
-                The follow-up doubled down. By now, the brand had an audience
-                who got it. The tone could go further because the tribe was
-                already forming.
+                The advertising itself got pulled due to complaints. Which was,
+                of course, more earned media for a brand nobody had heard of a
+                week earlier. The follow-up doubled down. By now, the tribe was
+                forming.
               </p>
             </div>
           </div>
@@ -186,16 +263,11 @@ export default function FortyEightPage() {
             <h2 className="proj-section-title">The results</h2>
             <div className="proj-prose">
               <p>
-                Within a year, 48 had captured 12% of the youth mobile market
-                in Ireland. A brand that didn&apos;t exist twelve months
-                earlier, built from nothing inside a corporate telco, was
-                suddenly the third biggest player among 18&ndash;22 year-olds.
-              </p>
-              <p>
-                The brand survived the O2/Three merger in 2015 and kept going.
-                They eventually relaxed the age restriction and broadened the
-                proposition, which tells you something about how strong the
-                original positioning was. It had legs well beyond the launch.
+                Within six months, 63% of Irish youth were aware of the 48
+                brand. Our total brand communication awareness was 48%, the
+                highest in the category among youth, with word-of-mouth as the
+                second biggest driver. It exceeded customer acquisition
+                targets despite early teething problems.
               </p>
             </div>
           </div>
@@ -207,6 +279,17 @@ export default function FortyEightPage() {
                 <div className="proj-stat-sub">{s.sub}</div>
               </div>
             ))}
+          </div>
+          <div className="proj-body">
+            <div className="proj-prose" style={{ marginTop: 40 }}>
+              <p>
+                The brand survived the O2/Three merger in 2015 and kept
+                going for years afterwards. Looking back, finding ways to
+                create scarcity was not the difficult part. It&apos;s the
+                willingness to not dilute the idea or back away from it when
+                the hurdles appear. And they will appear.
+              </p>
+            </div>
           </div>
         </div>
       </section>
