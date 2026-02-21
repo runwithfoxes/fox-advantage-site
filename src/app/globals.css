@@ -2501,13 +2501,22 @@ a.project-card {
   color: var(--orange);
 }
 
+/* Compact spacing for text-only page */
+.ai-writer-page .proj-hero {
+  padding-bottom: 48px;
+}
+
+.ai-writer-page .proj-section {
+  padding: 48px 0;
+}
+
 /* Process steps */
 .ai-process-steps {
-  margin-top: 32px;
+  margin-top: 20px;
 }
 
 .ai-process-step {
-  padding: 32px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border);
 }
 

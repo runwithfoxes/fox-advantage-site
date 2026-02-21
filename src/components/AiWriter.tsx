@@ -72,7 +72,7 @@ const contentTypes = [
 
 export default function AiWriterPage() {
   return (
-    <>
+    <div className="ai-writer-page">
       {/* TOP BAR */}
       <header className="top-bar">
         <Link href="/" className="logo">
@@ -111,44 +111,6 @@ export default function AiWriterPage() {
               </div>
             </div>
 
-            {/* Terminal block */}
-            <div className="ai-terminal">
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-accent">&gt;</span>{" "}
-                <span className="ai-terminal-label">
-                  initialising writer...
-                </span>
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-check">✓</span>{" "}
-                brand_dna loaded
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-check">✓</span>{" "}
-                voice_guidelines loaded
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-check">✓</span>{" "}
-                positioning checked
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-check">✓</span>{" "}
-                messaging_framework loaded
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-accent">&gt;</span>{" "}
-                content_type:{" "}
-                <span className="ai-terminal-label">case_study</span>
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-accent">&gt;</span>{" "}
-                checking source materials...
-              </div>
-              <div className="ai-terminal-line">
-                <span className="ai-terminal-accent">&gt;</span>{" "}
-                <span className="ai-terminal-label">ready to write.</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -264,6 +226,6 @@ export default function AiWriterPage() {
           get the book
         </Link>
       </div>
-    </>
+    </div>
   );
 }
