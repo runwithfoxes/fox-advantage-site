@@ -98,10 +98,9 @@ export default function AiWriterPage() {
             </h1>
             <p className="proj-subtitle">Brand-trained writing system</p>
             <p className="proj-lede">
-              We got tired of AI writing tools that start typing before
-              they&apos;ve read the brief. So we built one that does what any
-              decent copywriter would do first, it checks brand DNA, voice and
-              positioning before it writes a single word.
+              I&apos;ve built AI writers that write better than I can. It
+              needs knowledge of good writing, brand positioning, messaging
+              and some discipline.
             </p>
             <div className="proj-hero-meta">
               <div>
