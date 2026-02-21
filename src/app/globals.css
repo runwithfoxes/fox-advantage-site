@@ -434,12 +434,12 @@ a.project-card {
 
 .chapter-group-label {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: var(--orange);
   text-transform: uppercase;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 0;
   display: flex;
@@ -449,7 +449,7 @@ a.project-card {
 }
 
 .chapter-group-indicator {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 300;
   color: var(--text-muted);
   transition: color 0.3s;
@@ -462,7 +462,7 @@ a.project-card {
 }
 
 .chapter-group-count {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1px;
   color: var(--text-muted);
   text-transform: none;
