@@ -1891,17 +1891,18 @@ a.project-card {
 
 /* Rejection letter */
 .proj-letter {
-  max-width: 520px;
+  max-width: 480px;
   margin: 40px auto 40px;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 40px 36px;
+  padding: 32px 28px;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 300;
-  line-height: 1.8;
-  color: var(--text);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-muted);
 }
 
 .proj-letter-header {
@@ -1926,12 +1927,11 @@ a.project-card {
 }
 
 .proj-letter-ps {
-  margin-top: 20px !important;
-  padding-top: 16px;
+  margin-top: 16px !important;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
-  font-size: 12px;
+  font-size: 10px;
   color: var(--text-muted);
-  font-style: italic;
 }
 
 /* CEP image */
