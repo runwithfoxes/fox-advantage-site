@@ -105,7 +105,7 @@ function DownloadSection() {
   return (
     <section id="signup" className="gate-section">
       <div className="container">
-        <div className="section-label">/ get_the_book</div>
+        <div className="section-label">/get_the_book</div>
         {isUnlocked ? (
           <>
             <h2 className="section-title">You&apos;re on the list.</h2>
@@ -172,7 +172,7 @@ function LandingContent({ parts }: Props) {
       {/* ABOUT */}
       <section id="about">
         <div className="container">
-          <div className="section-label">// what_collapsed</div>
+          <div className="section-label">/what_collapsed</div>
           <h2 className="section-title">Fox thinking,<br />not hedgehog thinking</h2>
           <div className="about-grid">
             <div className="about-text">
@@ -203,7 +203,7 @@ function LandingContent({ parts }: Props) {
       {/* PARTS */}
       <section id="parts">
         <div className="container">
-          <div className="section-label">// structure</div>
+          <div className="section-label">/structure</div>
           <h2 className="section-title">Four parts</h2>
           <div className="parts-grid">
             {parts.map((p, i) => (
@@ -222,7 +222,7 @@ function LandingContent({ parts }: Props) {
       {/* CHAPTERS */}
       <section id="chapters">
         <div className="container">
-          <div className="section-label">// chapters.md</div>
+          <div className="section-label">/chapters.md</div>
           <h2 className="section-title">Table of contents</h2>
           <div className="chapters-list">
             {parts.map((p, i) => (
@@ -238,7 +238,7 @@ function LandingContent({ parts }: Props) {
       {/* AUTHOR */}
       <section id="author">
         <div className="container">
-          <div className="section-label">// author.txt</div>
+          <div className="section-label">/author.txt</div>
           <h2 className="section-title">About the author</h2>
           <div className="author-grid">
             <div>
@@ -264,7 +264,7 @@ function LandingContent({ parts }: Props) {
       {/* PROJECTS */}
       <section id="projects">
         <div className="container">
-          <div className="section-label">// projects</div>
+          <div className="section-label">/projects</div>
           <div className="projects-grid">
             <Link href="/millionaire-raffle" className="project-card project-card-link no-underline">
               <div className="project-tag">\mental_availability</div>

@@ -30,7 +30,7 @@ export default function FortyEightPage() {
       <section className="proj-hero">
         <div className="container">
           <div className="proj-body proj-hero-center">
-            <div className="section-label">// project \48</div>
+            <div className="section-label">/project \48</div>
             <h1 className="proj-title">
               <span className="accent">Fame</span> Strategy in action
             </h1>
@@ -68,7 +68,7 @@ export default function FortyEightPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_problem</div>
+            <div className="section-label">/the_problem</div>
             <h2 className="proj-section-title">O2 was a brand for their parents</h2>
             <div className="proj-prose">
               <p>
@@ -93,7 +93,7 @@ export default function FortyEightPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_idea</div>
+            <div className="section-label">/the_idea</div>
             <h2 className="proj-section-title">Firstly Paul, that&apos;s not even legal</h2>
             <div className="proj-prose">
               <p>
@@ -126,7 +126,7 @@ export default function FortyEightPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_campaign</div>
+            <div className="section-label">/the_campaign</div>
             <h2 className="proj-section-title">Built to provoke</h2>
             <div className="proj-prose">
               <p>
@@ -239,7 +239,7 @@ export default function FortyEightPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_results</div>
+            <div className="section-label">/the_results</div>
             <h2 className="proj-section-title">The results</h2>
             <div className="proj-prose">
               <p>

@@ -159,7 +159,7 @@ export default function MillionaireRafflePage() {
       <section className="proj-hero">
         <div className="container">
           <div className="proj-body proj-hero-center">
-            <div className="section-label">// project \national_lottery</div>
+            <div className="section-label">/project \national_lottery</div>
             <h1 className="proj-title">
               Mental <span className="accent">Availability</span> in action
             </h1>
@@ -196,7 +196,7 @@ export default function MillionaireRafflePage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_problem</div>
+            <div className="section-label">/the_problem</div>
             <h2 className="proj-section-title">Using Mental Availability to find growth</h2>
             <div className="proj-prose">
               <p>
@@ -237,7 +237,7 @@ export default function MillionaireRafflePage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// category_entry_points</div>
+            <div className="section-label">/category_entry_points</div>
             <h2 className="proj-section-title">What are Category Entry Points?</h2>
             <div className="proj-prose">
               <p>
@@ -278,7 +278,7 @@ export default function MillionaireRafflePage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_campaign</div>
+            <div className="section-label">/the_campaign</div>
             <h2 className="proj-section-title">So we made a new campaign</h2>
             <div className="proj-prose">
               <p>
@@ -337,7 +337,7 @@ export default function MillionaireRafflePage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_results</div>
+            <div className="section-label">/the_results</div>
             <h2 className="proj-section-title">The results</h2>
             <div className="proj-prose">
               <p>

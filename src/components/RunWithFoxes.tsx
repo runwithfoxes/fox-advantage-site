@@ -111,7 +111,7 @@ export default function RunWithFoxesPage() {
               />
             </div>
             <div className="rwf-hero-info">
-              <div className="section-label">// first_book</div>
+              <div className="section-label">/first_book</div>
               <h1 className="rwf-title">
                 Run with <span className="accent">Foxes</span>
               </h1>
@@ -168,7 +168,7 @@ export default function RunWithFoxesPage() {
       {/* WHAT PEOPLE ARE SAYING - ENDORSEMENTS */}
       <section className="rwf-praise">
         <div className="container">
-          <div className="section-label">// praise</div>
+          <div className="section-label">/praise</div>
           <h2 className="section-title">What people said</h2>
           <div className="rwf-endorsements">
             <blockquote className="rwf-endorsement">
@@ -208,7 +208,7 @@ export default function RunWithFoxesPage() {
       {/* REVIEWS */}
       <section className="rwf-reviews">
         <div className="container">
-          <div className="section-label">// amazon_reviews</div>
+          <div className="section-label">/amazon_reviews</div>
           <h2 className="section-title">Reader reviews</h2>
           <div className="rwf-reviews-grid">
             {reviews.map((r, i) => (

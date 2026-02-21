@@ -350,7 +350,7 @@ export default function MarketerOfYearPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_challenge</div>
+            <div className="section-label">/the_challenge</div>
             <h2 className="proj-section-title">A brand in decline</h2>
             <div className="proj-prose">
               <p>
@@ -374,7 +374,7 @@ export default function MarketerOfYearPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_strategy</div>
+            <div className="section-label">/the_strategy</div>
             <h2 className="proj-section-title">
               Three pillars, everything else followed
             </h2>
@@ -399,7 +399,7 @@ export default function MarketerOfYearPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// what_we_did</div>
+            <div className="section-label">/what_we_did</div>
             <h2 className="proj-section-title">Evidence-based decisions</h2>
             <div className="proj-prose">
               <p>
@@ -430,7 +430,7 @@ export default function MarketerOfYearPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_results</div>
+            <div className="section-label">/the_results</div>
             <h2 className="proj-section-title">The results</h2>
             <div className="proj-prose">
               <p>

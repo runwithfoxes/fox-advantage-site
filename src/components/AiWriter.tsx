@@ -91,7 +91,7 @@ export default function AiWriterPage() {
       <section className="proj-hero">
         <div className="container">
           <div className="proj-body proj-hero-center">
-            <div className="section-label">// project \ai_writer</div>
+            <div className="section-label">/project \ai_writer</div>
             <h1 className="proj-title">
               AI that writes like a{" "}
               <span className="accent">professional</span>
@@ -123,7 +123,7 @@ export default function AiWriterPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_process</div>
+            <div className="section-label">/the_process</div>
             <h2 className="proj-section-title">Before it writes a word</h2>
             <div className="ai-process-steps">
               {steps.map((s) => (
@@ -146,7 +146,7 @@ export default function AiWriterPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// content_types</div>
+            <div className="section-label">/content_types</div>
             <h2 className="proj-section-title">Six specialized frameworks</h2>
           </div>
           <div className="proj-framework-grid" style={{ maxWidth: 720, margin: "40px auto 0" }}>
@@ -168,7 +168,7 @@ export default function AiWriterPage() {
       <section className="proj-section">
         <div className="container">
           <div className="proj-body">
-            <div className="section-label">// the_difference</div>
+            <div className="section-label">/the_difference</div>
             <h2 className="proj-section-title">
               Rigor first, creation second
             </h2>
