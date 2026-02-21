@@ -265,7 +265,6 @@ function LandingContent({ parts }: Props) {
       <section id="projects">
         <div className="container">
           <div className="section-label">// projects</div>
-          <h2 className="section-title">Things I&apos;ve built</h2>
           <div className="projects-grid">
             <Link href="/millionaire-raffle" className="project-card project-card-link no-underline">
               <div className="project-tag">\mental_availability</div>
