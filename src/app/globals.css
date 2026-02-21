@@ -1869,6 +1869,15 @@ a.project-card {
   font-style: italic;
 }
 
+.proj-pullquote p + p {
+  margin-top: 12px;
+}
+
+.proj-pullquote-pause {
+  color: var(--text-muted) !important;
+  font-size: 15px !important;
+}
+
 /* CEP image */
 .proj-cep-image {
   margin-top: 40px;

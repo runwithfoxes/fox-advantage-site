@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 const stats = [
+  { value: "12%", label: "Youth market share", sub: "Within the first year" },
   { value: "63%", label: "Youth brand awareness", sub: "Within six months of launch" },
-  { value: "48%", label: "Communication awareness", sub: "Highest in category among youth" },
   { value: "11", label: "People", sub: "The entire team that ran 48" },
 ];
 
@@ -44,6 +45,16 @@ export default function FortyEightPage() {
             <div className="proj-hero-meta">
               <div><span className="proj-meta-accent">\</span> Telefonica (O2 Ireland)</div>
               <div><span className="proj-meta-accent">\</span> 2012&ndash;2014</div>
+            </div>
+            <div className="proj-hero-image-stacked">
+              <Image
+                src="/projects/48/poster.jpeg"
+                alt="48 Go Conquer campaign poster"
+                width={720}
+                height={1080}
+                priority
+                className="proj-hero-img"
+              />
             </div>
           </div>
         </div>
@@ -94,14 +105,9 @@ export default function FortyEightPage() {
               </p>
             </div>
             <blockquote className="proj-pullquote">
-              <p>
-                &ldquo;So, nobody can join until they are 18. And at 22,
-                we kick them out.&rdquo;
-                <br /><br />
-                Silence.
-                <br /><br />
-                &ldquo;Right, so Paul, firstly that&apos;s not even legal.&rdquo;
-              </p>
+              <p>&ldquo;So, nobody can join until they are 18. And at 22, we kick them out.&rdquo;</p>
+              <p className="proj-pullquote-pause">Silence.</p>
+              <p>&ldquo;Right, so Paul, firstly that&apos;s not even legal.&rdquo;</p>
             </blockquote>
             <div className="proj-prose">
               <p>
@@ -132,6 +138,18 @@ export default function FortyEightPage() {
                 lit up. People threatened to sue. Everything was reviewed
                 through one lens: would this get talked about?
               </p>
+            </div>
+          </div>
+          <div className="proj-body proj-hero-center">
+            <div className="proj-hero-image-stacked">
+              <Image
+                src="/projects/48/rejection-letter.png"
+                alt="48 rejection letter sent to applicants"
+                width={600}
+                height={800}
+                className="proj-hero-img"
+              />
+              <div className="proj-image-caption">The actual rejection letter.</div>
             </div>
           </div>
           <div className="proj-video-stack">
@@ -167,6 +185,18 @@ export default function FortyEightPage() {
                   allowFullScreen
                 />
               </div>
+            </div>
+          </div>
+          <div className="proj-body proj-hero-center">
+            <div className="proj-hero-image-stacked">
+              <Image
+                src="/projects/48/ads.png"
+                alt="48 Go Conquer print campaign - six poster designs"
+                width={900}
+                height={600}
+                className="proj-hero-img"
+              />
+              <div className="proj-image-caption">The full print campaign.</div>
             </div>
           </div>
         </div>
