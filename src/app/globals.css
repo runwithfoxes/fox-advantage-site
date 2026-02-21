@@ -455,6 +455,19 @@ a.project-card {
   transition: color 0.3s;
 }
 
+.chapter-group-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chapter-group-count {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-transform: none;
+}
+
 .chapter-group-label:hover .chapter-group-indicator {
   color: var(--orange);
 }

@@ -82,7 +82,10 @@ function ChapterGroup({ part, index, label }: { part: { part: number; partName: 
         aria-expanded={open}
       >
         <span>\part_{String(part.part).padStart(2, "0")} — {label}</span>
-        <span className="chapter-group-indicator">{open ? "−" : "+"}</span>
+        <span className="chapter-group-right">
+          <span className="chapter-group-count">{part.chapters.length} chapters</span>
+          <span className="chapter-group-indicator">{open ? "−" : "+"}</span>
+        </span>
       </div>
       {open && part.chapters.map((ch) => (
         <div key={ch.slug}>
