@@ -17,7 +17,7 @@ const sans = Space_Grotesk({
 export const metadata: Metadata = {
   title: "The Fox Advantage \\ Paul Dervan",
   description:
-    "How to thrive in marketing because of AI, not despite it. 41 short chapters. No jargon. No fluff.",
+    "How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.",
 };
 
 export default function RootLayout({

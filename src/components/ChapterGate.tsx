@@ -20,7 +20,7 @@ export default function ChapterGate({ chapter }: Props) {
           ← back to chapters
         </Link>
         <div className="chapter-nav-count">
-          {num} / 41
+          {num} / 54
         </div>
       </header>
 
