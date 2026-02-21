@@ -308,11 +308,13 @@ function LandingContent({ parts }: Props) {
               <div className="project-name">Smurfit UCD</div>
               <div className="project-desc">Teaching marketing strategy to MBA and MSc students at Ireland&apos;s top business school.</div>
             </div>
-            <div className="project-card">
-              <div className="project-tag">\ai</div>
-              <div className="project-name">AI Writers</div>
-              <div className="project-desc">Built a team of AI agents. Max writes copy, Alex schedules content, Klara runs the office.</div>
-            </div>
+            <Link href="/ai-writer" className="project-card project-card-link no-underline">
+              <div className="project-tag">\ai_writer</div>
+              <div className="project-name">AI Writer</div>
+              <div className="project-sub">Brand-trained writing system</div>
+              <div className="project-desc">AI that checks brand DNA, voice and positioning before it writes a word. Six specialized frameworks, zero fabrication.</div>
+              <div className="project-more">read more →</div>
+            </Link>
           </div>
         </div>
       </section>
