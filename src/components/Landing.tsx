@@ -68,7 +68,7 @@ function LandingContent({ parts }: Props) {
     <>
       {/* TOP BAR */}
       <header className="top-bar">
-        <a href="#" className="logo">\<span>fox</span>_advantage</a>
+        <a href="#" className="logo">/<span>Run</span>withfoxes</a>
         <nav>
           <a href="#about" className="active">#about</a>
           <a href="#chapters">chapters.md</a>

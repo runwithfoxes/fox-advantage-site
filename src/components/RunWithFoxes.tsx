@@ -85,7 +85,7 @@ export default function RunWithFoxesPage() {
       {/* TOP BAR */}
       <header className="top-bar">
         <Link href="/" className="logo">
-          \<span>fox</span>_advantage
+          /<span>Run</span>withfoxes
         </Link>
         <nav>
           <Link href="/#projects">/projects</Link>
