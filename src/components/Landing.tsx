@@ -223,11 +223,11 @@ function LandingContent({ parts }: Props) {
               <div className="project-name">Indeed</div>
               <div className="project-desc">Led global brand for the world&apos;s biggest job site. $400M budget across 20+ markets.</div>
             </div>
-            <div className="project-card">
+            <Link href="/run-with-foxes" className="project-card no-underline">
               <div className="project-tag">\book</div>
               <div className="project-name">Run with Foxes</div>
-              <div className="project-desc">First book, published 2020. Making better decisions in marketing using behavioural science. On Amazon.</div>
-            </div>
+              <div className="project-desc">First book, published 2020. Making better decisions in marketing. On Amazon.</div>
+            </Link>
             <div className="project-card">
               <div className="project-tag">\teaching</div>
               <div className="project-name">Smurfit UCD</div>
