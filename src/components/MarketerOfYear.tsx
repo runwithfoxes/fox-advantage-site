@@ -312,8 +312,9 @@ export default function MarketerOfYearPage() {
             </p>
             <p className="proj-lede">
               In January 2020, the National Lottery brand was in decline. Three
-              years later, revenue hit €1 billion for the first time, and brand
-              equity had jumped on every single measure.
+              years later, revenue hit €1 billion for the first time, more
+              people were playing and brand equity had jumped on every single
+              measure.
             </p>
             <div className="proj-hero-meta">
               <div>

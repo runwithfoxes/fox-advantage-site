@@ -274,11 +274,13 @@ function LandingContent({ parts }: Props) {
               <div className="project-desc">How a small change led to 27:1 ROI and sold so many tickets, we had to pull the campaign.</div>
               <div className="project-more">read more →</div>
             </Link>
-            <div className="project-card">
-              <div className="project-tag">\distinctive_assets</div>
-              <div className="project-name">National Lottery</div>
-              <div className="project-desc">Rebuilding Distinctive Brand Assets. Dream Inspector, new identity, and Marketer of the Year.</div>
-            </div>
+            <Link href="/marketer-of-the-year" className="project-card project-card-link no-underline">
+              <div className="project-tag">\marketing_effectiveness</div>
+              <div className="project-name">Marketing Effectiveness in action</div>
+              <div className="project-sub">National Lottery · Marketer of the Year</div>
+              <div className="project-desc">Evidence-based decisions that took the National Lottery to €1B revenue for the first time.</div>
+              <div className="project-more">read more →</div>
+            </Link>
             <Link href="/48" className="project-card project-card-link no-underline">
               <div className="project-tag">\fame_strategy</div>
               <div className="project-name">Fame Strategy in action</div>
