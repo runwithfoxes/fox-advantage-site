@@ -1,10 +1,44 @@
 "use client";
 
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
+
+function AnimatedNumber({ value, duration = 1200 }: { value: number; duration?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [display, setDisplay] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting && !started) { setStarted(true); obs.disconnect(); } },
+      { threshold: 0.5 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started || value === 0) { if (started) setDisplay(0); return; }
+    const start = performance.now();
+    let raf: number;
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      setDisplay(Math.round(ease * value));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [started, value, duration]);
+
+  return <div ref={ref} className="stat-number">{display}</div>;
+}
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -113,15 +147,15 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <div className="stat-number">54</div>
+                <AnimatedNumber value={54} duration={1400} />
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
-                <div className="stat-number">4</div>
+                <AnimatedNumber value={4} duration={800} />
                 <div className="stat-label">parts</div>
               </div>
               <div className="stat-block">
-                <div className="stat-number">0</div>
+                <AnimatedNumber value={0} duration={600} />
                 <div className="stat-label">jargon</div>
               </div>
             </div>
