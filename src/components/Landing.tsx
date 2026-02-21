@@ -124,8 +124,8 @@ function LandingContent({ parts }: Props) {
             <h1>The <span className="accent">Fox</span> Advantage</h1>
             <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> <AnimatedNumber value={54} duration={1400} delay={400} className="" onScroll={false} /> chapters</div>
-              <div><span>\</span> <AnimatedNumber value={4} duration={600} delay={600} className="" onScroll={false} /> parts</div>
+              <div><span>\</span> <AnimatedNumber value={54} duration={3000} delay={800} className="" onScroll={false} /> chapters</div>
+              <div><span>\</span> <AnimatedNumber value={4} duration={1600} delay={1000} className="" onScroll={false} /> parts</div>
               <div><span>\</span> free to read</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
@@ -151,11 +151,11 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <AnimatedNumber value={54} duration={1800} />
+                <AnimatedNumber value={54} duration={3000} />
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
-                <AnimatedNumber value={4} duration={800} />
+                <AnimatedNumber value={4} duration={1600} />
                 <div className="stat-label">parts</div>
               </div>
               <div className="stat-block">
