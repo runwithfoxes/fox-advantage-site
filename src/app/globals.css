@@ -150,6 +150,8 @@ section {
   height: auto;
   filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.2)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
   background: transparent !important;
+  will-change: filter;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero-book img,
