@@ -208,10 +208,17 @@ function LandingContent({ parts }: Props) {
           <div className="section-label">// projects</div>
           <h2 className="section-title">Things I&apos;ve built</h2>
           <div className="projects-grid">
+            <Link href="/millionaire-raffle" className="project-card project-card-link no-underline">
+              <div className="project-tag">\mental_availability</div>
+              <div className="project-name">Mental Availability in action</div>
+              <div className="project-sub">Millionaire Raffle Campaign</div>
+              <div className="project-desc">How a small change led to 27:1 ROI and sold so many tickets, we had to pull the campaign.</div>
+              <div className="project-more">read more →</div>
+            </Link>
             <div className="project-card">
-              <div className="project-tag">\brand</div>
+              <div className="project-tag">\distinctive_assets</div>
               <div className="project-name">National Lottery</div>
-              <div className="project-desc">Marketer of the Year. Rebuilt the brand, delivered 21:1 ROI.</div>
+              <div className="project-desc">Rebuilding Distinctive Brand Assets. Dream Inspector, new identity, and Marketer of the Year.</div>
             </div>
             <div className="project-card">
               <div className="project-tag">\brand</div>
