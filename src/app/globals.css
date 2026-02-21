@@ -429,7 +429,32 @@ a.project-card {
 }
 
 .chapter-group {
-  margin-bottom: 64px;
+  margin-bottom: 0;
+}
+
+.chapter-group-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: padding-left 0.3s;
+}
+
+.chapter-group-toggle:hover {
+  padding-left: 8px;
+}
+
+.chapter-group-toggle-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .chapter-group-label {
@@ -439,9 +464,32 @@ a.project-card {
   letter-spacing: 3px;
   color: var(--orange);
   text-transform: uppercase;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
   margin-bottom: 0;
+}
+
+.chapter-group-desc {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.chapter-group-arrow {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.chapter-group-toggle:hover .chapter-group-arrow {
+  color: var(--orange);
+}
+
+.chapter-group-content {
+  padding-bottom: 32px;
 }
 
 .chapter-item {

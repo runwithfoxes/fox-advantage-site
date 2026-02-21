@@ -68,6 +68,38 @@ function ChapterItem({ chapter }: { chapter: Chapter }) {
   );
 }
 
+function ChapterGroup({ part, index, label, desc }: { part: { part: number; partName: string; chapters: Chapter[] }; index: number; label: string; desc: string }) {
+  const [open, setOpen] = useState(index === 0);
+
+  return (
+    <div className="chapter-group">
+      <button
+        className={`chapter-group-toggle${open ? " chapter-group-open" : ""}`}
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
+        <div className="chapter-group-toggle-left">
+          <div className="chapter-group-label">\part_{String(part.part).padStart(2, "0")} — {label}</div>
+          <div className="chapter-group-desc">{desc}</div>
+        </div>
+        <span className="chapter-group-arrow">{open ? "−" : "+"}</span>
+      </button>
+      {open && (
+        <div className="chapter-group-content">
+          {part.chapters.map((ch) => (
+            <div key={ch.slug}>
+              {ch.section && (
+                <div className="chapter-section-label">{ch.section}</div>
+              )}
+              <ChapterItem chapter={ch} />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function DownloadSection() {
   const { isUnlocked } = useGate();
 
@@ -195,17 +227,7 @@ function LandingContent({ parts }: Props) {
           <h2 className="section-title">Table of contents</h2>
           <div className="chapters-list">
             {parts.map((p, i) => (
-              <div key={p.part} className="chapter-group">
-                <div className="chapter-group-label">\part_{String(p.part).padStart(2, "0")} — {partLabels[i]}</div>
-                {p.chapters.map((ch) => (
-                  <div key={ch.slug}>
-                    {ch.section && (
-                      <div className="chapter-section-label">{ch.section}</div>
-                    )}
-                    <ChapterItem chapter={ch} />
-                  </div>
-                ))}
-              </div>
+              <ChapterGroup key={p.part} part={p} index={i} label={partLabels[i]} desc={partDescs[i]} />
             ))}
           </div>
         </div>
