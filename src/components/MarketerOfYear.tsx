@@ -436,9 +436,6 @@ export default function MarketerOfYearPage() {
               </p>
             </div>
           </div>
-          <RevenueChart />
-          <BrandEquityChart />
-          <DistinctiveAssetsChart />
           <div className="proj-stats-row">
             {stats.map((s, i) => (
               <div key={i} className="proj-stat">
@@ -448,6 +445,9 @@ export default function MarketerOfYearPage() {
               </div>
             ))}
           </div>
+          <RevenueChart />
+          <BrandEquityChart />
+          <DistinctiveAssetsChart />
         </div>
       </section>
 
