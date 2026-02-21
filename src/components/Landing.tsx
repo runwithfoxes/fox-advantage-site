@@ -7,12 +7,16 @@ import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
 
-function AnimatedNumber({ value, duration = 1200 }: { value: number; duration?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+function AnimatedNumber({ value, duration = 1200, delay = 0, className = "stat-number", onScroll = true }: { value: number; duration?: number; delay?: number; className?: string; onScroll?: boolean }) {
+  const ref = useRef<HTMLSpanElement>(null);
   const [display, setDisplay] = useState(0);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    if (!onScroll) {
+      const timer = setTimeout(() => setStarted(true), delay);
+      return () => clearTimeout(timer);
+    }
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -21,7 +25,7 @@ function AnimatedNumber({ value, duration = 1200 }: { value: number; duration?: 
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [started]);
+  }, [started, onScroll, delay]);
 
   useEffect(() => {
     if (!started || value === 0) { if (started) setDisplay(0); return; }
@@ -37,7 +41,7 @@ function AnimatedNumber({ value, duration = 1200 }: { value: number; duration?: 
     return () => cancelAnimationFrame(raf);
   }, [started, value, duration]);
 
-  return <div ref={ref} className="stat-number">{display}</div>;
+  return <span ref={ref} className={className}>{display}</span>;
 }
 
 interface Props {
@@ -120,8 +124,8 @@ function LandingContent({ parts }: Props) {
             <h1>The <span className="accent">Fox</span> Advantage</h1>
             <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> 54 chapters</div>
-              <div><span>\</span> 4 parts</div>
+              <div><span>\</span> <AnimatedNumber value={54} duration={1400} delay={400} className="" onScroll={false} /> chapters</div>
+              <div><span>\</span> <AnimatedNumber value={4} duration={600} delay={600} className="" onScroll={false} /> parts</div>
               <div><span>\</span> free to read</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
