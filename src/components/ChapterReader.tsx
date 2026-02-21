@@ -44,7 +44,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
           ← back to chapters
         </Link>
         <div className="chapter-nav-count">
-          {num} / 41
+          {num} / 54
         </div>
       </header>
 

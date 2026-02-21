@@ -84,9 +84,9 @@ function LandingContent({ parts }: Props) {
           <div className="hero-content">
             <div className="hero-label">// a book by paul dervan</div>
             <h1>The <span className="accent">Fox</span> Advantage</h1>
-            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 41 short chapters. No jargon. No fluff.</p>
+            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> 41 chapters</div>
+              <div><span>\</span> 54 chapters</div>
               <div><span>\</span> 4 parts</div>
               <div><span>\</span> free to read</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
@@ -113,7 +113,7 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <div className="stat-number">41</div>
+                <div className="stat-number">54</div>
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
@@ -160,7 +160,12 @@ function LandingContent({ parts }: Props) {
               <div key={p.part} className="chapter-group">
                 <div className="chapter-group-label">\part_{String(p.part).padStart(2, "0")} — {partLabels[i]}</div>
                 {p.chapters.map((ch) => (
-                  <ChapterItem key={ch.slug} chapter={ch} />
+                  <div key={ch.slug}>
+                    {ch.section && (
+                      <div className="chapter-section-label">{ch.section}</div>
+                    )}
+                    <ChapterItem chapter={ch} />
+                  </div>
                 ))}
               </div>
             ))}
