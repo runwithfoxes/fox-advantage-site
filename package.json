@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.46",
+    "@ai-sdk/react": "^3.0.99",
+    "ai": "^6.0.97",
     "gray-matter": "^4.0.3",
     "next": "16.1.6",
     "react": "19.2.3",

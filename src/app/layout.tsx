@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import ChatWidget from "@/components/chat/ChatWidget";
 import "./globals.css";
 
 const mono = JetBrains_Mono({
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${mono.variable} ${sans.variable} antialiased`}>
         {children}
+        <ChatWidget />
       </body>
     </html>
   );

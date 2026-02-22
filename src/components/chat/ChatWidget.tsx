@@ -1,0 +1,138 @@
+"use client";
+
+import { useState, useRef, useEffect, FormEvent } from "react";
+import { useChat } from "@ai-sdk/react";
+import type { UIMessage } from "ai";
+import { renderChatMarkdown } from "@/lib/chat-markdown";
+
+/** Extract text content from a UIMessage's parts */
+function getMessageText(message: UIMessage): string {
+  return message.parts
+    .filter((p): p is { type: "text"; text: string } => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+}
+
+const WELCOME: UIMessage = {
+  id: "welcome",
+  role: "assistant",
+  parts: [
+    {
+      type: "text",
+      text: "Hey. I'm Isa. I work with Paul and probably know more about this stuff than he does. Ask me anything about marketing, AI, or the book.",
+    },
+  ],
+};
+
+export default function ChatWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { messages, sendMessage, status } = useChat({
+    messages: [WELCOME],
+  });
+
+  const isStreaming = status === "streaming";
+
+  // Auto-scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Focus input when panel opens
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [isOpen]);
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const trimmed = input.trim();
+    if (!trimmed || isStreaming) return;
+    setInput("");
+    sendMessage({ text: trimmed });
+  }
+
+  if (!isOpen) {
+    return (
+      <div className="chat-bubble-wrap">
+        <span className="chat-bubble-label">Ask Isa</span>
+        <button
+          className="chat-bubble"
+          onClick={() => setIsOpen(true)}
+          aria-label="Chat with Isa"
+        >
+          <span className="chat-bubble-icon">&#129418;</span>
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="chat-panel">
+      <div className="chat-panel-header">
+        <span className="chat-panel-title">isa</span>
+        <button
+          className="chat-panel-close"
+          onClick={() => setIsOpen(false)}
+          aria-label="Close chat"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div className="chat-panel-messages">
+        {messages.map((m) => {
+          const text = getMessageText(m);
+          return (
+            <div
+              key={m.id}
+              className={`chat-msg ${
+                m.role === "user" ? "chat-msg-user" : "chat-msg-assistant"
+              }`}
+            >
+              {m.role === "user" ? (
+                text
+              ) : (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: renderChatMarkdown(text),
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+        {isStreaming && messages[messages.length - 1]?.role !== "assistant" && (
+          <div className="chat-msg chat-msg-assistant">
+            <div className="chat-typing">...</div>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+
+      <form className="chat-input-form" onSubmit={handleSubmit}>
+        <input
+          ref={inputRef}
+          className="chat-input"
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask me something..."
+          disabled={isStreaming}
+          autoComplete="off"
+        />
+        <button
+          className="chat-input-send"
+          type="submit"
+          disabled={isStreaming || !input.trim()}
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  );
+}
