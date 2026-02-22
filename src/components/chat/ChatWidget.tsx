@@ -19,7 +19,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hello. I'm Isa. I work with Paul. I've picked up a fair bit of what he knows. He's an absolute nerd. But I'm a robot so can hardly throw rocks. How can I help?",
+      text: "Hello. I'm Isa. I work with Paul. I've picked up a fair bit of what he knows. He's an absolute nerd. But I'm a robot so I can hardly throw rocks. How can I help?",
     },
   ],
 };
