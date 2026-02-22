@@ -2741,13 +2741,22 @@ a.project-card {
   }
 
   .chat-panel {
+    top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     width: 100%;
-    height: calc(100dvh - 56px);
+    height: 100dvh;
     border: none;
     animation: chat-panel-mobile-enter 0.25s ease-out;
+  }
+
+  .chat-panel-header {
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  }
+
+  .chat-input-form {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   }
 
   @keyframes chat-panel-mobile-enter {
