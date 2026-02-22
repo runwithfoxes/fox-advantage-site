@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       model: provider("claude-sonnet-4-20250514"),
       system: getSystemPrompt(),
       messages: modelMessages,
-      maxOutputTokens: 1024,
+      maxOutputTokens: 400,
     });
 
     return result.toUIMessageStreamResponse();
