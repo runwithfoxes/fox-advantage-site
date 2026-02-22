@@ -287,4 +287,68 @@ A: Start measuring them. Use Romaniuk's framework: Fame (% who link the asset to
 
 Q: Tell me about the 48 brand
 A: One of Paul's favourite case studies. At O2 Ireland, they created a youth mobile brand called 48, named for the 48 best months of your life (ages 18-22). Only those ages could join. Legal said it wasn't allowed. They did it anyway. Seeded fake rejection letters, hired a Head of Rejection, trained customer care to flirt and banter. Made a TV ad entirely in Japanese. Got 63% youth awareness in six months. But the big learning was the pricing mistake: they assumed teens text, not talk, so gave away unlimited calls. Turns out teens loved talking, they just couldn't afford it. Years of ethnographic research, focus groups, and data supported their assumption, but they never ran an actual experiment.
+
+## Chapter Index (for linking visitors to relevant chapters)
+All chapters are free to read. Link format: https://runwithfoxes.com/chapter/[slug]
+
+Part 1 — What Just Collapsed:
+1. "The marketing department autopsy report" → ch02-the-marketing-department-autopsy-report
+2. "The robots aren't coming. They've already moved in" → ch03-the-robots-arent-coming-theyve-already-moved-in
+3. "The algorithm will see you now" → ch05-the-algorithm-will-see-you-now
+4. "Everything. Everywhere. All at once" → ch06-everything-everywhere-all-at-once
+5. "Average is the new invisible" → ch07-average-is-the-new-invisible
+
+Part 2 — Better Together:
+6. "Drivers Wanted" → ch09-drivers-wanted
+7. "Robots don't have skin in the game" → ch10-robots-dont-have-skin-in-the-game
+8. "Kill bugs fast" → ch11-kill-bugs-fast
+9. "Critical thinking has never been more critical" → ch12-critical-thinking-has-never-been-more-critical
+10. "AI has turned us all into little Hemingways" → ch13-ai-has-turned-us-all-into-little-hemingways
+11. "The friction is the point" → ch14-the-friction-is-the-point
+12. "A very tidy wrong answer" → ch15-a-very-tidy-wrong-answer
+
+Part 3 — Behaviours:
+13. "Pressing buttons is not the same as driving" → ch16-pressing-buttons-is-not-the-same-as-driving
+14. "Mr Beast" → ch17-mr-beast
+15. "Look for the smell" → ch18-look-for-the-smell
+16. "Standards decide what stays" → ch19-standards-decide-what-stays
+17. "Gotta put in the reps" → ch20-gotta-put-in-the-reps
+18. "Don't help. Ask me questions" → ch21-dont-help-ask-me-questions
+19. "Getting attention from robots" → ch22-getting-attention-from-robots
+20. "My 8.30am research report" → ch23-my-830am-research-report
+21. "Boardy AI rang me on a Sunday" → ch24-boardy-ai-rang-me-on-a-sunday
+22. "I chaired a meeting between two robots" → ch25-i-chaired-a-meeting-between-two-robots
+23. "Start with what" → ch26-start-with-what
+24. "126 years of AIDA" → ch27-126-years-of-aida
+25. "The one number you need to grow" → ch28-the-one-number-you-need-to-grow
+26. "Interview with two dead men" → ch32-interview-with-two-dead-men
+27. "Strong opinions. Weakly held" → ch33-strong-opinions-weakly-held
+28. "Build it in front of them" → ch34-build-it-in-front-of-them
+29. "Keep the skill in your hands" → ch35-keep-the-skill-in-your-hands
+30. "Build the scaffolding once" → ch36-build-the-scaffolding-once
+31. "TikTok writer" → ch37-tiktok-writer
+32. "Wrestling with a stubborn AI writer" → ch38-wrestling-with-a-stubborn-ai-writer
+33. "The gap" → ch39-the-gap
+34. "You don't need permission anymore" → ch40-you-dont-need-permission-anymore
+35. "Learn enough to be dangerous" → ch41-learn-enough-to-be-dangerous
+
+Part 4 — Marketing for Leaders:
+36. "The fundamentals are the input" → ch44b-the-fundamentals-are-the-input
+37. "Your eyepatch moment" → ch44c-your-eyepatch-moment
+38. "Find your winning ticket" → ch45-find-your-winning-ticket
+39. "Marcel" → ch46-marcel
+40. "More doing, less discussing" → ch47-more-doing-less-discussing
+41. "The listening habit" → ch49-the-listening-habit
+42. "Dashboards lie" → ch48-dashboards-lie
+43. "The fox test" → ch50-the-fox-test
+44. "The hedgehog problem" → ch51-the-hedgehog-problem
+45. "Find the ones with taste" → ch52-find-the-ones-with-taste
+46. "Kill confident nonsense" → ch53-kill-confident-nonsense
+47. "The robot is the grown-up" → ch54-the-robot-is-the-grown-up
+48. "Four beats fifty" → ch55-four-beats-fifty
+49. "Collapse the handoffs" → ch56-collapse-the-handoffs
+50. "Growth team of one" → ch57-growth-team-of-one
+51. "The delegation trap" → ch58-the-delegation-trap
+52. "The new split" → ch59-the-new-split
+53. "The remarkable advantage" → ch60-the-remarkable-advantage
 `;
