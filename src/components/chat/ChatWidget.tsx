@@ -115,6 +115,11 @@ export default function ChatWidget() {
         {status === "error" && (
           <div className="chat-msg chat-msg-assistant">
             Sorry, something went wrong there. Try sending your message again.
+            {error && (
+              <div style={{ fontSize: "0.75rem", opacity: 0.6, marginTop: "0.5rem" }}>
+                Debug: {error.message}
+              </div>
+            )}
           </div>
         )}
         <div ref={messagesEndRef} />
