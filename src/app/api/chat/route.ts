@@ -5,21 +5,30 @@ import { getSystemPrompt } from "@/lib/chat-system-prompt";
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  if (!process.env.CHAT_ANTHROPIC_API_KEY) {
+    console.error("[chat] CHAT_ANTHROPIC_API_KEY is not set");
+    return new Response("Chat is not configured", { status: 503 });
+  }
 
-  const modelMessages = await convertToModelMessages(messages);
+  try {
+    const { messages } = await req.json();
 
-  const provider = createAnthropic({
-    apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
-    baseURL: "https://api.anthropic.com/v1",
-  });
+    const modelMessages = await convertToModelMessages(messages);
 
-  const result = streamText({
-    model: provider("claude-sonnet-4-20250514"),
-    system: getSystemPrompt(),
-    messages: modelMessages,
-    maxOutputTokens: 1024,
-  });
+    const provider = createAnthropic({
+      apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
+    });
 
-  return result.toUIMessageStreamResponse();
+    const result = streamText({
+      model: provider("claude-sonnet-4-20250514"),
+      system: getSystemPrompt(),
+      messages: modelMessages,
+      maxOutputTokens: 1024,
+    });
+
+    return result.toUIMessageStreamResponse();
+  } catch (e) {
+    console.error("[chat] error:", e);
+    return new Response("Internal Server Error", { status: 500 });
+  }
 }
