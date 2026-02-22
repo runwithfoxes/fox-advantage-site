@@ -4,6 +4,14 @@ import { getSystemPrompt } from "@/lib/chat-system-prompt";
 
 export const maxDuration = 30;
 
+export async function GET() {
+  const hasKey = !!process.env.CHAT_ANTHROPIC_API_KEY;
+  const keyPrefix = hasKey
+    ? process.env.CHAT_ANTHROPIC_API_KEY!.slice(0, 10) + "..."
+    : "NOT SET";
+  return Response.json({ status: hasKey ? "ok" : "missing_key", keyPrefix });
+}
+
 export async function POST(req: Request) {
   if (!process.env.CHAT_ANTHROPIC_API_KEY) {
     console.error("[chat] CHAT_ANTHROPIC_API_KEY is not set");
