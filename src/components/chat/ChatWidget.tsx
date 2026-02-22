@@ -32,6 +32,7 @@ export default function ChatWidget() {
 
   const { messages, sendMessage, status, error } = useChat({
     messages: [WELCOME],
+    onError: (e) => console.error("[isa] chat error:", e),
   });
 
   const isBusy = status === "streaming" || status === "submitted";

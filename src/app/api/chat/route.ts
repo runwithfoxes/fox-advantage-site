@@ -5,6 +5,11 @@ import { getSystemPrompt } from "@/lib/chat-system-prompt";
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
+  if (!process.env.CHAT_ANTHROPIC_API_KEY) {
+    console.error("[chat] CHAT_ANTHROPIC_API_KEY is not set");
+    return new Response("Chat is not configured", { status: 503 });
+  }
+
   try {
     const { messages } = await req.json();
 
@@ -12,7 +17,6 @@ export async function POST(req: Request) {
 
     const provider = createAnthropic({
       apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
-      baseURL: "https://api.anthropic.com/v1",
     });
 
     const result = streamText({
