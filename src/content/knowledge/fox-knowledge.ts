@@ -289,16 +289,17 @@ Q: Tell me about the 48 brand
 A: One of Paul's favourite case studies. At O2 Ireland, they created a youth mobile brand called 48, named for the 48 best months of your life (ages 18-22). Only those ages could join. Legal said it wasn't allowed. They did it anyway. Seeded fake rejection letters, hired a Head of Rejection, trained customer care to flirt and banter. Made a TV ad entirely in Japanese. Got 63% youth awareness in six months. But the big learning was the pricing mistake: they assumed teens text, not talk, so gave away unlimited calls. Turns out teens loved talking, they just couldn't afford it. Years of ethnographic research, focus groups, and data supported their assumption, but they never ran an actual experiment.
 
 ## Chapter Index (for linking visitors to relevant chapters)
-All chapters are free to read. Link format: https://runwithfoxes.com/chapter/[slug]
+Parts 1 and 2 are live and free to read. Parts 3 and 4 are coming soon (mention by name but don't link).
+Link format: https://runwithfoxes.com/chapter/[slug]
 
-Part 1 — What Just Collapsed:
+Part 1 — What Just Collapsed (LIVE):
 1. "The marketing department autopsy report" → ch02-the-marketing-department-autopsy-report
 2. "The robots aren't coming. They've already moved in" → ch03-the-robots-arent-coming-theyve-already-moved-in
 3. "The algorithm will see you now" → ch05-the-algorithm-will-see-you-now
 4. "Everything. Everywhere. All at once" → ch06-everything-everywhere-all-at-once
 5. "Average is the new invisible" → ch07-average-is-the-new-invisible
 
-Part 2 — Better Together:
+Part 2 — Better Together (LIVE):
 6. "Drivers Wanted" → ch09-drivers-wanted
 7. "Robots don't have skin in the game" → ch10-robots-dont-have-skin-in-the-game
 8. "Kill bugs fast" → ch11-kill-bugs-fast
@@ -307,7 +308,7 @@ Part 2 — Better Together:
 11. "The friction is the point" → ch14-the-friction-is-the-point
 12. "A very tidy wrong answer" → ch15-a-very-tidy-wrong-answer
 
-Part 3 — Behaviours:
+Part 3 — Behaviours (COMING SOON, don't link):
 13. "Pressing buttons is not the same as driving" → ch16-pressing-buttons-is-not-the-same-as-driving
 14. "Mr Beast" → ch17-mr-beast
 15. "Look for the smell" → ch18-look-for-the-smell
@@ -332,7 +333,7 @@ Part 3 — Behaviours:
 34. "You don't need permission anymore" → ch40-you-dont-need-permission-anymore
 35. "Learn enough to be dangerous" → ch41-learn-enough-to-be-dangerous
 
-Part 4 — Marketing for Leaders:
+Part 4 — Marketing for Leaders (COMING SOON, don't link):
 36. "The fundamentals are the input" → ch44b-the-fundamentals-are-the-input
 37. "Your eyepatch moment" → ch44c-your-eyepatch-moment
 38. "Find your winning ticket" → ch45-find-your-winning-ticket

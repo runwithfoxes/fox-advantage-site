@@ -98,8 +98,8 @@ const chapterMap: {
   { file: "ch60-the-remarkable-advantage.md", number: 53, title: "The remarkable advantage", part: 4, partName: "Marketing for Leaders", section: "Be brave" },
 ];
 
-export function isChapterGated(_chapter: Chapter): boolean {
-  return false; // All chapters are now free
+export function isChapterGated(chapter: Chapter): boolean {
+  return chapter.part >= 3;
 }
 
 export function getChapterMeta(slug: string): Chapter | null {
