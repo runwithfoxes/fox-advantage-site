@@ -30,16 +30,16 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     messages: [WELCOME],
   });
 
-  const isStreaming = status === "streaming";
+  const isBusy = status === "streaming" || status === "submitted";
 
-  // Auto-scroll to bottom on new messages
+  // Auto-scroll to bottom on new messages or errors
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, error]);
 
   // Focus input when panel opens
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function ChatWidget() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const trimmed = input.trim();
-    if (!trimmed || isStreaming) return;
+    if (!trimmed || isBusy) return;
     setInput("");
     sendMessage({ text: trimmed });
   }
@@ -106,9 +106,14 @@ export default function ChatWidget() {
             </div>
           );
         })}
-        {isStreaming && messages[messages.length - 1]?.role !== "assistant" && (
+        {isBusy && messages[messages.length - 1]?.role !== "assistant" && (
           <div className="chat-msg chat-msg-assistant">
             <div className="chat-typing">...</div>
+          </div>
+        )}
+        {status === "error" && (
+          <div className="chat-msg chat-msg-assistant">
+            Sorry, something went wrong there. Try sending your message again.
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -122,13 +127,13 @@ export default function ChatWidget() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask me something..."
-          disabled={isStreaming}
+          disabled={isBusy}
           autoComplete="off"
         />
         <button
           className="chat-input-send"
           type="submit"
-          disabled={isStreaming || !input.trim()}
+          disabled={isBusy || !input.trim()}
         >
           Send
         </button>
