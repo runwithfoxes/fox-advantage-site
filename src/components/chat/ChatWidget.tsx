@@ -60,7 +60,7 @@ export default function ChatWidget() {
   if (!isOpen) {
     return (
       <div className="chat-bubble-wrap">
-        <span className="chat-bubble-label">Ask Isa</span>
+        <span className="chat-bubble-label">Can I help?</span>
         <button
           className="chat-bubble"
           onClick={() => setIsOpen(true)}
