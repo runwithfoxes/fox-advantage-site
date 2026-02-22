@@ -19,11 +19,35 @@ export async function POST(req: Request) {
       apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
     });
 
+    // Extract the latest user message for logging
+    const latestUserMessage = messages
+      .filter((m: { role: string }) => m.role === "user")
+      .pop();
+    const userText =
+      latestUserMessage?.parts?.find(
+        (p: { type: string }) => p.type === "text"
+      )?.text ||
+      latestUserMessage?.content ||
+      "";
+
     const result = streamText({
       model: provider("claude-sonnet-4-20250514"),
       system: getSystemPrompt(),
       messages: modelMessages,
       maxOutputTokens: 400,
+      onFinish: ({ text }) => {
+        // Log conversation to Vercel runtime logs
+        // View at: vercel.com > project > deployments > functions > logs
+        console.log(
+          JSON.stringify({
+            type: "isa_conversation",
+            timestamp: new Date().toISOString(),
+            messageCount: messages.length,
+            userMessage: userText,
+            isaResponse: text,
+          })
+        );
+      },
     });
 
     return result.toUIMessageStreamResponse();
