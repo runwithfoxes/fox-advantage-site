@@ -11,13 +11,17 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
     "@ai-sdk/react": "^3.0.99",
+    "@upstash/redis": "^1.36.2",
+    "@vercel/postgres": "^0.10.0",
     "ai": "^6.0.97",
     "gray-matter": "^4.0.3",
+    "nanoid": "^5.1.6",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "resend": "^6.9.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

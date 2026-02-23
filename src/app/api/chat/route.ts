@@ -1,6 +1,7 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText, convertToModelMessages } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
+import { saveConversationExchange } from "@/lib/conversation-store";
 
 export const maxDuration = 30;
 
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, id: chatId } = await req.json();
 
     const modelMessages = await convertToModelMessages(messages);
 
@@ -35,18 +36,14 @@ export async function POST(req: Request) {
       system: getSystemPrompt(),
       messages: modelMessages,
       maxOutputTokens: 400,
-      onFinish: ({ text }) => {
-        // Log conversation to Vercel runtime logs
-        // View at: vercel.com > project > deployments > functions > logs
-        console.log(
-          JSON.stringify({
-            type: "isa_conversation",
-            timestamp: new Date().toISOString(),
-            messageCount: messages.length,
-            userMessage: userText,
-            isaResponse: text,
-          })
-        );
+      onFinish: async ({ text }) => {
+        // Store conversation exchange in Redis
+        await saveConversationExchange({
+          chatId: chatId || "unknown",
+          messageCount: messages.length,
+          userMessage: userText,
+          isaResponse: text,
+        });
       },
     });
 
