@@ -1,7 +1,10 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText, convertToModelMessages } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
-import { saveConversationExchange } from "@/lib/conversation-store";
+import {
+  saveConversationExchange,
+  saveError,
+} from "@/lib/conversation-store";
 
 export const maxDuration = 30;
 
@@ -50,6 +53,10 @@ export async function POST(req: Request) {
     return result.toUIMessageStreamResponse();
   } catch (e) {
     console.error("[chat] error:", e);
+    await saveError({
+      userMessage: "unknown",
+      errorMessage: e instanceof Error ? e.message : String(e),
+    });
     return new Response("Internal Server Error", { status: 500 });
   }
 }

@@ -1,4 +1,7 @@
-import { getRecentConversations } from "@/lib/conversation-store";
+import {
+  getRecentConversations,
+  getRecentErrors,
+} from "@/lib/conversation-store";
 
 export async function GET(req: Request) {
   // Simple token auth so only you can read conversations
@@ -12,10 +15,15 @@ export async function GET(req: Request) {
   const limitParam = searchParams.get("limit");
   const limit = limitParam ? parseInt(limitParam, 10) : 50;
 
-  const conversations = await getRecentConversations(limit);
+  const [conversations, errors] = await Promise.all([
+    getRecentConversations(limit),
+    getRecentErrors(20),
+  ]);
 
   return Response.json({
     count: conversations.length,
+    errorCount: errors.length,
     conversations,
+    errors,
   });
 }

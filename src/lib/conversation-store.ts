@@ -85,6 +85,64 @@ export async function saveConversationExchange(
   }
 }
 
+/** Save an error when Isa fails */
+export async function saveError(error: {
+  userMessage: string;
+  errorMessage: string;
+}): Promise<void> {
+  const redis = getRedis();
+  if (!redis) {
+    console.error("[isa-error]", JSON.stringify(error));
+    return;
+  }
+
+  try {
+    const id = `err:${Date.now()}`;
+    await redis.set(
+      id,
+      { ...error, timestamp: new Date().toISOString() },
+      { ex: 60 * 60 * 24 * 30 }
+    );
+    await redis.zadd("error:index", {
+      score: Date.now(),
+      member: id,
+    });
+    // Keep last 100 errors
+    const count = await redis.zcard("error:index");
+    if (count > 100) {
+      await redis.zremrangebyrank("error:index", 0, count - 101);
+    }
+  } catch (e) {
+    console.error("[conversation-store] failed to save error:", e);
+  }
+}
+
+interface StoredError {
+  timestamp: string;
+  userMessage: string;
+  errorMessage: string;
+}
+
+/** Get recent errors */
+export async function getRecentErrors(
+  limit = 20
+): Promise<StoredError[]> {
+  const redis = getRedis();
+  if (!redis) return [];
+
+  const errorIds = await redis.zrange<string[]>("error:index", 0, limit - 1, {
+    rev: true,
+  });
+  if (!errorIds.length) return [];
+
+  const errors: StoredError[] = [];
+  for (const id of errorIds) {
+    const err = await redis.get<StoredError>(id);
+    if (err) errors.push(err);
+  }
+  return errors;
+}
+
 /** Get recent conversations, newest first */
 export async function getRecentConversations(
   limit = 50
