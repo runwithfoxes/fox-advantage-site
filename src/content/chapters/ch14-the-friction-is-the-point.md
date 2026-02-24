@@ -2,37 +2,22 @@
 
 _Part 2_
 
-I was halfway through writing a paragraph when the tool offered me a better one. It slid in with perfect grammar and a cleaner rhythm, like it had been watching over my shoulder the whole time. My tea was still too hot to drink and the cursor was still blinking. It felt like relief.
-It also felt like a tiny skip.
+AI can show you things you'd never think of on your own. That's handy. But there's potentially a longer-term downside.
 
+You ask a question, and the robots suggest an angle you hadn't thought of, maybe a half-clever phrase you wish you'd written. Feels good. Feels like progress. And in some sense, it is progress. Except your brain doesn't know whether that insight came from work or luck. The buzz is the same, but when we work for it, it stays in our brains.
 
-Because the feeling you get when you land a good line is the same whether you earned it or you were handed it. The buzz is identical. Your brain doesn’t stamp the difference.
+John Nosta calls this the "_Cognitive Corridor_". He says it's like driving at night with dipped headlights, then someone flicks the full beams for a second and you see the landscape ahead. That light helps you notice where you might go next. But it's not understanding. It's just illumination.
 
+The friction is the point. Learning science backs this up. The struggle is where the wiring happens. The friction isn't a tax on learning. It _is_ the learning.
 
-That matters more than people want to admit, because so much of what we call “thinking” is actually effort. You struggle, you try three versions, you get stuck, you walk away, you come back, and the solution arrives. It arrives with the feeling of insight, but it also arrives with the wiring that made the insight possible next time.
+Say you're learning to cook. You could ask AI for the perfect risotto recipe, follow it step by step, and end up with something smooth enough to post online. But you wouldn't know why it works, or what to do when it doesn't. The person who's scraped burned rice from the pan has something better than a recipe. They've got judgment. And a new pan.
 
+Psychologists call this the generation effect. You remember more when you make the thing yourself. Every time you reach for an idea, you strengthen the path to it. Skip that bit and you've eaten without digesting.
 
-When the insight arrives instantly, the wiring doesn’t always happen. John Nosta calls this the “Cognitive Corridor.” Like driving at night with dipped headlights, then someone flicks on full beams and you see the road ahead for a second. The light helps. It shows possibilities. But seeing isn’t the same as knowing.
-Learning science says the same thing in less poetic language. The struggle is not a tax on learning. It is the learning. You remember more when you generate the thing yourself, even if the first version is ugly.
+We're doing this in marketing too. AI can give us campaign ideas, strategy frameworks, neat charts. But effectiveness lives in _why_ things work, not _what_ might work.
 
+The strategist who's had to watch their ideas fail, who's tested and learned and changed tack, has built a kind of scar tissue. That's judgment. Someone running AI playbooks is borrowing someone else's.
 
-It’s obvious in any skill you’ve actually learned. Cooking is a clean example because the pan doesn’t lie. You can follow a perfect recipe and still end up with a mess if you don’t understand heat, timing, and the point where “one more minute” turns into disaster. The person who’s ruined a risotto once knows something the recipe can’t give them, which is what to do when it starts going wrong.
+The Cognitive Corridor isn't the destination. It's the hallway that shows you which doors might be worth opening. Let it spark ideas, ask odd questions, point you somewhere new. Then maybe close the chat…and think.
 
-
-Marketing is like that. You can get a strategy outline in seconds. You can get ten taglines, six audiences, a competitor table, and a neat plan. It can all look correct. The question is whether you understand why it would work, and what you’d do when it doesn’t.
-
-
-The danger isn’t that AI makes you lazy. The danger is subtler. It can make you feel like you’ve done the thinking when you’ve only consumed the result.
-So the move is not “never use it.” That’s childish. The move is to use it without removing the productive friction.
-
-
-A simple way to do that is to draft first. Even badly. Put down your version before you ask for help. Then use the tool to critique, to stress-test, to offer counter-arguments, to show you the options you missed. Keep yourself as the person doing the initial climb, and let the tool be the torch, not the lift.
-
-
-You also choose where you allow shortcuts. There are parts of the job where speed is pure upside, summarising notes, cleaning up messy research, turning a long doc into a short one. And there are parts where speed can quietly steal the point, naming the real problem, choosing what to ignore, deciding what you’d bet the budget on.
-
-
-If you remove friction from the parts that build judgement, you can end up with lots of output and a surprisingly thin sense of why any of it is good.
-
-
-And if that sounds abstract, it shows up in a very ordinary moment. When someone asks you, “Why this, not that,” and you realise you can’t explain it without pointing back at the tool.
+I discussed this with Claude. It agreed (naturally). It told me that the answer is almost a side effect. The learning is the goal. Wish I'd written that.
