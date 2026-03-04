@@ -50,7 +50,7 @@ interface Props {
 
 function ChapterItem({ chapter }: { chapter: Chapter }) {
   const num = String(chapter.number).padStart(2, "0");
-  const gated = chapter.part >= 3;
+  const gated = chapter.part >= 3 && chapter.slug !== 'ch16-fox-behaviours';
 
   return (
     <Link
