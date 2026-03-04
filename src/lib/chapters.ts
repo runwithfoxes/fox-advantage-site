@@ -99,6 +99,7 @@ const chapterMap: {
 ];
 
 export function isChapterGated(chapter: Chapter): boolean {
+  if (chapter.slug === 'ch16-fox-behaviours') return false;
   return chapter.part >= 3;
 }
 
