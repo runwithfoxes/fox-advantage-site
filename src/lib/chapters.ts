@@ -44,7 +44,7 @@ const chapterMap: {
   { file: "ch14-the-friction-is-the-point.md", number: 11, title: "The friction is the point", part: 2, partName: "Better Together" },
   { file: "ch15-a-very-tidy-wrong-answer.md", number: 12, title: "A very tidy wrong answer", part: 2, partName: "Better Together" },
   // Part 3: Behaviours
-  { file: "ch16-pressing-buttons-is-not-the-same-as-driving.md", number: 13, title: "Pressing buttons is not the same as driving", part: 3, partName: "Behaviours" },
+  { file: "ch16-fox-behaviours.md", number: 13, title: "Fox behaviours", part: 3, partName: "Behaviours" },
   { file: "ch17-mr-beast.md", number: 14, title: "Mr Beast", part: 3, partName: "Behaviours" },
   { file: "ch18-look-for-the-smell.md", number: 15, title: "Look for the smell", part: 3, partName: "Behaviours" },
   { file: "ch19-standards-decide-what-stays.md", number: 16, title: "Standards decide what stays", part: 3, partName: "Behaviours" },
@@ -152,7 +152,7 @@ export async function getChapterContent(slug: string): Promise<Chapter | null> {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { content } = matter(fileContents);
 
-  const processedContent = await remark().use(html).process(content);
+  const processedContent = await remark().use(html, { sanitize: false }).process(content);
   const contentHtml = processedContent.toString();
 
   return {
