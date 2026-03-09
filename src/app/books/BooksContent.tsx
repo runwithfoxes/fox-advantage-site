@@ -280,25 +280,24 @@ export default function BooksContent() {
     <main className="books-page">
       <div className="books-container">
         <header className="books-header">
-          <div className="header-content">
-            <span className="section-label">// recommended_reading</span>
-            <h1>Books for Marketers</h1>
-            <p className="books-intro">
-              These are the books I recommend to my students at UCD Smurfit.
-              Evidence-based marketing, brand building, advertising effectiveness,
-              and challenger strategy. No fluff.
-            </p>
-          </div>
-          <div className="header-fox">
-            <Image
-              src="/fox/fox-book.png"
-              alt="Grumpy fox with book"
-              width={180}
-              height={250}
-              className="fox-img"
-            />
-          </div>
+          <span className="section-label">// recommended_reading</span>
+          <h1>Books for Marketers</h1>
         </header>
+
+        <div className="books-fox">
+          <Image
+            src="/fox/fox-book.png"
+            alt="Grumpy fox with book"
+            width={160}
+            height={220}
+          />
+        </div>
+
+        <p className="books-intro">
+          These are the books I recommend to my students at UCD Smurfit.
+          Evidence-based marketing, brand building, advertising effectiveness,
+          and challenger strategy. No fluff.
+        </p>
 
         {Object.entries(books).map(([authorName, authorBooks]) => (
           <section key={authorName} className="author-section">
@@ -335,34 +334,31 @@ export default function BooksContent() {
         }
 
         .books-container {
-          max-width: 900px;
+          max-width: 720px;
           margin: 0 auto;
         }
 
         .books-header {
-          margin-bottom: 64px;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: 48px;
+          margin-bottom: 24px;
         }
 
-        .header-content {
-          flex: 1;
-          max-width: 600px;
+        .books-fox {
+          float: right;
+          width: 160px;
+          margin: 0 -40px 16px 24px;
+          shape-outside: margin-box;
         }
 
-        .header-fox {
-          flex-shrink: 0;
-          margin-top: 20px;
+        .books-fox img {
+          filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
         }
 
         @media (max-width: 768px) {
-          .books-container {
-            max-width: 720px;
-          }
-          .header-fox {
-            display: none;
+          .books-fox {
+            float: none;
+            width: 120px;
+            margin: 0 auto 24px;
+            text-align: center;
           }
         }
 
@@ -391,7 +387,8 @@ export default function BooksContent() {
           font-weight: 300;
           line-height: 1.85;
           color: #1D1B1B;
-          max-width: 600px;
+          max-width: 520px;
+          margin-bottom: 48px;
         }
 
         .author-section {
