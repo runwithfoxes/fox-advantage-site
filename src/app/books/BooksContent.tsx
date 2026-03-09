@@ -253,6 +253,24 @@ const books: Record<string, Book[]> = {
       link: "https://www.amazon.com/Alchemy-Curious-Science-Creating-Business/dp/006238841X",
     },
   ],
+  "Orlando Wood": [
+    {
+      title: "Lemon: How the Advertising Brain Turned Sour",
+      author: "Orlando Wood",
+      year: "2019",
+      description:
+        "Blends neuroscience, behavioural science, and cultural history to explain why advertising effectiveness has declined over 15 years. Shows how left-brain thinking has spread across marketing and is to blame. Characters, animals, human connection, and music build brands. Product close-ups, words on screen, and the stare make people look away.",
+      link: "https://www.amazon.com/Lemon-How-advertising-brain-turned/dp/0852941439",
+    },
+    {
+      title: "Look Out: Advertising's Effectiveness Problem Is Staring Us in the Face",
+      author: "Orlando Wood",
+      year: "2021",
+      description:
+        "If Lemon was the diagnosis, Look Out is the treatment. To create effective advertising that builds brands, capture 'broad-beam' attention. Traces how society's attention has narrowed in the digital age through an analysis of 'the stare', which is detrimental to culture, society, and advertising itself. The playbook for rebuilding lost effectiveness.",
+      link: "https://www.amazon.com/Look-out-Orlando-Wood/dp/0852941536",
+    },
+  ],
 };
 
 export default function BooksContent() {
