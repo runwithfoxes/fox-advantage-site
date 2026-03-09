@@ -225,6 +225,34 @@ const books: Record<string, Book[]> = {
       link: "https://www.amazon.com/Seven-Half-Lessons-About-Brain/dp/0358157145",
     },
   ],
+  "Daniel Kahneman": [
+    {
+      title: "Thinking, Fast and Slow",
+      author: "Daniel Kahneman",
+      year: "2011",
+      description:
+        "The Nobel laureate's masterwork on how two systems in your brain fight over control of your behaviour. System 1 is fast, intuitive, emotional. System 2 is slow, deliberate, logical. Shows how this leads to errors in memory, judgment, and decisions. The introduction to behavioural science for a generation of marketers.",
+      link: "https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555",
+    },
+    {
+      title: "Noise: A Flaw in Human Judgment",
+      author: "Daniel Kahneman, Olivier Sibony & Cass R. Sunstein",
+      year: "2021",
+      description:
+        "Noise is variability in judgments that should be identical. Two doctors giving different diagnoses to identical patients. Two judges giving different sentences for matching crimes. The same person making different decisions on Monday versus Wednesday. Shows how noise produces errors in medicine, law, hiring, and strategy.",
+      link: "https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401",
+    },
+  ],
+  "Rory Sutherland": [
+    {
+      title: "Alchemy: The Dark Art and Curious Science of Creating Magic in Brands, Business, and Life",
+      author: "Rory Sutherland",
+      year: "2019",
+      description:
+        "Thirty years of fieldwork inside consumer capitalism from the Vice Chairman of Ogilvy UK. Reveals why abandoning logic is sometimes the best way to solve problems. We are not rational creatures who make logical decisions based on evidence. The best ideas don't make rational sense; they make you feel more than they make you think.",
+      link: "https://www.amazon.com/Alchemy-Curious-Science-Creating-Business/dp/006238841X",
+    },
+  ],
 };
 
 export default function BooksContent() {
