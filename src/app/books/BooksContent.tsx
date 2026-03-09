@@ -392,7 +392,7 @@ export default function BooksContent() {
         }
 
         .author-section {
-          margin-bottom: 40px;
+          margin-bottom: 28px;
         }
 
         .author-name {
