@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface Book {
   title: string;
   author: string;
@@ -278,13 +280,24 @@ export default function BooksContent() {
     <main className="books-page">
       <div className="books-container">
         <header className="books-header">
-          <span className="section-label">// recommended_reading</span>
-          <h1>Books for Marketers</h1>
-          <p className="books-intro">
-            These are the books I recommend to my students at UCD Smurfit.
-            Evidence-based marketing, brand building, advertising effectiveness,
-            and challenger strategy. No fluff.
-          </p>
+          <div className="header-content">
+            <span className="section-label">// recommended_reading</span>
+            <h1>Books for Marketers</h1>
+            <p className="books-intro">
+              These are the books I recommend to my students at UCD Smurfit.
+              Evidence-based marketing, brand building, advertising effectiveness,
+              and challenger strategy. No fluff.
+            </p>
+          </div>
+          <div className="header-fox">
+            <Image
+              src="/fox/fox-book.png"
+              alt="Grumpy fox with book"
+              width={180}
+              height={250}
+              className="fox-img"
+            />
+          </div>
         </header>
 
         {Object.entries(books).map(([authorName, authorBooks]) => (
@@ -328,6 +341,31 @@ export default function BooksContent() {
 
         .books-header {
           margin-bottom: 64px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 32px;
+        }
+
+        .header-content {
+          flex: 1;
+        }
+
+        .header-fox {
+          flex-shrink: 0;
+        }
+
+        .fox-img {
+          opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+          .books-header {
+            flex-direction: column;
+          }
+          .header-fox {
+            display: none;
+          }
         }
 
         .section-label {
@@ -359,7 +397,8 @@ export default function BooksContent() {
         }
 
         .author-section {
-          margin-bottom: 56px;
+          margin-bottom: 72px;
+          padding-bottom: 24px;
         }
 
         .author-name {
