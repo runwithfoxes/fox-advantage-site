@@ -335,7 +335,7 @@ export default function BooksContent() {
         }
 
         .books-container {
-          max-width: 720px;
+          max-width: 900px;
           margin: 0 auto;
         }
 
@@ -344,24 +344,22 @@ export default function BooksContent() {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: 32px;
+          gap: 48px;
         }
 
         .header-content {
           flex: 1;
+          max-width: 600px;
         }
 
         .header-fox {
           flex-shrink: 0;
+          margin-top: 20px;
         }
 
-        .fox-img {
-          opacity: 0.9;
-        }
-
-        @media (max-width: 600px) {
-          .books-header {
-            flex-direction: column;
+        @media (max-width: 768px) {
+          .books-container {
+            max-width: 720px;
           }
           .header-fox {
             display: none;
