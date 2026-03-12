@@ -44,7 +44,7 @@ export default function AnswersPage() {
         <div className="container">
           <div className="section-label">// paul dervan</div>
           <h1 className="answers-title">
-            Questions marketers <span className="accent">actually</span> ask
+            Questions marketers <span className="accent">ask</span>
           </h1>
           <p className="answers-sub">
             On AI, brand building, creativity, and strategy. Answered by
