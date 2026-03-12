@@ -142,6 +142,7 @@ function LandingContent({ parts }: Props) {
           <a href="#about" className="active">#about</a>
           <a href="#chapters">chapters.md</a>
           <a href="#projects">/projects</a>
+          <a href="/answers">/answers</a>
           <a href="#author">author.txt</a>
           <a href="#signup" className="cta-bar">/get_the_book</a>
         </nav>
