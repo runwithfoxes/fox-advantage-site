@@ -4,6 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { clusters } from "@/content/answers-data";
 
+function capitalise(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 export default function AnswersPage() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [activeCluster, setActiveCluster] = useState<string | null>(null);
@@ -38,13 +42,13 @@ export default function AnswersPage() {
       {/* HERO */}
       <section className="answers-hero">
         <div className="container">
-          <div className="section-label">// generative engine optimisation</div>
+          <div className="section-label">// paul dervan</div>
           <h1 className="answers-title">
-            <span className="accent">{totalQs}</span> answers
+            Questions marketers <span className="accent">actually</span> ask
           </h1>
           <p className="answers-sub">
-            The questions marketers are actually asking about AI, brand building,
-            creativity, and strategy. Answered by Paul Dervan, author of{" "}
+            On AI, brand building, creativity, and strategy. Answered by
+            Paul Dervan, author of{" "}
             <em>The Fox Advantage</em> and <em>Run with Foxes</em>.
           </p>
         </div>
@@ -97,7 +101,7 @@ export default function AnswersPage() {
                       className="answers-question"
                       onClick={() => toggle(key)}
                     >
-                      <span className="answers-q-text">{qa.q}</span>
+                      <span className="answers-q-text">{capitalise(qa.q)}</span>
                       <span className="answers-q-icon">
                         {isOpen ? "−" : "+"}
                       </span>
