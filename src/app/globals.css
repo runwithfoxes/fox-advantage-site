@@ -2935,10 +2935,10 @@ a.project-card {
 
 .answers-filter-btn {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 300;
-  letter-spacing: 1px;
-  padding: 8px 16px;
+  letter-spacing: 2px;
+  padding: 10px 20px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-muted);
@@ -3065,8 +3065,8 @@ a.project-card {
   }
 
   .answers-filter-btn {
-    font-size: 10px;
-    padding: 6px 12px;
+    font-size: 11px;
+    padding: 8px 14px;
   }
 
   .answers-q-text {
