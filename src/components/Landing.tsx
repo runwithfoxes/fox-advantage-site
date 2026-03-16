@@ -317,7 +317,7 @@ function LandingContent({ parts }: Props) {
               <div className="project-desc">AI that checks brand DNA, voice and positioning before it writes a word. Six specialized frameworks, zero fabrication.</div>
               <div className="project-more">read more →</div>
             </Link>
-            <a href="https://brand-system-process.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
+            <a href="https://brand-system-process.vercel.app/" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline" style={{ gridColumn: '1 / -1' }}>
               <div className="project-tag">\brand_system</div>
               <div className="project-name">Brand System</div>
               <div className="project-sub">From guidelines to executable code</div>
