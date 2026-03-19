@@ -195,7 +195,28 @@ Keep the total response to around 400-500 words. Write in first person as the pe
       maxOutputTokens: 1024,
     });
 
-    return result.toTextStreamResponse();
+    const stream = result.textStream;
+    const encoder = new TextEncoder();
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            controller.enqueue(encoder.encode(chunk));
+          }
+          controller.close();
+        } catch (err) {
+          controller.error(err);
+        }
+      },
+    });
+
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Cache-Control": "no-cache",
+      },
+    });
   } catch (e) {
     console.error("[experts] error:", e);
     return new Response("Internal Server Error", { status: 500 });
