@@ -96,6 +96,8 @@ const chapterMap: {
   { file: "ch59-the-new-split.md", number: 52, title: "The new split", part: 4, partName: "Marketing for Leaders", section: "Build new agency models" },
   // Section 10: Be brave
   { file: "ch60-the-remarkable-advantage.md", number: 53, title: "The remarkable advantage", part: 4, partName: "Marketing for Leaders", section: "Be brave" },
+  // Section 11: Build the infrastructure
+  { file: "ch61-the-whole-event-in-an-evening.md", number: 54, title: "The whole event in an evening", part: 4, partName: "Marketing for Leaders", section: "Build the infrastructure" },
 ];
 
 export function isChapterGated(chapter: Chapter): boolean {

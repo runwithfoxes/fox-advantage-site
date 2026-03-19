@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useId } from "react";
 
 interface Persona {
   id: string;
@@ -71,11 +71,95 @@ const PERSONAS: Persona[] = [
 
 export default function ExpertsPage() {
   const [plan, setPlan] = useState("");
+  const [fileName, setFileName] = useState<string | null>(null);
   const [selectedPersona, setSelectedPersona] = useState<string | null>(null);
   const [critique, setCritique] = useState("");
   const [loading, setLoading] = useState(false);
   const [personaName, setPersonaName] = useState("");
   const responseRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputId = useId();
+
+  const handleFile = useCallback(async (file: File) => {
+    const name = file.name.toLowerCase();
+
+    // Text-based files
+    if (name.endsWith(".txt") || name.endsWith(".md") || name.endsWith(".csv")) {
+      const text = await file.text();
+      setPlan(text.slice(0, 10000));
+      setFileName(file.name);
+      return;
+    }
+
+    // Word documents (.docx) - extract text from XML
+    if (name.endsWith(".docx")) {
+      try {
+        const JSZip = (await import("jszip")).default;
+        const zip = await JSZip.loadAsync(file);
+        const docXml = await zip.file("word/document.xml")?.async("string");
+        if (docXml) {
+          // Strip XML tags to get plain text
+          const text = docXml
+            .replace(/<w:p[^>]*>/g, "\n")
+            .replace(/<[^>]+>/g, "")
+            .replace(/&amp;/g, "&")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&quot;/g, '"')
+            .replace(/&apos;/g, "'")
+            .replace(/\n{3,}/g, "\n\n")
+            .trim();
+          setPlan(text.slice(0, 10000));
+          setFileName(file.name);
+        } else {
+          alert("Could not read this .docx file.");
+        }
+      } catch {
+        alert("Could not read this .docx file. Try pasting the text instead.");
+      }
+      return;
+    }
+
+    // PDF - extract text client-side
+    if (name.endsWith(".pdf")) {
+      try {
+        const pdfjsLib = await import("pdfjs-dist");
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+        let fullText = "";
+        for (let i = 1; i <= Math.min(pdf.numPages, 30); i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const pageText = content.items
+            .map((item: any) => item.str || "")
+            .join(" ");
+          fullText += pageText + "\n\n";
+        }
+        setPlan(fullText.trim().slice(0, 10000));
+        setFileName(file.name);
+      } catch {
+        alert("Could not read this PDF. Try pasting the text instead.");
+      }
+      return;
+    }
+
+    alert("Supported formats: .txt, .md, .csv, .docx, .pdf. Or just paste your text directly.");
+  }, []);
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    },
+    [handleFile]
+  );
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+  }, []);
 
   const handleSubmit = useCallback(
     async (personaId: string) => {
@@ -213,47 +297,104 @@ export default function ExpertsPage() {
             marginBottom: 48,
           }}
         >
-          Paste your marketing plan, strategy document, or campaign brief below.
-          Then pick an expert. They will read it and tell you what they think,
-          in character, with no punches pulled.
+          Paste your marketing plan, strategy document, or campaign brief below,
+          or drop a file. Then pick an expert. They will read it and tell you
+          what they think, in character, with no punches pulled.
         </p>
 
         {/* Text area */}
         <div style={{ marginBottom: 48 }}>
-          <label
+          <div
             style={{
-              fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-              fontSize: 11,
-              letterSpacing: 2,
-              textTransform: "uppercase" as const,
-              color: "var(--text-muted, #8A8A85)",
-              display: "block",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
               marginBottom: 8,
             }}
           >
-            Your plan
-          </label>
-          <textarea
-            value={plan}
-            onChange={(e) => setPlan(e.target.value)}
-            placeholder="Paste your plan, strategy, brief, or campaign idea here..."
-            style={{
-              width: "100%",
-              minHeight: 200,
-              padding: 20,
-              fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-              fontSize: 13,
-              fontWeight: 300,
-              lineHeight: 1.8,
-              color: "var(--text, #1D1B1B)",
-              background: "#fff",
-              border: "1px solid var(--border, #E0E0DC)",
-              borderRadius: 8,
-              resize: "vertical",
-              outline: "none",
-            }}
-            maxLength={10000}
-          />
+            <label
+              style={{
+                fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
+                fontSize: 11,
+                letterSpacing: 2,
+                textTransform: "uppercase" as const,
+                color: "var(--text-muted, #8A8A85)",
+              }}
+            >
+              Your plan
+            </label>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              {fileName && (
+                <span
+                  style={{
+                    fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
+                    fontSize: 11,
+                    color: "var(--orange, #F47521)",
+                  }}
+                >
+                  {fileName}
+                </span>
+              )}
+              <input
+                ref={fileInputRef}
+                id={fileInputId}
+                type="file"
+                accept=".txt,.md,.csv,.docx,.pdf"
+                style={{ display: "none" }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleFile(file);
+                }}
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                style={{
+                  fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
+                  fontSize: 11,
+                  fontWeight: 300,
+                  padding: "5px 12px",
+                  background: "transparent",
+                  border: "1px solid var(--border, #E0E0DC)",
+                  borderRadius: 4,
+                  color: "var(--text-muted, #8A8A85)",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                }}
+              >
+                Attach file
+              </button>
+            </div>
+          </div>
+          <div
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            style={{ position: "relative" }}
+          >
+            <textarea
+              value={plan}
+              onChange={(e) => {
+                setPlan(e.target.value);
+                if (fileName) setFileName(null);
+              }}
+              placeholder="Paste your plan here, or drag and drop a file (.txt, .md, .docx, .pdf)..."
+              style={{
+                width: "100%",
+                minHeight: 200,
+                padding: 20,
+                fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
+                fontSize: 13,
+                fontWeight: 300,
+                lineHeight: 1.8,
+                color: "var(--text, #1D1B1B)",
+                background: "#fff",
+                border: "1px solid var(--border, #E0E0DC)",
+                borderRadius: 8,
+                resize: "vertical",
+                outline: "none",
+              }}
+              maxLength={10000}
+            />
+          </div>
           <div
             style={{
               fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
