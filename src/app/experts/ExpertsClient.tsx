@@ -70,6 +70,20 @@ const PERSONAS: Persona[] = [
 ];
 
 export default function ExpertsPage() {
+  const renderMarkdown = useCallback((text: string) => {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^### (.+)$/gm, '<div style="font-family:var(--sans,\'Space Grotesk\',sans-serif);font-size:15px;font-weight:500;margin:20px 0 8px;">$1</div>')
+      .replace(/^## (.+)$/gm, '<div style="font-family:var(--sans,\'Space Grotesk\',sans-serif);font-size:16px;font-weight:500;margin:24px 0 10px;">$1</div>')
+      .replace(/^- (.+)$/gm, '<div style="padding-left:16px;margin:4px 0;">&#9670; <span style="margin-left:6px;">$1</span></div>')
+      .replace(/\n\n/g, '<br/><br/>')
+      .replace(/\n/g, '<br/>');
+  }, []);
+
   const [plan, setPlan] = useState("");
   const [fileName, setFileName] = useState<string | null>(null);
   const [selectedPersona, setSelectedPersona] = useState<string | null>(null);
@@ -604,11 +618,11 @@ export default function ExpertsPage() {
                   fontWeight: 300,
                   lineHeight: 1.9,
                   color: "var(--text, #1D1B1B)",
-                  whiteSpace: "pre-wrap",
                 }}
-              >
-                {critique || "Reading your plan..."}
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: critique ? renderMarkdown(critique) : "Reading your plan...",
+                }}
+              />
 
               {/* Try another expert */}
               {!loading && critique && (
