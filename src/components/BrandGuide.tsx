@@ -149,8 +149,8 @@ export default function BrandGuide() {
               <TypeRow font="Space Grotesk" size="clamp(36px, 5vw, 64px)" weight="300" spacing="-1px" usage="Section titles" sample="Fox thinking, not hedgehog thinking" />
               <TypeRow font="Space Grotesk" size="24px" weight="400" spacing="-0.5px" usage="Part and project names" sample="Mental Availability in action" />
               <TypeRow font="Space Grotesk" size="18px" weight="400" spacing="-0.3px" usage="Chapter titles in lists" sample="The marketing department autopsy report" />
-              <TypeRow font="JetBrains Mono" size="15px" weight="300" spacing="0" usage="Chapter prose, body copy" sample="The marketing department as we knew it is gone. The stack collapsed." />
-              <TypeRow font="JetBrains Mono" size="14px" weight="300" spacing="0" usage="About text, descriptions" sample="This book started as notes to myself. Then it became a Substack." />
+              <TypeRow font="JetBrains Mono" size="0.9375rem" weight="300" spacing="0" usage="Chapter prose, body copy" sample="The marketing department as we knew it is gone. The stack collapsed." />
+              <TypeRow font="JetBrains Mono" size="0.875rem" weight="300" spacing="0" usage="About text, descriptions" sample="This book started as notes to myself. Then it became a Substack." />
               <TypeRow font="JetBrains Mono" size="12px" weight="400" spacing="2px" usage="Buttons (uppercase)" sample="GET THE BOOK" />
               <TypeRow font="JetBrains Mono" size="11px" weight="400" spacing="2px" usage="Labels, tags (uppercase)" sample="\MENTAL_AVAILABILITY" />
             </div>
@@ -356,7 +356,7 @@ export default function BrandGuide() {
                 </div>
               </div>
               <div style={{ marginTop: 16 }}>
-                <Rule text="Hover slides content right (padding-left: 12px)." />
+                <Rule text="Hover slides content right (translateX 12px, not padding-left)." />
                 <Rule text="Title colour transitions to orange." />
                 <Rule text="Arrow (initially opacity 0) fades in as orange." />
               </div>
@@ -366,9 +366,10 @@ export default function BrandGuide() {
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Hover philosophy</div>
               <Rule text="Subtle. No dramatic transforms, no scale changes." />
               <Rule text="Colour shift to orange is the primary hover pattern." />
-              <Rule text="Padding and letter-spacing shifts create gentle motion." />
-              <Rule text="'Read more →' links: letter-spacing expands from 1.5px to 2.5px on hover." />
+              <Rule text="Use translateX for slide effects, not padding shifts (avoids layout recalculation)." />
+              <Rule text="'Read more →' links: opacity or translateX shift on hover (not letter-spacing, which triggers layout)." />
               <Rule text="Link hover: opacity drops to 0.7." />
+              <Rule text="Never hide content behind hover-only. Touch users can't hover. Use click/tap reveal patterns instead." />
             </div>
           </SectionBlock>
 
@@ -456,6 +457,9 @@ export default function BrandGuide() {
               <Rule text="Global transition default: 0.3s on all properties." />
               <Rule text="Chat uses 0.2s for snappier feel." />
               <Rule text="No bouncy or elastic easing. Clean ease-out only." />
+              <Rule text="Only animate transform and opacity. Never padding, letter-spacing, height, or other layout-triggering properties." />
+              <Rule text="Always respect prefers-reduced-motion. Include @media (prefers-reduced-motion: reduce) block that disables all animation." />
+              <Rule text="Aim for 3-4 purposeful interactive moments per page, not more. Each one should help the reader understand the content." />
             </div>
           </SectionBlock>
 
@@ -609,6 +613,10 @@ export default function BrandGuide() {
                 "No Title Case in headings",
                 "No em dashes in copy",
                 "No corporate jargon",
+                "No hover-only content. Touch users can't hover. Use click/tap patterns",
+                "No animating layout properties (padding, letter-spacing, height). Use transform and opacity only",
+                "No skipping prefers-reduced-motion. Always include the media query",
+                "No animation overload. 3-4 purposeful moments per page, not a theme park",
               ].map((rule) => (
                 <div key={rule} style={{ display: "flex", gap: 10, alignItems: "baseline" }}>
                   <span style={{ color: "#c44", fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400 }}>✕</span>
