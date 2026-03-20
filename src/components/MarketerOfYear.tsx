@@ -170,7 +170,8 @@ function BrandEquityChart() {
                 <div
                   className="moty-equity-bar"
                   style={{
-                    width: visible ? `${(d.before / maxVal) * 100}%` : "0%",
+                    width: `${(d.before / maxVal) * 100}%`,
+                    opacity: visible ? 1 : 0,
                     background: "#E0E0DC",
                     transitionDelay: `${i * 0.08}s`,
                   }}
@@ -189,7 +190,8 @@ function BrandEquityChart() {
                 <div
                   className="moty-equity-bar"
                   style={{
-                    width: visible ? `${(d.after / maxVal) * 100}%` : "0%",
+                    width: `${(d.after / maxVal) * 100}%`,
+                    opacity: visible ? 1 : 0,
                     background: "var(--orange)",
                     transitionDelay: `${0.3 + i * 0.08}s`,
                   }}

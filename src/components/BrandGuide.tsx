@@ -440,12 +440,12 @@ export default function BrandGuide() {
           <SectionBlock id="motion" label="/motion" title="Animations">
             <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 48px" }}>
               {[
-                ["Number counter", "Stats count from 0 to value. Ease-out quintic, 1200-3000ms. Triggered on scroll via IntersectionObserver."],
                 ["Chat bubble", "Scales from 0 to 1 with opacity. 0.4s ease-out. Hover: scale 1.08, shadow expands."],
                 ["Chat panel", "Scale 0.9→1, translateY 10px→0. 0.25s. Mobile: slides up from bottom."],
-                ["Typing indicator", "Opacity pulses 0.3→1, 1s infinite loop."],
                 ["Chapter accordion", "Click to expand/collapse. First group open by default. +/− indicator."],
                 ["SVG chart", "Stroke-dashoffset animation for line drawing effect."],
+                ["Fade-in", "Scroll-triggered. translateY(24px) → 0, opacity 0 → 1. Subtle and sparse."],
+                ["Fox imagery", "The fox is the distinctive element. Use fox poses, placement, and attitude to create moments no other site has."],
               ].map(([name, desc]) => (
                 <div key={name} style={{ paddingBottom: 24, borderBottom: "1px solid var(--border)" }}>
                   <div style={{ fontFamily: "var(--sans)", fontSize: 16, fontWeight: 400, letterSpacing: -0.3, marginBottom: 8 }}>{name}</div>

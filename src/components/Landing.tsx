@@ -1,48 +1,12 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
 
-function AnimatedNumber({ value, duration = 1200, delay = 0, className = "stat-number", onScroll = true }: { value: number; duration?: number; delay?: number; className?: string; onScroll?: boolean }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(0);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    if (!onScroll) {
-      const timer = setTimeout(() => setStarted(true), delay);
-      return () => clearTimeout(timer);
-    }
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting && !started) { setStarted(true); obs.disconnect(); } },
-      { threshold: 0.5 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [started, onScroll, delay]);
-
-  useEffect(() => {
-    if (!started || value === 0) { if (started) setDisplay(0); return; }
-    const start = performance.now();
-    let raf: number;
-    const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - t, 5); // ease-out quintic — really slows into final number
-      setDisplay(Math.round(ease * value));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [started, value, duration]);
-
-  return <span ref={ref} className={className}>{display}</span>;
-}
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -156,8 +120,8 @@ function LandingContent({ parts }: Props) {
             <h1>The <span className="accent">Fox</span> Advantage</h1>
             <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> <AnimatedNumber value={54} duration={3000} delay={800} className="" onScroll={false} /> chapters</div>
-              <div><span>\</span> <AnimatedNumber value={4} duration={1600} delay={1000} className="" onScroll={false} /> parts</div>
+              <div><span>\</span> 54 chapters</div>
+              <div><span>\</span> 4 parts</div>
               <div><span>\</span> free to read</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
@@ -183,15 +147,15 @@ function LandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <AnimatedNumber value={54} duration={3000} />
+                <span className="stat-number">54</span>
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
-                <AnimatedNumber value={4} duration={1600} />
+                <span className="stat-number">4</span>
                 <div className="stat-label">parts</div>
               </div>
               <div className="stat-block">
-                <AnimatedNumber value={0} duration={600} />
+                <span className="stat-number">0</span>
                 <div className="stat-label">jargon</div>
               </div>
             </div>
