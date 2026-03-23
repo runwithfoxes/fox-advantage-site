@@ -21,7 +21,7 @@ const steps: Step[] = [
       "Differentiated value: why does it matter to the customer?",
       "Best-fit customers: who is this actually for (and who is it not for)?",
     ],
-    example: "The Sabre writer starts with an April Dunford positioning workshop output. Competitive alternatives by capability area, distinct value pillars with proof points, and best-fit account profiles. Without this document, the AI has no idea what makes this brand different from Amadeus.",
+    example: "A B2B travel tech company called Waymark starts with a positioning workshop output. Competitive alternatives by capability area, distinct value pillars with proof points, and best-fit account profiles. Without this document, the AI has no idea what makes Waymark different from the market leader.",
   },
   {
     number: 2,
@@ -34,7 +34,7 @@ const steps: Step[] = [
       "Messaging pillars: What you do, How you do it, Why it matters",
       "Marketing implications of each value (what it means in practice)",
     ],
-    example: "Sabre's brand DNA has three pillars: customer-centricity, openness, and challenger mindset. Under customer-centricity, the marketing implication is specific: 'Lead with customer problems, not Sabre features. Show their pain, then how we solve it.'",
+    example: "Waymark's brand DNA has three pillars: customer-centricity, openness, and challenger mindset. Under customer-centricity, the marketing implication is specific: 'Lead with customer problems, not Waymark features. Show their pain, then how we solve it.'",
   },
   {
     number: 3,
@@ -48,12 +48,12 @@ const steps: Step[] = [
       "Rhythm rules to prevent AI-sounding cadence",
       "Construct limits (e.g. max one rhetorical question per section)",
     ],
-    example: "Sabre has three voice traits: Infectiously Upbeat, Knowingly Provocative, Endlessly Supportive. Each has a tone dial from low to high, calibrated per channel. Thought leadership is medium across all three. Social is high on upbeat. The constraints are zero-tolerance: no em dashes, no exclamation marks, no passive voice, no fabricated statistics.",
+    example: "Waymark has three voice traits: Infectiously Upbeat, Knowingly Provocative, Endlessly Supportive. Each has a tone dial from low to high, calibrated per channel. Thought leadership is medium across all three. Social is high on upbeat. The constraints are zero-tolerance: no em dashes, no exclamation marks, no passive voice, no fabricated statistics.",
   },
   {
     number: 4,
     title: "Audience-specific messaging",
-    why: "Different audiences have different problems, different language, and different competitors. One positioning document is rarely enough. If you sell to airlines and agencies, those are two different writers, even if the brand is the same.",
+    why: "Different audiences have different problems, different language, and different competitors. One positioning document is rarely enough. If you sell to enterprise buyers and small businesses, those are two different writers, even if the brand is the same.",
     what: [
       "Separate positioning for each audience segment",
       "Segment-specific competitive alternatives",
@@ -61,7 +61,7 @@ const steps: Step[] = [
       "Language differences (what each audience calls things)",
       "Approved customer quotes per segment",
     ],
-    example: "Sabre has two complete positioning documents: one for airlines, one for agencies. The competitive landscape is completely different. The value proposition changes. The AI writer asks 'who is this for?' before it reads any positioning material. The wrong document produces the wrong content.",
+    example: "Waymark has two complete positioning documents: one for enterprise buyers, one for mid-market agencies. The competitive landscape is completely different. The value proposition changes. The AI writer asks 'who is this for?' before it reads any positioning material. The wrong document produces the wrong content.",
   },
   {
     number: 5,
@@ -74,7 +74,7 @@ const steps: Step[] = [
       "Character limits and scannability rules for web content",
       "Depth requirements (thought leadership demands a defensible point of view, not assembled facts)",
     ],
-    example: "Sabre has four separate writer prompts: Case Study, Email, Web Page, and Thought Leadership. The email writer has subject line formulas and CTA rules. The thought leadership writer has a critical rule: 'TL is not marketing with longer sentences.' Each format gets its own calibration of the three voice traits.",
+    example: "Waymark has four separate writer prompts: Case Study, Email, Web Page, and Thought Leadership. The email writer has subject line formulas and CTA rules. The thought leadership writer has a critical rule: 'TL is not marketing with longer sentences.' Each format gets its own calibration of the three voice traits.",
   },
   {
     number: 6,
@@ -87,7 +87,7 @@ const steps: Step[] = [
       "Source disclosure: every claim traced back to a specific document",
       "Credibility rules: nothing fabricated, everything verifiable",
     ],
-    example: "Sabre's master instruction file opens with 'STOP. Do not write a single word of content until you complete these steps.' Step 1: identify the audience. Step 2: review the positioning documents for that audience. Step 3: confirm what you reviewed. This is non-negotiable.",
+    example: "Waymark's master instruction file opens with 'STOP. Do not write a single word of content until you complete these steps.' Step 1: identify the audience. Step 2: review the positioning documents for that audience. Step 3: confirm what you reviewed. This is non-negotiable.",
   },
   {
     number: 7,
@@ -100,7 +100,7 @@ const steps: Step[] = [
       "Quality checklist before output is delivered",
       "Error handling: what to do when information is missing",
     ],
-    example: "Sabre's master file routes the writer through a decision tree. Airlines content? Read Brand DNA, Airlines Positioning, Writer DNA. Agencies content? Read Brand DNA, Agencies Positioning, Writer DNA. Case study? Also load the case study framework. The writer never has to guess what to read.",
+    example: "Waymark's master file routes the writer through a decision tree. Enterprise content? Read Brand DNA, Enterprise Positioning, Writer DNA. Agency content? Read Brand DNA, Agency Positioning, Writer DNA. Case study? Also load the case study framework. The writer never has to guess what to read.",
   },
 ];
 
