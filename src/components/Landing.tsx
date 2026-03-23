@@ -295,6 +295,13 @@ function LandingContent({ parts }: Props) {
               <div className="project-desc">Upload a marketing plan or strategy document and get it critiqued by expert personas in real time. Built for workshops.</div>
               <div className="project-more">try it →</div>
             </Link>
+            <a href="https://insights-agent-topaz.vercel.app" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
+              <div className="project-tag">\insights_agent</div>
+              <div className="project-name">Insights Agent</div>
+              <div className="project-sub">From information to genuine insight</div>
+              <div className="project-desc">AI pipeline that generates consumer insight hypotheses from customer feedback. Analyst, Red Team, and Synthesiser working in sequence. 1,216 reviews, real tensions not summaries.</div>
+              <div className="project-more">try it →</div>
+            </a>
           </div>
         </div>
       </section>
