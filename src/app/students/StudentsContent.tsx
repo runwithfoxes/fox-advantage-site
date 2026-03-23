@@ -142,6 +142,7 @@ const branches: Branch[] = [
         name: "Building an AI writer",
         desc: "Positioning first, then messaging framework, then voice rules, then training data from real customer language. The prompt stays tiny because the strategic work is baked in. Tools do not fix vague thinking. They just make it faster.",
         links: [
+          { tag: "how to", label: "Step-by-step guide", href: "/students/tools/ai-writer" },
           { tag: "chapter", label: "TikTok writer", href: "/chapter/ch37-tiktok-writer" },
           { tag: "chapter", label: "Wrestling with a stubborn AI writer", href: "/chapter/ch38-wrestling-with-a-stubborn-ai-writer" },
         ],
