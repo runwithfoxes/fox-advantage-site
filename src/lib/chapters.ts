@@ -17,6 +17,7 @@ export interface Chapter {
   partName: string;
   section?: string;
   content?: string;
+  released?: boolean;
 }
 
 // Map chapter files to their display order and part assignments
@@ -118,6 +119,7 @@ export function getChapterMeta(slug: string): Chapter | null {
     part: mapping.part,
     partName: mapping.partName,
     section: mapping.section,
+    released: mapping.released,
   };
 }
 
@@ -129,6 +131,7 @@ export function getAllChapters(): Chapter[] {
     part: ch.part,
     partName: ch.partName,
     section: ch.section,
+    released: ch.released,
   }));
 }
 
