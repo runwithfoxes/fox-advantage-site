@@ -362,6 +362,10 @@ section {
   transition: background 0.3s;
 }
 
+.project-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 .project-card:hover {
   background: #F5F5F0;
 }
