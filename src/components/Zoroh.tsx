@@ -620,6 +620,13 @@ export default function ZorohPage() {
           margin-bottom: 1.5rem;
         }
 
+        .zb-data-stats {
+          display: flex;
+          gap: 48px;
+          align-items: baseline;
+          flex-wrap: wrap;
+        }
+
         /* ── rules list ── */
 
         .zb-rules {
@@ -729,23 +736,53 @@ export default function ZorohPage() {
 
         @media (max-width: 1024px) {
           .zb-swatches { grid-template-columns: repeat(2, 1fr); }
-          .zb-spec-grid { grid-template-columns: 1fr; }
+          .zb-spec-grid { grid-template-columns: repeat(2, 1fr); }
           .zb-demo-cards { grid-template-columns: 1fr; }
           .zb-type-row { grid-template-columns: 1fr; gap: 12px; }
         }
 
         @media (max-width: 768px) {
-          .zb-nav { padding: 0 1.5rem; }
+          .zb-nav { padding: 0 1.25rem; }
           .zb-nav-links { display: none; }
           .zb-nav-badge { display: none; }
-          .zb-hero { padding: calc(72px + 4rem) 1.5rem 4rem; }
+          .zb-hero { padding: calc(72px + 3rem) 1.25rem 3rem; }
+          .zb-hero h1 { margin-bottom: 1.5rem; }
+          .zb-hero-sub { font-size: 15px; }
           .zb-hero-meta { flex-direction: column; gap: 12px; }
-          .zb-section { padding: 4rem 1.5rem; }
-          .zb-swatches { grid-template-columns: 1fr 1fr; }
-          .zb-footer { padding: 2rem 1.5rem; }
-          .zb-footer-inner { flex-direction: column; gap: 16px; }
+          .zb-section { padding: 3rem 1.25rem; }
+          .zb-section h2 { margin-bottom: 1rem; }
+          .zb-section-text { font-size: 15px; }
+          .zb-swatches { grid-template-columns: 1fr 1fr; gap: 12px; }
+          .zb-swatch-block { height: 80px; }
+          .zb-spec-grid { grid-template-columns: 1fr; gap: 16px; }
+          .zb-spec-card { padding: 1.5rem; }
+          .zb-demo-cards { grid-template-columns: 1fr; }
+          .zb-demo-dark { padding: 1.5rem; }
+          .zb-demo-dark h3 { font-size: 20px; }
+          .zb-demo-row { flex-direction: column; align-items: stretch; }
+          .zb-btn-primary, .zb-btn-outline { width: 100%; justify-content: center; padding: 14px 24px; }
+          .zb-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .zb-table th, .zb-table td { white-space: nowrap; padding: 10px 12px; font-size: 12px; }
+          .zb-rules { max-width: 100%; }
+          .zb-rule { font-size: 14px; gap: 12px; padding: 14px 0; }
+          .zb-footer { padding: 2rem 1.25rem; }
+          .zb-footer-inner { flex-direction: column; gap: 16px; text-align: center; }
           .zb-footer-left { flex-direction: column; gap: 12px; }
-          .zb-demo-dark { padding: 2rem; }
+          .zb-footer-divider { display: none; }
+        }
+
+        @media (max-width: 480px) {
+          .zb-nav { padding: 0 1rem; height: 60px; }
+          .zb-nav-mark { width: 30px; height: 30px; }
+          .zb-nav-mark span { font-size: 17px; }
+          .zb-nav-wordmark { font-size: 14px; }
+          .zb-hero { padding: calc(60px + 2.5rem) 1rem 2.5rem; }
+          .zb-section { padding: 2.5rem 1rem; }
+          .zb-swatches { grid-template-columns: 1fr; }
+          .zb-swatch-block { height: 72px; }
+          .zb-type-row { gap: 8px; padding: 20px 0; }
+          .zb-demo-card { padding: 1.5rem; }
+          .zb-footer { padding: 1.5rem 1rem; }
         }
       `}</style>
 
@@ -937,7 +974,7 @@ export default function ZorohPage() {
                     clamp(2.5rem, 5vw, 3.5rem)
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: "48px", alignItems: "baseline" }}>
+                <div className="zb-data-stats">
                   <div>
                     <span style={{
                       fontFamily: "'DM Mono', monospace",
