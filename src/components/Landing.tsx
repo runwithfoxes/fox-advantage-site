@@ -295,6 +295,13 @@ function LandingContent({ parts }: Props) {
               <div className="project-desc">Upload a marketing plan or strategy document and get it critiqued by expert personas in real time. Built for workshops.</div>
               <div className="project-more">try it →</div>
             </Link>
+            <a href="https://metrics-pyramid.vercel.app" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
+              <div className="project-tag">\effectiveness_coach</div>
+              <div className="project-name">Marketing Effectiveness Coach</div>
+              <div className="project-sub">The metrics pyramid</div>
+              <div className="project-desc">Paste in the metrics you track and see where they sit in the effectiveness hierarchy. From activity at the base to commercial outcomes at the peak.</div>
+              <div className="project-more">try it →</div>
+            </a>
             <a href="https://insights-agent-topaz.vercel.app" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
               <div className="project-tag">\insights_agent</div>
               <div className="project-name">Insights Agent</div>
