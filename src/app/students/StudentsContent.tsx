@@ -593,6 +593,21 @@ export default function StudentsContent() {
               <p style={{ fontSize: "0.875rem", color: "#8A8A85", marginTop: 20, maxWidth: 520 }}>
                 Three things. Everything else flows from them. They are not three separate topics. They are one system where each feeds the others. Click any branch to explore.
               </p>
+              <a
+                href="/prep"
+                style={{
+                  display: "inline-block",
+                  marginTop: 16,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 12,
+                  fontWeight: 400,
+                  letterSpacing: 2,
+                  textTransform: "uppercase" as const,
+                  color: "#F47521",
+                }}
+              >
+                /exam_prep &rarr;
+              </a>
             </div>
             <Image
               src="/fox/fox-book.png"

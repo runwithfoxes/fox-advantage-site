@@ -1,6 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/prep",
+        destination: "https://ucd-prep.vercel.app/",
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/clients",
+        destination: "https://clients.runwithfoxes.com",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {
