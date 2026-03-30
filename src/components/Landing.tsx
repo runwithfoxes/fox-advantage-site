@@ -105,7 +105,21 @@ function LandingContent({ parts }: Props) {
         <nav>
           <a href="#about" className="active">#about</a>
           <a href="#chapters">chapters.md</a>
-          <a href="#projects">/projects</a>
+          <div className="nav-dropdown">
+            <a href="#projects">/projects</a>
+            <div className="dropdown-menu">
+              <Link href="/millionaire-raffle">Millionaire Raffle</Link>
+              <Link href="/marketer-of-the-year">Marketer of the Year</Link>
+              <Link href="/48">48 · Youth Brand</Link>
+              <Link href="/run-with-foxes">Run with Foxes</Link>
+              <Link href="/ai-writer">AI Writer</Link>
+              <Link href="/experts">Expert Panel</Link>
+              <a href="https://insights-agent-topaz.vercel.app" target="_blank" rel="noopener noreferrer">Insights Agent</a>
+              <a href="https://brand-system-process.vercel.app/" target="_blank" rel="noopener noreferrer">Brand System</a>
+              <a href="https://metrics-pyramid.vercel.app" target="_blank" rel="noopener noreferrer">Effectiveness Coach</a>
+              <Link href="/chief">Chief of Staff</Link>
+            </div>
+          </div>
           <a href="/answers">/answers</a>
           <a href="#author">author.txt</a>
           <a href="#signup" className="cta-bar">/get_the_book</a>
@@ -216,6 +230,7 @@ function LandingContent({ parts }: Props) {
                 <p>This book started as notes to myself. Then it became a Substack. Now it&apos;s this.</p>
               </div>
               <div className="author-links">
+                <Link href="/contact">/contact</Link>
                 <a href="https://runwithfoxes.substack.com" target="_blank" rel="noopener noreferrer">\substack</a>
                 <a href="https://www.linkedin.com/in/pauldervan/" target="_blank" rel="noopener noreferrer">\linkedin</a>
               </div>
@@ -305,10 +320,24 @@ function LandingContent({ parts }: Props) {
             <a href="https://insights-agent-topaz.vercel.app" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
               <div className="project-tag">\insights_agent</div>
               <div className="project-name">Insights Agent</div>
-              <div className="project-sub">From information to genuine insight</div>
-              <div className="project-desc">AI pipeline that generates consumer insight hypotheses from customer feedback. Analyst, Red Team, and Synthesiser working in sequence. 1,216 reviews, real tensions not summaries.</div>
+              <div className="project-sub">Ask anything about your customers</div>
+              <div className="project-desc">Prototype using Huel as example (not a client). Searches across Trustpilot reviews, Reddit posts, forums, and more. Eight days of research in eight minutes.</div>
               <div className="project-more">try it →</div>
             </a>
+            <a href="https://metrics-pyramid.vercel.app" target="_blank" rel="noopener noreferrer" className="project-card project-card-link no-underline">
+              <div className="project-tag">\effectiveness</div>
+              <div className="project-name">Marketing Effectiveness Coach</div>
+              <div className="project-sub">Interactive metrics categoriser</div>
+              <div className="project-desc">Drop in your marketing metrics and it sorts them into what actually matters. Separates activity from outcomes, inputs from effects.</div>
+              <div className="project-more">try it →</div>
+            </a>
+            <Link href="/chief" className="project-card project-card-link no-underline">
+              <div className="project-tag">\ai_product</div>
+              <div className="project-name">Chief of Staff</div>
+              <div className="project-sub">AI-powered executive dashboard</div>
+              <div className="project-desc">Reads your email, preps your meetings, clears the noise. A morning briefing that knows what matters before you do.</div>
+              <div className="project-more">read more →</div>
+            </Link>
           </div>
         </div>
       </section>
@@ -320,6 +349,7 @@ function LandingContent({ parts }: Props) {
         <a href="#" className="active">#top</a>
         <a href="#chapters">chapters.md</a>
         <a href="#projects">/projects</a>
+        <Link href="/contact">/contact</Link>
         <a href="#signup" className="cta-bar">get the book</a>
       </div>
     </>

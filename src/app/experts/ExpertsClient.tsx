@@ -242,47 +242,14 @@ export default function ExpertsPage() {
       }}
     >
       {/* Nav */}
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          background: "rgba(250, 250, 248, 0.85)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid var(--border, #E0E0DC)",
-          padding: "12px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <a
-          href="/"
-          style={{
-            fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-            fontSize: 13,
-            fontWeight: 300,
-            letterSpacing: 2,
-            color: "var(--text-muted, #8A8A85)",
-            textDecoration: "none",
-          }}
-        >
-          /<span style={{ color: "var(--orange, #F47521)" }}>Run</span>withfoxes
-        </a>
-        <span
-          style={{
-            fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-            fontSize: 11,
-            letterSpacing: 2,
-            textTransform: "uppercase" as const,
-            color: "var(--text-muted, #8A8A85)",
-          }}
-        >
-          Expert Critique
-        </span>
-      </nav>
+      <header className="top-bar">
+        <a href="/" className="logo">/<span>Run</span>withfoxes</a>
+        <nav>
+          <a href="/#projects">/projects</a>
+          <a href="/contact">/contact</a>
+          <a href="/#signup" className="cta-bar">/get_the_book</a>
+        </nav>
+      </header>
 
       {/* Content */}
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "100px 32px 80px" }}>

@@ -59,11 +59,15 @@ export default function ChiefClient({ initialAuth }: { initialAuth: boolean }) {
 
   return (
     <div className="chief-page">
+      <header className="top-bar">
+        <a href="/" className="logo">/<span>Run</span>withfoxes</a>
+        <nav>
+          <a href="/#projects">/projects</a>
+          <a href="/contact">/contact</a>
+          <a href="/#signup" className="cta-bar">/get_the_book</a>
+        </nav>
+      </header>
       <div className="chief-container">
-        <div className="logo">
-          /<span className="logo-run">Run</span>
-          <span className="logo-rest">withfoxes</span>
-        </div>
         <h1 className="page-title">chief of staff</h1>
         <p className="page-subtitle">
           an AI that reads your email, preps your meetings, clears the noise,

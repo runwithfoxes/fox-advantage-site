@@ -40,8 +40,11 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
     <div className="chapter-page">
       {/* Chapter nav */}
       <header className="chapter-nav">
+        <Link href="/" className="chapter-nav-logo">
+          /<span>Run</span>withfoxes
+        </Link>
         <Link href="/#chapters" className="chapter-nav-back">
-          ← back to chapters
+          ← chapters
         </Link>
         <div className="chapter-nav-count">
           {num} / 54

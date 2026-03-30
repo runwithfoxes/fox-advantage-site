@@ -30,9 +30,8 @@ export default function AnswersPage() {
           /<span>Run</span>withfoxes
         </Link>
         <nav>
-          <Link href="/#about">#about</Link>
-          <Link href="/#chapters">chapters.md</Link>
-          <Link href="/answers" className="active">/answers</Link>
+          <Link href="/#projects">/projects</Link>
+          <Link href="/contact">/contact</Link>
           <Link href="/#signup" className="cta-bar">
             /get_the_book
           </Link>
@@ -128,6 +127,7 @@ export default function AnswersPage() {
         <Link href="/">#home</Link>
         <Link href="/#chapters">chapters.md</Link>
         <Link href="/answers" className="active">/answers</Link>
+        <Link href="/contact">/contact</Link>
         <Link href="/#signup" className="cta-bar">
           get the book
         </Link>

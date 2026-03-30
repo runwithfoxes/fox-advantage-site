@@ -296,7 +296,7 @@ export default function MarketerOfYearPage() {
         </Link>
         <nav>
           <Link href="/#projects">/projects</Link>
-          <Link href="/#chapters">chapters.md</Link>
+          <Link href="/contact">/contact</Link>
           <Link href="/#signup" className="cta-bar">
             /get_the_book
           </Link>
@@ -465,6 +465,7 @@ export default function MarketerOfYearPage() {
           &larr; back
         </Link>
         <Link href="/#projects">/projects</Link>
+        <Link href="/contact">/contact</Link>
         <Link href="/#signup" className="cta-bar">
           get the book
         </Link>
