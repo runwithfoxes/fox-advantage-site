@@ -119,7 +119,7 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
             onChange={(e) => setEmail(e.target.value)}
           />
           <button type="submit" className="gate-button" disabled={status === "loading"}>
-            {status === "loading" ? "..." : "notify me"}
+            {status === "loading" ? "..." : "subscribe"}
           </button>
         </form>
       )}
