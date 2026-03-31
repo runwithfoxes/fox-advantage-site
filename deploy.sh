@@ -3,10 +3,16 @@
 # ALWAYS use this script instead of running vercel --prod directly
 set -e
 
-# Safety check: uncommitted changes?
+# Safety check: uncommitted changes to tracked files?
 if ! git diff --quiet || ! git diff --cached --quiet; then
-  echo "ERROR: You have uncommitted changes. Commit and push first."
-  exit 1
+  echo "WARNING: You have uncommitted changes to tracked files."
+  echo "These changes WILL be deployed but may be lost on next deploy."
+  read -p "Continue anyway? (y/N) " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Aborted. Commit and push first."
+    exit 1
+  fi
 fi
 
 # Safety check: unpushed commits?
