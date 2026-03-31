@@ -80,7 +80,7 @@ function DownloadSection() {
             <h2 className="section-title">Get the full book<br />when it drops.</h2>
             <p className="gate-text">Parts 1 and 2 are live now. Drop your email and we&apos;ll send the rest when it&apos;s ready.</p>
             <EmailGateForm variant="dark" />
-            <p className="gate-note">This subscribes you to the Substack — you&apos;ll get chapters as they go live, and the full book when it&apos;s done.</p>
+            <p className="gate-note">Subscribes you to the Substack. Chapters as they drop, full book when it&apos;s done.</p>
           </>
         )}
       </div>
