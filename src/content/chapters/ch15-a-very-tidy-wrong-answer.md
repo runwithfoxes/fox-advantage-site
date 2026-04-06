@@ -40,13 +40,3 @@ Judgment is built from behaviours. Putting in the work. Knowing what good is. Po
 
 
 Part 3 is about these behaviours.
-
-
-  
-
-
-
-
-
-
-Do the reps

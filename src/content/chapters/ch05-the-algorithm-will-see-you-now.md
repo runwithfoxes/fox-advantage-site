@@ -5,7 +5,7 @@ _Part 1_
 A lad beside me in a café tapped “Add to basket” and stared at a spinning wheel. Four seconds, maybe five, then he stood up, left the coffee, and walked out like the website had slagged him off. The barista had written “DAVE?” on his cup in thick marker, all caps. 
 
 
-Then you read it and realise it’s not impatience, it’s training. We’ve all been trained by feeds and apps and one-click everything to treat friction like a fault, and we punish it instantly.
+It’s not impatience, it’s training. We’ve all been trained by feeds and apps and one-click everything to treat friction like a fault, and we punish it instantly.
 
 
 Offline, you used to fight for eye-level shelf space. Get into Tesco, pay for the end cap, make sure the packaging holds up under fluorescent lights, job done. Online, your customer types “best” and two other words, and a system decides what they see, in what order, and whether you even deserve to be there.

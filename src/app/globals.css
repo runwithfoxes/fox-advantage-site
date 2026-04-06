@@ -528,6 +528,20 @@ a.project-card {
   gap: 12px;
 }
 
+.chapter-group-pdf {
+  font-size: 11px;
+  color: var(--orange);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  margin-right: 12px;
+  font-weight: 400;
+}
+.chapter-group-pdf:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 .chapter-group-count {
   font-size: 12px;
   letter-spacing: 1px;

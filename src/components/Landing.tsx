@@ -32,8 +32,11 @@ function ChapterItem({ chapter }: { chapter: Chapter }) {
   );
 }
 
+const PDF_URL = "/downloads/the-fox-advantage-parts-1-and-2.pdf";
+
 function ChapterGroup({ part, index, label }: { part: { part: number; partName: string; chapters: Chapter[] }; index: number; label: string }) {
   const [open, setOpen] = useState(index === 0);
+  const showPdfLink = part.part <= 2;
 
   return (
     <div className="chapter-group">
@@ -47,6 +50,18 @@ function ChapterGroup({ part, index, label }: { part: { part: number; partName: 
       >
         <span>\part_{String(part.part).padStart(2, "0")} — {label}</span>
         <span className="chapter-group-right">
+          {showPdfLink && part.part === 1 && (
+            <a
+              href={PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chapter-group-pdf"
+              onClick={(e) => e.stopPropagation()}
+              title="Download Parts 1 &amp; 2 as PDF"
+            >
+              ↓ pdf
+            </a>
+          )}
           <span className="chapter-group-count">{part.chapters.length} chapters</span>
           <span className="chapter-group-indicator">{open ? "−" : "+"}</span>
         </span>
@@ -136,7 +151,7 @@ function LandingContent({ parts }: Props) {
             <div className="hero-meta">
               <div><span>\</span> 54 chapters</div>
               <div><span>\</span> 4 parts</div>
-              <div><span>\</span> free to read</div>
+              <div><span>\</span> read free online now</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
           </div>
