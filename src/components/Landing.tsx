@@ -93,7 +93,7 @@ function DownloadSection() {
         ) : (
           <>
             <h2 className="section-title">Get the full book<br />when it drops.</h2>
-            <p className="gate-text">Parts 1 and 2 are live now. Drop your email and we&apos;ll send the rest when it&apos;s ready.</p>
+            <p className="gate-text">Parts 1 and 2 are available now — <a href={PDF_URL} target="_blank" rel="noopener noreferrer">download the PDF here</a>. Drop your email and we&apos;ll send the rest when it&apos;s ready.</p>
             <EmailGateForm variant="dark" />
             <p className="gate-note">Subscribes you to the Substack. Chapters as they drop, full book when it&apos;s done.</p>
           </>
@@ -151,7 +151,6 @@ function LandingContent({ parts }: Props) {
             <div className="hero-meta">
               <div><span>\</span> 54 chapters</div>
               <div><span>\</span> 4 parts</div>
-              <div><span>\</span> read free online now</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
           </div>
