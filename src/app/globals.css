@@ -672,6 +672,15 @@ a.project-card {
   max-width: 480px;
   margin-bottom: 48px;
 }
+.gate-text a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+.gate-text a:hover {
+  opacity: 0.8;
+}
 
 .gate-form {
   display: flex;
