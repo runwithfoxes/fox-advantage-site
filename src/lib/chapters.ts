@@ -73,33 +73,34 @@ const chapterMap: {
   // Section 1: Be brilliant at the basics
   { file: "ch44b-the-fundamentals-are-the-input.md", number: 36, title: "The fundamentals are the input", part: 4, partName: "Marketing for Leaders", section: "Be brilliant at the basics" },
   { file: "ch44c-your-eyepatch-moment.md", number: 37, title: "Your eyepatch moment", part: 4, partName: "Marketing for Leaders" },
-  { file: "ch45-find-your-winning-ticket.md", number: 38, title: "Find your winning ticket", part: 4, partName: "Marketing for Leaders" },
-  { file: "ch46-marcel.md", number: 39, title: "Marcel", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch44e-the-gift-in-the-card.md", number: 38, title: "The gift in the card", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch45-find-your-winning-ticket.md", number: 39, title: "Find your winning ticket", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch46-marcel.md", number: 40, title: "Marcel", part: 4, partName: "Marketing for Leaders" },
   // Section 2: Get closer to customers
-  { file: "ch47-more-doing-less-discussing.md", number: 40, title: "More doing, less discussing", part: 4, partName: "Marketing for Leaders", section: "Get closer to customers" },
-  { file: "ch49-the-listening-habit.md", number: 41, title: "The listening habit", part: 4, partName: "Marketing for Leaders" },
-  { file: "ch48-dashboards-lie.md", number: 42, title: "Dashboards lie", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch47-more-doing-less-discussing.md", number: 41, title: "More doing, less discussing", part: 4, partName: "Marketing for Leaders", section: "Get closer to customers" },
+  { file: "ch49-the-listening-habit.md", number: 42, title: "The listening habit", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch48-dashboards-lie.md", number: 43, title: "Dashboards lie", part: 4, partName: "Marketing for Leaders" },
   // Section 3: Hire for curiosity
-  { file: "ch50-the-fox-test.md", number: 43, title: "The fox test", part: 4, partName: "Marketing for Leaders", section: "Hire for curiosity" },
+  { file: "ch50-the-fox-test.md", number: 44, title: "The fox test", part: 4, partName: "Marketing for Leaders", section: "Hire for curiosity" },
   // Section 4: Create generalists
-  { file: "ch51-the-hedgehog-problem.md", number: 44, title: "The hedgehog problem", part: 4, partName: "Marketing for Leaders", section: "Create generalists" },
+  { file: "ch51-the-hedgehog-problem.md", number: 45, title: "The hedgehog problem", part: 4, partName: "Marketing for Leaders", section: "Create generalists" },
   // Section 5: Find the ones with taste
-  { file: "ch52-find-the-ones-with-taste.md", number: 45, title: "Find the ones with taste", part: 4, partName: "Marketing for Leaders", section: "Find the ones with taste" },
+  { file: "ch52-find-the-ones-with-taste.md", number: 46, title: "Find the ones with taste", part: 4, partName: "Marketing for Leaders", section: "Find the ones with taste" },
   // Section 6: Build a team that asks why
-  { file: "ch53-kill-confident-nonsense.md", number: 46, title: "Kill confident nonsense", part: 4, partName: "Marketing for Leaders", section: "Build a team that asks why" },
-  { file: "ch54-the-robot-is-the-grown-up.md", number: 47, title: "The robot is the grown-up", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch53-kill-confident-nonsense.md", number: 47, title: "Kill confident nonsense", part: 4, partName: "Marketing for Leaders", section: "Build a team that asks why" },
+  { file: "ch54-the-robot-is-the-grown-up.md", number: 48, title: "The robot is the grown-up", part: 4, partName: "Marketing for Leaders" },
   // Section 7: Restructure for speed
-  { file: "ch55-four-beats-fifty.md", number: 48, title: "Four beats fifty", part: 4, partName: "Marketing for Leaders", section: "Restructure for speed" },
-  { file: "ch56-collapse-the-handoffs.md", number: 49, title: "Collapse the handoffs", part: 4, partName: "Marketing for Leaders" },
-  { file: "ch57-growth-team-of-one.md", number: 50, title: "Growth team of one", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch55-four-beats-fifty.md", number: 49, title: "Four beats fifty", part: 4, partName: "Marketing for Leaders", section: "Restructure for speed" },
+  { file: "ch56-collapse-the-handoffs.md", number: 50, title: "Collapse the handoffs", part: 4, partName: "Marketing for Leaders" },
+  { file: "ch57-growth-team-of-one.md", number: 51, title: "Growth team of one", part: 4, partName: "Marketing for Leaders" },
   // Section 8: Stay in the work
-  { file: "ch58-the-delegation-trap.md", number: 51, title: "The delegation trap", part: 4, partName: "Marketing for Leaders", section: "Stay in the work" },
+  { file: "ch58-the-delegation-trap.md", number: 52, title: "The delegation trap", part: 4, partName: "Marketing for Leaders", section: "Stay in the work" },
   // Section 9: Build new agency models
-  { file: "ch59-the-new-split.md", number: 52, title: "The new split", part: 4, partName: "Marketing for Leaders", section: "Build new agency models" },
+  { file: "ch59-the-new-split.md", number: 53, title: "The new split", part: 4, partName: "Marketing for Leaders", section: "Build new agency models" },
   // Section 10: Be brave
-  { file: "ch60-the-remarkable-advantage.md", number: 53, title: "The remarkable advantage", part: 4, partName: "Marketing for Leaders", section: "Be brave" },
+  { file: "ch60-the-remarkable-advantage.md", number: 54, title: "The remarkable advantage", part: 4, partName: "Marketing for Leaders", section: "Be brave" },
   // Section 11: Build the infrastructure
-  { file: "ch61-the-whole-event-in-an-evening.md", number: 54, title: "The whole event in an evening", part: 4, partName: "Marketing for Leaders", section: "Build the infrastructure" },
+  { file: "ch61-the-whole-event-in-an-evening.md", number: 55, title: "The whole event in an evening", part: 4, partName: "Marketing for Leaders", section: "Build the infrastructure" },
 ];
 
 export function isChapterGated(chapter: Chapter): boolean {
