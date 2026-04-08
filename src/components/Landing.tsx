@@ -123,10 +123,10 @@ function LandingContent({ parts }: Props) {
           <div className="nav-dropdown">
             <a href="#projects">/projects</a>
             <div className="dropdown-menu">
-              <Link href="/millionaire-raffle">Millionaire Raffle</Link>
+              <Link href="/millionaire-raffle">Mental Availability</Link>
               <Link href="/marketer-of-the-year">Marketer of the Year</Link>
-              <Link href="/48">48 · Youth Brand</Link>
-              <Link href="/run-with-foxes">Run with Foxes</Link>
+              <Link href="/48">Fame Strategy</Link>
+              <Link href="/run-with-foxes">My First Book</Link>
               <Link href="/ai-writer">AI Writer</Link>
               <Link href="/experts">Expert Panel</Link>
               <a href="https://insights-agent-topaz.vercel.app" target="_blank" rel="noopener noreferrer">Insights Agent</a>
