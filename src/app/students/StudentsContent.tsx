@@ -728,6 +728,81 @@ export default function StudentsContent() {
         </div>
       </section>
 
+      {/* Case study callout */}
+      <section style={{ padding: "80px 0", background: "#FAFAF8", position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px)",
+            backgroundSize: "28px 28px",
+            opacity: 0.4,
+            pointerEvents: "none",
+          }}
+        />
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 48px", position: "relative" }}>
+          <div style={{ marginBottom: 32 }}>
+            <span
+              style={{
+                fontSize: 11,
+                fontWeight: 400,
+                letterSpacing: 2,
+                textTransform: "uppercase" as const,
+                color: "#F47521",
+                display: "block",
+                marginBottom: 12,
+              }}
+            >
+              Case study
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "clamp(28px, 4vw, 48px)",
+                fontWeight: 300,
+                letterSpacing: -1,
+                lineHeight: 1.1,
+                margin: 0,
+                color: "#1D1B1B",
+              }}
+            >
+              The National Lottery, 2020 to 2022
+            </h2>
+            <p
+              style={{
+                fontSize: "0.9375rem",
+                color: "#1D1B1B",
+                opacity: 0.8,
+                maxWidth: 640,
+                marginTop: 16,
+                lineHeight: 1.7,
+              }}
+            >
+              Diagnosis, behaviours, strategy, and the metrics that mattered. The full case study from my Marketer of the Year submission, with all the charts and a five-level metrics pyramid you can click through.
+            </p>
+          </div>
+          <a
+            href="/lottery-case-study/"
+            style={{
+              display: "inline-block",
+              padding: "14px 28px",
+              background: "#F47521",
+              color: "#FAFAF8",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 12,
+              fontWeight: 400,
+              letterSpacing: 2,
+              textTransform: "uppercase" as const,
+              textDecoration: "none",
+              border: "1px solid #F47521",
+              transition: "background 0.3s ease-out",
+            }}
+          >
+            Read the case study →
+          </a>
+        </div>
+      </section>
+
       <style jsx global>{`
         @media (max-width: 768px) {
           section > div > div[style*="grid-template-columns: repeat(3"] {
