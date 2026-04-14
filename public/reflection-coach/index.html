@@ -287,6 +287,8 @@
     border-bottom: 1px solid var(--border);
   }
   .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .step.reveal { display: none; }
+  .step.reveal.show { display: block; animation: fade 0.4s ease-out; }
 
   /* scenario tags (in sidebar) */
   .tags {
