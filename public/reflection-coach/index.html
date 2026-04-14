@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Reflection Coach / Run with Foxes workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --orange: #F47521;
+    --orange-hover: #E06A1A;
+    --charcoal: #355E4C;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --cream: #F7EAD9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* nav bar */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+  }
+  nav.top.scrolled {
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-brand span { color: var(--orange); }
+  .nav-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 768px) { nav.top { padding: 14px 24px; } }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+  /* hero */
+  .hero {
+    padding: 140px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .dot-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+    background-size: 28px 28px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 720px; }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero p {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text);
+    opacity: 0.7;
+    max-width: 560px;
+  }
+  @media (max-width: 768px) { .hero { padding: 110px 0 40px; } }
+
+  /* wire note */
+  .wire-note {
+    max-width: 1200px;
+    margin: 96px 48px 20px;
+    padding: 12px 20px;
+    background: var(--cream);
+    border-left: 3px solid var(--orange);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  @media (min-width: 1296px) {
+    .wire-note { margin-left: auto; margin-right: auto; }
+  }
+  .wire-note strong { font-weight: 500; }
+  @media (max-width: 768px) { .wire-note { margin: 80px 24px 16px; } }
+
+  /* breadcrumb */
+  .crumb-wrap {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    padding: 0 48px;
+  }
+  @media (max-width: 768px) { .crumb-wrap { padding: 0 24px; } }
+  .crumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .crumb-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--muted);
+    transition: color 0.2s ease-out;
+  }
+  .crumb-item .num {
+    font-size: 10px;
+    color: var(--muted);
+    opacity: 0.6;
+  }
+  .crumb-item.active { color: var(--orange); }
+  .crumb-item.active .num { color: var(--orange); opacity: 1; }
+  .crumb-sep {
+    color: var(--border);
+    font-size: 12px;
+  }
+
+  /* body layout */
+  .body-section {
+    padding: 0 0 120px;
+    position: relative;
+  }
+  .body-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .body-layout { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* left nav */
+  .sidenav {
+    background: var(--charcoal);
+    padding: 28px 24px;
+    position: sticky;
+    top: 80px;
+  }
+  @media (max-width: 900px) { .sidenav { position: static; } }
+  .sidenav-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .sidenav-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247, 234, 217, 0.45);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .sidenav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-top: 1px solid rgba(247, 234, 217, 0.12);
+    padding-top: 16px;
+  }
+  .sidenav-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: rgba(247, 234, 217, 0.55);
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.2s ease-out;
+  }
+  .sidenav-list a .num {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(247, 234, 217, 0.35);
+    min-width: 18px;
+  }
+  .sidenav-list a:hover { color: var(--cream); }
+  .sidenav-list a.active {
+    color: var(--orange);
+  }
+  .sidenav-list a.active .num { color: var(--orange); }
+
+  /* main column */
+  .main h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .main .step-sub {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+    max-width: 580px;
+    line-height: 1.7;
+  }
+  .step-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .step {
+    padding-bottom: 56px;
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  /* scenario tags (in sidebar) */
+  .tags {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .side-tags .tag {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(247, 234, 217, 0.22);
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.5;
+    transition: all 0.2s ease-out;
+  }
+  .side-tags .tag:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+  .side-tags .tag.selected {
+    border-color: var(--orange);
+    background: rgba(244, 117, 33, 0.12);
+    color: var(--cream);
+  }
+  .side-hint {
+    font-size: 0.6875rem;
+    color: rgba(247, 234, 217, 0.5);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* selected moment chip */
+  .moment-chip {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    background: var(--cream);
+    border: 1px solid var(--orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    animation: fade 0.3s ease-out;
+  }
+  .moment-chip.show { display: inline-flex; }
+  .moment-chip .chip-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .moment-chip .chip-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 0 0 4px;
+    line-height: 1;
+    transition: color 0.2s ease-out;
+  }
+  .moment-chip .chip-close:hover { color: var(--text); }
+
+  /* textarea light */
+  textarea.light {
+    width: 100%;
+    min-height: 140px;
+    padding: 16px 18px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.7;
+    resize: vertical;
+    transition: border-color 0.2s ease-out;
+  }
+  textarea.light:focus {
+    outline: none;
+    border-color: var(--orange);
+  }
+  textarea.light::placeholder { color: var(--muted); opacity: 0.7; white-space: pre-line; }
+
+  .hint {
+    font-size: 0.6875rem;
+    color: var(--muted);
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--text);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s ease-out;
+  }
+  .btn:hover:not(:disabled) { background: var(--orange-hover); color: #fff; }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .btn.ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn.ghost:hover:not(:disabled) {
+    color: var(--text);
+    border-color: var(--text);
+    background: transparent;
+  }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* dimensions pills */
+  .dims {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .dim {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 11px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--bg);
+    transition: all 0.3s ease-out;
+  }
+  .dim.active {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+  .dim.done {
+    border-color: var(--charcoal);
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  /* empty state */
+  .empty {
+    border: 1px dashed var(--border);
+    padding: 28px;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+  .empty strong { color: var(--text); font-weight: 500; }
+
+  /* probe area folded into step 02 */
+  .probe {
+    display: none;
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .probe.show { display: block; animation: fade 0.4s ease-out; }
+
+  /* conversation */
+  .conv { display: none; }
+  .conv.show { display: block; }
+  .conv-item { margin-bottom: 22px; animation: fade 0.4s ease-out; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .conv-item .who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .conv-item.coach .who { color: var(--orange); }
+  .conv-item .text {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+  .conv-item.coach .text {
+    border-left: 2px solid var(--orange);
+    padding-left: 16px;
+    white-space: pre-wrap;
+  }
+  .conv-item.coach .text .dim-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: var(--orange);
+    margin-bottom: 6px;
+    text-transform: none;
+  }
+  .conv-item.you .text {
+    color: var(--muted);
+    padding-left: 18px;
+    white-space: pre-wrap;
+    font-size: 0.8125rem;
+  }
+  .conv-item textarea.light {
+    min-height: 90px;
+    margin-top: 4px;
+  }
+
+  .conv-actions {
+    display: none;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .conv-actions.show { display: flex; }
+
+  /* quiet reset link */
+  .reset-link {
+    display: inline-block;
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s ease-out;
+  }
+  .reset-link:hover { color: var(--text); border-color: var(--text); }
+
+  /* takeaway */
+  .takeaway {
+    background: var(--charcoal);
+    color: #FAFAF8;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .takeaway { grid-template-columns: 1fr; padding: 32px 24px; }
+  }
+  .takeaway .kicker { color: var(--orange); margin-bottom: 12px; }
+  .takeaway h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .takeaway p {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px;
+  }
+  .takeaway .btn {
+    background: #fff;
+    color: var(--text);
+    margin-top: 0;
+  }
+  .takeaway .btn:hover { background: var(--orange); color: #fff; }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  footer .container { display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<nav class="top" id="nav">
+  <a href="#" class="nav-brand">/run<span>with</span>foxes / workshop</a>
+  <span class="nav-tag">interactive wireframe v1</span>
+</nav>
+
+<div class="wire-note">
+  <strong>Wireframe note.</strong> The coach's questions on this page are hardcoded so we can click through the flow end to end. The live version runs on Claude and adapts to what you write.
+</div>
+
+<div class="crumb-wrap">
+  <div class="crumb" id="crumb">
+    <span class="crumb-item active" data-crumb="pick"><span class="num">01</span> Pick a moment</span>
+    <span class="crumb-sep">›</span>
+    <span class="crumb-item" data-crumb="first"><span class="num">02</span> First pass</span>
+    <span class="crumb-sep">›</span>
+    <span class="crumb-item" data-crumb="probe"><span class="num">03</span> Probe</span>
+    <span class="crumb-sep">›</span>
+    <span class="crumb-item" data-crumb="home"><span class="num">04</span> Take it home</span>
+  </div>
+</div>
+
+<section class="body-section">
+  <div class="container">
+    <div class="body-layout">
+
+      <!-- LEFT: MOMENTS BUCKET -->
+      <aside class="sidenav">
+        <div class="sidenav-title">The Reflection Coach</div>
+        <span class="sidenav-sub">/01 pick a moment</span>
+        <div class="tags side-tags" id="tags">
+          <button class="tag" data-tag="meeting">A meeting that mattered</button>
+          <button class="tag" data-tag="decision">A decision you had to make</button>
+          <button class="tag" data-tag="stakeholder">A stakeholder you had to manage</button>
+          <button class="tag" data-tag="tradeoff">A commercial trade-off you weighed</button>
+          <button class="tag" data-tag="pushback">Something you pushed back on</button>
+          <button class="tag" data-tag="surprise">Something that didn't go the way you expected</button>
+        </div>
+        <p class="side-hint">Optional. Picking one scopes your thinking, but you can start writing without one.</p>
+      </aside>
+
+      <!-- MAIN COLUMN -->
+      <div class="main">
+
+        <section class="step" id="step-2">
+          <span class="step-kicker">/02 / first pass</span>
+          <h2>Write what you think about it.</h2>
+          <p class="step-sub">Reflection is about your thinking, not the events. Don't write a report. Write what you actually think about the moment you picked. The coach will ask questions to push that thinking further.</p>
+          <div class="moment-chip" id="moment-chip">
+            <span class="chip-label">Reflecting on</span>
+            <span id="chip-text"></span>
+            <button class="chip-close" id="chip-close" aria-label="Clear moment">×</button>
+          </div>
+          <textarea class="light" id="first-pass" placeholder="What do you think about it? Start anywhere."></textarea>
+          <button class="btn" id="start" disabled>Coach →</button>
+
+          <div class="probe" id="probe">
+            <div class="dims" id="dims">
+              <span class="dim" data-dim="judgement">Judgement</span>
+              <span class="dim" data-dim="commercial">Commercial</span>
+              <span class="dim" data-dim="stakeholder">Stakeholder</span>
+              <span class="dim" data-dim="execution">Execution</span>
+              <span class="dim" data-dim="communication">Communication</span>
+            </div>
+
+            <div class="conv" id="conv"></div>
+
+            <div class="conv-actions" id="conv-actions">
+              <button class="btn" id="probe-more" style="margin-top:0;">Next question</button>
+              <button class="btn ghost" id="done" style="margin-top:0;">I'm done</button>
+            </div>
+          </div>
+
+          <a href="#" class="reset-link" id="reset">Start over with a new moment</a>
+        </section>
+
+        <section class="step" id="step-4">
+          <span class="step-kicker">/04 / take it home</span>
+          <h2>Use the same coach in your own account.</h2>
+          <p class="step-sub">The page above is for today. The document below is what you use from now on — in your own ChatGPT or Claude account, with your own data. Same behaviour, same five dimensions. Upload it once and keep it for the rest of the programme.</p>
+
+          <div class="takeaway">
+            <div>
+              <span class="kicker">/takeaway</span>
+              <h3>The Reflection Coach document</h3>
+              <p>A portable document you upload to ChatGPT or Claude. Same behaviour as this page — one question at a time, shaped by the five dimensions, never rewrites your words.</p>
+            </div>
+            <a class="btn" href="reflection-coach.docx" download>Download (.docx)</a>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span>/run<span style="color:var(--orange)">with</span>foxes / workshop</span>
+    <span>Built for Bord Bia fellows / 24 April</span>
+  </div>
+</footer>
+
+<script>
+  const order = ["judgement","commercial","stakeholder","execution","communication"];
+  const pillLabels = {
+    judgement: "Judgement",
+    commercial: "Commercial",
+    stakeholder: "Stakeholder",
+    execution: "Execution",
+    communication: "Communication"
+  };
+
+  const prompts = {
+    meeting: "What were you trying to get out of that meeting?\nWhat actually happened that mattered?\nWhat did you walk away thinking about afterwards?",
+    decision: "What were the real options you were choosing between?\nWhat made it hard to decide?\nWhat are you still not sure about?",
+    stakeholder: "What did they want from you, and what did you want from them?\nWhat were you most worried about in how they'd react?\nWhat did you decide not to say?",
+    tradeoff: "What was on each side of the trade-off?\nWhat did you choose to optimise for, and why?\nWhat did you give up to get there?",
+    pushback: "What made you decide to push back?\nWhat were you risking by saying something?\nWhat did you hold back, if anything?",
+    surprise: "What did you expect to happen?\nWhat actually happened?\nWhat does the gap between the two tell you?"
+  };
+  const defaultPlaceholder = "What do you think about it? Start anywhere.";
+
+  let state = {
+    selectedTag: null,
+    firstPass: "",
+    history: [],
+    dimensionIndex: 0,
+    lastDim: null,
+    busy: false
+  };
+  const $ = (id) => document.getElementById(id);
+
+  // nav scroll state
+  const navEl = $('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // sidenav active tracking via intersection
+  const sideLinks = document.querySelectorAll('.sidenav-list a');
+  const stepSections = document.querySelectorAll('.step');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sideLinks.forEach(l => l.classList.toggle('active', l.dataset.step === id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  stepSections.forEach(s => io.observe(s));
+
+  // tag select
+  document.querySelectorAll('.tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.selectedTag = btn.dataset.tag;
+      $('chip-text').textContent = btn.textContent;
+      $('moment-chip').classList.add('show');
+      $('first-pass').setAttribute('placeholder', prompts[btn.dataset.tag] || defaultPlaceholder);
+      updateStartBtn();
+      $('first-pass').focus({ preventScroll: true });
+    });
+  });
+
+  $('chip-close').addEventListener('click', () => {
+    state.selectedTag = null;
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+    $('moment-chip').classList.remove('show');
+    $('first-pass').setAttribute('placeholder', defaultPlaceholder);
+  });
+
+  $('first-pass').addEventListener('input', () => {
+    updateStartBtn();
+    if ($('first-pass').value.trim().length > 0) setCrumb('first');
+  });
+  function updateStartBtn() {
+    $('start').disabled = !($('first-pass').value.trim().length > 0) || state.busy || state.history.length > 0;
+  }
+
+  function setCrumb(key) {
+    document.querySelectorAll('.crumb-item').forEach(el => {
+      el.classList.toggle('active', el.dataset.crumb === key);
+    });
+  }
+
+  function setPillFor(dim) {
+    document.querySelectorAll('.dim').forEach(el => {
+      const d = el.dataset.dim;
+      el.classList.remove('active');
+      if (order.indexOf(d) < order.indexOf(dim)) el.classList.add('done');
+      else el.classList.remove('done');
+    });
+    const activeEl = document.querySelector('.dim[data-dim="' + dim + '"]');
+    if (activeEl) activeEl.classList.add('active');
+  }
+
+  function markAllPillsDone() {
+    document.querySelectorAll('.dim').forEach(el => {
+      el.classList.remove('active');
+      el.classList.add('done');
+    });
+  }
+
+  function renderCoachBubble(fullText) {
+    const text = (fullText || '').trim();
+    let labelText = '';
+    let bodyText = text;
+    const newlineIdx = text.indexOf('\n');
+    if (newlineIdx !== -1) {
+      const firstLine = text.slice(0, newlineIdx).trim();
+      const rest = text.slice(newlineIdx + 1).trim();
+      if (/^On .+:$/i.test(firstLine)) {
+        labelText = firstLine;
+        bodyText = rest;
+      }
+    }
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'text';
+    if (labelText) {
+      const label = document.createElement('span');
+      label.className = 'dim-label';
+      label.textContent = labelText;
+      textDiv.appendChild(label);
+    }
+    textDiv.appendChild(document.createTextNode(bodyText));
+
+    const who = document.createElement('span');
+    who.className = 'who';
+    who.textContent = 'Coach';
+
+    const div = document.createElement('div');
+    div.className = 'conv-item coach';
+    div.appendChild(who);
+    div.appendChild(textDiv);
+    $('conv').appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    return div;
+  }
+
+  function renderLoadingBubble() {
+    const who = document.createElement('span');
+    who.className = 'who';
+    who.textContent = 'Coach';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'text';
+    textDiv.style.opacity = '0.55';
+    textDiv.textContent = 'The coach is thinking.';
+
+    const div = document.createElement('div');
+    div.className = 'conv-item coach loading';
+    div.appendChild(who);
+    div.appendChild(textDiv);
+    $('conv').appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    return div;
+  }
+
+  function renderErrorBubble(errMsg, retryFn) {
+    const who = document.createElement('span');
+    who.className = 'who';
+    who.textContent = 'Coach';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'text';
+    textDiv.style.opacity = '0.75';
+
+    const msg = document.createElement('div');
+    msg.textContent = 'The coach did not respond. ' + (errMsg || '');
+    textDiv.appendChild(msg);
+
+    const retry = document.createElement('a');
+    retry.href = '#';
+    retry.textContent = 'Try again';
+    retry.style.textDecoration = 'underline';
+
+    const div = document.createElement('div');
+    div.className = 'conv-item coach error';
+    div.appendChild(who);
+    div.appendChild(textDiv);
+    textDiv.appendChild(document.createElement('br'));
+    textDiv.appendChild(retry);
+    retry.addEventListener('click', (e) => {
+      e.preventDefault();
+      div.remove();
+      retryFn();
+    });
+    $('conv').appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    return div;
+  }
+
+  function addAnswerBox() {
+    const answer = document.createElement('div');
+    answer.className = 'conv-item';
+    answer.innerHTML = '<textarea class="light" placeholder="Answer in your own words. The coach only asks, you do the thinking."></textarea>';
+    $('conv').appendChild(answer);
+    answer.querySelector('textarea').focus({ preventScroll: true });
+  }
+
+  function freezeOpenAnswer() {
+    const open = $('conv').querySelector('.conv-item textarea');
+    if (!open) return '';
+    const val = open.value.trim();
+    const holder = open.closest('.conv-item');
+    holder.className = 'conv-item you';
+    holder.innerHTML = '<span class="who">You</span><div class="text"></div>';
+    holder.querySelector('.text').textContent = val || '(no answer)';
+    return val;
+  }
+
+  function setActionsDisabled(disabled) {
+    $('probe-more').disabled = disabled;
+    $('done').disabled = disabled;
+  }
+
+  async function callCoach() {
+    state.busy = true;
+    setActionsDisabled(true);
+    updateStartBtn();
+    const loadingEl = renderLoadingBubble();
+    try {
+      const res = await fetch('/api/reflection-coach', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: state.history })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = (data && data.error) || ('HTTP ' + res.status);
+        throw new Error(err);
+      }
+      const message = (data && data.message) || '';
+      loadingEl.remove();
+      renderCoachBubble(message);
+      state.history.push({ role: 'assistant', content: message });
+      if (state.dimensionIndex >= order.length) {
+        $('conv-actions').classList.remove('show');
+        markAllPillsDone();
+        setCrumb('home');
+      } else {
+        addAnswerBox();
+      }
+    } catch (e) {
+      loadingEl.remove();
+      renderErrorBubble(e && e.message ? e.message : 'Unknown error.', callCoach);
+    } finally {
+      state.busy = false;
+      setActionsDisabled(false);
+      updateStartBtn();
+    }
+  }
+
+  $('start').addEventListener('click', () => {
+    if (state.busy) return;
+    state.firstPass = $('first-pass').value.trim();
+    if (!state.firstPass) return;
+    state.history = [{ role: 'user', content: state.firstPass }];
+    state.dimensionIndex = 0;
+    state.lastDim = order[0];
+    setPillFor(state.lastDim);
+    $('probe').classList.add('show');
+    $('conv').classList.add('show');
+    $('conv-actions').classList.add('show');
+    $('conv').innerHTML = '';
+    setCrumb('probe');
+    $('probe').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    callCoach();
+  });
+
+  function onProbeMore() {
+    if (state.busy) return;
+    const val = freezeOpenAnswer();
+    const userMsg = val ? (val + '\n\nprobe more') : 'probe more';
+    state.history.push({ role: 'user', content: userMsg });
+    const nextIdx = state.dimensionIndex + 1;
+    state.dimensionIndex = nextIdx;
+    if (nextIdx >= order.length) {
+      markAllPillsDone();
+    } else {
+      state.lastDim = order[nextIdx];
+      setPillFor(state.lastDim);
+    }
+    callCoach();
+  }
+
+  function finishConversation() {
+    $('conv-actions').classList.remove('show');
+    markAllPillsDone();
+    const div = document.createElement('div');
+    div.className = 'conv-item coach';
+    div.innerHTML = '<span class="who">Coach</span><div class="text">You\u2019ve worked through all five dimensions. Take your answers into your reflection form for Conor, or save the document below for next month.</div>';
+    $('conv').appendChild(div);
+    setCrumb('home');
+  }
+
+  $('probe-more').addEventListener('click', onProbeMore);
+  $('done').addEventListener('click', finishConversation);
+
+  $('reset').addEventListener('click', (e) => {
+    e.preventDefault();
+    state = { selectedTag: null, firstPass: "", history: [], dimensionIndex: 0, lastDim: null, busy: false };
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+    document.querySelectorAll('.dim').forEach(d => { d.classList.remove('active'); d.classList.remove('done'); });
+    $('first-pass').value = '';
+    $('first-pass').setAttribute('placeholder', defaultPlaceholder);
+    $('conv').innerHTML = '';
+    $('conv').classList.remove('show');
+    $('conv-actions').classList.remove('show');
+    $('probe').classList.remove('show');
+    $('moment-chip').classList.remove('show');
+    setActionsDisabled(false);
+    updateStartBtn();
+    setCrumb('pick');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
