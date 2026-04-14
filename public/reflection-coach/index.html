@@ -579,17 +579,175 @@
     letter-spacing: 1px;
   }
   footer .container { display: flex; justify-content: space-between; }
+
+  /* v2: dimension picker cards */
+  .dim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 900px) {
+    .dim-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .dim-grid { grid-template-columns: 1fr; }
+  }
+  .dim-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 18px 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: left;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    transition: border-color 0.2s ease-out, background 0.2s ease-out;
+  }
+  .dim-card:hover {
+    border-color: var(--orange);
+  }
+  .dim-card.selected {
+    border-color: var(--orange);
+    background: var(--cream);
+  }
+  .dim-card .dim-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    color: var(--text);
+  }
+  .dim-card .dim-desc {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .dim-card.explored .dim-desc { opacity: 0.55; }
+  .dim-card .dim-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: var(--cream);
+    border: 1px solid var(--orange);
+    padding: 2px 7px 3px;
+    display: none;
+  }
+  .dim-card.explored .dim-badge { display: inline-block; }
+
+  /* v2: reveal wrappers */
+  .reveal { display: none; }
+  .reveal.show { display: block; animation: fade 0.4s ease-out; }
+
+  /* v2: chat reply row with arrow send */
+  .reply-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .reply-row .reply-input {
+    flex: 1;
+    min-height: 56px;
+    max-height: 200px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s ease-out;
+  }
+  .reply-row .reply-input:focus {
+    outline: none;
+    border-color: var(--orange);
+  }
+  .reply-row .reply-input::placeholder { color: var(--muted); opacity: 0.7; }
+  .send-arrow {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--orange);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+  }
+  .send-arrow:hover:not(:disabled) { background: var(--orange-hover); }
+  .send-arrow:active:not(:disabled) { transform: translateY(1px); }
+  .send-arrow:disabled { opacity: 0.35; cursor: not-allowed; }
+  .reply-row .done-btn {
+    margin-top: 0;
+    font-size: 10px;
+  }
+  @media (max-width: 560px) {
+    .reply-row { flex-wrap: wrap; }
+    .reply-row .reply-input { flex-basis: 100%; }
+    .reply-row .done-btn { order: 2; }
+  }
+
+  /* v2: Go-deep step header with dimension label */
+  .deep-header {
+    margin-bottom: 6px;
+  }
+  .deep-header .deep-dim {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  /* v2: session end sub-sections */
+  .end-subhead {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .end-close-line {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--text);
+    padding-left: 16px;
+    border-left: 2px solid var(--orange);
+    max-width: 580px;
+    margin-bottom: 8px;
+  }
 </style>
 </head>
 <body>
 
 <nav class="top" id="nav">
   <a href="#" class="nav-brand">/run<span>with</span>foxes / workshop</a>
-  <span class="nav-tag">interactive wireframe v1</span>
+  <span class="nav-tag">interactive wireframe v2</span>
 </nav>
 
 <div class="wire-note">
-  <strong>Wireframe note.</strong> The coach's questions on this page are hardcoded so we can click through the flow end to end. The live version runs on Claude and adapts to what you write.
+  <strong>Wireframe note.</strong> Coaching runs one dimension at a time. You pick the angle you want to push on, and the coach stays on it until something cracks. The live version runs on Claude and adapts to what you write.
 </div>
 
 <div class="crumb-wrap">
@@ -598,9 +756,11 @@
     <span class="crumb-sep">›</span>
     <span class="crumb-item" data-crumb="first"><span class="num">02</span> First pass</span>
     <span class="crumb-sep">›</span>
-    <span class="crumb-item" data-crumb="probe"><span class="num">03</span> Probe</span>
+    <span class="crumb-item" data-crumb="angle"><span class="num">03</span> Pick an angle</span>
     <span class="crumb-sep">›</span>
-    <span class="crumb-item" data-crumb="home"><span class="num">04</span> Take it home</span>
+    <span class="crumb-item" data-crumb="deep"><span class="num">04</span> Go deep</span>
+    <span class="crumb-sep">›</span>
+    <span class="crumb-item" data-crumb="home"><span class="num">05</span> Take it home</span>
   </div>
 </div>
 
@@ -629,7 +789,7 @@
         <section class="step" id="step-2">
           <span class="step-kicker">/02 / first pass</span>
           <h2>Write what you think about it.</h2>
-          <p class="step-sub">Reflection is about your thinking, not the events. Don't write a report. Write what you actually think about the moment you picked. The coach will ask questions to push that thinking further.</p>
+          <p class="step-sub">Reflection is about your thinking, not the events. Don't write a report. Write what you actually think about the moment you picked. The coach will push that thinking further on one angle of your choice.</p>
           <div class="moment-chip" id="moment-chip">
             <span class="chip-label">Reflecting on</span>
             <span id="chip-text"></span>
@@ -637,40 +797,101 @@
           </div>
           <textarea class="light" id="first-pass" placeholder="What do you think about it? Start anywhere."></textarea>
           <button class="btn" id="start" disabled>Coach →</button>
-
-          <div class="probe" id="probe">
-            <div class="dims" id="dims">
-              <span class="dim" data-dim="judgement">Judgement</span>
-              <span class="dim" data-dim="commercial">Commercial</span>
-              <span class="dim" data-dim="stakeholder">Stakeholder</span>
-              <span class="dim" data-dim="execution">Execution</span>
-              <span class="dim" data-dim="communication">Communication</span>
-            </div>
-
-            <div class="conv" id="conv"></div>
-
-            <div class="conv-actions" id="conv-actions">
-              <button class="btn" id="probe-more" style="margin-top:0;">Next question</button>
-              <button class="btn ghost" id="done" style="margin-top:0;">I'm done</button>
-            </div>
-          </div>
-
-          <a href="#" class="reset-link" id="reset">Start over with a new moment</a>
         </section>
 
-        <section class="step" id="step-4">
-          <span class="step-kicker">/04 / take it home</span>
-          <h2>Use the same coach in your own account.</h2>
-          <p class="step-sub">The page above is for today. The document below is what you use from now on — in your own ChatGPT or Claude account, with your own data. Same behaviour, same five dimensions. Upload it once and keep it for the rest of the programme.</p>
+        <section class="step reveal" id="step-3">
+          <span class="step-kicker">/03 / pick an angle</span>
+          <h2>Pick an angle to explore.</h2>
+          <p class="step-sub">Coaching goes one dimension deep, not five dimensions wide. Pick the angle where your thinking feels thinnest, and the coach will stay on it until something cracks.</p>
 
+          <div class="dim-grid" id="dim-grid">
+            <button type="button" class="dim-card" data-dim="judgement">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Judgement</span>
+              <span class="dim-desc">What you were weighing against what, and why.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="commercial">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Commercial</span>
+              <span class="dim-desc">The value, cost, and risk of the choice.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="stakeholder">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Stakeholder</span>
+              <span class="dim-desc">Whose views mattered and how you handled them.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="execution">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Execution</span>
+              <span class="dim-desc">What you specifically did to move the work.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="communication">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Communication</span>
+              <span class="dim-desc">How you explained it and held your position.</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="step reveal" id="step-4">
+          <span class="step-kicker">/04 / go deep</span>
+          <h2 class="deep-header">Going deep on <em class="deep-dim" id="deep-dim-label">the dimension</em>.</h2>
+          <p class="step-sub" id="deep-sub">The coach stays on this one until something cracks. Reply honestly. Click the arrow to send. Click "I'm done" when you feel it land.</p>
+
+          <div class="conv" id="conv"></div>
+
+          <div class="reply-row" id="reply-row">
+            <textarea class="reply-input" id="reply-input" placeholder="Reply in your own words."></textarea>
+            <button class="send-arrow" id="send-arrow" aria-label="Send reply" disabled>↑</button>
+            <button class="btn ghost done-btn" id="done-btn" type="button">I'm done</button>
+          </div>
+        </section>
+
+        <section class="step reveal" id="step-5">
+          <span class="step-kicker">/05 / session end</span>
+          <h2>That is the one for this session.</h2>
+          <p class="step-sub">You can explore another angle on the same moment, or take the coach home.</p>
+
+          <span class="end-subhead">Explore another angle</span>
+          <div class="dim-grid" id="dim-grid-end">
+            <button type="button" class="dim-card" data-dim="judgement">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Judgement</span>
+              <span class="dim-desc">What you were weighing against what, and why.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="commercial">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Commercial</span>
+              <span class="dim-desc">The value, cost, and risk of the choice.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="stakeholder">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Stakeholder</span>
+              <span class="dim-desc">Whose views mattered and how you handled them.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="execution">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Execution</span>
+              <span class="dim-desc">What you specifically did to move the work.</span>
+            </button>
+            <button type="button" class="dim-card" data-dim="communication">
+              <span class="dim-badge">Explored</span>
+              <span class="dim-name">Communication</span>
+              <span class="dim-desc">How you explained it and held your position.</span>
+            </button>
+          </div>
+
+          <span class="end-subhead">Take it home</span>
           <div class="takeaway">
             <div>
               <span class="kicker">/takeaway</span>
               <h3>The Reflection Coach document</h3>
-              <p>A portable document you upload to ChatGPT or Claude. Same behaviour as this page — one question at a time, shaped by the five dimensions, never rewrites your words.</p>
+              <p>A portable document you upload to ChatGPT or Claude. Same behaviour as this page — one question at a time, one dimension at a time, never rewrites your words.</p>
             </div>
             <a class="btn" href="reflection-coach.docx" download>Download (.docx)</a>
           </div>
+
+          <a href="#" class="reset-link" id="reset">Start over with a new moment</a>
         </section>
 
       </div>
@@ -687,13 +908,19 @@
 </footer>
 
 <script>
-  const order = ["judgement","commercial","stakeholder","execution","communication"];
-  const pillLabels = {
-    judgement: "Judgement",
-    commercial: "Commercial",
-    stakeholder: "Stakeholder",
-    execution: "Execution",
-    communication: "Communication"
+  const DIM_LABELS = {
+    judgement: "judgement and trade-offs",
+    commercial: "commercial logic",
+    stakeholder: "stakeholder navigation",
+    execution: "ownership and execution",
+    communication: "communication and defence"
+  };
+  const DIM_SUBS = {
+    judgement: "Competing priorities, what you weighed against what, and why. The coach stays here until one real trade-off comes into view.",
+    commercial: "Value, cost, risk, feasibility. The coach stays here until the real economic lever of the decision is named.",
+    stakeholder: "Whose views mattered, how you handled them, and what the real dynamic under the surface was. The coach stays here until one of those reads sharpens.",
+    execution: "The specific personal actions you took that moved the work. The coach stays here until one concrete action and its consequence is named.",
+    communication: "How you explained your reasoning and held your position under pressure. The coach stays here until one part of the framing you own is surfaced."
   };
 
   const prompts = {
@@ -709,9 +936,9 @@
   let state = {
     selectedTag: null,
     firstPass: "",
+    currentDimension: null,
+    exploredDimensions: [],
     history: [],
-    dimensionIndex: 0,
-    lastDim: null,
     busy: false
   };
   const $ = (id) => document.getElementById(id);
@@ -761,7 +988,7 @@
     if ($('first-pass').value.trim().length > 0) setCrumb('first');
   });
   function updateStartBtn() {
-    $('start').disabled = !($('first-pass').value.trim().length > 0) || state.busy || state.history.length > 0;
+    $('start').disabled = !($('first-pass').value.trim().length > 0) || state.busy || state.currentDimension !== null;
   }
 
   function setCrumb(key) {
@@ -770,47 +997,25 @@
     });
   }
 
-  function setPillFor(dim) {
-    document.querySelectorAll('.dim').forEach(el => {
-      const d = el.dataset.dim;
-      el.classList.remove('active');
-      if (order.indexOf(d) < order.indexOf(dim)) el.classList.add('done');
-      else el.classList.remove('done');
-    });
-    const activeEl = document.querySelector('.dim[data-dim="' + dim + '"]');
-    if (activeEl) activeEl.classList.add('active');
+  function reveal(id) {
+    $(id).classList.add('show');
+  }
+  function unreveal(id) {
+    $(id).classList.remove('show');
   }
 
-  function markAllPillsDone() {
-    document.querySelectorAll('.dim').forEach(el => {
-      el.classList.remove('active');
-      el.classList.add('done');
+  function updateDimCardsExplored() {
+    document.querySelectorAll('.dim-card').forEach(card => {
+      const d = card.dataset.dim;
+      card.classList.toggle('explored', state.exploredDimensions.indexOf(d) !== -1);
     });
   }
 
   function renderCoachBubble(fullText) {
     const text = (fullText || '').trim();
-    let labelText = '';
-    let bodyText = text;
-    const newlineIdx = text.indexOf('\n');
-    if (newlineIdx !== -1) {
-      const firstLine = text.slice(0, newlineIdx).trim();
-      const rest = text.slice(newlineIdx + 1).trim();
-      if (/^On .+:$/i.test(firstLine)) {
-        labelText = firstLine;
-        bodyText = rest;
-      }
-    }
-
     const textDiv = document.createElement('div');
     textDiv.className = 'text';
-    if (labelText) {
-      const label = document.createElement('span');
-      label.className = 'dim-label';
-      label.textContent = labelText;
-      textDiv.appendChild(label);
-    }
-    textDiv.appendChild(document.createTextNode(bodyText));
+    textDiv.textContent = text;
 
     const who = document.createElement('span');
     who.className = 'who';
@@ -818,6 +1023,24 @@
 
     const div = document.createElement('div');
     div.className = 'conv-item coach';
+    div.appendChild(who);
+    div.appendChild(textDiv);
+    $('conv').appendChild(div);
+    div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    return div;
+  }
+
+  function renderUserBubble(text) {
+    const who = document.createElement('span');
+    who.className = 'who';
+    who.textContent = 'You';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'text';
+    textDiv.textContent = text;
+
+    const div = document.createElement('div');
+    div.className = 'conv-item you';
     div.appendChild(who);
     div.appendChild(textDiv);
     $('conv').appendChild(div);
@@ -878,40 +1101,22 @@
     return div;
   }
 
-  function addAnswerBox() {
-    const answer = document.createElement('div');
-    answer.className = 'conv-item';
-    answer.innerHTML = '<textarea class="light" placeholder="Answer in your own words. The coach only asks, you do the thinking."></textarea>';
-    $('conv').appendChild(answer);
-    answer.querySelector('textarea').focus({ preventScroll: true });
-  }
-
-  function freezeOpenAnswer() {
-    const open = $('conv').querySelector('.conv-item textarea');
-    if (!open) return '';
-    const val = open.value.trim();
-    const holder = open.closest('.conv-item');
-    holder.className = 'conv-item you';
-    holder.innerHTML = '<span class="who">You</span><div class="text"></div>';
-    holder.querySelector('.text').textContent = val || '(no answer)';
-    return val;
-  }
-
-  function setActionsDisabled(disabled) {
-    $('probe-more').disabled = disabled;
-    $('done').disabled = disabled;
+  function setReplyDisabled(disabled) {
+    $('send-arrow').disabled = disabled;
+    $('done-btn').disabled = disabled;
+    $('reply-input').disabled = disabled;
   }
 
   async function callCoach() {
     state.busy = true;
-    setActionsDisabled(true);
+    setReplyDisabled(true);
     updateStartBtn();
     const loadingEl = renderLoadingBubble();
     try {
       const res = await fetch('/api/reflection-coach', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ history: state.history })
+        body: JSON.stringify({ dimension: state.currentDimension, history: state.history })
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -922,82 +1127,108 @@
       loadingEl.remove();
       renderCoachBubble(message);
       state.history.push({ role: 'assistant', content: message });
-      if (state.dimensionIndex >= order.length) {
-        $('conv-actions').classList.remove('show');
-        markAllPillsDone();
-        setCrumb('home');
-      } else {
-        addAnswerBox();
-      }
     } catch (e) {
       loadingEl.remove();
       renderErrorBubble(e && e.message ? e.message : 'Unknown error.', callCoach);
     } finally {
       state.busy = false;
-      setActionsDisabled(false);
+      setReplyDisabled(false);
       updateStartBtn();
+      const reply = $('reply-input');
+      if (reply && !reply.disabled) reply.focus({ preventScroll: true });
     }
   }
+
+  function openDimension(dim) {
+    state.currentDimension = dim;
+    state.history = [{ role: 'user', content: state.firstPass }];
+
+    $('deep-dim-label').textContent = DIM_LABELS[dim] || dim;
+    $('deep-sub').textContent = DIM_SUBS[dim] || '';
+    $('conv').innerHTML = '';
+    $('conv').classList.add('show');
+    $('reply-input').value = '';
+
+    unreveal('step-5');
+    reveal('step-4');
+    setCrumb('deep');
+    $('step-4').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    callCoach();
+  }
+
+  function onDimCardClick(e) {
+    const card = e.currentTarget;
+    const dim = card.dataset.dim;
+    if (!dim || state.busy) return;
+    openDimension(dim);
+  }
+
+  document.querySelectorAll('.dim-card').forEach(card => {
+    card.addEventListener('click', onDimCardClick);
+  });
 
   $('start').addEventListener('click', () => {
     if (state.busy) return;
     state.firstPass = $('first-pass').value.trim();
     if (!state.firstPass) return;
-    state.history = [{ role: 'user', content: state.firstPass }];
-    state.dimensionIndex = 0;
-    state.lastDim = order[0];
-    setPillFor(state.lastDim);
-    $('probe').classList.add('show');
-    $('conv').classList.add('show');
-    $('conv-actions').classList.add('show');
-    $('conv').innerHTML = '';
-    setCrumb('probe');
-    $('probe').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    callCoach();
+    updateDimCardsExplored();
+    reveal('step-3');
+    setCrumb('angle');
+    $('step-3').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  function onProbeMore() {
-    if (state.busy) return;
-    const val = freezeOpenAnswer();
-    const userMsg = val ? (val + '\n\nprobe more') : 'probe more';
-    state.history.push({ role: 'user', content: userMsg });
-    const nextIdx = state.dimensionIndex + 1;
-    state.dimensionIndex = nextIdx;
-    if (nextIdx >= order.length) {
-      markAllPillsDone();
-    } else {
-      state.lastDim = order[nextIdx];
-      setPillFor(state.lastDim);
+  $('send-arrow').addEventListener('click', onSendReply);
+  $('reply-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      onSendReply();
     }
+  });
+
+  function onSendReply() {
+    if (state.busy) return;
+    const val = $('reply-input').value.trim();
+    if (!val) return;
+    renderUserBubble(val);
+    state.history.push({ role: 'user', content: val });
+    $('reply-input').value = '';
     callCoach();
   }
 
-  function finishConversation() {
-    $('conv-actions').classList.remove('show');
-    markAllPillsDone();
-    const div = document.createElement('div');
-    div.className = 'conv-item coach';
-    div.innerHTML = '<span class="who">Coach</span><div class="text">You\u2019ve worked through all five dimensions. Take your answers into your reflection form for Conor, or save the document below for next month.</div>';
-    $('conv').appendChild(div);
+  $('done-btn').addEventListener('click', () => {
+    if (state.busy) return;
+    if (state.currentDimension && state.exploredDimensions.indexOf(state.currentDimension) === -1) {
+      state.exploredDimensions.push(state.currentDimension);
+    }
+    updateDimCardsExplored();
+    reveal('step-5');
     setCrumb('home');
-  }
-
-  $('probe-more').addEventListener('click', onProbeMore);
-  $('done').addEventListener('click', finishConversation);
+    $('step-5').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   $('reset').addEventListener('click', (e) => {
     e.preventDefault();
-    state = { selectedTag: null, firstPass: "", history: [], dimensionIndex: 0, lastDim: null, busy: false };
+    state = {
+      selectedTag: null,
+      firstPass: "",
+      currentDimension: null,
+      exploredDimensions: [],
+      history: [],
+      busy: false
+    };
     document.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
-    document.querySelectorAll('.dim').forEach(d => { d.classList.remove('active'); d.classList.remove('done'); });
+    document.querySelectorAll('.dim-card').forEach(c => c.classList.remove('explored', 'selected'));
     $('first-pass').value = '';
     $('first-pass').setAttribute('placeholder', defaultPlaceholder);
     $('conv').innerHTML = '';
     $('conv').classList.remove('show');
-    $('conv-actions').classList.remove('show');
-    $('probe').classList.remove('show');
+    $('reply-input').value = '';
+    unreveal('step-3');
+    unreveal('step-4');
+    unreveal('step-5');
     $('moment-chip').classList.remove('show');
-    setActionsDisabled(false);
+    setReplyDisabled(false);
     updateStartBtn();
     setCrumb('pick');
     window.scrollTo({ top: 0, behavior: 'smooth' });
