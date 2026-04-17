@@ -26,7 +26,19 @@ body {
   font-size: 14px;
   font-weight: 300;
   line-height: 1.6;
+  position: relative;
 }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
 
 /* ---- TOP NAV ---- */
 .top-bar {
@@ -823,6 +835,201 @@ body {
   .module-agents { flex-wrap: wrap; gap: 8px; }
   .module-header { flex-wrap: wrap; }
 }
+
+/* ==================== PROOF BAR ==================== */
+.proof-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  border-top: 1px solid var(--border);
+}
+.proof-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 48px;
+  align-items: center;
+  padding: 24px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}
+.proof-item strong { color: var(--text); font-weight: 400; }
+
+/* ==================== HOW IT WORKS ==================== */
+.how-bridge {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 48px 96px;
+}
+.section-divider {
+  border-top: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.how-step { border-top: 1px solid var(--border); padding-top: 20px; }
+.how-step-num {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--orange);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.how-step-title {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+}
+.how-step-desc { font-size: 13px; line-height: 1.65; }
+
+/* ==================== MID-SCROLL CTA ==================== */
+.mid-cta {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 72px 48px;
+  background: var(--charcoal);
+  color: var(--cream);
+  text-align: center;
+  overflow: hidden;
+}
+.mid-cta::before, .close-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #F47521 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.mid-cta > *, .close-section > * { position: relative; z-index: 1; }
+.mid-cta h3 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.mid-cta p {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: rgba(247, 234, 217, 0.75);
+  margin-bottom: 32px;
+}
+.big-btn {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.big-btn:hover { background: #E06A1A; }
+
+/* ==================== CLIENT VOICES ==================== */
+.voices { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; }
+.voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.voice-card { border-top: 2px solid var(--orange); padding-top: 24px; }
+.voice-quote { font-family: var(--mono); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.voice-attr { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.55; }
+.voice-attr strong { color: var(--text); font-weight: 400; display: block; }
+
+/* ==================== FAQ ==================== */
+.faq { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; }
+.faq-list { border-top: 1px solid var(--border); }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.faq-q {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.faq-a { font-family: var(--mono); font-size: 14px; line-height: 1.65; }
+
+/* ==================== CLOSE ==================== */
+.close-section {
+  margin-top: 96px;
+  margin-bottom: 80px;
+  padding: 96px 48px;
+  background: var(--charcoal);
+  color: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.close-section h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 48px);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 32px;
+  color: var(--cream);
+}
+.close-section .close-cta {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.close-section .close-cta:hover { background: #E06A1A; }
+
+@media (max-width: 900px) {
+  .proof-bar, .how-bridge, .voices, .faq { padding-left: 24px; padding-right: 24px; }
+  .how-bridge { padding-top: 48px; padding-bottom: 64px; }
+  .how-grid, .voices-grid { grid-template-columns: 1fr; gap: 32px; }
+  .faq-item { grid-template-columns: 1fr; gap: 12px; }
+  .mid-cta { padding: 56px 24px; }
+  .close-section { padding: 72px 24px; margin-top: 80px; }
+}
 </style>
 </head>
 <body>
@@ -853,6 +1060,40 @@ body {
     </div>
     <div class="hero-fox">
       <img src="public/fox/chapter-fox-sitting-nobg.png" alt="Fox sitting">
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROOF BAR ==================== -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-item"><strong>Marketer of the Year</strong>, 2022</div>
+    <div class="proof-item">Ex-lead, <strong>National Lottery</strong></div>
+    <div class="proof-item">Teaches at <strong>UCD Smurfit</strong></div>
+    <div class="proof-item"><strong>27:1 ROI</strong> case study</div>
+  </div>
+</div>
+
+<!-- ==================== HOW IT WORKS ==================== -->
+<section class="how-bridge">
+  <div class="section-divider"></div>
+  <div class="section-label">// how it works</div>
+  <h2 class="section-heading">Three steps.<br>That's the whole thing.</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <div class="how-step-title">We talk.</div>
+      <div class="how-step-desc">A 30-minute call. You tell us where your marketing is breaking or slowing down. No pitch deck.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <div class="how-step-title">We build.</div>
+      <div class="how-step-desc">Days, not months. Agents, tools, scripts, dashboards. Built in your stack, not ours.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <div class="how-step-title">You run it.</div>
+      <div class="how-step-desc">We hand over. Your team uses it. You don't need us after.</div>
     </div>
   </div>
 </section>
@@ -1053,6 +1294,7 @@ body {
           <video autoplay muted loop playsinline>
             <source src="messaging-framework-scroll.mp4" type="video/mp4">
           </video>
+          <div class="video-caption">Messaging framework — one locked document, every message built on it</div>
         </div>
       </div>
     </div>
@@ -1161,6 +1403,13 @@ body {
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- ==================== MID-SCROLL CTA ==================== -->
+  <div class="mid-cta">
+    <h3>Twelve functions. Pick three.</h3>
+    <p>We'll build them and hand them over.</p>
+    <a href="/contact" class="big-btn">Get in touch</a>
   </div>
 
   <!-- MODULE 7: CONTENT -->
@@ -1299,12 +1548,35 @@ body {
       <div class="module-title">Growth</div>
       <div class="module-level-badge mlb-full">AI does it</div>
     </div>
-    <div class="module-split">
-      <div class="module-left">
-        <div class="module-desc">We built a growth executive that runs on its own. It syncs data from LinkedIn outreach and email campaigns, reads the replies, tracks who's engaged and who hasn't, and prepares the next batch of people to contact. It applies real frameworks, like the 95:5 rule that only about 5% of your market is ready to buy at any time, so most of what you're doing is building memory, not chasing leads.<br><br>It watches five layers of the funnel, from activity at the bottom (sends, impressions, posts published) up through response (opens, clicks, accepts), memory (pool size, followers, reach), behaviour (meetings booked, proposals requested) and commercial outcomes at the top. It reports bottom-up but thinks top-down.</div>
+
+    <!-- Sub-item A: An email and digital marketer -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>An email and digital marketer</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built a growth executive that runs on its own. It syncs data from LinkedIn outreach and email campaigns, reads the replies, tracks who's engaged and who hasn't, and prepares the next batch of people to contact. It applies real frameworks, like the 95:5 rule that only about 5% of your market is ready to buy at any time, so most of what you're doing is building memory, not chasing leads.<br><br>It watches five layers of the funnel, from activity at the bottom (sends, impressions, posts published) up through response (opens, clicks, accepts), memory (pool size, followers, reach), behaviour (meetings booked, proposals requested) and commercial outcomes at the top. It reports bottom-up but thinks top-down.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
       </div>
-      <div class="module-right">
-        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+    </div>
+
+    <!-- Sub-item B: Page conversion audits -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>Page conversion audits</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Point it at any landing page. It scores every section against a ten-part anatomy of what a page has to do. Shows you the gaps. Drafts the rebuild with wireframes. You get a one-pager in your brand, not a Google doc of generic fixes.</div>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="page-conversion-scroll.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">Page conversion audit — 10-section anatomy, gaps surfaced, rebuild drafted</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1366,6 +1638,66 @@ body {
   </div>
 
 </div>
+
+<!-- ==================== CLIENT VOICES ==================== -->
+<section class="voices">
+  <div class="section-divider"></div>
+  <div class="section-label">// what clients say</div>
+  <h2 class="section-heading">They don't want to go back.</h2>
+  <div class="voices-grid">
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote from a real client. A single sentence about what changed on Monday."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote. Something concrete about speed or output, not vague praise."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote. The one line they'd use to tell a peer."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="faq">
+  <div class="section-divider"></div>
+  <div class="section-label">// questions we hear</div>
+  <h2 class="section-heading">The things people ask us.</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Who is this for?</div>
+      <div class="faq-a">In-house marketing teams. Small and large. We don't work with agencies.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do we start?</div>
+      <div class="faq-a">A 30-minute call. No pitch deck. We listen, we ask, we tell you what we'd build.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do we need AI people on the team?</div>
+      <div class="faq-a">No. We set it up so a marketer can run it. If someone on your team is curious, even better.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does a build take?</div>
+      <div class="faq-a">Days for simple things. Weeks for the bigger pieces. Almost never months.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does it cost?</div>
+      <div class="faq-a">Day rate. We scope before we quote. You see the full price before we start.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do we own it after?</div>
+      <div class="faq-a">Yes. Code, prompts, instructions, all yours. You can keep using it, change it, throw it away.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLOSE ==================== -->
+<section class="close-section">
+  <h2>The marketing department<br>you already have.<br>Just unfair.</h2>
+  <a href="/contact" class="close-cta">Get in touch</a>
+</section>
 
 <!-- ==================== FLOATING BOTTOM BAR ==================== -->
 <div class="bottom-bar">
