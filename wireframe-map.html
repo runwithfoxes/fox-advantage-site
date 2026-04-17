@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe C — Marketing department map</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --muted: #8A8A85;
+  --orange: #F47521;
+  --charcoal: #355E4C;
+  --cream: #F7EAD9;
+  --border: #E0E0DC;
+  --hover: #F5F5F0;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ---- TOP NAV ---- */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(250, 250, 248, 0);
+  backdrop-filter: blur(0);
+  transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+}
+.top-bar.scrolled {
+  background: rgba(250, 250, 248, 0.85);
+  backdrop-filter: blur(12px);
+}
+.top-bar .logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.top-bar .logo span { color: var(--orange); }
+.top-bar nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.top-bar nav a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+.top-bar nav a:hover { color: var(--orange); }
+.top-bar nav a.cta {
+  padding: 10px 16px;
+  background: var(--orange);
+  color: var(--bg);
+}
+.top-bar nav a.cta:hover {
+  background: #E06A1A;
+  color: var(--bg);
+}
+
+/* ---- HERO ---- */
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 48px 48px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: center;
+}
+.hero-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(44px, 7.2vw, 86px);
+  letter-spacing: -2px;
+  line-height: 1.02;
+  margin-bottom: 28px;
+}
+.hero h1 .accent { color: var(--orange); }
+.hero-sub {
+  font-family: var(--mono);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  background: var(--orange);
+  color: var(--bg);
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.hero-cta:hover { background: #E06A1A; }
+.hero-cta-secondary {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+.hero-cta-secondary:hover { color: var(--orange); }
+.hero-fox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-fox img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .top-bar { padding: 16px 24px; }
+  .top-bar nav { display: none; }
+  .hero { padding: 80px 24px 40px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-fox { max-width: 220px; margin: 0 auto; }
+}
+
+/* ---- STICKY MAP ---- */
+.map-wrapper {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  transition: box-shadow 0.3s ease-out;
+}
+.map-wrapper.shadowed {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.map-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* The department map — two rows of five */
+.dept-map {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.map-node {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease-out, border-color 0.2s ease-out;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.map-node:hover { background: var(--hover); }
+.map-node.active {
+  border-color: var(--orange);
+  background: var(--hover);
+}
+.map-node .node-num {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.map-node .node-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.map-node .node-level {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.lvl-full { background: var(--charcoal); }
+.lvl-assist { background: var(--cream); border: 1px solid var(--border); }
+.lvl-coach { background: var(--bg); border: 1px solid var(--muted); }
+
+/* Arrow connectors between nodes (CSS only) */
+.map-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.map-connector {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  height: 16px;
+  margin-bottom: 2px;
+}
+.connector-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.connector-down {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  position: relative;
+}
+/* Arrow from row 1 last to row 2 first */
+.connector-bend {
+  position: relative;
+  width: 100%;
+  height: 16px;
+}
+
+/* Legend */
+.map-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.legend-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* ---- MODULE DETAIL SECTIONS ---- */
+.modules {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 120px;
+}
+.module-section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 220px;
+}
+.module-section:last-child { border-bottom: none; }
+
+.module-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.module-num {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 32px;
+  color: var(--orange);
+  letter-spacing: -1px;
+  flex-shrink: 0;
+  width: 48px;
+}
+.module-title {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+.module-level-badge {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 3px 10px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+.module-level-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+}
+.mlb-full { background: var(--charcoal); color: var(--cream); }
+.mlb-full::before { background: var(--orange); }
+.mlb-assist { background: var(--cream); color: var(--text); }
+.mlb-assist::before { background: var(--charcoal); }
+.mlb-coach { border: 1px solid var(--border); color: var(--muted); }
+.mlb-coach::before { background: var(--muted); }
+
+.module-desc {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 600px;
+  margin: 8px 0 28px 64px;
+}
+
+/* Agent flow within each module */
+.module-agents {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: 64px;
+  padding: 12px 0;
+}
+.agent-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  flex-shrink: 0;
+  transition: background 0.2s ease-out;
+}
+.agent-card:hover { background: var(--hover); }
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.agent-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+.agent-role {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+}
+.flow-arrow {
+  flex-shrink: 0;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+.flow-arrow svg {
+  width: 28px;
+  height: 10px;
+}
+.flow-arrow line, .flow-arrow polyline {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Split layout — description left, personas right */
+.module-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-left: 64px;
+  align-items: start;
+}
+/* Inside a sub-item, module-sub already handles the 64px offset — don't double it */
+.module-sub .module-split { margin-left: 0; }
+.module-left {}
+.module-left .module-desc {
+  margin: 0 0 24px 0;
+}
+.module-right {}
+.persona-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.try-it-btn {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 11px 22px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.try-it-btn:hover {
+  background: #E06A1A;
+  opacity: 1;
+}
+
+/* Placeholder visual (for modules awaiting a visual) */
+.placeholder-visual {
+  border: 2px dashed var(--border);
+  padding: 48px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.placeholder-inner {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Mini brand house */
+.brand-house-mini {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.bh-roof {
+  background: var(--orange);
+  color: var(--bg);
+  text-align: center;
+  padding: 20px 16px 14px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.bh-roof-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+.bh-roof-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+}
+.bh-promise {
+  background: #E06A1A;
+  color: var(--bg);
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 10px;
+}
+.bh-pillars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.bh-pillar {
+  background: var(--bg);
+  padding: 10px 4px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 400;
+  border-top: 3px solid var(--orange);
+}
+.bh-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.bh-cell {
+  background: var(--bg);
+  padding: 10px 12px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.bh-cell-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.bh-foundation {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 10px 12px;
+  font-size: 10px;
+  text-align: center;
+}
+.bh-foundation .bh-cell-label {
+  color: rgba(247,234,217,0.5);
+}
+.bh-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+}
+
+/* Mini metrics pyramid */
+.metrics-pyramid-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.mp-level {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mp-shape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--bg);
+  flex-shrink: 0;
+}
+.mp-1 .mp-shape { width: 100px; background: var(--orange); }
+.mp-2 .mp-shape { width: 150px; background: var(--charcoal); }
+.mp-3 .mp-shape { width: 200px; background: var(--orange); }
+.mp-4 .mp-shape { width: 250px; background: var(--text); }
+.mp-5 .mp-shape { width: 300px; background: var(--hover); border: 1px solid var(--border); color: var(--text); }
+.mp-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.mp-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 12px 8px 0;
+  font-style: italic;
+}
+
+/* Sub-items within a module */
+.module-sub {
+  margin-left: 64px;
+  padding-top: 80px;
+}
+.module-sub:first-of-type {
+  padding-top: 24px;
+}
+.sub-heading {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.sub-heading .sub-num {
+  color: var(--orange);
+  font-weight: 300;
+  margin-right: 8px;
+}
+
+/* Video container */
+.video-container {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--text);
+}
+.video-container video {
+  width: 100%;
+  display: block;
+}
+.video-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+  background: var(--bg);
+}
+
+/* Video grid — 3 videos side by side */
+.video-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.video-grid-3 .video-container {
+  border: 1px solid var(--border);
+}
+.video-grid-3 + .video-caption {
+  background: none;
+  padding-top: 10px;
+}
+
+/* Video row — 2 videos side by side beneath a hero video */
+.video-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 6px;
+}
+.video-row-2 + .video-caption {
+  background: none;
+  padding-top: 10px;
+}
+
+/* Screenshot container */
+.screenshot-container {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.screenshot-container img {
+  width: 100%;
+  display: block;
+}
+
+/* Mini diagnosis card (Module 6 Creative — brief diagnostician) */
+.diagnosis-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.45;
+  background: #fff;
+}
+.dc-header {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 18px 16px 16px;
+}
+.dc-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
+.dc-diagnosis {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+}
+.dc-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.dc-section-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.dc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dc-list li {
+  padding: 3px 0 3px 14px;
+  color: var(--text);
+  position: relative;
+  font-size: 10.5px;
+}
+.dc-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+}
+.dc-collapse {
+  background: var(--cream);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.dc-collapse-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.35;
+}
+.dc-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+}
+
+/* Handoff indicator */
+.module-handoff {
+  margin: 20px 0 0 64px;
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.handoff-arrow {
+  width: 20px;
+  height: 10px;
+}
+.handoff-arrow line, .handoff-arrow polyline {
+  stroke: var(--orange);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Wireframe badge */
+/* ---- FLOATING BOTTOM BAR ---- */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  background: var(--charcoal);
+  overflow: hidden;
+}
+.bottom-bar a {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 14px 24px;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
+}
+.bottom-bar a:hover { color: #fff; }
+.bottom-bar a.active { color: var(--orange); }
+.bottom-bar a.cta-bar {
+  background: var(--orange);
+  color: #fff;
+}
+.bottom-bar a.cta-bar:hover { background: #E06A1A; }
+
+@media (max-width: 600px) {
+  .bottom-bar a { padding: 12px 14px; font-size: 11px; }
+}
+
+.wf-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  background: var(--orange);
+  color: var(--bg);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .page-header { padding: 32px 24px 0; }
+  .map-inner { padding: 0 24px; }
+  .dept-map { grid-template-columns: repeat(2, 1fr); }
+  .modules { padding: 0 24px 80px; }
+  .module-desc, .module-agents, .module-handoff, .module-split { margin-left: 0; }
+  .module-split { grid-template-columns: 1fr; gap: 24px; }
+  .module-agents { flex-wrap: wrap; gap: 8px; }
+  .module-header { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="wf-badge">wireframe C — map layout</div>
+
+<!-- ==================== TOP NAV ==================== -->
+<header class="top-bar" id="topBar">
+  <a href="#" class="logo">/<span>Run</span>withfoxes</a>
+  <nav>
+    <a href="#mapWrapper">#unfair_advantage</a>
+    <a href="/book">/book</a>
+    <a href="/answers">/answers</a>
+    <a href="/contact" class="cta">/get_in_touch</a>
+  </nav>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <h1>Build an <span class="accent">unfair</span> advantage in marketing</h1>
+      <p class="hero-sub">How to bring speed without compromising quality into your marketing.</p>
+      <div class="hero-meta">
+        <a href="/contact" class="hero-cta">Get in touch</a>
+        <a href="#mapWrapper" class="hero-cta-secondary">\ see the map</a>
+      </div>
+    </div>
+    <div class="hero-fox">
+      <img src="public/fox/chapter-fox-sitting-nobg.png" alt="Fox sitting">
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STICKY MAP ==================== -->
+<div class="map-wrapper" id="mapWrapper">
+  <div class="map-inner">
+    <div class="dept-map">
+      <!-- Row 1 -->
+      <a href="#mod1" class="map-node active" data-module="1">
+        <div class="node-level lvl-coach"></div>
+        <div class="node-num">01</div>
+        <div class="node-name">Strategy</div>
+      </a>
+      <a href="#mod2" class="map-node" data-module="2">
+        <div class="node-level lvl-coach"></div>
+        <div class="node-num">02</div>
+        <div class="node-name">Positioning</div>
+      </a>
+      <a href="#mod3" class="map-node" data-module="3">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">03</div>
+        <div class="node-name">Messaging</div>
+      </a>
+      <a href="#mod4" class="map-node" data-module="4">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">04</div>
+        <div class="node-name">Customer journey</div>
+      </a>
+      <a href="#mod5" class="map-node" data-module="5">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">05</div>
+        <div class="node-name">Research</div>
+      </a>
+      <a href="#mod6" class="map-node" data-module="6">
+        <div class="node-level lvl-full"></div>
+        <div class="node-num">06</div>
+        <div class="node-name">Creative</div>
+      </a>
+      <!-- Row 2 -->
+      <a href="#mod7" class="map-node" data-module="7">
+        <div class="node-level lvl-full"></div>
+        <div class="node-num">07</div>
+        <div class="node-name">Content</div>
+      </a>
+      <a href="#mod8" class="map-node" data-module="8">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">08</div>
+        <div class="node-name">Brand management</div>
+      </a>
+      <a href="#mod9" class="map-node" data-module="9">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">09</div>
+        <div class="node-name">Comms</div>
+      </a>
+      <a href="#mod10" class="map-node" data-module="10">
+        <div class="node-level lvl-full"></div>
+        <div class="node-num">10</div>
+        <div class="node-name">Growth</div>
+      </a>
+      <a href="#mod11" class="map-node" data-module="11">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">11</div>
+        <div class="node-name">Events</div>
+      </a>
+      <a href="#mod12" class="map-node" data-module="12">
+        <div class="node-level lvl-assist"></div>
+        <div class="node-num">12</div>
+        <div class="node-name">Marketing ops</div>
+      </a>
+    </div>
+
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-dot lvl-full"></div> AI does it</div>
+      <div class="legend-item"><div class="legend-dot lvl-assist"></div> AI + human</div>
+      <div class="legend-item"><div class="legend-dot lvl-coach"></div> Human leads</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODULE DETAILS ==================== -->
+<div class="modules">
+
+  <!-- MODULE 1 -->
+  <div class="module-section" id="mod1">
+    <div class="module-header">
+      <div class="module-num">01</div>
+      <div class="module-title">Strategy</div>
+      <div class="module-level-badge mlb-coach">human leads</div>
+    </div>
+
+    <!-- Sub-item A: The experts panel -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>The experts panel</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We do discovery calls. We use multiple frameworks with lots of data points to help a client get under the skin of the problems. We can ask questions at speed while diagnosing, and what we get to is a couple of hypotheses that we can then test later.</div>
+          <a href="https://runwithfoxes.com/experts" target="_blank" class="try-it-btn">Try the panel yourself &rarr;</a>
+        </div>
+        <div class="module-right">
+          <div class="persona-stack">
+            <div class="agent-card">
+              <div class="avatar"><img src="https://api.dicebear.com/9.x/notionists/svg?seed=StrategyPurist&backgroundColor=f7ead9" alt="Strategy Purist"></div>
+              <div><div class="agent-name">Strategy Purist</div><div class="agent-role">finds the real constraint</div></div>
+            </div>
+            <div class="agent-card">
+              <div class="avatar"><img src="https://api.dicebear.com/9.x/notionists/svg?seed=EffectivenessExpert&backgroundColor=f7ead9" alt="Effectiveness Expert"></div>
+              <div><div class="agent-name">Effectiveness Expert</div><div class="agent-role">checks the evidence</div></div>
+            </div>
+            <div class="agent-card">
+              <div class="avatar"><img src="https://api.dicebear.com/9.x/notionists/svg?seed=ConsultingPartner&backgroundColor=f7ead9" alt="Consulting Partner"></div>
+              <div><div class="agent-name">Consulting Partner</div><div class="agent-role">pressure-tests the logic</div></div>
+            </div>
+            <div class="agent-card">
+              <div class="avatar"><img src="https://api.dicebear.com/9.x/notionists/svg?seed=CustomerInvestigator&backgroundColor=f7ead9" alt="Customer Investigator"></div>
+              <div><div class="agent-name">Customer Investigator</div><div class="agent-role">asks what the customer needs</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item B: Getting unstuck -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>When the team is stuck</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Sometimes a team isn't short of ideas. They're circling the same ones. The brief feels flat, the positioning won't land, best practices aren't working and nobody can say why. That's not a strategy problem, it's a thinking problem. They're stuck in a loop and can't see it.<br><br>We built a tool that diagnoses what type of stuck you're in, then gives you two or three mental tools matched to that specific pattern. You pick one and it walks you through it. Forty minutes later you've usually found the assumption that was locking everything in place.<br><br>One tool breaks category thinking by stealing ideas from completely unrelated fields. Another strips everything back to the human problem and rebuilds from scratch, ignoring what you've already tried. Another finds the single bottleneck creating most of the downstream pain. Another surfaces the hidden assumptions underneath your current plan.<br><br>The point isn't to give you a solution. It's to give you a new lens and a reusable technique you can pull out next time you're circling.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODULE 2: POSITIONING -->
+  <div class="module-section" id="mod2">
+    <div class="module-header">
+      <div class="module-num">02</div>
+      <div class="module-title">Positioning</div>
+      <div class="module-level-badge mlb-coach">human leads</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We run positioning sessions with a client's leadership team. We use frameworks and customer evidence to stress-test what the team thinks is true. We can surface contradictions, map what competitors already own, and bring clarity at speed.<br><br>What we get to is a positioning document, like the brand house on the right, that everyone in the team can use. It becomes the bible. Everything that follows, messaging, briefs, creative, is built on it.<br><br>AI doesn't do the positioning itself. That call stays with the leadership team. But the work around it, the structure, the frameworks, the output, gets faster and sharper.</div>
+        <a href="#" class="try-it-btn">See an example brand house &rarr;</a>
+      </div>
+      <div class="module-right">
+        <!-- Mini brand house visual -->
+        <div class="brand-house-mini">
+          <div class="bh-roof">
+            <div class="bh-roof-label">essence</div>
+            <div class="bh-roof-text">"Honest, not heroic"</div>
+          </div>
+          <div class="bh-promise">Better marketing decisions through honest examination of failures</div>
+          <div class="bh-pillars">
+            <div class="bh-pillar">Learning from failure</div>
+            <div class="bh-pillar">Fox thinking</div>
+            <div class="bh-pillar">Evidence-based</div>
+            <div class="bh-pillar">Brand salience</div>
+            <div class="bh-pillar">Honest learning</div>
+          </div>
+          <div class="bh-row">
+            <div class="bh-cell bh-audience">
+              <div class="bh-cell-label">audience</div>
+              Mid-career to senior marketers
+            </div>
+            <div class="bh-cell bh-voice">
+              <div class="bh-cell-label">voice</div>
+              Smart colleague over coffee
+            </div>
+          </div>
+          <div class="bh-foundation">
+            <div class="bh-cell-label">proof</div>
+            20 yrs brand leadership &middot; Marketer of the Year 2022
+          </div>
+          <div class="bh-caption">Run with Foxes — brand house example</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3: MESSAGING -->
+  <div class="module-section" id="mod3">
+    <div class="module-header">
+      <div class="module-num">03</div>
+      <div class="module-title">Messaging</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We take a client's existing messaging and convert it into one tight framework. AI reads through all of it at speed, the decks, the briefs, the landing pages, the keynotes. What we get to is a master proposition, pillars, proof and language rules, all hardcoded. Anyone writing anything checks against it first. Everything that follows is built on it.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual">
+          <div class="placeholder-inner">Messaging framework visual goes here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4: CUSTOMER JOURNEY -->
+  <div class="module-section" id="mod4">
+    <div class="module-header">
+      <div class="module-num">04</div>
+      <div class="module-title">Customer journey</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We plot out a client's customer journey by pulling in lots of data points, the research, the analytics, the interviews, the sales data, the reviews. AI works through all of it at speed using proper journey mapping frameworks. What we get to is a hardcoded journey map with the stages, the motivations, the gaps and the right message at each point. Anyone working on the journey checks against it first.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual">
+          <div class="placeholder-inner">Journey map visual goes here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 5: RESEARCH -->
+  <div class="module-section" id="mod5">
+    <div class="module-header">
+      <div class="module-num">05</div>
+      <div class="module-title">Research</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+
+    <!-- Sub-item A: GEO Audit -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>Where do you show up in AI search?</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">When someone asks ChatGPT or Claude or Perplexity to recommend a company like yours, do you show up? Most companies have no idea. They're optimising for Google but the buying behaviour is shifting to AI search and they're invisible there.<br><br>We built a GEO audit that tests this. Give us your brand and URL, we generate 25 real buyer-intent prompts across five patterns, the kinds of questions your prospects are actually asking. Then we check which brands get cited, which get recommended, and which don't appear at all. You get a scored report showing your citation rate, who's winning the prompts you're losing, and a prioritised fix list to close the gaps.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">GEO audit scorecard visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item B: Research Agent -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>A research agent that learns what you care about</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built an agent that goes out each week on its own and finds material across YouTube, Substack and other sources on the topics that matter to you. It identifies the key ideas, writes them up, and puts them into a folder for you to review.<br><br>The ones you like, it learns from. The ones you skip, it learns from too. Over time it gets better at knowing what's signal and what's noise for your specific interests. It builds and learns on its own. You just review what it finds.<br><br>This saves hours of reading time every week, and the quality improves the longer you use it.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Research agent output visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item C: Reddit Research -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">C</span>Find the conversations that matter on Reddit</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Reddit is where people ask real questions about real problems. We built a tool that monitors the subreddits that matter to your business, finds the posts where someone is asking about exactly the kind of thing you solve, and drafts a helpful response.<br><br>It doesn't post anything. It queues the responses for a human to review, edit if needed, and post themselves. The human is in the process where it matters, the tone, the timing, the judgment call on whether this is the right conversation to join.<br><br>We used this for a client selling showers. The tool watched five subreddits, found posts asking about water pressure, electric showers, replacements. It drafted technically accurate responses in the right voice. The team reviewed and posted the ones that fit. Genuine help, not spam.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Reddit response queue visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODULE 6: CREATIVE -->
+  <div class="module-section" id="mod6">
+    <div class="module-header">
+      <div class="module-num">06</div>
+      <div class="module-title">Creative</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Most bad ads don't start with bad ideas. They start with briefs that don't know how they want the communication to work. Is it salience or persuasion? Fame or direct response? Brand-building or activation? Most briefs can't say. So every reviewer judges through a different lens. By round three the idea's dead, or unrecognisable.<br><br>We built a diagnostician that forces the clarity most briefs avoid. It reads the brief, spots which of seven influence models it's leaning on, flags the contradictions, and tells you the one choice you've been avoiding. Use it before you write the ad, not after it fails.<br><br>This is the first tool in a series. Each one removes a specific drag point that kills good creative.</div>
+        <a href="/brief-diagnostician" class="try-it-btn">Try the brief diagnostician &rarr;</a>
+      </div>
+      <div class="module-right">
+        <!-- Sample diagnosis card -->
+        <div class="diagnosis-card">
+          <div class="dc-header">
+            <div class="dc-label">core diagnosis</div>
+            <div class="dc-diagnosis">"Your brief is climbing all rungs of the ladder at once."</div>
+          </div>
+          <div class="dc-section">
+            <div class="dc-section-label">evidence</div>
+            <ul class="dc-list">
+              <li>KPI mixes attention, attitude and sales from a single execution</li>
+              <li>Brief names demographics, not buying moments</li>
+              <li>Rational and emotional drivers treated as separate systems</li>
+            </ul>
+          </div>
+          <div class="dc-collapse">
+            <div class="dc-section-label">the collapse move</div>
+            <div class="dc-collapse-text">"You need salience built on actual purchase triggers, not demographic mail merges."</div>
+          </div>
+          <div class="dc-caption">Marketing Influence Model Diagnostician — sample output</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 7: CONTENT -->
+  <div class="module-section" id="mod7">
+    <div class="module-header">
+      <div class="module-num">07</div>
+      <div class="module-title">Content</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 8: BRAND MANAGEMENT -->
+  <div class="module-section" id="mod8">
+    <div class="module-header">
+      <div class="module-num">08</div>
+      <div class="module-title">Brand management</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+
+    <!-- Sub-item A: Measuring your brand metrics -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>Measuring your brand metrics</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">You can't manage a brand if you can't measure one. Most teams are tracking activity, impressions, reach, clicks, but they've no line of sight to the things that actually drive the business. The metrics are disconnected from the outcomes.<br><br>We use AI to help marketing teams and the wider organisation understand which metrics matter and how they influence each other. Paste in whatever you're tracking and the pyramid sorts them into five levels, from activity at the base to commercial outcomes at the top. It shows you where the gaps are and where you're heavy on vanity metrics with nothing connecting them to revenue.<br><br>It's a starting point. Once you can see the shape of what you're measuring, you can start managing the brand properly.</div>
+          <a href="https://runwithfoxes.com/coach" target="_blank" class="try-it-btn">Try the metrics pyramid &rarr;</a>
+        </div>
+        <div class="module-right">
+          <div class="metrics-pyramid-mini">
+            <div class="mp-level mp-1">
+              <div class="mp-shape">1</div>
+              <div class="mp-label">Commercial outcomes</div>
+            </div>
+            <div class="mp-level mp-2">
+              <div class="mp-shape">2</div>
+              <div class="mp-label">Customer behaviour</div>
+            </div>
+            <div class="mp-level mp-3">
+              <div class="mp-shape">3</div>
+              <div class="mp-label">Memory metrics</div>
+            </div>
+            <div class="mp-level mp-4">
+              <div class="mp-shape">4</div>
+              <div class="mp-label">Comms response</div>
+            </div>
+            <div class="mp-level mp-5">
+              <div class="mp-shape">5</div>
+              <div class="mp-label">Activity + outputs</div>
+            </div>
+            <div class="mp-caption">The metrics pyramid — paste your metrics, see where the gaps are</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item B: Building brand consistency -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>Building brand consistency</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">These are the brand guidelines we give Claude to get 100% consistency every time when building any docs, emails, webpages or any marketing materials. If you can decode and give Claude very detailed brand guidelines, it will recreate materials the way you want.<br><br>Give the link of our guidelines to Claude, ask it to keep the structure but strip out the Run with Foxes brand, and use that as a format to structure your own brand guidelines for Claude.</div>
+          <a href="https://runwithfoxes.com/brand" target="_blank" class="try-it-btn">See the brand guidelines &rarr;</a>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="brand-guidelines-scroll.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">Run with Foxes brand guidelines — built for AI, not just humans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item C: Distinctive brand assets -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">C</span>Distinctive brand assets</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">AI will not make you distinctive. It will make you more, faster, everywhere, and if what you feed it is vague you just get average in bulk.<br><br>But if you already have distinctive brand assets, there has never been a better time to lean on them. David Ogilvy bought the Hathaway eyepatch on the way to the shoot in 1951, fifty cents, then they kept using it, making the brand easy to spot.<br><br>Consistency in advertising is incredibly important. It was still a real challenge this time last year keeping consistency frame to frame, and ad to ad. Not now. Now you can build a distinctive brand asset, and then use Claude Code to create daily video ads keeping it both interesting and consistent.<br><br>Find your eyepatch moment.</div>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="fox-tarantino-trunk.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-row-2">
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="fox-coffee-soho.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="fox-hathaway.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="video-caption">Same character, three different scenes — all AI-generated</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODULE 09: COMMS -->
+  <div class="module-section" id="mod9">
+    <div class="module-header">
+      <div class="module-num">09</div>
+      <div class="module-title">Comms</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 10: GROWTH -->
+  <div class="module-section" id="mod10">
+    <div class="module-header">
+      <div class="module-num">10</div>
+      <div class="module-title">Growth</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We built a growth executive that runs on its own. It syncs data from LinkedIn outreach and email campaigns, reads the replies, tracks who's engaged and who hasn't, and prepares the next batch of people to contact. It applies real frameworks, like the 95:5 rule that only about 5% of your market is ready to buy at any time, so most of what you're doing is building memory, not chasing leads.<br><br>It watches five layers of the funnel, from activity at the bottom (sends, impressions, posts published) up through response (opens, clicks, accepts), memory (pool size, followers, reach), behaviour (meetings booked, proposals requested) and commercial outcomes at the top. It reports bottom-up but thinks top-down.<br><br>It doesn't send anything. It doesn't publish anything. It doesn't start or stop campaigns. It preps, analyses, flags what's working and what isn't, and you decide. The human is in the loop on every action that touches the outside world.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 11: EVENTS -->
+  <div class="module-section" id="mod11">
+    <div class="module-header">
+      <div class="module-num">11</div>
+      <div class="module-title">Events</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We built an agent that replaces the need for any event SaaS software. Give it the venue, the date, a few photos, and it builds everything you need to run the event. A landing page guests RSVP on. Confirmation and reminder emails you plug into HubSpot. QR codes for the door. A check-in scanner for staff on the night. A registration dashboard so you can see who's coming. Calendar invites that work in Outlook and Gmail. All of it deployed and live.<br><br>The whole thing takes minutes, not days. And if you're running lots of events, that's where it gets interesting. The agent clones from a template, rewrites all the copy for the new city and venue, swaps in the photos, deploys it, and creates the repo. Same brand, same quality, different event. You can recreate them over and over again at speed.<br><br>No Eventbrite. No Splash. No monthly subscription for a tool you use six times a year. Just an agent that builds the whole thing fresh each time, exactly the way you want it.</div>
+      </div>
+      <div class="module-right">
+        <div class="screenshot-container">
+          <img src="event-page-screenshot.png" alt="AI-generated event landing page — venue section">
+          <div class="video-caption">Event landing page — built by an agent in minutes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 12: MARKETING OPS -->
+  <div class="module-section" id="mod12">
+    <div class="module-header">
+      <div class="module-num">12</div>
+      <div class="module-title">Marketing ops</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+
+    <!-- Sub-item A: Project Manager Agent -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>A project manager that actually runs your morning</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built a project manager agent that gets you from "just opened the laptop" to "I know what to do today" in under two minutes.<br><br>It runs in two passes. First, the scan. It reads your ranked priorities, email index, active client status, tasks, calendar, and any new meeting transcripts. It shows you your top priorities for the day with a reason for each, emails waiting from people you actually know, what got built or left unfinished yesterday, and new transcripts.<br><br>Then it asks which ones you want it to read properly.<br><br>Second pass is the deep read. If you pick items, it reads them in full, every word, not a preview, and comes back with concrete proposals. Move a priority, add a task, park something, or no change. It never silently rearranges your day. It surfaces the evidence and lets you decide.<br><br>Without this, your morning is twenty minutes of scrolling through email, calendar, tasks, session logs, trying to remember what you committed to and what's overdue. By the time you've done all that, your focus is shot and you've already reacted to three things you shouldn't have prioritised. This compresses that into a ranked list with reasons, and the day starts decided, not reactive.<br><br>And because it talks to the other agents through a shared briefing board, they don't cross wires. The growth agent won't cold-message a client who's mid-delivery. The finance agent will know when a milestone hit so it can prepare an invoice. You get a team that actually coordinates, not three assistants reading the same inbox.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-item B: Commercial Director Agent -->
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>A commercial director that keeps the money visible</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Marketing spends. Without a commercial counterweight, it spends on whichever activity feels busy. We built a commercial director agent that owns the money side of the operation.<br><br>It tracks revenue targets, pricing, capacity, invoicing, tax deadlines, and cash. It turns pipeline into expected revenue at probability, so campaign choices connect to money, not vanity. It tracks cost per reply, cost per accepted connection, and cost per won deal, so campaign spend gets judged on commercial output, not impressions.<br><br>It doesn't send invoices or file returns. It drafts invoices when a delivery milestone is hit, chases overdue payments with a draft email for you to send, warns when you're overcommitted on capacity or behind on target, and flags tax deadlines before they become emergencies.<br><br>And because it reads the same briefing board as the project manager and the growth agent, it stays coordinated. When the project manager logs a milestone, the commercial director queues the invoice. When the growth agent logs a campaign cost, the commercial director sees it against cash. When cash is tight, the growth agent knows to hold off on paid tools.<br><br>A marketing function without a commercial director drifts toward activity. With one, every campaign has to answer a money question eventually.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ==================== FLOATING BOTTOM BAR ==================== -->
+<div class="bottom-bar">
+  <a href="#" class="active">#top</a>
+  <a href="/book">/book</a>
+  <a href="/answers">/answers</a>
+  <a href="/contact">/contact</a>
+  <a href="/contact" class="cta-bar">get in touch</a>
+</div>
+
+<script>
+  // Nav frosted-glass on scroll
+  const topBar = document.getElementById('topBar');
+  const onScroll = () => topBar.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Smooth scroll for in-page nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length > 1) {
+        const t = document.querySelector(href);
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+
+  // Sticky map shadow
+  const mapWrapper = document.getElementById('mapWrapper');
+  const mapObserver = new IntersectionObserver(
+    ([e]) => mapWrapper.classList.toggle('shadowed', !e.isIntersecting),
+    { threshold: 1, rootMargin: '-1px 0px 0px 0px' }
+  );
+  mapObserver.observe(mapWrapper);
+
+  // Highlight active module on scroll
+  const sections = document.querySelectorAll('.module-section');
+  const mapNodes = document.querySelectorAll('.map-node');
+
+  // Demo: travelling orange highlight at rest, stops when user scrolls
+  let demoIdx = 0;
+  let demoRunning = true;
+  const demoStep = () => {
+    if (!demoRunning) return;
+    mapNodes.forEach(n => n.classList.remove('active'));
+    mapNodes[demoIdx].classList.add('active');
+    demoIdx = (demoIdx + 1) % mapNodes.length;
+  };
+  demoStep();
+  const demoInterval = setInterval(demoStep, 500);
+  const stopDemo = () => {
+    if (window.scrollY > 160) {
+      demoRunning = false;
+      clearInterval(demoInterval);
+      window.removeEventListener('scroll', stopDemo);
+    }
+  };
+  window.addEventListener('scroll', stopDemo, { passive: true });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const num = id.replace('mod', '');
+        mapNodes.forEach(n => n.classList.remove('active'));
+        const active = document.querySelector(`.map-node[data-module="${num}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-160px 0px -50% 0px' });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // Smooth scroll on map click
+  mapNodes.forEach(node => {
+    node.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(node.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>

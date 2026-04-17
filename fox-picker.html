@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fox picker</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --muted: #8A8A85;
+  --orange: #F47521;
+  --border: #E0E0DC;
+}
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  padding: 48px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  font-size: 36px;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.sub {
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+  max-width: 1400px;
+}
+.card {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.card .img-wrap {
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5F5F0;
+}
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.card .filename {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  word-break: break-all;
+  text-align: center;
+}
+.card .label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.3px;
+}
+</style>
+</head>
+<body>
+
+<h1>Available foxes</h1>
+<p class="sub">Pick one for the homepage hero.</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/chapter-fox-arms-folded-nobg.png" alt="Arms folded"></div>
+    <div class="label">Arms folded</div>
+    <div class="filename">chapter-fox-arms-folded-nobg.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/chapter-fox-sitting-nobg.png" alt="Sitting"></div>
+    <div class="label">Sitting</div>
+    <div class="filename">chapter-fox-sitting-nobg.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/chapter-fox-bored-nobg.png" alt="Bored"></div>
+    <div class="label">Bored</div>
+    <div class="filename">chapter-fox-bored-nobg.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/chapter-fox-walking-away-nobg.png" alt="Walking away"></div>
+    <div class="label">Walking away</div>
+    <div class="filename">chapter-fox-walking-away-nobg.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/annoyed fox no background.png" alt="Annoyed"></div>
+    <div class="label">Annoyed</div>
+    <div class="filename">annoyed fox no background.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/fox-book.png" alt="Holding the book"></div>
+    <div class="label">Holding the book</div>
+    <div class="filename">fox-book.png</div>
+  </div>
+
+  <div class="card">
+    <div class="img-wrap"><img src="public/fox/fox-watermark.png" alt="Watermark"></div>
+    <div class="label">Watermark</div>
+    <div class="filename">fox-watermark.png</div>
+  </div>
+
+</div>
+
+</body>
+</html>
