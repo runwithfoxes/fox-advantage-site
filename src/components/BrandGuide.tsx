@@ -115,9 +115,9 @@ export default function BrandGuide() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 64px", marginTop: 32 }}>
               <div>
                 <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Primary</div>
-                <Swatch hex="#F47521" name="Orange" cssVar="--orange" usage="Primary accent. CTAs, links, hover states, stats, active nav" />
-                <Swatch hex="#E06A1A" name="Orange hover" cssVar="n/a" usage="Button hover state" />
-                <Swatch hex="#355E4C" name="Charcoal" cssVar="--charcoal" usage="Dark sections, bottom bar, chat send button. Deep green-tinted dark, not black" />
+                <Swatch hex="#2C7A7B" name="Teal" cssVar="--teal" usage="Primary accent. CTAs, links, hover states, stats, active nav" />
+                <Swatch hex="#236565" name="Teal hover" cssVar="n/a" usage="Button hover state" />
+                <Swatch hex="#1B4D5C" name="Night sea" cssVar="--night-sea" usage="Dark sections, bottom bar, chat send button. Deep ocean blue-green, not black" />
                 <Swatch hex="#F7EAD9" name="Cream" cssVar="--cream" usage="Warm highlight. Used sparingly" />
               </div>
               <div>
@@ -132,11 +132,12 @@ export default function BrandGuide() {
 
             <div style={{ marginTop: 40 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 16 }}>Rules</div>
-              <Rule text="Orange is the only loud colour. The rest is warm neutrals." />
-              <Rule text="Charcoal is NOT black. It's a dark forest green (#355E4C)." />
+              <Rule text="Teal is the only loud colour. The rest is warm neutrals." />
+              <Rule text="Night sea is NOT black. It's a deep ocean blue-green (#1B4D5C)." />
               <Rule text="Never use pure black (#000) or pure white (#FFF) as backgrounds." />
-              <Rule text="No additional accent colours. No blues, reds, greens in content." />
-              <Rule text="White text only on charcoal backgrounds and orange buttons." />
+              <Rule text="No additional accent colours beyond the teal family." />
+              <Rule text="White text only on night-sea backgrounds and teal buttons." />
+              <Rule text="Fox images only appear on cream (#FAFAF8) backgrounds. Never on night-sea or teal sections." />
             </div>
           </SectionBlock>
 
@@ -177,7 +178,7 @@ export default function BrandGuide() {
             <div style={{ marginTop: 24 }}>
               <Rule text="Text-only. No image logo, no icon." />
               <Rule text='JetBrains Mono, weight 300, letter-spacing 2px.' />
-              <Rule text='"Run" is orange (#F47521). Everything else is muted (#8A8A85).' />
+              <Rule text='"Run" is teal (#2C7A7B). Everything else is muted (#8A8A85).' />
               <Rule text="Starts with a forward slash." />
             </div>
           </SectionBlock>
@@ -228,9 +229,9 @@ export default function BrandGuide() {
                 <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "rgba(255,255,255,0.5)", padding: "14px 28px" }}>/projects</span>
                 <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "#fff", padding: "14px 28px", background: "var(--orange)" }}>get the book</span>
               </div>
-              <Rule text="Fixed to bottom centre. Background: charcoal (#355E4C)." />
-              <Rule text="Links: white at 50% opacity, hover to full white. Active: orange." />
-              <Rule text="CTA: orange background, white text." />
+              <Rule text="Fixed to bottom centre. Background: night sea (#1B4D5C)." />
+              <Rule text="Links: white at 50% opacity, hover to full white. Active: teal." />
+              <Rule text="CTA: teal background, white text." />
             </div>
           </SectionBlock>
 
@@ -271,7 +272,7 @@ export default function BrandGuide() {
               <div style={{
                 position: "absolute",
                 top: 0, left: 0, width: "100%", height: "100%",
-                backgroundImage: "radial-gradient(circle, rgba(244, 117, 33, 0.08) 0.8px, transparent 0.8px)",
+                backgroundImage: "radial-gradient(circle, rgba(44, 122, 123, 0.08) 0.8px, transparent 0.8px)",
                 backgroundSize: "28px 28px",
               }} />
               <div style={{
@@ -279,14 +280,14 @@ export default function BrandGuide() {
                 bottom: 16, left: 20,
                 fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "rgba(255,255,255,0.4)",
               }}>
-                charcoal variant · orange dots at 0.08 opacity
+                night-sea variant · teal dots at 0.08 opacity
               </div>
             </div>
 
             <div style={{ marginTop: 24 }}>
               <Rule text="Fixed position, full viewport, pointer-events none, z-index 0." />
               <Rule text="This dot grid appears on every page. It's a defining visual element." />
-              <Rule text="On charcoal sections, dots switch to orange at 0.08 opacity." />
+              <Rule text="On night-sea sections, dots switch to teal at 0.08 opacity." />
             </div>
           </SectionBlock>
 
@@ -357,15 +358,15 @@ export default function BrandGuide() {
               </div>
               <div style={{ marginTop: 16 }}>
                 <Rule text="Hover slides content right (translateX 12px, not padding-left)." />
-                <Rule text="Title colour transitions to orange." />
-                <Rule text="Arrow (initially opacity 0) fades in as orange." />
+                <Rule text="Title colour transitions to teal." />
+                <Rule text="Arrow (initially opacity 0) fades in as teal." />
               </div>
             </div>
 
             <div style={{ marginTop: 40 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Hover philosophy</div>
               <Rule text="Subtle. No dramatic transforms, no scale changes." />
-              <Rule text="Colour shift to orange is the primary hover pattern." />
+              <Rule text="Colour shift to teal is the primary hover pattern." />
               <Rule text="Use translateX for slide effects, not padding shifts (avoids layout recalculation)." />
               <Rule text="'Read more →' links: opacity or translateX shift on hover (not letter-spacing, which triggers layout)." />
               <Rule text="Link hover: opacity drops to 0.7." />
@@ -383,9 +384,9 @@ export default function BrandGuide() {
               <a href="#" style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, color: "var(--orange)", textDecoration: "none", letterSpacing: 0.5 }} onClick={e => e.preventDefault()}>text link →</a>
             </div>
             <div style={{ marginTop: 24 }}>
-              <Rule text="Primary: orange bg (#F47521), white text, hover darkens to #E06A1A." />
-              <Rule text="Outline: transparent bg, 1px orange border, hover border shifts to text colour." />
-              <Rule text="Link: orange text, hover opacity 0.7." />
+              <Rule text="Primary: teal bg (#2C7A7B), white text, hover darkens to #236565." />
+              <Rule text="Outline: transparent bg, 1px teal border, hover border shifts to text colour." />
+              <Rule text="Link: teal text, hover opacity 0.7." />
               <Rule text="All buttons: JetBrains Mono, 12px, weight 400, letter-spacing 2px, uppercase." />
               <Rule text="No border-radius. Sharp corners." />
             </div>
@@ -607,7 +608,7 @@ export default function BrandGuide() {
                 "No decorative icons or emoji",
                 "No bold heading weights (300 or 400 only)",
                 "No pure black (#000) or pure white (#FFF) backgrounds",
-                "No additional accent colours beyond orange",
+                "No additional accent colours beyond the teal family",
                 "No images with visible backgrounds",
                 "No stock photography",
                 "No Title Case in headings",

@@ -143,7 +143,7 @@ export default function AiWriterGuide() {
               marginBottom: 24,
               transition: "color 0.3s ease-out",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F47521")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#2C7A7B")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A85")}
           >
             &larr; Back to framework
@@ -154,7 +154,7 @@ export default function AiWriterGuide() {
               fontWeight: 400,
               letterSpacing: 2,
               textTransform: "uppercase",
-              color: "#F47521",
+              color: "#2C7A7B",
               marginBottom: 12,
             }}
           >
@@ -181,7 +181,7 @@ export default function AiWriterGuide() {
       {/* Pull quote */}
       <section style={{ padding: "20px 0 60px" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 48px" }}>
-          <div style={{ borderLeft: "3px solid #F47521", paddingLeft: 24 }}>
+          <div style={{ borderLeft: "3px solid #2C7A7B", paddingLeft: 24 }}>
             <p
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
@@ -195,7 +195,7 @@ export default function AiWriterGuide() {
               Tools do not fix vague thinking. They just make it faster.
             </p>
             <p style={{ fontSize: "0.75rem", color: "#8A8A85", marginTop: 8 }}>
-              <a href="/chapter/ch37-tiktok-writer" style={{ color: "#F47521", textDecoration: "none" }}>
+              <a href="/chapter/ch37-tiktok-writer" style={{ color: "#2C7A7B", textDecoration: "none" }}>
                 Chapter 31: TikTok writer
               </a>
             </p>
@@ -261,7 +261,7 @@ export default function AiWriterGuide() {
                     fontWeight: 400,
                     letterSpacing: 2,
                     textTransform: "uppercase",
-                    color: "#F47521",
+                    color: "#2C7A7B",
                     marginBottom: 12,
                   }}
                 >
@@ -280,7 +280,7 @@ export default function AiWriterGuide() {
                         gap: 8,
                       }}
                     >
-                      <span style={{ color: "#F47521", flexShrink: 0 }}>/</span>
+                      <span style={{ color: "#2C7A7B", flexShrink: 0 }}>/</span>
                       {item}
                     </li>
                   ))}
@@ -291,7 +291,7 @@ export default function AiWriterGuide() {
               {step.example && (
                 <div
                   style={{
-                    background: "#355E4C",
+                    background: "#1B4D5C",
                     color: "#F7EAD9",
                     padding: "20px 24px",
                     position: "relative",
@@ -303,7 +303,7 @@ export default function AiWriterGuide() {
                       fontWeight: 400,
                       letterSpacing: 2,
                       textTransform: "uppercase",
-                      color: "#F47521",
+                      color: "#2C7A7B",
                       marginBottom: 8,
                     }}
                   >
@@ -323,7 +323,7 @@ export default function AiWriterGuide() {
       <section
         style={{
           padding: "60px 0",
-          background: "#355E4C",
+          background: "#1B4D5C",
           color: "#F7EAD9",
           position: "relative",
         }}
@@ -332,7 +332,7 @@ export default function AiWriterGuide() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "radial-gradient(circle, #F47521 0.8px, transparent 0.8px)",
+            backgroundImage: "radial-gradient(circle, #2C7A7B 0.8px, transparent 0.8px)",
             backgroundSize: "28px 28px",
             opacity: 0.08,
             pointerEvents: "none",
@@ -403,7 +403,7 @@ export default function AiWriterGuide() {
                   e.currentTarget.style.transform = "translateX(0)";
                 }}
               >
-                <div style={{ fontSize: "0.875rem", fontWeight: 400, color: "#F47521", marginBottom: 4 }}>
+                <div style={{ fontSize: "0.875rem", fontWeight: 400, color: "#2C7A7B", marginBottom: 4 }}>
                   {ch.label}
                 </div>
                 <div style={{ fontSize: "0.8125rem", color: "#8A8A85" }}>{ch.desc}</div>
@@ -423,7 +423,7 @@ export default function AiWriterGuide() {
                 textDecoration: "none",
                 transition: "color 0.3s ease-out",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#F47521")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#2C7A7B")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A85")}
             >
               &larr; Back to framework

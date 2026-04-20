@@ -88,7 +88,7 @@ function DownloadSection() {
         {isUnlocked ? (
           <>
             <h2 className="section-title">You&apos;re on the list.</h2>
-            <p className="gate-text">We&apos;ll send you the full book when it&apos;s ready.</p>
+            <p className="gate-text">We&apos;ll send you the full book when it&apos;s ready. In the meantime, <a href={PDF_URL} target="_blank" rel="noopener noreferrer">download Parts 1 &amp; 2 as PDF</a>.</p>
           </>
         ) : (
           <>

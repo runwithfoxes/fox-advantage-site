@@ -24,7 +24,7 @@ const lineStyles: { color: string; width: number; opacity: number }[] = [
   { color: "#D0D0CC", width: 1.2, opacity: 0.55 },
   { color: "#C8C8C4", width: 1.2, opacity: 0.65 },
   { color: "#8A8A85", width: 1.5, opacity: 0.75 },
-  { color: "#F47521", width: 3, opacity: 1 },
+  { color: "#2C7A7B", width: 3, opacity: 1 },
 ];
 
 function SalesChart() {
@@ -119,7 +119,7 @@ function SalesChart() {
       })}
 
       {/* 2020 peak marker */}
-      <circle cx={x(22)} cy={y(2500)} r={3.5} fill="#F47521" className="proj-chart-dot" />
+      <circle cx={x(22)} cy={y(2500)} r={3.5} fill="#2C7A7B" className="proj-chart-dot" />
       <text x={x(22) + 12} y={y(2500) + 4} className="proj-chart-peak">€2.5m</text>
 
       {/* legend */}
@@ -130,7 +130,7 @@ function SalesChart() {
         <line x1={84} y1={-4} x2={102} y2={-4} stroke="#8A8A85" strokeWidth={1.5} />
         <text x={108} y={0} className="proj-chart-axis">2019</text>
 
-        <line x1={150} y1={-4} x2={168} y2={-4} stroke="#F47521" strokeWidth={2.5} />
+        <line x1={150} y1={-4} x2={168} y2={-4} stroke="#2C7A7B" strokeWidth={2.5} />
         <text x={174} y={0} className="proj-chart-axis proj-chart-accent">2020</text>
       </g>
     </svg>
