@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-teal: #2C7A7B;
-  --color-teal-light: #5AAFA8;
-  --color-teal-hover: #236565;
-  --color-night-sea: #1B4D5C;
+  --color-sky-blue: #3A7CA5;
+  --color-sky-blue-light: #6CAAC8;
+  --color-sky-blue-hover: #2F6688;
+  --color-deep-sky: #1A3A4E;
   --color-cream: #F7EAD9;
   --color-bg: #FAFAF8;
   --color-text: #1D1B1B;
@@ -13,9 +13,10 @@
 }
 
 :root {
-  --orange: #2C7A7B;
-  --orange-hover: #236565;
-  --charcoal: #1B4D5C;
+  --orange: #3A7CA5;
+  --orange-hover: #2F6688;
+  --charcoal: #1A3A4E;
+  --logo-orange: #F47521;
   --bg: #FAFAF8;
   --text: #1D1B1B;
   --text-muted: #8A8A85;
@@ -96,7 +97,7 @@ section {
 }
 
 .top-bar .logo span {
-  color: var(--orange);
+  color: var(--logo-orange);
 }
 
 .top-bar nav {
@@ -653,7 +654,7 @@ a.project-card {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle, rgba(90, 175, 168, 0.08) 0.8px, transparent 0.8px);
+  background-image: radial-gradient(circle, rgba(58, 124, 165, 0.08) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   pointer-events: none;
 }
@@ -676,7 +677,7 @@ a.project-card {
   margin-bottom: 48px;
 }
 .gate-text a {
-  color: #5AAFA8;
+  color: #6CAAC8;
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: opacity 0.2s ease;
@@ -728,7 +729,7 @@ a.project-card {
 }
 
 .gate-button:hover {
-  background: #236565;
+  background: #2F6688;
 }
 
 .gate-button:disabled {
@@ -961,7 +962,7 @@ a.project-card {
 }
 
 .bottom-bar a.cta-bar:hover {
-  background: #236565;
+  background: #2F6688;
 }
 
 /* ---- FOOTER SPACER ---- */
@@ -1094,7 +1095,7 @@ a.project-card {
 }
 
 .chapter-nav-logo span {
-  color: var(--orange);
+  color: var(--logo-orange);
 }
 
 .chapter-nav-logo:hover {
@@ -1238,7 +1239,7 @@ a.project-card {
 }
 
 .chapter-bottom-bar .cta-bar:hover {
-  background: #236565;
+  background: #2F6688;
 }
 
 /* Access gate */
@@ -1300,7 +1301,7 @@ a.project-card {
 }
 
 .chapter-gate-btn:hover {
-  background: #236565;
+  background: #2F6688;
 }
 
 /* ---- CHAPTER FOX HERO ---- */
@@ -2287,14 +2288,14 @@ a.project-card {
 }
 
 .proj-chart-accent {
-  fill: #2C7A7B;
+  fill: #3A7CA5;
   font-weight: 500;
 }
 
 .proj-chart-peak {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
-  fill: #2C7A7B;
+  fill: #3A7CA5;
   font-weight: 400;
   opacity: 0;
 }
@@ -2700,15 +2701,15 @@ a.project-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(44, 122, 123, 0.15);
+  box-shadow: 0 4px 16px rgba(58, 124, 165, 0.15);
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   animation: chat-bubble-enter 0.4s ease-out;
 }
 
 .chat-bubble:hover {
   transform: scale(1.08);
-  background: rgba(44, 122, 123, 0.06);
-  box-shadow: 0 6px 24px rgba(44, 122, 123, 0.25);
+  background: rgba(58, 124, 165, 0.06);
+  box-shadow: 0 6px 24px rgba(58, 124, 165, 0.25);
 }
 
 .chat-bubble-icon {

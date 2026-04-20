@@ -48,7 +48,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
               marginBottom: 24,
               transition: "color 0.3s ease-out",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#2C7A7B")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#3A7CA5")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A85")}
           >
             &larr; Back to framework
@@ -59,7 +59,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
               fontWeight: 400,
               letterSpacing: 2,
               textTransform: "uppercase",
-              color: "#2C7A7B",
+              color: "#3A7CA5",
               marginBottom: 12,
             }}
           >
@@ -110,7 +110,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                 onMouseLeave={(e) => (e.currentTarget.style.background = "none")}
               >
                 <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 6 }}>
-                  <span style={{ color: "#2C7A7B", fontSize: "0.8125rem", fontWeight: 400 }}>/</span>
+                  <span style={{ color: "#3A7CA5", fontSize: "0.8125rem", fontWeight: 400 }}>/</span>
                   <span style={{ fontSize: "0.9375rem", fontWeight: 400 }}>{tool.name}</span>
                 </div>
                 <p style={{ fontSize: "0.8125rem", color: "#8A8A85", lineHeight: 1.6, margin: 0, paddingLeft: 22 }}>
@@ -126,7 +126,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                       marginTop: 8,
                       paddingLeft: 22,
                       fontSize: "0.75rem",
-                      color: "#2C7A7B",
+                      color: "#3A7CA5",
                       textDecoration: "none",
                     }}
                   >
@@ -143,7 +143,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
       <section
         style={{
           padding: "60px 0",
-          background: "#1B4D5C",
+          background: "#1A3A4E",
           color: "#F7EAD9",
           position: "relative",
         }}
@@ -152,7 +152,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "radial-gradient(circle, #2C7A7B 0.8px, transparent 0.8px)",
+            backgroundImage: "radial-gradient(circle, #3A7CA5 0.8px, transparent 0.8px)",
             backgroundSize: "28px 28px",
             opacity: 0.08,
             pointerEvents: "none",
@@ -178,7 +178,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                   fontWeight: 400,
                   letterSpacing: 2,
                   textTransform: "uppercase",
-                  color: "#2C7A7B",
+                  color: "#3A7CA5",
                   marginBottom: 16,
                 }}
               >
@@ -192,7 +192,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                       fontSize: "0.8125rem",
                       color: "#F7EAD9",
                       padding: "6px 0",
-                      borderBottom: "1px solid rgba(44, 122, 123, 0.15)",
+                      borderBottom: "1px solid rgba(58, 124, 165, 0.15)",
                     }}
                   >
                     {item}
@@ -207,7 +207,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                   fontWeight: 400,
                   letterSpacing: 2,
                   textTransform: "uppercase",
-                  color: "#2C7A7B",
+                  color: "#3A7CA5",
                   marginBottom: 16,
                 }}
               >
@@ -221,7 +221,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                       fontSize: "0.8125rem",
                       color: "#F7EAD9",
                       padding: "6px 0",
-                      borderBottom: "1px solid rgba(44, 122, 123, 0.15)",
+                      borderBottom: "1px solid rgba(58, 124, 165, 0.15)",
                     }}
                   >
                     {item}
@@ -261,7 +261,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                   gap: 8,
                 }}
               >
-                <span style={{ color: "#2C7A7B", fontSize: "0.75rem", flexShrink: 0 }}>/</span>
+                <span style={{ color: "#3A7CA5", fontSize: "0.75rem", flexShrink: 0 }}>/</span>
                 {skill}
               </div>
             ))}
@@ -275,7 +275,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
           <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 48px" }}>
             <div
               style={{
-                borderLeft: "3px solid #2C7A7B",
+                borderLeft: "3px solid #3A7CA5",
                 paddingLeft: 24,
               }}
             >
@@ -312,7 +312,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                   textDecoration: "none",
                   transition: "color 0.3s ease-out",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#2C7A7B")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#3A7CA5")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A85")}
               >
                 &larr; {bucket.prev.title}
@@ -331,7 +331,7 @@ export default function ToolPageContent({ bucket }: { bucket: ToolBucket }) {
                   textDecoration: "none",
                   transition: "color 0.3s ease-out",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#2C7A7B")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#3A7CA5")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A85")}
               >
                 {bucket.next.title} &rarr;

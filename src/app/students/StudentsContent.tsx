@@ -231,11 +231,11 @@ function NodeItem({ node }: { node: NodeItem }) {
         onMouseEnter={(e) => (e.currentTarget.style.background = "#F5F5F0")}
         onMouseLeave={(e) => (e.currentTarget.style.background = "none")}
       >
-        <span style={{ color: "#2C7A7B", fontSize: "0.8125rem", fontWeight: 400, flexShrink: 0 }}>/</span>
+        <span style={{ color: "#3A7CA5", fontSize: "0.8125rem", fontWeight: 400, flexShrink: 0 }}>/</span>
         <span style={{ flex: 1 }}>{node.name}</span>
         <span
           style={{
-            color: open ? "#2C7A7B" : "#8A8A85",
+            color: open ? "#3A7CA5" : "#8A8A85",
             fontSize: 12,
             flexShrink: 0,
             transition: "transform 0.3s ease-out, color 0.3s ease-out",
@@ -262,7 +262,7 @@ function NodeItem({ node }: { node: NodeItem }) {
                   <a
                     href={link.href}
                     style={{
-                      color: "#2C7A7B",
+                      color: "#3A7CA5",
                       textDecoration: "none",
                       fontSize: "0.75rem",
                       fontWeight: 400,
@@ -315,7 +315,7 @@ function BranchPanel({ branch, isOpen, onToggle }: { branch: Branch; isOpen: boo
   return (
     <div
       style={{
-        border: `1px solid ${isOpen ? "#2C7A7B" : "#E0E0DC"}`,
+        border: `1px solid ${isOpen ? "#3A7CA5" : "#E0E0DC"}`,
         transition: "border-color 0.3s ease-out",
       }}
     >
@@ -358,7 +358,7 @@ function BranchPanel({ branch, isOpen, onToggle }: { branch: Branch; isOpen: boo
         <span
           style={{
             fontSize: 18,
-            color: isOpen ? "#2C7A7B" : "#8A8A85",
+            color: isOpen ? "#3A7CA5" : "#8A8A85",
             transition: "transform 0.3s ease-out, color 0.3s ease-out",
             transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
             display: "inline-block",
@@ -417,7 +417,7 @@ function TriangleWithLoop({ activeBranch, onNodeClick }: { activeBranch: string 
           <polygon points="160,177 160,183 166,180" fill="#E0E0DC" />
           <polygon points="200,177 200,183 194,180" fill="#E0E0DC" />
           {/* Orbiting dot */}
-          <circle r="3" fill="#2C7A7B" opacity="0.6">
+          <circle r="3" fill="#3A7CA5" opacity="0.6">
             <animateMotion
               dur="8s"
               repeatCount="indefinite"
@@ -425,7 +425,7 @@ function TriangleWithLoop({ activeBranch, onNodeClick }: { activeBranch: string 
             />
           </circle>
           {/* Second dot, offset */}
-          <circle r="2.5" fill="#2C7A7B" opacity="0.35">
+          <circle r="2.5" fill="#3A7CA5" opacity="0.35">
             <animateMotion
               dur="8s"
               repeatCount="indefinite"
@@ -450,7 +450,7 @@ function TriangleWithLoop({ activeBranch, onNodeClick }: { activeBranch: string 
             fontWeight: 400,
             letterSpacing: 2,
             textTransform: "uppercase" as const,
-            color: activeBranch === "behaviours" ? "#2C7A7B" : "#8A8A85",
+            color: activeBranch === "behaviours" ? "#3A7CA5" : "#8A8A85",
             padding: "8px 16px",
             transition: "color 0.3s ease-out",
           }}
@@ -471,7 +471,7 @@ function TriangleWithLoop({ activeBranch, onNodeClick }: { activeBranch: string 
             fontWeight: 400,
             letterSpacing: 2,
             textTransform: "uppercase" as const,
-            color: activeBranch === "knowledge" ? "#2C7A7B" : "#8A8A85",
+            color: activeBranch === "knowledge" ? "#3A7CA5" : "#8A8A85",
             padding: "8px 16px",
             transition: "color 0.3s ease-out",
           }}
@@ -492,7 +492,7 @@ function TriangleWithLoop({ activeBranch, onNodeClick }: { activeBranch: string 
             fontWeight: 400,
             letterSpacing: 2,
             textTransform: "uppercase" as const,
-            color: activeBranch === "tools" ? "#2C7A7B" : "#8A8A85",
+            color: activeBranch === "tools" ? "#3A7CA5" : "#8A8A85",
             padding: "8px 16px",
             transition: "color 0.3s ease-out",
           }}
@@ -572,7 +572,7 @@ export default function StudentsContent() {
                   fontWeight: 400,
                   letterSpacing: 2,
                   textTransform: "uppercase" as const,
-                  color: "#2C7A7B",
+                  color: "#3A7CA5",
                   marginBottom: 16,
                 }}
               >
@@ -603,7 +603,7 @@ export default function StudentsContent() {
                   fontWeight: 400,
                   letterSpacing: 2,
                   textTransform: "uppercase" as const,
-                  color: "#2C7A7B",
+                  color: "#3A7CA5",
                 }}
               >
                 /exam_prep &rarr;
@@ -658,7 +658,7 @@ export default function StudentsContent() {
       <section
         style={{
           padding: "80px 0",
-          background: "#1B4D5C",
+          background: "#1A3A4E",
           color: "#F7EAD9",
           position: "relative",
         }}
@@ -667,7 +667,7 @@ export default function StudentsContent() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "radial-gradient(circle, #2C7A7B 0.8px, transparent 0.8px)",
+            backgroundImage: "radial-gradient(circle, #3A7CA5 0.8px, transparent 0.8px)",
             backgroundSize: "28px 28px",
             opacity: 0.08,
             pointerEvents: "none",
@@ -703,7 +703,7 @@ export default function StudentsContent() {
               <div
                 key={i}
                 style={{
-                  border: "1px solid rgba(44, 122, 123, 0.2)",
+                  border: "1px solid rgba(58, 124, 165, 0.2)",
                   padding: 24,
                 }}
               >
@@ -713,7 +713,7 @@ export default function StudentsContent() {
                     fontWeight: 400,
                     letterSpacing: 2,
                     textTransform: "uppercase" as const,
-                    color: "#2C7A7B",
+                    color: "#3A7CA5",
                     marginBottom: 10,
                   }}
                 >
@@ -748,7 +748,7 @@ export default function StudentsContent() {
                 fontWeight: 400,
                 letterSpacing: 2,
                 textTransform: "uppercase" as const,
-                color: "#2C7A7B",
+                color: "#3A7CA5",
                 display: "block",
                 marginBottom: 12,
               }}
@@ -786,7 +786,7 @@ export default function StudentsContent() {
             style={{
               display: "inline-block",
               padding: "14px 28px",
-              background: "#2C7A7B",
+              background: "#3A7CA5",
               color: "#FAFAF8",
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 12,
@@ -794,7 +794,7 @@ export default function StudentsContent() {
               letterSpacing: 2,
               textTransform: "uppercase" as const,
               textDecoration: "none",
-              border: "1px solid #2C7A7B",
+              border: "1px solid #3A7CA5",
               transition: "background 0.3s ease-out",
             }}
           >

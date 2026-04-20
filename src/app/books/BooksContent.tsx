@@ -367,7 +367,7 @@ export default function BooksContent() {
           font-size: 11px;
           text-transform: uppercase;
           letter-spacing: 3px;
-          color: #2C7A7B;
+          color: #3A7CA5;
           display: block;
           margin-bottom: 16px;
         }
@@ -418,7 +418,7 @@ export default function BooksContent() {
         }
 
         .book-card:hover {
-          border-left-color: #2C7A7B;
+          border-left-color: #3A7CA5;
         }
 
         .book-title {
@@ -434,7 +434,7 @@ export default function BooksContent() {
         }
 
         .book-title a:hover {
-          color: #2C7A7B;
+          color: #3A7CA5;
         }
 
         .book-meta {

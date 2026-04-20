@@ -15,7 +15,7 @@ const PERSONAS: Persona[] = [
     id: "commercial-manager",
     name: "The Commercial Manager",
     short: "Revenue, margin, implementation. Impatient with theory.",
-    colour: "#2C7A7B",
+    colour: "#3A7CA5",
     group: "marketing",
   },
   {
@@ -29,7 +29,7 @@ const PERSONAS: Persona[] = [
     id: "cmo",
     name: "The CMO",
     short: "Brand health, distinctive assets, fame. Binet & Field, Ehrenberg-Bass.",
-    colour: "#1B4D5C",
+    colour: "#1A3A4E",
     group: "marketing",
   },
   {
@@ -265,7 +265,7 @@ export default function ExpertsPage() {
           }}
         >
           Put your plan through the{" "}
-          <span style={{ color: "var(--orange, #2C7A7B)" }}>panel</span>
+          <span style={{ color: "var(--orange, #3A7CA5)" }}>panel</span>
         </h1>
         <p
           style={{
@@ -310,7 +310,7 @@ export default function ExpertsPage() {
                   style={{
                     fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
                     fontSize: 11,
-                    color: "var(--orange, #2C7A7B)",
+                    color: "var(--orange, #3A7CA5)",
                   }}
                 >
                   {fileName}
@@ -571,7 +571,7 @@ export default function ExpertsPage() {
                       width: 8,
                       height: 8,
                       borderRadius: "50%",
-                      background: "var(--orange, #2C7A7B)",
+                      background: "var(--orange, #3A7CA5)",
                       animation: "pulse 1.2s ease-in-out infinite",
                     }}
                   />
@@ -665,7 +665,7 @@ export default function ExpertsPage() {
               marginBottom: 8,
             }}
           >
-            /<span style={{ color: "var(--orange, #2C7A7B)" }}>Run</span>
+            /<span style={{ color: "var(--orange, #3A7CA5)" }}>Run</span>
             withfoxes
           </div>
           <div
