@@ -90,7 +90,7 @@ export default function BrandGuide() {
     <div className="chapter-page">
       {/* NAV */}
       <header className="chapter-nav">
-        <Link href="/" className="chapter-nav-back">/&thinsp;<span style={{ color: "var(--orange)" }}>Run</span>withfoxes</Link>
+        <Link href="/" className="chapter-nav-back">/&thinsp;<span style={{ color: "#F47521" }}>Run</span>withfoxes</Link>
         <span className="chapter-nav-count">brand guide</span>
       </header>
 
@@ -115,9 +115,9 @@ export default function BrandGuide() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 64px", marginTop: 32 }}>
               <div>
                 <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Primary</div>
-                <Swatch hex="#3A7CA5" name="Teal" cssVar="--teal" usage="Primary accent. CTAs, links, hover states, stats, active nav" />
-                <Swatch hex="#2F6688" name="Teal hover" cssVar="n/a" usage="Button hover state" />
-                <Swatch hex="#1A3A4E" name="Night sea" cssVar="--night-sea" usage="Dark sections, bottom bar, chat send button. Deep ocean blue-green, not black" />
+                <Swatch hex="#3A7CA5" name="Sky blue" cssVar="--sky-blue" usage="Primary accent. CTAs, links, hover states, stats, active nav" />
+                <Swatch hex="#2F6688" name="Sky blue hover" cssVar="n/a" usage="Button hover state" />
+                <Swatch hex="#1A3A4E" name="Deep sky" cssVar="--deep-sky" usage="Dark sections, bottom bar, chat send button. Deep blue, not black" />
                 <Swatch hex="#F7EAD9" name="Cream" cssVar="--cream" usage="Warm highlight. Used sparingly" />
               </div>
               <div>
@@ -132,12 +132,12 @@ export default function BrandGuide() {
 
             <div style={{ marginTop: 40 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 16 }}>Rules</div>
-              <Rule text="Teal is the only loud colour. The rest is warm neutrals." />
-              <Rule text="Night sea is NOT black. It's a deep ocean blue-green (#1A3A4E)." />
+              <Rule text="Sky blue is the only loud colour. The rest is warm neutrals." />
+              <Rule text="Deep sky is NOT black. It's a deep blue (#1A3A4E)." />
               <Rule text="Never use pure black (#000) or pure white (#FFF) as backgrounds." />
-              <Rule text="No additional accent colours beyond the teal family." />
-              <Rule text="White text only on night-sea backgrounds and teal buttons." />
-              <Rule text="Fox images only appear on cream (#FAFAF8) backgrounds. Never on night-sea or teal sections." />
+              <Rule text="No additional accent colours beyond sky blue." />
+              <Rule text="White text only on deep-sky backgrounds and sky blue buttons." />
+              <Rule text="Fox images only appear on cream (#FAFAF8) backgrounds. Never on deep-sky or sky blue sections." />
             </div>
           </SectionBlock>
 
@@ -172,13 +172,13 @@ export default function BrandGuide() {
           <SectionBlock id="logo" label="/logo" title="Logo">
             <div style={{ marginTop: 32, padding: "48px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", textAlign: "center" }}>
               <span style={{ fontFamily: "var(--mono)", fontSize: 26, fontWeight: 300, letterSpacing: 4, color: "var(--text-muted)" }}>
-                /<span style={{ color: "var(--orange)" }}>Run</span>withfoxes
+                /<span style={{ color: "#F47521" }}>Run</span>withfoxes
               </span>
             </div>
             <div style={{ marginTop: 24 }}>
               <Rule text="Text-only. No image logo, no icon." />
               <Rule text='JetBrains Mono, weight 300, letter-spacing 2px.' />
-              <Rule text='"Run" is teal (#3A7CA5). Everything else is muted (#8A8A85).' />
+              <Rule text='"Run" is orange (#F47521). Everything else is muted (#8A8A85).' />
               <Rule text="Starts with a forward slash." />
             </div>
           </SectionBlock>
@@ -200,7 +200,7 @@ export default function BrandGuide() {
                 marginBottom: 16,
               }}>
                 <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, letterSpacing: 2, color: "var(--text-muted)" }}>
-                  /<span style={{ color: "var(--orange)" }}>Run</span>withfoxes
+                  /<span style={{ color: "#F47521" }}>Run</span>withfoxes
                 </span>
                 <div style={{ display: "flex", gap: 32 }}>
                   <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--orange)" }}>#about</span>
@@ -229,9 +229,9 @@ export default function BrandGuide() {
                 <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "rgba(255,255,255,0.5)", padding: "14px 28px" }}>/projects</span>
                 <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "#fff", padding: "14px 28px", background: "var(--orange)" }}>get the book</span>
               </div>
-              <Rule text="Fixed to bottom centre. Background: night sea (#1A3A4E)." />
-              <Rule text="Links: white at 50% opacity, hover to full white. Active: teal." />
-              <Rule text="CTA: teal background, white text." />
+              <Rule text="Fixed to bottom centre. Background: deep sky (#1A3A4E)." />
+              <Rule text="Links: white at 50% opacity, hover to full white. Active: sky blue." />
+              <Rule text="CTA: sky blue background, white text." />
             </div>
           </SectionBlock>
 
@@ -280,14 +280,14 @@ export default function BrandGuide() {
                 bottom: 16, left: 20,
                 fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "rgba(255,255,255,0.4)",
               }}>
-                night-sea variant · teal dots at 0.08 opacity
+                deep-sky variant · sky blue dots at 0.08 opacity
               </div>
             </div>
 
             <div style={{ marginTop: 24 }}>
               <Rule text="Fixed position, full viewport, pointer-events none, z-index 0." />
               <Rule text="This dot grid appears on every page. It's a defining visual element." />
-              <Rule text="On night-sea sections, dots switch to teal at 0.08 opacity." />
+              <Rule text="On deep-sky sections, dots switch to sky blue at 0.08 opacity." />
             </div>
           </SectionBlock>
 
@@ -358,15 +358,15 @@ export default function BrandGuide() {
               </div>
               <div style={{ marginTop: 16 }}>
                 <Rule text="Hover slides content right (translateX 12px, not padding-left)." />
-                <Rule text="Title colour transitions to teal." />
-                <Rule text="Arrow (initially opacity 0) fades in as teal." />
+                <Rule text="Title colour transitions to sky blue." />
+                <Rule text="Arrow (initially opacity 0) fades in as sky blue." />
               </div>
             </div>
 
             <div style={{ marginTop: 40 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Hover philosophy</div>
               <Rule text="Subtle. No dramatic transforms, no scale changes." />
-              <Rule text="Colour shift to teal is the primary hover pattern." />
+              <Rule text="Colour shift to sky blue is the primary hover pattern." />
               <Rule text="Use translateX for slide effects, not padding shifts (avoids layout recalculation)." />
               <Rule text="'Read more →' links: opacity or translateX shift on hover (not letter-spacing, which triggers layout)." />
               <Rule text="Link hover: opacity drops to 0.7." />
@@ -384,9 +384,9 @@ export default function BrandGuide() {
               <a href="#" style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, color: "var(--orange)", textDecoration: "none", letterSpacing: 0.5 }} onClick={e => e.preventDefault()}>text link →</a>
             </div>
             <div style={{ marginTop: 24 }}>
-              <Rule text="Primary: teal bg (#3A7CA5), white text, hover darkens to #2F6688." />
-              <Rule text="Outline: transparent bg, 1px teal border, hover border shifts to text colour." />
-              <Rule text="Link: teal text, hover opacity 0.7." />
+              <Rule text="Primary: sky blue bg (#3A7CA5), white text, hover darkens to #2F6688." />
+              <Rule text="Outline: transparent bg, 1px sky blue border, hover border shifts to text colour." />
+              <Rule text="Link: sky blue text, hover opacity 0.7." />
               <Rule text="All buttons: JetBrains Mono, 12px, weight 400, letter-spacing 2px, uppercase." />
               <Rule text="No border-radius. Sharp corners." />
             </div>
@@ -608,7 +608,7 @@ export default function BrandGuide() {
                 "No decorative icons or emoji",
                 "No bold heading weights (300 or 400 only)",
                 "No pure black (#000) or pure white (#FFF) backgrounds",
-                "No additional accent colours beyond the teal family",
+                "No additional accent colours beyond sky blue",
                 "No images with visible backgrounds",
                 "No stock photography",
                 "No Title Case in headings",
