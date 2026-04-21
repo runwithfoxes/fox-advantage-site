@@ -34,6 +34,10 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+.page-wrapper {
+  overflow-x: hidden;
 }
 
 body {
@@ -3306,6 +3310,12 @@ a.project-card {
   color: #fff;
   text-decoration: none;
   transition: color 0.4s;
+  cursor: pointer;
+  position: relative;
+  z-index: 101;
+  background: none;
+  border: none;
+  padding: 0;
 }
 .hp-nav-scrolled .hp-nav-logo { color: var(--text-muted); }
 .hp-nav-logo span { color: #fff; transition: color 0.4s; }
@@ -3870,10 +3880,8 @@ a.project-card {
 
 /* ---- HP TESTIMONIAL BAR ---- */
 .hp-testimonial-bar {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
+  padding-left: 48px;
+  padding-right: 48px;
   margin-top: 40px;
   margin-bottom: 40px;
   padding: 56px 48px;
@@ -3918,10 +3926,8 @@ a.project-card {
 
 /* ---- HP MID CTA ---- */
 .hp-mid-cta {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
+  padding-left: 48px;
+  padding-right: 48px;
   margin-top: 40px;
   margin-bottom: 40px;
   padding: 72px 48px;
@@ -4067,15 +4073,20 @@ a.project-card {
   .hp-about-photo { max-width: 280px; }
   .hp-mid-cta { padding: 56px 24px; }
   .hp-close-section { padding: 72px 24px; margin-top: 80px; }
-  .hp-testimonial-bar { padding: 48px 24px; }
+  .hp-testimonial-bar { padding-left: 24px; padding-right: 24px; }
+  .hp-mid-cta { padding-left: 24px; padding-right: 24px; }
 }
 @media (max-width: 768px) {
+  .hp-hero-wrapper { height: 60vh; min-height: 300px; max-height: 500px; }
   .hp-modules { padding: 0 24px 80px; }
   .hp-module-split { grid-template-columns: 1fr; gap: 24px; }
   .hp-module-header { flex-wrap: wrap; }
   .hp-hero-text { padding: 32px 24px; }
-  .hp-hero-headline-row { flex-direction: column; gap: 20px; }
   .hp-function-links { white-space: normal; }
+  .hp-about-top { padding: 32px 24px; }
+  .hp-video-row-2 { grid-template-columns: 1fr; }
+  .hp-mp-label { position: static; margin-top: 4px; font-size: 9px; }
+  .hp-mp-level { flex-direction: column; gap: 4px; }
 }
 @media (max-width: 600px) {
   .hp-bottom-bar a { padding: 12px 14px; font-size: 11px; }

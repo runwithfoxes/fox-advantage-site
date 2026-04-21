@@ -40,11 +40,12 @@ export default function HomePage() {
 
   return (
     <>
+      <div id="top" />
       {/* ==================== NAV ==================== */}
       <nav className="hp-nav" ref={navRef} id="topNav">
-        <Link href="/" className="hp-nav-logo">
+        <a href="#heroWrapper" className="hp-nav-logo">
           /<span>Run</span>withfoxes
-        </Link>
+        </a>
         <div className="hp-nav-links">
           {/* #unfair_advantage dropdown */}
           <div className="hp-dropdown-wrap">
@@ -108,6 +109,7 @@ export default function HomePage() {
           autoPlay
           muted
           playsInline
+          poster="/video/fox-tarantino-trunk-poster.jpg"
         >
           <source src="/video/fox-tarantino-trunk.mp4" type="video/mp4" />
         </video>
@@ -116,6 +118,7 @@ export default function HomePage() {
           autoPlay
           muted
           playsInline
+          poster="/video/fox-tarantino-trunk-portrait-poster.jpg"
         >
           <source src="/video/fox-tarantino-trunk-portrait.mp4" type="video/mp4" />
         </video>
@@ -182,15 +185,17 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* TESTIMONIAL: JONNIE CAHILL */}
-        <div className="hp-testimonial-bar">
-          <div className="hp-testimonial-bar-inner">
-            <div className="hp-tbar-quote">&ldquo;Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it. His unique talent is his ability to galvanise an organization.&rdquo;</div>
-            <div className="hp-tbar-attr"><strong>Jonnie Cahill</strong> — SVP and CMO International Foods, PepsiCo</div>
-          </div>
+      {/* TESTIMONIAL: JONNIE CAHILL */}
+      <div className="hp-testimonial-bar">
+        <div className="hp-testimonial-bar-inner">
+          <div className="hp-tbar-quote">&ldquo;Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it. His unique talent is his ability to galvanise an organization.&rdquo;</div>
+          <div className="hp-tbar-attr"><strong>Jonnie Cahill</strong> — SVP and CMO International Foods, PepsiCo</div>
         </div>
+      </div>
 
+      <div className="hp-modules">
         {/* POSITIONING */}
         <div className="hp-module-section" id="mod-positioning">
           <div className="hp-module-header">
@@ -270,15 +275,18 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* BOOK CTA */}
-        <div className="hp-mid-cta">
-          <div className="hp-mid-cta-inner">
-            <h3>The Fox Advantage is available for free.</h3>
-            <p>The book is almost finished. Pick up a copy.</p>
-            <Link href="/book" className="hp-big-btn">Get the book</Link>
-          </div>
-        </div>
+      </div>
 
+      {/* BOOK CTA */}
+      <div className="hp-mid-cta">
+        <div className="hp-mid-cta-inner">
+          <h3>The Fox Advantage is available for free.</h3>
+          <p>The book is almost finished. Pick up a copy.</p>
+          <Link href="/book" className="hp-big-btn">Get the book</Link>
+        </div>
+      </div>
+
+      <div className="hp-modules">
         {/* ADVERTISING */}
         <div className="hp-module-section" id="mod-advertising">
           <div className="hp-module-header">
@@ -314,14 +322,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* TESTIMONIAL: PETER FIELD */}
-        <div className="hp-testimonial-bar">
-          <div className="hp-testimonial-bar-inner">
-            <div className="hp-tbar-quote">&ldquo;I&apos;ve worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.&rdquo;</div>
-            <div className="hp-tbar-attr"><strong>Peter Field</strong> — The Godfather of Effectiveness, Author of The Long and the Short of It</div>
-          </div>
-        </div>
+      </div>
 
+      {/* TESTIMONIAL: PETER FIELD */}
+      <div className="hp-testimonial-bar">
+        <div className="hp-testimonial-bar-inner">
+          <div className="hp-tbar-quote">&ldquo;I&apos;ve worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.&rdquo;</div>
+          <div className="hp-tbar-attr"><strong>Peter Field</strong> — The Godfather of Effectiveness, Author of The Long and the Short of It</div>
+        </div>
+      </div>
+
+      <div className="hp-modules">
         {/* MARKETING EFFECTIVENESS */}
         <div className="hp-module-section" id="mod-effectiveness">
           <div className="hp-module-split">
@@ -394,14 +405,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* TESTIMONIAL: PAUL D'ARCY */}
-        <div className="hp-testimonial-bar">
-          <div className="hp-testimonial-bar-inner">
-            <div className="hp-tbar-quote">&ldquo;Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.&rdquo;</div>
-            <div className="hp-tbar-attr"><strong>Paul D&apos;Arcy</strong> — CMO, Moloco. Former CMO at Miro and Indeed</div>
-          </div>
-        </div>
+      </div>
 
+      {/* TESTIMONIAL: PAUL D'ARCY */}
+      <div className="hp-testimonial-bar">
+        <div className="hp-testimonial-bar-inner">
+          <div className="hp-tbar-quote">&ldquo;Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.&rdquo;</div>
+          <div className="hp-tbar-attr"><strong>Paul D&apos;Arcy</strong> — CMO, Moloco. Former CMO at Miro and Indeed</div>
+        </div>
+      </div>
+
+      <div className="hp-modules">
         {/* EVENTS */}
         <div className="hp-module-section" id="mod-events">
           <div className="hp-module-header">
@@ -439,14 +453,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* TESTIMONIAL: DAMIAN DEVANEY */}
-        <div className="hp-testimonial-bar">
-          <div className="hp-testimonial-bar-inner">
-            <div className="hp-tbar-quote">&ldquo;When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team&apos;s performance and development.&rdquo;</div>
-            <div className="hp-tbar-attr"><strong>Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
-          </div>
-        </div>
+      </div>
 
+      {/* TESTIMONIAL: DAMIAN DEVANEY */}
+      <div className="hp-testimonial-bar">
+        <div className="hp-testimonial-bar-inner">
+          <div className="hp-tbar-quote">&ldquo;When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team&apos;s performance and development.&rdquo;</div>
+          <div className="hp-tbar-attr"><strong>Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
+        </div>
+      </div>
+
+      <div className="hp-modules">
         {/* PROJECT MANAGER */}
         <div className="hp-module-section" id="mod-pm">
           <div className="hp-module-split">
@@ -476,9 +493,8 @@ export default function HomePage() {
 
       {/* ==================== BOTTOM BAR ==================== */}
       <div className="hp-bottom-bar" ref={bottomBarRef}>
-        <a href="#">#top</a>
+        <a href="#heroWrapper">#top</a>
         <a href="#about">#about</a>
-        <a href="#projects">/projects</a>
         <Link href="/book">/book</Link>
         <Link href="/contact" className="hp-cta-bar">get in touch</Link>
       </div>

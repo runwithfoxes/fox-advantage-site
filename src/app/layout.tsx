@@ -29,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${mono.variable} ${sans.variable} antialiased`}>
-        {children}
+        <div className="page-wrapper">
+          {children}
+        </div>
         <ChatWidget />
       </body>
     </html>
