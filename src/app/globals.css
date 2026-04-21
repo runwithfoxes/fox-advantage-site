@@ -43,11 +43,18 @@ html {
 body {
   font-family: var(--mono);
   background-color: var(--bg);
-  background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
-  background-size: 28px 28px;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* ---- DOT GRID BACKGROUND (cream sections only) ---- */
+.hp-hero-text,
+.hp-about,
+.hp-modules {
+  background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  background-color: var(--bg);
 }
 
 /* ---- LAYOUT ---- */
@@ -3419,6 +3426,7 @@ a.project-card {
   z-index: 1;
   height: 540px;
   overflow: hidden;
+  background: #000;
 }
 .hp-hero-video {
   position: absolute;
