@@ -88,6 +88,8 @@ body > * { position: relative; z-index: 1; }
   text-shadow: none;
 }
 .top-nav.scrolled .nav-links a:hover { color: var(--sky-blue); }
+.top-nav.scrolled .nav-links a.nav-cta { color: #fff; }
+.top-nav.scrolled .nav-links a.nav-cta:hover { color: #fff; }
 .nav-cta {
   border: 1.5px solid rgba(255,255,255,0.8);
   padding: 6px 16px;
@@ -108,17 +110,20 @@ body > * { position: relative; z-index: 1; }
   position: absolute;
   top: 100%;
   left: -20px;
-  margin-top: 12px;
+  padding-top: 12px;
+  min-width: 520px;
+  z-index: 100;
+}
+.nav-mega-inner {
   background: rgba(26,58,78,0.95);
   backdrop-filter: blur(12px);
   border-radius: 8px;
   padding: 24px 32px;
+  display: flex;
   gap: 40px;
-  min-width: 520px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-  z-index: 100;
 }
-.nav-dropdown-wrap:hover .nav-mega { display: flex; }
+.nav-dropdown-wrap:hover .nav-mega { display: block; }
 .mega-col { display: flex; flex-direction: column; gap: 6px; }
 .mega-label {
   font-size: 9px;
@@ -950,7 +955,7 @@ body > * { position: relative; z-index: 1; }
   margin-bottom: 32px;
   color: var(--cream);
 }
-.close-section h2 .accent { color: var(--sky-blue); }
+.close-section h2 .accent { color: #fff; font-weight: 400; }
 .close-section .close-cta {
   display: inline-block;
   background: var(--sky-blue);
@@ -986,13 +991,13 @@ body > * { position: relative; z-index: 1; }
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   padding: 14px 24px;
   transition: color 0.3s ease-out, background 0.3s ease-out;
 }
 .bottom-bar a:hover { color: #fff; }
-.bottom-bar a.active { color: var(--sky-blue); }
+.bottom-bar a.active { color: #fff; }
 .bottom-bar a.cta-bar {
   background: var(--sky-blue);
   color: #fff;
@@ -1050,26 +1055,27 @@ body > * { position: relative; z-index: 1; }
     <div class="nav-dropdown-wrap">
       <a href="#" class="nav-dropdown-trigger">#unfair_advantage &#9662;</a>
       <div class="nav-mega">
-        <div class="mega-col">
-          <div class="mega-label">HUMAN LEADS</div>
-          <a href="#mod1">01 Strategy</a>
-          <a href="#mod2">02 Positioning</a>
-        </div>
-        <div class="mega-col">
-          <div class="mega-label">AI + HUMAN</div>
-          <a href="#mod3">03 Messaging</a>
-          <a href="#mod4">04 Customer journey</a>
-          <a href="#mod5">05 Research</a>
-          <a href="#mod8">08 Brand management</a>
-          <a href="#mod9">09 Comms</a>
-          <a href="#mod11">11 Events</a>
-          <a href="#mod12">12 Marketing ops</a>
-        </div>
-        <div class="mega-col">
-          <div class="mega-label">AI DOES IT</div>
-          <a href="#mod6">06 Creative</a>
-          <a href="#mod7">07 Content</a>
-          <a href="#mod10">10 Growth</a>
+        <div class="nav-mega-inner">
+          <div class="mega-col">
+            <div class="mega-label">HUMAN LEADS</div>
+            <a href="#mod1">Strategy</a>
+            <a href="#mod2">Positioning</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">AI + HUMAN</div>
+            <a href="#mod3">Messaging</a>
+            <a href="#mod5">Research</a>
+            <a href="#mod6">Advertising</a>
+            <a href="#mod8">Effectiveness</a>
+            <a href="#brand-guardian">Brand guardian</a>
+            <a href="#mod11">Events</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">AI DOES IT</div>
+            <a href="#ad-engine">Ad engine</a>
+            <a href="#mod10">Growth team</a>
+            <a href="#mod12">Project manager</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1097,12 +1103,13 @@ body > * { position: relative; z-index: 1; }
       <a href="#mod2">positioning</a><span class="dot">&middot;</span>
       <a href="#mod3">messaging</a><span class="dot">&middot;</span>
       <a href="#mod5">research</a><span class="dot">&middot;</span>
-      <a href="#mod6">creative</a><span class="dot">&middot;</span>
-      <a href="#mod7">content</a><span class="dot">&middot;</span>
-      <a href="#mod8">brand</a><span class="dot">&middot;</span>
+      <a href="#mod6">advertising</a><span class="dot">&middot;</span>
+      <a href="#mod8">effectiveness</a><span class="dot">&middot;</span>
+      <a href="#brand-guardian">brand</a><span class="dot">&middot;</span>
+      <a href="#ad-engine">ads</a><span class="dot">&middot;</span>
       <a href="#mod10">growth</a><span class="dot">&middot;</span>
       <a href="#mod11">events</a><span class="dot">&middot;</span>
-      <a href="#mod12">ops</a>
+      <a href="#mod12">project manager</a>
     </div>
   </div>
 </div>
@@ -1333,25 +1340,20 @@ body > * { position: relative; z-index: 1; }
         <div class="module-desc">We care a lot about the quality. The consistency of the brand asset, the message, the tone, the fonts, the space around the logo, the transition from one frame to another. All the stuff that matters when you're putting your name on something.</div>
         <div class="module-desc">What we like is the learning loop. The agents learn from the data from your winning ads to write and create the new ones. This is for sales activation, amplification of distinctive brand assets, performance ads. Brands still need to do the hard work on positioning, messaging and the work that creates your brand assets. The engine makes them work harder once they exist.</div>
       </div>
-      <div>
-        <div class="video-container">
-          <video autoplay muted loop playsinline>
-            <source src="fox-tarantino-trunk.mp4" type="video/mp4">
-          </video>
-        </div>
+      <div style="padding-top: 72px;">
         <div class="video-row-2">
           <div class="video-container">
-            <video autoplay muted loop playsinline>
-              <source src="fox-coffee-soho.mp4" type="video/mp4">
+            <video autoplay muted playsinline>
+              <source src="lottery-ad.mp4" type="video/mp4">
             </video>
           </div>
           <div class="video-container">
-            <video autoplay muted loop playsinline>
-              <source src="fox-hathaway.mp4" type="video/mp4">
+            <video autoplay muted playsinline>
+              <source src="6040-ad.mp4" type="video/mp4">
             </video>
           </div>
         </div>
-        <div class="video-caption">Same character, three different scenes — all AI-generated</div>
+        <div class="video-caption">Two ads built by the engine — fox character, chart data, headlines, all AI-generated</div>
       </div>
     </div>
   </div>
@@ -1420,6 +1422,13 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
+  <div class="testimonial-bar">
+    <div class="testimonial-bar-inner">
+      <div class="tbar-quote">"When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development."</div>
+      <div class="tbar-attr"><strong>Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
+    </div>
+  </div>
+
   <!-- PROJECT MANAGER -->
   <div class="module-section" id="mod12">
     <div class="module-split" style="align-items: start;">
@@ -1428,7 +1437,7 @@ body > * { position: relative; z-index: 1; }
           <div class="module-title">Project manager</div>
         </div>
         <div class="module-desc" style="margin-top: 16px;">We built a project manager agent that reads your priorities, emails, calendar, client status and tasks, and gets you from "just opened the laptop" to "I know what to do today" in under two minutes. It shows you what matters, with a reason for each, and comes back with concrete proposals. Move a priority, add a task, park something, or no change.</div>
-        <div class="module-desc">It talks to the other agents through a shared briefing board so they don't cross wires. The growth agent won't cold-message a client who's mid-delivery. The day starts decided, not reactive.</div>
+        <div class="module-desc">It talks to the other agents through a shared briefing board so they don't cross wires.</div>
       </div>
       <div class="fox-visual" style="padding-top: 0;">
         <img src="public/fox/chapter-fox-sitting-nobg.png" alt="Fox — project manager">
@@ -1441,8 +1450,6 @@ body > * { position: relative; z-index: 1; }
 <!-- ==================== CLOSE ==================== -->
 <section class="close-section">
   <div class="close-inner">
-    <div class="tbar-quote" style="font-family: var(--sans); font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.35; color: var(--cream); margin-bottom: 8px; font-style: italic;">"When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development."</div>
-    <div class="tbar-attr" style="font-family: var(--mono); font-size: 12px; color: rgba(247,234,217,0.6); margin-bottom: 48px;"><strong style="color: rgba(247,234,217,0.85); font-weight: 400;">Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
     <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
     <a href="/contact" class="close-cta">Get in touch</a>
   </div>
