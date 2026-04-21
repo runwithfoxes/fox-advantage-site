@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run with Foxes — Build an unfair advantage in marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --sky-blue: #3A7CA5;
+  --sky-blue-hover: #2F6688;
+  --deep-sky: #1A3A4E;
+  --muted: #8A8A85;
+  --border: #E0E0DC;
+  --hover: #F5F5F0;
+  --cream: #F7EAD9;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+/* ==================== NAV ==================== */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 100%);
+  transition: background 0.4s ease-out, backdrop-filter 0.4s ease-out;
+}
+.top-nav.scrolled {
+  background: rgba(250, 250, 248, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.4s;
+}
+.top-nav.scrolled .nav-logo { color: var(--muted); }
+.nav-logo span { color: #fff; transition: color 0.4s; }
+.top-nav.scrolled .nav-logo span { color: #F47521; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: color 0.4s, text-shadow 0.4s;
+}
+.top-nav.scrolled .nav-links a {
+  color: var(--muted);
+  text-shadow: none;
+}
+.top-nav.scrolled .nav-links a:hover { color: var(--sky-blue); }
+.nav-cta {
+  border: 1.5px solid rgba(255,255,255,0.8);
+  padding: 6px 16px;
+  transition: border-color 0.4s, background 0.4s, color 0.4s;
+}
+.top-nav.scrolled .nav-cta {
+  border-color: var(--sky-blue);
+  background: var(--sky-blue);
+  color: #fff;
+  text-shadow: none;
+}
+
+/* Mega dropdown */
+.nav-dropdown-wrap { position: relative; }
+.nav-dropdown-trigger { cursor: pointer; }
+.nav-mega {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  margin-top: 12px;
+  background: rgba(26,58,78,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 24px 32px;
+  gap: 40px;
+  min-width: 520px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+.nav-dropdown-wrap:hover .nav-mega { display: flex; }
+.mega-col { display: flex; flex-direction: column; gap: 6px; }
+.mega-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.nav-mega a {
+  color: rgba(255,255,255,0.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 3px 0;
+  transition: color 0.2s;
+  text-shadow: none !important;
+}
+.nav-mega a:hover { color: #5A9CC5 !important; }
+
+@media (max-width: 900px) {
+  .top-nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ==================== VIDEO HERO ==================== */
+.hero-wrapper {
+  position: relative;
+  height: 540px;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.hero-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 48px 48px;
+  background: var(--bg);
+}
+.hero-text h1 {
+  font-family: var(--sans);
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.hero-headline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.function-links {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.function-links a {
+  color: var(--sky-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.function-links a:hover { border-bottom-color: var(--sky-blue); }
+.function-links .dot {
+  color: var(--muted);
+  margin: 0 8px;
+  opacity: 0.3;
+}
+.hero-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--sky-blue);
+  color: #fff;
+  padding: 12px 28px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.hero-cta:hover { background: var(--sky-blue-hover); }
+
+/* ==================== PROOF BAR ==================== */
+.proof-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.proof-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 48px;
+  align-items: center;
+  padding: 16px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}
+.proof-item strong { color: var(--text); font-weight: 400; }
+
+/* ==================== HOW IT WORKS ==================== */
+.how-bridge {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 48px 80px;
+}
+.section-divider {
+  border-top: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.how-step { border-top: 1px solid var(--border); padding-top: 20px; }
+.how-step-num {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--sky-blue);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.how-step-title {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+}
+.how-step-desc { font-size: 13px; line-height: 1.65; }
+
+/* ==================== STICKY MAP ==================== */
+.map-wrapper {
+  position: sticky;
+  top: 48px;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  transition: box-shadow 0.3s ease-out;
+}
+.map-wrapper.shadowed {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.map-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.dept-map {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.map-node {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease-out, border-color 0.2s ease-out;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.map-node:hover { background: var(--hover); }
+.map-node.active {
+  border-color: var(--sky-blue);
+  background: var(--hover);
+}
+.map-node .node-num {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.map-node .node-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+.map-node .node-level {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.lvl-full { background: var(--deep-sky); }
+.lvl-assist { background: var(--cream); border: 1px solid var(--border); }
+.lvl-coach { background: var(--bg); border: 1px solid var(--muted); }
+
+.map-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.legend-dot { width: 6px; height: 6px; }
+
+/* ==================== MODULE SECTIONS ==================== */
+.modules {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 120px;
+}
+.module-section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 100px;
+}
+.module-section:last-child { border-bottom: none; }
+.module-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.module-num { display: none; }
+.module-title {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -1.5px;
+}
+.module-level-badge { display: none; }
+
+.module-desc {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 8px 0 28px 0;
+}
+
+/* Split layout */
+.module-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.module-sub .module-split { margin-left: 0; }
+.module-left .module-desc { margin: 0 0 24px 0; }
+
+/* Sub-items */
+.module-sub {
+  padding-top: 64px;
+}
+.module-sub:first-of-type { padding-top: 16px; }
+.sub-heading {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.sub-heading .sub-num { display: none; }
+
+/* Buttons */
+.try-it-btn {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 11px 22px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.try-it-btn:hover { background: var(--sky-blue-hover); }
+
+/* Placeholder visual */
+.placeholder-visual {
+  border: 2px dashed var(--border);
+  padding: 48px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.placeholder-inner {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Fox image in module right side */
+.fox-visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 200px;
+  padding-top: 8px;
+}
+.fox-visual img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.08));
+}
+
+
+/* Agent cards / persona stack */
+.persona-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.agent-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: background 0.2s ease-out;
+}
+.agent-card:hover { background: var(--hover); }
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.agent-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+}
+.agent-role {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* Mini brand house */
+.brand-house-mini {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.bh-roof {
+  background: var(--sky-blue);
+  color: #fff;
+  text-align: center;
+  padding: 20px 16px 14px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.bh-roof-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  margin-bottom: 2px;
+}
+.bh-roof-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+}
+.bh-promise {
+  background: var(--sky-blue-hover);
+  color: #fff;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 10px;
+}
+.bh-pillars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.bh-pillar {
+  background: var(--bg);
+  padding: 10px 4px;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 400;
+  border-top: 3px solid var(--sky-blue);
+}
+.bh-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.bh-cell {
+  background: var(--bg);
+  padding: 10px 12px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.bh-cell-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.bh-foundation {
+  background: var(--deep-sky);
+  color: var(--cream);
+  padding: 10px 12px;
+  font-size: 10px;
+  text-align: center;
+}
+.bh-foundation .bh-cell-label { color: rgba(247,234,217,0.5); }
+.bh-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+}
+
+/* Mini metrics pyramid */
+.metrics-pyramid-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.mp-level {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mp-shape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  flex-shrink: 0;
+}
+.mp-1 .mp-shape { width: 100px; background: var(--sky-blue); }
+.mp-2 .mp-shape { width: 150px; background: var(--deep-sky); }
+.mp-3 .mp-shape { width: 200px; background: var(--sky-blue); }
+.mp-4 .mp-shape { width: 250px; background: var(--text); }
+.mp-5 .mp-shape { width: 300px; background: var(--hover); border: 1px solid var(--border); color: var(--text); }
+.mp-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.mp-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 12px 8px 0;
+  font-style: italic;
+}
+
+/* Video container */
+.video-container {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--text);
+}
+.video-container video { width: 100%; display: block; }
+.video-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+  background: var(--bg);
+}
+
+/* Video row */
+.video-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 6px;
+}
+.video-row-2 + .video-caption { background: none; padding-top: 10px; }
+
+/* Screenshot */
+.screenshot-container {
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.screenshot-container img { width: 100%; display: block; }
+
+/* Diagnosis card */
+.diagnosis-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.45;
+  background: #fff;
+}
+.dc-header {
+  background: var(--deep-sky);
+  color: var(--cream);
+  padding: 18px 16px 16px;
+}
+.dc-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
+.dc-diagnosis {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+}
+.dc-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.dc-section-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.dc-list { list-style: none; padding: 0; margin: 0; }
+.dc-list li {
+  padding: 3px 0 3px 14px;
+  color: var(--text);
+  position: relative;
+  font-size: 10.5px;
+}
+.dc-list li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--sky-blue);
+}
+.dc-collapse {
+  background: var(--cream);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.dc-collapse-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.35;
+}
+.dc-caption {
+  text-align: center;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 8px;
+  font-style: italic;
+}
+
+/* ==================== MID-SCROLL CTA ==================== */
+.mid-cta {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 72px 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  text-align: center;
+  overflow: hidden;
+}
+.mid-cta::before, .close-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.mid-cta > *, .close-section > * { position: relative; z-index: 1; }
+.mid-cta h3 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--cream);
+}
+.mid-cta p {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: rgba(247, 234, 217, 0.75);
+  margin-bottom: 32px;
+}
+.big-btn {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.big-btn:hover { background: var(--sky-blue-hover); }
+
+/* ==================== CLIENT VOICES ==================== */
+.voices { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; }
+.voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.voice-card { border-top: 2px solid var(--sky-blue); padding-top: 24px; }
+.voice-quote { font-family: var(--mono); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.voice-attr { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.55; }
+.voice-attr strong { color: var(--text); font-weight: 400; display: block; }
+
+/* ==================== ABOUT ==================== */
+.about { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; scroll-margin-top: 220px; }
+.about-top { padding: 56px 48px 48px; border-bottom: 1px solid var(--border); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-photo img { width: 100%; height: auto; display: block; }
+.about-name {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+.about-bio p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.about-bio p:last-of-type { margin-bottom: 0; }
+.about-ctas {
+  margin-top: 28px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.about-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sky-blue);
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+}
+.about-cta:hover { opacity: 0.7; }
+
+/* ==================== FAQ ==================== */
+.faq { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; }
+.faq-list { border-top: 1px solid var(--border); }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.faq-q {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.faq-a { font-family: var(--mono); font-size: 14px; line-height: 1.65; }
+
+/* ==================== CLOSE ==================== */
+.close-section {
+  margin-top: 96px;
+  margin-bottom: 80px;
+  padding: 96px 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.close-section h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 48px);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 32px;
+  color: var(--cream);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.close-section h2 .accent { color: var(--sky-blue); }
+.close-section .close-cta {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  text-decoration: none;
+  transition: background 0.2s ease-out;
+}
+.close-section .close-cta:hover { background: var(--sky-blue-hover); }
+
+/* ==================== BOTTOM BAR ==================== */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  z-index: 100;
+  display: flex;
+  background: var(--deep-sky);
+  overflow: hidden;
+  transition: transform 0.4s ease-out;
+}
+.bottom-bar.visible {
+  transform: translateX(-50%) translateY(0);
+}
+.bottom-bar a {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 14px 24px;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
+}
+.bottom-bar a:hover { color: #fff; }
+.bottom-bar a.active { color: var(--sky-blue); }
+.bottom-bar a.cta-bar {
+  background: var(--sky-blue);
+  color: #fff;
+}
+.bottom-bar a.cta-bar:hover { background: var(--sky-blue-hover); }
+
+/* ==================== WIREFRAME BADGE ==================== */
+.wf-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  background: var(--sky-blue);
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  z-index: 100;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  .about { padding: 80px 24px 0; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-photo { max-width: 280px; }
+  .proof-bar, .how-bridge, .voices, .faq { padding-left: 24px; padding-right: 24px; }
+  .how-bridge { padding-top: 48px; padding-bottom: 64px; }
+  .how-grid, .voices-grid { grid-template-columns: 1fr; gap: 32px; }
+  .faq-item { grid-template-columns: 1fr; gap: 12px; }
+  .mid-cta { padding: 56px 24px; }
+  .close-section { padding: 72px 24px; margin-top: 80px; }
+}
+@media (max-width: 768px) {
+  .map-inner { padding: 0 24px; }
+  .dept-map { grid-template-columns: repeat(2, 1fr); }
+  .modules { padding: 0 24px 80px; }
+  .module-desc, .module-split, .module-sub { margin-left: 0; }
+  .module-split { grid-template-columns: 1fr; gap: 24px; }
+  .module-header { flex-wrap: wrap; }
+  .hero-text { padding: 32px 24px; }
+}
+@media (max-width: 600px) {
+  .bottom-bar a { padding: 12px 14px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wf-badge">wireframe — full page</div>
+
+<!-- ==================== NAV ==================== -->
+<nav class="top-nav" id="topNav">
+  <a href="#" class="nav-logo">/<span>Run</span>withfoxes</a>
+  <div class="nav-links">
+    <div class="nav-dropdown-wrap">
+      <a href="#" class="nav-dropdown-trigger">#unfair_advantage &#9662;</a>
+      <div class="nav-mega">
+        <div class="mega-col">
+          <div class="mega-label">HUMAN LEADS</div>
+          <a href="#mod1">01 Strategy</a>
+          <a href="#mod2">02 Positioning</a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-label">AI + HUMAN</div>
+          <a href="#mod3">03 Messaging</a>
+          <a href="#mod4">04 Customer journey</a>
+          <a href="#mod5">05 Research</a>
+          <a href="#mod8">08 Brand management</a>
+          <a href="#mod9">09 Comms</a>
+          <a href="#mod11">11 Events</a>
+          <a href="#mod12">12 Marketing ops</a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-label">AI DOES IT</div>
+          <a href="#mod6">06 Creative</a>
+          <a href="#mod7">07 Content</a>
+          <a href="#mod10">10 Growth</a>
+        </div>
+      </div>
+    </div>
+    <a href="#about">/about</a>
+    <a href="/book">/book</a>
+    <a href="/contact" class="nav-cta">/contact</a>
+  </div>
+</nav>
+
+<!-- ==================== VIDEO HERO ==================== -->
+<div class="hero-wrapper" id="heroWrapper">
+  <video class="hero-video" autoplay muted playsinline poster="/Users/pauldervan/paul-hub/clients/rwf/tarantino-fox-source-frame-1920x1080.png">
+    <source src="/Users/pauldervan/projects/fox-ads/generated/fox_ads/archive/paul_fox_trunk_opening_kling26.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="hero-text">
+  <div class="hero-headline-row">
+    <h1>Build an unfair advantage in marketing</h1>
+    <a href="/contact" class="hero-cta">get in touch</a>
+  </div>
+  <div class="hero-row">
+    <div class="function-links">
+      <a href="#mod1">strategy</a><span class="dot">&middot;</span>
+      <a href="#mod2">positioning</a><span class="dot">&middot;</span>
+      <a href="#mod3">messaging</a><span class="dot">&middot;</span>
+      <a href="#mod5">research</a><span class="dot">&middot;</span>
+      <a href="#mod6">creative</a><span class="dot">&middot;</span>
+      <a href="#mod7">content</a><span class="dot">&middot;</span>
+      <a href="#mod8">brand</a><span class="dot">&middot;</span>
+      <a href="#mod10">growth</a><span class="dot">&middot;</span>
+      <a href="#mod11">events</a><span class="dot">&middot;</span>
+      <a href="#mod12">ops</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WHO RUNS THIS ==================== -->
+<section class="about about-top" id="about">
+  <div class="about-grid">
+    <div class="about-photo">
+      <img src="public/Paul_photo.jpg" alt="Paul Dervan">
+    </div>
+    <div class="about-bio">
+      <div class="about-name">Paul Dervan</div>
+      <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery, one of the biggest FMCG brands in the country. Head of brand at Indeed and Miro, both global roles. Launched the challenger brand 48. Ireland's Marketer of the Year in 2022.</p>
+      <p>Trained by Peter Field, one half of Binet and Field, who wrote The Long and the Short of It. That obsession with effectiveness, what actually drives growth, how to measure it, how to build on it, runs through everything here.</p>
+      <p>The first book was <a href="/run-with-foxes" style="color: var(--sky-blue); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s;" onmouseover="this.style.borderBottomColor='var(--sky-blue)'" onmouseout="this.style.borderBottomColor='transparent'">Run with Foxes</a>, published in 2020, about marketing effectiveness. The new one is The Fox Advantage, about how marketing teams can thrive in an AI era.</p>
+      <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+      <p>What I'm particularly interested in is systems. Set the bar high once, then build the system so your marketing stays at that level consistently, especially using AI.</p>
+      <p>We work with large marketing teams and with businesses that have no marketing team at all. B2B and FMCG. The challenges are different but the opportunities are across both.</p>
+      <div class="about-ctas">
+        <a href="/book" class="about-cta">\ get the book</a>
+        <a href="/contact" class="about-cta">\ get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULES ==================== -->
+<div class="modules">
+
+  <!-- MODULE 1: STRATEGY -->
+  <div class="module-section" id="mod1">
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-num">01</div>
+          <div class="module-title">Strategy</div>
+          <div class="module-level-badge mlb-coach">human leads</div>
+        </div>
+        <div class="module-desc" style="margin-top: 16px;">AI isn't just about faster answers. The interesting bit is better questions.</div>
+        <div class="module-desc">We built a panel of experts, effectiveness, CMO, growth marketing, commercial, each trained on different frameworks and different evidence. You put your plan in front of them. They look for the flaws, the biases, the assumptions you stopped noticing because you've been staring at the brief for three weeks.</div>
+        <div class="module-desc">It doesn't replace the strategist. It gives the strategist five informed perspectives before the plan leaves the building. The quality of the thinking goes up before any money gets spent.</div>
+        <a href="https://runwithfoxes.com/experts" target="_blank" class="try-it-btn">Try the panel yourself &rarr;</a>
+      </div>
+      <div class="fox-visual" style="padding-top: 0;">
+        <img src="public/fox/chapter-fox-sitting-nobg.png" alt="Fox — strategy panel">
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 2: POSITIONING -->
+  <div class="module-section" id="mod2">
+    <div class="module-header">
+      <div class="module-num">02</div>
+      <div class="module-title">Positioning</div>
+      <div class="module-level-badge mlb-coach">human leads</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We run positioning sessions with a client's leadership team. We use frameworks and customer evidence to stress-test what the team thinks is true. We can surface contradictions, map what competitors already own, and bring clarity at speed.<br><br>What we get to is a positioning document, like the brand house on the right, that everyone in the team can use. It becomes the bible. Everything that follows, messaging, briefs, creative, is built on it.<br><br>AI doesn't do the positioning itself. That call stays with the leadership team. But the work around it, the structure, the frameworks, the output, gets faster and sharper.</div>
+        <a href="#" class="try-it-btn">See an example brand house &rarr;</a>
+      </div>
+      <div class="module-right">
+        <div class="brand-house-mini">
+          <div class="bh-roof">
+            <div class="bh-roof-label">essence</div>
+            <div class="bh-roof-text">"Honest, not heroic"</div>
+          </div>
+          <div class="bh-promise">Better marketing decisions through honest examination of failures</div>
+          <div class="bh-pillars">
+            <div class="bh-pillar">Learning from failure</div>
+            <div class="bh-pillar">Fox thinking</div>
+            <div class="bh-pillar">Evidence-based</div>
+            <div class="bh-pillar">Brand salience</div>
+            <div class="bh-pillar">Honest learning</div>
+          </div>
+          <div class="bh-row">
+            <div class="bh-cell">
+              <div class="bh-cell-label">audience</div>
+              Mid-career to senior marketers
+            </div>
+            <div class="bh-cell">
+              <div class="bh-cell-label">voice</div>
+              Smart colleague over coffee
+            </div>
+          </div>
+          <div class="bh-foundation">
+            <div class="bh-cell-label">proof</div>
+            20 yrs brand leadership &middot; Marketer of the Year 2022
+          </div>
+          <div class="bh-caption">Run with Foxes — brand house example</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3: MESSAGING -->
+  <div class="module-section" id="mod3">
+    <div class="module-header">
+      <div class="module-num">03</div>
+      <div class="module-title">Messaging</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We take a client's existing messaging and convert it into one tight framework. AI reads through all of it at speed, the decks, the briefs, the landing pages, the keynotes. What we get to is a master proposition, pillars, proof and language rules, all hardcoded. Anyone writing anything checks against it first. Everything that follows is built on it.</div>
+      </div>
+      <div class="module-right">
+        <div class="video-container">
+          <video autoplay muted loop playsinline>
+            <source src="messaging-framework-scroll.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Messaging framework — one locked document, every message built on it</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4: CUSTOMER JOURNEY -->
+  <div class="module-section" id="mod4">
+    <div class="module-header">
+      <div class="module-num">04</div>
+      <div class="module-title">Customer journey</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We plot out a client's customer journey by pulling in lots of data points, the research, the analytics, the interviews, the sales data, the reviews. AI works through all of it at speed using proper journey mapping frameworks. What we get to is a hardcoded journey map with the stages, the motivations, the gaps and the right message at each point. Anyone working on the journey checks against it first.</div>
+      </div>
+      <div class="module-right">
+        <div class="fox-visual">
+          <img src="public/fox/fox-sideeye-right-nobg.png" alt="Fox on the journey">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 5: RESEARCH -->
+  <div class="module-section" id="mod5">
+    <div class="module-header">
+      <div class="module-num">05</div>
+      <div class="module-title">Research</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>Where do you show up in AI search?</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">When someone asks ChatGPT or Claude or Perplexity to recommend a company like yours, do you show up? Most companies have no idea. They're optimising for Google but the buying behaviour is shifting to AI search and they're invisible there.<br><br>We built a GEO audit that tests this. Give us your brand and URL, we generate 25 real buyer-intent prompts across five patterns, the kinds of questions your prospects are actually asking. Then we check which brands get cited, which get recommended, and which don't appear at all. You get a scored report showing your citation rate, who's winning the prompts you're losing, and a prioritised fix list to close the gaps.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">GEO audit scorecard visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>A research agent that learns what you care about</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built an agent that goes out each week on its own and finds material across YouTube, Substack and other sources on the topics that matter to you. It identifies the key ideas, writes them up, and puts them into a folder for you to review.<br><br>The ones you like, it learns from. The ones you skip, it learns from too. Over time it gets better at knowing what's signal and what's noise for your specific interests. It builds and learns on its own. You just review what it finds.<br><br>This saves hours of reading time every week, and the quality improves the longer you use it.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Research agent output visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">C</span>Find the conversations that matter on Reddit</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Reddit is where people ask real questions about real problems. We built a tool that monitors the subreddits that matter to your business, finds the posts where someone is asking about exactly the kind of thing you solve, and drafts a helpful response.<br><br>It doesn't post anything. It queues the responses for a human to review, edit if needed, and post themselves. The human is in the process where it matters, the tone, the timing, the judgment call on whether this is the right conversation to join.<br><br>We used this for a client selling showers. The tool watched five subreddits, found posts asking about water pressure, electric showers, replacements. It drafted technically accurate responses in the right voice. The team reviewed and posted the ones that fit. Genuine help, not spam.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Reddit response queue visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 6: CREATIVE -->
+  <div class="module-section" id="mod6">
+    <div class="module-header">
+      <div class="module-num">06</div>
+      <div class="module-title">Creative</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Most bad ads don't start with bad ideas. They start with briefs that don't know how they want the communication to work. Is it salience or persuasion? Fame or direct response? Brand-building or activation? Most briefs can't say. So every reviewer judges through a different lens. By round three the idea's dead, or unrecognisable.<br><br>We built a diagnostician that forces the clarity most briefs avoid. It reads the brief, spots which of seven influence models it's leaning on, flags the contradictions, and tells you the one choice you've been avoiding. Use it before you write the ad, not after it fails.<br><br>This is the first tool in a series. Each one removes a specific drag point that kills good creative.</div>
+        <a href="/brief-diagnostician" class="try-it-btn">Try the brief diagnostician &rarr;</a>
+      </div>
+      <div class="module-right">
+        <div class="diagnosis-card">
+          <div class="dc-header">
+            <div class="dc-label">core diagnosis</div>
+            <div class="dc-diagnosis">"Your brief is climbing all rungs of the ladder at once."</div>
+          </div>
+          <div class="dc-section">
+            <div class="dc-section-label">evidence</div>
+            <ul class="dc-list">
+              <li>KPI mixes attention, attitude and sales from a single execution</li>
+              <li>Brief names demographics, not buying moments</li>
+              <li>Rational and emotional drivers treated as separate systems</li>
+            </ul>
+          </div>
+          <div class="dc-collapse">
+            <div class="dc-section-label">the collapse move</div>
+            <div class="dc-collapse-text">"You need salience built on actual purchase triggers, not demographic mail merges."</div>
+          </div>
+          <div class="dc-caption">Marketing Influence Model Diagnostician — sample output</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MID-SCROLL CTA ==================== -->
+  <div class="mid-cta">
+    <h3>Twelve functions. Pick three.</h3>
+    <p>We'll build them and hand them over.</p>
+    <a href="/contact" class="big-btn">Get in touch</a>
+  </div>
+
+  <!-- MODULE 7: CONTENT -->
+  <div class="module-section" id="mod7">
+    <div class="module-header">
+      <div class="module-num">07</div>
+      <div class="module-title">Content</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 8: BRAND MANAGEMENT -->
+  <div class="module-section" id="mod8">
+    <div class="module-header">
+      <div class="module-num">08</div>
+      <div class="module-title">Brand management</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>Measuring your brand metrics</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">You can't manage a brand if you can't measure one. Most teams are tracking activity, impressions, reach, clicks, but they've no line of sight to the things that actually drive the business. The metrics are disconnected from the outcomes.<br><br>We use AI to help marketing teams and the wider organisation understand which metrics matter and how they influence each other. Paste in whatever you're tracking and the pyramid sorts them into five levels, from activity at the base to commercial outcomes at the top. It shows you where the gaps are and where you're heavy on vanity metrics with nothing connecting them to revenue.<br><br>It's a starting point. Once you can see the shape of what you're measuring, you can start managing the brand properly.</div>
+          <a href="https://runwithfoxes.com/coach" target="_blank" class="try-it-btn">Try the metrics pyramid &rarr;</a>
+        </div>
+        <div class="module-right">
+          <div class="metrics-pyramid-mini">
+            <div class="mp-level mp-1"><div class="mp-shape">1</div><div class="mp-label">Commercial outcomes</div></div>
+            <div class="mp-level mp-2"><div class="mp-shape">2</div><div class="mp-label">Customer behaviour</div></div>
+            <div class="mp-level mp-3"><div class="mp-shape">3</div><div class="mp-label">Memory metrics</div></div>
+            <div class="mp-level mp-4"><div class="mp-shape">4</div><div class="mp-label">Comms response</div></div>
+            <div class="mp-level mp-5"><div class="mp-shape">5</div><div class="mp-label">Activity + outputs</div></div>
+            <div class="mp-caption">The metrics pyramid — paste your metrics, see where the gaps are</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>Building brand consistency</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">These are the brand guidelines we give Claude to get 100% consistency every time when building any docs, emails, webpages or any marketing materials. If you can decode and give Claude very detailed brand guidelines, it will recreate materials the way you want.<br><br>Give the link of our guidelines to Claude, ask it to keep the structure but strip out the Run with Foxes brand, and use that as a format to structure your own brand guidelines for Claude.</div>
+          <a href="https://runwithfoxes.com/brand" target="_blank" class="try-it-btn">See the brand guidelines &rarr;</a>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="brand-guidelines-scroll.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">Run with Foxes brand guidelines — built for AI, not just humans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">C</span>Distinctive brand assets</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">AI will not make you distinctive. It will make you more, faster, everywhere, and if what you feed it is vague you just get average in bulk.<br><br>But if you already have distinctive brand assets, there has never been a better time to lean on them. David Ogilvy bought the Hathaway eyepatch on the way to the shoot in 1951, fifty cents, then they kept using it, making the brand easy to spot.<br><br>Consistency in advertising is incredibly important. It was still a real challenge this time last year keeping consistency frame to frame, and ad to ad. Not now. Now you can build a distinctive brand asset, and then use Claude Code to create daily video ads keeping it both interesting and consistent.<br><br>Find your eyepatch moment.</div>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="fox-tarantino-trunk.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-row-2">
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="fox-coffee-soho.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="fox-hathaway.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="video-caption">Same character, three different scenes — all AI-generated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 9: COMMS -->
+  <div class="module-section" id="mod9">
+    <div class="module-header">
+      <div class="module-num">09</div>
+      <div class="module-title">Comms</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
+      </div>
+      <div class="module-right">
+        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 10: GROWTH -->
+  <div class="module-section" id="mod10">
+    <div class="module-header">
+      <div class="module-num">10</div>
+      <div class="module-title">Growth</div>
+      <div class="module-level-badge mlb-full">AI does it</div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>An email and digital marketer</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built a growth executive that runs on its own. It syncs data from LinkedIn outreach and email campaigns, reads the replies, tracks who's engaged and who hasn't, and prepares the next batch of people to contact. It applies real frameworks, like the 95:5 rule that only about 5% of your market is ready to buy at any time, so most of what you're doing is building memory, not chasing leads.<br><br>It watches five layers of the funnel, from activity at the bottom (sends, impressions, posts published) up through response (opens, clicks, accepts), memory (pool size, followers, reach), behaviour (meetings booked, proposals requested) and commercial outcomes at the top. It reports bottom-up but thinks top-down.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>Page conversion audits</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Point it at any landing page. It scores every section against a ten-part anatomy of what a page has to do. Shows you the gaps. Drafts the rebuild with wireframes. You get a one-pager in your brand, not a Google doc of generic fixes.</div>
+        </div>
+        <div class="module-right">
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="page-conversion-scroll.mp4" type="video/mp4">
+            </video>
+            <div class="video-caption">Page conversion audit — 10-section anatomy, gaps surfaced, rebuild drafted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 11: EVENTS -->
+  <div class="module-section" id="mod11">
+    <div class="module-header">
+      <div class="module-num">11</div>
+      <div class="module-title">Events</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-split">
+      <div class="module-left">
+        <div class="module-desc">We built an agent that replaces the need for any event SaaS software. Give it the venue, the date, a few photos, and it builds everything you need to run the event. A landing page guests RSVP on. Confirmation and reminder emails you plug into HubSpot. QR codes for the door. A check-in scanner for staff on the night. A registration dashboard so you can see who's coming. Calendar invites that work in Outlook and Gmail. All of it deployed and live.<br><br>The whole thing takes minutes, not days. And if you're running lots of events, that's where it gets interesting. The agent clones from a template, rewrites all the copy for the new city and venue, swaps in the photos, deploys it, and creates the repo. Same brand, same quality, different event. You can recreate them over and over again at speed.<br><br>No Eventbrite. No Splash. No monthly subscription for a tool you use six times a year. Just an agent that builds the whole thing fresh each time, exactly the way you want it.</div>
+      </div>
+      <div class="module-right">
+        <div class="screenshot-container">
+          <img src="event-page-screenshot.png" alt="AI-generated event landing page — venue section">
+          <div class="video-caption">Event landing page — built by an agent in minutes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 12: MARKETING OPS -->
+  <div class="module-section" id="mod12">
+    <div class="module-header">
+      <div class="module-num">12</div>
+      <div class="module-title">Marketing ops</div>
+      <div class="module-level-badge mlb-assist">AI + human</div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">A</span>A project manager that actually runs your morning</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">We built a project manager agent that gets you from "just opened the laptop" to "I know what to do today" in under two minutes.<br><br>It runs in two passes. First, the scan. It reads your ranked priorities, email index, active client status, tasks, calendar, and any new meeting transcripts. It shows you your top priorities for the day with a reason for each, emails waiting from people you actually know, what got built or left unfinished yesterday, and new transcripts.<br><br>Then it asks which ones you want it to read properly.<br><br>Second pass is the deep read. If you pick items, it reads them in full, every word, not a preview, and comes back with concrete proposals. Move a priority, add a task, park something, or no change. It never silently rearranges your day. It surfaces the evidence and lets you decide.<br><br>Without this, your morning is twenty minutes of scrolling through email, calendar, tasks, session logs, trying to remember what you committed to and what's overdue. By the time you've done all that, your focus is shot and you've already reacted to three things you shouldn't have prioritised. This compresses that into a ranked list with reasons, and the day starts decided, not reactive.<br><br>And because it talks to the other agents through a shared briefing board, they don't cross wires. The growth agent won't cold-message a client who's mid-delivery. The finance agent will know when a milestone hit so it can prepare an invoice. You get a team that actually coordinates, not three assistants reading the same inbox.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="module-sub">
+      <div class="sub-heading"><span class="sub-num">B</span>A commercial director that keeps the money visible</div>
+      <div class="module-split">
+        <div class="module-left">
+          <div class="module-desc">Marketing spends. Without a commercial counterweight, it spends on whichever activity feels busy. We built a commercial director agent that owns the money side of the operation.<br><br>It tracks revenue targets, pricing, capacity, invoicing, tax deadlines, and cash. It turns pipeline into expected revenue at probability, so campaign choices connect to money, not vanity. It tracks cost per reply, cost per accepted connection, and cost per won deal, so campaign spend gets judged on commercial output, not impressions.<br><br>It doesn't send invoices or file returns. It drafts invoices when a delivery milestone is hit, chases overdue payments with a draft email for you to send, warns when you're overcommitted on capacity or behind on target, and flags tax deadlines before they become emergencies.<br><br>And because it reads the same briefing board as the project manager and the growth agent, it stays coordinated. When the project manager logs a milestone, the commercial director queues the invoice. When the growth agent logs a campaign cost, the commercial director sees it against cash. When cash is tight, the growth agent knows to hold off on paid tools.<br><br>A marketing function without a commercial director drifts toward activity. With one, every campaign has to answer a money question eventually.</div>
+        </div>
+        <div class="module-right">
+          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== CLIENT VOICES ==================== -->
+<section class="voices">
+  <div class="section-divider"></div>
+  <div class="section-label">// what clients say</div>
+  <h2 class="section-heading">They don't want to go back.</h2>
+  <div class="voices-grid">
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote from a real client. A single sentence about what changed on Monday."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote. Something concrete about speed or output, not vague praise."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-quote">"Placeholder quote. The one line they'd use to tell a peer."</div>
+      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== FAQ ==================== -->
+<section class="faq">
+  <div class="section-divider"></div>
+  <div class="section-label">// questions we hear</div>
+  <h2 class="section-heading">The things people ask us.</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Who is this for?</div>
+      <div class="faq-a">In-house marketing teams, and the agencies that partner with them. Small and large.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do we start?</div>
+      <div class="faq-a">A 30-minute call. No pitch deck. We listen, we ask, we tell you what we'd build.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do we need AI people on the team?</div>
+      <div class="faq-a">No. We set it up so a marketer can run it. If someone on your team is curious, even better.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does a build take?</div>
+      <div class="faq-a">Days for simple things. Weeks for the bigger pieces. Almost never months.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does it cost?</div>
+      <div class="faq-a">Day rate. We scope before we quote. You see the full price before we start.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do we own it after?</div>
+      <div class="faq-a">Yes. Code, prompts, instructions, all yours. You can keep using it, change it, throw it away.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLOSE ==================== -->
+<section class="close-section">
+  <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
+  <a href="/contact" class="close-cta">Get in touch</a>
+</section>
+
+<!-- ==================== BOTTOM BAR ==================== -->
+<div class="bottom-bar">
+  <a href="#" class="active">#top</a>
+  <a href="#about">#about</a>
+  <a href="/book">/book</a>
+  <a href="/contact" class="cta-bar">get in touch</a>
+</div>
+
+<script>
+  const topNav = document.getElementById('topNav');
+  const heroWrapper = document.getElementById('heroWrapper');
+  const heroH = heroWrapper.offsetHeight;
+
+  const onScroll = () => {
+    topNav.classList.toggle('scrolled', window.scrollY > heroH - 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length > 1) {
+        const t = document.querySelector(href);
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      }
+    });
+  });
+
+  const bottomBar = document.querySelector('.bottom-bar');
+  const barObserver = new IntersectionObserver(([e]) => {
+    bottomBar.classList.toggle('visible', e.isIntersecting);
+  }, { threshold: 0 });
+  barObserver.observe(document.querySelector('.modules'));
+</script>
+
+</body>
+</html>
