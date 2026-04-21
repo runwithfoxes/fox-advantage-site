@@ -387,8 +387,9 @@ body > * { position: relative; z-index: 1; }
 .module-title {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(28px, 3.5vw, 42px);
   letter-spacing: -1.5px;
+  white-space: nowrap;
 }
 .module-level-badge { display: none; }
 
@@ -603,10 +604,12 @@ body > * { position: relative; z-index: 1; }
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  width: 100%;
 }
 .mp-level {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
 }
 .mp-shape {
@@ -631,7 +634,10 @@ body > * { position: relative; z-index: 1; }
   text-transform: uppercase;
   letter-spacing: 1px;
   white-space: nowrap;
+  position: absolute;
+  left: calc(100% + 14px);
 }
+.mp-level { position: relative; }
 .mp-caption {
   text-align: center;
   font-size: 9px;
@@ -768,6 +774,11 @@ body > * { position: relative; z-index: 1; }
   pointer-events: none;
 }
 .mid-cta > *, .close-section > * { position: relative; z-index: 1; }
+.mid-cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
 .mid-cta h3 {
   font-family: var(--sans);
   font-weight: 300;
@@ -1100,7 +1111,7 @@ body > * { position: relative; z-index: 1; }
     </div>
     <div class="module-split">
       <div class="module-left">
-        <div class="module-desc">We run positioning sessions with a client's leadership team. We use frameworks and customer evidence to stress-test what the team thinks is true. We can surface contradictions, map what competitors already own, and bring clarity at speed.<br><br>What we get to is a positioning document, like the brand house on the right, that everyone in the team can use. It becomes the bible. Everything that follows, messaging, briefs, creative, is built on it.<br><br>AI doesn't do the positioning itself. That call stays with the leadership team. But the work around it, the structure, the frameworks, the output, gets faster and sharper.</div>
+        <div class="module-desc">Brand equity is what people carry in their heads about your brand. AI won't do the positioning for you. But we can take a company's internal material, the decks, the briefs, the research, the campaign history, and use AI to work through it at speed against frameworks and competitive data. What we get to is a higher quality positioning document, like the brand house on the right, that the whole team works from. Messaging, briefs, creative, all built on it.</div>
         <a href="#" class="try-it-btn">See an example brand house &rarr;</a>
       </div>
       <div class="module-right">
@@ -1146,7 +1157,7 @@ body > * { position: relative; z-index: 1; }
     </div>
     <div class="module-split">
       <div class="module-left">
-        <div class="module-desc">We take a client's existing messaging and convert it into one tight framework. AI reads through all of it at speed, the decks, the briefs, the landing pages, the keynotes. What we get to is a master proposition, pillars, proof and language rules, all hardcoded. Anyone writing anything checks against it first. Everything that follows is built on it.</div>
+        <div class="module-desc">Messaging flows from positioning. We built an agent that takes all of a client's material, the decks, the briefs, the landing pages, the keynotes, and understands the right framework for messaging. It reads through everything at speed and structures it into a messaging framework: master proposition, pillars, proof and language rules, all locked down. Because the fundamentals are right from the start, everything written after it is higher quality. Anyone writing anything checks against it first.</div>
       </div>
       <div class="module-right">
         <div class="video-container">
@@ -1159,63 +1170,20 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
-  <!-- MODULE 4: CUSTOMER JOURNEY -->
-  <div class="module-section" id="mod4">
-    <div class="module-header">
-      <div class="module-num">04</div>
-      <div class="module-title">Customer journey</div>
-      <div class="module-level-badge mlb-assist">AI + human</div>
-    </div>
-    <div class="module-split">
-      <div class="module-left">
-        <div class="module-desc">We plot out a client's customer journey by pulling in lots of data points, the research, the analytics, the interviews, the sales data, the reviews. AI works through all of it at speed using proper journey mapping frameworks. What we get to is a hardcoded journey map with the stages, the motivations, the gaps and the right message at each point. Anyone working on the journey checks against it first.</div>
-      </div>
-      <div class="module-right">
-        <div class="fox-visual">
-          <img src="public/fox/fox-sideeye-right-nobg.png" alt="Fox on the journey">
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- MODULE 5: RESEARCH -->
   <div class="module-section" id="mod5">
-    <div class="module-header">
-      <div class="module-num">05</div>
-      <div class="module-title">Research</div>
-      <div class="module-level-badge mlb-assist">AI + human</div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">A</span>Where do you show up in AI search?</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">When someone asks ChatGPT or Claude or Perplexity to recommend a company like yours, do you show up? Most companies have no idea. They're optimising for Google but the buying behaviour is shifting to AI search and they're invisible there.<br><br>We built a GEO audit that tests this. Give us your brand and URL, we generate 25 real buyer-intent prompts across five patterns, the kinds of questions your prospects are actually asking. Then we check which brands get cited, which get recommended, and which don't appear at all. You get a scored report showing your citation rate, who's winning the prompts you're losing, and a prioritised fix list to close the gaps.</div>
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-num">05</div>
+          <div class="module-title">Research</div>
+          <div class="module-level-badge mlb-assist">AI + human</div>
         </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">GEO audit scorecard visual goes here</div></div>
-        </div>
+        <div class="module-desc" style="margin-top: 16px;">Building AI research agents is one of the better use cases we've found. We built one that searches YouTube, Substack and other sources a couple of times a week on its own. It reads transcripts, pulls out the right information based on a brief, and builds a library over time. When something relevant comes up, it surfaces it.</div>
+        <div class="module-desc">It saves hours of reading and searching every week. We still need to read it ourselves. The robots haven't figured that bit out yet.</div>
       </div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">B</span>A research agent that learns what you care about</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">We built an agent that goes out each week on its own and finds material across YouTube, Substack and other sources on the topics that matter to you. It identifies the key ideas, writes them up, and puts them into a folder for you to review.<br><br>The ones you like, it learns from. The ones you skip, it learns from too. Over time it gets better at knowing what's signal and what's noise for your specific interests. It builds and learns on its own. You just review what it finds.<br><br>This saves hours of reading time every week, and the quality improves the longer you use it.</div>
-        </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">Research agent output visual goes here</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">C</span>Find the conversations that matter on Reddit</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">Reddit is where people ask real questions about real problems. We built a tool that monitors the subreddits that matter to your business, finds the posts where someone is asking about exactly the kind of thing you solve, and drafts a helpful response.<br><br>It doesn't post anything. It queues the responses for a human to review, edit if needed, and post themselves. The human is in the process where it matters, the tone, the timing, the judgment call on whether this is the right conversation to join.<br><br>We used this for a client selling showers. The tool watched five subreddits, found posts asking about water pressure, electric showers, replacements. It drafted technically accurate responses in the right voice. The team reviewed and posted the ones that fit. Genuine help, not spam.</div>
-        </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">Reddit response queue visual goes here</div></div>
-        </div>
+      <div class="fox-visual" style="padding-top: 0;">
+        <img src="public/fox/fox-sideeye-right-nobg.png" alt="Fox — research">
       </div>
     </div>
   </div>
@@ -1224,12 +1192,13 @@ body > * { position: relative; z-index: 1; }
   <div class="module-section" id="mod6">
     <div class="module-header">
       <div class="module-num">06</div>
-      <div class="module-title">Creative</div>
+      <div class="module-title">Advertising</div>
       <div class="module-level-badge mlb-full">AI does it</div>
     </div>
     <div class="module-split">
       <div class="module-left">
-        <div class="module-desc">Most bad ads don't start with bad ideas. They start with briefs that don't know how they want the communication to work. Is it salience or persuasion? Fame or direct response? Brand-building or activation? Most briefs can't say. So every reviewer judges through a different lens. By round three the idea's dead, or unrecognisable.<br><br>We built a diagnostician that forces the clarity most briefs avoid. It reads the brief, spots which of seven influence models it's leaning on, flags the contradictions, and tells you the one choice you've been avoiding. Use it before you write the ad, not after it fails.<br><br>This is the first tool in a series. Each one removes a specific drag point that kills good creative.</div>
+        <div class="module-desc">We built an agent with deep knowledge of how advertising works. The different influence models we often don't think about. The difference between salience and persuasion. What fame actually requires versus direct response. Which KPIs make sense for each type. The constraints and trade-offs that come with each approach. Brand-building versus activation and why they need different briefs.</div>
+        <div class="module-desc">With all of that built in, it coaches teams to make good decisions before the brief goes out the door. It forces them to clarify which influence model they're using, looks for contradictions, and helps marketing teams sharpen and crystallise what they want from their advertising partners.</div>
         <a href="/brief-diagnostician" class="try-it-btn">Try the brief diagnostician &rarr;</a>
       </div>
       <div class="module-right">
@@ -1258,96 +1227,87 @@ body > * { position: relative; z-index: 1; }
 
   <!-- ==================== MID-SCROLL CTA ==================== -->
   <div class="mid-cta">
-    <h3>Twelve functions. Pick three.</h3>
-    <p>We'll build them and hand them over.</p>
-    <a href="/contact" class="big-btn">Get in touch</a>
-  </div>
-
-  <!-- MODULE 7: CONTENT -->
-  <div class="module-section" id="mod7">
-    <div class="module-header">
-      <div class="module-num">07</div>
-      <div class="module-title">Content</div>
-      <div class="module-level-badge mlb-full">AI does it</div>
-    </div>
-    <div class="module-split">
-      <div class="module-left">
-        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
-      </div>
-      <div class="module-right">
-        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
-      </div>
+    <div class="mid-cta-inner">
+      <h3>The Fox Advantage is available for free.</h3>
+      <p>The book is almost finished. Pick up a copy.</p>
+      <a href="/book" class="big-btn">Get the book</a>
     </div>
   </div>
 
-  <!-- MODULE 8: BRAND MANAGEMENT -->
+  <!-- MODULE 8: MARKETING EFFECTIVENESS -->
   <div class="module-section" id="mod8">
-    <div class="module-header">
-      <div class="module-num">08</div>
-      <div class="module-title">Brand management</div>
-      <div class="module-level-badge mlb-assist">AI + human</div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">A</span>Measuring your brand metrics</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">You can't manage a brand if you can't measure one. Most teams are tracking activity, impressions, reach, clicks, but they've no line of sight to the things that actually drive the business. The metrics are disconnected from the outcomes.<br><br>We use AI to help marketing teams and the wider organisation understand which metrics matter and how they influence each other. Paste in whatever you're tracking and the pyramid sorts them into five levels, from activity at the base to commercial outcomes at the top. It shows you where the gaps are and where you're heavy on vanity metrics with nothing connecting them to revenue.<br><br>It's a starting point. Once you can see the shape of what you're measuring, you can start managing the brand properly.</div>
-          <a href="https://runwithfoxes.com/coach" target="_blank" class="try-it-btn">Try the metrics pyramid &rarr;</a>
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-num">08</div>
+          <div class="module-title">Marketing effectiveness</div>
+          <div class="module-level-badge mlb-assist">AI + human</div>
         </div>
-        <div class="module-right">
-          <div class="metrics-pyramid-mini">
-            <div class="mp-level mp-1"><div class="mp-shape">1</div><div class="mp-label">Commercial outcomes</div></div>
-            <div class="mp-level mp-2"><div class="mp-shape">2</div><div class="mp-label">Customer behaviour</div></div>
-            <div class="mp-level mp-3"><div class="mp-shape">3</div><div class="mp-label">Memory metrics</div></div>
-            <div class="mp-level mp-4"><div class="mp-shape">4</div><div class="mp-label">Comms response</div></div>
-            <div class="mp-level mp-5"><div class="mp-shape">5</div><div class="mp-label">Activity + outputs</div></div>
-            <div class="mp-caption">The metrics pyramid — paste your metrics, see where the gaps are</div>
-          </div>
+        <div class="module-desc" style="margin-top: 16px;">You can't manage a brand if you can't measure one. We built an AI agent to help marketing teams and the wider organisation understand which metrics matter and how they influence each other. Paste in whatever you're tracking and the pyramid sorts them into five levels, from activity at the base to commercial outcomes at the top. It shows where the gaps are and where you're heavy on vanity metrics with nothing connecting them to revenue.</div>
+        <a href="https://runwithfoxes.com/coach" target="_blank" class="try-it-btn">Try the metrics pyramid &rarr;</a>
+      </div>
+      <div>
+        <div class="metrics-pyramid-mini">
+          <div class="mp-level mp-1"><div class="mp-shape">1</div><div class="mp-label">Commercial outcomes</div></div>
+          <div class="mp-level mp-2"><div class="mp-shape">2</div><div class="mp-label">Customer behaviour</div></div>
+          <div class="mp-level mp-3"><div class="mp-shape">3</div><div class="mp-label">Memory metrics</div></div>
+          <div class="mp-level mp-4"><div class="mp-shape">4</div><div class="mp-label">Comms response</div></div>
+          <div class="mp-level mp-5"><div class="mp-shape">5</div><div class="mp-label">Activity + outputs</div></div>
+          <div class="mp-caption">The metrics pyramid — paste your metrics, see where the gaps are</div>
         </div>
       </div>
     </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">B</span>Building brand consistency</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">These are the brand guidelines we give Claude to get 100% consistency every time when building any docs, emails, webpages or any marketing materials. If you can decode and give Claude very detailed brand guidelines, it will recreate materials the way you want.<br><br>Give the link of our guidelines to Claude, ask it to keep the structure but strip out the Run with Foxes brand, and use that as a format to structure your own brand guidelines for Claude.</div>
-          <a href="https://runwithfoxes.com/brand" target="_blank" class="try-it-btn">See the brand guidelines &rarr;</a>
+  </div>
+
+  <!-- AD AGENT ENGINE -->
+  <div class="module-section" id="ad-engine">
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-title">Ad agent engine</div>
         </div>
-        <div class="module-right">
+        <div class="module-desc" style="margin-top: 16px;">We built an ad agent engine. Small teams can produce ads at speed that stay on brand and on message with very little effort, once it's set up. Setting up takes time if you care about the quality.</div>
+        <div class="module-desc">We care a lot about the quality. The consistency of the brand asset, the message, the tone, the fonts, the space around the logo, the transition from one frame to another. All the stuff that matters when you're putting your name on something.</div>
+        <div class="module-desc">What we like is the learning loop. The agents learn from the data from your winning ads to write and create the new ones. This is for sales activation, amplification of distinctive brand assets, performance ads. Brands still need to do the hard work on positioning, messaging and the work that creates your brand assets. The engine makes them work harder once they exist.</div>
+      </div>
+      <div>
+        <div class="video-container">
+          <video autoplay muted loop playsinline>
+            <source src="fox-tarantino-trunk.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-row-2">
           <div class="video-container">
             <video autoplay muted loop playsinline>
-              <source src="brand-guidelines-scroll.mp4" type="video/mp4">
+              <source src="fox-coffee-soho.mp4" type="video/mp4">
             </video>
-            <div class="video-caption">Run with Foxes brand guidelines — built for AI, not just humans</div>
+          </div>
+          <div class="video-container">
+            <video autoplay muted loop playsinline>
+              <source src="fox-hathaway.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
+        <div class="video-caption">Same character, three different scenes — all AI-generated</div>
       </div>
     </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">C</span>Distinctive brand assets</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">AI will not make you distinctive. It will make you more, faster, everywhere, and if what you feed it is vague you just get average in bulk.<br><br>But if you already have distinctive brand assets, there has never been a better time to lean on them. David Ogilvy bought the Hathaway eyepatch on the way to the shoot in 1951, fifty cents, then they kept using it, making the brand easy to spot.<br><br>Consistency in advertising is incredibly important. It was still a real challenge this time last year keeping consistency frame to frame, and ad to ad. Not now. Now you can build a distinctive brand asset, and then use Claude Code to create daily video ads keeping it both interesting and consistent.<br><br>Find your eyepatch moment.</div>
+  </div>
+
+  <!-- BRAND GUARDIAN -->
+  <div class="module-section" id="brand-guardian">
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-title">Brand guardian</div>
         </div>
-        <div class="module-right">
-          <div class="video-container">
-            <video autoplay muted loop playsinline>
-              <source src="fox-tarantino-trunk.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-row-2">
-            <div class="video-container">
-              <video autoplay muted loop playsinline>
-                <source src="fox-coffee-soho.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="video-container">
-              <video autoplay muted loop playsinline>
-                <source src="fox-hathaway.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="video-caption">Same character, three different scenes — all AI-generated</div>
+        <div class="module-desc" style="margin-top: 16px;">We built an agent that helps marketing teams stay on brand 100% of the time. It can review documents, flag where they drift, and offer suggestions on how to make them better. In some cases it can create the materials itself, docs, emails, webpages, presentations, all consistent with the brand guidelines it's been trained on.</div>
+      </div>
+      <div>
+        <div class="video-container">
+          <video autoplay muted loop playsinline>
+            <source src="brand-guidelines-scroll.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Brand guidelines — built for AI, not just humans</div>
         </div>
       </div>
     </div>
