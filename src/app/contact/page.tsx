@@ -29,7 +29,7 @@ export default function ContactPage() {
           <div className="contact-channels">
             <div className="contact-item">
               <div className="contact-label">\email</div>
-              <div className="contact-value">pdervan@gmail.com</div>
+              <div className="contact-value">paul@runwithfoxes.com</div>
             </div>
 
             <div className="contact-item">

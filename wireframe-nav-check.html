@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nav + Page Wireframe Check</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --sky-blue: #3A7CA5;
+  --sky-blue-hover: #2F6688;
+  --deep-sky: #1A3A4E;
+  --muted: #8A8A85;
+  --border: #E0E0DC;
+  --hover: #F5F5F0;
+  --cream: #F7EAD9;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
+/* ==================== NAV ==================== */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: rgba(250, 250, 248, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border);
+  transition: background 0.4s ease-out;
+}
+.top-nav.on-video {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 100%);
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.nav-logo span { color: #F47521; }
+.top-nav.on-video .nav-logo { color: #fff; }
+.top-nav.on-video .nav-logo span { color: #fff; }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-links a, .nav-links .nav-dropdown-trigger {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.nav-links a:hover, .nav-links .nav-dropdown-trigger:hover { color: var(--sky-blue); }
+.top-nav.on-video .nav-links a,
+.top-nav.on-video .nav-links .nav-dropdown-trigger {
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.nav-cta {
+  border: 1.5px solid var(--sky-blue);
+  background: var(--sky-blue);
+  color: #fff !important;
+  padding: 6px 16px;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--sky-blue-hover); }
+.top-nav.on-video .nav-cta {
+  border-color: rgba(255,255,255,0.8);
+  background: transparent;
+}
+
+/* Dropdowns */
+.nav-dropdown-wrap { position: relative; }
+.nav-mega {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  padding-top: 12px;
+  z-index: 100;
+}
+.nav-dropdown-wrap:hover .nav-mega { display: block; }
+
+/* Unfair advantage mega */
+.mega-inner {
+  background: rgba(26,58,78,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 24px 32px;
+  display: flex;
+  gap: 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.mega-col { display: flex; flex-direction: column; gap: 6px; }
+.mega-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.mega-inner a {
+  color: rgba(255,255,255,0.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 3px 0;
+  transition: color 0.2s;
+  text-shadow: none !important;
+}
+.mega-inner a:hover { color: #5A9CC5 !important; }
+
+/* Projects dropdown */
+.projects-dropdown {
+  background: rgba(26,58,78,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 16px 24px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.projects-dropdown .pd-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+.projects-dropdown .pd-label:first-child { margin-top: 0; }
+.projects-dropdown a {
+  color: rgba(255,255,255,0.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 4px 0;
+  transition: color 0.2s;
+  text-shadow: none !important;
+}
+.projects-dropdown a:hover { color: #5A9CC5 !important; }
+
+/* ==================== SECTIONS (wireframe blocks) ==================== */
+.wf-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.section-block {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+.section-block:last-child { border-bottom: none; }
+
+/* Hero placeholder */
+.hero-placeholder {
+  height: 540px;
+  background: var(--deep-sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+.hero-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+}
+.hero-placeholder span { position: relative; z-index: 1; }
+
+/* Hero text */
+.hero-text {
+  padding: 56px 0 48px;
+}
+.hero-text h1 {
+  font-family: var(--sans);
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.hero-headline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.hero-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--sky-blue);
+  color: #fff;
+  padding: 12px 28px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.function-links {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+.function-links a { color: var(--sky-blue); text-decoration: none; }
+.function-links .dot { color: var(--muted); margin: 0 8px; opacity: 0.3; }
+
+/* Module block (wireframe representation) */
+.wf-module {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
+}
+.wf-module:last-child { border-bottom: none; }
+.wf-module-title {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.wf-module-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.wf-module-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 500px;
+}
+.wf-visual {
+  border: 2px dashed var(--border);
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Testimonial bar */
+.wf-testimonial {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.wf-testimonial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.wf-testimonial > * { position: relative; z-index: 1; }
+.wf-testimonial-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wf-testimonial .quote {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.wf-testimonial .attr {
+  font-size: 12px;
+  color: rgba(247,234,217,0.6);
+}
+.wf-testimonial .attr strong {
+  color: rgba(247,234,217,0.85);
+  font-weight: 400;
+}
+
+/* Mid CTA bar */
+.wf-mid-cta {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 72px 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  overflow: hidden;
+}
+.wf-mid-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.wf-mid-cta > * { position: relative; z-index: 1; }
+.wf-mid-cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+.wf-mid-cta h3 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.wf-mid-cta p {
+  font-size: 14px;
+  color: rgba(247,234,217,0.75);
+  margin-bottom: 24px;
+}
+.big-btn {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  text-decoration: none;
+}
+
+/* About section */
+.wf-about {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-photo-placeholder {
+  width: 280px;
+  height: 373px;
+  border: 2px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.about-name {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+.about-bio p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.about-ctas {
+  margin-top: 28px;
+  display: flex;
+  gap: 32px;
+}
+.about-cta-link {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sky-blue);
+  text-decoration: none;
+}
+
+/* Close section */
+.wf-close {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 96px 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  overflow: hidden;
+  margin-top: 96px;
+  margin-bottom: 80px;
+}
+.wf-close::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.wf-close > * { position: relative; z-index: 1; }
+.wf-close-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+.wf-close h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  margin-bottom: 32px;
+}
+.wf-close h2 .accent { color: #fff; font-weight: 400; }
+.close-cta {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  text-decoration: none;
+}
+
+/* Bottom bar */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  background: var(--deep-sky);
+  overflow: hidden;
+}
+.bottom-bar a {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  padding: 14px 24px;
+  transition: color 0.3s, background 0.3s;
+}
+.bottom-bar a:hover { color: #fff; }
+.bottom-bar a.active { color: #fff; }
+.bottom-bar a.cta-bar {
+  background: var(--sky-blue);
+  color: #fff;
+}
+
+/* Wireframe badge */
+.wf-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  background: var(--sky-blue);
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  z-index: 200;
+}
+
+/* Section number markers */
+.section-num {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--sky-blue);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  opacity: 0.6;
+}
+</style>
+</head>
+<body>
+
+<div class="wf-badge">wireframe — nav + page structure check</div>
+
+<!-- ==================== TOP NAV ==================== -->
+<nav class="top-nav">
+  <a href="#" class="nav-logo">/<span>Run</span>withfoxes</a>
+  <div class="nav-links">
+
+    <!-- #unfair_advantage dropdown -->
+    <div class="nav-dropdown-wrap">
+      <span class="nav-dropdown-trigger">#unfair_advantage &#9662;</span>
+      <div class="nav-mega">
+        <div class="mega-inner">
+          <div class="mega-col">
+            <div class="mega-label">HUMAN LEADS</div>
+            <a href="#mod-strategy">Strategy</a>
+            <a href="#mod-positioning">Positioning</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">AI + HUMAN</div>
+            <a href="#mod-messaging">Messaging</a>
+            <a href="#mod-research">Research</a>
+            <a href="#mod-advertising">Advertising</a>
+            <a href="#mod-effectiveness">Effectiveness</a>
+            <a href="#mod-brand-guardian">Brand guardian</a>
+            <a href="#mod-events">Events</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-label">AI DOES IT</div>
+            <a href="#mod-ad-engine">Ad engine</a>
+            <a href="#mod-growth">Growth team</a>
+            <a href="#mod-pm">Project manager</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /projects dropdown -->
+    <div class="nav-dropdown-wrap">
+      <span class="nav-dropdown-trigger">/projects &#9662;</span>
+      <div class="nav-mega">
+        <div class="projects-dropdown">
+          <div class="pd-label">CASE STUDIES</div>
+          <a href="/millionaire-raffle">Millionaire Raffle</a>
+          <a href="/marketer-of-the-year">Marketer of the Year</a>
+          <a href="/48">48</a>
+          <a href="/run-with-foxes">Run with Foxes (book 1)</a>
+          <div class="pd-label">AI TOOLS</div>
+          <a href="/experts">Expert Panel</a>
+          <a href="/brief-diagnostician">Brief Diagnostician</a>
+          <a href="/coach">Effectiveness Coach</a>
+          <a href="/ai-writer">AI Writer</a>
+          <a href="/brand">Brand System</a>
+          <a href="/chief">Chief of Staff</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="/book">/book</a>
+    <a href="/contact" class="nav-cta">/contact</a>
+  </div>
+</nav>
+
+<!-- ==================== 1. VIDEO HERO ==================== -->
+<div class="hero-placeholder">
+  <span>Tarantino trunk video — 540px</span>
+</div>
+
+<!-- ==================== 2. HEADLINE + FUNCTION LINKS ==================== -->
+<div class="wf-section">
+  <div class="hero-text">
+    <div class="hero-headline-row">
+      <h1>Build an unfair advantage in marketing</h1>
+      <a href="/contact" class="hero-cta">get in touch</a>
+    </div>
+    <div class="function-links">
+      <a href="#mod-strategy">strategy</a><span class="dot">&middot;</span>
+      <a href="#mod-positioning">positioning</a><span class="dot">&middot;</span>
+      <a href="#mod-messaging">messaging</a><span class="dot">&middot;</span>
+      <a href="#mod-research">research</a><span class="dot">&middot;</span>
+      <a href="#mod-advertising">advertising</a><span class="dot">&middot;</span>
+      <a href="#mod-effectiveness">effectiveness</a><span class="dot">&middot;</span>
+      <a href="#mod-brand-guardian">brand</a><span class="dot">&middot;</span>
+      <a href="#mod-ad-engine">ads</a><span class="dot">&middot;</span>
+      <a href="#mod-growth">growth</a><span class="dot">&middot;</span>
+      <a href="#mod-events">events</a><span class="dot">&middot;</span>
+      <a href="#mod-pm">project manager</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 3. ABOUT / WHO ==================== -->
+<div class="wf-section" id="about">
+  <div class="wf-about">
+    <div class="section-num">section 3 — about</div>
+    <div class="about-grid">
+      <div class="about-photo-placeholder">Paul photo</div>
+      <div>
+        <div class="about-name">Paul Dervan</div>
+        <div class="about-bio">
+          <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery...</p>
+          <p>Trained by Peter Field...</p>
+          <p>The first book was Run with Foxes... The new one is The Fox Advantage...</p>
+          <p>Run with Foxes is the consultancy...</p>
+          <p>What I'm particularly interested in is systems...</p>
+          <p>We work with large marketing teams and with businesses that have no marketing team at all...</p>
+        </div>
+        <div class="about-ctas">
+          <a href="/book" class="about-cta-link">\ get the book</a>
+          <a href="/contact" class="about-cta-link">\ get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODULES ==================== -->
+<div class="wf-section">
+
+  <!-- 4. STRATEGY -->
+  <div class="wf-module" id="mod-strategy">
+    <div>
+      <div class="section-num">section 4</div>
+      <div class="wf-module-title">Strategy</div>
+      <div class="wf-module-desc">Expert panel. Five informed perspectives before the plan leaves the building. Links to /experts.</div>
+    </div>
+    <div class="wf-visual">Fox image<br>(chapter-fox-sitting)</div>
+  </div>
+
+  <!-- 5. TESTIMONIAL: JONNIE CAHILL -->
+</div>
+<div class="wf-testimonial">
+  <div class="wf-testimonial-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 5 — testimonial</div>
+    <div class="quote">"Paul is a strategic thinker, with world class creative capabilities..."</div>
+    <div class="attr"><strong>Jonnie Cahill</strong> — SVP and CMO International Foods, PepsiCo</div>
+  </div>
+</div>
+<div class="wf-section">
+
+  <!-- 6. POSITIONING -->
+  <div class="wf-module" id="mod-positioning">
+    <div>
+      <div class="section-num">section 6</div>
+      <div class="wf-module-title">Positioning</div>
+      <div class="wf-module-desc">Brand equity framing. Brand house visual on right.</div>
+    </div>
+    <div class="wf-visual">Brand house<br>diagram</div>
+  </div>
+
+  <!-- 7. MESSAGING -->
+  <div class="wf-module" id="mod-messaging">
+    <div>
+      <div class="section-num">section 7</div>
+      <div class="wf-module-title">Messaging</div>
+      <div class="wf-module-desc">Messaging flows from positioning. Framework scroll video on right.</div>
+    </div>
+    <div class="wf-visual">Messaging framework<br>scroll video</div>
+  </div>
+
+  <!-- 8. RESEARCH -->
+  <div class="wf-module" id="mod-research">
+    <div>
+      <div class="section-num">section 8</div>
+      <div class="wf-module-title">Research</div>
+      <div class="wf-module-desc">AI research agent. YouTube, Substack. "The robots haven't figured that bit out yet."</div>
+    </div>
+    <div class="wf-visual">Fox image<br>(fox-sideeye-right)</div>
+  </div>
+
+</div>
+
+<!-- 9. BOOK CTA BAR -->
+<div class="wf-mid-cta">
+  <div class="wf-mid-cta-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 9 — book cta</div>
+    <h3>The Fox Advantage is available for free.</h3>
+    <p>The book is almost finished. Pick up a copy.</p>
+    <a href="/book" class="big-btn">Get the book</a>
+  </div>
+</div>
+
+<div class="wf-section">
+
+  <!-- 10. ADVERTISING -->
+  <div class="wf-module" id="mod-advertising">
+    <div>
+      <div class="section-num">section 10</div>
+      <div class="wf-module-title">Advertising</div>
+      <div class="wf-module-desc">Influence models. Brief diagnostician card on right. Links to /brief-diagnostician.</div>
+    </div>
+    <div class="wf-visual">Diagnosis card<br>component</div>
+  </div>
+
+</div>
+
+<!-- 11. TESTIMONIAL: PETER FIELD -->
+<div class="wf-testimonial">
+  <div class="wf-testimonial-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 11 — testimonial</div>
+    <div class="quote">"His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb."</div>
+    <div class="attr"><strong>Peter Field</strong> — The Godfather of Effectiveness</div>
+  </div>
+</div>
+
+<div class="wf-section">
+
+  <!-- 12. MARKETING EFFECTIVENESS -->
+  <div class="wf-module" id="mod-effectiveness">
+    <div>
+      <div class="section-num">section 12</div>
+      <div class="wf-module-title">Marketing effectiveness</div>
+      <div class="wf-module-desc">Metrics pyramid on right. "You can't manage a brand if you can't measure one." Links to /coach.</div>
+    </div>
+    <div class="wf-visual">Metrics pyramid<br>(5 levels)</div>
+  </div>
+
+  <!-- 13. BRAND GUARDIAN -->
+  <div class="wf-module" id="mod-brand-guardian">
+    <div>
+      <div class="section-num">section 13</div>
+      <div class="wf-module-title">Brand guardian</div>
+      <div class="wf-module-desc">Brand guidelines scroll video on right.</div>
+    </div>
+    <div class="wf-visual">Brand guidelines<br>scroll video</div>
+  </div>
+
+  <!-- 14. AD AGENT ENGINE -->
+  <div class="wf-module" id="mod-ad-engine">
+    <div>
+      <div class="section-num">section 14</div>
+      <div class="wf-module-title">Ad agent engine</div>
+      <div class="wf-module-desc">Two square video ads side by side (lottery-ad.mp4, 6040-ad.mp4).</div>
+    </div>
+    <div class="wf-visual">2x video ads<br>side by side</div>
+  </div>
+
+</div>
+
+<!-- 15. TESTIMONIAL: PAUL D'ARCY -->
+<div class="wf-testimonial">
+  <div class="wf-testimonial-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 15 — testimonial</div>
+    <div class="quote">"I have learned more from him than anyone else in my career."</div>
+    <div class="attr"><strong>Paul D'Arcy</strong> — CMO, Moloco. Former CMO at Miro and Indeed</div>
+  </div>
+</div>
+
+<div class="wf-section">
+
+  <!-- 16. EVENTS -->
+  <div class="wf-module" id="mod-events">
+    <div>
+      <div class="section-num">section 16</div>
+      <div class="wf-module-title">Events</div>
+      <div class="wf-module-desc">Event landing page system. Screenshot on right.</div>
+    </div>
+    <div class="wf-visual">Event page<br>screenshot</div>
+  </div>
+
+  <!-- 17. GROWTH TEAM -->
+  <div class="wf-module" id="mod-growth">
+    <div>
+      <div class="section-num">section 17</div>
+      <div class="wf-module-title">Growth team</div>
+      <div class="wf-module-desc">AI copywriter + growth exec + content creator. For companies without growth teams.</div>
+    </div>
+    <div class="wf-visual">Fox image<br>(fox-sideeye-right)</div>
+  </div>
+
+</div>
+
+<!-- 18. TESTIMONIAL: DAMIAN DEVANEY -->
+<div class="wf-testimonial">
+  <div class="wf-testimonial-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 18 — testimonial</div>
+    <div class="quote">"He set the standard for excellent management of his team's performance and development."</div>
+    <div class="attr"><strong>Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
+  </div>
+</div>
+
+<div class="wf-section">
+
+  <!-- 19. PROJECT MANAGER -->
+  <div class="wf-module" id="mod-pm">
+    <div>
+      <div class="section-num">section 19</div>
+      <div class="wf-module-title">Project manager</div>
+      <div class="wf-module-desc">Morning briefing agent. Shared briefing board.</div>
+    </div>
+    <div class="wf-visual">Fox image<br>(needs its own fox)</div>
+  </div>
+
+</div>
+
+<!-- 20. CLOSE CTA -->
+<div class="wf-close">
+  <div class="wf-close-inner">
+    <div class="section-num" style="color: rgba(247,234,217,0.4);">section 20 — close</div>
+    <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
+    <a href="/contact" class="close-cta">Get in touch</a>
+  </div>
+</div>
+
+<!-- ==================== BOTTOM BAR ==================== -->
+<div class="bottom-bar">
+  <a href="#" class="active">#top</a>
+  <a href="#about">#about</a>
+  <a href="#projects">/projects</a>
+  <a href="/book">/book</a>
+  <a href="/contact" class="cta-bar">get in touch</a>
+</div>
+
+</body>
+</html>

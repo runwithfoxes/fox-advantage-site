@@ -1,7 +1,5 @@
-import { getChaptersByPart } from "@/lib/chapters";
-import Landing from "@/components/Landing";
+import HomePage from "@/components/HomePage";
 
 export default function Home() {
-  const parts = getChaptersByPart();
-  return <Landing parts={parts} />;
+  return <HomePage />;
 }
