@@ -809,9 +809,57 @@ body > * { position: relative; z-index: 1; }
 }
 .big-btn:hover { background: var(--sky-blue-hover); }
 
+/* Testimonial bar */
+.testimonial-bar {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 56px 48px;
+  background: var(--deep-sky);
+  color: var(--cream);
+  overflow: hidden;
+}
+.testimonial-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sky-blue) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.testimonial-bar > * { position: relative; z-index: 1; }
+.testimonial-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+.testimonial-bar .tbar-quote {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(20px, 2.5vw, 26px);
+  letter-spacing: -0.5px;
+  line-height: 1.35;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.testimonial-bar .tbar-attr {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(247, 234, 217, 0.6);
+  letter-spacing: 0.3px;
+}
+.testimonial-bar .tbar-attr strong {
+  color: rgba(247, 234, 217, 0.85);
+  font-weight: 400;
+}
+
 /* ==================== CLIENT VOICES ==================== */
 .voices { max-width: 1200px; margin: 0 auto; padding: 96px 48px 0; }
-.voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.voices-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 64px; }
 .voice-card { border-top: 2px solid var(--sky-blue); padding-top: 24px; }
 .voice-quote { font-family: var(--mono); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
 .voice-attr { font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.55; }
@@ -888,17 +936,19 @@ body > * { position: relative; z-index: 1; }
   position: relative;
   overflow: hidden;
 }
+.close-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
 .close-section h2 {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: clamp(32px, 4.5vw, 48px);
-  letter-spacing: -1px;
-  line-height: 1.15;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
   margin-bottom: 32px;
   color: var(--cream);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .close-section h2 .accent { color: var(--sky-blue); }
 .close-section .close-cta {
@@ -1102,6 +1152,13 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
+  <div class="testimonial-bar">
+    <div class="testimonial-bar-inner">
+      <div class="tbar-quote">"Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it. His unique talent is his ability to galvanise an organization."</div>
+      <div class="tbar-attr"><strong>Jonnie Cahill</strong> — SVP and CMO International Foods, PepsiCo</div>
+    </div>
+  </div>
+
   <!-- MODULE 2: POSITIONING -->
   <div class="module-section" id="mod2">
     <div class="module-header">
@@ -1188,6 +1245,14 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
+  <div class="mid-cta">
+    <div class="mid-cta-inner">
+      <h3>The Fox Advantage is available for free.</h3>
+      <p>The book is almost finished. Pick up a copy.</p>
+      <a href="/book" class="big-btn">Get the book</a>
+    </div>
+  </div>
+
   <!-- MODULE 6: CREATIVE -->
   <div class="module-section" id="mod6">
     <div class="module-header">
@@ -1225,12 +1290,10 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
-  <!-- ==================== MID-SCROLL CTA ==================== -->
-  <div class="mid-cta">
-    <div class="mid-cta-inner">
-      <h3>The Fox Advantage is available for free.</h3>
-      <p>The book is almost finished. Pick up a copy.</p>
-      <a href="/book" class="big-btn">Get the book</a>
+  <div class="testimonial-bar">
+    <div class="testimonial-bar-inner">
+      <div class="tbar-quote">"I've worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb."</div>
+      <div class="tbar-attr"><strong>Peter Field</strong> — The Godfather of Effectiveness, Author of The Long and the Short of It</div>
     </div>
   </div>
 
@@ -1313,55 +1376,26 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
-  <!-- MODULE 9: COMMS -->
-  <div class="module-section" id="mod9">
-    <div class="module-header">
-      <div class="module-num">09</div>
-      <div class="module-title">Comms</div>
-      <div class="module-level-badge mlb-assist">AI + human</div>
-    </div>
-    <div class="module-split">
-      <div class="module-left">
-        <div class="module-desc">Placeholder — needs copy in Paul's voice.</div>
-      </div>
-      <div class="module-right">
-        <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
-      </div>
+  <div class="testimonial-bar">
+    <div class="testimonial-bar-inner">
+      <div class="tbar-quote">"Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career."</div>
+      <div class="tbar-attr"><strong>Paul D'Arcy</strong> — CMO, Moloco. Former CMO at Miro and Indeed</div>
     </div>
   </div>
 
-  <!-- MODULE 10: GROWTH -->
+  <!-- GROWTH TEAM -->
   <div class="module-section" id="mod10">
-    <div class="module-header">
-      <div class="module-num">10</div>
-      <div class="module-title">Growth</div>
-      <div class="module-level-badge mlb-full">AI does it</div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">A</span>An email and digital marketer</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">We built a growth executive that runs on its own. It syncs data from LinkedIn outreach and email campaigns, reads the replies, tracks who's engaged and who hasn't, and prepares the next batch of people to contact. It applies real frameworks, like the 95:5 rule that only about 5% of your market is ready to buy at any time, so most of what you're doing is building memory, not chasing leads.<br><br>It watches five layers of the funnel, from activity at the bottom (sends, impressions, posts published) up through response (opens, clicks, accepts), memory (pool size, followers, reach), behaviour (meetings booked, proposals requested) and commercial outcomes at the top. It reports bottom-up but thinks top-down.</div>
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-title">Growth team</div>
         </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
-        </div>
+        <div class="module-desc" style="margin-top: 16px;">We built an AI growth team. A copywriter, a growth exec and a content creator that can run email and LinkedIn campaigns, do the analysis and rewrite what isn't working. Between them they run and track campaigns end to end.</div>
+        <div class="module-desc">They learn as they go. They use the data from previous campaigns to write new emails, new ads, new headlines. The more they run, the better the output gets.</div>
+        <div class="module-desc">For companies that don't have growth teams, this is a good opportunity. What would normally need three full-time roles can be done in a couple of hours a week.</div>
       </div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">B</span>Page conversion audits</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">Point it at any landing page. It scores every section against a ten-part anatomy of what a page has to do. Shows you the gaps. Drafts the rebuild with wireframes. You get a one-pager in your brand, not a Google doc of generic fixes.</div>
-        </div>
-        <div class="module-right">
-          <div class="video-container">
-            <video autoplay muted loop playsinline>
-              <source src="page-conversion-scroll.mp4" type="video/mp4">
-            </video>
-            <div class="video-caption">Page conversion audit — 10-section anatomy, gaps surfaced, rebuild drafted</div>
-          </div>
-        </div>
+      <div class="fox-visual" style="padding-top: 0;">
+        <img src="public/fox/fox-sideeye-right-nobg.png" alt="Fox — growth team">
       </div>
     </div>
   </div>
@@ -1386,98 +1420,32 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
 
-  <!-- MODULE 12: MARKETING OPS -->
+  <!-- PROJECT MANAGER -->
   <div class="module-section" id="mod12">
-    <div class="module-header">
-      <div class="module-num">12</div>
-      <div class="module-title">Marketing ops</div>
-      <div class="module-level-badge mlb-assist">AI + human</div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">A</span>A project manager that actually runs your morning</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">We built a project manager agent that gets you from "just opened the laptop" to "I know what to do today" in under two minutes.<br><br>It runs in two passes. First, the scan. It reads your ranked priorities, email index, active client status, tasks, calendar, and any new meeting transcripts. It shows you your top priorities for the day with a reason for each, emails waiting from people you actually know, what got built or left unfinished yesterday, and new transcripts.<br><br>Then it asks which ones you want it to read properly.<br><br>Second pass is the deep read. If you pick items, it reads them in full, every word, not a preview, and comes back with concrete proposals. Move a priority, add a task, park something, or no change. It never silently rearranges your day. It surfaces the evidence and lets you decide.<br><br>Without this, your morning is twenty minutes of scrolling through email, calendar, tasks, session logs, trying to remember what you committed to and what's overdue. By the time you've done all that, your focus is shot and you've already reacted to three things you shouldn't have prioritised. This compresses that into a ranked list with reasons, and the day starts decided, not reactive.<br><br>And because it talks to the other agents through a shared briefing board, they don't cross wires. The growth agent won't cold-message a client who's mid-delivery. The finance agent will know when a milestone hit so it can prepare an invoice. You get a team that actually coordinates, not three assistants reading the same inbox.</div>
+    <div class="module-split" style="align-items: start;">
+      <div>
+        <div class="module-header">
+          <div class="module-title">Project manager</div>
         </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
-        </div>
+        <div class="module-desc" style="margin-top: 16px;">We built a project manager agent that reads your priorities, emails, calendar, client status and tasks, and gets you from "just opened the laptop" to "I know what to do today" in under two minutes. It shows you what matters, with a reason for each, and comes back with concrete proposals. Move a priority, add a task, park something, or no change.</div>
+        <div class="module-desc">It talks to the other agents through a shared briefing board so they don't cross wires. The growth agent won't cold-message a client who's mid-delivery. The day starts decided, not reactive.</div>
       </div>
-    </div>
-    <div class="module-sub">
-      <div class="sub-heading"><span class="sub-num">B</span>A commercial director that keeps the money visible</div>
-      <div class="module-split">
-        <div class="module-left">
-          <div class="module-desc">Marketing spends. Without a commercial counterweight, it spends on whichever activity feels busy. We built a commercial director agent that owns the money side of the operation.<br><br>It tracks revenue targets, pricing, capacity, invoicing, tax deadlines, and cash. It turns pipeline into expected revenue at probability, so campaign choices connect to money, not vanity. It tracks cost per reply, cost per accepted connection, and cost per won deal, so campaign spend gets judged on commercial output, not impressions.<br><br>It doesn't send invoices or file returns. It drafts invoices when a delivery milestone is hit, chases overdue payments with a draft email for you to send, warns when you're overcommitted on capacity or behind on target, and flags tax deadlines before they become emergencies.<br><br>And because it reads the same briefing board as the project manager and the growth agent, it stays coordinated. When the project manager logs a milestone, the commercial director queues the invoice. When the growth agent logs a campaign cost, the commercial director sees it against cash. When cash is tight, the growth agent knows to hold off on paid tools.<br><br>A marketing function without a commercial director drifts toward activity. With one, every campaign has to answer a money question eventually.</div>
-        </div>
-        <div class="module-right">
-          <div class="placeholder-visual"><div class="placeholder-inner">Visual goes here</div></div>
-        </div>
+      <div class="fox-visual" style="padding-top: 0;">
+        <img src="public/fox/chapter-fox-sitting-nobg.png" alt="Fox — project manager">
       </div>
     </div>
   </div>
 
 </div>
 
-<!-- ==================== CLIENT VOICES ==================== -->
-<section class="voices">
-  <div class="section-divider"></div>
-  <div class="section-label">// what clients say</div>
-  <h2 class="section-heading">They don't want to go back.</h2>
-  <div class="voices-grid">
-    <div class="voice-card">
-      <div class="voice-quote">"Placeholder quote from a real client. A single sentence about what changed on Monday."</div>
-      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
-    </div>
-    <div class="voice-card">
-      <div class="voice-quote">"Placeholder quote. Something concrete about speed or output, not vague praise."</div>
-      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
-    </div>
-    <div class="voice-card">
-      <div class="voice-quote">"Placeholder quote. The one line they'd use to tell a peer."</div>
-      <div class="voice-attr"><strong>Client name</strong>Role, Company</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ==================== FAQ ==================== -->
-<section class="faq">
-  <div class="section-divider"></div>
-  <div class="section-label">// questions we hear</div>
-  <h2 class="section-heading">The things people ask us.</h2>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q">Who is this for?</div>
-      <div class="faq-a">In-house marketing teams, and the agencies that partner with them. Small and large.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How do we start?</div>
-      <div class="faq-a">A 30-minute call. No pitch deck. We listen, we ask, we tell you what we'd build.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Do we need AI people on the team?</div>
-      <div class="faq-a">No. We set it up so a marketer can run it. If someone on your team is curious, even better.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">How long does a build take?</div>
-      <div class="faq-a">Days for simple things. Weeks for the bigger pieces. Almost never months.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What does it cost?</div>
-      <div class="faq-a">Day rate. We scope before we quote. You see the full price before we start.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Do we own it after?</div>
-      <div class="faq-a">Yes. Code, prompts, instructions, all yours. You can keep using it, change it, throw it away.</div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== CLOSE ==================== -->
 <section class="close-section">
-  <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
-  <a href="/contact" class="close-cta">Get in touch</a>
+  <div class="close-inner">
+    <div class="tbar-quote" style="font-family: var(--sans); font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.35; color: var(--cream); margin-bottom: 8px; font-style: italic;">"When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development."</div>
+    <div class="tbar-attr" style="font-family: var(--mono); font-size: 12px; color: rgba(247,234,217,0.6); margin-bottom: 48px;"><strong style="color: rgba(247,234,217,0.85); font-weight: 400;">Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
+    <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
+    <a href="/contact" class="close-cta">Get in touch</a>
+  </div>
 </section>
 
 <!-- ==================== BOTTOM BAR ==================== -->
