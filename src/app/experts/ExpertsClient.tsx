@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useId } from "react";
+import Link from "next/link";
 
 interface Persona {
   id: string;
@@ -241,15 +242,60 @@ export default function ExpertsPage() {
         position: "relative",
       }}
     >
-      {/* Nav */}
-      <header className="top-bar">
-        <a href="/" className="logo">/<span>Run</span>withfoxes</a>
-        <nav>
-          <a href="/#projects">/projects</a>
-          <a href="/contact">/contact</a>
-          <a href="/#signup" className="cta-bar">/get_the_book</a>
-        </nav>
-      </header>
+      {/* NAV — same as homepage, always in scrolled state */}
+      <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
+        <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
+        <div className="hp-nav-links">
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">#unfair_advantage &#9662;</span>
+            <div className="hp-mega">
+              <div className="hp-mega-inner">
+                <div className="hp-mega-col">
+                  <div className="hp-mega-label">HUMAN LEADS</div>
+                  <Link href="/#mod-strategy">Strategy</Link>
+                  <Link href="/#mod-positioning">Positioning</Link>
+                </div>
+                <div className="hp-mega-col">
+                  <div className="hp-mega-label">AI + HUMAN</div>
+                  <Link href="/#mod-messaging">Messaging</Link>
+                  <Link href="/#mod-research">Research</Link>
+                  <Link href="/#mod-advertising">Advertising</Link>
+                  <Link href="/#mod-effectiveness">Effectiveness</Link>
+                  <Link href="/#mod-brand-guardian">Brand guardian</Link>
+                  <Link href="/#mod-events">Events</Link>
+                </div>
+                <div className="hp-mega-col">
+                  <div className="hp-mega-label">AI DOES IT</div>
+                  <Link href="/#mod-ad-engine">Ad engine</Link>
+                  <Link href="/#mod-growth">Growth team</Link>
+                  <Link href="/#mod-pm">Project manager</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">/projects &#9662;</span>
+            <div className="hp-mega">
+              <div className="hp-projects-dropdown">
+                <div className="hp-pd-label">CASE STUDIES</div>
+                <Link href="/millionaire-raffle">Millionaire Raffle</Link>
+                <Link href="/marketer-of-the-year">Marketer of the Year</Link>
+                <Link href="/48">48</Link>
+                <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
+                <div className="hp-pd-label">AI TOOLS</div>
+                <Link href="/experts">Expert Panel</Link>
+                <Link href="/brief-diagnostician">Brief Diagnostician</Link>
+                <Link href="/coach">Effectiveness Coach</Link>
+                <Link href="/ai-writer">AI Writer</Link>
+                <Link href="/brand">Brand System</Link>
+                <Link href="/chief">Chief of Staff</Link>
+              </div>
+            </div>
+          </div>
+          <Link href="/book">/book</Link>
+          <Link href="/contact" className="hp-nav-cta">/contact</Link>
+        </div>
+      </nav>
 
       {/* Content */}
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "100px 32px 80px" }}>
@@ -647,37 +693,6 @@ export default function ExpertsPage() {
           )}
         </div>
 
-        {/* Footer */}
-        <div
-          style={{
-            borderTop: "1px solid var(--border, #E0E0DC)",
-            paddingTop: 32,
-            textAlign: "center" as const,
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-              fontSize: 13,
-              fontWeight: 300,
-              letterSpacing: 2,
-              color: "var(--text-muted, #8A8A85)",
-              marginBottom: 8,
-            }}
-          >
-            /<span style={{ color: "var(--orange, #3A7CA5)" }}>Run</span>
-            withfoxes
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-              fontSize: 11,
-              color: "var(--text-muted, #8A8A85)",
-            }}
-          >
-            Expert personas by Paul Dervan. Powered by Claude.
-          </div>
-        </div>
       </div>
 
       {/* Pulse animation */}
@@ -687,6 +702,14 @@ export default function ExpertsPage() {
           50% { opacity: 0.3; }
         }
       `}</style>
+
+      {/* BOTTOM BAR */}
+      <div className="hp-bottom-bar hp-bb-visible">
+        <Link href="/">#top</Link>
+        <Link href="/#about">#about</Link>
+        <Link href="/book">/book</Link>
+        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
+      </div>
     </div>
   );
 }

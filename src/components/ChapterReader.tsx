@@ -20,11 +20,8 @@ function stripPartLine(html: string): string {
 
 // Rotate fox poses across chapters so each feels slightly different
 const FOX_POSES = [
-  { src: "/fox/annoyed fox no background.png", alt: "Grumpy fox sitting cross-legged" },
   { src: "/fox/chapter-fox-sitting-nobg.png", alt: "Grumpy fox sitting unimpressed" },
   { src: "/fox/chapter-fox-bored-nobg.png", alt: "Bored fox with chin on paw" },
-  { src: "/fox/chapter-fox-arms-folded-nobg.png", alt: "Grumpy fox with arms folded" },
-  { src: "/fox/chapter-fox-walking-away-nobg.png", alt: "Fox walking away unimpressed" },
 ];
 
 function getFoxPose(chapterNumber: number) {

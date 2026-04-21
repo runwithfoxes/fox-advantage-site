@@ -43,24 +43,11 @@ html {
 body {
   font-family: var(--mono);
   background-color: var(--bg);
+  background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-}
-
-/* ---- DOT GRID BACKGROUND ---- */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
-  background-size: 28px 28px;
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ---- LAYOUT ---- */
@@ -3429,6 +3416,7 @@ a.project-card {
 /* ---- HP VIDEO HERO ---- */
 .hp-hero-wrapper {
   position: relative;
+  z-index: 1;
   height: 540px;
   overflow: hidden;
 }
@@ -3880,6 +3868,8 @@ a.project-card {
 
 /* ---- HP TESTIMONIAL BAR ---- */
 .hp-testimonial-bar {
+  position: relative;
+  z-index: 1;
   padding-left: 48px;
   padding-right: 48px;
   margin-top: 40px;
@@ -3926,6 +3916,8 @@ a.project-card {
 
 /* ---- HP MID CTA ---- */
 .hp-mid-cta {
+  position: relative;
+  z-index: 1;
   padding-left: 48px;
   padding-right: 48px;
   margin-top: 40px;
@@ -3990,6 +3982,7 @@ a.project-card {
   color: #F7EAD9;
   text-align: center;
   position: relative;
+  z-index: 1;
   overflow: hidden;
 }
 .hp-close-section::before {
@@ -4081,6 +4074,7 @@ a.project-card {
   .hp-modules { padding: 0 24px 80px; }
   .hp-module-split { grid-template-columns: 1fr; gap: 24px; }
   .hp-module-header { flex-wrap: wrap; }
+  .hp-module-title { white-space: normal; }
   .hp-hero-text { padding: 32px 24px; }
   .hp-function-links { white-space: normal; }
   .hp-about-top { padding: 32px 24px; }

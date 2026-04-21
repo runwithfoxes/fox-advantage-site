@@ -43,7 +43,7 @@ export default function HomePage() {
       <div id="top" />
       {/* ==================== NAV ==================== */}
       <nav className="hp-nav" ref={navRef} id="topNav">
-        <a href="#heroWrapper" className="hp-nav-logo">
+        <a href="#heroWrapper" className="hp-nav-logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           /<span>Run</span>withfoxes
         </a>
         <div className="hp-nav-links">
@@ -493,7 +493,7 @@ export default function HomePage() {
 
       {/* ==================== BOTTOM BAR ==================== */}
       <div className="hp-bottom-bar" ref={bottomBarRef}>
-        <a href="#heroWrapper">#top</a>
+        <a href="#heroWrapper" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>#top</a>
         <a href="#about">#about</a>
         <Link href="/book">/book</Link>
         <Link href="/contact" className="hp-cta-bar">get in touch</Link>
