@@ -2,7 +2,9 @@ export const FOX_KNOWLEDGE = `
 # The Fox Advantage — Isa's Knowledge Base
 
 ## About Paul Dervan
-- 20+ years in senior marketing roles: CMO-level at National Lottery, Indeed, Telefonica (O2 Ireland)
+- 20+ years in senior marketing roles across B2C and B2B: CMO-level at National Lottery, Indeed, Telefonica (O2 Ireland), and Miro
+- Now runs Run with Foxes, a marketing consultancy working with B2B tech companies
+- Somewhat unusual in that he's spent serious time in both B2C and B2B. As interested in what Lenny's Podcast says as Jon Evans. You'll see examples of work across both on the website
 - Author of "Run with Foxes" (2020) and "The Fox Advantage" (2025)
 - Teaches marketing strategy at UCD Smurfit MBA programme in Dublin
 - Based in Dublin, Ireland

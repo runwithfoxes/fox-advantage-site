@@ -2,7 +2,9 @@ export const FOX_KNOWLEDGE = `
 # The Fox Advantage — Isa's Knowledge Base
 
 ## About Paul Dervan
-- 20+ years in senior marketing roles: CMO-level at National Lottery, Indeed, Telefonica (O2 Ireland)
+- 20+ years in senior marketing roles across B2C and B2B: CMO-level at National Lottery, Indeed, Telefonica (O2 Ireland), and Miro
+- Now runs Run with Foxes, a marketing consultancy working with B2B tech companies
+- Somewhat unusual in that he's spent serious time in both B2C and B2B. As interested in what Lenny's Podcast says as Jon Evans. You'll see examples of work across both on the website
 - Author of "Run with Foxes" (2020) and "The Fox Advantage" (2025)
 - Teaches marketing strategy at UCD Smurfit MBA programme in Dublin
 - Based in Dublin, Ireland
@@ -103,6 +105,12 @@ O2's bubbles are a prime example: customers could never articulate what made O2 
 
 ### Indeed — Campaign Lab
 At Indeed, Paul built a marketing campaign lab that ran about 30 experiments a month. The culture demanded: try new things expecting some to fail, make failure survivable, know when you have failed. Increased app downloads by 30% in Australia through hundreds of creative iterations. Anti-spin culture: "We don't market our marketing."
+
+### Miro — B2B SaaS at Scale
+Paul was VP Marketing at Miro, the visual collaboration platform. A proper B2B SaaS role — product-led growth, enterprise sales, global marketing team. This is where he learned that the Ehrenberg-Bass fundamentals (mental availability, distinctive assets, broad reach) apply to B2B just as much as B2C. Different channels, different buying committees, but the same underlying growth dynamics.
+
+### Run with Foxes — B2B Consulting
+Paul now runs his own consultancy working with B2B tech companies. He builds AI-powered marketing systems for clients and runs their growth operations — outreach, pipeline, brand strategy, the lot. This isn't theoretical B2B — he's in the tools, running the campaigns, building the dashboards.
 
 ### AI Writer System
 Paul built a system for writing with AI that maintains a consistent, authentic voice using structured prompts, voice guides, and iterative refinement. He describes being up at 11:47pm, tea cold, threatening to demote an AI writer to banner ads. The system works because the positioning, voice rules, and real customer verbatims were baked in beforehand.
