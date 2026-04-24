@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         source: "/prep",
         destination: "https://ucd-prep.vercel.app/",
       },
+      {
+        source: "/april",
+        destination: "https://april-page.vercel.app/",
+      },
     ];
   },
   async redirects() {
