@@ -762,6 +762,12 @@ a.project-card {
   color: rgba(255, 255, 255, 0.2);
   margin-top: 16px;
 }
+.gate-error {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #e85c5c;
+  margin-top: 12px;
+}
 
 /* ---- GATE LAYOUT WITH FOX ---- */
 .gate-layout {

@@ -56,49 +56,18 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
     setStatus("loading");
 
     try {
-      // Submit to Substack in a hidden iframe so the main page doesn't navigate
-      const iframe = document.createElement("iframe");
-      iframe.name = "substack-subscribe-" + Date.now();
-      iframe.style.cssText = "position:absolute;width:0;height:0;border:0;left:-9999px";
-      document.body.appendChild(iframe);
-
-      // Wait for iframe to be ready
-      await new Promise<void>((resolve) => {
-        iframe.onload = () => resolve();
-        setTimeout(resolve, 100);
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = "https://runwithfoxes.substack.com/api/v1/free";
-      form.target = iframe.name;
-      form.style.display = "none";
-
-      const emailInput = document.createElement("input");
-      emailInput.type = "hidden";
-      emailInput.name = "email";
-      emailInput.value = email;
-      form.appendChild(emailInput);
-
-      const firstUrlInput = document.createElement("input");
-      firstUrlInput.type = "hidden";
-      firstUrlInput.name = "first_url";
-      firstUrlInput.value = window.location.href;
-      form.appendChild(firstUrlInput);
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        form.remove();
-        iframe.remove();
-      }, 5000);
+      if (!res.ok) throw new Error("Subscribe failed");
 
       setStatus("success");
       unlock();
     } catch {
-      setStatus("success");
-      unlock();
+      setStatus("error");
     }
   };
 
@@ -121,6 +90,9 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
           <button type="submit" className="gate-button" disabled={status === "loading"}>
             {status === "loading" ? "..." : "subscribe"}
           </button>
+          {status === "error" && (
+            <p className="gate-error">Something went wrong. Try again or subscribe directly at runwithfoxes.substack.com</p>
+          )}
         </form>
       )}
     </div>
