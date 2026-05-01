@@ -40,10 +40,10 @@ export function GateProvider({ children }: { children: React.ReactNode }) {
 
 export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitted, setSubmitted] = useState(false);
   const { isUnlocked, unlock } = useGate();
 
-  if (isUnlocked) {
+  if (isUnlocked || submitted) {
     return (
       <div className="gate-success">
         <p>✓ You&apos;re on the list. We&apos;ll send the full book when it&apos;s ready.</p>
@@ -51,50 +51,26 @@ export default function EmailGateForm({ variant = "dark" }: { variant?: "dark" |
     );
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
-
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!res.ok) throw new Error("Subscribe failed");
-
-      setStatus("success");
-      unlock();
-    } catch {
-      setStatus("error");
-    }
+    window.open("https://runwithfoxes.substack.com/subscribe", "_blank", "noopener");
+    setSubmitted(true);
+    unlock();
   };
 
   return (
-    <div>
-      {status === "success" ? (
-        <div className="gate-success">
-          <p>✓ You&apos;re on the list. We&apos;ll send the full book when it&apos;s ready.</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="gate-form">
-          <input
-            type="email"
-            className="gate-input"
-            placeholder="your@email.com"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button type="submit" className="gate-button" disabled={status === "loading"}>
-            {status === "loading" ? "..." : "subscribe"}
-          </button>
-          {status === "error" && (
-            <p className="gate-error">Something went wrong. Try again or subscribe directly at runwithfoxes.substack.com</p>
-          )}
-        </form>
-      )}
-    </div>
+    <form onSubmit={handleSubmit} className="gate-form">
+      <input
+        type="email"
+        className="gate-input"
+        placeholder="your@email.com"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button type="submit" className="gate-button">
+        subscribe
+      </button>
+    </form>
   );
 }
