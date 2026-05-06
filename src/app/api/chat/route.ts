@@ -92,6 +92,12 @@ export async function POST(req: Request) {
       apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
     });
 
+    // Convert UI messages to simple {role, content} model messages
+    const modelMessages = messages.map((m: { role: string; parts?: { type: string; text?: string }[]; content?: string }) => ({
+      role: m.role as "user" | "assistant",
+      content: m.parts?.filter(p => p.type === "text").map(p => p.text).join("") || m.content || "",
+    }));
+
     // Extract the latest user message for logging
     const latestUserMessage = messages
       .filter((m: { role: string }) => m.role === "user")
@@ -106,7 +112,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: provider("claude-sonnet-4-20250514"),
       system: getSystemPrompt(),
-      messages,
+      messages: modelMessages,
       maxOutputTokens: 200,
       onFinish: async ({ text }) => {
         await saveConversationExchange({
