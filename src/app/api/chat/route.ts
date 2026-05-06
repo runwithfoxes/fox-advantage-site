@@ -1,5 +1,5 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
-import { streamText, convertToModelMessages } from "ai";
+import { streamText } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
 import {
   saveConversationExchange,
@@ -88,8 +88,6 @@ export async function POST(req: Request) {
     typeof chatId === "string" ? chatId.slice(0, 50).replace(/[^a-zA-Z0-9_-]/g, "") : "unknown";
 
   try {
-    const modelMessages = await convertToModelMessages(messages);
-
     const provider = createAnthropic({
       apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
     });
@@ -108,7 +106,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: provider("claude-sonnet-4-20250514"),
       system: getSystemPrompt(),
-      messages: modelMessages,
+      messages,
       maxOutputTokens: 200,
       onFinish: async ({ text }) => {
         await saveConversationExchange({
