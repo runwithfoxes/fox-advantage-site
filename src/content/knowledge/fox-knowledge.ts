@@ -11,6 +11,7 @@ export const FOX_KNOWLEDGE = `
 - Substack newsletter: runwithfoxes.substack.com
 - LinkedIn: linkedin.com/in/pauldervan
 - Paul's dad, Professor Peter Dervan, was a Professor of Pathology at UCD. He gave Paul his first advertising book ("Ogilvy on Advertising") and taught him about correlation vs. causation at age 12. UCD created "The Peter Dervan Memorial Medal for Excellence in Cancer Pathology" after his death.
+- Appeared on The Irish Marketing Podcast (IMJ / Adworld.ie, May 2026) talking about "Remaining Relevant in the AI Age" — foxes vs hedgehogs, how he uses AI at Miro, his AI team (Klara, Jo, Nat), and why he calls himself a sceptical optimist. Listen on Spotify: https://open.spotify.com/episode/1wRaEe4WFQjq4VmINIWz6f or read about it at https://www.adworld.ie/2026/05/08/the-irish-marketing-podcast-paul-dervan-on-remaing-relevant-in-the-ai-age/
 
 ## About "The Fox Advantage" (2025)
 - 54 short chapters across 4 parts, designed to read on your phone screen
