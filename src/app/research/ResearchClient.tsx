@@ -137,8 +137,9 @@ export default function ResearchClient() {
   // -- Landing --
   if (phase === "landing") {
     return (
-      <div className="no-chat-widget" style={styles.page}>
-        <div style={styles.landing}>
+      <div className="no-chat-widget research-page" style={styles.page}>
+        <style>{responsiveStyles}</style>
+        <div style={styles.landing} className="research-landing">
           <div style={styles.topLabel}>/ research</div>
           <h1 style={styles.h1}>
             How do you feel about AI doing your research?
@@ -162,8 +163,9 @@ export default function ResearchClient() {
 
   // -- Interview / Complete / Email --
   return (
-    <div className="no-chat-widget" style={styles.page}>
-      <div style={styles.chatContainer}>
+    <div className="no-chat-widget research-page" style={styles.page}>
+      <style>{responsiveStyles}</style>
+      <div style={styles.chatContainer} className="research-chat">
         {/* Conversation indicator */}
         <div style={styles.topLabel}>/ research</div>
 
@@ -251,7 +253,7 @@ export default function ResearchClient() {
 
         {/* Input (hidden when interview is complete) */}
         {phase === "interview" && (
-          <form style={styles.inputForm} onSubmit={handleSubmit}>
+          <form style={styles.inputForm} onSubmit={handleSubmit} className="research-input">
             <textarea
               ref={textareaRef}
               value={input}
@@ -278,6 +280,27 @@ export default function ResearchClient() {
     </div>
   );
 }
+
+const responsiveStyles = `
+  @media (max-width: 600px) {
+    .research-landing {
+      padding-top: 12vh !important;
+    }
+    .research-page {
+      padding: 0 16px !important;
+    }
+    .research-chat {
+      padding-top: 32px !important;
+      padding-bottom: 90px !important;
+    }
+    .research-input {
+      padding: 12px 12px 16px !important;
+    }
+    .research-input textarea {
+      font-size: 16px !important;
+    }
+  }
+`;
 
 const styles: Record<string, React.CSSProperties> = {
   page: {
