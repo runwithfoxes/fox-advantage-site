@@ -18,7 +18,7 @@ const groceryShoppingBrief: ResearchBrief = {
     "Hi, I'm Isa. And who am I talking to?",
 
   firstQuestion:
-    "Nice to meet you. Quick chat about food shopping, nothing complicated. So, last week, did you do a big shop or was it more bits and pieces?",
+    "Lovely to meet you. And where are you today?",
 
   questionAreas: [
     {
