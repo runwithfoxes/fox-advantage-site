@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   const briefId =
     elevenlabs_extra_body?.brief_id ||
     process.env.DEFAULT_BRIEF_ID ||
-    "ai-research";
+    "grocery-shopping";
 
   const brief = getBrief(briefId) || getDefaultBrief();
 
