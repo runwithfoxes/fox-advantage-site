@@ -85,6 +85,51 @@ export async function getVoiceRespondentContext(refId: string): Promise<
   }));
 }
 
+export async function getVoiceRespondentContextByPhone(phone: string): Promise<
+  | {
+      wave: number;
+      completedAt: string;
+      summary: string | null;
+      extractedData: Record<string, unknown> | null;
+      knowledge: RespondentKnowledge | null;
+    }[]
+  | undefined
+> {
+  if (!isConfigured()) return undefined;
+
+  const normalised = phone.replace(/[^+0-9]/g, "");
+  const respondent =
+    await sql<VoiceRespondent>`SELECT * FROM voice_respondents WHERE phone = ${normalised} OR phone = ${phone}`;
+  if (respondent.rows.length === 0) return undefined;
+
+  const transcripts =
+    await sql<VoiceTranscript>`SELECT * FROM voice_transcripts WHERE respondent_id = ${respondent.rows[0].id} AND ai_summary IS NOT NULL ORDER BY wave ASC`;
+
+  const knowledge = respondent.rows[0].knowledge;
+
+  if (transcripts.rows.length === 0 && knowledge) {
+    return [
+      {
+        wave: 0,
+        completedAt: knowledge.lastCallDate,
+        summary: null,
+        extractedData: null,
+        knowledge,
+      },
+    ];
+  }
+
+  if (transcripts.rows.length === 0) return undefined;
+
+  return transcripts.rows.map((t) => ({
+    wave: t.wave,
+    completedAt: t.created_at,
+    summary: t.ai_summary,
+    extractedData: t.structured_data,
+    knowledge,
+  }));
+}
+
 export async function createVoiceTranscript(
   respondentId: number,
   wave: number,

@@ -5,7 +5,10 @@ import {
   type OpenAIMessage,
   type OpenAIRequest,
 } from "@/lib/voice-anthropic";
-import { getVoiceRespondentContext } from "@/lib/voice-store";
+import {
+  getVoiceRespondentContext,
+  getVoiceRespondentContextByPhone,
+} from "@/lib/voice-store";
 
 export const maxDuration = 60;
 
@@ -34,6 +37,9 @@ export async function POST(req: Request) {
   }
 
   const respondentId = elevenlabs_extra_body?.respondent_id;
+  const callerPhone =
+    elevenlabs_extra_body?.caller_phone_number ||
+    elevenlabs_extra_body?.phone_number;
   const briefId =
     elevenlabs_extra_body?.brief_id ||
     process.env.DEFAULT_BRIEF_ID ||
@@ -44,6 +50,8 @@ export async function POST(req: Request) {
   let previousWaves;
   if (respondentId) {
     previousWaves = await getVoiceRespondentContext(respondentId);
+  } else if (callerPhone) {
+    previousWaves = await getVoiceRespondentContextByPhone(callerPhone);
   }
 
   const systemPrompt = buildVoiceSystemPrompt(brief, previousWaves);
