@@ -22,12 +22,13 @@ interface ElevenLabsConversationData {
   conversation_id: string;
   agent_id: string;
   status: string;
+  user_id?: string;
   transcript: {
     role: string;
     message: string;
     time_in_call_secs?: number;
   }[];
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
   call_duration_secs?: number;
   analysis?: {
     call_successful?: boolean;
@@ -82,9 +83,12 @@ export async function POST(req: Request) {
   };
   await redis.set("voice:debug:last-webhook", JSON.stringify(debugInfo), { ex: 600 });
 
-  const respondentId = conversation.metadata?.respondent_id || conversation.conversation_id;
-  const briefId = conversation.metadata?.brief_id || "ai-research";
-  const phone = conversation.metadata?.phone || conversation.metadata?.caller_phone_number || conversation.metadata?.customer_phone_number;
+  // For inbound phone calls, ElevenLabs puts the caller's number in user_id and metadata.phone_call.external_number
+  const phoneCall = conversation.metadata?.phone_call as { external_number?: string } | undefined;
+  const phone = conversation.user_id || phoneCall?.external_number || undefined;
+  const respondentId = phone || conversation.conversation_id;
+  const callDuration = (conversation.metadata?.call_duration_secs as number) ?? null;
+  const briefId = "grocery-shopping";
 
   const brief = getBrief(briefId) || getDefaultBrief();
 
@@ -108,7 +112,7 @@ export async function POST(req: Request) {
       briefId,
       conversation.conversation_id,
       conversation.transcript,
-      conversation.call_duration_secs ?? null
+      callDuration
     );
 
     if (!transcriptId) {
