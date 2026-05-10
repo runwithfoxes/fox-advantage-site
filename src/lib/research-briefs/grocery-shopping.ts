@@ -2,8 +2,8 @@ import type { ResearchBrief } from "./types";
 
 const groceryShoppingBrief: ResearchBrief = {
   id: "grocery-shopping",
-  name: "Weekly Grocery Shopping",
-  topic: "Understanding real grocery shopping behaviour, choices, and habits",
+  name: "Weekly Food Shopping",
+  topic: "Understanding real food shopping behaviour, choices, and habits",
   style: "behavioural",
 
   objectives: [
@@ -15,7 +15,7 @@ const groceryShoppingBrief: ResearchBrief = {
   ],
 
   opening:
-    "Hi, I'm Isa. I'm doing a quick research conversation about grocery shopping. Nothing complicated, I just want to hear about your actual shop last week. What you bought, where you went, that kind of thing. Should only take a few minutes. Sound alright?",
+    "Hi, I'm Isa. I'm doing a quick research conversation about food shopping. Nothing complicated, I just want to hear about your actual shop last week. What you bought, where you went, that kind of thing. Should only take a few minutes. Sound alright?",
 
   firstQuestion:
     "So, last week. Did you do a big shop or was it more of a bits-and-pieces week?",
@@ -149,7 +149,7 @@ const groceryShoppingBrief: ResearchBrief = {
     {
       name: "overall_sentiment",
       type: "sentiment",
-      question: "Overall sentiment toward their grocery shopping experience",
+      question: "Overall sentiment toward their food shopping experience",
     },
   ],
 
