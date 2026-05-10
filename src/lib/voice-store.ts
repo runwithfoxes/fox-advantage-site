@@ -48,6 +48,12 @@ export async function getOrCreateVoiceRespondent(
     await sql<VoiceRespondent>`SELECT * FROM voice_respondents WHERE ref_id = ${refId}`;
   if (existing.rows.length > 0) return existing.rows[0];
 
+  if (phone) {
+    const byPhone =
+      await sql<VoiceRespondent>`SELECT * FROM voice_respondents WHERE phone = ${phone}`;
+    if (byPhone.rows.length > 0) return byPhone.rows[0];
+  }
+
   const inserted =
     await sql<VoiceRespondent>`INSERT INTO voice_respondents (ref_id, brief_id, phone) VALUES (${refId}, ${briefId}, ${phone || null}) RETURNING *`;
   return inserted.rows[0];

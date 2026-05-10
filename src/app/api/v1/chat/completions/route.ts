@@ -8,6 +8,7 @@ import {
 import {
   getVoiceRespondentContext,
   getVoiceRespondentContextByPhone,
+  getOrCreateVoiceRespondent,
 } from "@/lib/voice-store";
 import { Redis } from "@upstash/redis";
 
@@ -69,6 +70,11 @@ export async function POST(req: Request) {
       previousWaves = await getVoiceRespondentContextByPhone(callerPhone);
       if (previousWaves) await redis.set(cacheKey, previousWaves, { ex: CONTEXT_CACHE_TTL });
     }
+  }
+
+  // Ensure respondent exists with phone number so webhook and future calls can find them
+  if (callerPhone && messages.length <= 2) {
+    getOrCreateVoiceRespondent(callerPhone, briefId, callerPhone).catch(() => {});
   }
 
   const systemPrompt = buildVoiceSystemPrompt(brief, previousWaves);
