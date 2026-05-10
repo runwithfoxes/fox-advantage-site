@@ -48,6 +48,10 @@ export async function POST(req: Request) {
   const callerPhone =
     elevenlabs_extra_body?.caller_phone_number ||
     elevenlabs_extra_body?.phone_number;
+  if (elevenlabs_extra_body) {
+    console.log("[voice-proxy] extra_body keys:", JSON.stringify(Object.keys(elevenlabs_extra_body)));
+    console.log("[voice-proxy] phone:", callerPhone);
+  }
   const briefId =
     elevenlabs_extra_body?.brief_id ||
     process.env.DEFAULT_BRIEF_ID ||

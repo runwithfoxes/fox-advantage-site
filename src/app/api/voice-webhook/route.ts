@@ -66,11 +66,14 @@ export async function POST(req: Request) {
     return new Response("Missing required fields", { status: 400 });
   }
 
-  console.log("[voice-webhook] processing conversation:", conversation.conversation_id);
+  console.log("[voice-webhook] raw keys:", JSON.stringify(Object.keys(raw)));
+  console.log("[voice-webhook] data keys:", JSON.stringify(Object.keys(conversation)));
+  console.log("[voice-webhook] metadata:", JSON.stringify(conversation.metadata));
+  console.log("[voice-webhook] conversation_id:", conversation.conversation_id);
 
   const respondentId = conversation.metadata?.respondent_id || conversation.conversation_id;
   const briefId = conversation.metadata?.brief_id || "ai-research";
-  const phone = conversation.metadata?.phone;
+  const phone = conversation.metadata?.phone || conversation.metadata?.caller_phone_number || conversation.metadata?.customer_phone_number;
 
   const brief = getBrief(briefId) || getDefaultBrief();
 
