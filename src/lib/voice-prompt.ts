@@ -243,8 +243,12 @@ Instead:
 - The respondent should be doing 80% of the talking.`;
   }
 
+  const nameGreeting = knowledge?.name
+    ? `Hi, is that ${knowledge.name}? It's Isa again, we chatted a while back.`
+    : `Hi, it's Isa again. Good to talk to you.`;
+
   context += `\n\nRETURNING RESPONDENT OPENING (use instead of standard opening):
-"Hi, it's Isa again. Good to talk to you. So, same thing as last time, I just want to hear about your week. ${brief.style === "behavioural" ? brief.firstQuestion : `How are things going with ${brief.topic.toLowerCase()}?`}"`;
+"${nameGreeting} So, same thing as last time, I just want to hear about your week. ${brief.style === "behavioural" ? brief.firstQuestion : `How are things going with ${brief.topic.toLowerCase()}?`}"`;
 
   return context;
 }
