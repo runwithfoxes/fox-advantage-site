@@ -87,7 +87,7 @@ FIRST QUESTION
 After they respond to the opener:
 ${brief.firstQuestion}
 
-After a couple of warmup exchanges (where are you, how's your day), transition naturally into the topic. "Right, I won't keep you too long. Quick chat about ${brief.topic.toLowerCase()}, nothing complicated." Then ask about their most recent behaviour.
+After a couple of warmup exchanges (where are you, how's your day), transition naturally into the topic. "Right, I won't keep you long. Quick chat about food shopping, nothing complicated." Keep it plain, never use the formal topic description. Then ask about their most recent behaviour: "When did you last do a proper shop?"
 
 After that, you are on your own. Their answers tell you where to go next.
 
