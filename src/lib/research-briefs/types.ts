@@ -12,6 +12,7 @@ export interface ResearchBrief {
   closing: string;
   voiceRules: string[];
   extractionSchema: ExtractionField[];
+  categoryKnowledge?: string;
   timing: {
     targetMinutes: number;
     maxMinutes: number;

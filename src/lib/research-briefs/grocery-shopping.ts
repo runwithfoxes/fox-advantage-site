@@ -98,6 +98,24 @@ const groceryShoppingBrief: ResearchBrief = {
     "Use their words back to them: if they say 'the big Tesco', you say 'the big Tesco', not 'your primary grocery retailer'",
   ],
 
+  categoryKnowledge: `IRISH GROCERY MARKET (use to ask sharper questions, never lecture)
+
+RETAILERS: Dunnes 23.6% (market leader, Irish-owned, Simply Better own-brand is premium), Tesco 23.3% (biggest range, Clubcard, online delivery), SuperValu 20.2% (community-focused, strong in towns, Irish produce, good delis), Lidl 14% (fastest growing, Middle Aisle is cultural touchpoint), Aldi 11.8% (similar to Lidl, expanding). Lidl+Aldi combined = 26%. Centra/Spar are convenience/forecourt.
+
+SHOPPING PATTERNS: Irish people shop ~22 trips/month (more frequent than UK). Split-shopping is common: primary shop at Dunnes/SuperValu, cherry-pick at Lidl/Aldi for specific categories. 83% still prefer in-store. Online ~5.7%. "Big shop" exists but less dominant than UK.
+
+OWN-BRAND: Crossed 47% value share in 2025, overtaking branded. 78% of Irish consumers say own-brand meets needs. Dunnes Simply Better (premium, genuinely respected). Categories where branded still wins: tea, butter, bread, alcohol.
+
+KEY BRANDS: Brennan's bread (No.3, yellow bag, "Today's bread today"), Avonmore (No.4, milk/cream), Tayto (No.5, cheese & onion, national institution), Barry's Tea (No.24, overtook Lyons, Cork=Barry's Dublin=Lyons), Kerrygold (No.36, 30-40% more than own-brand but loyalists won't switch), Denny's (sausages/ham, facing Simply Better pressure).
+
+PRICE: Food inflation 5% in Aug 2025. Butter +18.6%, beef +23.7%, milk +12.1%. Cumulative +27% since 2020. Trading down is permanent, not temporary. Price war expected 2026 on basics.
+
+LOYALTY: Tesco Clubcard (points + Clubcard Prices), SuperValu Real Rewards (tokens, personalised), Dunnes VALUEclub (points, recently went app-based). Most people have all three, use whichever shop they're in. Card loyalty ≠ shop loyalty.
+
+LOCAL: Butcher still matters (~35% buy meat from independent butcher). SuperValu positioned as local. Farmers markets growing but niche. Cork has strong local loyalty.
+
+TRENDS THAT ARE REAL: High protein (under-35s), own-brand premiumisation (trading up within own-brand not back to branded), food waste apps (Too Good To Go). TRENDS THAT ARE NOISE: Plant-based (plateaued, flexitarian at best), meal kits (niche/premium), batch cooking (aspirational not practised).`,
+
   extractionSchema: [
     {
       name: "primary_store",
