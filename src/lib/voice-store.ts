@@ -1,11 +1,14 @@
 import { sql } from "@vercel/postgres";
+import type { RespondentKnowledge } from "./voice-prompt";
 
 export interface VoiceRespondent {
   id: number;
   ref_id: string;
   phone: string | null;
   email: string | null;
+  name: string | null;
   brief_id: string;
+  knowledge: RespondentKnowledge | null;
   created_at: string;
 }
 
@@ -51,7 +54,13 @@ export async function getOrCreateVoiceRespondent(
 }
 
 export async function getVoiceRespondentContext(refId: string): Promise<
-  | { wave: number; completedAt: string; summary: string | null; extractedData: Record<string, unknown> | null }[]
+  | {
+      wave: number;
+      completedAt: string;
+      summary: string | null;
+      extractedData: Record<string, unknown> | null;
+      knowledge: RespondentKnowledge | null;
+    }[]
   | undefined
 > {
   if (!isConfigured()) return undefined;
@@ -65,11 +74,14 @@ export async function getVoiceRespondentContext(refId: string): Promise<
 
   if (transcripts.rows.length === 0) return undefined;
 
+  const knowledge = respondent.rows[0].knowledge;
+
   return transcripts.rows.map((t) => ({
     wave: t.wave,
     completedAt: t.created_at,
     summary: t.ai_summary,
     extractedData: t.structured_data,
+    knowledge,
   }));
 }
 
@@ -106,6 +118,54 @@ export async function saveVoiceExtraction(
   }
 }
 
+export async function saveRespondentKnowledge(
+  refId: string,
+  newKnowledge: {
+    name?: string | null;
+    facts: string[];
+    patterns: string[];
+    open_threads: string[];
+  }
+): Promise<void> {
+  if (!isConfigured()) return;
+
+  const respondent =
+    await sql<VoiceRespondent>`SELECT * FROM voice_respondents WHERE ref_id = ${refId}`;
+  if (respondent.rows.length === 0) return;
+
+  const existing = respondent.rows[0].knowledge;
+
+  const merged: RespondentKnowledge = {
+    name: newKnowledge.name || existing?.name || undefined,
+    callCount: (existing?.callCount ?? 0) + 1,
+    lastCallDate: new Date().toISOString(),
+    facts: deduplicateAndMerge(existing?.facts ?? [], newKnowledge.facts),
+    patterns: deduplicateAndMerge(
+      existing?.patterns ?? [],
+      newKnowledge.patterns
+    ),
+    openThreads: newKnowledge.open_threads,
+  };
+
+  if (newKnowledge.name) {
+    await sql`UPDATE voice_respondents SET knowledge = ${JSON.stringify(merged)}::jsonb, name = ${newKnowledge.name} WHERE ref_id = ${refId}`;
+  } else {
+    await sql`UPDATE voice_respondents SET knowledge = ${JSON.stringify(merged)}::jsonb WHERE ref_id = ${refId}`;
+  }
+}
+
+function deduplicateAndMerge(existing: string[], incoming: string[]): string[] {
+  const all = [...existing, ...incoming];
+  const unique: string[] = [];
+  for (const item of all) {
+    const normalised = item.toLowerCase().trim();
+    if (!unique.some((u) => u.toLowerCase().trim() === normalised)) {
+      unique.push(item);
+    }
+  }
+  return unique;
+}
+
 export async function saveVoiceEmail(
   refId: string,
   email: string
@@ -114,7 +174,9 @@ export async function saveVoiceEmail(
   await sql`UPDATE voice_respondents SET email = ${email} WHERE ref_id = ${refId}`;
 }
 
-export async function getNextWaveNumber(respondentId: number): Promise<number> {
+export async function getNextWaveNumber(
+  respondentId: number
+): Promise<number> {
   const result = await sql<{ max_wave: number | null }>`
     SELECT MAX(wave) as max_wave FROM voice_transcripts WHERE respondent_id = ${respondentId}`;
   return (result.rows[0]?.max_wave ?? 0) + 1;

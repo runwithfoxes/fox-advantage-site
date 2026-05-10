@@ -2,10 +2,12 @@ export interface ResearchBrief {
   id: string;
   name: string;
   topic: string;
-  thesis: string;
+  style: "thesis" | "behavioural";
+  thesis?: string;
+  objectives: string[];
   opening: string;
   firstQuestion: string;
-  moves: BriefMove[];
+  questionAreas: QuestionArea[];
   probingRules: string[];
   closing: string;
   voiceRules: string[];
@@ -14,6 +16,12 @@ export interface ResearchBrief {
     targetMinutes: number;
     maxMinutes: number;
   };
+}
+
+export interface QuestionArea {
+  topic: string;
+  starterQuestion: string;
+  probes: string[];
 }
 
 export interface BriefMove {

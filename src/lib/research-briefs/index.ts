@@ -1,8 +1,10 @@
 import type { ResearchBrief } from "./types";
 import aiResearchBrief from "./ai-research";
+import groceryShoppingBrief from "./grocery-shopping";
 
 const briefs: Record<string, ResearchBrief> = {
   "ai-research": aiResearchBrief,
+  "grocery-shopping": groceryShoppingBrief,
 };
 
 export function getBrief(id: string): ResearchBrief | null {
@@ -17,4 +19,4 @@ export function listBriefs(): { id: string; name: string }[] {
   return Object.values(briefs).map((b) => ({ id: b.id, name: b.name }));
 }
 
-export type { ResearchBrief, BriefMove, ExtractionField } from "./types";
+export type { ResearchBrief, BriefMove, ExtractionField, QuestionArea } from "./types";

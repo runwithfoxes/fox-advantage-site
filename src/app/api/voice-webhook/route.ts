@@ -1,12 +1,17 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { generateText } from "ai";
 import { getBrief, getDefaultBrief } from "@/lib/research-briefs";
-import { buildExtractionPrompt, buildSummaryPrompt } from "@/lib/voice-prompt";
+import {
+  buildExtractionPrompt,
+  buildSummaryPrompt,
+  buildKnowledgeExtractionPrompt,
+} from "@/lib/voice-prompt";
 import {
   getOrCreateVoiceRespondent,
   createVoiceTranscript,
   saveVoiceExtraction,
   saveVoiceEmail,
+  saveRespondentKnowledge,
   getNextWaveNumber,
 } from "@/lib/voice-store";
 
@@ -95,20 +100,27 @@ export async function POST(req: Request) {
       apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
     });
 
-    const [extractionResult, summaryResult] = await Promise.all([
-      generateText({
-        model: provider("claude-haiku-4-5-20251001"),
-        system: buildExtractionPrompt(brief),
-        messages: [{ role: "user", content: transcriptText }],
-        maxOutputTokens: 500,
-      }),
-      generateText({
-        model: provider("claude-haiku-4-5-20251001"),
-        system: buildSummaryPrompt(brief),
-        messages: [{ role: "user", content: transcriptText }],
-        maxOutputTokens: 200,
-      }),
-    ]);
+    const [extractionResult, summaryResult, knowledgeResult] =
+      await Promise.all([
+        generateText({
+          model: provider("claude-haiku-4-5-20251001"),
+          system: buildExtractionPrompt(brief),
+          messages: [{ role: "user", content: transcriptText }],
+          maxOutputTokens: 500,
+        }),
+        generateText({
+          model: provider("claude-haiku-4-5-20251001"),
+          system: buildSummaryPrompt(brief),
+          messages: [{ role: "user", content: transcriptText }],
+          maxOutputTokens: 200,
+        }),
+        generateText({
+          model: provider("claude-haiku-4-5-20251001"),
+          system: buildKnowledgeExtractionPrompt(brief),
+          messages: [{ role: "user", content: transcriptText }],
+          maxOutputTokens: 800,
+        }),
+      ]);
 
     let structuredData: Record<string, unknown> = {};
     try {
@@ -118,6 +130,13 @@ export async function POST(req: Request) {
     }
 
     await saveVoiceExtraction(transcriptId, structuredData, summaryResult.text);
+
+    try {
+      const knowledge = JSON.parse(knowledgeResult.text);
+      await saveRespondentKnowledge(respondentId, knowledge);
+    } catch {
+      console.error("[voice-webhook] failed to parse knowledge:", knowledgeResult.text);
+    }
 
     const emailMatch = transcriptText.match(
       /(?:email|e-mail).*?([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/i

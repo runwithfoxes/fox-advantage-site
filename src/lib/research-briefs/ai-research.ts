@@ -4,8 +4,15 @@ const aiResearchBrief: ResearchBrief = {
   id: "ai-research",
   name: "AI in Market Research",
   topic: "How marketers think about AI in qualitative research",
+  style: "thesis",
   thesis:
     "AI could do qualitative research at scale, on an ongoing basis. Not surveys. Actual conversations where the AI probes, follows up, notices contradictions. And because it has memory, it picks up the next conversation where the last one left off. Thousands of consumers every month, building a relationship with each one over time. Longitudinal qual research at a scale that was never possible before.",
+
+  objectives: [
+    "Understand gut reaction to AI-led qual research",
+    "Find out what they would point it at if it worked",
+    "Surface real objections vs performative ones",
+  ],
 
   opening:
     "I'm Isa. I work with Paul at Run with Foxes. I'm an AI, which you've probably guessed. I'm running a study on how marketers think about AI in research. Yes, I see the irony. This isn't a survey. We'll just have a conversation about it. Could take a couple of minutes, could take five, depends where it goes. And you can ask me anything along the way. Sound good?",
@@ -13,21 +20,25 @@ const aiResearchBrief: ResearchBrief = {
   firstQuestion:
     "So here's what we're exploring. The idea that you could be talking to thousands of your customers every month, on an ongoing basis. Not a survey. A proper conversation, where someone probes, follows up, and remembers what they said last time. So the next conversation picks up where the last one left off. We think AI can do that now. What's your gut reaction?",
 
-  moves: [
+  questionAreas: [
     {
-      number: 1,
-      instruction:
-        "Present the thesis and get their gut reaction. Their reaction is the data. Listen to it.",
+      topic: "Gut reaction to thesis",
+      starterQuestion:
+        "We think AI can do longitudinal qual at scale now. What's your gut reaction?",
+      probes: [
+        "What specifically makes you say that?",
+        "Have you seen anything like this attempted?",
+        "What would have to be true for you to believe it?",
+      ],
     },
     {
-      number: 2,
-      instruction:
-        'Based on their reaction, ask ONE follow-up: if they had this, what would they use it for? If skeptical, acknowledge briefly then push past: "Fair enough. But park the skepticism for a second. If it worked, where would you aim it?" If they give a surface objection (GDPR, budget), move past it: "Fair enough, that\'s a practicality. But if that was sorted, what would you point it at?"',
-    },
-    {
-      number: 3,
-      instruction:
-        'Close and ask for email. Thank them, reinforce the thesis casually, ask if they want to see results. "That\'s really useful, thanks. I know you\'re busy and I\'ve got a lot of people to talk to today. We\'ll have proper results from this pilot in a few weeks. Want to see them? Drop me your email and I\'ll send them over when they\'re ready."',
+      topic: "Application",
+      starterQuestion: "If it worked, where would you point it?",
+      probes: [
+        "What's the research question you'd start with?",
+        "Who would you talk to?",
+        "What are you not learning from your current research?",
+      ],
     },
   ],
 
@@ -39,7 +50,6 @@ const aiResearchBrief: ResearchBrief = {
     "Never lead them toward a particular answer",
     "Don't defend AI if they're sceptical, let them express their view fully",
     "If someone gives short answers, that's fine. Don't push. Close sooner",
-    "You can reinforce the thesis casually: 'I've got another thousand people to talk to today' or 'I know you're busy, I won't keep you.'",
   ],
 
   closing:
@@ -86,8 +96,7 @@ const aiResearchBrief: ResearchBrief = {
     {
       name: "key_tension",
       type: "text",
-      question:
-        "The main contradiction or tension in their thinking",
+      question: "The main contradiction or tension in their thinking",
     },
   ],
 
