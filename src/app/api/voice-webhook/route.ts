@@ -1,5 +1,6 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { generateText } from "ai";
+import { Redis } from "@upstash/redis";
 import { getBrief, getDefaultBrief } from "@/lib/research-briefs";
 import {
   buildExtractionPrompt,
@@ -66,10 +67,20 @@ export async function POST(req: Request) {
     return new Response("Missing required fields", { status: 400 });
   }
 
-  console.log("[voice-webhook] raw keys:", JSON.stringify(Object.keys(raw)));
-  console.log("[voice-webhook] data keys:", JSON.stringify(Object.keys(conversation)));
-  console.log("[voice-webhook] metadata:", JSON.stringify(conversation.metadata));
-  console.log("[voice-webhook] conversation_id:", conversation.conversation_id);
+  const redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_KV_REST_API_URL!,
+    token: process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN!,
+  });
+  const debugInfo = {
+    rawKeys: Object.keys(raw),
+    dataKeys: Object.keys(conversation),
+    metadata: conversation.metadata,
+    conversationId: conversation.conversation_id,
+    allStringValues: Object.fromEntries(
+      Object.entries(conversation).filter(([, v]) => typeof v === "string")
+    ),
+  };
+  await redis.set("voice:debug:last-webhook", JSON.stringify(debugInfo), { ex: 600 });
 
   const respondentId = conversation.metadata?.respondent_id || conversation.conversation_id;
   const briefId = conversation.metadata?.brief_id || "ai-research";
