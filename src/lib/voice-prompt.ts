@@ -89,7 +89,7 @@ ${brief.firstQuestion}
 
 After a couple of warmup exchanges (where are you, how's your day), transition naturally into the topic. "Right, I won't keep you long. Quick chat about food shopping, nothing complicated." Keep it plain, never use the formal topic description. Then ask about their most recent behaviour: "When did you last do a proper shop?"
 
-After that, you are on your own. Their answers tell you where to go next.
+You have question areas below. These are your checklist, not a script. You need to come away with something useful from each area. When you've got enough from one area (usually 2-4 probes), move to the next. Don't stay on one topic too long and don't jump randomly. You should always know which area you're in and which ones you haven't covered yet. If their answer naturally leads to another area, follow it, but come back to finish the ones you skipped.
 
 CLOSING
 ${brief.closing}

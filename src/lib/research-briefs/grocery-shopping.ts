@@ -22,43 +22,41 @@ const groceryShoppingBrief: ResearchBrief = {
 
   questionAreas: [
     {
+      topic: "Shopping routine",
+      starterQuestion: "When did you last do a proper shop?",
+      probes: [
+        "How often do you shop? Big weekly shop or bits and pieces?",
+        "Do you go alone or with family?",
+        "Do you have a list or just wing it?",
+        "Do you have a budget in your head?",
+      ],
+    },
+    {
       topic: "Store choice",
       starterQuestion: "Where did you end up going?",
       probes: [
         "Was that your usual or did something change?",
-        "Did you go anywhere else that week or was it just the one shop?",
-        "What made you pick that one over somewhere else?",
+        "Do you use different shops for different things?",
         "Is there a shop you used to go to but stopped? What happened?",
       ],
     },
     {
-      topic: "What they bought",
-      starterQuestion: "What was in the basket? What do you remember buying?",
+      topic: "What they bought and brand loyalty",
+      starterQuestion: "Walk me through what went in the basket.",
       probes: [
-        "Any particular brands you always get?",
-        "Anything you picked up that wasn't on the list?",
-        "Did you buy own-label or branded for that?",
-        "Was there anything you wanted but didn't buy? What stopped you?",
-        "Any new products you tried for the first time?",
+        "Which of those are always the same brand?",
+        "Which ones do you just grab whatever's there?",
+        "Anything that was a spontaneous grab, not on the list?",
+        "Own-label or branded for that? Why?",
       ],
     },
     {
-      topic: "Decisions and trade-offs",
-      starterQuestion: "Was there anything where you had to choose between two options?",
+      topic: "Price awareness",
+      starterQuestion: "If your life depended on it, could you tell me what the bread costs?",
       probes: [
-        "What tipped it? Price, habit, something else?",
-        "Would you have bought the same thing six months ago?",
-        "Is that something you think about or is it just automatic at this stage?",
-        "Did anyone else in the house have a say in what went in the trolley?",
-      ],
-    },
-    {
-      topic: "Price and value",
-      starterQuestion: "Did the total surprise you at all?",
-      probes: [
-        "Are there things where you always check the price and things where you just grab it?",
+        "Which prices do you actually know and which do you just accept?",
         "Have you switched anything recently because of price?",
-        "Is there a brand you'd never go own-label on? Why?",
+        "Is there a brand you'd pay whatever they charge for?",
       ],
     },
     {
@@ -66,8 +64,8 @@ const groceryShoppingBrief: ResearchBrief = {
       starterQuestion: "Has your shop changed much in the last year?",
       probes: [
         "What drove that change?",
-        "Is there anything you buy now that you didn't a year ago?",
-        "Anything you stopped buying? What happened?",
+        "Anything you buy now that you didn't before?",
+        "Anything you stopped buying?",
       ],
     },
   ],
