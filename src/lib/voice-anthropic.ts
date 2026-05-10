@@ -24,7 +24,13 @@ export async function* streamAnthropicAsOpenAI(
 ): AsyncGenerator<string> {
   const stream = anthropic.messages.stream({
     model: "claude-sonnet-4-20250514",
-    system: systemPrompt,
+    system: [
+      {
+        type: "text",
+        text: systemPrompt,
+        cache_control: { type: "ephemeral" },
+      },
+    ],
     messages,
     max_tokens: maxTokens,
   });

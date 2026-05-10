@@ -9,6 +9,13 @@ import {
   getVoiceRespondentContext,
   getVoiceRespondentContextByPhone,
 } from "@/lib/voice-store";
+import { Redis } from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_KV_REST_API_URL!,
+  token: process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN!,
+});
+const CONTEXT_CACHE_TTL = 600;
 
 export const maxDuration = 60;
 
@@ -47,11 +54,21 @@ export async function POST(req: Request) {
 
   const brief = getBrief(briefId) || getDefaultBrief();
 
-  let previousWaves;
-  if (respondentId) {
-    previousWaves = await getVoiceRespondentContext(respondentId);
-  } else if (callerPhone) {
-    previousWaves = await getVoiceRespondentContextByPhone(callerPhone);
+  const lookupKey = respondentId || callerPhone;
+  const cacheKey = lookupKey ? `voice:ctx:${lookupKey}` : null;
+
+  let previousWaves: Awaited<ReturnType<typeof getVoiceRespondentContext>>;
+  if (cacheKey) {
+    const cached = await redis.get<typeof previousWaves>(cacheKey);
+    if (cached) {
+      previousWaves = cached;
+    } else if (respondentId) {
+      previousWaves = await getVoiceRespondentContext(respondentId);
+      if (previousWaves) await redis.set(cacheKey, previousWaves, { ex: CONTEXT_CACHE_TTL });
+    } else if (callerPhone) {
+      previousWaves = await getVoiceRespondentContextByPhone(callerPhone);
+      if (previousWaves) await redis.set(cacheKey, previousWaves, { ex: CONTEXT_CACHE_TTL });
+    }
   }
 
   const systemPrompt = buildVoiceSystemPrompt(brief, previousWaves);
