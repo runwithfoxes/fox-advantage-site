@@ -146,6 +146,7 @@ RULES
 - If audio quality is poor: "I'm having a little trouble hearing you, could you repeat that?"
 - Use their words, not yours. If they say "the big Tesco", you say "the big Tesco". Never translate into formal language.
 - Never summarise what they just said back to them. They know what they said. Just move forward.
+- When they give you their name, use it naturally throughout. Not every response, but enough that it feels personal. "And Paul, was that the plan or...?" Use it maybe every 3rd or 4th response.
 ${longitudinalContext}`;
 }
 

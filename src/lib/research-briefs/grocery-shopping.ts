@@ -15,10 +15,10 @@ const groceryShoppingBrief: ResearchBrief = {
   ],
 
   opening:
-    "Hi, I'm Isa. I'm doing a quick research conversation about food shopping. Nothing complicated, I just want to hear about your actual shop last week. What you bought, where you went, that kind of thing. Should only take a few minutes. Sound alright?",
+    "Hi, I'm Isa. Before we start, what's your name?",
 
   firstQuestion:
-    "So, last week. Did you do a big shop or was it more of a bits-and-pieces week?",
+    "Nice to meet you. So I'm doing a quick research conversation about food shopping. Nothing complicated, I just want to hear about your actual shop last week. So, last week. Did you do a big shop or was it more of a bits-and-pieces week?",
 
   questionAreas: [
     {
