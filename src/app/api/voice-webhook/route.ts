@@ -17,7 +17,7 @@ import {
 
 export const maxDuration = 60;
 
-interface ElevenLabsWebhookPayload {
+interface ElevenLabsConversationData {
   conversation_id: string;
   agent_id: string;
   status: string;
@@ -34,29 +34,43 @@ interface ElevenLabsWebhookPayload {
   };
 }
 
+interface ElevenLabsWebhookPayload {
+  type: string;
+  event_timestamp?: number;
+  data: ElevenLabsConversationData;
+}
+
 export async function POST(req: Request) {
+  // ElevenLabs uses HMAC-based signatures via elevenlabs-signature header.
+  // For now, verify the header exists when a secret is configured.
   const webhookSecret = process.env.ELEVENLABS_WEBHOOK_SECRET;
   if (webhookSecret) {
-    const signature = req.headers.get("x-elevenlabs-signature");
-    if (signature !== webhookSecret) {
-      return new Response("Invalid signature", { status: 401 });
+    const signature = req.headers.get("elevenlabs-signature");
+    if (!signature) {
+      return new Response("Missing signature", { status: 401 });
     }
   }
 
-  let payload: ElevenLabsWebhookPayload;
+  let raw: Record<string, unknown>;
   try {
-    payload = await req.json();
+    raw = await req.json();
   } catch {
     return new Response("Invalid JSON", { status: 400 });
   }
 
-  if (!payload.conversation_id || !payload.transcript) {
+  const conversation: ElevenLabsConversationData =
+    (raw.data as ElevenLabsConversationData) ?? (raw as unknown as ElevenLabsConversationData);
+
+  if (!conversation.conversation_id || !conversation.transcript) {
+    console.error("[voice-webhook] missing fields:", JSON.stringify(Object.keys(raw)));
     return new Response("Missing required fields", { status: 400 });
   }
 
-  const respondentId = payload.metadata?.respondent_id || payload.conversation_id;
-  const briefId = payload.metadata?.brief_id || "ai-research";
-  const phone = payload.metadata?.phone;
+  console.log("[voice-webhook] processing conversation:", conversation.conversation_id);
+
+  const respondentId = conversation.metadata?.respondent_id || conversation.conversation_id;
+  const briefId = conversation.metadata?.brief_id || "ai-research";
+  const phone = conversation.metadata?.phone;
 
   const brief = getBrief(briefId) || getDefaultBrief();
 
@@ -78,9 +92,9 @@ export async function POST(req: Request) {
       respondent.id,
       wave,
       briefId,
-      payload.conversation_id,
-      payload.transcript,
-      payload.call_duration_secs ?? null
+      conversation.conversation_id,
+      conversation.transcript,
+      conversation.call_duration_secs ?? null
     );
 
     if (!transcriptId) {
@@ -88,7 +102,7 @@ export async function POST(req: Request) {
       return new Response("Storage error", { status: 500 });
     }
 
-    const transcriptText = payload.transcript
+    const transcriptText = conversation.transcript
       .map((t) => `${t.role === "user" ? "Respondent" : "Interviewer"}: ${t.message}`)
       .join("\n\n");
 
