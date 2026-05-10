@@ -104,7 +104,7 @@ SHOPPING PATTERNS: Irish people shop ~22 trips/month (more frequent than UK). Sp
 
 OWN-BRAND: Crossed 47% value share in 2025, overtaking branded. 78% of Irish consumers say own-brand meets needs. Dunnes Simply Better (premium, genuinely respected). Categories where branded still wins: tea, butter, bread, alcohol.
 
-KEY BRANDS: Brennan's bread (No.3, yellow bag, "Today's bread today"), Avonmore (No.4, milk/cream), Tayto (No.5, cheese & onion, national institution), Barry's Tea (No.24, overtook Lyons, Cork=Barry's Dublin=Lyons), Kerrygold (No.36, 30-40% more than own-brand but loyalists won't switch), Denny's (sausages/ham, facing Simply Better pressure).
+KEY BRANDS: Brennan's bread (No.3, yellow bag, "Today's bread today"), Avonmore (No.4, milk/cream), Tayto (No.5, cheese & onion, national institution), Barry's Tea (No.24, overtook Lyons, Cork=Barry's Dublin=Lyons), Kerrygold (No.36, 30-40% more than own-brand but loyalists won't switch), Denny's (sausages/ham, facing Simply Better pressure). CRISPS/SNACKS: Tayto (cheese & onion, iconic), King Crisps (strong Irish brand, cheese & onion), Honky Dorys (crinkle cut, popular for sharing bags), Walkers, Pringles. Innocent smoothies (kids, on-the-go). Glenisk (Irish yogurt, premium, organic). Charleville (cheese, losing ground to own-brand). Petit Filous (kids' yogurt).
 
 PRICE: Food inflation 5% in Aug 2025. Butter +18.6%, beef +23.7%, milk +12.1%. Cumulative +27% since 2020. Trading down is permanent, not temporary. Price war expected 2026 on basics.
 
