@@ -20,6 +20,66 @@ const CONTEXT_CACHE_TTL = 600;
 
 export const maxDuration = 60;
 
+async function resolveCallerPhone(
+  messages: OpenAIMessage[],
+  elevenlabsExtraBody?: Record<string, string>
+): Promise<string | undefined> {
+  // 1. Check elevenlabs_extra_body (outbound calls pass phone here)
+  const fromBody =
+    elevenlabsExtraBody?.caller_phone_number ||
+    elevenlabsExtraBody?.phone_number;
+  if (fromBody) return fromBody;
+
+  // 2. Check system message for dynamic variable substitution
+  const systemMsg = messages.find((m) => m.role === "system");
+  if (systemMsg?.content) {
+    const match = systemMsg.content.match(/CALLER_PHONE:\s*(\+\d{6,15})/);
+    if (match) return match[1];
+  }
+
+  // 3. Check Redis cache (set by previous turn's ElevenLabs API lookup)
+  const cached = await redis.get<string>("voice:current-caller-phone");
+  if (cached) return cached;
+
+  // 4. On turn 2+, query ElevenLabs API for the active conversation's phone
+  if (messages.length > 2 && process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_AGENT_ID) {
+    try {
+      const listResp = await fetch(
+        `https://api.elevenlabs.io/v1/convai/conversations?agent_id=${process.env.ELEVENLABS_AGENT_ID}&page_size=3`,
+        { headers: { "xi-api-key": process.env.ELEVENLABS_API_KEY } }
+      );
+      const listData = await listResp.json();
+      const conversations = listData.conversations || [];
+
+      // Find an active conversation (not "done") or the most recent one started within 5 minutes
+      const nowSecs = Date.now() / 1000;
+      const active = conversations.find(
+        (c: { status: string; start_time_unix_secs: number }) =>
+          c.status !== "done" || (nowSecs - c.start_time_unix_secs < 300)
+      );
+      if (!active) return undefined;
+
+      const detailResp = await fetch(
+        `https://api.elevenlabs.io/v1/convai/conversations/${active.conversation_id}`,
+        { headers: { "xi-api-key": process.env.ELEVENLABS_API_KEY } }
+      );
+      const detail = await detailResp.json();
+      const phone =
+        detail.user_id ||
+        (detail.metadata?.phone_call as { external_number?: string })?.external_number;
+
+      if (phone && /^\+\d{6,15}$/.test(phone)) {
+        await redis.set("voice:current-caller-phone", phone, { ex: CONTEXT_CACHE_TTL });
+        return phone;
+      }
+    } catch {
+      // Non-critical — proceed without phone
+    }
+  }
+
+  return undefined;
+}
+
 export async function POST(req: Request) {
   if (!process.env.CHAT_ANTHROPIC_API_KEY) {
     return new Response("Service not configured", { status: 503 });
@@ -45,26 +105,18 @@ export async function POST(req: Request) {
   }
 
   const respondentId = elevenlabs_extra_body?.respondent_id;
-  const callerPhone =
-    elevenlabs_extra_body?.caller_phone_number ||
-    elevenlabs_extra_body?.phone_number;
+  const callerPhone = await resolveCallerPhone(messages, elevenlabs_extra_body);
 
   if (messages.length <= 2) {
-    const allBodyKeys = Object.keys(body);
-    const headerEntries: Record<string, string> = {};
-    req.headers.forEach((v, k) => { headerEntries[k] = v; });
-    const nonMessageBody = Object.fromEntries(
-      Object.entries(body).filter(([k]) => k !== "messages")
-    );
     const systemMsg = messages.find((m: OpenAIMessage) => m.role === "system");
     await redis.set("voice:debug:last-proxy", JSON.stringify({
-      allBodyKeys,
-      nonMessageBody,
+      allBodyKeys: Object.keys(body),
+      resolvedPhone: callerPhone || null,
       systemMessageContent: systemMsg?.content || null,
       messageCount: messages.length,
-      firstMessageRole: messages[0]?.role,
     }), { ex: 3600 });
   }
+
   const briefId =
     elevenlabs_extra_body?.brief_id ||
     process.env.DEFAULT_BRIEF_ID ||
@@ -89,7 +141,6 @@ export async function POST(req: Request) {
     }
   }
 
-  // Ensure respondent exists with phone number so webhook and future calls can find them
   if (callerPhone && messages.length <= 2) {
     getOrCreateVoiceRespondent(callerPhone, briefId, callerPhone).catch(() => {});
   }
