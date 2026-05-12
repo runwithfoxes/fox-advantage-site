@@ -56,10 +56,11 @@ export async function POST(req: Request) {
     const nonMessageBody = Object.fromEntries(
       Object.entries(body).filter(([k]) => k !== "messages")
     );
+    const systemMsg = messages.find((m: OpenAIMessage) => m.role === "system");
     await redis.set("voice:debug:last-proxy", JSON.stringify({
       allBodyKeys,
       nonMessageBody,
-      headers: headerEntries,
+      systemMessageContent: systemMsg?.content?.substring(0, 500) || null,
       messageCount: messages.length,
       firstMessageRole: messages[0]?.role,
     }), { ex: 3600 });
