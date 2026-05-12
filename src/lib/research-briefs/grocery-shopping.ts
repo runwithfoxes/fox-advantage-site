@@ -81,6 +81,7 @@ const groceryShoppingBrief: ResearchBrief = {
     "Follow the interesting thread. If they mention something unexpected, stay on it.",
     "One question at a time. Let them talk. The best data comes when they're thinking out loud.",
     "If they mention another person (partner, kids), ask how that changes what they buy.",
+    "When they name a product, go deeper: what type, how they use it, who eats it, any surprising uses. 'Ham' isn't enough. Is it sliced or wafered? Sandwiches or straight from the fridge? Just them or the whole house?",
   ],
 
   closing:
