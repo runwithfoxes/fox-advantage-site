@@ -48,13 +48,21 @@ export async function POST(req: Request) {
   const callerPhone =
     elevenlabs_extra_body?.caller_phone_number ||
     elevenlabs_extra_body?.phone_number;
-  if (elevenlabs_extra_body && messages.length <= 2) {
+
+  if (messages.length <= 2) {
+    const allBodyKeys = Object.keys(body);
+    const headerEntries: Record<string, string> = {};
+    req.headers.forEach((v, k) => { headerEntries[k] = v; });
+    const nonMessageBody = Object.fromEntries(
+      Object.entries(body).filter(([k]) => k !== "messages")
+    );
     await redis.set("voice:debug:last-proxy", JSON.stringify({
-      extraBodyKeys: Object.keys(elevenlabs_extra_body),
-      callerPhone,
-      respondentId,
-      allValues: elevenlabs_extra_body,
-    }), { ex: 600 });
+      allBodyKeys,
+      nonMessageBody,
+      headers: headerEntries,
+      messageCount: messages.length,
+      firstMessageRole: messages[0]?.role,
+    }), { ex: 3600 });
   }
   const briefId =
     elevenlabs_extra_body?.brief_id ||

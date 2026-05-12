@@ -74,14 +74,18 @@ export async function POST(req: Request) {
   });
   const debugInfo = {
     rawKeys: Object.keys(raw),
+    rawType: (raw as Record<string, unknown>).type,
     dataKeys: Object.keys(conversation),
     metadata: conversation.metadata,
+    userId: conversation.user_id,
+    agentId: conversation.agent_id,
     conversationId: conversation.conversation_id,
     allStringValues: Object.fromEntries(
       Object.entries(conversation).filter(([, v]) => typeof v === "string")
     ),
+    resolvedPhone: conversation.user_id || (conversation.metadata?.phone_call as Record<string, unknown>)?.external_number || null,
   };
-  await redis.set("voice:debug:last-webhook", JSON.stringify(debugInfo), { ex: 600 });
+  await redis.set("voice:debug:last-webhook", JSON.stringify(debugInfo), { ex: 3600 });
 
   // For inbound phone calls, ElevenLabs puts the caller's number in user_id and metadata.phone_call.external_number
   const phoneCall = conversation.metadata?.phone_call as { external_number?: string } | undefined;
@@ -156,7 +160,8 @@ export async function POST(req: Request) {
 
     let structuredData: Record<string, unknown> = {};
     try {
-      structuredData = JSON.parse(extractionResult.text);
+      const extractionJson = extractionResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/, "");
+      structuredData = JSON.parse(extractionJson);
     } catch {
       console.error("[voice-webhook] failed to parse extraction:", extractionResult.text);
     }
@@ -164,8 +169,9 @@ export async function POST(req: Request) {
     await saveVoiceExtraction(transcriptId, structuredData, summaryResult.text);
 
     try {
-      const knowledge = JSON.parse(knowledgeResult.text);
-      await saveRespondentKnowledge(respondentId, knowledge);
+      const knowledgeJson = knowledgeResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/,"");
+      const knowledge = JSON.parse(knowledgeJson);
+      await saveRespondentKnowledge(respondent.ref_id, knowledge);
     } catch {
       console.error("[voice-webhook] failed to parse knowledge:", knowledgeResult.text);
     }
