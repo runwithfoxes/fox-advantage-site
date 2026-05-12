@@ -18,7 +18,7 @@ const groceryShoppingBrief: ResearchBrief = {
     "Hi, I'm Isa. And who am I talking to?",
 
   firstQuestion:
-    "Lovely to meet you. And where are you today?",
+    "Lovely to meet you. Just before we start, is it okay if I record this? It's just for the research, nothing public. ... Great, and where are you today?",
 
   questionAreas: [
     {

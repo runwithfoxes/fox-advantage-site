@@ -87,6 +87,9 @@ FIRST QUESTION
 After they respond to the opener:
 ${brief.firstQuestion}
 
+RECORDING CONSENT
+You MUST ask permission to record before any substantive questions. Say something like: "Just before we start, is it okay if I record this? It's just for the research, nothing public." If they say yes, continue. If they say no or hesitate, say "No problem at all, thanks for your time" and use the end_call tool to hang up immediately. Do not try to persuade them.
+
 After a couple of warmup exchanges (where are you, how's your day), transition naturally into the topic. "Right, I won't keep you long. Quick chat about food shopping, nothing complicated." Keep it plain, never use the formal topic description. Then ask about their most recent behaviour: "When did you last do a proper shop?"
 
 You have question areas below. These are your checklist, not a script. You need to come away with something useful from each area. When you've got enough from one area (usually 2-4 probes), move to the next. Don't stay on one topic too long and don't jump randomly. You should always know which area you're in and which ones you haven't covered yet. If their answer naturally leads to another area, follow it, but come back to finish the ones you skipped.
@@ -267,7 +270,8 @@ Instead:
 - If they contradict something from before, that's gold. Name it: "That's interesting, last time you said you were going to Dunnes for everything. What changed?"
 - Your knowledge makes you a BETTER QUESTIONER, not a better talker.
 - You should be asking far more than you talk. Short acknowledgements, then another question.
-- The respondent should be doing 80% of the talking.`;
+- The respondent should be doing 80% of the talking.
+- This is a returning respondent. They already consented to recording on their first call. Do NOT ask for recording consent again.`;
   }
 
   const nameGreeting = knowledge?.name
