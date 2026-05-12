@@ -51,12 +51,23 @@ async function resolveCallerPhone(
       const listData = await listResp.json();
       const conversations = listData.conversations || [];
 
-      // Find an active conversation (not "done") or the most recent one started within 5 minutes
       const nowSecs = Date.now() / 1000;
       const active = conversations.find(
         (c: { status: string; start_time_unix_secs: number }) =>
           c.status !== "done" || (nowSecs - c.start_time_unix_secs < 300)
       );
+
+      await redis.set("voice:debug:lookup", JSON.stringify({
+        messageCount: messages.length,
+        conversationCount: conversations.length,
+        statuses: conversations.map((c: { status: string; start_time_unix_secs: number; conversation_id: string }) => ({
+          id: c.conversation_id,
+          status: c.status,
+          ageSecs: Math.round(nowSecs - c.start_time_unix_secs),
+        })),
+        activeFound: active?.conversation_id || null,
+      }), { ex: 3600 });
+
       if (!active) return undefined;
 
       const detailResp = await fetch(
@@ -68,12 +79,20 @@ async function resolveCallerPhone(
         detail.user_id ||
         (detail.metadata?.phone_call as { external_number?: string })?.external_number;
 
+      await redis.set("voice:debug:lookup-detail", JSON.stringify({
+        conversationId: active.conversation_id,
+        userId: detail.user_id,
+        phoneFromMeta: (detail.metadata?.phone_call as { external_number?: string })?.external_number,
+        resolvedPhone: phone,
+        phoneValid: phone ? /^\+\d{6,15}$/.test(phone) : false,
+      }), { ex: 3600 });
+
       if (phone && /^\+\d{6,15}$/.test(phone)) {
         await redis.set("voice:current-caller-phone", phone, { ex: CONTEXT_CACHE_TTL });
         return phone;
       }
-    } catch {
-      // Non-critical — proceed without phone
+    } catch (err) {
+      await redis.set("voice:debug:lookup-error", String(err), { ex: 3600 });
     }
   }
 
