@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     await redis.set("voice:debug:last-proxy", JSON.stringify({
       allBodyKeys,
       nonMessageBody,
-      systemMessageContent: systemMsg?.content?.substring(0, 500) || null,
+      systemMessageContent: systemMsg?.content || null,
       messageCount: messages.length,
       firstMessageRole: messages[0]?.role,
     }), { ex: 3600 });
