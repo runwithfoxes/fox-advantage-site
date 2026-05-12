@@ -86,14 +86,7 @@ export async function POST(req: Request) {
     elevenlabs_extra_body?.caller_phone_number ||
     elevenlabs_extra_body?.phone_number;
 
-  // Layer 2: system message dynamic variable
-  if (!callerPhone) {
-    const systemMsg = messages.find((m: OpenAIMessage) => m.role === "system");
-    const match = systemMsg?.content?.match(/CALLER_PHONE:\s*(\+\d{6,15})/);
-    if (match) callerPhone = match[1];
-  }
-
-  // Layer 3: Redis cache from previous turn
+  // Layer 2: Redis cache from previous turn
   if (!callerPhone) {
     const cached = await redis.get<string>(PHONE_CACHE_KEY);
     if (cached) callerPhone = cached;
@@ -111,17 +104,6 @@ export async function POST(req: Request) {
       // Non-critical
     }
   }
-
-  // Debug: log resolution result on every turn
-  await redis.set(
-    "voice:debug:phone-resolution",
-    JSON.stringify({
-      messageCount: messages.length,
-      resolvedPhone: callerPhone || null,
-      timestamp: new Date().toISOString(),
-    }),
-    { ex: 3600 }
-  );
 
   const respondentId = elevenlabs_extra_body?.respondent_id;
   const briefId =
