@@ -15,57 +15,22 @@ const PERSONAS: Persona[] = [
   {
     id: "commercial-manager",
     name: "The Commercial Manager",
-    short: "Revenue, margin, implementation. Impatient with theory.",
+    short: "Where's the money? Named customer, named volume, named price. No purchase order, no programme.",
     colour: "#3A7CA5",
-    group: "marketing",
-  },
-  {
-    id: "growth-leader",
-    name: "The Growth Marketing Leader",
-    short: "Measurement, incrementality, channel economics. Dashboards lie.",
-    colour: "#2E8BC0",
-    group: "marketing",
-  },
-  {
-    id: "cmo",
-    name: "The CMO",
-    short: "Brand health, distinctive assets, fame. Binet & Field, Ehrenberg-Bass.",
-    colour: "#1A3A4E",
-    group: "marketing",
-  },
-  {
-    id: "professor",
-    name: "The Marketing Professor",
-    short: "Evidence, rigour, theory informing practice. Fox, not hedgehog.",
-    colour: "#6B5CE7",
     group: "marketing",
   },
   {
     id: "rumelt",
     name: "The Strategy Purist",
-    short: "Diagnosis, guiding policy, coherent actions. No dog's dinners.",
+    short: "Diagnosis, guiding policy, coherent actions. Finds where the narrative and the numbers diverge.",
     colour: "#E74C3C",
-    group: "strategy",
-  },
-  {
-    id: "byron-sharp",
-    name: "The Effectiveness Expert",
-    short: "Penetration, mental availability, distinctive assets. Where's the evidence?",
-    colour: "#FFB900",
     group: "strategy",
   },
   {
     id: "consulting-partner",
     name: "The Consulting Partner",
-    short: "Choice cascade, where to play, how to win. Be more specific.",
+    short: "What would need to be true? Tests every condition. Names the choice you're avoiding.",
     colour: "#00A676",
-    group: "strategy",
-  },
-  {
-    id: "jtbd",
-    name: "The Customer Investigator",
-    short: "Real customer circumstances, timeline reconstruction, the four forces.",
-    colour: "#FF6B3D",
     group: "strategy",
   },
 ];
@@ -242,7 +207,7 @@ export default function ExpertsPage() {
         position: "relative",
       }}
     >
-      {/* NAV — same as homepage, always in scrolled state */}
+      {/* NAV - same as homepage, always in scrolled state */}
       <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
         <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
         <div className="hp-nav-links">
@@ -435,82 +400,7 @@ export default function ExpertsPage() {
           </div>
         </div>
 
-        {/* Marketing Personas */}
-        <div style={{ marginBottom: 32 }}>
-          <h2
-            style={{
-              fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-              fontSize: 11,
-              letterSpacing: 2,
-              textTransform: "uppercase" as const,
-              color: "var(--text-muted, #8A8A85)",
-              marginBottom: 16,
-            }}
-          >
-            Marketing Experts
-          </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-              gap: 12,
-            }}
-          >
-            {PERSONAS.filter((p) => p.group === "marketing").map((persona) => (
-              <button
-                key={persona.id}
-                onClick={() => handleSubmit(persona.id)}
-                disabled={!plan.trim() || loading}
-                style={{
-                  padding: "16px 16px 14px",
-                  background:
-                    selectedPersona === persona.id
-                      ? persona.colour
-                      : "#fff",
-                  color:
-                    selectedPersona === persona.id
-                      ? "#fff"
-                      : "var(--text, #1D1B1B)",
-                  border: `1px solid ${
-                    selectedPersona === persona.id
-                      ? persona.colour
-                      : "var(--border, #E0E0DC)"
-                  }`,
-                  borderRadius: 8,
-                  cursor: plan.trim() && !loading ? "pointer" : "default",
-                  textAlign: "left" as const,
-                  transition: "all 0.2s ease",
-                  opacity: !plan.trim() || loading ? 0.5 : 1,
-                  borderTop: `3px solid ${persona.colour}`,
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "var(--sans, 'Space Grotesk', sans-serif)",
-                    fontSize: 14,
-                    fontWeight: 500,
-                    marginBottom: 6,
-                  }}
-                >
-                  {persona.name}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--mono, 'JetBrains Mono', monospace)",
-                    fontSize: 11,
-                    fontWeight: 300,
-                    lineHeight: 1.6,
-                    opacity: selectedPersona === persona.id ? 0.85 : 0.6,
-                  }}
-                >
-                  {persona.short}
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Strategy Personas */}
+        {/* The Panel */}
         <div style={{ marginBottom: 48 }}>
           <h2
             style={{
@@ -522,16 +412,16 @@ export default function ExpertsPage() {
               marginBottom: 16,
             }}
           >
-            Strategy Experts
+            Choose an expert
           </h2>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 12,
             }}
           >
-            {PERSONAS.filter((p) => p.group === "strategy").map((persona) => (
+            {PERSONAS.map((persona) => (
               <button
                 key={persona.id}
                 onClick={() => handleSubmit(persona.id)}
