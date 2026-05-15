@@ -40,7 +40,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
         <Link href="/" className="chapter-nav-logo">
           /<span>Run</span>withfoxes
         </Link>
-        <Link href="/#chapters" className="chapter-nav-back">
+        <Link href="/book#chapters" className="chapter-nav-back">
           ← chapters
         </Link>
         <div className="chapter-nav-count">
@@ -53,7 +53,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
         <div className="chapter-inner">
           <div className="chapter-header">
             <div className="chapter-part-label">
-              \part_{String(chapter.part).padStart(2, "0")} — {chapter.partName}
+              \part_{String(chapter.part).padStart(2, "0")} - {chapter.partName}
             </div>
             <div className="chapter-number">
               chapter {num}
@@ -95,8 +95,8 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
       {/* Bottom bar */}
       <div className="chapter-bottom-bar">
         <Link href="/">#home</Link>
-        <Link href="/#chapters" className="active">chapters.md</Link>
-        <Link href="/#signup">/get_the_book</Link>
+        <Link href="/book#chapters" className="active">chapters.md</Link>
+        <Link href="/book#signup">/get_the_book</Link>
       </div>
     </div>
   );

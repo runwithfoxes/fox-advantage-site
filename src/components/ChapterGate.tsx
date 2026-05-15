@@ -16,7 +16,7 @@ export default function ChapterGate({ chapter }: Props) {
     <div className="chapter-page">
       {/* Same nav as ChapterReader */}
       <header className="chapter-nav">
-        <Link href="/#chapters" className="chapter-nav-back">
+        <Link href="/book#chapters" className="chapter-nav-back">
           ← back to chapters
         </Link>
         <div className="chapter-nav-count">
@@ -28,7 +28,7 @@ export default function ChapterGate({ chapter }: Props) {
       <div className="chapter-gate">
         <div className="chapter-gate-inner">
           <div className="chapter-gate-label">
-            \part_{String(chapter.part).padStart(2, "0")} — {chapter.partName}
+            \part_{String(chapter.part).padStart(2, "0")} - {chapter.partName}
           </div>
           <h1 className="chapter-gate-title">
             {chapter.title}
@@ -36,7 +36,7 @@ export default function ChapterGate({ chapter }: Props) {
           <p className="chapter-gate-text">
             This chapter isn&apos;t published yet. Parts 1 and 2 are free to read now. Sign up and we&apos;ll let you know when the rest lands.
           </p>
-          <Link href="/#signup" className="chapter-gate-btn">
+          <Link href="/book#signup" className="chapter-gate-btn">
             get notified
           </Link>
         </div>
@@ -45,8 +45,8 @@ export default function ChapterGate({ chapter }: Props) {
       {/* Same bottom bar as ChapterReader */}
       <div className="chapter-bottom-bar">
         <Link href="/">#home</Link>
-        <Link href="/#chapters" className="active">chapters.md</Link>
-        <Link href="/#signup">/get_the_book</Link>
+        <Link href="/book#chapters" className="active">chapters.md</Link>
+        <Link href="/book#signup">/get_the_book</Link>
       </div>
     </div>
   );

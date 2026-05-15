@@ -32,7 +32,7 @@ export default function AnswersPage() {
         <nav>
           <Link href="/#projects">/projects</Link>
           <Link href="/contact">/contact</Link>
-          <Link href="/#signup" className="cta-bar">
+          <Link href="/book#signup" className="cta-bar">
             /get_the_book
           </Link>
         </nav>
@@ -125,10 +125,10 @@ export default function AnswersPage() {
       <div className="footer-spacer" />
       <div className="bottom-bar">
         <Link href="/">#home</Link>
-        <Link href="/#chapters">chapters.md</Link>
+        <Link href="/book#chapters">chapters.md</Link>
         <Link href="/answers" className="active">/answers</Link>
         <Link href="/contact">/contact</Link>
-        <Link href="/#signup" className="cta-bar">
+        <Link href="/book#signup" className="cta-bar">
           get the book
         </Link>
       </div>
