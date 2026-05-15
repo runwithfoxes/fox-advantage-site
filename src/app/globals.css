@@ -2009,7 +2009,7 @@ a.project-card {
   padding: 80px 0;
 }
 
-/* Centred body column — narrative content lives here */
+/* Centred body column - narrative content lives here */
 .proj-body {
   max-width: 720px;
   margin-left: auto;
@@ -2318,7 +2318,7 @@ a.project-card {
   opacity: 0;
 }
 
-/* Trigger on scroll — grey years draw first, then a pause, then 2020 */
+/* Trigger on scroll - grey years draw first, then a pause, then 2020 */
 .proj-chart-visible .proj-chart-line-0 {
   animation: chartDraw 2s ease-out 0.2s forwards;
 }
@@ -3280,7 +3280,7 @@ a.project-card {
 }
 
 /* ================================================================
-   HOMEPAGE (hp- prefix) — ported from wireframe-full.html
+   HOMEPAGE (hp- prefix) - ported from wireframe-full.html
    ================================================================ */
 
 /* ---- HP NAV ---- */

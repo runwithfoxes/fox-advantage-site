@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run with Foxes — The AI marketing team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root {
+  --orange: #F47521;
+  --orange-hover: #E06A1A;
+  --charcoal: #355E4C;
+  --cream: #F7EAD9;
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --muted: #8A8A85;
+  --border: #E0E0DC;
+  --card-hover: #F5F5F0;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+
+body {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--orange); text-decoration: none; transition: opacity 0.3s ease-out; }
+a:hover { opacity: 0.7; }
+a:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+strong { font-weight: 500; }
+
+/* ---- SKIP LINK ---- */
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  background: var(--orange); color: var(--bg);
+  padding: 8px 16px; z-index: 200;
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus { top: 16px; opacity: 1; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+}
+nav.scrolled {
+  background: rgba(250,250,248,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-brand {
+  font-family: var(--mono); font-size: 13px; font-weight: 300;
+  letter-spacing: 2px; color: var(--muted); text-decoration: none;
+}
+.nav-brand span { color: var(--orange); }
+.nav-links {
+  display: flex; gap: 32px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--muted); text-decoration: none; white-space: nowrap;
+  transition: color 0.3s ease-out;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--orange); opacity: 1; }
+
+/* ---- DOT GRIDS ---- */
+.dot-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.4;
+}
+.dot-grid-dark {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, #F47521 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.08;
+}
+
+/* ---- REVEAL ---- */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ---- TYPOGRAPHY ---- */
+h1 {
+  font-family: var(--sans); font-weight: 300;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -1px; line-height: 1.1;
+}
+h2 {
+  font-family: var(--sans); font-weight: 300;
+  font-size: clamp(32px, 4vw, 56px);
+  letter-spacing: -1px; line-height: 1.1;
+  margin-bottom: 16px;
+}
+h3 {
+  font-family: var(--sans); font-weight: 400;
+  font-size: 24px; letter-spacing: -0.5px;
+}
+.section-label {
+  font-size: 11px; font-weight: 400; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 16px;
+}
+
+/* ---- LAYOUT ---- */
+section { padding: 120px 0; position: relative; overflow: hidden; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+.section-dark { background: var(--charcoal); color: var(--cream); }
+.section-dark h2 { color: var(--cream); }
+
+/* ---- HERO ---- */
+.hero { padding: 140px 0 80px; }
+.hero h1 { max-width: 800px; margin-bottom: 24px; }
+.hero h1 em { font-style: normal; color: var(--orange); }
+.hero .hero-sub {
+  color: var(--muted); max-width: 560px;
+  font-size: 1.0625rem; margin-bottom: 40px;
+}
+.hero-cta {
+  display: inline-block; background: var(--orange); color: var(--bg);
+  font-family: var(--mono); font-size: 12px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 2px;
+  padding: 14px 28px; text-decoration: none;
+  transition: background 0.3s ease-out;
+}
+.hero-cta:hover { background: var(--orange-hover); opacity: 1; }
+
+/* ---- SPECTRUM BAR ---- */
+.spectrum-bar {
+  display: flex; gap: 1px; margin-top: 64px;
+  border: 1px solid var(--border);
+}
+.spectrum-seg {
+  flex: 1; padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.spectrum-seg .seg-icon {
+  width: 32px; height: 32px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.spectrum-seg .seg-icon svg { width: 20px; height: 20px; }
+.spectrum-seg .seg-text { display: flex; flex-direction: column; }
+.seg-title {
+  font-family: var(--sans); font-size: 14px; font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.seg-desc {
+  font-size: 11px; font-weight: 300; color: var(--muted);
+  line-height: 1.5; margin-top: 2px;
+}
+.seg-full { background: var(--charcoal); }
+.seg-full .seg-title { color: var(--cream); }
+.seg-full .seg-desc { color: rgba(247,234,217,0.5); }
+.seg-full .seg-icon svg { stroke: var(--orange); }
+.seg-assist { background: var(--cream); }
+.seg-assist .seg-icon svg { stroke: var(--charcoal); }
+.seg-coach { background: var(--bg); }
+.seg-coach .seg-icon svg { stroke: var(--muted); }
+
+/* ---- AGENT WORKFLOW DIAGRAMS ---- */
+.workflow {
+  margin-top: 24px; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 0;
+  padding: 16px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.workflow::-webkit-scrollbar { display: none; }
+
+.agent-node {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 10px 20px 10px 10px;
+  flex-shrink: 0;
+  transition: background 0.3s ease-out;
+}
+.agent-node:hover { background: var(--card-hover); }
+
+.agent-avatar {
+  width: 44px; height: 44px;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-weight: 500; font-size: 18px;
+  color: var(--charcoal); flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+.agent-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.agent-avatar::after {
+  content: '';
+  position: absolute; inset: 0;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.agent-info { display: flex; flex-direction: column; gap: 1px; }
+.agent-name {
+  font-family: var(--sans); font-weight: 500; font-size: 15px;
+  color: var(--text); letter-spacing: -0.3px;
+}
+.agent-role {
+  font-family: var(--mono); font-size: 11px; font-weight: 300;
+  color: var(--muted); letter-spacing: 0;
+}
+
+.workflow-arrow {
+  flex-shrink: 0;
+  display: flex; align-items: center;
+  padding: 0 6px;
+}
+.workflow-arrow svg {
+  width: 32px; height: 12px;
+}
+.workflow-arrow svg line,
+.workflow-arrow svg polyline {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.workflow-divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 72px;
+  margin: 0 12px;
+  position: relative;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border) 0px, var(--border) 4px,
+    transparent 4px, transparent 8px
+  );
+}
+.workflow-divider-label {
+  position: absolute;
+  top: 50%; left: 10px;
+  transform: translateY(-50%);
+  font-size: 9px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--muted); white-space: nowrap;
+  writing-mode: vertical-rl;
+}
+
+.workflow-revision {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 4px; padding-left: 4px;
+}
+.workflow-revision svg {
+  width: 40px; height: 20px; flex-shrink: 0;
+}
+.workflow-revision svg path {
+  stroke: var(--border); stroke-width: 1.5;
+  fill: none; stroke-dasharray: 4 3;
+}
+.workflow-revision span {
+  font-size: 10px; color: var(--muted); font-style: italic;
+}
+
+/* Dark section workflow variants */
+.section-dark .agent-node {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+}
+.section-dark .agent-node:hover { background: rgba(255,255,255,0.1); }
+.section-dark .agent-name { color: var(--cream); }
+.section-dark .agent-role { color: rgba(255,255,255,0.4); }
+.section-dark .agent-avatar {
+  background: rgba(244,117,33,0.12); color: var(--orange);
+}
+.section-dark .workflow-arrow svg line,
+.section-dark .workflow-arrow svg polyline {
+  stroke: rgba(255,255,255,0.2);
+}
+
+/* ---- FUNCTION CARDS ---- */
+.functions-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border);
+  margin-top: 48px;
+}
+.function-card {
+  background: var(--bg); padding: 48px;
+  transition: background 0.3s ease-out;
+  position: relative;
+}
+.function-card:hover { background: var(--card-hover); }
+.function-card .card-tag {
+  font-size: 11px; font-weight: 400; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--orange); margin-bottom: 16px;
+}
+.function-card h3 { margin-bottom: 12px; }
+.function-card .card-desc {
+  font-size: 0.875rem; font-weight: 300; color: var(--muted);
+  line-height: 1.7; margin-bottom: 20px; max-width: 500px;
+}
+.function-card .card-more {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--orange); display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none; transition: opacity 0.3s ease-out;
+}
+.function-card .card-more:hover { opacity: 0.7; }
+.function-card.full-width { grid-column: 1 / -1; }
+
+/* Level badges */
+.card-level {
+  position: absolute; top: 48px; right: 48px;
+  font-family: var(--mono); font-size: 9px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 5px 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.card-level::before {
+  content: '';
+  width: 6px; height: 6px;
+  flex-shrink: 0;
+}
+.level-full {
+  background: var(--charcoal); color: var(--cream);
+}
+.level-full::before { background: var(--orange); }
+.level-assist {
+  background: var(--cream); color: var(--text);
+}
+.level-assist::before { background: var(--charcoal); }
+.level-coach {
+  background: var(--bg); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.level-coach::before { background: var(--muted); }
+
+/* ---- HOW IT WORKS ---- */
+.steps-list { margin-top: 48px; }
+.step-row {
+  display: flex; align-items: flex-start; gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(244,117,33,0.15);
+}
+.step-row:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--sans); font-weight: 300; font-size: 36px;
+  color: var(--orange); flex-shrink: 0; width: 48px;
+  letter-spacing: -1px;
+}
+.step-content { flex: 1; }
+.step-label {
+  font-family: var(--sans); font-weight: 400; font-size: 18px;
+  letter-spacing: -0.3px; margin-bottom: 8px; color: var(--cream);
+}
+.step-desc {
+  font-size: 0.875rem; font-weight: 300; color: rgba(247,234,217,0.6);
+  line-height: 1.7;
+}
+.step-who {
+  font-family: var(--mono); font-size: 9px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 5px 12px; flex-shrink: 0; align-self: center;
+  display: flex; align-items: center; gap: 6px;
+}
+.step-who::before {
+  content: ''; width: 6px; height: 6px; flex-shrink: 0;
+}
+.step-who.level-full { background: rgba(244,117,33,0.15); color: var(--orange); }
+.step-who.level-full::before { background: var(--orange); }
+.step-who.level-assist { background: rgba(247,234,217,0.1); color: var(--cream); }
+.step-who.level-assist::before { background: var(--cream); }
+
+/* ---- PROOF STATS ---- */
+.proof-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 48px;
+}
+.proof-card {
+  border: 1px solid var(--border); padding: 40px;
+  background: var(--bg);
+  transition: background 0.3s ease-out;
+}
+.proof-card:hover { background: var(--card-hover); }
+.proof-stat {
+  font-family: var(--sans); font-weight: 300; font-size: 36px;
+  color: var(--orange); margin-bottom: 12px; letter-spacing: -1px;
+  line-height: 1;
+}
+.proof-label {
+  font-size: 0.875rem; font-weight: 300; color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ---- CTA ---- */
+.cta-section { text-align: center; }
+.cta-section h2 { margin-bottom: 16px; }
+.cta-section p { color: var(--muted); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-btn {
+  display: inline-block; background: var(--orange); color: var(--bg);
+  font-family: var(--mono); font-size: 12px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 2px;
+  padding: 14px 28px; text-decoration: none;
+  transition: background 0.3s ease-out;
+}
+.cta-btn:hover { background: var(--orange-hover); opacity: 1; }
+
+/* ---- FOOTER ---- */
+footer {
+  border-top: 1px solid var(--border); padding: 48px 0;
+}
+footer .container { display: flex; justify-content: space-between; align-items: center; }
+.foot-brand {
+  font-family: var(--mono); font-size: 13px; font-weight: 300;
+  letter-spacing: 2px; color: var(--muted);
+}
+.foot-brand span { color: var(--orange); }
+.foot-credit { font-size: 11px; color: var(--muted); }
+
+/* ---- BACK TO TOP ---- */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px; z-index: 99;
+  width: 48px; height: 48px;
+  background: var(--charcoal); color: var(--cream);
+  border: none; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease-out, background 0.3s ease-out;
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--orange); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  section { padding: 80px 0; }
+  .hero { padding: 120px 0 60px; }
+  .functions-grid { grid-template-columns: 1fr; }
+  .function-card.full-width { grid-column: 1; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .spectrum-bar { flex-direction: column; }
+  .step-row { flex-direction: column; gap: 12px; }
+  .workflow { flex-wrap: wrap; gap: 8px; }
+  .workflow-divider { width: 100%; height: 1px; margin: 8px 0;
+    background: repeating-linear-gradient(to right, var(--border) 0px, var(--border) 4px, transparent 4px, transparent 8px);
+  }
+  .workflow-divider-label { writing-mode: horizontal-tb; top: -14px; left: 0; transform: none; }
+  nav .nav-links { display: none; }
+  .function-card { padding: 32px; }
+  .card-level { top: 32px; right: 32px; }
+  footer .container { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 380px) {
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav id="nav">
+  <a href="#" class="nav-brand">/<span>Run</span>withfoxes</a>
+  <div class="nav-links">
+    <a href="#">about</a>
+    <a href="#">chapters</a>
+    <a href="#" class="active">projects</a>
+    <a href="#">answers</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="main">
+  <div class="dot-grid"></div>
+  <div class="container">
+    <div class="section-label">/projects</div>
+    <h1 class="reveal">Your marketing team is <em>already too small.</em><br>We build the rest.</h1>
+    <p class="hero-sub reveal">We build AI into the marketing functions you don't have the people for. Not tools you have to learn. Teams that do the work.</p>
+    <a href="#functions" class="hero-cta reveal">See what we build &rarr;</a>
+
+    <div class="spectrum-bar reveal" style="margin-top: 64px;">
+      <div class="spectrum-seg seg-full">
+        <div class="seg-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="7"/>
+            <path d="M10 7v3l2 2"/>
+          </svg>
+        </div>
+        <div class="seg-text">
+          <div class="seg-title">AI does it</div>
+          <div class="seg-desc">Runs without you</div>
+        </div>
+      </div>
+      <div class="spectrum-seg seg-assist">
+        <div class="seg-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="10" r="4"/>
+            <circle cx="13" cy="10" r="4"/>
+          </svg>
+        </div>
+        <div class="seg-text">
+          <div class="seg-title">AI + human</div>
+          <div class="seg-desc">AI does the heavy lifting, you steer</div>
+        </div>
+      </div>
+      <div class="spectrum-seg seg-coach">
+        <div class="seg-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="8" r="4"/>
+            <path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
+        </div>
+        <div class="seg-text">
+          <div class="seg-title">Human leads</div>
+          <div class="seg-desc">AI coaches and challenges, you decide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE TEAM GRID ==================== -->
+<section id="functions">
+  <div class="dot-grid"></div>
+  <div class="container">
+    <div class="section-label reveal">/the_team</div>
+    <h2 class="reveal">Every function a marketing team needs</h2>
+
+    <div class="functions-grid">
+
+      <!-- 1. STRATEGY -->
+      <div class="function-card reveal">
+        <div class="card-tag">strategy</div>
+        <div class="card-level level-coach">human leads</div>
+        <h3>Strategy and positioning</h3>
+        <div class="card-desc">Trained on Rumelt, Roger Martin, Porter, Byron Sharp, Binet and Field. Walks your team through positioning, forces the hard trade-offs, pressure-tests the output.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">S</div>
+            <div class="agent-info">
+              <div class="agent-name">Scout</div>
+              <div class="agent-role">maps the landscape</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">A</div>
+            <div class="agent-info">
+              <div class="agent-name">Ada</div>
+              <div class="agent-role">challenges the thinking</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">P</div>
+            <div class="agent-info">
+              <div class="agent-name">Panel</div>
+              <div class="agent-role">stress-tests the output</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 2. COPYWRITER -->
+      <div class="function-card reveal">
+        <div class="card-tag">creative</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Brand copywriter</h3>
+        <div class="card-desc">Trained on your positioning, messaging framework, pain points, brand idea, tone of voice. The whole team writes in one voice.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">W</div>
+            <div class="agent-info">
+              <div class="agent-name">Writer</div>
+              <div class="agent-role">drafts the copy</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">V</div>
+            <div class="agent-info">
+              <div class="agent-name">Voice</div>
+              <div class="agent-role">checks the tone</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">Q</div>
+            <div class="agent-info">
+              <div class="agent-name">QA</div>
+              <div class="agent-role">brand compliance</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 3. BRIEFS -->
+      <div class="function-card reveal">
+        <div class="card-tag">planning</div>
+        <div class="card-level level-assist">AI + human</div>
+        <h3>Brief builder</h3>
+        <div class="card-desc">Forces marketers to make real trade-offs inside the brief. Single-minded proposition, not a wish list. Better briefs, better advertising.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">B</div>
+            <div class="agent-info">
+              <div class="agent-name">Brief</div>
+              <div class="agent-role">structures the ask</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">C</div>
+            <div class="agent-info">
+              <div class="agent-name">Critic</div>
+              <div class="agent-role">finds the gaps</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 4. MEASUREMENT -->
+      <div class="function-card reveal">
+        <div class="card-tag">measurement</div>
+        <div class="card-level level-coach">human leads</div>
+        <h3>Effectiveness coach</h3>
+        <div class="card-desc">Trains your team to categorise metrics properly: commercial, memory, activity, communication. Stops teams measuring what's easy. Starts them measuring what matters.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">M</div>
+            <div class="agent-info">
+              <div class="agent-name">Metrics</div>
+              <div class="agent-role">audits the framework</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">T</div>
+            <div class="agent-info">
+              <div class="agent-name">Trainer</div>
+              <div class="agent-role">coaches the team</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 5. EXPERT PANEL -->
+      <div class="function-card reveal">
+        <div class="card-tag">governance</div>
+        <div class="card-level level-assist">AI + human</div>
+        <h3>Expert panel</h3>
+        <div class="card-desc">Commercial experts, effectiveness specialists, growth strategists. Give them your plan and they find the gaps. Structured critique, not vibes.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">C</div>
+            <div class="agent-info">
+              <div class="agent-name">Commercial</div>
+              <div class="agent-role">revenue lens</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">E</div>
+            <div class="agent-info">
+              <div class="agent-name">Effectiveness</div>
+              <div class="agent-role">evidence lens</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">G</div>
+            <div class="agent-info">
+              <div class="agent-name">Growth</div>
+              <div class="agent-role">pipeline lens</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 6. PERFORMANCE CREATIVE -->
+      <div class="function-card reveal">
+        <div class="card-tag">performance</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Performance creative</h3>
+        <div class="card-desc">Headlines, ad formats, copy variants. Built for performance marketing where you need volume and variation. The creative team most companies can't keep busy.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">H</div>
+            <div class="agent-info">
+              <div class="agent-name">Headlines</div>
+              <div class="agent-role">writes the hooks</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">F</div>
+            <div class="agent-info">
+              <div class="agent-name">Formats</div>
+              <div class="agent-role">builds the ads</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">T</div>
+            <div class="agent-info">
+              <div class="agent-name">Test</div>
+              <div class="agent-role">variants and A/B</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 7. GROWTH ENGINE (full width) -->
+      <div class="function-card full-width reveal">
+        <div class="card-tag">growth</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Growth engine</h3>
+        <div class="card-desc" style="max-width: 700px;">Three agents working together. A substitute for the marketing team members you don't have. They generate a pipeline of leads, from content to conversion.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">R</div>
+            <div class="agent-info">
+              <div class="agent-name">Rex</div>
+              <div class="agent-role">writes the content</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">K</div>
+            <div class="agent-info">
+              <div class="agent-name">Kit</div>
+              <div class="agent-role">formats and publishes</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="workflow-divider">
+            <span class="workflow-divider-label">pipeline</span>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">G</div>
+            <div class="agent-info">
+              <div class="agent-name">Gail</div>
+              <div class="agent-role">analytics, lists, dedup</div>
+            </div>
+          </div>
+        </div>
+        <div class="workflow-revision">
+          <svg viewBox="0 0 40 20"><path d="M36,4 C36,4 30,4 24,4 C18,4 12,8 8,12 C6,14 4,16 4,16"/><polyline points="7,12 4,16 8,16" stroke="var(--border)" stroke-width="1.5" fill="none"/></svg>
+          <span>revision loop back to Rex</span>
+        </div>
+        <a href="#" class="card-more" style="margin-top: 12px;">see how it works &rarr;</a>
+      </div>
+
+      <!-- 8. INSIGHTS -->
+      <div class="function-card reveal">
+        <div class="card-tag">insights</div>
+        <div class="card-level level-assist">AI + human</div>
+        <h3>Insights agent</h3>
+        <div class="card-desc">Pulls from multiple sources, synthesises patterns, generates real insights. The kind of thinking that used to require a planner and a week.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">I</div>
+            <div class="agent-info">
+              <div class="agent-name">Iris</div>
+              <div class="agent-role">gathers signals</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">S</div>
+            <div class="agent-info">
+              <div class="agent-name">Synth</div>
+              <div class="agent-role">finds the pattern</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 9. BRANDED DECKS -->
+      <div class="function-card reveal">
+        <div class="card-tag">production</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Branded decks</h3>
+        <div class="card-desc">One prompt converts any document, presentation, or web page into your brand guidelines. Correct fonts, colours, layout. No more off-brand slides.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">D</div>
+            <div class="agent-info">
+              <div class="agent-name">Deck</div>
+              <div class="agent-role">formats the output</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 10. WEBSITE + CHATBOT -->
+      <div class="function-card reveal">
+        <div class="card-tag">digital</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Website and chatbot</h3>
+        <div class="card-desc">A full website built and hosted. Copy, artwork, UX, design, code. Plus a chatbot that identifies prospects and nudges them toward a meeting.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">S</div>
+            <div class="agent-info">
+              <div class="agent-name">Site</div>
+              <div class="agent-role">builds the pages</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">I</div>
+            <div class="agent-info">
+              <div class="agent-name">Isa</div>
+              <div class="agent-role">talks to visitors</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more">see how it works &rarr;</a>
+      </div>
+
+      <!-- 11. AI TEAM (full width) -->
+      <div class="function-card full-width reveal">
+        <div class="card-tag">operations</div>
+        <div class="card-level level-full">AI does it</div>
+        <h3>Your AI marketing team</h3>
+        <div class="card-desc" style="max-width: 700px;">A project manager, a growth executive, a commercial director. Named agents that run the back office while you do the work that matters.</div>
+        <div class="workflow">
+          <div class="agent-node">
+            <div class="agent-avatar">K</div>
+            <div class="agent-info">
+              <div class="agent-name">Klara</div>
+              <div class="agent-role">project manager</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">J</div>
+            <div class="agent-info">
+              <div class="agent-name">Jo</div>
+              <div class="agent-role">growth executive</div>
+            </div>
+          </div>
+          <div class="workflow-arrow"><svg viewBox="0 0 32 12"><line x1="0" y1="6" x2="26" y2="6"/><polyline points="22,2 28,6 22,10"/></svg></div>
+          <div class="agent-node">
+            <div class="agent-avatar">N</div>
+            <div class="agent-info">
+              <div class="agent-name">Nat</div>
+              <div class="agent-role">commercial director</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="card-more" style="margin-top: 12px;">see how it works &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HOW IT WORKS (DARK) ==================== -->
+<section class="section-dark">
+  <div class="dot-grid-dark"></div>
+  <div class="container">
+    <div class="section-label reveal">/how_it_works</div>
+    <h2 class="reveal">We build it. You own it. It runs.</h2>
+
+    <div class="steps-list">
+      <div class="step-row reveal">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-label">Discovery</div>
+          <div class="step-desc">We map your marketing team against the functions you actually need. Where are the gaps? What's being done badly? What's not being done at all?</div>
+        </div>
+        <div class="step-who level-assist">You + us</div>
+      </div>
+      <div class="step-row reveal">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-label">Build</div>
+          <div class="step-desc">We build the agents, train them on your brand, your voice, your data. Each one is custom. Not a template with your logo on it.</div>
+        </div>
+        <div class="step-who level-full">Us</div>
+      </div>
+      <div class="step-row reveal">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-label">Deploy</div>
+          <div class="step-desc">Your team starts using them. Through Claude, through your existing tools. No new platform to learn. No IT project.</div>
+        </div>
+        <div class="step-who level-assist">You + us</div>
+      </div>
+      <div class="step-row reveal">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-label">Run</div>
+          <div class="step-desc">The agents work. Some fully autonomously. Some alongside your people. A marketing team 3x the size at a fraction of the cost.</div>
+        </div>
+        <div class="step-who level-full">AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROOF ==================== -->
+<section>
+  <div class="dot-grid"></div>
+  <div class="container">
+    <div class="section-label reveal">/proof</div>
+    <h2 class="reveal">Built it. Run it. Shipped it.</h2>
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <div class="proof-stat">1 evening</div>
+        <div class="proof-label">To build a complete website with copy, design, UX, code, and hosting. No team needed.</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stat">3 agents</div>
+        <div class="proof-label">Running a growth engine that replaces a marketing team of three. Live for a client now.</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stat">54 chapters</div>
+        <div class="proof-label">A book written with AI as co-author. The Fox Advantage. Coming 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="reveal">Your team is already too small</h2>
+    <p class="reveal">We'll map your marketing functions in 30 minutes and show you what's possible.</p>
+    <a href="#" class="cta-btn reveal">Book a call &rarr;</a>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <div class="foot-brand">/<span>Run</span>withfoxes</div>
+    <div class="foot-credit">2026</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="btt" aria-label="Back to top">&uarr;</button>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Back to top
+  const btt = document.getElementById('btt');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 600);
+  });
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

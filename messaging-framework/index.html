@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>Messaging framework - Run with Foxes</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --orange: #F47521;
+    --orange-hover: #E06A1A;
+    --charcoal: #355E4C;
+    --cream: #F7EAD9;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 56px 64px 48px;
+    position: relative;
+  }
+
+  /* Subtle dot grid behind the doc */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+    background-size: 28px 28px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .page > * { position: relative; z-index: 1; }
+
+  /* ---- Doc header strip ---- */
+  .doc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .doc-head .lhs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+  .logo span { color: var(--orange); }
+  .doc-head .title {
+    font-family: var(--sans);
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    color: var(--text);
+  }
+  .doc-head .title .accent { color: var(--orange); }
+  .doc-head .rhs {
+    display: flex;
+    gap: 36px;
+    padding-bottom: 6px;
+  }
+  .doc-head .rhs .stamp .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .doc-head .rhs .stamp .val {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  .doc-head .rhs .stamp .val.orange { color: var(--orange); }
+
+  /* ---- Section ---- */
+  .section {
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    background: var(--bg);
+  }
+  .section-gutter {
+    border-right: 1px solid var(--border);
+    padding: 24px 22px;
+    background: var(--bg);
+  }
+  .section-num {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 44px;
+    color: var(--orange);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    line-height: 1.25;
+  }
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+  /* ---- Rows ---- */
+  .rows { display: flex; flex-direction: column; }
+  .rowx {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid var(--border);
+    min-height: 68px;
+    align-items: stretch;
+  }
+  .rowx:last-child { border-bottom: none; }
+  .rowx .k {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+  }
+  .rowx .v {
+    padding: 18px 24px;
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+  }
+  .rowx .v.sub {
+    font-size: 16px;
+  }
+  .rowx.hero .v {
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  /* Positioning statement block */
+  .statement {
+    padding: 26px 28px 30px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .statement .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .statement .txt {
+    font-family: var(--sans);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.38;
+    letter-spacing: -0.3px;
+  }
+  .statement .txt em {
+    color: var(--orange);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* ---- Pillar table ---- */
+  .pillar-table {
+    display: grid;
+    grid-template-columns: 150px 1fr 1fr 1fr 1fr;
+    background: var(--border);
+    gap: 1px;
+  }
+  .pc {
+    background: var(--bg);
+    padding: 16px 18px;
+    font-size: 13px;
+    line-height: 1.45;
+    min-height: 60px;
+  }
+  .pc.h {
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+  }
+  .pc.h.corner {
+    background: var(--charcoal);
+    color: rgba(247,234,217,0.55);
+  }
+  .pc.rowlabel {
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+  }
+  .pc.name {
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    color: var(--text);
+    background: var(--bg);
+    border-top: 3px solid var(--orange);
+  }
+  .pc.claim {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 1.35;
+    color: var(--text);
+  }
+  .pc.proof, .pc.contrast {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* ---- Pain-point table ---- */
+  .pain-table { display: flex; flex-direction: column; }
+  .pain-row {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    border-bottom: 1px solid var(--border);
+    min-height: 66px;
+  }
+  .pain-row:last-child { border-bottom: none; }
+  .pain-row .pain {
+    padding: 18px 24px;
+    border-right: 1px solid var(--border);
+    font-family: var(--sans);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--muted);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+  }
+  .pain-row .pain::before {
+    content: '"';
+    color: var(--orange);
+    font-size: 28px;
+    font-family: var(--sans);
+    font-weight: 400;
+    margin-right: 10px;
+    font-style: normal;
+    line-height: 0.5;
+    align-self: center;
+  }
+  .pain-row .msg {
+    padding: 18px 26px;
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+  }
+  .pain-header {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .pain-header > div {
+    padding: 12px 24px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .pain-header > div:first-child { border-right: 1px solid rgba(247,234,217,0.2); }
+
+  /* ---- Hierarchy block ---- */
+  .hier {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+  .hier .k {
+    padding: 22px 20px;
+    border-right: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    font-weight: 400;
+  }
+  .hier .v {
+    padding: 22px 26px;
+    background: var(--bg);
+  }
+  .hier .row-b { border-bottom: 1px solid var(--border); }
+  .hier-hero {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: -1.2px;
+    line-height: 1.02;
+    color: var(--text);
+  }
+  .hier-hero .accent { color: var(--orange); }
+  .hier-primary {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .hier-tag {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    letter-spacing: -0.2px;
+    color: var(--charcoal);
+  }
+
+  /* ---- Voice block ---- */
+  .voice-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .voice-col { padding: 24px 26px; background: var(--bg); }
+  .voice-col + .voice-col { border-left: 1px solid var(--border); padding: 0; }
+  .voice-head {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .voice-summary {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+  .pairs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .pair {
+    background: var(--bg);
+    padding: 11px 14px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    letter-spacing: -0.1px;
+  }
+  .pair .yes { color: var(--text); font-weight: 400; }
+  .pair .sep { color: var(--muted); font-size: 11px; font-weight: 300; }
+  .pair .no { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--orange); }
+
+  .never-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--charcoal);
+    height: 100%;
+  }
+  .never-col {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 20px 22px;
+    position: relative;
+  }
+  .never-col::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #F47521 0.8px, transparent 0.8px);
+    background-size: 28px 28px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .never-col > * { position: relative; z-index: 1; }
+  .never-col .hd {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,234,217,0.55);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .never-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .never-col li {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 400;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.3;
+  }
+  .never-col li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 400;
+  }
+
+  /* ---- Footer bar ---- */
+  .doc-foot {
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .doc-foot .accent { color: var(--orange); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ========== DOC HEADER ========== -->
+  <div class="doc-head">
+    <div class="lhs">
+      <div class="logo">/<span>Run</span>withfoxes</div>
+      <div class="title">Messaging framework.<br>One source of truth.</div>
+    </div>
+    <div class="rhs">
+      <div class="stamp">
+        <div class="lbl">Client</div>
+        <div class="val">Run with Foxes</div>
+      </div>
+      <div class="stamp">
+        <div class="lbl">Version</div>
+        <div class="val">v1.0</div>
+      </div>
+      <div class="stamp">
+        <div class="lbl">Status</div>
+        <div class="val orange">Locked</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 01 VALUE PROP ========== -->
+  <div class="section" style="border-top: 1px solid var(--border);">
+    <div class="section-gutter">
+      <div class="section-num">01</div>
+      <div class="section-title">Core value proposition</div>
+      <div class="section-sub">What the brand delivers, in four layers.</div>
+    </div>
+    <div>
+      <div class="rows">
+        <div class="rowx hero">
+          <div class="k">One-line value prop</div>
+          <div class="v">Marketing advice built on honest examination of what works.</div>
+        </div>
+        <div class="rowx">
+          <div class="k">Functional benefit</div>
+          <div class="v sub">A playbook for marketers tired of best practices that don't survive contact with reality.</div>
+        </div>
+        <div class="rowx">
+          <div class="k">Emotional benefit</div>
+          <div class="v sub">Relief. You're not the only one who saw the emperor had no clothes.</div>
+        </div>
+        <div class="rowx">
+          <div class="k">Social benefit</div>
+          <div class="v sub">Signals you're the marketer who reads the evidence, not the LinkedIn posts about the evidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 02 POSITIONING ========== -->
+  <div class="section">
+    <div class="section-gutter">
+      <div class="section-num">02</div>
+      <div class="section-title">Positioning</div>
+      <div class="section-sub">The space we occupy. Hardcoded.</div>
+    </div>
+    <div>
+      <div class="statement">
+        <div class="lbl">Positioning statement</div>
+        <div class="txt">
+          For <em>senior marketers</em> tired of recycled best practices, Run with Foxes is the <em>marketing playbook</em> that teaches what works. Built on two decades of <em>honest failure</em>, not theory.
+        </div>
+      </div>
+      <div class="rows">
+        <div class="rowx">
+          <div class="k">Category</div>
+          <div class="v sub">Marketing strategy, written from the field not the lectern.</div>
+        </div>
+        <div class="rowx">
+          <div class="k">Target audience</div>
+          <div class="v sub">Mid-career to senior marketers who've seen enough to know the textbook was wrong.</div>
+        </div>
+        <div class="rowx">
+          <div class="k">What makes us different</div>
+          <div class="v sub">Twenty years of getting it wrong in public, then writing it down.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 03 PILLARS ========== -->
+  <div class="section">
+    <div class="section-gutter">
+      <div class="section-num">03</div>
+      <div class="section-title">Messaging pillars</div>
+      <div class="section-sub">Four claims. Each with proof and contrast.</div>
+    </div>
+    <div>
+      <div class="pillar-table">
+        <div class="pc h corner">Pillar</div>
+        <div class="pc h">01 / Learning from failure</div>
+        <div class="pc h">02 / Evidence, not opinion</div>
+        <div class="pc h">03 / Fox thinking</div>
+        <div class="pc h">04 / Brand over activation</div>
+
+        <div class="pc rowlabel">Claim</div>
+        <div class="pc claim">The mistakes are the curriculum.</div>
+        <div class="pc claim">What works is a question of data, not taste.</div>
+        <div class="pc claim">Narrow expertise loses to broad pattern-matching.</div>
+        <div class="pc claim">95:5 is the most important number in marketing.</div>
+
+        <div class="pc rowlabel">Proof points</div>
+        <div class="pc proof">20 yrs of campaigns. Marketer of the Year 2022. More failed launches than anyone's willing to count.</div>
+        <div class="pc proof">Binet &amp; Field. Ehrenberg-Bass. IPA effectiveness papers. Read, digested, applied.</div>
+        <div class="pc proof">Borrows from psychology, behavioural economics, military strategy, architecture.</div>
+        <div class="pc proof">Harrison's audits find 95% of buyers aren't in-market today.</div>
+
+        <div class="pc rowlabel">Competitive contrast</div>
+        <div class="pc contrast">Others sell you the wins. We show you what broke on the way there.</div>
+        <div class="pc contrast">Most marketing advice is vibes in a carousel. This isn't.</div>
+        <div class="pc contrast">Specialists optimise one channel. Foxes see the whole system.</div>
+        <div class="pc contrast">Performance-first brands starve the top of the funnel, then wonder why CAC keeps rising.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 04 KEY MESSAGES BY PAIN POINT ========== -->
+  <div class="section">
+    <div class="section-gutter">
+      <div class="section-num">04</div>
+      <div class="section-title">Key messages by pain point</div>
+      <div class="section-sub">What to say when a buyer says this.</div>
+    </div>
+    <div>
+      <div class="pain-header">
+        <div>When the buyer says...</div>
+        <div>You lead with...</div>
+      </div>
+      <div class="pain-table">
+        <div class="pain-row">
+          <div class="pain">Best practices aren't working any more.</div>
+          <div class="msg">Borrow from outside the category. The fix isn't in the marketing textbook.</div>
+        </div>
+        <div class="pain-row">
+          <div class="pain">I'm drowning in vanity metrics and nothing connects to revenue.</div>
+          <div class="msg">Most of your market isn't buying today. Measure memory, not just clicks.</div>
+        </div>
+        <div class="pain-row">
+          <div class="pain">The team can't explain our positioning in one line.</div>
+          <div class="msg">If it's not on one page, it's not locked. Everything downstream needs a source of truth.</div>
+        </div>
+        <div class="pain-row">
+          <div class="pain">AI is producing content that sounds nothing like us.</div>
+          <div class="msg">Decode the brand for the machine. Framework first, then consistency follows.</div>
+        </div>
+        <div class="pain-row">
+          <div class="pain">Our CAC keeps rising and performance spend isn't saving us.</div>
+          <div class="msg">Performance-first brands starve the top of the funnel. Rebalance, or keep paying.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 05 HIERARCHY ========== -->
+  <div class="section">
+    <div class="section-gutter">
+      <div class="section-num">05</div>
+      <div class="section-title">Messaging hierarchy</div>
+      <div class="section-sub">Hero, headline, tagline. In this order.</div>
+    </div>
+    <div>
+      <div class="hier row-b">
+        <div class="k">Hero message</div>
+        <div class="v"><div class="hier-hero">Build an <span class="accent">unfair</span> advantage in marketing.</div></div>
+      </div>
+      <div class="hier row-b">
+        <div class="k">Primary headline</div>
+        <div class="v"><div class="hier-primary">How to bring speed without compromising quality into your marketing.</div></div>
+      </div>
+      <div class="hier">
+        <div class="k">Tagline</div>
+        <div class="v"><div class="hier-tag">"Honest, not heroic."</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 06 VOICE ========== -->
+  <div class="section">
+    <div class="section-gutter">
+      <div class="section-num">06</div>
+      <div class="section-title">Voice and tone</div>
+      <div class="section-sub">How it sounds, and what it never does.</div>
+    </div>
+    <div>
+      <div class="voice-wrap">
+        <div class="voice-col">
+          <div class="voice-head">Voice summary</div>
+          <div class="voice-summary">Smart colleague over coffee. Peer-to-peer, never from a pulpit.</div>
+          <div class="voice-head">Writing principles</div>
+          <div class="pairs">
+            <div class="pair"><span class="yes">Confident</span><span class="sep">not</span><span class="no">arrogant</span></div>
+            <div class="pair"><span class="yes">Direct</span><span class="sep">not</span><span class="no">blunt</span></div>
+            <div class="pair"><span class="yes">Warm</span><span class="sep">not</span><span class="no">soft</span></div>
+            <div class="pair"><span class="yes">Evidence</span><span class="sep">before</span><span class="no">opinion</span></div>
+            <div class="pair"><span class="yes">Irish</span><span class="sep">not</span><span class="no">American</span></div>
+            <div class="pair"><span class="yes">Honest</span><span class="sep">not</span><span class="no">heroic</span></div>
+          </div>
+        </div>
+        <div class="voice-col">
+          <div class="never-grid">
+            <div class="never-col">
+              <div class="hd">Never use</div>
+              <ul>
+                <li>Em dashes</li>
+                <li>Corporate nouns (leverage, synergise)</li>
+                <li>Invented statistics</li>
+                <li>Staccato one-word lines</li>
+              </ul>
+            </div>
+            <div class="never-col">
+              <div class="hd">Never do</div>
+              <ul>
+                <li>Lecture</li>
+                <li>Over-claim</li>
+                <li>Pretend the work was cleaner than it was</li>
+                <li>Hide the scar tissue</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DOC FOOTER ========== -->
+  <div class="doc-foot">
+    <div>/ <span class="accent">Run</span>withfoxes &middot; messaging framework &middot; internal reference</div>
+    <div>End of document</div>
+  </div>
+
+</div>
+</body>
+</html>

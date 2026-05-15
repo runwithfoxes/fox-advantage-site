@@ -50,7 +50,7 @@ const chapterMap: {
   { file: "ch17-mr-beast.md", number: 14, title: "Mr Beast", part: 3, partName: "Behaviours", released: true },
   { file: "ch18-look-for-the-smell.md", number: 15, title: "Look for the smell", part: 3, partName: "Behaviours" },
   { file: "ch19-standards-decide-what-stays.md", number: 16, title: "Standards decide what stays", part: 3, partName: "Behaviours" },
-  { file: "ch20-gotta-put-in-the-reps.md", number: 17, title: "Gotta put in the reps", part: 3, partName: "Behaviours" },
+  { file: "ch20-gotta-put-in-the-reps.md", number: 17, title: "Gotta put in the reps", part: 3, partName: "Behaviours", released: true },
   { file: "ch21-dont-help-ask-me-questions.md", number: 18, title: "Don't help. Ask me questions", part: 3, partName: "Behaviours" },
   { file: "ch22-getting-attention-from-robots.md", number: 19, title: "Getting attention from robots", part: 3, partName: "Behaviours" },
   { file: "ch23-my-830am-research-report.md", number: 20, title: "My 8.30am research report", part: 3, partName: "Behaviours" },

@@ -181,7 +181,7 @@ export default function HomePage() {
               <a href="https://runwithfoxes.com/experts" target="_blank" rel="noopener noreferrer" className="hp-try-btn">Try the panel yourself &rarr;</a>
             </div>
             <div className="hp-fox-visual">
-              <Image src="/fox/chapter-fox-sitting-nobg.png" alt="Fox — strategy panel" width={380} height={380} />
+              <Image src="/fox/chapter-fox-sitting-nobg.png" alt="Fox - strategy panel" width={380} height={380} />
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function HomePage() {
       <div className="hp-testimonial-bar">
         <div className="hp-testimonial-bar-inner">
           <div className="hp-tbar-quote">&ldquo;Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it. His unique talent is his ability to galvanise an organization.&rdquo;</div>
-          <div className="hp-tbar-attr"><strong>Jonnie Cahill</strong> — SVP and CMO International Foods, PepsiCo</div>
+          <div className="hp-tbar-attr"><strong>Jonnie Cahill</strong> - SVP and CMO International Foods, PepsiCo</div>
         </div>
       </div>
 
@@ -233,7 +233,7 @@ export default function HomePage() {
                   <div className="hp-bh-cell-label">proof</div>
                   20 yrs brand leadership &middot; Marketer of the Year 2022
                 </div>
-                <div className="hp-bh-caption">Run with Foxes — brand house example</div>
+                <div className="hp-bh-caption">Run with Foxes - brand house example</div>
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function HomePage() {
                 <video autoPlay muted loop playsInline>
                   <source src="/video/messaging-framework-scroll.mp4" type="video/mp4" />
                 </video>
-                <div className="hp-video-caption">Messaging framework — one locked document, every message built on it</div>
+                <div className="hp-video-caption">Messaging framework - one locked document, every message built on it</div>
               </div>
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function HomePage() {
               <div className="hp-module-desc">It saves hours of reading and searching every week. We still need to read it ourselves. The robots haven&apos;t figured that bit out yet.</div>
             </div>
             <div className="hp-fox-visual">
-              <Image src="/fox/fox-sideeye-right-nobg.png" alt="Fox — research" width={380} height={380} />
+              <Image src="/fox/fox-sideeye-right-nobg.png" alt="Fox - research" width={380} height={380} />
             </div>
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function HomePage() {
                   <div className="hp-dc-section-label">the collapse move</div>
                   <div className="hp-dc-collapse-text">&ldquo;You need salience built on actual purchase triggers, not demographic mail merges.&rdquo;</div>
                 </div>
-                <div className="hp-dc-caption">Marketing Influence Model Diagnostician — sample output</div>
+                <div className="hp-dc-caption">Marketing Influence Model Diagnostician - sample output</div>
               </div>
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function HomePage() {
       <div className="hp-testimonial-bar">
         <div className="hp-testimonial-bar-inner">
           <div className="hp-tbar-quote">&ldquo;I&apos;ve worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.&rdquo;</div>
-          <div className="hp-tbar-attr"><strong>Peter Field</strong> — The Godfather of Effectiveness, Author of The Long and the Short of It</div>
+          <div className="hp-tbar-attr"><strong>Peter Field</strong> - The Godfather of Effectiveness, Author of The Long and the Short of It</div>
         </div>
       </div>
 
@@ -350,7 +350,7 @@ export default function HomePage() {
                 <div className="hp-mp-level hp-mp-3"><div className="hp-mp-shape">3</div><div className="hp-mp-label">Memory metrics</div></div>
                 <div className="hp-mp-level hp-mp-4"><div className="hp-mp-shape">4</div><div className="hp-mp-label">Comms response</div></div>
                 <div className="hp-mp-level hp-mp-5"><div className="hp-mp-shape">5</div><div className="hp-mp-label">Activity + outputs</div></div>
-                <div className="hp-mp-caption">The metrics pyramid — paste your metrics, see where the gaps are</div>
+                <div className="hp-mp-caption">The metrics pyramid - paste your metrics, see where the gaps are</div>
               </div>
             </div>
           </div>
@@ -380,7 +380,7 @@ export default function HomePage() {
                   </video>
                 </div>
               </div>
-              <div className="hp-video-caption">Two ads built by the engine — fox character, chart data, headlines, all AI-generated</div>
+              <div className="hp-video-caption">Two ads built by the engine - fox character, chart data, headlines, all AI-generated</div>
             </div>
           </div>
         </div>
@@ -399,7 +399,7 @@ export default function HomePage() {
                 <video autoPlay muted loop playsInline>
                   <source src="/video/brand-guidelines-scroll.mp4" type="video/mp4" />
                 </video>
-                <div className="hp-video-caption">Brand guidelines — built for AI, not just humans</div>
+                <div className="hp-video-caption">Brand guidelines - built for AI, not just humans</div>
               </div>
             </div>
           </div>
@@ -411,7 +411,7 @@ export default function HomePage() {
       <div className="hp-testimonial-bar">
         <div className="hp-testimonial-bar-inner">
           <div className="hp-tbar-quote">&ldquo;Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.&rdquo;</div>
-          <div className="hp-tbar-attr"><strong>Paul D&apos;Arcy</strong> — CMO, Moloco. Former CMO at Miro and Indeed</div>
+          <div className="hp-tbar-attr"><strong>Paul D&apos;Arcy</strong> - CMO, Moloco. Former CMO at Miro and Indeed</div>
         </div>
       </div>
 
@@ -430,7 +430,7 @@ export default function HomePage() {
             <div className="hp-module-right">
               <div className="hp-screenshot-container">
                 <Image src="/event-page-screenshot.png" alt="AI-generated event landing page" width={600} height={400} style={{ width: "100%", height: "auto" }} />
-                <div className="hp-video-caption">Event landing page — built by an agent in minutes</div>
+                <div className="hp-video-caption">Event landing page - built by an agent in minutes</div>
               </div>
             </div>
           </div>
@@ -448,7 +448,7 @@ export default function HomePage() {
               <div className="hp-module-desc">For companies that don&apos;t have growth teams, this is a good opportunity. What would normally need three full-time roles can be done in a couple of hours a week.</div>
             </div>
             <div className="hp-fox-visual">
-              <Image src="/fox/fox-sideeye-right-nobg.png" alt="Fox — growth team" width={380} height={380} />
+              <Image src="/fox/fox-sideeye-right-nobg.png" alt="Fox - growth team" width={380} height={380} />
             </div>
           </div>
         </div>
@@ -459,7 +459,7 @@ export default function HomePage() {
       <div className="hp-testimonial-bar">
         <div className="hp-testimonial-bar-inner">
           <div className="hp-tbar-quote">&ldquo;When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team&apos;s performance and development.&rdquo;</div>
-          <div className="hp-tbar-attr"><strong>Damian Devaney</strong> — Ex-CMO O2, Chair of Effies Ireland</div>
+          <div className="hp-tbar-attr"><strong>Damian Devaney</strong> - Ex-CMO O2, Chair of Effies Ireland</div>
         </div>
       </div>
 
@@ -476,7 +476,7 @@ export default function HomePage() {
             </div>
             <div className="hp-fox-visual">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/fox/fox-pm-nobg.png" alt="Fox — project manager" />
+              <img src="/fox/fox-pm-nobg.png" alt="Fox - project manager" />
             </div>
           </div>
         </div>

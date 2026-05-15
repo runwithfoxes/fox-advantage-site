@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Homepage Hero — B2 Combined</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --teal: #2C7A7B;
+    --teal-hover: #236565;
+    --night-sea: #1B4D5C;
+    --muted: #8A8A86;
+    --border: #E8E5DF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #E8E5DF;
+    color: var(--text);
+    padding: 40px;
+  }
+
+  .browser {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    background: var(--bg);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .browser-bar {
+    background: #E8E5DF;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+  }
+  .browser-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #ccc;
+  }
+  .browser-dot:nth-child(1) { background: #ff5f57; }
+  .browser-dot:nth-child(2) { background: #ffbd2e; }
+  .browser-dot:nth-child(3) { background: #28c840; }
+
+  /* Video hero */
+  .hero-wrapper {
+    position: relative;
+    height: 540px;
+    overflow: hidden;
+  }
+  .hero-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  /* Nav on image */
+  .nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    z-index: 10;
+    font-size: 13px;
+    letter-spacing: 1px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .nav-cta {
+    border: 1.5px solid rgba(255,255,255,0.8);
+    color: #fff;
+    padding: 6px 16px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  /* Nav dropdown */
+  .nav-dropdown-wrap {
+    position: relative;
+  }
+  .nav-dropdown-trigger {
+    cursor: pointer;
+  }
+  .nav-mega {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    margin-top: 12px;
+    background: rgba(27,77,92,0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 8px;
+    padding: 24px 32px;
+    gap: 40px;
+    min-width: 520px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    z-index: 100;
+  }
+  .nav-dropdown-wrap:hover .nav-mega {
+    display: flex;
+  }
+  .mega-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .mega-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .nav-mega a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 3px 0;
+    transition: color 0.2s;
+    text-shadow: none;
+  }
+  .nav-mega a:hover {
+    color: #5AAFA8;
+  }
+
+  /* Text section below video */
+  .hero-text {
+    padding: 48px 48px 40px;
+    background: var(--bg);
+  }
+  .hero-text h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .hero-text .subhead {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 24px;
+    max-width: 480px;
+  }
+  .hero-text .ctas {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    padding: 12px 28px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+  }
+  .functions-and-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .function-links {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 2;
+    max-width: 520px;
+    flex: 1;
+  }
+  .function-links a {
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .function-links a:hover {
+    border-bottom-color: var(--teal);
+  }
+  .function-links .dot {
+    color: var(--muted);
+    margin: 0 6px;
+    opacity: 0.4;
+  }
+  .cta-row {
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Proof bar */
+  .proof-bar {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 20px 40px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .proof-bar strong { color: var(--text); font-weight: 500; }
+
+  .scroll-hint {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    background: var(--bg);
+  }
+</style>
+</head>
+<body>
+
+<div class="browser">
+  <div class="browser-bar">
+    <div class="browser-dot"></div>
+    <div class="browser-dot"></div>
+    <div class="browser-dot"></div>
+  </div>
+
+  <div class="hero-wrapper">
+    <video class="hero-video" autoplay muted playsinline poster="/Users/pauldervan/paul-hub/clients/rwf/tarantino-fox-source-frame-1920x1080.png">
+      <source src="/Users/pauldervan/projects/fox-ads/generated/fox_ads/archive/paul_fox_trunk_opening_kling26.mp4" type="video/mp4">
+    </video>
+    <div class="nav">
+      <div class="nav-logo">/Runwithfoxes</div>
+      <div class="nav-links">
+        <div class="nav-dropdown-wrap">
+          <a href="#" class="nav-dropdown-trigger">#unfair_advantage &#9662;</a>
+          <div class="nav-mega">
+            <div class="mega-col">
+              <div class="mega-label">HUMAN LEADS</div>
+              <a href="#">01 Strategy</a>
+              <a href="#">02 Positioning</a>
+            </div>
+            <div class="mega-col">
+              <div class="mega-label">AI + HUMAN</div>
+              <a href="#">03 Messaging</a>
+              <a href="#">04 Customer journey</a>
+              <a href="#">05 Research</a>
+              <a href="#">08 Brand management</a>
+              <a href="#">09 Comms</a>
+              <a href="#">11 Events</a>
+              <a href="#">12 Marketing ops</a>
+            </div>
+            <div class="mega-col">
+              <div class="mega-label">AI DOES IT</div>
+              <a href="#">06 Creative</a>
+              <a href="#">07 Content</a>
+              <a href="#">10 Growth</a>
+            </div>
+          </div>
+        </div>
+        <a href="#">/projects</a>
+        <a href="#">/about</a>
+        <a href="#">/book</a>
+        <div class="nav-cta">/contact</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-text">
+    <h1>Build an unfair advantage<br>in marketing</h1>
+    <div style="height: 16px;"></div>
+    <div class="subhead">How to bring speed without compromising quality into your marketing.</div>
+    <div class="functions-and-cta">
+      <div class="function-links">
+        <a href="#">strategy</a><span class="dot">·</span>
+        <a href="#">positioning</a><span class="dot">·</span>
+        <a href="#">messaging</a><span class="dot">·</span>
+        <a href="#">customer journey</a><span class="dot">·</span>
+        <a href="#">research</a><span class="dot">·</span>
+        <a href="#">creative</a><span class="dot">·</span>
+        <a href="#">content</a><span class="dot">·</span>
+        <a href="#">brand management</a><span class="dot">·</span>
+        <a href="#">comms</a><span class="dot">·</span>
+        <a href="#">growth</a><span class="dot">·</span>
+        <a href="#">events</a><span class="dot">·</span>
+        <a href="#">marketing ops</a>
+      </div>
+      <div class="cta-row">
+        <button class="btn-primary">get in touch</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="proof-bar">
+    <span>Ireland <strong>Marketer of the Year</strong>, 2022</span>
+    <span>Ex-CMO, <strong>National Lottery</strong></span>
+    <span>Teaches at <strong>UCD Smurfit</strong></span>
+    <span><strong>27:1</strong> ROI case study</span>
+  </div>
+
+  <div class="scroll-hint">&#8595; HOW IT WORKS</div>
+</div>
+
+</body>
+</html>
