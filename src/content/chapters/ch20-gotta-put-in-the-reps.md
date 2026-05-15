@@ -20,7 +20,7 @@ Jason Lemkin has a test for mediocre salespeople. Ask them what they’re really
 
 Same story in marketing. You can be polished and still not add value unless the work is solid.
 
-Lemkin watched a team at a company worth over $10 billion try to get AI agents working. Twenty people. Months of effort. Nothing. When he asked how much of the work they’d done themselves, nobody answered. “The folks that are lost today have never done it.”.
+Lemkin watched a team at a company worth over $10 billion try to get AI agents working. Twenty people. Months of effort. Nothing. When he asked how much of the work they’d done themselves, nobody answered. “The folks that are lost today have never done it.”
 
 AI will write you a positioning statement in eight seconds. It will sound fine. It might even sound good. But if you haven’t done the reps, you won’t know if it’s good or just clean. You won’t spot the missing bit. You won’t notice the line that doesn’t land until it’s already out in the world.
 
