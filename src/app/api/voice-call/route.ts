@@ -47,6 +47,9 @@ export async function POST(req: Request) {
           agent_id: process.env.ELEVENLABS_AGENT_ID,
           customer_phone_number: phone,
           agent_overrides: {
+            agent: {
+              first_message: "Hello?",
+            },
             conversation_config: {
               agent: {
                 custom_llm: {

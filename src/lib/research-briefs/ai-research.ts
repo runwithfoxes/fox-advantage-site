@@ -15,7 +15,7 @@ const aiResearchBrief: ResearchBrief = {
   ],
 
   opening:
-    "I'm Isa. I work with Paul at Run with Foxes. I'm an AI, which you've probably guessed. I'm running a study on how marketers think about AI in research. Yes, I see the irony. This isn't a survey. We'll just have a conversation about it. Could take a couple of minutes, could take five, depends where it goes. And you can ask me anything along the way. Sound good?",
+    "So I'm running a study on how marketers think about AI in research. Yes, I see the irony. This isn't a survey. We'll just have a conversation about it. Could take a couple of minutes, could take five, depends where it goes. And you can ask me anything along the way. Sound good?",
 
   firstQuestion:
     "So here's what we're exploring. The idea that you could be talking to thousands of your customers every month, on an ongoing basis. Not a survey. A proper conversation, where someone probes, follows up, and remembers what they said last time. So the next conversation picks up where the last one left off. We think AI can do that now. What's your gut reaction?",
