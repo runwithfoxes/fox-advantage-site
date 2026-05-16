@@ -376,7 +376,7 @@ section {
 
 .part-card {
   background: var(--bg);
-  padding: 48px;
+  padding: 32px;
   transition: background 0.3s;
 }
 
@@ -408,6 +408,43 @@ section {
   font-weight: 300;
   line-height: 1.8;
   color: var(--text-muted);
+}
+
+.part-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.part-jump {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--orange);
+  margin-top: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.part-card-link:hover .part-jump {
+  opacity: 1;
+}
+
+.parts-grid-linked {
+  margin-top: 32px;
+}
+
+.chapters-list-tight {
+  margin-top: 48px;
+}
+
+.chapters-list-tight .chapter-group {
+  margin-bottom: 32px;
+}
+
+.chapters-list-tight .chapter-item {
+  padding: 14px 0;
 }
 
 /* ---- PROJECTS GRID ---- */
@@ -498,7 +535,7 @@ a.project-card {
 }
 
 .chapter-group {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .chapter-group-label {

@@ -38,7 +38,7 @@ function ChapterGroup({ part, index, label }: { part: { part: number; partName: 
   const showPdfLink = part.part <= 2;
 
   return (
-    <div className="chapter-group">
+    <div className="chapter-group" id={`part-${part.part}`}>
       <div
         className="chapter-group-label"
         onClick={() => setOpen(!open)}
@@ -113,7 +113,7 @@ function BookLandingContent({ parts }: Props) {
 
   return (
     <>
-      {/* NAV — same as homepage, always in scrolled state */}
+      {/* NAV - same as homepage, always in scrolled state */}
       <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
         <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
         <div className="hp-nav-links">
@@ -223,31 +223,22 @@ function BookLandingContent({ parts }: Props) {
 
       <div className="container"><hr className="divider" /></div>
 
-      {/* PARTS */}
+      {/* PARTS + CHAPTERS (combined) */}
       <section id="parts">
         <div className="container">
           <div className="section-label">/structure</div>
           <h2 className="section-title">Four parts</h2>
-          <div className="parts-grid">
+          <div className="parts-grid parts-grid-linked">
             {parts.map((p, i) => (
-              <div key={p.part} className="part-card">
+              <a key={p.part} href={`#part-${p.part}`} className="part-card part-card-link">
                 <div className="part-number">\{String(p.part).padStart(2, "0")}</div>
                 <div className="part-name">{p.partName}</div>
                 <div className="part-desc">{partDescs[i]}</div>
-              </div>
+                <span className="part-jump">{p.chapters.length} chapters &darr;</span>
+              </a>
             ))}
           </div>
-        </div>
-      </section>
-
-      <div className="container"><hr className="divider" /></div>
-
-      {/* CHAPTERS */}
-      <section id="chapters">
-        <div className="container">
-          <div className="section-label">/chapters.md</div>
-          <h2 className="section-title">Table of contents</h2>
-          <div className="chapters-list">
+          <div className="chapters-list chapters-list-tight">
             {parts.map((p, i) => (
               <ChapterGroup key={p.part} part={p} index={i} label={partLabels[i]} />
             ))}

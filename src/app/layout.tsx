@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import ChatWidget from "@/components/chat/ChatWidget";
+import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
 import "./globals.css";
 
 const mono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500"],
+  weight: ["300", "400"],
 });
 
 const sans = Space_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
         <div className="page-wrapper">
           {children}
         </div>
-        <ChatWidget />
+        <ChatWidgetLoader />
       </body>
     </html>
   );

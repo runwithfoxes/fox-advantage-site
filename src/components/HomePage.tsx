@@ -1,8 +1,31 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+function LazyVideo({ src, className, loop }: { src: string; className?: string; loop?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setVisible(true); obs.disconnect(); }
+    }, { rootMargin: "200px" });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref}>
+      {visible && (
+        <video className={className} autoPlay muted playsInline loop={loop}>
+          <source src={src} type="video/mp4" />
+        </video>
+      )}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const navRef = useRef<HTMLElement>(null);
@@ -147,7 +170,7 @@ export default function HomePage() {
       <section className="hp-about hp-about-top" id="about">
         <div className="hp-about-grid">
           <div className="hp-about-photo">
-            <Image src="/Paul_photo.jpg" alt="Paul Dervan" width={320} height={427} />
+            <Image src="/Paul_photo.jpg" alt="Paul Dervan" width={320} height={427} priority />
           </div>
           <div className="hp-about-bio">
             <div className="hp-about-name">Paul Dervan</div>
@@ -250,9 +273,7 @@ export default function HomePage() {
             </div>
             <div className="hp-module-right">
               <div className="hp-video-container">
-                <video autoPlay muted loop playsInline>
-                  <source src="/video/messaging-framework-scroll.mp4" type="video/mp4" />
-                </video>
+                <LazyVideo src="/video/messaging-framework-scroll.mp4" loop />
                 <div className="hp-video-caption">Messaging framework - one locked document, every message built on it</div>
               </div>
             </div>
@@ -370,14 +391,10 @@ export default function HomePage() {
             <div style={{ paddingTop: 72 }}>
               <div className="hp-video-row-2">
                 <div className="hp-video-container">
-                  <video autoPlay muted playsInline>
-                    <source src="/video/lottery-ad.mp4" type="video/mp4" />
-                  </video>
+                  <LazyVideo src="/video/lottery-ad.mp4" />
                 </div>
                 <div className="hp-video-container">
-                  <video autoPlay muted playsInline>
-                    <source src="/video/6040-ad.mp4" type="video/mp4" />
-                  </video>
+                  <LazyVideo src="/video/6040-ad.mp4" />
                 </div>
               </div>
               <div className="hp-video-caption">Two ads built by the engine - fox character, chart data, headlines, all AI-generated</div>
@@ -396,9 +413,7 @@ export default function HomePage() {
             </div>
             <div>
               <div className="hp-video-container">
-                <video autoPlay muted loop playsInline>
-                  <source src="/video/brand-guidelines-scroll.mp4" type="video/mp4" />
-                </video>
+                <LazyVideo src="/video/brand-guidelines-scroll.mp4" loop />
                 <div className="hp-video-caption">Brand guidelines - built for AI, not just humans</div>
               </div>
             </div>
