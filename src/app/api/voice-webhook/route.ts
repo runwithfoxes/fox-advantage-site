@@ -32,8 +32,16 @@ interface ElevenLabsConversationData {
   metadata?: Record<string, unknown>;
   call_duration_secs?: number;
   analysis?: {
-    call_successful?: boolean;
+    call_successful?: string;
     transcript_summary?: string;
+    data_collection_results?: Record<
+      string,
+      { value: unknown; rationale?: string }
+    >;
+    evaluation_criteria_results?: Record<
+      string,
+      { result: string; rationale?: string }
+    >;
   };
 }
 
@@ -145,16 +153,28 @@ export async function POST(req: Request) {
       .map((t) => `${t.role === "user" ? "Respondent" : "Interviewer"}: ${t.message}`)
       .join("\n\n");
 
-    if (!process.env.CHAT_ANTHROPIC_API_KEY) {
-      return new Response("OK (no extraction - API key missing)", { status: 200 });
-    }
+    // Use native ElevenLabs Data Collection results if available (configured via platform_settings)
+    const nativeAnalysis = conversation.analysis;
+    const nativeDataCollection = nativeAnalysis?.data_collection_results;
+    const nativeSummary = nativeAnalysis?.transcript_summary;
 
-    const provider = createAnthropic({
-      apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
-    });
+    let structuredData: Record<string, unknown> = {};
+    let summary = "";
 
-    const [extractionResult, summaryResult, knowledgeResult] =
-      await Promise.all([
+    if (nativeDataCollection && Object.keys(nativeDataCollection).length > 0) {
+      for (const [key, item] of Object.entries(nativeDataCollection)) {
+        if (item?.value != null) {
+          structuredData[key] = item.value;
+        }
+      }
+      summary = nativeSummary || "";
+    } else if (process.env.CHAT_ANTHROPIC_API_KEY) {
+      // Fallback: run our own extraction if native results aren't available
+      const provider = createAnthropic({
+        apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
+      });
+
+      const [extractionResult, summaryResult] = await Promise.all([
         generateText({
           model: provider("claude-haiku-4-5-20251001"),
           system: buildExtractionPrompt(brief),
@@ -167,30 +187,37 @@ export async function POST(req: Request) {
           messages: [{ role: "user", content: transcriptText }],
           maxOutputTokens: 200,
         }),
-        generateText({
+      ]);
+
+      try {
+        const extractionJson = extractionResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/, "");
+        structuredData = JSON.parse(extractionJson);
+      } catch {
+        console.error("[voice-webhook] failed to parse extraction:", extractionResult.text);
+      }
+      summary = summaryResult.text;
+    }
+
+    await saveVoiceExtraction(transcriptId, structuredData, summary);
+
+    // Knowledge extraction (facts, patterns, open threads) is always our own - unique to longitudinal memory
+    if (process.env.CHAT_ANTHROPIC_API_KEY) {
+      try {
+        const provider = createAnthropic({
+          apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
+        });
+        const knowledgeResult = await generateText({
           model: provider("claude-haiku-4-5-20251001"),
           system: buildKnowledgeExtractionPrompt(brief),
           messages: [{ role: "user", content: transcriptText }],
           maxOutputTokens: 800,
-        }),
-      ]);
-
-    let structuredData: Record<string, unknown> = {};
-    try {
-      const extractionJson = extractionResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/, "");
-      structuredData = JSON.parse(extractionJson);
-    } catch {
-      console.error("[voice-webhook] failed to parse extraction:", extractionResult.text);
-    }
-
-    await saveVoiceExtraction(transcriptId, structuredData, summaryResult.text);
-
-    try {
-      const knowledgeJson = knowledgeResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/,"");
-      const knowledge = JSON.parse(knowledgeJson);
-      await saveRespondentKnowledge(respondent.ref_id, knowledge);
-    } catch {
-      console.error("[voice-webhook] failed to parse knowledge:", knowledgeResult.text);
+        });
+        const knowledgeJson = knowledgeResult.text.replace(/^```json?\s*/i, "").replace(/\s*```$/, "");
+        const knowledge = JSON.parse(knowledgeJson);
+        await saveRespondentKnowledge(respondent.ref_id, knowledge);
+      } catch {
+        console.error("[voice-webhook] failed to extract/save knowledge");
+      }
     }
 
     const emailMatch = transcriptText.match(
