@@ -1,5 +1,6 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { generateText } from "ai";
+import { sql } from "@vercel/postgres";
 import { Redis } from "@upstash/redis";
 import { getBrief, getDefaultBrief } from "@/lib/research-briefs";
 import {
@@ -58,6 +59,22 @@ export async function POST(req: Request) {
     raw = await req.json();
   } catch {
     return new Response("Invalid JSON", { status: 400 });
+  }
+
+  if (raw.type === "call_initiation_failure") {
+    const failData = raw.data as Record<string, unknown> | undefined;
+    const phone = (failData?.phone_number as string) || "unknown";
+    const reason = (failData?.failure_reason as string) || (failData?.error_code as string) || "unknown";
+    console.log(`[voice-webhook] call_initiation_failure: phone=${phone} reason=${reason}`);
+    try {
+      if (process.env.POSTGRES_URL || process.env.DATABASE_URL) {
+        await sql`INSERT INTO voice_call_attempts (phone, status, conversation_id, failure_reason, created_at)
+          VALUES (${phone}, ${"failed"}, ${(failData?.conversation_id as string) || null}, ${reason}, NOW())`;
+      }
+    } catch (err) {
+      console.error("[voice-webhook] failed to log call failure:", err);
+    }
+    return new Response("OK", { status: 200 });
   }
 
   const conversation: ElevenLabsConversationData =

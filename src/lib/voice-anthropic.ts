@@ -33,10 +33,13 @@ export async function* streamAnthropicAsOpenAI(
     ],
     messages,
     max_tokens: maxTokens,
+    temperature: 0.2,
   });
 
   const id = `chatcmpl-${Date.now()}`;
   let hasStarted = false;
+  const startTime = Date.now();
+  let bufferWordSent = false;
 
   for await (const event of stream) {
     if (
@@ -45,6 +48,23 @@ export async function* streamAnthropicAsOpenAI(
     ) {
       if (!hasStarted) {
         hasStarted = true;
+        if (Date.now() - startTime > 2000 && !bufferWordSent) {
+          bufferWordSent = true;
+          const bufferChunk = {
+            id,
+            object: "chat.completion.chunk",
+            created: Math.floor(Date.now() / 1000),
+            model: "claude-haiku-4-5-20251001",
+            choices: [
+              {
+                index: 0,
+                delta: { content: "... " },
+                finish_reason: null,
+              },
+            ],
+          };
+          yield `data: ${JSON.stringify(bufferChunk)}\n\n`;
+        }
       }
 
       const chunk = {

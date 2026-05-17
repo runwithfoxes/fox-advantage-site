@@ -1,3 +1,5 @@
+import { sql } from "@vercel/postgres";
+
 export const maxDuration = 30;
 
 interface OutboundCallRequest {
@@ -5,6 +7,8 @@ interface OutboundCallRequest {
   respondent_id?: string;
   brief_id?: string;
   first_message?: string;
+  respondent_name?: string;
+  prior_summary?: string;
 }
 
 export async function POST(req: Request) {
@@ -56,6 +60,9 @@ export async function POST(req: Request) {
                   extra_body: {
                     respondent_id: body.respondent_id || phone,
                     brief_id: body.brief_id || "ai-research",
+                    caller_phone_number: phone,
+                    respondent_name: body.respondent_name || "",
+                    prior_summary: body.prior_summary || "",
                   },
                 },
               },
@@ -74,6 +81,9 @@ export async function POST(req: Request) {
     }
 
     const result = await response.json();
+
+    await logCallAttempt(phone, "connected", result.conversation_id);
+
     return Response.json({
       success: true,
       conversation_id: result.conversation_id,
@@ -81,6 +91,22 @@ export async function POST(req: Request) {
     });
   } catch (err) {
     console.error("[voice-call] error:", err);
+    await logCallAttempt(phone, "error", null);
     return new Response("Failed to initiate call", { status: 500 });
+  }
+}
+
+async function logCallAttempt(
+  phone: string,
+  status: string,
+  conversationId: string | null
+) {
+  try {
+    if (process.env.POSTGRES_URL || process.env.DATABASE_URL) {
+      await sql`INSERT INTO voice_call_attempts (phone, status, conversation_id, created_at)
+        VALUES (${phone}, ${status}, ${conversationId}, NOW())`;
+    }
+  } catch {
+    // Non-critical logging
   }
 }
