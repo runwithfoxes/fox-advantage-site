@@ -30,8 +30,6 @@ export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  if (pathname?.startsWith("/research")) return null;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { messages, sendMessage, status, error } = useChat({
@@ -41,17 +39,17 @@ export default function ChatWidget() {
 
   const isBusy = status === "streaming" || status === "submitted";
 
-  // Auto-scroll to bottom on new messages or errors
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, error]);
 
-  // Focus input when panel opens
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  if (pathname?.startsWith("/research")) return null;
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
