@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
+// import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
 import "./globals.css";
 
 const mono = JetBrains_Mono({
@@ -32,7 +32,7 @@ export default function RootLayout({
         <div className="page-wrapper">
           {children}
         </div>
-        <ChatWidgetLoader />
+        {/* <ChatWidgetLoader /> */}
       </body>
     </html>
   );
