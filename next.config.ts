@@ -11,10 +11,6 @@ const nextConfig: NextConfig = {
         source: "/april",
         destination: "https://april-page.vercel.app/",
       },
-      {
-        source: "/matt",
-        destination: "/matt/index.html",
-      },
     ];
   },
   async redirects() {
