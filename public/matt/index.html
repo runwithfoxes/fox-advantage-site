@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case study: PINOL packaging strategy | Run with Foxes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --text: #1D1B1B;
+            --muted: #8A8A85;
+            --orange: #F47521;
+            --orange-hover: #E06A1A;
+            --charcoal: #355E4C;
+            --border: #E0E0DC;
+            --card-hover: #F5F5F0;
+            --cream: #F7EAD9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        a.skip-link {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            background: var(--orange);
+            color: var(--bg);
+            padding: 8px 16px;
+            z-index: 200;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+        a.skip-link:focus { top: 16px; }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+        }
+        nav.scrolled {
+            background: rgba(250, 250, 248, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+        .nav-brand span { color: var(--orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.3s ease-out;
+        }
+        .nav-links a:hover, .nav-links a:focus-visible { color: var(--orange); }
+        @media (max-width: 900px) { .nav-links { display: none; } }
+        @media (max-width: 768px) { nav { padding: 16px 24px; } }
+        @media (max-width: 380px) { nav { padding: 16px 16px; } }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        @media (max-width: 768px) { .container { padding: 0 24px; } }
+        @media (max-width: 380px) { .container { padding: 0 16px; } }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero .dot-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+            background-size: 28px 28px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+        }
+        .hero-text { flex: 1; }
+        .hero .eyebrow {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 24px;
+            display: block;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 300;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--text);
+            opacity: 0.8;
+            max-width: 560px;
+            margin-bottom: 16px;
+        }
+        .hero .meta-row {
+            display: flex;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .meta-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .meta-value {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text);
+        }
+        .fox-hero {
+            width: 260px;
+            filter: drop-shadow(0 24px 48px rgba(0,0,0,0.15));
+            pointer-events: none;
+            user-select: none;
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 80px; }
+            .hero-inner { flex-direction: column; text-align: center; }
+            .hero p { max-width: 100%; }
+            .hero .meta-row { justify-content: center; flex-wrap: wrap; gap: 24px; }
+            .fox-hero { width: 180px; }
+        }
+
+        /* Section base */
+        section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) { section { padding: 80px 0; } }
+
+        section .dot-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+            background-size: 28px 28px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        section.dark { background: var(--charcoal); color: var(--cream); }
+        section.dark .dot-grid {
+            background-image: radial-gradient(circle, #F47521 0.8px, transparent 0.8px);
+            opacity: 0.08;
+        }
+        section.dark h2 { color: var(--cream); }
+        section.dark p { color: var(--cream); opacity: 0.85; }
+        section.dark .key-point p { color: var(--text); opacity: 1; }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 300;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        section.dark h3 { color: var(--cream); }
+
+        .section-eyebrow {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .section-intro {
+            max-width: 680px;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 56px;
+        }
+
+        .content-inner { position: relative; }
+
+        /* Narrative */
+        .narrative {
+            max-width: 720px;
+        }
+        .narrative p {
+            font-size: 1.0625rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            opacity: 0.85;
+        }
+
+        /* Key points grid */
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .key-point {
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            background: var(--bg);
+            transition: background 0.3s ease-out;
+            color: var(--text);
+        }
+        .key-point:hover { background: var(--card-hover); }
+        .key-point-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--orange);
+            line-height: 1;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .key-point h3 { margin-bottom: 12px; color: var(--text); }
+        .key-point p {
+            font-size: 0.875rem;
+            line-height: 1.65;
+            opacity: 0.8;
+            color: var(--text);
+        }
+        @media (max-width: 768px) {
+            .key-points { grid-template-columns: 1fr; }
+        }
+
+        /* Split layout */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .split-text { }
+        .split-text p {
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            opacity: 0.85;
+        }
+        @media (max-width: 900px) {
+            .split { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* Conjoint visual */
+        .conjoint-card {
+            border: 1px solid var(--border);
+            background: var(--bg);
+            padding: 40px;
+        }
+        .conjoint-card .label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .conjoint-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .conjoint-option {
+            border: 1px solid var(--border);
+            padding: 20px 16px;
+            text-align: center;
+            transition: border-color 0.3s ease-out, background 0.3s ease-out;
+            cursor: default;
+        }
+        .conjoint-option.selected {
+            border-color: var(--orange);
+            background: rgba(244, 117, 33, 0.04);
+        }
+        .conjoint-option .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .conjoint-option .size {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .conjoint-option .price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text);
+            display: block;
+            margin-top: 8px;
+        }
+        .conjoint-option.selected .brand-name { color: var(--orange); }
+        .conjoint-none {
+            text-align: center;
+            padding: 16px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            grid-column: 1 / -1;
+            border-top: 1px solid var(--border);
+            margin-top: 4px;
+        }
+        @media (max-width: 600px) {
+            .conjoint-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Results stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 56px;
+        }
+        .stat {
+            border-left: 3px solid var(--orange);
+            padding: 20px 0 20px 28px;
+        }
+        .stat-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--text);
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        section.dark .stat-num { color: var(--cream); }
+        .stat-label {
+            font-size: 0.8125rem;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+        section.dark .stat-label { color: var(--cream); opacity: 0.7; }
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; gap: 16px; }
+            .stat-num { font-size: 44px; }
+        }
+
+        /* Results comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .comparison-card {
+            border: 1px solid rgba(247, 234, 217, 0.25);
+            padding: 40px;
+            text-align: center;
+        }
+        .comparison-card .scenario-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: 0.6;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .comparison-card .share-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -3px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .comparison-card .share-label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: block;
+        }
+        .comparison-card.original .share-num { color: var(--cream); opacity: 0.5; }
+        .comparison-card.original .share-label { color: var(--cream); opacity: 0.5; }
+        .comparison-card.new .share-num { color: var(--orange); }
+        .comparison-card.new .share-label { color: var(--orange); }
+        .comparison-card.new { border-color: var(--orange); }
+        @media (max-width: 600px) {
+            .comparison { grid-template-columns: 1fr; }
+            .comparison-card .share-num { font-size: 56px; }
+        }
+
+        /* Outcome narrative */
+        .outcome-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+            max-width: 680px;
+        }
+        .outcome-list li {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            padding: 16px 0 16px 24px;
+            position: relative;
+            border-bottom: 1px solid rgba(247, 234, 217, 0.15);
+        }
+        .outcome-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        /* Pull quote */
+        .pullquote {
+            border-left: 3px solid var(--orange);
+            padding: 24px 32px;
+            margin: 48px auto;
+            max-width: 720px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
+        }
+
+        /* CTA bar */
+        .cta-bar {
+            background: var(--text);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-bar .dot-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, #F47521 0.8px, transparent 0.8px);
+            background-size: 28px 28px;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+        .cta-bar h2 {
+            color: var(--bg);
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .cta-bar p {
+            color: var(--bg);
+            opacity: 0.7;
+            max-width: 480px;
+            margin: 0 auto 32px;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            position: relative;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--orange);
+            padding: 14px 32px;
+            transition: background 0.3s ease-out;
+            position: relative;
+        }
+        .cta-btn:hover { background: var(--orange-hover); }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-decoration: none;
+        }
+        .footer-brand span { color: var(--orange); }
+        .footer-text {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+        @media (max-width: 768px) {
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <nav>
+        <a href="https://runwithfoxes.com" class="nav-brand">/<span>Run</span>withfoxes</a>
+        <div class="nav-links">
+            <a href="#client">/client</a>
+            <a href="#challenge">/challenge</a>
+            <a href="#solution">/solution</a>
+            <a href="#results">/results</a>
+        </div>
+    </nav>
+
+    <main id="main">
+
+    <section class="hero" id="top">
+        <div class="dot-grid"></div>
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <span class="eyebrow">Case study / FMCG</span>
+                    <h1>New packaging<br>size increases<br>market share</h1>
+                    <p>We partnered with Mexican home-cleaning brand PINOL to test how larger pack sizes could strengthen their market position. The answer was clear.</p>
+                    <div class="meta-row">
+                        <div class="meta-item">
+                            <span class="meta-label">Client</span>
+                            <span class="meta-value">PINOL</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Industry</span>
+                            <span class="meta-value">FMCG</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Solution</span>
+                            <span class="meta-value">Product range optimisation</span>
+                        </div>
+                    </div>
+                </div>
+                <img src="/fox/fox-book.png" alt="" class="fox-hero" />
+            </div>
+        </div>
+    </section>
+
+    <section id="client">
+        <div class="dot-grid"></div>
+        <div class="container content-inner">
+            <span class="section-eyebrow">/01 the client</span>
+            <h2>A brand with<br>over 1,000 uses.</h2>
+            <div class="narrative reveal">
+                <p>Since 1953, PINOL has established itself as a leading, reliable, and innovative brand capable of tackling any cleaning challenge thanks to its powerful pine oil formula. It is an indispensable ally in home cleaning, and the only cleaner with over 1,000 proven uses.</p>
+                <p>Concerned about the health and well-being of their customers, PINOL has been able to establish an emotional connection with them by providing quality, efficiency and cleanliness with products that are safe to use.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark" id="challenge">
+        <div class="dot-grid"></div>
+        <div class="container content-inner">
+            <span class="section-eyebrow">/02 the challenge</span>
+            <h2>Everybody else<br>had a bigger pack.</h2>
+            <p class="section-intro">On the Mexican market, most house cleaning brands offered both a smaller (~1L) and a larger (~1.5L) product version. PINOL did not. We needed to find out how introducing a bigger packaging option would influence their sales performance and market share.</p>
+            <div class="key-points">
+                <div class="key-point reveal">
+                    <span class="key-point-num">01</span>
+                    <h3>The gap</h3>
+                    <p>We wanted to find out the impact of introducing a larger packaging option for PINOL.</p>
+                </div>
+                <div class="key-point reveal">
+                    <span class="key-point-num">02</span>
+                    <h3>The method</h3>
+                    <p>A standard choice-based conjoint featuring PINOL and competing products was used.</p>
+                </div>
+                <div class="key-point reveal">
+                    <span class="key-point-num">03</span>
+                    <h3>The result</h3>
+                    <p>Introducing the larger pack would lead to category growth and a bigger market share for PINOL.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution">
+        <div class="dot-grid"></div>
+        <div class="container content-inner">
+            <span class="section-eyebrow">/03 the solution</span>
+            <h2>Choice-based<br>conjoint.</h2>
+            <div class="split">
+                <div class="split-text">
+                    <p>A standard choice card conjoint survey was used to quickly identify the product variation loyalty in the instance of replacement, and packaging size loyalty in the case of incremental listing.</p>
+                    <p>The survey compared PINOL products with their key competitors in terms of different size options (~1L and ~1.5L) and several price variations, to determine customer preference and how they could use this information to optimise their product range.</p>
+                    <p>The results were collected and analysed within 3 business days.</p>
+                </div>
+                <div class="conjoint-card reveal">
+                    <span class="label">Choice-based conjoint</span>
+                    <h3>Which would you choose?</h3>
+                    <div class="conjoint-grid">
+                        <div class="conjoint-option">
+                            <span class="brand-name">Competitor A</span>
+                            <span class="size">1.5L</span>
+                            <span class="price">$42</span>
+                        </div>
+                        <div class="conjoint-option selected">
+                            <span class="brand-name">PINOL</span>
+                            <span class="size">1.5L</span>
+                            <span class="price">$38</span>
+                        </div>
+                        <div class="conjoint-option">
+                            <span class="brand-name">Competitor B</span>
+                            <span class="size">1L</span>
+                            <span class="price">$29</span>
+                        </div>
+                        <div class="conjoint-none">None of these</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark" id="results">
+        <div class="dot-grid"></div>
+        <div class="container content-inner">
+            <span class="section-eyebrow">/04 results</span>
+            <h2>Category growth<br>and bigger share.</h2>
+            <div class="stats-row reveal">
+                <div class="stat">
+                    <span class="stat-num">52%</span>
+                    <span class="stat-label">Market share with new larger pack</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">+3pp</span>
+                    <span class="stat-label">Gain versus original strategy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">3 days</span>
+                    <span class="stat-label">From survey to actionable results</span>
+                </div>
+            </div>
+
+            <div class="comparison reveal">
+                <div class="comparison-card original">
+                    <span class="scenario-label">Original strategy</span>
+                    <span class="share-num">49%</span>
+                    <span class="share-label">Market share</span>
+                </div>
+                <div class="comparison-card new">
+                    <span class="scenario-label">With new larger pack</span>
+                    <span class="share-num">52%</span>
+                    <span class="share-label">Market share</span>
+                </div>
+            </div>
+
+            <ul class="outcome-list reveal">
+                <li>The category value increases more if the new pack is introduced incrementally</li>
+                <li>The larger option steals volume from competitor large packs</li>
+                <li>More customers trade up from the existing entry level size</li>
+                <li>The brand commands 52% market share, versus 49% with the original strategy</li>
+            </ul>
+        </div>
+    </section>
+
+    </main>
+
+    <div class="cta-bar">
+        <div class="dot-grid"></div>
+        <div class="container">
+            <h2>Want to learn more?</h2>
+            <p>Find out how we can support your product and pricing decisions.</p>
+            <a href="https://runwithfoxes.com/contact" class="cta-btn">Talk to us</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <a href="https://runwithfoxes.com" class="footer-brand">/<span>Run</span>withfoxes</a>
+                <span class="footer-text">Case study / EPIC x PINOL</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 60) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        }, { passive: true });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(r => revealObserver.observe(r));
+    </script>
+</body>
+</html>
