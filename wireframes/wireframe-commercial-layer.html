@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe: Commercial Layer - runwithfoxes.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --sky-blue: #3A7CA5;
+  --sky-blue-hover: #2F6688;
+  --deep-sky: #1A3A4E;
+  --muted: #8A8A85;
+  --border: #E0E0DC;
+  --hover: #F5F5F0;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Dot grid on cream sections (matches live site) */
+.hp-hero-text,
+.about-section,
+.modules-accordion {
+  background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  background-color: var(--bg);
+}
+
+/* ==================== WIREFRAME ANNOTATION ==================== */
+.wf-annotation {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #1D1B1B;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 10px 48px;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wf-annotation strong { color: #F47521; font-weight: 400; }
+.wf-new-tag {
+  display: inline-block;
+  background: #F47521;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.wf-existing-tag {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.5);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Section annotation bars */
+.section-note {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 48px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #F47521;
+  border-top: 2px solid #F47521;
+}
+.section-note.existing {
+  color: var(--muted);
+  border-top-color: var(--border);
+}
+
+/* ==================== NAV (matches live site exactly) ==================== */
+.hp-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 100%);
+  transition: background 0.4s ease-out, backdrop-filter 0.4s ease-out;
+}
+.hp-nav-scrolled {
+  background: rgba(250, 250, 248, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.hp-nav-logo {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.4s;
+  cursor: pointer;
+  position: relative;
+  z-index: 101;
+}
+.hp-nav-scrolled .hp-nav-logo { color: var(--muted); }
+.hp-nav-logo span { color: #fff; transition: color 0.4s; }
+.hp-nav-scrolled .hp-nav-logo span { color: #F47521; }
+.hp-nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.hp-nav-links a,
+.hp-nav-links .hp-dropdown-trigger {
+  text-decoration: none;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: color 0.4s, text-shadow 0.4s;
+  cursor: pointer;
+}
+.hp-nav-scrolled .hp-nav-links a,
+.hp-nav-scrolled .hp-nav-links .hp-dropdown-trigger {
+  color: var(--muted);
+  text-shadow: none;
+}
+.hp-nav-scrolled .hp-nav-links a:hover,
+.hp-nav-scrolled .hp-nav-links .hp-dropdown-trigger:hover { color: #3A7CA5; }
+.hp-nav-scrolled .hp-nav-links a.hp-nav-cta { color: #fff; }
+.hp-nav-scrolled .hp-nav-links a.hp-nav-cta:hover { color: #fff; }
+.hp-nav-cta {
+  border: 1.5px solid rgba(255,255,255,0.8);
+  padding: 6px 16px;
+  transition: border-color 0.4s, background 0.4s, color 0.4s;
+}
+.hp-nav-scrolled .hp-nav-cta {
+  border-color: #3A7CA5;
+  background: #3A7CA5;
+  color: #fff !important;
+  text-shadow: none;
+}
+
+/* Nav dropdown */
+.hp-dropdown-wrap { position: relative; }
+.hp-mega {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  padding-top: 12px;
+  z-index: 100;
+}
+.hp-dropdown-wrap:hover .hp-mega { display: block; }
+.hp-mega-inner {
+  background: rgba(26,58,78,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 24px 32px;
+  display: flex;
+  gap: 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  min-width: 520px;
+}
+.hp-mega-col { display: flex; flex-direction: column; gap: 6px; }
+.hp-mega-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.hp-mega-inner a {
+  color: rgba(255,255,255,0.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 3px 0;
+  transition: color 0.2s;
+  text-shadow: none !important;
+}
+.hp-mega-inner a:hover { color: #5A9CC5 !important; }
+
+/* Projects dropdown */
+.hp-projects-dropdown {
+  background: rgba(26,58,78,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 16px 24px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.hp-pd-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+.hp-pd-label:first-child { margin-top: 0; }
+.hp-projects-dropdown a {
+  color: rgba(255,255,255,0.85) !important;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  padding: 4px 0;
+  transition: color 0.2s;
+  text-shadow: none !important;
+}
+.hp-projects-dropdown a:hover { color: #5A9CC5 !important; }
+
+/* ==================== HERO (matches live site exactly) ==================== */
+.hp-hero-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 540px;
+  overflow: hidden;
+  background: #000;
+}
+.hp-hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.hp-hero-video-portrait { display: none; }
+.hp-hero-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 48px 48px;
+  background: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+.hp-hero-text h1 {
+  font-family: var(--sans);
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.hp-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.hp-function-links {
+  font-family: var(--mono);
+  font-weight: 400;
+  line-height: 1.8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+.hp-function-links a {
+  color: #3A7CA5;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease-out;
+}
+.hp-function-links a:hover { opacity: 0.7; }
+
+/* ==================== THREE WAYS (NEW) ==================== */
+.three-ways {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+}
+.three-ways-divider {
+  border-top: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.three-ways-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.three-ways-heading {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  margin-bottom: 48px;
+}
+.three-ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.way-card {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+.way-card:hover {
+  border-top-color: var(--sky-blue);
+}
+.way-title {
+  font-family: var(--sans);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.way-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.way-cta {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--sky-blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sky-blue);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.way-cta:hover { color: var(--sky-blue-hover); }
+
+/* ==================== ABOUT ==================== */
+.about-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-photo {
+  width: 200px;
+  height: 267px;
+  background: #E8E8E4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.about-name {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+}
+.about-bio p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  max-width: 640px;
+}
+.about-ctas {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+.about-cta {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--sky-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.about-cta:hover { border-bottom-color: var(--sky-blue); }
+
+/* Engagement CTAs (under each module) */
+.mod-ctas {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  margin-top: 32px;
+}
+.mod-ctas-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+.mod-cta {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--sky-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.mod-cta:hover { border-bottom-color: var(--sky-blue); }
+
+/* ==================== MODULES (collapsed) ==================== */
+.modules-collapsed {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+}
+.module-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.module-row:first-child {
+  border-top: 1px solid var(--border);
+}
+.module-name {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+}
+.module-one-liner {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.module-mode {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sky-blue);
+  margin-left: 12px;
+}
+
+/* ==================== TESTIMONIAL BAR ==================== */
+.testimonial-bar {
+  background: var(--deep-sky);
+  padding: 40px 0;
+  position: relative;
+}
+.testimonial-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.testimonial-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+}
+.tbar-quote {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+  max-width: 800px;
+}
+.tbar-attr {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+}
+.tbar-attr strong {
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+}
+
+/* ==================== MID CTA ==================== */
+.mid-cta {
+  background: var(--deep-sky);
+  padding: 64px 0;
+  text-align: center;
+  position: relative;
+}
+.mid-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.mid-cta-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+}
+.mid-cta h3 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(24px, 3vw, 32px);
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.mid-cta p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+.big-btn {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.big-btn:hover { background: var(--sky-blue-hover); }
+
+/* ==================== CLOSE ==================== */
+.close-section {
+  padding: 120px 48px;
+  text-align: center;
+}
+.close-inner h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: -2px;
+  margin-bottom: 32px;
+}
+.close-inner h2 .accent { color: var(--sky-blue); }
+.close-cta {
+  display: inline-block;
+  background: var(--sky-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.close-cta:hover { background: var(--sky-blue-hover); }
+
+/* ==================== MODULE SECTIONS ==================== */
+.modules-accordion {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.mod-section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mod-section:last-child { border-bottom: none; }
+.mod-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+.mod-title {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(28px, 3.5vw, 42px);
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+}
+.mod-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 540px;
+}
+.mod-fox {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 8px;
+}
+.mod-fox-placeholder {
+  width: 280px;
+  height: 280px;
+  border: 2px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Accordion rows */
+.acc-rows {
+  border-top: 1px solid var(--border);
+}
+.acc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 0;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.acc-row:hover { background: var(--hover); padding-left: 8px; padding-right: 8px; }
+.acc-indicator {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.acc-row.expanded .acc-indicator { color: var(--sky-blue); }
+.acc-activity {
+  font-weight: 400;
+  color: var(--sky-blue);
+}
+.acc-desc {
+  display: none;
+}
+.acc-count {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Detail panel (expands below row) */
+.acc-detail {
+  display: none;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+.acc-row.expanded + .acc-detail { display: block; }
+.acc-row.expanded .acc-activity { color: var(--sky-blue); }
+
+.acc-detail-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.acc-detail-headline {
+  display: none;
+}
+.acc-detail-sub {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.acc-detail-pipeline {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+}
+.acc-detail-pipeline strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+/* Sub-group (nested) */
+.acc-subgroup {
+  margin-top: 24px;
+}
+.acc-subheader {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 15px;
+  cursor: pointer;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.acc-subheader:hover { background: var(--hover); padding-left: 8px; padding-right: 8px; }
+.acc-subheader .acc-activity { color: var(--sky-blue); font-weight: 400; }
+.acc-subbody {
+  display: none;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+.acc-subgroup.open .acc-subbody { display: block; }
+
+/* Mini pyramid */
+.mini-pyramid { display: flex; flex-direction: column; gap: 2px; }
+.mp-row { display: flex; align-items: center; gap: 8px; }
+.mp-label { width: 80px; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-align: right; }
+.mp-bar { display: flex; flex-wrap: wrap; gap: 4px; padding: 6px 10px; font-size: 10px; color: #fff; min-height: 28px; align-items: center; flex: 1; }
+.mp-bar span { background: rgba(255,255,255,0.2); padding: 2px 6px; }
+.mp-bar em { color: rgba(255,255,255,0.5); font-style: normal; font-size: 10px; }
+.mp-1 { background: #355E4C; }
+.mp-2 { background: #4A7A62; }
+.mp-3 { background: #F47521; }
+.mp-4 { background: #D4A574; }
+.mp-4 span, .mp-5 span { background: rgba(0,0,0,0.1); color: var(--text); }
+.mp-5 { background: #E8DDD0; }
+
+/* Scorecard (matches ops dashboard - grouped by pyramid level) */
+.scorecard { display: flex; flex-direction: column; }
+.sc-level-row { display: flex; gap: 0; border-bottom: 1px solid var(--border); }
+.sc-level-label {
+  width: 120px;
+  flex-shrink: 0;
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.sc-l1 { background: #355E4C; }
+.sc-l2 { background: #4A7A62; }
+.sc-l3 { background: #F47521; color: #fff; }
+.sc-l4 { background: #D4A574; }
+.sc-l5 { background: #E8DDD0; color: var(--text); }
+.sc-metrics { flex: 1; display: flex; flex-wrap: wrap; }
+.sc-metric-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 13px;
+  width: 100%;
+  border-bottom: 1px solid rgba(224,224,220,0.5);
+}
+.sc-metric-item:last-child { border-bottom: none; }
+.sc-name { color: var(--text); }
+.sc-val { font-family: var(--sans); font-weight: 400; font-size: 14px; }
+.sc-trend { font-size: 11px; }
+.sc-ok { color: #4A7A62; }
+.sc-watch { color: #D4A574; }
+.sc-concern { color: #C25B3A; }
+.sc-tag { font-size: 9px; letter-spacing: 0.5px; padding: 2px 8px; }
+.sc-tag-ok { color: #4A7A62; background: rgba(74,122,98,0.08); }
+.sc-tag-watch { color: #D4A574; background: rgba(212,165,116,0.1); }
+.sc-tag-concern { color: #C25B3A; background: rgba(194,91,58,0.08); }
+
+/* Cascade mini */
+.cascade-mini { display: flex; flex-direction: column; gap: 2px; }
+.cm-box { padding: 8px 12px; border: 1px solid var(--border); font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
+.cm-box span { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+.cm-ok { color: #4A7A62; }
+.cm-bad { color: #C25B3A; }
+.cm-flag { border-color: #C25B3A; background: rgba(194,91,58,0.03); }
+
+/* Similarity bars */
+.sim-bars { display: flex; flex-direction: column; gap: 6px; }
+.sim-row { display: grid; grid-template-columns: 100px 1fr 40px; align-items: center; gap: 8px; }
+.sim-label { font-size: 11px; color: var(--text); text-align: right; }
+.sim-track { background: var(--hover); height: 16px; position: relative; }
+.sim-bar { height: 100%; background: var(--sky-blue); }
+.sim-val { font-size: 11px; color: var(--sky-blue); font-weight: 400; }
+
+/* Discriminator table */
+.disc-table { display: flex; flex-direction: column; }
+.dt-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.dt-attr { color: var(--text); }
+.dt-tag { font-size: 10px; letter-spacing: 0.5px; padding: 2px 8px; }
+.dt-no { color: var(--muted); background: var(--hover); }
+.dt-yes { color: #4A7A62; background: rgba(74,122,98,0.1); }
+
+/* Examples label */
+.acc-examples-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+/* Competitor map */
+.comp-map { position: relative; width: 100%; max-width: 400px; height: 320px; border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.comp-map-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%, -50%); }
+.comp-map-label { position: absolute; font-size: 9px; font-weight: 400; transform: translate(-50%, 0); text-align: center; width: 80px; color: var(--muted); }
+.comp-map-axis { position: absolute; font-size: 9px; font-weight: 400; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.comp-map-line { position: absolute; border-style: dashed; border-color: var(--border); }
+
+/* DBA matrix */
+.dba-matrix { display: grid; grid-template-columns: 24px 1fr 1fr; grid-template-rows: 1fr 1fr 24px; gap: 2px; width: 100%; max-width: 400px; aspect-ratio: 1.4; }
+.dba-y-label { grid-column: 1; grid-row: 1 / 3; writing-mode: vertical-lr; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.dba-quad { padding: 12px; position: relative; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 4px; }
+.dba-quad-tl { background: rgba(58,124,165,0.06); border: 1px solid var(--border); }
+.dba-quad-tr { background: rgba(58,124,165,0.12); border: 1px solid var(--sky-blue); }
+.dba-quad-bl { background: transparent; border: 1px dashed var(--border); }
+.dba-quad-br { background: rgba(244,117,33,0.06); border: 1px solid var(--border); }
+.dba-quad-label { position: absolute; top: 4px; left: 8px; font-size: 8px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); }
+.dba-quad-tr .dba-quad-label { color: var(--sky-blue); }
+.dba-asset { display: inline-block; padding: 2px 6px; font-size: 9px; font-weight: 400; letter-spacing: 0.5px; margin-top: 14px; }
+.dba-asset-strong { background: var(--deep-sky); color: var(--bg); }
+.dba-asset-mid { background: rgba(58,124,165,0.15); color: var(--text); }
+.dba-asset-weak { background: rgba(29,27,27,0.06); color: var(--muted); }
+.dba-asset-risk { background: rgba(244,117,33,0.15); color: #F47521; }
+.dba-x-label { grid-column: 2 / 4; grid-row: 3; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.dba-corner { grid-column: 1; grid-row: 3; }
+
+/* CEP / mental availability chart */
+.dba-chart-wrap { max-width: 100%; }
+.dba-chart-title { font-size: 9px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.dba-chart svg { width: 100%; height: auto; }
+.dba-chart-legend { display: flex; gap: 16px; margin-top: 8px; }
+.dba-legend-item { font-size: 9px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+.dba-legend-swatch { width: 10px; height: 10px; flex-shrink: 0; }
+
+/* Brand house */
+.brand-house { max-width: 100%; }
+.brand-house-essence { padding: 12px 14px; background: var(--deep-sky); text-align: center; margin-bottom: 2px; }
+.brand-house-essence-quote { font-family: var(--sans); font-size: 13px; font-weight: 300; color: #F7EAD9; letter-spacing: -0.3px; }
+.brand-house-essence-desc { font-size: 9px; color: rgba(250,250,248,0.6); margin-top: 4px; }
+.brand-house-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+.brand-house-section { padding: 8px 10px; border: 1px solid var(--border); }
+.brand-house-section .brand-house-block-value { font-size: 9px; line-height: 1.5; }
+.brand-house-pillars { display: flex; gap: 2px; margin-bottom: 2px; }
+.brand-house-pillar { flex: 1; padding: 8px 6px; background: var(--sky-blue); text-align: center; font-size: 8px; font-weight: 400; letter-spacing: 0.5px; color: var(--bg); }
+.brand-house-foundations { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.brand-house-block { padding: 8px 10px; border: 1px solid var(--border); }
+.brand-house-block-label { font-size: 8px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.brand-house-block-value { font-size: 10px; color: var(--text); line-height: 1.4; }
+
+/* Brand guidelines */
+.brand-guidelines { max-width: 100%; }
+.brand-guide-row { display: flex; gap: 16px; margin-bottom: 12px; align-items: flex-start; }
+.brand-guide-section { flex: 1; }
+.brand-guide-label { font-size: 8px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.brand-guide-swatches { display: flex; gap: 2px; }
+.brand-guide-swatch { width: 32px; height: 32px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 2px; font-size: 7px; font-weight: 400; letter-spacing: 0.5px; }
+.brand-guide-type-sample { margin-bottom: 3px; }
+.brand-guide-type-name { font-size: 9px; color: var(--muted); }
+.brand-guide-logo { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: var(--muted); }
+.brand-guide-logo span { color: #F47521; }
+.brand-guide-nevers { display: flex; flex-wrap: wrap; gap: 3px; }
+.brand-guide-never { font-size: 8px; padding: 2px 5px; border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.5px; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .hp-hero-video-landscape { display: none; }
+  .hp-hero-video-portrait { display: block; }
+}
+@media (max-width: 900px) {
+  .hp-nav { padding: 14px 24px; }
+  .hp-nav-links { display: none; }
+  .hp-hero-wrapper { height: 60vh; min-height: 300px; max-height: 500px; }
+  .hp-hero-text { padding: 32px 24px; }
+  .hp-function-links { white-space: normal; }
+  .three-ways-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .module-row { grid-template-columns: 1fr; gap: 8px; }
+  .three-ways, .about-section, .modules-collapsed { padding-left: 24px; padding-right: 24px; }
+  .section-note { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ==================== HERO PLACEHOLDER ==================== -->
+<!-- DO NOT REBUILD: hero, nav, headline, and function links come from the live site untouched. -->
+<!-- When porting to Next.js, keep the existing HomePage.tsx hero code as-is. -->
+<div style="background:#1A3A4E; padding:48px; text-align:center; color:rgba(255,255,255,0.4); font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase;">
+  [ LIVE SITE HERO - nav + video + headline + function links - do not touch ]
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-photo">[ photo ]</div>
+    <div class="about-bio">
+      <div class="about-name">Paul Dervan</div>
+      <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland's Marketer of the Year in 2022.</p>
+      <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
+      <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+      <div class="about-ctas">
+        <a href="#" class="about-cta">\build it for you</a>
+        <a href="#" class="about-cta">\work alongside you</a>
+        <a href="#" class="about-cta">\train your team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== MODULES ==================== -->
+<div class="modules-accordion">
+
+  <!-- MODULE 1: METRICS -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Marketing effectiveness</div>
+        <div class="mod-desc">You can't manage a brand if you can't measure one. We help marketing teams and the wider organisation understand which metrics matter and how they influence each other. We train teams on marketing effectiveness and then build marketing effectiveness tools, audits, scorecards and dashboards using AI and hand them over.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-examples-label">Examples</div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')">
+        <span class="acc-indicator">+</span>
+        <span class="acc-activity">Measurement training</span>
+      </div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <svg viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;height:auto">
+              <rect x="88" y="4" width="84" height="18" fill="#355E4C"/>
+              <rect x="68" y="24" width="124" height="18" fill="#4A7A62"/>
+              <rect x="48" y="44" width="164" height="18" fill="#F47521"/>
+              <rect x="28" y="64" width="204" height="18" fill="#D4A574"/>
+              <rect x="8" y="84" width="244" height="18" fill="#E8DDD0"/>
+              <text x="130" y="16" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#fff">Commercial</text>
+              <text x="130" y="36" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#fff">Behaviour</text>
+              <text x="130" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#fff">Memory</text>
+              <text x="130" y="76" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#fff">Marketing comms</text>
+              <text x="130" y="96" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#8A8A85">Marketing activity</text>
+            </svg>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-headline">What should you be measuring?</div>
+            <div class="acc-detail-sub">This training trains marketers on five categories of marketing measurements and helps marketers understand the relationships between each of these metrics.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-row" onclick="this.classList.toggle('expanded')">
+        <span class="acc-indicator">+</span>
+        <span class="acc-activity">Metrics audit</span>
+      </div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="mini-pyramid">
+              <div class="mp-row"><span class="mp-label">Commercial</span><div class="mp-bar mp-1"><span>Revenue</span><span>Margin</span></div></div>
+              <div class="mp-row"><span class="mp-label">Behaviour</span><div class="mp-bar mp-2"><span>Pipeline</span><span>Win rate</span><span>CLV</span></div></div>
+              <div class="mp-row"><span class="mp-label">Memory</span><div class="mp-bar mp-3"><em>None tracked</em></div></div>
+              <div class="mp-row"><span class="mp-label">Comms</span><div class="mp-bar mp-4"><span>CPC</span><span>CTR</span><span>Conv.</span><span>CPA</span><span>ROAS</span></div></div>
+              <div class="mp-row"><span class="mp-label">Activity</span><div class="mp-bar mp-5"><span>Impr.</span><span>Reach</span><span>Sessions</span><span>Posts</span></div></div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-headline">Where are you blind?</div>
+            <div class="acc-detail-sub">Paste in whatever you track. The audit sorts them into five levels and shows the gaps.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-row" onclick="this.classList.toggle('expanded')">
+        <span class="acc-indicator">+</span>
+        <span class="acc-activity">Brand scorecard</span>
+      </div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="scorecard">
+              <div class="sc-level-row">
+                <div class="sc-level-label sc-l1">Commercial outcomes</div>
+                <div class="sc-metrics">
+                  <div class="sc-metric-item"><span class="sc-name">Revenue growth</span><span class="sc-val sc-ok">+12%</span><span class="sc-trend sc-ok">&#9650; 4pp vs Q1</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">Market share</span><span class="sc-val sc-ok">14.2%</span><span class="sc-trend sc-ok">&#9650; 0.8pp</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                </div>
+              </div>
+              <div class="sc-level-row">
+                <div class="sc-level-label sc-l2">Customer behaviour</div>
+                <div class="sc-metrics">
+                  <div class="sc-metric-item"><span class="sc-name">Win rate</span><span class="sc-val sc-ok">28%</span><span class="sc-trend sc-ok">&#9650; 3pp vs Q1</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">Retention</span><span class="sc-val sc-watch">84%</span><span class="sc-trend sc-watch">&#9654; 0pp</span><span class="sc-tag sc-tag-watch">Watch</span></div>
+                </div>
+              </div>
+              <div class="sc-level-row">
+                <div class="sc-level-label sc-l3">Memory metrics</div>
+                <div class="sc-metrics">
+                  <div class="sc-metric-item"><span class="sc-name">Aided awareness</span><span class="sc-val sc-ok">73%</span><span class="sc-trend sc-ok">&#9650; 4pp vs Q1</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">Consideration</span><span class="sc-val sc-watch">31%</span><span class="sc-trend sc-watch">&#9654; 0pp</span><span class="sc-tag sc-tag-watch">Watch</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">Mental availability</span><span class="sc-val sc-concern">2.1</span><span class="sc-trend sc-concern">&#9660; 0.3</span><span class="sc-tag sc-tag-concern">Needs attention</span></div>
+                </div>
+              </div>
+              <div class="sc-level-row">
+                <div class="sc-level-label sc-l4">Comms response</div>
+                <div class="sc-metrics">
+                  <div class="sc-metric-item"><span class="sc-name">CTR</span><span class="sc-val sc-ok">2.1%</span><span class="sc-trend sc-ok">&#9650; 0.4pp</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">CPA</span><span class="sc-val sc-ok">&euro;42</span><span class="sc-trend sc-ok">&#9650; &minus;&euro;6</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                </div>
+              </div>
+              <div class="sc-level-row">
+                <div class="sc-level-label sc-l5">Activity outputs</div>
+                <div class="sc-metrics">
+                  <div class="sc-metric-item"><span class="sc-name">Reach</span><span class="sc-val sc-ok">1.2M</span><span class="sc-trend sc-ok">&#9650; 18%</span><span class="sc-tag sc-tag-ok">On track</span></div>
+                  <div class="sc-metric-item"><span class="sc-name">SOV</span><span class="sc-val sc-watch">8.4%</span><span class="sc-trend sc-watch">&#9654; 0pp</span><span class="sc-tag sc-tag-watch">Watch</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-headline">One page everyone looks at.</div>
+            <div class="acc-detail-sub">The scorecard pulls from the metrics audit. It shows what matters, how it's tracking, and where to focus. Built for the leadership team, not just marketing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- MODULE 2: SEGMENTATION -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Segmentation</div>
+        <div class="mod-desc">Segmentation matters, but pseudo-science segmentation is dangerous. We've combined the rigour of empirical theory with AI to run the math to help build proper customer segmentation, including similarity analysis, correlation matrix, scatter plots, penetration adjustment, usage bias and purchase triggers.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-examples-label">Examples</div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')">
+        <span class="acc-indicator">+</span>
+        <span class="acc-activity">Similarity analysis</span>
+      </div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="sim-bars">
+              <div class="sim-row"><span class="sim-label">Aspirational</span><div class="sim-track"><div class="sim-bar" style="width:96%;background:var(--deep-sky)"></div></div><span class="sim-val">96%</span></div>
+              <div class="sim-row"><span class="sim-label">Value seekers</span><div class="sim-track"><div class="sim-bar" style="width:94%;background:var(--deep-sky)"></div></div><span class="sim-val">94%</span></div>
+              <div class="sim-row"><span class="sim-label">Traditionalists</span><div class="sim-track"><div class="sim-bar" style="width:93%;background:var(--deep-sky)"></div></div><span class="sim-val">93%</span></div>
+              <div class="sim-row"><span class="sim-label">Experimenters</span><div class="sim-track"><div class="sim-bar" style="width:91%;background:var(--sky-blue)"></div></div><span class="sim-val">91%</span></div>
+              <div class="sim-row"><span class="sim-label">Convenience</span><div class="sim-track"><div class="sim-bar" style="width:89%;background:var(--sky-blue)"></div></div><span class="sim-val">89%</span></div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We test what each segment wants from brands. If they all want the same things, they are not different segments.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-row" onclick="this.classList.toggle('expanded')">
+        <span class="acc-indicator">+</span>
+        <span class="acc-activity">Scatter plots</span>
+      </div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;height:auto">
+              <line x1="40" y1="260" x2="300" y2="260" stroke="#E0E0DC" stroke-width="0.5"/>
+              <line x1="40" y1="260" x2="40" y2="20" stroke="#E0E0DC" stroke-width="0.5"/>
+              <line x1="40" y1="260" x2="300" y2="20" stroke="#E0E0DC" stroke-width="1" stroke-dasharray="4,3"/>
+              <text x="170" y="285" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Base score</text>
+              <text x="16" y="140" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85" transform="rotate(-90,16,140)">Segment score</text>
+              <text x="290" y="36" font-family="JetBrains Mono" font-size="8" fill="#8A8A85">same</text>
+              <circle cx="78" cy="228" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="95" cy="210" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="112" cy="198" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="130" cy="175" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="145" cy="162" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="158" cy="145" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="175" cy="130" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="190" cy="118" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="205" cy="100" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="218" cy="88" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="232" cy="78" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="250" cy="58" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="102" cy="202" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="140" cy="168" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="168" cy="142" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="198" cy="108" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="228" cy="82" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="260" cy="52" r="4" fill="#3A7CA5" opacity="0.6"/>
+              <circle cx="120" cy="178" r="4" fill="#F47521" opacity="0.8"/>
+              <circle cx="200" cy="82" r="4" fill="#F47521" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">Each dot is a brand attribute. Dots on the diagonal line score the same as the base. Dots off the line are where the segment genuinely differs. The orange dots are the attributes worth investigating.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 03. BRAND STRATEGY -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Brand strategy</div>
+        <div class="mod-desc">Brand strategy covers a bunch of areas: positioning, messaging frameworks, mental availability, customer journey mapping, brand guidelines development, distinctive brand assets. We use a number of AI tools and agents and skills to help do brand strategy at a really high quality at speed.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-examples-label">Examples</div>
+    <div class="acc-rows">
+      <!-- 1. Competitor positioning map (anonymised from Eaton Square work) -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Competitor positioning map</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="comp-map">
+              <div class="comp-map-axis" style="left:50%;top:-18px;transform:translateX(-50%)">TECHNOLOGY-LED</div>
+              <div class="comp-map-axis" style="left:50%;bottom:-22px;transform:translateX(-50%)">PEOPLE-LED</div>
+              <div class="comp-map-axis" style="left:-70px;top:50%;transform:rotate(-90deg) translateX(-50%);transform-origin:center">LOCAL</div>
+              <div class="comp-map-axis" style="right:-50px;top:50%;transform:rotate(90deg) translateX(50%);transform-origin:center">GLOBAL</div>
+              <div class="comp-map-line" style="left:50%;top:0;bottom:0;border-left:1px dashed var(--border)"></div>
+              <div class="comp-map-line" style="top:50%;left:0;right:0;border-top:1px dashed var(--border)"></div>
+              <div class="comp-map-dot" style="background:#C0392B;left:82%;top:15%"></div>
+              <div class="comp-map-label" style="left:82%;top:5%">Competitor A</div>
+              <div class="comp-map-dot" style="background:#E67E22;left:75%;top:22%"></div>
+              <div class="comp-map-label" style="left:75%;top:12%">Competitor B</div>
+              <div class="comp-map-dot" style="background:#2980B9;left:78%;top:42%"></div>
+              <div class="comp-map-label" style="left:78%;top:32%">Competitor C</div>
+              <div class="comp-map-dot" style="background:#355E4C;left:38%;top:35%"></div>
+              <div class="comp-map-label" style="left:38%;top:25%;color:#355E4C">Your brand</div>
+              <div class="comp-map-dot" style="background:#8E44AD;left:65%;top:60%"></div>
+              <div class="comp-map-label" style="left:65%;top:50%">Competitor D</div>
+              <div class="comp-map-dot" style="background:#F47521;left:22%;top:75%"></div>
+              <div class="comp-map-label" style="left:22%;top:65%">Competitor E</div>
+              <div class="comp-map-dot" style="background:#D4A017;left:15%;top:85%"></div>
+              <div class="comp-map-label" style="left:15%;top:75%">Competitor F</div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We research competitor positions across different dimensions, plot the map, and find the white space. The axes come from the category, not a template.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Mental availability (CEP analysis chart) -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Mental availability</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="dba-chart-wrap">
+              <div class="dba-chart-title">Mental availability metrics (4 waves)</div>
+              <div class="dba-chart">
+                <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="50" y1="30" x2="520" y2="30" stroke="#E0E0DC" stroke-width="0.5"/>
+                  <line x1="50" y1="85" x2="520" y2="85" stroke="#E0E0DC" stroke-width="0.5"/>
+                  <line x1="50" y1="140" x2="520" y2="140" stroke="#E0E0DC" stroke-width="0.5"/>
+                  <line x1="50" y1="195" x2="520" y2="195" stroke="#E0E0DC" stroke-width="0.5"/>
+                  <text x="42" y="34" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">50%</text>
+                  <text x="42" y="89" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">37%</text>
+                  <text x="42" y="144" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">25%</text>
+                  <text x="42" y="199" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">12%</text>
+                  <text x="50" y="240" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Wave 1</text>
+                  <text x="207" y="240" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Wave 2</text>
+                  <text x="363" y="240" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Wave 3</text>
+                  <text x="520" y="240" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Wave 4</text>
+                  <polyline points="50,90.8 207,75.6 363,60.4 520,41.4" fill="none" stroke="#1A3A4E" stroke-width="2"/>
+                  <circle cx="50" cy="90.8" r="3" fill="#1A3A4E"/><circle cx="207" cy="75.6" r="3" fill="#1A3A4E"/><circle cx="363" cy="60.4" r="3" fill="#1A3A4E"/><circle cx="520" cy="41.4" r="3" fill="#1A3A4E"/>
+                  <text x="528" y="45" font-family="Space Grotesk" font-size="11" font-weight="300" fill="#1A3A4E">47%</text>
+                  <polyline points="50,151.6 207,140.2 363,128.8 520,113.6" fill="none" stroke="#3A7CA5" stroke-width="2"/>
+                  <circle cx="50" cy="151.6" r="3" fill="#3A7CA5"/><circle cx="207" cy="140.2" r="3" fill="#3A7CA5"/><circle cx="363" cy="128.8" r="3" fill="#3A7CA5"/><circle cx="520" cy="113.6" r="3" fill="#3A7CA5"/>
+                  <text x="528" y="117" font-family="Space Grotesk" font-size="11" font-weight="300" fill="#3A7CA5">28%</text>
+                  <polyline points="50,121.2 207,106 363,90.8 520,71.8" fill="none" stroke="#F47521" stroke-width="2"/>
+                  <circle cx="50" cy="121.2" r="3" fill="#F47521"/><circle cx="207" cy="106" r="3" fill="#F47521"/><circle cx="363" cy="90.8" r="3" fill="#F47521"/><circle cx="520" cy="71.8" r="3" fill="#F47521"/>
+                  <text x="528" y="75" font-family="Space Grotesk" font-size="11" font-weight="300" fill="#F47521">3.1</text>
+                </svg>
+              </div>
+              <div class="dba-chart-legend">
+                <div class="dba-legend-item"><span class="dba-legend-swatch" style="background:#1A3A4E"></span>MPen (mental penetration)</div>
+                <div class="dba-legend-item"><span class="dba-legend-swatch" style="background:#3A7CA5"></span>MMS (mental market share)</div>
+                <div class="dba-legend-item"><span class="dba-legend-swatch" style="background:#F47521"></span>NS (network size)</div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We use AI to measure and analyse mental availability: mental penetration, mental market share, and network size across buying situations.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Messaging framework (video) -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Messaging framework</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <video autoplay loop muted playsinline style="width:100%;max-width:480px;border:1px solid var(--border)">
+              <source src="/video/messaging-framework-scroll.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We take positioning, customer barriers and pain points, key messages, tone of voice, and work with clients to create a unified messaging framework at speed, which then becomes the basis for all their marketing communications.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Distinctive brand assets (DBA audit matrix) -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Distinctive brand assets</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="dba-matrix">
+              <div class="dba-y-label">Fame (recognition)</div>
+              <div class="dba-quad dba-quad-tl">
+                <span class="dba-quad-label">High fame, low uniqueness</span>
+                <span class="dba-asset dba-asset-mid">Brand colour</span>
+                <span class="dba-asset dba-asset-mid">Logo wordmark</span>
+              </div>
+              <div class="dba-quad dba-quad-tr">
+                <span class="dba-quad-label">Use or lose</span>
+                <span class="dba-asset dba-asset-strong">Character</span>
+                <span class="dba-asset dba-asset-strong">Tagline</span>
+              </div>
+              <div class="dba-quad dba-quad-bl">
+                <span class="dba-quad-label">Avoid or test</span>
+                <span class="dba-asset dba-asset-weak">Sonic</span>
+                <span class="dba-asset dba-asset-weak">Pattern</span>
+              </div>
+              <div class="dba-quad dba-quad-br">
+                <span class="dba-quad-label">Invest here</span>
+                <span class="dba-asset dba-asset-risk">Shape</span>
+                <span class="dba-asset dba-asset-risk">Typeface</span>
+              </div>
+              <div class="dba-corner"></div>
+              <div class="dba-x-label">Uniqueness (attribution)</div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We catalogue a brand's existing distinctive assets, assess consistency and gaps, and plot them on a Fame x Uniqueness matrix to see what to invest in and what to protect.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Brand on a page (brand house) -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand on a page</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="brand-house">
+              <div class="brand-house-essence">
+                <div class="brand-house-essence-quote">"Honest, not heroic"</div>
+                <div class="brand-house-essence-desc">For mid-career marketers who know the textbook answers aren't working, this is the brand consultancy that builds evidence-based marketing systems.</div>
+              </div>
+              <div class="brand-house-grid">
+                <div class="brand-house-section">
+                  <div class="brand-house-block-label">What we do</div>
+                  <div class="brand-house-block-value"><strong>Category:</strong> Brand management<br><strong>Core offering:</strong> AI-powered brand strategy<br><strong>Differentiator:</strong> Evidence over opinion</div>
+                </div>
+                <div class="brand-house-section">
+                  <div class="brand-house-block-label">Who we serve</div>
+                  <div class="brand-house-block-value"><strong>Audience:</strong> Mid-career to senior marketers<br><strong>Their problem:</strong> Gut feel dressed up as strategy</div>
+                </div>
+                <div class="brand-house-section">
+                  <div class="brand-house-block-label">Voice</div>
+                  <div class="brand-house-block-value"><strong>Tone:</strong> Smart colleague over coffee<br><strong>Never:</strong> Jargon, heroics, certainty theatre<br><strong>Always:</strong> Evidence first, peer-to-peer</div>
+                </div>
+                <div class="brand-house-section">
+                  <div class="brand-house-block-label">Versus</div>
+                  <div class="brand-house-block-value"><strong>Big consultancies:</strong> We build, not advise<br><strong>Agencies:</strong> We measure, not just make</div>
+                </div>
+              </div>
+              <div class="brand-house-pillars">
+                <div class="brand-house-pillar">Learning from failure</div>
+                <div class="brand-house-pillar">Fox thinking</div>
+                <div class="brand-house-pillar">Evidence-based</div>
+                <div class="brand-house-pillar">Brand salience</div>
+                <div class="brand-house-pillar">Honest learning</div>
+              </div>
+              <div class="brand-house-foundations">
+                <div class="brand-house-block">
+                  <div class="brand-house-block-label">Key messages</div>
+                  <div class="brand-house-block-value">Most marketing fails because teams measure the wrong things</div>
+                </div>
+                <div class="brand-house-block">
+                  <div class="brand-house-block-label">Values</div>
+                  <div class="brand-house-block-value">Honesty over comfort. Evidence over opinion. Building over advising</div>
+                </div>
+                <div class="brand-house-block">
+                  <div class="brand-house-block-label">Proof</div>
+                  <div class="brand-house-block-value">20 yrs brand leadership. Marketer of the Year 2022</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We work with clients to convert all their various brand elements into a brand on a page that captures everything for the team.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Brand guidelines -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand guidelines</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div class="brand-guidelines">
+              <div class="brand-guide-row">
+                <div class="brand-guide-section">
+                  <div class="brand-guide-label">Colour palette</div>
+                  <div class="brand-guide-swatches">
+                    <div class="brand-guide-swatch" style="background:#3A7CA5;color:rgba(255,255,255,0.7)">Sky</div>
+                    <div class="brand-guide-swatch" style="background:#1A3A4E;color:rgba(255,255,255,0.7)">Deep</div>
+                    <div class="brand-guide-swatch" style="background:#F47521;color:rgba(255,255,255,0.7)">Run</div>
+                    <div class="brand-guide-swatch" style="background:#F7EAD9;color:#8A8A85;border:1px solid #E0E0DC">Cream</div>
+                    <div class="brand-guide-swatch" style="background:#FAFAF8;color:#8A8A85;border:1px solid #E0E0DC">BG</div>
+                    <div class="brand-guide-swatch" style="background:#1D1B1B;color:rgba(255,255,255,0.7)">Text</div>
+                  </div>
+                </div>
+                <div class="brand-guide-section">
+                  <div class="brand-guide-label">Typography</div>
+                  <div class="brand-guide-type-sample" style="font-family:var(--sans);font-size:15px;font-weight:300;letter-spacing:-0.3px">Space Grotesk Light</div>
+                  <div class="brand-guide-type-name">Headings, large numbers</div>
+                  <div class="brand-guide-type-sample" style="font-family:var(--mono);font-size:11px;font-weight:300;margin-top:6px">JetBrains Mono Light</div>
+                  <div class="brand-guide-type-name">Body, data, labels</div>
+                </div>
+                <div class="brand-guide-section">
+                  <div class="brand-guide-label">Logo</div>
+                  <div class="brand-guide-logo">/<span>Run</span>withfoxes</div>
+                  <div class="brand-guide-type-name" style="margin-top:3px">Text only. Forward slash. Run in orange.</div>
+                </div>
+              </div>
+              <div class="brand-guide-row">
+                <div class="brand-guide-section">
+                  <div class="brand-guide-label">Writing style</div>
+                  <div class="brand-guide-type-name" style="color:var(--text);font-size:10px;line-height:1.5">Conversational, peer-to-peer. Sentence case only. Evidence before opinion.</div>
+                </div>
+                <div class="brand-guide-section">
+                  <div class="brand-guide-label">Never</div>
+                  <div class="brand-guide-nevers">
+                    <span class="brand-guide-never">Rounded corners</span>
+                    <span class="brand-guide-never">Gradients</span>
+                    <span class="brand-guide-never">Bold headings</span>
+                    <span class="brand-guide-never">Title Case</span>
+                    <span class="brand-guide-never">Stock photos</span>
+                    <span class="brand-guide-never">Em dashes</span>
+                    <span class="brand-guide-never">Drop shadows</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">We help build brand guidelines and convert them into something that allows clients to make sure everything they create after that is highly consistent. Built for humans and robots.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 04. MARKETING COMMUNICATIONS -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Marketing communications</div>
+        <div class="mod-desc">Media planning, creative production, website builds, copywriting, content strategy, and search intelligence.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand / activation split</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Classify activities as brand building or sales activation, set the ratio that drives channel selection.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Budget setting</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Set the budget: ESOV when competitive data exists, or percentage-of-revenue, task-based, or fixed.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Channel planning engine</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Allocate budget across channels using CPMs, reach curves, diminishing returns, and dull media checks.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brief coach</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Review briefs against best practice before they reach creative, score them, give structured feedback.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Influence diagnosis</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Which of 7 influence models your brief is actually using, and where it contradicts itself.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Creative direction</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Routes to the right ad format based on objective and channel.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Animated ads</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">3-frame chart ads with headline, data, endframe, rendered to MP4.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Video ads</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Video in multiple formats: hyperspeed, freeze frame, tracking shot.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Static ads</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Performance statics with dot grid and headline.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand ads</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Cinematic scenes with headline overlay, movie poster energy.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Site build</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Full website build from spec to deployment.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Landing pages</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Conversion-optimised landing pages for campaigns.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Page audit</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Audit a live page against conversion anatomy, show gaps, draft a rebuild.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">LinkedIn content</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Content strategy and post production for LinkedIn.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand guardian</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">AI agent that reviews documents, flags drift, and creates on-brand materials.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Studio measurement</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Track creative performance across formats and channels.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 05. PHYSICAL AVAILABILITY -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Physical availability</div>
+        <div class="mod-desc">Touchpoint mapping, digital storefront audits, and consumer friction research. Making it easy for people to find and buy.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Touchpoint mapping</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map every point where a buyer can find, evaluate, or purchase.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Digital storefront audit</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Audit the digital purchase experience against best practice.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Consumer friction research</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Identify where buyers drop off and what gets in the way of purchase.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 06. TEAM CAPABILITIES -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Team capabilities</div>
+        <div class="mod-desc">Team structure diagnosis, AI upskilling, culture signals, and team interviews. Building the team that can do the work.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team structure diagnosis</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Assess current team structure against what the strategy requires.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team mapping</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map roles, responsibilities, and gaps across the marketing function.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">AI upskilling</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Practical training on AI tools for marketing teams.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Culture signals</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Read the signals that tell you how a team actually works versus how it says it works.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team interviews</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Structured interviews to surface what the team thinks, needs, and avoids.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 07. RESEARCH AND INSIGHTS -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Research and insights</div>
+        <div class="mod-desc">AI research agents that search, read, and build a library over time. Phone research, Reddit scanning, long-form synthesis.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Insights pipeline</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Automated pipeline that searches sources on a schedule and builds a library.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Research database</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Structured, searchable database of research findings and evidence.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Reddit scanning</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Ongoing monitoring of subreddits for consumer and industry sentiment.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Long-form synthesis</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Deep research and long prose synthesis from multiple sources.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Phone research</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Outbound phone interviews for primary research.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 08. GO TO MARKET -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Go to market</div>
+        <div class="mod-desc">Audience definition, ICP identification, network mapping, contact enrichment. The operational side of targeting.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Audience definition</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Define the audience based on strategy, not just demographics.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">ICP identification</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Identify ideal customer profiles from data and evidence.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Network mapping</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map the prospect network and find the routes in.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Contact enrichment</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Enrich contacts with emails, roles, company data, and change signals.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Engagement parsing</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Parse campaign engagement data to identify who is responding and how.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+  <!-- 09. MARKETING OPERATIONS -->
+  <div class="mod-section">
+    <div class="mod-intro">
+      <div>
+        <div class="mod-title">Marketing operations</div>
+        <div class="mod-desc">Project management, campaign workspaces, capacity planning, presentation tools. The systems that keep everything running.</div>
+      </div>
+      <div class="mod-fox">
+        <div class="mod-fox-placeholder">[ fox ]</div>
+      </div>
+    </div>
+    <div class="acc-rows">
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Project manager</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Morning briefing agent, priorities, tasks, shared briefing board.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Back plan</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Gantt-style project plan with critical path and dependencies.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Campaign workspace</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">From a brief, generate all standard campaign elements: exec summary, registration page, emails, seller notes.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Presentation converter</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Convert documents into branded presentations, pages, or decks.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Capacity planning</span></div>
+      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Plan team capacity against deliverables and deadlines.</div></div></div></div>
+    </div>
+    <div class="mod-ctas">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-bar">
+  <div class="testimonial-bar-inner">
+    <div class="tbar-quote">"Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it."</div>
+    <div class="tbar-attr"><strong>Jonnie Cahill</strong> - SVP and CMO International Foods, PepsiCo</div>
+  </div>
+</div>
+
+<!-- BOOK CTA -->
+<div class="mid-cta">
+  <div class="mid-cta-inner">
+    <h3>The Fox Advantage is available for free.</h3>
+    <p>The book is almost finished. Pick up a copy.</p>
+    <a href="#" class="big-btn">Get the book</a>
+  </div>
+</div>
+
+<!-- CLOSE CTA -->
+<section class="close-section">
+  <div class="close-inner">
+    <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
+    <a href="#" class="close-cta">Get in touch</a>
+  </div>
+</section>
+
+<script>
+// Nav scroll behaviour (matches live site)
+(function() {
+  var nav = document.getElementById('topNav');
+  var hero = document.getElementById('heroWrapper');
+  if (!nav || !hero) return;
+  function onScroll() {
+    var heroH = hero.offsetHeight;
+    nav.classList.toggle('hp-nav-scrolled', window.scrollY > heroH - 60);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
