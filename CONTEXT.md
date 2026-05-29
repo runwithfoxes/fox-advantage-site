@@ -65,16 +65,26 @@ Each section follows the same pattern:
 - No "feeds into" pipeline text in detail panels
 - Testimonial bars, book CTA, and close CTA stay as-is
 
+### Modules completed (session 2, 29 May afternoon)
+1. **Marketing effectiveness** - copy updated, pyramid SVG flipped (commercial at top), scorecard orange fixed. 3 accordion rows kept (training, audit, scorecard)
+2. **Segmentation** - renamed from "Segmentation and targeting". New intro (pseudo-science). Cut to 2 rows: Similarity analysis, Scatter plots. Visuals from ops dashboard
+3. **Brand strategy** - new intro. Cut to 6 rows: Competitor positioning map (anonymised from Eaton work), Mental availability (CEP chart), Messaging framework (video), Distinctive brand assets (DBA matrix), Brand on a page (brand house), Brand guidelines (colour/type/logo/nevers). All visuals from ops dashboard
+4. **Advertising** - renamed from "Marketing communications". New intro. 4 rows: Video, Brand ads, Animated ads, Static ads. Full-width media panels, no inline text
+
+### Global changes made
+- Hero replaced with placeholder (live site hero must not be touched, ever)
+- "Examples" label added before accordion rows in modules 1-4
+- "Contact us to" added inline before the three engagement CTAs in every module
+- Font smoothing (antialiased) added to match live site rendering
+
 ### What still needs doing
-1. **Copy pass** - all module intro paragraphs and detail panel copy need Paul's voice. Current text is placeholder
+1. **Modules 5-9** - Physical availability, Team capabilities, Research and insights, Go to market, Marketing operations all need walk-through with Paul (currently have placeholder rows from ops dashboard)
 2. **Fox images** - each section needs a fox assigned (currently all placeholders)
-3. **Detail panel visuals** - only Metrics (pyramid, scorecard) and Segmentation (similarity bars, cascade, discriminators) have visuals. Brand strategy, Comms, etc. need theirs built
-4. **Font size audit** - Paul flagged inconsistencies. Everything should match the live site sizes
-5. **Contact page** - the three engagement CTAs need a destination page with fuller descriptions of each mode
-6. **Testimonial placement** - current wireframe has one testimonial bar and book CTA at the bottom. Need to decide where to scatter them between sections (as on the current site)
-7. **Nav update** - the #unfair_advantage dropdown needs to reflect the new section names
-8. **Copywriters section** - 9 copywriter specialisms from the ops dashboard (landing page, email, case study, blog, social, ad, sales, PR, website) are not yet included. They sit under Marketing communications
-9. **Search intelligence and Channel playbooks** - large sub-groups from the ops dashboard not yet included in the wireframe
+3. **Ad assets** - videos and images for Advertising panels need copying to public/ when porting to Next.js
+4. **Contact page** - the three engagement CTAs need a destination page
+5. **Testimonial placement** - need to decide where to scatter them between sections
+6. **Nav update** - the #unfair_advantage dropdown needs to reflect the new section names
+7. **Port to Next.js** - keep hero untouched, add commercial layer below it
 
 ### Source of truth for content
 The ops dashboard at `~/projects/brand-measurement-dashboard/operations.html` is the authoritative source for what goes into each section. Every activity name, description, and detail panel should match what's there.
