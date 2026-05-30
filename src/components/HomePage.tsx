@@ -804,7 +804,8 @@ export default function HomePage() {
                     <div className="cl-media-item"><img src="/ads/static-arsenal.png" alt="Arsenal static ad" className="cl-media-img" /></div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <div className="cl-media-item"><img src="/ads/static-6040.png" alt="60/40 static ad" className="cl-media-img" /></div>
-                    <div className="cl-media-item cl-media-placeholder">Coming soon</div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <div className="cl-media-item"><img src="/ads/static-sherlock.png" alt="Sherlock fox static ad" className="cl-media-img-square" /></div>
                   </div>
                 </div>
               )}
