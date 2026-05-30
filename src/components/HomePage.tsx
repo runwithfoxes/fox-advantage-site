@@ -774,7 +774,7 @@ export default function HomePage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <div className="cl-media-item"><img src="/ads/brand-vespa.png" alt="Vespa brand ad" className="cl-media-img-square" /></div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <div className="cl-media-item"><img src="/ads/brand-sherlock.png" alt="Sherlock fox brand ad" className="cl-media-img" /></div>
+                    <div className="cl-media-item"><img src="/ads/brand-rushmore.png" alt="Rushmore fox brand ad" className="cl-media-img" /></div>
                   </div>
                 </div>
               )}
@@ -804,8 +804,6 @@ export default function HomePage() {
                     <div className="cl-media-item"><img src="/ads/static-arsenal.png" alt="Arsenal static ad" className="cl-media-img" /></div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <div className="cl-media-item"><img src="/ads/static-6040.png" alt="60/40 static ad" className="cl-media-img" /></div>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <div className="cl-media-item"><img src="/ads/static-professor.png" alt="Professor fox static ad" className="cl-media-img-square" /></div>
                   </div>
                 </div>
               )}
