@@ -50,7 +50,11 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    const id = setTimeout(() => setIsOpen(true), 5000);
+    if (typeof window !== "undefined" && localStorage.getItem("isa-greeted")) return;
+    const id = setTimeout(() => {
+      setIsOpen(true);
+      localStorage.setItem("isa-greeted", "1");
+    }, 5000);
     return () => clearTimeout(id);
   }, []);
 
