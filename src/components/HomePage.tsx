@@ -158,7 +158,7 @@ export default function HomePage() {
 
       <div className="hp-hero-text">
         <h1>Build an unfair advantage in marketing</h1>
-        <div className="cl-hero-desc">We turn repeated marketing work into practical AI systems: briefs, writers, brand guardians, campaign engines, QA tools, studio workflows and reporting systems.</div>
+        <div className="cl-hero-desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
       </div>
 
       <section className="cl-about">
