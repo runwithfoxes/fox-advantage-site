@@ -50,11 +50,8 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("isa-greeted")) return;
-    const id = setTimeout(() => {
-      setIsOpen(true);
-      localStorage.setItem("isa-greeted", "1");
-    }, 5000);
+    if (typeof window !== "undefined" && sessionStorage.getItem("isa-dismissed")) return;
+    const id = setTimeout(() => setIsOpen(true), 5000);
     return () => clearTimeout(id);
   }, []);
 
@@ -89,7 +86,7 @@ export default function ChatWidget() {
         <span className="chat-panel-title">isa</span>
         <button
           className="chat-panel-close"
-          onClick={() => setIsOpen(false)}
+          onClick={() => { setIsOpen(false); sessionStorage.setItem("isa-dismissed", "1"); }}
           aria-label="Close chat"
         >
           &times;
