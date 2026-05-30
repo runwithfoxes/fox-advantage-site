@@ -97,10 +97,19 @@ Every module section follows:
 - See ~/.claude/skills/writing-voice/ for full voice spec
 
 ## Locked copy (approved by Paul 2026-05-30)
-- Hero desc: "We turn repeated marketing work into practical AI systems: briefs, writers, brand guardians, campaign engines, QA tools, studio workflows and reporting systems."
+- Hero desc: "We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems."
 - Modules intro: "Below are the places we most often build AI into marketing work. A marketing team of two or three, with the right systems, can do work that used to need a department."
 - Studio intro: "We've spent twenty years running internal studios. We bring AI into them to do three things: improve the quality of the work, get it out faster, and show the ROI."
 - Research intro: "We love research, and have helped teams with a range of solutions such as message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour."
+
+## Isa chatbot behaviour
+- Auto-opens after 5 seconds on first page load
+- Welcome message shows Fox Advantage book cover thumbnail + "Hi, I'm Isa. The first two sections of Paul's new book are free to download. The rest will be here soon. Or ask me anything about what we do."
+- "free to download" links to `/book#signup` (email gate + PDF download)
+- Once dismissed (X button), stays closed for the rest of the visit (sessionStorage)
+- Reopens on next visit (new browser session)
+- Welcome message rendered as custom JSX (not through markdown renderer) to support the book cover image
+- Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`
 
 ## What's next
 1. **Mobile responsive pass** - accordion detail panels (scorecard, pricing table, comp map, brand house) need work on small screens. Panels are collapsed by default so not immediately broken.
