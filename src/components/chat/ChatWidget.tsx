@@ -20,7 +20,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hello. I'm Isa. I work with Paul. I've picked up a fair bit of what he knows. He's an absolute nerd. But I'm a robot so I can hardly throw rocks. How can I help?",
+      text: "Hi, I'm Isa. The first two sections of Paul's new book are [free to download](/downloads/the-fox-advantage-parts-1-and-2.pdf). The rest will be here soon. Or ask me anything about what we do.",
     },
   ],
 };
@@ -48,6 +48,11 @@ export default function ChatWidget() {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const id = setTimeout(() => setIsOpen(true), 5000);
+    return () => clearTimeout(id);
+  }, []);
 
   if (pathname?.startsWith("/research")) return null;
 
