@@ -20,7 +20,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hi, I'm Isa. The first two sections of Paul's new book are [free to download](/downloads/the-fox-advantage-parts-1-and-2.pdf). The rest will be here soon. Or ask me anything about what we do.",
+      text: "Hi, I'm Isa. The first two sections of Paul's new book are [free to download](/book#signup). The rest will be here soon. Or ask me anything about what we do.",
     },
   ],
 };
