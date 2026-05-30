@@ -563,15 +563,15 @@ body {
 
 /* ==================== CLOSE ==================== */
 .close-section {
-  padding: 120px 48px;
+  padding: 80px 48px;
   text-align: center;
 }
 .close-inner h2 {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing: -2px;
-  margin-bottom: 32px;
+  font-size: clamp(24px, 3.5vw, 36px);
+  letter-spacing: -1px;
+  margin-bottom: 24px;
 }
 .close-inner h2 .accent { color: var(--sky-blue); }
 .close-cta {
@@ -819,6 +819,36 @@ body {
 .dt-no { color: var(--muted); background: var(--hover); }
 .dt-yes { color: #4A7A62; background: rgba(74,122,98,0.1); }
 
+/* Brand / activation split */
+.split-layout { display: flex; gap: 48px; align-items: flex-start; }
+.split-tables { flex: 1; display: flex; gap: 16px; }
+.split-col { flex: 1; }
+.split-col-header { font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; padding: 8px 12px; margin-bottom: 2px; color: var(--bg); }
+.split-col-header-activation { background: var(--deep-sky); }
+.split-col-header-brand { background: var(--sky-blue); }
+.split-col-item { font-size: 11px; padding: 6px 12px; border-bottom: 1px solid var(--border); color: var(--text); min-height: 30px; }
+.split-col-empty { color: transparent; border-bottom-style: dashed; }
+.split-col-budget { float: right; color: var(--muted); font-weight: 400; }
+.split-col-footer { font-size: 10px; font-weight: 400; color: var(--text); padding: 8px 12px; }
+.split-chart { flex: 0 0 160px; display: flex; align-items: flex-end; padding-top: 24px; }
+.split-chart-bars { display: flex; gap: 16px; align-items: flex-end; height: 200px; width: 100%; }
+.split-chart-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+.split-chart-value { font-family: var(--sans); font-size: 18px; font-weight: 300; color: var(--text); margin-bottom: 8px; letter-spacing: -0.5px; }
+.split-chart-bar { width: 100%; }
+.split-chart-bar-activation { background: var(--deep-sky); }
+.split-chart-bar-brand { background: var(--sky-blue); }
+.split-chart-label { font-size: 10px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+/* Influence model cards */
+.models-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.model-card { padding: 14px 12px; border: 1px solid var(--border); background: var(--bg); }
+.model-card-active { background: var(--deep-sky); border-color: var(--deep-sky); }
+.model-name { font-family: var(--sans); font-size: 11px; font-weight: 400; color: var(--text); margin-bottom: 4px; }
+.model-card-active .model-name { color: #F7EAD9; }
+.model-desc { font-size: 10px; color: var(--muted); line-height: 1.4; }
+.model-card-active .model-desc { color: rgba(250,250,248,0.7); }
+.model-using { display: inline-block; margin-top: 6px; padding: 2px 6px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #F47521; border: 1px solid #F47521; }
+
 /* Examples label */
 .acc-examples-label {
   font-family: var(--mono);
@@ -919,7 +949,9 @@ body {
 <!-- DO NOT REBUILD: hero, nav, headline, and function links come from the live site untouched. -->
 <!-- When porting to Next.js, keep the existing HomePage.tsx hero code as-is. -->
 <div style="background:#1A3A4E; padding:48px; text-align:center; color:rgba(255,255,255,0.4); font-family:var(--mono); font-size:11px; letter-spacing:2px; text-transform:uppercase;">
-  [ LIVE SITE HERO - nav + video + headline + function links - do not touch ]
+  [ LIVE SITE HERO - nav + video + headline ]
+  <div style="margin-top:16px; font-size:13px; letter-spacing:0; text-transform:none; color:rgba(255,255,255,0.7); font-family:var(--mono); max-width:720px; margin-left:auto; margin-right:auto; line-height:1.7;">We turn repeated marketing work into practical AI systems: briefs, writers, brand guardians, campaign engines, QA tools, studio workflows and reporting systems.</div>
+  <div style="margin-top:12px;">[ function links - moved below new line ]</div>
 </div>
 
 <!-- ==================== ABOUT ==================== -->
@@ -931,15 +963,24 @@ body {
       <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland's Marketer of the Year in 2022.</p>
       <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
       <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
-      <div class="about-ctas">
-        <a href="#" class="about-cta">\build it for you</a>
-        <a href="#" class="about-cta">\work alongside you</a>
-        <a href="#" class="about-cta">\train your team</a>
-      </div>
     </div>
   </div>
 </section>
 
+
+<!-- ==================== MODULES INTRO ==================== -->
+<div class="modules-accordion" style="padding-top:0;padding-bottom:0">
+  <div style="padding:0 0 48px">
+    <div class="mod-title" style="margin-bottom:16px">Where can AI be built into marketing?</div>
+    <div style="font-size:15px;line-height:1.7;color:var(--text)">Below are the places we most often build AI into marketing work. A marketing team of two or three, with the right systems, can do work that used to need a department.</div>
+    <div class="mod-ctas" style="margin-top:20px">
+      <span class="mod-ctas-label">Contact us to</span>
+      <a href="#" class="mod-cta">\build it for you</a>
+      <a href="#" class="mod-cta">\work alongside you</a>
+      <a href="#" class="mod-cta">\train your team</a>
+    </div>
+  </div>
+</div>
 
 <!-- ==================== MODULES ==================== -->
 <div class="modules-accordion">
@@ -1055,6 +1096,52 @@ body {
           <div class="acc-detail-copy">
             <div class="acc-detail-headline">One page everyone looks at.</div>
             <div class="acc-detail-sub">The scorecard pulls from the metrics audit. It shows what matters, how it's tracking, and where to focus. Built for the leadership team, not just marketing.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brand / activation split</span></div>
+      <div class="acc-detail">
+        <div class="split-layout">
+          <div class="split-tables">
+            <div class="split-col">
+              <div class="split-col-header split-col-header-activation">Activation</div>
+              <div class="split-col-item">Google Ads Search <span class="split-col-budget">€80,000</span></div>
+              <div class="split-col-item">LinkedIn Sponsored Content <span class="split-col-budget">€60,000</span></div>
+              <div class="split-col-item">Blog + SEO <span class="split-col-budget">€45,000</span></div>
+              <div class="split-col-item">Trade show booths <span class="split-col-budget">€40,000</span></div>
+              <div class="split-col-item">Gated webinars <span class="split-col-budget">€35,000</span></div>
+              <div class="split-col-item">Email nurture sequences <span class="split-col-budget">€30,000</span></div>
+              <div class="split-col-item">YouTube pre-roll (15s) <span class="split-col-budget">€27,000</span></div>
+              <div class="split-col-item">Case studies <span class="split-col-budget">€18,000</span></div>
+              <div class="split-col-footer">€335,000</div>
+            </div>
+            <div class="split-col">
+              <div class="split-col-header split-col-header-brand">Brand building</div>
+              <div class="split-col-item">TV sponsorship (30s, broad) <span class="split-col-budget">€45,000</span></div>
+              <div class="split-col-item">Cinema (emotional, captive) <span class="split-col-budget">€20,000</span></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-item split-col-empty"></div>
+              <div class="split-col-footer">€65,000</div>
+            </div>
+          </div>
+          <div class="split-chart">
+            <div class="split-chart-bars">
+              <div class="split-chart-bar-wrap">
+                <div class="split-chart-value">84%</div>
+                <div class="split-chart-bar split-chart-bar-activation" style="height:84%"></div>
+                <div class="split-chart-label">Activation</div>
+              </div>
+              <div class="split-chart-bar-wrap">
+                <div class="split-chart-value">16%</div>
+                <div class="split-chart-bar split-chart-bar-brand" style="height:16%"></div>
+                <div class="split-chart-label">Brand</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1422,7 +1509,7 @@ body {
     <div class="mod-intro">
       <div>
         <div class="mod-title">Advertising</div>
-        <div class="mod-desc">We've been building customised advertising engines to cover a range of advertising types, from simple static and animated ads to brand video and e-commerce.</div>
+        <div class="mod-desc">AI has made advertising production faster. That does not mean the work gets better by default. We build customised advertising engines that help teams move from brief to useful options faster, across static ads, animated ads, brand video and e-commerce work. We focus on quality first, then automate it.</div>
       </div>
       <div class="mod-fox">
         <div class="mod-fox-placeholder">[ fox ]</div>
@@ -1498,24 +1585,61 @@ body {
     </div>
   </div>
 
-  <!-- 05. PHYSICAL AVAILABILITY -->
+  <!-- 05. STUDIO -->
   <div class="mod-section">
     <div class="mod-intro">
       <div>
-        <div class="mod-title">Physical availability</div>
-        <div class="mod-desc">Touchpoint mapping, digital storefront audits, and consumer friction research. Making it easy for people to find and buy.</div>
+        <div class="mod-title">Studio</div>
+        <div class="mod-desc">We've spent twenty years running internal studios. We bring AI into them to do three things: improve the quality of the work, get it out faster, and show the ROI.</div>
       </div>
       <div class="mod-fox">
         <div class="mod-fox-placeholder">[ fox ]</div>
       </div>
     </div>
+    <div class="acc-examples-label">Examples</div>
     <div class="acc-rows">
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Touchpoint mapping</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map every point where a buyer can find, evaluate, or purchase.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Digital storefront audit</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Audit the digital purchase experience against best practice.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Consumer friction research</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Identify where buyers drop off and what gets in the way of purchase.</div></div></div></div>
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Studio measurement</span></div>
+      <div class="acc-detail">
+        <div style="max-width:780px">
+          <img src="/ads/studio-measurement.png" style="width:100%;height:auto;display:block">
+        </div>
+      </div>
+
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Brief coach</span></div>
+      <div class="acc-detail">
+        <div class="models-grid">
+          <div class="model-card">
+            <div class="model-name">Hierarchy of effects</div>
+            <div class="model-desc">Awareness leads to interest, desire, then action. Sequential.</div>
+          </div>
+          <div class="model-card">
+            <div class="model-name">Persuasion</div>
+            <div class="model-desc">Change beliefs, change attitudes, change behaviour.</div>
+          </div>
+          <div class="model-card model-card-active">
+            <div class="model-name">Weak theory</div>
+            <div class="model-desc">Advertising reinforces existing behaviour, doesn't convert.</div>
+            <div class="model-using">What most briefs actually use</div>
+          </div>
+          <div class="model-card">
+            <div class="model-name">Salience</div>
+            <div class="model-desc">Be mentally available at the moment of purchase. Ehrenberg-Bass.</div>
+          </div>
+          <div class="model-card">
+            <div class="model-name">Fame</div>
+            <div class="model-desc">Get talked about. Social objects, not messages.</div>
+          </div>
+          <div class="model-card">
+            <div class="model-name">Direct response</div>
+            <div class="model-desc">Stimulus, response, measure. Ogilvy direct tradition.</div>
+          </div>
+          <div class="model-card">
+            <div class="model-name">Signalling</div>
+            <div class="model-desc">Spending signals commitment. The medium is the message.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="mod-ctas">
       <span class="mod-ctas-label">Contact us to</span>
@@ -1525,121 +1649,209 @@ body {
     </div>
   </div>
 
-  <!-- 06. TEAM CAPABILITIES -->
-  <div class="mod-section">
-    <div class="mod-intro">
-      <div>
-        <div class="mod-title">Team capabilities</div>
-        <div class="mod-desc">Team structure diagnosis, AI upskilling, culture signals, and team interviews. Building the team that can do the work.</div>
-      </div>
-      <div class="mod-fox">
-        <div class="mod-fox-placeholder">[ fox ]</div>
-      </div>
-    </div>
-    <div class="acc-rows">
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team structure diagnosis</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Assess current team structure against what the strategy requires.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team mapping</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map roles, responsibilities, and gaps across the marketing function.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">AI upskilling</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Practical training on AI tools for marketing teams.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Culture signals</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Read the signals that tell you how a team actually works versus how it says it works.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Team interviews</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Structured interviews to surface what the team thinks, needs, and avoids.</div></div></div></div>
-    </div>
-    <div class="mod-ctas">
-      <span class="mod-ctas-label">Contact us to</span>
-      <a href="#" class="mod-cta">\build it for you</a>
-      <a href="#" class="mod-cta">\work alongside you</a>
-      <a href="#" class="mod-cta">\train your team</a>
-    </div>
-  </div>
-
-  <!-- 07. RESEARCH AND INSIGHTS -->
+  <!-- 06. RESEARCH AND INSIGHTS -->
   <div class="mod-section">
     <div class="mod-intro">
       <div>
         <div class="mod-title">Research and insights</div>
-        <div class="mod-desc">AI research agents that search, read, and build a library over time. Phone research, Reddit scanning, long-form synthesis.</div>
+        <div class="mod-desc">We love research, and have helped teams with a range of solutions such as message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour.</div>
       </div>
       <div class="mod-fox">
         <div class="mod-fox-placeholder">[ fox ]</div>
       </div>
     </div>
+    <div class="acc-examples-label">Examples</div>
     <div class="acc-rows">
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Insights pipeline</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Automated pipeline that searches sources on a schedule and builds a library.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Research database</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Structured, searchable database of research findings and evidence.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Reddit scanning</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Ongoing monitoring of subreddits for consumer and industry sentiment.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Long-form synthesis</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Deep research and long prose synthesis from multiple sources.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Phone research</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Outbound phone interviews for primary research.</div></div></div></div>
-    </div>
-    <div class="mod-ctas">
-      <span class="mod-ctas-label">Contact us to</span>
-      <a href="#" class="mod-cta">\build it for you</a>
-      <a href="#" class="mod-cta">\work alongside you</a>
-      <a href="#" class="mod-cta">\train your team</a>
-    </div>
-  </div>
 
-  <!-- 08. GO TO MARKET -->
-  <div class="mod-section">
-    <div class="mod-intro">
-      <div>
-        <div class="mod-title">Go to market</div>
-        <div class="mod-desc">Audience definition, ICP identification, network mapping, contact enrichment. The operational side of targeting.</div>
+      <!-- 1. AI research interviewer -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">AI research interviewer</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div style="max-width:420px">
+              <svg viewBox="0 0 280 500" xmlns="http://www.w3.org/2000/svg" style="width:220px;height:auto;display:block;margin:0 auto">
+                <rect x="0" y="0" width="280" height="500" rx="36" fill="#1a1a1a"/>
+                <rect x="6" y="6" width="268" height="488" rx="32" fill="#2a2a2a"/>
+                <rect x="90" y="6" width="100" height="24" rx="12" fill="#1a1a1a"/>
+                <defs>
+                  <linearGradient id="screenGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#4a4a52"/>
+                    <stop offset="50%" stop-color="#6b5a4a"/>
+                    <stop offset="100%" stop-color="#5a4a3a"/>
+                  </linearGradient>
+                </defs>
+                <rect x="6" y="6" width="268" height="488" rx="32" fill="url(#screenGrad)" opacity="0.9"/>
+                <text x="140" y="26" text-anchor="middle" font-family="SF Pro Display, -apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">9:41</text>
+                <text x="140" y="160" text-anchor="middle" font-family="SF Pro Display, -apple-system, sans-serif" font-size="36" font-weight="300" fill="#ffffff">Isa</text>
+                <text x="140" y="185" text-anchor="middle" font-family="SF Pro Display, -apple-system, sans-serif" font-size="14" fill="rgba(255,255,255,0.5)">Research call</text>
+                <circle cx="90" cy="420" r="30" fill="#ff3b30"/>
+                <line x1="78" y1="420" x2="102" y2="420" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                <text x="90" y="464" text-anchor="middle" font-family="SF Pro Display, -apple-system, sans-serif" font-size="10" fill="rgba(255,255,255,0.6)">Decline</text>
+                <circle cx="190" cy="420" r="30" fill="#34c759"/>
+                <path d="M178,413 Q178,427 190,427 Q202,427 202,413" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="190" y="464" text-anchor="middle" font-family="SF Pro Display, -apple-system, sans-serif" font-size="10" fill="rgba(255,255,255,0.6)">Accept</text>
+              </svg>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">An AI researcher trained to do structured qualitative interviews by phone, hundreds a week, that remembers previous conversations and picks up where it left off. This gives clients longitudinal insights that would be impossible to get at scale with human interviewers.</div>
+          </div>
+        </div>
       </div>
-      <div class="mod-fox">
-        <div class="mod-fox-placeholder">[ fox ]</div>
-      </div>
-    </div>
-    <div class="acc-rows">
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Audience definition</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Define the audience based on strategy, not just demographics.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">ICP identification</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Identify ideal customer profiles from data and evidence.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Network mapping</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Map the prospect network and find the routes in.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Contact enrichment</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Enrich contacts with emails, roles, company data, and change signals.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Engagement parsing</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Parse campaign engagement data to identify who is responding and how.</div></div></div></div>
-    </div>
-    <div class="mod-ctas">
-      <span class="mod-ctas-label">Contact us to</span>
-      <a href="#" class="mod-cta">\build it for you</a>
-      <a href="#" class="mod-cta">\work alongside you</a>
-      <a href="#" class="mod-cta">\train your team</a>
-    </div>
-  </div>
 
-  <!-- 09. MARKETING OPERATIONS -->
-  <div class="mod-section">
-    <div class="mod-intro">
-      <div>
-        <div class="mod-title">Marketing operations</div>
-        <div class="mod-desc">Project management, campaign workspaces, capacity planning, presentation tools. The systems that keep everything running.</div>
+      <!-- 2. Company intelligence -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Company intelligence</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div style="display:flex;flex-direction:column;gap:2px;max-width:400px">
+              <div style="background:var(--deep-sky);padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-family:var(--sans);font-size:14px;font-weight:400;color:#fff;letter-spacing:-0.3px">Acme Corp</div>
+                  <div style="font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-top:2px">B2B SaaS | Dublin | 120 employees</div>
+                </div>
+                <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">Last enriched: 2 days ago</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+                <div style="border:1px solid var(--border);padding:8px 10px">
+                  <div style="font-size:8px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px">Leadership</div>
+                  <div style="font-size:10px;color:var(--text);line-height:1.5">CMO: Jane Smith (ex-Google, 18mo)<br>VP Marketing: Tom Reilly (promoted internally)<br>Head of Brand: Open role (posted 3 weeks)</div>
+                </div>
+                <div style="border:1px solid var(--border);padding:8px 10px">
+                  <div style="font-size:8px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px">Change signals</div>
+                  <div style="font-size:10px;color:var(--text);line-height:1.5">New CMO hired 18mo ago<br>Head of Brand role open<br>Series C closed Q1<br>Agency review in progress</div>
+                </div>
+                <div style="border:1px solid var(--border);padding:8px 10px">
+                  <div style="font-size:8px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px">Marketing team</div>
+                  <div style="font-size:10px;color:var(--text);line-height:1.5">12 people across brand, growth, content<br>3 new hires in last 6 months<br>No measurement or insights role</div>
+                </div>
+                <div style="border:1px solid var(--border);padding:8px 10px">
+                  <div style="font-size:8px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px">News</div>
+                  <div style="font-size:10px;color:var(--text);line-height:1.5">Rebrand announced last quarter<br>CMO quoted on "brand-led growth"<br>Sponsoring SaaStr EU 2026</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">Company and people enrichment, news, team backgrounds, open roles, and change signals. Built from multiple data sources and updated on a schedule so the picture stays current.</div>
+          </div>
+        </div>
       </div>
-      <div class="mod-fox">
-        <div class="mod-fox-placeholder">[ fox ]</div>
+
+      <!-- 2. Review intelligence -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Review intelligence</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div style="max-width:420px">
+              <div style="font-size:9px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Review analysis across 3 platforms</div>
+              <div style="display:flex;gap:2px;margin-bottom:12px">
+                <div style="flex:1;padding:8px 10px;background:var(--deep-sky);text-align:center">
+                  <div style="font-family:var(--sans);font-size:18px;font-weight:300;color:#fff">4.2</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-top:2px">Trustpilot</div>
+                </div>
+                <div style="flex:1;padding:8px 10px;background:var(--sky-blue);text-align:center">
+                  <div style="font-family:var(--sans);font-size:18px;font-weight:300;color:#fff">3.8</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-top:2px">App Store</div>
+                </div>
+                <div style="flex:1;padding:8px 10px;background:var(--sky-blue);text-align:center">
+                  <div style="font-family:var(--sans);font-size:18px;font-weight:300;color:#fff">4.0</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;margin-top:2px">Amazon</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span style="font-size:10px;color:var(--muted);width:90px;text-align:right">Delivery speed</span>
+                  <div style="flex:1;height:14px;background:var(--hover);position:relative"><div style="height:100%;width:78%;background:#4A7A62"></div></div>
+                  <span style="font-size:10px;color:#4A7A62;width:28px">78%</span>
+                  <span style="font-size:9px;color:#4A7A62">positive</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span style="font-size:10px;color:var(--muted);width:90px;text-align:right">Product quality</span>
+                  <div style="flex:1;height:14px;background:var(--hover);position:relative"><div style="height:100%;width:64%;background:var(--sky-blue)"></div></div>
+                  <span style="font-size:10px;color:var(--sky-blue);width:28px">64%</span>
+                  <span style="font-size:9px;color:var(--sky-blue)">mixed</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span style="font-size:10px;color:var(--muted);width:90px;text-align:right">Customer service</span>
+                  <div style="flex:1;height:14px;background:var(--hover);position:relative"><div style="height:100%;width:41%;background:#C25B3A"></div></div>
+                  <span style="font-size:10px;color:#C25B3A;width:28px">41%</span>
+                  <span style="font-size:9px;color:#C25B3A">negative</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span style="font-size:10px;color:var(--muted);width:90px;text-align:right">Value for money</span>
+                  <div style="flex:1;height:14px;background:var(--hover);position:relative"><div style="height:100%;width:55%;background:var(--sky-blue)"></div></div>
+                  <span style="font-size:10px;color:var(--sky-blue);width:28px">55%</span>
+                  <span style="font-size:9px;color:var(--sky-blue)">mixed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">Trustpilot, Amazon, app store reviews analysed across brands and competitors. Themes extracted, sentiment tracked over time, and compared against the category.</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="acc-rows">
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Project manager</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Morning briefing agent, priorities, tasks, shared briefing board.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Back plan</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Gantt-style project plan with critical path and dependencies.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Campaign workspace</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">From a brief, generate all standard campaign elements: exec summary, registration page, emails, seller notes.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Presentation converter</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Convert documents into branded presentations, pages, or decks.</div></div></div></div>
-      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Capacity planning</span></div>
-      <div class="acc-detail"><div class="acc-detail-split"><div class="acc-detail-copy" style="grid-column:1/-1"><div class="acc-detail-sub">Plan team capacity against deliverables and deadlines.</div></div></div></div>
+
+      <!-- 3. Pricing intelligence -->
+      <div class="acc-row" onclick="this.classList.toggle('expanded')"><span class="acc-indicator">+</span><span class="acc-activity">Pricing intelligence</span></div>
+      <div class="acc-detail">
+        <div class="acc-detail-split">
+          <div class="acc-detail-visual">
+            <div style="max-width:420px">
+              <div style="font-size:9px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Daily price monitor | 4 retailers</div>
+              <div style="display:flex;flex-direction:column">
+                <div style="display:grid;grid-template-columns:1fr 60px 60px 60px 60px 50px;gap:0;font-size:10px;padding:6px 0;border-bottom:2px solid var(--text)">
+                  <span style="color:var(--muted);font-weight:400">Product</span>
+                  <span style="color:var(--muted);text-align:right">Tesco</span>
+                  <span style="color:var(--muted);text-align:right">Dunnes</span>
+                  <span style="color:var(--muted);text-align:right">SuperV</span>
+                  <span style="color:var(--muted);text-align:right">Aldi</span>
+                  <span style="color:var(--muted);text-align:right">Change</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px 60px 60px 50px;gap:0;font-size:10px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span>Product A 500ml</span>
+                  <span style="text-align:right">&euro;3.49</span>
+                  <span style="text-align:right">&euro;3.29</span>
+                  <span style="text-align:right">&euro;3.49</span>
+                  <span style="text-align:right">&euro;2.99</span>
+                  <span style="text-align:right;color:#4A7A62">&#9654;</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px 60px 60px 50px;gap:0;font-size:10px;padding:6px 0;border-bottom:1px solid var(--border);background:rgba(194,91,58,0.04)">
+                  <span>Product B 1L</span>
+                  <span style="text-align:right">&euro;5.99</span>
+                  <span style="text-align:right">&euro;5.99</span>
+                  <span style="text-align:right;color:#C25B3A;font-weight:400">&euro;4.49</span>
+                  <span style="text-align:right">&euro;4.99</span>
+                  <span style="text-align:right;color:#C25B3A">&#9660; SuperV</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px 60px 60px 50px;gap:0;font-size:10px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span>Product C 330ml x6</span>
+                  <span style="text-align:right">&euro;7.99</span>
+                  <span style="text-align:right">&euro;7.49</span>
+                  <span style="text-align:right">&euro;7.99</span>
+                  <span style="text-align:right">&euro;6.99</span>
+                  <span style="text-align:right;color:#4A7A62">&#9654;</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px 60px 60px 50px;gap:0;font-size:10px;padding:6px 0;border-bottom:1px solid var(--border)">
+                  <span>Competitor X 500ml</span>
+                  <span style="text-align:right">&euro;2.99</span>
+                  <span style="text-align:right">&euro;2.99</span>
+                  <span style="text-align:right">&euro;2.99</span>
+                  <span style="text-align:right">&euro;2.49</span>
+                  <span style="text-align:right;color:#4A7A62">&#9654;</span>
+                </div>
+              </div>
+              <div style="margin-top:8px;padding:6px 8px;border-left:3px solid #C25B3A;font-size:10px;color:var(--text)"><strong style="font-weight:400;color:#C25B3A">Alert:</strong> SuperValu dropped Product B by &euro;1.50 yesterday. Now &euro;1.50 below your Tesco price.</div>
+            </div>
+          </div>
+          <div class="acc-detail-copy">
+            <div class="acc-detail-sub">Daily competitive price monitoring across retailers. Alerts on changes, tracks promotional patterns, and flags when a competitor undercuts on a key line.</div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
     <div class="mod-ctas">
       <span class="mod-ctas-label">Contact us to</span>
@@ -1660,21 +1872,12 @@ body {
 </div>
 
 <!-- BOOK CTA -->
-<div class="mid-cta">
-  <div class="mid-cta-inner">
-    <h3>The Fox Advantage is available for free.</h3>
-    <p>The book is almost finished. Pick up a copy.</p>
-    <a href="#" class="big-btn">Get the book</a>
-  </div>
+<div style="max-width:1200px;margin:0 auto;padding:64px 48px;border-bottom:1px solid var(--border)">
+  <div style="font-family:var(--sans);font-weight:300;font-size:clamp(20px,2.5vw,28px);letter-spacing:-0.5px;margin-bottom:8px">The Fox Advantage is available for free.</div>
+  <div style="font-size:14px;color:var(--muted);margin-bottom:20px">The book is almost finished. Pick up a copy.</div>
+  <a href="#" style="display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--sky-blue);text-decoration:none;border-bottom:1px solid var(--sky-blue);padding-bottom:2px">Get the book</a>
 </div>
 
-<!-- CLOSE CTA -->
-<section class="close-section">
-  <div class="close-inner">
-    <h2>Build an <span class="accent">unfair</span> advantage in marketing</h2>
-    <a href="#" class="close-cta">Get in touch</a>
-  </div>
-</section>
 
 <script>
 // Nav scroll behaviour (matches live site)

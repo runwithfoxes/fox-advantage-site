@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Contact — Run with Foxes",
+  title: "Contact - Run with Foxes",
   description: "Get in touch with Paul Dervan.",
 };
 
@@ -26,6 +26,24 @@ export default function ContactPage() {
           <div className="section-label">/contact</div>
           <h1 className="contact-heading">Get in touch</h1>
 
+          <div className="engagement-ways">
+            <div className="engagement-label">Three ways to work together</div>
+            <div className="engagement-grid">
+              <div className="engagement-card">
+                <div className="engagement-title">\build it for you</div>
+                <div className="engagement-desc">We build the system, test it with your team, train them up, and hand it over.</div>
+              </div>
+              <div className="engagement-card">
+                <div className="engagement-title">\work alongside you</div>
+                <div className="engagement-desc">For bigger teams with multiple projects. We work alongside you over time, building fluency and capability across the team rather than delivering a single thing.</div>
+              </div>
+              <div className="engagement-card">
+                <div className="engagement-title">\train your team</div>
+                <div className="engagement-desc">We train your team on the thinking and the tools so they can do it themselves.</div>
+              </div>
+            </div>
+          </div>
+
           <div className="contact-channels">
             <div className="contact-item">
               <div className="contact-label">\email</div>
@@ -49,7 +67,7 @@ export default function ContactPage() {
             <div className="contact-item">
               <a href="/" className="contact-link">
                 <div className="contact-label">\chatbot</div>
-                <div className="contact-value">Talk to Isa on runwithfoxes.com — bottom right of any page</div>
+                <div className="contact-value">Talk to Isa on runwithfoxes.com - bottom right of any page</div>
               </a>
             </div>
           </div>
