@@ -56,11 +56,13 @@ export default function PrivacyPage() {
           suppress your details from future outreach immediately.
         </p>
 
-        <h2 style={h2}>Other information we collect</h2>
+        <h2 style={h2}>The book and our newsletter</h2>
         <p style={p}>
-          When you use this website or download the book, we may collect the information you give us (such as your
-          email address) and limited technical information needed to run the site. We use it to provide what you
-          asked for and to let you know when new chapters are available. We do not sell your data.
+          When you sign up to download the book, you give us your email address. As we make clear at sign-up, this
+          also subscribes you to the Run with Foxes newsletter, so we can send you new chapters and related writing.
+          You can unsubscribe at any time using the link in any email, or by emailing{" "}
+          <a href="mailto:paul@runwithfoxes.com" style={{ color: "#3A7CA5" }}>paul@runwithfoxes.com</a>. We also
+          collect limited technical information needed to run the site. We do not sell your data.
         </p>
 
         <h2 style={h2}>Your rights</h2>
