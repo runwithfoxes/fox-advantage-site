@@ -4394,6 +4394,19 @@ a.project-card {
   line-height: 1.65;
   color: var(--text);
 }
+.cl-acc-detail-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  color: #3A7CA5;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.cl-acc-detail-link:hover {
+  border-bottom-color: #3A7CA5;
+}
 .cl-detail-video {
   width: 100%;
   max-width: 480px;

@@ -640,6 +640,7 @@ export default function HomePage() {
                     </div>
                     <div className="cl-acc-detail-copy">
                       <div className="cl-acc-detail-sub">We use AI to measure and analyse mental availability: mental penetration, mental market share, and network size across buying situations.</div>
+                      <a className="cl-acc-detail-link" href="https://runwithfoxes.substack.com/p/what-is-mental-availability-and-why" target="_blank" rel="noopener noreferrer">Read: What is Mental Availability and why does it matter? &rarr;</a>
                     </div>
                   </div>
                 </div>
@@ -673,24 +674,24 @@ export default function HomePage() {
                       <div className="cl-dba-matrix">
                         <div className="cl-dba-y-label">Fame (recognition)</div>
                         <div className="cl-dba-quad cl-dba-quad-tl">
-                          <span className="cl-dba-quad-label">High fame, low uniqueness</span>
+                          <span className="cl-dba-quad-label">Use or lose</span>
                           <span className="cl-dba-asset cl-dba-asset-mid">Brand colour</span>
                           <span className="cl-dba-asset cl-dba-asset-mid">Logo wordmark</span>
                         </div>
                         <div className="cl-dba-quad cl-dba-quad-tr">
-                          <span className="cl-dba-quad-label">Use or lose</span>
+                          <span className="cl-dba-quad-label">Invest here</span>
                           <span className="cl-dba-asset cl-dba-asset-strong">Character</span>
                           <span className="cl-dba-asset cl-dba-asset-strong">Tagline</span>
                         </div>
                         <div className="cl-dba-quad cl-dba-quad-bl">
                           <span className="cl-dba-quad-label">Avoid or test</span>
-                          <span className="cl-dba-asset cl-dba-asset-weak">Sonic</span>
-                          <span className="cl-dba-asset cl-dba-asset-weak">Pattern</span>
+                          <span className="cl-dba-asset cl-dba-asset-weak">Shape</span>
+                          <span className="cl-dba-asset cl-dba-asset-weak">Typeface</span>
                         </div>
                         <div className="cl-dba-quad cl-dba-quad-br">
-                          <span className="cl-dba-quad-label">Invest here</span>
-                          <span className="cl-dba-asset cl-dba-asset-risk">Shape</span>
-                          <span className="cl-dba-asset cl-dba-asset-risk">Typeface</span>
+                          <span className="cl-dba-quad-label">Build fame</span>
+                          <span className="cl-dba-asset cl-dba-asset-risk">Sonic</span>
+                          <span className="cl-dba-asset cl-dba-asset-risk">Pattern</span>
                         </div>
                         <div className="cl-dba-corner"></div>
                         <div className="cl-dba-x-label">Uniqueness (attribution)</div>
@@ -698,6 +699,7 @@ export default function HomePage() {
                     </div>
                     <div className="cl-acc-detail-copy">
                       <div className="cl-acc-detail-sub">We catalogue a brand&apos;s existing distinctive assets, assess consistency and gaps, and plot them on a Fame x Uniqueness matrix to see what to invest in and what to protect.</div>
+                      <a className="cl-acc-detail-link" href="https://runwithfoxes.substack.com/p/distinctive-brand-assets-in-an-ai" target="_blank" rel="noopener noreferrer">Read: Distinctive Brand Assets in an AI world &rarr;</a>
                     </div>
                   </div>
                 </div>
