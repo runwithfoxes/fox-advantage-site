@@ -104,6 +104,7 @@ export default function HomePage() {
                   <a href="#mod-brand-strategy">Brand strategy</a>
                   <a href="#mod-advertising">Advertising</a>
                   <a href="#mod-studio">Studio</a>
+                  <a href="#mod-business-development">Business development</a>
                   <a href="#mod-research">Research and insights</a>
                 </div>
               </div>
@@ -1019,7 +1020,73 @@ export default function HomePage() {
       <div className="cl-modules-wrap">
         <div className="cl-modules-accordion">
 
-          {/* MODULE 6: RESEARCH AND INSIGHTS */}
+          {/* MODULE 6: BUSINESS DEVELOPMENT */}
+          <div className="cl-mod-section" id="mod-business-development">
+            <div className="cl-mod-intro">
+              <div>
+                <div className="cl-mod-title">Business development</div>
+                <div className="cl-mod-desc">We&apos;ve been building AI systems to help sales, business development, outreach and GTM.</div>
+              </div>
+              <div className="cl-mod-fox">
+                <Image src="/fox/fox-monday-nobg.png" alt="Fox" width={280} height={280} />
+              </div>
+            </div>
+            <div className="cl-acc-examples">Examples</div>
+            <div className="cl-acc-rows">
+              <div className={`cl-acc-row${isOpen('bd-pipeline') ? ' expanded' : ''}`} onClick={() => toggle('bd-pipeline')}>
+                <span className="cl-acc-indicator">+</span>
+                <span className="cl-acc-activity">Business development rep</span>
+              </div>
+              {isOpen('bd-pipeline') && (
+                <div className="cl-acc-detail">
+                  <div className="cl-acc-detail-split">
+                    <div className="cl-acc-detail-visual">
+                      <div className="cl-bd-pipe">
+                        <div className="cl-bd-track"></div>
+                        <div className="cl-bd-station is-first" style={{ left: '5%' }}>
+                          <span className="cl-bd-tick"></span>
+                          <span className="cl-bd-lab"><span>List</span><span>building</span></span>
+                        </div>
+                        <div className="cl-bd-station" style={{ left: '35%' }}>
+                          <span className="cl-bd-tick"></span>
+                          <span className="cl-bd-lab"><span>Prospect</span><span>intel</span></span>
+                        </div>
+                        <div className="cl-bd-station" style={{ left: '65%' }}>
+                          <span className="cl-bd-tick"></span>
+                          <span className="cl-bd-lab"><span>Outreach</span></span>
+                        </div>
+                        <div className="cl-bd-station is-last" style={{ left: '95%' }}>
+                          <span className="cl-bd-tick"></span>
+                          <span className="cl-bd-lab"><span>Scheduling</span><span>meetings</span></span>
+                        </div>
+                        <div className="cl-bd-flow">
+                          <span className="cl-bd-dot"></span>
+                          <span className="cl-bd-dot s"></span>
+                          <span className="cl-bd-dot"></span>
+                          <span className="cl-bd-dot s"></span>
+                          <span className="cl-bd-dot"></span>
+                          <span className="cl-bd-dot s"></span>
+                          <span className="cl-bd-dot"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="cl-acc-detail-copy">
+                      <div className="cl-acc-detail-sub">We build AI setups that automate the many tasks needed for business development: building and enriching the list, researching prospects, writing and sending the outreach, and setting up the calls.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <EngagementCTAs />
+          </div>
+
+        </div>
+      </div>
+
+      <div className="cl-modules-wrap">
+        <div className="cl-modules-accordion">
+
+          {/* MODULE 7: RESEARCH AND INSIGHTS */}
           <div className="cl-mod-section" id="mod-research">
             <div className="cl-mod-intro">
               <div>

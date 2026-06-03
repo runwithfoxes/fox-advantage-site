@@ -4668,3 +4668,49 @@ a.project-card {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Business development - animated pipeline ===== */
+.cl-bd-pipe { position: relative; height: 96px; max-width: 680px; margin: 6px 0 2px; }
+.cl-bd-track { position: absolute; left: 5%; right: 5%; top: 34px; height: 2px; background: #D6D6D1; }
+.cl-bd-station { position: absolute; top: 34px; width: 0; height: 0; }
+.cl-bd-tick { position: absolute; left: -1px; top: -5px; width: 2px; height: 12px; background: var(--border); }
+.cl-bd-lab { position: absolute; top: 18px; left: 0; transform: translateX(-50%); font-family: var(--mono); font-size: 10px; line-height: 1.3; color: #5A5A55; text-align: center; }
+.cl-bd-lab span { display: block; }
+.cl-bd-station.is-first .cl-bd-lab { transform: none; text-align: left; }
+.cl-bd-station.is-last .cl-bd-lab { transform: translateX(-100%); text-align: right; }
+.cl-bd-flow { position: absolute; left: 5%; right: 5%; top: 34px; height: 0; }
+.cl-bd-dot { position: absolute; top: -4px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: #1A3A4E; transform: translateX(-50%); animation: cl-bd-flow 9s linear infinite; }
+.cl-bd-dot.s { background: #3A7CA5; }
+.cl-bd-dot:nth-child(1) { animation-delay: -0.4s; }
+.cl-bd-dot:nth-child(2) { animation-delay: -1.7s; }
+.cl-bd-dot:nth-child(3) { animation-delay: -3.0s; }
+.cl-bd-dot:nth-child(4) { animation-delay: -4.3s; }
+.cl-bd-dot:nth-child(5) { animation-delay: -5.6s; }
+.cl-bd-dot:nth-child(6) { animation-delay: -6.9s; }
+.cl-bd-dot:nth-child(7) { animation-delay: -8.2s; }
+
+@keyframes cl-bd-flow {
+  0%   { left: 0%;   opacity: 0; }
+  3%   { opacity: 1; }
+  8%   { left: 0%; }
+  16%  { left: 33.33%; }
+  30%  { left: 33.33%; }
+  38%  { left: 66.66%; }
+  52%  { left: 66.66%; }
+  60%  { left: 100%; }
+  75%  { left: 100%; }
+  96%  { left: 100%; opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* keep the pipeline readable (not blank) when motion is reduced */
+@media (prefers-reduced-motion: reduce) {
+  .cl-bd-dot { animation: none !important; opacity: 1 !important; }
+  .cl-bd-dot:nth-child(1) { left: 0%; }
+  .cl-bd-dot:nth-child(2) { left: 16.66%; }
+  .cl-bd-dot:nth-child(3) { left: 33.33%; }
+  .cl-bd-dot:nth-child(4) { left: 50%; }
+  .cl-bd-dot:nth-child(5) { left: 66.66%; }
+  .cl-bd-dot:nth-child(6) { left: 83.33%; }
+  .cl-bd-dot:nth-child(7) { left: 95%; }
+}
