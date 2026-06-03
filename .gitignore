@@ -5,3 +5,6 @@ tsconfig.tsbuildinfo
 .vercel
 .data
 .env*.local
+
+# Local cross-terminal Q&A channel (not for git)
+handover-qa/
