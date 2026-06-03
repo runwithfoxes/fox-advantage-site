@@ -932,6 +932,24 @@ export default function HomePage() {
             </div>
             <div className="cl-acc-examples">Examples</div>
             <div className="cl-acc-rows">
+              <div className={`cl-acc-row${isOpen('studio-cal') ? ' expanded' : ''}`} onClick={() => toggle('studio-cal')}>
+                <span className="cl-acc-indicator">+</span>
+                <span className="cl-acc-activity">Marketing calendar</span>
+              </div>
+              {isOpen('studio-cal') && (
+                <div className="cl-acc-detail">
+                  <div className="cl-acc-detail-split">
+                    <div className="cl-acc-detail-visual">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/ads/marketing-calendar-preview.png" alt="Marketing calendar" style={{ width: '100%', height: 'auto', display: 'block', border: '1px solid var(--border)' }} />
+                    </div>
+                    <div className="cl-acc-detail-copy">
+                      <div className="cl-acc-detail-sub">A marketing calendar puts every activity, across channels and campaigns, on one page. We use AI to move from the full year down to a single event and back, without the work that usually goes into building one and keeping it current.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className={`cl-acc-row${isOpen('studio-1') ? ' expanded' : ''}`} onClick={() => toggle('studio-1')}>
                 <span className="cl-acc-indicator">+</span>
                 <span className="cl-acc-activity">Studio measurement</span>
