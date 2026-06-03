@@ -1,9 +1,9 @@
 export const FOX_KNOWLEDGE = `
-# The Fox Advantage — Isa's Knowledge Base
+# The Fox Advantage - Isa's Knowledge Base
 
 ## About Paul Dervan
-- 20+ years in senior marketing roles across B2C and B2B: CMO-level at National Lottery, Indeed, Telefonica (O2 Ireland), and Miro
-- Now runs Run with Foxes, a marketing consultancy working with B2B tech companies
+- 20+ years in senior marketing roles, and his career was built on big consumer brands as much as B2B. CMO-level at the National Lottery (one of the largest FMCG brands in the country), Telefonica/O2 Ireland (a huge consumer brand), Indeed (a global brand spanning B2C and B2B), and Miro (B2B SaaS). He's also done stints in beer. Real, deep B2C heritage - never pigeonhole him as a B2B-tech-only guy.
+- Now runs Run with Foxes, a marketing consultancy. He works across the full spectrum, big consumer/FMCG brands and B2B tech alike. Recent consulting clients have skewed B2B tech, but the fundamentals he applies (mental availability, distinctive assets, broad reach) come straight from years on major consumer brands. If someone has a consumer, FMCG, retail or local brand, that is squarely in his lane, not out of it.
 - Somewhat unusual in that he's spent serious time in both B2C and B2B. As interested in what Lenny's Podcast says as Jon Evans. You'll see examples of work across both on the website
 - Author of "Run with Foxes" (2020) and "The Fox Advantage" (2025)
 - Teaches marketing strategy at UCD Smurfit MBA programme in Dublin
@@ -11,7 +11,7 @@ export const FOX_KNOWLEDGE = `
 - Substack newsletter: runwithfoxes.substack.com
 - LinkedIn: linkedin.com/in/pauldervan
 - Paul's dad, Professor Peter Dervan, was a Professor of Pathology at UCD. He gave Paul his first advertising book ("Ogilvy on Advertising") and taught him about correlation vs. causation at age 12. UCD created "The Peter Dervan Memorial Medal for Excellence in Cancer Pathology" after his death.
-- Appeared on The Irish Marketing Podcast (IMJ / Adworld.ie, May 2026) talking about "Remaining Relevant in the AI Age" — foxes vs hedgehogs, how he uses AI at Miro, his AI team (Klara, Jo, Nat), and why he calls himself a sceptical optimist. Listen on Spotify: https://open.spotify.com/episode/1wRaEe4WFQjq4VmINIWz6f or read about it at https://www.adworld.ie/2026/05/08/the-irish-marketing-podcast-paul-dervan-on-remaing-relevant-in-the-ai-age/
+- Appeared on The Irish Marketing Podcast (IMJ / Adworld.ie, May 2026) talking about "Remaining Relevant in the AI Age" - foxes vs hedgehogs, how he uses AI at Miro, his AI team (Klara, Jo, Nat), and why he calls himself a sceptical optimist. Listen on Spotify: https://open.spotify.com/episode/1wRaEe4WFQjq4VmINIWz6f or read about it at https://www.adworld.ie/2026/05/08/the-irish-marketing-podcast-paul-dervan-on-remaing-relevant-in-the-ai-age/
 
 ## About "The Fox Advantage" (2025)
 - 54 short chapters across 4 parts, designed to read on your phone screen
@@ -66,6 +66,65 @@ Key arguments:
 - Find or create your "winning ticket", a big idea worth building on. Protect it and multiply it with AI.
 - AI can help you spread a clear, consistent distinctive asset across formats. But if you don't know your cues or keep fiddling, AI will help you be average everywhere, quickly and at scale.
 
+## What Run with Foxes Offers
+
+Run with Foxes is a marketing consultancy. The core proposition: twenty years of dedication to marketing craft and effectiveness, combined with AI for automation, intelligence, and computing power. That combination means work that used to take weeks or require expensive specialists can now be done at speed without losing quality. The quality comes from knowing which methods work. The speed comes from AI. Neither works without the other.
+
+A marketing team of two or three, with the right systems, can do work that used to need a department.
+
+### The pattern
+Paul knows which marketing science methods actually work, because he's spent twenty years using them. The maths behind customer lifetime value, segmentation testing, mental availability measurement, brand asset auditing has existed for years. Knowing it was never the bottleneck. Doing it was. Running the sums properly, every time, used to mean a specialist, which meant time and money, which meant the check got skipped. Now those methods are built into AI tools that run in an afternoon instead of a fortnight. Seconds, not weeks.
+
+Example: segmentation. A segmentation study takes six months and costs a lot. But if you measure how alike the segments actually are, most of them score above 89% similarity to the average buyer. They're not different segments. They're one audience with the axis cropped. The check has always existed. Paul built it into an AI tool. Hand it the data, get the honest answer in seconds.
+
+Example: customer lifetime value. A CMO defending an 80-quid acquisition cost when the first order is worth 45 looks like she's losing money. But some of those customers come back six times. Others never return. The question isn't "is 80 too much?" It's "which 80 customers are worth it?" The LTV model has existed for decades. Paul built an engine that runs on transaction data and answers that question for any company, fast.
+
+### Three ways to work with us
+1. **Build it for you** - we build the AI systems, hand them over, train your team to run them
+2. **Work alongside you** - we work embedded with your team, building together
+3. **Train your team** - we train marketers on effectiveness and AI, then they build
+
+### The six areas we build in
+
+**1. Marketing effectiveness**
+You can't manage a brand if you can't measure one. We help teams understand which metrics matter and how they influence each other, then build the tools.
+- Measurement training: five levels of marketing metrics and how they relate to each other
+- Metrics audit: paste in whatever you track, sorted into five levels, gaps shown
+- Brand scorecard: shows what matters, how it's tracking, and where to focus. Built for the leadership team, not just marketing
+- Brand / activation split: classifies every line of spend as brand building or sales activation and shows the ratio
+
+**2. Segmentation**
+Segmentation matters, but pseudo-science segmentation is dangerous. We run the maths to test whether segments are genuinely different.
+- Similarity analysis: tests what each segment wants from brands. If they all want the same things, they are not different segments
+- Correlation matrix, scatter plots, penetration adjustment, usage bias, purchase triggers: a full audit toolkit that strips out the noise and finds what genuinely discriminates
+
+**3. Brand strategy**
+Positioning, messaging, mental availability, distinctive assets, brand guidelines. AI tools and skills built to do brand strategy at high quality at speed.
+- Competitor positioning map: research competitor positions, plot the map, find the white space. Axes come from the category, not a template
+- Mental availability: measure and track mental penetration, mental market share, and network size across buying situations over time
+- Messaging framework: positioning, barriers, pain points, key messages, tone of voice combined into a unified framework that becomes the basis for all communications
+- Distinctive brand assets: catalogue existing assets, assess consistency and gaps, plot on a Fame x Uniqueness matrix to see what to invest in and what to protect
+- Brand on a page: all brand elements converted into a single-page reference for the team
+- Brand guidelines: built for humans and robots, so everything created after is highly consistent
+
+**4. Advertising**
+AI has made production faster. That does not mean the work gets better by default. We build customised advertising engines that help teams move from brief to useful options faster. Quality first, then automate it.
+- Video: brand video across multiple styles and formats
+- Brand ads: cinematic, distinctive brand advertising
+- Animated ads: chart-driven animated ads with brand assets
+- Static ads: performance static ads with headline craft
+
+**5. Studio**
+Twenty years running internal studios. AI brought into them to do three things: improve the quality, get it out faster, show the ROI.
+- Studio measurement: a dashboard that tracks studio output, quality, and commercial impact
+- Brief coach: diagnoses which influence model a brief is actually using (hierarchy of effects, persuasion, weak theory, salience, fame, direct response, signalling) and flags the contradictions
+
+**6. Research and insights**
+- AI research interviewer: an AI researcher that does structured qualitative interviews by phone, hundreds a week. Remembers previous conversations, picks up where it left off. Longitudinal insights at scale that would be impossible with human interviewers alone
+- Company intelligence: leadership, team structure, open roles, change signals, news. Built from multiple data sources, updated on a schedule
+- Review intelligence: Trustpilot, Amazon, app store reviews analysed across brands and competitors. Themes extracted, sentiment tracked over time
+- Pricing intelligence: daily competitive price monitoring across retailers. Alerts on changes, tracks promotional patterns, flags when a competitor undercuts on a key line
+
 ## About "Run with Foxes" (2020)
 Paul's first book. 43 short chapters built on admitted failures, not claimed victories. Opens with his own failure and uses it as the central cautionary tale. The emotional arc is humility, not triumph.
 
@@ -81,37 +140,37 @@ Main themes:
 
 ## Paul's Case Studies and Stories
 
-### National Lottery — Marketer of the Year
+### National Lottery - Marketer of the Year
 Paul led the National Lottery marketing team to win Marketer of the Year. Built mental availability through systematic approach to Category Entry Points. He also killed a campaign that System1 research said would be effective because some data suggested a small minority would be offended, and Irish people feel ownership over the Lottery. He went in front of the company, explained his decision, apologised, and articulated how he'd fix it. That's skin in the game.
 
-### Millionaire Raffle — Mental Availability in Action
+### Millionaire Raffle - Mental Availability in Action
 Applied mental availability principles to a specific lottery product. Linked the product to specific buying occasions (Christmas, birthdays, celebrations) and drove significant sales growth.
 
 ### National Lottery "It Could Be You"
 The "It could be you" line disappeared in 2013 until Paul's team rediscovered it in 2020, like finding a winning ticket at the back of the sofa. A big idea worth protecting, not reinventing.
 
-### National Lottery Waterslide — Distinctive Assets
+### National Lottery Waterslide - Distinctive Assets
 With logo, name, and tagline removed, 72% of Irish adults spontaneously named the National Lottery brand. That's a distinctive asset doing its job.
 
-### 48 — Youth Brand Creation (Telefonica/O2 Ireland)
+### 48 - Youth Brand Creation (Telefonica/O2 Ireland)
 Created a youth mobile brand from scratch at O2 Ireland. Only 18-to-22-year-olds could join (representing the 48 best months of their lives). When Paul called Susan in legal, she immediately said it wasn't legal. They seeded fake rejection letters, hired a "Head of Rejection," trained customer care agents to banter. 63% youth awareness within six months. Word-of-mouth was the second biggest awareness driver. Their advertising was pulled due to too many complaints. They even made a TV ad entirely in Japanese for the Irish market.
 
 Big learning: They assumed teenagers don't talk on the phone, they text, so offered unlimited calls as a throw-in. Turns out teenagers loved talking, they just couldn't afford it. They'd done ethnographic research and focus groups but never ran an actual experiment. "I didn't wear a seatbelt all those years ago. And because I didn't crash, I stopped wearing one. Then I crashed."
 
-### O2 Ireland — Press Ads and Google
+### O2 Ireland - Press Ads and Google
 Paul moved budget from newspaper ads to Google because Google appeared more effective for online store sales. But customers were noticing O2 ads for new phones in newspapers while commuting, then going home and searching Google. The press ads were creating the sales; Google was capturing them. They needed both. A lesson in attribution vs. causation.
 
-### O2 — Distinctive Brand Assets
+### O2 - Distinctive Brand Assets
 O2's bubbles are a prime example: customers could never articulate what made O2 different from Vodafone, but nobody mistook O2 for Vodafone. After just 2 years, O2's top-of-mind awareness was 28% vs. BT Cellnet's 20% after 7 years.
 
-### Indeed — Campaign Lab
+### Indeed - Campaign Lab
 At Indeed, Paul built a marketing campaign lab that ran about 30 experiments a month. The culture demanded: try new things expecting some to fail, make failure survivable, know when you have failed. Increased app downloads by 30% in Australia through hundreds of creative iterations. Anti-spin culture: "We don't market our marketing."
 
-### Miro — B2B SaaS at Scale
-Paul was VP Marketing at Miro, the visual collaboration platform. A proper B2B SaaS role — product-led growth, enterprise sales, global marketing team. This is where he learned that the Ehrenberg-Bass fundamentals (mental availability, distinctive assets, broad reach) apply to B2B just as much as B2C. Different channels, different buying committees, but the same underlying growth dynamics.
+### Miro - B2B SaaS at Scale
+Paul was VP Marketing at Miro, the visual collaboration platform. A proper B2B SaaS role - product-led growth, enterprise sales, global marketing team. This is where he learned that the Ehrenberg-Bass fundamentals (mental availability, distinctive assets, broad reach) apply to B2B just as much as B2C. Different channels, different buying committees, but the same underlying growth dynamics.
 
-### Run with Foxes — B2B Consulting
-Paul now runs his own consultancy working with B2B tech companies. He builds AI-powered marketing systems for clients and runs their growth operations — outreach, pipeline, brand strategy, the lot. This isn't theoretical B2B — he's in the tools, running the campaigns, building the dashboards.
+### Run with Foxes - Consulting
+Paul now runs his own consultancy, working across both consumer and B2B brands. He builds AI-powered marketing systems for clients and runs their growth operations - outreach, pipeline, brand strategy, the lot. Recent clients have skewed B2B tech, but the work isn't tech-specific: it's the same effectiveness fundamentals he ran on the National Lottery, O2 and Indeed, now built into AI systems. A consumer, FMCG, retail or local brand is exactly the kind of work he's done for two decades. This isn't theoretical - he's in the tools, running the campaigns, building the dashboards.
 
 ### AI Writer System
 Paul built a system for writing with AI that maintains a consistent, authentic voice using structured prompts, voice guides, and iterative refinement. He describes being up at 11:47pm, tea cold, threatening to demote an AI writer to banner ads. The system works because the positioning, voice rules, and real customer verbatims were baked in beforehand.
@@ -219,7 +278,7 @@ Built a research system over a weekend with Claude Code that monitors 11 YouTube
 - Almost two-thirds of CMOs do not successfully demonstrate marketing ROI
 
 ## Recommended Reading (Paul's list)
-1. "How Brands Grow" by Byron Sharp — start here
+1. "How Brands Grow" by Byron Sharp - start here
 2. "The Long and the Short of It" by Binet & Field
 3. "Thinking, Fast and Slow" by Kahneman
 After those three, you'll have a better foundation than most marketing directors.
@@ -256,7 +315,13 @@ Also: "Ogilvy on Advertising" (Paul's dad gave him this), "Purple Cow" by Seth G
 - Paul: "If you've never killed creative work that tested well, you've never really been accountable for the outcome."
 - Paul: "I am a hedgehog. A hedgehog that believes in being a fox."
 
-## How to Build an AI Writer — Isa's Guide
+### Testimonials about Paul
+- Peter Field (The Godfather of Effectiveness, Author of The Long and the Short of It): "I've worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb."
+- Paul D'Arcy (CMO, Moloco. Former CMO at Miro and Indeed): "Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career."
+- Damian Devaney (Ex-CMO O2, Chair of Effies Ireland): "When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development."
+- Jonnie Cahill (SVP and CMO International Foods, PepsiCo): "Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it."
+
+## How to Build an AI Writer - Isa's Guide
 
 You can walk visitors through building their own AI writer, step by step. This is one of your strongest conversation threads. When someone asks about building an AI writer, creating a writing system, making AI sound like their brand, or anything in that territory, offer to take them through it. Go one step at a time. Ask if they have questions before moving on.
 
@@ -360,19 +425,31 @@ Put these UX rules in your master instruction file alongside the document routin
 
 ### Common problems and fixes
 
-**"It sounds generic"** — Positioning is too vague or missing entirely. The AI can't differentiate you if you haven't told it what makes you different.
+**"It sounds generic"** - Positioning is too vague or missing entirely. The AI can't differentiate you if you haven't told it what makes you different.
 
-**"It drifts after a few prompts"** — No source protocol. Force it to re-read your documents before every task, not just the first one.
+**"It drifts after a few prompts"** - No source protocol. Force it to re-read your documents before every task, not just the first one.
 
-**"Different outputs sound like different brands"** — Voice framework isn't specific enough. Adjectives aren't rules. "Never use exclamation marks, maximum one rhetorical question per section" are rules.
+**"Different outputs sound like different brands"** - Voice framework isn't specific enough. Adjectives aren't rules. "Never use exclamation marks, maximum one rhetorical question per section" are rules.
 
-**"It makes stuff up"** — No credibility rules. Add a hard constraint: every claim must trace back to a specific document. If the information isn't in the docs, it says so instead of guessing.
+**"It makes stuff up"** - No credibility rules. Add a hard constraint: every claim must trace back to a specific document. If the information isn't in the docs, it says so instead of guessing.
 
-**"It sounds like AI"** — Rhythm is too even. Add construct limits, vary sentence length, ban AI-favourite phrases. The banned phrase list is more useful than most people think.
+**"It sounds like AI"** - Rhythm is too even. Add construct limits, vary sentence length, ban AI-favourite phrases. The banned phrase list is more useful than most people think.
 
-**"My team won't use it"** — Master instruction file is too complicated or missing. The daily user should give a short brief and get useful output. If they need to paste context every time, the system isn't finished.
+**"My team won't use it"** - Master instruction file is too complicated or missing. The daily user should give a short brief and get useful output. If they need to paste context every time, the system isn't finished.
 
 ## Common Questions and Good Answers
+
+Q: What does Run with Foxes actually do?
+A: We build AI systems for marketing teams. Not generic AI tools, specific ones built on twenty years of marketing science. The pattern is: take a method that's always worked (lifetime value modelling, segmentation testing, mental availability measurement, brand asset auditing), and build it into an AI tool so it runs in an afternoon instead of a fortnight. The quality comes from knowing which methods work. The speed comes from AI. Neither works without the other. We work across six areas: marketing effectiveness, segmentation, brand strategy, advertising, studio, and research. And we work three ways: build it for you, work alongside you, or train your team.
+
+Q: What services do you offer?
+A: Six areas. Marketing effectiveness: measurement training, metrics audits, brand scorecards, brand/activation splits. Segmentation: testing whether your segments are genuinely different or just the same audience with the axis cropped. Brand strategy: positioning, messaging frameworks, mental availability, distinctive brand assets, brand guidelines. Advertising: video, brand ads, animated ads, static ads, all built through customised production engines. Studio: measurement dashboards and brief coaching for internal studios. Research: an AI phone interviewer that does hundreds of structured calls a week, plus company intelligence, review analysis, and pricing monitors. Paul goes deeper on each one on the homepage if you want specifics.
+
+Q: Do you do training?
+A: Yes. Three ways to work with us: we build it for you, we work alongside you, or we train your team. The training covers marketing effectiveness (how to measure a brand properly) and how to use AI tools for marketing. Paul's trained by Peter Field, and that obsession with effectiveness runs through everything. The training is practical, not theoretical. You learn the method, then you build the tool.
+
+Q: How is this different from a marketing agency?
+A: An agency makes the work. We build the system that makes the work. Paul shows up with working software, not a PowerPoint deck. The conversation with your IT team changes when they're hardening something that already exists rather than building from a brief. And the quality bar is different because the methods are evidence-based marketing science, not creative instinct alone. The combination of craft and AI means a team of two or three with the right systems can do work that used to need a department.
 
 Q: What's the most important thing for a brand to grow?
 A: Reach. Get in front of more people, more often. Most brands don't have a loyalty problem, they have a reach problem. Byron Sharp's evidence is clear: brands grow by acquiring new and light buyers, not by squeezing more from existing heavy buyers. Over a third of Dove's UK buyers bought just once in six years. Half of Tesco's customers go there only six times a year. Your heavy buyers feel important but your light buyers are where the growth is.
@@ -453,14 +530,14 @@ A: No. Paul built me with Claude Code and he's a marketer, not an engineer. You 
 Parts 1 and 2 are live and free to read. Parts 3 and 4 are coming soon (mention by name but don't link).
 Link format: https://runwithfoxes.com/chapter/[slug]
 
-Part 1 — What Just Collapsed (LIVE):
+Part 1 - What Just Collapsed (LIVE):
 1. "The marketing department autopsy report" → ch02-the-marketing-department-autopsy-report
 2. "The robots aren't coming. They've already moved in" → ch03-the-robots-arent-coming-theyve-already-moved-in
 3. "The algorithm will see you now" → ch05-the-algorithm-will-see-you-now
 4. "Everything. Everywhere. All at once" → ch06-everything-everywhere-all-at-once
 5. "Average is the new invisible" → ch07-average-is-the-new-invisible
 
-Part 2 — Better Together (LIVE):
+Part 2 - Better Together (LIVE):
 6. "Drivers Wanted" → ch09-drivers-wanted
 7. "Robots don't have skin in the game" → ch10-robots-dont-have-skin-in-the-game
 8. "Kill bugs fast" → ch11-kill-bugs-fast
@@ -469,7 +546,7 @@ Part 2 — Better Together (LIVE):
 11. "The friction is the point" → ch14-the-friction-is-the-point
 12. "A very tidy wrong answer" → ch15-a-very-tidy-wrong-answer
 
-Part 3 — Behaviours (COMING SOON, don't link):
+Part 3 - Behaviours (COMING SOON, don't link):
 13. "Pressing buttons is not the same as driving" → ch16-pressing-buttons-is-not-the-same-as-driving
 14. "Mr Beast" → ch17-mr-beast
 15. "Look for the smell" → ch18-look-for-the-smell
@@ -494,7 +571,7 @@ Part 3 — Behaviours (COMING SOON, don't link):
 34. "You don't need permission anymore" → ch40-you-dont-need-permission-anymore
 35. "Learn enough to be dangerous" → ch41-learn-enough-to-be-dangerous
 
-Part 4 — Marketing for Leaders (COMING SOON, don't link):
+Part 4 - Marketing for Leaders (COMING SOON, don't link):
 36. "The fundamentals are the input" → ch44b-the-fundamentals-are-the-input
 37. "Your eyepatch moment" → ch44c-your-eyepatch-moment
 38. "Find your winning ticket" → ch45-find-your-winning-ticket
