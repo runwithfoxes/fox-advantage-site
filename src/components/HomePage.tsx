@@ -171,6 +171,7 @@ export default function HomePage() {
             <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
             <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
             <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+            <a className="cl-about-link" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer">View my newsletter &rarr;</a>
           </div>
         </div>
       </section>

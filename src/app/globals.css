@@ -4240,6 +4240,19 @@ a.project-card {
   margin-bottom: 12px;
   max-width: 640px;
 }
+.cl-about-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #3A7CA5;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.cl-about-link:hover {
+  border-bottom-color: #3A7CA5;
+}
 
 .cl-modules-wrap {
   background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
