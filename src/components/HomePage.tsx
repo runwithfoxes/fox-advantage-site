@@ -369,6 +369,98 @@ export default function HomePage() {
             </div>
             <div className="cl-acc-examples">Examples</div>
             <div className="cl-acc-rows">
+              <div className={`cl-acc-row${isOpen('seg-what') ? ' expanded' : ''}`} onClick={() => toggle('seg-what')}>
+                <span className="cl-acc-indicator">+</span>
+                <span className="cl-acc-activity">What segmentation is</span>
+              </div>
+              {isOpen('seg-what') && (
+                <div className="cl-acc-detail">
+                  <div className="cl-acc-detail-split">
+                    <div className="cl-acc-detail-visual">
+                      <svg viewBox="0 0 440 300" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 420, height: 'auto' }}>
+                        <line x1="40" y1="260" x2="300" y2="260" stroke="#E0E0DC" strokeWidth="0.5"/>
+                        <line x1="40" y1="260" x2="40" y2="20" stroke="#E0E0DC" strokeWidth="0.5"/>
+                        <text x="170" y="285" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="9" fill="#8A8A85">Purchase frequency</text>
+                        <text x="16" y="140" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="9" fill="#8A8A85" transform="rotate(-90,16,140)">Basket value</text>
+                        {/* cluster bounding boxes (solid, subtle) */}
+                        <rect x="64" y="62" width="46" height="42" fill="none" stroke="#1A3A4E" strokeOpacity="0.35" strokeWidth="0.75"/>
+                        <rect x="208" y="64" width="50" height="46" fill="none" stroke="#3A7CA5" strokeOpacity="0.4" strokeWidth="0.75"/>
+                        <rect x="188" y="184" width="50" height="46" fill="none" stroke="#F47521" strokeOpacity="0.45" strokeWidth="0.75"/>
+                        {/* cluster 1 - navy diamonds: high value, low frequency */}
+                        <polygon points="76,70 80,74 76,78 72,74" fill="#1A3A4E"/>
+                        <polygon points="94,68 98,72 94,76 90,72" fill="#1A3A4E"/>
+                        <polygon points="82,82 86,86 82,90 78,86" fill="#1A3A4E"/>
+                        <polygon points="98,82 102,86 98,90 94,86" fill="#1A3A4E"/>
+                        <polygon points="72,84 76,88 72,92 68,88" fill="#1A3A4E"/>
+                        <polygon points="90,90 94,94 90,98 86,94" fill="#1A3A4E"/>
+                        {/* cluster 2 - sky circles: high value, high frequency */}
+                        <circle cx="218" cy="78" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="234" cy="76" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="224" cy="90" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="242" cy="86" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="248" cy="78" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="222" cy="100" r="3.7" fill="#3A7CA5"/>
+                        <circle cx="238" cy="98" r="3.7" fill="#3A7CA5"/>
+                        {/* cluster 3 - orange triangles: low value, high frequency */}
+                        <polygon points="200,192 204,200 196,200" fill="#F47521"/>
+                        <polygon points="216,190 220,198 212,198" fill="#F47521"/>
+                        <polygon points="206,204 210,212 202,212" fill="#F47521"/>
+                        <polygon points="224,202 228,210 220,210" fill="#F47521"/>
+                        <polygon points="196,208 200,216 192,216" fill="#F47521"/>
+                        <polygon points="214,214 218,222 210,222" fill="#F47521"/>
+                        <polygon points="228,208 232,216 224,216" fill="#F47521"/>
+                        {/* legend - outside the plot, to the right */}
+                        <polygon points="334,116 338,120 334,124 330,120" fill="#1A3A4E"/>
+                        <text x="348" y="123" fontFamily="JetBrains Mono" fontSize="11" fill="#5A5A55">Cluster 1</text>
+                        <circle cx="334" cy="142" r="3.7" fill="#3A7CA5"/>
+                        <text x="348" y="145" fontFamily="JetBrains Mono" fontSize="11" fill="#5A5A55">Cluster 2</text>
+                        <polygon points="334,160 338,168 330,168" fill="#F47521"/>
+                        <text x="348" y="167" fontFamily="JetBrains Mono" fontSize="11" fill="#5A5A55">Cluster 3</text>
+                      </svg>
+                    </div>
+                    <div className="cl-acc-detail-copy">
+                      <div className="cl-acc-detail-sub">Segmentation is the choice of who to go after. It groups customers who genuinely behave differently, decides which groups are worth pursuing, and shapes the product, proposition and value so they fit that group and appeal to it. Done well it lifts efficiency, conversion and retention. A segment is only worth having if it passes four tests: we can measure it, it is big enough to matter, it genuinely behaves differently, and we can reach it.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className={`cl-acc-row${isOpen('seg-holds') ? ' expanded' : ''}`} onClick={() => toggle('seg-holds')}>
+                <span className="cl-acc-indicator">+</span>
+                <span className="cl-acc-activity">What holds up</span>
+              </div>
+              {isOpen('seg-holds') && (
+                <div className="cl-acc-detail">
+                  <div className="cl-acc-detail-split">
+                    <div className="cl-acc-detail-visual">
+                      <div style={{ display: 'grid', gridTemplateColumns: '94px repeat(4, 1fr)', columnGap: 6, rowGap: 9, alignItems: 'center', fontFamily: 'var(--mono)' }}>
+                        <span></span>
+                        {['Meas.', 'Subst.', 'Diff.', 'Access.'].map((h) => (
+                          <span key={h} style={{ fontSize: 8, color: '#8A8A85', textAlign: 'center', letterSpacing: '0.02em' }}>{h}</span>
+                        ))}
+                        {[
+                          { t: 'Behavioural', p: [1, 1, 1, 1] },
+                          { t: 'Value-based', p: [1, 1, 1, 1] },
+                          { t: 'Occasion', p: [1, 1, 1, 1] },
+                          { t: 'Geographic', p: [1, 1, 1, 1] },
+                          { t: 'Psychographic', p: [1, 1, 0, 1] },
+                          { t: 'Personality', p: [1, 1, 0, 1] },
+                          { t: 'Lifestyle', p: [1, 1, 0, 1] },
+                        ].flatMap((r, ri) => [
+                          <span key={`l${ri}`} style={{ fontSize: 11, color: 'var(--text)', textAlign: 'right' }}>{r.t}</span>,
+                          ...r.p.map((v, i) => (
+                            <span key={`c${ri}-${i}`} style={{ justifySelf: 'center', width: 10, height: 10, boxSizing: 'border-box', background: v ? '#1A3A4E' : 'transparent', border: v ? 'none' : '1px solid #C8C8C4' }} />
+                          )),
+                        ])}
+                      </div>
+                    </div>
+                    <div className="cl-acc-detail-copy">
+                      <div className="cl-acc-detail-sub">There are different ways to segment: by behaviour, by value, by the occasion someone is buying for, and more. Some hold up better than others once you run the numbers. We put each one through the same four tests before we trust it, so the groups we act on are real, not assumed.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className={`cl-acc-row${isOpen('seg-1') ? ' expanded' : ''}`} onClick={() => toggle('seg-1')}>
                 <span className="cl-acc-indicator">+</span>
                 <span className="cl-acc-activity">Similarity analysis</span>
