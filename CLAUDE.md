@@ -6,6 +6,28 @@ The live homepage for runwithfoxes.com. Next.js site deployed on Vercel. The com
 ## Current state (2026-05-30)
 Live and deployed. Homepage has hero + commercial layer with 6 accordion module sections. All copy approved by Paul. All assets in place. Mobile responsive pass still needed on accordion detail panels.
 
+## Homepage direction (2026-06-04) - locked, not yet built
+A long exploration session worked the problem "the homepage reduces to a list of things." It RULED OUT every floor-plan / department-render / revolving-hero idea and CONFIRMED the accordion is the right answer - the fix was framing, not visuals. The agreed evolution of the current layout:
+- **Keep the Tarantino video hero** as-is. Single video, swappable over time. **No revolving/carousel hero.**
+- **Keep** bio + photo and the engagement CTAs (`\build it for you` / `\work alongside you` / `\train your team`).
+- **Tighten the modules into one compact, nested accordion** so the *tightness itself* reads as "a department," not a vendor menu. Two-level disclosure:
+  - L0 - the seven modules as tight rows at a glance, each with a tool count (e.g. "4 tools"). (Today they're full stacked sections; the direction is to collapse them into one scannable index.)
+  - L1 - click a module → expands to its tools.
+  - L2 - click a tool → its existing rich panel opens inline (pyramid SVG, scorecard, comp map, charts - keep every one).
+- **Aesthetic to own:** cinematic video + cute foxes (nobg) + low-fi tech (JetBrains Mono, repo-style rows, thin dividers, "shipped" dots, `\` CTA syntax).
+- **Open question:** tool panels open independently (several at once, as today) vs one-at-a-time within a module (tighter). Undecided.
+- **Keeper mock:** `wireframes/department-accordion-mock.html`. Full decision trail + rejected ideas: `~/paul-hub/clients/rwf/CONTEXT.md` and `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-department-direction.json`.
+- **Build target:** apply to `src/components/HomePage.tsx` - real headline type scale, pour real copy into rows/panels, then decide the open question.
+
+### Working wireframe + deploy spec (2026-06-04, evening)
+- **Current working wireframe:** `wireframes/wireframe-accordion-homepage.html` (supersedes the keeper mock for build). Single font throughout (JetBrains Mono, no Space Grotesk). Real module/tool copy pulled from the live `HomePage.tsx`. Sequential green status dots on the contact-CTA strip under the bio. Thought-leadership carousel above the modules, manual rotation, wired to the live Substack feed (`runwithfoxes.substack.com/feed`) with a curated post list. Rotating testimonial band (manual, fixed height) above the book block. Book block mirrors the `/book` hero.
+- **DEPLOY GUARDRAIL:** when porting the accordion homepage, do NOT modify the nav or hero-video code (`hp-nav`, `hp-nav-scrolled`, `hp-hero-wrapper`, the landscape + portrait `hp-hero-video` elements, posters, and the nav-over-video overlay). That overlay was hard-won; leave it byte-for-byte. The ONLY permitted change above the fold is the nav dropdown contents.
+- **Nav dropdown changes (the one allowed top change):**
+  - Rename the `/projects` menu to **`/previous`**.
+  - Under it, **delete the entire "AI TOOLS" group** (Expert Panel, Brief Diagnostician, Effectiveness Coach, AI Writer, Brand System, Chief of Staff).
+  - **Keep only the four case studies:** Millionaire Raffle, Marketer of the Year, 48, Run with Foxes (book 1).
+- **Substack section needs:** Paul's Substack URL is `https://runwithfoxes.substack.com/`; build pulls the feed and filters to a curated list (Paul picks which posts surface). Card crop: open question (tidy uniform crop vs never-crop full image).
+
 ## Key files
 - `src/components/HomePage.tsx` - the entire homepage (~1120 lines, single component)
 - `src/app/globals.css` - all styles including commercial layer (cl- prefix, starts around line 4207)
@@ -124,3 +146,4 @@ Every module section follows:
 - 2026-05-29 (morning): Wireframe iterated, modules 1-4 built with Paul
 - 2026-05-29 (afternoon): Modules 5-6 built, sections cut, structure finalised, BUILD-BRIEF.md written
 - 2026-05-30 (night): Ported wireframe to Next.js, iterated with Paul on foxes/ads/testimonials/spacing, deployed to production
+- 2026-06-03/04 (night): Homepage "list problem" exploration. Ruled out floor-plan/department-render/revolving-hero; confirmed and tightened the accordion direction (see "Homepage direction (2026-06-04)" above). Keeper mock added to wireframes/.
