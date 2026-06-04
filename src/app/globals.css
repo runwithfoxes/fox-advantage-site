@@ -4723,6 +4723,11 @@ a.project-card {
 
 .hpx-hl { color: #3A7CA5; }
 
+/* mono glyphs read wider than the old Space Grotesk h1, so the same px wraps to
+   two lines. Trim the clamp so the headline holds ONE line across desktop widths,
+   matching the live homepage's single-line presentation. */
+.hp-root .hp-hero-text h1 { font-size: clamp(32px, 4.2vw, 50px); }
+
 .hpx-wrap {
   max-width: 1200px;
   margin: 0 auto;
@@ -4785,12 +4790,12 @@ a.project-card {
 }
 .hpx-mod-cta {
   font-family: var(--mono);
-  font-size: 16px;
-  color: var(--text);
+  font-size: 14px;
+  color: #3A7CA5;
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
-.hpx-mod-cta:hover { color: #3A7CA5; border-bottom-color: #3A7CA5; }
+.hpx-mod-cta:hover { border-bottom-color: #3A7CA5; }
 @keyframes hpx-seq {
   0%, 30%  { opacity: 1; box-shadow: 0 0 7px rgba(58,157,93,.9); }
   31%, 100% { opacity: .16; box-shadow: none; }
