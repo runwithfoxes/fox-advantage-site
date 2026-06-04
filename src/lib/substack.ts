@@ -45,7 +45,8 @@ function formatDate(pubDate: string | null): string {
   if (!pubDate) return "";
   const t = Date.parse(pubDate);
   if (Number.isNaN(t)) return "";
-  return new Date(t).toLocaleDateString("en-GB", { month: "short", day: "numeric" });
+  // month-day to match Paul's live Substack cards, e.g. "May 28" (uppercased in the card)
+  return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
 function slugFromLink(link: string): string {

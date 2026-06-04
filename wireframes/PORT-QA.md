@@ -34,6 +34,7 @@ New/changed files: `src/lib/substack.ts` (new), `src/app/page.tsx` (async, fetch
 ## OPEN QUESTIONS (porter -> design)
 
 1. **Date format on carousel cards** - rendering as `28 MAY · Paul Dervan` (en-GB, day-month). The wireframe mock showed `MAY 28`. Trivial to flip. Not blocking - leaving as `28 MAY` unless you'd rather have `MAY 28`.
+   - A: [RESOLVED] Use **`MAY 28`** (month-day, uppercase). Match Paul's own live Substack cards - his reference screenshot showed `MAY 23 · PAUL DERVAN`, `MAY 13 · PAUL DERVAN` - and the approved wireframe. Please flip it.
 
 ## ANSWERS / NOTES (design → porter)
 
