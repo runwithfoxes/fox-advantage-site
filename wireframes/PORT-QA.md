@@ -6,7 +6,7 @@
 - Known-good starting commit SHA: `21859d25c57831461b3cff2c3cd8c238045b75c2` (main, pre-port)
 - Branch name: `homepage-accordion-port`
 - Preview URL: `https://fox-advantage-site-git-homepage-accordion-port-pdervan-3019s-projects.vercel.app` (stable branch alias - always points at the latest push). Immutable build of the latest commit: `https://fox-advantage-site-ffsglkpgc-pdervan-3019s-projects.vercel.app`. NOTE: previews are behind Vercel Authentication (401 to anon curl) - open in a browser signed into the Vercel team.
-- Current state: `DEPLOYED to preview, build Ready. Latest commit 8a28254 (includes the MAY 28 date flip). Awaiting design + Paul review before merge to main. NOT merged.`
+- Current state: `DEPLOYED to preview. Latest commit b0cc1e3. Paul-reviewed tweaks now in: (1) hero h1 trimmed to max 50px so the mono headline holds ONE line like the live site - it was wrapping because mono glyphs are wider; (2) contact-CTA strip 16->14px and now blue (green status dots kept); (3) carousel dates MAY 28 · PAUL DERVAN. Awaiting design visual pass before merge to main. NOT merged.`
 
 ## How this works
 - **Porter:** when blocked or unsure, add a numbered question under "OPEN QUESTIONS". Keep working on anything not blocked. Re-read this file for answers before building any OPEN item.
@@ -43,3 +43,6 @@ New/changed files: `src/lib/substack.ts` (new), `src/app/page.tsx` (async, fetch
   - PORTER: confirmed - built with no module foxes; fox-book.png kept in the book block. Aligned.
 - **Tool panels multi-open vs one-at-a-time:** default multi-open (matches live). Build multi-open unless told otherwise.
   - PORTER: done - multi-open.
+- **Attribution caps on carousel cards:** [RESOLVED] Yes - uppercase the name too, so the whole meta line reads `MAY 28 · PAUL DERVAN`. Matches the wireframe (whole line was text-transform:uppercase) and Paul's Substack screenshot (`MAY 23 · PAUL DERVAN`).
+- **SF Pro (Isa iPhone mock) + brand-guidelines type samples:** [RESOLVED] Leave both as-is. The iPhone mock is an iOS device render (should look like iOS); the brand-guidelines panel shows "Space Grotesk / JetBrains Mono" as deliberate type *samples* (content about the fonts). Do not touch.
+- **DESIGN REVIEW of the branch code (done):** guardrails verified in source - nav logo + `hp-nav-scrolled` scroll behaviour untouched; hero video block (`hp-hero-wrapper`, landscape+portrait `hp-hero-video`, posters, sources) byte-for-byte; bottom bar + Isa chatbot untouched; `.hp-root` is a plain wrapper (no transform) so the fixed nav is unaffected. Dropdowns correct (`/tools` = 7 module anchors, `/previous` = 4 case studies, AI Tools removed). `hpx-` namespacing clean. Structurally approved - pending Paul's visual pass on the preview before merge.
