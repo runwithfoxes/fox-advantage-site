@@ -13,7 +13,10 @@
     --muted:#8a8a86;--orange:#F47521;--green:#3a9d5d;--mono:'JetBrains Mono',monospace;--sans:'JetBrains Mono',monospace;}
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--cream);color:var(--text);font-family:var(--mono);font-weight:300;-webkit-font-smoothing:antialiased;}
+  body{background-color:var(--cream);
+    background-image:radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
+    background-size:28px 28px;
+    color:var(--text);font-family:var(--mono);font-weight:300;-webkit-font-smoothing:antialiased;}
   @keyframes fade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
 
   .nav{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;
@@ -157,7 +160,7 @@
 
   /* book block - mirrors the /book hero: text left, fox-with-book right */
   .bookblock{margin:56px 0 0;padding:50px 0 8px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
-  .bookblock-title{font-family:var(--mono);font-weight:300;font-size:clamp(34px,4.4vw,52px);letter-spacing:-1.5px;line-height:1.05;margin-top:0;}
+  .bookblock-title{font-family:var(--mono);font-weight:300;font-size:clamp(26px,3vw,38px);letter-spacing:-1px;line-height:1.08;margin-top:0;}
   .bookblock-title span{color:var(--sky);}
   .bookblock-sub{font-size:15px;line-height:1.8;color:#444;margin-top:18px;max-width:580px;}
   .bookblock-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:22px;font-size:13px;color:var(--muted);}
@@ -175,7 +178,7 @@
 
 <div class="nav" id="nav">
   <div class="logo">/<b>Run</b>withfoxes</div>
-  <div class="nav-links"><span>#unfair_advantage ▾</span><span>/projects ▾</span><span>/book</span><span>/contact</span></div>
+  <div class="nav-links"><span>/tools ▾</span><span>/previous ▾</span><span>/book</span><span>/contact</span></div>
 </div>
 
 <div class="fullbleed hero">
