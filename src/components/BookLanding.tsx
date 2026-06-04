@@ -118,34 +118,24 @@ function BookLandingContent({ parts }: Props) {
         <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
         <div className="hp-nav-links">
           <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">#unfair_advantage &#9662;</span>
+            <span className="hp-dropdown-trigger">/tools &#9662;</span>
             <div className="hp-mega">
               <div className="hp-mega-inner">
                 <div className="hp-mega-col">
-                  <div className="hp-mega-label">HUMAN LEADS</div>
-                  <Link href="/#mod-strategy">Strategy</Link>
-                  <Link href="/#mod-positioning">Positioning</Link>
-                </div>
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">AI + HUMAN</div>
-                  <Link href="/#mod-messaging">Messaging</Link>
-                  <Link href="/#mod-research">Research</Link>
+                  <div className="hp-mega-label">MODULES</div>
+                  <Link href="/#mod-effectiveness">Marketing effectiveness</Link>
+                  <Link href="/#mod-segmentation">Segmentation</Link>
+                  <Link href="/#mod-brand-strategy">Brand strategy</Link>
                   <Link href="/#mod-advertising">Advertising</Link>
-                  <Link href="/#mod-effectiveness">Effectiveness</Link>
-                  <Link href="/#mod-brand-guardian">Brand guardian</Link>
-                  <Link href="/#mod-events">Events</Link>
-                </div>
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">AI DOES IT</div>
-                  <Link href="/#mod-ad-engine">Ad engine</Link>
-                  <Link href="/#mod-growth">Growth team</Link>
-                  <Link href="/#mod-pm">Project manager</Link>
+                  <Link href="/#mod-studio">Studio</Link>
+                  <Link href="/#mod-business-development">Business development</Link>
+                  <Link href="/#mod-research">Research and insights</Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/projects &#9662;</span>
+            <span className="hp-dropdown-trigger">/previous &#9662;</span>
             <div className="hp-mega">
               <div className="hp-projects-dropdown">
                 <div className="hp-pd-label">CASE STUDIES</div>
@@ -153,13 +143,6 @@ function BookLandingContent({ parts }: Props) {
                 <Link href="/marketer-of-the-year">Marketer of the Year</Link>
                 <Link href="/48">48</Link>
                 <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
-                <div className="hp-pd-label">AI TOOLS</div>
-                <Link href="/experts">Expert Panel</Link>
-                <Link href="/brief-diagnostician">Brief Diagnostician</Link>
-                <Link href="/coach">Effectiveness Coach</Link>
-                <Link href="/ai-writer">AI Writer</Link>
-                <Link href="/brand">Brand System</Link>
-                <Link href="/chief">Chief of Staff</Link>
               </div>
             </div>
           </div>
