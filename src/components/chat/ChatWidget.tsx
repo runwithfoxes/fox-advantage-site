@@ -25,17 +25,40 @@ const WELCOME: UIMessage = {
   ],
 };
 
+// Shown only on /contact. Booking-led, since that page exists to get people talking to Paul.
+const CONTACT_WELCOME: UIMessage = {
+  id: "welcome-contact",
+  role: "assistant",
+  parts: [
+    {
+      type: "text",
+      text: "You found the contact page, so you're after a real conversation. Paul does 30-minute strategy chats: [book one here](https://cal.com/paul-dervan-mjfd50). Or tell me what you're working on and I'll point you the right way.",
+    },
+  ],
+};
+
 export default function ChatWidget() {
   const pathname = usePathname();
+  const isContact = pathname === "/contact";
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, sendMessage, status, error } = useChat({
-    messages: [WELCOME],
+  const { messages, sendMessage, status, error, setMessages } = useChat({
+    messages: [isContact ? CONTACT_WELCOME : WELCOME],
     onError: (e) => console.error("[isa] chat error:", e),
   });
+
+  // The widget lives in the root layout, so it doesn't remount on client-side
+  // navigation. Swap the welcome to match the current page, but only while the
+  // conversation hasn't started so we never wipe an active chat.
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.some((m) => m.role === "user")) return prev;
+      return [isContact ? CONTACT_WELCOME : WELCOME];
+    });
+  }, [isContact, setMessages]);
 
   const isBusy = status === "streaming" || status === "submitted";
 
@@ -50,10 +73,14 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && sessionStorage.getItem("isa-dismissed")) return;
-    const id = setTimeout(() => setIsOpen(true), 5000);
+    if (typeof window === "undefined") return;
+    // Contact page tracks its own dismissal so closing Isa on the homepage
+    // doesn't stop her opening when someone reaches the contact page.
+    const dismissKey = isContact ? "isa-dismissed-contact" : "isa-dismissed";
+    if (sessionStorage.getItem(dismissKey)) return;
+    const id = setTimeout(() => setIsOpen(true), isContact ? 2000 : 5000);
     return () => clearTimeout(id);
-  }, []);
+  }, [isContact]);
 
   if (pathname?.startsWith("/research")) return null;
 
@@ -86,7 +113,7 @@ export default function ChatWidget() {
         <span className="chat-panel-title">isa</span>
         <button
           className="chat-panel-close"
-          onClick={() => { setIsOpen(false); sessionStorage.setItem("isa-dismissed", "1"); }}
+          onClick={() => { setIsOpen(false); sessionStorage.setItem(isContact ? "isa-dismissed-contact" : "isa-dismissed", "1"); }}
           aria-label="Close chat"
         >
           &times;

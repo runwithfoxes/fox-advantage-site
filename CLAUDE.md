@@ -25,7 +25,7 @@ A long exploration session worked the problem "the homepage reduces to a list of
 ### Working wireframe + deploy spec (2026-06-04, evening)
 - **Current working wireframe:** `wireframes/wireframe-accordion-homepage.html` (supersedes the keeper mock for build). Single font throughout (JetBrains Mono, no Space Grotesk). Real module/tool copy pulled from the live `HomePage.tsx`. Sequential green status dots on the contact-CTA strip under the bio. Thought-leadership carousel above the modules, manual rotation, wired to the live Substack feed (`runwithfoxes.substack.com/feed`) with a curated post list. Rotating testimonial band (manual, fixed height) above the book block. Book block mirrors the `/book` hero.
 - **DEPLOY GUARDRAIL:** when porting the accordion homepage, do NOT modify the nav or hero-video code (`hp-nav`, `hp-nav-scrolled`, `hp-hero-wrapper`, the landscape + portrait `hp-hero-video` elements, posters, and the nav-over-video overlay). That overlay was hard-won; leave it byte-for-byte. The ONLY permitted change above the fold is the nav dropdown contents.
-- **DEPLOY GUARDRAIL (Isa chatbot):** do NOT change the Isa chatbot or its rules. It auto-opens after 5 seconds on first load, shows the welcome message with the book-cover thumbnail and the "free to download" link to `/book#signup`, stays closed for the rest of the visit once dismissed (sessionStorage), and reopens on the next visit. Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`. Leave as-is (see the "Isa chatbot behaviour" section below).
+- **DEPLOY GUARDRAIL (Isa chatbot):** do NOT change the Isa chatbot or its rules WITHOUT Paul's explicit say-so. Default behaviour: auto-opens after 5 seconds on first load, shows the welcome message with the book-cover thumbnail and the "free to download" link to `/book#signup`, stays closed for the rest of the visit once dismissed (sessionStorage), reopens on the next visit. **Contact-page exception (added 2026-06-04, approved by Paul):** on `/contact` ONLY, Isa opens after 2 seconds with a booking-led welcome (cal.com strategy-chat link) instead of the book message, and uses a separate `isa-dismissed-contact` key so a dismissal elsewhere doesn't suppress the contact open. Same personality/knowledge/backend, just the opening message + timing branch on `pathname === "/contact"`. Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`. Leave the rest as-is (see the "Isa chatbot behaviour" section below).
 - **DEPLOY GUARDRAIL (bottom bar):** keep the sliding bottom bar (`hp-bottom-bar`) exactly as-is: `#top`, `#about`, `/book`, `get in touch`. No logo, no content change.
 - **Nav dropdown changes (the one allowed top change):**
   - Rename the `/projects` menu to **`/previous`**.
@@ -127,12 +127,13 @@ Every module section follows:
 - Research intro: "We love research, and have helped teams with a range of solutions such as message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour."
 
 ## Isa chatbot behaviour
-- Auto-opens after 5 seconds on first page load
+- Auto-opens after 5 seconds on first page load (2 seconds on `/contact`)
 - Welcome message shows Fox Advantage book cover thumbnail + "Hi, I'm Isa. The first two sections of Paul's new book are free to download. The rest will be here soon. Or ask me anything about what we do."
 - "free to download" links to `/book#signup` (email gate + PDF download)
 - Once dismissed (X button), stays closed for the rest of the visit (sessionStorage)
 - Reopens on next visit (new browser session)
 - Welcome message rendered as custom JSX (not through markdown renderer) to support the book cover image
+- **Contact-page variant (2026-06-04):** on `/contact` only, the opening message is booking-led ("You found the contact page... Paul does 30-minute strategy chats: [book one here](https://cal.com/paul-dervan-mjfd50)...") rendered via the normal markdown path (id `welcome-contact`, no book cover). Opens after 2s. The widget lives in the root layout so it doesn't remount on client-side nav; the welcome reacts to `pathname` (swaps only while no user message has been sent, so an active chat is never wiped). Contact uses its own `isa-dismissed-contact` sessionStorage key, so closing Isa on another page doesn't stop her opening on `/contact`; closing her on `/contact` keeps her closed there. After the first message she is standard Isa (scope: opening line only, not a full behaviour override).
 - Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`
 
 ## What's next
