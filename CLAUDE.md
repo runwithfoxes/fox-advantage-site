@@ -3,10 +3,13 @@
 ## What this is
 The live homepage for runwithfoxes.com. Next.js site deployed on Vercel. The commercial layer was built on 2026-05-29/30, replacing the old module-based layout with an accordion-based system.
 
-## Current state (2026-05-30)
-Live and deployed. Homepage has hero + commercial layer with 6 accordion module sections. All copy approved by Paul. All assets in place. Mobile responsive pass still needed on accordion detail panels.
+## Current state (2026-06-04) - accordion port LIVE
+Live and deployed. The homepage was ported from `wireframes/wireframe-accordion-homepage.html` to a single nested accordion and shipped to production (merge `ef84f97..69bae26` -> main, Vercel auto-deploy). Structure now: hero -> bio (magazine wrap) + contact-CTA strip (sequential green dots) -> LIVE Substack carousel -> 7-module nested accordion (L0 row -> L1 intro -> L2 reused rich panels) -> rotating testimonial band -> book block. Single font (JetBrains Mono) across the homepage via `--sans -> mono` on `.hp-root`. Nav is now `/tools` + `/previous`. All copy approved, zero 404s. See "Homepage structure" below (updated) and the session summary `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`. Rollback if ever needed: `git revert 69bae26` (or revert the merge) + push.
 
-## Homepage direction (2026-06-04) - locked, not yet built
+### Previous state (2026-05-30)
+Hero + commercial layer with 6 stacked accordion module sections, 4 inline testimonial bars, book CTA. Superseded by the port above.
+
+## Homepage direction (2026-06-04) - locked, BUILT + LIVE (kept for the decision trail)
 A long exploration session worked the problem "the homepage reduces to a list of things." It RULED OUT every floor-plan / department-render / revolving-hero idea and CONFIRMED the accordion is the right answer - the fix was framing, not visuals. The agreed evolution of the current layout:
 - **Keep the Tarantino video hero** as-is. Single video, swappable over time. **No revolving/carousel hero.**
 - **Keep** bio + photo and the engagement CTAs (`\build it for you` / `\work alongside you` / `\train your team`).
@@ -41,25 +44,22 @@ A long exploration session worked the problem "the homepage reduces to a list of
 - `public/ads/` - ad images (killbill, vespa, rushmore, arsenal, 6040, sherlock, professor, studio-measurement)
 - `public/video/` - video assets (hyperspeed, rounders, waterslide, animated ads, messaging-framework, tarantino trunk)
 
-## Homepage structure (top to bottom)
+## Homepage structure (top to bottom) - UPDATED for the accordion port (2026-06-04)
 
-1. **Nav** - logo, #unfair_advantage dropdown (6 module anchors), /projects dropdown (case studies + AI tools), /book, /contact
-2. **Video hero** - Tarantino trunk video (landscape + portrait), poster images
-3. **Hero text** - "Build an unfair advantage in marketing" h1, then descriptive line, then border divider
-4. **About** - Photo + 3-paragraph bio + "/Paul Dervan" in blue mono
-5. **Modules intro** - "Where can AI be built into marketing?" + engagement CTAs
-6. **Module 1: Marketing effectiveness** (id: mod-effectiveness) - 4 accordion rows: measurement training (SVG pyramid), metrics audit (mini pyramid), brand scorecard (full table), brand/activation split (two-column table + bar chart)
-7. **Module 2: Segmentation** (id: mod-segmentation) - 2 accordion rows: similarity analysis (bar chart), scatter plots (SVG)
-8. **Peter Field testimonial bar**
-9. **Module 3: Brand strategy** (id: mod-brand-strategy) - 6 accordion rows: competitor positioning map, mental availability (line chart), messaging framework (video), distinctive brand assets (2x2 matrix), brand on a page (brand house), brand guidelines (swatches/type/nevers)
-10. **Module 4: Advertising** (id: mod-advertising) - 4 accordion rows: video (3x), brand ads (3x images), animated ads (3x video), static ads (2x images)
-11. **Paul D'Arcy testimonial bar**
-12. **Module 5: Studio** (id: mod-studio) - 2 accordion rows: studio measurement (image), brief coach (influence models grid)
-13. **Damian Devaney testimonial bar**
-14. **Module 6: Research and insights** (id: mod-research) - 4 accordion rows: AI research interviewer (SVG phone), company intelligence (HTML card), review intelligence (sentiment bars), pricing intelligence (price grid + alert)
-15. **Jonnie Cahill testimonial bar**
-16. **Book CTA** - cream background, left-aligned, links to /book
-17. **Bottom bar** - #top, #about, /book, get in touch
+The whole page is wrapped in `.hp-root` (sets `--sans -> mono` so the homepage is single-font; does not affect other pages). New section CSS uses the `hpx-` prefix (appended to globals.css, ~line 4717+). The reused L2 tool panels keep their original `cl-` markup/styles verbatim.
+
+1. **Nav** (`hp-nav`, guarded) - logo, **`/tools`** dropdown (7 module anchors), **`/previous`** dropdown (4 case studies only; AI TOOLS group deleted), /book, /contact. Same `/tools`+`/previous` change applied to `BookLanding.tsx`.
+2. **Video hero** (`hp-hero-wrapper`, guarded byte-for-byte) - Tarantino trunk video (landscape + portrait) + posters.
+3. **Hero text** (`hp-hero-text` + `.hpx-hero-desc`) - h1 "Build an `<span class=hpx-hl>`unfair advantage`</span>` in marketing" (mono, weight 300, clamp max **50px** so it holds one line like the old Space Grotesk version), full-width descriptor.
+4. **Bio + contact strip** (`hpx-about`) - magazine wrap: `hpx-bio-photo` floats left, copy wraps then runs full width, `/Paul Dervan` in blue. Then `hpx-metastrip` contact-CTA strip (`\build it for you` / `\work alongside you` / `\train your team`, 14px blue, sequential green `hpx-fdot` status dots, 3s loop). No newsletter link here (moved to carousel). Section carries `id="about"`.
+5. **Substack carousel** (`hpx-writing`) - LIVE feed via `src/lib/substack.ts` (`getSubstackPosts`, ISR `revalidate:3600`), server-fetched in `src/app/page.tsx` (now async) and passed as `posts` prop. Plain `<img object-fit:cover>` 16/10 uniform crop. Manual arrows + dots, no auto-advance. 3-up desktop / 1-up mobile. `CURATED_SLUGS` allowlist (empty = latest). `View newsletter ->` link.
+6. **Modules intro** (`hpx-intro`) - "Where can `<span hpx-hl>`AI`</span>` be built into marketing?" + intro paragraph.
+7. **Nested accordion** (`hpx-mods`) - 7 `hpx-mitem` rows (id = nav anchor: mod-effectiveness, mod-segmentation, mod-brand-strategy, mod-advertising, mod-studio, mod-business-development, mod-research). Each: L0 row (icon + name + grey descriptor + "N examples") -> L1 (`hpx-mintro` real module intro + Examples label) -> L2 `hpx-titem` tool rows whose `hpx-tdetail` holds the ORIGINAL `cl-acc-detail` panel verbatim. Multi-open (Set state, `expanded`/`toggle`/`isOpen`). No module foxes (decision: out). Counts: effectiveness 4, segmentation 4, brand strategy 6, advertising 4, studio 3, business development 1, research 4.
+8. **Testimonials** (`hpx-quotes`) - ONE slim rotating band (manual arrows + dots, no auto-advance, fixed 116px body height). 4 quotes: Peter Field, Paul D'Arcy, Damian Devaney, Jonnie Cahill. (Replaced the 4 inline `cl-testimonial-bar` blocks.)
+9. **Book block** (`hpx-bookblock`) - mirrors `/book` hero: "The `<span>`Fox`</span>` Advantage" (Fox blue), pitch line, `\ 54 chapters \ 4 parts \ get_the_book ->` (-> /book), fox-book.png right.
+10. **Bottom bar** (`hp-bottom-bar`, guarded) - #top, #about, /book, get in touch. Its IntersectionObserver now watches the single consolidated `cl-modules-wrap`.
+
+NOTE: the legacy `cl-mod-section` / `cl-testimonial-bar` / `cl-book-cta` / `EngagementCTAs` markup is no longer rendered (the 7 stacked module sections were replaced by the accordion). Their `cl-` CSS still exists in globals.css but the L2 panel `cl-` styles are the only ones still used.
 
 ## Module pattern
 Every module section follows:
@@ -149,3 +149,4 @@ Every module section follows:
 - 2026-05-29 (afternoon): Modules 5-6 built, sections cut, structure finalised, BUILD-BRIEF.md written
 - 2026-05-30 (night): Ported wireframe to Next.js, iterated with Paul on foxes/ads/testimonials/spacing, deployed to production
 - 2026-06-03/04 (night): Homepage "list problem" exploration. Ruled out floor-plan/department-render/revolving-hero; confirmed and tightened the accordion direction (see "Homepage direction (2026-06-04)" above). Keeper mock added to wireframes/.
+- 2026-06-04: **Ported the accordion homepage to production.** Built off `wireframes/PORT-BRIEF.md` (two-terminal flow: this terminal ported, a design terminal answered in `wireframes/PORT-QA.md`). New `src/lib/substack.ts` (live RSS feed, ISR), `page.tsx` async, `HomePage.tsx` rebuilt (panels reused verbatim), `globals.css` `hpx-` block, `BookLanding.tsx` nav. Built on branch `homepage-accordion-port`, Vercel preview, Paul reviewed. Paul tweaks: headline trimmed to one line (mono is wider than the old Space Grotesk so it was wrapping), contact-CTA strip 14px + blue, carousel dates `MAY 28 · PAUL DERVAN`. Resolved questions: foxes OUT of the accordion, tool panels multi-open. Fast-forward merged to main + live. Session: `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`.
