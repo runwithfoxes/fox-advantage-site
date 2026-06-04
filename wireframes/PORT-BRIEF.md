@@ -52,7 +52,7 @@ Everything between the hero and the bottom bar gets reworked. Match the wirefram
 - **L1:** click a module → it expands to show the **real module intro paragraph** (from the live `cl-mod-desc`), an `Examples` label, then the tool rows.
 - **L2:** click a tool → its **existing rich panel opens inline**. **REUSE THE EXISTING PANEL JSX VERBATIM** from the current `HomePage.tsx` - the pyramid SVG, scorecard table, brand/activation split, segmentation scatter/sim bars, competitor map, mental-availability chart, messaging video, DBA matrix, brand house, brand guidelines, the advertising media galleries, marketing calendar, studio measurement, influence-models grid, BD pipeline, Isa phone, company intel card, review bars, pricing table. Do not rebuild these - move them one level deeper.
 - **Keep the two "Read:" Substack links** in their panels (Mental availability, Distinctive Brand Assets).
-- **Foxes: OPEN** - the live modules each have a fox (`cl-mod-fox`, 280×280). The wireframe currently has them removed. See OPEN QUESTIONS before deciding where/whether foxes appear in the accordion.
+- **Foxes: LOCKED - leave them OUT of the accordion entirely.** No `cl-mod-fox` in any module (collapsed or expanded). Paul's call: the Substack imagery already breaks up the page, so the per-module foxes aren't needed. (The fox filenames are listed below only as a record; do not render them in the modules. The fox-book.png in the book block stays.)
 - **No per-module "Contact us to…" line** (removed). The contact CTAs live only in the strip under the bio.
 - Modules + counts + foxes + tool lists (exact, from live):
   - Marketing effectiveness (4): Measurement training, Metrics audit, Brand scorecard, Brand / activation split - fox `fox-sideeye-right-nobg.png`
@@ -91,7 +91,7 @@ The safest path: **reuse the existing panel JSX**, whose image/video paths are a
 ## 10. Decisions - LOCKED vs OPEN
 LOCKED: crop Substack images (object-fit cover, neat uniform grid); curated list = latest-from-feed for now; nav `/tools` + `/previous`; testimonials = bottom rotating band; single font; the type scale; book block mirrors `/book`; per-module CTA removed; "not sure where to start" note removed.
 OPEN (ask in `PORT-QA.md` before building these):
-- **Foxes in the accordion** - in or out? If in, where (expanded module intro, right side)?
+- ~~Foxes in the accordion~~ - RESOLVED: out entirely (see section 6).
 - **Tool panels** - multi-open vs one-at-a-time (default multi-open).
 
 ## 11. Pre-merge test checklist

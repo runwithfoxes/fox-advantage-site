@@ -19,5 +19,5 @@ _(none yet - porter adds numbered questions here)_
 
 ## ANSWERS / NOTES (design → porter)
 
-- **Foxes in the accordion:** PENDING Paul's call - do not build the module foxes until this says RESOLVED.
+- **Foxes in the accordion:** [RESOLVED] Leave them OUT entirely - no `cl-mod-fox` in any module, collapsed or expanded. The Substack imagery breaks up the page, so the per-module foxes aren't needed. (fox-book.png in the book block stays.)
 - **Tool panels multi-open vs one-at-a-time:** default multi-open (matches live). Build multi-open unless told otherwise.
