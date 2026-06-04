@@ -62,7 +62,7 @@
   .wtrack{display:flex;gap:24px;transition:transform .55s cubic-bezier(.4,0,.2,1);}
   .wcard{flex:0 0 calc((100% - 48px)/3);text-decoration:none;color:inherit;display:block;}
   .wcard .thumb{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border:1px solid var(--border);background:#eee;}
-  .wcard h3{font-family:var(--mono);font-weight:500;font-size:19px;letter-spacing:-.3px;line-height:1.25;margin-top:16px;color:var(--text);
+  .wcard h3{font-family:var(--mono);font-weight:500;font-size:18px;letter-spacing:-.2px;line-height:1.25;margin-top:16px;color:var(--text);
     min-height:2.5em;}
   .wcard:hover h3{color:var(--sky);}
   .wcard p{font-size:13px;line-height:1.6;color:var(--muted);margin-top:8px;min-height:3.2em;
@@ -125,9 +125,11 @@
   .panel{display:grid;grid-template-columns:1.2fr 1fr;gap:34px;padding:12px 8px 26px;align-items:start;}
   .panel .visual{border:1px dashed var(--sky);min-height:210px;display:flex;align-items:center;justify-content:center;
     color:var(--sky);font-size:12px;letter-spacing:1px;text-align:center;background:rgba(58,124,165,0.03);padding:20px;}
-  .panel .copy p{font-size:13.5px;line-height:1.75;color:#444;}
+  .panel .copy p{font-size:13px;line-height:1.75;color:#444;}
   .panel .copy .pcta{display:inline-block;margin-top:16px;font-family:var(--sans);font-size:14px;color:var(--text);text-decoration:none;border-bottom:1px solid transparent;}
   .panel .copy .pcta:hover{color:var(--sky);border-bottom-color:var(--sky);}
+  .panel.panel-novisual{grid-template-columns:1fr;}
+  .macta{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;padding:20px 8px 8px 38px;}
 
   /* testimonial bars, full-bleed thin, interleaved between module groups */
   .tbar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff;}
@@ -136,14 +138,34 @@
   .tbar-quote{font-family:var(--sans);font-size:17px;line-height:1.5;color:var(--deep);letter-spacing:-.3px;max-width:840px;}
   .tbar-attr{font-size:12px;color:var(--muted);margin-top:10px;}.tbar-attr b{color:var(--text);font-weight:500;}
 
+  /* testimonials - slim rotating band */
+  .quotes{margin:48px 0 0;padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .quotes-row{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;}
+  .qbody{text-align:center;max-width:840px;margin:0 auto;}
+  .qquote{font-family:var(--mono);font-weight:400;font-size:16px;line-height:1.65;letter-spacing:-.2px;color:var(--deep);}
+  .qattr{font-size:12px;letter-spacing:.4px;color:var(--muted);margin-top:14px;}
+  .qattr b{color:var(--text);font-weight:500;}
+  .qarrow{width:34px;height:34px;border:1px solid var(--border);background:none;color:var(--text);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .qarrow:hover{border-color:var(--sky);color:var(--sky);}
+  .qdots{display:flex;gap:7px;justify-content:center;margin-top:20px;}
+  .qdot{width:7px;height:7px;background:var(--border);cursor:pointer;transition:background .2s;}
+  .qdot.on{background:var(--sky);}
+
   .foxnote{display:flex;align-items:center;gap:18px;margin:42px 0 0;padding:22px;border:1px solid var(--border);background:#fff;}
   .foxnote img{width:90px;height:auto;flex:none;}
   .foxnote .t{font-size:13px;line-height:1.7;color:#444;}.foxnote .t b{font-family:var(--sans);font-weight:600;}
 
-  .bookcta{margin:42px 0 0;padding:40px;border:1px solid var(--border);background:#fff;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;}
-  .bookcta h3{font-family:var(--sans);font-weight:600;font-size:26px;letter-spacing:-.6px;}
-  .bookcta p{font-size:14px;line-height:1.7;color:#444;margin-top:10px;max-width:520px;}
-  .bookcta a{font-family:var(--sans);font-size:16px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--sky);white-space:nowrap;}
+  /* book block - mirrors the /book hero: text left, fox-with-book right */
+  .bookblock{margin:56px 0 0;padding:50px 0 8px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+  .bookblock-title{font-family:var(--mono);font-weight:300;font-size:clamp(34px,4.4vw,52px);letter-spacing:-1.5px;line-height:1.05;margin-top:0;}
+  .bookblock-title span{color:var(--sky);}
+  .bookblock-sub{font-size:15px;line-height:1.8;color:#444;margin-top:18px;max-width:580px;}
+  .bookblock-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:22px;font-size:13px;color:var(--muted);}
+  .bookblock-meta a{color:var(--sky);text-decoration:none;border-bottom:1px solid transparent;}
+  .bookblock-meta a:hover{border-bottom-color:var(--sky);}
+  .bookblock-img{justify-self:end;}
+  .bookblock-img img{width:300px;height:auto;display:block;}
+  @media(max-width:760px){.bookblock{grid-template-columns:1fr;}.bookblock-img{justify-self:start;}}
 
   .foot{padding:48px 0;border-top:1px solid var(--border);font-size:11px;color:var(--muted);letter-spacing:.5px;line-height:1.7;margin-top:48px;}
   @media(max-width:760px){.nav-links{display:none;}.bio{grid-template-columns:1fr;}.panel{grid-template-columns:1fr;}.mintro{grid-template-columns:1fr;}.mintro .fox{justify-self:start;}.bookcta{grid-template-columns:1fr;}}
@@ -208,17 +230,32 @@
 
   <div class="mods" id="mods"></div>
 
-  <div class="foxnote">
-    <img src="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/fox/fox-pm-nobg.png" alt="">
-    <div class="t"><b>Not sure where to start?</b><br>Tell us the repeated work eating your week, and we'll point at the tool that fixes it first.</div>
+  <!-- TESTIMONIALS - rotating, manual, out of the module flow -->
+  <div class="quotes">
+    <div class="quotes-row">
+      <button class="qarrow" id="qprev" aria-label="Previous">&lsaquo;</button>
+      <div class="qbody">
+        <div class="qquote" id="qquote"></div>
+        <div class="qattr" id="qattr"></div>
+      </div>
+      <button class="qarrow" id="qnext" aria-label="Next">&rsaquo;</button>
+    </div>
+    <div class="qdots" id="qdots"></div>
   </div>
 
-  <div class="bookcta">
-    <div>
-      <h3>The Fox Advantage</h3>
-      <p>The first two sections of Paul's new book are free to download. The rest will be here soon.</p>
+  <div class="bookblock">
+    <div class="bookblock-text">
+      <div class="bookblock-title">The <span>Fox</span> Advantage</div>
+      <div class="bookblock-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</div>
+      <div class="bookblock-meta">
+        <span>\ 54 chapters</span>
+        <span>\ 4 parts</span>
+        <a href="https://runwithfoxes.com/book" target="_blank" rel="noopener">\ get_the_book →</a>
+      </div>
     </div>
-    <a href="#">Read the book →</a>
+    <div class="bookblock-img">
+      <img src="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/fox/fox-book.png" alt="The Fox Advantage">
+    </div>
   </div>
 
   <div class="foot">
@@ -229,60 +266,59 @@
 
 <script>
   var MODS=[
-    {n:'Marketing effectiveness',d:'measure what moves the business, then keep measuring it',fox:'fox-sideeye-right-nobg.png',
-     intro:'Measure what moves the business, then keep measuring it. We train teams to read marketing like a P&L and build the systems that track the metrics that actually predict growth.',
-     after:{q:'I’ve worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.',a:'Peter Field',r:'The Godfather of Effectiveness, Author of The Long and the Short of It',pos:'seg'},
+    {n:"Marketing effectiveness",fox:"fox-sideeye-right-nobg.png",d:"Which metrics matter, and how they move each other",
+     intro:"You can't manage a brand if you can't measure one. We help marketing teams and the wider organisation understand which metrics matter and how they influence each other. We train teams on marketing effectiveness and then build the tools, audits, scorecards and dashboards using AI and hand them over.",
      tools:[
-      {n:'Measurement training',t:'teach the team to read marketing like a P&L',p:'We train the team to tell the metrics that move the business from the ones that just move. The pyramid, the lag, the leading indicators.'},
-      {n:'Metrics audit',t:'find the metrics that lie',p:'A pass over what you report today, flagging vanity, double-counts and the gaps where the real signal should be.'},
-      {n:'Brand scorecard',t:'one live view of brand health',p:'A single scorecard that tracks the brand metrics that actually predict growth, updated automatically.'},
-      {n:'Brand / activation split',t:'where the money really goes',p:'We classify the spend long vs short and show the balance against the 60/40 benchmark.'}
+      {n:"Measurement training",v:"measurement pyramid",p:"This training trains marketers on five categories of marketing measurements and helps marketers understand the relationships between each of these metrics."},
+      {n:"Metrics audit",v:"metrics audit + gaps",p:"Paste in whatever you track. The audit sorts them into five levels and shows the gaps."},
+      {n:"Brand scorecard",v:"live brand scorecard",p:"The scorecard pulls from the metrics audit. It shows what matters, how it's tracking, and where to focus. Built for the leadership team, not just marketing."},
+      {n:"Brand / activation split",v:"spend split + 60/40 chart",p:""}
     ]},
-    {n:'Segmentation',d:'group customers by what they actually do',fox:'fox-facepalm-nobg.png',
-     intro:'Group customers by what they actually do, not who we guess they are. Clusters built from behaviour, plotted so the shape of the market is obvious.',
+    {n:"Segmentation",fox:"fox-facepalm-nobg.png",d:"Proper segmentation, with the maths actually run",
+     intro:"Segmentation matters, but pseudo-science segmentation is dangerous. We've combined the rigour of empirical theory with AI to run the math and build proper customer segmentation: similarity analysis, correlation matrix, scatter plots, penetration adjustment, usage bias and purchase triggers.",
      tools:[
-      {n:'Similarity analysis',t:'real clusters from real behaviour',p:'Clusters built from behaviour, not guesswork, so the segments hold up when you act on them.'},
-      {n:'Scatter plots',t:'see the segments, not a table',p:'Plot the segments so the shape of the market is obvious at a glance.'}
+      {n:"What segmentation is",v:"behavioural cluster scatter",p:"Segmentation is the choice of who to go after. It groups customers who genuinely behave differently, decides which groups are worth pursuing, and shapes the product, proposition and value so they fit that group. Done well it lifts efficiency, conversion and retention. A segment is only worth having if it passes four tests: we can measure it, it is big enough to matter, it genuinely behaves differently, and we can reach it."},
+      {n:"What holds up",v:"segmentation-type test matrix",p:"There are different ways to segment: by behaviour, by value, by the occasion someone is buying for, and more. Some hold up better than others once you run the numbers. We put each one through the same four tests before we trust it, so the groups we act on are real, not assumed."},
+      {n:"Similarity analysis",v:"similarity bars",p:"We test what each segment wants from brands. If they all want the same things, they are not different segments."},
+      {n:"Scatter plots",v:"attribute scatter plot",p:"Each dot is a brand attribute. Dots on the diagonal line score the same as the base. Dots off the line are where the segment genuinely differs. The orange dots are the attributes worth investigating."}
     ]},
-    {n:'Brand strategy',d:'positioning, mental availability, distinctive assets',fox:'fox-book.png',
-     intro:'Positioning, mental availability and distinctive assets, built so the team stays on strategy long after the workshop ends.',
+    {n:"Brand strategy",fox:"fox-book.png",d:"Positioning, messaging, mental availability, assets",
+     intro:"Brand strategy covers a bunch of areas: positioning, messaging frameworks, mental availability, customer journey mapping, brand guidelines, distinctive brand assets. We use a number of AI tools, agents and skills to do brand strategy at a really high quality, at speed.",
      tools:[
-      {n:'Competitor positioning map',t:'where everyone sits, and the gap',p:'Map the category, find the space worth owning, and the claims that hold up.'},
-      {n:'Mental availability',t:'the buying situations you show up for',p:'The category entry points you win and lose, scored, with where to build next.'},
-      {n:'Messaging framework',t:'the lines everything hangs off',p:'A framework that anchors every piece of copy to the same few pillars.'},
-      {n:'Distinctive brand assets',t:'what makes you recognisable',p:'Audit and build the assets people recognise you by, before you say a word.'},
-      {n:'Brand on a page',t:'the whole strategy, one sheet',p:'Everything the team needs to stay on-strategy, on a single page.'},
-      {n:'Brand guidelines',t:'guidelines that get used',p:'Living guidelines built into the tools, not a PDF nobody opens.'}
+      {n:"Competitor positioning map",v:"competitor positioning map",p:"We research competitor positions across different dimensions, plot the map, and find the white space. The axes come from the category, not a template."},
+      {n:"Mental availability",v:"mental availability line chart",p:"We use AI to measure and analyse mental availability: mental penetration, mental market share, and network size across buying situations.",link:{t:"Read: What is Mental Availability and why does it matter?",u:"https://runwithfoxes.substack.com/p/what-is-mental-availability-and-why"}},
+      {n:"Messaging framework",v:"messaging framework (video)",p:"We take positioning, customer barriers and pain points, key messages and tone of voice, and work with clients to create a unified messaging framework at speed, which becomes the basis for all their marketing communications."},
+      {n:"Distinctive brand assets",v:"Fame x Uniqueness matrix",p:"We catalogue a brand's existing distinctive assets, assess consistency and gaps, and plot them on a Fame x Uniqueness matrix to see what to invest in and what to protect.",link:{t:"Read: Distinctive Brand Assets in an AI world",u:"https://runwithfoxes.substack.com/p/distinctive-brand-assets-in-an-ai"}},
+      {n:"Brand on a page",v:"brand on a page",p:"We work with clients to convert all their various brand elements into a brand on a page that captures everything for the team."},
+      {n:"Brand guidelines",v:"brand guidelines sheet",p:"We help build brand guidelines and convert them into something that keeps everything a client creates highly consistent. Built for humans and robots."}
     ]},
-    {n:'Advertising',d:'made fast, on brand, at volume',fox:'fox-lottery-nobg.png',
-     intro:'Made fast, on brand, at volume. Brand films, cinematic stills, animated chart ads and statics, produced at the pace performance needs.',
-     after:{q:'Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.',a:'Paul D’Arcy',r:'CMO, Moloco. Former CMO at Miro and Indeed',pos:'darcy'},
+    {n:"Advertising",fox:"fox-lottery-nobg.png",d:"Brief to useful options faster, quality first",
+     intro:"AI has made advertising production faster. That does not mean the work gets better by default. We build customised advertising engines that help teams move from brief to useful options faster, across static ads, animated ads, brand video and e-commerce work. We focus on quality first, then automate it.",
      tools:[
-      {n:'Video',t:'cinematic brand films',p:'Brand films with real production energy, generated and edited fast.'},
-      {n:'Brand ads',t:'the fox in a scene, movie-poster energy',p:'Cinematic brand stills with the character dropped into a scene.'},
-      {n:'Animated ads',t:'chart-led motion for performance',p:'Three-frame animated ads that turn a stat into a scroll-stopper.'},
-      {n:'Static ads',t:'fast, on-brand, at scale',p:'On-brand statics produced at the volume performance needs.'}
+      {n:"Video",v:"3 brand films",p:""},
+      {n:"Brand ads",v:"3 brand ad stills",p:""},
+      {n:"Animated ads",v:"3 animated chart ads",p:""},
+      {n:"Static ads",v:"2 static ads",p:""}
     ]},
-    {n:'Studio',d:'internal-studio craft with AI inside it',fox:'fox-pm-nobg.png',
-     intro:'We’ve spent twenty years running internal studios. We bring AI into them to do three things: improve the quality of the work, get it out faster, and show the ROI.',
-     after:{q:'When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team’s performance and development.',a:'Damian Devaney',r:'Ex-CMO O2, Chair of Effies Ireland',pos:'devaney'},
+    {n:"Studio",fox:"fox-pm-nobg.png",d:"Twenty years of studio craft, with AI inside",
+     intro:"We've spent twenty years running internal studios. We bring AI into them to do three things: improve the quality of the work, get it out faster, and show the ROI.",
      tools:[
-      {n:'Studio measurement',t:'prove the studio’s ROI',p:'Show the output, the speed and the cost saved, so the studio earns its budget.'},
-      {n:'Brief coach',t:'better briefs in, better work out',p:'An agent that interrogates a brief before it reaches the studio.'}
+      {n:"Marketing calendar",v:"marketing calendar",p:"A marketing calendar puts every activity, across channels and campaigns, on one page. We use AI to move from the full year down to a single event and back, without the work that usually goes into building one and keeping it current."},
+      {n:"Studio measurement",v:"studio measurement dashboard",p:""},
+      {n:"Brief coach",v:"influence-models grid",p:""}
     ]},
-    {n:'Business development',d:'an outreach desk that runs itself',fox:'fox-friday-nobg.png',
-     intro:'An outreach desk that runs itself. It finds the right people, writes the personalised opener and runs the follow-up, end to end.',
+    {n:"Business development",fox:"fox-monday-nobg.png",d:"AI for sales, outreach and GTM",
+     intro:"We've been building AI systems to help sales, business development, outreach and GTM.",
      tools:[
-      {n:'The growth engine',t:'enrichment, sequences, replies, end to end',p:'A desk that finds the right people, writes the personalised opener and runs the follow-up.'}
+      {n:"Business development rep",v:"pipeline: list to intel to outreach to meetings",p:"We build AI setups that automate the many tasks needed for business development: building and enriching the list, researching prospects, writing and sending the outreach, and setting up the calls."}
     ]},
-    {n:'Research and insights',d:'message testing to buyers on the phone',fox:'chapter-fox-sitting-nobg.png',
-     intro:'We love research. We’ve helped teams with message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour.',
-     after:{q:'Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it.',a:'Jonnie Cahill',r:'SVP and CMO International Foods, PepsiCo',pos:'cahill'},
+    {n:"Research and insights",fox:"chapter-fox-sitting-nobg.png",d:"Message testing, intelligence, interviews by phone",
+     intro:"We love research, and have helped teams with a range of solutions such as message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour.",
      tools:[
-      {n:'AI research interviewer',t:'agents that call and interview buyers',p:'Voice agents that phone real buyers and interview them on how they shop.'},
-      {n:'Company intelligence',t:'deep dossiers on accounts',p:'Structured intelligence on any account, built on demand.'},
-      {n:'Review intelligence',t:'what customers actually say, at scale',p:'Mine reviews for the language and the gaps that matter.'},
-      {n:'Pricing intelligence',t:'monitor the market, get alerted',p:'Track competitor pricing and get told when something moves.'}
+      {n:"AI research interviewer",v:"Isa phone interviewer",p:"An AI researcher trained to do structured qualitative interviews by phone, hundreds a week, that remembers previous conversations and picks up where it left off. This gives clients longitudinal insights that would be impossible to get at scale with human interviewers."},
+      {n:"Company intelligence",v:"company intelligence card",p:"Company and people enrichment, news, team backgrounds, open roles, and change signals. Built from multiple data sources and updated on a schedule so the picture stays current."},
+      {n:"Review intelligence",v:"review intelligence bars",p:"Trustpilot, Amazon, app store reviews analysed across brands and competitors. Themes extracted, sentiment tracked over time, and compared against the category."},
+      {n:"Pricing intelligence",v:"daily price monitor",p:"Daily competitive price monitoring across retailers. Alerts on changes, tracks promotional patterns, and flags when a competitor undercuts on a key line."}
     ]}
   ];
   var FOX='file:///Users/pauldervan/projects/fox-advantage-site-repo/public/fox/';
@@ -290,14 +326,21 @@
 
   function moduleHTML(m){
     var tools=m.tools.map(function(t){
-      return '<div class="titem"><button class="trow"><span><span class="tname">'+t.n+'</span><div class="ttag">'+t.t+'</div></span><span class="chev">▸</span></button>'+
-        '<div class="tdetail"><div class="panel"><div class="visual">[ '+t.n+' visual ]</div><div class="copy"><p>'+t.p+'</p><a class="pcta" href="#">\\ build it for you</a></div></div></div></div>';
+      var panel;
+      if(t.p){
+        var lk=t.link?'<a class="pcta" href="'+t.link.u+'" target="_blank" rel="noopener">'+t.link.t+' →</a>':'';
+        panel='<div class="panel"><div class="visual">[ '+t.v+' ]</div><div class="copy"><p>'+t.p+'</p>'+lk+'</div></div>';
+      } else {
+        panel='<div class="panel panel-novisual"><div class="visual">[ '+t.v+' ]</div></div>';
+      }
+      return '<div class="titem"><button class="trow"><span class="tname">'+t.n+'</span><span class="chev">▸</span></button>'+
+        '<div class="tdetail">'+panel+'</div></div>';
     }).join('');
     return '<div class="mitem"><button class="mrow"><span class="ic">▸</span><span><span class="mname">'+m.n+'</span><div class="mdesc">'+m.d+'</div></span>'+
-      '<span class="mright"><span class="mcount">'+m.tools.length+(m.tools.length>1?' tools':' tool')+'</span><span class="chev">▸</span></span></button>'+
+      '<span class="mright"><span class="mcount">'+m.tools.length+(m.tools.length>1?' examples':' example')+'</span><span class="chev">▸</span></span></button>'+
       '<div class="mdetail">'+
         '<div class="mintro"><p>'+m.intro+'</p></div>'+
-        '<div class="toolslabel">Tools</div><div class="tools">'+tools+'</div>'+
+        '<div class="toolslabel">Examples</div><div class="tools">'+tools+'</div>'+
       '</div></div>';
   }
   function tbarHTML(t){
@@ -352,6 +395,27 @@
     document.getElementById('wprev').addEventListener('click',prev);
     window.addEventListener('resize',render);
     render();
+  })();
+
+  /* ===== testimonials - rotating, manual (real quotes from the live site) ===== */
+  var QUOTES=[
+    {q:"I've worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.",a:"Peter Field",r:"The Godfather of Effectiveness, Author of The Long and the Short of It"},
+    {q:"Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.",a:"Paul D'Arcy",r:"CMO, Moloco. Former CMO at Miro and Indeed"},
+    {q:"When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development.",a:"Damian Devaney",r:"Ex-CMO O2, Chair of Effies Ireland"},
+    {q:"Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it.",a:"Jonnie Cahill",r:"SVP and CMO International Foods, PepsiCo"}
+  ];
+  (function(){
+    var qi=0,qq=document.getElementById('qquote'),qa=document.getElementById('qattr'),qd=document.getElementById('qdots');
+    function qrender(){
+      var t=QUOTES[qi];
+      qq.textContent='“'+t.q+'”';
+      qa.innerHTML='<b>'+t.a+'</b> · '+t.r;
+      qd.innerHTML='';
+      QUOTES.forEach(function(_,i){var d=document.createElement('span');d.className='qdot'+(i===qi?' on':'');(function(n){d.addEventListener('click',function(){qi=n;qrender();});})(i);qd.appendChild(d);});
+    }
+    document.getElementById('qnext').addEventListener('click',function(){qi=(qi+1)%QUOTES.length;qrender();});
+    document.getElementById('qprev').addEventListener('click',function(){qi=(qi-1+QUOTES.length)%QUOTES.length;qrender();});
+    qrender();
   })();
 </script>
 </body>
