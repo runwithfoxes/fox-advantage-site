@@ -32,7 +32,7 @@ const CONTACT_WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "You found the contact page, so you're after a real conversation. Paul does 30-minute strategy chats: [book one here](https://cal.com/paul-dervan-mjfd50). Or tell me what you're working on and I'll point you the right way.",
+      text: "Isa here, Paul's chatbot assistant. He does 30-minute discovery chats, which is mostly him nodding thoughtfully and quoting a marketing book at you, but people seem to keep booking them: [grab one here](https://cal.com/paul-dervan-mjfd50). Tell me what you're working on first if you'd rather warm up.",
     },
   ],
 };
