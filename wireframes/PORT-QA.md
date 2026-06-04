@@ -5,8 +5,8 @@
 ## Status board (porting terminal fills these in)
 - Known-good starting commit SHA: `21859d25c57831461b3cff2c3cd8c238045b75c2` (main, pre-port)
 - Branch name: `homepage-accordion-port`
-- Preview URL: `pushing branch now - Vercel preview URL will appear on the PR/branch. Will paste the exact URL here once the build finishes.`
-- Current state: `BUILT + verified locally. npm run build passes clean, / is now ISR (revalidate 1h). Pushing branch for Vercel preview.`
+- Preview URL: `https://fox-advantage-site-git-homepage-accordion-port-pdervan-3019s-projects.vercel.app` (stable branch alias - always points at the latest push). Immutable build of the latest commit: `https://fox-advantage-site-ffsglkpgc-pdervan-3019s-projects.vercel.app`. NOTE: previews are behind Vercel Authentication (401 to anon curl) - open in a browser signed into the Vercel team.
+- Current state: `DEPLOYED to preview, build Ready. Latest commit 8a28254 (includes the MAY 28 date flip). Awaiting design + Paul review before merge to main. NOT merged.`
 
 ## How this works
 - **Porter:** when blocked or unsure, add a numbered question under "OPEN QUESTIONS". Keep working on anything not blocked. Re-read this file for answers before building any OPEN item.
@@ -35,6 +35,7 @@ New/changed files: `src/lib/substack.ts` (new), `src/app/page.tsx` (async, fetch
 
 1. **Date format on carousel cards** - rendering as `28 MAY · Paul Dervan` (en-GB, day-month). The wireframe mock showed `MAY 28`. Trivial to flip. Not blocking - leaving as `28 MAY` unless you'd rather have `MAY 28`.
    - A: [RESOLVED] Use **`MAY 28`** (month-day, uppercase). Match Paul's own live Substack cards - his reference screenshot showed `MAY 23 · PAUL DERVAN`, `MAY 13 · PAUL DERVAN` - and the approved wireframe. Please flip it.
+   - PORTER: done in commit 8a28254. The whole meta line is `text-transform: uppercase` in CSS, so it renders `MAY 28 · PAUL DERVAN` - exactly matching your reference screenshot. Live on the preview.
 
 ## ANSWERS / NOTES (design → porter)
 
