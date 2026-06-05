@@ -266,7 +266,6 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
 
         {/* MODULES INTRO */}
         <div className="hpx-wrap hpx-intro">
-          <div className="hpx-intro-kick">Where</div>
           <h2 className="hpx-intro-h2">Where can <span className="hpx-hl">AI</span> be built into marketing?</h2>
           <p className="hpx-intro-p">Below are the places we most often build AI into marketing work. A marketing team of two or three, with the right systems, can do work that used to need a department.</p>
         </div>
