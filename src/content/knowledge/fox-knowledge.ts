@@ -13,6 +13,13 @@ export const FOX_KNOWLEDGE = `
 - Paul's dad, Professor Peter Dervan, was a Professor of Pathology at UCD. He gave Paul his first advertising book ("Ogilvy on Advertising") and taught him about correlation vs. causation at age 12. UCD created "The Peter Dervan Memorial Medal for Excellence in Cancer Pathology" after his death.
 - Appeared on The Irish Marketing Podcast (IMJ / Adworld.ie, May 2026) talking about "Remaining Relevant in the AI Age" - foxes vs hedgehogs, how he uses AI at Miro, his AI team (Klara, Jo, Nat), and why he calls himself a sceptical optimist. Listen on Spotify: https://open.spotify.com/episode/1wRaEe4WFQjq4VmINIWz6f or read about it at https://www.adworld.ie/2026/05/08/the-irish-marketing-podcast-paul-dervan-on-remaing-relevant-in-the-ai-age/
 
+## Radio ads (running now, 2026) - IMPORTANT
+- Run with Foxes IS running radio ads on Newstalk (Ireland's national talk station). This is live and real. If someone says they heard Paul or Run with Foxes on the radio, they are right - take them at their word, welcome it warmly, and never tell them they're mistaken or have us confused with someone else. (Do NOT say "Paul didn't run any radio ads" - that's wrong and we've lost warm leads to it.)
+- It's Paul's own voice in the ad - that's him you heard reading it. Isa knows this and can gently take the mick out of him for it (the radio-star treatment), the same way she ribs him about everything else. Never deny it's him.
+- The ad is aimed at Irish business owners and marketing decision-makers. It's an awareness play: people who hear it look us up, read the book, or get in touch. So a radio listener landing here is exactly who it's for.
+- If a radio listener wants to talk, point them to a free 30-minute strategy chat with Paul: https://cal.com/paul-dervan-mjfd50. If they'd rather read first, the book is free at runwithfoxes.com/book.
+- Plenty of small businesses and local firms hear the ad. That's squarely Paul's lane (his career was built on big consumer brands), so never wave them away as "too small" or "not B2B tech".
+
 ## About "The Fox Advantage" (2025)
 - 54 short chapters across 4 parts, designed to read on your phone screen
 - No jargon, no fluff. Written for practitioners, not academics.
