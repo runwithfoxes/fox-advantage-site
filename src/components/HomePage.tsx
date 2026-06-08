@@ -1332,6 +1332,8 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
       <footer className="hpx-footer">
         <span>&copy; 2026 Run with Foxes Limited</span>
         <span className="hpx-footer-sep">&middot;</span>
+        <Link href="/privacy">Privacy</Link>
+        <span className="hpx-footer-sep">&middot;</span>
         <Link href="/cookies">Cookies</Link>
       </footer>
     </div>

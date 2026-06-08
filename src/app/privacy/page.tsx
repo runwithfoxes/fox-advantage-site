@@ -1,8 +1,7 @@
-// DRAFT privacy notice - pending Paul's approval + Steven Roberts / legal review before going live.
-// Created 1 June 2026 (T4). Not linked from nav/footer yet. Deploys only when pushed.
-// Contact email confirmed by Paul: paul@runwithfoxes.com.
-// CONFIRM BEFORE PUBLISHING: cookies/analytics section, retention period,
-// list of data providers. The B2B-outreach section is the substantive, reviewed part.
+// Privacy notice for runwithfoxes.com. Approved by Paul to go live 8 June 2026 and linked from
+// the homepage footer alongside /cookies. Cookies/storage detail lives on /cookies (linked from here).
+// Retention covered in the "How long we keep it" section. Address kept (Paul's call, 8 June).
+// Created 1 June 2026 (T4). Contact email confirmed by Paul: paul@runwithfoxes.com.
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -62,7 +61,15 @@ export default function PrivacyPage() {
           also subscribes you to the Run with Foxes newsletter, so we can send you new chapters and related writing.
           You can unsubscribe at any time using the link in any email, or by emailing{" "}
           <a href="mailto:paul@runwithfoxes.com" style={{ color: "#3A7CA5" }}>paul@runwithfoxes.com</a>. We also
-          collect limited technical information needed to run the site. We do not sell your data.
+          collect limited technical information needed to run the site. For details on cookies and browser storage,
+          see our <a href="/cookies" style={{ color: "#3A7CA5" }}>Cookies page</a>. We do not sell your data.
+        </p>
+
+        <h2 style={h2}>How long we keep it</h2>
+        <p style={p}>
+          We keep business contact information only while a contact remains professionally relevant, and we remove it
+          promptly on request. Newsletter details are kept until you unsubscribe. We do not keep personal data longer
+          than we need it.
         </p>
 
         <h2 style={h2}>Your rights</h2>

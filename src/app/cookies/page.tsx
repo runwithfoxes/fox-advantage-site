@@ -78,10 +78,6 @@ export default function CookiesPage() {
           If anything here is unclear, email{" "}
           <a href="mailto:paul@runwithfoxes.com" style={link}>paul@runwithfoxes.com</a>.
         </p>
-
-        <p style={{ ...p, marginTop: 40, fontSize: 13, color: "#6b7c86" }}>
-          Run with Foxes Limited, 61 Kerrymount Rise, Foxrock, Dublin 18, Ireland.
-        </p>
       </article>
     </main>
   );
