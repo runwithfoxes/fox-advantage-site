@@ -5106,3 +5106,26 @@ a.project-card {
   .hpx-bookblock-img { justify-self: start; }
   .hpx-bookblock-img img { width: 220px; }
 }
+
+/* Slim site footer (homepage). Sits at the natural bottom of the page; the fixed
+   hp-bottom-bar floats over it, so the two never collide. */
+.hpx-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 24px 36px;
+  border-top: 1px solid #e6e6e1;
+  background: #FAFAF8;
+  font-family: var(--font-mono), monospace;
+  font-weight: 300;
+  font-size: 13px;
+  color: #6b7c86;
+}
+.hpx-footer a {
+  color: #6b7c86;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hpx-footer a:hover { color: #3A7CA5; }
+.hpx-footer-sep { color: #c2c8cc; }

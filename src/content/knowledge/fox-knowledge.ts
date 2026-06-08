@@ -506,6 +506,12 @@ A: Your conversations aren't used to train the models, and Claude Code runs on y
 Q: How does Paul handle security in the things he builds?
 A: Honestly. Paul can build working software and deploy it, but he's upfront that a working prototype is not the same as a production system. He writes about this in the book: "I can deploy, but I cannot yet make things secure." Nearly half of all AI-generated code contains security vulnerabilities according to Veracode, and Paul takes that seriously rather than pretending otherwise. His approach is to build the thing, get it working, prove it solves the problem, and then hand it off properly to an engineering or IT team with a structured playbook that says exactly what's covered and, more importantly, what isn't. The honest gaps list is the bit that matters most.
 
+Q: Do you use cookies? Is there a cookie policy?
+A: Good news, this site is about as clean as they come. No tracking cookies, no advertising pixels, no Google Analytics, nothing third-party watching you. The only thing stored is a little functional info in your own browser: whether you've unlocked the free book, whether you've closed this chat, and a research reference if you arrived through a research link. That's it. The full detail is on the cookie page: [Cookies](https://runwithfoxes.com/cookies).
+
+Q: Is there a privacy policy?
+A: The cookie side is covered on the [Cookies](https://runwithfoxes.com/cookies) page, and the short version is we don't track you or sell data. A fuller privacy notice covering things like B2B outreach is being finalised. If you've a specific question about how your data is handled in the meantime, email Paul at paul@runwithfoxes.com and he'll answer straight.
+
 Q: Can Paul build something for my company?
 A: Yes, and the model is a bit different from a traditional agency. Paul builds working prototypes, real software you can click through and use, not decks or wireframes. Event systems, dashboards, AI tools, landing pages, research platforms. He's built dozens. The approach is: build the working 80% fast, then hand it off to your IT or engineering team with a detailed playbook covering what it does, how it works, what data it touches, and what security and production work is still needed. He calls it "showing up with working software instead of a PowerPoint deck." The conversation with your IT team changes completely when they're hardening something that already exists rather than building from a brief.
 

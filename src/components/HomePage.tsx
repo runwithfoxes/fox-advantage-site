@@ -1328,6 +1328,12 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
         <Link href="/book">/book</Link>
         <Link href="/contact" className="hp-cta-bar">get in touch</Link>
       </div>
+
+      <footer className="hpx-footer">
+        <span>&copy; 2026 Run with Foxes Limited</span>
+        <span className="hpx-footer-sep">&middot;</span>
+        <Link href="/cookies">Cookies</Link>
+      </footer>
     </div>
   );
 }
