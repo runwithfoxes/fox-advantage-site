@@ -82,7 +82,7 @@ function parseItem(block: string): SubstackPost | null {
 export async function getSubstackPosts(): Promise<SubstackPost[]> {
   try {
     const res = await fetch(FEED_URL, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 600 },
       headers: { "User-Agent": "runwithfoxes-site" },
     });
     if (!res.ok) return [];
