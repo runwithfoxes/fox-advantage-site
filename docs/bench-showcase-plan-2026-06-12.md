@@ -2,13 +2,13 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a private, unlinked, noindex `/bench` page on runwithfoxes.com showing real client work, unnamed, framed as "what we're working on", for Paul to open in prospect meetings.
+**Goal:** Build a private, unlinked, noindex `/bench` page on runwithfoxes.com showing real work for named real clients, framed as "what we're working on", for Paul to open in prospect meetings.
 
 **Architecture:** Content pipeline with two human gates. (1) Audit sweep of client/project folders produces a scored inventory; Paul picks the shortlist. (2) HTML wireframe in `wireframes/` per site convention; Paul approves before build. Then capture assets into `public/bench/`, build a self-contained route at `src/app/bench/page.tsx`, deploy via branch + Vercel preview + merge.
 
 **Tech Stack:** Next.js (app router), existing globals.css conventions (new `bn-` prefix), Playwright for screenshots, ffmpeg for video trims if needed.
 
-**Spec:** `docs/bench-showcase-design-2026-06-12.md` (approved 2026-06-12). The four framing rules are HARD: no client names, work shown as-is, never invent a client, present tense.
+**Spec:** `docs/bench-showcase-design-2026-06-12.md` (approved 2026-06-12, framing rules revised same day). The four framing rules are HARD: real clients shown as theirs (named), never invent a client or piece of work, confidential insides masked, present tense.
 
 **Repo guardrails (from CLAUDE.md):** do not touch `hp-nav`, hero video, Isa chatbot, or bottom bar. /bench needs none of them changed: no nav link, no sitemap entry.
 
@@ -31,8 +31,8 @@ ads (MP4/GIF/HTML), banner sets, branded pages (HTML), decks (pptx), dashboards,
 Excel models (segmentation, 95:5, media budgets), reports, sample letters/emails,
 process/skill systems. For each find return: full path, what it is (one line),
 which spec category it fits (Ads & banners / Pages & decks / The AI team /
-Research & measurement / Analysis & models), client attached (name, for internal
-use only), readiness (ready / needs-polish / not-showable), and what a capture
+Research & measurement / Analysis & models), client attached (name, or none),
+readiness (ready / needs-polish / not-showable), and what a capture
 would look like (e.g. "loop the MP4", "screenshot 2 tabs"). Ignore source code,
 node_modules, raw data, drafts. Return a markdown table.
 ```
@@ -74,7 +74,7 @@ Follow the site aesthetic exactly (it must feel like runwithfoxes.com): JetBrain
 Structure to mock:
 1. Header: small "run with foxes" wordmark, title like `\ the bench`, one line: "Work in progress. A few things we're building at the moment." Present tense.
 2. Five category sections in spec order (Ads & banners / Pages & decks / The AI team / Research & measurement / Analysis & models), each: thin divider, section label, 2-4 cards.
-3. One sample card PER CATEGORY with a real asset where trivially available (e.g. an MP4 from `public/video/`, a screenshot placeholder block otherwise). Card = capture area + two lines: what it is, what it replaces. No client names.
+3. One sample card PER CATEGORY with a real asset where trivially available (e.g. an MP4 from `public/video/`, a screenshot placeholder block otherwise). Card = capture area + client name (where there is one) + two lines: what it is, what it replaces.
 4. Footer: nothing but a `\ get in touch -> /contact` line.
 
 Card markup pattern for the wireframe (and later the build):
@@ -124,11 +124,11 @@ git push
 - HTML pieces (banner gallery, factbook, dashboards, metrics pyramid): Playwright full-page or element screenshots at 1600px wide; for scrolly pages a 10-15s scroll recording is allowed
 - Decks: export 2-3 best slides as PNG (open in PowerPoint, or `libreoffice --headless --convert-to png` per slide if installed; otherwise screenshot)
 - Excel models: open the money tabs (scored matrix, Monte Carlo chart), screenshot each at full window
-- Letters/emails (AI team section): reproduce 1-2 paragraphs as styled text in the page itself, anonymised (no recipient, no client), NOT a document screenshot
+- Letters/emails (AI team section): reproduce 1-2 paragraphs as styled text in the page itself, with recipient names and identifying details removed, NOT a document screenshot
 
-- [ ] **Step 3: Anonymisation check on every capture**
+- [ ] **Step 3: Confidentiality check on every capture**
 
-Per the spec: client brand visible in the artwork is fine; client name in OUR copy is not. Check each capture for incidental leaks (file paths, browser tabs, email addresses, recipient names in letters). Re-capture any leaker.
+Per the revised spec: the client's brand and name are fine; what must NOT appear is confidential content: results, pricing, strategy data, letter recipients, plus incidental leaks (file paths, browser tabs, email addresses). Re-capture or mask any leaker.
 
 - [ ] **Step 4: Log and commit**
 
@@ -187,7 +187,7 @@ Translate `wireframes/wireframe-bench.html` markup to JSX verbatim (same classes
 cd ~/projects/fox-advantage-site && npm run dev
 ```
 
-Open `http://localhost:3000/bench`. Check: page loads, every capture renders, videos autoplay muted and loop, no client name anywhere in copy, `view-source` head contains `noindex`. Check the homepage still renders untouched.
+Open `http://localhost:3000/bench`. Check: page loads, every capture renders, videos autoplay muted and loop, no confidential content visible (results, pricing, recipients), `view-source` head contains `noindex`. Check the homepage still renders untouched.
 
 - [ ] **Step 5: Branch, push, Vercel preview**
 
@@ -233,5 +233,5 @@ Confirm the live URL works, ask Paul "this is working, commit?" is already satis
 
 - Public Work page, client naming, permissions
 - Bespoke per-prospect demos
-- New client-attached pieces (123ie/SoftCo banner, Moloco email writer): later, additive
+- New pieces for active engagements (123ie/SoftCo banner, Moloco email writer): later, additive
 - Rebuilding anything already live on runwithfoxes.com

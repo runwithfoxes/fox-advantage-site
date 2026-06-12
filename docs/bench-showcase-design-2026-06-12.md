@@ -14,22 +14,27 @@ later by graduation).
 Primary use: Paul drives it in the room (laptop or phone). Secondary: good enough to send
 as a follow-up link without wincing.
 
-## Framing rules (hard)
+## Framing rules (hard) - REVISED 2026-06-12 (Paul)
 
-1. **No client names anywhere.** At most a category hint ("a heritage financial brand"),
-   often nothing.
-2. **Real work shown as-is.** If a piece carries a visible client brand (e.g. a banner set),
-   show it unchanged and simply never name the client in copy. Never strip or re-skin.
-3. **Never invent a client.** If a piece has no client, it is shown as RWF's own work or
-   methodology. No fictional brands, no implied engagements.
+1. **If we have the client, we show it as theirs.** A banner ad IS the brand; there is no
+   anonymous version. Real client work is shown named and owned. Never strip or re-skin.
+2. **Never invent.** No work shown for a client that does not exist, no fictional brands,
+   no implied engagements. If a capability has no client example, show RWF's own work
+   (much of it already on runwithfoxes.com).
+3. **Confidential insides stay private.** The brand is fine; what gets checked and masked
+   is client-sensitive content: results, pricing, strategy data, letter recipients.
 4. **Present tense.** Copy reads "we're building / we're running", not "we delivered".
+
+(Supersedes the first draft's "no client names anywhere" rule, which collapsed on contact
+with reality: you cannot show brand work without showing the brand.)
 
 ## Content sources (cheapest first)
 
 1. **runwithfoxes.com** - existing public examples are linked or referenced, never rebuilt.
 2. **/ops dashboard** - the brand operations methodology and live views, screenshotted.
    This carries the process story.
-3. **Client artefacts, unnamed** - existing work pulled from client and project folders.
+3. **Client artefacts** - existing work pulled from client and project folders, shown
+   as the named client's work.
    Starting candidates (audit sweep will extend this list):
    - Banner machine IAB set + gallery (clients/sabre/builds/banner-ads-gallery.html)
    - Heritage factbook (projects/weatherbys-factbook/index.html)
@@ -49,7 +54,8 @@ Organised by what prospects buy, not by client:
 1. **Ads & banners** - animated chart ads, IAB banner sets, the banner machine story
 2. **Pages & decks** - branded pages, factbook, brand-matched PowerPoint
 3. **The AI team** - the writer / content creator / outreach manager roster we install;
-   process story drawn from /ops dashboard + anonymised outputs
+   process story drawn from /ops dashboard + sample outputs with confidential details
+   (recipients, results) masked
 4. **Research & measurement** - brand health / CEP scoring, measurement dashboards,
    metrics pyramid
 5. **Analysis & models** - segmentation analyses, 95:5 in-market demand models (Excel),
@@ -71,8 +77,9 @@ saves). Capture-first:
 
 An unlinked, noindex route on this repo (runwithfoxes/fox-advantage-site, Vercel
 auto-deploys): `/bench`. No new infrastructure. Not in nav, not in sitemap, noindex
-meta. Graduation path: once client permissions are in writing, pieces can move to a
-public Work page by adding attribution and a nav link.
+meta. Clients are named on the private page without asking first; that is acceptable
+for a link Paul opens in a room. Graduation path: before any piece moves to a PUBLIC
+Work page, that client's permission goes in writing.
 
 ## Build order
 
@@ -85,12 +92,12 @@ public Work page by adding attribution and a nav link.
    wireframes before any build work starts.
 3. **Capture & polish** - produce the captures for the approved shortlist only.
 4. **Page build** - /bench route following /branded-page and site conventions.
-5. **Optional, later** - new client-attached pieces (e.g. a banner set for an active
-   engagement, an email writer for a content client), shown unnamed. Additive, not
-   blocking.
+5. **Optional, later** - new pieces for active engagements (e.g. a banner set for a
+   client we're working with now, an email writer for a content client). Real clients
+   only, shown as theirs. Additive, not blocking.
 
 ## Out of scope
 
-- Public Work page / naming clients (needs written permission; later graduation)
+- Public Work page (needs written client permission; later graduation)
 - Bespoke per-prospect demos in the prospect's own brand (explicitly rejected)
 - Rebuilding anything already live on runwithfoxes.com

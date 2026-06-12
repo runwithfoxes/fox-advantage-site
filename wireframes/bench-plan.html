@@ -88,6 +88,7 @@
   .m-what { font-size: 13px; font-weight: 500; }
   .m-rep { font-size: 12px; color: var(--grey); }
   .m-live { font-size: 12px; color: var(--blue); margin-top: 4px; display: inline-block; }
+  .m-client { font-size: 11px; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px; }
 
   /* A: gallery */
   .a-card { margin-bottom: 22px; }
@@ -132,14 +133,14 @@
   <div class="wordmark"><span class="o">run</span> with foxes</div>
 
   <h1><span class="bs">\</span> the bench <span style="color:var(--grey); font-weight:300;">- build plan</span></h1>
-  <p class="sub">A private, unlinked page at runwithfoxes.com/bench. Real work, no client names, present tense. Paul opens it in prospect meetings: "here's what's on the bench right now."</p>
+  <p class="sub">A private, unlinked page at runwithfoxes.com/bench. Real work for real, named clients, present tense. Paul opens it in prospect meetings: "here's what's on the bench right now."</p>
   <p class="meta">Spec: docs/bench-showcase-design-2026-06-12.md &middot; Plan: docs/bench-showcase-plan-2026-06-12.md &middot; 12 Jun 2026</p>
 
   <div class="seclabel"><span class="n">01</span>The four hard rules</div>
   <div class="rules">
-    <div class="rule"><b>No client names anywhere</b><span>At most a category hint. Often nothing at all.</span></div>
-    <div class="rule"><b>Real work shown as-is</b><span>A visible brand in the artwork is fine. We just never name it in our copy. No re-skins.</span></div>
-    <div class="rule"><b>Never invent a client</b><span>No client behind a piece? It shows as our own work or methodology. No fictional brands.</span></div>
+    <div class="rule"><b>If we have the client, we show it as theirs</b><span>A banner ad IS the brand. Real client work is shown named and owned. No re-skins, no hiding.</span></div>
+    <div class="rule"><b>Never invent</b><span>No work for a client that doesn't exist. No client example for a capability? We show our own work.</span></div>
+    <div class="rule"><b>Confidential insides stay private</b><span>The brand is fine. Results, pricing, strategy data and letter recipients get masked.</span></div>
     <div class="rule"><b>Present tense</b><span>"We're building", "we're running". A working studio, not an archive.</span></div>
   </div>
 
@@ -147,7 +148,7 @@
   <div class="pipe">
     <div class="step"><span class="num">1</span><div class="body"><div class="t"><span class="dot idle"></span>Audit sweep <span class="gate">GATE: Paul picks the shortlist</span></div><div class="d">Four parallel agents over client folders, projects, session logs and the /ops dashboard. One scored inventory: ready / needs-polish / not-showable.</div></div></div>
     <div class="step"><span class="num">2</span><div class="body"><div class="t"><span class="dot idle"></span>Wireframe <span class="gate">GATE: Paul approves</span></div><div class="d">Pick a direction below, then a full wireframe-bench.html in the site aesthetic. Can run in parallel with the audit.</div></div></div>
-    <div class="step"><span class="num">3</span><div class="body"><div class="t"><span class="dot idle"></span>Capture and polish</div><div class="d">Shortlist only. Loops for ads, screenshots for pages and dashboards, money tabs for the Excel models. Leak-check on every capture.</div></div></div>
+    <div class="step"><span class="num">3</span><div class="body"><div class="t"><span class="dot idle"></span>Capture and polish</div><div class="d">Shortlist only. Loops for ads, screenshots for pages and dashboards, money tabs for the Excel models. Confidentiality check on every capture: brand fine, insides masked.</div></div></div>
     <div class="step"><span class="num">4</span><div class="body"><div class="t"><span class="dot idle"></span>Build /bench <span class="gate">GATE: Paul approves Vercel preview</span></div><div class="d">Noindex, not in nav, none of the guarded site code touched. Branch, preview, merge.</div></div></div>
     <div class="step"><span class="num">5</span><div class="body"><div class="t"><span class="dot idle"></span>Verify live and wrap up</div><div class="d">Production check, CONTEXT updates, task archived.</div></div></div>
   </div>
@@ -170,6 +171,7 @@
   </table>
 
   <div class="seclabel"><span class="n">04</span>Wireframe directions - three ways the page could feel</div>
+  <p class="optnote" style="margin-bottom:32px;">Captures below are stand-ins borrowed from the live site. Client tags show where real names will sit on each card.</p>
 
   <div class="optwrap">
     <div class="opthead"><span class="ol"><span class="bs">\</span> option A - the gallery</span></div>
@@ -180,12 +182,14 @@
         <div class="a-cap"><video autoplay loop muted playsinline src="../public/video/animated-lottery.mp4"></video></div>
         <div class="m-what">A 9-size animated banner set, built from one approved ad</div>
         <div class="m-rep">Replaces a week of agency resizing. Rendered in minutes.</div>
+        <div class="m-client">client: sabre</div>
       </div>
       <div class="m-cat">Analysis &amp; models</div>
       <div class="a-card">
         <div class="a-cap"><span class="ph">[ SCREENSHOT: Monte Carlo tab, demand model ]</span></div>
         <div class="m-what">An in-market demand model we're running for a board</div>
         <div class="m-rep">10,000 simulations of how much of the category is actually buying this quarter.</div>
+        <div class="m-client">client: from the audit</div>
       </div>
     </div>
   </div>
@@ -200,11 +204,13 @@
           <div class="b-cap"><video autoplay loop muted playsinline src="../public/video/animated-6040-sideeye.mp4"></video></div>
           <div class="m-what">Animated chart ad, three frames</div>
           <div class="m-rep">Idea to finished MP4 in an afternoon.</div>
+          <div class="m-client">our own</div>
         </div>
         <div class="b-card">
           <div class="b-cap"><img src="../public/ads/static-arsenal.png" alt=""></div>
           <div class="m-what">Static brand ad, cinematic series</div>
           <div class="m-rep">One of a set of twelve.</div>
+          <div class="m-client">our own</div>
         </div>
       </div>
     </div>
@@ -225,6 +231,7 @@
           <div class="c-cap"><video autoplay loop muted playsinline src="../public/video/animated-lottery.mp4"></video></div>
           <div class="m-what">Built from one approved ad, every IAB size re-laid-out, not scaled</div>
           <div class="m-rep">Replaces a week of agency resizing. Rendered in minutes.</div>
+          <div class="m-client">client: sabre</div>
         </div>
       </div>
       <div class="c-row">
@@ -237,6 +244,7 @@
           <div class="c-cap"><span class="ph">[ SCREENSHOT: Monte Carlo tab ]</span></div>
           <div class="m-what">A 95:5 model sizing how much of the category is buying this quarter</div>
           <div class="m-rep">10,000 simulations in an editable board-ready workbook.</div>
+          <div class="m-client">client: from the audit</div>
         </div>
       </div>
       <div class="c-row">
@@ -248,7 +256,8 @@
         <div class="c-detail">
           <div class="c-cap"><span class="ph">[ PROCESS VISUAL: writer -> content creator -> outreach manager ]</span></div>
           <div class="m-what">A writer, a content creator and an outreach campaigns manager, running inside one client's team</div>
-          <div class="m-rep">Sample letter and content calendar shown anonymised.</div>
+          <div class="m-rep">Sample letter and content calendar shown, recipient details removed.</div>
+          <div class="m-client">client: eaton square</div>
         </div>
       </div>
       <div style="padding: 14px 4px 0;"><span class="m-live">\ open live -></span></div>
@@ -260,6 +269,7 @@
   <div class="q"><b>How current is "current"?</b> <span>"On the bench this week" is a stronger frame than five permanent categories, but it means the page should change a little every few weeks or it reads stale. Categories age better.</span></div>
   <div class="q"><b>Intro line.</b> <span>One sentence at the top sets the whole frame. Working draft: "Work in progress. A few things we're building at the moment."</span></div>
   <div class="q"><b>Open-live exceptions.</b> <span>Metrics pyramid is the agreed one. Anything else earn a live link, or is one enough?</span></div>
+  <div class="q"><b>How loud are the names?</b> <span>A small client tag like the ones above, or the client in the headline ("A banner machine for Sabre")? Tag is calmer; headline sells harder.</span></div>
 
   <div class="foot">\ next: say "start the audit" and task 1 kicks off -></div>
 
