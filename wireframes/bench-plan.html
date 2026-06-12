@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>\ the bench - build plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+  :root {
+    --cream: #FAFAF8;
+    --ink: #1A3A4E;
+    --blue: #3A7CA5;
+    --orange: #F47521;
+    --grey: #8A8A86;
+    --line: #E2E2DE;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+  body {
+    font-family: var(--mono);
+    background: var(--cream);
+    background-image: radial-gradient(circle, rgba(208,208,204,0.4) 0.8px, transparent 0.8px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px 120px; }
+
+  .wordmark { font-size: 13px; letter-spacing: 0.05em; margin-bottom: 48px; }
+  .wordmark .o { color: var(--orange); }
+
+  h1 { font-size: 34px; font-weight: 300; margin-bottom: 10px; }
+  h1 .bs { color: var(--blue); }
+  .sub { color: var(--grey); font-size: 14px; max-width: 640px; margin-bottom: 8px; }
+  .meta { font-size: 12px; color: var(--grey); margin-bottom: 56px; }
+  .meta a { color: var(--blue); }
+
+  .seclabel {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--grey); border-top: 1px solid var(--ink);
+    padding-top: 14px; margin: 64px 0 24px;
+  }
+  .seclabel .n { color: var(--blue); margin-right: 10px; }
+
+  /* framing rules */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rule { background: #fff; border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; }
+  .rule b { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .rule span { color: var(--grey); font-size: 12.5px; }
+
+  /* pipeline */
+  .pipe { background: #fff; border: 1px solid var(--line); }
+  .step { display: flex; align-items: baseline; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: none; }
+  .step .num { color: var(--blue); font-size: 13px; min-width: 24px; }
+  .step .body { flex: 1; }
+  .step .t { font-size: 14px; font-weight: 500; }
+  .step .d { font-size: 12.5px; color: var(--grey); margin-top: 2px; }
+  .gate {
+    display: inline-block; margin-left: 10px; font-size: 11px; letter-spacing: 0.08em;
+    color: var(--orange); border: 1px solid var(--orange); padding: 1px 8px; vertical-align: middle;
+  }
+  .dot { display: inline-block; width: 7px; height: 7px; background: #3BAA5D; margin-right: 8px; }
+  .dot.idle { background: var(--line); }
+
+  /* candidates table */
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); font-size: 12.5px; }
+  th { text-align: left; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); font-weight: 500; padding: 10px 14px; border-bottom: 1px solid var(--ink); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .ready { color: #3BAA5D; }
+  .polish { color: var(--orange); }
+  .look { color: var(--grey); }
+
+  /* wireframe options */
+  .optwrap { margin-bottom: 56px; }
+  .opthead { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .opthead .ol { font-size: 16px; font-weight: 500; }
+  .opthead .ol .bs { color: var(--blue); }
+  .optnote { font-size: 12.5px; color: var(--grey); max-width: 720px; margin-bottom: 18px; }
+
+  .mock { background: #fff; border: 1px solid var(--ink); padding: 36px 40px; }
+  .mock .m-cat { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); border-top: 1px solid var(--line); padding-top: 10px; margin: 26px 0 16px; }
+  .mock .m-cat:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+
+  .m-what { font-size: 13px; font-weight: 500; }
+  .m-rep { font-size: 12px; color: var(--grey); }
+  .m-live { font-size: 12px; color: var(--blue); margin-top: 4px; display: inline-block; }
+
+  /* A: gallery */
+  .a-card { margin-bottom: 22px; }
+  .a-cap { background: #EFEFEA; border: 1px solid var(--line); width: 100%; aspect-ratio: 16 / 7; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .a-cap video, .a-cap img { width: 100%; height: 100%; object-fit: cover; }
+  .a-card .m-what { margin-top: 10px; }
+
+  /* B: grid */
+  .b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .b-card .b-cap { background: #EFEFEA; border: 1px solid var(--line); aspect-ratio: 4 / 3; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .b-card .b-cap video, .b-card .b-cap img { width: 100%; height: 100%; object-fit: cover; }
+  .b-card .m-what { margin-top: 8px; font-size: 12.5px; }
+  .b-card .m-rep { font-size: 11.5px; }
+
+  /* C: workbench rows */
+  .c-row { border-bottom: 1px solid var(--line); }
+  .c-row:first-of-type { border-top: 1px solid var(--line); }
+  .c-head { display: flex; align-items: baseline; gap: 14px; padding: 13px 4px; cursor: pointer; }
+  .c-head:hover { background: #F4F4F0; }
+  .c-head .c-arrow { color: var(--blue); font-size: 12px; width: 14px; }
+  .c-head .c-title { font-size: 13px; font-weight: 500; flex: 1; }
+  .c-head .c-tag { font-size: 11px; color: var(--grey); letter-spacing: 0.06em; }
+  .c-detail { display: none; padding: 6px 4px 24px 28px; }
+  .c-row.open .c-detail { display: block; }
+  .c-row.open .c-arrow span { display: inline-block; transform: rotate(90deg); }
+  .c-cap { background: #EFEFEA; border: 1px solid var(--line); max-width: 560px; aspect-ratio: 16 / 9; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .c-cap video, .c-cap img { width: 100%; height: 100%; object-fit: cover; }
+
+  .ph { font-size: 11px; color: var(--grey); letter-spacing: 0.08em; }
+
+  /* questions */
+  .q { background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--blue); padding: 14px 18px; margin-bottom: 12px; font-size: 13px; }
+  .q b { font-weight: 700; }
+  .q span { color: var(--grey); font-size: 12.5px; }
+
+  .foot { margin-top: 80px; font-size: 13px; color: var(--blue); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="wordmark"><span class="o">run</span> with foxes</div>
+
+  <h1><span class="bs">\</span> the bench <span style="color:var(--grey); font-weight:300;">- build plan</span></h1>
+  <p class="sub">A private, unlinked page at runwithfoxes.com/bench. Real work, no client names, present tense. Paul opens it in prospect meetings: "here's what's on the bench right now."</p>
+  <p class="meta">Spec: docs/bench-showcase-design-2026-06-12.md &middot; Plan: docs/bench-showcase-plan-2026-06-12.md &middot; 12 Jun 2026</p>
+
+  <div class="seclabel"><span class="n">01</span>The four hard rules</div>
+  <div class="rules">
+    <div class="rule"><b>No client names anywhere</b><span>At most a category hint. Often nothing at all.</span></div>
+    <div class="rule"><b>Real work shown as-is</b><span>A visible brand in the artwork is fine. We just never name it in our copy. No re-skins.</span></div>
+    <div class="rule"><b>Never invent a client</b><span>No client behind a piece? It shows as our own work or methodology. No fictional brands.</span></div>
+    <div class="rule"><b>Present tense</b><span>"We're building", "we're running". A working studio, not an archive.</span></div>
+  </div>
+
+  <div class="seclabel"><span class="n">02</span>The pipeline - five tasks, three gates</div>
+  <div class="pipe">
+    <div class="step"><span class="num">1</span><div class="body"><div class="t"><span class="dot idle"></span>Audit sweep <span class="gate">GATE: Paul picks the shortlist</span></div><div class="d">Four parallel agents over client folders, projects, session logs and the /ops dashboard. One scored inventory: ready / needs-polish / not-showable.</div></div></div>
+    <div class="step"><span class="num">2</span><div class="body"><div class="t"><span class="dot idle"></span>Wireframe <span class="gate">GATE: Paul approves</span></div><div class="d">Pick a direction below, then a full wireframe-bench.html in the site aesthetic. Can run in parallel with the audit.</div></div></div>
+    <div class="step"><span class="num">3</span><div class="body"><div class="t"><span class="dot idle"></span>Capture and polish</div><div class="d">Shortlist only. Loops for ads, screenshots for pages and dashboards, money tabs for the Excel models. Leak-check on every capture.</div></div></div>
+    <div class="step"><span class="num">4</span><div class="body"><div class="t"><span class="dot idle"></span>Build /bench <span class="gate">GATE: Paul approves Vercel preview</span></div><div class="d">Noindex, not in nav, none of the guarded site code touched. Branch, preview, merge.</div></div></div>
+    <div class="step"><span class="num">5</span><div class="body"><div class="t"><span class="dot idle"></span>Verify live and wrap up</div><div class="d">Production check, CONTEXT updates, task archived.</div></div></div>
+  </div>
+
+  <div class="seclabel"><span class="n">03</span>Starting candidates - the audit will extend this</div>
+  <table>
+    <tr><th>Piece</th><th>Category</th><th>Readiness</th></tr>
+    <tr><td>Animated banner machine, 9-size IAB set + gallery</td><td>Ads &amp; banners</td><td class="polish">needs polish</td></tr>
+    <tr><td>LinkedIn chart ads, motion video</td><td>Ads &amp; banners</td><td class="polish">needs polish</td></tr>
+    <tr><td>Animated chart ads + illustrations (our own)</td><td>Ads &amp; banners</td><td class="ready">ready - already on the site, link don't rebuild</td></tr>
+    <tr><td>Heritage factbook, scrolling page</td><td>Pages &amp; decks</td><td class="polish">needs polish</td></tr>
+    <tr><td>Brand-matched PowerPoint migration</td><td>Pages &amp; decks</td><td class="look">needs a look</td></tr>
+    <tr><td>The AI team we install: writer, content creator, outreach campaigns manager</td><td>The AI team</td><td class="look">needs a look - story from /ops + anonymised outputs</td></tr>
+    <tr><td>Direct-mail / email-writer process, sample letters</td><td>The AI team</td><td class="look">needs a look</td></tr>
+    <tr><td>Metrics pyramid (live)</td><td>Research &amp; measurement</td><td class="ready">ready</td></tr>
+    <tr><td>Studio measurement dashboard</td><td>Research &amp; measurement</td><td class="look">needs a look</td></tr>
+    <tr><td>Client portal</td><td>Pages &amp; decks</td><td class="look">needs a look</td></tr>
+    <tr><td>Segmentation analysis, scored matrix + cuts</td><td>Analysis &amp; models</td><td class="look">needs a look - audit to find best run</td></tr>
+    <tr><td>95:5 in-market demand model, Monte Carlo workbook</td><td>Analysis &amp; models</td><td class="look">needs a look - audit to find best run</td></tr>
+  </table>
+
+  <div class="seclabel"><span class="n">04</span>Wireframe directions - three ways the page could feel</div>
+
+  <div class="optwrap">
+    <div class="opthead"><span class="ol"><span class="bs">\</span> option A - the gallery</span></div>
+    <p class="optnote">One column, big captures, one piece per row. Maximum impact per piece, best on a phone handed across a table. Longest scroll; works best if the shortlist stays tight (10-12 pieces).</p>
+    <div class="mock">
+      <div class="m-cat">Ads &amp; banners</div>
+      <div class="a-card">
+        <div class="a-cap"><video autoplay loop muted playsinline src="../public/video/animated-lottery.mp4"></video></div>
+        <div class="m-what">A 9-size animated banner set, built from one approved ad</div>
+        <div class="m-rep">Replaces a week of agency resizing. Rendered in minutes.</div>
+      </div>
+      <div class="m-cat">Analysis &amp; models</div>
+      <div class="a-card">
+        <div class="a-cap"><span class="ph">[ SCREENSHOT: Monte Carlo tab, demand model ]</span></div>
+        <div class="m-what">An in-market demand model we're running for a board</div>
+        <div class="m-rep">10,000 simulations of how much of the category is actually buying this quarter.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="optwrap">
+    <div class="opthead"><span class="ol"><span class="bs">\</span> option B - the grid</span></div>
+    <p class="optnote">Two-up cards inside each category. More on screen at once, reads as breadth ("look how much is on the bench"). Individual pieces hit softer; animated loops compete with each other for the eye.</p>
+    <div class="mock">
+      <div class="m-cat">Ads &amp; banners</div>
+      <div class="b-grid">
+        <div class="b-card">
+          <div class="b-cap"><video autoplay loop muted playsinline src="../public/video/animated-6040-sideeye.mp4"></video></div>
+          <div class="m-what">Animated chart ad, three frames</div>
+          <div class="m-rep">Idea to finished MP4 in an afternoon.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-cap"><img src="../public/ads/static-arsenal.png" alt=""></div>
+          <div class="m-what">Static brand ad, cinematic series</div>
+          <div class="m-rep">One of a set of twelve.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="optwrap">
+    <div class="opthead"><span class="ol"><span class="bs">\</span> option C - the workbench</span></div>
+    <p class="optnote">Repo-style rows, like the homepage accordion: the whole bench scannable in one screen, each row opens to its capture. Tightness reads as "a working studio". Quietest option; nothing moves until Paul clicks. Click the rows.</p>
+    <div class="mock">
+      <div class="m-cat">On the bench this week</div>
+      <div class="c-row">
+        <div class="c-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="c-arrow"><span>&gt;</span></span>
+          <span class="c-title">9-size animated banner set</span>
+          <span class="c-tag">ads &amp; banners</span>
+        </div>
+        <div class="c-detail">
+          <div class="c-cap"><video autoplay loop muted playsinline src="../public/video/animated-lottery.mp4"></video></div>
+          <div class="m-what">Built from one approved ad, every IAB size re-laid-out, not scaled</div>
+          <div class="m-rep">Replaces a week of agency resizing. Rendered in minutes.</div>
+        </div>
+      </div>
+      <div class="c-row">
+        <div class="c-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="c-arrow"><span>&gt;</span></span>
+          <span class="c-title">In-market demand model</span>
+          <span class="c-tag">analysis &amp; models</span>
+        </div>
+        <div class="c-detail">
+          <div class="c-cap"><span class="ph">[ SCREENSHOT: Monte Carlo tab ]</span></div>
+          <div class="m-what">A 95:5 model sizing how much of the category is buying this quarter</div>
+          <div class="m-rep">10,000 simulations in an editable board-ready workbook.</div>
+        </div>
+      </div>
+      <div class="c-row">
+        <div class="c-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="c-arrow"><span>&gt;</span></span>
+          <span class="c-title">The team we install</span>
+          <span class="c-tag">the AI team</span>
+        </div>
+        <div class="c-detail">
+          <div class="c-cap"><span class="ph">[ PROCESS VISUAL: writer -> content creator -> outreach manager ]</span></div>
+          <div class="m-what">A writer, a content creator and an outreach campaigns manager, running inside one client's team</div>
+          <div class="m-rep">Sample letter and content calendar shown anonymised.</div>
+        </div>
+      </div>
+      <div style="padding: 14px 4px 0;"><span class="m-live">\ open live -></span></div>
+    </div>
+  </div>
+
+  <div class="seclabel"><span class="n">05</span>Things to think about while you look</div>
+  <div class="q"><b>Which direction?</b> <span>A (impact), B (breadth), C (studio tightness). C matches the homepage language most closely; A demos best on a phone. A hybrid is possible: C rows, but the open row gets A's full-width capture.</span></div>
+  <div class="q"><b>How current is "current"?</b> <span>"On the bench this week" is a stronger frame than five permanent categories, but it means the page should change a little every few weeks or it reads stale. Categories age better.</span></div>
+  <div class="q"><b>Intro line.</b> <span>One sentence at the top sets the whole frame. Working draft: "Work in progress. A few things we're building at the moment."</span></div>
+  <div class="q"><b>Open-live exceptions.</b> <span>Metrics pyramid is the agreed one. Anything else earn a live link, or is one enough?</span></div>
+
+  <div class="foot">\ next: say "start the audit" and task 1 kicks off -></div>
+
+</div>
+</body>
+</html>
