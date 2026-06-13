@@ -36,6 +36,26 @@ const TESTI: [string, string][] = [
   ["B", "Speaker promo"],
 ];
 
+// Every asset from the SoftCo brand-assets library. [name, detail, status]
+type DStatus = "ready" | "todo";
+const DELIVERABLES: [string, string, DStatus][] = [
+  ["Display / banner ads", "11 IAB sizes, animated", "ready"],
+  ["Testimonial cards", "4 layouts, square, static + animated", "ready"],
+  ["Iceberg diagram", "Square 1080×1080, organic + paid", "ready"],
+  ["Email banners", "600×140 and 1024×206", "todo"],
+  ["Blog headers", "With and without photography", "todo"],
+  ["Blog content cards", "Stat, pull-quote, question, diagrams", "todo"],
+  ["Event graphics", "Gartner, IOFM, SSOW", "todo"],
+  ["Meeting backgrounds", "Virtual call backgrounds", "todo"],
+  ["Social posts", "General, Euromoney, AP questions", "todo"],
+  ["Carousels", "Nacha, France e-invoicing", "todo"],
+  ["Webinar promos", "Event and on-demand", "todo"],
+  ["Thumbnails", "Video and content thumbnails", "todo"],
+  ["Video clips", "Webinar repurposing", "todo"],
+  ["Product Proof ad", "Square 1080×1080, extra", "ready"],
+];
+const READY_COUNT = DELIVERABLES.filter((d) => d[2] === "ready").length;
+
 export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) {
   const [authed, setAuthed] = useState(initialAuth);
   const [password, setPassword] = useState("");
@@ -93,34 +113,28 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
         <div className="sc-eyebrow">Run with Foxes &times; SoftCo</div>
         <h1 className="sc-title">Creative deliverables</h1>
         <p className="sc-intro">
-          A live view of the work for SoftCo in the new brand system. Every size
-          and version is here, static and animated. Have a look and send back
-          your thoughts.
+          A live view of the work for SoftCo in the new brand system. The full
+          asset list is below with status. The finished pieces are shown in full
+          underneath, static and animated. Have a look and send back your
+          thoughts.
         </p>
 
+        <div className="sc-count">
+          {READY_COUNT} of {DELIVERABLES.length} ready for feedback
+        </div>
         <div className="sc-summary">
           <div className="sc-row sc-row-head">
             <span>Deliverable</span>
-            <span>Format</span>
             <span>Detail</span>
             <span>Status</span>
           </div>
-          <div className="sc-row">
-            <span>Chart Ad set</span><span>Animated, display</span><span>11 IAB sizes</span>
-            <span><i className="b" />{STATUS}</span>
-          </div>
-          <div className="sc-row">
-            <span>Iceberg diagram</span><span>Animated, square</span><span>Explainer</span>
-            <span><i className="b" />{STATUS}</span>
-          </div>
-          <div className="sc-row">
-            <span>Testimonial cards</span><span>Static and animated, square</span><span>4 layouts</span>
-            <span><i className="b" />{STATUS}</span>
-          </div>
-          <div className="sc-row">
-            <span>Product Proof ad</span><span>Animated, square</span><span>Extra, beyond brief</span>
-            <span><i className="b" />{STATUS}</span>
-          </div>
+          {DELIVERABLES.map(([name, detail, status]) => (
+            <div className="sc-row" key={name}>
+              <span>{name}</span>
+              <span>{detail}</span>
+              <span><i className={`b ${status}`} />{status === "ready" ? STATUS : "To do"}</span>
+            </div>
+          ))}
         </div>
 
         {/* Chart Ad - every size */}
@@ -157,11 +171,11 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
         <section className="sc-sec">
           <div className="sc-sec-head"><h2>Iceberg diagram</h2><span className="badge">{STATUS}</span></div>
           <p className="sc-desc">
-            Animated explainer. The visible cost above the line, the hidden cost
-            below.
+            Animated explainer, the visible cost above the line, the hidden cost
+            below. Built as a square for LinkedIn, organic and paid.
           </p>
           <div className="sc-grid">
-            <figure><Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} /></figure>
+            <figure><Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
             <div />
           </div>
         </section>
@@ -199,12 +213,12 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
           </div>
           <p className="sc-desc">
             An extra we explored beyond the brief. The product itself, rebuilt as
-            live UI and animated. Shown square for now, it still needs to be set
-            into the standard ad sizes like the others.
+            live UI and animated. Built as a large square for a LinkedIn organic
+            post and a paid square ad.
           </p>
           <div className="sc-grid">
-            <figure><Vid src={`${M}/proof-v1.mp4`} poster={`${M}/proof-v1-poster.png`} /><figcaption>Invoice checks</figcaption></figure>
-            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>AI matching</figcaption></figure>
+            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
+            <div />
           </div>
         </section>
 

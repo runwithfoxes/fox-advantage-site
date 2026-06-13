@@ -160,7 +160,14 @@
   margin-bottom: 44px;
 }
 
-/* ---- deliverables + status table (brand table style) ---- */
+/* ---- deliverables + status tracker (brand table style) ---- */
+.sc-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
 .sc-summary {
   border: 1px solid var(--border);
   overflow: hidden;
@@ -168,7 +175,7 @@
 }
 .sc-row {
   display: grid;
-  grid-template-columns: 1.4fr 1.3fr 1fr 1fr;
+  grid-template-columns: 1.3fr 1.7fr 0.9fr;
   gap: 16px;
   padding: 15px 22px;
   font-family: var(--mono);
@@ -203,6 +210,9 @@
   background: var(--orange);
   margin-right: 8px;
   vertical-align: middle;
+}
+.sc-row .b.todo {
+  background: var(--text-muted);
 }
 
 /* ---- sections ---- */
