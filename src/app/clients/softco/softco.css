@@ -231,6 +231,10 @@
   background: rgba(58, 124, 165, 0.12);
   color: var(--orange);
 }
+.badge.sc-extra {
+  background: rgba(138, 138, 133, 0.16);
+  color: var(--text-muted);
+}
 .sc-desc {
   color: var(--text-muted);
   font-size: 0.875rem;

@@ -106,10 +106,6 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             <span>Status</span>
           </div>
           <div className="sc-row">
-            <span>Product Proof ad</span><span>Animated, square</span><span>2 variants</span>
-            <span><i className="b" />{STATUS}</span>
-          </div>
-          <div className="sc-row">
             <span>Chart Ad set</span><span>Animated, display</span><span>11 IAB sizes</span>
             <span><i className="b" />{STATUS}</span>
           </div>
@@ -121,20 +117,11 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             <span>Testimonial cards</span><span>Static and animated, square</span><span>4 layouts</span>
             <span><i className="b" />{STATUS}</span>
           </div>
-        </div>
-
-        {/* Product Proof */}
-        <section className="sc-sec">
-          <div className="sc-sec-head"><h2>Product Proof ad</h2><span className="badge">{STATUS}</span></div>
-          <p className="sc-desc">
-            The product itself, rebuilt as live UI and animated. Panels drift in,
-            checks tick, the headline number lands. Two variants.
-          </p>
-          <div className="sc-grid">
-            <figure><Vid src={`${M}/proof-v1.mp4`} poster={`${M}/proof-v1-poster.png`} /><figcaption>Homepage</figcaption></figure>
-            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>AI matching</figcaption></figure>
+          <div className="sc-row">
+            <span>Product Proof ad</span><span>Animated, square</span><span>Extra, beyond brief</span>
+            <span><i className="b" />{STATUS}</span>
           </div>
-        </section>
+        </div>
 
         {/* Chart Ad - every size */}
         <section className="sc-sec">
@@ -200,6 +187,24 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
                 <div className="submark">Static</div>
               </figure>
             ))}
+          </div>
+        </section>
+
+        {/* Product Proof - an extra, beyond the brief, sits at the bottom */}
+        <section className="sc-sec">
+          <div className="sc-sec-head">
+            <h2>Product Proof ad</h2>
+            <span className="badge">{STATUS}</span>
+            <span className="badge sc-extra">Extra</span>
+          </div>
+          <p className="sc-desc">
+            An extra we explored beyond the brief. The product itself, rebuilt as
+            live UI and animated. Shown square for now, it still needs to be set
+            into the standard ad sizes like the others.
+          </p>
+          <div className="sc-grid">
+            <figure><Vid src={`${M}/proof-v1.mp4`} poster={`${M}/proof-v1-poster.png`} /><figcaption>Invoice checks</figcaption></figure>
+            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>AI matching</figcaption></figure>
           </div>
         </section>
 
