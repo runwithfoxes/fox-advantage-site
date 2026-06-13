@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>\ the bench</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --muted: #8A8A85;
+  --sky-blue: #3A7CA5;
+  --sky-blue-hover: #2F6688;
+  --deep-sky: #1A3A4E;
+  --border: #E0E0DC;
+  --card-hover: #F5F5F0;
+  --cream: #F7EAD9;
+  --orange: #F47521;
+  --head: 'Space Grotesk', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-weight: 300;
+}
+
+/* ---------- logo ---------- */
+.logo {
+  font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px;
+  color: var(--muted); text-decoration: none;
+}
+.logo span { color: var(--orange); }
+
+/* ---------- INDEX (stacked, C aesthetic) ---------- */
+.wrap { max-width: 940px; margin: 0 auto; padding: 56px 32px 120px; }
+
+.hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; margin-bottom: 60px; }
+.hero-l { flex: 1; }
+.logo.wm { display: inline-block; margin-bottom: 38px; }
+h1 { font-family: var(--head); font-size: clamp(40px, 6vw, 64px); font-weight: 300; letter-spacing: -1px; margin-bottom: 16px; }
+h1 .bs { color: var(--sky-blue); }
+.sub { color: var(--muted); font-size: 0.875rem; max-width: 540px; line-height: 1.7; }
+.fox-hero { width: 150px; flex: none; filter: drop-shadow(0 16px 32px rgba(0,0,0,0.12)); pointer-events: none; user-select: none; }
+
+.seclabel {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); border-top: 1px solid var(--text);
+  padding-top: 12px; margin: 0 0 2px;
+}
+.seclabel .n { color: var(--sky-blue); margin-right: 12px; }
+.cat { margin-bottom: 46px; }
+
+.row {
+  display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 22px;
+  padding: 17px 6px; border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: transform 0.3s ease-out, background 0.3s ease-out;
+}
+.row:hover, .row:focus-visible { transform: translateX(12px); background: var(--card-hover); outline: none; }
+.thumb {
+  width: 92px; height: 58px; background: var(--bg); border: 1px solid var(--border);
+  overflow: hidden; position: relative;
+}
+.thumb video, .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .ph {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
+  background: repeating-linear-gradient(135deg, var(--bg), var(--bg) 7px, #F1F1EC 7px, #F1F1EC 14px);
+  text-align: center; line-height: 1.3; padding: 4px;
+}
+.rmain .rt { font-family: var(--head); font-size: 16px; font-weight: 400; letter-spacing: -0.3px; }
+.rmain .rt .client { color: var(--sky-blue); }
+.rmain .rwhat { font-size: 0.8125rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.ropen { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); white-space: nowrap; transition: color 0.3s; }
+.row:hover .ropen, .row:focus-visible .ropen { color: var(--orange); }
+.ropen .bs { color: var(--sky-blue); }
+.tag {
+  display: inline-block; font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--border); padding: 1px 6px; margin-left: 8px;
+  vertical-align: middle;
+}
+.tag.set { color: var(--orange); border-color: var(--orange); }
+.tag.live { color: var(--sky-blue); border-color: var(--sky-blue); }
+
+.foot { border-top: 1px solid var(--text); padding-top: 24px; margin-top: 8px; font-size: 0.875rem; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.foot .bs { color: var(--sky-blue); }
+.foot a { color: var(--sky-blue); text-decoration: none; }
+.foot a:hover { opacity: 0.7; }
+.fox-foot { width: 96px; flex: none; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.1)); pointer-events: none; user-select: none; }
+
+/* ---------- DETAIL (full-screen, A aesthetic) ---------- */
+.screen {
+  position: fixed; inset: 0; z-index: 50;
+  background: var(--bg);
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  display: none; flex-direction: column;
+}
+.screen.on { display: flex; }
+.s-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 36px; border-bottom: 1px solid var(--border); flex: none;
+}
+.s-cat { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.s-cat .n { color: var(--sky-blue); margin-right: 10px; }
+.s-close { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); cursor: pointer; background: none; border: none; }
+.s-close:hover, .s-close:focus-visible { color: var(--orange); outline: none; }
+
+.s-stage {
+  flex: 1; min-height: 0; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 30px 44px;
+}
+/* every media layout fits inside the stage, never overflows */
+.m-single { height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; }
+.m-single video, .m-single img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; border: 1px solid var(--text); background: var(--bg); display: block;
+}
+.m-trio { height: 100%; width: 100%; max-width: 1280px; display: flex; gap: 20px; align-items: center; justify-content: center; }
+.m-trio video { min-width: 0; max-width: calc(33.333% - 14px); max-height: 100%; object-fit: contain; border: 1px solid var(--text); background: var(--bg); }
+.m-wall { height: 100%; width: 100%; max-width: 1180px; display: grid; gap: 14px; }
+.m-wall .cell { min-width: 0; min-height: 0; overflow: hidden; border: 1px solid var(--text); background: var(--bg); }
+.m-wall .cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.m-wall .ph {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; text-align: center; padding: 8px;
+}
+.m-ph-big {
+  width: 100%; max-width: 980px; height: 100%; max-height: 56vh; border: 1px solid var(--text); background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted);
+  background-image: repeating-linear-gradient(135deg, var(--bg), var(--bg) 9px, #F1F1EC 9px, #F1F1EC 18px);
+}
+.m-ph-big .big { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+.m-ph-big .small { font-size: 0.8125rem; max-width: 440px; text-align: center; line-height: 1.6; }
+.m-letter {
+  max-width: 720px; max-height: 100%; overflow: auto; background: var(--bg); border: 1px solid var(--text);
+  padding: 40px 48px; font-size: 0.875rem; line-height: 1.85;
+}
+.m-letter .mask { background: var(--text); color: var(--text); user-select: none; }
+.m-letter p { margin-bottom: 15px; }
+.m-letter .sig { color: var(--muted); }
+
+.s-foot { flex: none; padding: 22px 44px 30px; border-top: 1px solid var(--border); display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
+.s-copy { max-width: 720px; }
+.s-what { font-family: var(--head); font-size: 18px; font-weight: 400; letter-spacing: -0.3px; }
+.s-what .client { color: var(--sky-blue); }
+.s-rep { font-size: 0.8125rem; color: var(--muted); margin-top: 7px; line-height: 1.6; }
+.s-live { font-size: 0.8125rem; color: var(--sky-blue); text-decoration: none; margin-top: 10px; display: inline-block; }
+.s-live:hover { opacity: 0.7; }
+.s-nav { display: flex; gap: 8px; align-items: center; flex: none; }
+.s-nav button {
+  font-family: var(--mono); font-size: 15px; width: 42px; height: 42px;
+  background: var(--bg); border: 1px solid var(--border); color: var(--text); cursor: pointer; transition: border-color 0.3s, color 0.3s;
+}
+.s-nav button:hover, .s-nav button:focus-visible { border-color: var(--orange); color: var(--orange); outline: none; }
+.s-count { font-size: 11px; letter-spacing: 1px; color: var(--muted); margin-right: 6px; }
+
+@media (max-width: 768px) {
+  .hero { flex-direction: column; }
+  .fox-hero { width: 110px; }
+  .m-trio { flex-direction: column; }
+  .m-trio video { max-width: 100%; }
+  .s-foot { flex-direction: column; align-items: stretch; }
+  .row { grid-template-columns: 72px 1fr; }
+  .ropen { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-l">
+      <a href="#" class="logo wm">/<span>Run</span>withfoxes</a>
+      <h1><span class="bs">\</span> the bench</h1>
+      <p class="sub">Work in progress. A few of the things we are building right now. Pick one and it fills the screen. Real clients, real work, present tense.</p>
+    </div>
+    <img src="../public/fox/chapter-fox-sitting-nobg.png" alt="" class="fox-hero">
+  </div>
+
+  <div id="index"></div>
+
+  <div class="foot">
+    <div><span class="bs">\</span> like the look of something? <a href="#">get in touch &rarr; /contact</a></div>
+    <img src="../public/fox/fox-book.png" alt="" class="fox-foot">
+  </div>
+</div>
+
+<!-- FULL-SCREEN DETAIL -->
+<div class="screen" id="screen" role="dialog" aria-modal="true">
+  <div class="s-top">
+    <div class="s-cat"><span class="n" id="s-catn"></span><span id="s-catlabel"></span></div>
+    <button class="s-close" id="s-close">close \ esc</button>
+  </div>
+  <div class="s-stage" id="s-stage"></div>
+  <div class="s-foot">
+    <div class="s-copy">
+      <div class="s-what" id="s-what"></div>
+      <div class="s-rep" id="s-rep"></div>
+      <a class="s-live" id="s-live" target="_blank" style="display:none"></a>
+    </div>
+    <div class="s-nav">
+      <span class="s-count" id="s-count"></span>
+      <button id="s-prev" aria-label="previous">&larr;</button>
+      <button id="s-next" aria-label="next">&rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const V = "../public/video/";
+const A = "../public/ads/";
+const B = "../public/bench/";
+
+// Each piece is one "thing" = one full screen. media.type controls the layout.
+const PIECES = [
+  // 01 ADS & BANNERS
+  { cat:"01", catLabel:"Ads & banners", title:"9-size IAB banner set", client:"Sabre", tag:"set",
+    what:"A full animated banner set, built from one approved ad.",
+    rep:"Replaces a week of agency resizing. Rendered in minutes, every shape re-laid-out, not squashed.",
+    media:{ type:"image", src:B+"sabre-banner-set.png" } },
+  { cat:"01", catLabel:"Ads & banners", title:"Animated chart ad", client:"Run with Foxes",
+    what:"A three-frame animated chart ad. One stat, one idea, the fox close.",
+    rep:"A data point becomes a ten-second ad. No studio, no edit suite.",
+    media:{ type:"video", src:B+"lottery.mp4" } },
+  { cat:"01", catLabel:"Ads & banners", title:"The 60/40 set, three cuts", client:"Run with Foxes",
+    what:"One idea, three executions: side-eye, activate, and the full ad.",
+    rep:"We test variants the same day, not the following sprint.",
+    media:{ type:"trio", items:[B+"6040-sideeye.mp4", B+"6040-activate.mp4", B+"6040-full.mp4"] } },
+  { cat:"01", catLabel:"Ads & banners", title:"Brand poster wall", client:"Run with Foxes",
+    what:"Cinematic brand stills. The fox dropped into film-poster worlds.",
+    rep:"Movie-poster energy on a banner budget.",
+    media:{ type:"wall", cols:3, items:[
+      {img:A+"brand-killbill.png"},{img:A+"brand-vespa.png"},{img:A+"brand-sherlock.png"},
+      {img:A+"brand-rushmore.png"},{img:A+"static-arsenal.png"},{img:A+"static-professor.png"}
+    ] } },
+
+  // 02 PAGES & DECKS
+  { cat:"02", catLabel:"Pages & decks", title:"Heritage factbook", client:"Weatherbys", tag:"live",
+    what:"A scrolling, data-rich brand factbook built as a single web page.",
+    rep:"Replaces a static PDF nobody finishes. It scrolls, it animates, it lives at a URL.",
+    media:{ type:"image", src:B+"weatherbys-factbook.png", live:"https://weatherbys-factbook.vercel.app" } },
+  { cat:"02", catLabel:"Pages & decks", title:"A whole brand site", client:"Zoroh", tag:"live",
+    what:"A complete website built for a founder-led scaleup.",
+    rep:"From positioning to a live site, in days not months.",
+    media:{ type:"image", src:B+"zoroh-site.png", live:"https://zoroh-site.vercel.app" } },
+  { cat:"02", catLabel:"Pages & decks", title:"Brand-matched deck migration", client:"Sabre",
+    what:"A client deck rebuilt to pixel-match their brand, slide for slide.",
+    rep:"The brand team stops re-formatting. We match the guidelines exactly.",
+    media:{ type:"ph-big", big:"two or three best slides as images", small:"placeholder: the money slides from the Concierge IQ deck go here" } },
+  { cat:"02", catLabel:"Pages & decks", title:"Messaging framework page", client:"Run with Foxes",
+    what:"A messaging framework turned into a living, scrolling web page.",
+    rep:"Strategy people can actually look at, not a buried slide thirty-four.",
+    media:{ type:"video", src:B+"messaging-framework.mp4" } },
+
+  // 03 THE AI TEAM
+  { cat:"03", catLabel:"The AI team", title:"The ad engine", client:"Moloco",
+    what:"Twelve CTV ads, built and laid out by the engine in one pass.",
+    rep:"The work the team would have briefed out, made in-house overnight.",
+    media:{ type:"image", src:B+"moloco-ad-engine.png" } },
+  { cat:"03", catLabel:"The AI team", title:"The AI toolkit", client:"Triton", tag:"live",
+    what:"Search intelligence, retail media and copy, in one running desk.",
+    rep:"An always-on team member. It works while you sleep.",
+    media:{ type:"image", src:B+"triton-toolkit.png", live:"https://triton-demo.vercel.app" } },
+  { cat:"03", catLabel:"The AI team", title:"The writer", client:null,
+    what:"An installed writer that drafts in a named voice, on brief, every time.",
+    rep:"A content writer's first draft in seconds, in the house voice.",
+    media:{ type:"letter" } },
+  { cat:"03", catLabel:"The AI team", title:"The operations view", client:"Run with Foxes",
+    what:"The brand-operations dashboard the team runs the work from.",
+    rep:"The process story. What is live, what is next, who owns it.",
+    media:{ type:"image", src:B+"ops-dashboard.png" } },
+
+  // 04 RESEARCH & MEASUREMENT
+  { cat:"04", catLabel:"Research & measurement", title:"The metrics pyramid", client:"Run with Foxes", tag:"live",
+    what:"An interactive model of how marketing metrics ladder up.",
+    rep:"Open it live in the room. The one demo worth clicking.",
+    media:{ type:"image", src:B+"metrics-pyramid.png", live:"https://metrics-pyramid.vercel.app" } },
+
+  // 05 ANALYSIS & MODELS
+  { cat:"05", catLabel:"Analysis & models", title:"Segmentation rigour", client:"Run with Foxes",
+    what:"A segmentation broken into discriminators, triggers and usage.",
+    rep:"Who to talk to and why, from the data up.",
+    media:{ type:"image", src:B+"segmentation.gif" } },
+  { cat:"05", catLabel:"Analysis & models", title:"95:5 in-market demand model", client:null,
+    what:"A Monte Carlo demand model. How much of the category is buying now.",
+    rep:"Sizes the prize and the brand-spend case, in an editable workbook.",
+    media:{ type:"ph-big", big:"Monte Carlo and sizing tabs", small:"placeholder: the two money tabs from the 95:5 workbook go here" } },
+];
+
+// ---------- build the stacked index ----------
+const idx = document.getElementById('index');
+let lastCat = null;
+PIECES.forEach((p, i) => {
+  if (p.cat !== lastCat) {
+    const sl = document.createElement('div');
+    sl.className = 'seclabel';
+    sl.innerHTML = `<span class="n">${p.cat}</span>${p.catLabel}`;
+    const c = document.createElement('div');
+    c.className = 'cat'; c.id = 'cat'+p.cat;
+    idx.appendChild(sl); idx.appendChild(c);
+    lastCat = p.cat;
+  }
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.tabIndex = 0;
+  row.onclick = () => openPiece(i);
+  row.onkeydown = e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); openPiece(i); } };
+  const client = p.client ? `<span class="client">${p.client}, </span>` : '';
+  const tag = p.tag ? `<span class="tag ${p.tag}">${p.tag==='set'?'full set':'live'}</span>` : '';
+  row.innerHTML = `
+    <div class="thumb">${thumbHTML(p)}</div>
+    <div class="rmain">
+      <div class="rt">${client}${p.title}${tag}</div>
+      <div class="rwhat">${p.what}</div>
+    </div>
+    <div class="ropen"><span class="bs">\\</span> open &rarr;</div>`;
+  document.getElementById('cat'+p.cat).appendChild(row);
+});
+
+function thumbHTML(p){
+  const m = p.media;
+  if (m.type==='video') return `<video src="${m.src}" muted loop autoplay playsinline></video>`;
+  if (m.type==='trio') return `<video src="${m.items[0]}" muted loop autoplay playsinline></video>`;
+  if (m.type==='image') return `<img src="${m.src}" alt="">`;
+  if (m.type==='wall' && m.items[0].img) return `<img src="${m.items[0].img}" alt="">`;
+  if (m.type==='wall') return `<div class="ph">full set</div>`;
+  if (m.type==='letter') return `<div class="ph">sample copy</div>`;
+  return `<div class="ph">${m.big||'capture'}</div>`;
+}
+
+// ---------- full-screen detail ----------
+const screen = document.getElementById('screen');
+let cur = 0;
+
+function stageHTML(p){
+  const m = p.media;
+  if (m.type==='video') return `<div class="m-single"><video src="${m.src}" autoplay loop muted playsinline></video></div>`;
+  if (m.type==='image') return `<div class="m-single"><img src="${m.src}" alt=""></div>`;
+  if (m.type==='trio') return `<div class="m-trio">${m.items.map(s=>`<video src="${s}" autoplay loop muted playsinline></video>`).join('')}</div>`;
+  if (m.type==='wall'){
+    const cols = m.cols || 3;
+    const rows = Math.ceil(m.items.length / cols);
+    const cells = m.items.map(it => `<div class="cell">${ it.img ? `<img src="${it.img}" alt="">` : `<div class="ph">${it.ph}</div>` }</div>`).join('');
+    return `<div class="m-wall" style="grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr)">${cells}</div>`;
+  }
+  if (m.type==='letter') return letterHTML();
+  return `<div class="m-ph-big"><div class="big">${m.big}</div><div class="small">${m.small||''}</div></div>`;
+}
+function letterHTML(){
+  return `<div class="m-letter">
+    <p>Dear <span class="mask">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,</p>
+    <p>I will be quick, because you are busy and the point does not need padding. The thing most teams in your position get wrong is not effort. It is that the good work never compounds, because nobody is holding the thread between one quarter and the next.</p>
+    <p>We do one job. We hold that thread, and the rest follows from there.</p>
+    <p class="sig">Drafted by the writer, in the house voice. Recipient and specifics masked.</p>
+  </div>`;
+}
+
+function openPiece(i){
+  cur = i; render(); screen.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function render(){
+  const p = PIECES[cur], m = p.media;
+  document.getElementById('s-catn').textContent = p.cat;
+  document.getElementById('s-catlabel').textContent = p.catLabel;
+  document.getElementById('s-stage').innerHTML = stageHTML(p);
+  const client = p.client ? `<span class="client">${p.client}, </span>` : '';
+  document.getElementById('s-what').innerHTML = client + p.what;
+  document.getElementById('s-rep').textContent = p.rep;
+  const live = document.getElementById('s-live');
+  if (m.live){ live.style.display='inline-block'; live.href=m.live; live.innerHTML='\\ open live &rarr;'; }
+  else live.style.display='none';
+  document.getElementById('s-count').textContent = (cur+1)+' / '+PIECES.length;
+}
+function closeScreen(){ screen.classList.remove('on'); document.body.style.overflow=''; }
+function move(d){ cur=(cur+d+PIECES.length)%PIECES.length; render(); }
+
+document.getElementById('s-close').onclick = closeScreen;
+document.getElementById('s-prev').onclick = () => move(-1);
+document.getElementById('s-next').onclick = () => move(1);
+document.addEventListener('keydown', e => {
+  if (!screen.classList.contains('on')) return;
+  if (e.key==='Escape') closeScreen();
+  if (e.key==='ArrowRight') move(1);
+  if (e.key==='ArrowLeft') move(-1);
+});
+</script>
+</body>
+</html>

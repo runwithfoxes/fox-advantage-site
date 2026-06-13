@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const OUT = new URL('../public/bench/', import.meta.url).pathname;
+const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 2 });
+const page = await ctx.newPage();
+await page.goto('file://' + process.env.HOME + '/projects/zoroh-site/index.html', { waitUntil: 'networkidle', timeout: 30000 }).catch(()=>{});
+await page.waitForTimeout(1800);
+await page.screenshot({ path: OUT + 'zoroh-site.png' });
+await browser.close();
+console.log('zoroh OK');
