@@ -114,9 +114,9 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
         <h1 className="sc-title">Creative deliverables</h1>
         <p className="sc-intro">
           A live view of the work for SoftCo in the new brand system. The full
-          asset list is below with status. Everything is shown at its real size,
-          the size it appears where it runs, so you can judge it as it will
-          actually be seen. Have a look and send back your thoughts.
+          asset list is below with status. The finished pieces are shown in full
+          underneath, static and animated. Have a look and send back your
+          thoughts.
         </p>
 
         <div className="sc-count">
@@ -142,25 +142,23 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
           <div className="sc-sec-head"><h2>Chart Ad set</h2><span className="badge">{STATUS}</span></div>
           <p className="sc-desc">
             The animated display ad across the full IAB range, eleven sizes from
-            the square down to the mobile strips. Each one is shown at its actual
-            pixel size, so you see exactly how it reads where it runs.
+            the square down to the mobile strips. Every size is here at true
+            proportion.
           </p>
           {CHART_GROUPS.map(([label, items]) => (
             <div className="sc-chart-group" key={label}>
               <div className="sc-chart-label">{label}</div>
               <div className="sc-chart-row">
-                {items.map(([size]) => {
+                {items.map(([size, w]) => {
                   const [cw, ch] = size.split("x");
-                  // true pixel size; the 1080 square is a social post, shown at feed size
-                  const dispW = size === "1080x1080" ? 520 : Number(cw);
                   return (
-                    <div className="sc-chart-item" key={size} style={{ width: dispW }}>
+                    <div className="sc-chart-item" key={size} style={{ width: w }}>
                       <Vid
                         src={`${M}/chart-${size}.mp4`}
                         poster={`${M}/chart-${size}-poster.png`}
                         ratio={`${cw} / ${ch}`}
                       />
-                      <div className="cap">{size}{size === "1080x1080" ? " · feed size" : ""}</div>
+                      <div className="cap">{size}</div>
                     </div>
                   );
                 })}
@@ -176,10 +174,10 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             Animated explainer, the visible cost above the line, the hidden cost
             below. Built as a square for LinkedIn, organic and paid.
           </p>
-          <figure style={{ width: 520 }}>
-            <Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} />
-            <figcaption>1080×1080 file · shown at feed size · organic + paid</figcaption>
-          </figure>
+          <div className="sc-grid">
+            <figure><Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
+            <div />
+          </div>
         </section>
 
         {/* Testimonials - static + animated */}
@@ -218,10 +216,10 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             live UI and animated. Built as a large square for a LinkedIn organic
             post and a paid square ad.
           </p>
-          <figure style={{ width: 520 }}>
-            <Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} />
-            <figcaption>1080×1080 file · shown at feed size · organic + paid</figcaption>
-          </figure>
+          <div className="sc-grid">
+            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
+            <div />
+          </div>
         </section>
 
         <footer className="sc-foot">Run with Foxes · private workspace for SoftCo</footer>
