@@ -170,7 +170,7 @@
 .cw-summary {
   border: 1px solid var(--border);
   overflow: hidden;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 .cw-row {
   display: grid;
@@ -218,7 +218,9 @@
 
 /* ---- sections ---- */
 .cw-sec {
-  margin-bottom: 72px;
+  border-top: 1px solid var(--border);
+  padding-top: 26px;
+  margin-bottom: 26px;
 }
 .cw-sec-head {
   display: flex;
