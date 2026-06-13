@@ -264,6 +264,9 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
           <SubstackCarousel posts={posts} />
         </div>
 
+        {/* divider between newsletter and modules intro */}
+        <div className="hpx-divider"></div>
+
         {/* MODULES INTRO */}
         <div className="hpx-wrap hpx-intro">
           <h2 className="hpx-intro-h2">Where can <span className="hpx-hl">AI</span> be built into marketing?</h2>

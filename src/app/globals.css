@@ -4907,7 +4907,11 @@ a.project-card {
 .hpx-warrow:hover { border-color: #3A7CA5; color: #3A7CA5; }
 
 /* ===== modules intro ===== */
-.hpx-intro { padding: 54px 48px 6px; }
+.hpx-divider {
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.hpx-intro { padding: 40px 48px 6px; }
 .hpx-intro-kick {
   font-size: 12px;
   letter-spacing: 2px;
