@@ -16,15 +16,46 @@ export const meta: Meta = {
 
 /* First-pass statuses from the Sabre workstreams - confirm before sharing. */
 export const deliverables: Deliverable[] = [
-  { name: "Display ad machine (IAB sets)", detail: "Full IAB set per route from swappable copy / photo / animatic", status: "ready", date: "2026-06-12", note: "OPEN and PLATFORM routes delivered. AI route and route 4 to follow." },
+  { name: "Display ad machine (IAB sets)", detail: "Full IAB set per route from swappable copy / photo / animatic", status: "ready", date: "2026-06-12", note: "OPEN and PLATFORM routes ready below. AI route and route 4 to follow." },
   { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "ready", date: "2026-05-19", note: "Darren iterating independently." },
   { name: "Email writer", detail: "Sabre brand-voice marketing emails", status: "in-progress", date: "2026-06-12", note: "Finalising from Darren's example emails." },
   { name: "Brand blueprint + scorecard", detail: "Brand health and positioning", status: "in-progress", date: "2026-06-12", note: "" },
 ];
 
+/* Banner sets, grouped by shape. [size, aspect-ratio, display-width-px] */
+type Tile = [string, string, number];
+const SQUARE: Tile[] = [
+  ["1200x1200", "1/1", 280],
+  ["640x480", "640/480", 300],
+  ["300x250", "300/250", 240],
+  ["300x600", "300/600", 150],
+  ["160x600", "160/600", 150],
+];
+const BOARD: Tile[] = [
+  ["970x250", "970/250", 560],
+  ["728x90", "728/90", 440],
+  ["600x100", "600/100", 340],
+];
+const STRIP: Tile[] = [
+  ["320x100", "320/100", 320],
+  ["300x50", "300/50", 320],
+];
+
+function adGroups(route: string) {
+  const mk = (tiles: Tile[]) =>
+    tiles.map(([size, ratio, w]) => ({ src: `${route}-${size}.mp4`, ratio, w, cap: size, download: true }));
+  return [
+    { label: "Square, rectangle and skyscraper", items: mk(SQUARE) },
+    { label: "Leaderboard and billboard", items: mk(BOARD) },
+    { label: "Strips and mobile", items: mk(STRIP) },
+  ];
+}
+
 export const work: WorkSection[] = [
-  // Work sections land here as we stage the files. Examples in the data-model
-  // reference (kinds: media, copy, files, gallery). The banner sets, decks and
-  // any copy/instructions go here once their files are dropped into
-  // public/clients/sabre/media/.
+  { title: "Display ads - OPEN route", kind: "media", layout: "grouped", badge: "Waiting for feedback",
+    desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
+    groups: adGroups("open") },
+  { title: "Display ads - PLATFORM route", kind: "media", layout: "grouped", badge: "Waiting for feedback",
+    desc: "The PLATFORM route across the full IAB range. The same machine with swapped copy, photo and motif.",
+    groups: adGroups("platform") },
 ];
