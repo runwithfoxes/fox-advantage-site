@@ -20,6 +20,7 @@ export const deliverables: Deliverable[] = [
   { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "ready", date: "2026-05-19", note: "Darren iterating independently." },
   { name: "Email writer", detail: "Sabre brand-voice marketing emails", status: "in-progress", date: "2026-06-12", note: "Finalising from Darren's example emails." },
   { name: "Brand blueprint + scorecard", detail: "Brand health and positioning", status: "in-progress", date: "2026-06-12", note: "" },
+  { name: "AI in the briefing system", detail: "Build AI into Sabre's briefing process", status: "todo", date: "2026-06-13", target: "2026-07-06", note: "Next brief. Starts the first week of July." },
 ];
 
 /* Banner sets, grouped by shape. [size, aspect-ratio, display-width-px] */
