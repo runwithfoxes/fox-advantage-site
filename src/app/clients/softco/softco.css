@@ -171,7 +171,7 @@
 .sc-summary {
   border: 1px solid var(--border);
   overflow: hidden;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 .sc-row {
   display: grid;
@@ -217,7 +217,9 @@
 
 /* ---- sections ---- */
 .sc-sec {
-  margin-bottom: 72px;
+  border-top: 1px solid var(--border);
+  padding-top: 26px;
+  margin-bottom: 26px;
 }
 .sc-sec-head {
   display: flex;
