@@ -174,10 +174,10 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             Animated explainer, the visible cost above the line, the hidden cost
             below. Built as a square for LinkedIn, organic and paid.
           </p>
-          <div className="sc-grid">
-            <figure><Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
-            <div />
-          </div>
+          <figure style={{ width: 320 }}>
+            <Vid src={`${M}/iceberg-1080.mp4`} poster={`${M}/iceberg-poster.png`} />
+            <figcaption>1080×1080 · organic + paid</figcaption>
+          </figure>
         </section>
 
         {/* Testimonials - static + animated */}
@@ -216,10 +216,10 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             live UI and animated. Built as a large square for a LinkedIn organic
             post and a paid square ad.
           </p>
-          <div className="sc-grid">
-            <figure><Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} /><figcaption>1080×1080 · organic + paid</figcaption></figure>
-            <div />
-          </div>
+          <figure style={{ width: 320 }}>
+            <Vid src={`${M}/proof-v2.mp4`} poster={`${M}/proof-v2-poster.png`} />
+            <figcaption>1080×1080 · organic + paid</figcaption>
+          </figure>
         </section>
 
         <footer className="sc-foot">Run with Foxes · private workspace for SoftCo</footer>
