@@ -49,6 +49,7 @@ const DELIVERABLES: [string, string, DStatus][] = [
   ["Meeting backgrounds", "1920×1080 virtual background", "ready"],
   ["Social posts", "Square 1080×1080", "ready"],
   ["Carousels", "3-slide, square 1080×1080", "ready"],
+  ["Product walkthrough carousel", "5-slide, square 1080×1080", "ready"],
   ["Webinar promos", "Square 1080×1080", "ready"],
   ["Thumbnails", "1280×720", "ready"],
   ["Video clips", "Webinar repurposing", "todo"],
@@ -254,6 +255,19 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_1.png`} alt="" width={220} /><figcaption>Carousel 1/3</figcaption></figure>
             <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_2.png`} alt="" width={220} /><figcaption>Carousel 2/3</figcaption></figure>
             <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_3.png`} alt="" width={220} /><figcaption>Carousel 3/3</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Product walkthrough carousel */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>LinkedIn carousel · product walkthrough</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Square 1080×1080, a 5-slide set. One invoice from inbox to paid, with the AP screen rebuilt as live UI. Numbers shown are placeholder, to confirm before publishing.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-1.png`} alt="" width={210} /><figcaption>1 · Cover</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-2.png`} alt="" width={210} /><figcaption>2 · Capture</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-3.png`} alt="" width={210} /><figcaption>3 · Match</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-4.png`} alt="" width={210} /><figcaption>4 · Controls</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-5.png`} alt="" width={210} /><figcaption>5 · Close</figcaption></figure>
           </div>
         </section>
 
