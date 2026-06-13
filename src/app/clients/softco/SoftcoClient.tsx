@@ -42,15 +42,15 @@ const DELIVERABLES: [string, string, DStatus][] = [
   ["Display / banner ads", "11 IAB sizes, animated", "ready"],
   ["Testimonial cards", "4 layouts, square, static + animated", "ready"],
   ["Iceberg diagram", "Square 1080×1080, organic + paid", "ready"],
-  ["Email banners", "600×140 and 1024×206", "todo"],
-  ["Blog headers", "With and without photography", "todo"],
-  ["Blog content cards", "Stat, pull-quote, question, diagrams", "todo"],
-  ["Event graphics", "Gartner, IOFM, SSOW", "todo"],
-  ["Meeting backgrounds", "Virtual call backgrounds", "todo"],
-  ["Social posts", "General, Euromoney, AP questions", "todo"],
-  ["Carousels", "Nacha, France e-invoicing", "todo"],
-  ["Webinar promos", "Event and on-demand", "todo"],
-  ["Thumbnails", "Video and content thumbnails", "todo"],
+  ["Email banners", "600×140 and 1024×206", "ready"],
+  ["Blog headers", "1200×630", "ready"],
+  ["Blog content cards", "Stat, pull-quote, question", "ready"],
+  ["Event graphics", "Square 1080×1080", "ready"],
+  ["Meeting backgrounds", "1920×1080 virtual background", "ready"],
+  ["Social posts", "Square 1080×1080", "ready"],
+  ["Carousels", "3-slide, square 1080×1080", "ready"],
+  ["Webinar promos", "Square 1080×1080", "ready"],
+  ["Thumbnails", "1280×720", "ready"],
   ["Video clips", "Webinar repurposing", "todo"],
   ["Product Proof ad", "Square 1080×1080, extra", "ready"],
 ];
@@ -201,6 +201,68 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
                 <div className="submark">Static</div>
               </figure>
             ))}
+          </div>
+        </section>
+
+        {/* Blog & content cards */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Blog &amp; content cards</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Stat, pull-quote and question cards. Square 1080×1080.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/stat_card.png`} alt="" width={300} /><figcaption>Stat · 1080×1080</figcaption></figure>
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/quote_card.png`} alt="" width={300} /><figcaption>Pull-quote · 1080×1080</figcaption></figure>
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/question_card.png`} alt="" width={300} /><figcaption>Question · 1080×1080</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Social & event */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Social &amp; event</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Square 1080×1080, organic and paid. The Gartner mark is placeholder pending the real logo.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/social_post.png`} alt="" width={300} /><figcaption>Social post · 1080×1080</figcaption></figure>
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/event_card.png`} alt="" width={300} /><figcaption>Event graphic · 1080×1080</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Email banners */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Email banners</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Your existing email banner dimensions, single line of copy.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 520 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/email_banner_1024.png`} alt="" width={520} /><figcaption>1024×206</figcaption></figure>
+            <figure style={{ width: 420 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/email_banner_600.png`} alt="" width={420} /><figcaption>600×140</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Blog header & thumbnail */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Blog header &amp; thumbnail</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Wide formats.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 480 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/blog_header.png`} alt="" width={480} /><figcaption>Blog header · 1200×630</figcaption></figure>
+            <figure style={{ width: 440 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/thumbnail.png`} alt="" width={440} /><figcaption>Thumbnail · 1280×720</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Webinar & carousel */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Webinar &amp; LinkedIn carousel</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Square 1080×1080. The carousel is a 3-slide set.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 300 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/webinar_promo.png`} alt="" width={300} /><figcaption>Webinar promo · 1080×1080</figcaption></figure>
+            <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_1.png`} alt="" width={220} /><figcaption>Carousel 1/3</figcaption></figure>
+            <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_2.png`} alt="" width={220} /><figcaption>Carousel 2/3</figcaption></figure>
+            <figure style={{ width: 220 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/carousel_3.png`} alt="" width={220} /><figcaption>Carousel 3/3</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Meeting background */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Meeting background</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Virtual call background, the person sits on the clear right side. 1920×1080.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 520 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/meeting_bg.png`} alt="" width={520} /><figcaption>1920×1080</figcaption></figure>
           </div>
         </section>
 

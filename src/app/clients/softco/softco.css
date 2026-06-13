@@ -271,6 +271,13 @@
   border: 1px solid var(--border);
   box-shadow: 0 10px 26px rgba(29, 27, 27, 0.08);
 }
+.sc-still {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 26px rgba(29, 27, 27, 0.08);
+}
 .tile video,
 .tile img {
   width: 100%;
