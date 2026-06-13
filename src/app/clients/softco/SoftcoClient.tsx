@@ -50,6 +50,7 @@ const DELIVERABLES: [string, string, DStatus][] = [
   ["Social posts", "Square 1080×1080", "ready"],
   ["Carousels", "3-slide, square 1080×1080", "ready"],
   ["Product walkthrough carousel", "5-slide, square 1080×1080", "ready"],
+  ["Testimonial carousel", "5-slide, square 1080×1080", "ready"],
   ["Webinar promos", "Square 1080×1080", "ready"],
   ["Thumbnails", "1280×720", "ready"],
   ["Video clips", "Webinar repurposing", "todo"],
@@ -268,6 +269,19 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-3.png`} alt="" width={210} /><figcaption>3 · Match</figcaption></figure>
             <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-4.png`} alt="" width={210} /><figcaption>4 · Controls</figcaption></figure>
             <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/product-carousel-5.png`} alt="" width={210} /><figcaption>5 · Close</figcaption></figure>
+          </div>
+        </section>
+
+        {/* Testimonial carousel */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>LinkedIn carousel · customer stories</h2><span className="badge">{STATUS}</span></div>
+          <p className="sc-desc">Square 1080×1080, a 5-slide set. Face-led customer proof. Faces, names and the retention figure are placeholder, to confirm before publishing.</p>
+          <div className="sc-chart-row">
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/testimonial-carousel-1.png`} alt="" width={210} /><figcaption>1 · Cover</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/testimonial-carousel-2.png`} alt="" width={210} /><figcaption>2 · Customer</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/testimonial-carousel-3.png`} alt="" width={210} /><figcaption>3 · Customer</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/testimonial-carousel-4.png`} alt="" width={210} /><figcaption>4 · Result</figcaption></figure>
+            <figure style={{ width: 210 }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img className="sc-still" src={`${M}/testimonial-carousel-5.png`} alt="" width={210} /><figcaption>5 · Close</figcaption></figure>
           </div>
         </section>
 
