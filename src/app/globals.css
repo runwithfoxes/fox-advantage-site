@@ -5133,3 +5133,36 @@ a.project-card {
 }
 .hpx-footer a:hover { color: #3A7CA5; }
 .hpx-footer-sep { color: #c2c8cc; }
+
+/* ===== THE BENCH (/bench) ===== */
+/* Simple nav - logo only. Frosted glass, no border, no box-shadow (brand standard). */
+.bench-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 18px 48px;
+  background: rgba(250, 250, 248, 0.85);
+  backdrop-filter: blur(12px);
+}
+/* Logo matches the live site nav logo exactly: JetBrains Mono 13px / 300 / 2px,
+   muted base, only "Run" in logo orange. */
+.bench-nav-logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.bench-nav-logo span { color: #F47521; }
+
+/* No video hero on the bench, so the content opens directly under the fixed nav.
+   Clear the nav height plus breathing room above the modules intro. */
+.bench-modules-wrap { padding-top: 112px; }
+@media (max-width: 768px) {
+  .bench-nav { padding: 16px 24px; }
+  .bench-modules-wrap { padding-top: 92px; }
+}
