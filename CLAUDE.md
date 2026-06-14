@@ -3,6 +3,8 @@
 ## What this is
 The live homepage for runwithfoxes.com. Next.js site deployed on Vercel. The commercial layer was built on 2026-05-29/30, replacing the old module-based layout with an accordion-based system.
 
+> **DEPLOY GUARDRAIL (branch check): runwithfoxes.com deploys from `main`.** A terminal can open while git is parked on an unfinished feature branch (e.g. `bench-page`, the half-built `/bench` showcase). Committing there strands the change off `main` and it never goes live. BEFORE committing any change meant to ship, run `git branch --show-current` and confirm it's `main`. If it isn't and the change is meant to go live, cherry-pick just that commit onto `main` and push - do NOT merge the whole feature branch (it carries unfinished work). Pushing a feature branch only gives a Vercel preview URL, not production.
+
 ## Current state (2026-06-04) - accordion port LIVE
 Live and deployed. The homepage was ported from `wireframes/wireframe-accordion-homepage.html` to a single nested accordion and shipped to production (merge `ef84f97..69bae26` -> main, Vercel auto-deploy). Structure now: hero -> bio (magazine wrap) + contact-CTA strip (sequential green dots) -> LIVE Substack carousel -> 7-module nested accordion (L0 row -> L1 intro -> L2 reused rich panels) -> rotating testimonial band -> book block. Single font (JetBrains Mono) across the homepage via `--sans -> mono` on `.hp-root`. Nav is now `/tools` + `/previous`. All copy approved, zero 404s. See "Homepage structure" below (updated) and the session summary `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`. Rollback if ever needed: `git revert 69bae26` (or revert the merge) + push.
 
