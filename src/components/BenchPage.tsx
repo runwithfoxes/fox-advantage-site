@@ -76,7 +76,7 @@ export default function BenchPage() {
         <div className="hpx-wrap hpx-intro">
           <h2 className="hpx-intro-h2">Where can <span className="hpx-hl">AI</span> be built into marketing?</h2>
           <p className="hpx-intro-p">Below are the places we most often build AI into marketing work. A marketing team of two or three, with the right systems, can do work that used to need a department.</p>
-          <p className="hpx-intro-p">The idea behind it is straightforward. If a piece of marketing knowledge or craft can be written down in enough detail, it can be built in code and automated. So we set the highest bar we can for a piece of work, get it precise enough to build, then turn it into a system. From then on the bar holds on its own, and everyone working from it is held to the same standard, whether they would have reached it alone or not.</p>
+          <p className="hpx-intro-p">The idea behind it is straightforward. Marketing knowledge, a methodology, a process or system, the order a job needs to be done in: if it can be written down in enough detail, it can be built in code and automated. So we set the highest bar we can for a piece of work, get it precise enough to build, then turn it into a system. From then on the bar holds on its own, and everyone working from it is held to the same standard, whether they would have reached it alone or not.</p>
         </div>
 
         {/* NESTED ACCORDION */}
