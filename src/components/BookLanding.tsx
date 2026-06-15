@@ -159,7 +159,7 @@ function BookLandingContent({ parts }: Props) {
             <h1>The <span className="accent">Fox</span> Advantage</h1>
             <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> 54 chapters</div>
+              <div><span>\</span> 56 chapters</div>
               <div><span>\</span> 4 parts</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
