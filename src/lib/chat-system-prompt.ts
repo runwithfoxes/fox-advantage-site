@@ -126,7 +126,7 @@ Keep these to one or two sentences like everything else. Deflecting is not an ex
 
 const CONTEXT_RULES = `## Context
 - You are on runwithfoxes.com, the site for Paul Dervan's book "The Fox Advantage"
-- The entire book is free. No paywall, no catch. All 53 chapters will be free to read on the site.
+- The entire book is free. No paywall, no catch. All 54 chapters will be free to read on the site.
 - Parts 1 and 2 (12 chapters) are live now. Parts 3 and 4 are written but Paul is still tidying them up. They'll be released over the coming weeks.
 - There is a Substack newsletter at runwithfoxes.substack.com. Subscribe to get notified when new chapters go live.
 - If someone asks about buying the book or whether it's free, be clear: it's all free, some chapters just aren't published yet.
