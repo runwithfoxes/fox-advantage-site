@@ -43,19 +43,34 @@ type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
 type CopyBlock = { label?: string; text: string; mono?: boolean };
 type FileRow = { name: string; file: string; note?: string };
+/* One email rendered as an email. Blocks render in order; set exactly one key. */
+type EmailBlock = {
+  p?: string;                              // body paragraph
+  h?: string;                              // bold sub-header (e.g. "What you will learn:")
+  ul?: string[];                           // bullet list
+  cta?: { label: string; href?: string };  // styled CTA button
+  sign?: string;                            // sign-off block (divider above, keeps line breaks)
+  note?: string;                            // muted structural line (hero-image marker, gap caption)
+};
 
 export type WorkSection = {
   title: string;
   status?: Status;
   desc?: string;
   badge?: string;
-  kind: "media" | "copy" | "files" | "gallery";
+  kind: "media" | "copy" | "files" | "gallery" | "email";
   layout?: "grouped" | "pair" | "single";
   groups?: MediaGroup[];
   item?: MediaItem;
   items?: (MediaItem | PairItem)[];
   blocks?: CopyBlock[];
   files?: FileRow[];
+  // email kind:
+  prompt?: string;        // the prompt shown above the email card
+  from?: string;          // sender label in the email bar (e.g. "Sabre")
+  subject?: string;       // subject line
+  preheader?: string;     // muted preview line under the subject
+  emailBody?: EmailBlock[];
 };
 
 const STATUS_LABEL: Record<Status, string> = {
@@ -65,6 +80,22 @@ const STATUS_LABEL: Record<Status, string> = {
 };
 
 const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
+
+/* Flatten an email section to plain text for the copy button. */
+function emailToText(s: WorkSection): string {
+  const parts: string[] = [];
+  if (s.subject) parts.push(`Subject: ${s.subject}`);
+  if (s.preheader) parts.push(`Preheader: ${s.preheader}`);
+  for (const b of s.emailBody || []) {
+    if (b.h) parts.push(b.h);
+    if (b.note) parts.push(b.note);
+    if (b.p) parts.push(b.p);
+    if (b.ul) parts.push(b.ul.map((li) => `- ${li}`).join("\n"));
+    if (b.cta) parts.push(`[ ${b.cta.label} ]`);
+    if (b.sign) parts.push(b.sign);
+  }
+  return parts.join("\n\n");
+}
 
 /* ---- small pieces ---- */
 function Media({ src, poster, ratio = "1 / 1", base }: { src: string; poster?: string; ratio?: string; base: string }) {
@@ -196,6 +227,49 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
               <pre className={b.mono ? "cw-copy-text mono" : "cw-copy-text"}>{b.text}</pre>
             </div>
           ))}
+        </div>
+      )}
+
+      {s.kind === "email" && (
+        <div className="cw-email-wrap">
+          {s.prompt && (
+            <div className="cw-copy-block">
+              <div className="cw-copy-head">
+                <span className="cw-copy-label">Prompt</span>
+                <CopyButton text={s.prompt} />
+              </div>
+              <pre className="cw-copy-text mono">{s.prompt}</pre>
+            </div>
+          )}
+          <div className="cw-email">
+            <div className="cw-email-bar">
+              <span className="cw-email-from">{s.from || "Email"}</span>
+              <CopyButton text={emailToText(s)} />
+            </div>
+            {s.subject && <div className="cw-email-subject">{s.subject}</div>}
+            {s.preheader && <div className="cw-email-pre">{s.preheader}</div>}
+            <div className="cw-email-body">
+              {(s.emailBody || []).map((b, i) => {
+                if (b.h) return <p className="cw-email-h" key={i}>{b.h}</p>;
+                if (b.note) return <p className="cw-email-note" key={i}>{b.note}</p>;
+                if (b.p) return <p className="cw-email-p" key={i}>{b.p}</p>;
+                if (b.ul)
+                  return (
+                    <ul className="cw-email-ul" key={i}>
+                      {b.ul.map((li, j) => <li key={j}>{li}</li>)}
+                    </ul>
+                  );
+                if (b.cta)
+                  return (
+                    <a className="cw-email-cta" key={i} href={b.cta.href || "#"} onClick={(e) => !b.cta?.href && e.preventDefault()}>
+                      {b.cta.label}
+                    </a>
+                  );
+                if (b.sign) return <div className="cw-email-sign" key={i}>{b.sign}</div>;
+                return null;
+              })}
+            </div>
+          </div>
         </div>
       )}
 
