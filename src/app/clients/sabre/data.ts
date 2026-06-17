@@ -18,7 +18,7 @@ export const meta: Meta = {
 export const deliverables: Deliverable[] = [
   { name: "Display ad machine (IAB sets)", detail: "Full IAB set per route from swappable copy / photo / animatic", status: "ready", date: "2026-06-12", note: "OPEN and PLATFORM routes ready below. AI route and route 4 to follow." },
   { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "ready", date: "2026-05-19", note: "Darren iterating independently." },
-  { name: "Email writer (v2)", detail: "Sabre brand-voice marketing emails, nine types", status: "ready", date: "2026-06-16", note: "v2 ready. Download the Claude skill and three sample emails below." },
+  { name: "Email writer (v2.1)", detail: "Sabre brand-voice marketing emails, nine types", status: "ready", date: "2026-06-17", note: "v2.1 ready. Download the Claude skill and three sample emails below. The version and a changelog are in the download." },
   { name: "Brand blueprint + scorecard", detail: "Brand health and positioning", status: "in-progress", date: "2026-06-12", note: "" },
   { name: "AI in the briefing system", detail: "Build AI into Sabre's briefing process", status: "todo", date: "2026-06-13", target: "2026-07-06", note: "Next brief. Starts the first week of July." },
 ];
@@ -60,10 +60,10 @@ export const work: WorkSection[] = [
     desc: "The PLATFORM route across the full IAB range. The same machine with swapped copy, photo and motif.",
     groups: adGroups("platform") },
 
-  { title: "Email Writer v2", kind: "files", status: "ready",
-    desc: "v2 of the Sabre email writer, now covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft.",
+  { title: "Email Writer v2.1", kind: "files", status: "ready",
+    desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
     files: [
-      { name: "Sabre Email Writer v2", file: "sabre-email-writer.sabre.zip", note: "Claude skill, zip" },
+      { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1" },
     ] },
 
   { title: "Sample: webinar invite", kind: "email", badge: "Sample email",
