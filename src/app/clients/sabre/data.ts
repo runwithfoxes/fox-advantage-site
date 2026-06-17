@@ -63,7 +63,7 @@ export const work: WorkSection[] = [
   { title: "Email Writer v2.1", kind: "files", status: "ready",
     desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
     files: [
-      { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1" },
+      { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1", date: "2026-06-17" },
     ] },
 
   { title: "Sample: webinar invite", kind: "email", badge: "Sample email",

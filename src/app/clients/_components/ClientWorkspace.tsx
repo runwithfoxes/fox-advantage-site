@@ -42,7 +42,7 @@ type MediaItem = {
 type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
 type CopyBlock = { label?: string; text: string; mono?: boolean };
-type FileRow = { name: string; file: string; note?: string };
+type FileRow = { name: string; file: string; note?: string; date?: string };
 /* One email rendered as an email. Blocks render in order; set exactly one key. */
 type EmailBlock = {
   p?: string;                              // body paragraph
@@ -279,6 +279,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
             <div className="cw-file-row" key={f.file}>
               <span className="cw-file-name">{f.name}</span>
               {f.note && <span className="cw-file-note">{f.note}</span>}
+              {f.date && <span className="cw-file-date">Uploaded {f.date}</span>}
               <DownloadLink src={f.file} base={base} />
             </div>
           ))}

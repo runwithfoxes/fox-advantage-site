@@ -450,6 +450,12 @@
   font-size: 11px;
   letter-spacing: 0.5px;
 }
+.cw-file-date {
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
 .cw-file-row .cw-download {
   margin-top: 0;
 }
