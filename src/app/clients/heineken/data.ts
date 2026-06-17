@@ -10,7 +10,7 @@ export const meta: Meta = {
   slug: "heineken",
   headline: "Greenlight",
   intro: "A live view of the Greenlight ad work. You send four things for a gig, and we return a finished, on-brand static in seconds.",
-  lastUpdated: "2026-06-16",
+  lastUpdated: "2026-06-17",
 };
 
 /* The tracker (top of the page). */
@@ -25,8 +25,8 @@ export const deliverables: Deliverable[] = [
     status: "ready", date: "2026-06-16", target: "",
     note: "Long artist names wrap sensibly, long venue names move to a horizontal bar. Nothing overflows." },
   { name: "Animation (the stretch)", detail: "The 6 second motion version",
-    status: "todo", date: "2026-06-16", target: "",
-    note: "Next. The same blocks animate into the Greenlight stretch." },
+    status: "ready", date: "2026-06-17", target: "",
+    note: "Live. The same GreenBlocks animate into the Greenlight stretch. Everything moves proportionally so the gaps between shapes stay constant, the photo breathes, and the name block does the two-part Greenlight move." },
   { name: "Component system", detail: "Reusable GreenBlocks",
     status: "in-progress", date: "2026-06-16", target: "",
     note: "Underway, so any future layout is built from the same parts." },
@@ -46,6 +46,11 @@ export const work: WorkSection[] = [
   { title: "The Cure", kind: "media", layout: "single", status: "ready",
     desc: "Inputs: the photo, the artist name (The Cure), the venue (Marley Park) and the date (26.06.26). This is the static that came back.",
     item: { src: "the-cure.png", ratio: "16/9", w: 760, cap: "The Cure, Marley Park, 26.06.26", download: true } },
+
+  // The stretch - the 6s animation, same machine
+  { title: "The stretch (animation)", kind: "media", layout: "single", status: "ready",
+    desc: "The same gig, animated. The 6 second Greenlight stretch is built from the same blocks: the photo breathes, the GREENLIGHT strip and the pill ride the gaps, and the name block grows wide then settles short. Everything moves together so the spacing never collapses.",
+    item: { src: "greenlight-stretch.mp4", ratio: "16/9", w: 760, cap: "The Greenlight stretch, on The Cure", download: true } },
 
   // The reference ad, rebuilt - shows the machine matches your existing creative
   { title: "Matched to your reference", kind: "media", layout: "single", status: "ready",
