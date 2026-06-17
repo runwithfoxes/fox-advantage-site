@@ -27,9 +27,9 @@ export const deliverables: Deliverable[] = [
   { name: "Animation (the stretch)", detail: "The 6 second motion version",
     status: "ready", date: "2026-06-17", target: "",
     note: "Live. The same GreenBlocks animate into the Greenlight stretch. Everything moves proportionally so the gaps between shapes stay constant, the photo breathes, and the name block does the two-part Greenlight move." },
-  { name: "Component system", detail: "Reusable GreenBlocks",
-    status: "in-progress", date: "2026-06-16", target: "",
-    note: "Underway, so any future layout is built from the same parts." },
+  { name: "Component system", detail: "Reusable GreenBlocks shape library",
+    status: "ready", date: "2026-06-17", target: "",
+    note: "Built. A named set of modular shapes (rounded rectangles, pill, photo cells, name/date blocks, GREENLIGHT strip, venue markers, motifs). Every layout is assembled from these same parts." },
 ];
 
 /* The work area. */
@@ -52,8 +52,14 @@ export const work: WorkSection[] = [
     desc: "The same gig, animated. The 6 second Greenlight stretch is built from the same blocks: the photo breathes, the GREENLIGHT strip and the pill ride the gaps, and the name block grows wide then settles short. Everything moves together so the spacing never collapses.",
     item: { src: "greenlight-stretch.mp4", ratio: "16/9", w: 760, cap: "The Greenlight stretch, on The Cure", download: true } },
 
-  // The reference ad, rebuilt - shows the machine matches your existing creative
-  { title: "Matched to your reference", kind: "media", layout: "single", status: "ready",
-    desc: "Your existing Greenlight ad, rebuilt by the machine to the pixel. New gigs run through the same system, so everything sits together as one set.",
-    item: { src: "example-arlo-parks.png", ratio: "16/9", w: 760, cap: "Arlo Parks, Toners Pub, 03.05.26", download: true } },
+  // Reference match - before/after slider proving the recreation is pixel-identical
+  { title: "Matched to your reference", kind: "compare", status: "ready",
+    desc: "Drag the slider. Left is your original Greenlight ad (Arlo Parks, Toners Pub); right is the same ad rebuilt by the machine. They are pixel-for-pixel the same, so new gigs sit alongside your existing creative as one set.",
+    compare: { before: "reference-arlo-original.png", after: "reference-arlo-ours.png", ratio: "16/9", w: 760,
+      labelBefore: "Original", labelAfter: "Rebuilt by the machine", download: true } },
+
+  // GreenBlocks shape vocabulary - the system the ads are built from
+  { title: "GreenBlocks shape vocabulary", kind: "media", layout: "single", status: "ready",
+    desc: "Every Greenlight ad is built from one set of named modular shapes: rounded rectangles (in three greens), the pill, photo cells, the name and date blocks, the vertical GREENLIGHT strip, venue markers, the footer and the line-icon motifs. Each shape is reusable and scales proportionally, so any future layout is assembled from the same parts.",
+    item: { src: "greenblocks-vocabulary.png", ratio: "1920/1520", w: 820, cap: "The GreenBlocks shape library", download: true } },
 ];

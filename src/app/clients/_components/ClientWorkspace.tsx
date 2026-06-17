@@ -8,7 +8,7 @@
    client's folder, edit it there, and point that page.tsx at the copy. Other
    clients are unaffected. */
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 import Link from "next/link";
 
 /* ---- types (kept permissive so data.ts is easy to hand-edit) ---- */
@@ -58,8 +58,10 @@ export type WorkSection = {
   status?: Status;
   desc?: string;
   badge?: string;
-  kind: "media" | "copy" | "files" | "gallery" | "email";
+  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare";
   layout?: "grouped" | "pair" | "single";
+  // compare kind: before/after wipe slider
+  compare?: { before: string; after: string; ratio?: string; w?: number; labelBefore?: string; labelAfter?: string; download?: boolean };
   groups?: MediaGroup[];
   item?: MediaItem;
   items?: (MediaItem | PairItem)[];
@@ -108,6 +110,34 @@ function Media({ src, poster, ratio = "1 / 1", base }: { src: string; poster?: s
         // eslint-disable-next-line @next/next/no-img-element
         <img src={url} alt={src} />
       )}
+    </div>
+  );
+}
+
+/* before/after wipe slider - drag (or click) to reveal the "before" over the "after" */
+function Compare({ before, after, ratio = "16 / 9", labelBefore, labelAfter, base }:
+  { before: string; after: string; ratio?: string; labelBefore?: string; labelAfter?: string; base: string }) {
+  const [pos, setPos] = useState(50);
+  const ref = useRef<HTMLDivElement>(null);
+  const move = (clientX: number) => {
+    const el = ref.current; if (!el) return;
+    const r = el.getBoundingClientRect();
+    setPos(Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100)));
+  };
+  return (
+    <div className="cw-compare" ref={ref} style={{ aspectRatio: ratio }}
+      onMouseDown={(e) => move(e.clientX)}
+      onMouseMove={(e) => { if (e.buttons === 1) move(e.clientX); }}
+      onTouchStart={(e) => move(e.touches[0].clientX)}
+      onTouchMove={(e) => move(e.touches[0].clientX)}>
+      {/* eslint-disable @next/next/no-img-element */}
+      <img className="cw-cmp-img" src={`${base}/${after}`} alt={labelAfter || "after"} draggable={false} />
+      <img className="cw-cmp-img" src={`${base}/${before}`} alt={labelBefore || "before"} draggable={false}
+        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
+      {/* eslint-enable @next/next/no-img-element */}
+      <div className="cw-cmp-handle" style={{ left: `${pos}%` }}><span /></div>
+      {labelBefore && <div className="cw-cmp-lab cw-cmp-lab-l">{labelBefore}</div>}
+      {labelAfter && <div className="cw-cmp-lab cw-cmp-lab-r">{labelAfter}</div>}
     </div>
   );
 }
@@ -202,6 +232,14 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
             </figure>
           ))}
         </div>
+      )}
+
+      {s.kind === "compare" && s.compare && (
+        <figure className="cw-figure" style={{ width: s.compare.w || 760 }}>
+          <Compare before={s.compare.before} after={s.compare.after} ratio={s.compare.ratio}
+            labelBefore={s.compare.labelBefore} labelAfter={s.compare.labelAfter} base={base} />
+          {s.compare.download && <DownloadLink src={s.compare.after} base={base} />}
+        </figure>
       )}
 
       {s.kind === "gallery" && (
