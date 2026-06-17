@@ -58,6 +58,14 @@ export const work: WorkSection[] = [
     compare: { before: "reference-arlo-original.png", after: "reference-arlo-ours.png", ratio: "16/9", w: 760,
       labelBefore: "Original", labelAfter: "Rebuilt by the machine", download: true } },
 
+  // In context - greyed mockups showing the ad placed in media
+  { title: "Seen in context", kind: "gallery", status: "ready",
+    desc: "How a Greenlight static sits in the wild: a website ad slot and an Instagram post, with everything around it greyed back so the ad carries the colour. (Illustrative placement only - the gig shown is a made-up example to demonstrate the format, not a real announcement.)",
+    items: [
+      { src: "mockup-website.png", ratio: "16/10", w: 700, cap: "In a website ad slot", download: true },
+      { src: "mockup-instagram.png", ratio: "4/5", w: 360, cap: "As an Instagram post", download: true },
+    ] },
+
   // GreenBlocks shape vocabulary - the system the ads are built from
   { title: "GreenBlocks shape vocabulary", kind: "media", layout: "single", status: "ready",
     desc: "Every Greenlight ad is built from one set of named modular shapes: rounded rectangles (in three greens), the pill, photo cells, the name and date blocks, the vertical GREENLIGHT strip, venue markers, the footer and the line-icon motifs. Each shape is reusable and scales proportionally, so any future layout is assembled from the same parts.",
