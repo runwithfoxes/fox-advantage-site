@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import SoftcoClient from "./SoftcoClient";
-import { checkAuth } from "./actions";
-import "./softco.css";
+import ClientWorkspace from "../_components/ClientWorkspace";
+import { verifyPassword, checkAuth } from "./actions";
+import { meta, deliverables, work } from "./data";
+import "../_components/workspace.css";
 
 export const metadata: Metadata = {
   title: "SoftCo \\ Run with Foxes",
@@ -11,5 +12,13 @@ export const metadata: Metadata = {
 
 export default async function SoftcoPage() {
   const authed = await checkAuth();
-  return <SoftcoClient initialAuth={authed} />;
+  return (
+    <ClientWorkspace
+      initialAuth={authed}
+      verifyAction={verifyPassword}
+      meta={meta}
+      deliverables={deliverables}
+      work={work}
+    />
+  );
 }

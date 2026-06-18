@@ -20,6 +20,8 @@ export type Meta = {
   headline: string;
   intro: string;
   lastUpdated: string;
+  feedbackContacts?: string[];  // client emails whose replies count as feedback
+  pageShareThread?: string;     // Gmail thread/message id of the page-share email
 };
 
 export type Deliverable = {
@@ -43,6 +45,9 @@ type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
 type CopyBlock = { label?: string; text: string; mono?: boolean };
 type FileRow = { name: string; file: string; note?: string; date?: string };
+/* feedback kind: one Q&A row. q is an array so two client points that share
+   one answer render as a single row. a:"" renders as "pending". */
+type FaqItem = { q: string[]; a: string };
 /* One email rendered as an email. Blocks render in order; set exactly one key. */
 type EmailBlock = {
   p?: string;                              // body paragraph
@@ -58,8 +63,14 @@ export type WorkSection = {
   status?: Status;
   desc?: string;
   badge?: string;
-  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare";
+  date?: string;          // feedback kind: the round date, shown as the badge
+  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback";
   layout?: "grouped" | "pair" | "single";
+  // feedback kind:
+  intro?: string;         // optional framing line above the accordion
+  responder?: string;     // answer label (default "Response"), e.g. "Paul"
+  faq?: FaqItem[];        // the Q&A rows
+  note?: string;          // optional closing line below the accordion
   // compare kind: before/after wipe slider
   compare?: { before: string; after: string; ratio?: string; w?: number; labelBefore?: string; labelAfter?: string; download?: boolean };
   groups?: MediaGroup[];
@@ -180,8 +191,54 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+/* feedback kind: click-to-expand Q&A accordion. Holds its own open-state. */
+function Faq({ intro, items, note, responder = "Response" }:
+  { intro?: string; items: FaqItem[]; note?: string; responder?: string }) {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+  const toggle = (i: number) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  return (
+    <>
+      {intro && <p className="cw-fb-intro">{intro}</p>}
+      <div className="cw-acc">
+        {items.map((it, i) => {
+          const isOpen = open.has(i);
+          return (
+            <div className={`cw-acc-item${isOpen ? " open" : ""}`} key={i}>
+              <button className="cw-acc-q" aria-expanded={isOpen} onClick={() => toggle(i)}>
+                <span className="cw-acc-mark">{isOpen ? "−" : "+"}</span>
+                <span className="cw-acc-qtext">
+                  {it.q.map((line, j) => <span key={j}>{line}</span>)}
+                </span>
+              </button>
+              {isOpen && (
+                <div className="cw-acc-a">
+                  {it.a ? (
+                    <>
+                      <span className="cw-acc-alabel">{responder}</span>
+                      <p>{it.a}</p>
+                    </>
+                  ) : (
+                    <span className="cw-acc-pending">Response pending</span>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {note && <p className="cw-fb-note">{note}</p>}
+    </>
+  );
+}
+
 function SectionHead({ s }: { s: WorkSection }) {
-  const label = s.badge || (s.status ? STATUS_LABEL[s.status] : "");
+  const label = s.badge || s.date || (s.status ? STATUS_LABEL[s.status] : "");
   return (
     <div className="cw-sec-head">
       <h2>{s.title}</h2>
@@ -309,6 +366,10 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
             </div>
           </div>
         </div>
+      )}
+
+      {s.kind === "feedback" && (
+        <Faq intro={s.intro} items={s.faq || []} note={s.note} responder={s.responder} />
       )}
 
       {s.kind === "files" && (
