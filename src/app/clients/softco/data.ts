@@ -69,14 +69,18 @@ const TESTI: [string, string][] = [
 /* Feedback round - 18 June 2026. Verbatim. */
 const FB_INTRO =
   "Ok great. So all of what you want is possible and the way to get good quality is about deciding upfront these decisions as much as possible. You can have a wide range as long as each one is decided.";
-const FB_ITEMS: { q: string[]; a: string }[] = [
+const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "Will the system give us more variation / flexibility so every asset doesn't feel like the same blue template. Will we be able to instruct it, or will we be tied to strict templates? For example - change blue to SoftCo orange and more.",
     ],
     a: "Yes but we have to build them upfront. For example, if you want orange or others, show me examples and I'll build them. So you might end up with 3-5 types of ads formats. To be honest, AI alone, I'd recommend you don't vary it too much. You might get bored but consistency pays off. If you don't have examples, we can still build them. I just need to know what's on in your heads on this.",
   },
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "In some examples, it's not immediately clear what should be read first.",
       "Am I correct in assuming that readability will improve as font size, weight, contrast, text density feel off in parts.",
@@ -84,12 +88,16 @@ const FB_ITEMS: { q: string[]; a: string }[] = [
     a: "I suggest we lock in font size per asset and shape upfront. One example is your iceberg is complex for a banner ad. So either you decide this is not a good idea for a banner ad or we find a better way. For now, I was just replicating it, but I wouldn't necessarily recommend this. This is about locking in rules which as \"font must be x size for x shape and size\" and this forces user to make decisions on number of words you cannot go over.",
   },
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "Again (and maybe this is part of the development), but we will want to have Product-led and human-led assets. We have found they perform better.",
     ],
     a: "Yes on product and human. Are there examples in the files you sent me? If not, let me know examples. People do get higher attention.",
   },
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "Webinar repurposing remains the highest-value workflow and should remain a major focus of Phase 1.",
       "I know you mentioned looking at another webinar tool, but can we see what our existing one does first? I believe it has a Claude plug-in. John Neary can provide more info.",
@@ -97,16 +105,29 @@ const FB_ITEMS: { q: string[]; a: string }[] = [
     a: "I looked at your webinar tool, and registered with it but it seems to be more about data on what happened, views etc not a clipping tool, unless I got that wrong? Can you tell me, as this is critical to move forward quickly?",
   },
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "Will the system include readability guardrails so that assets fail QA automatically if minimum contrast, size, or spacing requirements are not met.",
     ],
     a: "The QA is possible. It's a good idea. Nobody asked me before. I'll do that.",
   },
   {
+    who: "Daragh Byrne",
+    when: "18 Jun 2026",
     q: [
       "I know we are getting ahead here, but how does the system decide which asset format to generate?",
     ],
     a: "You decide what assets you want. Think of it as a menu of customised options to choose from. The menu options don't have to be narrow but again I'd recommend you don't go so wide, so you have consistency. You might have say a product route, a testimonial route, a case study route etc. And each of these would have a range of formats / sizes.",
+  },
+  {
+    who: "John Neary",
+    when: "18 Jun 2026",
+    q: [
+      "I appreciate that consistency pays off, but I a curious what the limits are to allow the engine creative freedom beyond the stricter and more consistent templates.",
+      "I'll work on categorizing all imaging in the morning and share them with you. After which we can arrange a call.",
+    ],
+    a: "I'm confident we can recreate any format or route we want. I could be wrong but so far, this has proved true. I can show you how to deviate from what is locked in. But take my time running the National Lottery marketing. We had jackpot ads for 4 products. All different from eachother but each followed a format. We also had Good Causes format, and some other formats. But all in, we had about 6 types of ads.\n\nSo you / we can train AI on whatever format you wish. The challenge is if a brand wants a different format every time, which is not a good idea in general. As in non ai world, that racks up costs of origination each time and same in AI world. So best way to think about this is what is the widest scope of ads you would use, and then articulate these in detail. It requires a bit of discipline but that was the case pre-AI for any brand that wants quality at speed too. In Lottery, I didn't want to waste time or money re-creating new formats every time. We had our 4-6 types and everybody in the agency was to execute as efficiently as possible once we agree what they are.",
   },
 ];
 
@@ -115,7 +136,7 @@ export const work: WorkSection[] = [
     title: "Feedback & responses",
     kind: "feedback",
     date: "18 June 2026",
-    desc: "A record of the first round of feedback on this page and the replies, kept here so nothing gets lost. Click a question to read the answer.",
+    desc: "A running record of all feedback and commentary on this page, and the replies, kept here so we can both see everything. Click an entry to read the response.",
     intro: FB_INTRO,
     responder: "Paul",
     faq: FB_ITEMS,

@@ -619,6 +619,13 @@
   font-weight: 400;
   line-height: 1.55;
 }
+.cw-acc-who {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 .cw-acc-a {
   padding: 0 22px 22px 52px;
 }
@@ -646,6 +653,7 @@
   line-height: 1.7;
   color: var(--text);
   max-width: 720px;
+  white-space: pre-line;
 }
 .cw-fb-note {
   font-family: var(--mono);

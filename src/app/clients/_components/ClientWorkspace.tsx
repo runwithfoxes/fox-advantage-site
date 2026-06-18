@@ -45,9 +45,11 @@ type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
 type CopyBlock = { label?: string; text: string; mono?: boolean };
 type FileRow = { name: string; file: string; note?: string; date?: string };
-/* feedback kind: one Q&A row. q is an array so two client points that share
-   one answer render as a single row. a:"" renders as "pending". */
-type FaqItem = { q: string[]; a: string };
+/* feedback kind: one entry in the commentary log. q is an array so two points
+   that share one answer render as one row. a:"" renders as "pending".
+   who/when attribute the entry (person + date) so a multi-person, multi-day
+   log stays traceable. */
+type FaqItem = { q: string[]; a: string; who?: string; when?: string };
 /* One email rendered as an email. Blocks render in order; set exactly one key. */
 type EmailBlock = {
   p?: string;                              // body paragraph
@@ -213,6 +215,11 @@ function Faq({ intro, items, note, responder = "Response" }:
               <button className="cw-acc-q" aria-expanded={isOpen} onClick={() => toggle(i)}>
                 <span className="cw-acc-mark">{isOpen ? "−" : "+"}</span>
                 <span className="cw-acc-qtext">
+                  {(it.who || it.when) && (
+                    <span className="cw-acc-who">
+                      {[it.who, it.when].filter(Boolean).join(" · ")}
+                    </span>
+                  )}
                   {it.q.map((line, j) => <span key={j}>{line}</span>)}
                 </span>
               </button>
