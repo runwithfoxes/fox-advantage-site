@@ -68,6 +68,10 @@ export type WorkSection = {
   date?: string;          // feedback kind: the round date, shown as the badge
   kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback";
   layout?: "grouped" | "pair" | "single";
+  // true-size device preview: where this asset actually runs. feed/email render
+  // inside a device frame at true size; display/web (and unset) render as before.
+  placement?: "feed" | "email" | "display" | "web";
+  carousel?: boolean;     // feed placement: items are slides of one carousel
   // feedback kind:
   intro?: string;         // optional framing line above the accordion
   responder?: string;     // answer label (default "Response"), e.g. "Paul"
@@ -244,6 +248,123 @@ function Faq({ intro, items, note, responder = "Response" }:
   );
 }
 
+/* ---- true-size device preview ---- */
+type Device = "desktop" | "mobile";
+
+// True display widths (CSS px) per placement + device. One source of truth;
+// the QA font check reads the same table.
+const TRUE_W: Record<"feed" | "email", Record<Device, number>> = {
+  feed: { desktop: 555, mobile: 390 },
+  email: { desktop: 600, mobile: 390 },
+};
+
+function DeviceToggle({ device, setDevice }: { device: Device; setDevice: (d: Device) => void }) {
+  return (
+    <div className="cw-devtoggle">
+      <span className="cw-devtoggle-label">Preview as</span>
+      <div className="cw-devtoggle-pills">
+        <button className={device === "desktop" ? "on" : ""} onClick={() => setDevice("desktop")}>Desktop</button>
+        <button className={device === "mobile" ? "on" : ""} onClick={() => setDevice("mobile")}>Mobile</button>
+      </div>
+    </div>
+  );
+}
+
+// Wraps an asset in realistic device chrome. Hugs its content (true size).
+function DeviceFrame({ device, kind, context, children }:
+  { device: Device; kind: "browser" | "email"; context: string; children: React.ReactNode }) {
+  if (device === "mobile") {
+    return (
+      <div className="cw-phone">
+        <div className="cw-phone-status"><span>9:41</span><span className="cw-phone-ico" /></div>
+        <div className="cw-phone-scr">{children}</div>
+      </div>
+    );
+  }
+  if (kind === "email") {
+    return (
+      <div className="cw-emailfr">
+        <div className="cw-emailfr-bar"><span className="cw-emailfr-from">{context}</span></div>
+        <div className="cw-emailfr-body">{children}</div>
+      </div>
+    );
+  }
+  return (
+    <div className="cw-browser">
+      <div className="cw-browser-bar">
+        <span className="cw-dot" /><span className="cw-dot" /><span className="cw-dot" />
+        <span className="cw-url">{context}</span>
+      </div>
+      <div className="cw-browser-body">{children}</div>
+    </div>
+  );
+}
+
+// One-slide-at-a-time carousel at true size, like a real feed.
+function FeedCarousel({ items, width, base }: { items: MediaItem[]; width: number; base: string }) {
+  const [i, setI] = useState(0);
+  const n = items.length;
+  const it = items[i];
+  return (
+    <div className="cw-fcar" style={{ width }}>
+      <div className="cw-fcar-stage" style={{ width }}>
+        <div style={{ width }}><Media src={it.src} poster={it.poster} ratio={it.ratio || "1/1"} base={base} /></div>
+        {n > 1 && <button className="cw-fcar-nav cw-fcar-prev" onClick={() => setI((i - 1 + n) % n)} aria-label="Previous">‹</button>}
+        {n > 1 && <button className="cw-fcar-nav cw-fcar-next" onClick={() => setI((i + 1) % n)} aria-label="Next">›</button>}
+      </div>
+      {n > 1 && (
+        <div className="cw-fcar-dots">
+          {items.map((_, j) => <button key={j} className={j === i ? "on" : ""} onClick={() => setI(j)} aria-label={`Slide ${j + 1}`} />)}
+        </div>
+      )}
+      <div className="cw-fcar-cap">{i + 1} / {n}{it.cap ? ` · ${it.cap}` : ""}</div>
+    </div>
+  );
+}
+
+// The framed, true-size body for feed/email placements.
+function PreviewBody({ s, base, device }: { s: WorkSection; base: string; device: Device }) {
+  const items = (s.items as MediaItem[] | undefined) || [];
+  if (s.placement === "email") {
+    const width = TRUE_W.email[device];
+    return (
+      <div className="cw-previews">
+        {items.map((it, idx) => (
+          <figure className="cw-preview-fig" key={idx}>
+            <DeviceFrame device={device} kind="email" context="SoftCo · marketing email">
+              <div style={{ width }}><Media src={it.src} ratio={it.ratio} base={base} /></div>
+            </DeviceFrame>
+            <figcaption>True size in an email{it.cap ? ` · ${it.cap}` : ""}</figcaption>
+          </figure>
+        ))}
+      </div>
+    );
+  }
+  const width = TRUE_W.feed[device];
+  if (s.carousel) {
+    return (
+      <figure className="cw-preview-fig">
+        <DeviceFrame device={device} kind="browser" context="linkedin.com/feed">
+          <FeedCarousel items={items} width={width} base={base} />
+        </DeviceFrame>
+        <figcaption>True size in the LinkedIn feed · {device === "mobile" ? "mobile" : "13″ laptop"}</figcaption>
+      </figure>
+    );
+  }
+  return (
+    <div className="cw-previews">
+      {items.map((it, idx) => (
+        <figure className="cw-preview-fig" key={idx}>
+          <DeviceFrame device={device} kind="browser" context="linkedin.com/feed">
+            <div style={{ width }}><Media src={it.src} poster={it.poster} ratio={it.ratio || "1/1"} base={base} /></div>
+          </DeviceFrame>
+          {it.cap && <figcaption>{it.cap}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function SectionHead({ s }: { s: WorkSection }) {
   const label = s.badge || s.date || (s.status ? STATUS_LABEL[s.status] : "");
   return (
@@ -255,13 +376,16 @@ function SectionHead({ s }: { s: WorkSection }) {
 }
 
 /* ---- work-section renderers by kind ---- */
-function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
+function WorkBlock({ s, base, device }: { s: WorkSection; base: string; device: Device }) {
+  const previewed = s.placement === "feed" || s.placement === "email";
   return (
     <section className="cw-sec">
       <SectionHead s={s} />
       {s.desc && <p className="cw-desc">{s.desc}</p>}
 
-      {s.kind === "media" && s.layout === "grouped" && (s.groups || []).map((g) => (
+      {previewed && <PreviewBody s={s} base={base} device={device} />}
+
+      {!previewed && s.kind === "media" && s.layout === "grouped" && (s.groups || []).map((g) => (
         <div className="cw-chart-group" key={g.label}>
           <div className="cw-chart-label">{g.label}</div>
           <div className="cw-chart-row">
@@ -276,7 +400,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
         </div>
       ))}
 
-      {s.kind === "media" && s.layout === "single" && s.item && (
+      {!previewed && s.kind === "media" && s.layout === "single" && s.item && (
         <figure className="cw-figure" style={{ width: s.item.w || 320 }}>
           <Media src={s.item.src} poster={s.item.poster} ratio={s.item.ratio} base={base} />
           {s.item.cap && <figcaption>{s.item.cap}</figcaption>}
@@ -284,7 +408,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
         </figure>
       )}
 
-      {s.kind === "media" && s.layout === "pair" && (
+      {!previewed && s.kind === "media" && s.layout === "pair" && (
         <div className="cw-pair-grid">
           {(s.items as PairItem[] | undefined)?.map((it) => (
             <figure key={it.key || it.name}>
@@ -298,7 +422,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
         </div>
       )}
 
-      {s.kind === "compare" && s.compare && (
+      {!previewed && s.kind === "compare" && s.compare && (
         <figure className="cw-figure" style={{ width: s.compare.w || 760 }}>
           <Compare before={s.compare.before} after={s.compare.after} ratio={s.compare.ratio}
             labelBefore={s.compare.labelBefore} labelAfter={s.compare.labelAfter} base={base} />
@@ -306,7 +430,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
         </figure>
       )}
 
-      {s.kind === "gallery" && (
+      {!previewed && s.kind === "gallery" && (
         <div className="cw-gallery">
           {(s.items as MediaItem[] | undefined)?.map((it) => (
             <figure key={it.src} style={{ width: it.w }}>
@@ -413,6 +537,7 @@ export default function ClientWorkspace({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
+  const [device, setDevice] = useState<Device>("desktop");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -495,8 +620,17 @@ export default function ClientWorkspace({
           ))}
         </div>
 
+        {work.some((s) => s.placement === "feed" || s.placement === "email") && (
+          <div className="cw-devbar">
+            <DeviceToggle device={device} setDevice={setDevice} />
+            <span className="cw-devbar-note">
+              Previews below show each ad at the real size people see it, on a {device === "mobile" ? "phone" : "13″ laptop"}.
+            </span>
+          </div>
+        )}
+
         {work.map((s) => (
-          <WorkBlock key={s.title} s={s} base={base} />
+          <WorkBlock key={s.title} s={s} base={base} device={device} />
         ))}
 
         <footer className="cw-foot">Run with Foxes · private workspace for {meta.client}</footer>

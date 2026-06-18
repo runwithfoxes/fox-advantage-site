@@ -190,6 +190,7 @@ export const work: WorkSection[] = [
     title: "Social & event",
     kind: "gallery",
     status: "ready",
+    placement: "feed",
     desc: "Square 1080×1080, organic and paid. The Gartner mark is placeholder pending the real logo.",
     items: [
       { src: "social_post.png", ratio: "1/1", w: 300, cap: "Social post · 1080×1080" },
@@ -200,6 +201,7 @@ export const work: WorkSection[] = [
     title: "Email banners",
     kind: "gallery",
     status: "ready",
+    placement: "email",
     desc: "Your existing email banner dimensions, single line of copy.",
     items: [
       { src: "email_banner_1024.png", ratio: "1024/206", w: 520, cap: "1024×206" },
@@ -232,7 +234,9 @@ export const work: WorkSection[] = [
     title: "LinkedIn carousel · product walkthrough",
     kind: "gallery",
     status: "ready",
-    desc: "Square 1080×1080, a 5-slide set. One invoice from inbox to paid, with the AP screen rebuilt as live UI. Numbers shown are placeholder, to confirm before publishing.",
+    placement: "feed",
+    carousel: true,
+    desc: "A 5-slide LinkedIn carousel. One invoice from inbox to paid, with the AP screen rebuilt as live UI. Numbers shown are placeholder, to confirm before publishing.",
     items: [
       { src: "product-carousel-1.png", ratio: "1/1", w: 210, cap: "1 · Cover" },
       { src: "product-carousel-2.png", ratio: "1/1", w: 210, cap: "2 · Capture" },
@@ -245,7 +249,9 @@ export const work: WorkSection[] = [
     title: "LinkedIn carousel · customer stories",
     kind: "gallery",
     status: "ready",
-    desc: "Square 1080×1080, a 5-slide set. Face-led customer proof. Faces, names and the retention figure are placeholder, to confirm before publishing.",
+    placement: "feed",
+    carousel: true,
+    desc: "A 5-slide LinkedIn carousel. Face-led customer proof. Faces, names and the retention figure are placeholder, to confirm before publishing.",
     items: [
       { src: "testimonial-carousel-1.png", ratio: "1/1", w: 210, cap: "1 · Cover" },
       { src: "testimonial-carousel-2.png", ratio: "1/1", w: 210, cap: "2 · Customer" },
