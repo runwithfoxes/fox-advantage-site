@@ -58,6 +58,26 @@ const DELIVERABLES: [string, string, DStatus][] = [
 ];
 const READY_COUNT = DELIVERABLES.filter((d) => d[2] === "ready").length;
 
+// Verbatim feedback record. Daragh's points and Paul's replies, captured as-is.
+const FEEDBACK_THEM: string[] = [
+  "Will the system give us more variation / flexibility so every asset doesn't feel like the same blue template. Will we be able to instruct it, or will we be tied to strict templates? For example - change blue to SoftCo orange and more.",
+  "In some examples, it's not immediately clear what should be read first.",
+  "Am I correct in assuming that readability will improve as font size, weight, contrast, text density feel off in parts.",
+  "Again (and maybe this is part of the development), but we will want to have Product-led and human-led assets. We have found they perform better.",
+  "Webinar repurposing remains the highest-value workflow and should remain a major focus of Phase 1.",
+  "I know you mentioned looking at another webinar tool, but can we see what our existing one does first? I believe it has a Claude plug-in. John Neary can provide more info.",
+  "Will the system include readability guardrails so that assets fail QA automatically if minimum contrast, size, or spacing requirements are not met.",
+  "I know we are getting ahead here, but how does the system decide which asset format to generate?",
+];
+const FEEDBACK_US: string[] = [
+  "Yes but we have to build them upfront. For example, if you want orange or others, show me examples and I'll build them. So you might end up with 3-5 types of ads formats. To be honest, AI alone, I'd recommend you don't vary it too much. You might get bored but consistency pays off. If you don't have examples, we can still build them. I just need to know what's on in your heads on this.",
+  "I suggest we lock in font size per asset and shape upfront. One example is your iceberg is complex for a banner ad. So either you decide this is not a good idea for a banner ad or we find a better way. For now, I was just replicating it, but I wouldn't necessarily recommend this. This is about locking in rules which as \"font must be x size for x shape and size\" and this forces user to make decisions on number of words you cannot go over.",
+  "Yes on product and human. Are there examples in the files you sent me? If not, let me know examples. People do get higher attention.",
+  "I looked at your webinar tool, and registered with it but it seems to be more about data on what happened, views etc not a clipping tool, unless I got that wrong? Can you tell me, as this is critical to move forward quickly?",
+  "The QA is possible. It's a good idea. Nobody asked me before. I'll do that.",
+  "You decide what assets you want. Think of it as a menu of customised options to choose from. The menu options don't have to be narrow but again I'd recommend you don't go so wide, so you have consistency. You might have say a product route, a testimonial route, a case study route etc. And each of these would have a range of formats / sizes.",
+];
+
 export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) {
   const [authed, setAuthed] = useState(initialAuth);
   const [password, setPassword] = useState("");
@@ -138,6 +158,39 @@ export default function SoftcoClient({ initialAuth }: { initialAuth: boolean }) 
             </div>
           ))}
         </div>
+
+        {/* Feedback record - verbatim, for the file */}
+        <section className="sc-sec">
+          <div className="sc-sec-head"><h2>Feedback &amp; responses</h2><span className="badge">18 June 2026</span></div>
+          <p className="sc-desc">
+            A record of the first round of feedback on this page and the replies,
+            kept here so nothing gets lost.
+          </p>
+          <div className="sc-fb">
+            <div className="sc-fb-col them">
+              <div className="sc-fb-who">Daragh - feedback</div>
+              <div className="sc-fb-date">18 June 2026</div>
+              <ol className="sc-fb-list">
+                {FEEDBACK_THEM.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ol>
+            </div>
+            <div className="sc-fb-col">
+              <div className="sc-fb-who">Paul - response</div>
+              <div className="sc-fb-date">18 June 2026</div>
+              <ol className="sc-fb-list">
+                {FEEDBACK_US.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+          <p className="sc-fb-note">
+            Next step agreed: a short video call to go through each ad and format
+            one by one, transcribed so the full feedback is captured.
+          </p>
+        </section>
 
         {/* Chart Ad - every size */}
         <section className="sc-sec">
