@@ -1017,6 +1017,14 @@ a.project-card {
   color: var(--text);
 }
 
+/* Make the calendar booking word read as an obvious clickable link */
+.contact-book-link {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .contact-main {
     padding: 100px 24px 80px;
