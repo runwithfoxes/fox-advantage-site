@@ -194,7 +194,7 @@ export async function POST(req: Request) {
 
   try {
     const result = streamText({
-      model: provider("claude-sonnet-4-6-20250514"),
+      model: provider("claude-sonnet-4-6"),
       system: `${persona.instructions}
 
 Here is an example of how you write when analysing a case. This is your voice, your depth, and your style. Match this level of specificity and directness when critiquing the user's plan. The example is from a different case - do not reference its content.

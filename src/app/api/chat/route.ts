@@ -110,7 +110,7 @@ export async function POST(req: Request) {
       "";
 
     const result = streamText({
-      model: provider("claude-sonnet-4-20250514"),
+      model: provider("claude-sonnet-4-6"),
       system: getSystemPrompt(),
       messages: modelMessages,
       maxOutputTokens: 200,
