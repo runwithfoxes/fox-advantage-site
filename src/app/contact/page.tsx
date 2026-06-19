@@ -46,6 +46,13 @@ export default function ContactPage() {
 
           <div className="contact-channels">
             <div className="contact-item">
+              <a href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <div className="contact-label">\calendar</div>
+                <div className="contact-value">Book a 30-minute strategy chat</div>
+              </a>
+            </div>
+
+            <div className="contact-item">
               <div className="contact-label">\email</div>
               <div className="contact-value">paul@runwithfoxes.com</div>
             </div>
