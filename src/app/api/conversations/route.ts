@@ -1,6 +1,7 @@
 import {
   getRecentConversations,
   getRecentErrors,
+  getRecentQuestions,
 } from "@/lib/conversation-store";
 
 export async function GET(req: Request) {
@@ -15,15 +16,18 @@ export async function GET(req: Request) {
   const limitParam = searchParams.get("limit");
   const limit = limitParam ? parseInt(limitParam, 10) : 50;
 
-  const [conversations, errors] = await Promise.all([
+  const [conversations, errors, questions] = await Promise.all([
     getRecentConversations(limit),
     getRecentErrors(20),
+    getRecentQuestions(limit),
   ]);
 
   return Response.json({
     count: conversations.length,
     errorCount: errors.length,
+    questionCount: questions.length,
     conversations,
     errors,
+    questions,
   });
 }

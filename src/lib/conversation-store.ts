@@ -117,6 +117,69 @@ export async function saveError(error: {
   }
 }
 
+/**
+ * Save an inbound question the moment it arrives, BEFORE the model is called.
+ * This guarantees we capture what people asked even if the model fails, times
+ * out, or the function crashes mid-stream (none of which trigger onFinish).
+ */
+export async function saveInboundQuestion(question: {
+  chatId: string;
+  userMessage: string;
+  messageCount: number;
+}): Promise<void> {
+  if (!question.userMessage) return;
+
+  const redis = getRedis();
+  if (!redis) {
+    console.log(JSON.stringify({ type: "isa_inbound_question", ...question }));
+    return;
+  }
+
+  try {
+    const id = `q:${Date.now()}`;
+    await redis.set(
+      id,
+      { ...question, timestamp: new Date().toISOString() },
+      { ex: 60 * 60 * 24 * 30 }
+    );
+    await redis.zadd("question:index", { score: Date.now(), member: id });
+    // Keep last 500 questions
+    const count = await redis.zcard("question:index");
+    if (count > 500) {
+      await redis.zremrangebyrank("question:index", 0, count - 501);
+    }
+  } catch (e) {
+    console.error("[conversation-store] failed to save question:", e);
+  }
+}
+
+interface StoredQuestion {
+  timestamp: string;
+  chatId: string;
+  userMessage: string;
+  messageCount: number;
+}
+
+/** Get recent inbound questions, newest first */
+export async function getRecentQuestions(
+  limit = 50
+): Promise<StoredQuestion[]> {
+  const redis = getRedis();
+  if (!redis) return [];
+
+  const ids = await redis.zrange<string[]>("question:index", 0, limit - 1, {
+    rev: true,
+  });
+  if (!ids.length) return [];
+
+  const questions: StoredQuestion[] = [];
+  for (const id of ids) {
+    const q = await redis.get<StoredQuestion>(id);
+    if (q) questions.push(q);
+  }
+  return questions;
+}
+
 interface StoredError {
   timestamp: string;
   userMessage: string;

@@ -4,6 +4,7 @@ import { getSystemPrompt } from "@/lib/chat-system-prompt";
 import {
   saveConversationExchange,
   saveError,
+  saveInboundQuestion,
 } from "@/lib/conversation-store";
 import { getRateLimiter } from "@/lib/rate-limit";
 
@@ -109,6 +110,15 @@ export async function POST(req: Request) {
       latestUserMessage?.content ||
       "";
 
+    // Capture the question the moment it arrives, before the model is called.
+    // onFinish only fires on a successful reply, so this is what guarantees we
+    // still have the question if the model errors, times out, or crashes.
+    await saveInboundQuestion({
+      chatId: sanitizedChatId,
+      messageCount: messages.length,
+      userMessage: userText,
+    });
+
     const result = streamText({
       model: provider("claude-sonnet-4-6"),
       system: getSystemPrompt(),
@@ -120,6 +130,16 @@ export async function POST(req: Request) {
           messageCount: messages.length,
           userMessage: userText,
           isaResponse: text,
+        });
+      },
+      onError: async (event) => {
+        // Streaming errors (e.g. a bad/retired model) never reach the catch
+        // block below, so record them here with the actual question + detail.
+        const err = (event as { error?: unknown }).error;
+        console.error("[chat] stream error:", err);
+        await saveError({
+          userMessage: userText,
+          errorMessage: err instanceof Error ? err.message : String(err),
         });
       },
     });
