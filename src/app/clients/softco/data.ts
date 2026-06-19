@@ -133,15 +133,15 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 
 export const work: WorkSection[] = [
   /* ---- THE BRIEF: SoftCo asset library (19 Jun, from John Neary) ----
-     Source material FROM the client. This is NOT our work. It is the existing
-     set of formats we are to recreate and automate. Mobile/desktop and any
-     responsive versions belong to the solution, not here. Reconcile into the
-     tracker later. */
+     Source material FROM the client. This is NOT the AI versions. It is the
+     existing set of formats the AI engine recreates and automates. Mobile/
+     desktop and any responsive versions belong to the AI versions, not here.
+     Reconcile into the tracker later. */
   {
     title: "The brief",
     kind: "gallery",
     badge: "Source material",
-    desc: "Everything in this section is from SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats we are to recreate and automate. It is not work we have produced. Our work is the deliverables list above and the finished pieces further down.",
+    desc: "Everything in this section is from SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats the AI engine recreates and automates. It is not AI-made work. The AI versions are the deliverables list above and the finished pieces below.",
     items: [],
   },
   {
