@@ -176,13 +176,13 @@ export async function POST(req: Request) {
 
       const [extractionResult, summaryResult] = await Promise.all([
         generateText({
-          model: provider("claude-haiku-4-5-20251001"),
+          model: provider("claude-haiku-4-5"),
           system: buildExtractionPrompt(brief),
           messages: [{ role: "user", content: transcriptText }],
           maxOutputTokens: 500,
         }),
         generateText({
-          model: provider("claude-haiku-4-5-20251001"),
+          model: provider("claude-haiku-4-5"),
           system: buildSummaryPrompt(brief),
           messages: [{ role: "user", content: transcriptText }],
           maxOutputTokens: 200,
@@ -207,7 +207,7 @@ export async function POST(req: Request) {
           apiKey: process.env.CHAT_ANTHROPIC_API_KEY,
         });
         const knowledgeResult = await generateText({
-          model: provider("claude-haiku-4-5-20251001"),
+          model: provider("claude-haiku-4-5"),
           system: buildKnowledgeExtractionPrompt(brief),
           messages: [{ role: "user", content: transcriptText }],
           maxOutputTokens: 800,

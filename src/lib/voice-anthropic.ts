@@ -23,7 +23,7 @@ export async function* streamAnthropicAsOpenAI(
   maxTokens: number = 300
 ): AsyncGenerator<string> {
   const stream = anthropic.messages.stream({
-    model: "claude-haiku-4-5-20251001",
+    model: "claude-haiku-4-5",
     system: [
       {
         type: "text",
@@ -54,7 +54,7 @@ export async function* streamAnthropicAsOpenAI(
             id,
             object: "chat.completion.chunk",
             created: Math.floor(Date.now() / 1000),
-            model: "claude-haiku-4-5-20251001",
+            model: "claude-haiku-4-5",
             choices: [
               {
                 index: 0,
@@ -71,7 +71,7 @@ export async function* streamAnthropicAsOpenAI(
         id,
         object: "chat.completion.chunk",
         created: Math.floor(Date.now() / 1000),
-        model: "claude-haiku-4-5-20251001",
+        model: "claude-haiku-4-5",
         choices: [
           {
             index: 0,
@@ -88,7 +88,7 @@ export async function* streamAnthropicAsOpenAI(
     id,
     object: "chat.completion.chunk",
     created: Math.floor(Date.now() / 1000),
-    model: "claude-haiku-4-5-20251001",
+    model: "claude-haiku-4-5",
     choices: [
       {
         index: 0,

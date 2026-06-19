@@ -178,13 +178,13 @@ export async function POST(req: Request) {
 
             const [quantResult, summaryResult] = await Promise.all([
               generateText({
-                model: provider("claude-haiku-4-5-20251001"),
+                model: provider("claude-haiku-4-5"),
                 system: QUANT_EXTRACTION_PROMPT,
                 messages: [{ role: "user", content: transcriptText }],
                 maxOutputTokens: 300,
               }),
               generateText({
-                model: provider("claude-haiku-4-5-20251001"),
+                model: provider("claude-haiku-4-5"),
                 system: SUMMARY_PROMPT,
                 messages: [{ role: "user", content: transcriptText }],
                 maxOutputTokens: 200,
