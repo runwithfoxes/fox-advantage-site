@@ -132,15 +132,22 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 ];
 
 export const work: WorkSection[] = [
-  /* ---- NEW BATCH: SoftCo asset library (19 Jun, from John Neary) ----
-     The categorised creative John sent. Each tile is the CURRENT SoftCo version,
-     shown so we can see the old version of every format. The deliverable for each
-     is to recreate it as a locked route and automate it. Reconcile into the
-     tracker above later. */
+  /* ---- THE BRIEF: SoftCo asset library (19 Jun, from John Neary) ----
+     Source material FROM the client. This is NOT our work. It is the existing
+     set of formats we are to recreate and automate. Mobile/desktop and any
+     responsive versions belong to the solution, not here. Reconcile into the
+     tracker later. */
   {
-    title: "New batch · LinkedIn static ads",
+    title: "The brief",
     kind: "gallery",
-    status: "todo",
+    badge: "Source material",
+    desc: "Everything in this section is from SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats we are to recreate and automate. It is not work we have produced. Our work is the deliverables list above and the finished pieces further down.",
+    items: [],
+  },
+  {
+    title: "Brief · LinkedIn static ads",
+    kind: "gallery",
+    badge: "Brief",
     desc: "Current SoftCo version, from John's library (19 Jun). Product-led and human-led single-image ads. Deliverable: recreate as a locked route and automate.",
     items: [
       { src: "ae-li-static-1.png", ratio: "1200/1350", w: 240, cap: "Human-led · photographic", download: true },
@@ -149,9 +156,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Email banners",
+    title: "Brief · Email banners",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version. Wide email header strips, single line of copy and a CTA. Deliverable: recreate and automate across their banner sizes.",
     items: [
       { src: "ae-email-v3.png", ratio: "600/140", w: 480, cap: "600×140", download: true },
@@ -160,9 +167,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Promo & stat cards",
+    title: "Brief · Promo & stat cards",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version. Square social tiles in the Control campaign system: big-stat, reframe statement with CTA, and question cards. Deliverable: recreate and automate.",
     items: [
       { src: "ae-promo-statcard.png", ratio: "1/1", w: 270, cap: "Stat card", download: true },
@@ -172,9 +179,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · LinkedIn carousels",
+    title: "Brief · LinkedIn carousels",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version. Multi-slide square carousels (a 3-panel set, plus a 7-slide set cover). Deliverable: recreate as a locked route and automate.",
     items: [
       { src: "ae-carousel1-1.png", ratio: "1/1", w: 220, cap: "Set 1 · 1/3", download: true },
@@ -184,22 +191,20 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Blog diagrams & figures",
+    title: "Brief · Blog diagrams & figures",
     kind: "gallery",
-    status: "todo",
-    desc: "Current SoftCo version. In-article explainer diagrams, figures and product screenshots. Deliverable: recreate as a locked route and automate.",
+    badge: "Brief",
+    desc: "Current SoftCo version. In-article explainer diagrams and figures. Deliverable: recreate as a locked route and automate.",
     items: [
       { src: "ae-blog-paymentloops.png", ratio: "2348/1331", w: 460, cap: "Payment-loops diagram", download: true },
       { src: "ae-blog-fig1.png", ratio: "2005/675", w: 480, cap: "Figure", download: true },
       { src: "ae-blog-fig3.png", ratio: "2453/845", w: 480, cap: "Figure", download: true },
-      { src: "ae-blog-desktop.png", ratio: "1681/912", w: 460, cap: "Desktop screenshot", download: true },
-      { src: "ae-blog-mobile.png", ratio: "1012/1641", w: 200, cap: "Mobile screenshot", download: true },
     ],
   },
   {
-    title: "New batch · Testimonial cards",
+    title: "Brief · Testimonial cards",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version, with-names variant (a without-names set also exists). Square customer-quote cards with logo. Deliverable: recreate and automate.",
     items: [
       { src: "ae-testi-dairygold.png", ratio: "1/1", w: 260, cap: "Dairygold", download: true },
@@ -210,9 +215,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Webinar clips & promos",
+    title: "Brief · Webinar clips & promos",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version. Webinar repurposing: promo images plus a clip template (the pack also holds six cut video clips). The highest-value workflow. Deliverable: recreate and automate the clip and promo pipeline.",
     items: [
       { src: "ae-webinar-1.png", ratio: "1/1", w: 260, cap: "Webinar promo", download: true },
@@ -224,9 +229,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Event graphics",
+    title: "Brief · Event graphics",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version. Event sponsorship graphics (Lumenia and SSOW shown; Gartner and IOFM also in the pack). Square and social. Deliverable: recreate as a locked route and automate.",
     items: [
       { src: "ae-event-lumenia.png", ratio: "1200/1350", w: 240, cap: "Lumenia · sponsor", download: true },
@@ -236,9 +241,9 @@ export const work: WorkSection[] = [
     ],
   },
   {
-    title: "New batch · Campaign landing page",
+    title: "Brief · Campaign landing page",
     kind: "gallery",
-    status: "todo",
+    badge: "Brief",
     desc: "Current SoftCo version, full webinar/campaign landing page wireframe: hero and form, feature blocks, a dark stats band, footer. Deliverable: build and automate the campaign page.",
     items: [
       { src: "ae-landing-wireframe.png", ratio: "1470/7225", w: 320, cap: "Full page wireframe", download: true },
