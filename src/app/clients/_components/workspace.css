@@ -670,7 +670,7 @@
 /* ---- true-size device preview ---- */
 .cw-devbar {
   position: sticky;
-  top: 0;
+  top: 47px;
   z-index: 5;
   display: flex;
   align-items: center;
@@ -986,3 +986,81 @@
 }
 .cw-cmp-lab-l { left: 10px; }
 .cw-cmp-lab-r { right: 10px; }
+
+/* ---- jump nav (sticky) ---- */
+.cw-jump {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cw-jump a {
+  flex: 1;
+  min-width: 130px;
+  padding: 14px 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--deep-sky);
+  text-decoration: none;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.cw-jump a:last-child { border-right: none; }
+.cw-jump a:hover { color: var(--orange); background: var(--card-hover); }
+.cw-jump-n { color: var(--orange); margin-right: 8px; }
+
+/* ---- zone header ---- */
+.cw-zone {
+  scroll-margin-top: 60px;
+  border-top: 6px solid var(--deep-sky);
+  padding-top: 30px;
+  margin: 56px 0 24px;
+}
+.cw-zone:first-of-type { margin-top: 26px; }
+.cw-zone-head { display: flex; align-items: baseline; gap: 16px; }
+.cw-zone-num {
+  font-family: var(--mono);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--border);
+  letter-spacing: 1px;
+}
+.cw-zone-label { font-family: var(--sans); font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+.cw-zone-intro { color: var(--text-muted); margin-top: 10px; max-width: 64ch; }
+
+/* ---- deliverables progress bar ---- */
+.cw-prog { margin-bottom: 14px; }
+.cw-prog-top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.cw-prog-pct { font-family: var(--sans); font-size: 22px; font-weight: 600; color: var(--deep-sky); }
+.cw-prog-date { font-family: var(--mono); font-size: 12px; letter-spacing: 1px; color: var(--text-muted); }
+.cw-prog-track { height: 12px; background: rgba(58, 124, 165, 0.14); border: 1px solid var(--border); }
+.cw-prog-fill { height: 100%; background: var(--orange); }
+
+/* ---- New marker ---- */
+.cw-new {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 3px 8px;
+  background: var(--logo-orange);
+  color: var(--bg);
+}
+.cw-new-inline { margin-left: 8px; padding: 2px 6px; }
+
+/* ---- responsive figure (live desktop/phone toggle) ---- */
+.cw-resp { margin-top: 6px; }
+.cw-resp .cw-devtoggle { margin-bottom: 16px; }
+.cw-resp-fig { margin: 0; }
+
+/* ---- per-section device toggle (sits on the format it controls) ---- */
+.cw-secdev { margin-bottom: 16px; }

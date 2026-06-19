@@ -13,6 +13,14 @@ export const meta: Meta = {
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
   lastUpdated: "2026-06-19",
   feedbackContacts: ["softco.com"],
+  targetDate: "2026-07-11",
+  zoneIntros: {
+    deliverables: "Everything we're producing and where each piece stands.",
+    brief:
+      "SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats the AI engine recreates and automates. It is not AI-made work.",
+    work: "The AI versions we've made. The pieces to look at and react to.",
+    feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
+  },
 };
 
 export const deliverables: Deliverable[] = [
@@ -132,21 +140,14 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 ];
 
 export const work: WorkSection[] = [
-  /* ---- THE BRIEF: SoftCo asset library (19 Jun, from John Neary) ----
-     Source material FROM the client. This is NOT the AI versions. It is the
-     existing set of formats the AI engine recreates and automates. Mobile/
-     desktop and any responsive versions belong to the AI versions, not here.
-     Reconcile into the tracker later. */
-  {
-    title: "The brief",
-    kind: "gallery",
-    badge: "Source material",
-    desc: "Everything in this section is from SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats the AI engine recreates and automates. It is not AI-made work. The AI versions are the deliverables list above and the finished pieces below.",
-    items: [],
-  },
+  /* Sections are grouped by zone for the engine: all zone:"brief" first, then
+     all zone:"work", then zone:"feedback" last. Keep that order when editing.
+     ---- ZONE: brief - SoftCo asset library (19 Jun, from John Neary).
+     Source material FROM the client, not the AI versions. */
   {
     title: "Brief · LinkedIn static ads",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version, from John's library (19 Jun). Product-led and human-led single-image ads. Deliverable: recreate as a locked route and automate.",
     items: [
@@ -158,6 +159,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Email banners",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. Wide email header strips, single line of copy and a CTA. Deliverable: recreate and automate across their banner sizes.",
     items: [
@@ -169,6 +171,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Promo & stat cards",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. Square social tiles in the Control campaign system: big-stat, reframe statement with CTA, and question cards. Deliverable: recreate and automate.",
     items: [
@@ -181,6 +184,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · LinkedIn carousels",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. Multi-slide square carousels (a 3-panel set, plus a 7-slide set cover). Deliverable: recreate as a locked route and automate.",
     items: [
@@ -193,6 +197,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Blog diagrams & figures",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. In-article explainer diagrams and figures. Deliverable: recreate as a locked route and automate.",
     items: [
@@ -204,6 +209,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Testimonial cards",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version, with-names variant (a without-names set also exists). Square customer-quote cards with logo. Deliverable: recreate and automate.",
     items: [
@@ -217,6 +223,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Webinar clips & promos",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. Webinar repurposing: promo images plus a clip template (the pack also holds six cut video clips). The highest-value workflow. Deliverable: recreate and automate the clip and promo pipeline.",
     items: [
@@ -231,6 +238,7 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Event graphics",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version. Event sponsorship graphics (Lumenia and SSOW shown; Gartner and IOFM also in the pack). Square and social. Deliverable: recreate as a locked route and automate.",
     items: [
@@ -243,25 +251,18 @@ export const work: WorkSection[] = [
   {
     title: "Brief · Campaign landing page",
     kind: "gallery",
+    zone: "brief",
     badge: "Brief",
     desc: "Current SoftCo version, full webinar/campaign landing page wireframe: hero and form, feature blocks, a dark stats band, footer. Deliverable: build and automate the campaign page.",
     items: [
       { src: "ae-landing-wireframe.png", ratio: "1470/7225", w: 320, cap: "Full page wireframe", download: true },
     ],
   },
-  {
-    title: "Feedback & responses",
-    kind: "feedback",
-    date: "18 June 2026",
-    desc: "A running record of all feedback and commentary on this page, and the replies, kept here so we can both see everything. Click an entry to read the response.",
-    intro: FB_INTRO,
-    responder: "Paul",
-    faq: FB_ITEMS,
-    note: "Next step agreed: a short video call to go through each ad and format one by one, transcribed so the full feedback is captured.",
-  },
+  /* ---- ZONE: work - the AI versions we've made. ---- */
   {
     title: "Chart Ad set",
     kind: "media",
+    zone: "work",
     layout: "grouped",
     status: "ready",
     desc: "The animated display ad across the full IAB range, eleven sizes from the square down to the mobile strips. Every size is here at true proportion.",
@@ -274,6 +275,7 @@ export const work: WorkSection[] = [
   {
     title: "Iceberg diagram",
     kind: "media",
+    zone: "work",
     layout: "single",
     status: "ready",
     desc: "Animated explainer, the visible cost above the line, the hidden cost below. Built as a square for LinkedIn, organic and paid.",
@@ -282,6 +284,7 @@ export const work: WorkSection[] = [
   {
     title: "Testimonial cards",
     kind: "media",
+    zone: "work",
     layout: "pair",
     status: "ready",
     desc: "Four layout options, each produced static and with the neuron field gently animating. Anton Scott is the test face. Real cards take a customer quote and photo.",
@@ -295,6 +298,7 @@ export const work: WorkSection[] = [
   {
     title: "Blog & content cards",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     desc: "Stat, pull-quote and question cards. Square 1080×1080.",
     items: [
@@ -306,6 +310,7 @@ export const work: WorkSection[] = [
   {
     title: "Social & event",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     placement: "feed",
     desc: "Square 1080×1080, organic and paid. The Gartner mark is placeholder pending the real logo.",
@@ -317,6 +322,7 @@ export const work: WorkSection[] = [
   {
     title: "Email banners",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     placement: "email",
     desc: "Your existing email banner dimensions, single line of copy.",
@@ -328,6 +334,7 @@ export const work: WorkSection[] = [
   {
     title: "Blog header & thumbnail",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     desc: "Wide formats.",
     items: [
@@ -336,8 +343,22 @@ export const work: WorkSection[] = [
     ],
   },
   {
+    title: "Blog figure · responsive",
+    kind: "responsive",
+    zone: "work",
+    status: "ready",
+    isNew: true,
+    context: "softco.com/blog",
+    desc: "The e-invoicing readiness figure, the one piece reflowed for each screen. Flip the toggle to see the desktop and mobile layouts.",
+    desktopSrc: "ae-blog-desktop.png",
+    desktopRatio: "1681/912",
+    mobileSrc: "ae-blog-mobile.png",
+    mobileRatio: "1012/1641",
+  },
+  {
     title: "Webinar & LinkedIn carousel",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     desc: "Square 1080×1080. The carousel is a 3-slide set.",
     items: [
@@ -350,6 +371,7 @@ export const work: WorkSection[] = [
   {
     title: "LinkedIn carousel · product walkthrough",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     placement: "feed",
     carousel: true,
@@ -365,6 +387,7 @@ export const work: WorkSection[] = [
   {
     title: "LinkedIn carousel · customer stories",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     placement: "feed",
     carousel: true,
@@ -380,6 +403,7 @@ export const work: WorkSection[] = [
   {
     title: "Meeting background",
     kind: "gallery",
+    zone: "work",
     status: "ready",
     desc: "Virtual call background, the person sits on the clear right side. 1920×1080.",
     items: [
@@ -389,9 +413,22 @@ export const work: WorkSection[] = [
   {
     title: "Product Proof ad",
     kind: "media",
+    zone: "work",
     layout: "single",
     badge: "Extra",
     desc: "An extra we explored beyond the brief. The product itself, rebuilt as live UI and animated. Built as a large square for a LinkedIn organic post and a paid square ad.",
     item: { src: "proof-v2.mp4", poster: "proof-v2-poster.png", ratio: "1/1", w: 320, cap: "1080×1080 · organic + paid" },
+  },
+  /* ---- ZONE: feedback - the running conversation, last. ---- */
+  {
+    title: "Feedback & responses",
+    kind: "feedback",
+    zone: "feedback",
+    date: "18 June 2026",
+    desc: "A running record of all feedback and commentary on this page, and the replies, kept here so we can both see everything. Click an entry to read the response.",
+    intro: FB_INTRO,
+    responder: "Paul",
+    faq: FB_ITEMS,
+    note: "Next step agreed: a short video call to go through each ad and format one by one, transcribed so the full feedback is captured.",
   },
 ];

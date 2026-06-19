@@ -13,6 +13,7 @@ import Link from "next/link";
 
 /* ---- types (kept permissive so data.ts is easy to hand-edit) ---- */
 type Status = "ready" | "in-progress" | "todo";
+type ZoneKey = "deliverables" | "brief" | "work" | "feedback";
 
 export type Meta = {
   client: string;
@@ -22,6 +23,9 @@ export type Meta = {
   lastUpdated: string;
   feedbackContacts?: string[];  // client emails whose replies count as feedback
   pageShareThread?: string;     // Gmail thread/message id of the page-share email
+  targetDate?: string;          // estimated completion date, shown by the progress bar
+  completionOverride?: number;  // manual % override; if unset, % is computed from statuses
+  zoneIntros?: Partial<Record<ZoneKey, string>>; // per-zone description line under each zone header
 };
 
 export type Deliverable = {
@@ -31,6 +35,7 @@ export type Deliverable = {
   date?: string;
   target?: string;
   note?: string;
+  isNew?: boolean;              // renders a "New" tag on the row
 };
 
 type MediaItem = {
@@ -65,9 +70,18 @@ export type WorkSection = {
   status?: Status;
   desc?: string;
   badge?: string;
+  zone?: ZoneKey;          // which zone this section belongs to (default "work")
+  isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
-  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback";
+  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive";
   layout?: "grouped" | "pair" | "single";
+  // responsive kind: one piece at two layouts, toggled live between a desktop
+  // browser frame and a phone frame.
+  desktopSrc?: string;
+  mobileSrc?: string;
+  desktopRatio?: string;
+  mobileRatio?: string;
+  context?: string;       // url/label shown in the device chrome
   // true-size device preview: where this asset actually runs. feed/email render
   // inside a device frame at true size; display/web (and unset) render as before.
   placement?: "feed" | "email" | "display" | "web";
@@ -97,6 +111,22 @@ const STATUS_LABEL: Record<Status, string> = {
   "in-progress": "In progress",
   todo: "To do",
 };
+
+const ZONES: Record<ZoneKey, { num: string; label: string }> = {
+  deliverables: { num: "01", label: "Deliverables" },
+  brief: { num: "02", label: "What we've been given" },
+  work: { num: "03", label: "The work" },
+  feedback: { num: "04", label: "Feedback" },
+};
+
+const STATUS_WEIGHT: Record<Status, number> = { ready: 1, "in-progress": 0.5, todo: 0 };
+
+function computeCompletion(deliverables: Deliverable[], override?: number): number {
+  if (typeof override === "number") return override;
+  if (deliverables.length === 0) return 0;
+  const sum = deliverables.reduce((acc, d) => acc + STATUS_WEIGHT[d.status], 0);
+  return Math.round((sum / deliverables.length) * 100);
+}
 
 const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
 
@@ -365,25 +395,73 @@ function PreviewBody({ s, base, device }: { s: WorkSection; base: string; device
   );
 }
 
+function ZoneHead({ zone, intro }: { zone: ZoneKey; intro?: string }) {
+  const z = ZONES[zone];
+  return (
+    <header className="cw-zone" id={`cw-z-${zone}`}>
+      <div className="cw-zone-head">
+        <span className="cw-zone-num">{z.num}</span>
+        <h2 className="cw-zone-label">{z.label}</h2>
+      </div>
+      {intro && <p className="cw-zone-intro">{intro}</p>}
+    </header>
+  );
+}
+
+// One piece shown at two layouts, toggled live between a desktop browser frame
+// and a phone frame. Self-contained: its own device state + toggle sit on it.
+function ResponsiveFigure({ s, base }: { s: WorkSection; base: string }) {
+  const [device, setDevice] = useState<Device>("desktop");
+  const ctx = s.context || "softco.com";
+  return (
+    <div className="cw-resp">
+      <DeviceToggle device={device} setDevice={setDevice} />
+      <figure className="cw-preview-fig cw-resp-fig">
+        {device === "desktop" ? (
+          <DeviceFrame device="desktop" kind="browser" context={ctx}>
+            <div style={{ width: 660 }}>
+              <Media src={s.desktopSrc || ""} ratio={s.desktopRatio || "16/9"} base={base} />
+            </div>
+          </DeviceFrame>
+        ) : (
+          <DeviceFrame device="mobile" kind="browser" context={ctx}>
+            <div style={{ width: 300 }}>
+              <Media src={s.mobileSrc || ""} ratio={s.mobileRatio || "9/16"} base={base} />
+            </div>
+          </DeviceFrame>
+        )}
+        <figcaption>The same page, {device === "desktop" ? "desktop layout" : "mobile layout"} · flip the toggle to compare</figcaption>
+      </figure>
+    </div>
+  );
+}
+
 function SectionHead({ s }: { s: WorkSection }) {
   const label = s.badge || s.date || (s.status ? STATUS_LABEL[s.status] : "");
   return (
     <div className="cw-sec-head">
       <h2>{s.title}</h2>
+      {s.isNew && <span className="cw-new">New</span>}
       {label && <span className="cw-badge">{label}</span>}
     </div>
   );
 }
 
 /* ---- work-section renderers by kind ---- */
-function WorkBlock({ s, base, device }: { s: WorkSection; base: string; device: Device }) {
+function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
+  const [device, setDevice] = useState<Device>("desktop");
   const previewed = s.placement === "feed" || s.placement === "email";
   return (
     <section className="cw-sec">
       <SectionHead s={s} />
       {s.desc && <p className="cw-desc">{s.desc}</p>}
 
-      {previewed && <PreviewBody s={s} base={base} device={device} />}
+      {previewed && (
+        <>
+          <div className="cw-secdev"><DeviceToggle device={device} setDevice={setDevice} /></div>
+          <PreviewBody s={s} base={base} device={device} />
+        </>
+      )}
 
       {!previewed && s.kind === "media" && s.layout === "grouped" && (s.groups || []).map((g) => (
         <div className="cw-chart-group" key={g.label}>
@@ -499,6 +577,8 @@ function WorkBlock({ s, base, device }: { s: WorkSection; base: string; device: 
         </div>
       )}
 
+      {s.kind === "responsive" && <ResponsiveFigure s={s} base={base} />}
+
       {s.kind === "feedback" && (
         <Faq intro={s.intro} items={s.faq || []} note={s.note} responder={s.responder} />
       )}
@@ -537,7 +617,6 @@ export default function ClientWorkspace({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
-  const [device, setDevice] = useState<Device>("desktop");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -583,6 +662,8 @@ export default function ClientWorkspace({
   const readyCount = deliverables.filter((d) => d.status === "ready").length;
   const hasTarget = deliverables.some((d) => d.target);
   const cols = hasTarget ? "1.2fr 1.6fr 0.9fr 0.7fr 0.7fr 1.4fr" : "1.2fr 1.6fr 0.9fr 0.7fr 1.4fr";
+  const pct = computeCompletion(deliverables, meta.completionOverride);
+  const zoned = work.some((s) => s.zone);
 
   return (
     <div className="cw-page">
@@ -595,6 +676,29 @@ export default function ClientWorkspace({
         <div className="cw-eyebrow">Run with Foxes &times; {meta.client}</div>
         <h1 className="cw-title">{meta.headline}</h1>
         <p className="cw-intro">{meta.intro}</p>
+
+        {zoned && (
+          <nav className="cw-jump">
+            {(["deliverables", "brief", "work", "feedback"] as ZoneKey[]).map((z) => (
+              <a key={z} href={`#cw-z-${z}`}>
+                <span className="cw-jump-n">{ZONES[z].num}</span>{ZONES[z].label}
+              </a>
+            ))}
+          </nav>
+        )}
+
+        {zoned && (
+          <>
+            <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} />
+            <div className="cw-prog">
+              <div className="cw-prog-top">
+                <span className="cw-prog-pct">{pct}% complete</span>
+                {meta.targetDate && <span className="cw-prog-date">Estimated completion &middot; {meta.targetDate}</span>}
+              </div>
+              <div className="cw-prog-track"><div className="cw-prog-fill" style={{ width: `${pct}%` }} /></div>
+            </div>
+          </>
+        )}
 
         <div className="cw-count">
           {readyCount} of {deliverables.length} ready for feedback &middot; last updated {meta.lastUpdated}
@@ -610,7 +714,7 @@ export default function ClientWorkspace({
           </div>
           {deliverables.map((d) => (
             <div className="cw-row" key={d.name} style={{ gridTemplateColumns: cols }}>
-              <span>{d.name}</span>
+              <span>{d.name}{d.isNew && <span className="cw-new cw-new-inline">New</span>}</span>
               <span>{d.detail}</span>
               <span><i className={`cw-b ${d.status}`} />{STATUS_LABEL[d.status]}</span>
               <span>{d.date || " - "}</span>
@@ -620,18 +724,24 @@ export default function ClientWorkspace({
           ))}
         </div>
 
-        {work.some((s) => s.placement === "feed" || s.placement === "email") && (
-          <div className="cw-devbar">
-            <DeviceToggle device={device} setDevice={setDevice} />
-            <span className="cw-devbar-note">
-              Previews below show each ad at the real size people see it, on a {device === "mobile" ? "phone" : "13″ laptop"}.
-            </span>
-          </div>
+        {zoned ? (
+          (() => {
+            let last: ZoneKey | undefined;
+            return work.map((s) => {
+              const zone: ZoneKey = s.zone || "work";
+              const newZone = zone !== last;
+              last = zone;
+              return (
+                <div key={s.title}>
+                  {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} />}
+                  <WorkBlock s={s} base={base} />
+                </div>
+              );
+            });
+          })()
+        ) : (
+          work.map((s) => <WorkBlock key={s.title} s={s} base={base} />)
         )}
-
-        {work.map((s) => (
-          <WorkBlock key={s.title} s={s} base={base} device={device} />
-        ))}
 
         <footer className="cw-foot">Run with Foxes · private workspace for {meta.client}</footer>
       </div>

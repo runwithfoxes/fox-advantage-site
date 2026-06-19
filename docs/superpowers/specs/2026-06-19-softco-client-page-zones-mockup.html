@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoftCo client page - four-zone redesign (mockup)</title>
+<style>
+  :root{
+    --sky:#3A7CA5; --deep:#1A3A4E; --cream:#FAFAF8; --orange:#F47521;
+    --ink:#1A1A1A; --grey:#6b6b6b; --line:#e2e2dd; --tile:#eceae4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream); color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  .mock-flag{background:var(--deep); color:#fff; font-size:12px; letter-spacing:.06em;
+    text-transform:uppercase; padding:8px 28px;}
+
+  /* page header */
+  .phead{padding:46px 0 26px;}
+  .phead .eyebrow{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--sky); font-weight:600;}
+  .phead h1{font-size:38px; font-weight:700; margin-top:10px; letter-spacing:-.01em;}
+  .phead p{color:var(--grey); margin-top:8px; max-width:62ch;}
+
+  /* sticky jump nav */
+  .jump{position:sticky; top:0; z-index:20; background:rgba(250,250,248,.92);
+    backdrop-filter:saturate(160%) blur(8px); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .jump .wrap{display:flex; gap:0; flex-wrap:wrap;}
+  .jump a{flex:1; text-align:center; min-width:140px; padding:15px 10px; font-size:13px; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--deep); text-decoration:none;
+    border-right:1px solid var(--line); position:relative;}
+  .jump a:last-child{border-right:none;}
+  .jump a:hover{color:var(--sky); background:#fff;}
+  .jump a .n{color:var(--sky); margin-right:7px;}
+
+  /* zones */
+  .zone{padding:54px 0 14px; border-top:8px solid var(--deep);}
+  .zone:first-of-type{border-top:none;}
+  .zhead{display:flex; align-items:baseline; gap:16px; margin-bottom:6px;}
+  .zhead .znum{font-size:46px; font-weight:800; color:var(--tile); line-height:1; letter-spacing:-.02em;}
+  .zhead h2{font-size:27px; font-weight:700; letter-spacing:-.01em;}
+  .zone .zdesc{color:var(--grey); margin:2px 0 30px; max-width:64ch;}
+
+  /* sub-section label */
+  .sub{margin:30px 0 14px; display:flex; align-items:center; gap:10px;}
+  .sub h3{font-size:15px; font-weight:700;}
+  .badge{font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+    padding:3px 8px; background:var(--deep); color:#fff;}
+  .badge.brief{background:#cfd8dd; color:var(--deep);}
+  .sub .meta{color:var(--grey); font-size:13px; margin-left:auto;}
+
+  /* tiles */
+  .tiles{display:flex; flex-wrap:wrap; gap:14px;}
+  .tile{background:var(--tile); border:1px solid var(--line); width:150px; height:150px;
+    display:flex; align-items:center; justify-content:center; color:#a6a29a; font-size:12px; text-align:center; padding:8px;}
+  .tile.wide{width:320px;}
+  .tile.tall{height:210px;}
+
+  /* deliverables table */
+  table{width:100%; border-collapse:collapse; font-size:14px; background:#fff; border:1px solid var(--line);}
+  th,td{text-align:left; padding:12px 14px; border-bottom:1px solid var(--line);}
+  th{font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); background:#fbfbf9;}
+  tr:last-child td{border-bottom:none;}
+  .pill{font-size:12px; font-weight:700; padding:3px 9px; display:inline-block;}
+  .pill.ready{background:#e2efe2; color:#2f6b2f;}
+  .pill.prog{background:#fdeede; color:#9a5a12;}
+
+  /* responsive figure highlight */
+  .respwrap{border:1px solid var(--line); background:#fff; padding:22px; margin-top:6px;}
+  .respwrap .tag{font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+    color:#fff; background:var(--orange); padding:3px 8px; display:inline-block; margin-bottom:14px;}
+  .respgrid{display:flex; gap:26px; align-items:flex-start; flex-wrap:wrap;}
+  .device{}
+  .device .cap{font-size:12px; color:var(--grey); margin-top:8px; text-align:center;}
+  .device.desktop img{width:520px; max-width:100%; border:1px solid var(--line); display:block;}
+  .device.mobile img{width:150px; border:1px solid var(--line); display:block;}
+  .new-note{font-size:13px; color:var(--orange); font-weight:600; margin-top:4px;}
+
+  /* dialogue */
+  .fb{border:1px solid var(--line); background:#fff; margin-bottom:10px;}
+  .fb .q{padding:14px 16px; font-weight:600; font-size:14px; display:flex; justify-content:space-between; gap:14px;}
+  .fb .who{color:var(--grey); font-weight:500; font-size:12px; white-space:nowrap;}
+  .fb .a{padding:0 16px 14px; color:var(--grey); font-size:14px; border-top:1px solid var(--line); padding-top:12px;}
+
+  footer{padding:40px 0 70px; color:#b3afa6; font-size:12px;}
+</style>
+</head>
+<body>
+<div class="mock-flag">Mockup - proposed structure only · not the live page</div>
+
+<div class="phead wrap">
+  <div class="eyebrow">SoftCo · private workspace</div>
+  <h1>AI marketing engine</h1>
+  <p>Where the work stands, what we're building from, what we've made, and the running conversation. Read-only for you, updated as we go.</p>
+</div>
+
+<nav class="jump">
+  <div class="wrap">
+    <a href="#z1"><span class="n">01</span>Deliverables</a>
+    <a href="#z2"><span class="n">02</span>The brief</a>
+    <a href="#z3"><span class="n">03</span>The work</a>
+    <a href="#z4"><span class="n">04</span>Dialogue</a>
+  </div>
+</nav>
+
+<!-- ZONE 1 -->
+<section class="zone" id="z1">
+  <div class="wrap">
+    <div class="zhead"><span class="znum">01</span><h2>Deliverables</h2></div>
+    <p class="zdesc">Everything we're producing and where each piece stands.</p>
+    <table>
+      <thead><tr><th>Deliverable</th><th>Detail</th><th>Status</th><th>Updated</th></tr></thead>
+      <tbody>
+        <tr><td>Chart Ad set</td><td>Animated display, full IAB range</td><td><span class="pill ready">Ready</span></td><td>18 Jun</td></tr>
+        <tr><td>Iceberg diagram</td><td>Animated explainer, square</td><td><span class="pill ready">Ready</span></td><td>18 Jun</td></tr>
+        <tr><td>LinkedIn carousels</td><td>Product walkthrough + customer stories</td><td><span class="pill ready">Ready</span></td><td>18 Jun</td></tr>
+        <tr><td>Webinar repurposing</td><td>Clip + promo pipeline</td><td><span class="pill prog">In progress</span></td><td>19 Jun</td></tr>
+        <tr><td>Campaign landing page</td><td>Build + automate</td><td><span class="pill prog">In progress</span></td><td>19 Jun</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ZONE 2 -->
+<section class="zone" id="z2">
+  <div class="wrap">
+    <div class="zhead"><span class="znum">02</span><h2>What we've been given</h2></div>
+    <p class="zdesc">SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats the AI engine recreates and automates. It is not AI-made work.</p>
+
+    <div class="sub"><span class="badge brief">Brief</span><h3>LinkedIn static ads</h3><span class="meta">3 examples</span></div>
+    <div class="tiles">
+      <div class="tile tall">Human-led</div><div class="tile tall">Product-led</div><div class="tile tall">Product-led</div>
+    </div>
+
+    <div class="sub"><span class="badge brief">Brief</span><h3>Promo &amp; stat cards</h3><span class="meta">4 examples</span></div>
+    <div class="tiles">
+      <div class="tile">Stat</div><div class="tile">Reframe</div><div class="tile">Question</div><div class="tile">Question</div>
+    </div>
+
+    <div class="sub"><span class="badge brief">Brief</span><h3>Email banners · Carousels · Blog figures · Testimonials · Webinar · Events · Landing page</h3><span class="meta">+ 7 more groups</span></div>
+    <div class="tiles">
+      <div class="tile wide">Email banners</div><div class="tile">Carousels</div><div class="tile">Testimonials</div>
+    </div>
+    <p style="color:var(--grey); font-size:13px; margin-top:14px;">(All nine brief sub-galleries from the current page sit here, unchanged, with their download links.)</p>
+  </div>
+</section>
+
+<!-- ZONE 3 -->
+<section class="zone" id="z3">
+  <div class="wrap">
+    <div class="zhead"><span class="znum">03</span><h2>The work</h2></div>
+    <p class="zdesc">The AI versions we've made. The pieces to look at and react to.</p>
+
+    <div class="sub"><span class="badge">AI version</span><h3>Chart Ad set</h3><span class="meta">11 sizes</span></div>
+    <div class="tiles">
+      <div class="tile">Square</div><div class="tile wide">Leaderboard</div><div class="tile">Box</div><div class="tile tall">Skyscraper</div>
+    </div>
+
+    <div class="sub"><span class="badge">AI version</span><h3>Iceberg · Testimonials · Carousels · Product Proof</h3><span class="meta">showcase</span></div>
+    <div class="tiles">
+      <div class="tile">Iceberg</div><div class="tile">Testimonial</div><div class="tile">Carousel</div><div class="tile">Product Proof</div>
+    </div>
+
+    <div class="sub"><span class="badge">AI version</span><h3>Blog figure · responsive</h3><span class="meta">desktop + mobile</span></div>
+    <p class="new-note">↓ New - the desktop and mobile versions you asked to sit after the brief, in the work.</p>
+    <div class="respwrap">
+      <span class="tag">One piece, two screen widths</span>
+      <div class="respgrid">
+        <div class="device desktop">
+          <img src="../../public/clients/softco/media/ae-blog-desktop.png" alt="desktop render">
+          <div class="cap">Desktop</div>
+        </div>
+        <div class="device mobile">
+          <img src="../../public/clients/softco/media/ae-blog-mobile.png" alt="mobile render">
+          <div class="cap">Mobile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE 4 -->
+<section class="zone" id="z4">
+  <div class="wrap">
+    <div class="zhead"><span class="znum">04</span><h2>Dialogue</h2></div>
+    <p class="zdesc">A running record of all feedback and the replies, kept here so we can both see everything.</p>
+
+    <div class="fb">
+      <div class="q"><span>What are the limits to giving the engine creative freedom beyond the stricter templates?</span><span class="who">John · 18 Jun</span></div>
+      <div class="a">I'm confident we can recreate any format or route we want… (Paul's full reply, verbatim.)</div>
+    </div>
+    <div class="fb">
+      <div class="q"><span>I'll categorise all imaging in the morning and share them.</span><span class="who">John · 18 Jun</span></div>
+      <div class="a">Done - added to the brief above on 19 June.</div>
+    </div>
+    <p style="color:var(--grey); font-size:13px; margin-top:10px;">Next step: a short video call to go through each ad and format one by one.</p>
+  </div>
+</section>
+
+<footer class="wrap">Mockup for the four-zone redesign · 19 Jun 2026</footer>
+</body>
+</html>
