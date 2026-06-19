@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-18",
+  lastUpdated: "2026-06-19",
   feedbackContacts: ["softco.com"],
 };
 
@@ -132,6 +132,118 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 ];
 
 export const work: WorkSection[] = [
+  /* ---- NEW BATCH: SoftCo asset library (19 Jun, from John Neary) ----
+     The categorised creative John sent. Each tile is the CURRENT SoftCo version,
+     shown so we can see the old version of every format. The deliverable for each
+     is to recreate it as a locked route and automate it. Reconcile into the
+     tracker above later. */
+  {
+    title: "New batch · LinkedIn static ads",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version, from John's library (19 Jun). Product-led and human-led single-image ads. Deliverable: recreate as a locked route and automate.",
+    items: [
+      { src: "ae-li-static-1.png", ratio: "1200/1350", w: 240, cap: "Human-led · photographic", download: true },
+      { src: "ae-li-static-3.png", ratio: "1200/1350", w: 240, cap: "Product-led · brand orange", download: true },
+      { src: "ae-li-static-5.png", ratio: "1200/1350", w: 240, cap: "Product-led", download: true },
+    ],
+  },
+  {
+    title: "New batch · Email banners",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. Wide email header strips, single line of copy and a CTA. Deliverable: recreate and automate across their banner sizes.",
+    items: [
+      { src: "ae-email-v3.png", ratio: "600/140", w: 480, cap: "600×140", download: true },
+      { src: "ae-email-v31.png", ratio: "1024/206", w: 520, cap: "1024×206", download: true },
+      { src: "ae-email-template15.png", ratio: "1584/396", w: 520, cap: "Wide template", download: true },
+    ],
+  },
+  {
+    title: "New batch · Promo & stat cards",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. Square social tiles in the Control campaign system: big-stat, reframe statement with CTA, and question cards. Deliverable: recreate and automate.",
+    items: [
+      { src: "ae-promo-statcard.png", ratio: "1/1", w: 270, cap: "Stat card", download: true },
+      { src: "ae-promo-reframe.png", ratio: "1/1", w: 270, cap: "Reframe + CTA", download: true },
+      { src: "ae-promo-volume.png", ratio: "1/1", w: 270, cap: "Question", download: true },
+      { src: "ae-promo-supplier.png", ratio: "1/1", w: 270, cap: "Question", download: true },
+    ],
+  },
+  {
+    title: "New batch · LinkedIn carousels",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. Multi-slide square carousels (a 3-panel set, plus a 7-slide set cover). Deliverable: recreate as a locked route and automate.",
+    items: [
+      { src: "ae-carousel1-1.png", ratio: "1/1", w: 220, cap: "Set 1 · 1/3", download: true },
+      { src: "ae-carousel1-2.png", ratio: "1/1", w: 220, cap: "Set 1 · 2/3", download: true },
+      { src: "ae-carousel1-3.png", ratio: "1/1", w: 220, cap: "Set 1 · 3/3", download: true },
+      { src: "ae-carousel2-1.png", ratio: "1/1", w: 220, cap: "Set 2 · cover", download: true },
+    ],
+  },
+  {
+    title: "New batch · Blog diagrams & figures",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. In-article explainer diagrams, figures and product screenshots. Deliverable: recreate as a locked route and automate.",
+    items: [
+      { src: "ae-blog-paymentloops.png", ratio: "2348/1331", w: 460, cap: "Payment-loops diagram", download: true },
+      { src: "ae-blog-fig1.png", ratio: "2005/675", w: 480, cap: "Figure", download: true },
+      { src: "ae-blog-fig3.png", ratio: "2453/845", w: 480, cap: "Figure", download: true },
+      { src: "ae-blog-desktop.png", ratio: "1681/912", w: 460, cap: "Desktop screenshot", download: true },
+      { src: "ae-blog-mobile.png", ratio: "1012/1641", w: 200, cap: "Mobile screenshot", download: true },
+    ],
+  },
+  {
+    title: "New batch · Testimonial cards",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version, with-names variant (a without-names set also exists). Square customer-quote cards with logo. Deliverable: recreate and automate.",
+    items: [
+      { src: "ae-testi-dairygold.png", ratio: "1/1", w: 260, cap: "Dairygold", download: true },
+      { src: "ae-testi-logitech.png", ratio: "1/1", w: 260, cap: "Logitech", download: true },
+      { src: "ae-testi-smyths.png", ratio: "1/1", w: 260, cap: "Smyths", download: true },
+      { src: "ae-testi-superdry.png", ratio: "1/1", w: 260, cap: "Superdry", download: true },
+      { src: "ae-testi-noname-dairygold.png", ratio: "1/1", w: 260, cap: "Without-names variant", download: true },
+    ],
+  },
+  {
+    title: "New batch · Webinar clips & promos",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. Webinar repurposing: promo images plus a clip template (the pack also holds six cut video clips). The highest-value workflow. Deliverable: recreate and automate the clip and promo pipeline.",
+    items: [
+      { src: "ae-webinar-1.png", ratio: "1/1", w: 260, cap: "Webinar promo", download: true },
+      { src: "ae-webinar-2.png", ratio: "1/1", w: 260, cap: "Webinar promo", download: true },
+      { src: "ae-webinar-3.png", ratio: "1/1", w: 260, cap: "Webinar promo", download: true },
+      { src: "ae-webinar-clip.mp4", ratio: "720/1280", w: 180, cap: "Video clip · plays", download: true },
+      { src: "ae-webinar-cliptemplate.png", ratio: "720/1280", w: 180, cap: "Clip template", download: true },
+      { src: "ae-webinar-header.png", ratio: "1604/487", w: 460, cap: "Webinar header", download: true },
+    ],
+  },
+  {
+    title: "New batch · Event graphics",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version. Event sponsorship graphics (Lumenia and SSOW shown; Gartner and IOFM also in the pack). Square and social. Deliverable: recreate as a locked route and automate.",
+    items: [
+      { src: "ae-event-lumenia.png", ratio: "1200/1350", w: 240, cap: "Lumenia · sponsor", download: true },
+      { src: "ae-event-lumenia2.png", ratio: "1200/1321", w: 240, cap: "Lumenia", download: true },
+      { src: "ae-event-ssow.png", ratio: "1/1", w: 260, cap: "SSOW · social", download: true },
+      { src: "ae-event-ssow-li.png", ratio: "1/1", w: 260, cap: "SSOW · LinkedIn", download: true },
+    ],
+  },
+  {
+    title: "New batch · Campaign landing page",
+    kind: "gallery",
+    status: "todo",
+    desc: "Current SoftCo version, full webinar/campaign landing page wireframe: hero and form, feature blocks, a dark stats band, footer. Deliverable: build and automate the campaign page.",
+    items: [
+      { src: "ae-landing-wireframe.png", ratio: "1470/7225", w: 320, cap: "Full page wireframe", download: true },
+    ],
+  },
   {
     title: "Feedback & responses",
     kind: "feedback",
