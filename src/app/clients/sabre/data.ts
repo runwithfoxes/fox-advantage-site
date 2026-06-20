@@ -11,7 +11,14 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-16",
+  lastUpdated: "2026-06-20",
+  targetDate: "2026-07-06",
+  feedbackContacts: ["sabre.com"],
+  zoneIntros: {
+    deliverables: "Everything we're producing for Sabre and where each piece stands.",
+    work: "The work, the pieces to look at and react to.",
+    feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
+  },
 };
 
 /* First-pass statuses from the Sabre workstreams - confirm before sharing. */
@@ -53,20 +60,20 @@ function adGroups(route: string) {
 }
 
 export const work: WorkSection[] = [
-  { title: "Display ads - OPEN route", kind: "media", layout: "grouped", badge: "Waiting for feedback",
+  { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Waiting for feedback",
     desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
     groups: adGroups("open") },
-  { title: "Display ads - PLATFORM route", kind: "media", layout: "grouped", badge: "Waiting for feedback",
+  { title: "Display ads - PLATFORM route", kind: "media", zone: "work", layout: "grouped", badge: "Waiting for feedback",
     desc: "The PLATFORM route across the full IAB range. The same machine with swapped copy, photo and motif.",
     groups: adGroups("platform") },
 
-  { title: "Email Writer v2.1", kind: "files", status: "ready",
+  { title: "Email Writer v2.1", kind: "files", zone: "work", status: "ready",
     desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
     files: [
       { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1", date: "2026-06-17" },
     ] },
 
-  { title: "Sample: webinar invite", kind: "email", badge: "Sample email",
+  { title: "Sample: webinar invite", kind: "email", zone: "work", badge: "Sample email",
     prompt: 'Sabre email: webinar invite for "Agentic AI in Action" on 24 July, 2pm GMT. Speaker is Victor Sivira, Product Technology Consultant. Audience is agency tech leads. Goal is to fill seats.',
     from: "Your Sabre team",
     subject: "Most travel AI just talks. See one that works.",
@@ -93,7 +100,7 @@ export const work: WorkSection[] = [
       { sign: "See you there,\nYour Sabre team" },
     ] },
 
-  { title: "Sample: CEO partner note", kind: "email", badge: "Sample email",
+  { title: "Sample: CEO partner note", kind: "email", zone: "work", badge: "Sample email",
     prompt: "Sabre CEO email from Kurt Ekert to top airline partners, end-of-year, partnership-and-candor tone. Relationship email, not a pitch.",
     from: "Kurt Ekert, President and CEO, Sabre",
     subject: "Thank you for building with us this year",
@@ -114,7 +121,7 @@ export const work: WorkSection[] = [
       { sign: "Kurt Ekert\nPresident and CEO, Sabre" },
     ] },
 
-  { title: "Sample: report launch", kind: "email", badge: "Sample email",
+  { title: "Sample: report launch", kind: "email", zone: "work", badge: "Sample email",
     prompt: "Sabre email to launch our new Travel Retail Benchmark report. The single job is to earn the download. Keep it tight.",
     from: "Your Sabre team",
     subject: "How does your retailing compare?",
@@ -134,4 +141,9 @@ export const work: WorkSection[] = [
       { cta: { label: "See where airlines stand →" } },
       { sign: "Your Sabre team" },
     ] },
+
+  /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
+  { title: "Feedback & responses", kind: "feedback", zone: "feedback",
+    desc: "A running record of all feedback and the replies, kept here so we can both see everything.",
+    responder: "Paul", faq: [] },
 ];

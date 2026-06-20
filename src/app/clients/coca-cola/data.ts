@@ -11,7 +11,13 @@ export const meta: Meta = {
   headline: "Tesco Retail Media",
   intro:
     "A live view of the Tesco retail media formats and what we can produce for Coca-Cola. The deliverables sit up top, the real in-store references and the full format catalogue underneath. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-15",
+  lastUpdated: "2026-06-20",
+  zoneIntros: {
+    deliverables: "The production machines we'd build for you, in priority order, and where each one stands.",
+    brief: "Genuine Coca-Cola retail media running in Tesco today. This is the brand treatment any machine has to feed.",
+    work: "What we'd produce: the full format catalogue, and what we need from you to start.",
+    feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
+  },
 };
 
 /* The production machines we'd build, in priority order. First-pass statuses. */
@@ -24,8 +30,8 @@ export const deliverables: Deliverable[] = [
 ];
 
 export const work: WorkSection[] = [
-  /* Real Coke retail media, for reference. */
-  { title: "Coca-Cola in Tesco today", kind: "gallery", badge: "Reference",
+  /* ---- ZONE: brief - real Coke retail media we've been given as reference. ---- */
+  { title: "Coca-Cola in Tesco today", kind: "gallery", zone: "brief", badge: "Reference",
     desc: "Genuine Coca-Cola retail media from the Christmas 2025 Tesco campaign. Four formats, the brand treatment a machine has to feed.",
     items: [
       { src: "coke-tesco-xmas-instore.jpg", cap: "Totem Screen: a portrait digital screen in a branded Coke pillar. The format we'd build first.", w: 360, download: true },
@@ -34,8 +40,8 @@ export const work: WorkSection[] = [
       { src: "coke-tesco-xmas-vans.jpg", cap: "Wrapped home-delivery van, Available at Tesco.", w: 360, download: true },
     ]},
 
-  /* The full format catalogue: shapes, sizes, motion, what we can build. */
-  { title: "What we'd produce: formats, shapes and sizes", kind: "copy", badge: "Format catalogue",
+  /* ---- ZONE: work - what we'd produce. ---- */
+  { title: "What we'd produce: formats, shapes and sizes", kind: "copy", zone: "work", badge: "Format catalogue",
     desc: "Every Tesco retail media format we'd create for, grouped by type. Screen sizes are confirmed; onsite banner sizes are the standard retail-media set (Tesco onsite runs on CitrusAd), with the exact set locked at booking.",
     blocks: [
       { label: "1 / Digital screens: 1080x1920 portrait (CONFIRMED)",
@@ -75,7 +81,7 @@ export const work: WorkSection[] = [
     ]},
 
   /* What we need from Coke to start building. */
-  { title: "What we need from you to start", kind: "copy", badge: "Open",
+  { title: "What we need from you to start", kind: "copy", zone: "work", badge: "Open",
     blocks: [
       { label: "To unlock the build",
         text:
@@ -85,4 +91,9 @@ export const work: WorkSection[] = [
 "4. Two or three approved example ads per format to reverse-engineer.\n" +
 "5. UK only, or UK and Ireland?" },
     ]},
+
+  /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
+  { title: "Feedback & responses", kind: "feedback", zone: "feedback",
+    desc: "A running record of all feedback and the replies, kept here so we can both see everything.",
+    responder: "Paul", faq: [] },
 ];

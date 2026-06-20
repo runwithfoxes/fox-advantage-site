@@ -395,12 +395,12 @@ function PreviewBody({ s, base, device }: { s: WorkSection; base: string; device
   );
 }
 
-function ZoneHead({ zone, intro }: { zone: ZoneKey; intro?: string }) {
+function ZoneHead({ zone, intro, num }: { zone: ZoneKey; intro?: string; num: string }) {
   const z = ZONES[zone];
   return (
     <header className="cw-zone" id={`cw-z-${zone}`}>
       <div className="cw-zone-head">
-        <span className="cw-zone-num">{z.num}</span>
+        <span className="cw-zone-num">{num}</span>
         <h2 className="cw-zone-label">{z.label}</h2>
       </div>
       {intro && <p className="cw-zone-intro">{intro}</p>}
@@ -580,7 +580,13 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
       {s.kind === "responsive" && <ResponsiveFigure s={s} base={base} />}
 
       {s.kind === "feedback" && (
-        <Faq intro={s.intro} items={s.faq || []} note={s.note} responder={s.responder} />
+        (s.faq && s.faq.length > 0) ? (
+          <Faq intro={s.intro} items={s.faq} note={s.note} responder={s.responder} />
+        ) : (
+          <p className="cw-fb-note">
+            {s.intro || "No feedback logged yet. Send your thoughts and they'll appear here as a shared record we can both see."}
+          </p>
+        )
       )}
 
       {s.kind === "files" && (
@@ -664,6 +670,12 @@ export default function ClientWorkspace({
   const cols = hasTarget ? "1.2fr 1.6fr 0.9fr 0.7fr 0.7fr 1.4fr" : "1.2fr 1.6fr 0.9fr 0.7fr 1.4fr";
   const pct = computeCompletion(deliverables, meta.completionOverride);
   const zoned = work.some((s) => s.zone);
+  // Only show zones that actually have content (deliverables always counts),
+  // numbered sequentially so a client missing a zone has no gap (01, 02, 03...).
+  const presentZones = (["deliverables", "brief", "work", "feedback"] as ZoneKey[]).filter(
+    (z) => z === "deliverables" || work.some((s) => (s.zone || "work") === z)
+  );
+  const zoneNum = (z: ZoneKey) => String(presentZones.indexOf(z) + 1).padStart(2, "0");
 
   return (
     <div className="cw-page">
@@ -679,9 +691,9 @@ export default function ClientWorkspace({
 
         {zoned && (
           <nav className="cw-jump">
-            {(["deliverables", "brief", "work", "feedback"] as ZoneKey[]).map((z) => (
+            {presentZones.map((z) => (
               <a key={z} href={`#cw-z-${z}`}>
-                <span className="cw-jump-n">{ZONES[z].num}</span>{ZONES[z].label}
+                <span className="cw-jump-n">{zoneNum(z)}</span>{ZONES[z].label}
               </a>
             ))}
           </nav>
@@ -689,7 +701,7 @@ export default function ClientWorkspace({
 
         {zoned && (
           <>
-            <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} />
+            <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} num={zoneNum("deliverables")} />
             <div className="cw-prog">
               <div className="cw-prog-top">
                 <span className="cw-prog-pct">{pct}% complete</span>
@@ -733,7 +745,7 @@ export default function ClientWorkspace({
               last = zone;
               return (
                 <div key={s.title}>
-                  {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} />}
+                  {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} num={zoneNum(zone)} />}
                   <WorkBlock s={s} base={base} />
                 </div>
               );

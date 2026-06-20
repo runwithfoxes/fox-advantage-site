@@ -11,7 +11,12 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-13",
+  lastUpdated: "2026-06-20",
+  zoneIntros: {
+    deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
+    work: "The work, shown in full here as each piece lands.",
+    feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
+  },
 };
 
 /* First-pass statuses from the Eaton workstreams - confirm before sharing. */
@@ -27,5 +32,10 @@ export const work: WorkSection[] = [
   // Work sections land here as we stage the files. Examples in the data-model
   // reference (kinds: media, copy, files, gallery). Letters, decks, charts or
   // copy go here once their files are dropped into
-  // public/clients/eaton-square/media/.
+  // public/clients/eaton-square/media/. Give each one zone: "work".
+
+  /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
+  { title: "Feedback & responses", kind: "feedback", zone: "feedback",
+    desc: "A running record of all feedback and the replies, kept here so we can both see everything.",
+    responder: "Paul", faq: [] },
 ];
