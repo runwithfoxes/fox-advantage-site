@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campaign manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     CAMPAIGN MANAGER - v1 for Eaton - claude.ai artifact-ready
+     One page: filters → month grid → team notes → activity table.
+     Claude-native look: bone paper, clay accent, Newsreader serif.
+     Persistence: window.storage (shared) → localStorage fallback.
+     ============================================================ */
+  :root{
+    --paper:#F4F1E9; --card:#FBFAF5; --ink:#26241E; --muted:#7C776B; --faint:#AAA496;
+    --line:#E7E2D5; --line-soft:#EFEBE0;
+    --clay:#CC785C; --clay-deep:#B05B3C; --clay-tint:#F0E2D9;
+    --moss:#6E7B57; --moss-tint:#E7EADD; --ochre:#B5843E; --ochre-tint:#F1E7D4;
+    --plum:#8C6A9E; --teal:#4F7C8C;
+    --shadow:0 1px 2px rgba(60,50,35,.04), 0 8px 24px rgba(60,50,35,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);font-size:15px;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .serif{font-family:'Newsreader',Georgia,serif;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:15px 32px;background:rgba(244,241,233,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);}
+  .mark{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;letter-spacing:-.1px;color:var(--ink);text-decoration:none;}
+  .mark .sun{width:16px;height:16px;color:var(--clay);}
+  .navmeta{font-size:12px;color:var(--faint);} .navmeta .d{color:var(--moss);}
+
+  .wrap{max-width:1020px;margin:0 auto;padding:88px 32px 88px;}
+  .demo{font-size:11px;color:var(--ochre);background:var(--ochre-tint);border:1px solid #E4CFA0;border-radius:7px;padding:6px 12px;margin-bottom:20px;display:inline-block;}
+
+  /* ---------- filters / month nav ---------- */
+  .toolrow{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+  .filterbar{display:flex;gap:7px;flex-wrap:wrap;}
+  .fbtn{font-size:12.5px;font-weight:500;padding:6px 13px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:.18s;display:inline-flex;align-items:center;gap:7px;}
+  .fbtn:hover{border-color:var(--clay);color:var(--ink);} .fbtn.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .fbtn .fd{width:8px;height:8px;border-radius:50%;}
+  .monthnav{display:flex;align-items:center;gap:10px;}
+  .monthnav .mlabel{font-family:'Newsreader',serif;font-size:19px;font-weight:400;}
+  .mbtn{width:28px;height:28px;border:1px solid var(--line);background:var(--card);border-radius:8px;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;}
+  .mbtn:hover{border-color:var(--clay);color:var(--ink);}
+
+  /* ---------- month grid ---------- */
+  .calwrap{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
+  .calgrid{display:grid;grid-template-columns:repeat(7,1fr);}
+  .cah{padding:9px;text-align:center;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--faint);font-weight:600;border-bottom:1px solid var(--line);}
+  .cell{min-height:96px;padding:7px 8px;border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);position:relative;}
+  .cell:nth-child(7n){border-right:none;}
+  .cell.pad{background:#F1EDE3;}
+  .cell.moving{cursor:pointer;background:var(--clay-tint);}
+  .cell.dropok{background:var(--clay-tint);outline:2px dashed var(--clay);outline-offset:-2px;}
+  .cnum{font-size:11px;color:var(--faint);font-weight:600;margin-bottom:5px;}
+  .cell.today .cnum{background:var(--clay);color:#fff;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;}
+  .chip{font-size:10px;font-weight:500;color:#fff;border-radius:5px;padding:2px 6px;margin-bottom:3px;cursor:grab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .chip:active{cursor:grabbing;} .chip.dragging{opacity:.4;}
+  .chip.done{opacity:.4;text-decoration:line-through;}
+
+  /* ---------- add item ---------- */
+  .additem{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);}
+  .addfield{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13px;font-family:inherit;background:var(--paper);color:var(--ink);outline:none;}
+  .addfield:focus{border-color:var(--clay);} .addfield.grow{flex:1;min-width:180px;}
+  .addday{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;}
+  .addfield.daynum{width:56px;text-align:center;}
+
+  /* ---------- team notes ---------- */
+  .secthead{display:flex;align-items:baseline;gap:9px;margin:32px 0 13px;}
+  .secthead h2{font-family:'Newsreader',serif;font-weight:400;font-size:20px;}
+  .secthead .c{font-size:12.5px;color:var(--faint);}
+  .notelist{display:flex;flex-direction:column;gap:9px;margin-bottom:12px;}
+  .noteitem{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 15px;box-shadow:var(--shadow);position:relative;}
+  .noteitem .meta{font-size:11px;color:var(--faint);margin-bottom:4px;}
+  .noteitem .meta b{color:var(--clay-deep);font-weight:600;}
+  .noteitem .txt{font-size:14px;line-height:1.5;color:var(--ink);}
+  .notedel{position:absolute;top:9px;right:11px;border:none;background:none;color:var(--faint);cursor:pointer;font-size:15px;line-height:1;padding:2px;}
+  .notedel:hover{color:var(--clay-deep);}
+  .noteempty{font-size:13px;color:var(--faint);padding:4px 2px 12px;}
+  .noteadd{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 15px;box-shadow:var(--shadow);}
+  .noteadd textarea{width:100%;border:none;resize:vertical;font-family:inherit;font-size:14px;line-height:1.5;background:transparent;outline:none;min-height:40px;color:var(--ink);}
+  .noteadd textarea::placeholder{color:var(--faint);}
+  .noteadd .arow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px;border-top:1px solid var(--line-soft);padding-top:10px;}
+  .nameinput{border:1px solid var(--line);border-radius:8px;padding:6px 11px;font-size:12.5px;font-family:inherit;background:var(--paper);color:var(--ink);width:150px;outline:none;}
+  .nameinput:focus{border-color:var(--clay);}
+  .addbtn{background:var(--ink);color:#fff;border:none;border-radius:9px;padding:8px 18px;font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;}
+  .addbtn:hover{background:#000;} .addbtn:disabled{opacity:.4;cursor:default;}
+
+  /* ---------- activity table ---------- */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{text-align:left;padding:9px 12px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);}
+  td{padding:11px 12px;border-bottom:1px solid var(--line-soft);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  .edate{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;}
+  .ename{font-weight:500;}
+  .ctag{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);}
+  .ctag .cd{width:8px;height:8px;border-radius:50%;}
+  .owner{font-size:12px;color:var(--muted);}
+  .sbadge{font-size:10.5px;font-weight:600;padding:3px 11px;border-radius:20px;cursor:pointer;user-select:none;text-transform:uppercase;letter-spacing:.4px;}
+  .sbadge.planned{background:#ECE8DD;color:var(--faint);} .sbadge.live{background:var(--moss-tint);color:var(--moss);} .sbadge.done{background:var(--clay-tint);color:var(--clay-deep);}
+  .rowdel{border:none;background:none;color:var(--faint);cursor:pointer;font-size:15px;line-height:1;padding:2px 4px;opacity:0;transition:.15s;}
+  tr:hover .rowdel{opacity:1;} .rowdel:hover{color:var(--clay-deep);}
+
+  footer{margin-top:34px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;line-height:1.65;}
+  footer b{color:var(--ink);font-weight:600;}
+  :focus-visible{outline:2px solid var(--clay);outline-offset:2px;}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="mark" href="#"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Campaign manager</a>
+  <div class="navmeta"><span class="d">●</span> Synced Mon 9 Jun, 07:00</div>
+</nav>
+
+<div class="wrap">
+  <div class="demo">Draft v1 · sample dates &amp; notes - for Eaton to review</div>
+
+  <div class="toolrow">
+    <div class="filterbar" id="calFilter">
+      <button class="fbtn on" data-f="all">All</button>
+      <button class="fbtn" data-f="hcm"><span class="fd" style="background:#CC785C"></span>HCM Health Check</button>
+      <button class="fbtn" data-f="chg"><span class="fd" style="background:#6E7B57"></span>Change 500</button>
+      <button class="fbtn" data-f="od"><span class="fd" style="background:#B5843E"></span>OD letters</button>
+      <button class="fbtn" data-f="pmo"><span class="fd" style="background:#8C6A9E"></span>PMO letters</button>
+      <button class="fbtn" data-f="post"><span class="fd" style="background:#4F7C8C"></span>Organic</button>
+    </div>
+    <div class="monthnav"><button class="mbtn" aria-label="Previous month">‹</button><span class="mlabel">June 2026</span><button class="mbtn" aria-label="Next month">›</button></div>
+  </div>
+
+  <div class="calwrap">
+    <div class="calgrid" id="calHead"></div>
+    <div class="calgrid" id="calBody"></div>
+  </div>
+
+  <div class="additem">
+    <select id="addCamp" class="addfield"></select>
+    <input id="addLabel" class="addfield grow" placeholder="What's happening? e.g. Email 2 send" />
+    <span class="addday">Jun <input id="addDay" class="addfield daynum" type="number" min="1" max="30" placeholder="00" /></span>
+    <button class="addbtn" id="addEvent">Add to calendar</button>
+  </div>
+
+  <!-- TEAM NOTES -->
+  <div class="secthead"><h2 class="serif">Team notes</h2><span class="c">anyone can add - calls, replies, anything the campaigns don't capture</span></div>
+  <div class="notelist" id="noteList"></div>
+  <div class="noteadd">
+    <textarea id="noteText" placeholder="Add a note for the team… e.g. &quot;Good call with Glanbia - they want a proposal, following up Weds.&quot;"></textarea>
+    <div class="arow">
+      <input class="nameinput" id="noteName" placeholder="Your name" />
+      <button class="addbtn" id="noteAdd">Add note</button>
+    </div>
+  </div>
+
+  <!-- ACTIVITY -->
+  <div class="secthead"><h2 class="serif">Activity</h2><span class="c" id="tblCount"></span></div>
+  <table><thead><tr><th>Date</th><th>Campaign</th><th>Activity</th><th>Owner</th><th>Status</th><th></th></tr></thead>
+    <tbody id="evTable"></tbody>
+  </table>
+  <div style="font-size:12px;color:var(--faint);margin-top:12px;">In the grid: click an event to pick it up, then click a day to move it. In the list: click a status to change it. Everything here saves for the whole team.</div>
+
+  <footer>
+    <b>How it works.</b> The calendar and statuses are kept up to date by the team here - and the live campaigns (HeyReach, Smartlead) will feed their own dates in once connected. Team notes capture what the tools can't see: a call, a reply, a heads-up.<br>
+    Lives inside your own Claude organisation - only signed-in members can open it. Changes save for everyone.
+  </footer>
+</div>
+
+<script>
+/* ---------- shared persistence: window.storage (artifact) → localStorage (preview) ---------- */
+async function sGet(k){try{
+  if(window.storage&&window.storage.get){const v=await window.storage.get(k);return v?JSON.parse(v):null;}
+  const v=localStorage.getItem(k);return v?JSON.parse(v):null;
+}catch(e){return null;}}
+async function sSet(k,v){try{
+  const s=JSON.stringify(v);
+  if(window.storage&&window.storage.set){await window.storage.set(k,s,true);return;} /* true = shared across the org */
+  localStorage.setItem(k,s);
+}catch(e){}}
+
+/* ============ CALENDAR ============ */
+const CAMP={hcm:{n:'HCM Health Check',c:'#CC785C',owner:'Ben'},chg:{n:'Change 500',c:'#6E7B57',owner:'Sarah'},
+  od:{n:'OD letters',c:'#B5843E',owner:'Sarah'},pmo:{n:'PMO letters',c:'#8C6A9E',owner:'Sarah'},
+  post:{n:'Organic',c:'#4F7C8C',owner:'Sarah / Sean'}};
+const SBADGE={planned:'Planned',live:'Live',done:'Done'},SORDER=['planned','live','done'];
+const DEFAULT_EVENTS=[
+  {id:'e1',c:'hcm',d:2,t:'HIGH connection batch',s:'done'},{id:'e2',c:'hcm',d:3,t:'Email 1 + calls',s:'done'},
+  {id:'e3',c:'hcm',d:9,t:'Provocation email',s:'live'},{id:'e4',c:'hcm',d:12,t:'Call attempt 3',s:'planned'},
+  {id:'e5',c:'hcm',d:18,t:'Close-the-loop email',s:'planned'},{id:'e15',c:'hcm',d:19,t:'July webinar prep',s:'planned'},
+  {id:'e6',c:'chg',d:1,t:'LinkedIn batch (25)',s:'done'},{id:'e7',c:'chg',d:3,t:'LinkedIn batch (25)',s:'done'},
+  {id:'e8',c:'chg',d:8,t:'LinkedIn batch (25)',s:'live'},{id:'e9',c:'chg',d:10,t:'Insight messages',s:'planned'},
+  {id:'e10',c:'od',d:9,t:'OD letters drop (10)',s:'live'},{id:'e11',c:'od',d:16,t:'OD follow-up calls',s:'planned'},
+  {id:'e12',c:'pmo',d:18,t:'PMO letters drop (43)',s:'planned'},
+  {id:'e13',c:'post',d:11,t:'Post - Sarah',s:'planned'},{id:'e14',c:'post',d:18,t:'Post - Sean',s:'planned'}
+];
+const DAYS=30,TODAY=9;let EVENTS=null,filter='all',picked=null,dragId=null;
+async function loadEvents(){EVENTS=await sGet('cal:events');if(!EVENTS)EVENTS=JSON.parse(JSON.stringify(DEFAULT_EVENTS));}
+function saveEvents(){sSet('cal:events',EVENTS);}
+document.querySelectorAll('#calFilter .fbtn').forEach(b=>b.addEventListener('click',()=>{
+  filter=b.dataset.f;document.querySelectorAll('#calFilter .fbtn').forEach(x=>x.classList.toggle('on',x===b));renderCal();}));
+
+async function renderCal(){
+  if(!EVENTS)await loadEvents();
+  const head=document.getElementById('calHead'),body=document.getElementById('calBody');
+  head.innerHTML='';body.innerHTML='';
+  ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(d=>{const h=document.createElement('div');h.className='cah';h.textContent=d;head.appendChild(h);});
+  const lead=(new Date(2026,5,1).getDay()+6)%7;
+  for(let i=0;i<lead;i++)body.appendChild(Object.assign(document.createElement('div'),{className:'cell pad'}));
+  for(let day=1;day<=DAYS;day++){
+    const cell=document.createElement('div');cell.className='cell'+(day===TODAY?' today':'')+(picked?' moving':'');
+    cell.innerHTML='<div class="cnum">'+day+'</div>';
+    const moveTo=id=>{const e=EVENTS.find(x=>x.id===id);if(e)e.d=day;saveEvents();picked=null;renderCal();};
+    cell.addEventListener('click',()=>{if(picked)moveTo(picked);});
+    /* drop target */
+    cell.addEventListener('dragover',x=>{x.preventDefault();cell.classList.add('dropok');});
+    cell.addEventListener('dragleave',()=>cell.classList.remove('dropok'));
+    cell.addEventListener('drop',x=>{x.preventDefault();cell.classList.remove('dropok');const id=dragId||x.dataTransfer.getData('text');if(id)moveTo(id);});
+    EVENTS.filter(e=>e.d===day&&(filter==='all'||e.c===filter)).forEach(e=>{
+      const chip=document.createElement('div');chip.className='chip'+(e.s==='done'?' done':'');chip.style.background=CAMP[e.c].c;
+      chip.textContent=e.t;chip.title='Drag me to a new day, or click to pick up';chip.draggable=true;
+      chip.addEventListener('dragstart',x=>{dragId=e.id;chip.classList.add('dragging');x.dataTransfer.setData('text',e.id);x.dataTransfer.effectAllowed='move';});
+      chip.addEventListener('dragend',()=>{dragId=null;chip.classList.remove('dragging');});
+      chip.addEventListener('click',x=>{x.stopPropagation();picked=(picked===e.id?null:e.id);renderCal();});
+      cell.appendChild(chip);
+    });
+    body.appendChild(cell);
+  }
+  const tb=document.getElementById('evTable');tb.innerHTML='';
+  const rows=EVENTS.filter(e=>filter==='all'||e.c===filter).slice().sort((a,b)=>a.d-b.d);
+  document.getElementById('tblCount').textContent=rows.length+' items';
+  rows.forEach(e=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td class="edate">'+e.d+' Jun</td>'+
+      '<td><span class="ctag"><span class="cd" style="background:'+CAMP[e.c].c+'"></span>'+CAMP[e.c].n+'</span></td>'+
+      '<td class="ename">'+e.t+'</td><td class="owner">'+CAMP[e.c].owner+'</td>'+
+      '<td><span class="sbadge '+e.s+'">'+SBADGE[e.s]+'</span></td>'+
+      '<td style="text-align:right"><button class="rowdel" title="Remove">×</button></td>';
+    tr.querySelector('.sbadge').addEventListener('click',()=>{e.s=SORDER[(SORDER.indexOf(e.s)+1)%3];saveEvents();renderCal();});
+    tr.querySelector('.rowdel').addEventListener('click',()=>{EVENTS=EVENTS.filter(x=>x.id!==e.id);saveEvents();renderCal();});
+    tb.appendChild(tr);
+  });
+}
+
+/* ============ TEAM NOTES ============ */
+const SEED_NOTES=[
+  {id:'s2',who:'Sarah',ts:'Mon 9 Jun, 14:10',text:'Good call with Glanbia - mid-restructure, they want a proposal. Following up Wednesday.'},
+  {id:'s1',who:'Ben',ts:'Mon 9 Jun, 08:30',text:'STD tier copy is drafted and ready for review before the email fallback goes Thursday.'}
+];
+let NOTES=null;
+async function loadNotes(){NOTES=await sGet('team:notes');if(!NOTES)NOTES=JSON.parse(JSON.stringify(SEED_NOTES));}
+function saveNotes(){sSet('team:notes',NOTES);}
+async function renderNotes(){
+  if(!NOTES)await loadNotes();
+  const list=document.getElementById('noteList');list.innerHTML='';
+  if(!NOTES.length){list.innerHTML='<div class="noteempty">No notes yet. Add the first one below.</div>';return;}
+  NOTES.forEach(n=>{
+    const el=document.createElement('div');el.className='noteitem';
+    el.innerHTML='<button class="notedel" title="Delete">×</button><div class="meta"><b>'+esc(n.who)+'</b> · '+esc(n.ts)+'</div><div class="txt">'+esc(n.text)+'</div>';
+    el.querySelector('.notedel').addEventListener('click',()=>{NOTES=NOTES.filter(x=>x.id!==n.id);saveNotes();renderNotes();});
+    list.appendChild(el);
+  });
+}
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function nowStamp(){const d=new Date();return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})+', '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+
+const nameInput=document.getElementById('noteName');
+nameInput.value=localStorage.getItem('me:name')||'';
+nameInput.addEventListener('input',()=>localStorage.setItem('me:name',nameInput.value.trim()));
+document.getElementById('noteAdd').addEventListener('click',async()=>{
+  const txt=document.getElementById('noteText').value.trim();if(!txt)return;
+  const who=nameInput.value.trim()||'Team';
+  NOTES.unshift({id:'n'+Date.now(),who,ts:nowStamp(),text:txt});
+  saveNotes();document.getElementById('noteText').value='';renderNotes();
+});
+
+/* ---------- add item to calendar ---------- */
+(function(){const sel=document.getElementById('addCamp');
+  Object.keys(CAMP).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=CAMP[k].n;sel.appendChild(o);});})();
+document.getElementById('addEvent').addEventListener('click',async()=>{
+  if(!EVENTS)await loadEvents();
+  const c=document.getElementById('addCamp').value;
+  const t=document.getElementById('addLabel').value.trim();
+  const d=parseInt(document.getElementById('addDay').value,10);
+  if(!t||!(d>=1&&d<=DAYS))return;
+  EVENTS.push({id:'n'+Date.now(),c,d,t,s:'planned'});
+  saveEvents();
+  document.getElementById('addLabel').value='';document.getElementById('addDay').value='';
+  renderCal();
+});
+
+renderCal();renderNotes();
+</script>
+</body>
+</html>
