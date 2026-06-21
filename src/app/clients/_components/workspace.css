@@ -10,6 +10,8 @@
   --card-hover: #f5f5f0;
   --st-ready: #2e9e5b;
   --st-prog: #d98a1f;
+  --st-paused: #5b7383;
+  --st-signed: #3a7ca5;
   --st-todo: #8a8a85;
   font-family: var(--mono), "JetBrains Mono", monospace;
   color: var(--text);
@@ -209,8 +211,17 @@
   margin-right: 8px;
   vertical-align: middle;
 }
+.cw-b.signed-off {
+  background: var(--st-signed);
+}
+.cw-b.complete {
+  background: var(--st-signed);
+}
 .cw-b.in-progress {
   background: var(--st-prog);
+}
+.cw-b.paused {
+  background: var(--st-paused);
 }
 .cw-b.todo {
   background: var(--st-todo);
@@ -250,6 +261,9 @@
   line-height: 1.7;
   max-width: 660px;
   margin-bottom: 24px;
+}
+.cw-desc-wide {
+  max-width: none;
 }
 
 /* ---- media tile ---- */
@@ -362,6 +376,11 @@
 }
 .cw-download svg {
   stroke: currentColor;
+}
+.cw-download-row {
+  margin-top: 8px;
+  padding: 4px 9px;
+  font-size: 10px;
 }
 
 /* ---- embed (live HTML in an iframe) ---- */

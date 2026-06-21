@@ -12,7 +12,7 @@ import { useState, useTransition, useRef } from "react";
 import Link from "next/link";
 
 /* ---- types (kept permissive so data.ts is easy to hand-edit) ---- */
-type Status = "ready" | "in-progress" | "todo";
+type Status = "complete" | "signed-off" | "ready" | "in-progress" | "paused" | "todo";
 type ZoneKey = "deliverables" | "brief" | "work" | "feedback";
 
 export type Meta = {
@@ -25,6 +25,7 @@ export type Meta = {
   pageShareThread?: string;     // Gmail thread/message id of the page-share email
   targetDate?: string;          // estimated completion date, shown by the progress bar
   completionOverride?: number;  // manual % override; if unset, % is computed from statuses
+  hideProgress?: boolean;       // hides the completion bar + "X of Y ready" count line
   zoneIntros?: Partial<Record<ZoneKey, string>>; // per-zone description line under each zone header
 };
 
@@ -36,6 +37,8 @@ export type Deliverable = {
   target?: string;
   note?: string;
   isNew?: boolean;              // renders a "New" tag on the row
+  statusLabel?: string;         // overrides the status pill text (keeps the status colour); for bespoke states like "Reviewed and paused by Darren"
+  download?: { file: string; label?: string };  // file in public/clients/{slug}/media/, renders a download link in the note cell
 };
 
 type MediaItem = {
@@ -69,6 +72,7 @@ export type WorkSection = {
   title: string;
   status?: Status;
   desc?: string;
+  wideDesc?: boolean;      // lets a long desc run the full content width instead of the 660px reading column
   badge?: string;
   zone?: ZoneKey;          // which zone this section belongs to (default "work")
   isNew?: boolean;         // renders a "New" tag in the section head
@@ -111,8 +115,11 @@ export type WorkSection = {
 };
 
 const STATUS_LABEL: Record<Status, string> = {
+  complete: "Complete",
+  "signed-off": "Signed off",
   ready: "Ready for feedback",
   "in-progress": "In progress",
+  paused: "Paused",
   todo: "To do",
 };
 
@@ -123,7 +130,7 @@ const ZONES: Record<ZoneKey, { num: string; label: string }> = {
   feedback: { num: "04", label: "Feedback" },
 };
 
-const STATUS_WEIGHT: Record<Status, number> = { ready: 1, "in-progress": 0.5, todo: 0 };
+const STATUS_WEIGHT: Record<Status, number> = { complete: 1, "signed-off": 1, ready: 1, "in-progress": 0.5, paused: 0.5, todo: 0 };
 
 function computeCompletion(deliverables: Deliverable[], override?: number): number {
   if (typeof override === "number") return override;
@@ -458,7 +465,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
   return (
     <section className="cw-sec">
       <SectionHead s={s} />
-      {s.desc && <p className="cw-desc">{s.desc}</p>}
+      {s.desc && <p className={s.wideDesc ? "cw-desc cw-desc-wide" : "cw-desc"}>{s.desc}</p>}
 
       {previewed && (
         <>
@@ -722,21 +729,24 @@ export default function ClientWorkspace({
         )}
 
         {zoned && (
-          <>
-            <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} num={zoneNum("deliverables")} />
-            <div className="cw-prog">
-              <div className="cw-prog-top">
-                <span className="cw-prog-pct">{pct}% complete</span>
-                {meta.targetDate && <span className="cw-prog-date">Estimated completion &middot; {meta.targetDate}</span>}
-              </div>
-              <div className="cw-prog-track"><div className="cw-prog-fill" style={{ width: `${pct}%` }} /></div>
-            </div>
-          </>
+          <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} num={zoneNum("deliverables")} />
         )}
 
-        <div className="cw-count">
-          {readyCount} of {deliverables.length} ready for feedback &middot; last updated {meta.lastUpdated}
-        </div>
+        {zoned && !meta.hideProgress && (
+          <div className="cw-prog">
+            <div className="cw-prog-top">
+              <span className="cw-prog-pct">{pct}% complete</span>
+              {meta.targetDate && <span className="cw-prog-date">Estimated completion &middot; {meta.targetDate}</span>}
+            </div>
+            <div className="cw-prog-track"><div className="cw-prog-fill" style={{ width: `${pct}%` }} /></div>
+          </div>
+        )}
+
+        {!meta.hideProgress && (
+          <div className="cw-count">
+            {readyCount} of {deliverables.length} ready for feedback &middot; last updated {meta.lastUpdated}
+          </div>
+        )}
         <div className="cw-summary">
           <div className="cw-row cw-row-head" style={{ gridTemplateColumns: cols }}>
             <span>Deliverable</span>
@@ -750,10 +760,10 @@ export default function ClientWorkspace({
             <div className="cw-row" key={d.name} style={{ gridTemplateColumns: cols }}>
               <span>{d.name}{d.isNew && <span className="cw-new cw-new-inline">New</span>}</span>
               <span>{d.detail}</span>
-              <span><i className={`cw-b ${d.status}`} />{STATUS_LABEL[d.status]}</span>
+              <span><i className={`cw-b ${d.status}`} />{d.statusLabel || STATUS_LABEL[d.status]}</span>
               <span>{d.date || " - "}</span>
               {hasTarget && <span>{d.target || " - "}</span>}
-              <span>{d.note || ""}</span>
+              <span>{d.note || ""}{d.download && <> <a className="cw-download cw-download-row" href={`${base}/${d.download.file}`} download>{d.download.label || "Download"}</a></>}</span>
             </div>
           ))}
         </div>
