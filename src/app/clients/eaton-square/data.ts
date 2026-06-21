@@ -19,14 +19,17 @@ export const meta: Meta = {
   },
 };
 
-/* First-pass statuses from the Eaton workstreams - confirm before sharing. */
 export const deliverables: Deliverable[] = [
-  { name: "Direct mail campaign", detail: "Personalised letters across the verified list (Operating Model Review + Programme Diagnostic)", status: "in-progress", date: "2026-06-11", note: "Two approved letters merging across the list; awaiting Sarah's contact details and recipient picks." },
-  { name: "Lead engine", detail: "500-company outreach campaign, HeyReach live", status: "in-progress", date: "2026-06-12", note: "Campaign V2 rebuild." },
-  { name: "AI coach for the team", detail: "Interactive Claude training coach", status: "ready", date: "2026-06-05", note: "Built and packaged; team to trial." },
-  { name: "Messaging workshop", detail: "Pain points and positioning with Sarah", status: "todo", note: "" },
-  { name: "Growth Manager agent", detail: "Autonomous outreach desk for Eaton", status: "todo", note: "" },
-  { name: "Campaign calendar", detail: "Shared, always-current view of every campaign, built as a Claude artefact your team runs in its own workspace", status: "in-progress", date: "2026-06-21", note: "A concept to try. Screenshot, the file, and build-it-yourself steps are in the work area below.", isNew: true },
+  { name: "AI-run outreach engine", detail: "Claude as your project manager: it finds and enriches companies with the Clay skills, writes and merges personalised messages in your voice, and feeds HeyReach (LinkedIn) and Smartlead (email), so the team spends far less time finding, enriching and sending by hand", status: "in-progress", date: "2026-06-21", note: "Most of the pieces are built. Next is getting the team fluent on them and on Claude, plus clear workflow guides to follow (below). One open item: the email sending setup.", isNew: true },
+  { name: "Copywriters for Sarah and Sean", detail: "An AI copywriter in each person's own voice, built from the messaging framework and their own writing", status: "ready", date: "2026-06-21", note: "Built and uploaded as Claude Skills. Format-agnostic: posts, emails, anything, in their own voice." },
+  { name: "Content creators for Sarah and Sean", detail: "Turn documents and ideas into branded content", status: "in-progress", date: "2026-06-21", note: "Skills built. Sean is set up via Claude Design with the HR Path brand kit. Sarah's visuals are blocked by the corporate brand team, so we are building her a separate route for images." },
+  { name: "Growth manager (BDR) + campaign calendar", detail: "An agent that watches the pipeline, flags when it runs low, and (once connected) writes and sends campaigns, with a shared calendar it manages", status: "in-progress", date: "2026-06-21", note: "The calendar (v1) is live, see below. The advisor layer (watch, flag, advise) we can build now. The send layer needs the tool connectors plugged into Claude.", isNew: true },
+  { name: "Training", detail: "Getting Sarah and Ben fluent on Claude and the new process", status: "in-progress", date: "2026-06-21", note: "One group session done; more to come, focused on real use cases. A self-serve coach skill is also built." },
+  { name: "Handover playbook", detail: "A light guide so the team runs everything without us", status: "todo", note: "" },
+  { name: "Workflow guides", detail: "Clear step-by-step guides the team follows to run the engine, so the process is repeatable without us", status: "todo", date: "2026-06-21", note: "Coming as documents on this page." },
+  { name: "Direct mail", detail: "A Claude skill that writes personalised direct-mail letters in voice", status: "ready", date: "2026-06-21", note: "Added value, beyond the original plan. In use for the Schools Campaign and the PMO campaign." },
+  { name: "Change-outreach skill", detail: "A Claude skill that enriches a company, picks the change decision-maker and writes an evidence-only note, using your Clay connector", status: "ready", date: "2026-06-21", note: "Added value, beyond the original plan." },
+  { name: "Prospect verification method", detail: "A repeatable way to verify a list (signal, contact, address) before any outreach", status: "ready", date: "2026-06-21", note: "Added value, beyond the original plan." },
 ];
 
 export const work: WorkSection[] = [
@@ -34,6 +37,14 @@ export const work: WorkSection[] = [
   // reference (kinds: media, copy, files, gallery). Letters, decks, charts or
   // copy go here once their files are dropped into
   // public/clients/eaton-square/media/. Give each one zone: "work".
+
+  { title: "The outreach engine - how it works and where it stands", kind: "copy", zone: "work", status: "in-progress",
+    desc: "The big goal: run outreach with far less manual time finding companies, enriching them, and sending messages.",
+    blocks: [
+      { label: "How it works", text: "Claude acts as your project manager.\n\n1. Find and enrich - Claude uses the Clay skills to find companies and pull the right contact and a real signal for each, so nobody does this by hand.\n2. Write and merge - Claude writes and merges the LinkedIn and email messages in your voice, personalised per company.\n3. Send - the messages flow into HeyReach for LinkedIn and Smartlead for email.\n\nThe result: far less manual work for Ben, more volume, and better, more personalised messages." },
+      { label: "What's in place", text: "- The Clay find-and-enrich skills\n- The messaging framework, tightened and signed off\n- Writing and merging messages in Claude\n- HeyReach and Smartlead connected\n- A shared calendar Claude helps manage (below)" },
+      { label: "What's left to make it smooth", text: "- Email sending: the one real blocker. The accounts are connected, but the team still needs an email address set up (a domain and mailbox, warmed up) before Smartlead can send. Ben owns this.\n- Getting fluent: the pieces are in place, but the team needs a little more time to find a groove on the new process and on Claude.\n- Workflow guides: we will add clear step-by-step guides on this page for the team to follow, so the process is repeatable without us." },
+    ] },
 
   { title: "Campaign calendar", kind: "media", layout: "single", zone: "work", status: "ready",
     desc: "A shared, always-current view of every campaign on one calendar. It runs as a Claude artefact in your own workspace, so the whole team sees the same plan and changes save for everyone.",
