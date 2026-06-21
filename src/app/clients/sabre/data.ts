@@ -4,6 +4,7 @@
    NOTE: this file ships to the browser. Never put the password here. */
 
 import type { Meta, Deliverable, WorkSection } from "../_components/ClientWorkspace";
+import { briefExamplesHtml } from "./brief-examples-html";
 
 export const meta: Meta = {
   client: "Sabre",
@@ -73,9 +74,9 @@ export const work: WorkSection[] = [
     desc: "Darren's four-station model for how a brief moves through the team, with Claude doing the same job at every station. This is what we are building the brief coach on top of. The brief coach starts at stations 1 and 2, where briefs are born.",
     embedSrc: "brief-coach-flow.html", embedHeight: 600 },
 
-  { title: "Worked examples: a one-pager, and the brief it becomes", kind: "embed", zone: "brief", wideDesc: true, isNew: true, badge: "Does this match how Sabre works?",
+  { title: "Worked examples: a one-pager, and the brief it becomes", kind: "html", zone: "brief", wideDesc: true, isNew: true, badge: "Does this match how Sabre works?",
     desc: "Before we build the brief coach, we need to agree what a good one-pager and a good brief actually look like at Sabre. So we have taken a stab at both, for the same imaginary campaign. The one-pager is the owner's ask; the brief is the marketing craft that answers it. Have a read and tell us: is this the right shape and altitude, or not typical of how Sabre really works? A yes or a no both move us forward.",
-    embedSrc: "brief-examples.html", embedHeight: 2480 },
+    html: briefExamplesHtml },
 
   { title: "Email writer (v2)", kind: "files", zone: "work", status: "ready", wideDesc: true,
     desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",

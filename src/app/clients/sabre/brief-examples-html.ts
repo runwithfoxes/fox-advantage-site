@@ -1,94 +1,77 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sabre briefing - worked examples</title>
+/* Worked examples (one-pager + brief) rendered INLINE in the page, not in an
+   iframe. Every selector is scoped under .bx-root so nothing leaks into the
+   rest of the client workspace. Bundled as a string (not read from /public) so
+   it ships with the serverless function on Vercel. */
+export const briefExamplesHtml = `
 <style>
-  :root {
-    --terra: #E2553C;
-    --darkred: #741C1C;
-    --ink: #1a1a1a;
-    --paper: #F3EFE4;
-    --muted: #6b6b6b;
-    --line: #d8d2c4;
-    --linedark: #1a1a1a;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
+  .bx-root {
+    --bx-terra: #E2553C; --bx-darkred: #741C1C; --bx-ink: #1a1a1a;
+    --bx-paper: #F3EFE4; --bx-muted: #6b6b6b; --bx-line: #d8d2c4; --bx-linedark: #1a1a1a;
+    background: var(--bx-paper); color: var(--bx-ink);
     font-family: "APK Galeria", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    padding: 36px 28px 44px;
+    -webkit-font-smoothing: antialiased; padding: 32px 26px 36px; border: 1px solid var(--bx-line);
   }
-  .wrap { max-width: 900px; margin: 0 auto; }
-  .eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--terra); font-weight: 700; margin: 0 0 8px; }
-  h1.top { font-size: 26px; line-height: 1.18; margin: 0 0 12px; font-weight: 800; max-width: 720px; }
-  .intro { font-size: 14.5px; line-height: 1.65; color: var(--muted); max-width: 720px; margin: 0 0 6px; }
-  .intro b { color: var(--ink); font-weight: 700; }
-  .illus { font-size: 12px; color: var(--muted); margin: 14px 0 0; padding: 10px 14px; border: 1px solid var(--line); background: #fff; }
-  .illus b { color: var(--ink); }
+  .bx-root *, .bx-root *::before, .bx-root *::after { box-sizing: border-box; }
+  .bx-root .bx-inner { max-width: 860px; margin: 0 auto; }
+  .bx-root .eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--bx-terra); font-weight: 700; margin: 0 0 8px; }
+  .bx-root h1.top { font-size: 25px; line-height: 1.18; margin: 0 0 12px; font-weight: 800; max-width: 720px; }
+  .bx-root .intro { font-size: 14.5px; line-height: 1.65; color: var(--bx-muted); max-width: 720px; margin: 0 0 6px; }
+  .bx-root .intro b { color: var(--bx-ink); font-weight: 700; }
+  .bx-root .illus { font-size: 12px; color: var(--bx-muted); margin: 14px 0 0; padding: 10px 14px; border: 1px solid var(--bx-line); background: #fff; }
+  .bx-root .illus b { color: var(--bx-ink); }
 
-  /* document card */
-  .doc { border: 1px solid var(--linedark); background: #fff; margin: 28px 0 0; }
-  .doc-head { border-bottom: 1px solid var(--linedark); padding: 14px 22px; display: flex; align-items: center; gap: 12px; }
-  .doc-num { width: 34px; height: 34px; flex: 0 0 34px; display: inline-flex; align-items: center; justify-content: center; background: var(--ink); color: #fff; font-size: 17px; font-weight: 800; }
-  .doc-titles .k { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--terra); font-weight: 700; }
-  .doc-titles .t { font-size: 18px; font-weight: 800; line-height: 1.2; }
-  .doc-meta { padding: 9px 22px; border-bottom: 1px solid var(--line); font-size: 11.5px; color: var(--muted); letter-spacing: .3px; }
-  .doc-body { padding: 6px 22px 22px; }
+  .bx-root .doc { border: 1px solid var(--bx-linedark); background: #fff; margin: 28px 0 0; }
+  .bx-root .doc-head { border-bottom: 1px solid var(--bx-linedark); padding: 14px 22px; display: flex; align-items: center; gap: 12px; }
+  .bx-root .doc-num { width: 34px; height: 34px; flex: 0 0 34px; display: inline-flex; align-items: center; justify-content: center; background: var(--bx-ink); color: #fff; font-size: 17px; font-weight: 800; }
+  .bx-root .doc-titles .k { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--bx-terra); font-weight: 700; }
+  .bx-root .doc-titles .t { font-size: 18px; font-weight: 800; line-height: 1.2; }
+  .bx-root .doc-meta { padding: 9px 22px; border-bottom: 1px solid var(--bx-line); font-size: 11.5px; color: var(--bx-muted); letter-spacing: .3px; }
+  .bx-root .doc-body { padding: 6px 22px 22px; }
 
-  .field { padding: 14px 0; border-bottom: 1px solid var(--line); }
-  .field:last-child { border-bottom: none; }
-  .field .fl { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); font-weight: 800; margin: 0 0 6px; }
-  .field .fl span { color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
-  .field p { font-size: 13.5px; line-height: 1.6; margin: 0; color: var(--ink); }
-  ul.b { margin: 0; padding: 0; list-style: none; }
-  ul.b li { font-size: 13px; line-height: 1.55; padding-left: 16px; position: relative; margin-bottom: 2px; }
-  ul.b li::before { content: "\25C6"; color: var(--terra); position: absolute; left: 0; font-size: 8px; top: 5px; }
-  .ph { color: var(--terra); }
-  .northstar { background: var(--paper); border-left: 3px solid var(--terra); padding: 12px 16px; font-size: 15px; font-weight: 700; line-height: 1.45; }
+  .bx-root .field { padding: 14px 0; border-bottom: 1px solid var(--bx-line); }
+  .bx-root .field:last-child { border-bottom: none; }
+  .bx-root .field .fl { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--bx-ink); font-weight: 800; margin: 0 0 6px; }
+  .bx-root .field .fl span { color: var(--bx-muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
+  .bx-root .field p { font-size: 13.5px; line-height: 1.6; margin: 0; color: var(--bx-ink); }
+  .bx-root ul.b { margin: 0; padding: 0; list-style: none; }
+  .bx-root ul.b li { font-size: 13px; line-height: 1.55; padding-left: 16px; position: relative; margin-bottom: 2px; }
+  .bx-root ul.b li::before { content: "\\25C6"; color: var(--bx-terra); position: absolute; left: 0; font-size: 8px; top: 5px; }
+  .bx-root .ph { color: var(--bx-terra); }
+  .bx-root .northstar { background: var(--bx-paper); border-left: 3px solid var(--bx-terra); padding: 12px 16px; font-size: 15px; font-weight: 700; line-height: 1.45; }
 
-  table.msg { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  table.msg th { text-align: left; font-size: 10px; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--linedark); }
-  table.msg td { font-size: 12.5px; line-height: 1.5; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  table.msg td.pill { font-weight: 800; white-space: nowrap; color: var(--darkred); }
-  table.msg td .src { color: var(--terra); font-size: 11.5px; }
+  .bx-root table.msg { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .bx-root table.msg th { text-align: left; font-size: 10px; letter-spacing: .8px; text-transform: uppercase; color: var(--bx-muted); padding: 6px 10px; border-bottom: 1px solid var(--bx-linedark); }
+  .bx-root table.msg td { font-size: 12.5px; line-height: 1.5; padding: 9px 10px; border-bottom: 1px solid var(--bx-line); vertical-align: top; }
+  .bx-root table.msg td.pill { font-weight: 800; white-space: nowrap; color: var(--bx-darkred); }
+  .bx-root table.msg td .src { color: var(--bx-terra); font-size: 11.5px; }
 
-  /* becomes connector */
-  .becomes { display: flex; flex-direction: column; align-items: center; margin: 0; padding: 22px 0 0; }
-  .becomes .chip { background: var(--ink); color: #fff; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; font-weight: 700; }
-  .becomes .tip { color: var(--terra); font-size: 20px; line-height: .8; margin-top: 2px; }
+  .bx-root .becomes { display: flex; flex-direction: column; align-items: center; margin: 0; padding: 22px 0 0; }
+  .bx-root .becomes .chip { background: var(--bx-ink); color: #fff; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; font-weight: 700; }
+  .bx-root .becomes .tip { color: var(--bx-terra); font-size: 20px; line-height: .8; margin-top: 2px; }
 
-  /* darren callout */
-  .ask { border: 2px solid var(--terra); background: rgba(226,85,60,0.05); padding: 0; margin: 40px 0 0; position: relative; }
-  .ask-tab { position: absolute; top: -12px; left: 20px; background: var(--terra); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 14px; }
-  .ask-body { padding: 26px 22px 22px; }
-  .ask-body h2 { font-size: 18px; font-weight: 800; margin: 0 0 8px; }
-  .ask-body p { font-size: 14px; line-height: 1.6; color: var(--ink); margin: 0 0 14px; max-width: 700px; }
-  .ask-q { font-size: 14px; line-height: 1.55; padding-left: 22px; position: relative; margin-bottom: 10px; font-weight: 600; }
-  .ask-q::before { content: "\25C6"; color: var(--terra); position: absolute; left: 0; top: 3px; font-size: 10px; }
-  .ask-q span { font-weight: 400; color: var(--muted); }
+  .bx-root .ask { border: 2px solid var(--bx-terra); background: rgba(226,85,60,0.05); padding: 0; margin: 40px 0 0; position: relative; }
+  .bx-root .ask-tab { position: absolute; top: -12px; left: 20px; background: var(--bx-terra); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 14px; }
+  .bx-root .ask-body { padding: 26px 22px 22px; }
+  .bx-root .ask-body h2 { font-size: 18px; font-weight: 800; margin: 0 0 8px; }
+  .bx-root .ask-body p { font-size: 14px; line-height: 1.6; color: var(--bx-ink); margin: 0 0 14px; max-width: 700px; }
+  .bx-root .ask-q { font-size: 14px; line-height: 1.55; padding-left: 22px; position: relative; margin-bottom: 10px; font-weight: 600; }
+  .bx-root .ask-q::before { content: "\\25C6"; color: var(--bx-terra); position: absolute; left: 0; top: 3px; font-size: 10px; }
+  .bx-root .ask-q span { font-weight: 400; color: var(--bx-muted); }
 
   @media (max-width: 640px) {
-    .doc-head { flex-wrap: wrap; }
-    table.msg, table.msg tbody, table.msg tr, table.msg td { display: block; width: 100%; }
-    table.msg thead { display: none; }
-    table.msg td { border-bottom: none; padding: 2px 0; }
-    table.msg tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+    .bx-root .doc-head { flex-wrap: wrap; }
+    .bx-root table.msg, .bx-root table.msg tbody, .bx-root table.msg tr, .bx-root table.msg td { display: block; width: 100%; }
+    .bx-root table.msg thead { display: none; }
+    .bx-root table.msg td { border-bottom: none; padding: 2px 0; }
+    .bx-root table.msg tr { border-bottom: 1px solid var(--bx-line); padding: 8px 0; }
   }
 </style>
-</head>
-<body>
-<div class="wrap">
+<div class="bx-root"><div class="bx-inner">
   <p class="eyebrow">Sabre briefing system &mdash; worked examples</p>
   <h1 class="top">A one-pager, and the brief it becomes</h1>
   <p class="intro">To build the brief coach, we first need to agree what a good one-pager and a good brief actually look like at Sabre. So we have taken a stab at both, for the same imaginary campaign, to put something concrete in front of you. <b>The one-pager is the owner's ask. The brief is the marketing craft that answers it.</b> Same campaign, two different altitudes.</p>
   <p class="illus"><b>Illustrative only.</b> This is an example campaign we invented to show the shape, not real Sabre material. The bracketed bits in terracotta are gaps a writer would fill or verify before anything ships.</p>
 
-  <!-- ONE-PAGER -->
   <div class="doc">
     <div class="doc-head">
       <span class="doc-num">1</span>
@@ -145,7 +128,6 @@
     <span class="tip">&#9660;</span>
   </div>
 
-  <!-- THE BRIEF -->
   <div class="doc">
     <div class="doc-head">
       <span class="doc-num">2</span>
@@ -209,7 +191,6 @@
     </div>
   </div>
 
-  <!-- DARREN ASK -->
   <div class="ask">
     <span class="ask-tab">Over to you, Darren</span>
     <div class="ask-body">
@@ -217,9 +198,8 @@
       <p>Before we build the coach, we want to know we have the shape of these two documents right for how Sabre actually works. Two questions:</p>
       <p class="ask-q">Are these the right fields, and the right altitude for each? <span>Does the one-pager sit where your owners would start, and the brief where Product Marketing would take it?</span></p>
       <p class="ask-q">What is missing, or not typical at Sabre? <span>Anything we have included that you would not, or left out that you always need.</span></p>
-      <p style="font-size:13px;color:var(--muted);margin:16px 0 0;max-width:700px;">Mark it up however suits. A yes-this-is-typical or a no-here-is-what-real-looks-like both move us forward.</p>
+      <p style="font-size:13px;color:#6b6b6b;margin:16px 0 0;max-width:700px;">Mark it up however suits. A yes-this-is-typical or a no-here-is-what-real-looks-like both move us forward.</p>
     </div>
   </div>
-</div>
-</body>
-</html>
+</div></div>
+`;

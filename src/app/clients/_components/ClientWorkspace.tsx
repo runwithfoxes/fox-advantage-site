@@ -77,7 +77,7 @@ export type WorkSection = {
   zone?: ZoneKey;          // which zone this section belongs to (default "work")
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
-  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed";
+  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed" | "html";
   layout?: "grouped" | "pair" | "single";
   // responsive kind: one piece at two layouts, toggled live between a desktop
   // browser frame and a phone frame.
@@ -106,6 +106,9 @@ export type WorkSection = {
   // "open full screen" link. The file lives in the client's media folder.
   embedSrc?: string;      // html file name in public/clients/{slug}/media/
   embedHeight?: number;   // iframe height in px (default 720)
+  // html kind: a self-contained HTML string rendered INLINE (no iframe). Styles
+  // must be scoped under a wrapper class so they don't leak into the workspace.
+  html?: string;
   // email kind:
   prompt?: string;        // the prompt shown above the email card
   from?: string;          // sender label in the email bar (e.g. "Sabre")
@@ -604,6 +607,10 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
             </svg>
           </a>
         </div>
+      )}
+
+      {s.kind === "html" && s.html && (
+        <div className="cw-html" dangerouslySetInnerHTML={{ __html: s.html }} />
       )}
 
       {s.kind === "responsive" && <ResponsiveFigure s={s} base={base} />}
