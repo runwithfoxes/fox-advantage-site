@@ -24,7 +24,7 @@ export const deliverables: Deliverable[] = [
   { name: "Copywriters for Sarah and Sean", detail: "An AI copywriter in each person's own voice, built from the messaging framework and their own writing", status: "complete", date: "2026-06-21", note: "Built and uploaded as Claude Skills. Format-agnostic: posts, emails, anything, in their own voice." },
   { name: "Content creators for Sarah and Sean", detail: "Turn documents and ideas into branded content", status: "complete", date: "2026-06-21", note: "Skills built and uploaded. Sean is set up via Claude Design with the HR Path brand kit. (Sarah's LinkedIn visuals are a separate item, below.)" },
   { name: "LinkedIn design kit for Sarah", detail: "A branded route for Sarah's LinkedIn visuals, since Claude Design is blocked by the corporate brand team", status: "todo", date: "2026-06-21", note: "New: building Sarah her own image/visual route.", isNew: true },
-  { name: "Growth manager (BDR) + campaign calendar", detail: "An agent that watches the pipeline, flags when it runs low, and (once connected) writes and sends campaigns, with a shared calendar it manages", status: "in-progress", date: "2026-06-21", note: "The calendar (v1) is live, see below. The advisor layer (watch, flag, advise) we can build now. The send layer needs the tool connectors plugged into Claude.", isNew: true },
+  { name: "Growth manager (BDR) + campaign calendar", detail: "An agent that watches the pipeline, flags when it runs low, and (once connected) writes and sends campaigns, with a shared calendar it manages", status: "in-progress", date: "2026-06-21", note: "Two pieces are built and below: the shared calendar (v1), and the advisor - ask \"update me on the campaign\" for a read on the numbers, what needs attention and next moves. The advisor works in Claude browser today (paste the numbers; auto-pull as the connectors are added). The send layer (auto write-and-send) needs the connectors plugged in.", isNew: true },
   { name: "Training", detail: "Getting Sarah and Ben fluent on Claude and the new process", status: "in-progress", date: "2026-06-21", note: "One group session done; more to come, focused on real use cases. A self-serve coach skill is also built." },
   { name: "Handover playbook", detail: "A light guide so the team runs everything without us", status: "todo", note: "" },
   { name: "Workflow guides", detail: "Clear step-by-step guides the team follows to run the engine, so the process is repeatable without us", status: "todo", date: "2026-06-21", note: "Coming as documents on this page." },
@@ -61,6 +61,18 @@ export const work: WorkSection[] = [
     blocks: [
       { label: "Steps", text: "1. Open a shared Project in your Claude workspace, so the whole team works in one place.\n2. Connect your tools to that Project: HeyReach, Clay, Smartlead, and anything else you run campaigns from.\n3. Upload the calendar file (above) into the Project.\n4. Start a chat and ask Claude to build it as an artifact, using the prompt below.\n5. Publish the artifact and share it within your organisation. That is what lets everyone see the same calendar and saves changes for the team. On a Teams or Enterprise plan the share stays private to your organisation, not a public link.\n6. Check it saved: move an item, then reopen the link in a new tab. If the move held, you are set." },
       { label: "The prompt to paste", mono: true, text: "Create an HTML artifact with exactly the code in this file, with no changes." },
+    ] },
+
+  { title: "The campaign advisor", kind: "copy", zone: "work", status: "ready",
+    desc: "Ask Claude \"update me on the campaign\" and it reads the numbers, tells you where things stand, flags what needs attention, and recommends the next moves. On demand - nothing runs in the background.",
+    blocks: [
+      { label: "How to use it", text: "1. Upload the skill (below) into your shared Project in Claude.\n2. Type \"update me on the campaign\".\n3. Claude reports per campaign, flags what needs you (a positive reply, a list running low), and suggests 2-3 next moves.\n\nIt works in the browser today: if a tool connector is there it reads the numbers directly; if not, it asks you to paste them and briefs off that. It never makes a number up." },
+    ] },
+
+  { title: "The advisor skill", kind: "files", zone: "work", status: "ready",
+    desc: "Upload this into your Claude to add the \"update me on the campaign\" advisor.",
+    files: [
+      { name: "Campaign advisor skill", file: "eaton-campaign-update.zip", note: "Claude Skill - upload via Customize then Skills, or into a Project" },
     ] },
 
   /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
