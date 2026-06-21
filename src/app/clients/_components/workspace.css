@@ -364,6 +364,40 @@
   stroke: currentColor;
 }
 
+/* ---- embed (live HTML in an iframe) ---- */
+.cw-embed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.cw-embed-frame {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #fff;
+  display: block;
+}
+.cw-embed-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 6px 11px;
+}
+.cw-embed-open:hover {
+  background: var(--card-hover);
+  color: var(--orange-hover);
+}
+.cw-embed-open svg {
+  stroke: currentColor;
+}
+
 /* ---- copy blocks ---- */
 .cw-copy-stack {
   display: flex;

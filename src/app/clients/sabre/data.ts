@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-20",
+  lastUpdated: "2026-06-21",
   targetDate: "2026-07-06",
   feedbackContacts: ["sabre.com"],
   zoneIntros: {
@@ -28,6 +28,7 @@ export const deliverables: Deliverable[] = [
   { name: "Email writer (v2.1)", detail: "Sabre brand-voice marketing emails, nine types", status: "ready", date: "2026-06-17", note: "v2.1 ready. Download the Claude skill and three sample emails below. The version and a changelog are in the download." },
   { name: "Brand blueprint + scorecard", detail: "Brand health and positioning", status: "in-progress", date: "2026-06-12", note: "" },
   { name: "AI in the briefing system", detail: "Build AI into Sabre's briefing process", status: "todo", date: "2026-06-13", target: "2026-07-06", note: "Next brief. Starts the first week of July." },
+  { name: "Marketing calendar", detail: "Shared, always-current event calendar as a live artefact", status: "in-progress", date: "2026-06-21", note: "Concept to react to. Live preview in the work area.", isNew: true },
 ];
 
 /* Banner sets, grouped by shape. [size, aspect-ratio, display-width-px] */
@@ -60,6 +61,10 @@ function adGroups(route: string) {
 }
 
 export const work: WorkSection[] = [
+  { title: "Marketing calendar: a shared artefact", kind: "embed", zone: "work", isNew: true, badge: "Concept to react to",
+    desc: "A concept to react to, not a finished deliverable. One page the whole marketing team opens inside Sabre's own Claude, always current and edited in the page itself, rather than a calendar that is out of date the moment it is emailed. The event data, RSVP funnels and spend refresh from your source sheet. The human bits, moving an event, changing a status, adding a note, updating a budget line, are done on the page itself and save for everyone on the team. It would live behind Sabre's own login, seen by your team only, the same way the email writer and presentation tools already do. The numbers here are sample data; the real version runs on Sabre's own events. Have a click around the tabs, the status pills and the note, then tell us if it earns a place.",
+    embedSrc: "marketing-calendar.html", embedHeight: 820 },
+
   { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Waiting for feedback",
     desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
     groups: adGroups("open") },

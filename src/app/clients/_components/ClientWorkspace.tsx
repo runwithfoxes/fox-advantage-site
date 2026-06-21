@@ -73,7 +73,7 @@ export type WorkSection = {
   zone?: ZoneKey;          // which zone this section belongs to (default "work")
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
-  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive";
+  kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed";
   layout?: "grouped" | "pair" | "single";
   // responsive kind: one piece at two layouts, toggled live between a desktop
   // browser frame and a phone frame.
@@ -98,6 +98,10 @@ export type WorkSection = {
   items?: (MediaItem | PairItem)[];
   blocks?: CopyBlock[];
   files?: FileRow[];
+  // embed kind: a live, self-contained HTML page shown in an iframe, with an
+  // "open full screen" link. The file lives in the client's media folder.
+  embedSrc?: string;      // html file name in public/clients/{slug}/media/
+  embedHeight?: number;   // iframe height in px (default 720)
   // email kind:
   prompt?: string;        // the prompt shown above the email card
   from?: string;          // sender label in the email bar (e.g. "Sabre")
@@ -574,6 +578,24 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
               })}
             </div>
           </div>
+        </div>
+      )}
+
+      {s.kind === "embed" && s.embedSrc && (
+        <div className="cw-embed">
+          <iframe
+            className="cw-embed-frame"
+            src={`${base}/${s.embedSrc}`}
+            style={{ height: s.embedHeight || 720 }}
+            title={s.title}
+            loading="lazy"
+          />
+          <a className="cw-embed-open" href={`${base}/${s.embedSrc}`} target="_blank" rel="noopener noreferrer">
+            Open full screen
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M14 5h5v5M19 5l-8 8M11 5H6a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1v-5" />
+            </svg>
+          </a>
         </div>
       )}
 
