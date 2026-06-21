@@ -30,7 +30,6 @@ export const deliverables: Deliverable[] = [
   { name: "Workflow guides", detail: "Clear step-by-step guides the team follows to run the engine, so the process is repeatable without us", status: "todo", date: "2026-06-21", note: "Coming as documents on this page." },
   { name: "Direct mail", detail: "A Claude skill that writes personalised direct-mail letters in voice", status: "complete", date: "2026-06-21", note: "Added value, beyond the original plan. In use for the Schools Campaign and the PMO campaign." },
   { name: "Change-outreach skill", detail: "A Claude skill that enriches a company, picks the change decision-maker and writes an evidence-only note, using your Clay connector", status: "complete", date: "2026-06-21", note: "Added value, beyond the original plan." },
-  { name: "Prospect verification method", detail: "A repeatable way to verify a list (signal, contact, address) before any outreach", status: "ready", date: "2026-06-21", note: "Added value, beyond the original plan." },
 ];
 
 export const work: WorkSection[] = [
