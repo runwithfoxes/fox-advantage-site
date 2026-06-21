@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/broad-lake",
+        destination: "/broad-lake/index.html",
+      },
+      {
         source: "/prep",
         destination: "https://ucd-prep.vercel.app/",
       },

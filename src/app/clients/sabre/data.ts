@@ -13,9 +13,11 @@ export const meta: Meta = {
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
   lastUpdated: "2026-06-21",
   targetDate: "2026-07-06",
+  hideProgress: true,
   feedbackContacts: ["sabre.com"],
   zoneIntros: {
     deliverables: "Everything we're producing for Sabre and where each piece stands.",
+    brief: "The inputs you've given us that shape the work.",
     work: "The work, the pieces to look at and react to.",
     feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
   },
@@ -23,11 +25,16 @@ export const meta: Meta = {
 
 /* First-pass statuses from the Sabre workstreams - confirm before sharing. */
 export const deliverables: Deliverable[] = [
-  { name: "Display ad machine (IAB sets)", detail: "Full IAB set per route from swappable copy / photo / animatic", status: "ready", date: "2026-06-12", note: "OPEN and PLATFORM routes ready below. AI route and route 4 to follow." },
-  { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "ready", date: "2026-05-19", note: "Darren iterating independently." },
-  { name: "Email writer (v2.1)", detail: "Sabre brand-voice marketing emails, nine types", status: "ready", date: "2026-06-17", note: "v2.1 ready. Download the Claude skill and three sample emails below. The version and a changelog are in the download." },
-  { name: "Brand blueprint + scorecard", detail: "Brand health and positioning", status: "in-progress", date: "2026-06-12", note: "" },
-  { name: "AI in the briefing system", detail: "Build AI into Sabre's briefing process", status: "todo", date: "2026-06-13", target: "2026-07-06", note: "Next brief. Starts the first week of July." },
+  { name: "AI writer (V1)", detail: "First AI writer, general marketing copy in Sabre brand voice", status: "signed-off", date: "Dec 2025 / Jan 2026", note: "Built, signed off and in use. The starting point for the use-case writers below." },
+  { name: "Team interviews + report", detail: "Interviews across Brand, Product and Commercial Marketing, written up with prioritised recommendations", status: "signed-off", date: "Apr 2026", note: "Phase 1 discovery. The write-up that set the priorities.", download: { file: "sabre-team-interviews-report.docx", label: "Download the report" } },
+  { name: "Ad versioning", detail: "A process that versions one approved ad into the full IAB set, each size pixel-matched to the original design", status: "paused", statusLabel: "Reviewed and paused by Darren", date: "2026-06-12", note: "Proved out and delivered: three route sets (OPEN, PLATFORM and Route 4) across every IAB size, animated and matched to Darren's designs. Darren reviewed them and chose to pause further ad work while the mid-funnel direction is settled." },
+  { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "paused", statusLabel: "Paused, no days charged against it", date: "2026-05-19", note: "Darren has it and is iterating independently." },
+  { name: "Email writer (v2)", detail: "AI writer for Sabre marketing emails, nine types", status: "ready", date: "2026-06-17", note: "Built and on v2, ready for your sign-off. Three sample emails are below, and a changelog is inside the download.", download: { file: "sabre-email-writer-v2.1.sabre.zip", label: "Download the skill" } },
+  { name: "Blog writer", detail: "AI writer for blog posts and longer-form content", status: "todo", note: "Next in the set." },
+  { name: "Web copy writer", detail: "AI writer for website and landing page copy", status: "todo", note: "" },
+  { name: "Paid social writer", detail: "AI writer for paid social copy (LinkedIn, Meta)", status: "todo", note: "" },
+  { name: "Organic social writer", detail: "AI writer for organic social posts", status: "todo", note: "" },
+  { name: "Brief coach", detail: "AI that takes a rough brief and makes it good, inside Sabre's Claude", status: "in-progress", date: "2026-06-20", target: "2026-07-06", note: "Shaping has started with Darren. Build starts the first week of July." },
   { name: "Marketing calendar", detail: "Shared, always-current event calendar as a live artefact", status: "in-progress", date: "2026-06-21", note: "Concept to react to. Live preview in the work area.", isNew: true },
 ];
 
@@ -61,18 +68,11 @@ function adGroups(route: string) {
 }
 
 export const work: WorkSection[] = [
-  { title: "Marketing calendar: a shared artefact", kind: "embed", zone: "work", isNew: true, badge: "Concept to react to",
-    desc: "A concept to react to, not a finished deliverable. One page the whole marketing team opens inside Sabre's own Claude, always current and edited in the page itself, rather than a calendar that is out of date the moment it is emailed. The event data, RSVP funnels and spend refresh from your source sheet. The human bits, moving an event, changing a status, adding a note, updating a budget line, are done on the page itself and save for everyone on the team. It would live behind Sabre's own login, seen by your team only, the same way the email writer and presentation tools already do. The numbers here are sample data; the real version runs on Sabre's own events. Have a click around the tabs, the status pills and the note, then tell us if it earns a place.",
-    embedSrc: "marketing-calendar.html", embedHeight: 820 },
+  { title: "Darren's operating model", kind: "embed", zone: "brief", wideDesc: true, badge: "Your flow",
+    desc: "Darren's four-station model for how a brief moves through the team, with Claude doing the same job at every station. This is what we are building the brief coach on top of. The brief coach starts at stations 1 and 2, where briefs are born.",
+    embedSrc: "brief-coach-flow.html", embedHeight: 600 },
 
-  { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Waiting for feedback",
-    desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
-    groups: adGroups("open") },
-  { title: "Display ads - PLATFORM route", kind: "media", zone: "work", layout: "grouped", badge: "Waiting for feedback",
-    desc: "The PLATFORM route across the full IAB range. The same machine with swapped copy, photo and motif.",
-    groups: adGroups("platform") },
-
-  { title: "Email Writer v2.1", kind: "files", zone: "work", status: "ready",
+  { title: "Email writer (v2)", kind: "files", zone: "work", status: "ready", wideDesc: true,
     desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
     files: [
       { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1", date: "2026-06-17" },
@@ -146,6 +146,21 @@ export const work: WorkSection[] = [
       { cta: { label: "See where airlines stand →" } },
       { sign: "Your Sabre team" },
     ] },
+
+  { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Reviewed and paused by Darren",
+    desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
+    groups: adGroups("open") },
+  { title: "Display ads - PLATFORM route", kind: "media", zone: "work", layout: "grouped", badge: "Reviewed and paused by Darren",
+    desc: "The PLATFORM route across the full IAB range. The same process with swapped copy, photo and motif.",
+    groups: adGroups("platform") },
+
+  { title: "Brief coach", kind: "files", zone: "work", wideDesc: true, badge: "In design, build starts July",
+    desc: "The next build. A coach, inside Sabre's own Claude, that takes a rough brief and makes it good. It plugs into Darren's flow above, at stations one and two, where briefs are born. It leads with a diagnosis: it holds the brief to what good looks like, shows where it falls short, then helps you close the gaps, whether you arrive with a draft to improve or a blank page to work through. It pins the vague bits, holds every brief to a real commercial outcome, and presses for the things a strong brief needs: one clear goal, real numbers, and an insight that names a moment rather than a job title. The standard it measures against is Sabre's own positioning plus our marketing-effectiveness thinking, baked in so it lifts the quality without asking the writer to already know what good looks like. We have started shaping it with Darren around how the team actually works, and the build starts the first week of July.",
+    files: [] },
+
+  { title: "Marketing calendar: a shared artefact", kind: "embed", zone: "work", isNew: true, badge: "Concept to react to",
+    desc: "A concept to react to, not a finished deliverable. One page the whole marketing team opens inside Sabre's own Claude, always current and edited in the page itself, rather than a calendar that is out of date the moment it is emailed. The event data, RSVP funnels and spend refresh from your source sheet. The human bits, moving an event, changing a status, adding a note, updating a budget line, are done on the page itself and save for everyone on the team. It would live behind Sabre's own login, seen by your team only, the same way the email writer and presentation tools already do. The numbers here are sample data; the real version runs on Sabre's own events. Have a click around the tabs, the status pills and the note, then tell us if it earns a place.",
+    embedSrc: "marketing-calendar.html", embedHeight: 820 },
 
   /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
   { title: "Feedback & responses", kind: "feedback", zone: "feedback",

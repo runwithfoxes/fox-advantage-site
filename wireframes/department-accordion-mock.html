@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run with Foxes · nested module/tool accordion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FAFAF8;--sky:#3A7CA5;--deep:#1A3A4E;--border:#E0E0DC;--text:#1A1A18;
+    --muted:#8a8a86;--orange:#F47521;--green:#3a9d5d;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--cream);color:var(--text);font-family:var(--mono);font-weight:300;-webkit-font-smoothing:antialiased;}
+  @keyframes fade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+
+  .nav{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+    position:fixed;top:0;left:0;right:0;z-index:50;color:#fff;background:linear-gradient(to bottom,rgba(0,0,0,.35),transparent);}
+  .nav.scrolled{background:rgba(250,250,248,.92);backdrop-filter:blur(10px);color:var(--text);border-bottom:1px solid var(--border);}
+  .logo{font-size:14px;letter-spacing:2px;}.logo b{color:#fff;}.nav.scrolled .logo b{color:var(--orange);}
+  .nav-links{display:flex;gap:24px;font-size:12px;}
+
+  .fullbleed{width:100vw;margin-left:calc(50% - 50vw);}
+  .hero{height:78vh;min-height:500px;overflow:hidden;background:#0c0c0c;}
+  .hero video{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
+  .head{padding:54px 0 16px;}
+  .head h1{font-family:var(--sans);font-weight:600;font-size:clamp(32px,4.6vw,54px);letter-spacing:-1.8px;line-height:1.05;}
+  .head .desc{font-size:15px;line-height:1.8;color:#333;max-width:740px;margin-top:22px;}
+  .divider{height:1px;background:var(--border);margin:6px 0;}
+
+  /* bio + photo */
+  .bio{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:50px 0 24px;align-items:start;}
+  .bio .photo{width:200px;height:267px;object-fit:cover;display:block;}
+  .bio .nm{color:var(--sky);font-size:14px;}
+  .bio p{font-size:14px;line-height:1.8;color:#333;margin-top:14px;max-width:560px;}
+  .bio .link{display:inline-block;margin-top:16px;font-size:13px;color:var(--sky);text-decoration:none;border-bottom:1px solid transparent;}
+  .bio .link:hover{border-bottom-color:var(--sky);}
+
+  .metastrip{display:flex;flex-wrap:wrap;gap:22px;align-items:center;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:24px;font-size:12px;color:var(--muted);}
+  .metastrip .dot{width:8px;height:8px;background:var(--green);display:inline-block;margin-right:7px;}
+  .metastrip b{color:var(--text);font-weight:500;}
+
+  .intro{padding:50px 0 6px;}
+  .intro-kick{font-size:12px;letter-spacing:2px;color:var(--sky);text-transform:uppercase;}
+  .intro h2{font-family:var(--sans);font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-1px;margin-top:12px;}
+  .intro p{font-size:15px;line-height:1.8;color:#444;max-width:620px;margin-top:16px;}
+
+  /* ===== nested accordion ===== */
+  .mods{max-width:880px;margin:34px 0 0;border-top:1px solid var(--border);}
+  .mitem{border-bottom:1px solid var(--border);}
+  .mrow{width:100%;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--mono);
+    display:grid;grid-template-columns:20px 1fr auto;gap:14px;align-items:center;padding:16px 8px;transition:background .14s;}
+  .mrow:hover{background:#fff;}
+  .mrow .ic{width:15px;height:15px;border:1.4px solid var(--sky);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--sky);}
+  .mname{font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:-.2px;color:var(--text);}
+  .mdesc{font-size:12.5px;color:var(--muted);margin-top:3px;}
+  .mright{display:flex;align-items:center;gap:12px;justify-self:end;white-space:nowrap;}
+  .mcount{font-size:11px;color:var(--muted);}
+  .mrow:hover .mcount{color:var(--sky);}
+  .chev{color:var(--sky);font-size:12px;transition:transform .25s ease;display:inline-block;}
+  .open>.mrow .chev,.open>.trow .chev{transform:rotate(90deg);}
+
+  .mdetail,.tdetail{display:none;}
+  .mitem.open>.mdetail{display:block;animation:fade .22s ease;}
+  .tools{padding:2px 0 14px 36px;border-top:1px solid var(--border);background:rgba(58,124,165,0.02);}
+
+  .titem{border-bottom:1px solid var(--border);}
+  .titem:last-child{border-bottom:none;}
+  .trow{width:100%;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--mono);
+    display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:13px 8px;transition:background .14s;}
+  .trow:hover{background:#fff;}
+  .tname{font-family:var(--sans);font-weight:500;font-size:14px;color:var(--text);}
+  .ttag{font-size:12px;color:var(--muted);margin-top:2px;}
+  .titem.open>.tdetail{display:block;animation:fade .22s ease;}
+
+  /* the rich tool panel (visual + copy), as today */
+  .panel{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;padding:10px 8px 24px;align-items:start;}
+  .panel .visual{border:1px dashed var(--sky);min-height:190px;display:flex;align-items:center;justify-content:center;
+    color:var(--sky);font-size:12px;letter-spacing:1px;text-align:center;background:rgba(58,124,165,0.03);padding:20px;}
+  .panel .copy p{font-size:13.5px;line-height:1.75;color:#444;}
+  .panel .copy .pcta{display:inline-block;margin-top:16px;font-family:var(--sans);font-size:14px;color:var(--text);text-decoration:none;border-bottom:1px solid transparent;}
+  .panel .copy .pcta:hover{color:var(--sky);border-bottom-color:var(--sky);}
+
+  .foxnote{display:flex;align-items:center;gap:18px;margin:42px 0 0;max-width:880px;padding:20px;border:1px solid var(--border);background:#fff;}
+  .foxnote img{width:90px;height:auto;flex:none;}
+  .foxnote .t{font-size:13px;line-height:1.7;color:#444;}.foxnote .t b{font-family:var(--sans);font-weight:600;}
+  .ctabar{max-width:880px;margin:34px 0 0;padding:24px 0 0;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;}
+  .ctas-label{font-size:12px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+  .mod-cta{font-family:var(--sans);font-size:16px;color:var(--text);text-decoration:none;border-bottom:1px solid transparent;}
+  .mod-cta:hover{color:var(--sky);border-bottom-color:var(--sky);}
+  .foot{padding:48px 0;border-top:1px solid var(--border);font-size:11px;color:var(--muted);letter-spacing:.5px;line-height:1.7;margin-top:48px;}
+  @media(max-width:760px){.nav-links{display:none;}.bio{grid-template-columns:1fr;}.panel{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <div class="logo">/<b>Run</b>withfoxes</div>
+  <div class="nav-links"><span>#unfair_advantage ▾</span><span>/projects ▾</span><span>/book</span><span>/contact</span></div>
+</div>
+
+<div class="fullbleed hero">
+  <video autoplay muted loop playsinline poster="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/video/fox-tarantino-trunk-poster.jpg">
+    <source src="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/video/fox-tarantino-trunk.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <h1>Build an unfair advantage in marketing</h1>
+    <div class="desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- BIO + PHOTO, back in -->
+  <div class="bio">
+    <img class="photo" src="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/Paul_photo.jpg" alt="Paul Dervan">
+    <div>
+      <div class="nm">/Paul Dervan</div>
+      <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland's Marketer of the Year in 2022.</p>
+      <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
+      <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+      <a class="link" href="#">View my newsletter →</a>
+    </div>
+  </div>
+
+  <div class="metastrip">
+    <span><span class="dot"></span><b>live</b> · runwithfoxes.com</span>
+    <span>7 modules · 23 tools</span>
+    <span>20 years in brand</span>
+    <span>built with AI + foxes</span>
+  </div>
+
+  <div class="intro">
+    <div class="intro-kick">Where</div>
+    <h2>Where can AI be built into marketing?</h2>
+    <p>Below are the places we most often build AI into marketing work. A marketing team of two or three, with the right systems, can do work that used to need a department.</p>
+  </div>
+
+  <div class="mods" id="mods"></div>
+
+  <div class="foxnote">
+    <img src="file:///Users/pauldervan/projects/fox-advantage-site-repo/public/fox/fox-pm-nobg.png" alt="">
+    <div class="t"><b>Not sure where to start?</b><br>Tell us the repeated work eating your week, and we'll point at the tool that fixes it first.</div>
+  </div>
+
+  <div class="ctabar">
+    <span class="ctas-label">Contact us to</span>
+    <a class="mod-cta" href="#">\build it for you</a>
+    <a class="mod-cta" href="#">\work alongside you</a>
+    <a class="mod-cta" href="#">\train your team</a>
+  </div>
+
+  <div class="foot">
+    Demo - cinematic hero · bio + photo back in · the tight 7-row department. Click a module to see its tools, click a tool for its panel.<br>
+    The tool panels show a dashed placeholder where each EXISTING rich visual (pyramid, scorecard, charts, comp map…) drops in. Two levels deep: glance → scan → dive.
+  </div>
+</div>
+
+<script>
+  var DATA=[
+    {n:'Marketing effectiveness',d:'measure what moves the business, then keep measuring it',tools:[
+      {n:'Measurement training',t:'teach the team to read marketing like a P&L',p:'We train the team to tell the metrics that move the business from the ones that just move. The pyramid, the lag, the leading indicators.'},
+      {n:'Metrics audit',t:'find the metrics that lie',p:'A pass over what you report today, flagging vanity, double-counts and the gaps where the real signal should be.'},
+      {n:'Brand scorecard',t:'one live view of brand health',p:'A single scorecard that tracks the brand metrics that actually predict growth, updated automatically.'},
+      {n:'Brand / activation split',t:'where the money really goes',p:'We classify the spend long vs short and show the balance against the 60/40 benchmark.'}
+    ]},
+    {n:'Segmentation',d:'group customers by what they actually do',tools:[
+      {n:'Similarity analysis',t:'real clusters from real behaviour',p:'Clusters built from behaviour, not guesswork, so the segments hold up when you act on them.'},
+      {n:'Scatter plots',t:'see the segments, not a table',p:'Plot the segments so the shape of the market is obvious at a glance.'}
+    ]},
+    {n:'Brand strategy',d:'positioning, mental availability, distinctive assets',tools:[
+      {n:'Competitor positioning map',t:'where everyone sits, and the gap',p:'Map the category, find the space worth owning, and the claims that hold up.'},
+      {n:'Mental availability',t:'the buying situations you show up for',p:'The category entry points you win and lose, scored, with where to build next.'},
+      {n:'Messaging framework',t:'the lines everything hangs off',p:'A framework that anchors every piece of copy to the same few pillars.'},
+      {n:'Distinctive brand assets',t:'what makes you recognisable',p:'Audit and build the assets people recognise you by, before you say a word.'},
+      {n:'Brand on a page',t:'the whole strategy, one sheet',p:'Everything the team needs to stay on-strategy, on a single page.'},
+      {n:'Brand guidelines',t:'guidelines that get used',p:'Living guidelines built into the tools, not a PDF nobody opens.'}
+    ]},
+    {n:'Advertising',d:'made fast, on brand, at volume',tools:[
+      {n:'Video',t:'cinematic brand films',p:'Brand films with real production energy, generated and edited fast.'},
+      {n:'Brand ads',t:'the fox in a scene, movie-poster energy',p:'Cinematic brand stills with the character dropped into a scene.'},
+      {n:'Animated ads',t:'chart-led motion for performance',p:'Three-frame animated ads that turn a stat into a scroll-stopper.'},
+      {n:'Static ads',t:'fast, on-brand, at scale',p:'On-brand statics produced at the volume performance needs.'}
+    ]},
+    {n:'Studio',d:'internal-studio craft with AI inside it',tools:[
+      {n:'Studio measurement',t:"prove the studio's ROI",p:'Show the output, the speed and the cost saved, so the studio earns its budget.'},
+      {n:'Brief coach',t:'better briefs in, better work out',p:'An agent that interrogates a brief before it reaches the studio.'}
+    ]},
+    {n:'Business development',d:'an outreach desk that runs itself',tools:[
+      {n:'The growth engine',t:'enrichment, sequences, replies, end to end',p:'A desk that finds the right people, writes the personalised opener and runs the follow-up.'}
+    ]},
+    {n:'Research and insights',d:'message testing to buyers on the phone',tools:[
+      {n:'AI research interviewer',t:'agents that call and interview buyers',p:'Voice agents that phone real buyers and interview them on how they shop.'},
+      {n:'Company intelligence',t:'deep dossiers on accounts',p:'Structured intelligence on any account, built on demand.'},
+      {n:'Review intelligence',t:'what customers actually say, at scale',p:'Mine reviews for the language and the gaps that matter.'},
+      {n:'Pricing intelligence',t:'monitor the market, get alerted',p:'Track competitor pricing and get told when something moves.'}
+    ]}
+  ];
+  var mods=document.getElementById('mods');
+  DATA.forEach(function(m){
+    var tools=m.tools.map(function(t){
+      return '<div class="titem"><button class="trow"><span><span class="tname">'+t.n+'</span><div class="ttag">'+t.t+'</div></span><span class="chev">▸</span></button>'+
+        '<div class="tdetail"><div class="panel"><div class="visual">[ '+t.n+' visual ]</div><div class="copy"><p>'+t.p+'</p><a class="pcta" href="#">\\ build it for you</a></div></div></div></div>';
+    }).join('');
+    mods.insertAdjacentHTML('beforeend',
+      '<div class="mitem"><button class="mrow"><span class="ic">▸</span><span><span class="mname">'+m.n+'</span><div class="mdesc">'+m.d+'</div></span>'+
+      '<span class="mright"><span class="mcount">'+m.tools.length+(m.tools.length>1?' tools':' tool')+'</span><span class="chev">▸</span></span></button>'+
+      '<div class="mdetail"><div class="tools">'+tools+'</div></div></div>');
+  });
+  document.querySelectorAll('.mrow').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('open');});});
+  document.querySelectorAll('.trow').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();b.parentElement.classList.toggle('open');});});
+  window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>window.innerHeight*0.7);},{passive:true});
+</script>
+</body>
+</html>

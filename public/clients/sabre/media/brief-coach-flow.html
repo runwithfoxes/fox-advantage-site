@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sabre briefing flow</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --ink: #1a3a4e;
+    --muted: #5b6b75;
+    --sky: #3a7ca5;
+    --line: #e0e0db;
+    --tint: #eef4f8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 24px 32px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin: 0 0 4px;
+  }
+  .lede {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 760px;
+    margin: 0 0 22px;
+  }
+  .stations {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .station {
+    flex: 1 1 200px;
+    min-width: 200px;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 14px 14px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .station + .station { border-left: none; }
+  .station.p1 {
+    background: var(--tint);
+    border-color: var(--sky);
+  }
+  .station.p1 + .station { border-left: 1px solid var(--line); }
+  .st-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .st-num {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--ink); color: #fff;
+    font-size: 12px; font-weight: 700;
+  }
+  .station.p1 .st-num { background: var(--sky); }
+  .st-tag {
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--sky); border: 1px solid var(--sky); padding: 2px 5px;
+  }
+  .st-name { font-size: 13px; font-weight: 700; line-height: 1.3; margin: 0 0 2px; }
+  .st-owner { font-size: 10px; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  .st-claude-label {
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--sky); margin: auto 0 4px; padding-top: 10px; border-top: 1px solid var(--line);
+  }
+  .st-claude { font-size: 11px; line-height: 1.5; color: var(--ink); margin: 0; }
+
+  .loop {
+    margin-top: 22px;
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 14px 16px 16px;
+  }
+  .loop-label {
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px;
+  }
+  .loop-steps {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  }
+  .loop-step {
+    font-size: 11px; line-height: 1.3; color: var(--ink);
+    background: var(--bg); border: 1px solid var(--line); padding: 7px 10px;
+  }
+  .loop-arrow { color: var(--sky); font-size: 13px; }
+  .foot {
+    margin-top: 16px; font-size: 11px; line-height: 1.6; color: var(--muted);
+    max-width: 760px;
+  }
+  .foot b { color: var(--ink); font-weight: 700; }
+  @media (max-width: 640px) {
+    .station + .station { border-left: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+  <p class="eyebrow">Darren's operating model</p>
+  <p class="lede">How a brief moves through the marketing team. Claude sits at every station doing the same job: take the human input, review it against best practice, hand back an improved version with the gaps flagged. The brief coach starts at the first two stations, where briefs are born.</p>
+
+  <div class="stations">
+    <div class="station p1">
+      <div class="st-top"><span class="st-num">1</span><span class="st-tag">Phase 1</span></div>
+      <p class="st-name">High-level one-pager</p>
+      <p class="st-owner">Owner</p>
+      <p class="st-claude-label">Claude</p>
+      <p class="st-claude">Reviews the one-pager against best practice and hands back an improved version.</p>
+    </div>
+    <div class="station p1">
+      <div class="st-top"><span class="st-num">2</span><span class="st-tag">Phase 1</span></div>
+      <p class="st-name">The brief</p>
+      <p class="st-owner">Product Marketing</p>
+      <p class="st-claude-label">Claude</p>
+      <p class="st-claude">Reviews the brief, including April Dunford positioning, and returns it stronger.</p>
+    </div>
+    <div class="station">
+      <div class="st-top"><span class="st-num">3</span></div>
+      <p class="st-name">Campaign on a page</p>
+      <p class="st-owner">Campaign Manager</p>
+      <p class="st-claude-label">Claude</p>
+      <p class="st-claude">Builds the campaign on a page and generates the sub-briefs for web, paid, organic and sales.</p>
+    </div>
+    <div class="station">
+      <div class="st-top"><span class="st-num">4</span></div>
+      <p class="st-name">Execution and sign-off</p>
+      <p class="st-owner">Channel owners</p>
+      <p class="st-claude-label">Claude</p>
+      <p class="st-claude">Pulls the channel plans into an executive deck for sign-off.</p>
+    </div>
+  </div>
+
+  <div class="loop">
+    <p class="loop-label">The same loop at every station</p>
+    <div class="loop-steps">
+      <span class="loop-step">Ingest the human input</span>
+      <span class="loop-arrow">&rarr;</span>
+      <span class="loop-step">Review against best practice</span>
+      <span class="loop-arrow">&rarr;</span>
+      <span class="loop-step">Return an improved version, gaps flagged</span>
+      <span class="loop-arrow">&rarr;</span>
+      <span class="loop-step">Owner accepts or refines</span>
+      <span class="loop-arrow">&rarr;</span>
+      <span class="loop-step">Pass on</span>
+    </div>
+  </div>
+
+  <p class="foot">The brief coach is <b>Phase 1: stations 1 and 2</b>, where bad briefs originate and where positioning is named. Stations 3 and 4 come later.</p>
+</body>
+</html>
