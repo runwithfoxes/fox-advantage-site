@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-21",
+  lastUpdated: "2026-06-23",
   zoneIntros: {
     deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
     work: "The work, shown in full here as each piece lands.",
@@ -23,7 +23,7 @@ export const deliverables: Deliverable[] = [
   { name: "AI-run outreach engine", detail: "Claude as your project manager: it finds and enriches companies with the Clay skills, writes and merges personalised messages in your voice, and feeds HeyReach (LinkedIn) and Smartlead (email), so the team spends far less time finding, enriching and sending by hand", status: "in-progress", date: "2026-06-21", note: "Most of the pieces are built. Next is getting the team fluent on them and on Claude, plus clear workflow guides to follow (below). One open item: the email sending setup.", isNew: true },
   { name: "Copywriters for Sarah and Sean", detail: "An AI copywriter in each person's own voice, built from the messaging framework and their own writing", status: "complete", date: "2026-06-21", note: "Built and uploaded as Claude Skills. Format-agnostic: posts, emails, anything, in their own voice." },
   { name: "Content creators for Sarah and Sean", detail: "Turn documents and ideas into branded content", status: "complete", date: "2026-06-21", note: "Skills built and uploaded. Sean is set up via Claude Design with the HR Path brand kit. (Sarah's LinkedIn visuals are a separate item, below.)" },
-  { name: "LinkedIn design kit for Sarah", detail: "A branded route for Sarah's LinkedIn visuals, since Claude Design is blocked by the corporate brand team", status: "todo", date: "2026-06-21", note: "New: building Sarah her own image/visual route.", isNew: true },
+  { name: "LinkedIn design kit for Sarah", detail: "A branded route for Sarah's LinkedIn visuals, since Claude Design is blocked by the corporate brand team", status: "ready", date: "2026-06-23", note: "Built as a Claude Skill. Paste a point and get one quiet, on-brand LinkedIn graphic (portrait 4:5). Unbranded by design, since the corporate brand team blocks the HR Path kit. Example and setup steps below.", download: { file: "eaton-linkedin-graphic.zip", label: "Download the skill" }, isNew: true },
   { name: "Growth manager (BDR) + campaign calendar", detail: "An agent that watches the pipeline, flags when it runs low, and (once connected) writes and sends campaigns, with a shared calendar it manages", status: "in-progress", date: "2026-06-21", note: "Two pieces are built and below: the shared calendar (v1), and the advisor - ask \"update me on the campaign\" for a read on the numbers, what needs attention and next moves. The advisor works in Claude browser today (paste the numbers; auto-pull as the connectors are added). The send layer (auto write-and-send) needs the connectors plugged in.", isNew: true },
   { name: "Training", detail: "Getting Sarah and Ben fluent on Claude and the new process", status: "in-progress", date: "2026-06-21", note: "One group session done; more to come, focused on real use cases. A self-serve coach skill is also built." },
   { name: "Handover playbook", detail: "A light guide so the team runs everything without us", status: "todo", note: "" },
@@ -73,6 +73,23 @@ export const work: WorkSection[] = [
     desc: "Upload this into your Claude to add the \"update me on the campaign\" advisor.",
     files: [
       { name: "Campaign advisor skill", file: "eaton-campaign-update.zip", note: "Claude Skill - upload via Customize then Skills, or into a Project" },
+    ] },
+
+  { title: "LinkedIn graphic for Sarah", kind: "media", layout: "single", zone: "work", status: "ready",
+    desc: "A quiet, unbranded design system for Sarah's LinkedIn graphics, since the corporate brand team blocks the HR Path kit. One idea per image, plain language, a single accent colour used sparingly. This is an example output, not fixed copy.",
+    item: { src: "linkedin-graphic-example.png", ratio: "4/5", w: 520, cap: "Example: portrait 4:5 (1080x1350). Paste a point, get a graphic like this." } },
+
+  { title: "The LinkedIn graphic skill", kind: "files", zone: "work", status: "ready",
+    desc: "Upload this into your Claude, then paste a point (or a report) and ask for a LinkedIn graphic.",
+    files: [
+      { name: "LinkedIn graphic skill", file: "eaton-linkedin-graphic.zip", note: "Claude Skill - upload via Customize then Skills, or into a Project" },
+    ] },
+
+  { title: "How to use it", kind: "copy", zone: "work", status: "ready",
+    desc: "It runs in the browser. No software, no design tools.",
+    blocks: [
+      { label: "Steps", text: "1. Upload the skill (above) via Customize then Skills, or into your shared Project.\n2. Paste your point, or a report or post to distil, and ask for a LinkedIn graphic.\n3. Claude writes a short headline and lays out one graphic, then checks its own work (word count, the accent used sparingly, no invented numbers, no logos or names).\n4. The graphic opens scaled to fit your screen so you see the whole thing. Click the caption under it to switch to 100%, then take a screenshot to post." },
+      { label: "Good to know", text: "- One idea per graphic. Keep the headline short, the richer context goes in your post text.\n- It is unbranded on purpose: no logos, names, photos or hashtags.\n- It never makes a number up. If your point has no figure, the graphic has no figure." },
     ] },
 
   /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
