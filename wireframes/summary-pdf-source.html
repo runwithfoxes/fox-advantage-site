@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Run with Foxes - page summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root{
+    --sky:#3A7CA5; --deep:#1A3A4E; --text:#1D1B1B; --muted:#8A8A85;
+    --border:#E0E0DC; --orange:#F47521; --green:#4A7A62;
+    --mono:'JetBrains Mono',monospace; --sans:'Space Grotesk',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#fff}
+  body{font-family:var(--mono);color:var(--text);-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  .sheet{width:210mm;min-height:297mm;background:#fff;padding:20mm 19mm 11mm;position:relative;page-break-after:always;overflow:hidden}
+  .sheet:last-child{page-break-after:auto}
+
+  .head{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:9px;border-bottom:1px solid var(--deep)}
+  .logo{font-family:var(--mono);font-size:14px;font-weight:300;letter-spacing:2px;color:var(--muted)}
+  .logo span{color:var(--orange)}
+  .headmeta{text-align:right;font-size:10px;color:var(--muted);line-height:1.8;letter-spacing:.04em}
+  .headmeta .u{color:var(--sky)}
+
+  .kick{margin-top:26px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--sans);margin-top:10px;font-size:36px;font-weight:300;line-height:1.08;letter-spacing:-1px}
+  h1 .hl{color:var(--sky)}
+  .lede{margin-top:16px;font-size:13.5px;line-height:1.7;font-weight:300;color:#2b2b29;max-width:150mm}
+
+  .sh{margin-top:26px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+  .sh::after{content:"";flex:1;height:1px;background:var(--border)}
+
+  .bio{margin-top:14px;display:grid;grid-template-columns:1fr 52mm;gap:9mm;align-items:start}
+  .bio .nm{font-family:var(--sans);font-size:17px;color:var(--sky);font-weight:400;margin-bottom:9px}
+  .bio p{font-size:12.5px;line-height:1.7;font-weight:300;color:#33332f;margin-bottom:10px}
+  .cred{display:flex;gap:9px;font-size:11px;color:#444;padding:6px 0;border-bottom:1px solid #efefea;line-height:1.4}
+  .cred .y{color:var(--muted);flex:none;width:54px}
+  .cred:last-child{border-bottom:none}
+
+  .quote{margin-top:16px;border-left:2px solid var(--sky);padding:3px 0 3px 16px;max-width:150mm}
+  .quote .q{font-size:13px;line-height:1.62;font-weight:300;color:#2b2b29}
+  .quote .a{margin-top:8px;font-size:10.5px;color:var(--muted)}
+  .quote .a b{color:var(--text);font-weight:500}
+
+  .phil{margin-top:14px;font-size:13px;line-height:1.72;font-weight:300;color:#2b2b29;max-width:150mm}
+  .phil b{font-weight:500;color:var(--deep)}
+
+  .area{display:grid;grid-template-columns:50mm 1fr;gap:7mm;padding:11px 0;border-bottom:1px solid #eee}
+  .area:last-child{border-bottom:none}
+  .area .nm{font-size:13px;font-weight:500;color:var(--deep)}
+  .area .nm .ct{display:block;color:var(--muted);font-weight:400;font-size:10px;margin-top:3px;letter-spacing:.04em}
+  .area .d{font-size:11.5px;line-height:1.6;color:#414140;font-weight:300}
+
+  .book{margin-top:20px;border:1px solid var(--border);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:22px;background:#fcfcfb}
+  .book .bt{font-family:var(--sans);font-size:21px;font-weight:300;letter-spacing:-.5px}
+  .book .bt span{color:var(--sky)}
+  .book .bs{margin-top:7px;font-size:11.5px;line-height:1.55;color:#444;font-weight:300;max-width:95mm}
+  .book .bm{margin-top:10px;font-size:11px;color:var(--sky);display:flex;gap:16px;flex-wrap:wrap}
+  .book .free{flex:none;text-align:right}
+  .book .free .big{font-family:var(--sans);font-size:15px;color:var(--green);font-weight:400}
+  .book .free .sm{font-size:10px;color:var(--muted);margin-top:3px}
+
+  .ways{margin-top:14px;display:flex;gap:26px;flex-wrap:wrap}
+  .way{font-size:12.5px;color:var(--sky);font-weight:500}
+  .way .s{color:var(--muted)}
+
+  .foot{margin-top:22px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:28px}
+  .foot .cta{font-size:12.5px;color:var(--text);line-height:1.6}
+  .foot .cta b{color:var(--sky);font-weight:500}
+  .foot .gen{font-size:9.5px;color:var(--muted);line-height:1.7;text-align:right;max-width:62mm}
+  .foot .gen .dot{display:inline-block;width:6px;height:6px;background:var(--green);margin-right:5px;vertical-align:1px}
+
+  .pgnum{position:absolute;bottom:9mm;right:19mm;font-size:9.5px;color:var(--muted);letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="sheet">
+  <div class="head">
+    <div class="logo">/<span>Run</span>withfoxes</div>
+    <div class="headmeta">Page summary<br><span class="u">runwithfoxes.com</span><br>Updated June 2026</div>
+  </div>
+
+  <div class="kick">// what this page is about</div>
+  <h1>Build an <span class="hl">unfair advantage</span> in marketing</h1>
+  <p class="lede">Run with Foxes is a consultancy that brings twenty years of brand thinking together with AI. We turn the repeated parts of marketing into practical systems and hand them over, so a team of two or three can do work that used to need a department.</p>
+
+  <div class="sh">who is behind it</div>
+  <div class="bio">
+    <div>
+      <div class="nm">Paul Dervan</div>
+      <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
+      <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here. Run with Foxes is the consultancy that grew out of it.</p>
+    </div>
+    <div>
+      <div class="cred"><span class="y">Now</span><span>Founder, Run with Foxes</span></div>
+      <div class="cred"><span class="y">Global</span><span>Head of Brand, Indeed &amp; Miro</span></div>
+      <div class="cred"><span class="y">Ireland</span><span>CMO, National Lottery</span></div>
+      <div class="cred"><span class="y">Ireland</span><span>Head of Brand, O2</span></div>
+      <div class="cred"><span class="y">2022</span><span>Marketer of the Year</span></div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <div class="q">&ldquo;I&apos;ve worked with Paul on a number of very successful projects over more than five years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.&rdquo;</div>
+    <div class="a"><b>Peter Field</b> &middot; The Godfather of Effectiveness, author of The Long and the Short of It</div>
+  </div>
+
+  <div class="sh">the philosophy: quality and speed</div>
+  <p class="phil">AI has made marketing production faster. That does not make the work better by default. So the order matters: <b>we get the quality right first, then automate it.</b> The thinking is evidence-based, not gut feel dressed up as strategy, and we build the systems rather than just advise on them.</p>
+
+  <div class="pgnum">runwithfoxes.com &nbsp;&middot;&nbsp; 1 / 2</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="sheet">
+  <div class="head">
+    <div class="logo">/<span>Run</span>withfoxes</div>
+    <div class="headmeta">Where we build AI in<br><span class="u">seven areas</span></div>
+  </div>
+
+  <div class="kick" style="margin-top:24px">// where AI gets built into marketing</div>
+
+  <div style="margin-top:12px">
+    <div class="area"><div class="nm">Marketing effectiveness <span class="ct">4 examples</span></div><div class="d">You can&apos;t manage a brand if you can&apos;t measure one. Measurement training, metrics audits, brand scorecards and the brand versus activation split, so the whole organisation sees which metrics matter and how they move each other.</div></div>
+    <div class="area"><div class="nm">Segmentation <span class="ct">4 examples</span></div><div class="d">Proper segmentation with the maths actually run. Similarity analysis, scatter plots and the four tests a segment has to pass before we act on it, so the groups are real, not assumed.</div></div>
+    <div class="area"><div class="nm">Brand strategy <span class="ct">6 examples</span></div><div class="d">Competitor positioning maps, mental availability, messaging frameworks, distinctive brand assets, brand on a page and brand guidelines. High quality, built at speed, for humans and robots.</div></div>
+    <div class="area"><div class="nm">Advertising <span class="ct">4 examples</span></div><div class="d">Custom advertising engines that take a team from brief to useful options faster, quality first. Brand video, brand ads, animated ads and static ads.</div></div>
+    <div class="area"><div class="nm">Studio <span class="ct">3 examples</span></div><div class="d">Twenty years of internal studio craft with AI inside. Marketing calendars, studio measurement and a brief coach, to lift quality, get work out faster, and show the ROI.</div></div>
+    <div class="area"><div class="nm">Business development <span class="ct">1 example</span></div><div class="d">AI for sales and outreach, handled end to end: building and enriching the list, researching prospects, writing and sending the outreach, and setting up the calls.</div></div>
+    <div class="area"><div class="nm">Research and insights <span class="ct">4 examples</span></div><div class="d">An AI interviewer that runs structured phone interviews at scale, company intelligence and change signals, review analysis across platforms, and daily competitive pricing monitors.</div></div>
+  </div>
+
+  <div class="book">
+    <div>
+      <div class="bt">The <span>Fox</span> Advantage</div>
+      <div class="bs">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon, no fluff.</div>
+      <div class="bm"><span>\ 54 chapters</span><span>\ 4 parts</span><span>\ get_the_book &rarr;</span></div>
+    </div>
+    <div class="free">
+      <div class="big">Free to read</div>
+      <div class="sm">on this website</div>
+    </div>
+  </div>
+
+  <div class="sh">three ways we work</div>
+  <div class="ways">
+    <span class="way"><span class="s">\</span> build it for you</span>
+    <span class="way"><span class="s">\</span> work alongside you</span>
+    <span class="way"><span class="s">\</span> train your team</span>
+  </div>
+
+  <div class="foot">
+    <div class="cta">Start a 30-minute strategy chat at<br><b>runwithfoxes.com/contact</b></div>
+    <div class="gen"><span class="dot"></span>Written by our own AI from the page you were reading. Our words, our framing, not a scrape.</div>
+  </div>
+
+  <div class="pgnum">runwithfoxes.com &nbsp;&middot;&nbsp; 2 / 2</div>
+</div>
+
+</body>
+</html>
