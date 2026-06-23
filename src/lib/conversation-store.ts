@@ -1,4 +1,5 @@
 import { Redis } from "@upstash/redis";
+import { sendIsaConversationAlert } from "./isa-alert";
 
 // Only create the client if env vars are set (graceful fallback)
 function getRedis(): Redis | null {
@@ -80,6 +81,9 @@ export async function saveConversationExchange(
     if (count > 500) {
       await redis.zremrangebyrank("chat:index", 0, count - 501);
     }
+
+    // Email Paul the dialogue (no-ops without RESEND_API_KEY or on test chats).
+    await sendIsaConversationAlert(conversation);
   } catch (e) {
     console.error("[conversation-store] failed to save:", e);
   }
