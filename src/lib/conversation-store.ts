@@ -52,6 +52,7 @@ export async function saveConversationExchange(
 
     // Get existing conversation or create new one
     const existing = await redis.get<StoredConversation>(key);
+    const isNewConversation = !existing;
 
     const conversation: StoredConversation = existing || {
       chatId: exchange.chatId,
@@ -82,8 +83,11 @@ export async function saveConversationExchange(
       await redis.zremrangebyrank("chat:index", 0, count - 501);
     }
 
-    // Email Paul the dialogue (no-ops without RESEND_API_KEY or on test chats).
-    await sendIsaConversationAlert(conversation);
+    // Email Paul ONCE per conversation, when it first starts (no-ops without
+    // RESEND_API_KEY or on test chats). Follow-up messages don't re-notify.
+    if (isNewConversation) {
+      await sendIsaConversationAlert(conversation);
+    }
   } catch (e) {
     console.error("[conversation-store] failed to save:", e);
   }

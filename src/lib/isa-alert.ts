@@ -115,9 +115,10 @@ function buildText(conversation: AlertConversation): string {
 }
 
 /**
- * Email Paul when someone has a dialogue with Isa. Fires on every exchange but
- * threads by chatId so each conversation lands as a single Gmail thread. Safe to
- * call unconditionally: no-ops if RESEND_API_KEY is unset or it's an internal test.
+ * Email Paul when someone starts a dialogue with Isa. Called once per
+ * conversation (on its first exchange) by the store. The threading header keeps
+ * it tidy if that ever changes. No-ops if RESEND_API_KEY is unset or it's an
+ * internal test chat.
  */
 export async function sendIsaConversationAlert(
   conversation: AlertConversation
