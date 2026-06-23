@@ -52,7 +52,7 @@ type MediaItem = {
 type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
 type CopyBlock = { label?: string; text: string; mono?: boolean };
-type FileRow = { name: string; file: string; note?: string; date?: string };
+type FileRow = { name: string; file?: string; note?: string; date?: string; pending?: boolean };
 /* feedback kind: one entry in the commentary log. q is an array so two points
    that share one answer render as one row. a:"" renders as "pending".
    who/when attribute the entry (person + date) so a multi-person, multi-day
@@ -628,11 +628,13 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
       {s.kind === "files" && (
         <div className="cw-files">
           {(s.files || []).map((f) => (
-            <div className="cw-file-row" key={f.file}>
+            <div className="cw-file-row" key={f.name}>
               <span className="cw-file-name">{f.name}</span>
               {f.note && <span className="cw-file-note">{f.note}</span>}
               {f.date && <span className="cw-file-date">Uploaded {f.date}</span>}
-              <DownloadLink src={f.file} base={base} />
+              {f.file && !f.pending
+                ? <DownloadLink src={f.file} base={base} />
+                : <span className="cw-file-pending">In progress</span>}
             </div>
           ))}
         </div>

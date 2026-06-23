@@ -12,6 +12,7 @@ export const meta: Meta = {
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
   lastUpdated: "2026-06-23",
+  // skills library added 2026-06-23
   zoneIntros: {
     deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
     work: "The work, shown in full here as each piece lands.",
@@ -38,59 +39,50 @@ export const work: WorkSection[] = [
   // copy go here once their files are dropped into
   // public/clients/eaton-square/media/. Give each one zone: "work".
 
-  { title: "The outreach engine - how it works and where it stands", kind: "copy", zone: "work", status: "in-progress",
-    desc: "The big goal: run outreach with far less manual time finding companies, enriching them, and sending messages.",
-    blocks: [
-      { label: "How it works", text: "Claude acts as your project manager.\n\n1. Find and enrich - Claude uses the Clay skills to find companies and pull the right contact and a real signal for each, so nobody does this by hand.\n2. Write and merge - Claude writes and merges the LinkedIn and email messages in your voice, personalised per company.\n3. Send - the messages flow into HeyReach for LinkedIn and Smartlead for email.\n\nThe result: far less manual work for Ben, more volume, and better, more personalised messages." },
-      { label: "What's in place", text: "- The Clay find-and-enrich skills\n- The messaging framework, tightened and signed off\n- Writing and merging messages in Claude\n- HeyReach and Smartlead connected\n- A shared calendar Claude helps manage (below)" },
-      { label: "What's left to make it smooth", text: "- Email sending: the one real blocker. The accounts are connected, but the team still needs an email address set up (a domain and mailbox, warmed up) before Smartlead can send. Ben owns this.\n- Getting fluent: the pieces are in place, but the team needs a little more time to find a groove on the new process and on Claude.\n- Workflow guides: we will add clear step-by-step guides on this page for the team to follow, so the process is repeatable without us." },
+  { title: "Training guides", kind: "files", zone: "work", status: "in-progress",
+    desc: "The how-to guides, as Word documents you can download, print or share with the team. Some are still in progress and will appear here as they land.",
+    files: [
+      { name: "The outreach engine", file: "guide-outreach-engine.docx", note: "How the AI-run outreach works, what's in place, and what's left to make it smooth" },
+      { name: "The campaign calendar", file: "guide-campaign-calendar.docx", note: "Set up the shared calendar in your own Claude so it saves for the whole team" },
+      { name: "The campaign advisor", file: "guide-campaign-advisor.docx", note: "Get an honest read on the campaign numbers and the next moves, on demand" },
+      { name: "The LinkedIn graphic", file: "guide-linkedin-graphic.docx", note: "Turn a point into one quiet, on-brand LinkedIn graphic, in the browser" },
+      { name: "Workflow guides", note: "Step-by-step guides to run the whole engine without us", pending: true },
+      { name: "Handover playbook", note: "A light guide so the team runs everything on its own", pending: true },
+    ] },
+
+  { title: "The skills we've built for you", kind: "files", zone: "work", status: "ready",
+    desc: "Every skill we've built for the team, in one list to download again. Each is a Claude Skill: download the zip, upload it once in Claude (Customize then Skills, or into your shared Project), then run it by name. The campaign advisor and the LinkedIn graphic have full walkthroughs above.",
+    files: [
+      { name: "Sarah's voice", file: "sarah-voice.zip", note: "Writes posts, messages, outreach emails and proposal copy as Sarah" },
+      { name: "Sean's voice", file: "sean-voice.zip", note: "Writes posts, follow-ups and thought leadership as Sean" },
+      { name: "Ben's voice", file: "ben-content.zip", note: "Writes LinkedIn posts as Ben, a practitioner sharing what he's seeing" },
+      { name: "Sarah's content engine", file: "sarah-content.zip", note: "Turns an article or doc you paste into a finished Sarah post, or writes one from a theme" },
+      { name: "Sean's content engine", file: "sean-content.zip", note: "Mines raw material, picks the angle, and briefs the post for Sean's voice" },
+      { name: "Content calendar builder", file: "content-calendar.zip", note: "Plans a full month of posts from the team's raw material: who, what, when and why" },
+      { name: "Content reviewer", file: "content-review.zip", note: "Reads what you posted and how it did, finds the patterns, adjusts the next plan" },
+      { name: "Reactive take", file: "reactive-take.zip", note: "Drop in an article and get the team's response, in the voice you choose" },
+      { name: "Enrich a list", file: "eaton-enrich.zip", note: "Turns a list of companies into a ready-to-message list: HR decision-maker, signal, opener" },
+      { name: "Find emails", file: "eaton-email.zip", note: "Adds verified work email addresses to the list you just enriched" },
+      { name: "Change-outreach", file: "eaton-change-outreach.zip", note: "Picks the change decision-maker and writes an evidence-only note, nothing invented" },
+      { name: "Direct mail letters", file: "eaton-direct-mail.zip", note: "Writes a personalised sales letter in Sarah's voice and merges it across a list" },
+      { name: "Campaign advisor", file: "eaton-campaign-update.zip", note: "Ask \"update me on the campaign\" for an honest read on the numbers and next moves" },
+      { name: "LinkedIn graphic", file: "eaton-linkedin-graphic.zip", note: "Paste a point and get one quiet, on-brand LinkedIn graphic. Unbranded by design" },
+      { name: "Branded page", file: "eaton-branded-page.zip", note: "Turns any document into a scrolling HR Path branded web page" },
+      { name: "AI coach", file: "eaton-ai-coach.zip", note: "An interactive coach that teaches the team how to get the most from Claude" },
     ] },
 
   { title: "Campaign calendar", kind: "media", layout: "single", zone: "work", status: "ready",
-    desc: "A shared, always-current view of every campaign on one calendar. It runs as a Claude artefact in your own workspace, so the whole team sees the same plan and changes save for everyone.",
-    item: { src: "campaign-calendar.png", ratio: "8/5", w: 640, cap: "The campaign calendar, running as a Claude artefact" } },
+    desc: "What the shared campaign calendar looks like, running as a Claude artefact in your own workspace. The setup steps are in the calendar guide above. Download the file to load it into your Claude.",
+    item: { src: "campaign-calendar.png", ratio: "8/5", w: 520, cap: "The campaign calendar, running as a Claude artefact" } },
 
   { title: "The calendar file", kind: "files", zone: "work", status: "ready",
-    desc: "Download this, then follow the steps below to load it into your own Claude.",
     files: [
-      { name: "Campaign calendar (v1)", file: "campaign-calendar-v1.html", note: "HTML - open in a browser, or upload to Claude" },
+      { name: "Campaign calendar (v1)", file: "campaign-calendar-v1.html", note: "HTML, open in a browser or upload to Claude" },
     ] },
 
-  { title: "Set it up in your own Claude", kind: "copy", zone: "work", status: "ready",
-    desc: "So the calendar lives in your workspace and saves for the whole team.",
-    blocks: [
-      { label: "Steps", text: "1. Open a shared Project in your Claude workspace, so the whole team works in one place.\n2. Connect your tools to that Project: HeyReach, Clay, Smartlead, and anything else you run campaigns from.\n3. Upload the calendar file (above) into the Project.\n4. Start a chat and ask Claude to build it as an artifact, using the prompt below.\n5. Publish the artifact and share it within your organisation. That is what lets everyone see the same calendar and saves changes for the team. On a Teams or Enterprise plan the share stays private to your organisation, not a public link.\n6. Check it saved: move an item, then reopen the link in a new tab. If the move held, you are set." },
-      { label: "The prompt to paste", mono: true, text: "Create an HTML artifact with exactly the code in this file, with no changes." },
-    ] },
-
-  { title: "The campaign advisor", kind: "copy", zone: "work", status: "ready",
-    desc: "Ask Claude \"update me on the campaign\" and it reads the numbers, tells you where things stand, flags what needs attention, and recommends the next moves. On demand - nothing runs in the background.",
-    blocks: [
-      { label: "How to use it", text: "1. Upload the skill (below) into your shared Project in Claude.\n2. Type \"update me on the campaign\".\n3. Claude reports per campaign, flags what needs you (a positive reply, a list running low), and suggests 2-3 next moves.\n\nIt works in the browser today: if a tool connector is there it reads the numbers directly; if not, it asks you to paste them and briefs off that. It never makes a number up." },
-    ] },
-
-  { title: "The advisor skill", kind: "files", zone: "work", status: "ready",
-    desc: "Upload this into your Claude to add the \"update me on the campaign\" advisor.",
-    files: [
-      { name: "Campaign advisor skill", file: "eaton-campaign-update.zip", note: "Claude Skill - upload via Customize then Skills, or into a Project" },
-    ] },
-
-  { title: "LinkedIn graphic for Sarah", kind: "media", layout: "single", zone: "work", status: "ready",
-    desc: "A quiet, unbranded design system for Sarah's LinkedIn graphics, since the corporate brand team blocks the HR Path kit. One idea per image, plain language, a single accent colour used sparingly. This is an example output, not fixed copy.",
-    item: { src: "linkedin-graphic-example.png", ratio: "4/5", w: 520, cap: "Example: portrait 4:5 (1080x1350). Paste a point, get a graphic like this." } },
-
-  { title: "The LinkedIn graphic skill", kind: "files", zone: "work", status: "ready",
-    desc: "Upload this into your Claude, then paste a point (or a report) and ask for a LinkedIn graphic.",
-    files: [
-      { name: "LinkedIn graphic skill", file: "eaton-linkedin-graphic.zip", note: "Claude Skill - upload via Customize then Skills, or into a Project" },
-    ] },
-
-  { title: "How to use it", kind: "copy", zone: "work", status: "ready",
-    desc: "It runs in the browser. No software, no design tools.",
-    blocks: [
-      { label: "Steps", text: "1. Upload the skill (above) via Customize then Skills, or into your shared Project.\n2. Paste your point, or a report or post to distil, and ask for a LinkedIn graphic.\n3. Claude writes a short headline and lays out one graphic, then checks its own work (word count, the accent used sparingly, no invented numbers, no logos or names).\n4. The graphic opens scaled to fit your screen so you see the whole thing. Click the caption under it to switch to 100%, then take a screenshot to post." },
-      { label: "Good to know", text: "- One idea per graphic. Keep the headline short, the richer context goes in your post text.\n- It is unbranded on purpose: no logos, names, photos or hashtags.\n- It never makes a number up. If your point has no figure, the graphic has no figure." },
-    ] },
+  { title: "LinkedIn graphic", kind: "media", layout: "single", zone: "work", status: "ready",
+    desc: "An example output: one idea per image, plain language, a single accent colour used sparingly, unbranded by design. How to make one is in the LinkedIn graphic guide above.",
+    item: { src: "linkedin-graphic-example.png", ratio: "4/5", w: 420, cap: "Example: portrait 4:5. Paste a point, get a graphic like this." } },
 
   /* ---- ZONE: feedback - running commentary log. Populated from email. ---- */
   { title: "Feedback & responses", kind: "feedback", zone: "feedback",
