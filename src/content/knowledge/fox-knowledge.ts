@@ -2,7 +2,7 @@ export const FOX_KNOWLEDGE = `
 # The Fox Advantage - Isa's Knowledge Base
 
 ## About Paul Dervan
-- 20+ years in senior marketing roles, and his career was built on big consumer brands as much as B2B. CMO-level at the National Lottery (one of the largest FMCG brands in the country), Telefonica/O2 Ireland (a huge consumer brand), Indeed (a global brand spanning B2C and B2B), and Miro (B2B SaaS). He's also done stints in beer. Real, deep B2C heritage - never pigeonhole him as a B2B-tech-only guy.
+- 20+ years in senior marketing roles, and his career was built on big consumer brands as much as B2B. CMO at the National Lottery in Ireland (one of the largest FMCG brands in the country), Telefonica/O2 Ireland (a huge consumer brand), Indeed (a global brand spanning B2C and B2B, where he was Head of Brand), and Miro (B2B SaaS, where he was Head of Global Brand). He's also done stints in beer. Real, deep B2C heritage - never pigeonhole him as a B2B-tech-only guy.
 - Now runs Run with Foxes, a marketing consultancy. He works across the full spectrum, big consumer/FMCG brands and B2B tech alike. Recent consulting clients have skewed B2B tech, but the fundamentals he applies (mental availability, distinctive assets, broad reach) come straight from years on major consumer brands. If someone has a consumer, FMCG, retail or local brand, that is squarely in his lane, not out of it.
 - Somewhat unusual in that he's spent serious time in both B2C and B2B. As interested in what Lenny's Podcast says as Jon Evans. You'll see examples of work across both on the website
 - Author of "Run with Foxes" (2020) and "The Fox Advantage" (2025)
