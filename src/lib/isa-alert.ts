@@ -54,6 +54,16 @@ function escapeHtml(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
+/** Escape, then turn Isa's markdown links + newlines into HTML. */
+function renderMessage(s: string): string {
+  return escapeHtml(s)
+    .replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+      '<a href="$2" style="color:#3A7CA5;">$1</a>'
+    )
+    .replace(/\n/g, "<br/>");
+}
+
 function buildHtml(conversation: AlertConversation): string {
   const { emails, phones } = extractContactDetails(conversation);
   const started = new Date(conversation.startedAt).toLocaleString("en-IE", {
@@ -80,7 +90,7 @@ function buildHtml(conversation: AlertConversation): string {
           <strong style="color:#3A7CA5;">Visitor</strong><br/>${escapeHtml(e.userMessage)}
         </div>
         <div style="margin:0;padding:10px 14px;background:#fafaf8;border-left:3px solid #F47521;">
-          <strong style="color:#F47521;">Isa</strong><br/>${escapeHtml(e.isaResponse).replace(/\n/g, "<br/>")}
+          <strong style="color:#F47521;">Isa</strong><br/>${renderMessage(e.isaResponse)}
         </div>
       </div>`
     )
