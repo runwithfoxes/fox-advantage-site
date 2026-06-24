@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homepage wireframe · the storefront (card grid → Blueprint)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+
+  /* low-fi chrome */
+  .ph{ max-width:1120px; margin:0 auto; }
+  .ph-box{ border:1px dashed var(--border); background:repeating-linear-gradient(135deg,transparent,transparent 11px,rgba(138,138,133,.05) 11px,rgba(138,138,133,.05) 12px);
+    display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; text-align:center; color:var(--muted); padding:24px; }
+  .ph-tag{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); }
+  .ph-note{ font-size:11px; color:var(--muted); max-width:46ch; line-height:1.6; }
+  .barnav{ display:flex; align-items:center; gap:18px; max-width:1120px; margin:0 auto; padding:16px 40px; border-bottom:1px solid var(--border); }
+  .barnav .logo{ font-family:'Space Grotesk',sans-serif; font-size:15px; }
+  .barnav .logo b{ color:var(--fox-orange); font-weight:500; }
+  .barnav .nl{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+  .barnav .sp{ flex:1; }
+  .sec{ padding:26px 40px; }
+  .hero{ height:200px; margin:0 40px; }
+  .herotext{ max-width:1120px; margin:0 auto; padding:30px 40px 8px; }
+  .herotext h1{ font-size:clamp(26px,4vw,46px); letter-spacing:-1px; line-height:1.12; }
+  .herotext h1 .hl{ color:var(--sky-blue); }
+  .herotext p{ font-size:12px; color:var(--muted); margin-top:12px; line-height:1.7; }
+
+  /* ===== STOREFRONT ===== */
+  .shop{ position:relative; max-width:1120px; margin:0 auto; padding:18px 40px 44px; }
+  .shop::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);
+    background-size:28px 28px; opacity:.4; pointer-events:none; z-index:0; }
+  .shop > *{ position:relative; z-index:1; }
+  .shop-intro{ margin-bottom:26px; }
+  .shop-intro h2{ font-size:clamp(22px,3vw,32px); letter-spacing:-.6px; line-height:1.15; }
+  .shop-intro h2 .hl{ color:var(--sky-blue); }
+  .shop-intro p{ font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.7; }
+
+  .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media(max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:560px){ .grid{ grid-template-columns:1fr; } }
+
+  /* a product card (sharp corners per brand; only the mini-visual + chips are soft) */
+  .card{ border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); cursor:pointer; display:flex; flex-direction:column;
+    text-decoration:none; color:inherit; transition:border-color .2s, transform .2s, box-shadow .2s; }
+  .card:hover{ border-color:var(--sky-blue); transform:translateY(-2px); box-shadow:0 10px 26px rgba(29,27,27,.09); }
+  .card.active{ border-color:var(--sky-blue); }
+  .card-vis{ position:relative; height:190px; border-bottom:1px solid var(--border); background:var(--card-hover); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .card-vis svg{ width:100%; height:100%; }
+  .card-vis.has-img{ background:#EFECE2; }
+  .card-vis img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .card-badge{ position:absolute; top:8px; right:8px; z-index:2; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; background:var(--sky-blue); color:var(--bg); padding:3px 7px; }
+  .card-bd{ padding:13px 15px 15px; display:flex; flex-direction:column; gap:7px; flex:1; }
+  .card-nm{ display:flex; align-items:center; gap:8px; }
+  .card-nm .ci{ width:16px; height:16px; color:var(--sky-blue); flex:none; }
+  .card-nm .ci svg{ width:100%; height:100%; display:block; }
+  .card-nm h3{ font-family:'Space Grotesk',sans-serif; font-size:16px; }
+  .card-ben{ font-size:11.5px; color:var(--muted); line-height:1.55; flex:1; }
+  .card-cta{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--sky-blue); letter-spacing:.3px; margin-top:2px; }
+  .card-cta .arr{ transition:margin-left .2s; }
+  .card:hover .card-cta .arr{ margin-left:4px; }
+
+  /* the bundle card spans wide */
+  .card.bundle{ grid-column:1 / -1; flex-direction:row; align-items:stretch; }
+  .card.bundle .card-vis{ width:280px; height:auto; border-bottom:none; border-right:1px solid var(--border); flex:none; }
+  @media(max-width:1000px){ .card.bundle{ flex-direction:column; } .card.bundle .card-vis{ width:auto; height:118px; border-right:none; border-bottom:1px solid var(--border); } }
+  .card.bundle .card-bd{ justify-content:center; }
+  .card.bundle h3{ font-size:21px; }
+  .card.bundle .tagb{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--fox-orange); margin-bottom:2px; }
+
+  /* ===== the Blueprint that opens under the grid ===== */
+  .bp{ display:none; margin-top:26px; border:1px solid var(--sky-blue); background:var(--bg); padding:26px 28px; }
+  .bp.open{ display:block; }
+  .bp-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+  .bp-head{ font-family:'Space Grotesk',sans-serif; font-size:23px; letter-spacing:-.5px; }
+  .bp-close{ background:none; border:1px solid var(--border); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; padding:6px 11px; cursor:pointer; }
+  .bp-close:hover{ color:var(--text); border-color:var(--text); }
+  .bp-buy{ display:inline-block; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--bg); background:var(--sky-blue); padding:9px 16px; text-decoration:none; }
+  .tabs{ display:inline-flex; border:1px solid var(--border); overflow:hidden; margin:20px 0 22px; }
+  .tab{ background:transparent; border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 13px; transition:background .2s,color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab.active{ background:var(--sky-blue); color:var(--bg); }
+  .panel{ display:none; }
+  .panel.active{ display:block; }
+  .panel-it{ font-size:13.5px; line-height:1.75; color:var(--text); max-width:60ch; }
+
+  /* flow (rounded - the one exception) */
+  .flow{ display:flex; flex-direction:column; align-items:flex-start; max-width:480px; }
+  .connector{ width:1px; height:18px; background:var(--border); margin-left:18px; }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ width:100%; max-width:392px; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow);
+    display:flex; align-items:flex-start; gap:10px; padding:8px 13px; }
+  .badge{ flex:none; width:17px; height:17px; border-radius:5px; background:var(--card-hover); color:var(--muted);
+    font-family:'JetBrains Mono',monospace; font-size:9px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .node-title{ font-size:11.5px; line-height:1.4; }
+  .node-sub{ font-size:10.5px; line-height:1.45; color:var(--muted); margin-top:2px; }
+  .check{ margin-top:7px; padding:7px 10px; background:var(--sky-soft); border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:10px; line-height:1.5; color:var(--deep-sky); }
+  .check b{ font-weight:500; }
+  .hg-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:0 0 8px; }
+  .hg-lbl.mt{ margin-top:15px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+</style>
+</head>
+<body>
+
+  <div class="barnav">
+    <span class="logo"><b>Run</b> with Foxes</span><span class="sp"></span>
+    <span class="nl">/tools</span><span class="nl">/previous</span><span class="nl">/book</span><span class="nl">/contact</span>
+  </div>
+
+  <div class="sec"><div class="ph"><div class="ph-box hero">
+    <span class="ph-tag">Video hero · unchanged</span><span class="ph-note">Tarantino trunk video. Guarded.</span>
+  </div></div></div>
+
+  <div class="herotext">
+    <h1>Build an <span class="hl">unfair advantage</span> in marketing</h1>
+    <p>We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</p>
+  </div>
+
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Bio + contact strip · unchanged</span><span class="ph-note">Paul Dervan bio, then the \build it for you / \work alongside you / \train your team strip.</span>
+  </div></div></div>
+
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Substack carousel · unchanged</span><span class="ph-note">Live newsletter feed, 3-up.</span>
+  </div></div></div>
+
+  <!-- ===== THE STOREFRONT ===== -->
+  <div class="shop">
+    <div class="shop-intro">
+      <h2>Products</h2>
+      <p>Each one is a product: a system we build for your marketing and hand over. You might just say "build me an ad maker". That is a product. Take one, or the whole operation. Open any to see its Blueprint: what it is, how it works, and what runs underneath.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Testimonials · unchanged</span><span class="ph-note">Peter Field, Paul D'Arcy, Damian Devaney, Jonnie Cahill.</span>
+  </div></div></div>
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Book block · unchanged</span><span class="ph-note">The Fox Advantage.</span>
+  </div></div></div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const S = (s)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s}</svg>`;
+const IC = {
+  seg:S('<circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/>'),
+  brand:S('<path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9-2.6.9-5.5-4-3.9 5.5-.8z"/>'),
+  score:S('<line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/>'),
+  ad:S('<path d="M3 10v4l11 5V5L3 10z"/><path d="M14 8c2 0 3 1.5 3 4s-1 4-3 4"/>'),
+  reach:S('<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>'),
+  res:S('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>'),
+  cm:S('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/>')
+};
+const GATE = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3A7CA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>';
+
+// little "visual of it working" per card (low-fi mocks, sky/cream palette)
+const sky='#3A7CA5', deep='#1A3A4E', orange='#F47521', mut='#B7B7B2';
+const VIS = {
+  seg:`<svg viewBox="0 0 200 118"><g fill="${sky}" opacity=".8"><circle cx="50" cy="40" r="4"/><circle cx="62" cy="52" r="4"/><circle cx="44" cy="58" r="4"/><circle cx="56" cy="46" r="4"/></g><g fill="${orange}" opacity=".85"><circle cx="135" cy="78" r="4"/><circle cx="148" cy="86" r="4"/><circle cx="128" cy="90" r="4"/></g><g fill="${deep}" opacity=".6"><circle cx="150" cy="38" r="4"/><circle cx="138" cy="30" r="4"/><circle cx="162" cy="46" r="4"/></g><line x1="24" y1="98" x2="176" y2="98" stroke="${mut}"/><line x1="24" y1="20" x2="24" y2="98" stroke="${mut}"/></svg>`,
+  brand:`<svg viewBox="0 0 200 118"><line x1="100" y1="16" x2="100" y2="102" stroke="${mut}"/><line x1="30" y1="59" x2="170" y2="59" stroke="${mut}"/><circle cx="64" cy="40" r="5" fill="${mut}"/><circle cx="132" cy="46" r="5" fill="${mut}"/><circle cx="78" cy="80" r="5" fill="${mut}"/><circle cx="140" cy="36" r="7" fill="${orange}"/><text x="150" y="34" font-size="8" fill="${deep}" font-family="monospace">you</text></svg>`,
+  score:`<svg viewBox="0 0 200 118"><polygon points="100,22 130,46 70,46" fill="${sky}" opacity=".85"/><rect x="70" y="50" width="60" height="14" fill="${sky}" opacity=".6"/><rect x="56" y="68" width="88" height="14" fill="${sky}" opacity=".4"/><rect x="42" y="86" width="116" height="14" fill="${sky}" opacity=".25"/></svg>`,
+  ad:`<svg viewBox="0 0 200 118"><rect x="40" y="20" width="120" height="78" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="52" y="32" width="60" height="8" fill="${deep}" opacity=".5"/><rect x="52" y="46" width="40" height="6" fill="${mut}"/><rect x="118" y="60" width="30" height="26" rx="3" fill="${orange}" opacity=".8"/><rect x="52" y="80" width="44" height="9" fill="${sky}"/></svg>`,
+  reach:`<svg viewBox="0 0 200 118"><rect x="34" y="28" width="92" height="22" rx="6" fill="${sky}" opacity=".15" stroke="${sky}"/><rect x="42" y="36" width="60" height="6" fill="${sky}"/><rect x="74" y="64" width="92" height="22" rx="6" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="82" y="72" width="48" height="6" fill="${mut}"/></svg>`,
+  res:`<svg viewBox="0 0 200 118"><rect x="74" y="22" width="52" height="80" rx="9" fill="${deep}" opacity=".08" stroke="${mut}"/><circle cx="100" cy="40" r="9" fill="${sky}" opacity=".25"/><rect x="86" y="56" width="28" height="5" fill="${mut}"/><circle cx="88" cy="86" r="7" fill="${orange}" opacity=".8"/><circle cx="112" cy="86" r="7" fill="${sky}" opacity=".5"/></svg>`,
+  cm:`<svg viewBox="0 0 280 150"><rect x="30" y="24" width="220" height="104" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><line x1="30" y1="44" x2="250" y2="44" stroke="${mut}"/>${[0,1,2,3,4].map(i=>`<line x1="${30+44*(i+1)}" y1="44" x2="${30+44*(i+1)}" y2="128" stroke="${mut}" opacity=".5"/>`).join('')}<rect x="40" y="56" width="30" height="9" fill="${sky}" opacity=".7"/><rect x="128" y="74" width="30" height="9" fill="${orange}" opacity=".7"/><rect x="172" y="92" width="30" height="9" fill="${sky}" opacity=".5"/><rect x="84" y="110" width="30" height="9" fill="${deep}" opacity=".4"/></svg>`
+};
+
+const MODS = [
+  { key:'seg', name:'Segmentation AI', icon:'seg', ben:'Segments that hold up to the maths, not a slide of personas.',
+    it:'Proper segmentation, with the maths actually run. We turn your customer base into segments that hold up, not a slide of personas.',
+    how:[['Ground it','What segmentation is, before any maths.'],['Run the maths','Similarity between the segments.'],['Test what holds','Which segments survive the data.'],['Map it','Scatter the segments out to see them.']],
+    uses:{Skills:['/segmentation','similarity analysis','scatter plots'],Data:['your customer base']} },
+  { key:'brand', name:'Brand strategist', icon:'brand', ben:'Positioning, the message, and the assets people know you by.',
+    it:'Positioning, the situations you want to be remembered in, the message everything anchors to, and the assets people know you by. The strategy that drives the making.',
+    how:[['Map the field','Competitors claimed vs actual. Find the white space.'],['Find the situations','The buying situations to be remembered in (CEPs).'],['Build the message','The pillars all copy anchors to.'],['Lock the assets','What people recognise you by.'],['On a page','The strategy, plus the guidelines.']],
+    uses:{Skills:['/competitor-positioning','/cep-discovery','messaging framework','distinctive assets']} },
+  { key:'score', name:'The scorecard', icon:'score', ben:'The metrics that matter, across five levels, and the split that grows them.',
+    it:'You cannot manage a brand you cannot measure. We get the metrics right across the five levels, then set the split that grows it.',
+    how:[['Train the team','Across the five levels of measurement.'],['Audit what is tracked','Sort it into five levels, show the gaps.'],['Build the scorecard','Commercial, behaviour, memory, comms, activity.'],['Set the split','Brand vs activation (60:40), share of voice.']],
+    uses:{Skills:['/metrics-audit','brand scorecard','/brand-activation-split','/esov-proxy'],Data:['your tracked metrics','benchmark set']} },
+  { key:'ad', name:'AI Ad resizer', icon:'ad', img:'assets/dayone/dayone-1080x1080.gif', badge:'New', ben:'Approve one ad, get the full IAB family of sizes, on brand.',
+    it:'Brief to useful options faster, quality first. Video, brand, animated and static, then the full size set, all on brand.',
+    how:[['Sharpen the brief','The brief coach, before any work starts.'],['Make the options','Video, brand, animated, static.'],['Review at actual size','Legibility checked at true size, not a big preview.'],
+      {full:true, head:'Your call', title:'You approve the set', sub:'Resized to the full IAB family, re-laid out per shape.', check:'<b>Nothing ships</b> until you say yes.'}],
+    uses:{Skills:['/dray','/fox-html-ads','/banner-machine','/grumpyfox-chart-resizer'],Tools:['Seedream','Playwright + ffmpeg'],Data:['brand kit']} },
+  { key:'reach', name:'Outreach engine', icon:'reach', ben:'Lists and messages off real signal, across email and LinkedIn. You approve.',
+    it:'AI for sales and outreach across email and LinkedIn. Jo builds the lists and writes the messages off real signal. You approve.',
+    how:[['Build the list','The right companies and people, off real signal.'],['Write the messages','Personalised, on signal, not templated.'],
+      {full:true, head:'Your call', title:'You approve every message', sub:'You read them before anything goes out.', check:'<b>Nothing sends or spends</b> without your yes.'},
+      ['Run and read','Live, then the numbers come back.']],
+    uses:{Skills:['/clay-intel-light','/growth-manager','/campaign-manager'],Tools:['HeyReach','Smartlead','Clay'],Memory:['learnings.md']} },
+  { key:'res', name:'Research interviewer', icon:'res', ben:'Message testing, intelligence, and interviews by phone.',
+    it:'Message testing, intelligence and interviews by phone. We go find what you need to know, structured and flagged.',
+    how:[['Pick the question','What you actually need to know.'],['Run the method','Interviews, company intel, reviews, pricing.'],['Synthesise','What is new, structured and flagged.']],
+    uses:{Skills:['AI research interviewer','/clay-intel','review intelligence','pricing intelligence']} }
+];
+const BUNDLE = { key:'cm', name:'The full campaign manager', icon:'cm', ben:'The whole operation: every module above, run as one named campaign tied to its goals and a scorecard. Jo runs it, you approve on your board.',
+  it:'The operation that runs every module above as one. A campaign has a name, its channels, and its goals, all tied to a scorecard. Jo runs it, you approve on your board.',
+  how:[['Plan the campaign','Goal, evidence, the plan that drives every module.'],['Run the modules','Ads, outreach, social, newsletter, all under one campaign.'],
+    {full:true, head:'Your call', title:'You approve on the board', sub:'You watch and sign off. You never type into the page.', check:'<b>Nothing runs</b> until you approve the plan.'},
+    ['Read it back','Every campaign traces to the strategy and the scorecard.']],
+  uses:{Skills:['/campaign-manager','/jo','every module above'],Tools:['the board','calendar'],Data:['calendar-data.json'],Memory:['learnings.md']} };
+
+// each card is a LINK to that module's own page (homepage stays intact).
+// only module-ad-maker.html is built so far; others point to it as the template.
+const PAGES = { ad:'module-ad-maker.html' };
+const pageFor = k => PAGES[k] || 'module-ad-maker.html';
+
+const grid = document.getElementById('grid');
+MODS.forEach(m=>{
+  const card = el(`<a class="card" href="${pageFor(m.key)}" data-k="${m.key}">
+    <div class="card-vis${m.img?' has-img':''}">${m.badge?`<span class="card-badge">${m.badge}</span>`:''}${m.img?`<img src="${m.img}" alt="${m.name}">`:VIS[m.icon]}</div>
+    <div class="card-bd">
+      <div class="card-nm"><span class="ci">${IC[m.icon]}</span><h3>${m.name}</h3></div>
+      <div class="card-ben">${m.ben}</div>
+      <div class="card-cta">See the ${m.name.toLowerCase().replace('the ','')} <span class="arr">→</span></div>
+    </div></a>`);
+  grid.appendChild(card);
+});
+const bcard = el(`<a class="card bundle" href="${pageFor(BUNDLE.key)}" data-k="${BUNDLE.key}">
+  <div class="card-vis">${VIS.cm}</div>
+  <div class="card-bd">
+    <span class="tagb">The bundle</span>
+    <div class="card-nm"><span class="ci">${IC.cm}</span><h3>${BUNDLE.name}</h3></div>
+    <div class="card-ben">${BUNDLE.ben}</div>
+    <div class="card-cta">See the campaign manager <span class="arr">→</span></div>
+  </div></a>`);
+grid.appendChild(bcard);
+</script>
+</body>
+</html>
