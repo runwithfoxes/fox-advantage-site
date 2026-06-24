@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICP outreach - how to run it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5;
+    --deep-sky:#1A3A4E; --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9;
+    --orange:#F47521; --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'JetBrains Mono',monospace; font-weight:300;
+    -webkit-font-smoothing:antialiased; line-height:1.7;
+  }
+  a{color:var(--sky-blue); text-decoration:none;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:300; margin:0;}
+  .dotgrid{position:absolute; inset:0; pointer-events:none; opacity:.4;
+    background-image:radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px); background-size:28px 28px;}
+
+  /* nav */
+  nav{position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center;
+    justify-content:space-between; padding:18px 48px; background:transparent; transition:background .3s ease-out;}
+  nav.scrolled{background:rgba(250,250,248,0.85); backdrop-filter:blur(12px);}
+  .nav-brand{font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted);}
+  .nav-brand span{color:var(--orange);}
+  .nav-links{display:flex; gap:26px;}
+  .nav-links a{font-size:11px; font-weight:400; letter-spacing:2px; text-transform:uppercase; color:var(--muted);}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--sky-blue);}
+  @media(max-width:768px){ .nav-links{display:none;} nav{padding:16px 24px;} }
+
+  /* hero */
+  .hero{position:relative; padding:120px 0 36px; overflow:hidden;}
+  .container{max-width:1200px; margin:0 auto; padding:0 48px;}
+  @media(max-width:768px){ .container{padding:0 24px;} }
+  .hero h1{font-size:clamp(24px,3.4vw,34px); letter-spacing:-1px; line-height:1.1; margin:0;}
+  .fox-hero{width:170px; flex:none; pointer-events:none; user-select:none;
+    filter:drop-shadow(0 24px 48px rgba(29,27,27,0.15));}
+
+  /* flow */
+  .flow-wrap{position:relative; padding:20px 0 80px;}
+  .flow{position:relative; display:flex; flex-direction:column; align-items:center; max-width:600px; margin:0 auto;}
+  .connector{width:1px; height:32px; background:var(--border);}
+  .marker{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted);
+    border:1px solid var(--border); border-radius:20px; padding:8px 18px; background:var(--bg);}
+
+  /* node card (HeyReach shape, RWF skin) */
+  .node{position:relative; width:100%; border:1px solid var(--border); border-radius:16px;
+    background:var(--bg); box-shadow:var(--shadow); transition:transform .25s ease-out;}
+  .node:hover{transform:translateY(-2px);}
+  .node-head{display:flex; align-items:center; gap:10px; padding:13px 20px; color:var(--muted);
+    font-size:13px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover);
+    border-radius:16px 16px 0 0;}
+  .node-head svg{flex:none; color:var(--muted);}
+  .badge{flex:none; width:24px; height:24px; border-radius:8px; background:var(--deep-sky); color:var(--cream);
+    font-size:12px; display:flex; align-items:center; justify-content:center;}
+  .node-body{display:flex; gap:15px; padding:18px 20px;}
+  .node-icon{flex:none; width:46px; height:46px; border-radius:12px; background:var(--sky-soft); color:var(--sky-blue);
+    display:flex; align-items:center; justify-content:center;}
+  .node-text{flex:1; min-width:0;}
+  .node-title{font-size:13px; font-weight:400; line-height:1.5; letter-spacing:0; margin-bottom:6px;}
+  .node-title .skill{color:var(--sky-blue); font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0;}
+  .node-sub{font-size:13px; line-height:1.6; color:var(--muted);}
+
+  .do{margin:14px 0 4px; padding:14px 16px; background:var(--card-hover); border:1px solid var(--border); border-radius:12px;}
+  .do .lbl{display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:7px;}
+  .do, .do *{font-size:13px; line-height:1.6;}
+  code{font-family:'JetBrains Mono',monospace; font-weight:500; background:var(--bg); border:1px solid var(--border);
+    border-radius:6px; padding:1px 7px; color:var(--deep-sky);}
+  .back{font-size:13px; line-height:1.6; color:var(--muted); margin-top:13px;}
+  .back strong{color:var(--text); font-weight:400;}
+  .check{margin-top:15px; padding:12px 15px; background:var(--sky-soft); border-radius:12px;
+    font-size:13px; line-height:1.6; color:var(--text);}
+  .check strong{font-weight:500; color:var(--deep-sky);}
+
+  /* branching connectors */
+  .bridge{width:50%; height:18px; border:1px solid var(--border); border-bottom:none;
+    border-radius:12px 12px 0 0;}
+  .bridge-join{width:50%; height:18px; border:1px solid var(--border); border-top:none;
+    border-radius:0 0 12px 12px;}
+  .lanes{display:flex; width:100%; gap:0;}
+  .lane{flex:1; display:flex; flex-direction:column; align-items:center;}
+  .v{width:1px; background:var(--border); height:14px;}
+  .v.fill{flex:1; min-height:14px;}
+  .pill{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; padding:7px 15px; border:1px solid;
+    border-radius:20px; background:var(--bg);}
+  .pill.keep{color:var(--sky-blue); border-color:var(--sky-blue);}
+  .pill.hold{color:var(--muted); border-color:var(--border);}
+  .lane-card{width:86%; border:1px solid var(--border); border-radius:13px; background:var(--bg); box-shadow:var(--shadow);
+    padding:14px 16px; font-size:13px; line-height:1.6; color:var(--muted);}
+  .lane-card strong{color:var(--text); font-weight:300;}
+
+  .note{width:100%; border:1px solid var(--border); border-left:3px solid var(--deep-sky); border-radius:12px;
+    background:var(--bg); padding:13px 18px; font-size:13px; line-height:1.6; color:var(--text);}
+  .note strong{font-weight:500;}
+
+  /* close */
+  .close{position:relative; background:var(--deep-sky); color:var(--cream); padding:100px 0; overflow:hidden;}
+  .close .dotgrid{opacity:.08; background-image:radial-gradient(circle, rgba(58,124,165,0.6) 0.8px, transparent 0.8px);}
+  .close-grid{display:flex; align-items:center; justify-content:space-between; gap:40px;}
+  .close h2{font-size:clamp(30px,4.5vw,52px); letter-spacing:-1px; color:var(--cream); margin-bottom:16px;}
+  .close p{font-size:13px; line-height:1.6; color:var(--cream); opacity:.8; max-width:42ch;}
+
+  .fade{opacity:0; transform:translateY(20px); transition:opacity .6s ease-out, transform .6s ease-out;}
+  .fade.in{opacity:1; transform:none;}
+  :focus-visible{outline:2px solid var(--sky-blue); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+    .fade{opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-brand" href="#top">/<span>Run</span>withfoxes</a>
+  <div class="nav-links">
+    <a href="#flow">/the_steps</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="dotgrid"></div>
+  <div class="container">
+    <h1>How to run your campaign</h1>
+  </div>
+</header>
+
+<section class="flow-wrap" id="flow">
+  <div class="dotgrid"></div>
+  <div class="container">
+    <div class="flow">
+
+      <span class="marker">Start here</span>
+      <div class="connector"></div>
+
+      <!-- STEP 1 -->
+      <div class="node fade">
+        <div class="node-head"><span class="badge">1</span> Before you message anyone</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Get your list ready</div>
+            <div class="node-sub">You need a list of target companies, each with its website address, for example <code>acme.com</code>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector"></div>
+      <div class="bridge"></div>
+      <div class="lanes fade">
+        <div class="lane">
+          <div class="v"></div>
+          <span class="pill keep">I already have them</span>
+          <div class="v"></div>
+          <div class="lane-card">Your list must be a CSV file with two columns: company name and website. If it is, go to Step 2.</div>
+          <div class="v fill"></div>
+        </div>
+        <div class="lane">
+          <div class="v"></div>
+          <span class="pill hold">I need companies</span>
+          <div class="v"></div>
+          <div class="lane-card">Go to <strong>clay.com</strong> and sign in. Make a new table, add the Find Companies source, set the filters (UK and Ireland, 200 to 1000 staff, your sectors), then export it as a CSV file. That CSV is your Step 2 list.</div>
+          <div class="v fill"></div>
+        </div>
+      </div>
+      <div class="bridge-join"></div>
+
+      <!-- STEP 2 · CLEAN -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">2</span> Once you have your raw list</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Clean your list <span class="skill">· eaton-clean</span></div>
+            <div class="node-sub">Removes any company you should not contact, and any duplicates.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, open the shared <strong>Lists</strong> project and start a new chat. Upload your new list, then say: “Clean this list.” This runs <code>eaton-clean</code>.</div>
+            <div class="back"><strong>What it does:</strong> checks your list against the team's client and do-not-contact lists, and against the lists everyone else has added, then removes any company that is already there. It matches on the website address, not the name, so “Tesco” and “Tesco Ireland” don't trip it up, and it explains every removal. This is what stops two of you messaging the same company.</div>
+            <div class="back"><strong>You get back:</strong> the cleaned list, a “removed, and why” list, and an “unsure, your call” list. The three counts add up to what you started with.</div>
+            <div class="check"><strong>Check:</strong> scan the “unsure” list, decide each one, then move on.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 · ENRICH -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">3</span> When your list is clean</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Enrich the list <span class="skill">· eaton-enrich</span></div>
+            <div class="node-sub">Finds the right person to contact and the signal that gives you a reason to reach out. Details only, no messages yet.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, in the shared <strong>Lists</strong> project, stay in the same chat where you cleaned your list and say: “Now enrich the cleaned list.” (If you opened a new chat, upload the cleaned CSV first.) This runs <code>eaton-enrich</code>.</div>
+            <div class="back"><strong>What it does:</strong> asks Clay for the HR leaders at each company, picks the one decision-maker by seniority, and pulls a recent HR hire as your signal. It fills in the details, name, title, LinkedIn, company and location. The messages come later, in Step 5.</div>
+            <div class="back"><strong>You get back:</strong> your list with the contact details and the signal filled in, plus a “review, don't send” list for any company with no clear HR decision-maker.</div>
+            <div class="check"><strong>Check:</strong> trust the review list. Anything it could not stand up, it holds back.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">4</span> Same chat, right after Step 3</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Get email addresses <span class="skill">· eaton-email</span></div>
+            <div class="node-sub">Adds verified work emails to the list you just built.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, in the same chat where you enriched the list, say: “Now get the emails.” This runs <code>eaton-email</code>.</div>
+            <div class="back"><strong>What it does:</strong> reuses the same Clay search and fills the blank email column, verified addresses only, never a guess.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector"></div>
+      <div class="bridge"></div>
+      <div class="lanes fade">
+        <div class="lane">
+          <div class="v"></div>
+          <span class="pill keep">Email found</span>
+          <div class="v"></div>
+          <div class="lane-card">Keeps the <strong>full sequence</strong>, LinkedIn and email.</div>
+          <div class="v fill"></div>
+        </div>
+        <div class="lane">
+          <div class="v"></div>
+          <span class="pill hold">No verified email</span>
+          <div class="v"></div>
+          <div class="lane-card">That person runs <strong>LinkedIn only</strong>. Don't drop them, the email steps just skip.</div>
+          <div class="v fill"></div>
+        </div>
+      </div>
+      <div class="bridge-join"></div>
+
+      <!-- STEP 5 · MESSAGE COACH -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">5</span> When the list is enriched and emailed</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Write your messages <span class="skill">· eaton-message-coach</span></div>
+            <div class="node-sub">Coaches you through the whole sequence of messages and emails, one at a time.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, in the shared <strong>Lists</strong> project, say: “Coach me through my message sequence.” This runs <code>eaton-message-coach</code>.</div>
+            <div class="back"><strong>What it does:</strong> shows you the full journey (Message 1, Email 1, Message 2, and so on), then takes each one in turn. It shows a real company's signal, asks what you want to say, drafts it in your voice inside the limit (the LinkedIn note is 300 characters), and reworks it until you sign it off.</div>
+            <div class="back"><strong>You get back:</strong> your approved sequence, every message signed off, ready to roll across the whole list.</div>
+            <div class="check"><strong>Check:</strong> you are the check here. Nothing is locked until you say so.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 · MERGE -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">6</span> Once your sequence is signed off</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Build the upload file <span class="skill">· eaton-merge</span></div>
+            <div class="node-sub">Applies your approved sequence across every lead and builds the HeyReach file.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, in the same chat, say: “Now merge this across my list.” This runs <code>eaton-merge</code>.</div>
+            <div class="back"><strong>What it does:</strong> takes your signed-off sequence and personalises each message for every company from its own signal, then builds the upload CSV in the exact shape HeyReach needs, one row per person.</div>
+            <div class="back"><strong>You get back:</strong> the finished upload file, plus a short “spot-check these” list where the personalisation was thin. Check those few, not all of them.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7 · LOAD -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">7</span> When your upload file is ready</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Load it and start the sequence <span class="skill">· heyreach-load</span></div>
+            <div class="node-sub">Uploads your finished file into the HeyReach and SmartLead campaigns, which are already set up, then starts the sequence.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTO -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge" style="background:var(--sky-blue)">→</span> Runs on its own</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Your 18 day sequence fires</div>
+            <div class="node-sub">Day 1 LinkedIn connect, then 3 emails, 3 calls with voicemails, and 3 LinkedIn messages. The cadence you built in HeyReach now runs without you.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">8</span> Any time, on demand</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Keep an eye on it <span class="skill">· eaton-campaign-update</span></div>
+            <div class="node-sub">Get an update and your next moves whenever you want.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, say: “Update me on the campaign.” This runs <code>eaton-campaign-update</code>.</div>
+            <div class="back"><strong>What it does:</strong> reads your HeyReach and SmartLead numbers, flags what needs attention, then gives you two or three next moves.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector"></div>
+      <span class="marker">End of the run</span>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', scrollY>20); });
+  const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.12});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
