@@ -14,6 +14,7 @@ export const meta: Meta = {
   lastUpdated: "2026-06-19",
   feedbackContacts: ["softco.com"],
   targetDate: "2026-07-11",
+  hideProgress: true,
   zoneIntros: {
     deliverables: "Everything we're producing and where each piece stands.",
     brief:
