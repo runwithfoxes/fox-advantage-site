@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-23",
+  lastUpdated: "2026-06-24",
   // skills library added 2026-06-23
   zoneIntros: {
     deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
@@ -61,6 +61,7 @@ export const work: WorkSection[] = [
       { name: "Content calendar builder", file: "content-calendar.zip", note: "Plans a full month of posts from the team's raw material: who, what, when and why" },
       { name: "Content reviewer", file: "content-review.zip", note: "Reads what you posted and how it did, finds the patterns, adjusts the next plan" },
       { name: "Reactive take", file: "reactive-take.zip", note: "Drop in an article and get the team's response, in the voice you choose" },
+      { name: "Clean a list", file: "eaton-clean.zip", note: "Dedupes a new list against your client and do-not-contact lists, matching on website so nothing slips through" },
       { name: "Enrich a list", file: "eaton-enrich.zip", note: "Turns a list of companies into a ready-to-message list: HR decision-maker, signal, opener" },
       { name: "Find emails", file: "eaton-email.zip", note: "Adds verified work email addresses to the list you just enriched" },
       { name: "Change-outreach", file: "eaton-change-outreach.zip", note: "Picks the change decision-maker and writes an evidence-only note, nothing invented" },
