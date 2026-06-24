@@ -62,6 +62,9 @@
   .node-head svg{flex:none; color:var(--muted);}
   .badge{flex:none; width:24px; height:24px; border-radius:8px; background:var(--deep-sky); color:var(--cream);
     font-size:12px; display:flex; align-items:center; justify-content:center;}
+  .dl{margin-left:auto; display:inline-flex; align-items:center; gap:5px; font-size:11px; letter-spacing:.3px;
+    color:var(--sky-blue); border:1px solid var(--border); border-radius:8px; padding:4px 10px; background:var(--bg); white-space:nowrap;}
+  .dl:hover, .dl:focus-visible{background:var(--bg); border-color:var(--sky-blue);}
   .node-body{display:flex; gap:15px; padding:18px 20px;}
   .node-icon{flex:none; width:46px; height:46px; border-radius:12px; background:var(--sky-soft); color:var(--sky-blue);
     display:flex; align-items:center; justify-content:center;}
@@ -177,7 +180,7 @@
       <!-- STEP 2 · CLEAN -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">2</span> Once you have your raw list</div>
+        <div class="node-head"><span class="badge">2</span> Once you have your raw list<a class="dl" href="eaton-clean.zip" download>↓ eaton-clean</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
           <div class="node-text">
@@ -194,7 +197,7 @@
       <!-- STEP 3 · ENRICH -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">3</span> When your list is clean</div>
+        <div class="node-head"><span class="badge">3</span> When your list is clean<a class="dl" href="eaton-enrich.zip" download>↓ eaton-enrich</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <div class="node-text">
@@ -211,7 +214,7 @@
       <!-- STEP 3 -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">4</span> Same chat, right after Step 3</div>
+        <div class="node-head"><span class="badge">4</span> Same chat, right after Step 3<a class="dl" href="eaton-email.zip" download>↓ eaton-email</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
           <div class="node-text">
@@ -246,7 +249,7 @@
       <!-- STEP 5 · MESSAGE COACH -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">5</span> When the list is enriched and emailed</div>
+        <div class="node-head"><span class="badge">5</span> When the list is enriched and emailed<a class="dl" href="eaton-message-coach.zip" download>↓ eaton-message-coach</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
           <div class="node-text">
@@ -263,15 +266,15 @@
       <!-- STEP 6 · MERGE -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">6</span> Once your sequence is signed off</div>
+        <div class="node-head"><span class="badge">6</span> Once your sequence is signed off<a class="dl" href="eaton-merge.zip" download>↓ eaton-merge</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
           <div class="node-text">
-            <div class="node-title">Build the upload file <span class="skill">· eaton-merge</span></div>
-            <div class="node-sub">Applies your approved sequence across every lead and builds the HeyReach file.</div>
+            <div class="node-title">Build the upload files <span class="skill">· eaton-merge</span></div>
+            <div class="node-sub">Applies your approved sequence across every lead and builds the two upload files.</div>
             <div class="do"><span class="lbl">Type this</span>In Claude, in the same chat, say: “Now merge this across my list.” This runs <code>eaton-merge</code>.</div>
-            <div class="back"><strong>What it does:</strong> takes your signed-off sequence and personalises each message for every company from its own signal, then builds the upload CSV in the exact shape HeyReach needs, one row per person.</div>
-            <div class="back"><strong>You get back:</strong> the finished upload file, plus a short “spot-check these” list where the personalisation was thin. Check those few, not all of them.</div>
+            <div class="back"><strong>What it does:</strong> takes your signed-off sequence and personalises each message for every company from its own signal, then builds <strong>two files</strong>: a HeyReach file with the LinkedIn messages, and a SmartLead file with the emails.</div>
+            <div class="back"><strong>You get back:</strong> both files, plus a short “spot-check these” list where the personalisation was thin. Check those few, not all of them.</div>
           </div>
         </div>
       </div>
@@ -279,12 +282,30 @@
       <!-- STEP 7 · LOAD -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">7</span> When your upload file is ready</div>
+        <div class="node-head"><span class="badge">7</span> When your upload file is ready<a class="dl" href="eaton-heyreach-load.zip" download>↓ eaton-heyreach-load</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
           <div class="node-text">
-            <div class="node-title">Load it and start the sequence <span class="skill">· heyreach-load</span></div>
-            <div class="node-sub">Uploads your finished file into the HeyReach and SmartLead campaigns, which are already set up, then starts the sequence.</div>
+            <div class="node-title">Load into HeyReach <span class="skill">· eaton-heyreach-load</span></div>
+            <div class="node-sub">Uploads the HeyReach file and holds. It will not start until your emails are in SmartLead.</div>
+            <div class="do"><span class="lbl">Type this</span>In Claude, say: “Load my HeyReach file,” and give it the HeyReach file from Step 6. This runs <code>eaton-heyreach-load</code>.</div>
+            <div class="back"><strong>What it does:</strong> uploads every lead and their LinkedIn messages into your HeyReach campaign (already set up), checks nothing is blank, then <strong>stops and waits</strong>. Nothing sends yet.</div>
+            <div class="check"><strong>Next:</strong> do Step 8, then tell Claude to start. It never starts on its own.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 8 · SMARTLEAD (MANUAL) -->
+      <div class="connector"></div>
+      <div class="node fade">
+        <div class="node-head"><span class="badge">8</span> Before it starts · you do this by hand</div>
+        <div class="node-body">
+          <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div>
+          <div class="node-text">
+            <div class="node-title">Put the emails in SmartLead</div>
+            <div class="node-sub">SmartLead can't be driven from Claude yet, so this one is a manual upload. It has to happen before you start, or the emails fire into an empty campaign.</div>
+            <div class="do"><span class="lbl">Do this</span>Open SmartLead, go to your ICP email campaign, choose add leads, and upload the <strong>SmartLead file</strong> from Step 6. Check the leads appear with their email columns filled.</div>
+            <div class="back"><strong>Then:</strong> go back to Claude and say “SmartLead is loaded, start it.” Only now does <code>eaton-heyreach-load</code> start the campaign.</div>
           </div>
         </div>
       </div>
@@ -305,7 +326,7 @@
       <!-- STEP 5 -->
       <div class="connector"></div>
       <div class="node fade">
-        <div class="node-head"><span class="badge">8</span> Any time, on demand</div>
+        <div class="node-head"><span class="badge">9</span> Any time, on demand<a class="dl" href="eaton-campaign-update.zip" download>↓ eaton-campaign-update</a></div>
         <div class="node-body">
           <div class="node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div class="node-text">
