@@ -44,12 +44,11 @@ export const work: WorkSection[] = [
     embedSrc: "icp-outreach-flow.html", embedHeight: 780 },
 
   { title: "Training guides", kind: "files", zone: "work", status: "in-progress",
-    desc: "The how-to guides, as Word documents you can download, print or share with the team. Some are still in progress and will appear here as they land.",
+    desc: "A how-to guide for each tool, as a Word document. We're rewriting these properly now, so they'll appear here as they land. The full outreach campaign is covered by the flow above.",
     files: [
-      { name: "The outreach engine", file: "guide-outreach-engine.docx", note: "How the AI-run outreach works, what's in place, and what's left to make it smooth" },
-      { name: "The campaign calendar", file: "guide-campaign-calendar.docx", note: "Set up the shared calendar in your own Claude so it saves for the whole team" },
-      { name: "The campaign advisor", file: "guide-campaign-advisor.docx", note: "Get an honest read on the campaign numbers and the next moves, on demand" },
-      { name: "The LinkedIn graphic", file: "guide-linkedin-graphic.docx", note: "Turn a point into one quiet, on-brand LinkedIn graphic, in the browser" },
+      { name: "The campaign calendar", note: "Set up the shared calendar in your own Claude so it saves for the whole team", pending: true },
+      { name: "The campaign advisor", note: "Get an honest read on the campaign numbers and the next moves, on demand", pending: true },
+      { name: "The LinkedIn graphic", note: "Turn a point into one on-brand LinkedIn graphic, in the browser", pending: true },
       { name: "Handover playbook", note: "A light guide so the team runs everything on its own", pending: true },
     ] },
 
