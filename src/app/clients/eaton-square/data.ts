@@ -39,6 +39,10 @@ export const work: WorkSection[] = [
   // copy go here once their files are dropped into
   // public/clients/eaton-square/media/. Give each one zone: "work".
 
+  { title: "ICP outreach, step by step", kind: "embed", zone: "work", status: "ready",
+    desc: "The full campaign as a visual flow: get the list, clean, enrich, emails, write the messages, merge, load, monitor. Each stage has its skill to download right there. Open full screen for the best view.",
+    embedSrc: "icp-outreach-flow.html", embedHeight: 780 },
+
   { title: "Training guides", kind: "files", zone: "work", status: "in-progress",
     desc: "The how-to guides, as Word documents you can download, print or share with the team. Some are still in progress and will appear here as they land.",
     files: [
@@ -46,7 +50,6 @@ export const work: WorkSection[] = [
       { name: "The campaign calendar", file: "guide-campaign-calendar.docx", note: "Set up the shared calendar in your own Claude so it saves for the whole team" },
       { name: "The campaign advisor", file: "guide-campaign-advisor.docx", note: "Get an honest read on the campaign numbers and the next moves, on demand" },
       { name: "The LinkedIn graphic", file: "guide-linkedin-graphic.docx", note: "Turn a point into one quiet, on-brand LinkedIn graphic, in the browser" },
-      { name: "ICP outreach, step by step", file: "icp-outreach-flow.html", note: "The full campaign as a visual flow: get the list, clean, enrich, emails, write the messages, merge, load, monitor. The other workflows follow the same shape" },
       { name: "Handover playbook", note: "A light guide so the team runs everything on its own", pending: true },
     ] },
 
