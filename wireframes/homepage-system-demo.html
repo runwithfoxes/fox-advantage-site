@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homepage · index + demo stage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521; --sky-soft:rgba(58,124,165,0.10); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+
+  .section{ position:relative; max-width:1200px; margin:0 auto; padding:88px 48px; }
+  .section::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);
+    background-size:28px 28px; opacity:.4; pointer-events:none; z-index:0; }
+  .section > *{ position:relative; z-index:1; }
+  @media(max-width:768px){ .section{ padding:60px 24px; } }
+
+  .intro{ max-width:680px; margin-bottom:44px; }
+  .intro h2{ font-size:clamp(26px,3.4vw,36px); letter-spacing:-1px; line-height:1.15; }
+  .intro h2 .hl{ color:var(--sky-blue); }
+  .intro p{ font-size:13px; line-height:1.7; color:var(--muted); margin-top:14px; }
+
+  .stage{ display:flex; gap:54px; align-items:flex-start; }
+  @media(max-width:880px){ .stage{ flex-direction:column; gap:32px; } }
+
+  /* LEFT: a quiet index, not a nav */
+  .idx{ flex:0 0 210px; }
+  @media(max-width:880px){ .idx{ flex-basis:auto; width:100%; } }
+  .idx-eyebrow{ font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+  .idx-item{ display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:9px 0 9px 16px;
+    border-left:2px solid transparent; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:300;
+    letter-spacing:-.2px; line-height:1.3; transition:color .2s, border-color .2s; }
+  .idx-item:hover{ color:var(--text); }
+  .idx-item.active{ color:var(--text); border-left-color:var(--sky-blue); }
+  .idx-item.active .ix-n{ color:var(--sky-blue); }
+  .idx-item .ix-n{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--border); margin-right:9px; }
+  .idx-item:focus-visible{ outline:2px solid var(--sky-blue); outline-offset:2px; }
+
+  /* RIGHT: the demo stage */
+  .demo{ flex:1; min-width:0; }
+  .demo-head{ font-family:'Space Grotesk',sans-serif; font-size:22px; letter-spacing:-.5px; margin-bottom:5px; }
+  .demo-sub{ font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:24px; max-width:58ch; }
+  .demo-body{ min-height:300px; }
+
+  /* ad gallery (real work) */
+  .gal{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media(max-width:560px){ .gal{ grid-template-columns:repeat(2,1fr); } }
+  .shot{ border:1px solid var(--border); background:var(--bg); overflow:hidden; }
+  .shot img{ display:block; width:100%; height:150px; object-fit:cover; }
+  .shot .cap{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 10px; border-top:1px solid var(--border); }
+  .pair{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .pair{ grid-template-columns:1fr; } }
+  .pair .shot img{ height:200px; object-fit:contain; background:var(--card-hover); }
+
+  /* scorecard demo */
+  .sc{ border:1px solid var(--border); background:var(--bg); max-width:460px; }
+  .sc-row{ display:grid; grid-template-columns:84px 1fr auto auto; gap:12px; align-items:center; padding:11px 16px; border-bottom:1px solid var(--border); font-size:12px; }
+  .sc-row:last-child{ border-bottom:none; }
+  .sc-row .lv{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+  .sc-row .vl{ color:var(--sky-blue); }
+  .sc-row .tg{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.5px; text-transform:uppercase; }
+  .ok{ color:#5e7e2c; } .concern{ color:var(--fox-orange); }
+
+  /* board demo */
+  .board{ border:1px solid var(--border); background:var(--bg); max-width:480px; }
+  .bd-row{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--border); }
+  .bd-row:last-child{ border-bottom:none; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--sky-blue); flex:none; }
+  .dot.draft{ background:var(--fox-orange); }
+  .bd-nm{ font-size:12.5px; flex:1; } .bd-nm small{ display:block; color:var(--muted); font-size:10.5px; margin-top:2px; }
+  .bd-tag{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+
+  svg.viz{ width:100%; max-width:480px; height:auto; border:1px solid var(--border); background:var(--bg); }
+</style>
+</head>
+<body>
+  <section class="section">
+    <div class="intro">
+      <h2>Where can <span class="hl">AI</span> be built into marketing?</h2>
+      <p>A marketing team of two or three, with the right systems, can do work that used to need a department. Pick an area to see the work.</p>
+    </div>
+
+    <div class="stage">
+      <div class="idx">
+        <div class="idx-eyebrow">The department</div>
+        <div id="idx"></div>
+      </div>
+      <div class="demo">
+        <div class="demo-head" id="dHead"></div>
+        <div class="demo-sub" id="dSub"></div>
+        <div class="demo-body" id="dBody"></div>
+      </div>
+    </div>
+  </section>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const A = '../public/ads/';
+
+const MODS = [
+  { key:'eff', name:'Marketing effectiveness', desc:'Which metrics matter, and how they move each other. A scorecard across the five levels.',
+    demo:()=>`<div class="sc">
+      <div class="sc-row"><span class="lv">Commercial</span><span>Revenue growth</span><span class="vl">+12%</span><span class="tg ok">On track</span></div>
+      <div class="sc-row"><span class="lv">Behaviour</span><span>Win rate</span><span class="vl">28%</span><span class="tg ok">On track</span></div>
+      <div class="sc-row"><span class="lv">Memory</span><span>Mental availability</span><span class="vl">2.1</span><span class="tg concern">Needs work</span></div>
+      <div class="sc-row"><span class="lv">Comms</span><span>CPA</span><span class="vl">&euro;42</span><span class="tg ok">On track</span></div>
+      <div class="sc-row"><span class="lv">Activity</span><span>Reach</span><span class="vl">1.4m</span><span class="tg ok">On track</span></div>
+    </div>` },
+  { key:'seg', name:'Segmentation', desc:'Proper segmentation, with the maths actually run. Segments mapped by similarity.',
+    demo:()=>`<svg class="viz" viewBox="0 0 480 280">
+      <line x1="40" y1="240" x2="450" y2="240" stroke="#E0E0DC"/><line x1="40" y1="30" x2="40" y2="240" stroke="#E0E0DC"/>
+      ${[[120,90],[140,110],[110,130],[150,85],[130,100],[330,180],[350,160],[360,200],[340,175],[310,190],[250,70],[270,90],[240,95]].map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="7" fill="${i<5?'#3A7CA5':i<10?'#1A3A4E':'#F47521'}" opacity="0.7"/>`).join('')}
+    </svg>` },
+  { key:'brand', name:'Brand strategy', desc:'Positioning, messaging, mental availability, assets. Claimed vs actual positions, and the white space.',
+    demo:()=>`<svg class="viz" viewBox="0 0 480 280">
+      <line x1="240" y1="20" x2="240" y2="260" stroke="#E0E0DC"/><line x1="30" y1="140" x2="450" y2="140" stroke="#E0E0DC"/>
+      <text x="446" y="135" font-family="JetBrains Mono" font-size="9" fill="#8A8A85" text-anchor="end">Established</text>
+      <text x="36" y="135" font-family="JetBrains Mono" font-size="9" fill="#8A8A85">Challenger</text>
+      <circle cx="330" cy="90" r="9" fill="#8A8A85" opacity="0.5"/><circle cx="360" cy="120" r="9" fill="#8A8A85" opacity="0.5"/>
+      <circle cx="300" cy="180" r="9" fill="#8A8A85" opacity="0.5"/>
+      <rect x="90" y="170" width="110" height="70" fill="#3A7CA5" opacity="0.08"/>
+      <text x="100" y="210" font-family="JetBrains Mono" font-size="9" fill="#3A7CA5">white space</text>
+      <circle cx="140" cy="200" r="10" fill="#3A7CA5"/><text x="156" y="204" font-family="JetBrains Mono" font-size="9" fill="#1D1B1B">you</text>
+    </svg>` },
+  { key:'ad', name:'Advertising', desc:'Brief to useful options faster, quality first. Video, brand ads, animated ads, static ads.',
+    demo:()=>`<div class="gal">
+      <div class="shot"><img src="${A}brand-vespa.png" alt=""><div class="cap">Brand ad</div></div>
+      <div class="shot"><img src="${A}brand-killbill.png" alt=""><div class="cap">Brand ad</div></div>
+      <div class="shot"><img src="${A}brand-rushmore.png" alt=""><div class="cap">Brand ad</div></div>
+      <div class="shot"><img src="${A}static-arsenal.png" alt=""><div class="cap">Static ad</div></div>
+      <div class="shot"><img src="${A}static-6040.png" alt=""><div class="cap">Static ad</div></div>
+      <div class="shot"><img src="${A}brand-sherlock.png" alt=""><div class="cap">Brand ad</div></div>
+    </div>` },
+  { key:'studio', name:'Studio', desc:'Twenty years of studio craft, with AI inside. The calendar, and what the studio shipped.',
+    demo:()=>`<div class="pair">
+      <div class="shot"><img src="${A}marketing-calendar-preview.png" alt=""><div class="cap">Marketing calendar</div></div>
+      <div class="shot"><img src="${A}studio-measurement.png" alt=""><div class="cap">Studio measurement</div></div>
+    </div>` },
+  { key:'bd', name:'Business development', desc:'AI for sales, outreach and GTM. The campaigns, run for you, you approve.',
+    demo:()=>`<div class="board">
+      <div class="bd-row"><span class="dot"></span><span class="bd-nm">Unfair Advantage<small>Radio + LinkedIn outreach</small></span><span class="bd-tag">live</span></div>
+      <div class="bd-row"><span class="dot"></span><span class="bd-nm">Book outreach<small>LinkedIn, 718 of 1,144 contacted</small></span><span class="bd-tag">live</span></div>
+      <div class="bd-row"><span class="dot draft"></span><span class="bd-nm">New sequence<small>Built, waiting on your yes</small></span><span class="bd-tag">approve</span></div>
+    </div>` },
+  { key:'res', name:'Research and insights', desc:'Message testing, intelligence, interviews by phone. What customers say, at scale.',
+    demo:()=>`<svg class="viz" viewBox="0 0 480 260">
+      <line x1="40" y1="220" x2="450" y2="220" stroke="#E0E0DC"/>
+      ${[['Price',150,'#3A7CA5'],['Service',90,'#3A7CA5'],['Speed',120,'#1A3A4E'],['Support',60,'#F47521'],['Trust',170,'#3A7CA5']].map((b,i)=>{const x=70+i*80;return `<rect x="${x}" y="${220-b[1]}" width="46" height="${b[1]}" fill="${b[2]}" opacity="0.75"/><text x="${x+23}" y="238" font-family="JetBrains Mono" font-size="9" fill="#8A8A85" text-anchor="middle">${b[0]}</text>`;}).join('')}
+    </svg>` }
+];
+
+function pick(mod){
+  document.querySelectorAll('.idx-item').forEach(x=>x.classList.toggle('active', x.dataset.k===mod.key));
+  document.getElementById('dHead').textContent = mod.name;
+  document.getElementById('dSub').textContent = mod.desc;
+  document.getElementById('dBody').innerHTML = mod.demo();
+}
+
+const idx = document.getElementById('idx');
+MODS.forEach((m,i)=>{
+  const b = el(`<button class="idx-item ${i===0?'active':''}" data-k="${m.key}"><span class="ix-n">0${i+1}</span>${m.name}</button>`);
+  b.addEventListener('click', ()=>pick(m));
+  idx.appendChild(b);
+});
+pick(MODS[0]);
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homepage · workflows under the hood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10); --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+
+  .section{ position:relative; max-width:1200px; margin:0 auto; padding:88px 48px; }
+  .section::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);
+    background-size:28px 28px; opacity:.4; pointer-events:none; z-index:0; }
+  .section > *{ position:relative; z-index:1; }
+  @media(max-width:768px){ .section{ padding:60px 24px; } }
+
+  .intro{ max-width:680px; margin-bottom:44px; }
+  .intro h2{ font-size:clamp(26px,3.4vw,36px); letter-spacing:-1px; line-height:1.15; }
+  .intro h2 .hl{ color:var(--sky-blue); }
+  .intro p{ font-size:13px; line-height:1.7; color:var(--muted); margin-top:14px; }
+
+  .stage{ display:flex; gap:52px; align-items:flex-start; }
+  @media(max-width:880px){ .stage{ flex-direction:column; gap:30px; } }
+
+  /* LEFT: quiet index */
+  .idx{ flex:0 0 206px; }
+  @media(max-width:880px){ .idx{ flex-basis:auto; width:100%; } }
+  .idx-eyebrow{ font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  .idx-item{ display:block; width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:8px 0 8px 15px;
+    border-left:2px solid transparent; color:var(--muted); font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:300; line-height:1.3; transition:color .2s, border-color .2s; }
+  .idx-item:hover{ color:var(--text); }
+  .idx-item.active{ color:var(--text); border-left-color:var(--sky-blue); }
+  .idx-item .ix-n{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--border); margin-right:8px; }
+  .idx-item.active .ix-n{ color:var(--sky-blue); }
+  .idx-item:focus-visible{ outline:2px solid var(--sky-blue); outline-offset:2px; }
+
+  /* RIGHT: workflow + wiring */
+  .stagebody{ flex:1; min-width:0; }
+  .cv-head{ font-family:'Space Grotesk',sans-serif; font-size:21px; letter-spacing:-.5px; margin-bottom:4px; }
+  .cv-sub{ font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:22px; max-width:58ch; }
+
+  /* the flow (rounded = flow aesthetic) */
+  .flow{ display:flex; flex-direction:column; align-items:center; max-width:480px; margin:0; }
+  .connector{ width:1px; height:18px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ width:100%; max-width:392px; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow);
+    display:flex; align-items:flex-start; gap:10px; padding:8px 13px; transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .badge{ flex:none; width:17px; height:17px; border-radius:5px; background:var(--card-hover); color:var(--muted);
+    font-family:'JetBrains Mono',monospace; font-size:9px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .node-title{ font-size:11.5px; line-height:1.4; }
+  .node-sub{ font-size:10.5px; line-height:1.45; color:var(--muted); margin-top:2px; }
+
+  /* under the hood */
+  .hood{ margin-top:26px; padding-top:20px; border-top:1px dashed var(--border); max-width:520px; }
+  .hood-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
+  .hg-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:13px 0 7px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+</style>
+</head>
+<body>
+  <section class="section">
+    <div class="intro">
+      <h2>Where can <span class="hl">AI</span> be built into marketing?</h2>
+      <p>Each area is a real workflow, with the skills, data and tools wired underneath it. Pick one to see what is going on under the hood.</p>
+    </div>
+
+    <div class="stage">
+      <div class="idx">
+        <div class="idx-eyebrow">The department</div>
+        <div id="idx"></div>
+      </div>
+      <div class="stagebody">
+        <div class="cv-head" id="cvHead"></div>
+        <div class="cv-sub" id="cvSub"></div>
+        <div class="flow" id="flow"></div>
+        <div class="hood" id="hood"></div>
+      </div>
+    </div>
+  </section>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const IC = {
+  step:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M10 9l4 3-4 3z"/></svg>',
+  bars:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>'
+};
+
+const MODS = [
+  { key:'eff', name:'Marketing effectiveness', desc:'You cannot manage a brand you cannot measure. The workflow that gets the metrics right.',
+    flow:[['Train the team','Across the five levels of measurement.','bars'],['Audit what is tracked','Sort it into five levels, show the gaps.','search'],['Build the scorecard','Commercial, behaviour, memory, comms, activity.','bars'],['Set the split','Brand vs activation (60:40), share of voice.','map']],
+    hood:[['Skills','skill',['/metrics-audit','brand scorecard','/brand-activation-split','/esov-proxy']],['Data',null,['your tracked metrics','benchmark set']]] },
+  { key:'seg', name:'Segmentation', desc:'Proper segmentation, with the maths actually run.',
+    flow:[['Ground it','What segmentation is, before the maths.','step'],['Run the maths','Similarity between the segments.','bars'],['Test what holds','Which segments survive the data.','search'],['Map it','Scatter the segments out to see them.','map']],
+    hood:[['Skills','skill',['/segmentation','similarity analysis','scatter plots']],['Data',null,['your customer base']]] },
+  { key:'brand', name:'Brand strategy', desc:'Positioning, messaging, mental availability, assets. The strategy that drives the work.',
+    flow:[['Map the field','Competitors claimed vs actual, find the white space.','map'],['Find the situations','The buying situations to be remembered in (CEPs).','search'],['Build the message','The pillars all copy anchors to.','step'],['Lock the assets','What people recognise you by.','step'],['On a page','The strategy, plus the guidelines.','map']],
+    hood:[['Skills','skill',['/competitor-positioning','/cep-discovery','messaging framework','distinctive assets']]] },
+  { key:'ad', name:'Advertising', desc:'Brief to useful options faster, quality first. The making workflow.',
+    flow:[['Sharpen the brief','The brief coach, before any work starts.','step'],['Make the options','Video, brand, animated, static.','step'],['Review at actual size','Legibility checked at true size, not a big preview.','search'],['Resize the set','The full IAB family, re-laid out per shape.','map']],
+    hood:[['Skills','skill',['/dray','/fox-html-ads','/banner-machine','/grumpyfox-chart-resizer']]] },
+  { key:'studio', name:'Studio', desc:'Twenty years of studio craft, with AI inside.',
+    flow:[['Plan it','On the marketing calendar, the spine the work runs on.','cal'],['Make the work','The studio, faster, quality first.','step'],['Measure it','What the studio shipped, and its effect.','bars']],
+    hood:[['Skills','skill',['marketing calendar','studio measurement','brief coach']],['Data',null,['calendar-data.json']]] },
+  { key:'bd', name:'Business development', desc:'AI for sales, outreach and GTM. Jo does the lists and the messages, you approve.',
+    flow:[['Build the list','The right companies and people, off real signal.','search'],['Write the messages','Personalised, on signal, not templated.','step'],['You approve','Nothing sends or spends without your yes.','gate'],['Run and read','Live, then the numbers come back.','bars']],
+    hood:[['Skills','skill',['/clay-intel','/growth-manager','/campaign-manager']],['Tools',null,['HeyReach','Smartlead']],['Memory',null,['learnings.md']]] },
+  { key:'res', name:'Research and insights', desc:'Message testing, intelligence, interviews by phone.',
+    flow:[['Pick the question','What you actually need to know.','step'],['Run the method','Interviews, company intel, reviews, pricing.','search'],['Synthesise','What is new, structured and flagged.','step']],
+    hood:[['Skills','skill',['AI research interviewer','/clay-intel','review intelligence','pricing intelligence']]] }
+];
+
+function render(mod){
+  document.querySelectorAll('.idx-item').forEach(x=>x.classList.toggle('active', x.dataset.k===mod.key));
+  document.getElementById('cvHead').textContent = mod.name;
+  document.getElementById('cvSub').textContent = mod.desc;
+
+  const flow = document.getElementById('flow');
+  flow.innerHTML = '';
+  flow.appendChild(el('<span class="marker">Start</span>'));
+  mod.flow.forEach((s,i)=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    flow.appendChild(el(`<div class="node">
+      <span class="badge">${i+1}</span>
+      <div><div class="node-title">${s[0]}</div><div class="node-sub">${s[1]}</div></div>
+    </div>`));
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el('<span class="marker">Done</span>'));
+
+  const hood = document.getElementById('hood');
+  hood.innerHTML = '<div class="hood-lbl">Under the hood</div>';
+  mod.hood.forEach(([label,cls,items])=>{
+    hood.appendChild(el(`<div class="hg-lbl">${label}</div>`));
+    const chips = el('<div class="chips"></div>');
+    items.forEach(it=> chips.appendChild(el(`<span class="chip ${cls||''}">${it}</span>`)));
+    hood.appendChild(chips);
+  });
+}
+
+const idx = document.getElementById('idx');
+MODS.forEach((m,i)=>{
+  const b = el(`<button class="idx-item ${i===0?'active':''}" data-k="${m.key}"><span class="ix-n">0${i+1}</span>${m.name}</button>`);
+  b.addEventListener('click', ()=>render(m));
+  idx.appendChild(b);
+});
+render(MODS[0]);
+</script>
+</body>
+</html>
