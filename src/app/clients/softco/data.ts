@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-19",
+  lastUpdated: "2026-06-25",
   feedbackContacts: ["softco.com"],
   targetDate: "2026-07-11",
   hideProgress: true,
@@ -41,6 +41,7 @@ export const deliverables: Deliverable[] = [
   { name: "Thumbnails", detail: "1280×720", status: "ready", date: "2026-06-13" },
   { name: "Video clips", detail: "Webinar repurposing", status: "todo" },
   { name: "Product Proof ad", detail: "Square 1080×1080, extra", status: "ready", date: "2026-06-12" },
+  { name: "Readability QA gate", detail: "Auto-fails assets on contrast, size, spacing, density", status: "ready", date: "2026-06-25", isNew: true },
 ];
 
 /* Chart Ad set, grouped by shape. [size, aspect-ratio, display-width-px] */
@@ -137,6 +138,134 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
       "I'll work on categorizing all imaging in the morning and share them with you. After which we can arrange a call.",
     ],
     a: "I'm confident we can recreate any format or route we want. I could be wrong but so far, this has proved true. I can show you how to deviate from what is locked in. But take my time running the National Lottery marketing. We had jackpot ads for 4 products. All different from eachother but each followed a format. We also had Good Causes format, and some other formats. But all in, we had about 6 types of ads.\n\nSo you / we can train AI on whatever format you wish. The challenge is if a brand wants a different format every time, which is not a good idea in general. As in non ai world, that racks up costs of origination each time and same in AI world. So best way to think about this is what is the widest scope of ads you would use, and then articulate these in detail. It requires a bit of discipline but that was the case pre-AI for any brand that wants quality at speed too. In Lottery, I didn't want to waste time or money re-creating new formats every time. We had our 4-6 types and everybody in the agency was to execute as efficiently as possible once we agree what they are.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Right now we're only on LinkedIn. We ran Google last year and pulled it, but we'll re-engage. We get far more bang from LinkedIn. Ideally, once the campaign's running, display would be on LinkedIn, Instagram and Google.",
+    ],
+    a: "Fine. LinkedIn is expensive but it's about the only place with reasonably accurate targeting, because people set their own. Instagram is interesting for you. Good to know the formats need to work across all three.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "The content isn't the problem, execution is. The campaign (Control & Compliance) and all eight written pieces are ready, but we kept getting stuck getting graphics out, a backlog with the designer. Worst is waiting on webinar images and missing the live window. Hugely frustrating.",
+    ],
+    a: "That's exactly the use case, repetitive, time-sensitive work we automate so you get blog images, webinar images and testimonials \"at the door\" without waiting on a designer.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Two webinars a month, five or six promo images each, with faces and without, big/little titles, big/little dates. We've tested and know which work.",
+    ],
+    a: "That structure is exactly what a locked format is for. Agree the set once, then it comes out consistently.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Oisín writes the blogs (softco.com is headless, WordPress to manage). While writing he requests about three images to show three things; the designer makes them, back and forth. Basic stuff: call-outs, pull quotes, before/afters, simple diagrams. Plus a social image per blog, sometimes carousels.",
+    ],
+    a: "All very doable, none of it's complicated. It just needs to be fast, consistent, and not stuck behind a person.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Events are big, Gartner conferences in Miami and London. Three moments: pre, during, post. We want a carousel and/or single image to promote what we're doing there, like a webinar: \"these two people are talking about this, here's what you'll learn.\" On the day it's mostly attendee video.",
+    ],
+    a: "Two jobs: promoting the event (before and after) and the on-the-ground artwork, which is usually a last-minute scramble. The promo carousel/single image is the same pattern as the webinar promos, so we can cover it.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "We need a lot of email banners. (The current ones are a bit cluttered and use a separate campaign colour.)",
+    ],
+    a: "Easy to do. I took the buttons off, they're not real buttons in an email and were crowding the message. The logo matters and one line of copy. You can also set a max-character rule to force the writer to keep it simple.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Contrast lists clips after each webinar but we use none, they lack context and pick the wrong moments and sizes. So it's manual: Oisín watches the whole video, picks clips, Descript to trim and remove ums, then the designer drops it into a SoftCo frame. Takes forever. Could Claude find the right clips from the transcript if I give it an MD file with our positioning, messaging, narrative, pain points and ICP?",
+    ],
+    a: "Yes. This one's about teaching judgement, not pixel-perfect, so less instant than the ad formats but very doable and worth it. The plan is a Claude webinar-clipper skill: Oisín points it at the latest transcript and it finds four or five clips using everything we've told it. I'll get access to your Contrast transcripts and start. Whether it can cut the clip itself I still need to test. Happy to drop the SoftCo frame and run a clean subtitled screen if that's easier.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "The \"why we pick a clip\" isn't written anywhere, it's Oisín's judgement. You could reverse-engineer the clips we've chosen historically to learn the pattern.",
+    ],
+    a: "Exactly, judgement can be decoded as long as he can articulate why he chose each clip. 30 minutes with him explaining his picks is worth far more than me guessing, and it all becomes the training for the skill. Send me his email and the list of clips you've used.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "On colour: the agency workshop said blue is synonymous with AP automation, everyone's blue, so they brought orange in to differentiate, and we kept both as accents. Should we just do what the stakeholders want?",
+    ],
+    a: "My two cents: pick a lane, be single-minded. Orange-on-blue divides your chances of building a brand people recognise, and you don't have the budget to carry two colours, the same fight I had at the Lottery (one green), Metro (one yellow) and Indeed. Orange as an accent (orange headlines on a blue background) can work, but I'd bite the bullet. I can absolutely recreate the orange versions if you want them, this is more your call with Daragh than a blocker for me. Separately, your new premium blue with the gradient beats the classic B2B light blue.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "These new ads are our new brand identity, applied by the graphic designer to a campaign. We're open to feedback.",
+    ],
+    a: "Honestly, they've got a picture inside a picture, a screen within a screen with charts inside that. At ad size the only takeaway is \"SoftCo has a new look.\" Single-mindedness matters, the smaller and busier the ad, the less anyone gets from it. They're recreatable, but the format should drive the goal, not the other way round.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Faces is what we need, but internally the pushback is \"how will they know we're a software company?\", so there's pressure to show the product instead. This is more a want than something we have examples of. I'll send the agency brief on the type of images.",
+    ],
+    a: "Faces work, one person beats a group, and a face on the left beats the right because Western eyes read left to right. The answer to the internal point is that it's not about being a software company, it's the problem you solve. I can create faces, I just need examples of what you like or the agency brief so I get the style right.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "I love the testimonial cards, especially with a human face. Our limitation is how few clients have given a testimonial with their face and sign-off, so short term I need one version with a name/face and one without.",
+    ],
+    a: "Fine, we'll have both. You ask for the photo testimonial, drop in the new photo, and it follows the format. The named-and-faced ones are the upgrade when you have the sign-off.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "For the landing page the main thing we need is a before/after, \"before SoftCo / after SoftCo\" with images. The concept's simple but we've found it hard to land a good before/after visual.",
+    ],
+    a: "I showed you the Heineken green-light draggable before/after slider, it's tactile and would work nicely for this. I can build it as a Claude before/after tool: drop in two images and it makes the slider.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "Measured-outcome and stat cards are useful.",
+    ],
+    a: "I built a square chart ad even though you didn't ask, because I can see you wanting one. A few decisions baked in: SoftCo centred on vertical ads, a vertical bar chart (a horizontal one won't fit a square), and smooth not bouncy motion. One thing to fix, the logo is too small on the square, I prefer it bigger like the other sizes.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "(On the iceberg graphic from the old version.)",
+    ],
+    a: "Claude recreates the iceberg really well, but there's too much detail for an ad, I wouldn't run it small. It would work beautifully as a big interactive graphic on a web page.",
+  },
+  {
+    who: "John Neary",
+    when: "24 Jun 2026",
+    q: [
+      "We're promoting the new website, and showing the product matters, but you can't show a full screen of software because nobody can make sense of every button. If you show just a little animated piece it makes such a difference.",
+    ],
+    a: "Agreed completely. I can take a static image from your site and rebuild it as an animated walkthrough, which used to need a motion designer. Great for blog posts and showing how it works. I'll make it a skill: drop in your static, get the animated walkthrough out.",
   },
 ];
 
@@ -420,16 +549,29 @@ export const work: WorkSection[] = [
     desc: "An extra we explored beyond the brief. The product itself, rebuilt as live UI and animated. Built as a large square for a LinkedIn organic post and a paid square ad.",
     item: { src: "proof-v2.mp4", poster: "proof-v2-poster.png", ratio: "1/1", w: 320, cap: "1080×1080 · organic + paid" },
   },
+  {
+    title: "Readability QA gate",
+    kind: "files",
+    zone: "work",
+    status: "ready",
+    isNew: true,
+    wideDesc: true,
+    desc: "The automatic check that runs at the end of the ad machine, answering Daragh's 18 June question. Every render is measured, never eyeballed, and an asset is blocked if it fails any of four gates: text contrast against its real background (WCAG AA, with a slightly easier bar for large headlines or approved brand pairs), minimum font size, clear space from the canvas edge and logo, and copy density (email banners must stay one line). When something fails it prints exactly what and why, e.g. \"headline: large text, measured 1.16:1, need >= 3:1\". The thresholds come from SoftCo's own approved templates, so signed-off work passes and only genuinely unreadable work fails. Download the skill and a plain-English explainer below.",
+    files: [
+      { name: "ad-qa skill (Claude Code)", file: "ad-qa-skill.zip", note: "The full gate: engine, SoftCo config, docs", date: "25 June 2026" },
+      { name: "How it works (plain English)", file: "ad-qa-how-it-works.md", note: "One-page explainer, no jargon", date: "25 June 2026" },
+    ],
+  },
   /* ---- ZONE: feedback - the running conversation, last. ---- */
   {
     title: "Feedback & responses",
     kind: "feedback",
     zone: "feedback",
-    date: "18 June 2026",
+    date: "24 June 2026",
     desc: "A running record of all feedback and commentary on this page, and the replies, kept here so we can both see everything. Click an entry to read the response.",
     intro: FB_INTRO,
     responder: "Paul",
     faq: FB_ITEMS,
-    note: "Next step agreed: a short video call to go through each ad and format one by one, transcribed so the full feedback is captured.",
+    note: "From the 24 June call. John to send: Oisín's email plus ~30 minutes on his clip-picking logic, the list of clips used to date, and the agency brief on image types and faces; and an MD file (positioning, messaging, narrative, pain points, ICP) for the clipper. Paul to send the Mr Beast attention research, and is building the webinar-clipper, the before/after slider and the static-to-animated walkthrough, after first making Daragh's legibility edits and then automating each approved format one at a time. Parked: the orange/blue colour decision (John to discuss with Daragh).",
   },
 ];
