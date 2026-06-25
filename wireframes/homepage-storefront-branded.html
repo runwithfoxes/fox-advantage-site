@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run with Foxes · homepage with the products storefront</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* SINGLE FONT THROUGHOUT - JetBrains Mono, matching the live homepage identity. */
+  :root{--cream:#FAFAF8;--sky:#3A7CA5;--sky-hover:#2F6688;--deep:#1A3A4E;--border:#E0E0DC;--text:#1D1B1B;
+    --muted:#8A8A85;--card-hover:#F5F5F0;--orange:#F47521;--green:#3a9d5d;--mono:'JetBrains Mono',monospace;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background-color:var(--cream);
+    background-image:radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
+    background-size:28px 28px;
+    color:var(--text);font-family:var(--mono);font-weight:300;-webkit-font-smoothing:antialiased;}
+  @keyframes fade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--sky);outline-offset:2px;}
+
+  .nav{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+    position:fixed;top:0;left:0;right:0;z-index:100;color:#FAFAF8;background:transparent;}
+  .nav.scrolled{background:rgba(250,250,248,.92);backdrop-filter:blur(10px);color:var(--text);border-bottom:1px solid var(--border);}
+  .logo{font-size:14px;letter-spacing:2px;font-weight:300;color:var(--muted);}
+  .nav:not(.scrolled) .logo{color:#FAFAF8;}
+  .logo b{color:#FAFAF8;font-weight:300;}.nav.scrolled .logo b{color:var(--orange);}
+  .nav-links{display:flex;gap:24px;font-size:12px;align-items:center;}
+  .navitem{position:relative;}
+  .navitem>span{cursor:pointer;}
+  .navdrop{position:absolute;top:calc(100% + 12px);right:0;min-width:280px;background:rgba(250,250,248,.98);backdrop-filter:blur(10px);
+    border:1px solid var(--border);padding:16px 18px;display:none;color:var(--text);}
+  .navitem:hover .navdrop{display:block;}
+  .navdrop .ngrp{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:14px 0 6px;}
+  .navdrop .ngrp:first-child{margin-top:0;}
+  .navdrop a{display:block;font-size:12px;color:var(--text);text-decoration:none;padding:4px 0;letter-spacing:0;}
+  .navdrop a:hover{color:var(--sky);}
+
+  .fullbleed{width:100vw;margin-left:calc(50% - 50vw);}
+  .hero{height:78vh;min-height:500px;overflow:hidden;background:#0c0c0c;}
+  .hero video{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+  .head{padding:60px 0 18px;}
+  .head h1{font-family:var(--mono);font-weight:300;font-size:clamp(40px,5.5vw,64px);letter-spacing:-2px;line-height:1.08;}
+  .hl{color:var(--sky);}
+  .head .desc{font-size:0.9375rem;line-height:1.8;color:var(--text);max-width:none;margin-top:24px;}
+  .divider{height:1px;background:var(--border);margin:6px 0;}
+
+  /* bio + newsletter, side by side (newsletter is a compact list, not a second grid) */
+  .about{display:grid;grid-template-columns:1.6fr 1fr;gap:72px;align-items:start;padding:54px 0 0;}
+  @media(max-width:860px){.about{grid-template-columns:1fr;gap:40px;}}
+  /* both columns carry a terminal-style header so the photo + first thumbnail line up below them */
+  .col-head{display:flex;align-items:center;justify-content:space-between;height:22px;margin-bottom:24px;}
+  .bio{display:block;padding:0;}
+  .bio-body::after{content:"";display:table;clear:both;}
+  .bio .photo{float:left;width:200px;height:267px;object-fit:cover;display:block;background:var(--border);margin:0 32px 14px 0;}
+  .bio .nm{color:var(--sky);font-size:14px;}
+  .bio-body p{font-size:0.9375rem;line-height:1.85;color:var(--text);margin-top:14px;max-width:none;}
+  .bio-body p:first-of-type{margin-top:0;}
+
+  .metastrip{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:24px;}
+  @keyframes seq{0%,30%{opacity:1;box-shadow:0 0 7px rgba(58,157,93,.9);}31%,100%{opacity:.16;box-shadow:none;}}
+  .fdot{width:7px;height:7px;background:var(--green);display:inline-block;margin-right:9px;vertical-align:middle;
+    opacity:.16;animation:seq 3s linear infinite;}
+  .metastrip .mod-cta:nth-of-type(1) .fdot{animation-delay:0s;}
+  .metastrip .mod-cta:nth-of-type(2) .fdot{animation-delay:1s;}
+  .metastrip .mod-cta:nth-of-type(3) .fdot{animation-delay:2s;}
+  .ctas-label{font-size:12px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+  .mod-cta{font-family:var(--mono);font-size:16px;color:var(--text);text-decoration:none;border-bottom:1px solid transparent;}
+  .mod-cta:hover{color:var(--sky);border-bottom-color:var(--sky);}
+
+  /* newsletter - compact "recent essays" list beside the bio */
+  .nl-kick{font-size:13px;letter-spacing:1px;color:var(--sky);}
+  .nl-more{color:var(--sky);text-decoration:none;font-size:18px;line-height:1;}
+  .nl-more:hover{opacity:.7;}
+  .nlrow{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;padding:15px 0;border-top:1px solid var(--border);text-decoration:none;color:inherit;}
+  .nlrow:first-of-type{border-top:none;padding-top:0;}
+  .nlthumb{width:72px;height:72px;object-fit:cover;display:block;border:1px solid var(--border);background:var(--card-hover);}
+  .nltitle{font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:-.2px;line-height:1.3;color:var(--text);}
+  .nlrow:hover .nltitle{color:var(--sky);}
+  .nlmeta{font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:7px;}
+
+  /* ===== PRODUCTS STOREFRONT (replaces the module accordion) ===== */
+  .shop{padding:58px 0 6px;}
+  .shop-kick{font-size:13px;letter-spacing:1px;color:var(--sky);}
+
+  /* filter bar - smaller sibling of the product-page tab buttons (blue when active) */
+  .fbar{display:inline-flex;flex-wrap:wrap;border:1px solid var(--border);margin:24px 0 26px;}
+  .fbtn{background:none;border:none;border-right:1px solid var(--border);cursor:pointer;font-family:var(--mono);
+    font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 15px;transition:background .2s,color .2s;}
+  .fbtn:last-child{border-right:none;}
+  .fbtn:hover{color:var(--text);}
+  .fbtn.active{background:var(--sky);color:var(--cream);}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.grid{grid-template-columns:1fr;}}
+
+  .card{border:1px solid var(--border);background:var(--cream);text-decoration:none;color:inherit;
+    display:flex;flex-direction:column;transition:border-color .3s,background .3s;}
+  .card:hover{border-color:var(--sky);background:var(--card-hover);}
+  .card-vis{position:relative;height:210px;border-bottom:1px solid var(--border);background:#F2EFE6;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .card-vis img{width:100%;height:100%;object-fit:contain;display:block;}
+  .card-vis svg{width:100%;height:100%;}
+  /* offer/status badges - stack top-right, a card can carry more than one */
+  .card-badges{position:absolute;top:8px;right:8px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+  .card-badge{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 7px;color:#FAFAF8;}
+  .card-badge.new{background:var(--sky);}
+  .card-badge.bundled{background:var(--deep);}
+  .card-badge.free{background:var(--orange);}
+  .card-bd{padding:15px 16px 16px;display:flex;flex-direction:column;gap:7px;flex:1;}
+  .tagb{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);}
+  .card-nm{display:flex;align-items:center;gap:9px;}
+  .card-nm .ci{width:16px;height:16px;color:var(--sky);flex:none;}
+  .card-nm .ci svg{width:100%;height:100%;display:block;}
+  .card-nm h3{font-family:var(--mono);font-weight:500;font-size:16px;letter-spacing:-.2px;color:var(--text);line-height:1.25;}
+  .card-ben{font-size:12.5px;line-height:1.55;color:var(--muted);flex:1;}
+  .card-cta{font-family:var(--mono);font-size:11px;color:var(--sky);letter-spacing:.3px;margin-top:2px;}
+  .card-cta .arr{display:inline-block;transition:transform .2s;}
+  .card:hover .card-cta .arr{transform:translateX(4px);}
+  .card.soon .card-vis{opacity:.9;}
+  .card.soon .card-cta{color:var(--muted);}
+
+  /* testimonials - thin bar in the bottom-bar deep blue, white text (full-bleed) */
+  .quotes{background:var(--deep);padding:28px 0;margin:64px 0 0;}
+  .quotes-in{max-width:1200px;margin:0 auto;padding:0 48px;}
+  .quotes-row{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;}
+  .qbody{text-align:center;max-width:920px;margin:0 auto;min-height:46px;display:flex;flex-direction:column;justify-content:center;}
+  .qquote{font-family:var(--mono);font-weight:400;font-size:14px;line-height:1.6;color:#FAFAF8;}
+  .qattr{font-size:11px;letter-spacing:.5px;color:rgba(250,250,248,.8);margin-top:9px;}
+  .qattr b{color:#FAFAF8;font-weight:500;}
+  .qarrow{width:32px;height:32px;border:1px solid rgba(250,250,248,.45);background:none;color:#FAFAF8;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .qarrow:hover{border-color:#FAFAF8;}
+  .qdots{display:flex;gap:7px;justify-content:center;margin-top:14px;}
+  .qdot{width:7px;height:7px;background:rgba(250,250,248,.4);cursor:pointer;transition:background .2s;}
+  .qdot.on{background:#FAFAF8;}
+
+  .sitefoot{padding:30px 0 44px;font-size:11px;letter-spacing:.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .sitefoot a{color:var(--muted);text-decoration:none;}
+  .sitefoot a:hover{color:var(--sky);}
+  .sitefoot .dot{color:var(--border);}
+  @media(max-width:760px){.nav-links{display:none;}}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <div class="logo">/<b>Run</b>withfoxes</div>
+  <div class="nav-links">
+    <div class="navitem"><span>/products ▾</span><div class="navdrop" id="navdrop"></div></div>
+    <span>/previous ▾</span><span>/book</span><span>/contact</span>
+  </div>
+</div>
+
+<div class="fullbleed hero">
+  <video autoplay muted loop playsinline poster="../public/video/fox-tarantino-trunk-poster.jpg">
+    <source src="../public/video/fox-tarantino-trunk.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <h1>Build an <span class="hl">unfair advantage</span> in marketing</h1>
+    <div class="desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- BIO (left) + NEWSLETTER compact list (right) -->
+  <div class="about">
+    <div class="bio">
+      <div class="col-head"><span class="nm">/Paul Dervan</span></div>
+      <div class="bio-body">
+        <img class="photo" src="../public/Paul_photo.jpg" alt="Paul Dervan">
+        <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland's Marketer of the Year in 2022.</p>
+        <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
+        <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+      </div>
+    </div>
+    <aside class="nl">
+      <div class="col-head">
+        <span class="nl-kick">/recent essays</span>
+        <a class="nl-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener" aria-label="View newsletter">→</a>
+      </div>
+      <div class="nl-list" id="nl-list"></div>
+    </aside>
+  </div>
+
+  <div class="metastrip">
+    <span class="ctas-label">Contact us to</span>
+    <a class="mod-cta" href="#"><span class="fdot"></span>\build it for you</a>
+    <a class="mod-cta" href="#"><span class="fdot"></span>\work alongside you</a>
+    <a class="mod-cta" href="#"><span class="fdot"></span>\train your team</a>
+  </div>
+
+  <!-- ===== PRODUCTS STOREFRONT (replaces the old module accordion) ===== -->
+  <div class="shop">
+    <div class="shop-kick">/products</div>
+    <div class="fbar" id="fbar"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  </div><!-- /.wrap (testimonial bar breaks full-bleed below) -->
+
+  <!-- TESTIMONIALS - thin blue bar, white text, full-bleed -->
+  <div class="quotes fullbleed">
+    <div class="quotes-in">
+      <div class="quotes-row">
+        <button class="qarrow" id="qprev" aria-label="Previous">&lsaquo;</button>
+        <div class="qbody">
+          <div class="qquote" id="qquote"></div>
+          <div class="qattr" id="qattr"></div>
+        </div>
+        <button class="qarrow" id="qnext" aria-label="Next">&rsaquo;</button>
+      </div>
+      <div class="qdots" id="qdots"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+  <div class="sitefoot">
+    <span>© 2026 Run with Foxes Limited</span>
+    <span class="dot">·</span>
+    <a href="/privacy">Privacy</a>
+    <span class="dot">·</span>
+    <a href="/cookies">Cookies</a>
+  </div>
+  <!-- Wireframe: live homepage chrome (hero untouched) with the module accordion replaced by the products storefront. Two product pages built (AI Ad Resizer, Brand Guardian); the rest marked "Page coming". -->
+</div>
+
+<script>
+  /* ===== nav scroll state ===== */
+  window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>window.innerHeight*0.7);},{passive:true});
+
+  /* ===== icons + low-fi placeholder visuals (real approved assets get swapped in one at a time) ===== */
+  var el=function(h){var d=document.createElement('template');d.innerHTML=h.trim();return d.content.firstChild;};
+  var S=function(s){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+s+'</svg>';};
+  var IC={
+    resize:S('<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M11 7h6a1 1 0 011 1v6"/>'),
+    ad:S('<path d="M3 10v4l11 5V5L3 10z"/><path d="M14 8c2 0 3 1.5 3 4s-1 4-3 4"/>'),
+    write:S('<path d="M4 20h6"/><path d="M14 4l6 6L9 21l-6 1 1-6z"/>'),
+    score:S('<line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/>'),
+    seg:S('<circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/>'),
+    map:S('<polygon points="4,6 9,4 15,6 20,4 20,18 15,20 9,18 4,20"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/>'),
+    matrix:S('<rect x="4" y="4" width="16" height="16" rx="1"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/>'),
+    shield:S('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>'),
+    phone:S('<path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>'),
+    doc:S('<rect x="6" y="3" width="12" height="18" rx="1"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>'),
+    star:S('<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>'),
+    tag:S('<path d="M3 12l9-9 8 8-9 9z"/><circle cx="15" cy="9" r="1.4"/>'),
+    reach:S('<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>'),
+    funnel:S('<path d="M3 5h18l-7 8v6l-4-2v-4z"/>'),
+    cm:S('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/>')
+  };
+  var sky='#3A7CA5',deep='#1A3A4E',orange='#F47521',mut='#B7B7B2';
+  var VIS={
+    resize:'<svg viewBox="0 0 200 118"><rect x="34" y="30" width="58" height="58" fill="'+sky+'" opacity=".14" stroke="'+sky+'"/><rect x="104" y="30" width="40" height="26" fill="'+deep+'" opacity=".08" stroke="'+mut+'"/><rect x="104" y="62" width="62" height="14" fill="'+deep+'" opacity=".08" stroke="'+mut+'"/><rect x="104" y="80" width="22" height="8" fill="'+orange+'" opacity=".7"/></svg>',
+    ad:'<svg viewBox="0 0 200 118"><rect x="40" y="20" width="120" height="78" fill="'+deep+'" opacity=".08" stroke="'+mut+'"/><rect x="52" y="32" width="60" height="8" fill="'+deep+'" opacity=".5"/><rect x="52" y="46" width="40" height="6" fill="'+mut+'"/><rect x="118" y="60" width="30" height="26" fill="'+orange+'" opacity=".8"/><rect x="52" y="80" width="44" height="9" fill="'+sky+'"/></svg>',
+    write:'<svg viewBox="0 0 200 118"><rect x="40" y="28" width="118" height="10" fill="'+sky+'" opacity=".55"/><rect x="40" y="48" width="100" height="6" fill="'+mut+'"/><rect x="40" y="62" width="116" height="6" fill="'+mut+'"/><rect x="40" y="76" width="70" height="6" fill="'+mut+'"/><rect x="112" y="74" width="2" height="12" fill="'+orange+'"/></svg>',
+    score:'<svg viewBox="0 0 200 118"><polygon points="100,22 130,46 70,46" fill="'+sky+'" opacity=".85"/><rect x="70" y="50" width="60" height="14" fill="'+sky+'" opacity=".6"/><rect x="56" y="68" width="88" height="14" fill="'+sky+'" opacity=".4"/><rect x="42" y="86" width="116" height="14" fill="'+sky+'" opacity=".25"/></svg>',
+    seg:'<svg viewBox="0 0 200 118"><g fill="'+sky+'" opacity=".8"><circle cx="50" cy="40" r="4"/><circle cx="62" cy="52" r="4"/><circle cx="44" cy="58" r="4"/><circle cx="56" cy="46" r="4"/></g><g fill="'+orange+'" opacity=".85"><circle cx="135" cy="78" r="4"/><circle cx="148" cy="86" r="4"/><circle cx="128" cy="90" r="4"/></g><g fill="'+deep+'" opacity=".6"><circle cx="150" cy="38" r="4"/><circle cx="138" cy="30" r="4"/><circle cx="162" cy="46" r="4"/></g><line x1="24" y1="98" x2="176" y2="98" stroke="'+mut+'"/><line x1="24" y1="20" x2="24" y2="98" stroke="'+mut+'"/></svg>',
+    map:'<svg viewBox="0 0 200 118"><line x1="100" y1="16" x2="100" y2="102" stroke="'+mut+'"/><line x1="30" y1="59" x2="170" y2="59" stroke="'+mut+'"/><circle cx="64" cy="40" r="5" fill="'+mut+'"/><circle cx="132" cy="46" r="5" fill="'+mut+'"/><circle cx="78" cy="80" r="5" fill="'+mut+'"/><circle cx="140" cy="36" r="7" fill="'+orange+'"/><text x="150" y="34" font-size="8" fill="'+deep+'" font-family="monospace">you</text></svg>',
+    matrix:'<svg viewBox="0 0 200 118"><rect x="56" y="16" width="88" height="86" fill="none" stroke="'+mut+'"/><line x1="100" y1="16" x2="100" y2="102" stroke="'+mut+'"/><line x1="56" y1="59" x2="144" y2="59" stroke="'+mut+'"/><circle cx="124" cy="36" r="7" fill="'+orange+'" opacity=".85"/><circle cx="78" cy="44" r="5" fill="'+sky+'" opacity=".6"/><circle cx="84" cy="82" r="5" fill="'+mut+'"/><circle cx="120" cy="80" r="5" fill="'+sky+'" opacity=".4"/></svg>',
+    shield:'<svg viewBox="0 0 200 118"><path d="M100 22l34 12v22c0 20-14 30-34 36-20-6-34-16-34-36V34z" fill="'+sky+'" opacity=".12" stroke="'+sky+'"/><path d="M86 64l10 10 20-20" fill="none" stroke="'+orange+'" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    phone:'<svg viewBox="0 0 200 118"><rect x="74" y="20" width="52" height="82" fill="'+deep+'" opacity=".08" stroke="'+mut+'"/><circle cx="100" cy="38" r="9" fill="'+sky+'" opacity=".25"/><rect x="86" y="54" width="28" height="5" fill="'+mut+'"/><rect x="84" y="66" width="32" height="5" fill="'+mut+'"/><circle cx="88" cy="88" r="7" fill="'+orange+'" opacity=".8"/><circle cx="112" cy="88" r="7" fill="'+sky+'" opacity=".5"/></svg>',
+    doc:'<svg viewBox="0 0 200 118"><rect x="64" y="16" width="72" height="86" fill="'+deep+'" opacity=".05" stroke="'+mut+'"/><rect x="76" y="30" width="48" height="7" fill="'+sky+'" opacity=".6"/><rect x="76" y="46" width="40" height="5" fill="'+mut+'"/><rect x="76" y="58" width="44" height="5" fill="'+mut+'"/><rect x="76" y="70" width="30" height="5" fill="'+mut+'"/><circle cx="120" cy="86" r="6" fill="'+orange+'" opacity=".8"/></svg>',
+    star:'<svg viewBox="0 0 200 118"><rect x="40" y="34" width="92" height="10" fill="'+sky+'" opacity=".6"/><rect x="40" y="54" width="120" height="10" fill="'+orange+'" opacity=".55"/><rect x="40" y="74" width="64" height="10" fill="'+mut+'" opacity=".55"/><text x="150" y="44" font-size="11" fill="'+deep+'" font-family="monospace">+</text></svg>',
+    tag:'<svg viewBox="0 0 200 118"><polyline points="30,80 60,70 90,74 120,52 150,58 172,38" fill="none" stroke="'+sky+'" stroke-width="2"/><polyline points="30,88 60,84 90,86 120,80 150,82 172,72" fill="none" stroke="'+mut+'" stroke-width="2" stroke-dasharray="3 3"/><circle cx="172" cy="38" r="4" fill="'+orange+'"/><line x1="24" y1="98" x2="176" y2="98" stroke="'+mut+'"/></svg>',
+    reach:'<svg viewBox="0 0 200 118"><rect x="34" y="28" width="92" height="22" fill="'+sky+'" opacity=".15" stroke="'+sky+'"/><rect x="42" y="36" width="60" height="6" fill="'+sky+'"/><rect x="74" y="64" width="92" height="22" fill="'+deep+'" opacity=".08" stroke="'+mut+'"/><rect x="82" y="72" width="48" height="6" fill="'+mut+'"/></svg>',
+    funnel:'<svg viewBox="0 0 200 118"><rect x="50" y="26" width="100" height="12" fill="'+sky+'" opacity=".6"/><rect x="62" y="48" width="76" height="12" fill="'+sky+'" opacity=".45"/><rect x="74" y="70" width="52" height="12" fill="'+sky+'" opacity=".3"/><rect x="86" y="92" width="28" height="12" fill="'+orange+'" opacity=".7"/></svg>',
+    cm:'<svg viewBox="0 0 200 118"><rect x="26" y="18" width="148" height="84" fill="'+deep+'" opacity=".05" stroke="'+mut+'"/><line x1="26" y1="38" x2="174" y2="38" stroke="'+mut+'"/><line x1="56" y1="38" x2="56" y2="102" stroke="'+mut+'" opacity=".5"/><line x1="86" y1="38" x2="86" y2="102" stroke="'+mut+'" opacity=".5"/><line x1="116" y1="38" x2="116" y2="102" stroke="'+mut+'" opacity=".5"/><line x1="146" y1="38" x2="146" y2="102" stroke="'+mut+'" opacity=".5"/><rect x="34" y="48" width="22" height="8" fill="'+sky+'" opacity=".7"/><rect x="94" y="64" width="22" height="8" fill="'+orange+'" opacity=".7"/><rect x="124" y="80" width="22" height="8" fill="'+sky+'" opacity=".5"/><rect x="64" y="90" width="22" height="8" fill="'+deep+'" opacity=".4"/></svg>'
+  };
+
+  /* the real lineup (source of truth: docs/product-lineup-candidates-2026-06-25.md) */
+  var MODS=[
+    {key:'ad-resizer',name:'AI Ad Resizer',icon:'resize',cat:'advertising',img:'assets/dayone/dayone-1080x1080.gif',badges:['New'],ben:'One ad in, every size out.'},
+    {key:'ad-maker',name:'Ad Maker',icon:'ad',cat:'advertising',badges:['Bundled'],ben:'Brief to finished ads, quality first.'},
+    {key:'copywriter',name:'AI Copywriter',icon:'write',cat:'advertising',ben:"Your brand's voice, trained to write."},
+    {key:'scorecard',name:'The Brand Scorecard',icon:'score',cat:'strategy',ben:'One page everyone watches.'},
+    {key:'segmentation',name:'Segmentation AI',icon:'seg',cat:'strategy',ben:'Segments, with the maths actually run.'},
+    {key:'positioning',name:'Competitor Positioning Map',icon:'map',cat:'strategy',ben:'Find the white space.'},
+    {key:'dba',name:'Distinctive Brand Assets Audit',icon:'matrix',cat:'strategy',ben:'What makes you recognisable, scored.'},
+    {key:'guardian',name:'Brand Guardian',icon:'shield',cat:'strategy',ben:'Nothing ships off-brand.'},
+    {key:'interviewer',name:'The AI Research Interviewer',icon:'phone',cat:'research',ben:'Hundreds of phone interviews a week.'},
+    {key:'company-intel',name:'Company Intelligence',icon:'doc',cat:'research',ben:'The dossier before you walk in.'},
+    {key:'review-intel',name:'Review Intelligence',icon:'star',cat:'research',ben:'What every review is really saying.'},
+    {key:'pricing',name:'Pricing Monitor',icon:'tag',cat:'research',ben:'Know the day a competitor moves.'},
+    {key:'outreach',name:'The Outreach Engine',icon:'reach',cat:'outreach',badges:['Bundled'],ben:'A business-development desk that runs itself.'},
+    {key:'page-audit',name:'Page Conversion Audit',icon:'funnel',cat:'outreach',badges:['Free'],ben:"Why the page isn't converting."},
+    {key:'campaign-manager',name:'Campaign Manager',icon:'cm',cat:'bundle',tag:'Everything, run for you',ben:'The whole operation, run as one.'}
+  ];
+  var CATS=[['all','All'],['strategy','Strategy'],['advertising','Advertising'],['research','Research'],['outreach','Outreach']];
+  var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html'};
+
+  function badgesHTML(bs){
+    if(!bs||!bs.length)return '';
+    return '<div class="card-badges">'+bs.map(function(b){return '<span class="card-badge '+b.toLowerCase()+'">'+b+'</span>';}).join('')+'</div>';
+  }
+  var grid=document.getElementById('grid');
+  MODS.forEach(function(m){
+    var href=PAGES[m.key]||'#';
+    var live=href!=='#';
+    var card=el('<a class="card'+(live?'':' soon')+'" href="'+href+'" data-cat="'+m.cat+'">'+
+      '<div class="card-vis">'+badgesHTML(m.badges)+(m.img?'<img src="'+m.img+'" alt="'+m.name+'">':VIS[m.icon])+'</div>'+
+      '<div class="card-bd">'+(m.tag?'<span class="tagb">'+m.tag+'</span>':'')+
+        '<div class="card-nm"><span class="ci">'+IC[m.icon]+'</span><h3>'+m.name+'</h3></div>'+
+        '<div class="card-ben">'+m.ben+'</div>'+
+        '<div class="card-cta">'+(live?'See how it works':'Page coming')+' <span class="arr">→</span></div>'+
+      '</div></a>');
+    grid.appendChild(card);
+  });
+
+  var fbar=document.getElementById('fbar');
+  CATS.forEach(function(c,i){
+    var b=el('<button class="fbtn'+(i===0?' active':'')+'" data-cat="'+c[0]+'">'+c[1]+'</button>');
+    b.addEventListener('click',function(){applyFilter(c[0]);});
+    fbar.appendChild(b);
+  });
+  function applyFilter(cat){
+    document.querySelectorAll('.fbtn').forEach(function(b){b.classList.toggle('active',b.dataset.cat===cat);});
+    document.querySelectorAll('.card').forEach(function(c){c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
+  }
+
+  /* ===== nav /products dropdown - built from the same product list so names never drift ===== */
+  var navGroups=[['strategy','Strategy'],['advertising','Advertising'],['research','Research'],['outreach','Outreach'],['bundle','The bundle']];
+  document.getElementById('navdrop').innerHTML=navGroups.map(function(g){
+    var items=MODS.filter(function(m){return m.cat===g[0];});
+    if(!items.length)return '';
+    return '<div class="ngrp">'+g[1]+'</div>'+items.map(function(m){
+      return '<a href="'+(PAGES[m.key]||'#')+'">'+m.name+'</a>';
+    }).join('');
+  }).join('');
+
+  /* ===== thought-leadership carousel - real current Substack posts ===== */
+  var POSTS=[
+    {link:'https://runwithfoxes.substack.com/p/a-robot-called-jo',title:'A robot called Jo',sub:'Jo is what I named my AI growth manager. Here is what she runs.',date:'May 28',img:'https://substackcdn.com/image/fetch/$s_!wJhh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F131ad3e1-cfac-46cc-b1f3-c4acc4dc7a05_2048x2048.png'},
+    {link:'https://runwithfoxes.substack.com/p/the-future-marketer-is-a-swiss-army',title:'The future marketer is a Swiss Army knife',sub:'Your role is not a fixed identity.',date:'May 23',img:'https://substackcdn.com/image/fetch/$s_!XqiJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cc98c13-6e39-4b77-834d-68cb02070f38_1254x1254.png'},
+    {link:'https://runwithfoxes.substack.com/p/how-i-build-an-ai-writer',title:'How I build an AI writer',sub:'Polished, neutral, forgettable. Here is how I fix that.',date:'May 13',img:'https://substackcdn.com/image/fetch/$s_!V_tK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F95406067-00aa-4c47-84e9-7a3bdb0d35eb_2400x1254.png'},
+    {link:'https://runwithfoxes.substack.com/p/think-in-bets',title:'Think in bets',sub:'We predict customer behaviour every day. Why not frame it as a bet?',date:'May 6',img:'https://substack-post-media.s3.amazonaws.com/public/images/2c3805ed-5aba-49c0-9640-ea8be86ecf0d_1280x720.png'},
+    {link:'https://runwithfoxes.substack.com/p/distinctive-brand-assets-in-an-ai',title:'Distinctive Brand Assets in an AI world',sub:'Recognition in seconds, even in a crowded feed.',date:'Apr 28',img:'https://substackcdn.com/image/fetch/$s_!ljrC!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3478b590-d832-40fe-9b26-fadb16907764_2400x1254.png'}
+  ];
+  var nlList=document.getElementById('nl-list');
+  nlList.innerHTML=POSTS.slice(0,4).map(function(p){
+    return '<a class="nlrow" href="'+p.link+'" target="_blank" rel="noopener">'+
+      '<img class="nlthumb" src="'+p.img+'" alt="">'+
+      '<div class="nltext"><div class="nltitle">'+p.title+'</div>'+
+      '<div class="nlmeta">'+p.date.toUpperCase()+' &middot; Paul Dervan</div></div></a>';
+  }).join('');
+
+  /* ===== testimonials - rotating, manual (real quotes from the live site) ===== */
+  var QUOTES=[
+    {q:"I've worked with Paul on a number of very successful projects over more than 5 years. His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb.",a:"Peter Field",r:"The Godfather of Effectiveness, Author of The Long and the Short of It"},
+    {q:"Paul Dervan reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career.",a:"Paul D'Arcy",r:"CMO, Moloco. Former CMO at Miro and Indeed"},
+    {q:"When in O2, Paul had the highest scores on people management across the entire organisation. He set the standard for excellent management of his team's performance and development.",a:"Damian Devaney",r:"Ex-CMO O2, Chair of Effies Ireland"},
+    {q:"Paul is a strategic thinker, with world class creative capabilities. So he knows not just what to do, but how to do it.",a:"Jonnie Cahill",r:"SVP and CMO International Foods, PepsiCo"}
+  ];
+  (function(){
+    var qi=0,qq=document.getElementById('qquote'),qa=document.getElementById('qattr'),qd=document.getElementById('qdots');
+    function qrender(){
+      var t=QUOTES[qi];
+      qq.textContent='“'+t.q+'”';
+      qa.innerHTML='<b>'+t.a+'</b> · '+t.r;
+      qd.innerHTML='';
+      QUOTES.forEach(function(_,i){var d=document.createElement('span');d.className='qdot'+(i===qi?' on':'');(function(n){d.addEventListener('click',function(){qi=n;qrender();});})(i);qd.appendChild(d);});
+    }
+    document.getElementById('qnext').addEventListener('click',function(){qi=(qi+1)%QUOTES.length;qrender();});
+    document.getElementById('qprev').addEventListener('click',function(){qi=(qi-1+QUOTES.length)%QUOTES.length;qrender();});
+    qrender();
+  })();
+</script>
+</body>
+</html>
