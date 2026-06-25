@@ -19,7 +19,7 @@ export const meta: Meta = {
     deliverables: "Everything we're producing and where each piece stands.",
     brief:
       "SoftCo's own asset library, sent by John on 19 June. This is the brief: the existing formats the AI engine recreates and automates. It is not AI-made work.",
-    work: "The AI versions. Each piece is marked for where it stands with our readability QA. Only the pieces marked QA passed are ready for your sign-off. In QA means we are still checking it. Fail QA means do not use it yet.",
+    work: "The AI versions. Each piece is marked for where it stands with our readability QA. Only the pieces marked QA passed are ready for your sign-off. In QA means we are still checking it, so please hold off approving those.",
     feedback: "A running record of all feedback and the replies, kept here so we can both see everything.",
   },
 };
@@ -27,7 +27,6 @@ export const meta: Meta = {
 export const deliverables: Deliverable[] = [
   { name: "Display / banner ads", detail: "11 IAB sizes, animated", status: "ready", date: "2026-06-12" },
   { name: "Testimonial cards", detail: "4 layouts, square, static + animated", status: "ready", date: "2026-06-13" },
-  { name: "Iceberg diagram", detail: "Square 1080×1080, organic + paid", status: "ready", date: "2026-06-12" },
   { name: "Email banners", detail: "600×140 and 1024×206", status: "ready", date: "2026-06-13" },
   { name: "Blog headers", detail: "1200×630", status: "ready", date: "2026-06-13" },
   { name: "Blog content cards", detail: "Stat, pull-quote, question", status: "ready", date: "2026-06-13" },
@@ -543,23 +542,13 @@ export const work: WorkSection[] = [
     item: { src: "proof-v2.mp4", poster: "proof-v2-poster.png", ratio: "1/1", w: 320, cap: "1080×1080 · organic + paid" },
   },
   {
-    title: "Iceberg diagram",
-    kind: "media",
-    zone: "work",
-    layout: "single",
-    qa: "fail",
-    groupLabel: "Fail QA - do not use yet",
-    desc: "Animated explainer, the visible cost above the line, the hidden cost below. The labels around the iceberg are too small to read at ad size. It works as a large graphic on a web page, not as a small ad. Needs the labels enlarged or thinned before use.",
-    item: { src: "iceberg-1080.mp4", poster: "iceberg-poster.png", ratio: "1/1", w: 320, cap: "1080×1080 · organic + paid" },
-  },
-  {
     title: "LinkedIn carousel · product walkthrough",
     kind: "gallery",
     zone: "work",
-    qa: "fail",
+    qa: "pending",
     placement: "feed",
     carousel: true,
-    desc: "A 5-slide LinkedIn carousel. One invoice from inbox to paid, with the AP screen rebuilt as live UI. The small line above each headline (e.g. STEP ONE · CAPTURE) is too pale to read. Needs that line brightened before use. Numbers shown are placeholder.",
+    desc: "A 5-slide LinkedIn carousel. One invoice from inbox to paid, with the AP screen rebuilt as live UI. Numbers shown are placeholder, to confirm before publishing.",
     items: [
       { src: "product-carousel-1.png", ratio: "1/1", w: 210, cap: "1 · Cover" },
       { src: "product-carousel-2.png", ratio: "1/1", w: 210, cap: "2 · Capture" },
