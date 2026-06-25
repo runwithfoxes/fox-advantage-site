@@ -254,6 +254,28 @@
   background: rgba(58, 124, 165, 0.12);
   color: var(--orange);
 }
+.cw-qa {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  margin-left: 6px;
+}
+.cw-qa-pass { background: rgba(31, 157, 85, 0.14); color: #1f7a45; }
+.cw-qa-pending { background: rgba(183, 121, 31, 0.16); color: #9a6515; }
+.cw-qa-fail { background: rgba(192, 57, 43, 0.14); color: #b0291c; }
+.cw-grouplabel {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 44px 0 6px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 .cw-desc {
   color: var(--text-muted);
   font-size: 0.875rem;

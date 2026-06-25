@@ -75,6 +75,8 @@ export type WorkSection = {
   wideDesc?: boolean;      // lets a long desc run the full content width instead of the 660px reading column
   badge?: string;
   zone?: ZoneKey;          // which zone this section belongs to (default "work")
+  qa?: "pass" | "pending" | "fail"; // QA badge: passed the gate / not yet checked / failed, do not use
+  groupLabel?: string;     // renders a divider sub-heading above this section (group split)
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
   kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed" | "html";
@@ -457,6 +459,9 @@ function SectionHead({ s }: { s: WorkSection }) {
       <h2>{s.title}</h2>
       {s.isNew && <span className="cw-new">New</span>}
       {label && <span className="cw-badge">{label}</span>}
+      {s.qa === "pass" && <span className="cw-qa cw-qa-pass">QA passed</span>}
+      {s.qa === "pending" && <span className="cw-qa cw-qa-pending">In QA</span>}
+      {s.qa === "fail" && <span className="cw-qa cw-qa-fail">Fail QA · don&rsquo;t use</span>}
     </div>
   );
 }
@@ -787,6 +792,7 @@ export default function ClientWorkspace({
               return (
                 <div key={s.title}>
                   {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} num={zoneNum(zone)} />}
+                  {s.groupLabel && <h3 className="cw-grouplabel">{s.groupLabel}</h3>}
                   <WorkBlock s={s} base={base} />
                 </div>
               );
