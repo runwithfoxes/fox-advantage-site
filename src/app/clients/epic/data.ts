@@ -83,4 +83,22 @@ export const work: WorkSection[] = [
       { name: "Email banner (GIF)", file: "email-banner-derisk.gif", note: "Single-frame GIF, 70 KB", date: "25 June 2026" },
     ],
   },
+  {
+    title: "Earlier tests · animated LinkedIn ads",
+    kind: "media",
+    zone: "work",
+    layout: "grouped",
+    badge: "Testing",
+    wideDesc: true,
+    desc: "Work Paul made while first testing this format. Not part of the current deliverable, but worth seeing. Two animated LinkedIn chart ads built from EPIC studies: each asks a question, answers it with a chart, then closes on the EPIC logo. Square 1080×1080.",
+    groups: [
+      {
+        label: "1080×1080 · square",
+        items: [
+          { src: "test-snapchat-storage.mp4", poster: "test-snapchat-storage-poster.png", ratio: "1/1", w: 320, cap: "Would Snapchat users pay for storage?" },
+          { src: "test-ad-tiers.mp4", poster: "test-ad-tiers-poster.png", ratio: "1/1", w: 320, cap: "Pay more to see fewer ads on social media?" },
+        ],
+      },
+    ],
+  },
 ];
