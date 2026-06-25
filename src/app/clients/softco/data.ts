@@ -270,22 +270,6 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 ];
 
 export const work: WorkSection[] = [
-  {
-    title: "Tested through QA - needs your approval",
-    kind: "gallery",
-    zone: "work",
-    pinTop: true,
-    isNew: true,
-    badge: "Needs approval",
-    wideDesc: true,
-    desc: "We ran the ad set through the new readability check. Most passed automatically. Four need a human eye. On two of them, the small line of text above the main headline is a little too pale to read at a glance. On the other two, some of the smaller label text is a touch small. Nothing is wrong with the idea or the design, it is only about how easy the words are to read. Your team decides: approve as is, or send it back to make that text clearer. The wording shown is just sample text.",
-    items: [
-      { src: "softco-flag-event.png", ratio: "1/1", w: 250, cap: "Event graphic · the small line above the headline is a bit pale" },
-      { src: "softco-flag-question.png", ratio: "1/1", w: 250, cap: "Question card · the small line above the headline is a bit pale" },
-      { src: "softco-flag-blog.png", ratio: "1200/630", w: 360, cap: "Blog header · the small label text is a bit small" },
-      { src: "softco-flag-thumb.png", ratio: "1280/720", w: 360, cap: "Thumbnail · the small label and date text is a bit small" },
-    ],
-  },
   /* Sections are grouped by zone for the engine: all zone:"brief" first, then
      all zone:"work", then zone:"feedback" last. Keep that order when editing.
      ---- ZONE: brief - SoftCo asset library (19 Jun, from John Neary).
