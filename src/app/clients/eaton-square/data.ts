@@ -30,7 +30,6 @@ export const deliverables: Deliverable[] = [
   { name: "Handover playbook", detail: "A light guide so the team runs everything without us", status: "todo", note: "" },
   { name: "Workflow guides", detail: "Clear step-by-step guides the team follows to run the engine, so the process is repeatable without us", status: "todo", date: "2026-06-21", note: "Coming as documents on this page." },
   { name: "Direct mail", detail: "A Claude skill that writes personalised direct-mail letters in voice", status: "complete", date: "2026-06-21", note: "Added value, beyond the original plan. In use for the Schools Campaign and the PMO campaign." },
-  { name: "Change-outreach skill", detail: "A Claude skill that enriches a company, picks the change decision-maker and writes an evidence-only note, using your Clay connector", status: "complete", date: "2026-06-21", note: "Added value, beyond the original plan." },
 ];
 
 export const work: WorkSection[] = [
@@ -69,11 +68,9 @@ export const work: WorkSection[] = [
       { name: "Write your messages", file: "eaton-message-coach.zip", note: "Coaches you through the message sequence one at a time, in your voice, until you sign each one off" },
       { name: "Build the upload files", file: "eaton-merge.zip", note: "Rolls your approved sequence across the whole list and builds the two upload files: HeyReach and SmartLead" },
       { name: "Load into HeyReach", file: "eaton-heyreach-load.zip", note: "Uploads the file into HeyReach, holds, and starts the campaign once the emails are in SmartLead" },
-      { name: "Change-outreach", file: "eaton-change-outreach.zip", note: "Picks the change decision-maker and writes an evidence-only note, nothing invented" },
       { name: "Direct mail letters", file: "eaton-direct-mail.zip", note: "Writes a personalised sales letter in Sarah's voice and merges it across a list" },
       { name: "Campaign advisor", file: "eaton-campaign-update.zip", note: "Ask \"update me on the campaign\" for an honest read on the numbers and next moves" },
       { name: "LinkedIn graphic", file: "eaton-linkedin-graphic.zip", note: "Paste a point and get one quiet, on-brand LinkedIn graphic. Unbranded by design" },
-      { name: "Branded page", file: "eaton-branded-page.zip", note: "Turns any document into a scrolling HR Path branded web page" },
       { name: "AI coach", file: "eaton-ai-coach.zip", note: "An interactive coach that teaches the team how to get the most from Claude" },
     ] },
 
