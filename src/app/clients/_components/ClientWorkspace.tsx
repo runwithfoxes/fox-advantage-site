@@ -75,6 +75,7 @@ export type WorkSection = {
   wideDesc?: boolean;      // lets a long desc run the full content width instead of the 660px reading column
   badge?: string;
   zone?: ZoneKey;          // which zone this section belongs to (default "work")
+  pinTop?: boolean;        // render this section ABOVE the deliverables table, at the very top
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
   kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed" | "html";
@@ -727,6 +728,10 @@ export default function ClientWorkspace({
         <h1 className="cw-title">{meta.headline}</h1>
         <p className="cw-intro">{meta.intro}</p>
 
+        {work.filter((s) => s.pinTop).map((s) => (
+          <WorkBlock key={s.title} s={s} base={base} />
+        ))}
+
         {zoned && (
           <nav className="cw-jump">
             {presentZones.map((z) => (
@@ -780,7 +785,7 @@ export default function ClientWorkspace({
         {zoned ? (
           (() => {
             let last: ZoneKey | undefined;
-            return work.map((s) => {
+            return work.filter((s) => !s.pinTop).map((s) => {
               const zone: ZoneKey = s.zone || "work";
               const newZone = zone !== last;
               last = zone;
@@ -793,7 +798,7 @@ export default function ClientWorkspace({
             });
           })()
         ) : (
-          work.map((s) => <WorkBlock key={s.title} s={s} base={base} />)
+          work.filter((s) => !s.pinTop).map((s) => <WorkBlock key={s.title} s={s} base={base} />)
         )}
 
         <footer className="cw-foot">Run with Foxes · private workspace for {meta.client}</footer>

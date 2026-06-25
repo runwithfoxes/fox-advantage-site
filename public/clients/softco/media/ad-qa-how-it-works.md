@@ -33,6 +33,20 @@ A paragraph crammed onto a banner fails.
   each naming the element, the rule, the measured value, and what it needed. For
   example: `[contrast] headline: large text -> measured 1.16:1, need >= 3:1`.
 
+## When something fails, you decide (not us)
+A fail is not a wall. The check opens a page showing each flagged item: the ad, a
+zoom on the exact spot, what is wrong in plain words, our recommendation and why,
+and three buttons:
+- **Fix it** - keep the rule, the ad stays held until the design is changed.
+- **Accept just this one** - let this single ad through, the rule stays as it is.
+- **Change the rule for all** - update the guardrail itself (e.g. allow smaller
+  kicker text, or approve a colour pair) for everything from now on.
+
+You click your choices, press **Apply**, and your own Claude folds them straight
+into your settings. Nobody outside your team is involved. "Accept" is one click;
+"change the rule" is a deliberate second choice, so a quick yes never quietly
+loosens your brand guardrails.
+
 ## Why it won't nag you about good work
 The thresholds were set from SoftCo's own already-approved templates, so work that
 matches what you've signed off passes cleanly. If something ever fails that

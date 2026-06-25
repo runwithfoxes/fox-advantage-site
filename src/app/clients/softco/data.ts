@@ -270,6 +270,22 @@ const FB_ITEMS: { q: string[]; a: string; who?: string; when?: string }[] = [
 ];
 
 export const work: WorkSection[] = [
+  {
+    title: "Tested through QA - needs your approval",
+    kind: "gallery",
+    zone: "work",
+    pinTop: true,
+    isNew: true,
+    badge: "Needs approval",
+    wideDesc: true,
+    desc: "We ran the ad set through the new readability QA. Most passed automatically. These four were flagged for a human call: two have a faint eyebrow label, two have small kicker text. Nothing is wrong with the idea, it is a legibility judgement only. Your team decides: approve as is, or send back to adjust. Sample copy shown.",
+    items: [
+      { src: "softco-flag-event.png", ratio: "1/1", w: 250, cap: "Event graphic · faint eyebrow" },
+      { src: "softco-flag-question.png", ratio: "1/1", w: 250, cap: "Question card · faint eyebrow" },
+      { src: "softco-flag-blog.png", ratio: "1200/630", w: 360, cap: "Blog header · small label" },
+      { src: "softco-flag-thumb.png", ratio: "1280/720", w: 360, cap: "Thumbnail · small label and tagline" },
+    ],
+  },
   /* Sections are grouped by zone for the engine: all zone:"brief" first, then
      all zone:"work", then zone:"feedback" last. Keep that order when editing.
      ---- ZONE: brief - SoftCo asset library (19 Jun, from John Neary).
@@ -556,7 +572,7 @@ export const work: WorkSection[] = [
     status: "ready",
     isNew: true,
     wideDesc: true,
-    desc: "The automatic check that runs at the end of the ad machine, answering Daragh's 18 June question. Every render is measured, never eyeballed, and an asset is blocked if it fails any of four gates: text contrast against its real background (WCAG AA, with a slightly easier bar for large headlines or approved brand pairs), minimum font size, clear space from the canvas edge and logo, and copy density (email banners must stay one line). When something fails it prints exactly what and why, e.g. \"headline: large text, measured 1.16:1, need >= 3:1\". The thresholds come from SoftCo's own approved templates, so signed-off work passes and only genuinely unreadable work fails. Download the skill and a plain-English explainer below.",
+    desc: "The automatic check that runs at the end of the ad machine, answering Daragh's 18 June question. Every render is measured, never eyeballed, and an asset is blocked if it fails any of four gates: text contrast against its real background (WCAG AA, with a slightly easier bar for large headlines or approved brand pairs), minimum font size, clear space from the canvas edge and logo, and copy density (email banners must stay one line). When something fails it prints exactly what and why, e.g. \"headline: large text, measured 1.16:1, need >= 3:1\". The thresholds come from SoftCo's own approved templates, so signed-off work passes and only genuinely unreadable work fails. When an ad is flagged, the check opens a decision page showing it with our recommendation, and your team chooses: accept this one, change the rule for everything, or send it back to fix. Those choices update SoftCo's own settings, so the guardrails stay yours. Download the skill and a plain-English explainer below.",
     files: [
       { name: "ad-qa skill (Claude Code)", file: "ad-qa-skill.zip", note: "The full gate: engine, SoftCo config, docs", date: "25 June 2026" },
       { name: "How it works (plain English)", file: "ad-qa-how-it-works.md", note: "One-page explainer, no jargon", date: "25 June 2026" },
