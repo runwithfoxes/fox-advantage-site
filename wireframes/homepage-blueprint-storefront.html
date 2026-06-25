@@ -44,16 +44,24 @@
   .shop-intro h2 .hl{ color:var(--sky-blue); }
   .shop-intro p{ font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.7; }
 
-  .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-  @media(max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:560px){ .grid{ grid-template-columns:1fr; } }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media(max-width:860px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:540px){ .grid{ grid-template-columns:1fr; } }
+
+  /* category filter bar - smaller sibling of the product-page tab buttons (blue when active) */
+  .fbar{ display:inline-flex; flex-wrap:wrap; border:1px solid var(--border); margin-bottom:22px; }
+  .fbtn{ background:transparent; border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:7px 13px; transition:background .2s,color .2s; }
+  .fbtn:last-child{ border-right:none; }
+  .fbtn:hover{ color:var(--text); }
+  .fbtn.active{ background:var(--sky-blue); color:var(--bg); }
 
   /* a product card (sharp corners per brand; only the mini-visual + chips are soft) */
   .card{ border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); cursor:pointer; display:flex; flex-direction:column;
     text-decoration:none; color:inherit; transition:border-color .2s, transform .2s, box-shadow .2s; }
   .card:hover{ border-color:var(--sky-blue); transform:translateY(-2px); box-shadow:0 10px 26px rgba(29,27,27,.09); }
   .card.active{ border-color:var(--sky-blue); }
-  .card-vis{ position:relative; height:190px; border-bottom:1px solid var(--border); background:var(--card-hover); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .card-vis{ position:relative; height:210px; border-bottom:1px solid var(--border); background:var(--card-hover); display:flex; align-items:center; justify-content:center; overflow:hidden; }
   .card-vis svg{ width:100%; height:100%; }
   .card-vis.has-img{ background:#EFECE2; }
   .card-vis img{ width:100%; height:100%; object-fit:contain; display:block; }
@@ -68,13 +76,12 @@
   .card-cta .arr{ transition:margin-left .2s; }
   .card:hover .card-cta .arr{ margin-left:4px; }
 
-  /* the bundle card spans wide */
-  .card.bundle{ grid-column:1 / -1; flex-direction:row; align-items:stretch; }
-  .card.bundle .card-vis{ width:280px; height:auto; border-bottom:none; border-right:1px solid var(--border); flex:none; }
-  @media(max-width:1000px){ .card.bundle{ flex-direction:column; } .card.bundle .card-vis{ width:auto; height:118px; border-right:none; border-bottom:1px solid var(--border); } }
-  .card.bundle .card-bd{ justify-content:center; }
-  .card.bundle h3{ font-size:21px; }
-  .card.bundle .tagb{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--fox-orange); margin-bottom:2px; }
+  /* small eyebrow tag (Campaign Manager carries one) */
+  .tagb{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--fox-orange); }
+
+  /* to-build cards: same shape, quieter CTA so the live ones read as ready */
+  .card.soon .card-vis{ opacity:.85; }
+  .card.soon .card-cta{ color:var(--muted); }
 
   /* ===== the Blueprint that opens under the grid ===== */
   .bp{ display:none; margin-top:26px; border:1px solid var(--sky-blue); background:var(--bg); padding:26px 28px; }
@@ -140,8 +147,9 @@
   <div class="shop">
     <div class="shop-intro">
       <h2>Products</h2>
-      <p>Each one is a product: a system we build for your marketing and hand over. You might just say "build me an ad maker". That is a product. Take one, or the whole operation. Open any to see its Blueprint: what it is, how it works, and what runs underneath.</p>
+      <p>Each one is a product: a system we build into your marketing and hand over. You might just say "build me an ad maker". That is a product. Take one, or the whole operation. Open any to see how it works: what it does, the steps underneath, and what it runs on.</p>
     </div>
+    <div class="fbar" id="fbar"></div>
     <div class="grid" id="grid"></div>
   </div>
 
@@ -156,89 +164,99 @@
 const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
 const S = (s)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s}</svg>`;
 const IC = {
-  seg:S('<circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/>'),
-  brand:S('<path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9-2.6.9-5.5-4-3.9 5.5-.8z"/>'),
-  score:S('<line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/>'),
+  resize:S('<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M11 7h6a1 1 0 011 1v6"/>'),
   ad:S('<path d="M3 10v4l11 5V5L3 10z"/><path d="M14 8c2 0 3 1.5 3 4s-1 4-3 4"/>'),
+  write:S('<path d="M4 20h6"/><path d="M14 4l6 6L9 21l-6 1 1-6z"/>'),
+  score:S('<line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/>'),
+  seg:S('<circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/>'),
+  map:S('<polygon points="4,6 9,4 15,6 20,4 20,18 15,20 9,18 4,20"/><line x1="9" y1="4" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="20"/>'),
+  matrix:S('<rect x="4" y="4" width="16" height="16" rx="1"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/>'),
+  shield:S('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>'),
+  phone:S('<path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>'),
+  doc:S('<rect x="6" y="3" width="12" height="18" rx="1"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>'),
+  star:S('<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>'),
+  tag:S('<path d="M3 12l9-9 8 8-9 9z"/><circle cx="15" cy="9" r="1.4"/>'),
   reach:S('<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>'),
-  res:S('<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>'),
+  funnel:S('<path d="M3 5h18l-7 8v6l-4-2v-4z"/>'),
   cm:S('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/>')
 };
-const GATE = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3A7CA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>';
 
-// little "visual of it working" per card (low-fi mocks, sky/cream palette)
+// little "visual of it working" per card (low-fi placeholders, sky/cream palette).
+// real approved assets get swapped in one at a time later (only AI Ad Resizer has one so far).
 const sky='#3A7CA5', deep='#1A3A4E', orange='#F47521', mut='#B7B7B2';
 const VIS = {
-  seg:`<svg viewBox="0 0 200 118"><g fill="${sky}" opacity=".8"><circle cx="50" cy="40" r="4"/><circle cx="62" cy="52" r="4"/><circle cx="44" cy="58" r="4"/><circle cx="56" cy="46" r="4"/></g><g fill="${orange}" opacity=".85"><circle cx="135" cy="78" r="4"/><circle cx="148" cy="86" r="4"/><circle cx="128" cy="90" r="4"/></g><g fill="${deep}" opacity=".6"><circle cx="150" cy="38" r="4"/><circle cx="138" cy="30" r="4"/><circle cx="162" cy="46" r="4"/></g><line x1="24" y1="98" x2="176" y2="98" stroke="${mut}"/><line x1="24" y1="20" x2="24" y2="98" stroke="${mut}"/></svg>`,
-  brand:`<svg viewBox="0 0 200 118"><line x1="100" y1="16" x2="100" y2="102" stroke="${mut}"/><line x1="30" y1="59" x2="170" y2="59" stroke="${mut}"/><circle cx="64" cy="40" r="5" fill="${mut}"/><circle cx="132" cy="46" r="5" fill="${mut}"/><circle cx="78" cy="80" r="5" fill="${mut}"/><circle cx="140" cy="36" r="7" fill="${orange}"/><text x="150" y="34" font-size="8" fill="${deep}" font-family="monospace">you</text></svg>`,
-  score:`<svg viewBox="0 0 200 118"><polygon points="100,22 130,46 70,46" fill="${sky}" opacity=".85"/><rect x="70" y="50" width="60" height="14" fill="${sky}" opacity=".6"/><rect x="56" y="68" width="88" height="14" fill="${sky}" opacity=".4"/><rect x="42" y="86" width="116" height="14" fill="${sky}" opacity=".25"/></svg>`,
+  resize:`<svg viewBox="0 0 200 118"><rect x="34" y="30" width="58" height="58" rx="2" fill="${sky}" opacity=".14" stroke="${sky}"/><rect x="104" y="30" width="40" height="26" rx="2" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="104" y="62" width="62" height="14" rx="2" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="104" y="80" width="22" height="8" rx="2" fill="${orange}" opacity=".7"/></svg>`,
   ad:`<svg viewBox="0 0 200 118"><rect x="40" y="20" width="120" height="78" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="52" y="32" width="60" height="8" fill="${deep}" opacity=".5"/><rect x="52" y="46" width="40" height="6" fill="${mut}"/><rect x="118" y="60" width="30" height="26" rx="3" fill="${orange}" opacity=".8"/><rect x="52" y="80" width="44" height="9" fill="${sky}"/></svg>`,
+  write:`<svg viewBox="0 0 200 118"><rect x="40" y="28" width="118" height="10" fill="${sky}" opacity=".55"/><rect x="40" y="48" width="100" height="6" fill="${mut}"/><rect x="40" y="62" width="116" height="6" fill="${mut}"/><rect x="40" y="76" width="70" height="6" fill="${mut}"/><rect x="112" y="74" width="2" height="12" fill="${orange}"/></svg>`,
+  score:`<svg viewBox="0 0 200 118"><polygon points="100,22 130,46 70,46" fill="${sky}" opacity=".85"/><rect x="70" y="50" width="60" height="14" fill="${sky}" opacity=".6"/><rect x="56" y="68" width="88" height="14" fill="${sky}" opacity=".4"/><rect x="42" y="86" width="116" height="14" fill="${sky}" opacity=".25"/></svg>`,
+  seg:`<svg viewBox="0 0 200 118"><g fill="${sky}" opacity=".8"><circle cx="50" cy="40" r="4"/><circle cx="62" cy="52" r="4"/><circle cx="44" cy="58" r="4"/><circle cx="56" cy="46" r="4"/></g><g fill="${orange}" opacity=".85"><circle cx="135" cy="78" r="4"/><circle cx="148" cy="86" r="4"/><circle cx="128" cy="90" r="4"/></g><g fill="${deep}" opacity=".6"><circle cx="150" cy="38" r="4"/><circle cx="138" cy="30" r="4"/><circle cx="162" cy="46" r="4"/></g><line x1="24" y1="98" x2="176" y2="98" stroke="${mut}"/><line x1="24" y1="20" x2="24" y2="98" stroke="${mut}"/></svg>`,
+  map:`<svg viewBox="0 0 200 118"><line x1="100" y1="16" x2="100" y2="102" stroke="${mut}"/><line x1="30" y1="59" x2="170" y2="59" stroke="${mut}"/><circle cx="64" cy="40" r="5" fill="${mut}"/><circle cx="132" cy="46" r="5" fill="${mut}"/><circle cx="78" cy="80" r="5" fill="${mut}"/><circle cx="140" cy="36" r="7" fill="${orange}"/><text x="150" y="34" font-size="8" fill="${deep}" font-family="monospace">you</text></svg>`,
+  matrix:`<svg viewBox="0 0 200 118"><rect x="56" y="16" width="88" height="86" fill="none" stroke="${mut}"/><line x1="100" y1="16" x2="100" y2="102" stroke="${mut}"/><line x1="56" y1="59" x2="144" y2="59" stroke="${mut}"/><circle cx="124" cy="36" r="7" fill="${orange}" opacity=".85"/><circle cx="78" cy="44" r="5" fill="${sky}" opacity=".6"/><circle cx="84" cy="82" r="5" fill="${mut}"/><circle cx="120" cy="80" r="5" fill="${sky}" opacity=".4"/></svg>`,
+  shield:`<svg viewBox="0 0 200 118"><path d="M100 22l34 12v22c0 20-14 30-34 36-20-6-34-16-34-36V34z" fill="${sky}" opacity=".12" stroke="${sky}"/><path d="M86 64l10 10 20-20" fill="none" stroke="${orange}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  phone:`<svg viewBox="0 0 200 118"><rect x="74" y="20" width="52" height="82" rx="9" fill="${deep}" opacity=".08" stroke="${mut}"/><circle cx="100" cy="38" r="9" fill="${sky}" opacity=".25"/><rect x="86" y="54" width="28" height="5" fill="${mut}"/><rect x="84" y="66" width="32" height="5" fill="${mut}"/><circle cx="88" cy="88" r="7" fill="${orange}" opacity=".8"/><circle cx="112" cy="88" r="7" fill="${sky}" opacity=".5"/></svg>`,
+  doc:`<svg viewBox="0 0 200 118"><rect x="64" y="16" width="72" height="86" rx="2" fill="${deep}" opacity=".05" stroke="${mut}"/><rect x="76" y="30" width="48" height="7" fill="${sky}" opacity=".6"/><rect x="76" y="46" width="40" height="5" fill="${mut}"/><rect x="76" y="58" width="44" height="5" fill="${mut}"/><rect x="76" y="70" width="30" height="5" fill="${mut}"/><circle cx="120" cy="86" r="6" fill="${orange}" opacity=".8"/></svg>`,
+  star:`<svg viewBox="0 0 200 118"><rect x="40" y="34" width="92" height="10" rx="5" fill="${sky}" opacity=".6"/><rect x="40" y="54" width="120" height="10" rx="5" fill="${orange}" opacity=".55"/><rect x="40" y="74" width="64" height="10" rx="5" fill="${mut}" opacity=".55"/><text x="150" y="44" font-size="11" fill="${deep}" font-family="monospace">+</text></svg>`,
+  tag:`<svg viewBox="0 0 200 118"><polyline points="30,80 60,70 90,74 120,52 150,58 172,38" fill="none" stroke="${sky}" stroke-width="2"/><polyline points="30,88 60,84 90,86 120,80 150,82 172,72" fill="none" stroke="${mut}" stroke-width="2" stroke-dasharray="3 3"/><circle cx="172" cy="38" r="4" fill="${orange}"/><line x1="24" y1="98" x2="176" y2="98" stroke="${mut}"/></svg>`,
   reach:`<svg viewBox="0 0 200 118"><rect x="34" y="28" width="92" height="22" rx="6" fill="${sky}" opacity=".15" stroke="${sky}"/><rect x="42" y="36" width="60" height="6" fill="${sky}"/><rect x="74" y="64" width="92" height="22" rx="6" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="82" y="72" width="48" height="6" fill="${mut}"/></svg>`,
-  res:`<svg viewBox="0 0 200 118"><rect x="74" y="22" width="52" height="80" rx="9" fill="${deep}" opacity=".08" stroke="${mut}"/><circle cx="100" cy="40" r="9" fill="${sky}" opacity=".25"/><rect x="86" y="56" width="28" height="5" fill="${mut}"/><circle cx="88" cy="86" r="7" fill="${orange}" opacity=".8"/><circle cx="112" cy="86" r="7" fill="${sky}" opacity=".5"/></svg>`,
-  cm:`<svg viewBox="0 0 280 150"><rect x="30" y="24" width="220" height="104" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><line x1="30" y1="44" x2="250" y2="44" stroke="${mut}"/>${[0,1,2,3,4].map(i=>`<line x1="${30+44*(i+1)}" y1="44" x2="${30+44*(i+1)}" y2="128" stroke="${mut}" opacity=".5"/>`).join('')}<rect x="40" y="56" width="30" height="9" fill="${sky}" opacity=".7"/><rect x="128" y="74" width="30" height="9" fill="${orange}" opacity=".7"/><rect x="172" y="92" width="30" height="9" fill="${sky}" opacity=".5"/><rect x="84" y="110" width="30" height="9" fill="${deep}" opacity=".4"/></svg>`
+  funnel:`<svg viewBox="0 0 200 118"><rect x="50" y="26" width="100" height="12" fill="${sky}" opacity=".6"/><rect x="62" y="48" width="76" height="12" fill="${sky}" opacity=".45"/><rect x="74" y="70" width="52" height="12" fill="${sky}" opacity=".3"/><rect x="86" y="92" width="28" height="12" fill="${orange}" opacity=".7"/></svg>`,
+  cm:`<svg viewBox="0 0 200 118"><rect x="26" y="18" width="148" height="84" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><line x1="26" y1="38" x2="174" y2="38" stroke="${mut}"/>${[0,1,2,3].map(i=>`<line x1="${26+30*(i+1)}" y1="38" x2="${26+30*(i+1)}" y2="102" stroke="${mut}" opacity=".5"/>`).join('')}<rect x="34" y="48" width="22" height="8" fill="${sky}" opacity=".7"/><rect x="94" y="64" width="22" height="8" fill="${orange}" opacity=".7"/><rect x="124" y="80" width="22" height="8" fill="${sky}" opacity=".5"/><rect x="64" y="90" width="22" height="8" fill="${deep}" opacity=".4"/></svg>`
 };
 
+// the real lineup (source of truth: docs/product-lineup-candidates-2026-06-25.md).
+// 14 single products + the Campaign Manager as an EQUAL card. tag => small eyebrow on the card.
 const MODS = [
-  { key:'seg', name:'Segmentation AI', icon:'seg', ben:'Segments that hold up to the maths, not a slide of personas.',
-    it:'Proper segmentation, with the maths actually run. We turn your customer base into segments that hold up, not a slide of personas.',
-    how:[['Ground it','What segmentation is, before any maths.'],['Run the maths','Similarity between the segments.'],['Test what holds','Which segments survive the data.'],['Map it','Scatter the segments out to see them.']],
-    uses:{Skills:['/segmentation','similarity analysis','scatter plots'],Data:['your customer base']} },
-  { key:'brand', name:'Brand strategist', icon:'brand', ben:'Positioning, the message, and the assets people know you by.',
-    it:'Positioning, the situations you want to be remembered in, the message everything anchors to, and the assets people know you by. The strategy that drives the making.',
-    how:[['Map the field','Competitors claimed vs actual. Find the white space.'],['Find the situations','The buying situations to be remembered in (CEPs).'],['Build the message','The pillars all copy anchors to.'],['Lock the assets','What people recognise you by.'],['On a page','The strategy, plus the guidelines.']],
-    uses:{Skills:['/competitor-positioning','/cep-discovery','messaging framework','distinctive assets']} },
-  { key:'score', name:'The scorecard', icon:'score', ben:'The metrics that matter, across five levels, and the split that grows them.',
-    it:'You cannot manage a brand you cannot measure. We get the metrics right across the five levels, then set the split that grows it.',
-    how:[['Train the team','Across the five levels of measurement.'],['Audit what is tracked','Sort it into five levels, show the gaps.'],['Build the scorecard','Commercial, behaviour, memory, comms, activity.'],['Set the split','Brand vs activation (60:40), share of voice.']],
-    uses:{Skills:['/metrics-audit','brand scorecard','/brand-activation-split','/esov-proxy'],Data:['your tracked metrics','benchmark set']} },
-  { key:'ad', name:'AI Ad resizer', icon:'ad', img:'assets/dayone/dayone-1080x1080.gif', badge:'New', ben:'Approve one ad, get the full IAB family of sizes, on brand.',
-    it:'Brief to useful options faster, quality first. Video, brand, animated and static, then the full size set, all on brand.',
-    how:[['Sharpen the brief','The brief coach, before any work starts.'],['Make the options','Video, brand, animated, static.'],['Review at actual size','Legibility checked at true size, not a big preview.'],
-      {full:true, head:'Your call', title:'You approve the set', sub:'Resized to the full IAB family, re-laid out per shape.', check:'<b>Nothing ships</b> until you say yes.'}],
-    uses:{Skills:['/dray','/fox-html-ads','/banner-machine','/grumpyfox-chart-resizer'],Tools:['Seedream','Playwright + ffmpeg'],Data:['brand kit']} },
-  { key:'reach', name:'Outreach engine', icon:'reach', ben:'Lists and messages off real signal, across email and LinkedIn. You approve.',
-    it:'AI for sales and outreach across email and LinkedIn. Jo builds the lists and writes the messages off real signal. You approve.',
-    how:[['Build the list','The right companies and people, off real signal.'],['Write the messages','Personalised, on signal, not templated.'],
-      {full:true, head:'Your call', title:'You approve every message', sub:'You read them before anything goes out.', check:'<b>Nothing sends or spends</b> without your yes.'},
-      ['Run and read','Live, then the numbers come back.']],
-    uses:{Skills:['/clay-intel-light','/growth-manager','/campaign-manager'],Tools:['HeyReach','Smartlead','Clay'],Memory:['learnings.md']} },
-  { key:'res', name:'Research interviewer', icon:'res', ben:'Message testing, intelligence, and interviews by phone.',
-    it:'Message testing, intelligence and interviews by phone. We go find what you need to know, structured and flagged.',
-    how:[['Pick the question','What you actually need to know.'],['Run the method','Interviews, company intel, reviews, pricing.'],['Synthesise','What is new, structured and flagged.']],
-    uses:{Skills:['AI research interviewer','/clay-intel','review intelligence','pricing intelligence']} }
+  { key:'ad-resizer', name:'AI Ad Resizer', icon:'resize', cat:'advertising', img:'assets/dayone/dayone-1080x1080.gif', badge:'New', ben:'One ad in, every size out.' },
+  { key:'ad-maker', name:'Ad Maker', icon:'ad', cat:'advertising', ben:'Brief to finished ads, quality first.' },
+  { key:'copywriter', name:'AI Copywriter', icon:'write', cat:'advertising', ben:"Your brand's voice, trained to write." },
+  { key:'scorecard', name:'The Brand Scorecard', icon:'score', cat:'strategy', ben:'One page everyone watches.' },
+  { key:'segmentation', name:'Segmentation AI', icon:'seg', cat:'strategy', ben:'Segments, with the maths actually run.' },
+  { key:'positioning', name:'Competitor Positioning Map', icon:'map', cat:'strategy', ben:'Find the white space.' },
+  { key:'dba', name:'Distinctive Brand Assets Audit', icon:'matrix', cat:'strategy', ben:'What makes you recognisable, scored.' },
+  { key:'guardian', name:'Brand Guardian', icon:'shield', cat:'strategy', ben:'Nothing ships off-brand.' },
+  { key:'interviewer', name:'The AI Research Interviewer', icon:'phone', cat:'research', ben:'Hundreds of phone interviews a week.' },
+  { key:'company-intel', name:'Company Intelligence', icon:'doc', cat:'research', ben:'The dossier before you walk in.' },
+  { key:'review-intel', name:'Review Intelligence', icon:'star', cat:'research', ben:'What every review is really saying.' },
+  { key:'pricing', name:'Pricing Monitor', icon:'tag', cat:'research', ben:'Know the day a competitor moves.' },
+  { key:'outreach', name:'The Outreach Engine', icon:'reach', cat:'outreach', ben:'A business-development desk that runs itself.' },
+  { key:'page-audit', name:'Page Conversion Audit', icon:'funnel', cat:'outreach', ben:"Why the page isn't converting." },
+  { key:'campaign-manager', name:'Campaign Manager', icon:'cm', cat:'bundle', tag:'Everything, run for you', ben:'The whole operation, run as one.' }
 ];
-const BUNDLE = { key:'cm', name:'The full campaign manager', icon:'cm', ben:'The whole operation: every module above, run as one named campaign tied to its goals and a scorecard. Jo runs it, you approve on your board.',
-  it:'The operation that runs every module above as one. A campaign has a name, its channels, and its goals, all tied to a scorecard. Jo runs it, you approve on your board.',
-  how:[['Plan the campaign','Goal, evidence, the plan that drives every module.'],['Run the modules','Ads, outreach, social, newsletter, all under one campaign.'],
-    {full:true, head:'Your call', title:'You approve on the board', sub:'You watch and sign off. You never type into the page.', check:'<b>Nothing runs</b> until you approve the plan.'},
-    ['Read it back','Every campaign traces to the strategy and the scorecard.']],
-  uses:{Skills:['/campaign-manager','/jo','every module above'],Tools:['the board','calendar'],Data:['calendar-data.json'],Memory:['learnings.md']} };
 
-// each card is a LINK to that module's own page (homepage stays intact).
-// only module-ad-maker.html is built so far; others point to it as the template.
-const PAGES = { ad:'module-ad-maker.html' };
-const pageFor = k => PAGES[k] || 'module-ad-maker.html';
+// filter categories (the small blue button bar). 'bundle' has no button - Campaign Manager shows under All.
+const CATS = [['all','All'],['strategy','Strategy'],['advertising','Advertising'],['research','Research'],['outreach','Outreach']];
+
+// each card LINKS to that product's own page. only two pages exist so far; the rest are to build.
+const PAGES = { 'ad-resizer':'module-ad-maker.html', 'guardian':'module-brand-guardian.html' };
+const pageFor = k => PAGES[k] || '#';
 
 const grid = document.getElementById('grid');
 MODS.forEach(m=>{
-  const card = el(`<a class="card" href="${pageFor(m.key)}" data-k="${m.key}">
+  const href = pageFor(m.key);
+  const live = href !== '#';
+  const card = el(`<a class="card${live?'':' soon'}" href="${href}" data-k="${m.key}" data-cat="${m.cat}">
     <div class="card-vis${m.img?' has-img':''}">${m.badge?`<span class="card-badge">${m.badge}</span>`:''}${m.img?`<img src="${m.img}" alt="${m.name}">`:VIS[m.icon]}</div>
     <div class="card-bd">
+      ${m.tag?`<span class="tagb">${m.tag}</span>`:''}
       <div class="card-nm"><span class="ci">${IC[m.icon]}</span><h3>${m.name}</h3></div>
       <div class="card-ben">${m.ben}</div>
-      <div class="card-cta">See the ${m.name.toLowerCase().replace('the ','')} <span class="arr">→</span></div>
+      <div class="card-cta">${live?'See how it works':'Page coming'} <span class="arr">→</span></div>
     </div></a>`);
   grid.appendChild(card);
 });
-const bcard = el(`<a class="card bundle" href="${pageFor(BUNDLE.key)}" data-k="${BUNDLE.key}">
-  <div class="card-vis">${VIS.cm}</div>
-  <div class="card-bd">
-    <span class="tagb">The bundle</span>
-    <div class="card-nm"><span class="ci">${IC.cm}</span><h3>${BUNDLE.name}</h3></div>
-    <div class="card-ben">${BUNDLE.ben}</div>
-    <div class="card-cta">See the campaign manager <span class="arr">→</span></div>
-  </div></a>`);
-grid.appendChild(bcard);
+
+// filter bar - click a category to narrow the grid; All shows everything (incl. the bundle).
+const fbar = document.getElementById('fbar');
+CATS.forEach(([k,label],i)=>{
+  const b = el(`<button class="fbtn${i===0?' active':''}" data-cat="${k}">${label}</button>`);
+  b.addEventListener('click',()=>applyFilter(k));
+  fbar.appendChild(b);
+});
+function applyFilter(cat){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('active', b.dataset.cat===cat));
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display = (cat==='all' || c.dataset.cat===cat) ? '' : 'none';
+  });
+}
 </script>
 </body>
 </html>
