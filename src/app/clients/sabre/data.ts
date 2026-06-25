@@ -12,7 +12,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-21",
+  lastUpdated: "2026-06-25",
   // worked one-pager + brief examples added to the brief zone for Darren to validate
   targetDate: "2026-07-06",
   hideProgress: true,
@@ -36,7 +36,7 @@ export const deliverables: Deliverable[] = [
   { name: "Web copy writer", detail: "AI writer for website and landing page copy", status: "todo", note: "" },
   { name: "Paid social writer", detail: "AI writer for paid social copy (LinkedIn, Meta)", status: "todo", note: "" },
   { name: "Organic social writer", detail: "AI writer for organic social posts", status: "todo", note: "" },
-  { name: "Brief coach", detail: "AI that takes a rough brief and makes it good, inside Sabre's Claude", status: "in-progress", date: "2026-06-20", target: "2026-07-06", note: "Shaping has started with Darren. Build starts the first week of July." },
+  { name: "Brief coach", detail: "AI that takes a rough brief and makes it good, inside Sabre's Claude", status: "in-progress", date: "2026-06-25", target: "2026-07-06", note: "First version built and in testing. Shaped with Darren around how the team works. Comes to you to try shortly." },
   { name: "Marketing calendar", detail: "Shared, always-current event calendar as a live artefact", status: "in-progress", date: "2026-06-21", note: "Concept to react to. Live preview in the work area.", isNew: true },
 ];
 
@@ -160,8 +160,8 @@ export const work: WorkSection[] = [
     desc: "The PLATFORM route across the full IAB range. The same process with swapped copy, photo and motif.",
     groups: adGroups("platform") },
 
-  { title: "Brief coach", kind: "files", zone: "work", wideDesc: true, badge: "In design, build starts July",
-    desc: "The next build. A coach, inside Sabre's own Claude, that takes a rough brief and makes it good. It plugs into Darren's flow above, at stations one and two, where briefs are born. It leads with a diagnosis: it holds the brief to what good looks like, shows where it falls short, then helps you close the gaps, whether you arrive with a draft to improve or a blank page to work through. It pins the vague bits, holds every brief to a real commercial outcome, and presses for the things a strong brief needs: one clear goal, real numbers, and an insight that names a moment rather than a job title. The standard it measures against is Sabre's own positioning plus our marketing-effectiveness thinking, baked in so it lifts the quality without asking the writer to already know what good looks like. We have started shaping it with Darren around how the team actually works, and the build starts the first week of July.",
+  { title: "Brief coach", kind: "files", zone: "work", wideDesc: true, isNew: true, badge: "First version built, in testing",
+    desc: "A coach, inside Sabre's own Claude, that takes a rough brief and makes it good. It plugs into Darren's flow above, at stations one and two, where briefs are born. It leads with a diagnosis: it holds the brief to what good looks like, shows where it falls short, then helps you close the gaps, whether you arrive with a draft to improve or a blank page to work through. It pins the vague bits, holds every brief to a real commercial outcome, and presses for the things a strong brief needs: one clear goal, real numbers, and an insight that names a moment rather than a job title. It routes by the kind of brief in front of it, so a flagship campaign gets the full treatment while a production brief simply gets pinned until anyone could build it. The standard it measures against is Sabre's own positioning plus our marketing-effectiveness thinking, baked in so it lifts the quality without asking the writer to already know what good looks like. We have built the first version and shaped it with Darren around how the team actually works. It is in testing now, and comes to you to try once it is ready.",
     files: [] },
 
   { title: "Marketing calendar: a shared artefact", kind: "embed", zone: "work", isNew: true, badge: "Concept to react to",
