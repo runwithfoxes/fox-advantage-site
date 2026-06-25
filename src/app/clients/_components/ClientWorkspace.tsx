@@ -728,10 +728,6 @@ export default function ClientWorkspace({
         <h1 className="cw-title">{meta.headline}</h1>
         <p className="cw-intro">{meta.intro}</p>
 
-        {work.filter((s) => s.pinTop).map((s) => (
-          <WorkBlock key={s.title} s={s} base={base} />
-        ))}
-
         {zoned && (
           <nav className="cw-jump">
             {presentZones.map((z) => (
@@ -741,6 +737,10 @@ export default function ClientWorkspace({
             ))}
           </nav>
         )}
+
+        {work.filter((s) => s.pinTop).map((s) => (
+          <WorkBlock key={s.title} s={s} base={base} />
+        ))}
 
         {zoned && (
           <ZoneHead zone="deliverables" intro={meta.zoneIntros?.deliverables} num={zoneNum("deliverables")} />
