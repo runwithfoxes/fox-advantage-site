@@ -105,6 +105,17 @@
     display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .card-vis img{width:100%;height:100%;object-fit:contain;display:block;}
   .card-vis svg{width:100%;height:100%;}
+  /* ad resizer card: a smaller, looping version of the resize demo. Fixed heights so each shape is sized
+     deliberately and the tall format keeps its real proportions without shrinking the rest. */
+  .card-vis.demo{background:#FBFBF9;}
+  .mc{display:flex;gap:8px;width:100%;height:100%;padding:14px;align-items:center;justify-content:center;}
+  .mc-left{display:flex;flex-direction:column;gap:6px;align-items:flex-start;}
+  .mc-row{display:flex;gap:6px;align-items:flex-end;}
+  .ma{opacity:0;transition:opacity .4s ease-out;}
+  .ma.in{opacity:1;}
+  .ma .f{display:block;border:1px solid #D6D4CD;background:#F5F4F0;overflow:hidden;box-shadow:0 1px 3px rgba(29,27,27,.13),0 3px 9px rgba(29,27,27,.07);}
+  .ma .f img{width:100%;height:100%;object-fit:cover;display:block;}
+  @media (prefers-reduced-motion: reduce){ .ma{opacity:1;transition:none;} }
   /* offer/status badges - stack top-right, a card can carry more than one */
   .card-badges{position:absolute;top:8px;right:8px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
   .card-badge{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 7px;color:#FAFAF8;}
@@ -281,22 +292,22 @@
 
   /* the real lineup (source of truth: docs/product-lineup-candidates-2026-06-25.md) */
   var MODS=[
-    {key:'ad-resizer',name:'Ad resizer',icon:'resize',cat:'advertising',img:'assets/dayone/dayone-1080x1080.gif',badges:['New'],ben:'One ad in, every size out.'},
-    {key:'ad-maker',name:'Ad maker',icon:'ad',cat:'advertising',badges:['Bundled'],ben:'Brief to finished ads, quality first.'},
+    {key:'ad-resizer',name:'Ad Resizer',icon:'resize',cat:'advertising',img:'assets/dayone/dayone-1080x1080.gif',badges:['New'],ben:'One ad in, every size out.'},
+    {key:'ad-maker',name:'Ad Maker',icon:'ad',cat:'advertising',badges:['Bundled'],ben:'Brief to finished ads, quality first.'},
     {key:'copywriter',name:'Copywriter',icon:'write',cat:'advertising',ben:"Your brand's voice, trained to write."},
-    {key:'linkedin-content',name:'LinkedIn content engine',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Be worth finding when the outreach lands.'},
-    {key:'scorecard',name:'Brand scorecard',icon:'score',cat:'strategy',ben:'One page everyone watches.'},
+    {key:'linkedin-content',name:'LinkedIn Content Engine',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Be worth finding when the outreach lands.'},
+    {key:'scorecard',name:'Brand Scorecard',icon:'score',cat:'strategy',ben:'One page everyone watches.'},
     {key:'segmentation',name:'Segmentation',icon:'seg',cat:'strategy',ben:'Segments, with the maths actually run.'},
-    {key:'positioning',name:'Competitor positioning map',icon:'map',cat:'strategy',ben:'Find the white space.'},
-    {key:'dba',name:'Distinctive brand assets audit',icon:'matrix',cat:'strategy',ben:'What makes you recognisable, scored.'},
-    {key:'guardian',name:'Brand guardian',icon:'shield',cat:'strategy',ben:'Nothing ships off-brand.'},
-    {key:'interviewer',name:'Research interviewer',icon:'phone',cat:'research',ben:'Hundreds of phone interviews a week.'},
-    {key:'company-intel',name:'Company intelligence',icon:'doc',cat:'research',ben:'The dossier before you walk in.'},
-    {key:'review-intel',name:'Review intelligence',icon:'star',cat:'research',ben:'What every review is really saying.'},
-    {key:'pricing',name:'Pricing monitor',icon:'tag',cat:'research',ben:'Know the day a competitor moves.'},
-    {key:'outreach',name:'Outreach agent',icon:'reach',cat:'outreach',badges:['Bundled'],ben:'Finds the right people, writes each one for real.'},
-    {key:'page-audit',name:'Page conversion audit',icon:'funnel',cat:'outreach',badges:['Free'],ben:"Why the page isn't converting."},
-    {key:'campaign-manager',name:'Campaign manager',icon:'cm',cat:'bundle',tag:'Everything, run for you',ben:'The whole operation, run as one.'}
+    {key:'positioning',name:'Competitor Positioning Map',icon:'map',cat:'strategy',ben:'Find the white space.'},
+    {key:'dba',name:'Distinctive Brand Assets Audit',icon:'matrix',cat:'strategy',ben:'What makes you recognisable, scored.'},
+    {key:'guardian',name:'Brand Guardian',icon:'shield',cat:'strategy',ben:'Nothing ships off-brand.'},
+    {key:'interviewer',name:'Research Interviewer',icon:'phone',cat:'research',ben:'Hundreds of phone interviews a week.'},
+    {key:'company-intel',name:'Company Intelligence',icon:'doc',cat:'research',ben:'The dossier before you walk in.'},
+    {key:'review-intel',name:'Review Intelligence',icon:'star',cat:'research',ben:'What every review is really saying.'},
+    {key:'pricing',name:'Pricing Monitor',icon:'tag',cat:'research',ben:'Know the day a competitor moves.'},
+    {key:'outreach',name:'Outreach Agent',icon:'reach',cat:'outreach',badges:['Bundled'],ben:'Finds the right people, writes each one for real.'},
+    {key:'page-audit',name:'Page Conversion Audit',icon:'funnel',cat:'outreach',badges:['Free'],ben:"Why the page isn't converting."},
+    {key:'campaign-manager',name:'Campaign Manager',icon:'cm',cat:'bundle',tag:'Everything, run for you',ben:'The whole operation, run as one.'}
   ];
   var CATS=[['all','All'],['strategy','Strategy'],['advertising','Advertising'],['research','Research'],['outreach','Outreach']];
   var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html'};
@@ -305,12 +316,26 @@
     if(!bs||!bs.length)return '';
     return '<div class="card-badges">'+bs.map(function(b){return '<span class="card-badge '+b.toLowerCase()+'">'+b+'</span>';}).join('')+'</div>';
   }
+  // ad resizer card: the product-page resize demo, smaller and looping (the real IAB set)
+  var DAY='assets/dayone/dayone-';
+  function miniResizer(){
+    function ma(w,h,fh){ return '<div class="ma"><div class="f" style="height:'+fh+'px;aspect-ratio:'+w+'/'+h+'"><img src="'+DAY+w+'x'+h+'.gif" alt=""></div></div>'; }
+    return '<div class="mc">'
+      + '<div class="mc-left">'
+        + ma(970,250,46)
+        + ma(728,90,24)
+        + '<div class="mc-row">'+ma(300,250,72)+ma(320,100,28)+'</div>'
+      + '</div>'
+      + ma(160,600,150)
+      + '</div>';
+  }
   var grid=document.getElementById('grid');
   MODS.forEach(function(m){
     var href=PAGES[m.key]||'#';
     var live=href!=='#';
+    var vis = m.key==='ad-resizer' ? miniResizer() : (m.img?'<img src="'+m.img+'" alt="'+m.name+'">':VIS[m.icon]);
     var card=el('<a class="card'+(live?'':' soon')+'" href="'+href+'" data-cat="'+m.cat+'">'+
-      '<div class="card-vis">'+badgesHTML(m.badges)+(m.img?'<img src="'+m.img+'" alt="'+m.name+'">':VIS[m.icon])+'</div>'+
+      '<div class="card-vis'+(m.key==='ad-resizer'?' demo':'')+'">'+badgesHTML(m.badges)+vis+'</div>'+
       '<div class="card-bd">'+(m.tag?'<span class="tagb">'+m.tag+'</span>':'')+
         '<div class="card-nm"><span class="ci">'+IC[m.icon]+'</span><h3>'+m.name+'</h3></div>'+
         '<div class="card-ben">'+m.ben+'</div>'+
@@ -318,6 +343,14 @@
       '</div></a>');
     grid.appendChild(card);
   });
+  // loop the mini resize cascade so the card shows the set being recreated, scaled to fit the card
+  (function loopResizer(){
+    var mc=grid.querySelector('.mc'); if(!mc) return;
+    var mas=mc.querySelectorAll('.ma');
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){ mas.forEach(function(a){a.classList.add('in');}); return; }
+    function cycle(){ mas.forEach(function(a){a.classList.remove('in');}); mas.forEach(function(a,i){ setTimeout(function(){a.classList.add('in');},150+i*80); }); }
+    cycle(); setInterval(cycle,3800);
+  })();
 
   var fbar=document.getElementById('fbar');
   CATS.forEach(function(c,i){

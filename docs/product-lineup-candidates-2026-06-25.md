@@ -8,29 +8,29 @@
 
 ## Naming rule (LOCKED 27 Jun, Paul)
 
-**Drop "AI" from every product name** (everything is AI, so it reads odd on some and not others) and use **sentence case** (first word capitalised only: "Ad resizer", "Brand guardian"). Also **drop the leading "The"** on card labels so every card reads the same way. Any parenthetical (Brand Voice / Isa / BDR) stays out of the card label and lives in the description only. Mid-sentence shorthand on a product page is lowercase ("point the guardian at any asset"). Applied across the storefront wireframes (`homepage-storefront-branded.html`, `homepage-blueprint-storefront.html`) and the two product pages (`module-ad-maker.html`, `module-brand-guardian.html`). The names in the `MODS` array feed both the cards AND the nav dropdown, so edit the array, never the rendered HTML.
+**Drop "AI" from every product name** (everything is AI, so it reads odd on some and not others) and use **Title Case** (every significant word capitalised: "Ad Resizer", "Brand Guardian", "Competitor Positioning Map") - they read as *named products*, not sentence fragments. (Superseded the earlier sentence-case decision, 27 Jun, Paul.) Also **drop the leading "The"** on card labels so every card reads the same way. Any parenthetical (Brand Voice / Isa / BDR) stays out of the card label and lives in the description only. Mid-sentence shorthand on a product page is lowercase ("point the guardian at any asset"). Applied across the storefront wireframes (`homepage-storefront-branded.html`, `homepage-blueprint-storefront.html`) and the two product pages (`module-ad-maker.html`, `module-brand-guardian.html`). The names in the `MODS` array feed both the cards AND the nav dropdown, so edit the array, never the rendered HTML.
 
-**27 Jun (cont.), Paul:** "Outreach engine" renamed to **Outreach agent** (#13) - the real differentiator is multichannel + every message 100% customised per prospect, runs in their Claude. Added **LinkedIn content engine** (#15) as a separate product (organic presence; bundles with the Outreach agent because the profile can't be barren when a cold message lands). The "job vs judgment" split from the strategy chat was REJECTED as a site structure (useful analysis, not how the products are organised). The product page must **sell the thinking/marketing baked in, not the mechanics** (the marketer in the machine) - see the `/product-page` skill + `feedback_sell_the_thinking_not_the_mechanics`.
+**27 Jun (cont.), Paul:** "Outreach engine" renamed to **Outreach Agent** (#13) - the real differentiator is multichannel + every message 100% customised per prospect, runs in their Claude. Added **LinkedIn Content Engine** (#15) as a separate product (organic presence; bundles with the Outreach Agent because the profile can't be barren when a cold message lands). The "job vs judgment" split from the strategy chat was REJECTED as a site structure (useful analysis, not how the products are organised). The product page must **sell the thinking/marketing baked in, not the mechanics** (the marketer in the machine) - see the `/product-page` skill + `feedback_sell_the_thinking_not_the_mechanics`.
 
 ## The shortlist (14)
 
 | # | Product | Tagline | The job → output | Proven by |
 |---|---------|---------|------------------|-----------|
-| 1 | **Ad resizer** | One ad in, every size out | One approved ad → the full IAB set, each shape re-laid-out not squashed | `/grumpyfox-chart-resizer` `/sabre-banner-resizer` `/banner-machine` |
-| 2 | **Ad maker** | Brief to finished ads, quality first | A line of data or a headline → static, animated, video and brand ads, on-brand | `/fox-html-ads` `/fox-static` `/fox-brand` `/fox-video` `/dray` |
+| 1 | **Ad Resizer** | One ad in, every size out | One approved ad → the full IAB set, each shape re-laid-out not squashed | `/grumpyfox-chart-resizer` `/sabre-banner-resizer` `/banner-machine` |
+| 2 | **Ad Maker** | Brief to finished ads, quality first | A line of data or a headline → static, animated, video and brand ads, on-brand | `/fox-html-ads` `/fox-static` `/fox-brand` `/fox-video` `/dray` |
 | 3 | **Copywriter** (Brand Voice) | Your brand's voice, trained to write | Brand voice + brief → on-brand copy for any channel (ads, email, social, web, sales, direct mail, PR) | `/eaton-direct-mail` `/linkedin-post` voice skills |
-| 4 | **Brand scorecard** | One page everyone watches | Your metrics → a five-level leadership dashboard with on-track / watch / attention | `/brand-scorecard` `/metrics-audit` |
+| 4 | **Brand Scorecard** | One page everyone watches | Your metrics → a five-level leadership dashboard with on-track / watch / attention | `/brand-scorecard` `/metrics-audit` |
 | 5 | **Segmentation** | Segments, with the maths actually run | Segment data → empirical proof of which segments are genuinely different | `/segmentation-*` (7) |
-| 6 | **Competitor positioning map** | Find the white space | Category + competitors → a plotted map and the ownable space | `/competitor-positioning` |
-| 7 | **Distinctive brand assets audit** | What makes you recognisable, scored | Your assets → a Fame x Uniqueness matrix and what to invest in / protect / drop | `/dba-audit` `/dba-analysis` |
-| 8 | **Brand guardian** | Nothing ships off-brand | Any asset → checked against your guidelines, DBAs, tone and visual rules, with a pass/fail and the fixes | `/brand-guardian` (decks) · `/ad-qa` (ads) - **cross-format version to build** |
-| 9 | **Research interviewer** (Isa) | Hundreds of phone interviews a week | A questionnaire → structured calls at scale with longitudinal memory | `/isa-call` |
-| 10 | **Company intelligence** | The dossier before you walk in | A company name → leadership, team shape, open roles, change signals, news | `/clay-intel` |
-| 11 | **Review intelligence** | What every review is really saying | Trustpilot/Amazon/app store → themes and sentiment across you and rivals | `/insights-setup` `/reddit-research` |
-| 12 | **Pricing monitor** | Know the day a competitor moves | Tracked SKUs → daily competitor price watch with undercut alerts | *(no dedicated skill yet - flag)* |
-| 13 | **Outreach agent** (was "Outreach engine") | It finds the right people and writes each one a real email | Say "find 100 ICP prospects and email/message them" in YOUR Claude → it finds + writes + sends, **every message 100% customised per prospect** (not mail-merge), multichannel (email + LinkedIn), coordinated. Orchestrates Clay + Apify + Smartlead + HeyReach; runs in their Claude, swappable tools (any with an API). | `/jo` `/clay-enrich` `/network` + Clay/Apify/Smartlead/HeyReach |
-| 14 | **Page conversion audit** | Why the page isn't converting | A URL → a 10-section conversion audit with a fix for each gap | `/page-conversion` |
-| 15 | **LinkedIn content engine** | Be worth finding when the outreach lands | Brand's messaging framework + voice → brainstormed ideas → deep-research prompts → organic LinkedIn content in their voice. Separate job from outreach (being *found* vs *reaching out*); **bundles with the Outreach agent** when LinkedIn is the channel (the profile can't be barren when a cold message lands), stands alone for the organic-only buyer. | content/voice skills |
+| 6 | **Competitor Positioning Map** | Find the white space | Category + competitors → a plotted map and the ownable space | `/competitor-positioning` |
+| 7 | **Distinctive Brand Assets Audit** | What makes you recognisable, scored | Your assets → a Fame x Uniqueness matrix and what to invest in / protect / drop | `/dba-audit` `/dba-analysis` |
+| 8 | **Brand Guardian** | Nothing ships off-brand | Any asset → checked against your guidelines, DBAs, tone and visual rules, with a pass/fail and the fixes | `/brand-guardian` (decks) · `/ad-qa` (ads) - **cross-format version to build** |
+| 9 | **Research Interviewer** (Isa) | Hundreds of phone interviews a week | A questionnaire → structured calls at scale with longitudinal memory | `/isa-call` |
+| 10 | **Company Intelligence** | The dossier before you walk in | A company name → leadership, team shape, open roles, change signals, news | `/clay-intel` |
+| 11 | **Review Intelligence** | What every review is really saying | Trustpilot/Amazon/app store → themes and sentiment across you and rivals | `/insights-setup` `/reddit-research` |
+| 12 | **Pricing Monitor** | Know the day a competitor moves | Tracked SKUs → daily competitor price watch with undercut alerts | *(no dedicated skill yet - flag)* |
+| 13 | **Outreach Agent** (was "Outreach engine") | It finds the right people and writes each one a real email | Say "find 100 ICP prospects and email/message them" in YOUR Claude → it finds + writes + sends, **every message 100% customised per prospect** (not mail-merge), multichannel (email + LinkedIn), coordinated. Orchestrates Clay + Apify + Smartlead + HeyReach; runs in their Claude, swappable tools (any with an API). | `/jo` `/clay-enrich` `/network` + Clay/Apify/Smartlead/HeyReach |
+| 14 | **Page Conversion Audit** | Why the page isn't converting | A URL → a 10-section conversion audit with a fix for each gap | `/page-conversion` |
+| 15 | **LinkedIn Content Engine** | Be worth finding when the outreach lands | Brand's messaging framework + voice → brainstormed ideas → deep-research prompts → organic LinkedIn content in their voice. Separate job from outreach (being *found* vs *reaching out*); **bundles with the Outreach Agent** when LinkedIn is the channel (the profile can't be barren when a cold message lands), stands alone for the organic-only buyer. | content/voice skills |
 
 Coverage: advertising (1, 2) · writing (3) · brand strategy (4 - 8) · research/intelligence (9 - 12) · go-to-market (13) · web (14).
 
@@ -46,19 +46,19 @@ These 14 are single products - one job, hand it over, you run it. The **Campaign
 
 ## Decisions locked (25 Jun)
 
-- **AI Writer = one card.** All specialist channel writers - direct mail, landing page, email, blog, social, ad, sales, PR, case study, website - live *inside* the one **AI Copywriter** card. In reality Paul builds them per channel; that gets explained to clients later. (The "what is a product" rule in miniature: fold what shares a job.)
+- **AI Writer = one card.** All specialist channel writers - direct mail, landing page, email, blog, social, ad, sales, PR, case study, website - live *inside* the one **Copywriter** card. In reality Paul builds them per channel; that gets explained to clients later. (The "what is a product" rule in miniature: fold what shares a job.)
 - **Mental Availability Tracker dropped.** Honest measurement needs long-term quant research we can't claim as a buyable product yet. Stays a strategy/research service, not a storefront card. (CEP skills still exist for delivery.)
 - **Brand Guardian in, and the next build.** Paul wants to build a real AI Brand Guardian - see the build note below.
 
 ## Worked one-liners (the four most likely to lead the storefront)
 
-**AI Ad Resizer** - Hand us one approved ad and get the full IAB set back, each shape re-laid-out for its placement rather than squashed to fit. Built around your brand, handed over to run yourselves.
+**Ad Resizer** - Hand us one approved ad and get the full IAB set back, each shape re-laid-out for its placement rather than squashed to fit. Built around your brand, handed over to run yourselves.
 
-**AI Copywriter** - A writer that knows how your brand sounds and what it never says, ready for ads, email, social, web and sales copy. Not a generic AI you re-brief every session.
+**Copywriter** - A writer that knows how your brand sounds and what it never says, ready for ads, email, social, web and sales copy. Not a generic AI you re-brief every session.
 
 **Brand Guardian** - Point it at any asset - a deck, an ad, a page, a line of copy - and it checks it against your guidelines, distinctive assets, tone and visual rules, then tells you what's off and how to fix it before it ships.
 
-**The AI Research Interviewer** - An AI researcher that calls real customers, runs a structured interview, and remembers past conversations - longitudinal insight no human panel reaches at that scale.
+**Research Interviewer** - An AI researcher that calls real customers, runs a structured interview, and remembers past conversations - longitudinal insight no human panel reaches at that scale.
 
 ## Brand Guardian - build note
 

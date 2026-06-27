@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brand guardian · a Run with Foxes product</title>
+<title>Brand Guardian · a Run with Foxes product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -33,14 +33,11 @@
   .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
   .head .desc{ font-size:14px; line-height:1.7; color:var(--text); max-width:none; margin-top:18px; }
   .head .desc b{ font-weight:400; color:var(--muted); }
-  /* the selling block (sell the thinking, not the mechanics) */
-  .sell{ margin-top:22px; }
-  .sell-lead{ font-size:clamp(17px,2vw,21px); line-height:1.55; color:var(--text); font-weight:300; }
-  .sell-lead b{ font-weight:400; color:var(--sky-blue); }
-  .sell-body{ font-size:14px; line-height:1.85; color:var(--muted); margin-top:16px; max-width:none; }
-  .sell-body b{ color:var(--text); font-weight:400; }
-  .sell-rail{ font-size:13px; line-height:1.6; color:var(--text); margin-top:16px; }
-  .sell-rail b{ font-weight:400; color:var(--sky-blue); }
+  /* the selling block (sell the thinking, not the mechanics) - one font size throughout, matched to the bio */
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
 
   .tabbar{ display:flex; border:1px solid var(--border); }
   .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
@@ -172,15 +169,15 @@
 </head>
 <body>
   <div class="nav">
-    <a class="logo" href="homepage-blueprint-storefront.html">/<span>Run</span>withfoxes</a><span class="sp"></span>
-    <a class="back" href="homepage-blueprint-storefront.html">← all products</a>
+    <a class="logo" href="homepage-storefront-branded.html">/<span>Run</span>withfoxes</a><span class="sp"></span>
+    <a class="back" href="homepage-storefront-branded.html">← all products</a>
   </div>
 
   <!-- HEADER -->
   <div class="wrap dot">
     <div class="head">
       <div class="eyebrow">Product</div>
-      <h1>Brand guardian</h1>
+      <h1>Brand Guardian</h1>
       <div class="sell">
         <p class="sell-lead">Generic tools check spelling and a house style. This checks <b>your</b> brand.</p>
         <p class="sell-body">Point it at anything you are about to publish, a deck, an ad, a page, a line of copy, and it runs the full audit against your real standards: your guidelines, your distinctive assets, your tone, your never-list. <b>Where there is a rule it measures</b>, to the pixel and the hex, contrast, headline width, clear-space. <b>Where there is judgement it judges</b>, against your brand profile, not a generic one. You get one verdict, every flag located, and the fix beside it. The bar it holds is the one a brand guardian who knew your brand would hold, built in, so nothing goes out off brand.</p>
@@ -265,20 +262,20 @@
   <!-- FOOTER -->
   <div class="wrap">
     <div class="foot">
-      <h2>Want the Brand guardian built for you?</h2>
+      <h2>Want the Brand Guardian built for you?</h2>
       <p>We build it around your brand and hand it over. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
-        <a class="btn-quiet" href="homepage-blueprint-storefront.html">See the other products</a>
+        <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
       </div>
     </div>
   </div>
 
-  <!-- Isa, scoped to the Brand guardian -->
+  <!-- Isa, scoped to the Brand Guardian -->
   <div class="isaw" id="isaw">
-    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Brand guardian</div></div><button class="x" id="isaX">✕</button></div>
+    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Brand Guardian</div></div><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Brand guardian: point it at any asset and it tells you what is off brand before it ships. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Brand Guardian: point it at any asset and it tells you what is off brand before it ships. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
     </div>
     <div class="isa-note">Isa books your call on cal.com and sends Paul a note on what you want.</div>
     <div class="isa-in"><textarea id="isaText" placeholder="Tell Isa about your brand..."></textarea><button id="isaSend">Send</button></div>

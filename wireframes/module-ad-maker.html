@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ad resizer · a Run with Foxes product</title>
+<title>Ad Resizer · a Run with Foxes product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -34,14 +34,11 @@
   .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
   .head .desc{ font-size:14px; line-height:1.7; color:var(--text); max-width:none; margin-top:18px; }
   .head .desc b{ font-weight:400; color:var(--muted); }
-  /* the selling block (sell the thinking, not the mechanics) */
-  .sell{ margin-top:22px; }
-  .sell-lead{ font-size:clamp(17px,2vw,21px); line-height:1.55; color:var(--text); font-weight:300; }
-  .sell-lead b{ font-weight:400; color:var(--sky-blue); }
-  .sell-body{ font-size:14px; line-height:1.85; color:var(--muted); margin-top:16px; max-width:none; }
-  .sell-body b{ color:var(--text); font-weight:400; }
-  .sell-rail{ font-size:13px; line-height:1.6; color:var(--text); margin-top:16px; }
-  .sell-rail b{ font-weight:400; color:var(--sky-blue); }
+  /* the selling block (sell the thinking, not the mechanics) - one font size throughout, matched to the bio */
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
 
   /* THE THREE MAIN BUTTONS (boxed, blue fill - like capabilities-sequence) */
   .tabbar{ display:flex; border:1px solid var(--border); }
@@ -110,42 +107,20 @@
   .rz-out{ flex:1; min-width:0; min-height:300px; }
   .rz-out-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
   /* cluster: left column of justified rows + a tall skyscraper rail on the right */
-  .cluster{ display:flex; gap:12px; align-items:stretch; }
-  .cluster-left{ flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; }
-  .out-row{ display:flex; gap:10px; align-items:flex-start; }
-  .col2{ display:flex; flex-direction:column; gap:10px; min-width:0; }
-  .ad{ flex-grow:1; flex-basis:0; min-width:0; display:flex; flex-direction:column; gap:5px;
-       opacity:0; transform:translateY(8px) scale(.96); transition:opacity .34s ease-out, transform .34s ease-out; }
+  .cluster{ display:flex; gap:14px; align-items:stretch; }
+  .cluster-left{ flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+  .out-row{ display:flex; gap:12px; align-items:flex-start; }
+  .col2{ display:flex; flex-direction:column; gap:12px; min-width:0; }
+  .ad{ flex-grow:1; flex-basis:0; min-width:0; display:flex; flex-direction:column; gap:6px; opacity:0; transform:translateY(12px); transition:opacity .45s ease-out, transform .45s ease-out; }
   .col2 .ad{ flex:0 0 auto; }
   .ad.in{ opacity:1; transform:none; }
   .ad.hero{ opacity:1; transform:none; }
   .ad .dim{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; color:var(--muted); }
-  .ad .frame{ width:100%; aspect-ratio:var(--ar); border:1px solid var(--border); background:#EDEAE1; overflow:hidden; box-shadow:var(--shadow); }
-  .sky{ flex:0 0 96px; align-self:stretch; }
+  .ad .frame{ width:100%; aspect-ratio:var(--ar); border:1px solid var(--border); background:#F5F4F0; overflow:hidden; box-shadow:var(--shadow); }
+  .ad .frame img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .sky{ flex:0 0 120px; align-self:stretch; }
   .sky .frame{ flex:1; aspect-ratio:auto; }
-  @media (prefers-reduced-motion: reduce){ .ad{ opacity:1; transform:none; transition:none; } .arc{ transition:none; } }
-
-  /* coded IAB banner (a smaller, animated version of the real chart set) */
-  .bn{ position:relative; width:100%; height:100%; background:#EDEAE1; display:flex; overflow:hidden; }
-  .bn::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d3d0c8 .8px,transparent .8px); background-size:13px 13px; opacity:.55; }
-  .bn.wide{ flex-direction:row; align-items:center; justify-content:center; gap:7%; padding:0 7%; }
-  .bn.box{ flex-direction:column; align-items:center; justify-content:center; gap:8%; padding:9% 6%; }
-  .bn.wm{ align-items:center; justify-content:center; }
-  .ring-wrap{ position:relative; aspect-ratio:1; flex:none; }
-  .bn.wide .ring-wrap{ height:66%; }
-  .bn.box .ring-wrap{ height:46%; }
-  .sky .ring-wrap{ height:auto; width:62%; }
-  .ring{ width:100%; height:100%; display:block; }
-  .ring .rnum{ fill:var(--fox-orange); font-family:'Space Grotesk',sans-serif; font-size:25px; font-weight:400; }
-  .arc{ stroke-dasharray:264; stroke-dashoffset:264; transition:stroke-dashoffset .55s ease-out; }
-  .ad.in .arc{ stroke-dashoffset:21; }
-  .ad.hero .arc{ stroke-dashoffset:21; }
-  .blab{ position:relative; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
-  .bn.box .blab{ font-size:7.5px; letter-spacing:1.5px; }
-  .bwm{ position:absolute; right:6%; bottom:7%; font-family:'JetBrains Mono',monospace; font-size:7px; letter-spacing:.2px; color:var(--muted); }
-  .bwm b{ color:var(--fox-orange); font-weight:500; }
-  .bn.wm .wmbig{ position:relative; font-family:'JetBrains Mono',monospace; font-size:clamp(11px,1.4vw,15px); color:var(--text); letter-spacing:.2px; }
-  .bn.wm .wmbig b{ font-weight:600; }
+  @media (prefers-reduced-motion: reduce){ .ad{ opacity:1; transform:none; transition:none; } }
 
   /* footer + secondary actions (small, NOT the main buttons) */
   .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
@@ -180,15 +155,15 @@
 </head>
 <body>
   <div class="nav">
-    <a class="logo" href="homepage-blueprint-storefront.html">/<span>Run</span>withfoxes</a><span class="sp"></span>
-    <a class="back" href="homepage-blueprint-storefront.html">← all products</a>
+    <a class="logo" href="homepage-storefront-branded.html">/<span>Run</span>withfoxes</a><span class="sp"></span>
+    <a class="back" href="homepage-storefront-branded.html">← all products</a>
   </div>
 
   <!-- HEADER -->
   <div class="wrap dot">
     <div class="head">
       <div class="eyebrow">Product</div>
-      <h1>Ad resizer</h1>
+      <h1>Ad Resizer</h1>
       <div class="sell">
         <p class="sell-lead">Most resizers stretch or crop. This one makes the call a designer would: <b>what the message becomes when the space changes.</b></p>
         <p class="sell-body">The full chart where a ring fits, the single number where it doesn't, a shorter headline when the long line won't hold. <b>Pixel-perfect, on your brand, across every IAB size</b>, not squashed to fit. The judgement about what to keep and what to cut at each size is twenty years of making ads that work, built into the thing, so a 300x250 reads as deliberately as the billboard. You approve one ad; you get the whole set back, each shape laid out for where it runs.</p>
@@ -209,13 +184,30 @@
       <div class="resizer">
         <div class="rz-source">
           <div class="rz-eyebrow">Your approved ad</div>
-          <div class="ad hero" style="max-width:280px"><span class="dim">1080 × 1080</span><div class="frame" style="aspect-ratio:1/1" id="srcFrame"></div></div>
+          <div class="ad hero"><span class="dim">1080 × 1080</span><div class="frame" style="width:320px;height:320px"><img src="assets/dayone/dayone-1080x1080.gif" alt="approved ad"></div></div>
           <div class="rz-prompt"><span class="rz-caret">›</span><span class="rz-cmd">resize these for all IAB versions</span><button class="rz-run" id="rzRun">Run ▶</button></div>
         </div>
         <div class="rz-arrow">→</div>
         <div class="rz-out">
           <div class="rz-out-lbl">The full IAB set</div>
-          <div class="cluster" id="outGrid"></div>
+          <div class="cluster" id="outGrid">
+            <div class="cluster-left">
+              <div class="out-row">
+                <div class="ad" style="flex-grow:3.88;--ar:970/250"><span class="dim">970 × 250</span><div class="frame"><img src="assets/dayone/dayone-970x250.gif" alt=""></div></div>
+              </div>
+              <div class="out-row">
+                <div class="ad" style="flex-grow:1.58;--ar:640/480"><span class="dim">640 × 480</span><div class="frame"><img src="assets/dayone/dayone-640x480.gif" alt=""></div></div>
+                <div class="col2" style="flex:1 1 0">
+                  <div class="ad" style="--ar:300/250"><span class="dim">300 × 250</span><div class="frame"><img src="assets/dayone/dayone-300x250.gif" alt=""></div></div>
+                  <div class="ad" style="--ar:320/100"><span class="dim">320 × 100</span><div class="frame"><img src="assets/dayone/dayone-320x100.gif" alt=""></div></div>
+                </div>
+              </div>
+              <div class="out-row">
+                <div class="ad" style="flex-grow:8.09;--ar:728/90"><span class="dim">728 × 90</span><div class="frame"><img src="assets/dayone/dayone-728x90.gif" alt=""></div></div>
+              </div>
+            </div>
+            <div class="ad sky"><span class="dim">160 × 600</span><div class="frame"><img src="assets/dayone/dayone-160x600.gif" alt=""></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -226,20 +218,20 @@
   <!-- FOOTER -->
   <div class="wrap">
     <div class="foot">
-      <h2>Want the Ad resizer built for you?</h2>
+      <h2>Want the Ad Resizer built for you?</h2>
       <p>We build it around your brand and hand it over. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
-        <a class="btn-quiet" href="homepage-blueprint-storefront.html">See the other products</a>
+        <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
       </div>
     </div>
   </div>
 
   <!-- Isa, scoped to the ad maker -->
   <div class="isaw" id="isaw">
-    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Ad resizer</div></div><button class="x" id="isaX">✕</button></div>
+    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Ad Resizer</div></div><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Ad resizer: approve one ad, get the full set of sizes, on brand. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Ad Resizer: approve one ad, get the full set of sizes, on brand. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
     </div>
     <div class="isa-note">Isa books your call on cal.com and sends Paul a note on what you want.</div>
     <div class="isa-in"><textarea id="isaText" placeholder="Tell Isa about your brand and ads..."></textarea><button id="isaSend">Send</button></div>
@@ -333,52 +325,16 @@ function renderInto(container, tab){
 // render the two flow/chip panels (Experience is the static resize demo)
 ['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
 
-// ===== Experience: a smaller, animated version of the real IAB set =====
-// Each banner is rebuilt as DOM so the whole set can RECREATE quickly on Run.
-function ringSVG(){
-  return '<div class="ring-wrap"><svg class="ring" viewBox="0 0 100 100">'
-    + '<circle cx="50" cy="50" r="42" fill="none" stroke="#E2DFD7" stroke-width="8"/>'
-    + '<circle class="arc" cx="50" cy="50" r="42" fill="none" stroke="#3A7CA5" stroke-width="8" stroke-linecap="butt" transform="rotate(-90 50 50)"/>'
-    + '<text x="50" y="59" text-anchor="middle" class="rnum">92%</text></svg></div>';
-}
-function bn(kind){
-  if(kind==='wm') return '<div class="bn wm"><span class="wmbig"><b>run</b>withfoxes.com</span></div>';
-  return '<div class="bn '+kind+'">'+ringSVG()+'<span class="blab">Buy from the list</span><span class="bwm">/<b>Run</b>withfoxes</span></div>';
-}
-function adEl(w,h,kind,grow){
-  const style = (grow!=null? 'flex-grow:'+grow+';':'') + '--ar:'+w+'/'+h;
-  return el('<div class="ad" style="'+style+'"><span class="dim">'+w+' × '+h+'</span><div class="frame">'+bn(kind)+'</div></div>');
-}
-// source ad (always visible) - the one approved master
-document.getElementById('srcFrame').innerHTML = bn('box');
-// the output cluster, arranged like the real set (wide top, box + stack, strip, tall rail)
+// Experience: the resize demo - the IAB set flows out of the approved ad
 const outGrid = document.getElementById('outGrid');
-(function buildOut(){
-  const left = el('<div class="cluster-left"></div>');
-  const r1 = el('<div class="out-row"></div>'); r1.appendChild(adEl(970,250,'wide',3.88)); left.appendChild(r1);
-  const r2 = el('<div class="out-row"></div>');
-  r2.appendChild(adEl(640,480,'box',1.58));
-  const c2 = el('<div class="col2" style="flex:1 1 0"></div>'); c2.appendChild(adEl(300,250,'box')); c2.appendChild(adEl(320,100,'wm')); r2.appendChild(c2);
-  left.appendChild(r2);
-  const r3 = el('<div class="out-row"></div>'); r3.appendChild(adEl(728,90,'wm',8.09)); left.appendChild(r3);
-  outGrid.appendChild(left);
-  const sky = adEl(160,600,'box'); sky.classList.add('sky'); outGrid.appendChild(sky);
-})();
-
-// recreate fast: cascade the banners in, rings draw to 92%
-let resizing=false;
 function runResize(){
-  if(resizing) return; resizing=true;
   const ads = outGrid.querySelectorAll('.ad');
   ads.forEach(a=>a.classList.remove('in'));
   void outGrid.offsetWidth;
-  ads.forEach((a,i)=> setTimeout(()=> a.classList.add('in'), 80 + i*75));
-  setTimeout(()=>{ resizing=false; }, 80 + ads.length*75 + 500);
+  ads.forEach((a,i)=> setTimeout(()=> a.classList.add('in'), 140 + i*150));
 }
 const rzRun = document.getElementById('rzRun');
 if(rzRun) rzRun.addEventListener('click', runResize);
-// auto-play once on load (Experience is the default tab)
-setTimeout(runResize, 600);
 
 // elegant staggered reveal of a flow when its tab is opened
 const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -395,7 +351,6 @@ document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
   if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
-  if(t.dataset.p==='exp') runResize();
 }));
 
 // Isa: opens itself after 4s and offers a chat with Paul about this product

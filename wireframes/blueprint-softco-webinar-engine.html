@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint · SoftCo webinar engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+  --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+  --sky-soft:rgba(58,124,165,0.10);
+  --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06);
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'JetBrains Mono',monospace;
+  background-image:radial-gradient(var(--border) 1px, transparent 1px);
+  background-size:22px 22px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:640px; margin:0 auto; padding:56px 24px 90px; }
+.kicker{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+/* what it is */
+.bp-head{ font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600; letter-spacing:-.5px; margin-bottom:7px; }
+.bp-sub{ font-size:12px; color:var(--muted); line-height:1.7; margin-bottom:30px; max-width:60ch; }
+
+/* the spine */
+.flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+.connector{ width:1px; height:20px; background:var(--border); }
+.marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted);
+  border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+
+/* slim node */
+.node{ position:relative; width:100%; max-width:420px; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow);
+  display:flex; align-items:flex-start; gap:10px; padding:9px 14px; transition:transform .2s ease-out; }
+.node:hover{ transform:translateY(-1px); }
+.badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--card-hover); color:var(--muted);
+  font-family:'JetBrains Mono',monospace; font-size:10px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.node-title{ font-size:12px; line-height:1.4; }
+.node-sub{ font-size:11px; line-height:1.55; color:var(--muted); margin-top:3px; }
+.tool{ color:var(--sky-blue); }
+
+/* full node */
+.node.full{ display:block; padding:0; max-width:440px; }
+.node.full .nh{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+.node.full .nh .badge{ background:var(--deep-sky); color:var(--cream); }
+.node.full .nb{ padding:11px 14px; }
+.check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+.check strong{ font-weight:500; color:var(--deep-sky); }
+
+/* branch */
+.bridge{ width:60%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+.bridge-join{ width:60%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+.lanes{ display:flex; width:100%; max-width:460px; gap:14px; }
+.lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+.v{ width:1px; background:var(--border); height:12px; }
+.v.fill{ flex:1; min-height:12px; }
+.pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+.pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+.pill.hold{ color:var(--deep-sky); border-color:var(--deep-sky); }
+.lane-card{ width:100%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:11px 13px; font-size:11px; line-height:1.55; color:var(--muted); }
+.lane-card strong{ color:var(--text); font-weight:500; display:block; margin-bottom:4px; }
+
+/* note */
+.note{ width:100%; max-width:420px; border:1px solid var(--border); border-left:3px solid var(--fox-orange); border-radius:10px; background:var(--bg); padding:10px 14px; font-size:11px; line-height:1.6; color:var(--text); }
+.note strong{ font-weight:500; }
+
+/* what it uses */
+.hood{ margin:36px auto 0; padding-top:22px; border-top:1px dashed var(--border); max-width:520px; }
+.hood-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:0 0 14px; }
+.hg-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:15px 0 8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:7px; }
+.chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+.chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+.chip.tool{ color:var(--deep-sky); border-color:rgba(26,58,78,.30); }
+
+.foot{ max-width:520px; margin:34px auto 0; font-size:10px; color:var(--muted); line-height:1.6; }
+
+.fade{ opacity:0; transform:translateY(20px); transition:opacity .6s ease-out, transform .6s ease-out; }
+.fade.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .fade{ opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Run with Foxes · Blueprint</div>
+
+  <!-- WHAT IT IS -->
+  <div class="bp-head">Webinar engine</div>
+  <div class="bp-sub">Turn one webinar into a month of on-brand content. The recording is raw material,
+    an expert brain dump, and the engine pipes it into clips, articles, emails and more. Fast, on brand,
+    and you stay on the final call.</div>
+
+  <!-- HOW IT WORKS -->
+  <div class="flow">
+    <span class="marker fade">Start</span>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">1</span>
+      <div><div class="node-title">Set the theme, record in a sprint</div>
+        <div class="node-sub">Lock the campaign position first. Batch two or three webinars in a window, then leave the experts alone for three months.</div></div></div>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">2</span>
+      <div><div class="node-title">Bring in the recording</div>
+        <div class="node-sub">Download the recording from Contrast and pull the transcript.</div></div></div>
+    <div class="connector"></div>
+
+    <div class="node full fade">
+      <div class="nh"><span class="badge">3</span> The engine reads it</div>
+      <div class="nb">
+        <div class="node-title">It finds every usable moment</div>
+        <div class="node-sub">Claude reads the whole transcript against your theme and surfaces the clips, quotes, stats and angles worth using.</div>
+        <div class="check"><strong>You pick what lands.</strong> Nothing moves on until you do, and it never invents a quote that was not said.</div>
+      </div>
+    </div>
+    <div class="connector"></div>
+
+    <!-- BRANCH: the raw material splits two ways -->
+    <div class="node fade" style="max-width:420px;"><span class="badge">4</span>
+      <div><div class="node-title">The raw material splits two ways</div>
+        <div class="node-sub">The same hour of talk feeds both the video clips and the written assets.</div></div></div>
+    <div class="connector"></div>
+    <div class="bridge"></div>
+    <div class="lanes fade">
+      <div class="lane">
+        <div class="v"></div><span class="pill keep">Video</span><div class="v"></div>
+        <div class="lane-card"><strong>Clean and brand each clip</strong>
+          Strip the ums and the dead air, tighten, burn captions, drop in the branded frame and the hook above the speaker.
+          <div class="node-sub" style="margin-top:7px;"><span class="tool">whisper</span> transcribes word by word, <span class="tool">ffmpeg</span> finds and cuts the filler and pauses, then the brand machine adds the frame, captions and hook.</div></div>
+        <div class="v fill"></div>
+      </div>
+      <div class="lane">
+        <div class="v"></div><span class="pill hold">Written</span><div class="v"></div>
+        <div class="lane-card"><strong>Spin up the written assets</strong>
+          An article in the speaker's own voice, teaser and thank-you emails, a checklist or lead magnet, sales snippets and social posts.
+          <div class="node-sub" style="margin-top:7px;">All drawn from what the experts actually said, in their words.</div></div>
+        <div class="v fill"></div>
+      </div>
+    </div>
+    <div class="bridge-join"></div>
+    <div class="connector"></div>
+
+    <div class="note fade"><strong>The bit that used to take days.</strong> The clip clean-up was a back and forth
+      with an editor. It is automatic now. Contrast clips a whole segment, the engine does the surgery inside it.</div>
+    <div class="connector"></div>
+
+    <div class="node full fade">
+      <div class="nh"><span class="badge">5</span> Your review</div>
+      <div class="nb">
+        <div class="node-title">You see everything before it goes out</div>
+        <div class="node-sub">Clips and written pieces come back to you in one place, at the size people will actually see them.</div>
+        <div class="check"><strong>Nothing publishes</strong> until you say yes.</div>
+      </div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">6</span>
+      <div><div class="node-title">Schedule and publish</div>
+        <div class="node-sub">Out to organic, and over to sales for their own outreach.</div></div></div>
+    <div class="connector"></div>
+    <span class="marker fade">Done</span>
+  </div>
+
+  <!-- WHAT IT USES -->
+  <div class="hood fade">
+    <div class="hood-lbl">Under the hood</div>
+
+    <div class="hg-lbl">Tools that do the edits</div>
+    <div class="chips">
+      <span class="chip tool">Claude Code</span>
+      <span class="chip tool">mlx-whisper</span>
+      <span class="chip tool">ffmpeg · cut + concat</span>
+      <span class="chip tool">ffmpeg · silencedetect</span>
+      <span class="chip tool">ffmpeg · captions + frame</span>
+    </div>
+
+    <div class="hg-lbl">Skills</div>
+    <div class="chips">
+      <span class="chip skill">/softco-ads</span>
+      <span class="chip skill">/branded-page</span>
+    </div>
+
+    <div class="hg-lbl">Data and source</div>
+    <div class="chips">
+      <span class="chip">campaign theme + position</span>
+      <span class="chip">SoftCo brand kit</span>
+      <span class="chip">webinar recording (Contrast)</span>
+    </div>
+  </div>
+
+  <div class="foot">This is the new workflow, not the current one. It removes the multi-day editor round trip
+    and widens the output from a handful of clips to a full set of formats off one recording.</div>
+
+</div>
+
+<script>
+const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12});
+document.querySelectorAll('.fade').forEach(el=> io.observe(el));
+</script>
+</body>
+</html>
