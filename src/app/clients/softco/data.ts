@@ -38,7 +38,7 @@ export const deliverables: Deliverable[] = [
   { name: "Testimonial carousel", detail: "5-slide, square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-linkedin-carousel-customer-stories" },
   { name: "Webinar promos", detail: "Square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-webinar-promo" },
   { name: "Thumbnails", detail: "1280×720", status: "ready", date: "2026-06-13", anchor: "cw-s-blog-header-thumbnail" },
-  { name: "Video clips", detail: "Webinar repurposing", status: "todo", anchor: "cw-s-webinar-clip-cleanup" },
+  { name: "Video clips", detail: "Webinar repurposing", status: "in-progress", anchor: "cw-s-webinar-clip-cleanup" },
   { name: "Product Proof ad", detail: "Square 1080×1080, extra", status: "ready", date: "2026-06-12", anchor: "cw-s-product-proof-ad" },
   { name: "Readability QA gate", detail: "Auto-fails assets on contrast, size, spacing, density", status: "ready", date: "2026-06-25", isNew: true, anchor: "cw-s-readability-qa-gate" },
 ];
@@ -475,8 +475,8 @@ export const work: WorkSection[] = [
       {
         label: "Before and after, three minutes from a webinar",
         items: [
-          { src: "webinar-cleanup-marked.mp4", ratio: "16/9", w: 380, cap: "Raw · every cut marked (red = filler, orange = dead air)" },
-          { src: "webinar-cleanup-cleaned.mp4", ratio: "16/9", w: 380, cap: "Cleaned · 33 cuts removed" },
+          { src: "webinar-cleanup-marked.mp4", ratio: "16/9", w: 380, cap: "Raw · every cut marked (red = filler, orange = dead air)", player: true, download: true },
+          { src: "webinar-cleanup-cleaned.mp4", ratio: "16/9", w: 380, cap: "Cleaned · 33 cuts removed", player: true, download: true },
         ],
       },
     ],

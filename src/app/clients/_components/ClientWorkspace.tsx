@@ -49,6 +49,7 @@ type MediaItem = {
   w?: number;
   cap?: string;
   download?: boolean;
+  player?: boolean;   // video: show controls + sound, don't autoplay (for clips with audio)
 };
 type MediaGroup = { label: string; items: MediaItem[] };
 type PairItem = { key?: string; name: string; src: string; img: string; poster?: string };
@@ -164,12 +165,16 @@ function emailToText(s: WorkSection): string {
 }
 
 /* ---- small pieces ---- */
-function Media({ src, poster, ratio = "1 / 1", base }: { src: string; poster?: string; ratio?: string; base: string }) {
+function Media({ src, poster, ratio = "1 / 1", base, player }: { src: string; poster?: string; ratio?: string; base: string; player?: boolean }) {
   const url = `${base}/${src}`;
   return (
     <div className="cw-tile" style={{ aspectRatio: ratio }}>
       {isVideo(src) ? (
-        <video src={url} poster={poster ? `${base}/${poster}` : undefined} autoPlay loop muted playsInline preload="metadata" />
+        player ? (
+          <video src={url} poster={poster ? `${base}/${poster}` : undefined} controls playsInline preload="metadata" />
+        ) : (
+          <video src={url} poster={poster ? `${base}/${poster}` : undefined} autoPlay loop muted playsInline preload="metadata" />
+        )
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={url} alt={src} />
@@ -493,7 +498,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
           <div className="cw-chart-row">
             {g.items.map((it) => (
               <div className="cw-chart-item" key={it.src} style={{ width: it.w }}>
-                <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} />
+                <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} player={it.player} />
                 {it.cap && <div className="cw-cap">{it.cap}</div>}
                 {it.download && <DownloadLink src={it.src} base={base} />}
               </div>
@@ -504,7 +509,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
 
       {!previewed && s.kind === "media" && s.layout === "single" && s.item && (
         <figure className="cw-figure" style={{ width: s.item.w || 320 }}>
-          <Media src={s.item.src} poster={s.item.poster} ratio={s.item.ratio} base={base} />
+          <Media src={s.item.src} poster={s.item.poster} ratio={s.item.ratio} base={base} player={s.item.player} />
           {s.item.cap && <figcaption>{s.item.cap}</figcaption>}
           {s.item.download && <DownloadLink src={s.item.src} base={base} />}
         </figure>
@@ -536,7 +541,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
         <div className="cw-gallery">
           {(s.items as MediaItem[] | undefined)?.map((it) => (
             <figure key={it.src} style={{ width: it.w }}>
-              <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} />
+              <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} player={it.player} />
               {it.cap && <figcaption>{it.cap}</figcaption>}
               {it.download && <DownloadLink src={it.src} base={base} />}
             </figure>
