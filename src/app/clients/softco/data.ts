@@ -470,13 +470,13 @@ export const work: WorkSection[] = [
     qa: "pending",
     isNew: true,
     groupLabel: "In QA - please hold off approving these",
-    desc: "A first look at automating the slow part of webinar clips, the clean-up. We take the raw recording, find the filler words and the dead air using the transcript and the audio together, and cut them out, with no editor round trip. The marked version shows every cut, red for a filler word and orange for dead air. The cleaned version is the result. This single pass made 33 small cuts in three minutes. Captions, the branded frame and the hook above the speaker are the next layer.",
+    desc: "A first look at automating the slow part of webinar clips, the clean-up. We take the raw recording, find the filler words and the dead air using the transcript and the audio together, and cut them out, with no editor round trip. The marked version shows every cut, red for a filler word and orange for dead air. The cleaned version is the result. This made 35 small cuts in three minutes. Captions, the branded frame and the hook above the speaker are the next layer.",
     groups: [
       {
         label: "Before and after, three minutes from a webinar",
         items: [
           { src: "webinar-cleanup-marked.mp4", ratio: "16/9", w: 380, cap: "Raw · every cut marked (red = filler, orange = dead air)", player: true, download: true },
-          { src: "webinar-cleanup-cleaned.mp4", ratio: "16/9", w: 380, cap: "Cleaned · 33 cuts removed", player: true, download: true },
+          { src: "webinar-cleanup-cleaned.mp4", ratio: "16/9", w: 380, cap: "Cleaned · 35 cuts removed", player: true, download: true },
         ],
       },
     ],
