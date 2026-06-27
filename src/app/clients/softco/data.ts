@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-25",
+  lastUpdated: "2026-06-27",
   feedbackContacts: ["softco.com"],
   targetDate: "2026-07-11",
   hideProgress: true,
@@ -463,12 +463,30 @@ export const work: WorkSection[] = [
     ],
   },
   {
+    title: "Webinar clip cleanup",
+    kind: "media",
+    zone: "work",
+    layout: "grouped",
+    qa: "pending",
+    isNew: true,
+    groupLabel: "In QA - please hold off approving these",
+    desc: "A first look at automating the slow part of webinar clips, the clean-up. We take the raw recording, find the filler words and the dead air using the transcript and the audio together, and cut them out, with no editor round trip. The marked version shows every cut, red for a filler word and orange for dead air. The cleaned version is the result. This single pass made 33 small cuts in three minutes. Captions, the branded frame and the hook above the speaker are the next layer.",
+    groups: [
+      {
+        label: "Before and after, three minutes from a webinar",
+        items: [
+          { src: "webinar-cleanup-marked.mp4", ratio: "16/9", w: 380, cap: "Raw · every cut marked (red = filler, orange = dead air)" },
+          { src: "webinar-cleanup-cleaned.mp4", ratio: "16/9", w: 380, cap: "Cleaned · 33 cuts removed" },
+        ],
+      },
+    ],
+  },
+  {
     title: "Chart Ad set",
     kind: "media",
     zone: "work",
     layout: "grouped",
     qa: "pending",
-    groupLabel: "In QA - please hold off approving these",
     desc: "The animated display ad across the full IAB range, eleven sizes from the square down to the mobile strips. Every size is here at true proportion. Animated, so it has not been through the automatic readability gate yet.",
     groups: [
       { label: "Square and rectangle", items: CHART_SQUARE.map(chartTile) },
