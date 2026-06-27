@@ -389,6 +389,16 @@ export const work: WorkSection[] = [
   },
   /* ---- ZONE: work - the AI versions, grouped by QA state. ---- */
   {
+    title: "Webinar editor",
+    kind: "embed",
+    zone: "work",
+    status: "ready",
+    isNew: true,
+    desc: "How the webinar clip editor would work, step by step: who does each part, the tool it uses, and what comes out. This is the plan, for your feedback.",
+    embedSrc: "blueprint-webinar-editor.html",
+    embedHeight: 2150,
+  },
+  {
     title: "Blog & content cards",
     kind: "gallery",
     zone: "work",

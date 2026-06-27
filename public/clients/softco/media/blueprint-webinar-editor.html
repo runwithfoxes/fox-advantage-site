@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint · Webinar editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+  --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+  --sky-soft:rgba(58,124,165,0.10);
+  --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06);
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace;
+  background-image:radial-gradient(var(--border) 1px, transparent 1px); background-size:22px 22px;
+  -webkit-font-smoothing:antialiased; }
+.wrap{ max-width:600px; margin:0 auto; padding:56px 24px 90px; }
+.kicker{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.bp-head{ font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:600; letter-spacing:-.5px; margin-bottom:7px; }
+.bp-sub{ font-size:12px; color:var(--muted); line-height:1.7; margin-bottom:16px; max-width:60ch; }
+
+/* who legend */
+.legend{ display:flex; flex-wrap:wrap; gap:7px 16px; align-items:center; margin-bottom:30px; font-size:10px; color:var(--muted); }
+.legend span{ display:inline-flex; align-items:center; gap:6px; }
+
+.who{ flex:none; font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:1px; text-transform:uppercase; padding:2px 7px; border-radius:20px; white-space:nowrap; }
+.who.claude{ color:var(--sky-blue); border:1px solid rgba(58,124,165,.40); background:var(--bg); }
+.who.softco{ color:var(--deep-sky); border:1px solid rgba(26,58,78,.35); background:var(--cream); }
+.who.both{ color:var(--deep-sky); border:1px solid rgba(58,124,165,.40); background:linear-gradient(90deg,var(--sky-soft),var(--cream)); }
+
+.flow{ display:flex; flex-direction:column; align-items:center; max-width:460px; margin:0 auto; }
+.connector{ width:1px; height:18px; background:var(--border); }
+.marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+
+.node{ width:100%; max-width:430px; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow);
+  display:flex; align-items:flex-start; gap:10px; padding:9px 14px; transition:transform .2s ease-out; }
+.node:hover{ transform:translateY(-1px); }
+.badge{ flex:none; width:18px; height:18px; border-radius:5px; background:var(--card-hover); color:var(--muted);
+  font-family:'JetBrains Mono',monospace; font-size:9px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.nbody{ flex:1; min-width:0; }
+.node-row{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+.node-title{ font-size:11.5px; line-height:1.4; }
+.node-sub{ font-size:10.5px; line-height:1.5; color:var(--muted); margin-top:3px; }
+.outcome{ font-size:10px; line-height:1.45; color:var(--deep-sky); margin-top:6px; }
+.outcome b{ color:var(--sky-blue); font-weight:500; }
+.tooltag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--sky-blue);
+  border:1px solid rgba(58,124,165,.30); border-radius:6px; padding:2px 8px; margin-top:7px; background:var(--bg); }
+/* "looks for" tags inside the pick step */
+.matchrow{ font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:9px; }
+.matchtags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.matchtag{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text); border:1px solid var(--border); border-radius:6px; padding:3px 8px; background:var(--bg); }
+.matchtag.tone{ color:var(--deep-sky); border-color:rgba(26,58,78,.30); background:var(--cream); }
+.tooltag.status{ color:var(--fox-orange); border-color:rgba(244,117,33,.40); margin-left:6px; }
+
+/* full step (gate) */
+.node.full{ display:block; padding:0; max-width:430px; }
+.node.full .nh{ display:flex; align-items:center; gap:9px; padding:7px 14px; color:var(--muted); font-size:10px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:10px 10px 0 0; }
+.node.full .nh .badge{ background:var(--deep-sky); color:var(--cream); }
+.node.full .nh .who{ margin-left:auto; }
+.node.full .nb{ padding:11px 14px; }
+.check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+.check strong{ font-weight:500; color:var(--deep-sky); }
+
+.note{ width:100%; max-width:430px; border:1px solid var(--border); border-left:3px solid var(--fox-orange); border-radius:10px; background:var(--bg); padding:10px 14px; font-size:10.5px; line-height:1.6; color:var(--text); }
+.note strong{ font-weight:500; }
+
+.hood{ margin:34px auto 0; padding-top:22px; border-top:1px dashed var(--border); max-width:520px; }
+.hood-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
+.hg-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:14px 0 7px; }
+.chips{ display:flex; flex-wrap:wrap; gap:7px; }
+.chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+.chip.tool{ color:var(--sky-blue); border-color:rgba(58,124,165,.30); }
+.foot{ max-width:520px; margin:32px auto 0; font-size:10px; color:var(--muted); line-height:1.6; }
+
+.fade{ opacity:0; transform:translateY(20px); transition:opacity .6s ease-out, transform .6s ease-out; }
+.fade.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .fade{ opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Run with Foxes · Blueprint</div>
+  <div class="bp-head">Webinar editor</div>
+  <div class="bp-sub">Turn a chosen webinar moment into a clean, on-brand clip. The days-long back and
+    forth with an editor, automated. Each step shows who does it, the tool, and what you get out.</div>
+  <div class="legend">
+    <span><span class="who claude">Claude</span> automated</span>
+    <span><span class="who softco">SoftCo</span> your team</span>
+    <span><span class="who both">Claude + SoftCo</span> together</span>
+  </div>
+
+  <div class="flow">
+    <span class="marker fade">Start</span>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">1</span>
+      <div class="nbody">
+        <div class="node-row"><div class="node-title">Pull the recording</div><span class="who softco">SoftCo</span></div>
+        <div class="node-sub">Download the webinar from Contrast. Contrast has no video API, so a person does this one.</div>
+        <div class="outcome"><b>&rarr;</b> the webinar video file</div>
+        <span class="tooltag">Contrast</span></div></div>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">2</span>
+      <div class="nbody">
+        <div class="node-row"><div class="node-title">Import and transcribe</div><span class="who claude">Claude</span></div>
+        <div class="node-sub">Claude sends the file to Descript over the API. No one has to load it by hand.</div>
+        <div class="outcome"><b>&rarr;</b> a verbatim transcript that keeps every um, uh and stutter</div>
+        <span class="tooltag">Descript API · import</span></div></div>
+    <div class="connector"></div>
+
+    <div class="node full fade">
+      <div class="nh"><span class="badge">3</span> Pick the moments <span class="who both">Claude + SoftCo</span></div>
+      <div class="nb">
+        <div class="node-title">Read for meaning, not just keywords</div>
+        <div class="node-sub">The aim is for Claude to read the whole transcript against the campaign theme and position and pick by meaning and tone, not just matching words, so it can surface a strong line or a funny moment. Oisín chooses from what it brings back. This is the part we train, and it still needs testing.</div>
+        <div class="matchrow">Looks for</div>
+        <div class="matchtags">
+          <span class="matchtag">the theme + position</span>
+          <span class="matchtag">a key claim or stat</span>
+          <span class="matchtag">a strong soundbite</span>
+          <span class="matchtag tone">a contrarian take</span>
+          <span class="matchtag tone">a funny moment</span>
+          <span class="matchtag tone">a clear story</span>
+        </div>
+        <div class="outcome"><b>&rarr;</b> a shortlist of moments, each with a timecode and why it was picked</div>
+        <span class="tooltag">Claude Code</span>
+        <span class="tooltag status">to train + test</span>
+      </div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">4</span>
+      <div class="nbody">
+        <div class="node-row"><div class="node-title">Clean and caption</div><span class="who claude">Claude</span></div>
+        <div class="node-sub">Claude prompts Descript to remove the fillers, stutters and false starts, tighten the pauses, and add the captions. Descript has the exact words, so the captions are accurate.</div>
+        <div class="outcome"><b>&rarr;</b> a clean clip with accurate captions</div>
+        <span class="tooltag">Descript API · agent edit</span></div></div>
+    <div class="connector"></div>
+
+    <div class="node full fade">
+      <div class="nh"><span class="badge">5</span> Check it <span class="who both">Claude + SoftCo</span></div>
+      <div class="nb">
+        <div class="node-title">A second, independent pass</div>
+        <div class="node-sub">Claude re-scans the cleaned clip to catch anything that slipped through, because no single pass is perfect.</div>
+        <div class="outcome"><b>&rarr;</b> confirmed clean, or a short list to fix</div>
+        <span class="tooltag">whisper multi-pass · ffmpeg</span>
+        <div class="check"><strong>Your ear is the final gate.</strong> The scanners catch most, you catch the rest.</div>
+      </div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="node fade"><span class="badge">6</span>
+      <div class="nbody">
+        <div class="node-row"><div class="node-title">Brand it and render</div><span class="who claude">Claude</span></div>
+        <div class="node-sub">Add the SoftCo frame and the hook above the speaker, then render the finished clip. The hook is drawn from the clip itself, a strong line or the question it raises. This is the part we already know how to do.</div>
+        <div class="outcome"><b>&rarr;</b> the finished, on-brand clip, ready to share</div>
+        <span class="tooltag">/softco-ads · ffmpeg</span></div></div>
+    <div class="connector"></div>
+
+    <div class="node full fade">
+      <div class="nh"><span class="badge">7</span> Your review <span class="who softco">SoftCo</span></div>
+      <div class="nb">
+        <div class="node-title">The clip comes back to Oisín</div>
+        <div class="node-sub">One place, before anything goes out.</div>
+        <div class="outcome"><b>&rarr;</b> approved and ready to publish</div>
+        <div class="check"><strong>Nothing publishes</strong> until SoftCo says yes.</div>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <span class="marker fade">Clip ready</span>
+  </div>
+
+  <div class="note fade" style="margin:22px auto 0;"><strong>Two detectors, on purpose.</strong> Descript and
+    the whisper pass miss different fillers, so running both and combining them catches more than either alone.</div>
+
+  <div class="hood fade">
+    <div class="hood-lbl">Under the hood</div>
+    <div class="hg-lbl">Tools</div>
+    <div class="chips">
+      <span class="chip tool">Contrast</span>
+      <span class="chip tool">Descript API</span>
+      <span class="chip tool">Claude Code</span>
+      <span class="chip tool">mlx-whisper</span>
+      <span class="chip tool">ffmpeg</span>
+    </div>
+    <div class="hg-lbl">Data and source</div>
+    <div class="chips">
+      <span class="chip">campaign theme + position</span>
+      <span class="chip">SoftCo brand kit</span>
+      <span class="chip">webinar recording</span>
+    </div>
+  </div>
+
+  <div class="foot">This is the clip editor only, not the wider webinar-to-many-formats engine.
+    SoftCo provides the recording and the final yes. Claude does everything in between.</div>
+</div>
+
+<script>
+const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12});
+document.querySelectorAll('.fade').forEach(el=> io.observe(el));
+</script>
+</body>
+</html>
