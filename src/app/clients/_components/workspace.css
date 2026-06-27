@@ -286,14 +286,18 @@
   padding-top: 26px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+/* RULE (Paul, 27 Jun): section descriptions run the FULL content width on every
+   client page. No reading-column cap, no per-section opt-in. Do not reintroduce a
+   max-width here. */
 .cw-desc {
   color: var(--text-muted);
   font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.7;
-  max-width: 660px;
+  max-width: none;
   margin-bottom: 18px;
 }
+/* legacy no-op: full width is now the default, kept so existing wideDesc flags don't break */
 .cw-desc-wide {
   max-width: none;
 }
