@@ -116,8 +116,8 @@ body{ margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains 
     <div class="node full fade">
       <div class="nh"><span class="badge">3</span> Pick the moments <span class="who both">Claude + SoftCo</span></div>
       <div class="nb">
-        <div class="node-title">Read for meaning, not just keywords</div>
-        <div class="node-sub">The aim is for Claude to read the whole transcript against the campaign theme and position and pick by meaning and tone, not just matching words, so it can surface a strong line or a funny moment. Oisín chooses from what it brings back. This is the part we train, and it still needs testing.</div>
+        <div class="node-title">Two signals: read the words, listen to the sound</div>
+        <div class="node-sub">Claude reads the transcript against the campaign theme for meaning and tone, not just matching words. And an audio pass listens to the recording for where people actually laughed or the energy lifted, the bits a transcript cannot show. Together they shortlist the moments. Oisín chooses. We train and test this.</div>
         <div class="matchrow">Looks for</div>
         <div class="matchtags">
           <span class="matchtag">the theme + position</span>
@@ -126,9 +126,12 @@ body{ margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains 
           <span class="matchtag tone">a contrarian take</span>
           <span class="matchtag tone">a funny moment</span>
           <span class="matchtag tone">a clear story</span>
+          <span class="matchtag tone">a laugh or a lift in energy</span>
         </div>
-        <div class="outcome"><b>&rarr;</b> a shortlist of moments, each with a timecode and why it was picked</div>
+        <div class="outcome"><b>&rarr;</b> a shortlist with timecodes, why each was picked, and where the room reacted</div>
         <span class="tooltag">Claude Code</span>
+        <span class="tooltag">ffmpeg · energy</span>
+        <span class="tooltag">laughter detector</span>
         <span class="tooltag status">to train + test</span>
       </div>
     </div>
@@ -187,6 +190,7 @@ body{ margin:0; background:var(--bg); color:var(--text); font-family:'JetBrains 
       <span class="chip tool">Claude Code</span>
       <span class="chip tool">mlx-whisper</span>
       <span class="chip tool">ffmpeg</span>
+      <span class="chip tool">laughter detector</span>
     </div>
     <div class="hg-lbl">Data and source</div>
     <div class="chips">
