@@ -10,7 +10,7 @@
 
 **Drop "AI" from every product name** (everything is AI, so it reads odd on some and not others) and use **Title Case** (every significant word capitalised: "Ad Resizer", "Brand Guardian", "Competitor Positioning Map") - they read as *named products*, not sentence fragments. (Superseded the earlier sentence-case decision, 27 Jun, Paul.) Also **drop the leading "The"** on card labels so every card reads the same way. Any parenthetical (Brand Voice / Isa / BDR) stays out of the card label and lives in the description only. Mid-sentence shorthand on a product page is lowercase ("point the guardian at any asset"). Applied across the storefront wireframes (`homepage-storefront-branded.html`, `homepage-blueprint-storefront.html`) and the two product pages (`module-ad-maker.html`, `module-brand-guardian.html`). The names in the `MODS` array feed both the cards AND the nav dropdown, so edit the array, never the rendered HTML.
 
-**27 Jun (cont.), Paul:** "Outreach engine" renamed to **Outreach Agent** (#13) - the real differentiator is multichannel + every message 100% customised per prospect, runs in their Claude. Added **LinkedIn Content Engine** (#15) as a separate product (organic presence; bundles with the Outreach Agent because the profile can't be barren when a cold message lands). The "job vs judgment" split from the strategy chat was REJECTED as a site structure (useful analysis, not how the products are organised). The product page must **sell the thinking/marketing baked in, not the mechanics** (the marketer in the machine) - see the `/product-page` skill + `feedback_sell_the_thinking_not_the_mechanics`.
+**27 Jun (cont.), Paul:** "Outreach engine" renamed to **Outbound Agent** (#13) - the real differentiator is multichannel + every message 100% customised per prospect, runs in their Claude. Added **LinkedIn Content Engine** (#15) as a separate product (organic presence; bundles with the Outbound Agent because the profile can't be barren when a cold message lands). The "job vs judgment" split from the strategy chat was REJECTED as a site structure (useful analysis, not how the products are organised). The product page must **sell the thinking/marketing baked in, not the mechanics** (the marketer in the machine) - see the `/product-page` skill + `feedback_sell_the_thinking_not_the_mechanics`.
 
 ## The shortlist (14)
 
@@ -28,9 +28,10 @@
 | 10 | **Company Intelligence** | The dossier before you walk in | A company name → leadership, team shape, open roles, change signals, news | `/clay-intel` |
 | 11 | **Review Intelligence** | What every review is really saying | Trustpilot/Amazon/app store → themes and sentiment across you and rivals | `/insights-setup` `/reddit-research` |
 | 12 | **Pricing Monitor** | Know the day a competitor moves | Tracked SKUs → daily competitor price watch with undercut alerts | *(no dedicated skill yet - flag)* |
-| 13 | **Outreach Agent** (was "Outreach engine") | It finds the right people and writes each one a real email | Say "find 100 ICP prospects and email/message them" in YOUR Claude → it finds + writes + sends, **every message 100% customised per prospect** (not mail-merge), multichannel (email + LinkedIn), coordinated. Orchestrates Clay + Apify + Smartlead + HeyReach; runs in their Claude, swappable tools (any with an API). | `/jo` `/clay-enrich` `/network` + Clay/Apify/Smartlead/HeyReach |
+| 13 | **Outbound Agent** (was "Outreach engine") | It finds the right people and writes each one a real email | Say "find 100 ICP prospects and email/message them" in YOUR Claude → it finds + writes + sends, **every message 100% customised per prospect** (not mail-merge), multichannel (email + LinkedIn), coordinated. Orchestrates Clay + Apify + Smartlead + HeyReach; runs in their Claude, swappable tools (any with an API). | `/jo` `/clay-enrich` `/network` + Clay/Apify/Smartlead/HeyReach |
 | 14 | **Page Conversion Audit** | Why the page isn't converting | A URL → a 10-section conversion audit with a fix for each gap | `/page-conversion` |
-| 15 | **LinkedIn Content Engine** | Be worth finding when the outreach lands | Brand's messaging framework + voice → brainstormed ideas → deep-research prompts → organic LinkedIn content in their voice. Separate job from outreach (being *found* vs *reaching out*); **bundles with the Outreach Agent** when LinkedIn is the channel (the profile can't be barren when a cold message lands), stands alone for the organic-only buyer. | content/voice skills |
+| 15 | **LinkedIn Content Engine** | Be worth finding when the outreach lands | Brand's messaging framework + voice → brainstormed ideas → deep-research prompts → organic LinkedIn content in their voice. Separate job from outreach (being *found* vs *reaching out*); **bundles with the Outbound Agent** when LinkedIn is the channel (the profile can't be barren when a cold message lands), stands alone for the organic-only buyer. | content/voice skills |
+| 16 | **Lifecycle Agent** | Keep and grow the people who know you | Known contacts → the right email at the right trigger across the whole relationship (onboard → nurture → retain → expand). The pair to Outbound: outbound wins new, lifecycle keeps + grows. Runs in the client's ESP (HubSpot / Klaviyo, open API). | `/sabre-email-writer` `/eaton-email` lifecycle/ESP skills (to build) |
 
 Coverage: advertising (1, 2) · writing (3) · brand strategy (4 - 8) · research/intelligence (9 - 12) · go-to-market (13) · web (14).
 
@@ -43,6 +44,29 @@ These 14 are single products - one job, hand it over, you run it. The **Campaign
 - **How it relates to the 14:** the bundle *contains* the standalone products (Outreach email/LinkedIn = the Outreach Engine; Advertising/Creative = Ad Maker + Ad Resizer; Website = the page tools; etc.). A client can buy one product, or buy the operation that runs many of them on a calendar.
 - **Storefront placement:** featured *above* the product grid as the "everything, run for you" tier - the buyer reads the cards as à la carte, the Campaign Manager as the full kitchen. Pilot = Run with Foxes itself.
 - **Source of truth:** `~/.claude/skills/campaign-manager/campaign-manager-spec.md` + the live demo at `~/projects/campaign-manager-demo/`.
+
+## Email: the seven jobs + the email products (27 Jun)
+
+Email is not one product. It does **seven distinct jobs**, split by who you're talking to and what fires the send:
+
+| # | Job | Who | Trigger | Goal | Product |
+|---|-----|-----|---------|------|---------|
+| 1 | Acquisition (outbound) | Cold, don't know you | You build the list | Start a conversation | **Outbound Agent** ✅ |
+| 2 | Onboarding / Activation | New signup/customer | Their behaviour | Get to first value | Lifecycle |
+| 3 | Nurture / Conversion | Known, not yet a customer | Behaviour + time | Move toward purchase | Lifecycle |
+| 4 | Retention / Win-back | Existing customer | Behaviour (dormant) | Keep them, save churn | Lifecycle |
+| 5 | Expansion / Renewal | Existing customer | Milestone / time | Grow the account | Lifecycle |
+| 6 | Broadcast / Campaign | Known, any stage | You decide (one-to-many) | Newsletter, launch, event, webinar | Broadcast? (open) |
+| 7 | Transactional | Anyone | System event | Receipts, resets | NOT a marketing product |
+
+**Key distinction (Paul asked):** lifecycle is NOT the same as onboarding. **Lifecycle is the umbrella for jobs 2-5** (every triggered email to a *known* contact across their whole relationship); **onboarding is just the first stage** of it. So lifecycle = ONE product (one job: the right email at the right trigger to a known contact), not four.
+
+**The email product set (LOCKED 27 Jun, Paul):** two clean agents, split by audience.
+- **Outbound Agent** (#13) - job 1, cold acquisition. Wins new. Renamed from Outreach Agent to pair with Lifecycle (outbound = win new / lifecycle = keep + grow). Runs on Smartlead/HeyReach. Filters: Email + Outreach.
+- **Lifecycle Agent** (#16, NEW) - jobs 2-5, triggered email to known contacts (onboard -> nurture -> retain -> expand). Keeps + grows. Runs in the client's ESP (HubSpot / Klaviyo). Filter: Email. Card added; product page + real proof still to build.
+- **Broadcast / Campaign** (job 6) - NOT a standalone product. Left inside the Campaign Manager bundle / other things (Paul, 27 Jun). Transactional (job 7) is not a marketing product.
+
+**Tooling note (confirmed):** Klaviyo's REST API is open on the FREE tier (private API key, full profiles/events/segments/campaigns/flows). So the campaign-manager operating model ports cleanly to Klaviyo the way it drives Smartlead - lifecycle email is buildable/drivable from Claude, provable for £0 before any client. (HubSpot similar.)
 
 ## Decisions locked (25 Jun)
 
