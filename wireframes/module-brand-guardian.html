@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brand Guardian · a Run with Foxes product</title>
+<title>Brand guardian · a Run with Foxes product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -33,6 +33,14 @@
   .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
   .head .desc{ font-size:14px; line-height:1.7; color:var(--text); max-width:none; margin-top:18px; }
   .head .desc b{ font-weight:400; color:var(--muted); }
+  /* the selling block (sell the thinking, not the mechanics) */
+  .sell{ margin-top:22px; }
+  .sell-lead{ font-size:clamp(17px,2vw,21px); line-height:1.55; color:var(--text); font-weight:300; }
+  .sell-lead b{ font-weight:400; color:var(--sky-blue); }
+  .sell-body{ font-size:14px; line-height:1.85; color:var(--muted); margin-top:16px; max-width:none; }
+  .sell-body b{ color:var(--text); font-weight:400; }
+  .sell-rail{ font-size:13px; line-height:1.6; color:var(--text); margin-top:16px; }
+  .sell-rail b{ font-weight:400; color:var(--sky-blue); }
 
   .tabbar{ display:flex; border:1px solid var(--border); }
   .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
@@ -172,8 +180,12 @@
   <div class="wrap dot">
     <div class="head">
       <div class="eyebrow">Product</div>
-      <h1>Brand Guardian</h1>
-      <div class="desc">Point it at any piece of work, copy, an ad or a web page, and it tells you what is off brand before it ships, every flag located with the fix. <b>We build it for you and hand it over.</b></div>
+      <h1>Brand guardian</h1>
+      <div class="sell">
+        <p class="sell-lead">Generic tools check spelling and a house style. This checks <b>your</b> brand.</p>
+        <p class="sell-body">Point it at anything you are about to publish, a deck, an ad, a page, a line of copy, and it runs the full audit against your real standards: your guidelines, your distinctive assets, your tone, your never-list. <b>Where there is a rule it measures</b>, to the pixel and the hex, contrast, headline width, clear-space. <b>Where there is judgement it judges</b>, against your brand profile, not a generic one. You get one verdict, every flag located, and the fix beside it. The bar it holds is the one a brand guardian who knew your brand would hold, built in, so nothing goes out off brand.</p>
+        <p class="sell-rail">It runs in your own Claude and sits in front of a publish or a deploy. <b>We build it around your brand and hand it over.</b></p>
+      </div>
     </div>
   </div>
 
@@ -187,7 +199,7 @@
 
     <!-- EXPERIENCE: a real check on our own Grumpy Fox work -->
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">Point the Guardian at any asset and it runs the full brand audit, then gives one verdict with every flag located and fixed. Here it is on our own Grumpy Fox work.</div>
+      <div class="exp-lead">Point the guardian at any asset and it runs the full brand audit, then gives one verdict with every flag located and fixed. Here it is on our own Grumpy Fox work.</div>
       <div class="checks" id="checks">
 
         <div class="ck-block">
@@ -253,7 +265,7 @@
   <!-- FOOTER -->
   <div class="wrap">
     <div class="foot">
-      <h2>Want the Brand Guardian built for you?</h2>
+      <h2>Want the Brand guardian built for you?</h2>
       <p>We build it around your brand and hand it over. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
@@ -262,11 +274,11 @@
     </div>
   </div>
 
-  <!-- Isa, scoped to the Brand Guardian -->
+  <!-- Isa, scoped to the Brand guardian -->
   <div class="isaw" id="isaw">
-    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Brand Guardian</div></div><button class="x" id="isaX">✕</button></div>
+    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Brand guardian</div></div><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Brand Guardian: point it at any asset and it tells you what is off brand before it ships. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Brand guardian: point it at any asset and it tells you what is off brand before it ships. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
     </div>
     <div class="isa-note">Isa books your call on cal.com and sends Paul a note on what you want.</div>
     <div class="isa-in"><textarea id="isaText" placeholder="Tell Isa about your brand..."></textarea><button id="isaSend">Send</button></div>
@@ -306,7 +318,7 @@ const TABS = {
     {type:'node', badge:'5', when:'Aggregate', icon:'ship', title:'One verdict',
       sub:'Every checker\'s findings come back to one place.',
       steps:['Merge all findings, keep each one located with its fix','Pass or fail, with the count of what to fix','A non-zero exit makes it a gate, so it can sit in front of a publish or a deploy'],
-      check:'Nothing ships off brand. And the human stays in charge: the Guardian flags the problem and proposes the fix, it never changes your work on its own.'}
+      check:'Nothing ships off brand. And the human stays in charge: the guardian flags the problem and proposes the fix, it never changes your work on its own.'}
   ]},
   uses:{ groups:[
     {label:'Checkers', cls:'skill', items:['/brand-guardian (router)','/brand-guardian-copy','/brand-guardian-guidelines','/brand-guardian-visual','/ad-qa']},
@@ -380,9 +392,10 @@ const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-mo
 function revealFlow(panel){
   const flow = panel && panel.querySelector('.flow'); if(!flow) return;
   const kids = [...flow.children];
-  if(reduceMotion){ kids.forEach(k=> k.style.opacity='1'); return; }
-  kids.forEach(k=>{ k.style.opacity='0'; k.style.transition='opacity .45s ease-out'; });
-  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=> k.style.opacity='1', i*70)));
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
 }
 
 document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{

@@ -178,7 +178,8 @@ const IC = {
   tag:S('<path d="M3 12l9-9 8 8-9 9z"/><circle cx="15" cy="9" r="1.4"/>'),
   reach:S('<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>'),
   funnel:S('<path d="M3 5h18l-7 8v6l-4-2v-4z"/>'),
-  cm:S('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/>')
+  cm:S('<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/>'),
+  content:S('<path d="M21 11.5a8.4 8.4 0 01-9 8.3 8.4 8.4 0 01-3.8-.9L3 21l2.1-5.2A8.4 8.4 0 0112 3.1a8.4 8.4 0 019 8.4z"/><line x1="8" y1="10" x2="14" y2="10"/><line x1="8" y1="13.5" x2="12" y2="13.5"/>')
 };
 
 // little "visual of it working" per card (low-fi placeholders, sky/cream palette).
@@ -199,27 +200,29 @@ const VIS = {
   tag:`<svg viewBox="0 0 200 118"><polyline points="30,80 60,70 90,74 120,52 150,58 172,38" fill="none" stroke="${sky}" stroke-width="2"/><polyline points="30,88 60,84 90,86 120,80 150,82 172,72" fill="none" stroke="${mut}" stroke-width="2" stroke-dasharray="3 3"/><circle cx="172" cy="38" r="4" fill="${orange}"/><line x1="24" y1="98" x2="176" y2="98" stroke="${mut}"/></svg>`,
   reach:`<svg viewBox="0 0 200 118"><rect x="34" y="28" width="92" height="22" rx="6" fill="${sky}" opacity=".15" stroke="${sky}"/><rect x="42" y="36" width="60" height="6" fill="${sky}"/><rect x="74" y="64" width="92" height="22" rx="6" fill="${deep}" opacity=".08" stroke="${mut}"/><rect x="82" y="72" width="48" height="6" fill="${mut}"/></svg>`,
   funnel:`<svg viewBox="0 0 200 118"><rect x="50" y="26" width="100" height="12" fill="${sky}" opacity=".6"/><rect x="62" y="48" width="76" height="12" fill="${sky}" opacity=".45"/><rect x="74" y="70" width="52" height="12" fill="${sky}" opacity=".3"/><rect x="86" y="92" width="28" height="12" fill="${orange}" opacity=".7"/></svg>`,
-  cm:`<svg viewBox="0 0 200 118"><rect x="26" y="18" width="148" height="84" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><line x1="26" y1="38" x2="174" y2="38" stroke="${mut}"/>${[0,1,2,3].map(i=>`<line x1="${26+30*(i+1)}" y1="38" x2="${26+30*(i+1)}" y2="102" stroke="${mut}" opacity=".5"/>`).join('')}<rect x="34" y="48" width="22" height="8" fill="${sky}" opacity=".7"/><rect x="94" y="64" width="22" height="8" fill="${orange}" opacity=".7"/><rect x="124" y="80" width="22" height="8" fill="${sky}" opacity=".5"/><rect x="64" y="90" width="22" height="8" fill="${deep}" opacity=".4"/></svg>`
+  cm:`<svg viewBox="0 0 200 118"><rect x="26" y="18" width="148" height="84" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><line x1="26" y1="38" x2="174" y2="38" stroke="${mut}"/>${[0,1,2,3].map(i=>`<line x1="${26+30*(i+1)}" y1="38" x2="${26+30*(i+1)}" y2="102" stroke="${mut}" opacity=".5"/>`).join('')}<rect x="34" y="48" width="22" height="8" fill="${sky}" opacity=".7"/><rect x="94" y="64" width="22" height="8" fill="${orange}" opacity=".7"/><rect x="124" y="80" width="22" height="8" fill="${sky}" opacity=".5"/><rect x="64" y="90" width="22" height="8" fill="${deep}" opacity=".4"/></svg>`,
+  content:`<svg viewBox="0 0 200 118"><rect x="44" y="18" width="112" height="82" rx="3" fill="${deep}" opacity=".05" stroke="${mut}"/><circle cx="62" cy="36" r="8" fill="${sky}" opacity=".4"/><rect x="78" y="31" width="50" height="6" fill="${mut}"/><rect x="78" y="41" width="32" height="5" fill="${mut}"/><rect x="56" y="58" width="92" height="5" fill="${deep}" opacity=".45"/><rect x="56" y="68" width="84" height="5" fill="${mut}"/><rect x="56" y="78" width="58" height="5" fill="${mut}"/><rect x="56" y="90" width="24" height="6" fill="${orange}" opacity=".7"/></svg>`
 };
 
 // the real lineup (source of truth: docs/product-lineup-candidates-2026-06-25.md).
 // 14 single products + the Campaign Manager as an EQUAL card. tag => small eyebrow on the card.
 const MODS = [
-  { key:'ad-resizer', name:'AI Ad Resizer', icon:'resize', cat:'advertising', img:'assets/dayone/dayone-1080x1080.gif', badge:'New', ben:'One ad in, every size out.' },
-  { key:'ad-maker', name:'Ad Maker', icon:'ad', cat:'advertising', ben:'Brief to finished ads, quality first.' },
-  { key:'copywriter', name:'AI Copywriter', icon:'write', cat:'advertising', ben:"Your brand's voice, trained to write." },
-  { key:'scorecard', name:'The Brand Scorecard', icon:'score', cat:'strategy', ben:'One page everyone watches.' },
-  { key:'segmentation', name:'Segmentation AI', icon:'seg', cat:'strategy', ben:'Segments, with the maths actually run.' },
-  { key:'positioning', name:'Competitor Positioning Map', icon:'map', cat:'strategy', ben:'Find the white space.' },
-  { key:'dba', name:'Distinctive Brand Assets Audit', icon:'matrix', cat:'strategy', ben:'What makes you recognisable, scored.' },
-  { key:'guardian', name:'Brand Guardian', icon:'shield', cat:'strategy', ben:'Nothing ships off-brand.' },
-  { key:'interviewer', name:'The AI Research Interviewer', icon:'phone', cat:'research', ben:'Hundreds of phone interviews a week.' },
-  { key:'company-intel', name:'Company Intelligence', icon:'doc', cat:'research', ben:'The dossier before you walk in.' },
-  { key:'review-intel', name:'Review Intelligence', icon:'star', cat:'research', ben:'What every review is really saying.' },
-  { key:'pricing', name:'Pricing Monitor', icon:'tag', cat:'research', ben:'Know the day a competitor moves.' },
-  { key:'outreach', name:'The Outreach Engine', icon:'reach', cat:'outreach', ben:'A business-development desk that runs itself.' },
-  { key:'page-audit', name:'Page Conversion Audit', icon:'funnel', cat:'outreach', ben:"Why the page isn't converting." },
-  { key:'campaign-manager', name:'Campaign Manager', icon:'cm', cat:'bundle', tag:'Everything, run for you', ben:'The whole operation, run as one.' }
+  { key:'ad-resizer', name:'Ad resizer', icon:'resize', cat:'advertising', img:'assets/dayone/dayone-1080x1080.gif', badge:'New', ben:'One ad in, every size out.' },
+  { key:'ad-maker', name:'Ad maker', icon:'ad', cat:'advertising', ben:'Brief to finished ads, quality first.' },
+  { key:'copywriter', name:'Copywriter', icon:'write', cat:'advertising', ben:"Your brand's voice, trained to write." },
+  { key:'linkedin-content', name:'LinkedIn content engine', icon:'content', cat:'advertising', badge:'Bundled', ben:'Be worth finding when the outreach lands.' },
+  { key:'scorecard', name:'Brand scorecard', icon:'score', cat:'strategy', ben:'One page everyone watches.' },
+  { key:'segmentation', name:'Segmentation', icon:'seg', cat:'strategy', ben:'Segments, with the maths actually run.' },
+  { key:'positioning', name:'Competitor positioning map', icon:'map', cat:'strategy', ben:'Find the white space.' },
+  { key:'dba', name:'Distinctive brand assets audit', icon:'matrix', cat:'strategy', ben:'What makes you recognisable, scored.' },
+  { key:'guardian', name:'Brand guardian', icon:'shield', cat:'strategy', ben:'Nothing ships off-brand.' },
+  { key:'interviewer', name:'Research interviewer', icon:'phone', cat:'research', ben:'Hundreds of phone interviews a week.' },
+  { key:'company-intel', name:'Company intelligence', icon:'doc', cat:'research', ben:'The dossier before you walk in.' },
+  { key:'review-intel', name:'Review intelligence', icon:'star', cat:'research', ben:'What every review is really saying.' },
+  { key:'pricing', name:'Pricing monitor', icon:'tag', cat:'research', ben:'Know the day a competitor moves.' },
+  { key:'outreach', name:'Outreach agent', icon:'reach', cat:'outreach', ben:'Finds the right people, writes each one for real.' },
+  { key:'page-audit', name:'Page conversion audit', icon:'funnel', cat:'outreach', ben:"Why the page isn't converting." },
+  { key:'campaign-manager', name:'Campaign manager', icon:'cm', cat:'bundle', tag:'Everything, run for you', ben:'The whole operation, run as one.' }
 ];
 
 // filter categories (the small blue button bar). 'bundle' has no button - Campaign Manager shows under All.

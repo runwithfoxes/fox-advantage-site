@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homepage wireframe · Blueprint menu in context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+
+  /* ---- low-fi page chrome (placeholders for the real sections) ---- */
+  .ph{ position:relative; max-width:1120px; margin:0 auto; }
+  .ph-box{ border:1px dashed var(--border); background:repeating-linear-gradient(135deg,transparent,transparent 11px,rgba(138,138,133,.05) 11px,rgba(138,138,133,.05) 12px);
+    border-radius:0; display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; text-align:center; color:var(--muted); padding:26px; }
+  .ph-tag{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); }
+  .ph-note{ font-size:11px; color:var(--muted); max-width:46ch; line-height:1.6; }
+
+  .barnav{ display:flex; align-items:center; gap:18px; max-width:1120px; margin:0 auto; padding:16px 40px; border-bottom:1px solid var(--border); }
+  .barnav .logo{ font-family:'Space Grotesk',sans-serif; font-size:15px; }
+  .barnav .logo b{ color:var(--fox-orange); font-weight:500; }
+  .barnav .nl{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+  .barnav .sp{ flex:1; }
+
+  .sec{ padding:30px 40px; }
+  .hero{ height:230px; margin:0 40px; }
+  .herotext{ max-width:1120px; margin:0 auto; padding:34px 40px 10px; }
+  .herotext h1{ font-size:clamp(26px,4vw,46px); letter-spacing:-1px; line-height:1.12; }
+  .herotext h1 .hl{ color:var(--sky-blue); }
+  .herotext p{ font-size:12px; color:var(--muted); margin-top:12px; max-width:70ch; line-height:1.7; }
+
+  /* ---- the live part: the Blueprint menu ---- */
+  .modwrap{ position:relative; max-width:1120px; margin:0 auto; padding:18px 40px 40px; }
+  .modwrap::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);
+    background-size:28px 28px; opacity:.4; pointer-events:none; z-index:0; }
+  .modwrap > *{ position:relative; z-index:1; }
+  .mod-intro{ max-width:680px; margin-bottom:30px; }
+  .mod-intro h2{ font-size:clamp(22px,3vw,32px); letter-spacing:-.6px; line-height:1.15; }
+  .mod-intro h2 .hl{ color:var(--sky-blue); }
+  .mod-intro p{ font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.7; max-width:60ch; }
+
+  .stage{ display:flex; gap:46px; align-items:flex-start; }
+  @media(max-width:900px){ .stage{ flex-direction:column; gap:26px; } }
+
+  /* LEFT RAIL: the module menu */
+  .rail{ flex:0 0 232px; }
+  @media(max-width:900px){ .rail{ flex-basis:auto; width:100%; } }
+  .rail-lbl{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin:0 0 14px 2px; }
+  .mrow{ display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:none; border:1px solid transparent; border-radius:12px; cursor:pointer;
+    padding:11px 13px; color:var(--muted); transition:border-color .2s, background .2s, color .2s; }
+  .mrow:hover{ color:var(--text); background:var(--card-hover); }
+  .mrow.active{ color:var(--text); border-color:var(--sky-blue); background:var(--bg); }
+  .mrow .mi{ flex:none; width:16px; height:16px; color:var(--sky-blue); }
+  .mrow .mi svg{ width:100%; height:100%; display:block; }
+  .mrow .mt{ font-family:'Space Grotesk',sans-serif; font-size:14px; flex:1; line-height:1.2; }
+  .mrow .mn{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--border); }
+  .mrow.active .mn{ color:var(--sky-blue); }
+  .rail-div{ height:1px; background:var(--border); margin:14px 2px; }
+  .rail-bundle .mrow{ border:1px solid var(--border); border-radius:12px; }
+  .rail-bundle .mrow .mt b{ font-weight:500; }
+  .rail-bundle .bcap{ font-size:9.5px; color:var(--muted); letter-spacing:.3px; margin:7px 4px 0; line-height:1.5; }
+
+  /* RIGHT CANVAS: the selected module's Blueprint */
+  .canvas{ flex:1; min-width:0; }
+  .bp-head{ font-family:'Space Grotesk',sans-serif; font-size:21px; letter-spacing:-.5px; margin-bottom:5px; }
+  .bp-sub{ font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:18px; max-width:58ch; }
+
+  /* three-view tabs (what it is / how it works / what it uses) */
+  .tabs{ display:inline-flex; border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:22px; }
+  .tab{ background:transparent; border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 13px; transition:background .2s,color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab.active{ background:var(--sky-blue); color:var(--bg); }
+  .panel{ display:none; }
+  .panel.active{ display:block; }
+  .panel-it{ font-size:13px; line-height:1.7; color:var(--text); max-width:56ch; }
+
+  /* flow (how it works) */
+  .flow{ display:flex; flex-direction:column; align-items:flex-start; max-width:480px; margin:0; }
+  .connector{ width:1px; height:18px; background:var(--border); margin-left:18px; }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ width:100%; max-width:392px; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow);
+    display:flex; align-items:flex-start; gap:10px; padding:8px 13px; transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .badge{ flex:none; width:17px; height:17px; border-radius:5px; background:var(--card-hover); color:var(--muted);
+    font-family:'JetBrains Mono',monospace; font-size:9px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .node.full .badge{ background:var(--deep-sky); color:var(--cream); }
+  .node-title{ font-size:11.5px; line-height:1.4; }
+  .node-sub{ font-size:10.5px; line-height:1.45; color:var(--muted); margin-top:2px; }
+  .check{ margin-top:7px; padding:7px 10px; background:var(--sky-soft); border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:10px; line-height:1.5; color:var(--deep-sky); }
+  .check b{ font-weight:500; }
+
+  /* what it uses (chips) */
+  .hg-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:0 0 8px; }
+  .hg-lbl.mt{ margin-top:15px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  .stub{ font-size:12px; color:var(--muted); line-height:1.7; max-width:50ch; border:1px dashed var(--border); border-radius:10px; padding:16px 18px; }
+</style>
+</head>
+<body>
+
+  <!-- NAV (placeholder, guarded on the real site) -->
+  <div class="barnav">
+    <span class="logo"><b>Run</b> with Foxes</span>
+    <span class="sp"></span>
+    <span class="nl">/tools</span><span class="nl">/previous</span><span class="nl">/book</span><span class="nl">/contact</span>
+  </div>
+
+  <!-- VIDEO HERO (placeholder) -->
+  <div class="sec"><div class="ph"><div class="ph-box hero">
+    <span class="ph-tag">Video hero · unchanged</span>
+    <span class="ph-note">Tarantino trunk video + posters. Guarded byte-for-byte. Nothing changes here.</span>
+  </div></div></div>
+
+  <!-- HERO TEXT (unchanged copy) -->
+  <div class="herotext">
+    <h1>Build an <span class="hl">unfair advantage</span> in marketing</h1>
+    <p>We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</p>
+  </div>
+
+  <!-- BIO + CONTACT STRIP (placeholder) -->
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Bio + photo + contact strip · unchanged</span>
+    <span class="ph-note">Paul Dervan bio (magazine wrap), then the \build it for you / \work alongside you / \train your team strip.</span>
+  </div></div></div>
+
+  <!-- SUBSTACK CAROUSEL (placeholder) -->
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Substack carousel · unchanged</span>
+    <span class="ph-note">Live newsletter feed, 3-up.</span>
+  </div></div></div>
+
+  <!-- ===== THE LIVE PART: modules become a Blueprint menu ===== -->
+  <div class="modwrap">
+    <div class="mod-intro">
+      <h2>Where can <span class="hl">AI</span> be built into marketing?</h2>
+      <p>Each one is a module you can have built. Pick one to see its Blueprint: what it is, how it works, and what is wired underneath.</p>
+    </div>
+
+    <div class="stage">
+      <div class="rail">
+        <div class="rail-lbl">The modules</div>
+        <div id="rail"></div>
+        <div class="rail-div"></div>
+        <div class="rail-bundle" id="railBundle"></div>
+        <div class="bcap">The bundle that runs every module above, end to end. You approve.</div>
+      </div>
+
+      <div class="canvas">
+        <div class="bp-head" id="bpHead"></div>
+        <div class="bp-sub" id="bpSub"></div>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-p="it">What it is</button>
+          <button class="tab" data-p="how">How it works</button>
+          <button class="tab" data-p="uses">What it uses</button>
+        </div>
+        <div class="panel active" data-p="it"><div class="panel-it" id="pIt"></div></div>
+        <div class="panel" data-p="how"><div id="pHow"></div></div>
+        <div class="panel" data-p="uses"><div id="pUses"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS (placeholder) -->
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Testimonials · unchanged</span>
+    <span class="ph-note">Rotating band: Peter Field, Paul D'Arcy, Damian Devaney, Jonnie Cahill.</span>
+  </div></div></div>
+
+  <!-- BOOK BLOCK (placeholder) -->
+  <div class="sec"><div class="ph"><div class="ph-box">
+    <span class="ph-tag">Book block · unchanged</span>
+    <span class="ph-note">The Fox Advantage. 54 chapters, 4 parts, get the book.</span>
+  </div></div></div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const IC = {
+  seg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg>',
+  brand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9-2.6.9-5.5-4-3.9 5.5-.8z"/></svg>',
+  score:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="10"/></svg>',
+  ad:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4l11 5V5L3 10z"/><path d="M14 8c2 0 3 1.5 3 4s-1 4-3 4"/></svg>',
+  reach:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>',
+  res:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+  cm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>'
+};
+
+// gate icon for full nodes
+const GATE = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3A7CA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>';
+
+// step shapes: ['title','sub'] slim, or {full:true, head, title, sub, check}
+const MODS = [
+  { key:'seg', name:'Segmentation AI', icon:'seg',
+    it:'Proper segmentation, with the maths actually run. We turn your customer base into segments that hold up, not a slide of personas.',
+    how:[['Ground it','What segmentation is, before any maths.'],['Run the maths','Similarity between the segments.'],['Test what holds','Which segments survive the data.'],['Map it','Scatter the segments out to see them.']],
+    uses:{Skills:['/segmentation','similarity analysis','scatter plots'],Data:['your customer base']} },
+
+  { key:'brand', name:'Brand strategist', icon:'brand',
+    it:'Positioning, the situations you want to be remembered in, the message everything anchors to, and the assets people know you by. The strategy that drives the making.',
+    how:[['Map the field','Competitors claimed vs actual. Find the white space.'],['Find the situations','The buying situations to be remembered in (CEPs).'],['Build the message','The pillars all copy anchors to.'],['Lock the assets','What people recognise you by.'],['On a page','The strategy, plus the guidelines.']],
+    uses:{Skills:['/competitor-positioning','/cep-discovery','messaging framework','distinctive assets']} },
+
+  { key:'score', name:'The scorecard', icon:'score',
+    it:'You cannot manage a brand you cannot measure. We get the metrics right across the five levels, then set the split that grows it.',
+    how:[['Train the team','Across the five levels of measurement.'],['Audit what is tracked','Sort it into five levels, show the gaps.'],['Build the scorecard','Commercial, behaviour, memory, comms, activity.'],['Set the split','Brand vs activation (60:40), share of voice.']],
+    uses:{Skills:['/metrics-audit','brand scorecard','/brand-activation-split','/esov-proxy'],Data:['your tracked metrics','benchmark set']} },
+
+  { key:'ad', name:'Ad maker', icon:'ad',
+    it:'Brief to useful options faster, quality first. Video, brand, animated and static, then the full size set, all on brand.',
+    how:[['Sharpen the brief','The brief coach, before any work starts.'],['Make the options','Video, brand, animated, static.'],['Review at actual size','Legibility checked at true size, not a big preview.'],
+      {full:true, head:'Your call', title:'You approve the set', sub:'Resized to the full IAB family, re-laid out per shape.', check:'<b>Nothing ships</b> until you say yes.'}],
+    uses:{Skills:['/dray','/fox-html-ads','/banner-machine','/grumpyfox-chart-resizer'],Tools:['Seedream','Playwright + ffmpeg'],Data:['brand kit']} },
+
+  { key:'reach', name:'Outreach engine', icon:'reach',
+    it:'AI for sales and outreach across email and LinkedIn. Jo builds the lists and writes the messages off real signal. You approve.',
+    how:[['Build the list','The right companies and people, off real signal.'],['Write the messages','Personalised, on signal, not templated.'],
+      {full:true, head:'Your call', title:'You approve every message', sub:'You read them before anything goes out.', check:'<b>Nothing sends or spends</b> without your yes.'},
+      ['Run and read','Live, then the numbers come back.']],
+    uses:{Skills:['/clay-intel-light','/growth-manager','/campaign-manager'],Tools:['HeyReach','Smartlead','Clay'],Memory:['learnings.md']} },
+
+  { key:'res', name:'Research interviewer', icon:'res',
+    it:'Message testing, intelligence and interviews by phone. We go find what you need to know, structured and flagged.',
+    how:[['Pick the question','What you actually need to know.'],['Run the method','Interviews, company intel, reviews, pricing.'],['Synthesise','What is new, structured and flagged.']],
+    uses:{Skills:['AI research interviewer','/clay-intel','review intelligence','pricing intelligence']} }
+];
+
+const BUNDLE = { key:'cm', name:'The full campaign manager', icon:'cm',
+  it:'The operation that runs every module above as one. A campaign has a name, its channels, and its goals, all tied to a scorecard. Jo runs it, you approve on your board.',
+  how:[['Plan the campaign','Goal, evidence, the plan that drives every module.'],['Run the modules','Ads, outreach, social, newsletter, all under one campaign.'],
+    {full:true, head:'Your call', title:'You approve on the board', sub:'You watch and sign off. You never type into the page.', check:'<b>Nothing runs</b> until you approve the plan.'},
+    ['Read it back','Every campaign traces to the strategy and the scorecard.']],
+  uses:{Skills:['/campaign-manager','/jo','every module above'],Tools:['the board','calendar'],Data:['calendar-data.json'],Memory:['learnings.md']} };
+
+let current = null, panel = 'it';
+
+function renderHow(mod){
+  const f = el('<div class="flow"></div>');
+  f.appendChild(el('<span class="marker">Start</span>'));
+  mod.how.forEach((s,i)=>{
+    f.appendChild(el('<div class="connector"></div>'));
+    if(s.full){
+      f.appendChild(el(`<div class="node full" style="display:block;padding:0">
+        <div style="display:flex;align-items:center;gap:9px;padding:7px 13px;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border);background:var(--card-hover);border-radius:10px 10px 0 0">
+          <span class="badge">${i+1}</span> ${s.head}</div>
+        <div style="display:flex;gap:11px;padding:11px 13px">
+          <div style="flex:none;width:30px;height:30px;border-radius:8px;background:var(--sky-soft);display:flex;align-items:center;justify-content:center">${GATE}</div>
+          <div><div class="node-title">${s.title}</div><div class="node-sub">${s.sub}</div><div class="check">${s.check}</div></div>
+        </div></div>`));
+    } else {
+      f.appendChild(el(`<div class="node"><span class="badge">${i+1}</span><div><div class="node-title">${s[0]}</div><div class="node-sub">${s[1]}</div></div></div>`));
+    }
+  });
+  f.appendChild(el('<div class="connector"></div>'));
+  f.appendChild(el('<span class="marker">Done</span>'));
+  return f;
+}
+function renderUses(mod){
+  const w = el('<div></div>');
+  let first = true;
+  Object.entries(mod.uses).forEach(([label,items])=>{
+    w.appendChild(el(`<div class="hg-lbl ${first?'':'mt'}">${label}</div>`));
+    first = false;
+    const c = el('<div class="chips"></div>');
+    items.forEach(it=> c.appendChild(el(`<span class="chip ${label==='Skills'?'skill':''}">${it}</span>`)));
+    w.appendChild(c);
+  });
+  return w;
+}
+function render(mod){
+  current = mod;
+  document.querySelectorAll('.mrow').forEach(x=>x.classList.toggle('active', x.dataset.k===mod.key));
+  document.getElementById('bpHead').textContent = mod.name;
+  document.getElementById('bpSub').textContent = '';
+  document.getElementById('pIt').textContent = mod.it;
+  const how = document.getElementById('pHow'); how.innerHTML=''; how.appendChild(renderHow(mod));
+  const uses = document.getElementById('pUses'); uses.innerHTML=''; uses.appendChild(renderUses(mod));
+}
+function setPanel(p){
+  panel = p;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.p===p));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active', x.dataset.p===p));
+}
+
+// build rail
+const rail = document.getElementById('rail');
+MODS.forEach((m,i)=>{
+  const b = el(`<button class="mrow" data-k="${m.key}"><span class="mi">${IC[m.icon]}</span><span class="mt">${m.name}</span><span class="mn">0${i+1}</span></button>`);
+  b.addEventListener('click', ()=>render(m));
+  rail.appendChild(b);
+});
+const rb = el(`<button class="mrow" data-k="${BUNDLE.key}"><span class="mi">${IC[BUNDLE.icon]}</span><span class="mt"><b>${BUNDLE.name}</b></span></button>`);
+rb.addEventListener('click', ()=>render(BUNDLE));
+document.getElementById('railBundle').appendChild(rb);
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>setPanel(t.dataset.p)));
+render(MODS[0]);
+</script>
+</body>
+</html>
