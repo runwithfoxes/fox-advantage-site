@@ -8,7 +8,7 @@
    client's folder, edit it there, and point that page.tsx at the copy. Other
    clients are unaffected. */
 
-import { useState, useTransition, useRef } from "react";
+import { useState, useTransition, useRef, useEffect } from "react";
 import Link from "next/link";
 
 /* ---- types (kept permissive so data.ts is easy to hand-edit) ---- */
@@ -100,7 +100,7 @@ export type WorkSection = {
   faq?: FaqItem[];        // the Q&A rows
   note?: string;          // optional closing line below the accordion
   // compare kind: before/after wipe slider
-  compare?: { before: string; after: string; ratio?: string; w?: number; labelBefore?: string; labelAfter?: string; download?: boolean };
+  compare?: { before: string; after: string; ratio?: string; w?: number; labelBefore?: string; labelAfter?: string; download?: boolean; accent?: string; bg?: string };
   groups?: MediaGroup[];
   item?: MediaItem;
   items?: (MediaItem | PairItem)[];
@@ -183,26 +183,56 @@ function Media({ src, poster, ratio = "1 / 1", base, player }: { src: string; po
   );
 }
 
-/* before/after wipe slider - drag (or click) to reveal the "before" over the "after" */
-function Compare({ before, after, ratio = "16 / 9", labelBefore, labelAfter, base }:
-  { before: string; after: string; ratio?: string; labelBefore?: string; labelAfter?: string; base: string }) {
+/* before/after wipe slider - drag (or click) to reveal the "before" over the "after".
+   Either side can be a still (png/jpg/gif) or a video (mp4/webm/mov). When both are
+   videos they are kept frame-synced so the wipe reveals the SAME moment in each loop. */
+const cmpIsVideo = (src: string) => /\.(mp4|webm|mov|m4v)$/i.test(src);
+
+function Compare({ before, after, ratio = "16 / 9", labelBefore, labelAfter, base, accent, bg }:
+  { before: string; after: string; ratio?: string; labelBefore?: string; labelAfter?: string; base: string; accent?: string; bg?: string }) {
   const [pos, setPos] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
+  const beforeVid = useRef<HTMLVideoElement>(null);
+  const afterVid = useRef<HTMLVideoElement>(null);
   const move = (clientX: number) => {
     const el = ref.current; if (!el) return;
     const r = el.getBoundingClientRect();
     setPos(Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100)));
   };
+  // keep the two videos locked to the same playback moment (durations may differ slightly)
+  const sync = () => {
+    const a = afterVid.current, b = beforeVid.current;
+    if (!a || !b || !b.duration) return;
+    const t = a.currentTime % b.duration;
+    if (Math.abs(b.currentTime - t) > 0.08) b.currentTime = t;
+  };
+  const themeVars = {
+    ...(accent ? { ["--cmp-accent" as string]: accent } : {}),
+    ...(bg ? { ["--cmp-bg" as string]: bg } : {}),
+  } as React.CSSProperties;
+  // muted must be set imperatively too - React doesn't reflect the `muted` attr to the DOM,
+  // which silently blocks autoplay (the spread-vs-inline gotcha). Set muted imperatively on mount;
+  // the onCanPlay handler below is the bulletproof kick (a canplay listener races and is missed).
+  useEffect(() => {
+    [afterVid.current, beforeVid.current].forEach((v) => { if (v) v.muted = true; });
+  }, []);
+  const kick = (e: React.SyntheticEvent<HTMLVideoElement>) => { e.currentTarget.play().catch(() => {}); };
   return (
-    <div className="cw-compare" ref={ref} style={{ aspectRatio: ratio }}
+    <div className="cw-compare" ref={ref} style={{ aspectRatio: ratio, ...themeVars }}
       onMouseDown={(e) => move(e.clientX)}
       onMouseMove={(e) => { if (e.buttons === 1) move(e.clientX); }}
       onTouchStart={(e) => move(e.touches[0].clientX)}
       onTouchMove={(e) => move(e.touches[0].clientX)}>
       {/* eslint-disable @next/next/no-img-element */}
-      <img className="cw-cmp-img" src={`${base}/${after}`} alt={labelAfter || "after"} draggable={false} />
-      <img className="cw-cmp-img" src={`${base}/${before}`} alt={labelBefore || "before"} draggable={false}
-        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
+      {cmpIsVideo(after)
+        ? <video className="cw-cmp-img" ref={afterVid} src={`${base}/${after}`} onTimeUpdate={sync} onCanPlay={kick}
+            autoPlay loop muted playsInline preload="auto" />
+        : <img className="cw-cmp-img" src={`${base}/${after}`} alt={labelAfter || "after"} draggable={false} />}
+      {cmpIsVideo(before)
+        ? <video className="cw-cmp-img" ref={beforeVid} src={`${base}/${before}`} onCanPlay={kick}
+            autoPlay loop muted playsInline preload="auto" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />
+        : <img className="cw-cmp-img" src={`${base}/${before}`} alt={labelBefore || "before"} draggable={false}
+            style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }} />}
       {/* eslint-enable @next/next/no-img-element */}
       <div className="cw-cmp-handle" style={{ left: `${pos}%` }}><span /></div>
       {labelBefore && <div className="cw-cmp-lab cw-cmp-lab-l">{labelBefore}</div>}
@@ -532,7 +562,8 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
       {!previewed && s.kind === "compare" && s.compare && (
         <figure className="cw-figure" style={{ width: s.compare.w || 760 }}>
           <Compare before={s.compare.before} after={s.compare.after} ratio={s.compare.ratio}
-            labelBefore={s.compare.labelBefore} labelAfter={s.compare.labelAfter} base={base} />
+            labelBefore={s.compare.labelBefore} labelAfter={s.compare.labelAfter} base={base}
+            accent={s.compare.accent} bg={s.compare.bg} />
           {s.compare.download && <DownloadLink src={s.compare.after} base={base} />}
         </figure>
       )}

@@ -154,6 +154,12 @@ export const work: WorkSection[] = [
       { sign: "Your Sabre team" },
     ] },
 
+  { title: "Matched to your design", kind: "compare", zone: "work", status: "ready", badge: "Original vs rebuild",
+    desc: "Both ads are playing. The line splits them: everything to its LEFT is your original OPEN leaderboard (970x250), everything to its RIGHT is the same ad rebuilt by the machine. Drag the line across to wipe from one to the other. They run the same, so the full IAB set sits alongside your existing creative as one consistent system.",
+    compare: { before: "compare-open-original.mp4", after: "compare-open-ours.mp4", ratio: "970/250", w: 760,
+      labelBefore: "← Your original", labelAfter: "Rebuilt by the machine →", download: false,
+      accent: "#ffffff", bg: "#E2553C" } },
+
   { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Reviewed and paused by Darren",
     desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
     groups: adGroups("open") },

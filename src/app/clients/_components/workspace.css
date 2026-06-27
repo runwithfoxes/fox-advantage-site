@@ -1032,7 +1032,7 @@
   border-radius: 10px;
   cursor: ew-resize;
   user-select: none;
-  background: #011c00;
+  background: var(--cmp-bg, #011c00);
   touch-action: none;
 }
 .cw-cmp-img {
@@ -1050,7 +1050,7 @@
   bottom: 0;
   width: 2px;
   margin-left: -1px;
-  background: #58F920;
+  background: var(--cmp-accent, #58F920);
   pointer-events: none;
 }
 .cw-cmp-handle span {
@@ -1061,7 +1061,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #58F920;
+  background: var(--cmp-accent, #58F920);
   box-shadow: 0 2px 10px rgba(0,0,0,.4);
 }
 .cw-cmp-handle span::before {
@@ -1078,13 +1078,13 @@
 }
 .cw-cmp-lab {
   position: absolute;
-  bottom: 10px;
-  padding: 4px 10px;
+  top: 10px;
+  padding: 5px 11px;
   border-radius: 6px;
-  background: rgba(1,28,0,.72);
-  color: #cdeccd;
+  background: var(--cmp-lab-bg, rgba(0,0,0,.72));
+  color: var(--cmp-lab-ink, #fff);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
   pointer-events: none;
