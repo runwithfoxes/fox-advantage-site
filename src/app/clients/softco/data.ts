@@ -25,22 +25,22 @@ export const meta: Meta = {
 };
 
 export const deliverables: Deliverable[] = [
-  { name: "Display / banner ads", detail: "11 IAB sizes, animated", status: "ready", date: "2026-06-12" },
-  { name: "Testimonial cards", detail: "4 layouts, square, static + animated", status: "ready", date: "2026-06-13" },
-  { name: "Email banners", detail: "600×140 and 1024×206", status: "ready", date: "2026-06-13" },
-  { name: "Blog headers", detail: "1200×630", status: "ready", date: "2026-06-13" },
-  { name: "Blog content cards", detail: "Stat, pull-quote, question", status: "ready", date: "2026-06-13" },
-  { name: "Event graphics", detail: "Square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Meeting backgrounds", detail: "1920×1080 virtual background", status: "ready", date: "2026-06-13" },
-  { name: "Social posts", detail: "Square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Carousels", detail: "3-slide, square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Product walkthrough carousel", detail: "5-slide, square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Testimonial carousel", detail: "5-slide, square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Webinar promos", detail: "Square 1080×1080", status: "ready", date: "2026-06-13" },
-  { name: "Thumbnails", detail: "1280×720", status: "ready", date: "2026-06-13" },
-  { name: "Video clips", detail: "Webinar repurposing", status: "todo" },
-  { name: "Product Proof ad", detail: "Square 1080×1080, extra", status: "ready", date: "2026-06-12" },
-  { name: "Readability QA gate", detail: "Auto-fails assets on contrast, size, spacing, density", status: "ready", date: "2026-06-25", isNew: true },
+  { name: "Display / banner ads", detail: "11 IAB sizes, animated", status: "ready", date: "2026-06-12", anchor: "cw-s-chart-ad-set" },
+  { name: "Testimonial cards", detail: "4 layouts, square, static + animated", status: "ready", date: "2026-06-13", anchor: "cw-s-testimonial-cards" },
+  { name: "Email banners", detail: "600×140 and 1024×206", status: "ready", date: "2026-06-13", anchor: "cw-s-email-banners" },
+  { name: "Blog headers", detail: "1200×630", status: "ready", date: "2026-06-13", anchor: "cw-s-blog-header-thumbnail" },
+  { name: "Blog content cards", detail: "Stat, pull-quote, question", status: "ready", date: "2026-06-13", anchor: "cw-s-blog-content-cards" },
+  { name: "Event graphics", detail: "Square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-social-event" },
+  { name: "Meeting backgrounds", detail: "1920×1080 virtual background", status: "ready", date: "2026-06-13", anchor: "cw-s-meeting-background" },
+  { name: "Social posts", detail: "Square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-social-event" },
+  { name: "Carousels", detail: "3-slide, square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-linkedin-carousel" },
+  { name: "Product walkthrough carousel", detail: "5-slide, square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-linkedin-carousel-product-walkthrough" },
+  { name: "Testimonial carousel", detail: "5-slide, square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-linkedin-carousel-customer-stories" },
+  { name: "Webinar promos", detail: "Square 1080×1080", status: "ready", date: "2026-06-13", anchor: "cw-s-webinar-promo" },
+  { name: "Thumbnails", detail: "1280×720", status: "ready", date: "2026-06-13", anchor: "cw-s-blog-header-thumbnail" },
+  { name: "Video clips", detail: "Webinar repurposing", status: "todo", anchor: "cw-s-webinar-clip-cleanup" },
+  { name: "Product Proof ad", detail: "Square 1080×1080, extra", status: "ready", date: "2026-06-12", anchor: "cw-s-product-proof-ad" },
+  { name: "Readability QA gate", detail: "Auto-fails assets on contrast, size, spacing, density", status: "ready", date: "2026-06-25", isNew: true, anchor: "cw-s-readability-qa-gate" },
 ];
 
 /* Chart Ad set, grouped by shape. [size, aspect-ratio, display-width-px] */

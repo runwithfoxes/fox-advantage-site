@@ -37,6 +37,7 @@ export type Deliverable = {
   target?: string;
   note?: string;
   isNew?: boolean;              // renders a "New" tag on the row
+  anchor?: string;              // optional: a work-section id (e.g. "cw-s-chart-ad-set") to jump to when the name is clicked
   statusLabel?: string;         // overrides the status pill text (keeps the status colour); for bespoke states like "Reviewed and paused by Darren"
   download?: { file: string; label?: string };  // file in public/clients/{slug}/media/, renders a download link in the note cell
 };
@@ -452,6 +453,10 @@ function ResponsiveFigure({ s, base }: { s: WorkSection; base: string }) {
   );
 }
 
+// stable id for a work section, so deliverable rows can jump to it as a bookmark
+const cwSlug = (t: string) =>
+  "cw-s-" + t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 function SectionHead({ s }: { s: WorkSection }) {
   const label = s.badge || s.date || (s.status ? STATUS_LABEL[s.status] : "");
   return (
@@ -772,7 +777,7 @@ export default function ClientWorkspace({
           </div>
           {deliverables.map((d) => (
             <div className="cw-row" key={d.name} style={{ gridTemplateColumns: cols }}>
-              <span>{d.name}{d.isNew && <span className="cw-new cw-new-inline">New</span>}</span>
+              <span>{d.anchor ? <a className="cw-jump" href={`#${d.anchor}`}>{d.name}</a> : d.name}{d.isNew && <span className="cw-new cw-new-inline">New</span>}</span>
               <span>{d.detail}</span>
               <span><i className={`cw-b ${d.status}`} />{d.statusLabel || STATUS_LABEL[d.status]}</span>
               <span>{d.date || " - "}</span>
@@ -790,7 +795,7 @@ export default function ClientWorkspace({
               const newZone = zone !== last;
               last = zone;
               return (
-                <div key={s.title}>
+                <div key={s.title} id={cwSlug(s.title)}>
                   {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} num={zoneNum(zone)} />}
                   {s.groupLabel && <h3 className="cw-grouplabel">{s.groupLabel}</h3>}
                   <WorkBlock s={s} base={base} />

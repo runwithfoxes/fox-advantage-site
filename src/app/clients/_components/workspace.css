@@ -200,6 +200,16 @@
 .cw-row span:first-child {
   color: var(--text);
 }
+/* deliverable name as a jump-link to its work section */
+.cw-jump {
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease;
+}
+.cw-jump:hover { border-bottom-color: currentColor; }
+/* work sections are scroll targets; offset so the heading clears the sticky nav */
+[id^="cw-s-"] { scroll-margin-top: 90px; }
 .cw-row-head span:first-child {
   color: var(--cream);
 }
