@@ -297,7 +297,7 @@
     {key:'ad-resizer',name:'Ad Resizer',icon:'resize',cat:'advertising',img:'assets/dayone/dayone-1080x1080.gif',badges:['New'],ben:'One ad in, every size out.'},
     {key:'ad-maker',name:'Ad Maker',icon:'ad',cat:'advertising',badges:['Bundled'],ben:'Brief to finished ads, quality first.'},
     {key:'copywriter',name:'Copywriter',icon:'write',cat:'advertising',ben:"Your brand's voice, trained to write."},
-    {key:'linkedin-content',name:'LinkedIn Content Engine',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Be worth finding when the outreach lands.'},
+    {key:'linkedin-content',name:'Ghostwriter',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Your expertise, published in your voice.'},
     {key:'scorecard',name:'Brand Scorecard',icon:'score',cat:'strategy',ben:'One page everyone watches.'},
     {key:'segmentation',name:'Segmentation',icon:'seg',cat:'strategy',ben:'Segments, with the maths actually run.'},
     {key:'positioning',name:'Competitor Positioning Map',icon:'map',cat:'strategy',ben:'Find the white space.'},
@@ -315,7 +315,7 @@
   var CATS=[['all','All'],['strategy','Strategy'],['advertising','Advertising'],['email','Email'],['research','Research'],['outreach','Outreach']];
   // a product can sit in more than one filter: use cats:[...] (falls back to the single cat)
   var catsOf=function(m){ return m.cats || [m.cat]; };
-  var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html'};
+  var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html','linkedin-content':'module-ghostwriter.html'};
 
   function badgesHTML(bs){
     if(!bs||!bs.length)return '';
