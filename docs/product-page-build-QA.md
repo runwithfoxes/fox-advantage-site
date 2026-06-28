@@ -20,7 +20,7 @@
 |------|----------|------------|---------------------|------------|
 | brief-coach | A | yes | yes (3 tabs) - Experience being redone to chat-box+pyramid spec | yes (card live, strategy filter) |
 | advertising-agent | F | yes | yes (3 tabs) | yes (card wired, branded+blueprint, filter advertising). Kling CONFIRMED in (Seedance+Kling); Chart.js dropped
-| outreach (Outbound Agent) | G | | | | (real machine mapped, brief ready)
+| outreach (Outbound Agent) | G | yes | yes (builder, 3 tabs) | yes (PAGES + MODS; card mirrors verified Ad Agent wiring - coordinator could not re-screenshot, browser disconnected at wrap)
 | campaign-manager | H | | | | (the BUNDLE; generic data only - real op is confidential)
 | copywriter | B | | | |
 | scorecard | C | | | |
@@ -142,6 +142,13 @@ DONE + slug: **outreach** -> `wireframes/module-outbound-agent.html` (cloned fro
 
 Storefront card for when you wire it: MODS key `outreach`, name **Outbound Agent**, link `module-outbound-agent.html`, **Bundled** badge, filters outreach + email. I did NOT touch the storefront file.
 
+UPDATE [G, Paul reviewed live + your 3 answers applied, 28 Jun eve - PAGE SIGNED OFF FOR TONIGHT]:
+- Thanks for the answers. All three applied: **(a) names stay `[name]`** (kept each opening's specific content); **(c) expert redacted** (credibility close = Paul's own CMO / Marketer-of-the-Year facts, no named expert). **(b) numbers genericised** per your confidentiality steer: dropped the exact 650/$2.34/124/120/1,144. Console tiles now use round illustrative figures (500 sourced / 100 qualified / 100 written / 1,000 on LinkedIn, ring 100/100); proof strip is now generic prose: "screens hundreds of companies for the price of a coffee... a campaign of a thousand-plus prospects... nothing sends or spends until we press Start." Economics POINT kept, real digits gone.
+- **Experience rebuilt** since the DONE above: the static side-by-side email diff is now an animated **"agent console"** (stat tiles count up, a progress ring fills to 100/100, a live Messages panel types each bespoke opening and cycles through the four real emails while the grey shared close stays identical). Same bespoke-vs-mailmerge proof, more alive.
+- **Removed the geography branch** (EU/Ireland vs US, GDPR/PECR) from Behind-the-scenes + the GDPR rule chip. Paul: "don't need that for now."
+- **Removed the prompt/Run bar** - the console auto-plays on arrival.
+- Open for tomorrow: Paul revises the Experience intro copy line (still says "side by side" from the old layout). Screenshot-verified across all three tabs. Coordinator still owns wiring the card.
+
 ## Terminal H - Campaign Manager (the BUNDLE)
 > Brief: `docs/brief-campaign-manager.md`. Builder asks here with `Q:` + timestamp; coordinator answers inline.
 > Product locked (28 Jun): **Campaign Manager** = the whole operation run as one (plans/makes/runs/watches budget,
@@ -159,3 +166,12 @@ Storefront card for when you wire it: MODS key `outreach`, name **Outbound Agent
 - Reference build: `wireframes/module-ghostwriter.html`. Standard: `docs/product-ghostwriter.md`.
 - Coordinator wires each finished page into `homepage-storefront-branded.html` (PAGES map + MODS name/link) to
   avoid shared-file conflicts. Builders: just report "done + slug" here.
+- ⭐ **COPY POLICY (Paul, 28 Jun): builders do NOT polish copy. Get each page to ~90% (structure, real proof,
+  honest machine, on-brand). Paul does ONE copy-cleanup pass across ALL pages in a single terminal session
+  tomorrow, once the full set is ~90% ready.** So: nail the structure and the proof, don't agonise over wording.
+- SET LOCKED so far (28 Jun): Advertising Agent (one end-to-end product, make->run->analyse; REPLACED old "Ad
+  Maker" card; Ad Resizer stays separate) DONE+wired · Outbound Agent DONE+wired · Brief Coach (Terminal A) ·
+  Ghostwriter (reference). Campaign Manager brief ready (`docs/brief-campaign-manager.md`, key `campaign-manager`,
+  generic-data-only, never "Jo"/"Klara") - NOT built yet. Copywriter + Lifecycle Agent still to brief.
+- Briefs on disk for next session: `docs/brief-advertising-agent.md`, `docs/brief-outbound-agent.md`,
+  `docs/brief-campaign-manager.md`. Reference standard + LOCKED rules: `docs/COORDINATOR-HANDOVER.md`.

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advertising Agent · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* full site nav (the new product-page standard) */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+  .note{ width:100%; border-left:2px solid var(--sky-blue); background:var(--card-hover); padding:11px 15px; font-size:11px; line-height:1.65; color:var(--muted); }
+  .note strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: a brief -> a finished set across formats (justified rows) */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:30px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .exp-block + .exp-block{ margin-top:48px; }
+  .exp-h{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+  /* cluster: justified rows of real ads */
+  .cluster-left{ display:flex; flex-direction:column; gap:12px; }
+  .out-row{ display:flex; gap:12px; align-items:flex-start; }
+  .ad{ flex-grow:1; flex-basis:0; min-width:0; display:flex; flex-direction:column; gap:6px; }
+  .ad .dim{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; color:var(--muted); }
+  .ad .frame{ width:100%; aspect-ratio:var(--ar); border:1px solid var(--border); background:#F5F4F0; overflow:hidden; box-shadow:var(--shadow); }
+  .ad .frame img, .ad .frame video{ display:block; width:100%; height:100%; object-fit:cover; }
+  @media(max-width:640px){ .out-row{ flex-direction:column; } }
+  /* the live + analyse half: METHOD only, no numbers, no mock dashboard */
+  .method{ display:flex; gap:14px; }
+  @media(max-width:760px){ .method{ flex-direction:column; } }
+  .mcard{ flex:1; border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); padding:18px 18px 20px; display:flex; flex-direction:column; gap:9px; }
+  .mcard .mc-ic{ width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .mcard .mc-ic svg{ width:16px; height:16px; }
+  .mcard .mc-t{ font-family:'Space Grotesk',sans-serif; font-size:16px; color:var(--text); }
+  .mcard .mc-s{ font-size:12px; line-height:1.65; color:var(--muted); }
+  .method-note{ margin-top:16px; padding:12px 15px; background:var(--sky-soft); font-size:12px; line-height:1.6; color:var(--text); }
+  .method-note b{ font-weight:500; color:var(--deep-sky); }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa: matched to the live site widget */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="logo" href="homepage-storefront-branded.html">/<span>Run</span>withfoxes</a>
+    <span class="sp"></span>
+    <div class="links">
+      <a class="nlink" href="homepage-storefront-branded.html">/products</a>
+      <a class="nlink" href="/previous">/previous</a>
+      <a class="nlink" href="/book">/book</a>
+      <a class="nlink cta" href="/contact">/contact</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Product</div>
+      <h1>Advertising Agent</h1>
+      <div class="sell">
+        <p class="sell-lead">Making an ad is the easy part now. <b>The hard part is the same as it always was:</b> knowing what the ad should say, what to leave out, and what to change once it is live in front of people.</p>
+        <p class="sell-body">The Advertising Agent starts from your brief and your brand strategy, with twenty years of making ads that work built in. It makes the whole set a campaign needs, static, animated, brand films and video, on brand every time. Then it gets them live, watches how each one does, and decides what to keep running and what to fix. <b>The same agent that makes the work also runs it and reads the numbers.</b> A design tool stops at the picture. This does the job around it.</p>
+        <p class="sell-rail">We build it around your brand and hand it over. It runs in your own Claude, and <b>nothing goes live or spends a penny without your say so.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">One brief in, a finished campaign out. <b>These are real ads, made on brand across every format the campaign needed.</b></div>
+
+      <div class="exp-block">
+        <div class="exp-h">Makes the set, every format</div>
+        <div class="cluster-left">
+          <div class="out-row">
+            <div class="ad" style="flex-grow:1;--ar:1/1"><span class="dim">Brand scene</span><div class="frame"><img src="assets/advertising-agent/brand-killbill.png" alt="brand scene ad"></div></div>
+            <div class="ad" style="flex-grow:1.78;--ar:16/9"><span class="dim">Brand film · video</span><div class="frame"><video src="assets/advertising-agent/rounders.mp4" autoplay muted loop playsinline></video></div></div>
+          </div>
+          <div class="out-row">
+            <div class="ad" style="flex-grow:1;--ar:1/1"><span class="dim">Static</span><div class="frame"><img src="assets/advertising-agent/6040-activate-static-1080x1080.png" alt="static chart ad"></div></div>
+            <div class="ad" style="flex-grow:1;--ar:1/1"><span class="dim">Animated chart</span><div class="frame"><img src="assets/advertising-agent/95-5-only-5pct-1080x1080.gif" alt="animated chart ad"></div></div>
+          </div>
+          <div class="out-row">
+            <div class="ad" style="flex-grow:0.8;--ar:4/5"><span class="dim">Brand · portrait</span><div class="frame"><img src="assets/advertising-agent/vespa-loyalty-portrait.png" alt="portrait brand ad"></div></div>
+            <div class="ad" style="flex-grow:1.78;--ar:16/9"><span class="dim">Brand film · video</span><div class="frame"><video src="assets/advertising-agent/waterslide.mp4" autoplay muted loop playsinline></video></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-h">Then it gets them live, and reads the numbers</div>
+        <div class="method">
+          <div class="mcard">
+            <div class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+            <div class="mc-t">Targets it</div>
+            <div class="mc-s">Sets the campaign up, picks who should see it, and splits the budget across the formats.</div>
+          </div>
+          <div class="mcard">
+            <div class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="mc-t">Watches it</div>
+            <div class="mc-s">Reads how each ad is doing as it runs: which creative is working, which is tired, where the cost is going.</div>
+          </div>
+          <div class="mcard">
+            <div class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg></div>
+            <div class="mc-t">Optimises it</div>
+            <div class="mc-s">Decides what to keep, what to cut, and what to make next, and brings you the call.</div>
+          </div>
+        </div>
+        <div class="method-note">The making is real and on the page above. The launch and tuning half runs on the LinkedIn Marketing API: campaigns set up and read programmatically, with you approving every spend and every change. <b>Nothing goes live or spends without your sign off.</b></div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap">
+    <div class="foot">
+      <h2>Want the Advertising Agent built for you?</h2>
+      <p>We build it around your brand and your numbers, then hand it over. Or talk it through with Paul first.</p>
+      <div class="foot-acts">
+        <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
+        <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isa, scoped to the Advertising Agent -->
+  <div class="isaw" id="isaw">
+    <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
+    <div class="isa-body" id="isaBody">
+      <div class="m bot">Hi, I'm Isa. This is the Advertising Agent: it makes your ads across every format, gets them live, and looks after the numbers and the tuning. Would you like to talk to Paul about building it for you? You can grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+    </div>
+    <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>',
+  target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
+  chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>',
+  fork:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="4" r="2.2"/><circle cx="6" cy="20" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M6 6.2v11.6M6 12h7a4 4 0 0 0 4-4V11"/></svg>',
+  cast:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'A brief', end:'On brand, live and optimised, in your own Claude', nodes:[
+    {type:'node', badge:'1', when:'Set up once', icon:'brief', title:'Your strategy is built in', sub:'Your positioning, messaging, segments and the brand rules, loaded once. Every ad starts from your strategy, not a blank page.'},
+    {type:'node', badge:'2', when:'Reads the brief', icon:'fork', title:'Dray calls the format', sub:'It works out what the ad should be and routes it: a performance static on cream, a cinematic brand scene, an animated chart, or a video. Each goes to its own maker.'},
+    {type:'note', text:'Some briefs are straightforward and the agent runs them through. Others, a brand-new scene or a fresh look, it slows down and works through with you before it spends anything.'},
+    {type:'node', badge:'3', when:'Every format', icon:'make', title:'Writes the headline', sub:'Three angles, six lines, benefit, news and curiosity, cut down to the one that lands in under ten words.',
+      check:'<strong>You pick the line.</strong> Nothing is built around a headline you did not choose.'},
+    {type:'node', badge:'4', when:'Every format', icon:'cast', title:'Casts the fox', sub:'It searches the cast library for the fox that fits the moment, the season, the sport, the story, and reuses one or proposes a new one for you to approve.'},
+    {type:'branch', lanes:[
+      {cls:'keep', pill:'Stills', text:'It decides where the headline will sit <strong>before</strong> the picture is drawn, then writes the prompt to leave that space empty. Generates the scene on <strong>Seedream 4.5</strong>. If the scene is right but the copy needs more room, it <strong>outpaints</strong> with Flux Fill Pro rather than start over. Then lays the headline over the top in HTML and shoots it at 2x.'},
+      {cls:'hold', pill:'Motion', text:'For video it picks the treatment, a freeze frame, a tracking shot, a montage, and generates on <strong>Seedance 2.0</strong>. For an animated chart it picks the chart, builds it in HTML and CSS, captures it frame by frame and assembles the film with <strong>ffmpeg</strong>.'}
+    ]},
+    {type:'node', badge:'5', when:'Before anything ships', icon:'gate', title:'The readability and brand gate', sub:'/ad-qa checks contrast, font size, edge spacing and copy density on the real render, and the work is held against your brand and voice.',
+      check:'<strong>It auto-fails a breaking asset.</strong> Nothing that breaks readability or your brand gets through.'},
+    {type:'node', badge:'6', when:'Launch', icon:'target', title:'Live on LinkedIn', sub:'The campaign is set up through the LinkedIn Marketing API, with the budget split across the set.',
+      check:'<strong>You approve before anything spends.</strong> Nothing goes live without your sign off.'},
+    {type:'node', badge:'7', when:'While it runs', icon:'chart', title:'Read the numbers, then tune', sub:'Performance is read back through the same API. It sees what is working and what is tired, decides what to keep, cut and make next, and brings you the call.'}
+  ]},
+  uses:{ groups:[
+    {label:'Skills', cls:'skill', items:['/dray','/fox-static','/fox-brand','/fox-video','/fox-html-ads','/ad-qa']},
+    {label:'Rules', items:['your brief + brand strategy','headline position decided before the prompt','headline under ten words','/ad-qa readability gate: contrast, font size, edge spacing, copy density','brand + voice law','you approve the line, the cast and the prompt','nothing spends without your approval']},
+    {label:'Tools', items:['their own Claude','Claude Code','Replicate','Playwright (@2x)','ffmpeg','LinkedIn Marketing API']},
+    {label:'Models', items:['Claude (the brain)','Seedream 4.5 (images)','Flux Fill Pro (outpaint)','Seedance 2.0 (video)']},
+    {label:'Data', items:['your brief + brand strategy','your positioning + segments','the fox cast library','approved brand assets','campaign performance, read back']},
+    {label:'Memory', items:['what worked before','your brand rules','the loved / killed creative']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='note'){
+      flow.appendChild(el(`<div class="note">${nd.text}</div>`));
+    } else if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Isa
+const isaw = document.getElementById('isaw'), isaText = document.getElementById('isaText'), isaBody = document.getElementById('isaBody');
+let isaClosed = false;
+function openIsa(){ if(!isaClosed) isaw.classList.add('open'); }
+document.getElementById('isaX').addEventListener('click', ()=>{ isaw.classList.remove('open'); isaClosed = true; });
+function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); isaBody.appendChild(m); isaBody.scrollTop=isaBody.scrollHeight; }
+document.getElementById('isaSend').addEventListener('click', ()=>{
+  const v = isaText.value.trim(); if(!v) return;
+  addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
+  setTimeout(()=> addMsg('bot', "Good question. The short version: it makes the ads from your brief and brand strategy, gets them live, then reads the numbers and tunes them. The same agent does all of it, and nothing spends without your sign off."), 450);
+  setTimeout(()=> addMsg('bot', "Easiest next step is thirty minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
+});
+setTimeout(openIsa, 5000);
+</script>
+</body>
+</html>
