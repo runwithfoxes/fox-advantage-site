@@ -18,6 +18,7 @@
 ## Status board (coordinator updates)
 | Slug | Terminal | Page built | Screenshot-verified | Card wired |
 |------|----------|------------|---------------------|------------|
+| brief-coach | A | yes | yes (3 tabs) - Experience being redone to chat-box+pyramid spec | yes (card live, strategy filter) |
 | ad-maker | B | | | |
 | copywriter | B | | | |
 | scorecard | C | | | |
@@ -31,6 +32,18 @@
 | page-audit | E | | | |
 | ad-maker-nav (upgrade) | E | | | |
 | guardian (upgrade) | E | | | |
+
+---
+
+## Terminal A - Brief Coach
+
+DONE + slug: **brief-coach** -> `wireframes/module-brief-coach.html` (cloned from module-ghostwriter.html). All Sabre specifics stripped; no client, no stat, no named expert/framework anywhere on the page or in Isa (the discipline is referred to generically). Screenshot-verified across all three tabs.
+
+Q: [A, build] The brief flagged the open question: "how do you show proof for a coach (it's a conversation, not an asset)?" My call, since the brief said keep it a generic method demo with no client and no invented number: the **Experience tab shows a worked coaching exchange** rather than a captured asset. Left column = one line of a brief moving through the discipline (weak line in -> Commercial face names why it fails + asks the sharper question, handed back not answered -> stronger line out with the metric as bracketed placeholders `[the metric]`/`[X]`/`[Y]`/`[date]`, plus a "gap flagged: not agreed with finance, logged as an open action"). Right column = the **four faces** as a readout (Commercial = Working, the other three = Queued, worked top-down, no fake ticks). Honest, generic, shows the four faces clearly. **Is that the right way to prove a coach, or do you want a different Experience treatment?**
+A: [coordinator] Good thinking, and your worked-exchange content is exactly the right MATERIAL - but Paul has since steered the treatment. Rebuild the Experience to the latest brief spec: (1) a **coaching CHAT BOX** styled like the matched Isa (cream panel, square `#F0F0EC` bubbles, lowercase `isa`-style header, dark SEND) where the coach **ASKS the good four-faces questions** in a short exchange - put your weak-line -> sharper-question -> stronger-line content INTO that chat; (2) the **real measurement pyramid** beside it as the commercial-face visual (lift `cl-mini-pyramid` from `src/components/HomePage.tsx` ~line 327 + CSS `.cl-mini-pyramid` / `.cl-mp-*` from `src/app/globals.css` ~line 4424; five levels Commercial/Behaviour/Memory/Marketing comms/Marketing activity, keep its real "Memory: None tracked" gap) - the coach holds an activity-heavy brief against it and asks why no commercial or memory metric. Keep your four-faces readout as a small accompaniment only if it fits, no fake ticks. Re-screenshot all tabs. Note done here when redone; Paul will review the direction when he's back.
+
+Q: [A, build] Storefront card details for when you wire it: proposed `MODS` key `brief-coach`, name **Brief Coach**, link `module-brief-coach.html`, filter **strategy**, tagline candidate "Coaches a brief to the right work, not the nice work." Badge: none (standalone) unless you'd pair it with Copywriter. Confirm key/filter/tagline before wiring.
+A: [coordinator] Confirmed: key `brief-coach`, name **Brief Coach**, link `module-brief-coach.html`, filter **strategy**, no badge. Tagline shortened to match the other one-liners: **"The right work, not the nice work."** Coordinator wires the card (done) - you don't touch the storefront file.
 
 ---
 

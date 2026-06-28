@@ -299,6 +299,7 @@
     {key:'copywriter',name:'Copywriter',icon:'write',cat:'advertising',ben:"Your brand's voice, trained to write."},
     {key:'linkedin-content',name:'Ghostwriter',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Your expertise, published in your voice.'},
     {key:'scorecard',name:'Brand Scorecard',icon:'score',cat:'strategy',ben:'One page everyone watches.'},
+    {key:'brief-coach',name:'Brief Coach',icon:'doc',cat:'strategy',ben:'The right work, not the nice work.'},
     {key:'segmentation',name:'Segmentation',icon:'seg',cat:'strategy',ben:'Segments, with the maths actually run.'},
     {key:'positioning',name:'Competitor Positioning Map',icon:'map',cat:'strategy',ben:'Find the white space.'},
     {key:'dba',name:'Distinctive Brand Assets Audit',icon:'matrix',cat:'strategy',ben:'What makes you recognisable, scored.'},
@@ -315,7 +316,7 @@
   var CATS=[['all','All'],['strategy','Strategy'],['advertising','Advertising'],['email','Email'],['research','Research'],['outreach','Outreach']];
   // a product can sit in more than one filter: use cats:[...] (falls back to the single cat)
   var catsOf=function(m){ return m.cats || [m.cat]; };
-  var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html','linkedin-content':'module-ghostwriter.html'};
+  var PAGES={'ad-resizer':'module-ad-maker.html','guardian':'module-brand-guardian.html','linkedin-content':'module-ghostwriter.html','brief-coach':'module-brief-coach.html'};
 
   function badgesHTML(bs){
     if(!bs||!bs.length)return '';
