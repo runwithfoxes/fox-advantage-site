@@ -12,7 +12,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-25",
+  lastUpdated: "2026-06-28",
   // worked one-pager + brief examples added to the brief zone for Darren to validate
   targetDate: "2026-07-06",
   hideProgress: true,
@@ -31,8 +31,8 @@ export const deliverables: Deliverable[] = [
   { name: "Team interviews + report", detail: "Interviews across Brand, Product and Commercial Marketing, written up with prioritised recommendations", status: "signed-off", date: "Apr 2026", note: "Phase 1 discovery. The write-up that set the priorities.", download: { file: "sabre-team-interviews-report.docx", label: "Download the report" } },
   { name: "Ad versioning", detail: "A process that versions one approved ad into the full IAB set, each size pixel-matched to the original design", status: "paused", statusLabel: "Reviewed and paused by Darren", date: "2026-06-12", note: "Proved out and delivered: three route sets (OPEN, PLATFORM and Route 4) across every IAB size, animated and matched to Darren's designs. Darren reviewed them and chose to pause further ad work while the mid-funnel direction is settled." },
   { name: "Presentation builder", detail: "Sabre-branded deck skill in Claude.ai", status: "paused", statusLabel: "Paused, no days charged against it", date: "2026-05-19", note: "Darren has it and is iterating independently." },
-  { name: "Email writer (v2)", detail: "AI writer for Sabre marketing emails, nine types", status: "ready", date: "2026-06-17", note: "Built and on v2, ready for your sign-off. Three sample emails are below, and a changelog is inside the download.", download: { file: "sabre-email-writer-v2.1.sabre.zip", label: "Download the skill" } },
-  { name: "Blog writer", detail: "AI writer for blog posts and longer-form content", status: "todo", note: "Next in the set." },
+  { name: "Email writer (v2.2)", detail: "AI writer for Sabre marketing emails, nine types", status: "ready", date: "2026-06-28", note: "Updated to v2.2 (28 June). New: a verification ledger that proves every claim with a pasted source before anything sends, plus a pre-send checklist. If you downloaded an earlier version, grab this one to get it. Three sample emails are below, and a changelog is inside the download.", download: { file: "sabre-email-writer-v2.2.sabre.zip", label: "Download the skill (v2.2)" }, isNew: true },
+  { name: "Blog writer", detail: "AI writer for blog posts and longer-form content, nine types", status: "ready", date: "2026-06-28", note: "Built on the email writer's foundations: same voice, same plan-first-then-prove-it method, same verification ledger. Nine long-form types (point of view, explainer, product deep-dive, case study, data insight, trend, practical guide, news reaction, recap). Download and load it the same way as the email writer.", download: { file: "sabre-blog-writer-v1.1.sabre.zip", label: "Download the skill (v1.1)" }, isNew: true },
   { name: "Web copy writer", detail: "AI writer for website and landing page copy", status: "todo", note: "" },
   { name: "Paid social writer", detail: "AI writer for paid social copy (LinkedIn, Meta)", status: "todo", note: "" },
   { name: "Organic social writer", detail: "AI writer for organic social posts", status: "todo", note: "" },
@@ -79,10 +79,16 @@ export const work: WorkSection[] = [
     desc: "Before we build the brief coach, we need to agree what a good one-pager and a good brief actually look like at Sabre. So we have taken a stab at both, for the same imaginary campaign. The one-pager is the owner's ask; the brief is the marketing craft that answers it. Have a read and tell us: is this the right shape and altitude, or not typical of how Sabre really works? A yes or a no both move us forward.",
     html: briefExamplesHtml },
 
-  { title: "Email writer (v2)", kind: "files", zone: "work", status: "ready", wideDesc: true,
-    desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. Latest version: v2.1 (17 June 2026), which sharpens how it writes headlines. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
+  { title: "Email writer (v2.2)", kind: "files", zone: "work", status: "ready",
+    desc: "The Sabre email writer, covering nine email types. Download the skill below and load it into Claude (Customize, then Skills, then Create skill). Three sample emails it produced follow. The writer never invents Sabre's specifics, so anything in [brackets] or {{tokens}} is a gap it has flagged for you to fill before sending. That is the writer working as intended, not an unfinished draft. New in v2.2 (28 June 2026): a verification ledger. Every checkable claim (every stat, named person, customer, quote, competitor claim) now gets its own row with a status and a pasted source, and nothing is marked verified without a real source link. If you downloaded an earlier version, grab this one to get it. The version and a full changelog are inside the zip, so you can tell a new set of files from one you already have.",
     files: [
-      { name: "Sabre Email Writer v2.1", file: "sabre-email-writer-v2.1.sabre.zip", note: "Claude skill, zip, v2.1", date: "2026-06-17" },
+      { name: "Sabre Email Writer v2.2", file: "sabre-email-writer-v2.2.sabre.zip", note: "Claude skill, zip, v2.2", date: "2026-06-28" },
+    ] },
+
+  { title: "Blog writer (v1.1)", kind: "files", zone: "work", status: "ready",
+    desc: "The Sabre blog writer, covering nine long-form types: point of view, explainer, product deep-dive, case study, data insight, trend, practical guide, news reaction, and event recap. It is built on the email writer's foundations, so it works the same way: it declares a plan before it writes, writes in the real Sabre voice, then proves its facts with the same verification ledger (every claim gets a row, a status, and a pasted source) before it shows its working. Download the skill below and load it into Claude the same way as the email writer (Customize, then Skills, then Create skill). It works best in a project where Sabre's positioning is loaded, so it can cite real specifics rather than flag them as gaps. The version and a full changelog are inside the zip.",
+    files: [
+      { name: "Sabre Blog Writer v1.1", file: "sabre-blog-writer-v1.1.sabre.zip", note: "Claude skill, zip, v1.1", date: "2026-06-28" },
     ] },
 
   { title: "Sample: webinar invite", kind: "email", zone: "work", badge: "Sample email",
