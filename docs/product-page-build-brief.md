@@ -34,6 +34,9 @@
   truthful (e.g. Ghostwriter: human posts to LinkedIn + Substack; Substack auto-emails + auto-website; NO ESP).
 - **Brand is law + voice is law.** Cream, JetBrains Mono, sharp corners (flow nodes are the only rounded
   surface), sky `#3A7CA5`, fox on cream only. No em dashes, no corporate/AI words, sentence case, buyer's words.
+- **COPYRIGHT/IP: never name external experts, authors or named frameworks on a product page or in Isa**
+  (no Field, Rumelt, Dunford, Ehrenberg-Bass-as-a-method, etc.). Sell the discipline generically ("twenty years
+  of effectiveness work", "the maths actually run"). Named thinkers stay in the private skill references only.
 - **Workflow flows ALWAYS animate** (staggered reveal on tab open - it's in the reference's `revealFlow`).
 - **Screenshot + LOOK at every layout change before saying done.** Headless Chrome / browser -> read the PNG.
 
