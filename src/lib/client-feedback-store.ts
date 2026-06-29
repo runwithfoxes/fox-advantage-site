@@ -40,8 +40,13 @@ function emptyAsset(): AssetFeedback {
 export async function getClientFeedback(slug: string): Promise<ClientFeedback> {
   const redis = getRedis();
   if (!redis) return { slug, assets: {} };
-  const stored = await redis.get<ClientFeedback>(key(slug));
-  return stored ?? { slug, assets: {} };
+  try {
+    const stored = await redis.get<ClientFeedback>(key(slug));
+    return stored ?? { slug, assets: {} };
+  } catch (e) {
+    console.error("[client-feedback-store] failed to get feedback:", e);
+    return { slug, assets: {} };
+  }
 }
 
 async function mutate(
@@ -50,9 +55,14 @@ async function mutate(
 ): Promise<void> {
   const redis = getRedis();
   if (!redis) return;
-  const fb = (await redis.get<ClientFeedback>(key(slug))) ?? { slug, assets: {} };
-  fn(fb);
-  await redis.set(key(slug), fb);
+  try {
+    const fb = (await redis.get<ClientFeedback>(key(slug))) ?? { slug, assets: {} };
+    fn(fb);
+    // Feedback blobs are stored permanently with no TTL (durable record, not cache)
+    await redis.set(key(slug), fb);
+  } catch (e) {
+    console.error("[client-feedback-store] failed to mutate:", e);
+  }
 }
 
 export async function setAssetDecision(
