@@ -132,6 +132,14 @@ Twenty years running internal studios. AI brought into them to do three things: 
 - Review intelligence: Trustpilot, Amazon, app store reviews analysed across brands and competitors. Themes extracted, sentiment tracked over time
 - Pricing intelligence: daily competitive price monitoring across retailers. Alerts on changes, tracks promotional patterns, flags when a competitor undercuts on a key line
 
+### The agents that do the work (execution, not just strategy)
+The six areas above are where the thinking lives, and the same thinking runs through the execution. The agents that do the work day to day all have proper marketing fundamentals built into them. That's the difference: an outbound agent, an ad maker, a content engine that knows what actually makes marketing work, not generic automation that happens to be pointed at marketing.
+- **Advertising agents**: ad makers that take a brief or a line of data and turn it into finished static, animated, video and brand ads, on brand. Plus an ad resizer that takes one approved ad and produces the full set of placement sizes, each shape laid out properly rather than squashed. Quality first, then automated.
+- **Email agents**: an outbound agent that finds the right people and writes each one a genuinely personalised message (not mail-merge), across email and LinkedIn, coordinated. And a lifecycle agent that sends the right email at the right trigger to people who already know you: onboarding, nurture, retention, expansion. Outbound wins new, lifecycle keeps and grows.
+- **Outbound and pipeline**: prospect lists, enrichment, and multichannel outreach that runs end to end. Paul runs his own this way.
+- **Content engines**: organic content in your brand's voice, idea to finished post. A LinkedIn content engine, say, that brainstorms the angles, runs the research, and writes posts that sound like you, so your presence isn't barren when the outbound lands.
+The whole lot runs in your own stack: your Claude, your ESP (HubSpot, Klaviyo), your outreach tools. We build it around your brand, hand it over, and train your team to run it.
+
 ## About "Run with Foxes" (2020)
 Paul's first book. 43 short chapters built on admitted failures, not claimed victories. Opens with his own failure and uses it as the central cautionary tale. The emotional arc is humility, not triumph.
 
@@ -514,6 +522,9 @@ A: Yes, it's here: [Privacy](https://runwithfoxes.com/privacy). The short versio
 
 Q: Can Paul build something for my company?
 A: Yes, and the model is a bit different from a traditional agency. Paul builds working prototypes, real software you can click through and use, not decks or wireframes. Event systems, dashboards, AI tools, landing pages, research platforms. He's built dozens. The approach is: build the working 80% fast, then hand it off to your IT or engineering team with a detailed playbook covering what it does, how it works, what data it touches, and what security and production work is still needed. He calls it "showing up with working software instead of a PowerPoint deck." The conversation with your IT team changes completely when they're hardening something that already exists rather than building from a brief.
+
+Q: Can you help me with my outbound / email / ads / running campaigns?
+A: That's a big part of what we do. It's not just the strategy and positioning side, it's the agents that do the actual work. An outbound agent that finds your ICP and writes each person a real, personalised message across email and LinkedIn. A lifecycle agent that emails people who already know you at the right trigger. Ad makers and an ad resizer for the creative. Content engines that keep your LinkedIn and socials going in your own voice. The difference is they've got proper marketing fundamentals built in, not generic automation. We build them around your brand, hand them over, and they run in your own tools. Want to grab Paul to talk through which one? [Book a chat](https://cal.com/paul-dervan-mjfd50)
 
 Q: What's the difference between Claude in the browser and Claude Code?
 A: Claude in the browser is like texting a very smart colleague. You type, it responds, conversation ends when you close the tab. Good for one-off writing, brainstorming, analysis. Claude Code is more like hiring that colleague to sit beside you and build things. It runs on your machine, reads your files, writes code, creates entire applications. Paul built this website, his dashboard, event systems, and research tools all with Claude Code. You don't need to know how to code. You describe what you want, Claude Code builds it, you steer. The errors are real and the learning is fast. Start with Claude in the browser to get comfortable, then move to Claude Code when you want to build something that persists.
