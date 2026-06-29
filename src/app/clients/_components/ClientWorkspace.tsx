@@ -10,6 +10,8 @@
 
 import { useState, useTransition, useRef, useEffect } from "react";
 import Link from "next/link";
+import AssetFeedback from "./AssetFeedback";
+import type { ClientFeedback } from "@/lib/client-feedback-store";
 
 /* ---- types (kept permissive so data.ts is easy to hand-edit) ---- */
 type Status = "complete" | "signed-off" | "ready" | "in-progress" | "paused" | "todo";
@@ -81,6 +83,7 @@ export type WorkSection = {
   groupLabel?: string;     // renders a divider sub-heading above this section (group split)
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
+  feedback?: boolean;      // opt-in: render per-asset approve/comment/thread on this section's media
   kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed" | "html";
   layout?: "grouped" | "pair" | "single";
   // responsive kind: one piece at two layouts, toggled live between a desktop
@@ -492,6 +495,41 @@ function ResponsiveFigure({ s, base }: { s: WorkSection; base: string }) {
 const cwSlug = (t: string) =>
   "cw-s-" + t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
+// Every media filename in a section, across its single/items/grouped shapes.
+// assetId for the feedback control is the tile's src. PairItem: include src, ignore img.
+function collectAssetSrcs(section: WorkSection): string[] {
+  const srcs: string[] = [];
+  if (section.item?.src) srcs.push(section.item.src);
+  for (const it of section.items || []) {
+    if ("src" in it && it.src) srcs.push(it.src);
+  }
+  for (const g of section.groups || []) {
+    for (const it of g.items) {
+      if (it.src) srcs.push(it.src);
+    }
+  }
+  return srcs;
+}
+
+// Tracker rollup string for a deliverable, derived from per-asset decisions in
+// its anchored work section. Returns null to fall back to the status label.
+function rollupFor(d: Deliverable, work: WorkSection[], feedback?: ClientFeedback): string | null {
+  if (!d.anchor || !feedback) return null;
+  const section = work.find((s) => cwSlug(s.title) === d.anchor && s.feedback);
+  if (!section) return null;
+  const srcs = collectAssetSrcs(section);
+  if (srcs.length === 0) return null;
+  let approved = 0, rejected = 0;
+  for (const src of srcs) {
+    const dec = feedback.assets[src]?.decision;
+    if (dec === "approve") approved++;
+    else if (dec === "reject") rejected++;
+  }
+  if (approved === srcs.length) return "Approved";
+  if (approved === 0 && rejected === 0) return null;
+  return `${approved} / ${srcs.length} approved` + (rejected ? ` · ${rejected} need changes` : "");
+}
+
 function SectionHead({ s }: { s: WorkSection }) {
   const label = s.badge || s.date || (s.status ? STATUS_LABEL[s.status] : "");
   return (
@@ -507,7 +545,7 @@ function SectionHead({ s }: { s: WorkSection }) {
 }
 
 /* ---- work-section renderers by kind ---- */
-function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
+function WorkBlock({ s, base, slug, feedback }: { s: WorkSection; base: string; slug: string; feedback?: ClientFeedback }) {
   const [device, setDevice] = useState<Device>("desktop");
   const previewed = s.placement === "feed" || s.placement === "email";
   return (
@@ -531,6 +569,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
                 <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} player={it.player} />
                 {it.cap && <div className="cw-cap">{it.cap}</div>}
                 {it.download && <DownloadLink src={it.src} base={base} />}
+                {s.feedback && <AssetFeedback slug={slug} assetId={it.src} held={s.qa === "pending"} initial={feedback?.assets[it.src]} />}
               </div>
             ))}
           </div>
@@ -542,6 +581,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
           <Media src={s.item.src} poster={s.item.poster} ratio={s.item.ratio} base={base} player={s.item.player} />
           {s.item.cap && <figcaption>{s.item.cap}</figcaption>}
           {s.item.download && <DownloadLink src={s.item.src} base={base} />}
+          {s.feedback && <AssetFeedback slug={slug} assetId={s.item.src} held={s.qa === "pending"} initial={feedback?.assets[s.item.src]} />}
         </figure>
       )}
 
@@ -575,6 +615,7 @@ function WorkBlock({ s, base }: { s: WorkSection; base: string }) {
               <Media src={it.src} poster={it.poster} ratio={it.ratio} base={base} player={it.player} />
               {it.cap && <figcaption>{it.cap}</figcaption>}
               {it.download && <DownloadLink src={it.src} base={base} />}
+              {s.feedback && <AssetFeedback slug={slug} assetId={it.src} held={s.qa === "pending"} initial={feedback?.assets[it.src]} />}
             </figure>
           ))}
         </div>
@@ -696,12 +737,14 @@ export default function ClientWorkspace({
   meta,
   deliverables,
   work,
+  feedback,
 }: {
   initialAuth: boolean;
   verifyAction: (password: string) => Promise<boolean>;
   meta: Meta;
   deliverables: Deliverable[];
   work: WorkSection[];
+  feedback?: ClientFeedback;
 }) {
   const [authed, setAuthed] = useState(initialAuth);
   const [password, setPassword] = useState("");
@@ -815,7 +858,7 @@ export default function ClientWorkspace({
             <div className="cw-row" key={d.name} style={{ gridTemplateColumns: cols }}>
               <span>{d.anchor ? <a className="cw-jump" href={`#${d.anchor}`}>{d.name}</a> : d.name}{d.isNew && <span className="cw-new cw-new-inline">New</span>}</span>
               <span>{d.detail}</span>
-              <span><i className={`cw-b ${d.status}`} />{d.statusLabel || STATUS_LABEL[d.status]}</span>
+              <span><i className={`cw-b ${d.status}`} />{rollupFor(d, work, feedback) || d.statusLabel || STATUS_LABEL[d.status]}</span>
               <span>{d.date || " - "}</span>
               {hasTarget && <span>{d.target || " - "}</span>}
               <span>{d.note || ""}{d.download && <> <a className="cw-download cw-download-row" href={`${base}/${d.download.file}`} download>{d.download.label || "Download"}</a></>}</span>
@@ -834,13 +877,13 @@ export default function ClientWorkspace({
                 <div key={s.title} id={cwSlug(s.title)}>
                   {newZone && <ZoneHead zone={zone} intro={meta.zoneIntros?.[zone]} num={zoneNum(zone)} />}
                   {s.groupLabel && <h3 className="cw-grouplabel">{s.groupLabel}</h3>}
-                  <WorkBlock s={s} base={base} />
+                  <WorkBlock s={s} base={base} slug={meta.slug} feedback={feedback} />
                 </div>
               );
             });
           })()
         ) : (
-          work.map((s) => <WorkBlock key={s.title} s={s} base={base} />)
+          work.map((s) => <WorkBlock key={s.title} s={s} base={base} slug={meta.slug} feedback={feedback} />)
         )}
 
         <footer className="cw-foot">Run with Foxes · private workspace for {meta.client}</footer>
