@@ -496,6 +496,7 @@ export const work: WorkSection[] = [
     kind: "media",
     zone: "work",
     layout: "grouped",
+    feedback: true,
     qa: "pending",
     desc: "The animated display ad across the full IAB range, eleven sizes from the square down to the mobile strips. Every size is here at true proportion. Animated, so it has not been through the automatic readability gate yet.",
     groups: [
