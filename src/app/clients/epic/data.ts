@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the creative work for EPIC Insights. The deliverables and where each one stands are below, with the finished pieces shown underneath. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-27",
+  lastUpdated: "2026-06-25",
   feedbackContacts: ["epicinsights.io"],
   hideProgress: true,
   zoneIntros: {
@@ -24,33 +24,42 @@ export const meta: Meta = {
 export const deliverables: Deliverable[] = [
   {
     name: "Animated display banner (airline)",
-    detail: "1000×200 animated GIF, three frames: problem, answer, sign-off",
+    detail: "1000×200, three-frame concept: problem, answer, sign-off",
     status: "ready",
     statusLabel: "With EPIC for review",
-    date: "2026-06-27",
-    note: "Two versions: with website and clean",
+    date: "2026-06-25",
   },
   {
     name: "Static email banner (de-risk)",
     detail: "1000×200, single frame for the Substack email",
     status: "ready",
     statusLabel: "With EPIC for review",
-    date: "2026-06-27",
-    note: "Two versions: with website and clean",
+    date: "2026-06-25",
   },
 ];
 
 export const work: WorkSection[] = [
   {
-    title: "Animated display banner",
+    title: "Animated banner · frame concept",
     kind: "gallery",
     zone: "work",
     status: "ready",
     wideDesc: true,
-    desc: "A 1000×200 animated banner built from the airline conjoint study. It loops through three frames: the problem, the answer, and the EPIC sign-off. Two versions below. The one marked website carries epicinsights.io under the logo; the clean one leaves it off for placements that do not need it.",
+    desc: "The three-frame sequence for an animated display banner, built from the airline conjoint study. Frame 1 sets the problem, Frame 2 the answer, Frame 3 the EPIC sign-off. Shown here as still frames; the animation moves between them. 1000×200.",
     items: [
-      { src: "airline-animated.gif", ratio: "1000/200", w: 620, cap: "With website (epicinsights.io)", download: true },
-      { src: "airline-animated-clean.gif", ratio: "1000/200", w: 620, cap: "Clean, no website", download: true },
+      { src: "banner-frame-1.png", ratio: "1000/200", w: 620, cap: "Frame 1 · the problem" },
+      { src: "banner-frame-2.png", ratio: "1000/200", w: 620, cap: "Frame 2 · the answer" },
+      { src: "banner-frame-3.png", ratio: "1000/200", w: 620, cap: "Frame 3 · sign-off" },
+    ],
+  },
+  {
+    title: "Banner frames · PDF",
+    kind: "files",
+    zone: "work",
+    status: "ready",
+    desc: "The full frame sequence as a single PDF, ready to share or print.",
+    files: [
+      { name: "Airline banner frames", file: "airline-banner-frames.pdf", note: "Three-frame sequence, 1000×200", date: "25 June 2026" },
     ],
   },
   {
@@ -58,24 +67,20 @@ export const work: WorkSection[] = [
     kind: "gallery",
     zone: "work",
     status: "ready",
-    wideDesc: true,
-    desc: "A single static 1000×200 banner for the Substack email. Same two versions: with the website under the logo, and clean.",
+    desc: "A single static banner for the Substack email. Colour EPIC logo on the left, one line of copy, sized to stay legible on mobile. 1000×200.",
     items: [
-      { src: "derisk-static.png", ratio: "1000/200", w: 620, cap: "With website (epicinsights.io)", download: true },
-      { src: "derisk-static-clean.png", ratio: "1000/200", w: 620, cap: "Clean, no website", download: true },
+      { src: "email-banner-derisk.png", ratio: "1000/200", w: 620, cap: "1000×200 · static", download: true },
     ],
   },
   {
-    title: "Download files",
+    title: "Email banner · files",
     kind: "files",
     zone: "work",
     status: "ready",
-    desc: "Every file, ready to download. The animated banners are GIFs; the email banners are PNG.",
+    desc: "Both formats. The PNG is the sharpest for email; the GIF is the same image as a single frame.",
     files: [
-      { name: "Animated banner (with website)", file: "airline-animated.gif", note: "1000×200 animated GIF", date: "27 June 2026" },
-      { name: "Animated banner (clean)", file: "airline-animated-clean.gif", note: "1000×200 animated GIF", date: "27 June 2026" },
-      { name: "Static email banner (with website)", file: "derisk-static.png", note: "1000×200 PNG", date: "27 June 2026" },
-      { name: "Static email banner (clean)", file: "derisk-static-clean.png", note: "1000×200 PNG", date: "27 June 2026" },
+      { name: "Email banner (PNG)", file: "email-banner-derisk.png", note: "Sharpest, recommended for email", date: "25 June 2026" },
+      { name: "Email banner (GIF)", file: "email-banner-derisk.gif", note: "Single-frame GIF, 70 KB", date: "25 June 2026" },
     ],
   },
   {
