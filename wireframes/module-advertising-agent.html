@@ -164,9 +164,9 @@
       <div class="eyebrow">Product</div>
       <h1>Advertising Agent</h1>
       <div class="sell">
-        <p class="sell-lead">Making an ad is the easy part now. <b>The hard part is the same as it always was:</b> knowing what the ad should say, what to leave out, and what to change once it is live in front of people.</p>
-        <p class="sell-body">The Advertising Agent starts from your brief and your brand strategy, with twenty years of making ads that work built in. It makes the whole set a campaign needs, static, animated, brand films and video, on brand every time. Then it gets them live, watches how each one does, and decides what to keep running and what to fix. <b>The same agent that makes the work also runs it and reads the numbers.</b> A design tool stops at the picture. This does the job around it.</p>
-        <p class="sell-rail">We build it around your brand and hand it over. It runs in your own Claude, and <b>nothing goes live or spends a penny without your say so.</b></p>
+        <p class="sell-lead">At least half of a brand's advertising budget goes on <b>sales activation</b>. Not the award films or the Cannes reel. The hard-working ads that run all year and do the selling.</p>
+        <p class="sell-body">And they change constantly. A price promotion this week, a two for one the next, a Black Friday push, a new B2B webinar. We take your big idea, or a campaign you already run, and train AI to make new activation ads off the back of it, as fast as the offers change. <b>Not versions of the same ad:</b> new headlines, new imagery, new artwork, all on your idea. It works hardest when you have distinctive brand assets, a character especially, but it works for any activation. Then the agent learns from the metrics, keeps what works, drops what does not, and sharpens the longer it runs.</p>
+        <p class="sell-rail">We build it around your brand and hand it over, running in your own Claude.</p>
       </div>
     </div>
   </div>
@@ -180,7 +180,7 @@
     </div>
 
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">One brief in, a finished campaign out. <b>These are real ads, made on brand across every format the campaign needed.</b></div>
+      <div class="exp-lead">New activation ads, all built on one idea. Made on brand, across the formats a campaign runs on.</div>
 
       <div class="exp-block">
         <div class="exp-h">Makes the set, every format</div>
@@ -269,19 +269,18 @@ const ICONS = {
 const TABS = {
   bts:{ start:'A brief', end:'On brand, live and optimised, in your own Claude', nodes:[
     {type:'node', badge:'1', when:'Set up once', icon:'brief', title:'Your strategy is built in', sub:'Your positioning, messaging, segments and the brand rules, loaded once. Every ad starts from your strategy, not a blank page.'},
-    {type:'node', badge:'2', when:'Reads the brief', icon:'fork', title:'Dray calls the format', sub:'It works out what the ad should be and routes it: a performance static on cream, a cinematic brand scene, an animated chart, or a video. Each goes to its own maker.'},
-    {type:'note', text:'Some briefs are straightforward and the agent runs them through. Others, a brand-new scene or a fresh look, it slows down and works through with you before it spends anything.'},
+    {type:'node', badge:'2', when:'Reads the brief', icon:'fork', title:'It calls the format', sub:'It works out what the ad should be and routes it: a performance static on cream, a cinematic brand scene, an animated chart, or a video. Each goes to its own maker.'},
+    {type:'note', text:'Some briefs it just runs through. For a brand-new scene or a fresh look, it slows down and works it through with you first.'},
     {type:'node', badge:'3', when:'Every format', icon:'make', title:'Writes the headline', sub:'Three angles, six lines, benefit, news and curiosity, cut down to the one that lands in under ten words.',
-      check:'<strong>You pick the line.</strong> Nothing is built around a headline you did not choose.'},
-    {type:'node', badge:'4', when:'Every format', icon:'cast', title:'Casts the fox', sub:'It searches the cast library for the fox that fits the moment, the season, the sport, the story, and reuses one or proposes a new one for you to approve.'},
+      check:'<strong>You pick the line.</strong>'},
+    {type:'node', badge:'4', when:'Every format', icon:'cast', title:'Casts your character', sub:'It searches the cast library for the character that fits the moment, the season, the sport, the story, and reuses one or proposes a new one for you to approve.'},
     {type:'branch', lanes:[
       {cls:'keep', pill:'Stills', text:'It decides where the headline will sit <strong>before</strong> the picture is drawn, then writes the prompt to leave that space empty. Generates the scene on <strong>Seedream 4.5</strong>. If the scene is right but the copy needs more room, it <strong>outpaints</strong> with Flux Fill Pro rather than start over. Then lays the headline over the top in HTML and shoots it at 2x.'},
       {cls:'hold', pill:'Motion', text:'For video it picks the treatment, a freeze frame, a tracking shot, a montage, and generates on <strong>Seedance 2.0</strong>. For an animated chart it picks the chart, builds it in HTML and CSS, captures it frame by frame and assembles the film with <strong>ffmpeg</strong>.'}
     ]},
     {type:'node', badge:'5', when:'Before anything ships', icon:'gate', title:'The readability and brand gate', sub:'/ad-qa checks contrast, font size, edge spacing and copy density on the real render, and the work is held against your brand and voice.',
       check:'<strong>It auto-fails a breaking asset.</strong> Nothing that breaks readability or your brand gets through.'},
-    {type:'node', badge:'6', when:'Launch', icon:'target', title:'Live on LinkedIn', sub:'The campaign is set up through the LinkedIn Marketing API, with the budget split across the set.',
-      check:'<strong>You approve before anything spends.</strong> Nothing goes live without your sign off.'},
+    {type:'node', badge:'6', when:'Launch', icon:'target', title:'Live on LinkedIn', sub:'The campaign is set up through the LinkedIn Marketing API, with the budget split across the set.'},
     {type:'node', badge:'7', when:'While it runs', icon:'chart', title:'Read the numbers, then tune', sub:'Performance is read back through the same API. It sees what is working and what is tired, decides what to keep, cut and make next, and brings you the call.'}
   ]},
   uses:{ groups:[
@@ -369,7 +368,7 @@ document.getElementById('isaSend').addEventListener('click', ()=>{
   setTimeout(()=> addMsg('bot', "Good question. The short version: it makes the ads from your brief and brand strategy, gets them live, then reads the numbers and tunes them. The same agent does all of it, and nothing spends without your sign off."), 450);
   setTimeout(()=> addMsg('bot', "Easiest next step is thirty minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
 });
-setTimeout(openIsa, 5000);
+// setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
 </script>
 </body>
 </html>
