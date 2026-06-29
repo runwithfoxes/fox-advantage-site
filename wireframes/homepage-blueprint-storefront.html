@@ -213,24 +213,15 @@ const MODS = [
   { key:'ad-maker', name:'Advertising Agent', icon:'ad', cat:'advertising', ben:'Makes the ads, runs them, reads the numbers.' },
   { key:'copywriter', name:'Copywriter', icon:'write', cat:'advertising', ben:"Your brand's voice, trained to write." },
   { key:'linkedin-content', name:'Ghostwriter', icon:'content', cat:'advertising', badge:'Bundled', ben:'Your expertise, published in your voice.' },
-  { key:'scorecard', name:'Brand Scorecard', icon:'score', cat:'strategy', ben:'One page everyone watches.' },
   { key:'brief-coach', name:'Brief Coach', icon:'doc', cat:'strategy', ben:'The right work, not the nice work.' },
-  { key:'segmentation', name:'Segmentation', icon:'seg', cat:'strategy', ben:'Segments, with the maths actually run.' },
-  { key:'positioning', name:'Competitor Positioning Map', icon:'map', cat:'strategy', ben:'Find the white space.' },
-  { key:'dba', name:'Distinctive Brand Assets Audit', icon:'matrix', cat:'strategy', ben:'What makes you recognisable, scored.' },
   { key:'guardian', name:'Brand Guardian', icon:'shield', cat:'strategy', ben:'Nothing ships off-brand.' },
-  { key:'interviewer', name:'Research Interviewer', icon:'phone', cat:'research', ben:'Hundreds of phone interviews a week.' },
-  { key:'company-intel', name:'Company Intelligence', icon:'doc', cat:'research', ben:'The dossier before you walk in.' },
-  { key:'review-intel', name:'Review Intelligence', icon:'star', cat:'research', ben:'What every review is really saying.' },
-  { key:'pricing', name:'Pricing Monitor', icon:'tag', cat:'research', ben:'Know the day a competitor moves.' },
   { key:'outreach', name:'Outbound Agent', icon:'reach', cats:['outreach','email'], ben:'Finds the right people, writes each one for real.' },
   { key:'lifecycle', name:'Lifecycle Agent', icon:'cycle', cats:['email'], ben:'Keep and grow the people who already know you.' },
-  { key:'page-audit', name:'Page Conversion Audit', icon:'funnel', cat:'outreach', ben:"Why the page isn't converting." },
   { key:'campaign-manager', name:'Campaign Manager', icon:'cm', cat:'bundle', tag:'Everything, run for you', ben:'The whole operation, run as one.' }
 ];
 
 // filter categories (the small blue button bar). 'bundle' has no button - Campaign Manager shows under All.
-const CATS = [['all','All'],['strategy','Strategy'],['advertising','Advertising'],['email','Email'],['research','Research'],['outreach','Outreach']];
+const CATS = [['all','All'],['strategy','Strategy'],['advertising','Advertising'],['email','Email'],['outreach','Outreach']];
 // a product can sit in more than one filter: use cats:[...] (falls back to the single cat)
 const catsOf = m => m.cats || [m.cat];
 
