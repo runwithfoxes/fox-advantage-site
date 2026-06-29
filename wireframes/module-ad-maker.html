@@ -167,9 +167,9 @@
       <div class="eyebrow">Product</div>
       <h1>Ad Resizer</h1>
       <div class="sell">
-        <p class="sell-lead">Most resizers stretch or crop. This one makes the call a designer would: <b>what the message becomes when the space changes.</b></p>
-        <p class="sell-body">The full chart where a ring fits, the single number where it doesn't, a shorter headline when the long line won't hold. <b>Pixel-perfect, on your brand, across every IAB size</b>, not squashed to fit. The judgement about what to keep and what to cut at each size is twenty years of making ads that work, built into the thing, so a 300x250 reads as deliberately as the billboard. You approve one ad; you get the whole set back, each shape laid out for where it runs.</p>
-        <p class="sell-rail">It runs in your own Claude and resizes a full set in minutes, no licence and no monthly fee. <b>We build it around your brand and hand it over.</b></p>
+        <p class="sell-lead">Resizing an ad is all rules about where things go. The logo here, the headline there, the safe margins, the exact spot the eye should land. It is not glamorous work. It is essential work, and it has to be <b>pixel perfect</b>.</p>
+        <p class="sell-body">So we do the slow part properly. We decode your brand's own ads in forensic detail: your guidelines, how one frame hands off to the next, where the logo sits, where the copy breaks, down to the pixel. Then we train AI to reproduce that at every IAB size, <b>pixel perfect every time</b>. A 300x250 reads as deliberately as the billboard, because the same brand thinking is built into both.</p>
+        <p class="sell-rail"><b>Slow to build, fast forever after.</b> We hand it over and show your team how to run it. The full set of sizes comes back in minutes, with full control, no ongoing cost, and no designer needed to lay out each one. Built for teams who don't have the resources to do this by hand.</p>
       </div>
     </div>
   </div>
@@ -182,11 +182,11 @@
       <button class="tab" data-p="uses">What it uses</button>
     </div>
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">Approve one ad, then resize it for everywhere it runs. Here is a real set: <b>Day One, 92% buy from the list</b>.</div>
+      <div class="exp-lead">Here is the slow part paying off. One original ad, every IAB size back in seconds, each one laid out for where it runs. Press run.</div>
       <div class="resizer">
         <div class="rz-source">
-          <div class="rz-eyebrow">Your approved ad</div>
-          <div class="ad hero"><span class="dim">1080 × 1080</span><div class="frame" style="width:320px;height:320px"><img src="assets/dayone/dayone-1080x1080.gif" alt="approved ad"></div></div>
+          <div class="rz-eyebrow">Your original ad</div>
+          <div class="ad hero"><span class="dim">1080 × 1080</span><div class="frame" style="width:320px;height:320px"><img src="assets/dayone/dayone-1080x1080.gif" alt="original ad"></div></div>
           <div class="rz-prompt"><span class="rz-caret">›</span><span class="rz-cmd">resize these for all IAB versions</span><button class="rz-run" id="rzRun">Run ▶</button></div>
         </div>
         <div class="rz-arrow">→</div>
@@ -258,22 +258,23 @@ const TABS = {
     {type:'node', badge:'3', when:'Your call', icon:'gate', title:'You approve', sub:'Reviewed at actual size, not a big preview.',
       check:'<strong>Then it ships</strong> in every size you need.'}
   ]},
-  bts:{ start:'One approved ad', end:'The full set, handed over', nodes:[
-    {type:'node', badge:'1', when:'In', icon:'brief', title:'The approved master', sub:'Your signed-off ad and brand kit.'},
-    {type:'node', badge:'2', when:'Per shape', icon:'make', title:'Re-laid out, not squashed', sub:'Each IAB size gets its own layout.'},
+  bts:{ start:'Your original ad', end:'Yours to run, forever', nodes:[
+    {type:'node', badge:'1', when:'In', icon:'brief', title:'Your original ad', sub:'Your real ad and brand guidelines.'},
+    {type:'node', badge:'2', when:'Decode', icon:'look', title:'Pulled apart pixel by pixel', sub:'Where the logo sits, where the copy breaks, the margins, how one frame hands to the next.'},
     {type:'branch', lanes:[
       {cls:'keep', pill:'Box and tall', text:'The full chart, where a ring fits.'},
       {cls:'hold', pill:'Strips', text:'Reduced to the one stat, <strong>92%</strong>.'}
     ]},
-    {type:'node', badge:'3', when:'Render', icon:'ship', title:'Every size, three ways', sub:'Animated GIF, MP4 and editable HTML.'},
-    {type:'node', badge:'4', when:'Your call', icon:'gate', title:'Review at actual size, approve', sub:'Checked at true pixel size, not a big preview.',
-      check:'<strong>Nothing ships</strong> until you say yes.'}
+    {type:'node', badge:'3', when:'Train', icon:'make', title:'AI trained to your rules', sub:'It reproduces your layout at every IAB size, pixel perfect.'},
+    {type:'node', badge:'4', when:'Test', icon:'gate', title:'Checked at true size', sub:'Every size measured against the spec until it matches pixel for pixel.',
+      check:'<strong>Nothing ships</strong> until it is pixel perfect.'},
+    {type:'node', badge:'5', when:'Hand over', icon:'link', title:'Yours to run', sub:'We show your team how, then it is theirs. Speed forever after.'}
   ]},
   uses:{ groups:[
     {label:'Skills', cls:'skill', items:['/grumpyfox-chart-resizer','/banner-machine','/ad-resizer-builder','format skills']},
     {label:'Rules', items:['IAB sizes','brand spec','/voice']},
     {label:'Tools', items:['Playwright + ffmpeg']},
-    {label:'Data', items:['the approved master','brand kit']},
+    {label:'Data', items:['your original ad','brand kit']},
     {label:'Memory', items:['learnings.md']}
   ]}
 };
@@ -366,7 +367,7 @@ document.getElementById('isaSend').addEventListener('click', ()=>{
   setTimeout(()=> addMsg('bot', "Good question. The short version: you approve one ad, we resize it to every IAB size, on brand."), 450);
   setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
 });
-setTimeout(openIsa, 5000);
+// setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
 </script>
 </body>
 </html>
