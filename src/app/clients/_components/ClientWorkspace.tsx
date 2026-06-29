@@ -83,7 +83,7 @@ export type WorkSection = {
   groupLabel?: string;     // renders a divider sub-heading above this section (group split)
   isNew?: boolean;         // renders a "New" tag in the section head
   date?: string;          // feedback kind: the round date, shown as the badge
-  feedback?: boolean;      // opt-in: render per-asset approve/comment/thread on this section's media
+  feedback?: boolean;      // opt-in: render per-asset approve/comment/thread on this section's media; must be set together with passing the `feedback` prop to ClientWorkspace (setting one without the other is a misconfiguration)
   kind: "media" | "copy" | "files" | "gallery" | "email" | "compare" | "feedback" | "responsive" | "embed" | "html";
   layout?: "grouped" | "pair" | "single";
   // responsive kind: one piece at two layouts, toggled live between a desktop
@@ -594,6 +594,7 @@ function WorkBlock({ s, base, slug, feedback }: { s: WorkSection; base: string; 
               <div className="cw-submark">Animated</div>
               <Media src={it.img} base={base} />
               <div className="cw-submark">Static</div>
+              {s.feedback && <AssetFeedback slug={slug} assetId={it.src} held={s.qa === "pending"} initial={feedback?.assets[it.src]} />}
             </figure>
           ))}
         </div>
