@@ -3,6 +3,22 @@
 ## What this is
 The live homepage for runwithfoxes.com. Next.js site deployed on Vercel. The commercial layer was built on 2026-05-29/30, replacing the old module-based layout with an accordion-based system.
 
+## Client page asset feedback (2026-06-29)
+Client pages (`/clients/{slug}`) now let the client approve / flag individual ASSETS and leave comments, with a per-asset reply thread. The deliverables tracker rolls up the approvals read-only. No email, no inbox: the page is the channel.
+
+- **Storage:** one JSON blob per client in Upstash Redis at key `feedback:{slug}` (store: `src/lib/client-feedback-store.ts`, mirrors `conversation-store.ts`; no TTL by design - feedback is a durable record). Shape: `{ slug, assets: { [src]: { decision, thread:[{who,when,text}], updatedAt } } }`. `assetId` is the media `src` filename.
+- **Client writes:** auth-guarded `"use server"` actions in `src/app/clients/_components/feedback-actions.ts` (guarded by the existing `{slug}_auth` cookie). Saves live on click; "Not yet" auto-opens the comment box.
+- **UI:** `src/app/clients/_components/AssetFeedback.tsx` renders under each media asset; `ClientWorkspace.tsx` gates it on a per-section `feedback: true` flag AND the page passing a `feedback` prop. Strictly opt-in - pages/sections without both render exactly as before. Tracker rollup lives in the existing Status cell (no new column); in-QA sections (`qa: "pending"`) render the control HELD/disabled.
+- **Pilot:** SoftCo only, on the "Chart Ad set" section (`src/app/clients/softco/page.tsx` fetches feedback; `data.ts` sets `feedback: true`).
+
+### How Claude reads feedback + posts Paul's replies (admin API)
+Route `src/app/api/clients/[slug]/feedback/route.ts`, guarded by the `CLIENT_FEEDBACK_ADMIN_TOKEN` env var (must be set in `.env.local` locally AND in Vercel project env for prod). Token compare is timing-safe; header is `x-admin-token`.
+- **Read all feedback for a client** (answer "what's {client}'s feedback?"):
+  `curl -s -H "x-admin-token: $CLIENT_FEEDBACK_ADMIN_TOKEN" https://runwithfoxes.com/api/clients/{slug}/feedback`
+- **Post Paul's reply** to an asset (appears in the thread stamped "Paul"):
+  `curl -s -X POST -H "x-admin-token: $CLIENT_FEEDBACK_ADMIN_TOKEN" -H "content-type: application/json" -d '{"assetId":"<src filename>","action":"reply","text":"..."}' https://runwithfoxes.com/api/clients/{slug}/feedback`
+- **Reset an asset's decision** (clears approve/reject, keeps the thread - use after a fix is re-uploaded under the same filename): same POST with `{"assetId":"...","action":"reset"}`. A fix uploaded under a NEW filename resets naturally.
+
 > **DEPLOY GUARDRAIL (branch check): runwithfoxes.com deploys from `main`.** A terminal can open while git is parked on an unfinished feature branch (e.g. `bench-page`, the half-built `/bench` showcase). Committing there strands the change off `main` and it never goes live. BEFORE committing any change meant to ship, run `git branch --show-current` and confirm it's `main`. If it isn't and the change is meant to go live, cherry-pick just that commit onto `main` and push - do NOT merge the whole feature branch (it carries unfinished work). Pushing a feature branch only gives a Vercel preview URL, not production.
 
 ## ACTIVE WORK (2026-06-27) - PRODUCTS STOREFRONT (wireframe stage, NOT live yet)
