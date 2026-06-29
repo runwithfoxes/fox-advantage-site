@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import {
   getClientFeedback,
@@ -7,7 +8,10 @@ import {
 
 function authed(req: NextRequest): boolean {
   const token = process.env.CLIENT_FEEDBACK_ADMIN_TOKEN;
-  return !!token && req.headers.get("x-admin-token") === token;
+  if (!token) return false;
+  const supplied = req.headers.get("x-admin-token") ?? "";
+  if (supplied.length !== token.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(supplied), Buffer.from(token));
 }
 
 export async function GET(
@@ -30,6 +34,9 @@ export async function POST(
   try {
     body = await req.json();
   } catch {
+    return NextResponse.json({ error: "bad json" }, { status: 400 });
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "bad json" }, { status: 400 });
   }
   const { assetId, action, text } = body;
