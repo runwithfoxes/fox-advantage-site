@@ -1169,3 +1169,35 @@
 
 /* ---- per-section device toggle (sits on the format it controls) ---- */
 .cw-secdev { margin-bottom: 16px; }
+
+/* ---- asset feedback (approve / comment / thread) ---- */
+.cw-fb { margin-top: 9px; display: flex; flex-direction: column; gap: 7px; }
+.cw-fb-toggle { display: flex; border: 1px solid var(--border); width: max-content; }
+.cw-fb-toggle button {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .5px; text-transform: uppercase;
+  padding: 5px 10px; border: 0; background: var(--bg); color: var(--text-muted);
+  cursor: pointer; border-right: 1px solid var(--border);
+}
+.cw-fb-toggle button:last-child { border-right: 0; }
+.cw-fb-toggle button.on-approve { background: var(--st-ready); color: #fff; font-weight: 500; }
+.cw-fb-toggle button.on-reject { background: #b0291c; color: #fff; font-weight: 500; }
+.cw-fb-toggle button:disabled { cursor: not-allowed; opacity: .45; }
+.cw-fb-hold { font-size: 10px; letter-spacing: .5px; text-transform: uppercase; color: var(--st-prog); }
+.cw-fb-thread { display: flex; flex-direction: column; gap: 6px; border-left: 2px solid var(--border); padding-left: 10px; }
+.cw-fb-msg { display: flex; flex-direction: column; gap: 2px; }
+.cw-fb-who { font-size: 9px; letter-spacing: .5px; text-transform: uppercase; color: var(--text-muted); }
+.cw-fb-msg.from-paul .cw-fb-who { color: var(--st-signed); }
+.cw-fb-text { font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--text); }
+.cw-fb-ctoggle { font-family: var(--mono); font-size: 10px; letter-spacing: .5px; color: var(--orange); background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.cw-fb-ctoggle:hover { text-decoration: underline; }
+.cw-fb-cbox { display: flex; flex-direction: column; gap: 6px; }
+.cw-fb-cbox textarea {
+  width: 100%; font-family: var(--mono); font-size: 11px; line-height: 1.5;
+  background: var(--bg); border: 1px solid var(--border); padding: 7px 9px; resize: vertical; min-height: 48px;
+}
+.cw-fb-cbox textarea:focus { outline: none; border-color: var(--orange); }
+.cw-fb-send {
+  align-self: flex-start; font-family: var(--mono); font-size: 10px; letter-spacing: .5px; text-transform: uppercase;
+  padding: 5px 12px; border: 1px solid var(--border); background: var(--deep-sky); color: var(--cream); cursor: pointer;
+}
+.cw-fb-saved { font-size: 9px; letter-spacing: .5px; text-transform: uppercase; color: var(--st-ready); height: 11px; }
