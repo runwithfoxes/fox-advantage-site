@@ -404,6 +404,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     groupLabel: "Passed QA - ready for your feedback",
     desc: "Stat, pull-quote and question cards. Square 1080×1080.",
     items: [
@@ -418,6 +419,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     placement: "feed",
     desc: "Square 1080×1080, organic and paid. The Gartner mark is placeholder pending the real logo.",
     items: [
@@ -431,6 +433,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     placement: "email",
     desc: "Your existing email banner dimensions, single line of copy.",
     items: [
@@ -444,6 +447,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     desc: "Wide formats.",
     items: [
       { src: "blog_header.png", ratio: "1200/630", w: 480, cap: "Blog header · 1200×630" },
@@ -456,6 +460,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     desc: "Square 1080×1080.",
     items: [
       { src: "webinar_promo.png", ratio: "1/1", w: 300, cap: "Webinar promo · 1080×1080" },
@@ -467,6 +472,7 @@ export const work: WorkSection[] = [
     zone: "work",
     status: "ready",
     qa: "pass",
+    feedback: true,
     desc: "Virtual call background, the person sits on the clear right side. 1920×1080.",
     items: [
       { src: "meeting_bg.png", ratio: "1920/1080", w: 520, cap: "1920×1080" },
