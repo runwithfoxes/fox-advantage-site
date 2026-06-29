@@ -121,7 +121,7 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: provider("claude-sonnet-4-6"),
-      system: getSystemPrompt(),
+      system: getSystemPrompt(sanitizedChatId),
       messages: modelMessages,
       maxOutputTokens: 200,
       onFinish: async ({ text }) => {

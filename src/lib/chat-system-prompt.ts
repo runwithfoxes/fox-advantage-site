@@ -144,7 +144,24 @@ const CONTEXT_RULES = `## Context
 const LENGTH_REMINDER = `## FINAL REMINDER: Keep it short.
 2-3 sentences max. You're texting, not writing an essay. If your response is longer than 3 sentences, you've gone too long. Cut it.`;
 
-export function getSystemPrompt(): string {
+const BOOKING_LINK_BASE = "https://cal.com/paul-dervan-mjfd50";
+
+// When we know which chat this is, stamp the chat id onto the booking link so a
+// later cal.com booking can be tied back to this exact conversation. cal.com
+// carries the ?notes value into the booking's "Additional notes", which lands in
+// the Google Calendar event the meeting-prep robot reads. The visitor never sees
+// or needs the suffix; if the id is missing we just use the plain link.
+function bookingRule(chatId?: string): string {
+  const safe = chatId && chatId !== "unknown" ? chatId : "";
+  if (!safe) return "";
+  const link = `${BOOKING_LINK_BASE}?notes=isa:${safe}`;
+  return `## Booking link (use this EXACT url)
+Whenever you share the "Book a chat" link, use exactly this url, every time, including the part after the question mark:
+${link}
+Use it in place of any other cal.com link written in these instructions. Keep the markdown form: [Book a chat](${link}). Do not show, mention, or explain the bit after the question mark to the visitor, and never alter or drop it. It is just a quiet reference so Paul knows which chat the booking came from.`;
+}
+
+export function getSystemPrompt(chatId?: string): string {
   return `${PERSONALITY}
 
 ${ICP_DETECTION}
@@ -156,6 +173,8 @@ ${CONTEXT_RULES}
 ## Your Knowledge
 
 ${FOX_KNOWLEDGE}
+
+${bookingRule(chatId)}
 
 ${LENGTH_REMINDER}`;
 }
