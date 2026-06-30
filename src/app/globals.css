@@ -5228,6 +5228,7 @@ a.project-card {
    Brand tokens scoped locally (live --orange is sky-blue here).
    ==================================================================== */
 .sf-store {
+  padding: 0 0 56px;
   --sf-cream: #FAFAF8;
   --sf-sky: #3A7CA5;
   --sf-deep: #1A3A4E;
@@ -5238,7 +5239,7 @@ a.project-card {
   --sf-orange: #F47521;
   --sf-mono: var(--mono);
 }
-.sf-store .sf-shop { padding: 58px 0 6px; }
+.sf-store .sf-shop { padding: 20px 0 6px; }
 .sf-store .sf-shop-kick { font-size: 13px; letter-spacing: 1px; color: var(--sf-sky); }
 
 /* filter bar - blue when active */
