@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         destination: "/broad-lake/index.html",
       },
       {
+        source: "/bellinter",
+        destination: "/bellinter/index.html",
+      },
+      {
         source: "/prep",
         destination: "https://ucd-prep.vercel.app/",
       },
