@@ -17,7 +17,7 @@ export default function PresentationGate({ initialAuth, verifyAction }: Props) {
     return (
       <iframe
         src="/presentation-app/index.html"
-        title="AI at Sabre"
+        title="The AI Maturity Curve"
         style={{ position: "fixed", inset: 0, width: "100%", height: "100%", border: "none" }}
       />
     );
@@ -55,7 +55,7 @@ export default function PresentationGate({ initialAuth, verifyAction }: Props) {
           /<span style={{ color: "#F47521" }}>Run</span>withfoxes
         </div>
         <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 300, letterSpacing: "-0.5px", marginBottom: 10 }}>
-          AI at Sabre
+          The AI Maturity Curve
         </div>
         <p style={{ fontSize: 13, color: "#8A8A85", lineHeight: 1.6, marginBottom: 24 }}>
           A private working session. Enter the password to view.

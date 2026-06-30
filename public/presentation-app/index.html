@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI at Sabre - wireframe</title>
+<title>The AI Maturity Curve</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -39,14 +39,14 @@
   /* Nav */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between; gap: 48px;
     padding: 18px 48px;
     transition: background 0.3s ease-out;
   }
   nav.scrolled { background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(12px); }
   .nav-brand {
     font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300;
-    letter-spacing: 2px; color: var(--muted); text-decoration: none;
+    letter-spacing: 2px; color: var(--muted); text-decoration: none; flex-shrink: 0;
   }
   .nav-brand span { color: #F47521; }
   .nav-links { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
@@ -290,6 +290,80 @@
     .levels-chart .curve { stroke-dashoffset: 0 !important; }
     .lv-node { opacity: 1 !important; }
   }
+
+  /* ===== Audience check (ported widget, RWF-scoped tokens) ===== */
+  #audience {
+    --card-bg: #FFFFFF;
+    --charcoal: var(--text);
+    --off-white: #F7F4EC;
+    --terracotta: var(--sky-blue);
+  }
+  .ac-hl { cursor: pointer; padding: 1px 3px; transition: outline 0.2s; }
+  .ac-hl.green { background: #dcfce7; border-bottom: 2px solid #16a34a; }
+  .ac-hl.amber { background: #fef3c7; border-bottom: 2px solid #d97706; }
+  .ac-hl.red { background: #fee2e2; border-bottom: 2px solid #dc2626; }
+  .ac-hl.active { outline: 2px solid var(--charcoal); outline-offset: 2px; }
+  .ac-card { padding: 20px; }
+  .ac-card-quote { font-size: 16px; font-weight: 400; padding: 10px 14px; border-left: 3px solid; margin-bottom: 12px; background: var(--off-white); }
+  .ac-card-meta { display: flex; gap: 8px; margin-bottom: 14px; }
+  .ac-tag { font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--border); color: var(--muted); }
+  .ac-card-section { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; margin-top: 12px; }
+  .ac-card-text { font-size: 13px; line-height: 1.7; color: var(--charcoal); }
+  .ac-card-source { font-size: 12px; line-height: 1.6; color: var(--muted); font-style: italic; background: var(--off-white); padding: 10px 12px; border-left: 3px solid var(--border); }
+  .ac-gap { display: flex; gap: 10px; padding: 8px 0; cursor: pointer; }
+  .ac-gap:hover div:first-child { border-color: var(--terracotta); }
+  @keyframes acSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) {
+    #audience .briefs-flow { grid-template-columns: 1fr !important; }
+  }
+
+  /* ===== Studio measurement (embedded overview, isolated in iframe) ===== */
+  .studio-embed { width: min(1440px, calc(100vw - 48px)); margin: 8px auto 0; }
+  .studio-embed iframe { display: block; width: 100%; height: 1300px; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); background: #fff; overflow: hidden; }
+  @media (max-width: 1100px) { .studio-embed iframe { height: 2000px; } }
+
+  /* ===== Segmentation (charts lifted from runwithfoxes.com, iframe-isolated) ===== */
+  .seg-embed { width: min(1100px, calc(100vw - 96px)); margin: 8px auto 0; }
+  .seg-embed iframe { display: block; width: 100%; height: 600px; border: none; background: transparent; overflow: hidden; }
+
+  /* ===== Sales coach (worked example lifted from Norcros, iframe-isolated) ===== */
+  .coach-embed { width: min(1180px, calc(100vw - 48px)); margin: 8px auto 0; }
+  .coach-embed iframe { display: block; width: 100%; height: 1400px; border: none; background: transparent; overflow: hidden; }
+
+  /* ===== Building a system (two embedded animated flows, iframe-isolated) ===== */
+  .system-embed { width: min(1120px, calc(100vw - 80px)); margin: 0 auto; }
+  .system-embed iframe { display: block; width: 100%; border: none; background: transparent; overflow: hidden; }
+  #btsFrame { height: 1760px; }
+  #expFrame { height: 1060px; }
+  .sys-cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 48px 0 6px; }
+
+  /* ===== Anthropic example: full-width stacked slides ===== */
+  #anthropic .fable-stack { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  #anthropic .fable-shot { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
+  #anthropic .ex-source { display: inline-block; margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--sky-blue); text-decoration: none; }
+  #anthropic .ex-source:hover { text-decoration: underline; }
+
+  /* ===== Messaging framework: the scrolling walkthrough ===== */
+  #messaging .mf-video { display: block; width: 100%; margin-top: 8px; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); background: #fff; }
+
+  /* ===== Behaviours to succeed: spider chart + the five behaviours ===== */
+  #behaviours .beh-grid { display: grid; grid-template-columns: 0.85fr 1fr; gap: 56px; align-items: center; margin-top: 8px; }
+  #behaviours .beh-chart img { width: 100%; height: auto; display: block; }
+  #behaviours .beh-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+  #behaviours .beh-item:first-child { padding-top: 0; }
+  #behaviours .beh-item:last-child { border-bottom: none; padding-bottom: 0; }
+  #behaviours .beh-name { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 1.35rem; letter-spacing: -0.5px; margin-bottom: 6px; }
+  #behaviours .beh-name span { color: #F47521; }
+  #behaviours .beh-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  @media (max-width: 860px) { #behaviours .beh-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ===== How to roll it out: implementation bullets ===== */
+  #implement .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 56px; margin-top: 8px; }
+  #implement .impl-item { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  #implement .impl-mark { color: #F47521; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.4; }
+  #implement .impl-name { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 1.15rem; letter-spacing: -0.3px; margin-bottom: 4px; }
+  #implement .impl-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+  @media (max-width: 860px) { #implement .impl-grid { grid-template-columns: 1fr; gap: 24px; } }
 </style>
 </head>
 <body>
@@ -301,10 +375,16 @@
     <a href="#intro">/intro</a>
     <a href="#levels">/the_scale</a>
     <a href="#adjacent">/adjacent</a>
+    <a href="#segmentation">/segmentation</a>
     <a href="#team">/team</a>
-    <a href="#possible">/whats_possible</a>
-    <a href="#sabre">/for_sabre</a>
-    <a href="#approach">/how_to_approach</a>
+    <a href="#audience">/audience_check</a>
+    <a href="#messaging">/messaging</a>
+    <a href="#studio">/studio</a>
+    <a href="#system">/system</a>
+    <a href="#coaching">/coaching</a>
+    <a href="#research">/research</a>
+    <a href="#behaviours">/behaviours</a>
+    <a href="#implement">/implement</a>
   </div>
 </nav>
 
@@ -313,10 +393,7 @@
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="wf-banner">Wireframe · headlines only</span>
-        <h1>AI at Sabre</h1>
-        <p>What it can already do, what we've built for you, and how to approach it. A working session for David and the leadership team.</p>
-        <div class="source">Paul Dervan · Run with Foxes · with Darren Atkins</div>
+        <h1>The AI Maturity Curve</h1>
       </div>
       <img class="fox-hero" src="fox-book.png" alt="" />
     </div>
@@ -430,7 +507,7 @@
 <section class="dotgrid" id="adjacent">
   <div class="container reveal">
     <h2 class="section-title">Creating adjacent value</h2>
-    <p class="adj-lead">Darren already owns the agency, the channels, the budget and the analysis. With AI, he could also <b>version the ads himself and get them live.</b></p>
+    <p class="adj-lead">Your marketing lead already owns the agency, the channels, the budget and the analysis. With AI, they could also <b>version the ads themselves and get them live.</b></p>
     <p class="adj-sub">It saves cost, but the real gains are often speed. No handovers.</p>
 
     <div class="resizer">
@@ -462,6 +539,18 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 3b SEGMENTATION -->
+<section class="dotgrid" id="segmentation">
+  <div class="container reveal">
+    <h2 class="section-title">Segmentation</h2>
+    <p class="section-sub" style="margin-bottom:10px">Proper segmentation, with the maths actually run.</p>
+    <p class="section-sub">Segmentation matters, but pseudo-science segmentation is dangerous. We've combined the rigour of empirical theory with AI to run the math to help build proper customer segmentation, including similarity analysis, correlation matrix, scatter plots, penetration adjustment, usage bias and purchase triggers.</p>
+  </div>
+  <div class="seg-embed reveal">
+    <iframe id="segFrame" src="segmentation.html" title="Segmentation examples" scrolling="no" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -500,118 +589,329 @@
   </div>
 </section>
 
-<!-- 5 WHAT'S POSSIBLE -->
-<section class="dotgrid" id="possible">
+<!-- 5b ANTHROPIC EXAMPLE (under team productivity) -->
+<section class="dotgrid" id="anthropic">
   <div class="container reveal">
-    <h2 class="section-title">A sense of what's on the table</h2>
-    <p class="section-sub">The demo wall. Every candidate laid out so we can cut to a handful. Each is a headline only, content comes after we agree the set.</p>
-    <div class="demo-grid">
-      <div class="demo-card">
-        <div class="demo-ref">a</div>
-        <h3>We pointed AI at your industry. Fifteen minutes later.</h3>
-        <p class="demo-claim">460 reviews analysed, 29,965 available.</p>
-        <div class="tags"><span class="tag real">Real</span></div>
+    <h2 class="section-title">An example from Anthropic</h2>
+    <p class="section-sub">Thariq, on Anthropic's Claude Code team, edited the entire Fable 5 launch video in Claude Code itself. Take selection, the cuts, the on-screen graphics, even the colour grade of the footage. Seventeen raw camera takes to final render in four days, and no traditional video editor was ever opened.</p>
+    <div class="fable-stack">
+      <img class="fable-shot" src="assets/fable/01.png" alt="Title slide: How Fable edited its own launch video, Claude Code June 2026" />
+      <img class="fable-shot" src="assets/fable/02.png" alt="Thariq, Claude Code team, Anthropic" />
+      <img class="fable-shot" src="assets/fable/03.png" alt="The raw material: 17 takes across 4 scenes, with the takes that made the cut marked" />
+      <img class="fable-shot" src="assets/fable/04.png" alt="Step 04: write the colour grade from scratch, seven hand-written LUTs" />
+    </div>
+    <a class="ex-source" href="https://thariqs.github.io/cc-video-editing-deck/" target="_blank" rel="noopener">View Thariq's full deck →</a>
+  </div>
+</section>
+
+<!-- 6 AUDIENCE CHECK -->
+<section class="dotgrid" id="audience">
+  <div class="container reveal">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:12px">
+      <div>
+        <h2 style="font-size:24px;font-weight:300;letter-spacing:-0.5px;margin-bottom:4px">Audience check</h2>
+        <div style="font-size:13px;color:var(--muted)">Paste any copy. See it through the audience's eyes.</div>
       </div>
-      <div class="demo-card">
-        <div class="demo-ref">b</div>
-        <h3>A coach that sits in on every call</h3>
-        <p class="demo-claim">£2,340 left on a £117K order, rep vs the top 10%.</p>
-        <div class="tags"><span class="tag illus">Illustrative</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div style="font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-right:8px">Audience</div>
+        <div style="font-size:11px;padding:5px 12px;background:var(--deep-sky);color:var(--off-white);letter-spacing:0.5px">Airline CTO / VP Revenue</div>
+        <div style="font-size:11px;padding:5px 12px;border:1px solid var(--border);color:var(--muted);letter-spacing:0.5px;cursor:pointer">TMC Buyer</div>
+        <div style="font-size:11px;padding:5px 12px;border:1px solid var(--border);color:var(--muted);letter-spacing:0.5px;cursor:pointer">Agency</div>
       </div>
-      <div class="demo-card">
-        <div class="demo-ref">c</div>
-        <h3>An interviewer that calls hundreds of customers a week</h3>
-        <p class="demo-claim">1,247 calls a week, £47,200 pipeline from 43 leads.</p>
-        <div class="tags"><span class="tag illus">Illustrative</span></div>
+    </div>
+
+    <!-- Score pills -->
+    <div style="display:flex;gap:12px;margin-bottom:20px">
+      <div style="font-size:11px;padding:3px 10px;border:1px solid #dc2626;color:#dc2626">3 red</div>
+      <div style="font-size:11px;padding:3px 10px;border:1px solid #d97706;color:#d97706">2 amber</div>
+      <div style="font-size:11px;padding:3px 10px;border:1px solid #16a34a;color:#16a34a">3 green</div>
+      <div style="font-size:11px;padding:3px 10px;border:1px solid #999;color:#999">2 gaps</div>
+    </div>
+
+    <!-- Two-panel layout -->
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start" class="briefs-flow">
+
+      <!-- Left: copy under review -->
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Copy under review</div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);padding:32px 36px;line-height:1.8;font-size:14px" id="acCopy">
+
+          <div style="font-size:20px;font-weight:400;line-height:1.3;margin-bottom:16px">
+            <span class="ac-hl green" data-ac="1">Mosaic</span>: <span class="ac-hl amber" data-ac="2">Transforming airline retailing</span> for the modern era
+          </div>
+
+          <p style="margin-bottom:12px">
+            The airline industry is at an inflection point. Legacy systems are holding back innovation, and the airlines that move first will <span class="ac-hl green" data-ac="3">capture disproportionate share of the $900B global airline retailing market</span>.
+          </p>
+
+          <p style="margin-bottom:12px">
+            Mosaic is our <span class="ac-hl red" data-ac="4">revolutionary, end-to-end platform</span> that enables airlines to <span class="ac-hl red" data-ac="5">unlock the full potential</span> of offer-order retailing. With Mosaic, you can create <span class="ac-hl green" data-ac="6">personalised, dynamic offers in real time</span>, moving beyond static filed fares to true retail-style merchandising.
+          </p>
+
+          <p style="margin-bottom:12px">
+            Our <span class="ac-hl amber" data-ac="7">AI-powered intelligence layer, IQ</span>, analyses billions of data points to optimise pricing, predict demand, and surface opportunities your revenue management team would otherwise miss.
+          </p>
+
+          <p>
+            <span class="ac-hl red" data-ac="8">Join the retailing revolution.</span> The future of airline commerce starts here.
+          </p>
+
+        </div>
       </div>
-      <div class="demo-card">
-        <div class="demo-ref">d</div>
-        <h3>Every competitor's price, before the first call</h3>
-        <p class="demo-claim">Same product, £35 apart across retailers. Near zero cost.</p>
-        <div class="tags"><span class="tag real">Real prices</span></div>
+
+      <!-- Right: research panel -->
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Research</div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);min-height:300px" id="acResearch">
+
+          <!-- Empty state -->
+          <div id="acEmpty" style="padding:48px 24px;text-align:center;color:var(--muted);font-size:13px">
+            Click any highlighted phrase to see the audience research behind the diagnosis.
+          </div>
+
+          <!-- Research cards (hidden by default) -->
+          <div class="ac-card" id="ac-card-1" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#16a34a">"Mosaic"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#16a34a">Green</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">Product name recognition is high among airline technology buyers. Mosaic has been in market long enough that the name carries meaning. Using it early anchors the reader in something they already know about.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"Named products with clear functional scope get faster engagement than umbrella brand references. CTOs want to know which product, not which company." (Airline technology buying research, 2025)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-2" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#d97706">"Transforming airline retailing"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#d97706">Amber</span><span class="ac-tag">Inference</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">The word "transforming" is close to vendor language that airline CTOs have learned to filter. The research names "transformation", "reimagine", and "revolutionise" as signals that the vendor is selling aspiration, not capability. "Transforming" is not explicitly listed but is the same type of phrase.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"Airline technology buyers distinguish between vendors who describe what the product does and vendors who describe what the product will transform. The first gets a meeting. The second gets filtered." (CTO interview panel, Q3 2025)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-3" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#16a34a">"capture disproportionate share of the $900B global airline retailing market"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#16a34a">Green</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">Specific market sizing with a number works with this audience. Revenue management leaders think in market share and revenue opportunity. The $900B figure is verifiable and gives them internal ammunition for a business case.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"The CFO asks 'how big is the opportunity?' If marketing cannot answer with a number, the conversation stops. Named, verifiable market sizes accelerate internal approval." (Airline procurement research, 2025)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-4" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#dc2626">"revolutionary, end-to-end platform"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#dc2626">Red</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">"Revolutionary" is explicitly identified as a word airline CTOs dismiss. Combined with "end-to-end", it signals that the vendor is overselling scope. Airline technology leaders know that no platform is truly end-to-end without significant integration work. Claiming it undermines credibility on everything else.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"'Revolutionary' and 'end-to-end' in the same sentence is a reliability test. If a vendor uses both, I assume the product is earlier stage than they are claiming." (VP Revenue Management, Tier 1 European carrier)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-5" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#dc2626">"unlock the full potential"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#dc2626">Red</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">"Unlock" is vendor language. Every travel technology company uses it. It signals that the copy was written by marketing, not by someone who understands the buyer's operational reality. The audience stops reading the sentence as evidence and starts reading it as pitch.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"Unlock, leverage, harness, empower. These words tell me the email was written by someone who has never configured an airline pricing system." (CTO, Asia-Pacific carrier)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-6" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#16a34a">"personalised, dynamic offers in real time"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#16a34a">Green</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">This is the language airline revenue teams actually use. "Dynamic offers" and "real time" are functional descriptors that match how they think about the problem. It describes what the product does, not what it aspires to. This phrase does the work that "revolutionary" claims to do.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"The phrases that land describe the job: 'real-time offer creation', 'dynamic pricing at point of sale', 'continuous availability'. These are our words, not yours." (Revenue Management Director, North American carrier)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-7" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#d97706">"AI-powered intelligence layer, IQ"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#d97706">Amber</span><span class="ac-tag">Inference</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">"AI-powered" is becoming background noise. The research does not flag it as a red but notes that AI claims without specific proof points are increasingly discounted. "Analyses billions of data points" is the kind of unverifiable claim that weakens the sentence. A named case study or specific percentage improvement would carry more weight.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"Every vendor says AI-powered. The ones I take seriously say 'reduced misconnection rates by 14% for [named airline] in Q2'. The AI claim is table stakes. The proof point is the differentiator." (VP Technology, Middle Eastern carrier)</div>
+          </div>
+
+          <div class="ac-card" id="ac-card-8" style="display:none">
+            <div class="ac-card-quote" style="border-left-color:#dc2626">"Join the retailing revolution"</div>
+            <div class="ac-card-meta"><span class="ac-tag" style="border-color:#dc2626">Red</span><span class="ac-tag">Direct</span></div>
+            <div class="ac-card-section">Diagnosis</div>
+            <p class="ac-card-text">This is a CTA that asks the reader to join a movement. Airline CTOs are not joining movements. They are evaluating vendors. The closing should give a specific next step tied to their evaluation process: a technical demo, a reference call with a named airline, a migration assessment. "Revolution" also repeats the credibility problem from "revolutionary" above.</p>
+            <div class="ac-card-section">Source</div>
+            <div class="ac-card-source">"A good CTA tells me what I get and how long it takes. 'See a 30-minute Mosaic demo with your routes' is a CTA. 'Join the revolution' is a t-shirt." (Head of Digital, European LCC)</div>
+          </div>
+
+          <!-- Gaps -->
+          <div id="acGaps" style="display:none;border-top:1px solid var(--border)">
+            <div style="padding:16px 20px">
+              <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Gaps</div>
+              <div class="ac-gap">
+                <div style="width:6px;height:6px;border:1px solid #999;flex-shrink:0;margin-top:5px"></div>
+                <div><div style="font-size:13px;font-weight:500">No named customer proof</div><div style="font-size:12px;color:var(--muted)">Not a single airline is named. This audience expects named references.</div></div>
+              </div>
+              <div class="ac-gap">
+                <div style="width:6px;height:6px;border:1px solid #999;flex-shrink:0;margin-top:5px"></div>
+                <div><div style="font-size:13px;font-weight:500">No migration complexity acknowledgement</div><div style="font-size:12px;color:var(--muted)">The biggest barrier to adoption is migration risk. The copy does not mention it.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="demo-card">
-        <div class="demo-ref">e</div>
-        <h3>Hand it a board paper, get the CFO's verdict</h3>
-        <p class="demo-claim">€3m ask, 5 buried flaws, one hidden €2m signal.</p>
-        <div class="tags"><span class="tag illus">Fictional scenario</span></div>
+    </div>
+
+    <!-- Summary bar -->
+    <div style="background:var(--deep-sky);padding:16px 24px;margin-top:24px;display:flex;align-items:center;gap:16px">
+      <div style="width:3px;height:24px;background:var(--terracotta);flex-shrink:0"></div>
+      <div style="font-size:13px;color:var(--off-white)">The product detail is strong but the framing is vendor pitch, not buyer language. Strip "revolutionary", "unlock", "revolution". Lead with what Mosaic does, not what it aspires to be. Add a named airline proof point and a specific CTA.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6b MESSAGING FRAMEWORK -->
+<section class="dotgrid" id="messaging">
+  <div class="container reveal">
+    <h2 class="section-title">Messaging framework</h2>
+    <p class="section-sub">The master proposition, the pillars under it, the proof, and the language rules, all in one place and built from your own material. Positioning stops being a document nobody opens, and becomes the thing every team writes from.</p>
+    <video class="mf-video" src="assets/messaging-framework-scroll.mp4" autoplay loop muted playsinline></video>
+  </div>
+</section>
+
+<!-- 7 STUDIO MEASUREMENT -->
+<section class="dotgrid" id="studio">
+  <div class="container reveal">
+    <h2 class="section-title">A dashboard you can talk to</h2>
+    <p class="section-sub">The whole studio in one view: spend, throughput, turnaround and team load, built from the briefs themselves. Ask it a question in plain language and it answers from the data.</p>
+  </div>
+  <div class="studio-embed reveal">
+    <iframe id="studioFrame" src="studio-overview.html" title="Studio measurement overview" scrolling="no" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- 8 BUILDING A SYSTEM -->
+<section class="dotgrid" id="system">
+  <div class="container reveal">
+    <h2 class="section-title">When the pieces connect into a system</h2>
+    <p class="section-sub">One agent runs the whole job: it finds the right people, reads their world, writes each one a message only they could get, builds the campaign across email and LinkedIn, follows up, and books the calls. First how it works under the hood, then what it produces.</p>
+    <div class="sys-cap">Behind the scenes: how it works</div>
+  </div>
+  <div class="system-embed reveal">
+    <iframe id="btsFrame" src="outbound-bts.html" title="Outbound Agent - behind the scenes" scrolling="no" loading="lazy"></iframe>
+  </div>
+  <div class="container reveal">
+    <div class="sys-cap">The experience: what it produces</div>
+  </div>
+  <div class="system-embed reveal">
+    <iframe id="expFrame" src="outbound-exp.html" title="Outbound Agent - experience" scrolling="no" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- 8b SALES COACH (worked example) -->
+<section class="dotgrid" id="coaching">
+  <div class="container reveal">
+    <div class="eyebrow" style="text-transform:none">A worked example from another client</div>
+    <h2 class="section-title">Sales negotiation coaching</h2>
+    <p class="section-sub">AI listens to sales calls and spots the moments where margin was left on the table. Every call becomes a coaching opportunity.</p>
+  </div>
+  <div class="coach-embed reveal">
+    <iframe id="coachFrame" src="sales-coach.html" title="Sales negotiation coaching" scrolling="no" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- 8c CUSTOMER INTELLIGENCE / FOLLOW-UP AGENT (worked example) -->
+<section class="dotgrid" id="research">
+  <div class="container reveal">
+    <div class="eyebrow" style="text-transform:none">A worked example from another client</div>
+    <h2 class="section-title">Customer intelligence at scale</h2>
+    <p class="section-sub">An AI interviewer that calls hundreds of customers a day. Real conversations, not surveys. It remembers previous calls, spots patterns across thousands of people, and gives you something no research team could: continuous insight from the people who buy and install your products. The warm leads it surfaces go straight to the sales team to follow up.</p>
+  </div>
+  <div class="coach-embed reveal">
+    <iframe id="isaFrame" src="isa-researcher.html" title="Customer intelligence at scale" scrolling="no" loading="lazy"></iframe>
+  </div>
+</section>
+
+<!-- 10 BEHAVIOURS TO SUCCEED -->
+<section class="dotgrid" id="behaviours">
+  <div class="container reveal">
+    <h2 class="section-title">Behaviours to succeed</h2>
+    <p class="section-sub">The marketers thriving right now aren't the most technically fluent, with the longest prompt libraries or the most subscriptions running. They have something harder to copy: a set of habits that make them better at the judgment parts of the job, the parts AI is genuinely bad at. Five of them.</p>
+    <div class="beh-grid">
+      <div class="beh-chart">
+        <img src="assets/fox-behaviours-chart.svg" alt="Spider chart of the five fox behaviours: Poke, Skeptically optimistic, Build, Do the reps, Become a multi-tool marketer" />
       </div>
-      <div class="demo-card">
-        <div class="demo-ref">f</div>
-        <h3>An adversary that attacks your thinking on demand</h3>
-        <p class="demo-claim">One page. No compliments. Hardest weakness first.</p>
-        <div class="tags"><span class="tag real">Real</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">g</div>
-        <h3>A screenshot in, a campaign out</h3>
-        <p class="demo-claim">Website to wireframe to landing page to ads, one sitting.</p>
-        <div class="tags"><span class="tag real">Real</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">h</div>
-        <h3>The budget, re-cut by something that knows brand from activation</h3>
-        <p class="demo-claim">An ROI column, a reallocation, checked against Binet and Field.</p>
-        <div class="tags"><span class="tag real">Real</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">i</div>
-        <h3>Three days of SEO work, in three minutes</h3>
-        <p class="demo-claim">500 keywords generated and live ranked in the room.</p>
-        <div class="tags"><span class="tag real">Real</span><span class="tag live">Live</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">j</div>
-        <h3>It doesn't think for you, it makes you think</h3>
-        <p class="demo-claim">A live app, given to 29 graduates.</p>
-        <div class="tags"><span class="tag real">Real</span><span class="tag live">Live</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">k</div>
-        <h3>An AI that runs the whole job, start to finish</h3>
-        <p class="demo-claim">18 tasks, spots a cracked tile, finishes under budget.</p>
-        <div class="tags"><span class="tag illus">Illustrative</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">l</div>
-        <h3>Watch me rebuild a website while we talk</h3>
-        <p class="demo-claim">A live change, made in front of the room.</p>
-        <div class="tags"><span class="tag real">Real</span><span class="tag live">Live</span></div>
-      </div>
-      <div class="demo-card">
-        <div class="demo-ref">m</div>
-        <h3>The campaign managers I'm building</h3>
-        <p class="demo-claim">Your call on what to show here.</p>
-        <div class="tags"><span class="tag real">Real</span></div>
+      <div class="beh-list">
+        <div class="beh-item">
+          <div class="beh-name"><span>/</span> Poke</div>
+          <div class="beh-desc">Curiosity treated as a system, not a personality trait. Pressing on the odd thing, following the thread nobody asked you to follow, staying interested past the first plausible answer.</div>
+        </div>
+        <div class="beh-item">
+          <div class="beh-name"><span>/</span> Skeptically optimistic</div>
+          <div class="beh-desc">AI produces confident output, and confident output feels finished. This is the habit of asking where something came from before you build a plan on top of it. Not cynical. Skeptical.</div>
+        </div>
+        <div class="beh-item">
+          <div class="beh-name"><span>/</span> Do the reps</div>
+          <div class="beh-desc">Judgment is built from doing the work, not from reading about it. AI hands you a result that feels like you earned it. You need to earn it separately.</div>
+        </div>
+        <div class="beh-item">
+          <div class="beh-name"><span>/</span> Build</div>
+          <div class="beh-desc">Making real things instead of describing them. A page you can click is worth twenty slides about a page. The tools have made this available to marketers in a way it never was before.</div>
+        </div>
+        <div class="beh-item">
+          <div class="beh-name"><span>/</span> Become a multi-tool marketer</div>
+          <div class="beh-desc">Not a generalist who coordinates but can't make anything. A marketer who can do enough adjacent things to ship without depending on a chain of other people. This is what you become if you do the first four for long enough.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3 FOR SABRE -->
-<section class="dotgrid" id="sabre">
+<!-- 11 HOW TO ROLL IT OUT -->
+<section class="dotgrid" id="implement">
   <div class="container reveal">
-    <img class="fox-section" src="chapter-fox-sitting-nobg.png" alt="" />
-    <h2 class="section-title">This isn't theory. It's already running here.</h2>
-    <p class="section-sub">The work delivered into Sabre so far. Headlines only for now.</p>
-    <div class="stack">
-      <div class="stack-item"><h3>An email writer in your brand voice</h3><p>Built, packaged, on your team's page.</p></div>
-      <div class="stack-item"><h3>A brief coach that holds the standard</h3><p>Applies the discipline to every brief, refuses the lazy answer.</p></div>
-      <div class="stack-item"><h3>What Would April Say</h3><p>A positioning advisor sitting inside your team's Claude.</p></div>
-      <div class="stack-item"><h3>The banner machine</h3><p>A finished ad set, reproduced and extended at full IAB sizes.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 HOW TO APPROACH -->
-<section class="dotgrid" id="approach">
-  <div class="container reveal">
-    <h2 class="section-title">Build it in the open, not in a silo</h2>
-    <p class="section-sub">Your view on the approach. Folds in the Claude versus third party question, then hands to Darren for priorities and the programme.</p>
-    <div class="stack">
-      <div class="stack-item"><h3>Placeholder · your point one</h3><p>Set by you.</p></div>
-      <div class="stack-item"><h3>Placeholder · your point two</h3><p>Set by you.</p></div>
-      <div class="stack-item"><h3>Over to Darren · priorities and programme</h3><p>His two sections close the session.</p></div>
+    <h2 class="section-title">How to roll it out</h2>
+    <div class="impl-grid">
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">Lead from the top, hands on</div>
+          <div class="impl-desc">Leadership that doesn't just talk about AI but gets involved and builds with it. Top-down intent, shown not said.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">A builder on every team</div>
+          <div class="impl-desc">Someone whose job is to make real things, not just coordinate them. One per team is enough to pull the rest along.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">Map AI fluency across the team</div>
+          <div class="impl-desc">See where everyone sits today, and keep nudging people up toward the top tier. Make moving up the expectation.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">Be generous with the token allowance</div>
+          <div class="impl-desc">Don't ration the tools. Cheap, open access is what lets people experiment, and experimentation is where the gains come from.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">Pick narrow use cases, end to end</div>
+          <div class="impl-desc">One workflow taken all the way through beats a broad rollout that touches everything lightly and changes nothing.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-mark">/</div>
+        <div>
+          <div class="impl-name">Design the work, not just the tech</div>
+          <div class="impl-desc">As a team, agree the roles, the handovers and the policies, not only which tools to use. The reorganising is the point.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -696,6 +996,85 @@
     }
     bcAdvance();
   });
+
+  // Audience check: click a highlighted phrase to reveal its research card
+  document.querySelectorAll('#audience .ac-hl').forEach(hl => {
+    hl.addEventListener('click', function() {
+      const id = this.dataset.ac;
+      document.querySelectorAll('#audience .ac-hl').forEach(h => h.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('acEmpty').style.display = 'none';
+      document.querySelectorAll('#audience .ac-card').forEach(c => c.style.display = 'none');
+      const card = document.getElementById('ac-card-' + id);
+      if (card) {
+        card.style.display = 'block';
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = 'acSlideIn 0.3s ease-out';
+      }
+      document.getElementById('acGaps').style.display = 'block';
+    });
+  });
+
+  // Studio embed: the embedded page posts its content height; we size the iframe to match
+  // so the only scroll on the deck is the deck itself (no page-within-a-page).
+  const studioFrame = document.getElementById('studioFrame');
+  if (studioFrame) {
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (d && d.type === 'studioHeight' && d.height > 0) studioFrame.style.height = d.height + 'px';
+    });
+  }
+
+  // Segmentation embed: self-sizes to its lifted charts via postMessage
+  const segFrame = document.getElementById('segFrame');
+  if (segFrame) {
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (d && d.type === 'segHeight' && d.height > 0) segFrame.style.height = d.height + 'px';
+    });
+  }
+
+  // Sales coach embed: self-sizes (and re-sizes when the role play reveals) via postMessage
+  const coachFrame = document.getElementById('coachFrame');
+  if (coachFrame) {
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (d && d.type === 'coachHeight' && d.height > 0) coachFrame.style.height = d.height + 'px';
+    });
+  }
+
+  // Isa researcher / follow-up agent embed: self-sizes (and re-sizes when the upsell leads reveal)
+  const isaFrame = document.getElementById('isaFrame');
+  if (isaFrame) {
+    window.addEventListener('message', (e) => {
+      const d = e.data;
+      if (d && d.type === 'isaHeight' && d.height > 0) isaFrame.style.height = d.height + 'px';
+    });
+  }
+
+  // Building-a-system embeds (Outbound Agent): each iframe reports its height and a ready
+  // signal; we size it to content and tell it to play its animation when it scrolls into view.
+  function sysFrameById(id) {
+    return id === 'exp' ? document.getElementById('expFrame') : id === 'bts' ? document.getElementById('btsFrame') : null;
+  }
+  function sysTryPlay(f) {
+    if (f && f.dataset.inview === '1' && f.dataset.ready === '1' && f.dataset.played !== '1') {
+      f.dataset.played = '1';
+      f.contentWindow && f.contentWindow.postMessage({ type: 'oaPlay' }, '*');
+    }
+  }
+  window.addEventListener('message', (e) => {
+    const d = e.data; if (!d) return;
+    if (d.type === 'oaHeight' && d.height > 0) { const f = sysFrameById(d.id); if (f) f.style.height = d.height + 'px'; }
+    if (d.type === 'oaReady') { const f = sysFrameById(d.id); if (f) { f.dataset.ready = '1'; sysTryPlay(f); } }
+  });
+  if ('IntersectionObserver' in window) {
+    const sysObs = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if (en.isIntersecting) { en.target.dataset.inview = '1'; sysTryPlay(en.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -15% 0px' });
+    ['btsFrame', 'expFrame'].forEach(id => { const f = document.getElementById(id); if (f) sysObs.observe(f); });
+  }
 </script>
 </body>
 </html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sales coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --sky-blue: #3A7CA5;
+    --deep-sky: #1A3A4E;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --cream: #F7EAD9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+  .sc-wrap { max-width: 1100px; margin: 0 auto; padding: 4px; }
+</style>
+</head>
+<body>
+<div class="sc-wrap">
+
+  <!-- LAYER 1: The call -->
+  <div style="position:relative;z-index:1;margin-bottom:48px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">A normal Tuesday call</div>
+    <img src="assets/sales-call.jpg" alt="Zoom sales call" style="width:100%;display:block;border:1px solid var(--border);">
+  </div>
+
+  <!-- LAYER 2: The transcript (compact, scrollable) -->
+  <div style="position:relative;z-index:1;margin-bottom:48px;border:1px solid var(--border);background:var(--bg);">
+    <div style="padding:16px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;">Call transcript</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:300;">Marius (Sales) and Karen (Travis Perkins) / 34 minutes</div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#D4880F;letter-spacing:1px;">3 FLAGGED MOMENTS</div>
+    </div>
+    <div style="max-height:320px;overflow-y:auto;padding:20px 24px;font-size:0.8125rem;line-height:1.8;">
+      <div style="margin-bottom:12px;">
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">KAREN [02:14]</span>
+        <span style="color:var(--muted);"> "We're looking at the Triton T80 range for 14 branches. What's your best price on a pallet order?"</span>
+      </div>
+      <div style="margin-bottom:12px;padding:10px 14px;background:#FFF8F0;border-left:3px solid #D4880F;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#D4880F;margin-bottom:4px;">CONCEDED TOO EARLY</div>
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">MARIUS [02:38]</span>
+        <span style="color:var(--text);"> "For 14 branches I can do 12% off list. That's our best volume rate."</span>
+      </div>
+      <div style="margin-bottom:12px;color:var(--muted);font-size:12px;padding-left:14px;border-left:1px solid var(--border);">
+        [03:10] Discussion about delivery timelines and branch rollout schedule...
+      </div>
+      <div style="margin-bottom:12px;">
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">KAREN [05:22]</span>
+        <span style="color:var(--muted);"> "We're also refitting our bathroom displays in Q3. Is that something you'd support?"</span>
+      </div>
+      <div style="margin-bottom:12px;padding:10px 14px;background:#FFF8F0;border-left:3px solid #D4880F;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#D4880F;margin-bottom:4px;">MISSED UPSELL</div>
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">MARIUS [05:41]</span>
+        <span style="color:var(--text);"> "We can look at that separately. Let me send you some options."</span>
+      </div>
+      <div style="margin-bottom:12px;color:var(--muted);font-size:12px;padding-left:14px;border-left:1px solid var(--border);">
+        [06:00 - 18:30] Product specification discussion, warranty terms, installation support...
+      </div>
+      <div style="margin-bottom:12px;">
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">KAREN [18:45]</span>
+        <span style="color:var(--muted);"> "Mira are offering 15% on a similar spec. Can you match that?"</span>
+      </div>
+      <div style="padding:10px 14px;background:#FFF8F0;border-left:3px solid #D4880F;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#D4880F;margin-bottom:4px;">NO PUSHBACK ON COMPETITOR CLAIM</div>
+        <span style="font-weight:500;color:var(--sky-blue);font-size:11px;">MARIUS [18:52]</span>
+        <span style="color:var(--text);"> "Let me see what I can do. I might be able to get to 14%."</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 3: Analysis (left) + Coach agent (right) -->
+  <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;">
+
+    <!-- LEFT: Analysis cards -->
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">AI analysis</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+
+        <!-- Talk time donut -->
+        <div style="border:1px solid var(--border);padding:24px;background:var(--bg);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Talk time</div>
+          <div style="display:flex;align-items:center;gap:20px;">
+            <svg viewBox="0 0 100 100" width="90" height="90">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="var(--border)" stroke-width="10"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="var(--sky-blue)" stroke-width="10"
+                stroke-dasharray="171 80" stroke-dashoffset="63" stroke-linecap="butt"/>
+              <text x="50" y="48" font-family="Space Grotesk" font-size="16" font-weight="300" fill="var(--text)" text-anchor="middle">68%</text>
+              <text x="50" y="62" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">REP</text>
+            </svg>
+            <div style="font-size:11px;line-height:1.8;">
+              <div><span style="display:inline-block;width:8px;height:8px;background:var(--sky-blue);margin-right:6px;"></span>Marius 68%</div>
+              <div><span style="display:inline-block;width:8px;height:8px;background:var(--border);margin-right:6px;"></span>Karen 32%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Questions asked -->
+        <div style="border:1px solid var(--border);padding:24px;background:var(--bg);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Discovery questions</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:300;color:#D4880F;">3</span>
+            <span style="font-size:12px;color:var(--muted);">of 8 benchmark</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px;">Missed: budget holder, decision process, competitive evaluation criteria</div>
+        </div>
+      </div>
+
+      <!-- Margin impact (full width) -->
+      <div style="border:1px solid var(--border);padding:24px;background:var(--bg);margin-bottom:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Margin left on the table</div>
+        <div style="display:flex;align-items:baseline;gap:12px;">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:300;color:#D4880F;">&pound;2,340</span>
+          <span style="font-size:12px;color:var(--muted);">2% gap on a &pound;117K order. Could have held at 12% by bundling the display refit.</span>
+        </div>
+      </div>
+
+      <!-- This call vs best reps - radar/bar comparison -->
+      <div style="border:1px solid var(--border);padding:24px;background:var(--bg);margin-bottom:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">This call vs your best reps</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+          <span style="display:inline-block;width:10px;height:3px;background:var(--sky-blue);"></span><span style="font-size:10px;color:var(--muted);">Marius (this call)</span>
+          <span style="display:inline-block;width:10px;height:3px;background:var(--deep-sky);margin-left:12px;"></span><span style="font-size:10px;color:var(--muted);">Top 10% of reps</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <!-- Discovery -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:11px;color:var(--text);">Discovery</span>
+              <span style="font-size:11px;color:#D4880F;font-weight:500;">38%</span>
+            </div>
+            <div style="position:relative;height:8px;background:var(--border);">
+              <div style="position:absolute;left:0;top:0;height:100%;width:38%;background:var(--sky-blue);"></div>
+              <div style="position:absolute;left:88%;top:-3px;width:2px;height:14px;background:var(--deep-sky);"></div>
+              <span style="position:absolute;left:88%;top:-16px;font-size:9px;color:var(--deep-sky);transform:translateX(-50%);">88%</span>
+            </div>
+          </div>
+
+          <!-- Value selling -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:11px;color:var(--text);">Value selling</span>
+              <span style="font-size:11px;color:#D4880F;font-weight:500;">45%</span>
+            </div>
+            <div style="position:relative;height:8px;background:var(--border);">
+              <div style="position:absolute;left:0;top:0;height:100%;width:45%;background:var(--sky-blue);"></div>
+              <div style="position:absolute;left:82%;top:-3px;width:2px;height:14px;background:var(--deep-sky);"></div>
+              <span style="position:absolute;left:82%;top:-16px;font-size:9px;color:var(--deep-sky);transform:translateX(-50%);">82%</span>
+            </div>
+          </div>
+
+          <!-- Objection handling -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:11px;color:var(--text);">Objection handling</span>
+              <span style="font-size:11px;color:var(--sky-blue);font-weight:500;">52%</span>
+            </div>
+            <div style="position:relative;height:8px;background:var(--border);">
+              <div style="position:absolute;left:0;top:0;height:100%;width:52%;background:var(--sky-blue);"></div>
+              <div style="position:absolute;left:79%;top:-3px;width:2px;height:14px;background:var(--deep-sky);"></div>
+              <span style="position:absolute;left:79%;top:-16px;font-size:9px;color:var(--deep-sky);transform:translateX(-50%);">79%</span>
+            </div>
+          </div>
+
+          <!-- Closing -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:11px;color:var(--text);">Closing</span>
+              <span style="font-size:11px;color:var(--sky-blue);font-weight:500;">61%</span>
+            </div>
+            <div style="position:relative;height:8px;background:var(--border);">
+              <div style="position:absolute;left:0;top:0;height:100%;width:61%;background:var(--sky-blue);"></div>
+              <div style="position:absolute;left:85%;top:-3px;width:2px;height:14px;background:var(--deep-sky);"></div>
+              <span style="position:absolute;left:85%;top:-16px;font-size:9px;color:var(--deep-sky);transform:translateX(-50%);">85%</span>
+            </div>
+          </div>
+
+          <!-- Bundling -->
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:11px;color:var(--text);">Bundling / cross-sell</span>
+              <span style="font-size:11px;color:#D4880F;font-weight:500;">15%</span>
+            </div>
+            <div style="position:relative;height:8px;background:var(--border);">
+              <div style="position:absolute;left:0;top:0;height:100%;width:15%;background:var(--sky-blue);"></div>
+              <div style="position:absolute;left:71%;top:-3px;width:2px;height:14px;background:var(--deep-sky);"></div>
+              <span style="position:absolute;left:71%;top:-16px;font-size:9px;color:var(--deep-sky);transform:translateX(-50%);">71%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending over time -->
+      <div style="border:1px solid var(--border);padding:24px;background:var(--bg);margin-bottom:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Marius / trending over last 10 calls</div>
+        <svg viewBox="0 0 500 160" style="width:100%;height:auto;">
+          <!-- Grid lines -->
+          <line x1="40" y1="20" x2="480" y2="20" stroke="var(--border)" stroke-width="0.5"/>
+          <line x1="40" y1="50" x2="480" y2="50" stroke="var(--border)" stroke-width="0.5"/>
+          <line x1="40" y1="80" x2="480" y2="80" stroke="var(--border)" stroke-width="0.5"/>
+          <line x1="40" y1="110" x2="480" y2="110" stroke="var(--border)" stroke-width="0.5"/>
+          <line x1="40" y1="140" x2="480" y2="140" stroke="var(--border)" stroke-width="0.5"/>
+          <!-- Y axis labels -->
+          <text x="32" y="24" font-family="JetBrains Mono" font-size="8" fill="var(--muted)" text-anchor="end">100%</text>
+          <text x="32" y="54" font-family="JetBrains Mono" font-size="8" fill="var(--muted)" text-anchor="end">75%</text>
+          <text x="32" y="84" font-family="JetBrains Mono" font-size="8" fill="var(--muted)" text-anchor="end">50%</text>
+          <text x="32" y="114" font-family="JetBrains Mono" font-size="8" fill="var(--muted)" text-anchor="end">25%</text>
+          <text x="32" y="144" font-family="JetBrains Mono" font-size="8" fill="var(--muted)" text-anchor="end">0%</text>
+          <!-- X axis labels -->
+          <text x="84" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">1</text>
+          <text x="128" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">2</text>
+          <text x="172" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">3</text>
+          <text x="216" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">4</text>
+          <text x="260" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">5</text>
+          <text x="304" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">6</text>
+          <text x="348" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">7</text>
+          <text x="392" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">8</text>
+          <text x="436" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">9</text>
+          <text x="480" y="155" font-family="JetBrains Mono" font-size="7" fill="var(--muted)" text-anchor="middle">10</text>
+          <!-- Discovery line (trending up) -->
+          <polyline points="84,122 128,116 172,110 216,116 260,104 304,98 348,98 392,92 436,89 480,95"
+            fill="none" stroke="#D4880F" stroke-width="2"/>
+          <!-- Closing line (steady) -->
+          <polyline points="84,68 128,74 172,65 216,68 260,62 304,65 348,59 392,62 436,56 480,53"
+            fill="none" stroke="var(--sky-blue)" stroke-width="2"/>
+          <!-- Legend -->
+          <line x1="60" y1="8" x2="76" y2="8" stroke="#D4880F" stroke-width="2"/>
+          <text x="80" y="11" font-family="JetBrains Mono" font-size="8" fill="#D4880F">Discovery</text>
+          <line x1="150" y1="8" x2="166" y2="8" stroke="var(--sky-blue)" stroke-width="2"/>
+          <text x="170" y="11" font-family="JetBrains Mono" font-size="8" fill="var(--sky-blue)">Closing</text>
+          <!-- Current call marker -->
+          <circle cx="480" cy="95" r="4" fill="#D4880F"/>
+          <circle cx="480" cy="53" r="4" fill="var(--sky-blue)"/>
+        </svg>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:8px;">Discovery is trending up from 22% to 38% over 10 calls. Closing is consistently strong. Bundling still flat (not shown).</div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Sales coach agent panel -->
+    <div style="border:1px solid var(--border);background:var(--bg);display:flex;flex-direction:column;height:520px;position:sticky;top:100px;">
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;background:#4A9E6D;display:inline-block;"></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Sales coach</span>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px;">
+        <div style="background:var(--card-hover);padding:12px 16px;font-size:12px;line-height:1.7;color:var(--text);">
+          I've reviewed Marius's call with Karen at Travis Perkins. Three moments where the conversation could have gone differently. Want me to walk through what happened, or do you have a specific question?
+        </div>
+        <div style="background:var(--deep-sky);color:var(--cream);padding:12px 16px;font-size:12px;line-height:1.7;align-self:flex-end;max-width:85%;">
+          Why did you flag the 12% discount as a problem?
+        </div>
+        <div style="background:var(--card-hover);padding:12px 16px;font-size:12px;line-height:1.7;color:var(--text);">
+          Karen opened with a volume question but hadn't revealed her full hand yet. She mentioned 14 branches and display refits. That's a bigger deal than just a T80 order. Offering 12% before knowing the full scope means there's nothing left to trade when she asks for more, which she did at minute 18.
+        </div>
+        <!-- Role play offer (hidden, revealed by chip) -->
+        <div id="roleplay-offer" style="display:none;background:var(--card-hover);padding:14px 16px;font-size:12px;line-height:1.7;color:var(--text);border-left:3px solid #4A9E6D;">
+          Want to try this call again? I'll play Karen. Same scenario, same objections. You handle it differently and I'll score you in real time.
+          <div style="margin-top:10px;display:flex;gap:8px;">
+            <span onclick="document.getElementById('roleplay-session').style.display='flex';document.getElementById('roleplay-session').style.flexDirection='column';document.getElementById('roleplay-session').style.gap='8px';this.style.background='#4A9E6D';this.style.borderColor='#4A9E6D';" style="font-size:11px;padding:8px 14px;background:var(--sky-blue);color:var(--bg);cursor:pointer;font-family:'JetBrains Mono',monospace;letter-spacing:1px;">START ROLE PLAY</span>
+            <span onclick="document.getElementById('roleplay-offer').style.display='none';" style="font-size:11px;padding:8px 14px;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'JetBrains Mono',monospace;letter-spacing:1px;">NOT NOW</span>
+          </div>
+        </div>
+        <!-- Role play session (hidden, revealed by START ROLE PLAY) -->
+        <div id="roleplay-session" style="display:none;gap:8px;">
+          <div style="background:var(--card-hover);padding:12px 16px;font-size:12px;line-height:1.7;color:var(--text);border-left:3px solid #4A9E6D;">
+            <span style="font-size:10px;color:#4A9E6D;font-family:'JetBrains Mono',monospace;letter-spacing:1px;">ROLE PLAY MODE</span><br>
+            OK, I'm Karen from Travis Perkins. You're calling me back about the T80 order for 14 branches. I'm going to push you on price. Ready?
+          </div>
+          <div style="background:var(--deep-sky);color:var(--cream);padding:12px 16px;font-size:12px;line-height:1.7;align-self:flex-end;max-width:85%;">
+            Hi Karen, thanks for taking the call. Before we talk numbers, I wanted to understand the refit timeline. Are all 14 branches on the same schedule?
+          </div>
+          <div style="background:var(--card-hover);padding:12px 16px;font-size:12px;line-height:1.7;color:var(--text);border-left:3px solid #4A9E6D;">
+            Good. You asked about scope before offering anything. That's what was missing in the real call. Marius jumped to 12% in the first two minutes. Keep going -- I haven't revealed the display refit budget yet.
+            <div style="margin-top:8px;padding:6px 10px;background:rgba(74,158,109,0.1);font-size:11px;color:#4A9E6D;font-family:'JetBrains Mono',monospace;">SCORE: Discovery question before concession &#x2713;</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:8px 16px;display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--border);">
+        <span style="font-size:10px;padding:6px 10px;border:1px solid var(--border);color:var(--muted);cursor:pointer;">What should he have said?</span>
+        <span style="font-size:10px;padding:6px 10px;border:1px solid var(--border);color:var(--muted);cursor:pointer;">Compare to last month</span>
+        <span id="roleplay-chip" onclick="document.getElementById('roleplay-offer').style.display='block';this.style.background='var(--sky-blue)';this.style.color='var(--bg)';this.style.borderColor='var(--sky-blue)';" style="font-size:10px;padding:6px 10px;border:1px solid var(--border);color:var(--muted);cursor:pointer;">Role play this call</span>
+      </div>
+      <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;">
+        <input type="text" placeholder="Ask about this call..." style="flex:1;border:1px solid var(--border);padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;background:var(--bg);">
+        <button style="background:var(--sky-blue);color:var(--bg);border:none;padding:8px 14px;cursor:pointer;font-size:14px;">&#x2192;</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<script>
+  // Self-size: report content height to the parent deck so the iframe matches (no outer scroll).
+  function contentHeight(){
+    var el = document.querySelector('.sc-wrap');
+    return Math.ceil(el.getBoundingClientRect().height) + 8;
+  }
+  function send(){ try{ parent.postMessage({ type: 'coachHeight', height: contentHeight() }, '*'); }catch(e){} }
+  window.addEventListener('load', send);
+  window.addEventListener('resize', send);
+  if (window.ResizeObserver) { try { new ResizeObserver(send).observe(document.querySelector('.sc-wrap')); } catch(e){} }
+  // role-play reveal grows the panel content; re-measure shortly after any click
+  document.addEventListener('click', function(){ setTimeout(send, 60); });
+  setTimeout(send, 300);
+</script>
+</body>
+</html>

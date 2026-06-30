@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560">
+  <style>
+    .grid-line { fill: none; stroke: #E0E0DC; stroke-width: 1; }
+    .axis-line { stroke: #E0E0DC; stroke-width: 1; }
+    .data-area { fill: #F47521; fill-opacity: 0.12; stroke: #F47521; stroke-width: 2; }
+    .data-dot { fill: #F47521; }
+    .label { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 11px; font-weight: 400; letter-spacing: 2px; fill: #8A8A85; }
+    .center-dot { fill: #E0E0DC; }
+  </style>
+
+  <!-- Grid level 1 -->
+  <polygon class="grid-line" points="350.0,230.0 392.8,261.1 376.5,311.4 323.5,311.4 307.2,261.1"/>
+  <!-- Grid level 2 -->
+  <polygon class="grid-line" points="350.0,185.0 435.6,247.2 402.9,347.8 297.1,347.8 264.4,247.2"/>
+  <!-- Grid level 3 -->
+  <polygon class="grid-line" points="350.0,140.0 478.4,233.3 429.4,384.2 270.6,384.2 221.6,233.3"/>
+  <!-- Grid level 4 -->
+  <polygon class="grid-line" points="350.0,95.0 521.2,219.4 455.8,420.6 244.2,420.6 178.8,219.4"/>
+
+  <!-- Axis lines -->
+  <line class="axis-line" x1="350" y1="275" x2="350.0" y2="95.0"/>
+  <line class="axis-line" x1="350" y1="275" x2="521.2" y2="219.4"/>
+  <line class="axis-line" x1="350" y1="275" x2="455.8" y2="420.6"/>
+  <line class="axis-line" x1="350" y1="275" x2="244.2" y2="420.6"/>
+  <line class="axis-line" x1="350" y1="275" x2="178.8" y2="219.4"/>
+
+  <!-- Data polygon -->
+  <polygon class="data-area" points="350.0,122.0 504.1,224.9 450.5,413.3 265.4,391.5 221.6,233.3"/>
+
+  <!-- Data dots -->
+  <circle class="data-dot" cx="350.0" cy="122.0" r="4"/>
+  <circle class="data-dot" cx="504.1" cy="224.9" r="4"/>
+  <circle class="data-dot" cx="450.5" cy="413.3" r="4"/>
+  <circle class="data-dot" cx="265.4" cy="391.5" r="4"/>
+  <circle class="data-dot" cx="221.6" cy="233.3" r="4"/>
+
+  <!-- Centre dot -->
+  <circle class="center-dot" cx="350" cy="275" r="2"/>
+
+  <!-- Labels -->
+  <!-- Poke (top) -->
+  <text class="label" x="350" y="58" text-anchor="middle">POKE</text>
+
+  <!-- Skeptically Optimistic (top-right) -->
+  <text class="label" x="581.5" y="198.4" text-anchor="start">
+    <tspan x="581.5" dy="0">SKEPTICALLY</tspan>
+    <tspan x="581.5" dy="15">OPTIMISTIC</tspan>
+  </text>
+
+  <!-- Build (bottom-right) -->
+  <text class="label" x="496.1" y="469.1" text-anchor="start">BUILD</text>
+
+  <!-- Do the Reps (bottom-left) -->
+  <text class="label" x="203.9" y="469.1" text-anchor="end">
+    <tspan x="203.9" dy="0">DO THE</tspan>
+    <tspan x="203.9" dy="15">REPS</tspan>
+  </text>
+
+  <!-- Become a Multi-tool Marketer (top-left) -->
+  <text class="label" x="118.5" y="191.4" text-anchor="end">
+    <tspan x="118.5" dy="0">BECOME A</tspan>
+    <tspan x="118.5" dy="15">MULTI-TOOL</tspan>
+    <tspan x="118.5" dy="15">MARKETER</tspan>
+  </text>
+</svg>

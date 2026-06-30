@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Measurement</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@font-face{font-family:'APK Galeria';src:local('APK Galeria');font-weight:400}
+@font-face{font-family:'APK Galeria';src:local('APK Galeria Semi-Bold');font-weight:600}
+@font-face{font-family:'APK Galeria';src:local('APK Galeria Light');font-weight:300}
+:root{
+--terra:#E2553C;--terra-light:rgba(226,85,60,0.08);--terra-mid:rgba(226,85,60,0.15);
+--black:#000000;--dark:#222222;--dark-alt:#3F3F3F;
+--off-white:#F3EFE4;--white:#FFFFFF;
+--yellow:#EBC73A;--grey:#B3B3B3;--dark-red:#741C1C;
+--forest:#28864C;--cobalt:#0076D6;--lavender:#927CCC;
+--lime:#8DCC57;--brick:#BC302A;--amber:#BC580B;
+--blush:#F3D4C2;--mint:#CEEBD9;--ice:#CEEA FF;--sand:#FBE8C0;
+--text:#000000;--text-grey:#6E6E6E;--text-muted:#9A9A9A;
+--border:#E0DCD4;
+}
+body{font-family:'APK Galeria',Arial,Helvetica,sans-serif;background:var(--off-white);color:var(--text);line-height:1.5;font-weight:400}
+
+header{background:var(--dark);padding:16px 32px;display:flex;align-items:center;gap:20px;position:sticky;top:0;z-index:100}
+header .logo{font-family:'APK Galeria',Arial;font-weight:600;font-size:22px;color:var(--terra);text-transform:uppercase;letter-spacing:2px}
+header h1{font-size:16px;font-weight:400;color:var(--white);letter-spacing:.3px}
+header .pipe{color:var(--text-muted);font-size:14px}
+header .meta{color:var(--text-muted);font-size:12px;margin-left:auto}
+
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;position:sticky;top:54px;z-index:99}
+nav button{background:none;border:none;padding:14px 20px;font-family:'APK Galeria',Arial;font-size:13px;font-weight:400;color:var(--text-grey);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+nav button:hover{color:var(--text)}
+nav button.active{color:var(--terra);border-bottom-color:var(--terra);font-weight:600}
+
+.container{max-width:1400px;margin:0 auto;padding:24px 32px}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.kpi{background:var(--white);border-radius:4px;padding:20px;border:1px solid var(--border)}
+.kpi .label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.kpi .value{font-size:32px;font-weight:600;color:var(--text)}
+.kpi .sub{font-size:12px;color:var(--text-grey);margin-top:4px}
+.kpi.alert .value{color:var(--terra)}
+
+.card{background:var(--white);border-radius:4px;padding:24px;border:1px solid var(--border);margin-bottom:16px}
+.card h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:16px;color:var(--text-grey)}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.card-row{grid-template-columns:1fr}}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;font-weight:600;color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--border);cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{color:var(--text)}
+td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tr:hover{background:var(--terra-light)}
+tr.expandable{cursor:pointer}
+tr.expandable:hover{background:var(--terra-mid)}
+
+.badge{display:inline-block;padding:2px 10px;border-radius:2px;font-size:11px;font-weight:600;letter-spacing:.3px}
+.badge-green{background:var(--mint);color:#166534}
+.badge-amber{background:var(--sand);color:#92400e}
+.badge-red{background:var(--blush);color:var(--brick)}
+.badge-grey{background:#eee;color:var(--text-grey)}
+.badge-blue{background:#dbeafe;color:var(--cobalt)}
+
+.bar-container{display:flex;align-items:center;gap:8px}
+.bar-bg{flex:1;height:20px;background:#E8E4DC;border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;transition:width .3s}
+
+.insight-box{background:var(--terra-light);border:1px solid var(--terra-mid);border-radius:4px;padding:20px;margin-bottom:16px}
+.insight-box h4{font-size:12px;font-weight:600;color:var(--terra);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.insight-box ul{list-style:none;padding:0}
+.insight-box li{font-size:13px;color:var(--dark-alt);padding:4px 0;line-height:1.6}
+.insight-box li::before{content:"\25A0";color:var(--terra);margin-right:10px;font-size:8px;vertical-align:middle}
+
+.chart-wrap{position:relative;height:300px}
+.chart-wrap.tall{height:400px}
+
+.search-bar{padding:10px 16px;border:1px solid var(--border);border-radius:2px;font-family:'APK Galeria',Arial;font-size:14px;width:100%;max-width:300px;margin-bottom:16px;outline:none;background:var(--white)}
+.search-bar:focus{border-color:var(--terra)}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid var(--border);border-radius:2px;font-family:'APK Galeria',Arial;font-size:14px;outline:none;background:var(--white)}
+.form-group input:focus,.form-group select:focus{border-color:var(--terra)}
+.btn{background:var(--terra);color:var(--white);border:none;padding:12px 28px;border-radius:2px;font-family:'APK Galeria',Arial;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.3px;transition:background .15s}
+.btn:hover{background:var(--brick)}
+.btn-secondary{background:#E8E4DC;color:var(--text)}
+.btn-secondary:hover{background:var(--border)}
+.auto-badge{display:inline-block;background:var(--mint);color:#166534;padding:2px 10px;border-radius:2px;font-size:11px;font-weight:600;margin-top:4px}
+
+.drill-modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.drill-modal.show{opacity:1;pointer-events:auto}
+.drill-panel{background:var(--white);border-radius:4px;max-width:1000px;width:90%;max-height:85vh;overflow-y:auto;padding:32px}
+.drill-panel h2{font-size:20px;font-weight:600;margin-bottom:16px}
+.drill-close{float:right;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-muted)}
+.drill-close:hover{color:var(--text)}
+
+/* Chat */
+.overview-layout{display:grid;grid-template-columns:1fr 380px;gap:20px}
+@media(max-width:1100px){.overview-layout{grid-template-columns:1fr}}
+.chat-panel{background:var(--white);border:1px solid var(--border);border-radius:4px;display:flex;flex-direction:column;height:calc(100vh - 160px);position:sticky;top:100px}
+.chat-header{padding:16px 20px;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-grey);display:flex;align-items:center;gap:8px}
+.chat-header .dot{width:8px;height:8px;border-radius:50%;background:var(--forest)}
+.chat-messages{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:90%;padding:12px 16px;border-radius:4px;font-size:13px;line-height:1.6}
+.msg-assistant{background:var(--off-white);color:var(--text);align-self:flex-start;border:1px solid var(--border)}
+.msg-user{background:var(--terra);color:var(--white);align-self:flex-end}
+.msg-assistant strong{color:var(--terra)}
+.msg-assistant .mini-table{margin:8px 0;font-size:12px;border-collapse:collapse;width:100%}
+.msg-assistant .mini-table td,.msg-assistant .mini-table th{padding:4px 8px;border-bottom:1px solid var(--border);text-align:left}
+.msg-assistant .mini-table th{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted)}
+.chat-chips{padding:8px 20px;display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--border)}
+.chip{background:var(--terra-light);border:1px solid var(--terra-mid);color:var(--terra);padding:4px 12px;border-radius:2px;font-size:11px;cursor:pointer;font-family:'APK Galeria',Arial;transition:all .15s}
+.chip:hover{background:var(--terra-mid)}
+.chat-input-row{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px}
+.chat-input{flex:1;border:1px solid var(--border);border-radius:2px;padding:10px 14px;font-family:'APK Galeria',Arial;font-size:13px;outline:none;resize:none}
+.chat-input:focus{border-color:var(--terra)}
+.chat-send{background:var(--terra);color:white;border:none;padding:10px 16px;border-radius:2px;cursor:pointer;font-size:14px}
+.chat-send:hover{background:var(--brick)}
+
+/* Timeline */
+.timeline-grid{display:grid;gap:2px}
+.timeline-row{display:grid;grid-template-columns:200px 1fr;gap:0;align-items:stretch;min-height:40px}
+.timeline-label{padding:8px 12px;font-size:12px;font-weight:600;display:flex;align-items:center;background:var(--white);border:1px solid var(--border);cursor:pointer}
+.timeline-label:hover{background:var(--terra-light)}
+.timeline-bar-container{display:flex;position:relative;background:var(--white);border:1px solid var(--border);border-left:none}
+.timeline-segment{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--white);min-width:20px;position:relative;transition:opacity .15s}
+.timeline-segment:hover{opacity:.85}
+.timeline-segment .tip{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--dark);color:var(--white);padding:6px 10px;border-radius:2px;font-size:11px;white-space:nowrap;z-index:10;font-weight:400}
+.timeline-segment:hover .tip{display:block}
+.tl-header{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);padding:8px 4px;text-align:center}
+.stage-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.stage-legend-item{display:flex;align-items:center;gap:6px;font-size:12px}
+.stage-legend-dot{width:12px;height:12px;border-radius:2px}
+.perf-legend{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;font-size:12px}
+.perf-legend-item{display:flex;align-items:center;gap:4px}
+.perf-dot{width:10px;height:10px;border-radius:2px}
+.heatmap{width:100%;border-collapse:collapse}
+.heatmap th{font-size:11px;padding:10px 8px;text-transform:uppercase;letter-spacing:.5px;text-align:center;background:var(--off-white);border:1px solid var(--border)}
+.heatmap td{padding:8px;text-align:center;font-size:12px;font-weight:600;border:1px solid var(--border)}
+.heatmap td.fast{background:#dcfce7;color:#166534}
+.heatmap td.avg{background:var(--sand);color:#92400e}
+.heatmap td.slow{background:var(--blush);color:var(--brick)}
+.heatmap td.project-name{text-align:left;font-weight:600;background:var(--white)}
+
+/* Kanban */
+.kanban-controls{display:flex;gap:12px;margin-bottom:20px;align-items:center;flex-wrap:wrap}
+.kanban-controls select,.kanban-controls input{padding:8px 12px;border:1px solid var(--border);border-radius:2px;font-family:inherit;font-size:13px;background:var(--white)}
+.kanban-board{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;min-height:500px}
+@media(max-width:1000px){.kanban-board{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.kanban-board{grid-template-columns:1fr}}
+.kanban-col{background:var(--off-white);border-radius:4px;padding:12px;min-height:400px}
+.kanban-col-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.kanban-col-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-grey)}
+.kanban-col-count{background:var(--white);border:1px solid var(--border);border-radius:2px;font-size:11px;font-weight:600;padding:2px 8px;color:var(--text-grey)}
+.kanban-col.drag-over{background:var(--terra-light);border:1px dashed var(--terra)}
+.kanban-cards{display:flex;flex-direction:column;gap:8px;min-height:60px}
+.kanban-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:12px;cursor:grab;transition:box-shadow .15s,border-color .15s;position:relative}
+.kanban-card:hover{border-color:var(--terra)}
+.kanban-card.dragging{opacity:.4;border-style:dashed}
+.kanban-card .card-project{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--terra);margin-bottom:4px}
+.kanban-card .card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3}
+.kanban-card .card-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--text-grey)}
+.kanban-card .card-meta span{display:flex;align-items:center;gap:3px}
+.kanban-card .card-tier{position:absolute;top:12px;right:12px;font-size:10px;font-weight:600;padding:1px 6px;border-radius:2px}
+.tier-1{background:var(--blush);color:var(--brick)}
+.tier-2{background:var(--sand);color:#92400e}
+.tier-3{background:var(--mint);color:#166534}
+.kanban-card .card-pm{font-size:11px;color:var(--text-muted);margin-top:6px}
+.kanban-toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:var(--white);padding:12px 20px;border-radius:4px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none}
+.kanban-toast.show{opacity:1}
+</style>
+<style id="embed-fit">
+  /* Embedded in the deck: no inner page scroll, chat sizes to layout not viewport */
+  html,body{overflow:hidden!important;}
+  .chat-panel{height:auto!important;position:static!important;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- OVERVIEW -->
+<div id="tab-overview" class="tab-content active">
+<div class="kpi-row" id="kpi-overview"></div>
+<div class="overview-layout">
+<div class="overview-main">
+<div id="insights-overview"></div>
+<div class="card-row">
+<div class="card"><h3>Spend by Month</h3><div class="chart-wrap"><canvas id="chart-spend-month"></canvas></div></div>
+<div class="card"><h3>Briefs by Status</h3><div class="chart-wrap"><canvas id="chart-status"></canvas></div></div>
+</div>
+<div class="card-row">
+<div class="card"><h3>Average Turnaround by Tier</h3><div class="chart-wrap"><canvas id="chart-turnaround-tier"></canvas></div></div>
+<div class="card"><h3>Top Projects by Spend</h3><div class="chart-wrap"><canvas id="chart-top-projects"></canvas></div></div>
+</div>
+</div>
+<div class="chat-panel" id="chat-panel">
+<div class="chat-header"><span class="dot"></span>Studio Assistant</div>
+<div class="chat-messages" id="chat-messages">
+<div class="msg msg-assistant">I can answer questions about your studio data. Try asking about efficiency, costs, workload, trends, or drill into any project, asset type, or team member.</div>
+</div>
+<div class="chat-chips" id="chat-chips">
+<span class="chip" onclick="askChat(this.textContent)">Most efficient asset types?</span>
+<span class="chip" onclick="askChat(this.textContent)">Who has capacity?</span>
+<span class="chip" onclick="askChat(this.textContent)">Month-on-month trends?</span>
+<span class="chip" onclick="askChat(this.textContent)">Cost outliers?</span>
+<span class="chip" onclick="askChat(this.textContent)">Tell me about video editing</span>
+</div>
+<div class="chat-input-row">
+<textarea class="chat-input" id="chat-input" rows="1" placeholder="Ask a question about your studio data..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
+<button class="chat-send" onclick="sendChat()">&#x2192;</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div id="tab-projects" class="tab-content">
+<input type="text" class="search-bar" placeholder="Search projects..." id="project-search">
+<div class="card" id="project-table-card"></div>
+</div>
+
+<!-- PEOPLE -->
+<div id="tab-people" class="tab-content">
+<div class="card-row">
+<div class="card"><h3>PM Workload</h3><div id="pm-workload"></div></div>
+<div class="card"><h3>Creative Workload</h3><div id="creative-workload"></div></div>
+</div>
+<div class="card"><h3>Team Utilisation</h3><div class="chart-wrap tall"><canvas id="chart-utilisation"></canvas></div></div>
+<div id="people-insights"></div>
+</div>
+
+<!-- DEPARTMENTS -->
+<div id="tab-departments" class="tab-content">
+<div class="kpi-row" id="kpi-depts"></div>
+<div class="card-row">
+<div class="card"><h3>Spend by Department</h3><div class="chart-wrap"><canvas id="chart-dept-spend"></canvas></div></div>
+<div class="card"><h3>Briefs by Department</h3><div class="chart-wrap"><canvas id="chart-dept-briefs"></canvas></div></div>
+</div>
+<div class="card"><h3>Department Detail</h3><div id="dept-table"></div></div>
+</div>
+
+<!-- ASSET TYPES -->
+<div id="tab-assets" class="tab-content">
+<div class="card-row">
+<div class="card"><h3>Total Cost by Asset Type</h3><div class="chart-wrap tall"><canvas id="chart-asset-cost"></canvas></div></div>
+<div class="card"><h3>Average Cost per Asset</h3><div class="chart-wrap tall"><canvas id="chart-asset-unit-cost"></canvas></div></div>
+</div>
+<div class="card"><h3>Asset Type Detail</h3><div id="asset-table"></div></div>
+<div id="self-serve-insights"></div>
+</div>
+
+<!-- EFFICIENCY -->
+<div id="tab-efficiency" class="tab-content">
+<div class="kpi-row" id="kpi-efficiency"></div>
+<div class="card-row">
+<div class="card"><h3>Turnaround by Asset Type (days)</h3><div class="chart-wrap tall"><canvas id="chart-turnaround-asset"></canvas></div></div>
+<div class="card"><h3>Turnaround by Department (days)</h3><div class="chart-wrap"><canvas id="chart-turnaround-dept"></canvas></div></div>
+</div>
+<div class="card"><h3>Cost Outliers (2x+ average for asset type)</h3><div id="outlier-table"></div></div>
+<div class="card"><h3>Late Deliveries</h3><div id="late-table"></div></div>
+</div>
+
+<!-- KANBAN -->
+<div id="tab-kanban" class="tab-content">
+<div class="kanban-controls">
+<select id="kanban-project-filter"><option value="">All projects</option></select>
+<select id="kanban-pm-filter"><option value="">All PMs</option></select>
+<select id="kanban-tier-filter"><option value="">All tiers</option><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option></select>
+<input type="text" id="kanban-search" class="search-bar" placeholder="Search briefs..." style="margin:0;max-width:200px">
+<div style="margin-left:auto;font-size:12px;color:var(--text-muted)" id="kanban-summary"></div>
+</div>
+<div class="kanban-board" id="kanban-board"></div>
+<div class="kanban-toast" id="kanban-toast"></div>
+</div>
+
+<!-- TIMELINE -->
+<div id="tab-timeline" class="tab-content">
+<div class="card">
+<h3>Campaign Journey Analysis</h3>
+<p style="font-size:13px;color:var(--text-grey);margin-bottom:16px">Each brief passes through five stages. This view shows where projects perform better or worse than the studio benchmark at each stage. Green = faster than average, amber = near average, red = slower.</p>
+<div class="stage-legend" id="stage-legend"></div>
+<div class="perf-legend">
+<div class="perf-legend-item"><div class="perf-dot" style="background:#dcfce7"></div>Faster than benchmark</div>
+<div class="perf-legend-item"><div class="perf-dot" style="background:var(--sand)"></div>Near benchmark</div>
+<div class="perf-legend-item"><div class="perf-dot" style="background:var(--blush)"></div>Slower than benchmark</div>
+</div>
+</div>
+<div class="card"><h3>Project Stage Performance</h3><div id="heatmap-container"></div></div>
+<div class="card"><h3>Stage Duration Distribution</h3><div class="chart-wrap tall"><canvas id="chart-stage-dist"></canvas></div></div>
+<div class="card"><h3>Briefs Timeline</h3>
+<div style="margin-bottom:12px">
+<select id="timeline-project-filter" style="padding:8px 12px;border:1px solid var(--border);border-radius:2px;font-family:inherit;font-size:13px"><option value="">All projects</option></select>
+</div>
+<div id="timeline-bars"></div>
+</div>
+</div>
+
+<!-- NEW BRIEF -->
+<div id="tab-newbrief" class="tab-content">
+<div class="card">
+<h3>Log a New Brief</h3>
+<div class="form-grid" id="brief-form">
+<div class="form-group"><label>Project Name</label><input id="f-project" list="project-list"><datalist id="project-list"></datalist></div>
+<div class="form-group"><label>Asset Type</label><select id="f-asset-type"></select></div>
+<div class="form-group"><label>Number of Assets</label><input id="f-num-assets" type="number" min="1" value="1"></div>
+<div class="form-group"><label>Tier</label><select id="f-tier"><option>Tier 1</option><option selected>Tier 2</option><option>Tier 3</option></select><div class="auto-badge" id="f-tier-suggest"></div></div>
+<div class="form-group"><label>Requester</label><input id="f-requester"></div>
+<div class="form-group"><label>Department</label><select id="f-department"></select></div>
+<div class="form-group"><label>Target Audience</label><input id="f-audience" placeholder="Optional"></div>
+<div class="form-group"><label>Campaign Message</label><input id="f-message" placeholder="Optional"></div>
+<div class="form-group"><label>Request Date</label><input id="f-request-date" type="date"></div>
+<div class="form-group"><label>Due Date</label><input id="f-due-date" type="date"></div>
+<div class="form-group"><label>Localisation Needed</label><select id="f-local"><option>No</option><option>Yes</option></select></div>
+<div class="form-group"><label>Copy Needed</label><select id="f-copy"><option>No</option><option>Yes</option></select></div>
+<div class="form-group"><label>Assigned PM</label><select id="f-pm"></select><div class="auto-badge" id="f-pm-suggest"></div></div>
+<div class="form-group"><label>Could be self-served?</label><select id="f-selfserve"><option>No</option><option>Yes</option></select></div>
+</div>
+<div style="margin-top:20px;display:flex;gap:12px">
+<button class="btn" onclick="submitBrief()">Add Brief</button>
+<button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+</div>
+<div id="form-feedback" style="margin-top:12px"></div>
+</div>
+</div>
+
+</div>
+
+<div class="drill-modal" id="drill-modal">
+<div class="drill-panel" id="drill-panel">
+<button class="drill-close" onclick="closeDrill()">&times;</button>
+<div id="drill-content"></div>
+</div>
+</div>
+
+<script>
+const RAW_DATA = [{"id":1,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"MK","pmHours":6.0,"creativeHours":7.0,"totalHours":13.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":429.0},{"id":2,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":6.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"AG","pmHours":6.0,"creativeHours":9.0,"totalHours":15.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":495.0},{"id":3,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Booth design","selfServe":"No","numAssets":6.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"AG","pmHours":6.0,"creativeHours":9.0,"totalHours":15.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":495.0},{"id":4,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":2.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"AG","pmHours":6.0,"creativeHours":9.0,"totalHours":15.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":495.0},{"id":5,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":2.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"AG","pmHours":6.0,"creativeHours":8.0,"totalHours":14.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":462.0},{"id":6,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Email header","selfServe":"No","numAssets":2.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"AG","pmHours":6.0,"creativeHours":8.0,"totalHours":14.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":462.0},{"id":7,"project":"EIB","tier":"Tier 2","requestDate":"28.04.2025","kickoffDate":"28.04.2025","dueDate":"18.08.2025","completeDate":"Ongoing","status":"On track","requester":"ET","department":"Other","localization":"No","copy":"No","assetType":"Video editing","selfServe":"No","numAssets":2.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"NGM","pmHours":6.0,"creativeHours":7.0,"totalHours":13.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":429.0},{"id":8,"project":"Field Events","tier":"Tier 2","requestDate":"06.05.2025","kickoffDate":"13.05.2025","dueDate":"09.06.2025","completeDate":"11.06.2025","status":"Complete","requester":"CM","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":3.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"LjDj","creative2":"MK","pmHours":6.0,"creativeHours":7.5,"totalHours":13.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":445.5},{"id":9,"project":"Field Events","tier":"Tier 2","requestDate":"06.05.2025","kickoffDate":"13.05.2025","dueDate":"09.06.2025","completeDate":"11.06.2025","status":"Complete","requester":"CM","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"LjDj","creative2":"NMM","pmHours":6.0,"creativeHours":8.5,"totalHours":14.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":478.5},{"id":10,"project":"Field Events","tier":"Tier 2","requestDate":"06.05.2025","kickoffDate":"13.05.2025","dueDate":"24.06.2025","completeDate":"24.06.2025","status":"Complete","requester":"CM","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"LjDj","creative2":"NGM","pmHours":2.5,"creativeHours":15.0,"totalHours":17.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":577.5},{"id":11,"project":"Field Events","tier":"Tier 2","requestDate":"06.05.2025","kickoffDate":"13.05.2025","dueDate":"24.06.2025","completeDate":"24.06.2025","status":"Complete","requester":"CM","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"MK","pmHours":2.0,"creativeHours":4.5,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":12,"project":"Field Events","tier":"Tier 2","requestDate":"04.07.2025","kickoffDate":"04.07.2025","dueDate":"04.07.2025","completeDate":"07.07.2025","status":"Complete","requester":"CM","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":0,"creativeHours":2.0,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":13,"project":"June Events","tier":"Tier 3","requestDate":"12.05.2025","kickoffDate":"12.05.2025","dueDate":"14.05.2025","completeDate":"14.05.2025","status":"Complete","requester":"MK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":1.0,"creativeHours":1.0,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":14,"project":"June Events","tier":"Tier 3","requestDate":"12.05.2025","kickoffDate":"12.05.2025","dueDate":"14.05.2025","completeDate":"14.05.2025","status":"Complete","requester":"MK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":1.0,"creativeHours":1.0,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":15,"project":"June Events","tier":"Tier 3","requestDate":"12.05.2025","kickoffDate":"12.05.2025","dueDate":"14.05.2025","completeDate":"14.05.2025","status":"Complete","requester":"MK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"PDF one-pager","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":2.0,"creativeHours":1.0,"totalHours":3.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":99.0},{"id":16,"project":"June Events","tier":"Tier 3","requestDate":"12.05.2025","kickoffDate":"12.05.2025","dueDate":"14.05.2025","completeDate":"14.05.2025","status":"Complete","requester":"MK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Email header","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":1.0,"creativeHours":1.0,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":17,"project":"June Events","tier":"Tier 3","requestDate":"12.05.2025","kickoffDate":"12.05.2025","dueDate":"21.07.2025","completeDate":"14.05.2025","status":"Canceled","requester":"MK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":2.2,"creativeHours":1.0,"totalHours":3.2,"costPerHour":33.0,"additionalCosts":0,"totalCost":105.6},{"id":18,"project":"AH Video","tier":"Tier 3","requestDate":"15.05.2025","kickoffDate":"15.05.2025","dueDate":"23.07.2025","completeDate":"Ongoing","status":"On track","requester":"IA","department":"Other","localization":"No","copy":"No","assetType":"Video editing","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"NGM","pmHours":23.3,"creativeHours":70.0,"totalHours":93.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":3078.9},{"id":19,"project":"AH Video","tier":"Tier 3","requestDate":"15.05.2025","kickoffDate":"15.05.2025","dueDate":"23.07.2025","completeDate":"23.07.2025","status":"Complete","requester":"IA","department":"Other","localization":"No","copy":"No","assetType":"Video editing","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"ST","creative2":"NO","pmHours":0,"creativeHours":103.5,"totalHours":103.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":3415.5},{"id":20,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"Booth design","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":2.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":21,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":2.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":22,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"GIF","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":2.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":23,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":2.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":24,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"Keynote presentation","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":2.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":25,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social IG - static","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.0,"creativeHours":2.0,"totalHours":3.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":99.0},{"id":26,"project":"EIB SP","tier":"Tier 2","requestDate":"03.07.2025","kickoffDate":"03.07.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"SSH","department":"Product Marketing","localization":"No","copy":"No","assetType":"Miro board templates","selfServe":"No","numAssets":1.0,"assignedPM":"JS","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.0,"creativeHours":5.5,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":27,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"14.10.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"AP","pmHours":223.5,"creativeHours":207.7,"totalHours":431.2,"costPerHour":33.0,"additionalCosts":0,"totalCost":14229.6},{"id":28,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"14.10.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"MR","creative1":"ST","creative2":"POC","pmHours":7.5,"creativeHours":38.5,"totalHours":46.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":1518.0},{"id":29,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Email header","selfServe":"No","numAssets":8.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"ST","pmHours":2.5,"creativeHours":12.0,"totalHours":14.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":478.5},{"id":30,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"10.06.2025.","completeDate":"09.06.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":3.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"NMM","pmHours":10.0,"creativeHours":20.0,"totalHours":30.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":990.0},{"id":31,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"10.06.2025.","completeDate":"09.06.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Email header","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"AL","pmHours":3.0,"creativeHours":10.0,"totalHours":13.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":429.0},{"id":32,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"07.07.2025.","completeDate":"07.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social IG - motion","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"ST","pmHours":13.5,"creativeHours":45.5,"totalHours":59.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":1947.0},{"id":33,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"15.07.2025.","completeDate":"Ongoing","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":8.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"ST","pmHours":32.5,"creativeHours":184.0,"totalHours":216.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":7144.5},{"id":34,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"15.07.2025.","completeDate":"30.06.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Email header","selfServe":"No","numAssets":10.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"Not assigned","pmHours":3.5,"creativeHours":15.5,"totalHours":19.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":627.0},{"id":35,"project":"CVIB","tier":"Tier 1","requestDate":"14.01.2025.","kickoffDate":"22.01.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Email header","selfServe":"No","numAssets":8.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"ST","pmHours":2.5,"creativeHours":12.0,"totalHours":14.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":478.5},{"id":36,"project":"CVIB","tier":"Tier 1","requestDate":"21.07.2025.","kickoffDate":"21.07.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":10.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AP","creative2":"AL","pmHours":5.0,"creativeHours":38.0,"totalHours":43.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":1419.0},{"id":37,"project":"CVIB","tier":"Tier 1","requestDate":"16.06.2025.","kickoffDate":"16.06.2025.","dueDate":"15.07.2025.","completeDate":"04.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social IG - static","selfServe":"No","numAssets":4.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"Not assigned","pmHours":2.0,"creativeHours":9.0,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":38,"project":"CVIB","tier":"Tier 1","requestDate":"16.06.2025.","kickoffDate":"16.06.2025.","dueDate":"15.07.2025.","completeDate":"04.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Promo banner","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"Not assigned","pmHours":2.5,"creativeHours":7.0,"totalHours":9.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":313.5},{"id":39,"project":"CVIB","tier":"Tier 1","requestDate":"16.06.2025.","kickoffDate":"16.06.2025.","dueDate":"15.07.2025.","completeDate":"04.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Miro board templates","selfServe":"No","numAssets":3.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"NGM","pmHours":1.5,"creativeHours":11.5,"totalHours":13.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":429.0},{"id":40,"project":"CVIB","tier":"Tier 1","requestDate":"23.06.2025.","kickoffDate":"24.06.2025.","dueDate":"15.07.2025.","completeDate":"15.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Landing page header - motion","selfServe":"No","numAssets":3.0,"assignedPM":"SS","supportingPM":"MR","creative1":"ST","creative2":"Not assigned","pmHours":4.0,"creativeHours":18.5,"totalHours":22.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":742.5},{"id":41,"project":"CVIB","tier":"Tier 1","requestDate":"23.06.2025.","kickoffDate":"24.06.2025.","dueDate":"15.07.2025.","completeDate":"15.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social Circle - static","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"MR","creative1":"AL","creative2":"LjDj","pmHours":3.0,"creativeHours":12.0,"totalHours":15.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":495.0},{"id":42,"project":"CVIB","tier":"Tier 1","requestDate":"30.06.2025.","kickoffDate":"30.06.2025.","dueDate":"15.07.2025.","completeDate":"15.07.2025.","status":"Complete","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Promo banner","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"MR","creative1":"ST","creative2":"Not assigned","pmHours":1.0,"creativeHours":8.0,"totalHours":9.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":297.0},{"id":43,"project":"CVIB","tier":"Tier 1","requestDate":"30.06.2025.","kickoffDate":"30.06.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social Forum - static","selfServe":"No","numAssets":4.0,"assignedPM":"SS","supportingPM":"MR","creative1":"LjDj","creative2":"Not assigned","pmHours":7.5,"creativeHours":21.0,"totalHours":28.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":940.5},{"id":44,"project":"CVIB","tier":"Tier 1","requestDate":"30.06.2025.","kickoffDate":"30.06.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Promo banner","selfServe":"No","numAssets":4.0,"assignedPM":"SS","supportingPM":"MR","creative1":"LjDj","creative2":"Not assigned","pmHours":7.5,"creativeHours":34.0,"totalHours":41.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1369.5},{"id":45,"project":"CVIB","tier":"Tier 1","requestDate":"14.07.2025.","kickoffDate":"14.07.2025.","dueDate":"31.07.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":10.0,"assignedPM":"SS","supportingPM":"MR","creative1":"LjDj","creative2":"Not assigned","pmHours":5.0,"creativeHours":22.5,"totalHours":27.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":907.5},{"id":46,"project":"CVIB","tier":"Tier 1","requestDate":"14.07.2025.","kickoffDate":"16.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Promo banner","selfServe":"No","numAssets":10.0,"assignedPM":"SS","supportingPM":"MR","creative1":"BG","creative2":"Not assigned","pmHours":1.5,"creativeHours":16.5,"totalHours":18.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":594.0},{"id":47,"project":"CVIB","tier":"Tier 1","requestDate":"14.07.2025.","kickoffDate":"16.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Storyboard","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"MR","creative1":"BG","creative2":"Not assigned","pmHours":1.5,"creativeHours":8.5,"totalHours":10.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":330.0},{"id":48,"project":"CVIB","tier":"Tier 1","requestDate":"14.07.2025.","kickoffDate":"16.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"LB","department":"Community","localization":"No","copy":"Yes","assetType":"Miro board complex","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"MR","creative1":"BG","creative2":"Not assigned","pmHours":2.0,"creativeHours":15.0,"totalHours":17.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":561.0},{"id":49,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"08.01.2025.","dueDate":"14.02.2025.","completeDate":"14.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":1.0,"creativeHours":8.0,"totalHours":9.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":297.0},{"id":50,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"24.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":1.5,"creativeHours":1.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":51,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Promo banner","selfServe":"No","numAssets":2.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":1.5,"creativeHours":3.5,"totalHours":5.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":165.0},{"id":52,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social Circle - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":1.05,"creativeHours":1.75,"totalHours":2.8,"costPerHour":33.0,"additionalCosts":0,"totalCost":92.4},{"id":53,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social IG - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.55,"creativeHours":1.75,"totalHours":2.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":75.9},{"id":54,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social X - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.55,"creativeHours":1.75,"totalHours":2.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":75.9},{"id":55,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social Threads - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.55,"creativeHours":1.75,"totalHours":2.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":75.9},{"id":56,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.55,"creativeHours":1.75,"totalHours":2.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":75.9},{"id":57,"project":"SWG","tier":"Tier 3","requestDate":"06.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.02.2025.","completeDate":"23.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social Forum - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.55,"creativeHours":1.75,"totalHours":2.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":75.9},{"id":58,"project":"SWG","tier":"Tier 3","requestDate":"14.01.2025.","kickoffDate":"14.01.2025.","dueDate":"14.01.2025.","completeDate":"14.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Copy review","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"JR","creative2":"Not assigned","pmHours":0.55,"creativeHours":0,"totalHours":0.55,"costPerHour":33.0,"additionalCosts":0,"totalCost":18.15},{"id":59,"project":"SWG","tier":"Tier 3","requestDate":"22.01.2025.","kickoffDate":"22.01.2025.","dueDate":"22.01.2025.","completeDate":"22.01.2025.","status":"Complete","requester":"PM","department":"Community","localization":"No","copy":"Yes","assetType":"Social copy","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"JR","creative2":"Not assigned","pmHours":0.55,"creativeHours":0,"totalHours":0.55,"costPerHour":33.0,"additionalCosts":0,"totalCost":18.15},{"id":60,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"15.01.2025.","dueDate":"05.02.2025.","completeDate":"12.02.2025.","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Booth design","selfServe":"No","numAssets":2.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":4.0,"creativeHours":7.0,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":61,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"15.01.2025.","dueDate":"13.02.2025.","completeDate":"12.02.2025.","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"OOH/Billboard","selfServe":"No","numAssets":2.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":3.0,"creativeHours":3.5,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":62,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"29.01.2025.","dueDate":"14.02.2025.","completeDate":"12.02.2025.","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":13.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":2.0,"creativeHours":5.5,"totalHours":7.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":247.5},{"id":63,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"15.01.2025.","dueDate":"14.02.2025.","completeDate":"10.02.2025.","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":2.0,"creativeHours":4.0,"totalHours":6.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":198.0},{"id":64,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"29.01.2025.","dueDate":"24.02.2025.","completeDate":"10.03.2025.","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":4.5,"totalHours":6.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":198.0},{"id":65,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"11.02.2025.","dueDate":"24.02.2025","completeDate":"03.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":3.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.7,"creativeHours":4.0,"totalHours":5.7,"costPerHour":33.0,"additionalCosts":0,"totalCost":188.1},{"id":66,"project":"GDWS","tier":"Tier 3","requestDate":"03.01.2025.","kickoffDate":"11.02.2025.","dueDate":"04.03.2025","completeDate":"08.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":3.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.0,"creativeHours":2.5,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":67,"project":"GDWS","tier":"Tier 3","requestDate":"25.02.2025.","kickoffDate":"25.02.2025.","dueDate":"07.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":1.0,"creativeHours":14.5,"totalHours":15.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":511.5},{"id":68,"project":"GDWS","tier":"Tier 3","requestDate":"03.03.2025.","kickoffDate":"03.03.2025.","dueDate":"07.03.2025","completeDate":"10.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Customer facing presentation","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"AG","creative2":"Not assigned","pmHours":1.5,"creativeHours":5.0,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":69,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"28.02.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Mural","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ADC","creative2":"Not assigned","pmHours":12.34,"creativeHours":0,"totalHours":12.34,"costPerHour":33.0,"additionalCosts":0,"totalCost":407.22},{"id":70,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"ADC","pmHours":12.98,"creativeHours":22.0,"totalHours":34.98,"costPerHour":33.0,"additionalCosts":0,"totalCost":1154.34},{"id":71,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"28.02.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Wayfinding (signage)","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ADC","creative2":"LjDj","pmHours":13.1,"creativeHours":16.0,"totalHours":29.1,"costPerHour":33.0,"additionalCosts":0,"totalCost":960.3},{"id":72,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Foils","selfServe":"No","numAssets":19.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ADC","creative2":"ML","pmHours":20.67,"creativeHours":60.0,"totalHours":80.67,"costPerHour":33.0,"additionalCosts":0,"totalCost":2662.11},{"id":73,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":12.986,"creativeHours":0,"totalHours":12.986,"costPerHour":33.0,"additionalCosts":0,"totalCost":428.538},{"id":74,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Canva template","selfServe":"No","numAssets":10.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"LjDj","pmHours":15.7,"creativeHours":12.0,"totalHours":27.7,"costPerHour":33.0,"additionalCosts":0,"totalCost":914.1},{"id":75,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"07.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Mnemonic","selfServe":"No","numAssets":5.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"POC","creative2":"Not assigned","pmHours":15.7,"creativeHours":0,"totalHours":15.7,"costPerHour":33.0,"additionalCosts":0,"totalCost":518.1},{"id":76,"project":"100BD","tier":"Tier 1","requestDate":"16.04.2024","kickoffDate":"16.04.2024","dueDate":"30.06.2025","completeDate":"19.06.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Other Workplace assets","selfServe":"No","numAssets":4.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ADC","creative2":"RBB","pmHours":15.63,"creativeHours":0,"totalHours":15.63,"costPerHour":33.0,"additionalCosts":0,"totalCost":515.79},{"id":77,"project":"100BD","tier":"Tier 1","requestDate":"06.02.2025","kickoffDate":"10.02.2025","dueDate":"10.03.2025","completeDate":"10.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"Not assigned","creative2":"RBB","pmHours":13.73,"creativeHours":0,"totalHours":13.73,"costPerHour":33.0,"additionalCosts":0,"totalCost":453.09},{"id":78,"project":"100BD","tier":"Tier 1","requestDate":"25.02.2025","kickoffDate":"26.02.2025","dueDate":"15.08.2025","completeDate":"Ongoing","status":"On track","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Mural","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":8.86,"creativeHours":0,"totalHours":8.86,"costPerHour":33.0,"additionalCosts":0,"totalCost":292.38},{"id":79,"project":"100BD","tier":"Tier 1","requestDate":"24.02.2025","kickoffDate":"27.02.2025","dueDate":"21.03.2025","completeDate":"07.03.2025","status":"Complete","requester":"HW","department":"Workplace","localization":"No","copy":"No","assetType":"Other Workplace assets","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"NO","creative2":"POC","pmHours":3.64,"creativeHours":3.0,"totalHours":6.64,"costPerHour":33.0,"additionalCosts":0,"totalCost":219.12},{"id":80,"project":"BVI 3.0","tier":"Tier 1","requestDate":"25.02.2025","kickoffDate":"25.02.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"BG","creative2":"Not assigned","pmHours":29.63,"creativeHours":8.5,"totalHours":38.13,"costPerHour":33.0,"additionalCosts":0,"totalCost":1258.29},{"id":81,"project":"BVI 3.0","tier":"Tier 1","requestDate":"12.03.2025","kickoffDate":"13.03.2025","dueDate":"30.06.2025","completeDate":"30.05.2025","status":"Complete","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Video animation","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"NMM","creative2":"ST","pmHours":16.27,"creativeHours":12.5,"totalHours":28.77,"costPerHour":33.0,"additionalCosts":0,"totalCost":949.41},{"id":82,"project":"BVI 3.0","tier":"Tier 1","requestDate":"25.02.2025","kickoffDate":"26.03.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"PDF e-book","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":13.85,"creativeHours":33.5,"totalHours":47.35,"costPerHour":33.0,"additionalCosts":0,"totalCost":1562.55},{"id":83,"project":"BVI 3.0","tier":"Tier 1","requestDate":"02.05.2025","kickoffDate":"06.05.2025","dueDate":"19.05.2025","completeDate":"19.05.2025","status":"Complete","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Email header","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"BG","creative2":"RBB","pmHours":3.6,"creativeHours":5.5,"totalHours":9.1,"costPerHour":33.0,"additionalCosts":0,"totalCost":300.3},{"id":84,"project":"BVI 3.0","tier":"Tier 1","requestDate":"02.05.2025","kickoffDate":"06.05.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Video animation","selfServe":"No","numAssets":8.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"BG","creative2":"ST","pmHours":8.43,"creativeHours":16.0,"totalHours":24.43,"costPerHour":33.0,"additionalCosts":0,"totalCost":806.19},{"id":85,"project":"BVI 3.0","tier":"Tier 1","requestDate":"26.06.2025","kickoffDate":"26.06.2025","dueDate":"31.07.2025","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Brand Photos","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"BG","creative2":"ST","pmHours":4.09,"creativeHours":9.5,"totalHours":13.59,"costPerHour":33.0,"additionalCosts":0,"totalCost":448.47},{"id":86,"project":"BVI 3.0","tier":"Tier 1","requestDate":"26.06.2025","kickoffDate":"26.06.2025","dueDate":"27.06.2025","completeDate":"27.06.2025","status":"Complete","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Logo lock-up","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":0.5,"creativeHours":1.5,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":87,"project":"BVI 3.0","tier":"Tier 1","requestDate":"26.06.2025","kickoffDate":"26.06.2025","dueDate":"Not defined","completeDate":"08.07.2025","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":2.5,"creativeHours":4.0,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":88,"project":"BVI 3.0","tier":"Tier 1","requestDate":"04.07.2025","kickoffDate":"04.07.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"BG","pmHours":5.92,"creativeHours":23.0,"totalHours":28.92,"costPerHour":33.0,"additionalCosts":0,"totalCost":954.36},{"id":89,"project":"BVI 3.0","tier":"Tier 1","requestDate":"04.07.2025","kickoffDate":"04.07.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"AL","creative2":"Not assigned","pmHours":0,"creativeHours":2.0,"totalHours":2.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":66.0},{"id":90,"project":"BVI 3.0","tier":"Tier 1","requestDate":"24.06.2025","kickoffDate":"31.07.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"JE","department":"Brand Marketing","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":12.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":0.42,"creativeHours":4.5,"totalHours":4.92,"costPerHour":33.0,"additionalCosts":0,"totalCost":162.36},{"id":91,"project":"Country Event","tier":"Tier 3","requestDate":"06.03.2025","kickoffDate":"07.03.2025","dueDate":"14.03.2025","completeDate":"14.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"Yes","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.495,"creativeHours":2.0,"totalHours":2.495,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.335},{"id":92,"project":"Country Event","tier":"Tier 3","requestDate":"06.03.2025","kickoffDate":"07.03.2025","dueDate":"25.03.2026","completeDate":"11.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"Yes","copy":"No","assetType":"Video editing","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"Not assigned","creative2":"Not assigned","pmHours":0.495,"creativeHours":0,"totalHours":0.495,"costPerHour":33.0,"additionalCosts":0,"totalCost":16.335},{"id":93,"project":"Country Event","tier":"Tier 3","requestDate":"06.03.2025","kickoffDate":"07.03.2025","dueDate":"26.03.2025","completeDate":"24.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Presentation clean up","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":1.25,"creativeHours":2.0,"totalHours":3.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":107.25},{"id":94,"project":"Country Event","tier":"Tier 3","requestDate":"07.03.2025","kickoffDate":"07.03.2025","dueDate":"Not defined","completeDate":"Not defined","status":"Canceled","requester":"JK","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Miro board templates","selfServe":"No","numAssets":1.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.575,"creativeHours":0,"totalHours":0.575,"costPerHour":33.0,"additionalCosts":0,"totalCost":18.975},{"id":95,"project":"Country Event","tier":"Tier 3","requestDate":"24.03.2025","kickoffDate":"25.03.2025","dueDate":"25.03.2025","completeDate":"25.03.2025","status":"Complete","requester":"JK","department":"Revenue Marketing","localization":"Yes","copy":"No","assetType":"PDF one-pager","selfServe":"Yes","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"Not assigned","pmHours":0.5,"creativeHours":3.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":96,"project":"PLC","tier":"Tier 1","requestDate":"14.04.2025","kickoffDate":"14.04.2025","dueDate":"30.06.2025","completeDate":"09.05.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"Not applicable","copy":"Yes","assetType":"Social copy","selfServe":"No","numAssets":11.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"AP","creative2":"SHR","pmHours":5.05,"creativeHours":0,"totalHours":5.05,"costPerHour":33.0,"additionalCosts":0,"totalCost":166.65},{"id":97,"project":"PLC","tier":"Tier 1","requestDate":"14.04.2025","kickoffDate":"14.04.2025","dueDate":"30.06.2025","completeDate":"09.05.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"Not applicable","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":29.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"LjDj","pmHours":5.05,"creativeHours":25.0,"totalHours":30.05,"costPerHour":33.0,"additionalCosts":0,"totalCost":991.65},{"id":98,"project":"PLC","tier":"Tier 1","requestDate":"14.04.2025","kickoffDate":"14.04.2025","dueDate":"30.06.2025","completeDate":"09.05.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"Not applicable","copy":"Yes","assetType":"Social IG - carousel","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"ML","creative2":"LjDj","pmHours":5.05,"creativeHours":5.0,"totalHours":10.05,"costPerHour":33.0,"additionalCosts":0,"totalCost":331.65},{"id":99,"project":"PLC","tier":"Tier 1","requestDate":"18.04.2025","kickoffDate":"22.04.2025","dueDate":"01.05.2025","completeDate":"09.05.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"Not applicable","copy":"Yes","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":2.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"RBB","creative2":"LjDj","pmHours":3.8,"creativeHours":3.0,"totalHours":6.8,"costPerHour":33.0,"additionalCosts":0,"totalCost":224.4},{"id":100,"project":"PLC","tier":"Tier 1","requestDate":"18.04.2026","kickoffDate":"24.04.2025","dueDate":"23.06.2025","completeDate":"23.06.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"AL","creative2":"BG","pmHours":38.0,"creativeHours":77.0,"totalHours":115.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":3795.0},{"id":101,"project":"PLC","tier":"Tier 1","requestDate":"18.04.2026","kickoffDate":"24.04.2025","dueDate":"15.06.2025","completeDate":"23.06.2025","status":"Complete","requester":"RJ","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":3.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"LjDj","creative2":"NMM","pmHours":0,"creativeHours":33.5,"totalHours":33.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1105.5},{"id":102,"project":"PLC","tier":"Tier 1","requestDate":"18.04.2026","kickoffDate":"24.04.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"RJ","department":"Revenue Marketing","localization":"No","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":5.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"LjDj","creative2":"MK","pmHours":11.25,"creativeHours":7.0,"totalHours":18.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":602.25},{"id":103,"project":"PLC","tier":"Tier 1","requestDate":"18.04.2026","kickoffDate":"24.04.2025","dueDate":"Not defined","completeDate":"Ongoing","status":"On track","requester":"RJ","department":"Revenue Marketing","localization":"No","copy":"Yes","assetType":"Social Linkedin - motion","selfServe":"No","numAssets":5.0,"assignedPM":"NP","supportingPM":"Not assigned","creative1":"POC","creative2":"NGM","pmHours":7.25,"creativeHours":4.0,"totalHours":11.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":371.25},{"id":104,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"17.02.2025.","dueDate":"07.03.2025.","completeDate":"13.03.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":7.3,"creativeHours":40.0,"totalHours":47.3,"costPerHour":33.0,"additionalCosts":0,"totalCost":1560.9},{"id":105,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"17.02.2025.","dueDate":"19.03.2025.","completeDate":"25.03.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":7.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":2.0,"creativeHours":10.0,"totalHours":12.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":396.0},{"id":106,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"17.02.2025.","dueDate":"15.04.2025.","completeDate":"15.04.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":7.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":6.0,"creativeHours":34.5,"totalHours":40.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1336.5},{"id":107,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"13.03.2025.","dueDate":"19.03.2025.","completeDate":"25.03.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":8.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":1.5,"creativeHours":9.5,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":108,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"10.03.2025.","dueDate":"19.03.2025.","completeDate":"25.03.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Headshot clean up","selfServe":"No","numAssets":16.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":0.5,"creativeHours":3.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":109,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"13.03.2025.","dueDate":"10.05.2025.","completeDate":"09.05.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":11.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":3.0,"creativeHours":8.0,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":110,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"13.03.2025.","dueDate":"03.06.2025.","completeDate":"03.06.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"SWAG print/pre-press production","selfServe":"No","numAssets":11.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":3.5,"creativeHours":3.0,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":111,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"22.04.2025.","dueDate":"26.05.2025.","completeDate":"26.05.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Customer facing presentation","selfServe":"No","numAssets":2.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Ljubica \u0110","pmHours":4.5,"creativeHours":27.0,"totalHours":31.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1039.5},{"id":112,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"19.05.2025.","dueDate":"28.05.2025.","completeDate":"28.05.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":1.0,"creativeHours":3.0,"totalHours":4.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":132.0},{"id":113,"project":"IRDSHW","tier":"Tier 3","requestDate":"28.01.2025.","kickoffDate":"26.05.2025.","dueDate":"30.05.2025.","completeDate":"30.05.2025.","status":"Complete","requester":"JH","department":"Revenue Marketing","localization":"No","copy":"No","assetType":"Event Photos","selfServe":"No","numAssets":1.0,"assignedPM":"DV","supportingPM":"Not assigned","creative1":"NO","creative2":"Not assigned","pmHours":1.0,"creativeHours":3.0,"totalHours":4.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":132.0},{"id":114,"project":"H2O","tier":"Tier 1","requestDate":"10.03.2025.","kickoffDate":"10.03.2025.","dueDate":"01.04.2025.","completeDate":"01.04.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":5.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AP","creative2":"Robyn B","pmHours":9.0,"creativeHours":7.0,"totalHours":16.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":528.0},{"id":115,"project":"H2O","tier":"Tier 1","requestDate":"17.04.2025.","kickoffDate":"22.04.2025.","dueDate":"08.05.2025.","completeDate":"08.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":3.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":9.0,"creativeHours":0,"totalHours":9.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":297.0},{"id":116,"project":"H2O","tier":"Tier 1","requestDate":"17.04.2025.","kickoffDate":"22.04.2025.","dueDate":"08.05.2025.","completeDate":"08.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":5.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":10.5,"creativeHours":0,"totalHours":10.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":346.5},{"id":117,"project":"H2O","tier":"Tier 1","requestDate":"17.04.2025.","kickoffDate":"22.04.2025.","dueDate":"08.05.2025.","completeDate":"08.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"PDF one-pager","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"AL","pmHours":6.0,"creativeHours":8.5,"totalHours":14.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":478.5},{"id":118,"project":"H2O","tier":"Tier 1","requestDate":"12.05.2025.","kickoffDate":"12.05.2025.","dueDate":"28.05.2025.","completeDate":"28.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"PDF one-pager","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":4.5,"creativeHours":0,"totalHours":4.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":148.5},{"id":119,"project":"H2O","tier":"Tier 1","requestDate":"12.05.2025.","kickoffDate":"12.05.2025.","dueDate":"28.05.2025.","completeDate":"28.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page header - static","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":4.5,"creativeHours":0,"totalHours":4.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":148.5},{"id":120,"project":"H2O","tier":"Tier 1","requestDate":"12.05.2025.","kickoffDate":"12.05.2025.","dueDate":"28.05.2025.","completeDate":"28.05.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Newsletter graphics","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"BG","pmHours":4.5,"creativeHours":2.0,"totalHours":6.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":214.5},{"id":121,"project":"H2O","tier":"Tier 1","requestDate":"20.05.2025.","kickoffDate":"21.05.2025.","dueDate":"04.06.2025.","completeDate":"04.06.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Email header","selfServe":"No","numAssets":9.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"Robyn B","pmHours":5.5,"creativeHours":3.0,"totalHours":8.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":280.5},{"id":122,"project":"H2O","tier":"Tier 1","requestDate":"20.05.2025.","kickoffDate":"21.05.2025.","dueDate":"04.06.2025.","completeDate":"04.06.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":3.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"Robyn B","pmHours":5.5,"creativeHours":3.0,"totalHours":8.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":280.5},{"id":123,"project":"H2O","tier":"Tier 1","requestDate":"20.05.2025.","kickoffDate":"21.05.2025.","dueDate":"04.06.2025.","completeDate":"04.06.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":4.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"Robyn B","pmHours":5.0,"creativeHours":3.0,"totalHours":8.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":264.0},{"id":124,"project":"H2O","tier":"Tier 1","requestDate":"20.05.2025.","kickoffDate":"21.05.2025.","dueDate":"02.07.2025.","completeDate":"02.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - carousel","selfServe":"No","numAssets":15.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"AG","pmHours":7.0,"creativeHours":0.5,"totalHours":7.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":247.5},{"id":125,"project":"H2O","tier":"Tier 1","requestDate":"20.05.2025.","kickoffDate":"21.05.2025.","dueDate":"04.07.2025.","completeDate":"04.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - carousel","selfServe":"No","numAssets":15.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"BG","pmHours":2.0,"creativeHours":12.0,"totalHours":14.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":462.0},{"id":126,"project":"H2O","tier":"Tier 1","requestDate":"04.06.2025.","kickoffDate":"04.06.2025.","dueDate":"26.06.2025.","completeDate":"25.06.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"PDF e-book","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AG","creative2":"NO","pmHours":6.5,"creativeHours":19.0,"totalHours":25.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":841.5},{"id":127,"project":"H2O","tier":"Tier 1","requestDate":"04.06.2025.","kickoffDate":"09.06.2025.","dueDate":"23.06.2025.","completeDate":"25.06.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":7.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"Not assigned","pmHours":8.0,"creativeHours":0,"totalHours":8.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":264.0},{"id":128,"project":"H2O","tier":"Tier 1","requestDate":"04.06.2025.","kickoffDate":"09.06.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":10.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"NO","creative2":"RBB","pmHours":12.5,"creativeHours":6.5,"totalHours":19.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":627.0},{"id":129,"project":"H2O","tier":"Tier 1","requestDate":"28.07.2025.","kickoffDate":"28.07.2025.","dueDate":"30.07.2025.","completeDate":"30.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":6.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"Not assigned","pmHours":1.0,"creativeHours":4.5,"totalHours":5.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":181.5},{"id":130,"project":"H2O","tier":"Tier 1","requestDate":"31.07.2025.","kickoffDate":"31.07.2025.","dueDate":"31.07.2025.","completeDate":"31.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":4.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"Not assigned","pmHours":0.5,"creativeHours":3.0,"totalHours":3.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":115.5},{"id":131,"project":"H2O","tier":"Tier 1","requestDate":"30.06.2025.","kickoffDate":"02.07.2025.","dueDate":"07.07.2025.","completeDate":"07.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":8.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"LjDj","creative2":"AL","pmHours":3.25,"creativeHours":12.0,"totalHours":15.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":503.25},{"id":132,"project":"H2O","tier":"Tier 1","requestDate":"26.06.2025.","kickoffDate":"30.06.2025.","dueDate":"25.07.2025.","completeDate":"25.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Miro board complex","selfServe":"No","numAssets":6.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AG","creative2":"AL","pmHours":6.0,"creativeHours":30.5,"totalHours":36.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1204.5},{"id":133,"project":"H2O","tier":"Tier 1","requestDate":"30.06.2025.","kickoffDate":"30.06.2025.","dueDate":"07.07.2025.","completeDate":"07.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"PDF e-book","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"BG","pmHours":3.25,"creativeHours":1.0,"totalHours":4.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":140.25},{"id":134,"project":"H2O","tier":"Tier 1","requestDate":"07.07.2025.","kickoffDate":"07.07.2025.","dueDate":"25.07.2025.","completeDate":"25.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":15.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"Not assigned","pmHours":5.75,"creativeHours":17.0,"totalHours":22.75,"costPerHour":33.0,"additionalCosts":0,"totalCost":750.75},{"id":135,"project":"H2O","tier":"Tier 1","requestDate":"21.07.2025.","kickoffDate":"21.07.2025.","dueDate":"22.07.2025.","completeDate":"22.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Presentation clean up","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"BG","pmHours":2.0,"creativeHours":9.0,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":136,"project":"H2O","tier":"Tier 1","requestDate":"07.07.2025.","kickoffDate":"07.07.2025.","dueDate":"10.07.2025.","completeDate":"10.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"Custom illustration","selfServe":"No","numAssets":6.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"BG","pmHours":1.25,"creativeHours":4.5,"totalHours":5.75,"costPerHour":33.0,"additionalCosts":0,"totalCost":189.75},{"id":137,"project":"H2O","tier":"Tier 1","requestDate":"09.07.2025.","kickoffDate":"10.07.2025.","dueDate":"16.07.2025.","completeDate":"16.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"No","copy":"No","assetType":"PDF one-pager","selfServe":"No","numAssets":5.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"AL","creative2":"Not assigned","pmHours":3.75,"creativeHours":7.0,"totalHours":10.75,"costPerHour":33.0,"additionalCosts":0,"totalCost":354.75},{"id":138,"project":"H2O","tier":"Tier 1","requestDate":"09.07.2025.","kickoffDate":"09.07.2025.","dueDate":"11.07.2025.","completeDate":"11.07.2025.","status":"Complete","requester":"OK","department":"Product Marketing","localization":"Yes","copy":"No","assetType":"GIF","selfServe":"No","numAssets":5.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"ST","creative2":"Not assigned","pmHours":1.25,"creativeHours":2.0,"totalHours":3.25,"costPerHour":33.0,"additionalCosts":0,"totalCost":107.25},{"id":139,"project":"UC","tier":"Tier 1","requestDate":"26.02.2025.","kickoffDate":"04.03.2025.","dueDate":"30.04.2025.","completeDate":"18.04.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":10.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":18.0,"creativeHours":51.5,"totalHours":69.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":2293.5},{"id":140,"project":"UC","tier":"Tier 1","requestDate":"29.04.2025.","kickoffDate":"29.04.2025.","dueDate":"09.05.2025.","completeDate":"09.05.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":12.5,"creativeHours":36.5,"totalHours":49.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":1617.0},{"id":141,"project":"UC","tier":"Tier 1","requestDate":"12.05.2025.","kickoffDate":"12.05.2025.","dueDate":"16.05.2025.","completeDate":"16.05.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Logo lock-up","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"POC","creative2":"Not assigned","pmHours":1.0,"creativeHours":0,"totalHours":1.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":33.0},{"id":142,"project":"UC","tier":"Tier 1","requestDate":"12.05.2025.","kickoffDate":"12.05.2025.","dueDate":"16.05.2025.","completeDate":"16.05.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Bespoke SWAG","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":1.0,"creativeHours":4.0,"totalHours":5.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":165.0},{"id":143,"project":"UC","tier":"Tier 1","requestDate":"14.05.2025.","kickoffDate":"14.05.2025.","dueDate":"02.06.2025.","completeDate":"02.06.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"OOH/Billboard","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"BG","pmHours":7.0,"creativeHours":0,"totalHours":7.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":231.0},{"id":144,"project":"UC","tier":"Tier 1","requestDate":"23.05.2025.","kickoffDate":"23.05.2025.","dueDate":"26.05.2025.","completeDate":"26.05.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Logo lock-up","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"LjDj","creative2":"Not assigned","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":145,"project":"UC","tier":"Tier 1","requestDate":"23.05.2025.","kickoffDate":"23.05.2025.","dueDate":"26.05.2025.","completeDate":"26.05.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"GIF","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"POC","creative2":"Not assigned","pmHours":1.0,"creativeHours":0,"totalHours":1.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":33.0},{"id":146,"project":"UC","tier":"Tier 1","requestDate":"14.05.2025.","kickoffDate":"14.05.2025.","dueDate":"31.07.2025.","completeDate":"Not defined","status":"On hold","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"OOH/Billboard","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"RBB","creative2":"SHR","pmHours":8.0,"creativeHours":0,"totalHours":8.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":264.0},{"id":147,"project":"UC","tier":"Tier 1","requestDate":"13.06.2025.","kickoffDate":"16.06.2025.","dueDate":"26.06.2025.","completeDate":"26.06.2025.","status":"Complete","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":1.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"POC","pmHours":7.5,"creativeHours":38.0,"totalHours":45.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1501.5},{"id":148,"project":"UC","tier":"Tier 1","requestDate":"01.07.2025.","kickoffDate":"03.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - static","selfServe":"No","numAssets":36.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"Not assigned","pmHours":13.0,"creativeHours":24.0,"totalHours":37.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":1221.0},{"id":149,"project":"UC","tier":"Tier 1","requestDate":"21.07.2025.","kickoffDate":"21.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Landing page Visuals (Contentful/Frame)","selfServe":"No","numAssets":25.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"BG","creative2":"ML","pmHours":6.0,"creativeHours":15.5,"totalHours":21.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":709.5},{"id":150,"project":"UC","tier":"Tier 1","requestDate":"24.07.2025.","kickoffDate":"24.07.2025.","dueDate":"15.08.2025.","completeDate":"Ongoing","status":"On track","requester":"BR","department":"Product Marketing","localization":"No","copy":"No","assetType":"Social Linkedin - motion","selfServe":"No","numAssets":24.0,"assignedPM":"MR","supportingPM":"Not assigned","creative1":"NGM","creative2":"Not assigned","pmHours":2.5,"creativeHours":20.0,"totalHours":22.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":742.5},{"id":151,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"12.06.2025.","completeDate":"12.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"No","assetType":"Key Visual","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":14.5,"creativeHours":26.0,"totalHours":40.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":1336.5},{"id":152,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"No","assetType":"Promo banner","selfServe":"No","numAssets":2.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":2.5,"creativeHours":6.0,"totalHours":8.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":280.5},{"id":153,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social IG - carousel","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":3.0,"creativeHours":8.0,"totalHours":11.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":363.0},{"id":154,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social X - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":155,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social Threads - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":156,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social Linkedin - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":157,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social Circle - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":158,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"06.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Yes","assetType":"Social Forum - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"MK","pmHours":0.5,"creativeHours":2.0,"totalHours":2.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":82.5},{"id":159,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"12.06.2025.","completeDate":"12.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Not applicable","assetType":"Social Forum - static","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":9.0,"creativeHours":1.0,"totalHours":10.0,"costPerHour":33.0,"additionalCosts":0,"totalCost":330.0},{"id":160,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"12.06.2025.","completeDate":"12.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Not applicable","assetType":"Social Circle - static","selfServe":"No","numAssets":3.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"NMM","creative2":"Not assigned","pmHours":9.0,"creativeHours":1.5,"totalHours":10.5,"costPerHour":33.0,"additionalCosts":0,"totalCost":346.5},{"id":161,"project":"ITM","tier":"Tier 2","requestDate":"29.04.2025.","kickoffDate":"30.04.2025.","dueDate":"10.06.2025.","completeDate":"10.06.2025.","status":"Complete","requester":"NN","department":"Community","localization":"No","copy":"Not applicable","assetType":"SWAG","selfServe":"No","numAssets":1.0,"assignedPM":"SS","supportingPM":"Not assigned","creative1":"Not assigned","creative2":"Not assigned","pmHours":11.1,"creativeHours":0,"totalHours":11.1,"costPerHour":33.0,"additionalCosts":0,"totalCost":366.3}];
+
+const PROJECT_MAP = {
+'CVIB':'Spring Launch','H2O':'Q3 Campaign','UC':'Agency Platform Refresh',
+'100BD':'Hospitality Innovation Summit','PLC':'Product Leadership Content','BVI 3.0':'Brand Visual Identity 3.0',
+'AH Video':'Thought Leadership Video Series','IRDSHW':'Industry Roadshow','ITM':'ITM Berlin 2025',
+'EIB':'EIB Conference 2025','GDWS':'GDS Workshop Series','Field Events':'Field Events Program',
+'SWG':'Sales Enablement Kit','EIB SP':'EIB Sponsored Program','June Events':'Customer Webinar Series',
+'Country Event':'Regional Events'
+};
+
+const DEPT_MAP = {'Other':'Events','Brand Marketing':'Brand Marketing','Product Marketing':'Product Marketing',
+'Revenue Marketing':'Revenue Marketing','Community':'Community','Workplace':'Workplace'};
+
+const PM_MAP = {'JS':'Jessica Santos','DV':'David Vega','MR':'Maria Reyes','NP':'Nina Patel','SS':'Sam Sullivan','Not assigned':'Unassigned'};
+
+const CREATIVE_MAP = {
+'AG':'Alex Garcia','MK':'Mike Kim','NGM':'Natasha Moore','AL':'Ana Lopez','ML':'Max Lee',
+'NO':'Nick Oliver','ST':'Sophie Torres','AP':'Aria Park','JR':'James Rivera','BG':'Ben Gray',
+'ADC':'Ana De Costa','SHR':'Sarah Richards','POC':'Pedro Cruz','RBB':'Robyn Blake',
+'LjDj':'Ljubica D.','Ljubica \u0110':'Ljubica D.','NMM':'Nathan Martinez','Robyn B':'Robyn Blake',
+'Not assigned':'Unassigned'
+};
+
+const REQUESTER_MAP = {
+'BR':'Ben Rogers','CM':'Claire Mitchell','ET':'Emily Thornton','HW':'Hannah West','IA':'Ian Adams',
+'JE':'Jack Edwards','JH':'James Harper','JK':'Jennifer Kim','LB':'Lisa Barnes','MK':'Mark Kelly',
+'NN':'Nancy Novak','OK':'Olivia Knight','PM':'Patrick Moore','RJ':'Rachel Johnson','SSH':'Sarah Shah'
+};
+
+function mapN(v,m){return m[v]||v}
+function parseDate(s){if(!s||s==='Ongoing'||s==='Not applicable')return null;s=s.replace(/\.$/,'');const p=s.split('.');if(p.length===3){const d=new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));if(!isNaN(d.getTime()))return d}return null}
+function days(a,b){if(!a||!b)return null;return Math.round((b-a)/(864e5))}
+function fmt$(n){return '$'+n.toLocaleString('en-US',{maximumFractionDigits:0})}
+function fmtN(n){return n.toLocaleString('en-US',{maximumFractionDigits:1})}
+function mode(a){const f={};a.forEach(v=>f[v]=(f[v]||0)+1);return Object.entries(f).sort((a,b)=>b[1]-a[1])[0]?.[0]||'N/A'}
+function median(arr){if(!arr.length)return 0;const s=[...arr].sort((a,b)=>a-b);const m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2}
+
+const STAGES = ['Briefing','Creative Dev','Production','Review & QA','Delivery'];
+const STAGE_COLORS = ['#0076D6','#E2553C','#EBC73A','#28864C','#927CCC'];
+
+const DATA = RAW_DATA.map(b => {
+  const rq=parseDate(b.requestDate),ki=parseDate(b.kickoffDate),du=parseDate(b.dueDate),co=parseDate(b.completeDate);
+  const prodWindow = (ki&&du) ? days(ki,du) : null;
+  let stages = null;
+  if(rq && ki && du) {
+    const briefing = Math.max(days(rq,ki),0);
+    const pw = Math.max(prodWindow||0, 1);
+    const creativeDev = Math.round(pw * 0.35);
+    const production = Math.round(pw * 0.35);
+    const review = pw - creativeDev - production;
+    const delivery = co ? Math.max(days(du,co),0) : 0;
+    stages = [briefing, creativeDev, production, review, delivery];
+  }
+  return {
+    ...b, project:mapN(b.project,PROJECT_MAP), department:mapN(b.department,DEPT_MAP),
+    assignedPM:mapN(b.assignedPM,PM_MAP), supportingPM:mapN(b.supportingPM,PM_MAP),
+    creative1:mapN(b.creative1,CREATIVE_MAP), creative2:mapN(b.creative2,CREATIVE_MAP),
+    requester:mapN(b.requester,REQUESTER_MAP),
+    _rq:rq,_ki:ki,_du:du,_co:co,
+    _turnaround:days(rq,co),_leadTime:days(rq,ki),_slippage:days(du,co),
+    _costPerAsset:b.numAssets>0?b.totalCost/b.numAssets:0,
+    _stages: stages
+  };
+});
+
+const TERRA='#E2553C',BRICK='#BC302A',COBALT='#0076D6',FOREST='#28864C',AMBER_C='#BC580B';
+const VIZ=['#E2553C','#EBC73A','#F3D4C2','#CEEBD9','#0076D6','#BC580B','#927CCC','#8DCC57','#BC302A','#B3B3B3','#CEEA FF','#28864C','#FBE8C0'];
+
+// Tab nav
+document.querySelectorAll('#nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== OVERVIEW =====
+function renderOverview(){
+  const active=DATA.filter(b=>b.status==='On track'||b.status==='On hold');
+  const complete=DATA.filter(b=>b.status==='Complete');
+  const cancelled=DATA.filter(b=>b.status==='Canceled');
+  const totalSpend=DATA.reduce((s,b)=>s+b.totalCost,0);
+  const totalAssets=DATA.reduce((s,b)=>s+b.numAssets,0);
+  const late=DATA.filter(b=>b._slippage!==null&&b._slippage>0);
+  const withT=complete.filter(b=>b._turnaround>0);
+  const avgT=withT.length?(withT.reduce((s,b)=>s+b._turnaround,0)/withT.length):0;
+
+  document.getElementById('kpi-overview').innerHTML=`
+    <div class="kpi"><div class="label">Total Briefs</div><div class="value">${DATA.length}</div><div class="sub">${active.length} active &middot; ${complete.length} complete &middot; ${cancelled.length} cancelled</div></div>
+    <div class="kpi"><div class="label">Total Studio Spend</div><div class="value">${fmt$(totalSpend)}</div><div class="sub">${fmtN(DATA.reduce((s,b)=>s+b.totalHours,0))} hours logged</div></div>
+    <div class="kpi"><div class="label">Total Assets</div><div class="value">${totalAssets.toLocaleString()}</div><div class="sub">${fmt$(totalSpend/totalAssets)} avg cost per asset</div></div>
+    <div class="kpi"><div class="label">Avg Turnaround</div><div class="value">${avgT.toFixed(0)} days</div><div class="sub">Completed briefs only</div></div>
+    <div class="kpi ${late.length>5?'alert':''}"><div class="label">Late Deliveries</div><div class="value">${late.length}</div><div class="sub">${complete.length?(late.length/complete.length*100).toFixed(0):0}% of completed briefs</div></div>
+  `;
+
+  const ps={};DATA.forEach(b=>{ps[b.project]=(ps[b.project]||0)+b.totalCost});
+  const top=Object.entries(ps).sort((a,b)=>b[1]-a[1])[0];
+  const pmH={};DATA.forEach(b=>{if(b.assignedPM!=='Unassigned')pmH[b.assignedPM]=(pmH[b.assignedPM]||0)+b.pmHours});
+  const pmE=Object.entries(pmH).sort((a,b)=>b[1]-a[1]);
+  const ss=DATA.filter(b=>b.selfServe==='Yes').length;
+  const t3=DATA.filter(b=>b.tier==='Tier 3');
+
+  let ins=`<div class="insight-box"><h4>AI Insights</h4><ul>`;
+  ins+=`<li><strong>${top[0]}</strong> accounts for ${(top[1]/totalSpend*100).toFixed(0)}% of total spend (${fmt$(top[1])})</li>`;
+  if(late.length)ins+=`<li>${late.length} briefs delivered late. Most common department: <strong>${mode(late.map(b=>b.department))}</strong></li>`;
+  if(pmE.length>1){const r=pmE[0][1]/pmE[pmE.length-1][1];if(r>2)ins+=`<li>PM workload imbalance: <strong>${pmE[0][0]}</strong> has ${r.toFixed(1)}x the hours of ${pmE[pmE.length-1][0]}</li>`}
+  if(ss)ins+=`<li>${ss} brief${ss>1?'s':''} flagged as self-serve candidates</li>`;
+  if(t3.length)ins+=`<li>${t3.length} Tier 3 (quick-turn) briefs cost ${fmt$(t3.reduce((s,b)=>s+b.totalCost,0))} total. Automation opportunity?</li>`;
+  ins+=`</ul></div>`;
+  document.getElementById('insights-overview').innerHTML=ins;
+
+  const ms={};DATA.forEach(b=>{if(b._rq){const k=b._rq.getFullYear()+'-'+String(b._rq.getMonth()+1).padStart(2,'0');ms[k]=(ms[k]||0)+b.totalCost}});
+  const months=Object.keys(ms).sort();
+  const monthLabels=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  new Chart(document.getElementById('chart-spend-month'),{type:'bar',data:{labels:months.map(m=>{const[y,mo]=m.split('-');return monthLabels[parseInt(mo)-1]+' '+y}),datasets:[{label:'Spend',data:months.map(m=>ms[m]),backgroundColor:TERRA,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v.toLocaleString()},grid:{display:false}},x:{grid:{display:false}}}}});
+
+  const sc={};DATA.forEach(b=>{sc[b.status]=(sc[b.status]||0)+1});
+  const sColors={'Complete':FOREST,'On track':COBALT,'On hold':'#EBC73A','Canceled':'#B3B3B3'};
+  new Chart(document.getElementById('chart-status'),{type:'doughnut',data:{labels:Object.keys(sc),datasets:[{data:Object.values(sc),backgroundColor:Object.keys(sc).map(s=>sColors[s]||'#ccc'),borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'APK Galeria, Arial'},usePointStyle:true,pointStyle:'rectRounded'}}}}});
+
+  const tt={};DATA.filter(b=>b._turnaround>0).forEach(b=>{if(!tt[b.tier])tt[b.tier]=[];tt[b.tier].push(b._turnaround)});
+  const tiers=['Tier 1','Tier 2','Tier 3'];
+  new Chart(document.getElementById('chart-turnaround-tier'),{type:'bar',data:{labels:tiers,datasets:[{label:'Avg Days',data:tiers.map(t=>tt[t]?(tt[t].reduce((a,b)=>a+b,0)/tt[t].length):0),backgroundColor:[BRICK,TERRA,'#EBC73A'],borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{display:false}},x:{grid:{display:false}}}}});
+
+  const pa=Object.entries(ps).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  new Chart(document.getElementById('chart-top-projects'),{type:'bar',data:{labels:pa.map(p=>p[0].length>25?p[0].slice(0,22)+'...':p[0]),datasets:[{label:'Spend',data:pa.map(p=>p[1]),backgroundColor:TERRA,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v.toLocaleString()},grid:{display:false}},y:{grid:{display:false}}}}});
+}
+
+// ===== PROJECTS =====
+function renderProjects(){
+  const proj={};
+  DATA.forEach(b=>{if(!proj[b.project])proj[b.project]={briefs:[],cost:0,hrs:0,assets:0};proj[b.project].briefs.push(b);proj[b.project].cost+=b.totalCost;proj[b.project].hrs+=b.totalHours;proj[b.project].assets+=b.numAssets});
+  let h=`<table><thead><tr><th>Project</th><th>Briefs</th><th>Assets</th><th>Hours</th><th>Cost</th><th>Status</th><th>Avg Turnaround</th></tr></thead><tbody>`;
+  Object.entries(proj).sort((a,b)=>b[1].cost-a[1].cost).forEach(([n,p])=>{
+    const c=p.briefs.filter(b=>b.status==='Complete').length,a2=p.briefs.filter(b=>b.status==='On track').length;
+    const ts=p.briefs.filter(b=>b._turnaround>0).map(b=>b._turnaround);
+    const at=ts.length?(ts.reduce((a,b)=>a+b,0)/ts.length).toFixed(0)+'d':'-';
+    const badge=a2>0?`<span class="badge badge-blue">${a2} active</span>`:c===p.briefs.length?'<span class="badge badge-green">Complete</span>':'<span class="badge badge-grey">Mixed</span>';
+    h+=`<tr class="expandable" onclick="drillProject('${n.replace(/'/g,"\\'")}')"><td><strong>${n}</strong></td><td>${p.briefs.length}</td><td>${p.assets}</td><td>${fmtN(p.hrs)}</td><td>${fmt$(p.cost)}</td><td>${badge}</td><td>${at}</td></tr>`;
+  });
+  h+='</tbody></table>';
+  document.getElementById('project-table-card').innerHTML=h;
+  document.getElementById('project-search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('#project-table-card tbody tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q)?'':'none'})});
+}
+
+function drillProject(n){
+  const br=DATA.filter(b=>b.project===n);
+  let h=`<h2>${n}</h2><p style="color:var(--text-grey);margin-bottom:16px">${br.length} briefs &middot; ${fmt$(br.reduce((s,b)=>s+b.totalCost,0))} total &middot; ${fmtN(br.reduce((s,b)=>s+b.totalHours,0))} hours</p>`;
+  h+=`<table><thead><tr><th>#</th><th>Asset Type</th><th>Assets</th><th>Status</th><th>PM</th><th>Creative</th><th>Hours</th><th>Cost</th><th>Days</th></tr></thead><tbody>`;
+  br.forEach(b=>{
+    const sc=b.status==='Complete'?'badge-green':b.status==='On track'?'badge-blue':b.status==='Canceled'?'badge-grey':'badge-amber';
+    h+=`<tr><td>${b.id}</td><td>${b.assetType}</td><td>${b.numAssets}</td><td><span class="badge ${sc}">${b.status}</span></td><td>${b.assignedPM}</td><td>${[b.creative1,b.creative2].filter(c=>c&&c!=='Unassigned').join(', ')||'-'}</td><td>${fmtN(b.totalHours)}</td><td>${fmt$(b.totalCost)}</td><td>${b._turnaround?b._turnaround+'d':'-'}</td></tr>`;
+  });
+  h+='</tbody></table>';
+  document.getElementById('drill-content').innerHTML=h;
+  document.getElementById('drill-modal').classList.add('show');
+}
+function closeDrill(){document.getElementById('drill-modal').classList.remove('show')}
+document.getElementById('drill-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeDrill()});
+
+// ===== PEOPLE =====
+function renderPeople(){
+  const pmD={},crD={};
+  DATA.forEach(b=>{
+    if(b.assignedPM!=='Unassigned'){if(!pmD[b.assignedPM])pmD[b.assignedPM]={hours:0,briefs:0};pmD[b.assignedPM].hours+=b.pmHours;pmD[b.assignedPM].briefs++}
+    [b.creative1,b.creative2].forEach(c=>{if(c&&c!=='Unassigned'){if(!crD[c])crD[c]={hours:0,briefs:0};const div=[b.creative1,b.creative2].filter(x=>x&&x!=='Unassigned').length||1;crD[c].hours+=b.creativeHours/div;crD[c].briefs++}});
+  });
+  function rw(d,id){
+    const s=Object.entries(d).sort((a,b)=>b[1].hours-a[1].hours);
+    const mx=Math.max(...s.map(([,v])=>v.hours));
+    let h='';
+    s.forEach(([n,v])=>{
+      const p=(v.hours/mx*100).toFixed(0);
+      const c=v.hours>mx*.8?TERRA:v.hours<mx*.3?'#EBC73A':COBALT;
+      h+=`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><strong>${n}</strong><span>${fmtN(v.hours)} hrs &middot; ${v.briefs} briefs</span></div><div class="bar-container"><div class="bar-bg"><div class="bar-fill" style="width:${p}%;background:${c}"></div></div></div></div>`;
+    });
+    document.getElementById(id).innerHTML=h;
+  }
+  rw(pmD,'pm-workload');rw(crD,'creative-workload');
+
+  const all={};
+  Object.entries(pmD).forEach(([n,v])=>{all[n]=(all[n]||0)+v.hours});
+  Object.entries(crD).forEach(([n,v])=>{all[n]=(all[n]||0)+v.hours});
+  const ps=Object.entries(all).sort((a,b)=>b[1]-a[1]);
+  new Chart(document.getElementById('chart-utilisation'),{type:'bar',data:{labels:ps.map(p=>p[0]),datasets:[{label:'Total Hours',data:ps.map(p=>p[1]),backgroundColor:ps.map((_,i)=>VIZ[i%VIZ.length]),borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{display:false}}}}});
+
+  const pmS=Object.entries(pmD).sort((a,b)=>b[1].hours-a[1].hours);
+  let ins='<div class="insight-box"><h4>Workload Insights</h4><ul>';
+  if(pmS.length>1){const t=pmS[0],bt=pmS[pmS.length-1];if(t[1].hours>bt[1].hours*2)ins+=`<li><strong>PM imbalance:</strong> ${t[0]} carrying ${fmtN(t[1].hours)} hours vs ${bt[0]} at ${fmtN(bt[1].hours)} hours</li>`}
+  const crS=Object.entries(crD).sort((a,b)=>b[1].hours-a[1].hours);
+  if(crS.length>1){const t=crS[0],bt=crS[crS.length-1];if(t[1].hours>bt[1].hours*3)ins+=`<li><strong>Creative imbalance:</strong> ${t[0]} (${fmtN(t[1].hours)} hrs) has ${(t[1].hours/bt[1].hours).toFixed(1)}x the load of ${bt[0]} (${fmtN(bt[1].hours)} hrs)</li>`}
+  ins+=`<li>${DATA.filter(b=>b.creative1!=='Unassigned'&&b.creative2==='Unassigned').length} of ${DATA.length} briefs have only one creative assigned</li>`;
+  ins+='</ul></div>';
+  document.getElementById('people-insights').innerHTML=ins;
+}
+
+// ===== DEPARTMENTS =====
+function renderDepartments(){
+  const d={};
+  DATA.forEach(b=>{if(!d[b.department])d[b.department]={briefs:0,cost:0,hrs:0,assets:0};d[b.department].briefs++;d[b.department].cost+=b.totalCost;d[b.department].hrs+=b.totalHours;d[b.department].assets+=b.numAssets});
+  const s=Object.entries(d).sort((a,b)=>b[1].cost-a[1].cost);
+  document.getElementById('kpi-depts').innerHTML=`
+    <div class="kpi"><div class="label">Departments</div><div class="value">${s.length}</div></div>
+    <div class="kpi"><div class="label">Highest Spend</div><div class="value">${s[0][0]}</div><div class="sub">${fmt$(s[0][1].cost)}</div></div>
+    <div class="kpi"><div class="label">Avg Cost per Brief</div><div class="value">${fmt$(DATA.reduce((x,b)=>x+b.totalCost,0)/DATA.length)}</div></div>
+  `;
+  new Chart(document.getElementById('chart-dept-spend'),{type:'doughnut',data:{labels:s.map(x=>x[0]),datasets:[{data:s.map(x=>x[1].cost),backgroundColor:VIZ,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'APK Galeria, Arial'},usePointStyle:true,pointStyle:'rectRounded'}}}}});
+  new Chart(document.getElementById('chart-dept-briefs'),{type:'bar',data:{labels:s.map(x=>x[0]),datasets:[{label:'Briefs',data:s.map(x=>x[1].briefs),backgroundColor:TERRA,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{display:false}},x:{grid:{display:false}}}}});
+  let h=`<table><thead><tr><th>Department</th><th>Briefs</th><th>Assets</th><th>Hours</th><th>Total Cost</th><th>Avg Cost/Brief</th></tr></thead><tbody>`;
+  s.forEach(([n,x])=>{h+=`<tr><td><strong>${n}</strong></td><td>${x.briefs}</td><td>${x.assets}</td><td>${fmtN(x.hrs)}</td><td>${fmt$(x.cost)}</td><td>${fmt$(x.cost/x.briefs)}</td></tr>`});
+  h+='</tbody></table>';
+  document.getElementById('dept-table').innerHTML=h;
+}
+
+// ===== ASSETS =====
+function renderAssets(){
+  const t={};
+  DATA.forEach(b=>{if(!t[b.assetType])t[b.assetType]={count:0,cost:0,hrs:0,assets:0,turns:[],ss:0};t[b.assetType].count++;t[b.assetType].cost+=b.totalCost;t[b.assetType].hrs+=b.totalHours;t[b.assetType].assets+=b.numAssets;if(b._turnaround>0)t[b.assetType].turns.push(b._turnaround);if(b.selfServe==='Yes')t[b.assetType].ss++});
+  const s=Object.entries(t).sort((a,b)=>b[1].cost-a[1].cost);
+  const top=s.slice(0,15);
+  new Chart(document.getElementById('chart-asset-cost'),{type:'bar',data:{labels:top.map(x=>x[0].length>28?x[0].slice(0,25)+'...':x[0]),datasets:[{label:'Total Cost',data:top.map(x=>x[1].cost),backgroundColor:TERRA,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v.toLocaleString()},grid:{display:false}},y:{grid:{display:false}}}}});
+  const uc=s.filter(x=>x[1].assets>0).map(x=>[x[0],x[1].cost/x[1].assets]).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  new Chart(document.getElementById('chart-asset-unit-cost'),{type:'bar',data:{labels:uc.map(x=>x[0].length>28?x[0].slice(0,25)+'...':x[0]),datasets:[{label:'$/Asset',data:uc.map(x=>x[1]),backgroundColor:BRICK,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v.toLocaleString()},grid:{display:false}},y:{grid:{display:false}}}}});
+  let h=`<table><thead><tr><th>Asset Type</th><th>Briefs</th><th>Assets</th><th>Hours</th><th>Total Cost</th><th>$/Asset</th><th>Avg Days</th><th>Self-serve?</th></tr></thead><tbody>`;
+  s.forEach(([n,x])=>{const ad=x.turns.length?(x.turns.reduce((a,b)=>a+b,0)/x.turns.length).toFixed(0):'-';const uc2=x.assets>0?fmt$(x.cost/x.assets):'-';h+=`<tr><td>${n}</td><td>${x.count}</td><td>${x.assets}</td><td>${fmtN(x.hrs)}</td><td>${fmt$(x.cost)}</td><td>${uc2}</td><td>${ad}</td><td>${x.ss>0?'<span class="badge badge-green">'+x.ss+'</span>':'-'}</td></tr>`});
+  h+='</tbody></table>';
+  document.getElementById('asset-table').innerHTML=h;
+
+  const t3t={};DATA.filter(b=>b.tier==='Tier 3').forEach(b=>{t3t[b.assetType]=(t3t[b.assetType]||0)+1});
+  const ssI=Object.entries(t3t).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  if(ssI.length){let h2='<div class="insight-box"><h4>Self-serve & Automation Candidates</h4><ul>';ssI.forEach(([ty,ct])=>{h2+=`<li><strong>${ty}</strong>: ${ct} Tier 3 briefs. Consider templating or self-serve tools</li>`});h2+='</ul></div>';document.getElementById('self-serve-insights').innerHTML=h2}
+}
+
+// ===== EFFICIENCY =====
+function renderEfficiency(){
+  const comp=DATA.filter(b=>b.status==='Complete');
+  const wT=comp.filter(b=>b._turnaround>0);
+  const late=comp.filter(b=>b._slippage!==null&&b._slippage>0);
+  const leads=DATA.filter(b=>b._leadTime!==null).map(b=>b._leadTime);
+  const avgL=leads.length?(leads.reduce((a,b)=>a+b,0)/leads.length).toFixed(1):0;
+  const tA={};DATA.forEach(b=>{if(!tA[b.assetType])tA[b.assetType]={t:0,c:0};tA[b.assetType].t+=b.totalCost;tA[b.assetType].c++});
+  const outliers=DATA.filter(b=>{const a=tA[b.assetType]?tA[b.assetType].t/tA[b.assetType].c:0;return b.totalCost>a*2&&a>0});
+
+  document.getElementById('kpi-efficiency').innerHTML=`
+    <div class="kpi"><div class="label">Late Delivery Rate</div><div class="value">${comp.length?(late.length/comp.length*100).toFixed(0):0}%</div><div class="sub">${late.length} of ${comp.length} completed</div></div>
+    <div class="kpi"><div class="label">Avg Lead Time</div><div class="value">${avgL} days</div><div class="sub">Request to kickoff</div></div>
+    <div class="kpi"><div class="label">Cost Outliers</div><div class="value">${outliers.length}</div><div class="sub">2x+ avg for their asset type</div></div>
+    <div class="kpi"><div class="label">Avg Turnaround</div><div class="value">${wT.length?(wT.reduce((s,b)=>s+b._turnaround,0)/wT.length).toFixed(0):'-'} days</div><div class="sub">Request to completion</div></div>
+  `;
+
+  const asT={};wT.forEach(b=>{if(!asT[b.assetType])asT[b.assetType]=[];asT[b.assetType].push(b._turnaround)});
+  const asA=Object.entries(asT).map(([t,a])=>[t,a.reduce((x,y)=>x+y,0)/a.length]).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  new Chart(document.getElementById('chart-turnaround-asset'),{type:'bar',data:{labels:asA.map(a=>a[0].length>25?a[0].slice(0,22)+'...':a[0]),datasets:[{label:'Avg Days',data:asA.map(a=>a[1]),backgroundColor:TERRA,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{display:false}}}}});
+
+  const dT={};wT.forEach(b=>{if(!dT[b.department])dT[b.department]=[];dT[b.department].push(b._turnaround)});
+  const dA=Object.entries(dT).map(([d,a])=>[d,a.reduce((x,y)=>x+y,0)/a.length]).sort((a,b)=>b[1]-a[1]);
+  new Chart(document.getElementById('chart-turnaround-dept'),{type:'bar',data:{labels:dA.map(d=>d[0]),datasets:[{label:'Avg Days',data:dA.map(d=>d[1]),backgroundColor:BRICK,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{display:false}},x:{grid:{display:false}}}}});
+
+  let oh=outliers.length?`<table><thead><tr><th>#</th><th>Project</th><th>Asset Type</th><th>Cost</th><th>Type Avg</th><th>Multiple</th></tr></thead><tbody>`:'<p style="text-align:center;padding:20px;color:var(--text-muted)">No cost outliers</p>';
+  outliers.sort((a,b)=>b.totalCost-a.totalCost).forEach(b=>{const a=tA[b.assetType].t/tA[b.assetType].c;oh+=`<tr><td>${b.id}</td><td>${b.project}</td><td>${b.assetType}</td><td><strong>${fmt$(b.totalCost)}</strong></td><td>${fmt$(a)}</td><td><span class="badge badge-red">${(b.totalCost/a).toFixed(1)}x</span></td></tr>`});
+  if(outliers.length)oh+='</tbody></table>';
+  document.getElementById('outlier-table').innerHTML=oh;
+
+  let lh=late.length?`<table><thead><tr><th>#</th><th>Project</th><th>Asset</th><th>Due</th><th>Completed</th><th>Days Late</th></tr></thead><tbody>`:'<p style="text-align:center;padding:20px;color:var(--text-muted)">No late deliveries</p>';
+  late.sort((a,b)=>b._slippage-a._slippage).forEach(b=>{lh+=`<tr><td>${b.id}</td><td>${b.project}</td><td>${b.assetType}</td><td>${b.dueDate}</td><td>${b.completeDate}</td><td><span class="badge badge-red">${b._slippage}d</span></td></tr>`});
+  if(late.length)lh+='</tbody></table>';
+  document.getElementById('late-table').innerHTML=lh;
+}
+
+// ===== TIMELINE =====
+function renderTimeline(){
+  document.getElementById('stage-legend').innerHTML=STAGES.map((s,i)=>`<div class="stage-legend-item"><div class="stage-legend-dot" style="background:${STAGE_COLORS[i]}"></div>${s}</div>`).join('');
+
+  const withStages=DATA.filter(b=>b._stages);
+
+  // Benchmarks (median per stage)
+  const benchmarks=STAGES.map((_,i)=>median(withStages.map(b=>b._stages[i])));
+
+  // Project-level averages
+  const projStages={};
+  withStages.forEach(b=>{if(!projStages[b.project])projStages[b.project]={stages:STAGES.map(()=>[]),count:0};b._stages.forEach((v,i)=>projStages[b.project].stages[i].push(v));projStages[b.project].count++});
+
+  // Heatmap
+  let hm=`<table class="heatmap"><thead><tr><th style="text-align:left">Project</th>`;
+  STAGES.forEach(s=>{hm+=`<th>${s}</th>`});
+  hm+=`<th>Total</th></tr></thead><tbody>`;
+
+  const projArr=Object.entries(projStages).sort((a,b)=>{
+    const aT=a[1].stages.reduce((s,arr)=>s+(arr.length?arr.reduce((x,y)=>x+y,0)/arr.length:0),0);
+    const bT=b[1].stages.reduce((s,arr)=>s+(arr.length?arr.reduce((x,y)=>x+y,0)/arr.length:0),0);
+    return bT-aT;
+  });
+
+  projArr.forEach(([name,p])=>{
+    hm+=`<tr><td class="project-name">${name}</td>`;
+    let totalDays=0;
+    p.stages.forEach((arr,i)=>{
+      const avg=arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+      totalDays+=avg;
+      const bench=benchmarks[i];
+      const cls=bench>0?(avg<=bench*0.8?'fast':avg>=bench*1.2?'slow':'avg'):'avg';
+      hm+=`<td class="${cls}">${avg.toFixed(1)}d</td>`;
+    });
+    hm+=`<td style="font-weight:700">${totalDays.toFixed(0)}d</td></tr>`;
+  });
+  hm+=`<tr style="background:var(--off-white);font-weight:700"><td class="project-name">Benchmark (median)</td>`;
+  benchmarks.forEach(b=>{hm+=`<td style="text-align:center">${b.toFixed(1)}d</td>`});
+  hm+=`<td style="text-align:center;font-weight:700">${benchmarks.reduce((a,b)=>a+b,0).toFixed(0)}d</td></tr>`;
+  hm+=`</tbody></table>`;
+  document.getElementById('heatmap-container').innerHTML=hm;
+
+  // Stage distribution chart
+  new Chart(document.getElementById('chart-stage-dist'),{
+    type:'bar',
+    data:{
+      labels:projArr.map(([n])=>n.length>20?n.slice(0,17)+'...':n),
+      datasets:STAGES.map((s,i)=>({
+        label:s,
+        data:projArr.map(([,p])=>p.stages[i].length?p.stages[i].reduce((a,b)=>a+b,0)/p.stages[i].length:0),
+        backgroundColor:STAGE_COLORS[i],
+        borderRadius:0
+      }))
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{family:'APK Galeria, Arial'},usePointStyle:true,pointStyle:'rectRounded'}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{display:false},ticks:{callback:v=>v+'d'}}}}
+  });
+
+  // Individual brief timeline bars
+  const projects=[...new Set(DATA.map(b=>b.project))].sort();
+  const sel=document.getElementById('timeline-project-filter');
+  projects.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o)});
+  sel.addEventListener('change',()=>renderTimelineBars(sel.value));
+  renderTimelineBars('');
+}
+
+function renderTimelineBars(filterProject){
+  const briefs=(filterProject?DATA.filter(b=>b.project===filterProject):DATA).filter(b=>b._stages);
+  let h='<div class="timeline-grid">';
+  h+=`<div class="timeline-row" style="min-height:30px"><div class="timeline-label" style="font-size:11px;color:var(--text-muted);cursor:default">BRIEF</div><div class="timeline-bar-container" style="display:flex;border:none">`;
+  STAGES.forEach((s,i)=>{h+=`<div style="flex:1;text-align:center;font-size:10px;font-weight:600;color:${STAGE_COLORS[i]};padding:4px">${s}</div>`});
+  h+=`</div></div>`;
+
+  briefs.slice(0,40).forEach(b=>{
+    const total=b._stages.reduce((a,v)=>a+v,0)||1;
+    h+=`<div class="timeline-row"><div class="timeline-label" style="font-size:11px" title="${b.project} - ${b.assetType}">#${b.id} ${b.assetType.slice(0,25)}</div><div class="timeline-bar-container">`;
+    b._stages.forEach((v,i)=>{
+      const pct=(v/total*100).toFixed(1);
+      h+=`<div class="timeline-segment" style="flex:${Math.max(v,0.5)};background:${STAGE_COLORS[i]}"><span class="tip">${STAGES[i]}: ${v}d (${Math.round(v/total*100)}%)</span>${v>0?v+'d':''}</div>`;
+    });
+    h+=`</div></div>`;
+  });
+  if(briefs.length>40)h+=`<p style="padding:12px;color:var(--text-muted);font-size:12px">Showing first 40 of ${briefs.length} briefs. Filter by project to see all.</p>`;
+  h+='</div>';
+  document.getElementById('timeline-bars').innerHTML=h;
+}
+
+// ===== NEW BRIEF =====
+function renderForm(){
+  const projects=[...new Set(DATA.map(b=>b.project))].sort();
+  const types=[...new Set(DATA.map(b=>b.assetType))].sort();
+  const depts=[...new Set(DATA.map(b=>b.department))].sort();
+  const pms=[...new Set(DATA.map(b=>b.assignedPM).filter(p=>p!=='Unassigned'))].sort();
+  document.getElementById('project-list').innerHTML=projects.map(p=>`<option value="${p}">`).join('');
+  document.getElementById('f-asset-type').innerHTML=types.map(t=>`<option>${t}</option>`).join('');
+  document.getElementById('f-department').innerHTML=depts.map(d=>`<option>${d}</option>`).join('');
+  document.getElementById('f-pm').innerHTML=`<option value="">Auto-assign</option>`+pms.map(p=>`<option>${p}</option>`).join('');
+  document.getElementById('f-request-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('f-asset-type').addEventListener('change',suggestTier);
+  document.getElementById('f-num-assets').addEventListener('input',suggestTier);
+  suggestPM();
+}
+function suggestTier(){
+  const ty=document.getElementById('f-asset-type').value,n=parseInt(document.getElementById('f-num-assets').value)||1;
+  const hi=['Key Visual','Booth design','Video animation','Video editing','PDF e-book','Custom illustration'];
+  const lo=['Social copy','Headshot clean up','Presentation clean up','Promo banner','Email header'];
+  let t='Tier 2';if(hi.includes(ty)||n>5)t='Tier 1';else if(lo.includes(ty)&&n<=2)t='Tier 3';
+  document.getElementById('f-tier').value=t;document.getElementById('f-tier-suggest').textContent='Auto: '+t;
+}
+function suggestPM(){
+  const ld={};DATA.filter(b=>b.status==='On track').forEach(b=>{if(b.assignedPM!=='Unassigned')ld[b.assignedPM]=(ld[b.assignedPM]||0)+1});
+  const s=Object.entries(ld).sort((a,b)=>a[1]-b[1]);
+  if(s.length)document.getElementById('f-pm-suggest').textContent='Suggested: '+s[0][0]+' ('+s[0][1]+' active)';
+}
+function submitBrief(){
+  const p=document.getElementById('f-project').value,r=document.getElementById('f-requester').value;
+  if(!p||!r){document.getElementById('form-feedback').innerHTML='<span style="color:var(--terra)">Please fill in Project Name and Requester</span>';return}
+  document.getElementById('form-feedback').innerHTML=`<span style="color:var(--forest)">Brief #${DATA.length+1} added. In production this saves to the database and notifies the PM.</span>`;
+}
+function resetForm(){document.querySelectorAll('#brief-form input').forEach(i=>{if(i.type!=='date')i.value=''});document.getElementById('f-num-assets').value=1;document.getElementById('form-feedback').innerHTML=''}
+
+// ===== CHAT ASSISTANT =====
+function sendChat(){
+  const input=document.getElementById('chat-input');
+  const q=input.value.trim();
+  if(!q)return;
+  addMsg(q,'user');
+  input.value='';
+  setTimeout(()=>{const answer=analyzeQuestion(q);addMsg(answer,'assistant')},300);
+}
+function askChat(q){document.getElementById('chat-input').value=q;sendChat()}
+function addMsg(text,type){
+  const div=document.createElement('div');
+  div.className='msg msg-'+type;
+  div.innerHTML=text;
+  const container=document.getElementById('chat-messages');
+  container.appendChild(div);
+  container.scrollTop=container.scrollHeight;
+}
+
+function analyzeQuestion(q){
+  const ql=q.toLowerCase();
+  const projects=[...new Set(DATA.map(b=>b.project))];
+  const assetTypes=[...new Set(DATA.map(b=>b.assetType))];
+  const people=[...new Set([...DATA.map(b=>b.assignedPM),...DATA.map(b=>b.creative1),...DATA.map(b=>b.creative2)].filter(x=>x&&x!=='Unassigned'))];
+  const depts=[...new Set(DATA.map(b=>b.department))];
+
+  const mProj=projects.find(p=>ql.includes(p.toLowerCase()));
+  const mAsset=assetTypes.find(a=>ql.includes(a.toLowerCase()));
+  const mPerson=people.find(p=>ql.includes(p.toLowerCase()));
+  const mDept=depts.find(d=>ql.includes(d.toLowerCase()));
+
+  if(mAsset)return assetDrill(mAsset);
+  if(mProj)return projectDrill(mProj);
+  if(mPerson)return personDrill(mPerson);
+  if(mDept)return deptDrill(mDept);
+
+  if(match(ql,['efficient','efficiency','fastest','quickest','cheapest','best value']))return efficiencyQ();
+  if(match(ql,['month','monthly','trend','change over','over time','seasonal']))return trendQ();
+  if(match(ql,['free time','capacity','available','bandwidth','underloaded','spare']))return capacityQ();
+  if(match(ql,['expensive','costly','cost','spend','budget','money']))return costQ();
+  if(match(ql,['late','overdue','delayed','slipping','risk','behind']))return lateQ();
+  if(match(ql,['self-serve','automate','template','self serve']))return selfServeQ();
+  if(match(ql,['outlier','anomal','unusual','flag']))return outlierQ();
+  if(match(ql,['summary','overview','status','how are we','dashboard']))return summaryQ();
+  if(match(ql,['who','busiest','workload','overloaded']))return workloadQ();
+  if(match(ql,['video']))return assetDrill('Video editing');
+  if(match(ql,['compare','versus','vs']))return compareQ();
+  return defaultQ();
+}
+
+function match(q,terms){return terms.some(t=>q.includes(t))}
+
+function assetDrill(type){
+  const br=DATA.filter(b=>b.assetType===type);
+  if(!br.length)return `No briefs found for "${type}".`;
+  const cost=br.reduce((s,b)=>s+b.totalCost,0);
+  const hrs=br.reduce((s,b)=>s+b.totalHours,0);
+  const assets=br.reduce((s,b)=>s+b.numAssets,0);
+  const turns=br.filter(b=>b._turnaround>0).map(b=>b._turnaround);
+  const avgT=turns.length?(turns.reduce((a,b)=>a+b,0)/turns.length).toFixed(0):'N/A';
+  const projs=[...new Set(br.map(b=>b.project))];
+  return `<strong>${type}</strong><br><br>
+<table class="mini-table"><tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Briefs</td><td><strong>${br.length}</strong></td></tr>
+<tr><td>Total assets</td><td>${assets}</td></tr>
+<tr><td>Total cost</td><td><strong>${fmt$(cost)}</strong></td></tr>
+<tr><td>Cost per asset</td><td>${assets>0?fmt$(cost/assets):'-'}</td></tr>
+<tr><td>Total hours</td><td>${fmtN(hrs)}</td></tr>
+<tr><td>Avg turnaround</td><td>${avgT} days</td></tr>
+<tr><td>Projects</td><td>${projs.join(', ')}</td></tr></table>`;
+}
+
+function projectDrill(name){
+  const br=DATA.filter(b=>b.project===name);
+  const cost=br.reduce((s,b)=>s+b.totalCost,0);
+  const types=[...new Set(br.map(b=>b.assetType))];
+  const late=br.filter(b=>b._slippage>0);
+  return `<strong>${name}</strong><br><br>
+${br.length} briefs, ${fmt$(cost)} total spend, ${fmtN(br.reduce((s,b)=>s+b.totalHours,0))} hours.<br><br>
+Asset types: ${types.slice(0,5).join(', ')}${types.length>5?' (+' +(types.length-5)+' more)':''}.<br>
+${late.length?`<strong>${late.length} briefs delivered late</strong> (avg ${(late.reduce((s,b)=>s+b._slippage,0)/late.length).toFixed(0)} days).`:'All deliveries on time or early.'}`;
+}
+
+function personDrill(name){
+  const asPM=DATA.filter(b=>b.assignedPM===name);
+  const asCr=DATA.filter(b=>b.creative1===name||b.creative2===name);
+  const pmH=asPM.reduce((s,b)=>s+b.pmHours,0);
+  const crH=asCr.reduce((s,b)=>s+b.creativeHours/([ b.creative1,b.creative2].filter(x=>x&&x!=='Unassigned').length||1),0);
+  return `<strong>${name}</strong><br><br>
+${asPM.length?`PM on <strong>${asPM.length}</strong> briefs (${fmtN(pmH)} hours).`:''}
+${asCr.length?`Creative on <strong>${asCr.length}</strong> briefs (${fmtN(crH)} hours).`:''}
+<br>Total: <strong>${fmtN(pmH+crH)} hours</strong> across ${new Set([...asPM,...asCr].map(b=>b.project)).size} projects.`;
+}
+
+function deptDrill(name){
+  const br=DATA.filter(b=>b.department===name);
+  const cost=br.reduce((s,b)=>s+b.totalCost,0);
+  const types={};br.forEach(b=>{types[b.assetType]=(types[b.assetType]||0)+1});
+  const topTypes=Object.entries(types).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  return `<strong>${name}</strong><br><br>
+${br.length} briefs, ${fmt$(cost)} spend, ${fmtN(br.reduce((s,b)=>s+b.totalHours,0))} hours.<br>
+Avg cost per brief: <strong>${fmt$(cost/br.length)}</strong>.<br><br>
+Top asset types: ${topTypes.map(([t,c])=>t+' ('+c+')').join(', ')}.`;
+}
+
+function efficiencyQ(){
+  const types={};
+  DATA.forEach(b=>{if(!types[b.assetType])types[b.assetType]={cost:0,assets:0,turns:[]};types[b.assetType].cost+=b.totalCost;types[b.assetType].assets+=b.numAssets;if(b._turnaround>0)types[b.assetType].turns.push(b._turnaround)});
+  const byCPA=Object.entries(types).filter(([,v])=>v.assets>0).map(([t,v])=>({t,cpa:v.cost/v.assets,avgT:v.turns.length?v.turns.reduce((a,b)=>a+b,0)/v.turns.length:999})).sort((a,b)=>a.cpa-b.cpa);
+  const bySpeed=byCPA.filter(x=>x.avgT<999).sort((a,b)=>a.avgT-b.avgT);
+  return `<strong>Most Efficient Asset Types</strong><br><br>
+<strong>By cost per asset:</strong><br>
+<table class="mini-table"><tr><th>Type</th><th>$/Asset</th></tr>${byCPA.slice(0,5).map(x=>`<tr><td>${x.t}</td><td>${fmt$(x.cpa)}</td></tr>`).join('')}</table><br>
+<strong>By turnaround speed:</strong><br>
+<table class="mini-table"><tr><th>Type</th><th>Avg Days</th></tr>${bySpeed.slice(0,5).map(x=>`<tr><td>${x.t}</td><td>${x.avgT.toFixed(0)}d</td></tr>`).join('')}</table>`;
+}
+
+function trendQ(){
+  const ms={};DATA.forEach(b=>{if(b._rq){const k=b._rq.getFullYear()+'-'+String(b._rq.getMonth()+1).padStart(2,'0');if(!ms[k])ms[k]={briefs:0,cost:0};ms[k].briefs++;ms[k].cost+=b.totalCost}});
+  const months=Object.keys(ms).sort();
+  const labels=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let r=`<strong>Monthly Trends</strong><br><br><table class="mini-table"><tr><th>Month</th><th>Briefs</th><th>Spend</th></tr>`;
+  months.forEach(m=>{const[y,mo]=m.split('-');r+=`<tr><td>${labels[parseInt(mo)-1]} ${y}</td><td>${ms[m].briefs}</td><td>${fmt$(ms[m].cost)}</td></tr>`});
+  r+='</table>';
+  if(months.length>=2){
+    const first=ms[months[0]],last=ms[months[months.length-1]];
+    const delta=((last.cost-first.cost)/first.cost*100).toFixed(0);
+    r+=`<br>Spend ${delta>0?'increased':'decreased'} <strong>${Math.abs(delta)}%</strong> from ${months[0]} to ${months[months.length-1]}.`;
+  }
+  return r;
+}
+
+function capacityQ(){
+  const pmH={},crH={};
+  DATA.forEach(b=>{
+    if(b.assignedPM!=='Unassigned')pmH[b.assignedPM]=(pmH[b.assignedPM]||0)+b.pmHours;
+    [b.creative1,b.creative2].forEach(c=>{if(c&&c!=='Unassigned')crH[c]=(crH[c]||0)+b.creativeHours/([b.creative1,b.creative2].filter(x=>x&&x!=='Unassigned').length||1)});
+  });
+  const pmS=Object.entries(pmH).sort((a,b)=>a[1]-b[1]);
+  const crS=Object.entries(crH).sort((a,b)=>a[1]-b[1]);
+  return `<strong>Team Capacity</strong><br><br>
+<strong>PMs with most capacity:</strong><br>
+${pmS.slice(0,3).map(([n,h])=>`${n}: ${fmtN(h)} hrs logged`).join('<br>')}<br><br>
+<strong>Creatives with most capacity:</strong><br>
+${crS.slice(0,3).map(([n,h])=>`${n}: ${fmtN(h)} hrs logged`).join('<br>')}<br><br>
+<em>Lower hours = more available capacity (assuming equal allocation).</em>`;
+}
+
+function costQ(){
+  const ps={};DATA.forEach(b=>{ps[b.project]=(ps[b.project]||0)+b.totalCost});
+  const sorted=Object.entries(ps).sort((a,b)=>b[1]-a[1]);
+  const total=sorted.reduce((s,[,v])=>s+v,0);
+  return `<strong>Cost Breakdown</strong><br><br>
+Total spend: <strong>${fmt$(total)}</strong> across ${DATA.length} briefs.<br><br>
+<strong>Top 5 projects by spend:</strong><br>
+<table class="mini-table"><tr><th>Project</th><th>Spend</th><th>% of Total</th></tr>${sorted.slice(0,5).map(([n,v])=>`<tr><td>${n}</td><td>${fmt$(v)}</td><td>${(v/total*100).toFixed(0)}%</td></tr>`).join('')}</table>`;
+}
+
+function lateQ(){
+  const late=DATA.filter(b=>b._slippage>0);
+  if(!late.length)return 'No late deliveries found across all completed briefs.';
+  const byProj={};late.forEach(b=>{byProj[b.project]=(byProj[b.project]||0)+1});
+  const worst=Object.entries(byProj).sort((a,b)=>b[1]-a[1]);
+  return `<strong>${late.length} Late Deliveries</strong><br><br>
+Average slippage: <strong>${(late.reduce((s,b)=>s+b._slippage,0)/late.length).toFixed(0)} days</strong>.<br>
+Worst offender: <strong>${late.sort((a,b)=>b._slippage-a._slippage)[0]._slippage} days late</strong> (#${late[0].id}, ${late[0].assetType}).<br><br>
+<strong>By project:</strong><br>${worst.map(([n,c])=>n+': '+c+' late').join('<br>')}`;
+}
+
+function selfServeQ(){
+  const ss=DATA.filter(b=>b.selfServe==='Yes');
+  const t3={};DATA.filter(b=>b.tier==='Tier 3').forEach(b=>{t3[b.assetType]=(t3[b.assetType]||0)+1});
+  const candidates=Object.entries(t3).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  return `<strong>Self-serve Candidates</strong><br><br>
+${ss.length} briefs currently flagged as self-serveable.<br><br>
+<strong>Tier 3 asset types (best automation candidates):</strong><br>
+<table class="mini-table"><tr><th>Type</th><th>Briefs</th></tr>${candidates.map(([t,c])=>`<tr><td>${t}</td><td>${c}</td></tr>`).join('')}</table><br>
+These low-complexity items could be handled with templates or brand portals, freeing studio time for higher-value work.`;
+}
+
+function outlierQ(){
+  const tA={};DATA.forEach(b=>{if(!tA[b.assetType])tA[b.assetType]={t:0,c:0};tA[b.assetType].t+=b.totalCost;tA[b.assetType].c++});
+  const outliers=DATA.filter(b=>{const a=tA[b.assetType]?tA[b.assetType].t/tA[b.assetType].c:0;return b.totalCost>a*2&&a>0}).sort((a,b)=>b.totalCost-a.totalCost);
+  if(!outliers.length)return 'No significant cost outliers detected. All briefs are within 2x of their asset type average.';
+  return `<strong>${outliers.length} Cost Outliers</strong><br><br>
+<table class="mini-table"><tr><th>Brief</th><th>Type</th><th>Cost</th><th>vs Avg</th></tr>${outliers.slice(0,5).map(b=>{const a=tA[b.assetType].t/tA[b.assetType].c;return`<tr><td>#${b.id} ${b.project}</td><td>${b.assetType}</td><td>${fmt$(b.totalCost)}</td><td>${(b.totalCost/a).toFixed(1)}x</td></tr>`}).join('')}</table>`;
+}
+
+function summaryQ(){
+  const total=DATA.reduce((s,b)=>s+b.totalCost,0);
+  const active=DATA.filter(b=>b.status==='On track').length;
+  const complete=DATA.filter(b=>b.status==='Complete').length;
+  return `<strong>Studio Summary</strong><br><br>
+<strong>${DATA.length}</strong> total briefs: ${active} active, ${complete} complete.<br>
+Total spend: <strong>${fmt$(total)}</strong> across ${[...new Set(DATA.map(b=>b.project))].length} projects.<br>
+<strong>${DATA.reduce((s,b)=>s+b.numAssets,0)}</strong> assets delivered, averaging <strong>${fmt$(total/DATA.length)}</strong> per brief.<br><br>
+Ask me about any specific project, asset type, department, or person for details.`;
+}
+
+function workloadQ(){
+  const all={};
+  DATA.forEach(b=>{
+    if(b.assignedPM!=='Unassigned')all[b.assignedPM]=(all[b.assignedPM]||0)+b.pmHours;
+    [b.creative1,b.creative2].forEach(c=>{if(c&&c!=='Unassigned')all[c]=(all[c]||0)+b.creativeHours/([b.creative1,b.creative2].filter(x=>x&&x!=='Unassigned').length||1)});
+  });
+  const sorted=Object.entries(all).sort((a,b)=>b[1]-a[1]);
+  return `<strong>Team Workload</strong><br><br>
+<table class="mini-table"><tr><th>Person</th><th>Hours</th></tr>${sorted.map(([n,h])=>`<tr><td>${n}</td><td>${fmtN(h)}</td></tr>`).join('')}</table><br>
+Busiest: <strong>${sorted[0][0]}</strong> (${fmtN(sorted[0][1])} hrs).<br>
+Most available: <strong>${sorted[sorted.length-1][0]}</strong> (${fmtN(sorted[sorted.length-1][1])} hrs).`;
+}
+
+function compareQ(){
+  const ds={};DATA.forEach(b=>{if(!ds[b.department])ds[b.department]={briefs:0,cost:0};ds[b.department].briefs++;ds[b.department].cost+=b.totalCost});
+  const sorted=Object.entries(ds).sort((a,b)=>b[1].cost-a[1].cost);
+  return `<strong>Department Comparison</strong><br><br>
+<table class="mini-table"><tr><th>Department</th><th>Briefs</th><th>Spend</th><th>Avg/Brief</th></tr>${sorted.map(([n,v])=>`<tr><td>${n}</td><td>${v.briefs}</td><td>${fmt$(v.cost)}</td><td>${fmt$(v.cost/v.briefs)}</td></tr>`).join('')}</table>`;
+}
+
+function defaultQ(){return `I can help with:<br><br>
+&#9632; <strong>Asset types</strong> - "Tell me about video editing"<br>
+&#9632; <strong>Projects</strong> - "How is Spring Launch doing?"<br>
+&#9632; <strong>People</strong> - "Who has capacity?"<br>
+&#9632; <strong>Efficiency</strong> - "What are the most efficient assets?"<br>
+&#9632; <strong>Trends</strong> - "Any month-on-month changes?"<br>
+&#9632; <strong>Costs</strong> - "What are the biggest cost outliers?"<br>
+&#9632; <strong>Self-serve</strong> - "What could be automated?"<br><br>
+Try asking any of these, or name a specific project, person, or asset type.`}
+
+// ===== KANBAN =====
+const KANBAN_COLS = ['Not Started','In Progress','Review','Complete','Canceled'];
+const KANBAN_COL_COLORS = {'Not Started':'var(--text-muted)','In Progress':'var(--cobalt)','Review':'var(--amber)','Complete':'var(--forest)','Canceled':'var(--grey)'};
+let draggedCard = null;
+
+function statusToCol(s,b){
+  if(b&&b._kanbanCol)return b._kanbanCol;
+  if(s==='On track'){
+    if(b&&b._du&&b._rq){
+      const total=b._du-b._rq;
+      const now=new Date();
+      const elapsed=now-b._rq;
+      if(total>0&&elapsed/total>0.75)return 'Review';
+    }
+    return 'In Progress';
+  }
+  if(s==='On hold')return 'Not Started';
+  return KANBAN_COLS.includes(s)?s:'Not Started';
+}
+
+function renderKanban(){
+  const projects=[...new Set(DATA.map(b=>b.project))].sort();
+  const pms=[...new Set(DATA.map(b=>b.assignedPM).filter(p=>p!=='Unassigned'))].sort();
+  const pSel=document.getElementById('kanban-project-filter');
+  const pmSel=document.getElementById('kanban-pm-filter');
+  projects.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;pSel.appendChild(o)});
+  pms.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;pmSel.appendChild(o)});
+
+  document.getElementById('kanban-project-filter').addEventListener('change',rebuildKanban);
+  document.getElementById('kanban-pm-filter').addEventListener('change',rebuildKanban);
+  document.getElementById('kanban-tier-filter').addEventListener('change',rebuildKanban);
+  document.getElementById('kanban-search').addEventListener('input',rebuildKanban);
+  rebuildKanban();
+}
+
+function getFilteredKanban(){
+  const proj=document.getElementById('kanban-project-filter').value;
+  const pm=document.getElementById('kanban-pm-filter').value;
+  const tier=document.getElementById('kanban-tier-filter').value;
+  const q=document.getElementById('kanban-search').value.toLowerCase();
+  return DATA.filter(b=>{
+    if(proj&&b.project!==proj)return false;
+    if(pm&&b.assignedPM!==pm)return false;
+    if(tier&&b.tier!==tier)return false;
+    if(q&&!(b.project+' '+b.assetType+' '+b.assignedPM+' '+b.requester).toLowerCase().includes(q))return false;
+    return true;
+  });
+}
+
+function rebuildKanban(){
+  const filtered=getFilteredKanban();
+  const board=document.getElementById('kanban-board');
+  board.innerHTML='';
+
+  KANBAN_COLS.forEach(col=>{
+    const colDiv=document.createElement('div');
+    colDiv.className='kanban-col';
+    colDiv.dataset.status=col;
+
+    const cards=filtered.filter(b=>statusToCol(b.status,b)===col);
+
+    colDiv.innerHTML=`<div class="kanban-col-header"><span class="kanban-col-title" style="color:${KANBAN_COL_COLORS[col]}">${col}</span><span class="kanban-col-count">${cards.length}</span></div>`;
+    const cardsDiv=document.createElement('div');
+    cardsDiv.className='kanban-cards';
+
+    cards.forEach(b=>{
+      const card=document.createElement('div');
+      card.className='kanban-card';
+      card.draggable=true;
+      card.dataset.id=b.id;
+      const tierCls=b.tier==='Tier 1'?'tier-1':b.tier==='Tier 3'?'tier-3':'tier-2';
+      const creatives=[b.creative1,b.creative2].filter(c=>c&&c!=='Unassigned').join(', ');
+      card.innerHTML=`
+        <span class="card-tier ${tierCls}">${b.tier}</span>
+        <div class="card-project">${b.project}</div>
+        <div class="card-title">${b.assetType}</div>
+        <div class="card-meta">
+          <span>${b.numAssets} asset${b.numAssets!==1?'s':''}</span>
+          <span>${fmtN(b.totalHours)} hrs</span>
+          <span>${fmt$(b.totalCost)}</span>
+        </div>
+        <div class="card-pm">${b.assignedPM}${creatives?' &middot; '+creatives:''}</div>
+      `;
+
+      card.addEventListener('dragstart',e=>{
+        draggedCard=card;
+        card.classList.add('dragging');
+        e.dataTransfer.effectAllowed='move';
+        e.dataTransfer.setData('text/plain',b.id);
+      });
+      card.addEventListener('dragend',()=>{
+        card.classList.remove('dragging');
+        document.querySelectorAll('.kanban-col').forEach(c=>c.classList.remove('drag-over'));
+        draggedCard=null;
+      });
+
+      cardsDiv.appendChild(card);
+    });
+
+    colDiv.appendChild(cardsDiv);
+
+    colDiv.addEventListener('dragover',e=>{e.preventDefault();e.dataTransfer.dropEffect='move';colDiv.classList.add('drag-over')});
+    colDiv.addEventListener('dragleave',()=>colDiv.classList.remove('drag-over'));
+    colDiv.addEventListener('drop',e=>{
+      e.preventDefault();
+      colDiv.classList.remove('drag-over');
+      const briefId=parseInt(e.dataTransfer.getData('text/plain'));
+      const newStatus=col;
+      const brief=DATA.find(b=>b.id===briefId);
+      if(brief){
+        const oldStatus=brief.status;
+        const colToStatus={'Not Started':'On hold','In Progress':'On track','Review':'On track','Complete':'Complete','Canceled':'Canceled'};
+        brief.status=colToStatus[newStatus]||newStatus;
+        brief._kanbanCol=newStatus;
+        showToast(`Brief #${briefId} moved to ${newStatus}`);
+        rebuildKanban();
+        updateDashboardFromKanban();
+      }
+    });
+
+    board.appendChild(colDiv);
+  });
+
+  const totalCost=filtered.reduce((s,b)=>s+b.totalCost,0);
+  document.getElementById('kanban-summary').innerHTML=`${filtered.length} briefs &middot; ${fmt$(totalCost)} total`;
+}
+
+function showToast(msg){
+  const t=document.getElementById('kanban-toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+function updateDashboardFromKanban(){
+  document.getElementById('kpi-overview').innerHTML='';
+  renderOverview();
+}
+
+// ===== INIT =====
+renderOverview();renderProjects();renderPeople();renderDepartments();renderAssets();renderEfficiency();renderTimeline();renderKanban();renderForm();
+</script>
+<script>
+(function(){
+  function contentHeight(){
+    var c=document.querySelector('.container');
+    return c ? Math.ceil(c.getBoundingClientRect().height) : document.body.scrollHeight;
+  }
+  function send(){ try{ parent.postMessage({type:'studioHeight', height:contentHeight()}, '*'); }catch(e){} }
+  window.addEventListener('load', function(){ send(); setTimeout(send,500); setTimeout(send,1500); });
+  window.addEventListener('resize', send);
+  if(window.ResizeObserver){ try{ new ResizeObserver(send).observe(document.querySelector('.container')); }catch(e){} }
+})();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@ import PresentationGate from "./PresentationGate";
 import { verifyPassword, checkAuth } from "./actions";
 
 export const metadata: Metadata = {
-  title: "AI at Sabre \\ Run with Foxes",
+  title: "The AI Maturity Curve \\ Run with Foxes",
   description: "Private working session.",
   robots: { index: false, follow: false },
 };

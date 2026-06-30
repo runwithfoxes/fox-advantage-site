@@ -1,12 +1,12 @@
 "use server";
 
-/* Password gate for /presentation (the "AI at Sabre" working session).
+/* Password gate for /presentation (the "The AI Maturity Curve" working session).
    Server-only: the password NEVER ships to the browser. Override in prod with
    the env var PRESENTATION_PASSWORD if you prefer not to keep it in the repo. */
 
 import { cookies } from "next/headers";
 
-const PASSWORD = process.env.PRESENTATION_PASSWORD || "sabre_july06";
+const PASSWORD = process.env.PRESENTATION_PASSWORD || "foxes_july06";
 const COOKIE = "presentation_auth";
 
 export async function verifyPassword(password: string): Promise<boolean> {
