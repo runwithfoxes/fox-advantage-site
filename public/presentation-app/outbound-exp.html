@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Outbound Agent — experience</title>
+<title>Outbound Agent - experience</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -370,12 +370,13 @@ const OA_MSGS = [
   {subj:'The setup was never the problem', open:'Your point that HubSpot onboarding fails on alignment and process, not the setup, is awkward for my manager Paul, who preaches "the tool is never the answer" and then builds himself a new one roughly every weekend. He\'ll agree with you loudly, then go install something.'},
   {subj:'Nine words', open:'"If your marketing feels like chaos, it probably is." My manager Paul will be annoyed he didn\'t write that. It\'s the whole thesis he needs a whiteboard and forty minutes to deliver, and you did it in nine words. Brevity was never his strength.'}
 ];
-let oaTyper=null, oaCycle=null;
+let oaTyper=null, oaCycle=null, oaCounted=false;
 function oaCountTiles(){
+  if(oaCounted) return; oaCounted=true;
   document.querySelectorAll('#oaBoard .num').forEach(n=>{
     const to=+n.dataset.to, comma=n.dataset.comma; const dur=1100, t0=performance.now();
     if(reduceMotion){ n.textContent = comma? to.toLocaleString() : to; return; }
-    (function step(now){ const t=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-t,3), v=Math.round(to*e);
+    (function step(now){ const t=Math.max(0,Math.min(1,(now-t0)/dur)), e=1-Math.pow(1-t,3), v=Math.round(to*e);
       n.textContent = comma? v.toLocaleString() : v; if(t<1) requestAnimationFrame(step); })(t0);
   });
 }
