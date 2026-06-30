@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Outbound Agent · a Run with Foxes product</title>
+<title>Lifecycle Agent · a Run with Foxes product</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -157,6 +157,22 @@
   .oa-tagrow span::before{ content:""; width:10px; height:10px; flex:none; }
   .oa-tagrow .u::before{ background:var(--sky-blue); }
   .oa-tagrow .s::before{ background:#D2D2CC; }
+  /* lifecycle: the journey ladder (left card) */
+  .lc-journey{ display:flex; flex-direction:column; }
+  .lc-stage{ display:flex; align-items:flex-start; gap:10px; padding:12px 13px; border-bottom:1px solid var(--border); transition:background .2s; }
+  .lc-stage:last-child{ border-bottom:none; }
+  .lc-num{ flex:none; width:20px; height:20px; border-radius:6px; background:var(--border); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; display:flex; align-items:center; justify-content:center; transition:.2s; }
+  .lc-st-name{ font-size:12px; color:var(--muted); transition:color .2s; }
+  .lc-st-sub{ font-size:10px; line-height:1.4; color:var(--muted); margin-top:2px; }
+  .lc-stage.active{ background:var(--sky-soft); box-shadow:inset 3px 0 0 var(--sky-blue); }
+  .lc-stage.active .lc-num{ background:var(--deep-sky); color:var(--cream); }
+  .lc-stage.active .lc-st-name{ color:var(--text); }
+  .lc-jnote{ padding:13px 14px; border-top:1px solid var(--border); font-size:11px; line-height:1.6; color:var(--muted); }
+  .lc-jnote b{ color:var(--sky-blue); font-weight:500; }
+  /* lifecycle: the trigger line above each email */
+  .oa-trigger{ font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.5; color:var(--text); background:var(--card-hover); border:1px solid var(--border); border-left:3px solid var(--sky-blue); padding:9px 12px; margin-bottom:13px; }
+  .oa-trigger b{ display:block; color:var(--sky-blue); text-transform:uppercase; letter-spacing:.8px; font-weight:500; font-size:9px; margin-bottom:3px; }
+
   /* honest, real proof strip (process facts, no performance numbers) */
   .oa-proof{ margin-top:26px; border:1px solid var(--border); border-left:3px solid var(--sky-blue); background:var(--card-hover); padding:18px 20px; }
   .oa-proof .lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:10px; }
@@ -210,11 +226,11 @@
   <div class="wrap dot">
     <div class="head">
       <div class="eyebrow">Product</div>
-      <h1>Outbound Agent</h1>
+      <h1>Lifecycle Agent</h1>
       <div class="sell">
-        <p class="sell-lead">Running outbound is a lot of work before a single message lands. You work out who your best-fit customers are, find the companies, find the right people inside them, screen and qualify, track down a real work email, and read up on what each person cares about. Then you write, send, follow up, scan the replies and go again. <b>The Outbound Agent does the whole job.</b></p>
-        <p class="sell-body">The part that matters is the writing: it sends a genuinely different message to every person, built from what that one individual cares about and grounded in your own positioning and messaging framework, so each message is relevant to them and true to you. <b>Not a template with a name dropped in.</b> A real message, made for one, going out at scale every day. Relevance and scale at once, when you always had to pick one.</p>
-        <p class="sell-rail">Three times it stops and waits for you: who goes on the list, every word before it sends, and the Start button itself. <b>Nothing sends or spends until you say go.</b> We build it around your brand and your messaging framework, hand it over, and it runs in your own Claude.</p>
+        <p class="sell-lead">Lifecycle email is the work of keeping and growing the people who already know you. Onboarding a new signup, nudging someone who hasn't bought yet, winning back a customer who has gone quiet, growing the ones ready for more. It is where a lot of revenue comes from, and it usually gets skipped because it never stops. <b>The Lifecycle Agent runs it.</b></p>
+        <p class="sell-body">It reads the contacts already in your email platform, writes each one the right email for their moment, builds the flows, runs the campaigns, and reads the numbers to keep tuning what works. Every email is in your voice, built on your positioning and messaging framework, not one newsletter sent to the whole list. <b>If you don't have a marketer, it does the job; if you do, it lets one person do the work of five.</b></p>
+        <p class="sell-rail">We build it around your brand and your messaging framework, then hand it over to run.</p>
       </div>
     </div>
   </div>
@@ -228,46 +244,44 @@
     </div>
 
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">Say <b>"find 100 ICP prospects and write each one a real message"</b> in your own Claude, and it goes. Below are messages it wrote. <b>Every line bar the sign-off is written for one person</b>, built on what they care about and your positioning. That is the thing a mail-merge can never fake.</div>
-
       <div class="oa-demo" id="oaDemo">
         <div class="oa-board" id="oaBoard">
           <div class="oa-stats">
-            <div class="oa-tile"><div class="num" data-to="500">0</div><div class="lbl">Sourced</div></div>
-            <div class="oa-tile"><div class="num" data-to="100">0</div><div class="lbl">Qualified</div></div>
-            <div class="oa-tile"><div class="num" data-to="100">0</div><div class="lbl">Written</div></div>
-            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">On LinkedIn</div></div>
+            <div class="oa-tile"><div class="num" data-to="8400" data-comma="1">0</div><div class="lbl">Your contacts</div></div>
+            <div class="oa-tile"><div class="num" data-to="4">0</div><div class="lbl">Lifecycle stages</div></div>
+            <div class="oa-tile"><div class="num" data-to="12">0</div><div class="lbl">Triggers mapped</div></div>
+            <div class="oa-tile"><div class="num" data-to="12">0</div><div class="lbl">Emails written</div></div>
           </div>
 
           <div class="oa-main">
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> Bespoke</div>
-              <div class="oa-ringwrap">
-                <div class="oa-ring">
-                  <svg width="150" height="150"><circle class="track" cx="75" cy="75" r="65"/><circle class="bar" cx="75" cy="75" r="65"/></svg>
-                  <div class="mid"><span class="big">100/100</span><span class="small">written</span></div>
-                </div>
-                <div class="oa-ringnote">Every message written for one person. <b>0 templates.</b></div>
+              <div class="oa-card-h"><span class="oa-live"></span> The journey</div>
+              <div class="lc-journey" id="lcJourney">
+                <div class="lc-stage" data-st="onboard"><span class="lc-num">1</span><div><div class="lc-st-name">Onboarding</div><div class="lc-st-sub">just arrived</div></div></div>
+                <div class="lc-stage" data-st="nurture"><span class="lc-num">2</span><div><div class="lc-st-name">Nurture</div><div class="lc-st-sub">not a customer yet</div></div></div>
+                <div class="lc-stage" data-st="retain"><span class="lc-num">3</span><div><div class="lc-st-name">Retention</div><div class="lc-st-sub">going quiet</div></div></div>
+                <div class="lc-stage" data-st="expand"><span class="lc-num">4</span><div><div class="lc-st-name">Expansion</div><div class="lc-st-sub">ready for more</div></div></div>
               </div>
+              <div class="lc-jnote">One agent across the whole relationship. <b>Always tuning.</b></div>
             </div>
 
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> Messages · writing live</div>
+              <div class="oa-card-h"><span class="oa-live"></span> Emails · writing live</div>
               <div class="oa-rows" id="oaRows"></div>
               <div class="oa-msg">
-                <div class="subj">Subject: <b id="oaSubj">The double-edged sword</b></div>
+                <div class="oa-trigger"><b>Trigger</b><span id="oaTrigger">Signed up 2 days ago, hasn't finished setup</span></div>
+                <div class="subj">Subject: <b id="oaSubj">Two minutes to your first win</b></div>
                 <div class="oa-open2">
-                  <p class="greet">Hi <span id="oaGreet">Donna</span>,</p>
+                  <p class="greet">Hi <span id="oaGreet">Aoife</span>,</p>
                   <span id="oaOpen"></span><span class="oa-cursor"></span>
                 </div>
                 <div class="oa-close2">
-                  <p>Paul's written a new book on AI and marketing. On Amazon soon, but you can grab a free early copy at runwithfoxes.com</p>
-                  <p>On whether he's worth the read: twenty years a CMO, O2 and Miro among them, Ireland's Marketer of the Year.</p>
-                  <p class="sig">Jo<br>AI Growth Manager<br>Run with Foxes</p>
+                  <p id="oaClose">If now's not the time, no bother, I'll leave you to it.</p>
+                  <p class="sig">The Run with Foxes team</p>
                 </div>
                 <div class="oa-tagrow">
-                  <span class="u">the opening: written for this person</span>
-                  <span class="s">the close: the same every time</span>
+                  <span class="u">fires on a trigger, not a schedule</span>
+                  <span class="s">written for the person and the moment</span>
                 </div>
               </div>
             </div>
@@ -283,8 +297,8 @@
   <!-- FOOTER -->
   <div class="wrap">
     <div class="foot">
-      <h2>Want the Outbound Agent built for you?</h2>
-      <p>We build it around your brand, your offer and your messaging framework, then hand it over to run in your own Claude. Or talk it through with Paul first.</p>
+      <h2>Want the Lifecycle Agent built for you?</h2>
+      <p>We build it around your brand, your offer and your messaging framework, then hand it over to run in your own email platform. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
         <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
@@ -296,7 +310,7 @@
   <div class="isaw" id="isaw">
     <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Outbound Agent. It finds the right people, writes each one a genuinely different message built on your positioning, and runs the whole pipeline across email and LinkedIn. Nothing sends without your yes. Want to talk to Paul about building it for you? Grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Lifecycle Agent. It works the contacts you already have, writes each one the right email at the right moment across the whole relationship, and keeps tuning what works. It runs in your own email platform and nothing sends without your yes. Want to talk to Paul about building it for you? Grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
     </div>
     <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
   </div>
@@ -323,30 +337,28 @@ const ICONS = {
 };
 
 const TABS = {
-  bts:{ start:'One line of intent', end:'Replies in your inbox, meetings on your calendar', nodes:[
-    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'One line. "Find 50 Irish CEOs at companies with thin marketing teams." That is the whole input.'},
-    {type:'node', badge:'2', when:'From your list', icon:'find', title:'Find the people', sub:'Pulled from your own ICP pipeline, filtered by geography, role and segment. A local query, nothing scraped.'},
-    {type:'node', badge:'3', when:'Qualify', icon:'filter', title:'Screen and qualify', sub:'Company and marketing-team size checked through Apify. Roughly one in five make the cut.',
-      check:'<strong>Gate 1:</strong> you approve who goes on the list. You decide who gets in, never the words.'},
-    {type:'node', badge:'4', when:'Get the address', icon:'mail', title:'Find the work email', sub:'Name and LinkedIn run through a Clay waterfall. About three in four come back with a verified work email.'},
-    {type:'node', badge:'5', when:'What to say', icon:'eye', title:'Read their world', sub:'Their LinkedIn posts, the people who run the place, who they have just hired. The raw material for an opening that could only be theirs.'},
-    {type:'node', badge:'6', when:'One at a time', icon:'make', title:'Write each one', sub:'A different message for every person, built from what they care about and grounded in your positioning and messaging framework. Relevant to them, on-message for you.',
-      check:'<strong>The quality guard:</strong> if a line could sit in someone else\'s email unchanged, it isn\'t done. Every fact is checked against the evidence before it goes near a send.'},
-    {type:'node', badge:'7', when:'Loaded by API', icon:'build', title:'Build and load', sub:'A HeyReach list and sequence, or a Smartlead campaign where every lead carries its own subject and body, resolved at send time. That is what makes it one to one, not a token swap.',
-      check:'<strong>Gate 2:</strong> you read every word before anything loads.'},
-    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'Both channels drip inside safe daily caps and follow up on their own schedule.',
-      check:'<strong>Gate 3:</strong> you press Start. Nothing sends or spends before that.'},
-    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Watch the replies', sub:'A 7am job pulls the numbers from both channels, finds the replies, and emails you a digest. Who replied, their title, the channel, the link.'},
-    {type:'node', badge:'10', when:'When they bite', icon:'cal', title:'Brief you, then book', sub:'On a warm reply it briefs you on the person and drafts your response with your Cal.com link. They book themselves.'}
+  bts:{ start:'A relationship to grow', end:'More of the people who know you staying, growing, coming back', nodes:[
+    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'One line. "Set up our lifecycle emails." That points it at the whole relationship, not a single send.'},
+    {type:'node', badge:'2', when:'Already yours', icon:'find', title:'Read your contacts', sub:'Pulled from your own email platform, HubSpot or Klaviyo. The people who already know you, with the history of what they have done.'},
+    {type:'node', badge:'3', when:'Map it', icon:'share', title:'Map the moments', sub:'The stages of the relationship and the triggers that matter: a new signup, a viewed pricing page, thirty days quiet, a usage milestone hit.',
+      check:'<strong>Gate 1:</strong> you approve the stages and triggers. You decide which moments get an email.'},
+    {type:'node', badge:'4', when:'One at a time', icon:'make', title:'Write each email', sub:'The right message for the stage and the person, in your voice, grounded in your positioning and messaging framework. Relevant to where they are, never a blast.',
+      check:'<strong>The quality guard:</strong> if a line could sit in anyone else\'s inbox unchanged, it isn\'t done. Every claim is checked against the evidence before it goes near a send.'},
+    {type:'node', badge:'5', when:'In your email platform', icon:'build', title:'Build and load the campaign', sub:'It builds the flows in HubSpot or Klaviyo and loads every email, each trigger wired to its message, with safe sending rules.',
+      check:'<strong>Gate 2:</strong> you read every word before a flow goes live.'},
+    {type:'node', badge:'6', when:'It runs', icon:'ship', title:'Run the campaign', sub:'The agent switches the flows live and runs them. Each email fires the moment its trigger is met, at the right point in the relationship, not on a calendar.',
+      check:'<strong>Gate 3:</strong> you switch it on. Nothing sends before that.'},
+    {type:'node', badge:'7', when:'Always', icon:'eye', title:'Analyse and optimise', sub:'It reads the numbers as the campaigns run, opens, clicks, replies, conversions and the early signs of churn, then improves the timing, the trigger and the copy. The campaigns get better while they run.'},
+    {type:'node', badge:'8', when:'Every week', icon:'inbox', title:'Report back', sub:'A digest of what each flow is doing, what it changed and what it recommends next. You stay in the loop without running it.'}
   ]},
   uses:{ groups:[
-    {label:'Skills', cls:'skill', items:['/jo','/find','/network','/clay-enrich','/clay-intel','/clay-intel-light','/thin-marketing-heyreach','/outreach-email-writer']},
-    {label:'Rules', items:['the bespoke standard','anti-fabrication fact check','the dig is only ever at us','sourced-or-drop, never invent a hook','safe sending caps']},
-    {label:'Gates', cls:'skill', items:['you approve the list','you read every word','you press Start']},
-    {label:'Tools', items:['Clay','Apify','Smartlead','HeyReach','their MCP servers','their own Claude']},
-    {label:'Data', items:['your ICP pipeline','their real LinkedIn posts','company decision-makers + recent hires']},
+    {label:'Skills', cls:'skill', items:['/sabre-email-writer','/outreach-email-writer','lifecycle flow skills (to build)']},
+    {label:'Rules', items:['the right moment, not a blast','the bespoke standard','anti-fabrication fact check','safe sending rules','always tuning']},
+    {label:'Gates', cls:'skill', items:['you approve the flows','you read every word','you switch it on']},
+    {label:'Tools', items:['HubSpot','Klaviyo','their email platform API','their own Claude']},
+    {label:'Data', items:['your existing contacts','their behaviour and history','their lifecycle stage']},
     {label:'Models', items:['Claude Opus 4.8']},
-    {label:'Memory', items:['contact-state per person','who replied, who to skip','what was said last']}
+    {label:'Memory', items:['where each contact is in the journey','what they have been sent','what worked']}
   ]}
 };
 
@@ -414,10 +426,10 @@ document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
 // Experience: the agent console. On arrival -> tiles count up, ring fills, messages write live.
 const oaDemo = document.getElementById('oaDemo');
 const OA_MSGS = [
-  {name:'Donna', subj:'The double-edged sword', open:'"AI is a double-edged sword, you are the expert in your space." My manager Paul spent a whole book arriving at that exact point, that context is the one thing AI can\'t hand you, and you landed it in a single post. He\'ll be raging.'},
-  {name:'Rahul', subj:'Autonomy without constraints', open:'Your post on AI agents failing from architecture, not hallucinations, put my manager Paul in a strop. He\'s been circling that same point for a whole book and you landed it in one post, with actual engineering, which he\'ll never quite forgive.'},
-  {name:'Karyn', subj:'The setup was never the problem', open:'Your point that HubSpot onboarding fails on alignment and process, not the setup, is awkward for my manager Paul, who preaches "the tool is never the answer" and then builds himself a new one roughly every weekend. He\'ll agree with you loudly, then go install something.'},
-  {name:'Mark', subj:'Nine words', open:'"If your marketing feels like chaos, it probably is." My manager Paul will be annoyed he didn\'t write that. It\'s the whole thesis he needs a whiteboard and forty minutes to deliver, and you did it in nine words. Brevity was never his strength.'}
+  {name:'Aoife', stage:'onboard', stLabel:'Onboarding', trigger:'Signed up 2 days ago, hasn\'t finished setup', subj:'Two minutes to your first win', open:'You created an account on Tuesday and got as far as the dashboard, then stopped. The bit that makes it click is the next two minutes: connect one source and you\'ll watch your first report build itself. Want me to walk you through it?', close:'If now\'s not the time, no bother, I\'ll leave you to it.'},
+  {name:'Tom', stage:'nurture', stLabel:'Nurture', trigger:'Viewed pricing twice this week, not a customer yet', subj:'The pricing page question', open:'You\'ve had a look at the pricing page a couple of times this week, so you\'re weighing it up. The question worth asking first isn\'t the price, it\'s whether this replaces a job you\'re already paying for. Here\'s a two-minute read on exactly that.', close:'Happy to get on a quick call if it\'s easier.'},
+  {name:'Priya', stage:'retain', stLabel:'Retention', trigger:'No login in 30 days, was a weekly user', subj:'We haven\'t seen you in a while', open:'You used to drop in every week, then went quiet about a month ago. Usually that means something stopped being useful, or something got in the way. Either way I\'d genuinely like to know which, because the new reports view fixes the thing people tend to drift off over.', close:'One reply tells me where you stand.'},
+  {name:'Mark', stage:'expand', stLabel:'Expansion', trigger:'Hit the usage limit three months running', subj:'You\'ve outgrown the starter plan', open:'You\'ve topped your plan\'s limit three months in a row, which is a good problem, it means the thing is working. The next tier doubles the room and adds the team seats you\'ve been working around. Worth a look before next month\'s run.', close:'I can set it up so nothing breaks in the switch.'}
 ];
 let oaTyper=null, oaCycle=null;
 function oaCountTiles(){
@@ -431,15 +443,18 @@ function oaCountTiles(){
 function oaBuildRows(){
   const rows=document.getElementById('oaRows'); rows.innerHTML='';
   OA_MSGS.forEach((m,i)=>{
-    const r=el(`<div class="oa-row" data-i="${i}"><span class="dot"></span><span class="who">${m.subj}</span><span class="st">bespoke</span></div>`);
+    const r=el(`<div class="oa-row" data-i="${i}"><span class="dot"></span><span class="who">${m.subj}</span><span class="st">${m.stLabel}</span></div>`);
     r.addEventListener('click', ()=>{ if(oaCycle){ clearInterval(oaCycle); oaCycle=null; } oaShow(i); });
     rows.appendChild(r);
   });
 }
 function oaShow(i){
   document.querySelectorAll('#oaRows .oa-row').forEach(r=> r.classList.toggle('active', +r.dataset.i===i));
+  document.querySelectorAll('#lcJourney .lc-stage').forEach(s=> s.classList.toggle('active', s.dataset.st===OA_MSGS[i].stage));
   document.getElementById('oaSubj').textContent = OA_MSGS[i].subj;
   document.getElementById('oaGreet').textContent = OA_MSGS[i].name;
+  document.getElementById('oaTrigger').textContent = OA_MSGS[i].trigger;
+  document.getElementById('oaClose').textContent = OA_MSGS[i].close;
   const node=document.getElementById('oaOpen'), text=OA_MSGS[i].open;
   if(oaTyper) clearInterval(oaTyper);
   if(reduceMotion){ node.textContent=text; return; }
@@ -465,7 +480,7 @@ function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); i
 document.getElementById('isaSend').addEventListener('click', ()=>{
   const v = isaText.value.trim(); if(!v) return;
   addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
-  setTimeout(()=> addMsg('bot', "Good question. The short version: it finds the right people, writes each one a message that could only be theirs, and runs the follow-up across email and LinkedIn. You approve the list, the words, and the Start button. Then we hand it over to run in your own Claude."), 450);
+  setTimeout(()=> addMsg('bot', "Good question. The short version: it works the contacts you already have, maps the moments that matter, and writes each person the right email for that moment, onboarding, nurture, win-back, expansion. You approve the flows and the words, you switch it on. Then it runs in your own email platform and keeps tuning what works."), 450);
   setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
 });
 // setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD

@@ -122,6 +122,7 @@
   .card-badge.new{background:var(--sky);}
   .card-badge.bundled{background:var(--deep);}
   .card-badge.free{background:var(--orange);}
+  .card-badge.beta{background:#7A7A74;}
   .card-bd{padding:15px 16px 16px;display:flex;flex-direction:column;gap:7px;flex:1;}
   .tagb{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);}
   .card-nm{display:flex;align-items:center;gap:9px;}
@@ -294,20 +295,20 @@
 
   /* the real lineup (source of truth: docs/product-lineup-candidates-2026-06-25.md) */
   var MODS=[
-    {key:'ad-resizer',name:'Ad Resizer',icon:'resize',cat:'advertising',img:'assets/dayone/dayone-1080x1080.gif',badges:['New'],ben:'One ad in, every size out.'},
+    {key:'campaign-manager',name:'Campaign Manager',icon:'cm',cats:['strategy','advertising','email','outreach','bundle'],badges:['Beta'],tag:'Everything, run for you',ben:'The whole operation, run as one.'},
     {key:'ad-maker',name:'Advertising Agent',icon:'ad',cat:'advertising',badges:['Bundled'],ben:'Makes the ads, runs them, reads the numbers.'},
-    {key:'copywriter',name:'Copywriter',icon:'write',cat:'advertising',ben:"Your brand's voice, trained to write."},
-    {key:'linkedin-content',name:'Ghostwriter',icon:'content',cat:'advertising',badges:['Bundled'],ben:'Your expertise, published in your voice.'},
-    {key:'brief-coach',name:'Brief Coach',icon:'doc',cat:'strategy',ben:'The right work, not the nice work.'},
-    {key:'guardian',name:'Brand Guardian',icon:'shield',cat:'strategy',ben:'Nothing ships off-brand.'},
     {key:'outreach',name:'Outbound Agent',icon:'reach',cats:['outreach','email'],badges:['Bundled'],ben:'Finds the right people, writes each one for real.'},
     {key:'lifecycle',name:'Lifecycle Agent',icon:'cycle',cats:['email'],ben:'Keep and grow the people who already know you.'},
-    {key:'campaign-manager',name:'Campaign Manager',icon:'cm',cat:'bundle',tag:'Everything, run for you',ben:'The whole operation, run as one.'}
+    {key:'guardian',name:'Brand Guardian',icon:'shield',cat:'strategy',ben:'Nothing ships off-brand.'},
+    {key:'brief-coach',name:'Brief Coach',icon:'doc',cat:'strategy',ben:'The right work, not the nice work.'},
+    {key:'copywriter',name:'Copywriter',icon:'write',cats:['advertising','email'],ben:"Your brand's voice, trained to write."},
+    {key:'linkedin-content',name:'Ghostwriter',icon:'content',cat:'strategy',badges:['Bundled'],ben:'Your expertise, published in your voice.'},
+    {key:'ad-resizer',name:'Ad Resizer',icon:'resize',cat:'advertising',badges:['New'],ben:'One ad in, every size out.'}
   ];
   var CATS=[['all','All'],['strategy','Strategy'],['advertising','Advertising'],['email','Email'],['outreach','Outreach']];
   // a product can sit in more than one filter: use cats:[...] (falls back to the single cat)
   var catsOf=function(m){ return m.cats || [m.cat]; };
-  var PAGES={'ad-resizer':'module-ad-maker.html','ad-maker':'module-advertising-agent.html','guardian':'module-brand-guardian.html','linkedin-content':'module-ghostwriter.html','brief-coach':'module-brief-coach.html','outreach':'module-outbound-agent.html'};
+  var PAGES={'ad-resizer':'module-ad-maker.html','ad-maker':'module-advertising-agent.html','guardian':'module-brand-guardian.html','linkedin-content':'module-ghostwriter.html','brief-coach':'module-brief-coach.html','outreach':'module-outbound-agent.html','lifecycle':'module-lifecycle-agent.html','copywriter':'module-copywriter.html','campaign-manager':'module-campaign-manager.html'};
 
   function badgesHTML(bs){
     if(!bs||!bs.length)return '';
@@ -330,9 +331,9 @@
   MODS.forEach(function(m){
     var href=PAGES[m.key]||'#';
     var live=href!=='#';
-    var vis = m.key==='ad-resizer' ? miniResizer() : (m.img?'<img src="'+m.img+'" alt="'+m.name+'">':VIS[m.icon]);
+    var vis = m.img?'<img src="'+m.img+'" alt="'+m.name+'">':VIS[m.icon];
     var card=el('<a class="card'+(live?'':' soon')+'" href="'+href+'" data-cat="'+catsOf(m).join(' ')+'">'+
-      '<div class="card-vis'+(m.key==='ad-resizer'?' demo':'')+'">'+badgesHTML(m.badges)+vis+'</div>'+
+      '<div class="card-vis">'+badgesHTML(m.badges)+vis+'</div>'+
       '<div class="card-bd">'+(m.tag?'<span class="tagb">'+m.tag+'</span>':'')+
         '<div class="card-nm"><span class="ci">'+IC[m.icon]+'</span><h3>'+m.name+'</h3></div>'+
         '<div class="card-ben">'+m.ben+'</div>'+
