@@ -212,9 +212,9 @@
       <div class="eyebrow">Product</div>
       <h1>Outbound Agent</h1>
       <div class="sell">
-        <p class="sell-lead">Every cold-outreach tool does the same thing. One template, a merge field for the first name, the same email to a thousand people. <b>The person reading it can always tell.</b></p>
-        <p class="sell-body">The Outbound Agent writes each person a real message instead. The opening is a true reaction to something they actually said, welded to a feeling, the kind of line you could not send to anyone else. <b>If a line could appear in someone else's email unchanged, it is not done.</b> And it runs the whole job, not just the send. It finds the right people, gets their email, reads their world, writes each one, builds the campaign across email and LinkedIn, follows up, scans the replies, and tells you who is worth a call. A marketer who did this for a living, made to run.</p>
-        <p class="sell-rail">Three times it stops and waits for you: who goes on the list, every word before it sends, and the Start button itself. <b>Nothing sends or spends without your yes.</b> We build it around your brand and hand it over, and it runs in your own Claude.</p>
+        <p class="sell-lead">Running outbound is a lot of work before a single message lands. You work out who your best-fit customers are, find the companies, find the right people inside them, screen and qualify, track down a real work email, and read up on what each person cares about. Then you write, send, follow up, scan the replies and go again. <b>The Outbound Agent does the whole job.</b></p>
+        <p class="sell-body">The part that matters is the writing: it sends a genuinely different message to every person, built from what that one individual cares about and grounded in your own positioning and messaging framework, so each message is relevant to them and true to you. <b>Not a template with a name dropped in.</b> A real message, made for one, going out at scale every day. Relevance and scale at once, when you always had to pick one.</p>
+        <p class="sell-rail">Three times it stops and waits for you: who goes on the list, every word before it sends, and the Start button itself. <b>Nothing sends or spends until you say go.</b> We build it around your brand and your messaging framework, hand it over, and it runs in your own Claude.</p>
       </div>
     </div>
   </div>
@@ -228,7 +228,7 @@
     </div>
 
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">Say <b>"find 100 ICP prospects and write each one a real message"</b> in your Claude, and it does. Below are real messages it wrote, side by side, so you can see the thing a mail-merge can never fake. <b>Every opening is written for one person. Only the closing lines are ever the same.</b></div>
+      <div class="exp-lead">Say <b>"find 100 ICP prospects and write each one a real message"</b> in your own Claude, and it goes. Below are messages it wrote. <b>Every line bar the sign-off is written for one person</b>, built on what they care about and your positioning. That is the thing a mail-merge can never fake.</div>
 
       <div class="oa-demo" id="oaDemo">
         <div class="oa-board" id="oaBoard">
@@ -257,7 +257,7 @@
               <div class="oa-msg">
                 <div class="subj">Subject: <b id="oaSubj">The double-edged sword</b></div>
                 <div class="oa-open2">
-                  <p class="greet">Hi [name],</p>
+                  <p class="greet">Hi <span id="oaGreet">Donna</span>,</p>
                   <span id="oaOpen"></span><span class="oa-cursor"></span>
                 </div>
                 <div class="oa-close2">
@@ -267,7 +267,7 @@
                 </div>
                 <div class="oa-tagrow">
                   <span class="u">the opening: written for this person</span>
-                  <span class="s">the close: identical every time</span>
+                  <span class="s">the close: the same every time</span>
                 </div>
               </div>
             </div>
@@ -277,7 +277,7 @@
 
       <div class="oa-proof">
         <div class="lbl">Real, end to end</div>
-        <p>It screens <b>hundreds of companies for the price of a coffee</b>, writes every qualified one a bespoke message, and loads a campaign of <b>a thousand-plus prospects</b> across email and LinkedIn. The list, the research and every message built by the agent.</p>
+        <p>It screens <b>hundreds of companies for the price of a coffee</b>, writes every qualified one its own message, and loads a campaign of <b>a thousand-plus prospects</b> across email and LinkedIn. The list, the research and every word built by the agent.</p>
         <p>We run it on ourselves, and nothing sends or spends until we press Start.</p>
       </div>
     </div>
@@ -290,7 +290,7 @@
   <div class="wrap">
     <div class="foot">
       <h2>Want the Outbound Agent built for you?</h2>
-      <p>We build it around your brand and your offer, then hand it over to run in your own Claude. Or talk it through with Paul first.</p>
+      <p>We build it around your brand, your offer and your messaging framework, then hand it over to run in your own Claude. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
         <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
@@ -302,7 +302,7 @@
   <div class="isaw" id="isaw">
     <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Outbound Agent: it finds the right people, writes each one a genuinely bespoke message, and runs the whole pipeline across email and LinkedIn. Nothing sends without your yes. Would you like to talk to Paul about building it for you? You can grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Outbound Agent. It finds the right people, writes each one a genuinely different message built on your positioning, and runs the whole pipeline across email and LinkedIn. Nothing sends without your yes. Want to talk to Paul about building it for you? Grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
     </div>
     <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
   </div>
@@ -330,20 +330,20 @@ const ICONS = {
 
 const TABS = {
   bts:{ start:'One line of intent', end:'Replies in your inbox, meetings on your calendar', nodes:[
-    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'One line. "Find 50 Irish CEOs at thin-marketing companies."'},
-    {type:'node', badge:'2', when:'From your pipeline', icon:'find', title:'Pull the right people', sub:'Filtered out of a 49,815-person pipeline by geography, role and segment. A local query, nothing scraped.'},
-    {type:'node', badge:'3', when:'Qualify', icon:'filter', title:'Screen and qualify', sub:'Headcount and marketing-team size checked through Apify. Around one in five make the cut.',
-      check:'<strong>Gate 1:</strong> you approve who goes on the list. You decide who enters, never the words.'},
-    {type:'node', badge:'4', when:'Get the email', icon:'mail', title:'Find the work email', sub:'Name and LinkedIn run through a Clay waterfall. Around three in four come back with a verified work email.'},
-    {type:'node', badge:'5', when:'Read their world', icon:'eye', title:'Gather what to say', sub:'Their real LinkedIn posts, the company decision-makers, the recent hires. The raw material for an opening that could only be theirs.'},
-    {type:'node', badge:'6', when:'One at a time', icon:'make', title:'Write each one', sub:'A unique message per person. The opening is a true reaction to something they actually said, not a field dropped into a template.',
-      check:'<strong>The quality guard:</strong> if a line could appear in someone else\'s email unchanged, it isn\'t done. Every fact in a message is checked against the real evidence before it goes near a send.'},
-    {type:'node', badge:'7', when:'Loaded by API', icon:'build', title:'Build and load the campaign', sub:'A HeyReach list, sequence and safe caps. In Smartlead each lead carries its own subject and body, resolved at send time. That is what makes it unique, not a token swap.',
-      check:'<strong>Gate 2:</strong> you read every word before anything is loaded.'},
-    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'Both platforms drip inside safe caps, around twenty-five a day, and follow up on their own schedule.',
-      check:'<strong>Gate 3:</strong> you press Start. Nothing sends or spends before this.'},
-    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Watch the replies', sub:'A 7am job pulls the stats from both platforms, scans for replies, and emails you a digest. Who replied, their title, the channel, the link.'},
-    {type:'node', badge:'10', when:'When they bite', icon:'cal', title:'Brief you, then book', sub:'On a warm reply it briefs you on the person and drafts a response with your Cal.com link. They book themselves.'}
+    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'One line. "Find 50 Irish CEOs at companies with thin marketing teams." That is the whole input.'},
+    {type:'node', badge:'2', when:'From your list', icon:'find', title:'Find the people', sub:'Pulled from your own ICP pipeline, filtered by geography, role and segment. A local query, nothing scraped.'},
+    {type:'node', badge:'3', when:'Qualify', icon:'filter', title:'Screen and qualify', sub:'Company and marketing-team size checked through Apify. Roughly one in five make the cut.',
+      check:'<strong>Gate 1:</strong> you approve who goes on the list. You decide who gets in, never the words.'},
+    {type:'node', badge:'4', when:'Get the address', icon:'mail', title:'Find the work email', sub:'Name and LinkedIn run through a Clay waterfall. About three in four come back with a verified work email.'},
+    {type:'node', badge:'5', when:'What to say', icon:'eye', title:'Read their world', sub:'Their LinkedIn posts, the people who run the place, who they have just hired. The raw material for an opening that could only be theirs.'},
+    {type:'node', badge:'6', when:'One at a time', icon:'make', title:'Write each one', sub:'A different message for every person, built from what they care about and grounded in your positioning and messaging framework. Relevant to them, on-message for you.',
+      check:'<strong>The quality guard:</strong> if a line could sit in someone else\'s email unchanged, it isn\'t done. Every fact is checked against the evidence before it goes near a send.'},
+    {type:'node', badge:'7', when:'Loaded by API', icon:'build', title:'Build and load', sub:'A HeyReach list and sequence, or a Smartlead campaign where every lead carries its own subject and body, resolved at send time. That is what makes it one to one, not a token swap.',
+      check:'<strong>Gate 2:</strong> you read every word before anything loads.'},
+    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'Both channels drip inside safe daily caps and follow up on their own schedule.',
+      check:'<strong>Gate 3:</strong> you press Start. Nothing sends or spends before that.'},
+    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Watch the replies', sub:'A 7am job pulls the numbers from both channels, finds the replies, and emails you a digest. Who replied, their title, the channel, the link.'},
+    {type:'node', badge:'10', when:'When they bite', icon:'cal', title:'Brief you, then book', sub:'On a warm reply it briefs you on the person and drafts your response with your Cal.com link. They book themselves.'}
   ]},
   uses:{ groups:[
     {label:'Skills', cls:'skill', items:['/jo','/find','/network','/clay-enrich','/clay-intel','/clay-intel-light','/thin-marketing-heyreach','/outreach-email-writer']},
@@ -420,10 +420,10 @@ document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
 // Experience: the agent console. On arrival -> tiles count up, ring fills, messages write live.
 const oaDemo = document.getElementById('oaDemo');
 const OA_MSGS = [
-  {subj:'The double-edged sword', open:'"AI is a double-edged sword, you are the expert in your space." My manager Paul spent a whole book arriving at that exact point, that context is the one thing AI can\'t hand you, and you landed it in a single post. He\'ll be raging.'},
-  {subj:'Autonomy without constraints', open:'Your post on AI agents failing from architecture, not hallucinations, put my manager Paul in a strop. He\'s been circling that same point for a whole book and you landed it in one post, with actual engineering, which he\'ll never quite forgive.'},
-  {subj:'The setup was never the problem', open:'Your point that HubSpot onboarding fails on alignment and process, not the setup, is awkward for my manager Paul, who preaches "the tool is never the answer" and then builds himself a new one roughly every weekend. He\'ll agree with you loudly, then go install something.'},
-  {subj:'Nine words', open:'"If your marketing feels like chaos, it probably is." My manager Paul will be annoyed he didn\'t write that. It\'s the whole thesis he needs a whiteboard and forty minutes to deliver, and you did it in nine words. Brevity was never his strength.'}
+  {name:'Donna', subj:'The double-edged sword', open:'"AI is a double-edged sword, you are the expert in your space." My manager Paul spent a whole book arriving at that exact point, that context is the one thing AI can\'t hand you, and you landed it in a single post. He\'ll be raging.'},
+  {name:'Rahul', subj:'Autonomy without constraints', open:'Your post on AI agents failing from architecture, not hallucinations, put my manager Paul in a strop. He\'s been circling that same point for a whole book and you landed it in one post, with actual engineering, which he\'ll never quite forgive.'},
+  {name:'Karyn', subj:'The setup was never the problem', open:'Your point that HubSpot onboarding fails on alignment and process, not the setup, is awkward for my manager Paul, who preaches "the tool is never the answer" and then builds himself a new one roughly every weekend. He\'ll agree with you loudly, then go install something.'},
+  {name:'Mark', subj:'Nine words', open:'"If your marketing feels like chaos, it probably is." My manager Paul will be annoyed he didn\'t write that. It\'s the whole thesis he needs a whiteboard and forty minutes to deliver, and you did it in nine words. Brevity was never his strength.'}
 ];
 let oaTyper=null, oaCycle=null;
 function oaCountTiles(){
@@ -445,6 +445,7 @@ function oaBuildRows(){
 function oaShow(i){
   document.querySelectorAll('#oaRows .oa-row').forEach(r=> r.classList.toggle('active', +r.dataset.i===i));
   document.getElementById('oaSubj').textContent = OA_MSGS[i].subj;
+  document.getElementById('oaGreet').textContent = OA_MSGS[i].name;
   const node=document.getElementById('oaOpen'), text=OA_MSGS[i].open;
   if(oaTyper) clearInterval(oaTyper);
   if(reduceMotion){ node.textContent=text; return; }
