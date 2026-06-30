@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import type { SubstackPost } from "@/lib/substack";
 
@@ -24,68 +23,6 @@ function LazyVideo({ src, className, loop }: { src: string; className?: string; 
           <source src={src} type="video/mp4" />
         </video>
       )}
-    </div>
-  );
-}
-
-/* ===== Substack thought-leadership carousel - live feed, manual rotation only ===== */
-function SubstackCarousel({ posts }: { posts: SubstackPost[] }) {
-  const carRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [idx, setIdx] = useState(0);
-  const [step, setStep] = useState(0);
-  const [maxIdx, setMaxIdx] = useState(0);
-
-  useEffect(() => {
-    function measure() {
-      const car = carRef.current, track = trackRef.current;
-      if (!car || !track) return;
-      const card = track.querySelector<HTMLElement>(".hpx-wcard");
-      const s = card ? card.offsetWidth + 24 : 0;
-      const vis = s ? Math.max(1, Math.round(car.offsetWidth / s)) : 1;
-      const mi = Math.max(0, posts.length - vis);
-      setStep(s);
-      setMaxIdx(mi);
-      setIdx((i) => Math.min(i, mi));
-    }
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [posts.length]);
-
-  if (!posts.length) return null;
-
-  const clamped = Math.min(idx, maxIdx);
-  const next = () => setIdx((i) => (i >= maxIdx ? 0 : i + 1));
-  const prev = () => setIdx((i) => (i <= 0 ? maxIdx : i - 1));
-
-  return (
-    <div className="hpx-writing">
-      <div className="hpx-writing-head">
-        <a className="hpx-writing-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer">View newsletter &rarr;</a>
-      </div>
-      <div className="hpx-wcar" ref={carRef}>
-        <div className="hpx-wtrack" ref={trackRef} style={{ transform: `translateX(-${clamped * step}px)` }}>
-          {posts.map((p) => (
-            <a key={p.slug} className="hpx-wcard" href={p.link} target="_blank" rel="noopener noreferrer">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {p.image ? <img className="hpx-thumb" src={p.image} alt="" /> : <span className="hpx-thumb" />}
-              <h3>{p.title}</h3>
-              <p>{p.excerpt}</p>
-              <div className="hpx-wmeta"><span className="hpx-pin">&#9776;</span>{p.date.toUpperCase()} &middot; Paul Dervan</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div className="hpx-wctrls">
-        <button className="hpx-warrow" onClick={prev} aria-label="Previous">&lsaquo;</button>
-        <button className="hpx-warrow" onClick={next} aria-label="Next">&rsaquo;</button>
-        <div className="hpx-wdots">
-          {Array.from({ length: maxIdx + 1 }).map((_, i) => (
-            <span key={i} className={`hpx-wdot${i === clamped ? " on" : ""}`} onClick={() => setIdx(i)} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -195,16 +132,12 @@ const SF_PAGES: Record<string, string> = {
 export default function HomePage({ posts }: { posts: SubstackPost[] }) {
   const navRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const bottomBarRef = useRef<HTMLDivElement>(null);
-  const modulesRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const nav = navRef.current;
     const hero = heroRef.current;
-    const bottomBar = bottomBarRef.current;
-    const modules = modulesRef.current;
-    if (!nav || !hero || !bottomBar || !modules) return;
+    if (!nav || !hero) return;
 
     const onScroll = () => {
       const heroH = hero.offsetHeight;
@@ -213,17 +146,8 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    const barObserver = new IntersectionObserver(
-      ([e]) => {
-        bottomBar.classList.toggle("hp-bb-visible", e.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    barObserver.observe(modules);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
-      barObserver.disconnect();
     };
   }, []);
 
@@ -294,17 +218,38 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
         <div className="hpx-hero-desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
       </div>
 
-      {/* BIO + PHOTO (magazine wrap) and contact-CTA strip */}
+      {/* BIO (left) + RECENT ESSAYS compact list (right), then the contact-CTA strip */}
       <section className="hpx-about" id="about">
         <div className="hpx-wrap">
-          <div className="hpx-bio">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="hpx-bio-photo" src="/Paul_photo.jpg" alt="Paul Dervan" />
-            <div className="hpx-bio-name">/Paul Dervan</div>
-            <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
-            <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
-            <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
-            <a className="hpx-summary-link" href="/downloads/runwithfoxes-summary.pdf" target="_blank" rel="noopener noreferrer">\summarise this page</a>
+          <div className="hpx-about-grid">
+            <div className="hpx-bio">
+              <div className="hpx-bio-head"><span className="hpx-bio-name">/Paul Dervan</span></div>
+              <div className="hpx-bio-body">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="hpx-bio-photo" src="/Paul_photo.jpg" alt="Paul Dervan" />
+                <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
+                <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
+                <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+              </div>
+            </div>
+            <aside className="hpx-nl">
+              <div className="hpx-nl-head">
+                <span className="hpx-nl-kick">/recent essays</span>
+                <a className="hpx-nl-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="View newsletter">&rarr;</a>
+              </div>
+              <div className="hpx-nl-list">
+                {posts.slice(0, 5).map((p) => (
+                  <a key={p.slug} className="hpx-nl-item" href={p.link} target="_blank" rel="noopener noreferrer">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {p.image ? <img className="hpx-nl-thumb" src={p.image} alt="" /> : <span className="hpx-nl-thumb" />}
+                    <div className="hpx-nl-text">
+                      <div className="hpx-nl-title">{p.title}</div>
+                      <div className="hpx-nl-meta">{p.date.toUpperCase()} &middot; Paul Dervan</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </aside>
           </div>
           <div className="hpx-metastrip">
             <span className="hpx-ctas-label">Contact us to</span>
@@ -315,15 +260,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
         </div>
       </section>
 
-      <div className="cl-modules-wrap" ref={modulesRef}>
-
-        {/* THOUGHT-LEADERSHIP CAROUSEL (live Substack feed) */}
-        <div className="hpx-wrap">
-          <SubstackCarousel posts={posts} />
-        </div>
-
-        {/* divider between newsletter and modules intro */}
-        <div className="hpx-divider"></div>
+      <div className="cl-modules-wrap">
 
         {/* ===== PRODUCTS STOREFRONT (replaces the old module accordion) ===== */}
         <div className="hpx-wrap">
@@ -376,30 +313,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
           {/* TESTIMONIALS - rotating band, manual, fixed height */}
           <Testimonials />
 
-          {/* BOOK BLOCK - mirrors the /book hero */}
-          <div className="hpx-bookblock">
-            <div className="hpx-bookblock-text">
-              <div className="hpx-bookblock-title">The <span>Fox</span> Advantage</div>
-              <div className="hpx-bookblock-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</div>
-              <div className="hpx-bookblock-meta">
-                <span>\ 54 chapters</span>
-                <span>\ 4 parts</span>
-                <Link href="/book">\ get_the_book &rarr;</Link>
-              </div>
-            </div>
-            <div className="hpx-bookblock-img">
-              <Image src="/fox/fox-book.png" alt="The Fox Advantage" width={300} height={424} />
-            </div>
-          </div>
-
         </div>
-      </div>
-
-      <div className="hp-bottom-bar" ref={bottomBarRef}>
-        <a href="#heroWrapper" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>#top</a>
-        <a href="#about">#about</a>
-        <Link href="/book">/book</Link>
-        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
       </div>
 
       <footer className="hpx-footer">

@@ -4760,15 +4760,33 @@ a.project-card {
   background-color: var(--bg);
   padding: 52px 0 8px;
 }
+/* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
+.hpx-about-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .hpx-about-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+/* matching column heads keep the photo and the first essay thumbnail aligned */
+.hpx-bio-head {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  margin-bottom: 24px;
+}
 .hpx-bio::after { content: ""; display: table; clear: both; }
+.hpx-bio-body::after { content: ""; display: table; clear: both; }
 .hpx-bio-photo {
   float: left;
-  width: 220px;
-  height: 293px;
+  width: 200px;
+  height: 267px;
   object-fit: cover;
   display: block;
   background: #ddd;
-  margin: 6px 46px 16px 0;
+  margin: 0 32px 14px 0;
 }
 .hpx-bio-name { color: #3A7CA5; font-size: 14px; letter-spacing: 0.5px; }
 .hpx-bio p {
@@ -4777,6 +4795,54 @@ a.project-card {
   color: var(--text);
   margin-top: 14px;
   max-width: none;
+}
+.hpx-bio-body p:first-of-type { margin-top: 0; }
+
+/* recent essays - compact list beside the bio (deliberately lighter than the old carousel) */
+.hpx-nl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 22px;
+  margin-bottom: 24px;
+}
+.hpx-nl-kick { font-size: 13px; letter-spacing: 1px; color: #3A7CA5; }
+.hpx-nl-more { color: #3A7CA5; text-decoration: none; font-size: 18px; line-height: 1; }
+.hpx-nl-more:hover { opacity: .7; }
+.hpx-nl-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 15px 0;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+.hpx-nl-item:first-of-type { border-top: none; padding-top: 0; }
+.hpx-nl-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border);
+  background: #F5F5F0;
+}
+.hpx-nl-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -.2px;
+  line-height: 1.3;
+  color: var(--text);
+}
+.hpx-nl-item:hover .hpx-nl-title { color: #3A7CA5; }
+.hpx-nl-meta {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 7px;
 }
 
 /* summarise-this-page link, same \ family as the contact CTAs, closes out the bio */
