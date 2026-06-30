@@ -238,7 +238,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
                 <a className="hpx-nl-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="View newsletter">&rarr;</a>
               </div>
               <div className="hpx-nl-list">
-                {posts.slice(0, 5).map((p) => (
+                {posts.slice(0, 4).map((p) => (
                   <a key={p.slug} className="hpx-nl-item" href={p.link} target="_blank" rel="noopener noreferrer">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {p.image ? <img className="hpx-nl-thumb" src={p.image} alt="" /> : <span className="hpx-nl-thumb" />}
