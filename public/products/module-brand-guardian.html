@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brand Guardian · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  .nav{ display:flex; align-items:center; gap:16px; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .back{ font-size:11px; letter-spacing:.5px; color:var(--muted); text-decoration:none; }
+  .nav .back:hover{ color:var(--text); }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .head .desc{ font-size:14px; line-height:1.7; color:var(--text); max-width:none; margin-top:18px; }
+  .head .desc b{ font-weight:400; color:var(--muted); }
+  /* the selling block (sell the thinking, not the mechanics) - one font size throughout, matched to the bio */
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW (lifted verbatim from capabilities-sequence.html) ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:9px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.55; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .check-tag{ display:block; font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:4px; }
+  .node-steps{ margin-top:10px; display:flex; flex-direction:column; gap:5px; }
+  .nstep{ position:relative; font-size:10.5px; line-height:1.45; color:var(--muted); padding-left:14px; }
+  .nstep::before{ content:""; position:absolute; left:2px; top:6px; width:4px; height:4px; border-radius:50%; background:var(--sky-blue); }
+  .nstep b{ color:var(--text); font-weight:400; }
+  .bridge{ width:66%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:66%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:90%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); text-align:center; }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+  .note{ width:100%; border:1px solid var(--border); border-left:3px solid var(--deep-sky); border-radius:10px; background:var(--bg); padding:9px 14px; font-size:11px; line-height:1.5; color:var(--text); }
+  .note strong{ font-weight:500; }
+
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: point the guardian at an asset, the verdict + located flags reveal on Run */
+  .exp-lead{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+  .exp-run{ display:flex; align-items:center; gap:12px; margin-bottom:34px; }
+  .rz-run{ background:var(--sky-blue); color:#fff; border:none; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:10px 16px; }
+  .rz-run:hover{ background:var(--deep-sky); }
+  .exp-run .hint{ font-size:11px; color:var(--muted); }
+  .checks{ display:flex; flex-direction:column; gap:22px; }
+  .ck-block{ display:flex; gap:28px; align-items:stretch; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); padding:24px; }
+  @media(max-width:860px){ .ck-block{ flex-direction:column; } }
+  .ck-asset{ flex:0 0 420px; min-width:0; }
+  @media(max-width:860px){ .ck-asset{ flex-basis:auto; } }
+  .ck-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:12px; }
+  .ck-adframe{ width:100%; aspect-ratio:1/1; border:1px solid var(--border); background:var(--cream); overflow:hidden; box-shadow:var(--shadow); }
+  .ck-adframe img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* the off-brand marketing-email mock - deliberately wrong: tiny logo, wall of slop, shouty CTA */
+  .email{ width:100%; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); display:flex; flex-direction:column; overflow:hidden; }
+  .email-bar{ display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .email-logo{ font-family:'JetBrains Mono',monospace; font-size:7px; letter-spacing:1px; color:var(--muted); }
+  .email-logo span{ color:var(--fox-orange); }
+  .email-to{ font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--muted); margin-left:auto; }
+  .email-subj{ padding:15px 18px 0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); }
+  .email-h{ padding:7px 18px 0; font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; line-height:1.14; letter-spacing:-.3px; color:var(--text); }
+  .email-body{ padding:13px 18px 2px; font-family:'JetBrains Mono',monospace; font-size:10.5px; line-height:1.7; color:#444; }
+  .email-cta{ margin:15px 18px 20px; align-self:flex-start; background:#C8402A; color:#fff; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:9px 15px; }
+
+  .ck-report{ flex:1; min-width:0; min-height:200px; display:flex; flex-direction:column; gap:13px; justify-content:center; }
+  .ck-wait{ font-size:11px; color:var(--muted); letter-spacing:.4px; }
+  .verdict{ display:flex; align-items:center; gap:12px; }
+  .vmark{ flex:none; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; }
+  .vmark.ok{ background:#3C9A57; }
+  .vmark.no{ background:#C8402A; }
+  .vlabel{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; }
+  .vlabel.ok{ color:#2E7A44; }
+  .vlabel.no{ color:#B0331F; }
+  .ck-row{ font-size:12px; line-height:1.55; color:var(--text); display:flex; gap:10px; align-items:baseline; }
+  .ck-row b{ font-weight:500; }
+  .ck-row .fixn{ color:var(--muted); }
+  .tick{ flex:none; font-size:12px; line-height:1; transform:translateY(1px); }
+  .tick.ok{ color:#3C9A57; }
+  .tick.no{ color:#C8402A; }
+  .ck-grp{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-top:4px; padding-top:11px; border-top:1px solid var(--border); }
+  .ck-asset .rz-run{ width:100%; margin-top:16px; text-align:center; }
+  .rev{ opacity:0; transform:translateY(8px); transition:opacity .4s ease-out, transform .4s ease-out; }
+  .rev.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .rev{ opacity:1; transform:none; transition:none; } }
+
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  .isaw{ position:fixed; bottom:22px; right:22px; width:362px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:#fff; box-shadow:0 18px 50px rgba(29,27,27,.18); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; }
+  .isa-h{ display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .dot2{ width:8px; height:8px; border-radius:50%; background:var(--fox-orange); flex:none; }
+  .isa-h .ht{ font-family:'Space Grotesk',sans-serif; font-size:14px; line-height:1; }
+  .isa-h .hs{ font-size:10px; color:var(--muted); margin-top:2px; }
+  .isa-h .x{ margin-left:auto; background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; }
+  .isa-body{ display:flex; flex-direction:column; gap:9px; padding:14px; max-height:300px; overflow-y:auto; }
+  .m{ font-size:12px; line-height:1.6; padding:9px 12px; border-radius:12px; max-width:86%; }
+  .m.bot{ background:var(--sky-soft); color:var(--text); align-self:flex-start; border-bottom-left-radius:3px; }
+  .m.you{ background:var(--deep-sky); color:var(--cream); align-self:flex-end; border-bottom-right-radius:3px; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); }
+  .isa-note{ font-size:9.5px; color:var(--muted); padding:0 14px 10px; line-height:1.5; }
+  .isa-in{ display:flex; gap:8px; padding:10px 12px; border-top:1px solid var(--border); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:54px; font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.5; padding:8px 10px; color:var(--text); background:var(--bg); }
+  .isa-in button{ align-self:flex-end; background:var(--sky-blue); color:#fff; border:none; cursor:pointer; padding:9px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="logo" href="/">/<span>Run</span>withfoxes</a><span class="sp"></span>
+    <a class="back" href="/">← all products</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Product</div>
+      <h1>Brand Guardian</h1>
+      <div class="sell">
+        <p class="sell-lead">Generic tools check spelling and a house style. This checks <b>your</b> brand.</p>
+        <p class="sell-body">Point it at anything you are about to publish, a deck, an ad, a page, a line of copy, and it runs the full audit against your real standards: your guidelines, your distinctive assets, your tone, your never-list. <b>Where there is a rule it measures</b>, to the pixel and the hex, contrast, headline width, clear-space. <b>Where there is judgement it judges</b>, against your brand profile, not a generic one. You get one verdict, every flag located, and the fix beside it. The bar it holds is the one a brand guardian who knew your brand would hold, built in, so nothing goes out off brand.</p>
+        <p class="sell-rail">It runs in your own Claude and sits in front of a publish or a deploy. <b>We build it around your brand and hand it over.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <!-- EXPERIENCE: a real check on our own Grumpy Fox work -->
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">Point the guardian at any asset and it runs the full brand audit, then gives one verdict with every flag located and fixed. Here it is on our own Grumpy Fox work.</div>
+      <div class="checks" id="checks">
+
+        <div class="ck-block">
+          <div class="ck-asset">
+            <div class="ck-eyebrow">An original ad</div>
+            <div class="ck-adframe"><img src="assets/dayone/dayone-1080x1080.gif" alt="Grumpy Fox ad"></div>
+            <button class="rz-run block-run">Run brand check ▶</button>
+          </div>
+          <div class="ck-report">
+            <div class="ck-wait">Press Run brand check.</div>
+            <div class="verdict rev"><span class="vmark ok">&#10003;</span><span class="vlabel ok">On brand · 11 checks clear</span></div>
+            <div class="ck-grp rev">Composition</div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Headline clears the fox</b> <span class="fixn">breathing space held, never touching</span></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Left-aligned, one line at ~72% width</b> <span class="fixn">never edge to edge</span></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Fox in its zone, on cream</b> <span class="fixn">never on colour</span></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Logo to the rule</b> <span class="fixn">clear space held around it</span></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Balance holds</b> <span class="fixn">weight even across the frame</span></span></div>
+            <div class="ck-grp rev">Colour</div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Sky blue #3A7CA5 for data, cream #F4F1EA ground</b></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Orange #F47521 on the "run" wordmark only</b> <span class="fixn">nowhere else</span></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>98.8% on the brand palette</b> <span class="fixn">16px dot grid intact</span></span></div>
+            <div class="ck-grp rev">Type</div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Headline Space Grotesk light, body JetBrains Mono</b></span></div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Sentence case</b> <span class="fixn">no bold headings, no Title Case</span></span></div>
+            <div class="ck-grp rev">Never-list</div>
+            <div class="ck-row rev"><span class="tick ok">&#10003;</span><span><b>Sharp corners, no gradients, no drop shadows, no stock photo</b></span></div>
+          </div>
+        </div>
+
+        <div class="ck-block">
+          <div class="ck-asset">
+            <div class="ck-eyebrow">A marketing email</div>
+            <div class="email">
+              <div class="email-bar"><span class="email-logo">/<span>Run</span>withfoxes</span><span class="email-to">to: marketing@yourbrand.com</span></div>
+              <div class="email-subj">Subject</div>
+              <div class="email-h">Our biggest sale event of the year is finally here</div>
+              <div class="email-body">In today's fast-paced world, you really need to leverage our game-changing offers. Most teams struggle to find value, but actually we have everything for all your needs, so don't miss this unprecedented opportunity to elevate your experience and unlock amazing savings across the entire store, this weekend only, while stocks last, terms apply.</div>
+              <div class="email-cta">Shop the sale now!</div>
+            </div>
+            <button class="rz-run block-run">Run brand check ▶</button>
+          </div>
+          <div class="ck-report">
+            <div class="ck-wait">Press Run brand check.</div>
+            <div class="verdict rev"><span class="vmark no">&#10007;</span><span class="vlabel no">Off brand · 7 to fix</span></div>
+            <div class="ck-grp rev">Layout</div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>Logo below the minimum size</b> <span class="fixn">lost in the header</span></span></div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>A wall of text</b> <span class="fixn">no breathing room, restraint is the brand</span></span></div>
+            <div class="ck-grp rev">Copy</div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>Far too much copy</b> <span class="fixn">nobody reads to the end</span></span></div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>"In today's fast-paced world"</b> <span class="fixn">a thesis opener, start specific</span></span></div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>Slop words</b> <span class="fixn">"leverage", "game-changing", "unprecedented", "all your needs"</span></span></div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>"Most teams", "actually"</b> <span class="fixn">a generalisation and a hedge</span></span></div>
+            <div class="ck-row rev"><span class="tick no">&#10007;</span><span><b>"Shop now!"</b> <span class="fixn">exclamation mark, almost never</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap">
+    <div class="foot">
+      <h2>Want the Brand Guardian built for you?</h2>
+      <p>We build it around your brand and hand it over. Or talk it through with Paul first.</p>
+      <div class="foot-acts">
+        <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
+        <a class="btn-quiet" href="/">See the other products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isa, scoped to the Brand Guardian -->
+  <div class="isaw" id="isaw">
+    <div class="isa-h"><span class="dot2"></span><div><div class="ht">Isa</div><div class="hs">Brand Guardian</div></div><button class="x" id="isaX">✕</button></div>
+    <div class="isa-body" id="isaBody">
+      <div class="m bot">Hi, I'm Isa. This is the Brand Guardian: point it at any asset and it tells you what is off brand before it ships. Would you like to talk to Paul about building it for you? You can grab thirty minutes here: <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">cal.com/paul-dervan-mjfd50</a>.</div>
+    </div>
+    <div class="isa-note">Isa books your call on cal.com and sends Paul a note on what you want.</div>
+    <div class="isa-in"><textarea id="isaText" placeholder="Tell Isa about your brand..."></textarea><button id="isaSend">Send</button></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="1"/><path d="M3 8l3-4h12l3 4M12 8v11"/></svg>',
+  type:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>',
+  swatch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><circle cx="9" cy="9" r="1.4"/><path d="M5 17l4-4 3 3 3-4 4 5"/></svg>',
+  grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'Any asset arrives', end:'On brand, shipped', nodes:[
+    {type:'node', badge:'1', when:'Intake', icon:'look', title:'Classify the asset',
+      sub:'First it works out what it is holding, because the method is completely different per type.',
+      steps:['Read the file type and shape','<b>Text</b> gets read, an <b>image</b> gets its pixels sampled, a <b>web page</b> gets its code inspected','Only the checkers that fit the asset are run'],
+      check:'If the type is unknown it says so and skips, rather than guessing. No silent passes.'},
+    {type:'note', text:'<strong>The rule throughout:</strong> measure where there is a hard rule or a spec, judge the rest against the loaded brand profile. A model is never asked to eyeball a 4px shift.'},
+    {type:'node', badge:'2', when:'Checker', icon:'type', title:'Copywriting',
+      sub:'Two passes, deterministic first then judgment, in that order on purpose.',
+      steps:['<b>Gate:</b> two dozen rule groups, hundreds of banned words and phrases, each flag located by line and column','em dashes, slop words, clichés, generalisations, hedges, Title Case, you-vs-we, flat rhythm','<b>Judgment:</b> does it sound like the brand and sit in the positioning and messaging'],
+      check:'Hard rules are errors and fail the gate; softer, sometimes-right words are only warnings, so good copy is never false-failed. Every rule is lifted verbatim from your voice spec, none invented.'},
+    {type:'node', badge:'3', when:'Checker', icon:'swatch', title:'Visual guidelines',
+      sub:'For anything rendered. It measures what it can and reads the code for the rest.',
+      steps:['Render the asset, sort every pixel into a colour histogram','Match each significant colour to the nearest brand hex within tolerance, and report the on-palette share','Read the code for the never-list (rounded corners, gradients, shadows) and the fonts, and check logo size and clear space'],
+      check:'Anti-aliased edges and the brand\'s own dot-grid are whitelisted, so soft edges and texture never false-fail. A colour only fails once it covers a real share of the asset, not a stray pixel.'},
+    {type:'node', badge:'4', when:'Checker', icon:'grid', title:'Pixel fidelity',
+      sub:'For a resize or a rebuild, where there is an approved layout to hold to.',
+      steps:['Drive the ad to its settled frame on a virtual clock, so it is never measured mid-animation','Read every element\'s box and style straight off the live DOM','Diff each one to the approved per-size layout, element by element'],
+      check:'Tolerance is 4px, matched to the render pipeline\'s own drift, not a guess. The approved layout is the baseline; changing it needs an explicit re-baseline, so the goalposts can\'t move quietly.'},
+    {type:'node', badge:'5', when:'Aggregate', icon:'ship', title:'One verdict',
+      sub:'Every checker\'s findings come back to one place.',
+      steps:['Merge all findings, keep each one located with its fix','Pass or fail, with the count of what to fix','A non-zero exit makes it a gate, so it can sit in front of a publish or a deploy'],
+      check:'Nothing ships off brand. And the human stays in charge: the guardian flags the problem and proposes the fix, it never changes your work on its own.'}
+  ]},
+  uses:{ groups:[
+    {label:'Checkers', cls:'skill', items:['/brand-guardian (router)','/brand-guardian-copy','/brand-guardian-guidelines','/brand-guardian-visual','/ad-qa']},
+    {label:'Brand profile', items:['colour palette + hexes','the never-list','voice spec','messaging framework','positioning','distinctive assets','logo + clear-space','72% headline width','16px dot grid','Space Grotesk + JetBrains Mono']},
+    {label:'Measurement', items:['Playwright (DOM + render)','virtual-clock frame capture','canvas pixel sampler','WCAG contrast maths','per-element geometry diff','ffmpeg']},
+    {label:'Per asset', items:['the approved master','the captured layout spec','the brand kit','the asset under check']},
+    {label:'Memory', items:['learnings.md','per-brand config','corrections that stick']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='note'){
+      flow.appendChild(el(`<div class="note">${nd.text}</div>`));
+    } else if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.steps?`<div class="node-steps">${nd.steps.map(s=>`<div class="nstep">${s}</div>`).join('')}</div>`:''}
+            ${nd.check?`<div class="check"><span class="check-tag">Check + balance</span>${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+// Experience: each block has its own button; it audits only its own asset
+document.querySelectorAll('.block-run').forEach(btn=> btn.addEventListener('click', ()=>{
+  const block = btn.closest('.ck-block');
+  block.querySelectorAll('.ck-wait').forEach(w=> w.style.display='none');
+  const items=[...block.querySelectorAll('.rev')];
+  items.forEach(r=>r.classList.remove('in'));
+  void block.offsetWidth;
+  items.forEach((r,i)=> setTimeout(()=> r.classList.add('in'), 80 + i*55));
+  btn.textContent='Re-run brand check ▶';
+}));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Isa: opens itself after 4s and offers a chat with Paul about this product
+const isaw = document.getElementById('isaw'), isaText = document.getElementById('isaText'), isaBody = document.getElementById('isaBody');
+let isaClosed = false;
+function openIsa(){ if(!isaClosed) isaw.classList.add('open'); }
+document.getElementById('isaX').addEventListener('click', ()=>{ isaw.classList.remove('open'); isaClosed = true; });
+function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); isaBody.appendChild(m); isaBody.scrollTop=isaBody.scrollHeight; }
+document.getElementById('isaSend').addEventListener('click', ()=>{
+  const v = isaText.value.trim(); if(!v) return;
+  addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
+  setTimeout(()=> addMsg('bot', "Good question. The short version: you point it at any asset, it runs the right checks, and tells you what is off brand before it ships."), 450);
+  setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time: <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">cal.com/paul-dervan-mjfd50</a>."), 1100);
+});
+// setTimeout(openIsa, 4000); // auto-open paused 29 Jun - quiet launcher TBD
+</script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ad Resizer · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  .nav{ display:flex; align-items:center; gap:16px; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .back{ font-size:11px; letter-spacing:.5px; color:var(--muted); text-decoration:none; }
+  .nav .back:hover{ color:var(--text); }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .head .desc{ font-size:14px; line-height:1.7; color:var(--text); max-width:none; margin-top:18px; }
+  .head .desc b{ font-weight:400; color:var(--muted); }
+  /* the selling block (sell the thinking, not the mechanics) - one font size throughout, matched to the bio */
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS (boxed, blue fill - like capabilities-sequence) */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW (lifted verbatim from capabilities-sequence.html) ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+  .note{ width:100%; border:1px solid var(--border); border-left:3px solid var(--deep-sky); border-radius:10px; background:var(--bg); padding:9px 14px; font-size:11px; line-height:1.5; color:var(--text); }
+  .note strong{ font-weight:500; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: the resize demo - approved ad + prompt, the IAB set flows out */
+  .exp-lead{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:46px; }
+  .resizer{ display:flex; gap:32px; align-items:flex-start; }
+  @media(max-width:860px){ .resizer{ flex-direction:column; } .rz-arrow{ display:none; } }
+  .rz-source{ flex:0 0 320px; }
+  @media(max-width:860px){ .rz-source{ flex-basis:auto; width:100%; max-width:340px; } }
+  .rz-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:10px; }
+  .rz-prompt{ display:flex; align-items:center; gap:10px; margin-top:16px; border:1px solid var(--border); background:#fff; padding:11px 13px; }
+  .rz-caret{ color:var(--sky-blue); font-family:'JetBrains Mono',monospace; font-size:13px; }
+  .rz-cmd{ flex:1; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text); }
+  .rz-run{ background:var(--sky-blue); color:#fff; border:none; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; padding:7px 11px; }
+  .rz-run:hover{ background:var(--deep-sky); }
+  .rz-arrow{ align-self:center; color:var(--muted); font-size:22px; flex:none; }
+  .rz-out{ flex:1; min-width:0; min-height:300px; }
+  .rz-out-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:18px; }
+  /* cluster: left column of justified rows + a tall skyscraper rail on the right */
+  .cluster{ display:flex; gap:14px; align-items:stretch; }
+  .cluster-left{ flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; }
+  .out-row{ display:flex; gap:12px; align-items:flex-start; }
+  .col2{ display:flex; flex-direction:column; gap:12px; min-width:0; }
+  .ad{ flex-grow:1; flex-basis:0; min-width:0; display:flex; flex-direction:column; gap:6px; opacity:0; transform:translateY(12px); transition:opacity .45s ease-out, transform .45s ease-out; }
+  .col2 .ad{ flex:0 0 auto; }
+  .ad.in{ opacity:1; transform:none; }
+  .ad.hero{ opacity:1; transform:none; }
+  .ad .dim{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; color:var(--muted); }
+  .ad .frame{ width:100%; aspect-ratio:var(--ar); border:1px solid var(--border); background:#F5F4F0; overflow:hidden; box-shadow:var(--shadow); }
+  .ad .frame img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .sky{ flex:0 0 120px; align-self:stretch; }
+  .sky .frame{ flex:1; aspect-ratio:auto; }
+  @media (prefers-reduced-motion: reduce){ .ad{ opacity:1; transform:none; transition:none; } }
+
+  /* footer + secondary actions (small, NOT the main buttons) */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa widget (a CTA, opens docked) */
+  /* Isa: matched to the live site widget (chat-panel) - cream panel, lowercase "isa", square #F0F0EC bubbles, charcoal send */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+  .toast{ position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--deep-sky); color:var(--cream); font-size:12px; padding:11px 18px; opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:70; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="logo" href="/">/<span>Run</span>withfoxes</a><span class="sp"></span>
+    <a class="back" href="/">← all products</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Product</div>
+      <h1>Ad Resizer</h1>
+      <div class="sell">
+        <p class="sell-lead">Resizing an ad is all rules about where things go. The logo here, the headline there, the safe margins, the exact spot the eye should land. It is not glamorous work. It is essential work, and it has to be <b>pixel perfect</b>.</p>
+        <p class="sell-body">So we do the slow part properly. We decode your brand's own ads in forensic detail: your guidelines, how one frame hands off to the next, where the logo sits, where the copy breaks, down to the pixel. Then we train AI to reproduce that at every IAB size, <b>pixel perfect every time</b>. A 300x250 reads as deliberately as the billboard, because the same brand thinking is built into both.</p>
+        <p class="sell-rail"><b>Slow to build, fast forever after.</b> We hand it over and show your team how to run it. The full set of sizes comes back in minutes, with full control, no ongoing cost, and no designer needed to lay out each one. Built for teams who don't have the resources to do this by hand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">Here is the slow part paying off. One original ad, every IAB size back in seconds, each one laid out for where it runs. Press run.</div>
+      <div class="resizer">
+        <div class="rz-source">
+          <div class="rz-eyebrow">Your original ad</div>
+          <div class="ad hero"><span class="dim">1080 × 1080</span><div class="frame" style="width:320px;height:320px"><img src="assets/dayone/dayone-1080x1080.gif" alt="original ad"></div></div>
+          <div class="rz-prompt"><span class="rz-caret">›</span><span class="rz-cmd">resize these for all IAB versions</span><button class="rz-run" id="rzRun">Run ▶</button></div>
+        </div>
+        <div class="rz-arrow">→</div>
+        <div class="rz-out">
+          <div class="rz-out-lbl">The full IAB set</div>
+          <div class="cluster" id="outGrid">
+            <div class="cluster-left">
+              <div class="out-row">
+                <div class="ad" style="flex-grow:3.88;--ar:970/250"><span class="dim">970 × 250</span><div class="frame"><img src="assets/dayone/dayone-970x250.gif" alt=""></div></div>
+              </div>
+              <div class="out-row">
+                <div class="ad" style="flex-grow:1.58;--ar:640/480"><span class="dim">640 × 480</span><div class="frame"><img src="assets/dayone/dayone-640x480.gif" alt=""></div></div>
+                <div class="col2" style="flex:1 1 0">
+                  <div class="ad" style="--ar:300/250"><span class="dim">300 × 250</span><div class="frame"><img src="assets/dayone/dayone-300x250.gif" alt=""></div></div>
+                  <div class="ad" style="--ar:320/100"><span class="dim">320 × 100</span><div class="frame"><img src="assets/dayone/dayone-320x100.gif" alt=""></div></div>
+                </div>
+              </div>
+              <div class="out-row">
+                <div class="ad" style="flex-grow:8.09;--ar:728/90"><span class="dim">728 × 90</span><div class="frame"><img src="assets/dayone/dayone-728x90.gif" alt=""></div></div>
+              </div>
+            </div>
+            <div class="ad sky"><span class="dim">160 × 600</span><div class="frame"><img src="assets/dayone/dayone-160x600.gif" alt=""></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap">
+    <div class="foot">
+      <h2>Want the Ad Resizer built for you?</h2>
+      <p>We build it around your brand and hand it over. Or talk it through with Paul first.</p>
+      <div class="foot-acts">
+        <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
+        <a class="btn-quiet" href="/">See the other products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isa, scoped to the ad maker -->
+  <div class="isaw" id="isaw">
+    <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
+    <div class="isa-body" id="isaBody">
+      <div class="m bot">Hi, I'm Isa. This is the Ad Resizer: approve one ad, get the full set of sizes, on brand. Would you like to talk to Paul about building it for you? You can grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+    </div>
+    <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
+  </div>
+  <div class="toast" id="toast">Copied. Paste it into ChatGPT or Claude.</div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/><circle cx="12" cy="12" r="3"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="1"/><path d="M3 8l3-4h12l3 4M12 8v11"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>'
+};
+
+// the ad maker, structured exactly like a capabilities-sequence module: three tabs, exp+bts as flows, uses as chips
+const TABS = {
+  exp:{ start:'You start', end:'Set live', nodes:[
+    {type:'node', badge:'1', when:'You bring it', icon:'brief', title:'A brief', sub:'What you need, in plain words.'},
+    {type:'node', badge:'2', when:'We make it', icon:'make', title:'Useful options come back', sub:'Video, brand, animated and static. All on brand.'},
+    {type:'node', badge:'3', when:'Your call', icon:'gate', title:'You approve', sub:'Reviewed at actual size, not a big preview.',
+      check:'<strong>Then it ships</strong> in every size you need.'}
+  ]},
+  bts:{ start:'Your original ad', end:'Yours to run, forever', nodes:[
+    {type:'node', badge:'1', when:'In', icon:'brief', title:'Your original ad', sub:'Your real ad and brand guidelines.'},
+    {type:'node', badge:'2', when:'Decode', icon:'look', title:'Pulled apart pixel by pixel', sub:'Where the logo sits, where the copy breaks, the margins, how one frame hands to the next.'},
+    {type:'branch', lanes:[
+      {cls:'keep', pill:'Box and tall', text:'The full chart, where a ring fits.'},
+      {cls:'hold', pill:'Strips', text:'Reduced to the one stat, <strong>92%</strong>.'}
+    ]},
+    {type:'node', badge:'3', when:'Train', icon:'make', title:'AI trained to your rules', sub:'It reproduces your layout at every IAB size, pixel perfect.'},
+    {type:'node', badge:'4', when:'Test', icon:'gate', title:'Checked at true size', sub:'Every size measured against the spec until it matches pixel for pixel.',
+      check:'<strong>Nothing ships</strong> until it is pixel perfect.'},
+    {type:'node', badge:'5', when:'Hand over', icon:'link', title:'Yours to run', sub:'We show your team how, then it is theirs. Speed forever after.'}
+  ]},
+  uses:{ groups:[
+    {label:'Skills', cls:'skill', items:['/grumpyfox-chart-resizer','/banner-machine','/ad-resizer-builder','format skills']},
+    {label:'Rules', items:['IAB sizes','brand spec','/voice']},
+    {label:'Tools', items:['Playwright + ffmpeg']},
+    {label:'Data', items:['your original ad','brand kit']},
+    {label:'Memory', items:['learnings.md']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='note'){
+      flow.appendChild(el(`<div class="note">${nd.text}</div>`));
+    } else if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+// render the two flow/chip panels (Experience is the static resize demo)
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+// Experience: the resize demo - the IAB set flows out of the approved ad
+const outGrid = document.getElementById('outGrid');
+function runResize(){
+  const ads = outGrid.querySelectorAll('.ad');
+  ads.forEach(a=>a.classList.remove('in'));
+  void outGrid.offsetWidth;
+  ads.forEach((a,i)=> setTimeout(()=> a.classList.add('in'), 140 + i*150));
+}
+const rzRun = document.getElementById('rzRun');
+if(rzRun) rzRun.addEventListener('click', runResize);
+
+// elegant staggered reveal of a flow when its tab is opened
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Isa: opens itself after 4s and offers a chat with Paul about this product
+const isaw = document.getElementById('isaw'), isaText = document.getElementById('isaText'), isaBody = document.getElementById('isaBody');
+let isaClosed = false;
+function openIsa(){ if(!isaClosed) isaw.classList.add('open'); }
+document.getElementById('isaX').addEventListener('click', ()=>{ isaw.classList.remove('open'); isaClosed = true; });
+function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); isaBody.appendChild(m); isaBody.scrollTop=isaBody.scrollHeight; }
+document.getElementById('isaSend').addEventListener('click', ()=>{
+  const v = isaText.value.trim(); if(!v) return;
+  addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
+  setTimeout(()=> addMsg('bot', "Good question. The short version: you approve one ad, we resize it to every IAB size, on brand."), 450);
+  setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
+});
+// setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
+</script>
+</body>
+</html>

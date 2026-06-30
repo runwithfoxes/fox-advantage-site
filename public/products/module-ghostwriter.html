@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ghostwriter · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* full site nav (the new product-page standard) */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: the 95:5 piece big (Substack), then the same piece everywhere */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:30px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .gw-show{ display:flex; gap:20px; align-items:stretch; }
+  @media(max-width:860px){ .gw-show{ flex-direction:column; } }
+  /* hero: the Substack article, big, links out */
+  .gw-hero{ flex:1 1 56%; min-width:0; display:flex; flex-direction:column; }
+  .gw-frame{ display:block; border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; background:#fff; }
+  .gw-frame .shot{ display:block; width:100%; height:600px; background-size:cover; background-position:top center; }
+  @media(max-width:860px){ .gw-frame .shot{ height:440px; } }
+  .gw-cap{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 16px; border:1px solid var(--border); border-top:none; background:var(--bg); }
+  .gw-cap .t{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text); }
+  .gw-cap .lnk{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--sky-blue); text-decoration:none; white-space:nowrap; }
+  .gw-cap .lnk:hover{ text-decoration:underline; }
+  /* spread: the same piece, everywhere else */
+  .gw-spread{ flex:1 1 44%; min-width:0; display:flex; flex-direction:column; gap:12px; }
+  .gw-spread-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-bottom:2px; }
+  .gw-mini{ flex:1; display:flex; text-decoration:none; color:inherit; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); overflow:hidden; min-height:128px; transition:transform .2s ease-out; }
+  .gw-mini:hover{ transform:translateY(-2px); }
+  .gw-mini .pic{ flex:0 0 44%; background-size:cover; background-position:top center; border-right:1px solid var(--border); }
+  .gw-mini .pic.bottom{ background-position:bottom center; }
+  .gw-mini .meta{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:14px 16px; }
+  .gw-mini .meta .ch{ font-family:'Space Grotesk',sans-serif; font-size:15px; color:var(--text); }
+  .gw-mini .meta .tag{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; }
+  .gw-mini .meta .tag.post{ color:var(--sky-blue); }
+  .gw-mini .meta .tag.auto{ color:var(--fox-orange); }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa: matched to the live site widget */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="logo" href="/">/<span>Run</span>withfoxes</a>
+    <span class="sp"></span>
+    <div class="links">
+      <a class="nlink" href="/">/products</a>
+      <a class="nlink" href="/">/</a>
+      <a class="nlink" href="/book">/book</a>
+      <a class="nlink cta" href="/contact">/contact</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Product</div>
+      <h1>Ghostwriter</h1>
+      <div class="sell">
+        <p class="sell-lead">Your experts know things your customers would pay to learn. <b>Almost none of it leaves the building.</b></p>
+        <p class="sell-body">Writing something worth reading is slow, and the people who know the most have the least time to do it. It is also hard to write about something you know inside out. The jargon feels normal, and you stop noticing what the reader does not know. Ghostwriter is built using your brand positioning, your tone and your target audience. It helps you find ideas relevant to you, then <b>turns your point of view into your words</b>, ready as a long piece, posts, a chart or a newsletter.</p>
+        <p class="sell-rail">The thinking stays yours, and you stand behind every word. It does the work you have no time for, not the thinking you are paid for. <b>We build it around your experts and hand it over.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">Paul spoke this article to the ghostwriter by voice, through the Monologue app. It wrote it in his voice and built the charts in his brand. <b>Here is the published piece, and the same thing everywhere it landed.</b></div>
+      <div class="gw-show">
+        <div class="gw-hero">
+          <a class="gw-frame" href="https://runwithfoxes.substack.com/p/the-955-rule-the-day-one-list" target="_blank" rel="noopener">
+            <span class="shot" style="background-image:url(assets/ghostwriter/substack.png)"></span>
+          </a>
+          <div class="gw-cap">
+            <span class="t">The 95:5 Rule + the Day One list, on Substack</span>
+            <a class="lnk" href="https://runwithfoxes.substack.com/p/the-955-rule-the-day-one-list" target="_blank" rel="noopener">Read the original →</a>
+          </div>
+        </div>
+        <div class="gw-spread">
+          <div class="gw-spread-lbl">The same piece, everywhere else</div>
+          <a class="gw-mini" href="https://www.linkedin.com/posts/pauldervan_most-of-your-target-customers-are-not-buying-activity-7470936174715494401-DAH4" target="_blank" rel="noopener">
+            <span class="pic" style="background-image:url(assets/ghostwriter/linkedin.png)"></span>
+            <span class="meta"><span class="ch">LinkedIn</span><span class="tag post">You posted it →</span></span>
+          </a>
+          <div class="gw-mini">
+            <span class="pic" style="background-image:url(assets/ghostwriter/email.png)"></span>
+            <span class="meta"><span class="ch">Email newsletter</span><span class="tag auto">Sent by Substack, automatically</span></span>
+          </div>
+          <a class="gw-mini" href="/" target="_blank" rel="noopener">
+            <span class="pic bottom" style="background-image:url(assets/ghostwriter/website.png)"></span>
+            <span class="meta"><span class="ch">Your website</span><span class="tag auto">Added by Substack, automatically</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap">
+    <div class="foot">
+      <h2>Want Ghostwriter built for you?</h2>
+      <p>Your experts, your voice, yours to run. Or talk it through with Paul first.</p>
+      <div class="foot-acts">
+        <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
+        <a class="btn-quiet" href="/">See the other products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isa, scoped to Ghostwriter -->
+  <div class="isaw" id="isaw">
+    <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
+    <div class="isa-body" id="isaBody">
+      <div class="m bot">Hi, I'm Isa. This is Ghostwriter: it gets your experts' thinking out of their heads and published in their own voice, without taking their time. Would you like to talk to Paul about building it for you? You can grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+    </div>
+    <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'Your expertise', end:'Approved, paste-ready, on your plan', nodes:[
+    {type:'node', badge:'1', when:'Set up once', icon:'brief', title:'Your messaging framework, then your voice', sub:'Your position, tone and who you talk to. Then trained on your real posts, with the slop guide loaded.'},
+    {type:'branch', lanes:[
+      {cls:'keep', pill:'Talk it out', text:'Speak it by voice through Monologue. The transcript becomes your article, in <strong>your</strong> words.'},
+      {cls:'hold', pill:'Ten ideas', text:'Claude searches your category and rivals this week. Ten ideas, each <strong>sourced</strong>.'}
+    ]},
+    {type:'node', badge:'2', when:'Your call', icon:'look', title:'You pick', sub:'Which ideas to run. Nothing gets written that you did not choose.'},
+    {type:'node', badge:'3', when:'In your voice', icon:'make', title:'Written the way you would write it', sub:'Your phrasing and tone, the jargon stripped out, the context a reader needs put back in.',
+      check:'<strong>Voice + slop pass:</strong> your bans enforced, no AI tells, checked against your own loved-posts standard.'},
+    {type:'node', badge:'4', when:'Made by Claude', icon:'image', title:'The images, charts and short video', sub:'Claude Code makes each one: images through Dray on Seedream, charts in Chart.js, short video through Seedance and Kling.'},
+    {type:'node', badge:'5', when:'It travels', icon:'ship', title:'Cut to travel', sub:'One thought becomes a LinkedIn post, a quote card, and the long version as a newsletter.'},
+    {type:'node', badge:'6', when:'You publish', icon:'share', title:'You post it, then Substack does the rest', sub:'You post to LinkedIn and Substack yourself. From Substack it emails your subscribers and lands on your website, automatically.',
+      check:'<strong>You approve every word and every asset</strong> before any of it goes out.'}
+  ]},
+  uses:{ groups:[
+    {label:'Skills', cls:'skill', items:['/sarah-ideas','voice writers','/linkedin-post','/dray','/fox-static','/fox-video','/branded-page','/substack']},
+    {label:'Rules', items:['the messaging framework','your brand voice','the slop guide + AI-detection pass','sourced-or-drop, never invent a hook','the usefulness test','/voice']},
+    {label:'Tools', items:['Monologue (voice)','web search','their own Claude','Seedream 4.5 on Replicate','Chart.js + Playwright','Seedance / Kling (fal.ai)','ffmpeg']},
+    {label:'Data', items:['your position + ICP','category context','competitor watchlist','your past posts']},
+    {label:'Publish', items:['LinkedIn (you post)','Substack (you post)','Substack auto: email + website']},
+    {label:'Memory', items:['loved / noped loop','your evergreen themes','voice calibration']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Isa
+const isaw = document.getElementById('isaw'), isaText = document.getElementById('isaText'), isaBody = document.getElementById('isaBody');
+let isaClosed = false;
+function openIsa(){ if(!isaClosed) isaw.classList.add('open'); }
+document.getElementById('isaX').addEventListener('click', ()=>{ isaw.classList.remove('open'); isaClosed = true; });
+function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); isaBody.appendChild(m); isaBody.scrollTop=isaBody.scrollHeight; }
+document.getElementById('isaSend').addEventListener('click', ()=>{
+  const v = isaText.value.trim(); if(!v) return;
+  addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
+  setTimeout(()=> addMsg('bot', "Good question. The short version: your people bring the thinking, Ghostwriter does the writing and the formatting they have no time for, in their voice. Then we hand it over."), 450);
+  setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
+});
+// setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
+</script>
+</body>
+</html>

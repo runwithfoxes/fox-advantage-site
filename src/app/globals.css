@@ -5153,3 +5153,72 @@ a.project-card {
 }
 .hpx-footer a:hover { color: #3A7CA5; }
 .hpx-footer-sep { color: #c2c8cc; }
+
+/* ====================================================================
+   PRODUCTS STOREFRONT GRID
+   Ported from wireframes/homepage-storefront-branded.html.
+   Namespaced under .sf-store (+ sf- prefixed classes) so nothing
+   collides with existing global .card / .grid / .filters rules.
+   Brand tokens scoped locally (live --orange is sky-blue here).
+   ==================================================================== */
+.sf-store {
+  --sf-cream: #FAFAF8;
+  --sf-sky: #3A7CA5;
+  --sf-deep: #1A3A4E;
+  --sf-border: #E0E0DC;
+  --sf-text: #1D1B1B;
+  --sf-muted: #8A8A85;
+  --sf-card-hover: #F5F5F0;
+  --sf-orange: #F47521;
+  --sf-mono: var(--mono);
+}
+.sf-store .sf-shop { padding: 58px 0 6px; }
+.sf-store .sf-shop-kick { font-size: 13px; letter-spacing: 1px; color: var(--sf-sky); }
+
+/* filter bar - blue when active */
+.sf-store .sf-fbar { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--sf-border); margin: 24px 0 26px; }
+.sf-store .sf-fbtn {
+  background: none; border: none; border-right: 1px solid var(--sf-border); cursor: pointer;
+  font-family: var(--sf-mono); font-size: 11px; font-weight: 400; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--sf-muted); padding: 8px 15px; transition: background .2s, color .2s;
+}
+.sf-store .sf-fbtn:last-child { border-right: none; }
+.sf-store .sf-fbtn:hover { color: var(--sf-text); }
+.sf-store .sf-fbtn.active { background: var(--sf-sky); color: var(--sf-cream); }
+
+.sf-store .sf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 860px) { .sf-store .sf-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .sf-store .sf-grid { grid-template-columns: 1fr; } }
+
+.sf-store .sf-card {
+  border: 1px solid var(--sf-border); background: var(--sf-cream); text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; transition: border-color .3s, background .3s;
+}
+.sf-store .sf-card:hover { border-color: var(--sf-sky); background: var(--sf-card-hover); }
+.sf-store .sf-card-vis {
+  position: relative; height: 210px; border-bottom: 1px solid var(--sf-border); background: #F2EFE6;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.sf-store .sf-vis { display: block; width: 100%; height: 100%; }
+.sf-store .sf-vis svg { width: 100%; height: 100%; }
+
+/* offer/status badges - stack top-right */
+.sf-store .sf-card-badges { position: absolute; top: 8px; right: 8px; z-index: 2; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.sf-store .sf-card-badge { font-family: var(--sf-mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 7px; color: #FAFAF8; }
+.sf-store .sf-card-badge.new { background: var(--sf-sky); }
+.sf-store .sf-card-badge.bundled { background: var(--sf-deep); }
+.sf-store .sf-card-badge.free { background: var(--sf-orange); }
+.sf-store .sf-card-badge.beta { background: #7A7A74; }
+
+.sf-store .sf-card-bd { padding: 15px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+.sf-store .sf-tagb { font-family: var(--sf-mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sf-orange); }
+.sf-store .sf-card-nm { display: flex; align-items: center; gap: 9px; }
+.sf-store .sf-ci { width: 16px; height: 16px; color: var(--sf-sky); flex: none; }
+.sf-store .sf-ci svg { width: 100%; height: 100%; display: block; }
+.sf-store .sf-card-nm h3 { font-family: var(--sf-mono); font-weight: 500; font-size: 16px; letter-spacing: -.2px; color: var(--sf-text); line-height: 1.25; }
+.sf-store .sf-card-ben { font-size: 12.5px; line-height: 1.55; color: var(--sf-muted); flex: 1; }
+.sf-store .sf-card-cta { font-family: var(--sf-mono); font-size: 11px; color: var(--sf-sky); letter-spacing: .3px; margin-top: 2px; }
+.sf-store .sf-card-cta .arr { display: inline-block; transition: transform .2s; }
+.sf-store .sf-card:hover .sf-card-cta .arr { transform: translateX(4px); }
+.sf-store .sf-card.soon .sf-card-vis { opacity: .9; }
+.sf-store .sf-card.soon .sf-card-cta { color: var(--sf-muted); }

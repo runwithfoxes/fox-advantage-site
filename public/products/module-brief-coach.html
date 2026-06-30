@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brief Coach · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* full site nav (the new product-page standard) */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: the metric-levels pyramid (left) + the interactive coaching chat (right) */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:34px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .bc-show{ display:flex; gap:30px; align-items:stretch; }
+  @media(max-width:900px){ .bc-show{ flex-direction:column; } .bc-chat{ flex-basis:auto !important; max-width:none !important; } }
+
+  /* LEFT: the metric-levels pyramid (the levels of marketing metrics, from runwithfoxes.com) */
+  .bc-pyr-col{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; }
+  .bc-pyr-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-bottom:6px; }
+  .bc-pyr-sub{ font-size:12px; line-height:1.6; color:var(--muted); margin-bottom:20px; }
+  .bc-pyr{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .tier{ width:100%; padding:14px 18px; color:#fff; border:1px solid rgba(26,58,78,.16); transition:opacity .35s ease, transform .35s ease, box-shadow .35s ease; opacity:.55; }
+  .tier.t-commercial{ width:58%; background:#2E5645; }
+  .tier.t-behaviour{ width:71%; background:#3E6E57; }
+  .tier.t-memory{ width:84%; background:#E0660F; }
+  .tier.t-comms{ width:92%; background:#C99457; color:#fff; }
+  .tier.t-activity{ width:100%; background:#B9A98F; color:#fff; }
+  .bc-pyr.idle .tier{ opacity:1; }                 /* before the session starts, all legible */
+  .tier.lit{ opacity:1; transform:translateY(-1px); box-shadow:0 5px 18px rgba(29,27,27,.22); }
+  .tier.done{ opacity:.9; }
+  .t-name{ font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:500; }
+  .t-metrics{ font-family:'JetBrains Mono',monospace; font-size:10.5px; line-height:1.5; margin-top:4px; opacity:.92; }
+  .bc-pyr-foot{ margin-top:16px; font-size:11.5px; line-height:1.65; color:var(--muted); }
+  .bc-pyr-foot b{ color:var(--deep-sky); font-weight:500; }
+
+  /* RIGHT: the coaching chat, styled like the matched Isa widget, revealed step by step */
+  .bc-chat{ flex:0 0 460px; max-width:460px; min-width:0; min-height:478px; display:flex; flex-direction:column; border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); }
+  .bc-chat-h{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .bc-chat-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .bc-chat-h .badge-live{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); }
+  .bc-chat-body{ display:flex; flex-direction:column; gap:14px; padding:18px; flex:1; overflow-y:auto; }
+  /* a turn = speaker label + bubble, aligned by who is talking, revealed on step */
+  .bc-turn2{ display:flex; flex-direction:column; max-width:90%; opacity:0; transform:translateY(10px); transition:opacity .4s ease-out, transform .4s ease-out; }
+  .bc-turn2.shown{ opacity:1; transform:none; }
+  .bc-turn2.bot{ align-self:flex-start; align-items:flex-start; }
+  .bc-turn2.you{ align-self:flex-end; align-items:flex-end; }
+  .bc-who{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin:0 2px 4px; }
+  .bc-turn2.bot .bc-who{ color:var(--sky-blue); }
+  .bc-msg{ font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:300; line-height:1.65; padding:11px 15px; }
+  .bc-msg.bot{ background:#F0F0EC; color:var(--text); }
+  .bc-msg.you{ background:var(--sky-blue); color:#fff; white-space:pre-wrap; }
+  .bc-msg .em{ color:var(--deep-sky); font-weight:500; }
+  .bc-msg.bot .pin{ display:block; width:fit-content; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--sky-blue); border:1px solid rgba(58,124,165,.4); padding:3px 7px; margin-bottom:9px; }
+  /* the step control, the Ad-Resizer "Run" pattern */
+  .bc-chat-in{ display:flex; align-items:center; gap:12px; padding:13px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .bc-step{ background:var(--sky-blue); color:#fff; border:none; cursor:pointer; padding:11px 18px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .bc-step:hover{ background:var(--deep-sky); }
+  .bc-step:disabled{ background:var(--border); color:var(--muted); cursor:default; }
+  .bc-progress{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.5px; color:var(--muted); }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa: matched to the live site widget */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a class="logo" href="/">/<span>Run</span>withfoxes</a>
+    <span class="sp"></span>
+    <div class="links">
+      <a class="nlink" href="/">/products</a>
+      <a class="nlink" href="/">/</a>
+      <a class="nlink" href="/book">/book</a>
+      <a class="nlink cta" href="/contact">/contact</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Product</div>
+      <h1>Brief Coach</h1>
+      <div class="sell">
+        <p class="sell-lead">A brief is the plan behind a piece of marketing. <b>When the brief is weak, the work that comes out is weak too.</b></p>
+        <p class="sell-body">Brief Coach reads your brief and does what a good strategist would: it asks the hard questions until the plan is clear and worth doing. <b>Why are we really doing this, and what would success actually look like? What do we want to be known for? What can only we say? And can the team actually make it?</b> It uses your own goals, numbers and brand, so the questions fit your business, not generic advice. Twenty years of marketing experience, built into the questions it asks.</p>
+        <p class="sell-rail">It pushes, but it never writes the brief for you and never just hands you a yes or no. The thinking stays yours. <b>We build it around your business and hand it over.</b></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">A coaching session, in full. A marketer brings a credible-looking brief, and the coach pressure-tests it: <b>where the objective and KPIs sit on the ladder of marketing metrics, which of them is a commercial outcome and which isn't, and what's missing.</b> Press the button to take each turn, and watch which rung the coaching is on. (Illustrative, not a real client.)</div>
+      <div class="bc-show">
+        <!-- LEFT: the levels of marketing metrics -->
+        <div class="bc-pyr-col">
+          <div class="bc-pyr-lbl">The ladder of marketing metrics</div>
+          <div class="bc-pyr-sub">Every goal sits on one of these. Only the top is a commercial outcome; only the bottom is an output, not an outcome. The coach lights the rung it's working on.</div>
+          <div class="bc-pyr idle" id="bcPyr">
+            <div class="tier t-commercial" data-lvl="commercial"><div class="t-name">Commercial</div><div class="t-metrics">Profit · Revenue</div></div>
+            <div class="tier t-behaviour" data-lvl="behaviour"><div class="t-name">Customer behaviour</div><div class="t-metrics">Penetration · Frequency · Share of wallet</div></div>
+            <div class="tier t-memory" data-lvl="memory"><div class="t-name">Memory</div><div class="t-metrics">Salience · Consideration · Coming to mind</div></div>
+            <div class="tier t-comms" data-lvl="comms"><div class="t-name">Communication</div><div class="t-metrics">Reach · Engagement · Registrations</div></div>
+            <div class="tier t-activity" data-lvl="activity"><div class="t-name">Activity</div><div class="t-metrics">Budget spent · Impressions bought · Assets shipped</div></div>
+          </div>
+          <div class="bc-pyr-foot">The brief measured only the bottom two rungs. <b>The coaching walks it up.</b></div>
+        </div>
+        <!-- RIGHT: the coaching, revealed step by step -->
+        <div class="bc-chat">
+          <div class="bc-chat-h"><span class="ht">brief coach</span><span class="badge-live">A coaching session</span></div>
+          <div class="bc-chat-body" id="bcBody">
+            <div class="bc-turn2 you shown">
+              <span class="bc-who">You, a marketer</span>
+              <div class="bc-msg you">I'm briefing a launch campaign for our new product. The objective is to build awareness and consideration with our target buyers. The KPIs are 2 million in reach, a 4% engagement rate, and 1,500 registrations for the launch webinar. Can you pressure-test it before it goes to the agency?</div>
+            </div>
+          </div>
+          <div class="bc-chat-in">
+            <button class="bc-step" id="bcStep">Coach it ▶</button>
+            <span class="bc-progress" id="bcProg">Step 1 of 13</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="wrap">
+    <div class="foot">
+      <h2>Want Brief Coach built for you?</h2>
+      <p>We build it around your strategy, your positioning and your metrics, then hand it over. Or talk it through with Paul first.</p>
+      <div class="foot-acts">
+        <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
+        <a class="btn-quiet" href="/">See the other products</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Isa, scoped to Brief Coach -->
+  <div class="isaw" id="isaw">
+    <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
+    <div class="isa-body" id="isaBody">
+      <div class="m bot">Hi, I'm Isa. Brief Coach reads your marketing brief and asks the sharp questions a good strategist would, so the plan comes out clear and worth doing. It never writes the brief for you. Would you like to talk to Paul about building it for your team? You can grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+    </div>
+    <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 18.5H14a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h5.5"/></svg>',
+  target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>',
+  compass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 11 11 8.5 15.5 13 13"/></svg>',
+  bulb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M9.5 14a5 5 0 1 1 5 0c-.6.4-1 1-1 1.7V16h-3v-.3c0-.7-.4-1.3-1-1.7z"/></svg>',
+  wrench:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0 4.6 4.6L21 12.5 12.5 21l-1.9-1.9A3.5 3.5 0 0 0 6 14.5L4.1 12.6 12.6 4.1z"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'Your brief comes in', end:'A clear brief, ready to act on', nodes:[
+    {type:'node', badge:'1', when:'First', icon:'route', title:'Work out what kind of brief it is', sub:'A quick plan, a full campaign, a one-off job. What it is decides which questions matter and how deep to go. It says so before it starts.'},
+    {type:'node', badge:'2', when:'Then it asks', icon:'target', title:'Why are we really doing this?', sub:'What is the actual goal, and what number would tell you it worked? Busy-work like reach and posts is not a result.'},
+    {type:'node', badge:'3', when:'Then', icon:'compass', title:'What do we want to be known for?', sub:'Checked against what your brand already stands for, so the work builds on it instead of pulling against it.'},
+    {type:'node', badge:'4', when:'Then', icon:'bulb', title:'What can only we say?', sub:'The one true thing a rival could not put their name to. Drawn from you, never made up.'},
+    {type:'node', badge:'5', when:'Then', icon:'wrench', title:'Can the team actually make it?', sub:'Every piece of work spelled out clearly enough that whoever builds it has no follow-up questions.',
+      check:'<strong>It won\'t settle for a weak answer.</strong> It says why an answer falls short, then asks again. It does not just move on.'},
+    {type:'node', badge:'6', when:'Back to you', icon:'share', title:'Handed back stronger, with the gaps named', sub:'A clear read on what holds up and what still needs work, with the exact thing to fix before the work can start.',
+      check:'<strong>It never writes the brief for you and never just gives a yes or no.</strong> The thinking stays yours.'}
+  ]},
+  uses:{ groups:[
+    {label:'Skills', cls:'skill', items:['/brief-coach','marketing effectiveness','brand positioning','customer insight','making it real']},
+    {label:'The four questions', cls:'skill', items:['why are we doing this?','what do we want to be known for?','what can only we say?','can we make it?']},
+    {label:'Rules', items:['works through the four questions in order','never settles for a weak answer','never makes up a fact or a number','asks for a real, checkable goal','stays neutral, never a yes or no','hands the thinking back to you']},
+    {label:'Data', items:['your goals and numbers','your brand and positioning','your messaging','how you measure success']},
+    {label:'Memory', items:['what your brand stands for','the gaps still open','what it already asked you']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+/* ===== Experience: the coaching session, revealed one step at a time, lighting the metric levels ===== */
+const STEPS = [
+  {who:'bot', lvl:'comms', html:`Start with the KPIs, before the creative. Reach, engagement and registrations are real and trackable, but they're all <span class="em">communication</span> metrics. They tell you people saw the work and reacted to it. They don't tell you the business moved. None of them is a commercial outcome.`},
+  {who:'you', lvl:null, html:`Where should they sit?`},
+  {who:'bot', lvl:'commercial', html:`<span class="pin">The ladder</span>Marketing goals stack up in rungs. At the top, commercial: profit and revenue, the only true business goal. Below it, customer behaviour: more buyers, buying more often, or spending more each time. Below that, memory: whether you come to mind when someone is in the market. Then communication, where your three KPIs sit. At the bottom, activity: budget spent, impressions bought, assets shipped, the spend and effort going in, not an outcome coming out. Your brief is measuring the bottom two rungs. What does this launch need to move, commercially?`},
+  {who:'you', lvl:null, html:`New customers for the product.`},
+  {who:'bot', lvl:'behaviour', html:`That is customer behaviour, winning new buyers, one rung below commercial. This campaign can own that. It needs a number you can be judged on. It could be 5,000 new customers, or penetration from 12% to 14%, or £2m of new revenue influenced. Which one does this campaign own, and what is the figure?`},
+  {who:'you', lvl:null, html:`5,000 new customers in the first quarter after launch.`},
+  {who:'bot', lvl:'behaviour', html:`<span class="pin">The number</span>Test it before it goes in. Is there a benchmark behind 5,000, a past launch or a comparable, or is it a first estimate? And if it comes in 10% short, did the campaign fail? If you would still call 4,500 a win, then 5,000 is not the real bar.`},
+  {who:'you', lvl:null, html:`It's a first estimate. We haven't launched anything quite like this.`},
+  {who:'bot', lvl:null, html:`Then don't invent a benchmark, and don't drop the target. Write it in plainly: no prior benchmark, 5,000 is a best estimate, it may be wrong. That makes the uncertainty a decision now, before the spend, instead of a number people treat as fact later.`},
+  {who:'you', lvl:null, html:`Fair. I'll flag it as an estimate.`},
+  {who:'bot', lvl:'memory', html:`<span class="pin">The gap</span>One thing is still missing. Your KPIs cover communication, but nothing covers <span class="em">memory</span>, whether the new product actually comes to mind for these buyers afterwards. That is what tells you if the launch built anything lasting. Right now there is no measure for it.`},
+  {who:'you', lvl:null, html:`So: 5,000 new customers in Q1, flagged as an estimate, plus a measure of whether the product's coming to mind.`},
+  {who:'bot', lvl:'commercial', html:`That is a brief with a spine. A commercial behaviour at the top with a number you can be judged on, the missing benchmark flagged, and a memory measure underneath. Your reach and registrations stay, as the things you watch on the way, not the goal itself. You wrote it, not me. I gave you the ladder and the questions.`}
+];
+const bcBody = document.getElementById('bcBody'), bcPyr = document.getElementById('bcPyr');
+const bcStep = document.getElementById('bcStep'), bcProg = document.getElementById('bcProg');
+let bcAt = 0; const bcSeen = new Set();
+const bcBaseCount = bcBody ? bcBody.children.length : 0;   // brief card + opening question stay on replay
+function lightLevel(lvl){
+  if(!lvl) return;
+  bcPyr.classList.remove('idle');
+  bcSeen.add(lvl);
+  bcPyr.querySelectorAll('.tier').forEach(t=>{
+    const l = t.dataset.lvl;
+    t.classList.toggle('lit', l===lvl);
+    t.classList.toggle('done', l!==lvl && bcSeen.has(l));
+  });
+}
+function bcAdvance(){
+  if(bcAt>=STEPS.length) return;
+  const s = STEPS[bcAt];
+  const turn = el(`<div class="bc-turn2 ${s.who}"><span class="bc-who">${s.who==='you'?'You':'Brief Coach'}</span><div class="bc-msg ${s.who}">${s.html}</div></div>`);
+  bcBody.appendChild(turn);
+  requestAnimationFrame(()=> turn.classList.add('shown'));
+  bcBody.scrollTop = bcBody.scrollHeight;
+  lightLevel(s.lvl);
+  bcAt++;
+  bcProg.textContent = bcAt>=STEPS.length ? 'End of session' : ('Step '+(bcAt+1)+' of '+STEPS.length);
+  if(bcAt===1) bcStep.textContent = 'Next ▶';
+  if(bcAt>=STEPS.length){ bcStep.textContent = 'Replay'; bcStep.dataset.done='1'; }
+}
+if(bcStep) bcStep.addEventListener('click', ()=>{
+  if(bcStep.dataset.done){  // reset to the opening state
+    while(bcBody.children.length > bcBaseCount) bcBody.lastElementChild.remove();
+    bcPyr.querySelectorAll('.tier').forEach(t=>t.classList.remove('lit','done'));
+    bcPyr.classList.add('idle'); bcSeen.clear(); bcAt=0; bcStep.dataset.done='';
+    bcStep.textContent='Coach it ▶'; bcProg.textContent='Step 1 of '+STEPS.length; return;
+  }
+  bcAdvance();
+});
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Isa
+const isaw = document.getElementById('isaw'), isaText = document.getElementById('isaText'), isaBody = document.getElementById('isaBody');
+let isaClosed = false;
+function openIsa(){ if(!isaClosed) isaw.classList.add('open'); }
+document.getElementById('isaX').addEventListener('click', ()=>{ isaw.classList.remove('open'); isaClosed = true; });
+function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); isaBody.appendChild(m); isaBody.scrollTop=isaBody.scrollHeight; }
+document.getElementById('isaSend').addEventListener('click', ()=>{
+  const v = isaText.value.trim(); if(!v) return;
+  addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
+  setTimeout(()=> addMsg('bot', "Good question. The short version: Brief Coach reads your brief and asks the hard questions until the plan is clear and worth doing. It pushes, but it never writes the brief for you and never just gives a yes or no. Then we build it around your business and hand it over."), 450);
+  setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
+});
+// setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
+</script>
+</body>
+</html>
