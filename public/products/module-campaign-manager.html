@@ -26,7 +26,7 @@
   .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
   .nav .nlink:hover{ color:var(--sky-blue); }
   .nav .nlink.cta{ color:var(--sky-blue); }
-  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+  @media(max-width:680px){ .nav{ flex-wrap:wrap; gap:10px 20px; padding:14px 20px; } .nav .sp{ display:none; } .nav .links{ flex-wrap:wrap; gap:14px 18px; } .nav .nlink{ font-size:11px; } }
 
   .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
   .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(208,208,204,0.4) 0.8px,transparent 0.8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
