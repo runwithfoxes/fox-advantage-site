@@ -202,7 +202,7 @@
       <div class="sell">
         <p class="sell-lead">A search agency runs three things for you, every day: paid search, organic search, and now being named by the AI answer engines when someone asks. Most of that daily work is quantitative optimisation, pattern matching and content, run against a handful of rules a good marketer sets once. <b>The Search Agent does the daily work, inside the rules you set.</b></p>
         <p class="sell-body">The rules are the valuable part, and there are fewer than the retainer suggests: the objective, the budget you will not cross, the margin you will not spend past, the questions you want to be found for. Set them once a quarter and the agent holds to them. <b>The sharpest work is off-site.</b> Around 85% of what an AI engine says about a brand comes from other people's pages, not yours, the reviews and forums and comparison posts. Shaping that record is daily, unglamorous and never finished, which is exactly the work a retainer skips and an always-on agent is built for.</p>
-        <p class="sell-rail">It runs all three pillars and stops at the edges that need a person: it drafts the off-site answers for you to post, and tickets the site fixes it can't make itself. <b>Nothing spends past the ceiling you set.</b> We build it around your brand, hand it over, and it runs in your own Claude.</p>
+        <p class="sell-rail">It runs all three pillars and stops at the edges that need a person: it drafts the off-site answers for you to post, and tickets the site fixes it can't make itself. <b>Nothing spends past the ceiling you set.</b> We build it with you, hand it over, and walk away. It runs in your own Claude: search, brought in-house.</p>
       </div>
     </div>
   </div>
@@ -269,7 +269,7 @@
   <div class="wrap">
     <div class="foot">
       <h2>Want the Search Agent built for you?</h2>
-      <p>We build it around your brand, your margins and the questions you want to be found for, then hand it over to run in your own Claude. Or talk it through with Paul first.</p>
+      <p>We build it with you: your rules, your margins, the questions you want to be found for. Then we hand it over and walk away, and it runs in your own Claude. Or talk it through with Paul first.</p>
       <div class="foot-acts">
         <a class="btn-primary" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book a chat with Paul →</a>
         <a class="btn-quiet" href="homepage-storefront-branded.html">See the other products</a>
@@ -281,7 +281,7 @@
   <div class="isaw" id="isaw">
     <div class="isa-h"><span class="ht">isa</span><button class="x" id="isaX">✕</button></div>
     <div class="isa-body" id="isaBody">
-      <div class="m bot">Hi, I'm Isa. This is the Search Agent. It runs your paid, organic and AI-answer search every day inside rules you set, and does the off-site work, the reviews, forums and comparison posts where most of what AI says about you actually comes from, that no retainer keeps up with. You own a budget ceiling and read the rare exception. Want to talk to Paul about building it for you? Grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
+      <div class="m bot">Hi, I'm Isa. This is the Search Agent. It runs your paid, organic and AI-answer search every day inside rules you set, and does the off-site work, the reviews, forums and comparison posts where most of what AI says about you actually comes from, that no retainer keeps up with. You own a budget ceiling and read the rare exception. We build it with you, then it's yours, running in your own Claude. Want to talk it through with Paul? Grab thirty minutes <a href="https://cal.com/paul-dervan-mjfd50" target="_blank">here</a>.</div>
     </div>
     <div class="isa-in"><textarea id="isaText" placeholder="Ask me something..."></textarea><button id="isaSend">Send</button></div>
   </div>
@@ -450,7 +450,7 @@ function addMsg(cls, html){ const m=el(`<div class="m ${cls}">${html}</div>`); i
 document.getElementById('isaSend').addEventListener('click', ()=>{
   const v = isaText.value.trim(); if(!v) return;
   addMsg('you', v.replace(/</g,'&lt;')); isaText.value='';
-  setTimeout(()=> addMsg('bot', "Good question. The short version: it runs paid, organic and AI-answer search every day inside rules you set, tracks where the engines name you, and hands you the off-site work that moves it. You own a budget ceiling and read the rare exception. Then we hand it over to run in your own Claude."), 450);
+  setTimeout(()=> addMsg('bot', "Good question. The short version: it runs paid, organic and AI-answer search every day inside rules you set, tracks where the engines name you, and hands you the off-site work that moves it. You own a budget ceiling and read the rare exception. We build it with you, hand it over, and it runs in your own Claude, yours to keep."), 450);
   setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
 });
 setTimeout(openIsa, 4000);
