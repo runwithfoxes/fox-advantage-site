@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--
+  /training - capture page for the training movement (name TBD, Paul to christen it).
+  Pattern: self-contained static app served through src/app/training/page.tsx (iframe),
+  same as /productivity. Live mode: form subscribes straight to Klaviyo (public key +
+  list id below); counters come from /api/training/counter (server route, private key).
+  Built from ~/projects/lifecycle-agent/training-page/ - the Lifecycle Agent runs the
+  emails behind this page.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Training for Ireland's marketers \ Run with Foxes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --sky-blue: #3A7CA5;
+    --sky-blue-hover: #2F6688;
+    --deep-sky: #1A3A4E;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --cream: #F7EAD9;
+    --shadow: 0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'JetBrains Mono', monospace; font-weight: 300;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+  a { color: inherit; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px; transition: background 0.3s ease-out;
+  }
+  nav.scrolled { background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(12px); }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300;
+    letter-spacing: 2px; color: var(--muted); text-decoration: none;
+  }
+  .nav-brand span { color: #F47521; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; letter-spacing: 1px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--sky-blue); }
+  @media (max-width: 768px) { .nav-links { display: none; } nav { padding: 16px 24px; } }
+
+  .container { max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 48px; }
+  section { padding: 110px 0; position: relative; }
+  @media (max-width: 768px) { section { padding: 72px 0; } .container { padding: 0 24px; } }
+  .dotgrid::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+    background-size: 26px 26px; opacity: .5; pointer-events: none;
+  }
+  h2.section-title { font-size: clamp(32px, 4.4vw, 54px); letter-spacing: -1px; line-height: 1.06; margin-bottom: 16px; }
+  .section-sub { color: var(--muted); max-width: none; margin-bottom: 52px; font-size: 0.98rem; line-height: 1.7; }
+
+  /* Hero */
+  .hero { min-height: 88vh; display: flex; align-items: center; padding-top: 120px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; width: 100%; position: relative; }
+  .hero h1 { font-size: clamp(44px, 6.5vw, 80px); letter-spacing: -2px; line-height: 1.03; margin-bottom: 26px; }
+  .hero h1 .hl { color: var(--sky-blue); }
+  .hero p.lede { font-size: 1.05rem; line-height: 1.75; }
+  .hero p.lede b { font-weight: 400; }
+  .hero .source { margin-top: 30px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .fox-hero { width: 250px; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.14)); pointer-events: none; user-select: none; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } .fox-hero { width: 160px; } }
+
+  /* Form */
+  .join-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; position: relative; }
+  @media (max-width: 860px) { .join-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .join-card { background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow); padding: 36px; }
+  .join-card label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+  .join-card label:first-of-type { margin-top: 0; }
+  .join-card input, .join-card select {
+    width: 100%; padding: 13px 14px; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    font-weight: 300; color: var(--text); background: var(--bg); border: 1px solid var(--border); outline: none;
+  }
+  .join-card input:focus, .join-card select:focus { border-color: var(--sky-blue); }
+  .join-btn {
+    width: 100%; margin-top: 26px; padding: 15px; border: none; cursor: pointer;
+    background: var(--sky-blue); color: #fff; font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; letter-spacing: 1px; transition: background .2s;
+  }
+  .join-btn:hover { background: var(--sky-blue-hover); }
+  .join-btn:disabled { background: var(--muted); cursor: wait; }
+  .join-fine { margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .state-message { display: none; padding: 22px 0 6px; font-size: 15px; line-height: 1.7; }
+  .state-message.success { color: var(--deep-sky); font-weight: 400; }
+  .state-message.failure { color: var(--text); font-weight: 400; }
+
+  .deal p { margin-bottom: 16px; font-size: 0.98rem; }
+  .deal p b { font-weight: 400; }
+
+  /* Counters */
+  .cities { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; position: relative; }
+  .city { background: #fff; border: 1px solid var(--border); padding: 22px; box-shadow: var(--shadow); }
+  .city .name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .city .count { font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 400; color: var(--sky-blue); line-height: 1.2; margin-top: 6px; }
+  .city .of { font-size: 12px; color: var(--muted); }
+
+  /* How it works flow */
+  .flow { display: grid; grid-template-columns: 1fr; gap: 0; max-width: none; position: relative; }
+  .step { background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow); padding: 26px 30px; transition: opacity .6s ease, transform .6s ease; }
+  .js .step:not(.on) { opacity: 0; transform: translateY(20px); }
+  .step-link { width: 2px; height: 30px; background: var(--sky-blue); margin-left: 46px; transition: opacity .6s ease .1s; }
+  .js .step-link:not(.on) { opacity: 0; }
+  .step .n {
+    display: inline-block; width: 26px; height: 26px; text-align: center; line-height: 26px;
+    background: var(--deep-sky); color: var(--cream); font-size: 13px; margin-right: 12px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 400;
+  }
+  .step h3 { display: inline; font-size: 1.15rem; font-weight: 400; }
+  .step p { margin: 10px 0 0 38px; font-size: 0.95rem; color: var(--text); }
+
+  /* CTA */
+  .cta { border-top: 1px solid var(--border); }
+  .cta-inner { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  @media (max-width: 700px) { .cta-inner { grid-template-columns: 1fr; gap: 24px; } }
+  .cta h2 { font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -1px; line-height: 1.08; margin-bottom: 14px; }
+  .cta p { color: var(--muted); font-size: 0.98rem; line-height: 1.7; }
+  .cta-links { display: flex; flex-direction: column; gap: 12px; }
+  .cta-link { font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 1px; color: var(--sky-blue); text-decoration: none; white-space: nowrap; transition: color .2s; }
+  .cta-link:hover { color: var(--deep-sky); }
+  .cta-link .slash { color: var(--muted); }
+
+  footer { padding: 32px 48px; border-top: 1px solid var(--border); font-size: 11px; letter-spacing: 1px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-brand" href="https://runwithfoxes.com" target="_top">/<span>Run</span>withfoxes</a>
+  <div class="nav-links">
+    <a href="#join">/count_me_in</a>
+    <a href="#cities">/the_cities</a>
+    <a href="#how">/how_it_works</a>
+    <a href="https://runwithfoxes.com" target="_top">/home</a>
+    <a href="/contact" target="_top">/contact</a>
+  </div>
+</nav>
+
+<section class="hero dotgrid" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1>Free training for <span class="hl">Ireland's marketers</span>, built for the AI years.</h1>
+        <p class="lede">One useful thing in your inbox on a regular rhythm: something you can use at work the same day. And when your city reaches <b>one hundred of us</b>, we book a room and spend a day on it together. <b>No course to buy, no upsell hiding behind week three.</b></p>
+        <p class="source">From Paul Dervan · Run with Foxes</p>
+      </div>
+      <img class="fox-hero" src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="container">
+    <div class="join-grid">
+      <div class="deal">
+        <h2 class="section-title">The deal</h2>
+        <p><b>It's free.</b> The point is that Ireland's marketers walk into the AI years confident instead of nervous, and that only works at numbers, not at a price.</p>
+        <p><b>You get one useful thing at a time.</b> A way of working, a prompt, a piece of thinking. If one lands and you can't use it by Friday, tell us and we'll pick better.</p>
+        <p><b>Your city unlocks the room.</b> The in-person day happens when one hundred marketers in your city have joined. No number, no room. That part is on all of us.</p>
+      </div>
+      <div class="join-card" id="join-card">
+        <form id="join-form">
+          <label for="first_name">First name</label>
+          <input id="first_name" name="first_name" type="text" autocomplete="given-name" required />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <label for="city">City</label>
+          <select id="city" name="city" required>
+            <option value="" disabled selected>Choose a city</option>
+            <option>Dublin</option>
+            <option>Cork</option>
+            <option>Galway</option>
+            <option>Limerick</option>
+            <option>Belfast</option>
+          </select>
+          <button class="join-btn" type="submit">Count me in</button>
+          <p class="join-fine">One useful email on a rhythm, nothing else. Unsubscribe any time.</p>
+        </form>
+        <p class="state-message success" id="msg-success">You're in. Your first useful thing is on its way.</p>
+        <p class="state-message failure" id="msg-failure">That didn't go through. Try again, or email paul@runwithfoxes.com.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dotgrid" id="cities">
+  <div class="container">
+    <h2 class="section-title">Where each city stands</h2>
+    <p class="section-sub">Every join moves a number. When a city hits one hundred, its room is on.</p>
+    <div class="cities" id="cities-grid"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Three steps, no small print.</p>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><h3>You join</h3><p>First name, email, city. Your first useful thing arrives straight away.</p></div>
+      <div class="step-link"></div>
+      <div class="step"><span class="n">2</span><h3>Useful things keep coming</h3><p>On a rhythm, in plain language, built to be used at work the same day. Reply any time; the replies steer what comes next.</p></div>
+      <div class="step-link"></div>
+      <div class="step"><span class="n">3</span><h3>Your city fills, we get a room</h3><p>At one hundred members a city unlocks its in-person day. Early joiners go first for seats.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta dotgrid">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Know a marketer who should be in?</h2>
+        <p>The whole growth plan is one marketer telling another it's worth their inbox. Send them this page.</p>
+      </div>
+      <div class="cta-links">
+        <a class="cta-link" href="#join"><span class="slash">/</span>count_me_in</a>
+        <a class="cta-link" href="https://runwithfoxes.com" target="_top"><span class="slash">/</span>run_with_foxes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>RUN WITH FOXES · IRELAND · THE EMAILS BEHIND THIS PAGE ARE RUN BY OUR OWN LIFECYCLE AGENT</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+
+  // Nav blur on scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+  // Klaviyo live mode
+  const KLAVIYO_PUBLIC_KEY = "URubqG";
+  const KLAVIYO_LIST_ID = "UKv5r5";
+  const KLAVIYO_REVISION = "2026-04-15";
+
+  const form = document.getElementById('join-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.join-btn');
+    btn.disabled = true;
+    const payload = {
+      data: {
+        type: "subscription",
+        attributes: {
+          custom_source: "training page",
+          profile: {
+            data: {
+              type: "profile",
+              attributes: {
+                email: document.getElementById('email').value.trim(),
+                first_name: document.getElementById('first_name').value.trim(),
+                properties: { city: document.getElementById('city').value }
+              }
+            }
+          }
+        },
+        relationships: { list: { data: { type: "list", id: KLAVIYO_LIST_ID } } }
+      }
+    };
+    try {
+      const res = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_PUBLIC_KEY}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "revision": KLAVIYO_REVISION },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("subscribe failed " + res.status);
+      form.style.display = "none";
+      document.getElementById('msg-success').style.display = "block";
+    } catch (err) {
+      btn.disabled = false;
+      document.getElementById('msg-failure').style.display = "block";
+    }
+  });
+
+  // City counters via same-origin server route (private-key lookup happens server-side)
+  const CITIES = ["Dublin", "Cork", "Galway", "Limerick", "Belfast"];
+  const grid = document.getElementById('cities-grid');
+  function renderCities(counts, threshold) {
+    grid.innerHTML = CITIES.map(c => `
+      <div class="city">
+        <div class="name">${c}</div>
+        <div class="count">${counts && counts[c] != null ? counts[c] : "…"}</div>
+        <div class="of">${counts && counts[c] != null ? "of " + threshold : "counting"}</div>
+      </div>`).join("");
+  }
+  renderCities(null, 100);
+  fetch("/api/training/counter")
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if (d && d.counts) renderCities(d.counts, d.threshold || 100); })
+    .catch(() => {});
+
+  // Animated flow (nodes ease up + fade in, sequential)
+  const seq = [...document.querySelectorAll('.step, .step-link')];
+  setTimeout(() => seq.forEach(el => el.classList.add('on')), 2500);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      seq.forEach((m, i) => setTimeout(() => m.classList.add('on'), i * 180));
+      seq.forEach(m => io.unobserve(m));
+    });
+  }, { threshold: 0.15 });
+  seq.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
