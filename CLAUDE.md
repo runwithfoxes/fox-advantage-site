@@ -21,9 +21,9 @@ Route `src/app/api/clients/[slug]/feedback/route.ts`, guarded by the `CLIENT_FEE
 
 > **DEPLOY GUARDRAIL (branch check): runwithfoxes.com deploys from `main`.** A terminal can open while git is parked on an unfinished feature branch (e.g. `bench-page`, the half-built `/bench` showcase). Committing there strands the change off `main` and it never goes live. BEFORE committing any change meant to ship, run `git branch --show-current` and confirm it's `main`. If it isn't and the change is meant to go live, cherry-pick just that commit onto `main` and push - do NOT merge the whole feature branch (it carries unfinished work). Pushing a feature branch only gives a Vercel preview URL, not production.
 
-## ACTIVE WORK (2026-06-27) - PRODUCTS STOREFRONT (wireframe stage, NOT live yet)
+## ACTIVE WORK - PRODUCTS STOREFRONT (LIVE since early Jul 2026)
 
-The homepage is being reframed from the live accordion to a **products storefront**. All in `wireframes/` - **nothing ported to the live site yet** (the live homepage is still the 2026-06-04 accordion below).
+**STATUS CORRECTION (2026-07-04, late):** the storefront and product pages ARE LIVE - the homepage (`src/components/HomePage.tsx`) carries the storefront, and the product pages ship as static files under `public/products/` (e.g. `/products/module-ad-maker.html`) with their own copy of `assets/dayone/`. **Wireframes and `public/products/` are now TWO copies of the same pages - an asset or page fix must land in BOTH** (that's how the live Ad Resizer demo kept the old bar-chart 1080 source ad after the wireframe was fixed; corrected in `9575368` with the dayone donut 1080 from `fox-ads/approved/dayone/`). The paragraphs below predate the port and are kept for the decision trail.
 
 - **Products source of truth:** `docs/product-lineup-candidates-2026-06-25.md` - the lineup, the seven jobs of email, and the LOCKED rules.
 - **Naming rule (LOCKED):** Title Case, no "AI", drop leading "The" (e.g. Ad Resizer, Brand Guardian, Outbound Agent, Lifecycle Agent).
