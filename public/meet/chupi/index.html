@@ -100,18 +100,26 @@
   .bag-note.open { display: block; }
   .bag-note strong { color: var(--text); font-weight: 500; }
 
-  /* Hero: claim left, their photography right */
-  .hero { padding: 150px 0 84px; }
-  .hero-grid { display: grid; grid-template-columns: 10fr 9fr; gap: 72px; align-items: center; }
-  .hero h1 { font-size: clamp(42px, 4.8vw, 66px); line-height: 1.06; letter-spacing: -0.5px; margin-bottom: 26px; }
-  .hero-sub { font-size: 1.2rem; line-height: 1.6; color: var(--text); margin-bottom: 34px; }
-  .hero-micro { font-size: 0.8125rem; color: var(--muted); margin-top: 18px; letter-spacing: 0.3px; }
-  .hero-media { position: relative; overflow: hidden; border-radius: calc(var(--btn-radius) / 12); }
-  .hero-media img { width: 100%; height: auto; display: block; animation: slowzoom 16s ease-out forwards; }
-  @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+  /* Hero: big product-forward showcase - the image dominates and shows off the product.
+     Text panel left, a large full-height image block right that commands the fold. */
+  .hero { padding: 104px 0 0; }
+  .hero-grid { display: grid; grid-template-columns: 47fr 53fr; gap: 60px; align-items: stretch;
+    min-height: clamp(520px, 76vh, 760px); }
+  .hero-text { align-self: center; padding: 32px 0 64px; }
+  .hero h1 { font-size: clamp(46px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -1px; margin-bottom: 26px; }
+  .hero-sub { font-size: 1.24rem; line-height: 1.58; color: var(--text); margin-bottom: 34px; }
+  .hero-micro { font-size: 0.8125rem; color: var(--muted); margin-top: 20px; letter-spacing: 0.3px; }
+  .hero-media { position: relative; overflow: hidden; align-self: stretch;
+    border-radius: calc(var(--btn-radius) / 10); }
+  .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block;
+    animation: slowzoom 18s ease-out forwards; }
+  @keyframes slowzoom { from { transform: scale(1.03); } to { transform: scale(1.09); } }
   @media (max-width: 900px) {
-    .hero { padding: 120px 0 64px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 96px 0 0; }
+    .hero-grid { grid-template-columns: 1fr; gap: 0; min-height: 0; }
+    .hero-text { padding: 8px 0 44px; }
+    .hero-sub { max-width: none; }
+    .hero-media { min-height: clamp(360px, 64vh, 520px); }
   }
 
   /* Proof strip: their trust marks, one slow marquee row */
@@ -122,21 +130,23 @@
   .proof-set em { font-style: normal; color: var(--accent); padding: 0 4px; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* Sections */
-  section { padding: 96px 0; }
+  /* Sections - full-width tint bands alternate to give the page weight/rhythm */
+  section { padding: 84px 0; }
+  section.banded { background: var(--tint-2); }
   .section-title { font-size: clamp(34px, 4vw, 52px); line-height: 1.1; letter-spacing: -0.4px; margin-bottom: 18px; }
-  .section-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 56px; }
+  .section-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 48px; }
   .centered { text-align: center; }
 
-  /* Three pillars: their strongest things, each earning its number */
+  /* Three pillars: big product-forward cards (portrait imagery, real presence) */
   .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .pillar { background: var(--tint-2); display: flex; flex-direction: column; }
+  .pillar { background: var(--bg); display: flex; flex-direction: column;
+    border: 1px solid var(--border); }
   .pillar-link { display: block; }
   .pillar-media { background: var(--bg); overflow: hidden; }
-  .pillar-media img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; transition: transform 0.6s ease-out; }
-  .pillar-link:hover .pillar-media img { transform: scale(1.03); }
-  .pillar-body { padding: 26px 28px 12px; }
-  .pillar-name { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 10px; }
+  .pillar-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; transition: transform 0.7s ease-out; }
+  .pillar-link:hover .pillar-media img { transform: scale(1.04); }
+  .pillar-body { padding: 26px 28px 14px; }
+  .pillar-name { font-family: var(--font-display); font-size: 1.42rem; margin-bottom: 10px; }
   .pillar-copy { font-size: 0.9375rem; color: var(--muted); line-height: 1.6; }
   .pillar-copy strong { color: var(--text); font-weight: 500; }
   .pillar-cta { padding: 0 28px 28px; margin-top: auto; }
@@ -144,7 +154,7 @@
   @media (max-width: 900px) { .pillars { grid-template-columns: 1fr; } }
 
   /* Quiet quote - the breather */
-  .quote { padding: 110px 0; }
+  .quote { padding: 88px 0; }
   .quote blockquote {
     font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px);
     line-height: 1.35; letter-spacing: -0.3px; text-align: center;
@@ -227,7 +237,7 @@
   <header class="hero">
     <div class="container">
       <div class="hero-grid">
-        <div>
+        <div class="hero-text">
           <h1>The moment, in solid gold</h1>
           <p class="hero-sub">Natural and lab grown diamond engagement rings, handcrafted in Dublin with certified recycled gold and trusted by over 100,000 couples.</p>
           <a href="https://www.chupi.com" target="_blank" rel="noopener" class="btn">Shop Chupi</a>
@@ -249,7 +259,7 @@
   </div>
 
   <!-- THREE PILLARS: their strongest things, each paired with a real number -->
-  <section>
+  <section class="banded">
     <div class="container reveal">
       <h2 class="section-title">Engagement Rings Handcrafted in Ireland</h2>
       <p class="section-sub">Natural and lab grown diamonds, handcrafted in Dublin, Ireland with certified recycled gold.</p>
