@@ -214,7 +214,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
       </div>
 
       <div className="hp-hero-text">
-        <h1>Build an <span className="hpx-hl">unfair advantage</span> in marketing</h1>
+        <h1>Build the marketing team you <span className="hpx-hl">never had</span></h1>
         <div className="hpx-hero-desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
       </div>
 
