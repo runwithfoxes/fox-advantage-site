@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-25",
+  lastUpdated: "2026-07-05",
   // skills library added 2026-06-23
   zoneIntros: {
     deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
@@ -42,6 +42,10 @@ export const work: WorkSection[] = [
   { title: "ICP outreach, step by step", kind: "embed", zone: "work", status: "ready",
     desc: "The full campaign as a visual flow: get the list, clean, enrich, emails, write the messages, merge, load, monitor. Each stage has its skill to download right there. Open full screen for the best view.",
     embedSrc: "icp-outreach-flow.html", embedHeight: 780 },
+
+  { title: "Finding the HR decision-maker in Clay", kind: "media", layout: "single", zone: "work", status: "ready", isNew: true,
+    desc: "A walkthrough of the enrich step done by hand in Clay: import the company list, run Find People with the HR title filters, and land the shortlist of HR leaders per company. The finding part costs no credits. Ben's job at the end is to pick the one most senior person per company. Press play to watch it end to end.",
+    item: { src: "clay-enrich-walkthrough.mp4", ratio: "1568/812", w: 720, player: true, cap: "Import to shortlist in Clay: 5 companies to 28 HR leaders, no credits spent", download: true } },
 
   { title: "Sarah's weekly ideas, how to run it", kind: "copy", zone: "work", status: "ready", isNew: true,
     desc: "The idea is simple: you bring nothing. Each week it does the research, hands you 10 post ideas, and writes the ones you pick in your voice. Two minutes of your time. Download it from \"Weekly LinkedIn ideas for Sarah\" above, or the skills list below.",
