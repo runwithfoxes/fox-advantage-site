@@ -20,10 +20,16 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Gate the static proposal assets (the /proposals/ardan page renders its own
+  // Gate the static proposal assets (each /proposals/{slug} page renders its own
   // password gate; this protects the index.html + demos + images it iframes in).
   if (pathname.startsWith("/proposals/ardan/")) {
     if (req.cookies.get("ardan_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
+  if (pathname.startsWith("/proposals/kapture/")) {
+    if (req.cookies.get("kapture_auth")?.value !== "1") {
       return new NextResponse("Not authorised", { status: 401 });
     }
   }
@@ -36,5 +42,6 @@ export const config = {
     "/clients/softco/media/:path*",
     "/presentation-app/:path*",
     "/proposals/ardan/:path*",
+    "/proposals/kapture/:path*",
   ],
 };
