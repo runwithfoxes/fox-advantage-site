@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // cookie (set after the password is entered). The page routes render their own gate.
 //  - SoftCo media:        softco_auth
 //  - Presentation app:    presentation_auth  (the "AI at Sabre" working session)
+//  - Ardán proposal:      ardan_auth  (static proposal assets under /proposals/ardan)
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -19,9 +20,21 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // Gate the static proposal assets (the /proposals/ardan page renders its own
+  // password gate; this protects the index.html + demos + images it iframes in).
+  if (pathname.startsWith("/proposals/ardan/")) {
+    if (req.cookies.get("ardan_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/clients/softco/media/:path*", "/presentation-app/:path*"],
+  matcher: [
+    "/clients/softco/media/:path*",
+    "/presentation-app/:path*",
+    "/proposals/ardan/:path*",
+  ],
 };

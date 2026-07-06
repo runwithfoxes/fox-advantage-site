@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campaign Manager · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* nav */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(208,208,204,0.4) 0.8px,transparent 0.8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* tabs */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW (behind the scenes) ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .badge.gate{ background:var(--sky-blue); }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .check.gate-check{ background:rgba(58,124,165,0.18); border:1px solid rgba(58,124,165,0.3); }
+
+  /* "what it uses" chips */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+  .chip.product{ color:var(--deep-sky); border-color:rgba(26,58,78,.35); background:rgba(26,58,78,.04); font-weight:400; }
+
+  /* ===== EXPERIENCE: campaign board ===== */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:24px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+
+  .cm-board{ border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); }
+  .cm-board-header{ display:flex; align-items:center; gap:11px; padding:13px 16px; border-bottom:1px solid var(--border); background:var(--card-hover); }
+  .cm-board-title{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); flex:1; }
+  .cm-live-dot{ width:7px; height:7px; border-radius:50%; background:#3FAE6E; flex:none; animation:cm-pulse 1.8s infinite; }
+  @keyframes cm-pulse{ 0%{ box-shadow:0 0 0 0 rgba(63,174,110,.5); } 70%{ box-shadow:0 0 0 7px rgba(63,174,110,0); } 100%{ box-shadow:0 0 0 0 rgba(63,174,110,0); } }
+  .cm-live-label{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.8px; text-transform:uppercase; color:#3FAE6E; }
+
+  .cm-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:16px; border-bottom:1px solid var(--border); }
+  @media(max-width:680px){ .cm-stats{ grid-template-columns:repeat(2,1fr); } }
+  .cm-tile{ border:1px solid var(--border); background:#fff; padding:14px 15px; }
+  .cm-tile .num{ font-family:'Space Grotesk',sans-serif; font-size:29px; font-weight:300; color:var(--sky-blue); line-height:1; letter-spacing:-1px; }
+  .cm-tile .num.alert{ color:#E08A2A; }
+  .cm-tile .lbl{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:9px; }
+
+  .cm-body{ display:grid; grid-template-columns:1fr 280px; gap:0; }
+  @media(max-width:760px){ .cm-body{ grid-template-columns:1fr; } }
+
+  /* campaign list */
+  .cm-camps{ border-right:1px solid var(--border); }
+  .cm-camps-h{ padding:11px 16px; border-bottom:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+  .cm-camp{ border-bottom:1px solid var(--border); padding:13px 16px; cursor:pointer; transition:background .15s; }
+  .cm-camp:last-child{ border-bottom:none; }
+  .cm-camp:hover{ background:var(--card-hover); }
+  .cm-camp.active{ background:var(--sky-soft); box-shadow:inset 3px 0 0 var(--sky-blue); }
+  .cm-camp-name{ font-size:12px; font-weight:400; color:var(--text); margin-bottom:5px; }
+  .cm-camp-modules{ display:flex; flex-wrap:wrap; gap:5px; margin-bottom:7px; }
+  .cm-mod-tag{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.5px; padding:3px 7px; border:1px solid var(--border); color:var(--muted); }
+  .cm-mod-tag.live{ color:var(--sky-blue); border-color:rgba(58,124,165,.4); }
+  .cm-camp-meta{ display:flex; gap:16px; }
+  .cm-camp-meta span{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.5px; color:var(--muted); }
+  .cm-camp-meta .status-live{ color:#3FAE6E; }
+  .cm-camp-meta .status-pending{ color:#E08A2A; }
+
+  /* approval queue */
+  .cm-queue{ padding:0; }
+  .cm-queue-h{ padding:11px 16px; border-bottom:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .cm-q-count{ background:var(--sky-blue); color:#fff; font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:500; padding:2px 7px; }
+  .cm-qitem{ border-bottom:1px solid var(--border); padding:12px 16px; }
+  .cm-qitem:last-child{ border-bottom:none; }
+  .cm-qitem-type{ font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:1px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:5px; }
+  .cm-qitem-desc{ font-size:11px; line-height:1.5; color:var(--text); margin-bottom:7px; }
+  .cm-approve-btn{ display:inline-block; background:var(--bg); border:1px solid var(--sky-blue); color:var(--sky-blue); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:5px 11px; cursor:pointer; transition:background .15s, color .15s; }
+  .cm-approve-btn:hover{ background:var(--sky-blue); color:#fff; }
+
+  .cm-gate-banner{ margin:16px 16px 0; padding:12px 14px; background:rgba(58,124,165,0.08); border-left:3px solid var(--sky-blue); font-size:11px; line-height:1.6; color:var(--text); }
+  .cm-gate-banner b{ font-weight:500; color:var(--sky-blue); }
+  .cm-tile .num.win{ color:#2E7D52; }
+  .cm-spend{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); padding:10px 16px; border-bottom:1px solid var(--border); line-height:1.6; }
+
+  /* needs-you banner */
+  .cm-needs{ display:flex; align-items:center; gap:14px; background:rgba(58,124,165,.06); border:1px solid rgba(58,124,165,.35); border-left:3px solid var(--sky-blue); padding:13px 16px; }
+  .cm-needs .nd{ width:8px; height:8px; border-radius:50%; background:var(--sky-blue); box-shadow:0 0 0 3px rgba(58,124,165,.18); flex:0 0 auto; }
+  .cm-needs .nt{ font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.5; flex:1; }
+  .cm-needs .nt strong{ font-weight:500; color:var(--text); }
+  .cm-needs a{ color:var(--sky-blue); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.8px; text-transform:uppercase; white-space:nowrap; border:1px solid var(--sky-blue); padding:4px 10px; transition:background .15s,color .15s; }
+  .cm-needs a:hover{ background:var(--sky-blue); color:#fff; }
+
+  /* gantt */
+  .cm-gantt-wrap{ padding:14px 16px 18px; }
+  .cm-seclbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:14px; font-weight:500; }
+  .cm-glabelcol{ width:182px; flex:0 0 182px; }
+  .cm-gaxis{ display:flex; margin-bottom:4px; }
+  .cm-gaxistrack{ position:relative; flex:1; height:22px; }
+  .cm-gmonth{ position:absolute; top:0; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); transform:translateX(2px); }
+  .cm-gcampname{ font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:400; margin:14px 0 2px; color:var(--text); }
+  .cm-gcampstage{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); margin-bottom:8px; line-height:1.5; }
+  .cm-grow{ display:flex; align-items:center; }
+  .cm-grow + .cm-grow{ margin-top:4px; }
+  .cm-gname{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); }
+  .cm-gsub{ font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--muted); margin-top:1px; }
+  .cm-gtrack{ position:relative; flex:1; height:34px; border-left:1px solid var(--border); }
+  .cm-gtrack.body{ background:linear-gradient(90deg,transparent 0,transparent calc(100% - 1px),var(--border) 100%); }
+  .cm-gbar{ position:absolute; top:8px; height:18px; transform-origin:left center; }
+  .cm-gbar.live{ background:var(--sky-blue); opacity:.6; }
+  .cm-gbar.tent{ background:transparent; border:1.5px dashed var(--sky-blue); opacity:.85; }
+  .cm-gbar.fin{ background:#7CA53A; opacity:.4; }
+  @keyframes cmGrowBar{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  @media(prefers-reduced-motion:no-preference){ .cm-gbar{ animation:cmGrowBar .5s ease-out both; } }
+  .cm-gtoday{ position:absolute; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed #C98A3A; z-index:2; pointer-events:none; }
+  .cm-gtodaylbl{ position:absolute; top:-18px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:#C98A3A; transform:translateX(-50%); white-space:nowrap; }
+
+  /* channel palette */
+  .cm-channels{ display:grid; grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:8px; padding:14px 16px 16px; border-top:1px solid var(--border); }
+  .cm-ch{ border:1px solid var(--border); background:var(--bg); padding:10px 12px; }
+  .cm-ch .nm{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); }
+  .cm-ch .sb{ font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); margin-top:2px; }
+  .cm-chdot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--sky-blue); margin-right:5px; vertical-align:middle; }
+  @media(max-width:680px){ .cm-glabelcol{ width:120px; flex-basis:120px; } }
+
+  /* agent presence block */
+  .cm-agent{ padding:18px 16px 16px; border-bottom:1px solid var(--border); }
+  .cm-agent-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:11px; flex-wrap:wrap; }
+  .cm-agent-title{ font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:400; color:var(--text); }
+  .cm-agent-status{ display:inline-flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); border:1px solid rgba(58,124,165,.4); padding:4px 10px; }
+  .cm-pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--sky-blue); animation:cm-pulse 1.8s infinite; flex:none; }
+  .cm-agent-msg{ font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.8; color:var(--text); margin-bottom:14px; }
+  .cm-spine{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .cm-step{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.5px; border:1px solid var(--border); padding:5px 12px; color:var(--muted); }
+  .cm-step.done::before{ content:"+ "; color:var(--sky-blue); }
+  .cm-step.done{ color:var(--text); }
+  .cm-step.here{ border-color:var(--sky-blue); color:var(--sky-blue); background:rgba(58,124,165,.06); }
+  .cm-nextrow{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:640px){ .cm-nextrow{ grid-template-columns:1fr; } }
+  .cm-nextlbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:5px; }
+  .cm-nextp{ font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.65; color:var(--muted); margin:0; }
+  .cm-nextp b{ color:var(--text); font-weight:400; }
+
+  /* proof strip */
+  .cm-proof{ margin-top:26px; border:1px solid var(--border); border-left:3px solid var(--sky-blue); background:var(--card-hover); padding:18px 20px; }
+  .cm-proof .lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:10px; }
+  .cm-proof p{ font-size:13px; line-height:1.75; color:var(--text); }
+  .cm-proof p + p{ margin-top:8px; }
+  .cm-proof b{ font-weight:500; }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Agent · configured for Ardán Collective</div>
+      <h1>Campaign Manager</h1>
+      <div class="sell">
+        <p class="sell-lead"><b>The Campaign Manager is where the separate agents stop being separate.</b> On their own, the Lifecycle Agent, the Website Builder and a Copywriter each do their job well. Run them together and the work starts to compound, and that is what this manages: it plans, makes the work with the other agents, and tracks how every one of them is doing, in one place your team approves from.</p>
+        <p class="sell-body">This is where you see the whole operation at once. What each agent shipped, what came back, what needs a decision this week, across eighteen properties without eighteen status meetings. Add an Outbound Agent later and it tracks that too. It is a system composed of the other agents, and it becomes your <b>one source of truth</b>, with the dashboards to match.</p>
+        <p class="sell-rail">What makes it more than a dashboard is that it refers to your positioning, messaging and tone before it does anything, so every plan is grounded in your own strategy, not a generic template. We build it around your brand and hand it over. Your team runs the approvals; it runs everything else.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE TABS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <!-- EXPERIENCE TAB -->
+    <div class="panel active" data-p="exp">
+      <div class="cm-board">
+        <div class="cm-board-header">
+          <span class="cm-live-dot"></span>
+          <span class="cm-live-label">Live</span>
+          <span class="cm-board-title" style="margin-left:4px;">Campaign Manager</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:var(--muted);">Illustrative, not a real client</span>
+        </div>
+
+        <!-- Agent presence block -->
+        <div class="cm-agent">
+          <div class="cm-agent-head">
+            <span class="cm-agent-title">Your campaign manager, right now</span>
+            <span class="cm-agent-status"><span class="cm-pulse-dot"></span> Waiting on your go</span>
+          </div>
+          <p class="cm-agent-msg">I've planned the autumn push for Bellinter and the Marine, drafted the walled-garden emails and the winter-breaks offer page. <b>Nothing has sent yet.</b> Approve the Bellinter emails and I'll switch the flow on, with your team's yes on each send.</p>
+          <div class="cm-spine">
+            <span class="cm-step done">Plan</span>
+            <span class="cm-step done">Make the work</span>
+            <span class="cm-step here">Your approval</span>
+            <span class="cm-step">Send and publish</span>
+            <span class="cm-step">Track</span>
+          </div>
+          <div class="cm-nextrow">
+            <div>
+              <div class="cm-nextlbl">Next - the moment you approve</div>
+              <p class="cm-nextp">I switch the Bellinter walled-garden flow live and publish the offer page. <b>First direct bookings usually follow within days.</b></p>
+            </div>
+            <div>
+              <div class="cm-nextlbl">Then</div>
+              <p class="cm-nextp">I roll the same to the Marine, and the group post-stay and win-back flows run on the calendar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcome tiles: hardcoded values, always visible -->
+        <div class="cm-stats">
+          <div class="cm-tile"><div class="num win">240</div><div class="lbl">Direct bookings</div></div>
+          <div class="cm-tile"><div class="num">8,400</div><div class="lbl">Guests on the list</div></div>
+          <div class="cm-tile"><div class="num">6</div><div class="lbl">Flows live</div></div>
+          <div class="cm-tile"><div class="num">4</div><div class="lbl">Properties live</div></div>
+        </div>
+        <div class="cm-spend">Sample data. Google + Meta via Access, reviewed weekly.</div>
+
+        <!-- Gantt: static HTML - renders without JS. Bars have final widths; JS animates as enhancement. -->
+        <div class="cm-gantt-wrap">
+          <div class="cm-seclbl">Active campaigns &amp; timeline</div>
+          <div class="cm-gantt" id="cmGantt">
+
+            <div class="cm-gaxis">
+              <div class="cm-glabelcol"></div>
+              <div class="cm-gaxistrack">
+                <div class="cm-gmonth" style="left:0%">May</div>
+                <div class="cm-gmonth" style="left:20%">Jun</div>
+                <div class="cm-gmonth" style="left:40%">Jul</div>
+                <div class="cm-gmonth" style="left:60%">Aug</div>
+                <div class="cm-gmonth" style="left:80%">Sep</div>
+                <div class="cm-gtoday" style="left:40%"><span class="cm-gtodaylbl">Today</span></div>
+              </div>
+            </div>
+
+            <div class="cm-gcampname">Bellinter · walled-garden autumn</div>
+            <div class="cm-gcampstage">Guest emails and social running. Offer page ready for launch on your go.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Guest emails</div><div class="cm-gsub">15 May - 15 Aug · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:9%;width:60%" data-w="60%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Offer page (website)</div><div class="cm-gsub">1 Jun - 31 Jul · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:20%;width:39%" data-w="39%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Social</div><div class="cm-gsub">1 Aug - 30 Sep · Awaiting your go</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar tent" style="left:60%;width:40%" data-w="40%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+
+            <div class="cm-gcampname">The Marine · winter by the sea</div>
+            <div class="cm-gcampstage">Guest emails and social running. Google + Meta live for the full quarter via Access.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Guest emails</div><div class="cm-gsub">15 Jun - 15 Sep · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:29%;width:60%" data-w="60%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Google + Meta (Access)</div><div class="cm-gsub">1 May - 30 Sep · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:0%;width:100%" data-w="100%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Social</div><div class="cm-gsub">1 Jul - 31 Aug · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:40%;width:40%" data-w="40%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+
+            <div class="cm-gcampname">Group · post-stay + win-back</div>
+            <div class="cm-gcampstage">Spring lifecycle flow finished. Autumn win-back planned from August.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Lifecycle flows (always-on)</div><div class="cm-gsub">1 May - 30 Jun · Finished</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar fin" style="left:0%;width:39%" data-w="39%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Review asks</div><div class="cm-gsub">1 Aug - 30 Sep · Planned</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar tent" style="left:60%;width:40%" data-w="40%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Lifecycle flows (always-on)</div><div class="cm-gsub">1 Jun - 30 Sep · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:20%;width:80%" data-w="80%"></div><div class="cm-gtoday" style="left:40%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cm-channels">
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Guest email</div><div class="sb">lifecycle</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Website</div><div class="sb">pages + offers</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Social</div><div class="sb">organic</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Google + Meta</div><div class="sb">via Access</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>PR</div><div class="sb">national + travel</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Booking engines</div><div class="sb">Avvio, Guestline</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEHIND THE SCENES TAB (rendered by JS) -->
+    <div class="panel" data-p="bts"></div>
+
+    <!-- WHAT IT USES TAB (rendered by JS) -->
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+
+const ICONS = {
+  truth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  plan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  watch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+  learn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  analyse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>'
+};
+
+const TABS = {
+  bts:{
+    start:'Your positioning, messaging and tone, your source of truth',
+    end:'Learnings write back to your source of truth. Every campaign starts smarter than the last.',
+    nodes:[
+      { badge:'1', when:'Foundation', icon:'truth',
+        title:'Your source of truth',
+        sub:'Your positioning, messaging framework, tone of voice, and the metric levels are loaded before any campaign starts. It reads them before it proposes anything: every plan traces back to a fact or a hypothesis in your strategy, not a generic brief.' },
+      { badge:'2', when:'You say what you want', icon:'brief',
+        title:'Intake: one line of intent',
+        sub:'Tell it what you want to achieve. It reads your strategy, builds the picture, and asks where it needs more, one question at a time. The brief it comes back with is grounded in your strategy rather than a starting-from-nothing guess.' },
+      { badge:'3', when:'Campaign Manager proposes', icon:'plan', gate:true,
+        title:'A plan, grounded in your strategy',
+        sub:'Which audience, which channels, the message angle, the budget, the timing. Every field traces back to your source of truth. You can edit anything before you say yes.',
+        check:'<strong>Gate 1: you approve the plan.</strong> Nothing gets built until you say yes to the direction.' },
+      { badge:'4', when:'Campaign Manager schedules', icon:'calendar',
+        title:'The marketing calendar: the spine',
+        sub:'Every campaign and send is placed on one calendar. The whole operation reads from it: which module fires when, which channels are live, what is coming up next. It is built from your approved plan and re-flows automatically when anything shifts.' },
+      { badge:'5', when:'Campaign Manager builds', icon:'make',
+        title:'It makes the work with the other agents',
+        sub:'With the plan approved, it builds everything each property needs, working with the rest of Ardán's system. Every piece is written in your tone, to your positioning, for the property.',
+        check:'<strong>Lifecycle Agent:</strong> the guest email flows, welcome, pre-arrival, post-stay, win-back, per property.<br><strong>Copywriters:</strong> one per property, so Bellinter reads like Bellinter and the Marine reads like the Marine.<br><strong>Website Builder:</strong> new pages and seasonal offer pages, built and deployed to hosting.' },
+      { badge:'6', when:'Your approval', icon:'gate', gate:true,
+        title:'You approve every piece',
+        sub:'Nothing sends or spends without your yes. Your team reads the messages, reviews the copy, checks the offer page. The Campaign Manager holds at this gate regardless of what the calendar says.',
+        check:'<strong>Gate 2: you approve every piece before it goes out.</strong> Approve or edit; your changes are noted so the next round reflects them.' },
+      { badge:'7', when:'Campaigns run', icon:'ship', gate:true,
+        title:'Every channel fires on the calendar',
+        sub:'Guest emails go out via your platform within safe sending limits. The offer page publishes to the website. Social posts queue to your schedule. Google and Meta campaigns run through Access on the budget you set and reviewed weekly. Each channel fires in the right order, on the right day, within its own limits.',
+        check:'<strong>Gate 3: you press go.</strong> Nothing sends or spends before that. The calendar holds the timing; your go holds the send.' },
+      { badge:'8', when:'Every morning', icon:'watch',
+        title:'One place to watch everything',
+        sub:'Opens, replies, enrolments, leads, ad spend, budget burn: all in one board. No checking five separate tools. The Campaign Manager surfaces what needs your attention and flags what needs a decision.' },
+      { badge:'9', when:'After each run', icon:'analyse',
+        title:'Analyse and optimise',
+        sub:'It reads what worked and what did not: which message angle landed, which audience converted, which channel delivered at what cost. It proposes changes to the timing, the channel mix, the copy, and the budget for the next run.' },
+      { badge:'10', when:'Loop closes', icon:'learn',
+        title:'Learnings write back',
+        sub:'Confirmed findings write back to your source of truth as settled facts. Hypotheses that proved out become rules for next time. The next campaign starts with better information than the last one had.' }
+    ]
+  },
+  uses:{
+    groups:[
+      { label:'Agents', cls:'product',
+        items:['Lifecycle Agent','Copywriters (one per property)','Website Builder'] },
+      { label:'Foundation', cls:'skill',
+        items:['Your source of truth (positioning + messaging + tone)'] },
+      { label:'Modules', cls:'',
+        items:['Marketing Calendar','Guest Email','Website','Social','Paid (Google + Meta via Access)','PR'] },
+      { label:'Gates', cls:'skill',
+        items:['Gate 1: you approve the plan','Gate 2: you approve every piece','Gate 3: you press go'] },
+      { label:'Tools',
+        items:['Your own Claude','Your CRM/email platform (Attio or Klaviyo)','Avvio + Guestline','Vercel','Your Google/Meta accounts (via Access)'] },
+      { label:'Memory',
+        items:['Your source of truth (builds over time)','What earns direct bookings','Per-property history'] },
+      { label:'Models',
+        items:['Claude Opus 4.8'] }
+    ]
+  }
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap);
+    return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    const isGateNode = !!nd.gate;
+    flow.appendChild(el(`<div class="node">
+      <div class="node-head">
+        <span class="badge${isGateNode?' gate':''}">${nd.badge}</span> ${nd.when}
+      </div>
+      <div class="node-body">
+        <div class="node-icon">${ICONS[nd.icon]||ICONS.brief}</div>
+        <div class="node-text">
+          <div class="node-title">${nd.title}</div>
+          <div class="node-sub">${nd.sub}</div>
+          ${nd.check?`<div class="check${isGateNode?' gate-check':''}">${nd.check}</div>`:''}
+        </div>
+      </div>
+    </div>`));
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k => renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{
+    k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out';
+  });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+// ===== (gantt is static HTML - no JS data needed) =====
+const _DEAD_CAMPS = [
+  { name:'Bellinter · walled-garden autumn',
+    stage:'Guest emails and social running. Offer page ready for launch on your go.',
+    rows:[
+      {name:'Guest emails',       sub:'15 May - 15 Aug · Live',          cls:'live', l:9,  w:60},
+      {name:'Offer page (website)', sub:'1 Jun - 31 Jul · Live',         cls:'live', l:20, w:39},
+      {name:'Social',            sub:'1 Aug - 30 Sep · Awaiting your go', cls:'tent', l:60, w:40}
+    ]},
+  { name:'The Marine · winter by the sea',
+    stage:'Guest emails and social running. Google + Meta live for the full quarter via Access.',
+    rows:[
+      {name:'Guest emails',        sub:'15 Jun - 15 Sep · Live', cls:'live', l:29, w:60},
+      {name:'Google + Meta (Access)', sub:'1 May - 30 Sep · Live',  cls:'live', l:0,  w:100},
+      {name:'Social',              sub:'1 Jul - 31 Aug · Live',  cls:'live', l:40, w:40}
+    ]},
+  { name:'Group · post-stay + win-back',
+    stage:'Spring lifecycle flow finished. Autumn win-back planned from August.',
+    rows:[
+      {name:'Lifecycle flows (always-on)', sub:'1 May - 30 Jun · Finished', cls:'fin',  l:0,  w:39},
+      {name:'Review asks',                 sub:'1 Aug - 30 Sep · Planned',  cls:'tent', l:60, w:40},
+      {name:'Lifecycle flows (always-on)', sub:'1 Jun - 30 Sep · Live',     cls:'live', l:20, w:80}
+    ]}
+];
+
+function renderGantt(){
+  const g=document.getElementById('cmGantt'); if(!g||g.dataset.built) return; g.dataset.built='1';
+  const axRow=el(`<div class="cm-gaxis"><div class="cm-glabelcol"></div><div class="cm-gaxistrack" id="cmAT"></div></div>`);
+  g.appendChild(axRow);
+  const at=document.getElementById('cmAT');
+  GANTT_MONTHS.forEach(m=>at.appendChild(el(`<div class="cm-gmonth" style="left:${m.p}%">${m.l}</div>`)));
+  at.appendChild(el(`<div class="cm-gtoday" style="left:${TODAY_P}%"><span class="cm-gtodaylbl">Today</span></div>`));
+  CAMPS.forEach(c=>{
+    g.appendChild(el(`<div class="cm-gcampname">${c.name}</div>`));
+    g.appendChild(el(`<div class="cm-gcampstage">${c.stage}</div>`));
+    c.rows.forEach(r=>{
+      g.appendChild(el(`<div class="cm-grow">
+        <div class="cm-glabelcol"><div class="cm-gname">${r.name}</div><div class="cm-gsub">${r.sub}</div></div>
+        <div class="cm-gtrack body">
+          <div class="cm-gbar ${r.cls}" style="left:${r.l}%;width:0" data-w="${r.w}%"></div>
+          <div class="cm-gtoday" style="left:${TODAY_P}%"></div>
+        </div>
+      </div>`));
+    });
+  });
+}
+
+// Bar animation: CSS scaleX handles the grow; JS sets staggered delays.
+// If JS never runs, CSS still animates all bars simultaneously (looks fine).
+// If CSS isn't supported or reduced-motion is set, bars render at full static width.
+let boardAnimated=false;
+function animateBoard(){
+  if(boardAnimated||reduceMotion) return;
+  boardAnimated=true;
+  document.querySelectorAll('.cm-gbar').forEach((b,i)=>{ b.style.animationDelay=(i*90)+'ms'; });
+}
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+  if(t.dataset.p==='exp') animateBoard();
+}));
+
+// run on load (Experience is the default-active tab)
+animateBoard();
+</script>
+<script>
+(function(){function h(){parent.postMessage({rwfEmbed:'campaign-manager',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Bellinter House - Worth the drive</title>
+<meta name="description" content="Bellinter House, a Georgian country house hotel and spa on the Boyne in Co. Meath, half an hour from Dublin." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* ===== BRAND SKIN - the ONLY block the filler retints. Everything below it is locked skeleton. ===== */
+    --bg: #FFF6F1;                 /* page background - their site's background, light-leaning unless their brand is dark */
+    --text: #360F0E;             /* body text on --bg */
+    --muted: #907674;           /* secondary text on --bg */
+    --accent: #89764B;         /* their primary brand colour - links, labels, stats, ticks */
+    --accent-hover: #6F5F3C;
+    --deep: #360F0E;             /* their darkest brand tone - dark sections, scrims. If none extracted: a very dark shade of --accent */
+    --on-deep: #FFF6F1;       /* text on --deep - their lightest warm tone, else --bg */
+    --border: #E0DAD6;
+    --dot: #CBBFB9;               /* dotgrid dots - slightly darker than --border */
+    --scrim: rgba(54, 15, 14, 0.5);           /* rgba() of --deep at ~0.5 for the hero, the band scrim is derived below */
+    --scrim-soft: rgba(54, 15, 14, 0.34); /* rgba() of --deep at ~0.34 */
+    --font-display: 'Playfair Display', Georgia, serif;   /* their heading font stack */
+    --font-body: 'Times New Roman', Georgia, serif;         /* their body font stack */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-body); font-weight: 300;
+    line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 300; }
+  a { color: var(--accent); text-decoration: none; transition: opacity 0.3s ease-out; }
+  a:hover { opacity: 0.7; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; left: -999px; top: 0;
+    background: var(--deep); color: var(--on-deep);
+    padding: 12px 20px; z-index: 200;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .skip-link:focus { left: 12px; top: 12px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Nav - light over the hero photo, normal once scrolled onto the page background */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background 0.3s ease-out; }
+  nav.scrolled { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(12px); }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 22px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: var(--font-display); font-size: 15px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--bg);
+  }
+  nav.scrolled .nav-brand { color: var(--text); }
+  .nav-brand img { height: 26px; width: auto; display: block; }
+  .nav-brand img.on-hero { filter: brightness(0) invert(1); }
+  nav.scrolled .nav-brand img.on-hero { filter: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: var(--font-body); font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: color-mix(in srgb, var(--bg) 82%, transparent);
+  }
+  .nav-links a:hover { color: var(--bg); opacity: 1; }
+  nav.scrolled .nav-links a { color: var(--muted); }
+  nav.scrolled .nav-links a:hover { color: var(--accent); }
+  @media (max-width: 768px) { .nav-links { display: none; } }
+
+  /* Hero - full bleed photo.
+     Legibility is STRUCTURAL: base scrim + a bottom gradient under the text zone.
+     Works with any photo the machine pulls - never bare text on a raw image. */
+  .hero { position: relative; min-height: clamp(560px, 90vh, 860px); display: flex; align-items: flex-end; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: slowzoom 18s ease-out forwards; }
+  .hero-scrim { position: absolute; inset: 0; background: var(--scrim); }
+  .hero-grad { position: absolute; inset: 0; background: linear-gradient(to top,
+    color-mix(in srgb, var(--deep) 82%, transparent) 0%,
+    color-mix(in srgb, var(--deep) 45%, transparent) 38%,
+    transparent 68%); }
+  @keyframes slowzoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+  .hero-inner { position: relative; z-index: 2; padding: 160px 0 96px; }
+  .hero-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--on-deep); margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 104px); font-weight: 300; color: var(--bg);
+    letter-spacing: -2px; line-height: 1.0; margin-bottom: 26px;
+  }
+  .hero-sub { font-size: 1.05rem; font-weight: 300; color: var(--bg); opacity: 0.92; margin-bottom: 34px; }
+  .hero-meta { display: flex; gap: 28px; flex-wrap: wrap; }
+  .hero-meta div { font-size: 0.875rem; color: var(--on-deep); opacity: 0.85; }
+  .hero-meta span { color: var(--bg); opacity: 0.6; }
+
+  /* Sections */
+  section { position: relative; padding: 120px 0; }
+  .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .section-title { font-size: clamp(36px, 5vw, 64px); font-weight: 300; letter-spacing: -1px; line-height: 1.05; margin-bottom: 28px; }
+  .section-body { font-size: 0.9375rem; font-weight: 300; }
+  .section-body p { margin-bottom: 18px; }
+  .section-body strong { font-weight: 500; }
+
+  .dotgrid::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, var(--dot) 0.8px, transparent 0.8px);
+    background-size: 28px 28px; opacity: 0.4; pointer-events: none;
+  }
+
+  /* Dark section */
+  .dark { background: var(--deep); color: var(--on-deep); }
+  .dark::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, var(--accent) 0.8px, transparent 0.8px);
+    background-size: 28px 28px; opacity: 0.08; pointer-events: none;
+  }
+  .dark .section-label { color: var(--accent); }
+  .dark .section-title, .dark .section-body { color: var(--on-deep); }
+  .dark .container { position: relative; z-index: 1; }
+
+  /* Split: text + photo */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .split-media { width: 100%; height: 500px; object-fit: cover; border: 1px solid var(--border); display: block; }
+  .dark .split-media { border-color: color-mix(in srgb, var(--on-deep) 20%, transparent); }
+  .split.reverse .split-text { order: 2; }
+  @media (max-width: 900px) {
+    .split { grid-template-columns: 1fr; gap: 36px; }
+    .split-media { height: 320px; }
+    .split.reverse .split-text { order: 0; }
+  }
+
+  /* Wide media inside a section */
+  .media-wide { width: 100%; height: 540px; object-fit: cover; border: 1px solid var(--border); display: block; margin-top: 48px; }
+  .dark .media-wide { border-color: color-mix(in srgb, var(--on-deep) 20%, transparent); }
+  @media (max-width: 768px) { .media-wide { height: 300px; } }
+
+  /* Full-bleed photo band - same structural legibility: gradient under the text zone */
+  .band { position: relative; height: clamp(420px, 58vh, 580px); overflow: hidden; display: flex; align-items: flex-end; }
+  .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .band-scrim { position: absolute; inset: 0; background: var(--scrim-soft); }
+  .band-grad { position: absolute; inset: 0; background: linear-gradient(to top,
+    color-mix(in srgb, var(--deep) 78%, transparent) 0%,
+    color-mix(in srgb, var(--deep) 35%, transparent) 32%,
+    transparent 60%); }
+  .band-inner { position: relative; z-index: 2; padding-bottom: 44px; width: 100%; }
+  .band-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--on-deep); }
+  .band.center { align-items: center; text-align: center; }
+  .band.center img { animation: slowzoom 20s ease-out forwards; }
+  .band.center .band-grad { background: color-mix(in srgb, var(--deep) 52%, transparent); }
+  .band-title { font-size: clamp(36px, 5vw, 64px); font-weight: 300; letter-spacing: -1px; color: var(--bg); margin: 14px 0 0; }
+  .band-sub { font-size: 0.9375rem; color: var(--bg); opacity: 0.92; margin: 18px auto 0; }
+
+  /* Big stat */
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 56px; }
+  .stat-num { font-family: var(--font-display); font-weight: 300; font-size: clamp(40px, 6vw, 72px); letter-spacing: -2px; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 0.8125rem; color: var(--muted); margin-top: 12px; letter-spacing: 0.5px; }
+  .dark .stat-label { color: var(--on-deep); opacity: 0.7; }
+  @media (max-width: 768px) { .stat-row { grid-template-columns: 1fr; gap: 36px; } }
+
+  /* Feature list (rooms / services / treatments / range) */
+  .feature-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 48px; border-top: 1px solid color-mix(in srgb, var(--on-deep) 20%, transparent); }
+  .feature-item { padding: 22px 8px; border-bottom: 1px solid color-mix(in srgb, var(--on-deep) 20%, transparent); font-size: 0.9375rem; display: flex; align-items: center; gap: 14px; transition: transform 0.3s ease-out; }
+  .feature-item:hover { transform: translateX(12px); }
+  .feature-item .tick { color: var(--accent); }
+  @media (max-width: 768px) { .feature-list { grid-template-columns: 1fr; } }
+
+  /* Pull quote */
+  .pull { border-left: 3px solid var(--accent); padding: 8px 0 8px 32px; margin: 64px 0 0; }
+  .pull p { font-family: var(--font-display); font-weight: 300; font-size: clamp(22px, 3vw, 34px); letter-spacing: -0.5px; line-height: 1.3; }
+
+  /* Details */
+  .cred-line { padding: 18px 0; border-bottom: 1px solid var(--border); font-size: 0.9375rem; display: flex; gap: 16px; }
+  .cred-line .key { color: var(--accent); min-width: 140px; font-size: 0.8125rem; letter-spacing: 1px; text-transform: uppercase; padding-top: 2px; }
+
+  /* Button */
+  .btn { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; padding: 16px 28px; margin-top: 32px; transition: background 0.3s ease-out; }
+  .btn:hover { background: var(--accent-hover); opacity: 1; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; }
+  .footer-brand { font-family: var(--font-display); font-size: 14px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .footer-note { font-size: 11px; color: var(--muted); margin-top: 14px; letter-spacing: 1px; }
+  .footer-note a { color: var(--muted); text-decoration: underline; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .nav-inner { padding: 18px 24px; }
+    section { padding: 80px 0; }
+  }
+  @media (max-width: 380px) { .container { padding: 0 16px; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="https://www.bellinterhouse.com/" class="nav-brand">Bellinter House</a>
+    <div class="nav-links">
+      <a href="#house">/house</a>
+      <a href="#setting">/setting</a>
+      <a href="#spa">/spa</a>
+      <a href="#rooms">/rooms</a>
+      <a href="#visit">/visit</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <header class="hero">
+    <img class="hero-bg" src="exterior.jpg" alt="Bellinter House lit up at dusk, seen across the lawn" />
+    <div class="hero-scrim"></div>
+    <div class="hero-grad"></div>
+    <div class="container hero-inner">
+      <h1>Worth the drive</h1>
+      <p class="hero-sub">A Georgian country house hotel and spa on the Boyne, half an hour from Dublin. People keep going back, so here it is written down.</p>
+      <div class="hero-meta">
+        <div><span>\</span> built around 1750</div>
+        <div><span>\</span> 12 acres</div>
+        <div><span>\</span> 30 min from dublin</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STORY 1: split text + photo, light, with pull quote -->
+  <section id="house" class="dotgrid">
+    <div class="container reveal">
+      <div class="split">
+        <div class="split-text">
+          <div class="section-label">// the house</div>
+          <h2 class="section-title">Older than nearly everything around it</h2>
+          <div class="section-body">
+            <p>Bellinter was built around 1750 by Richard Castle, the architect behind half the big houses in Ireland, for a man called John Preston. Preston's grandson became the first Lord Tara, which tells you the sort of company the place kept.</p>
+            <p>More than two hundred and seventy years on, it is still standing on the south bank of the Boyne, doing roughly what it was built to do: feeding people and putting them up for the night.</p>
+          </div>
+        </div>
+        <img class="split-media" src="drawing-room.jpg" alt="The drawing room at Bellinter House, with period furniture and tall windows" />
+      </div>
+      <div class="pull">
+        <p>"A house built to entertain in 1750, still entertaining."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND 1: full-bleed photo breather -->
+  <div class="band">
+    <img src="lawn.jpg" alt="The front lawn and house at Bellinter, set in open countryside" />
+    <div class="band-scrim"></div>
+    <div class="band-grad"></div>
+    <div class="band-inner">
+      <div class="container">
+        <div class="band-label">// twelve acres on the boyne</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2: dark, with 3 stats -->
+  <section id="setting" class="dark">
+    <div class="container reveal">
+      <div class="section-label">// the setting</div>
+      <h2 class="section-title">Close enough to be easy</h2>
+      <div class="section-body">
+        <p>The house sits in twelve acres of Meath countryside, five minutes off the M3 and about half an hour from both Dublin city and the airport. Six miles from Navan if you need a town. Far enough to feel like you've left, near enough that you've no excuse.</p>
+      </div>
+      <div class="stat-row">
+        <div class="reveal"><div class="stat-num">1750</div><div class="stat-label">Roughly when the house was built</div></div>
+        <div class="reveal"><div class="stat-num">12</div><div class="stat-label">Acres of countryside around it</div></div>
+        <div class="reveal"><div class="stat-num">30 min</div><div class="stat-label">From Dublin city and the airport</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY 3: split reversed, light -->
+  <section id="spa" class="dotgrid">
+    <div class="container reveal">
+      <div class="split reverse">
+        <img class="split-media" src="spa.jpg" alt="The thermal suite and infinity pool at the Bellinter Bathhouse spa" />
+        <div class="split-text">
+          <div class="section-label">// the bathhouse</div>
+          <h2 class="section-title">A ten-metre pool to do nothing in</h2>
+          <div class="section-body">
+            <p>The spa is called the Bathhouse, and for a lot of people it is the whole reason to come. There's a thermal suite with a ten-metre infinity pool, hot tubs, saunas and a cold plunge for the brave, then a row of heated loungers for after.</p>
+            <p>Treatments use VOYA, the Irish seaweed-skincare lot. You can lose an afternoon in there without much trouble.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY 4: dark, wide image + feature list -->
+  <section id="rooms" class="dark">
+    <div class="container reveal">
+      <div class="section-label">// where you sleep</div>
+      <h2 class="section-title">Rooms in the house, and beyond it</h2>
+      <div class="section-body">
+        <p>You can stay in the main Georgian house itself, in the suites looking over the Boyne valley, or out in the grounds in the old Schoolhouse and Stables. Different rooms for different moods and budgets.</p>
+      </div>
+      <img class="media-wide" src="room.jpg" alt="A bedroom at Bellinter House, dressed in calm, warm tones" />
+      <div class="feature-list">
+        <div class="feature-item"><span class="tick">\</span> The Main House</div>
+        <div class="feature-item"><span class="tick">\</span> Boyne Valley Suites</div>
+        <div class="feature-item"><span class="tick">\</span> Junior Suites</div>
+        <div class="feature-item"><span class="tick">\</span> The Schoolhouse</div>
+        <div class="feature-item"><span class="tick">\</span> The Stables</div>
+        <div class="feature-item"><span class="tick">\</span> Bellinter Express</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY 5: split, light -->
+  <section id="table" class="dotgrid">
+    <div class="container reveal">
+      <div class="split">
+        <div class="split-text">
+          <div class="section-label">// the table</div>
+          <h2 class="section-title">Preston's, and dogs at the door</h2>
+          <div class="section-body">
+            <p>Dinner is in Preston's, named for the family that built the place, and the kitchen leans on what's grown and reared nearby, which in Meath is no hardship.</p>
+            <p>One more thing that makes it easy to like: they welcome dogs, and have a whole setup for them. The dog comes too.</p>
+          </div>
+        </div>
+        <img class="split-media" src="reception.jpg" alt="The reception and hallway at Bellinter House" />
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS: the practical bits -->
+  <section class="dotgrid">
+    <div class="container reveal">
+      <div class="section-label">// the practical bits</div>
+      <h2 class="section-title">What you need to know</h2>
+      <div class="cred-line"><span class="key">Where</span><span>South bank of the River Boyne, Co. Meath</span></div>
+      <div class="cred-line"><span class="key">Getting there</span><span>30 minutes from Dublin city and the airport, five off the M3</span></div>
+      <div class="cred-line"><span class="key">The house</span><span>Built around 1750 by Richard Castle</span></div>
+      <div class="cred-line"><span class="key">Dogs</span><span>Welcome, properly</span></div>
+    </div>
+  </section>
+
+  <!-- CLOSING BAND -->
+  <div class="band center" id="visit">
+    <img src="house-front.jpg" alt="Bellinter House seen front on from the lawn" />
+    <div class="band-scrim"></div>
+    <div class="band-grad"></div>
+    <div class="band-inner">
+      <div class="container reveal">
+        <div class="band-label">// go</div>
+        <h2 class="band-title">A weekend that feels further than it is</h2>
+        <p class="band-sub">Book a room, book a treatment in the Bathhouse, and bring the dog.</p>
+        <a href="https://www.bellinterhouse.com/" target="_blank" rel="noopener" class="btn">Visit bellinterhouse.com -&gt;</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">Bellinter House</div>
+  <div class="footer-note">Built by <a href="https://runwithfoxes.com">Run with Foxes</a> from nothing but the public web. A first pass.</div>
+  <div class="footer-note">Photographs and details: bellinterhouse.com.</div>
+</footer>
+
+<script>
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Section reveals: ease up + fade in, sequential within each batch
+  var io = new IntersectionObserver(function (entries) {
+    entries.filter(function (e) { return e.isIntersecting; }).forEach(function (e, i) {
+      e.target.style.transitionDelay = (i * 110) + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Number counters: proof numbers tick up once on scroll-into-view (ease-out, ~1s).
+  // Parses the first number in the text and keeps every other character as-is.
+  function animateCount(el) {
+    var raw = el.textContent;
+    var m = raw.match(/([\d,]*\.?\d+)/);
+    if (!m) return;
+    var target = parseFloat(m[1].replace(/,/g, ''));
+    var decimals = (m[1].split('.')[1] || '').length;
+    var useCommas = m[1].indexOf(',') !== -1;
+    var t0 = null;
+    function frame(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1000, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = (target * eased).toFixed(decimals);
+      if (useCommas) val = Number(val).toLocaleString('en-IE', {minimumFractionDigits: decimals});
+      el.textContent = raw.replace(m[1], val);
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(frame);
+  }
+  if (!reduceMotion) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.stat-num').forEach(function (el) { cio.observe(el); });
+  }
+</script>
+</body>
+</html>
