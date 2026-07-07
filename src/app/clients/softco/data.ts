@@ -479,6 +479,36 @@ export const work: WorkSection[] = [
 </div>`,
   },
   {
+    title: "300 × 50 banner · two directions",
+    kind: "html",
+    zone: "work",
+    isNew: true,
+    desc: "On the smallest banner, the full hook is too small to read, so it goes big or goes away. Two directions, both shown at actual size, with a note on how they differ.",
+    html: `<div class="bnr">
+<style>
+  .bnr{color:#060d2e;}
+  .bnr .bnr-intro{font-size:15px;color:#5b6270;margin-bottom:22px;}
+  .bnr-row{display:flex;gap:24px;align-items:flex-start;padding:20px 0;border-top:1px solid #e5e7eb;}
+  .bnr-row:first-of-type{border-top:none;padding-top:2px;}
+  .bnr-shot{flex:0 0 auto;}
+  .bnr-shot img{display:block;width:300px;height:50px;border:1px solid #e5e7eb;}
+  .bnr-shot .sz{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#5b6270;margin-top:6px;}
+  .bnr-txt h4{font-size:17px;font-weight:700;margin:0 0 4px;letter-spacing:-0.01em;}
+  .bnr-txt p{font-size:14.5px;line-height:1.5;margin:0;color:#060d2e;}
+  @media(max-width:640px){.bnr-row{flex-direction:column;gap:12px;}}
+</style>
+  <p class="bnr-intro">The full hook, "How many invoices never need a human?", is unreadable on a 300 by 50 strip. So on the smallest banners we use a few big words instead. Here are two directions, both at their true size. The difference is what each one leads with.</p>
+  <div class="bnr-row">
+    <div class="bnr-shot"><img src="/clients/softco/media/banner-300x50-proof.png" alt="300x50, up to 90% touchless"><div class="sz">300 × 50 · actual size</div></div>
+    <div class="bnr-txt"><h4>Leads with the proof</h4><p>"Up to 90% touchless" puts the number first and keeps a clear call to action. It still makes the argument, even on the smallest strip. Use this when the job is to convince.</p></div>
+  </div>
+  <div class="bnr-row">
+    <div class="bnr-shot"><img src="/clients/softco/media/banner-300x50-idea.png" alt="300x50, touchless AP"><div class="sz">300 × 50 · actual size</div></div>
+    <div class="bnr-txt"><h4>Leads with the idea</h4><p>"Touchless AP." strips it to a single idea in the biggest possible type. No stat, no button, pure stopping power. Use this when the job is to build the brand line and be remembered.</p></div>
+  </div>
+</div>`,
+  },
+  {
     title: "Webinar editor",
     kind: "embed",
     zone: "work",
