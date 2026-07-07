@@ -208,6 +208,28 @@
   .isa-in textarea:focus{ border-color:var(--sky-blue); }
   .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
   .isa-in button:hover{ background:var(--sky-blue); }
+  /* ===== Q&A (accordion) ===== */
+  .faq{ padding:60px 0 24px; }
+  .faq .eyebrow{ margin-bottom:13px; }
+  .faq h2{ font-size:clamp(30px,4.4vw,44px); letter-spacing:-1.2px; line-height:1.03; }
+  .faq-list{ margin-top:30px; border-top:1px solid var(--border); }
+  .faq-item{ border-bottom:1px solid var(--border); }
+  .faq-q{ display:flex; justify-content:space-between; align-items:center; gap:24px; width:100%; text-align:left;
+    background:none; border:none; cursor:pointer; padding:24px 0;
+    font-family:'Space Grotesk',sans-serif; font-weight:400; font-size:clamp(18px,2.1vw,22px); line-height:1.3; color:var(--deep-sky); letter-spacing:-.3px; transition:color .18s; }
+  .faq-q:hover{ color:var(--sky-blue); }
+  .faq-ico{ position:relative; flex:0 0 auto; width:15px; height:15px; }
+  .faq-ico::before, .faq-ico::after{ content:""; position:absolute; background:var(--sky-blue); transition:transform .28s ease; }
+  .faq-ico::before{ top:50%; left:0; width:15px; height:1.5px; transform:translateY(-50%); }
+  .faq-ico::after{ left:50%; top:0; width:1.5px; height:15px; transform:translateX(-50%); }
+  .faq-item.open .faq-ico::after{ transform:translateX(-50%) scaleY(0); }
+  .faq-awrap{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+  .faq-item.open .faq-awrap{ grid-template-rows:1fr; }
+  .faq-a{ overflow:hidden; min-height:0; }
+  .faq-a-inner{ padding:2px 0 28px; }
+  .faq-a p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .faq-a-inner p:first-child{ margin-top:0; }
+  .faq-a b{ font-weight:400; }
 </style>
 </head>
 <body>
@@ -292,6 +314,83 @@
 
     <div class="panel" data-p="bts"></div>
     <div class="panel" data-p="uses"></div>
+  </div>
+
+  <!-- Q&A -->
+  <div class="wrap">
+    <div class="faq">
+      <div class="eyebrow">Questions</div>
+      <h2>Questions people ask</h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>What is a lifecycle agent?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>A tool like Klaviyo or HubSpot doesn't run itself. There's a pile of skilled marketing work in using one properly, and a lifecycle agent does that work. It's not a replacement for the tool, it works with the tool, so the marketing gets done without you hiring the marketer. The thinking behind it is mine: <b>twenty years learning the craft and the commercial side of what makes marketing sell</b>, built into how it runs.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>Sending automatic emails sounds simple. Where's the skill?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>The sending is the easy part. The skill is knowing what to send, to whom, when and why, and never standing still on it.</p>
+            <p>Every customer is sat at a different point. A brand-new sign-up who's never bought. A first-time buyer you want to turn into a second sale. Someone who added to the basket and disappeared. A good customer whose orders have dried up. A lapsed one who'll come back for the right reason. Each is a different message, at a different moment, for a different job. Get the stage wrong and you're firing a welcome at a loyal customer, or a discount at someone who complained yesterday.</p>
+            <p>Then it's the testing, over and over. The timing. The offer. The proof you put in front of them. The order the emails go in. Whether the email and the page it lands on say the same thing. Small changes, measured, kept when they make money, dropped when they don't.</p>
+            <p>And it's the groups underneath. People who bought once and nothing since. People who added to cart but never checked out. People who looked at a product three times and didn't buy. People who bought the razor but not the blades. Each group needs a different message, and finding them is where a lot of the sales are. <b>The tool does none of this. I do.</b></p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>How do I know this is good marketing and not just AI firing out emails?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>The thinking is mine, not the software's. Twenty years taught me what makes a customer respond: which email to send, at what moment, with what offer, and what to leave out. That judgment is what I build in. The AI does the work quickly, but it doesn't make those calls. It only says what's in the brief we agree at the start, it can't invent a claim or a number, and every email is written in your voice and checked before it goes anywhere near a customer. <b>You get twenty years of marketing, done at speed.</b></p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>How do you know it's working?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>By measuring the things that matter and ignoring the misleading ones. Open rates are misleading now: Apple loads the tracking pixel automatically, so an email can look opened when nobody opened it. So we measure clicks instead. We don't judge a result on fifteen sends, we wait until there are enough to trust it. And we don't assume a sale that happened after an email was caused by the email. The way to be sure is a holdout: hold the email back from a small random group, send it to the rest, and compare the two. Until we've done that, a result is marked as linked, not proven. Every week you get one short report on what's working and what to change, ending in a single decision for you.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>What stops it hammering my customers?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>Rules that come from knowing marketing, not a tool's default settings. When someone buys, the sequence trying to sell them that thing stops. When a quiet customer comes back, the win-back stops. Email that keeps selling to people who have already bought is how businesses annoy their customers and lose them, so those stops are built in from the start. On top of that, you approve every email before it goes out, there's a switch that pauses everything at once, and people who never engage are taken off the list rather than emailed harder. That last one protects your reputation with the inbox providers and cuts your bill, because the tool charges you for every name whether they open your emails or not.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>Do I need you to rebuild my website too?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>No. The email side stands on its own and pays for itself on its own. If all you want is recovered carts, repeat purchases and lapsed customers coming back, that's a complete piece of work and a fine place to start. I bundle a website in because owning both lets me get more sales out of the same traffic, but that's an option, not a condition.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>So what do I get if you build the website too?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>You lose fewer sales in the gap between the email and the website. If I build both, the email and the page it links to say the same thing: same offer, same wording, nothing that contradicts. When one person writes the email and another runs the website, they drift apart, so people click through, don't find what they were promised, and leave. Building both means I can change the email and the page together and keep them lined up. You don't need me to, but you'll get more out of the same traffic if I do.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>I'm on Shopify. Does this suit me?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>One of the best fits there is. Shopify already records what every customer viewed, added, bought and abandoned, and Klaviyo can read all of it. That means the emails are triggered by what people actually did: the cart they left, the reorder that's due, the products they keep coming back to. I connect the store, the email flows and the pages so they work as one system, instead of three separate tools that don't talk to each other. You keep Shopify as your shop, and the marketing around it runs like you've got a team on it.</p>
+          </div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false"><span>Once it's built, what does it cost me in time, and does it replace my marketer?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-awrap"><div class="faq-a"><div class="faq-a-inner">
+            <p>Not much time, and it replaces the doing, not the deciding. One interview at the start, about an hour. After that, a board to read and approve whenever something's ready, and one weekly report that ends in one decision. The hours a marketer would spend building flows, writing emails and reading numbers come off your plate, and the judgment guiding it is already built in from my twenty years. Someone on your side still sets direction and makes the brand calls. If you've nobody doing that work today, you're not losing a person, you're getting the output of one for a fraction of the cost.</p>
+          </div></div></div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- FOOTER -->
@@ -484,6 +583,15 @@ document.getElementById('isaSend').addEventListener('click', ()=>{
   setTimeout(()=> addMsg('bot', "Easiest next step is fifteen minutes with Paul. Grab a time <a href=\"https://cal.com/paul-dervan-mjfd50\" target=\"_blank\">here</a>."), 1100);
 });
 // setTimeout(openIsa, 5000); // auto-open paused 29 Jun - quiet launcher TBD
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var it = b.closest('.faq-item');
+      var open = it.classList.toggle('open');
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
 </script>
 </body>
 </html>
