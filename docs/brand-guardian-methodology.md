@@ -63,6 +63,11 @@ back each other up:
    captcha: recognising what's in a picture, and whether it's like other pictures.)
 One measures, the other understands. Run both: a number you can trust + a reason a person
 can act on.
+**Judgment protocol (lifted from the fox guide, proven since Feb 2026):** the vision pass
+always DESCRIBES FIRST - say what is literally in the picture using no words from the brief
+or the brand claim, THEN compare to the references and the brief. Stops the judge seeing
+what it expects to see. For motion: sample frames across the loop and review each against
+the previous (expression/element drift), per the video-QA scrub rule.
 
 ## Step 4 - Translate each type into code (splits by kind)
 - **Words (copy).** Analyse all your copy: words used and never used, phrases, rhythm,
@@ -132,6 +137,65 @@ brand book three ways (rounded pill CTA, flat white vs cream, Helvetica vs APK G
 reproduced faithfully in the calibrate, flagged for the Guardian to report to Sabre. That
 guidelines-vs-reality report (step 1) is the Guardian's first client-facing output.
 
+## The distinctive-asset layer - the recognition gate (added 7 Jul, from Paul's DBA essay)
+Everything above answers "is this CONSISTENT with you?" The commercially decisive question is
+different: "would someone recognise you in 2-3 seconds, WITHOUT your name?" (Romaniuk's
+distinctive brand assets; Paul's proof in market: the unbranded Lottery waterslide - 72%
+spontaneous brand attribution; the Dream Inspector - 60% attribution within a year.) An asset
+can pass every craft and palette gate and still be generically pleasant work where all the
+identification hangs on a logo nobody reaches before they scroll. NAMED FAILURE MODE:
+**"consistent but not distinctive"** - the Guardian must see it. This is a rung UP the metric
+ladder: memory, not just communication.
+
+**The DBA register.** Each brand profile carries a typed catalogue of its distinctive assets.
+The types are NOT just characters (don't confuse the example with the general): colour, logo/
+wordmark, shape/pack form/motif, character, tagline/phrase, spokesperson/face, typography,
+sonic (jingle/sonic logo/voice), advertising-style grammar, recurring scene/setting. Each
+entry: identity spec (features as a checklist), context rules, never-list, reference set,
+generation constraints where the asset is AI-made, and measured strength - real fame/
+uniqueness scores where /dba fieldwork exists, provisional grades where it doesn't.
+
+**Three checks per piece of work:**
+1. **Presence & prominence** - which registered assets appear, how early (inside the 2-3s
+   scroll window for video), how large, how central. Detection + geometry + timing.
+2. **Rendering fidelity** - is the asset itself right. The check method VARIES BY TYPE:
+   colour = exact measurement; logo = geometry, clear space, minimum size, no stretch;
+   character = feature-checklist (the fox-guide pattern); tagline = exact string + set
+   typography; typography = family + ink-coverage weight; scene/photo style = the style
+   fingerprint; ad-style grammar = the calibrated machine's gates; sonic = audio
+   fingerprinting (mature tech, NOT yet built here - disclosed gap, on the roadmap).
+3. **The masked-logo test (the waterslide test, computable)** - mask the logo and brand name
+   out of the screengrab, then run the fingerprint + a blind vision pass: does this still say
+   the brand? A pre-flight PROXY for unbranded recognition, run on every asset before it
+   ships rather than once a year in a tracker. Calibrate the proxy against /dba fieldwork's
+   real in-market scores wherever they exist.
+
+**Context rule (from the fox guide):** asset correctness is contextual, not intrinsic -
+"bright settings = grumpy, dark settings = evil; same face, different read." The Guardian
+checks the asset IN its context, never in isolation.
+
+**Fresh consistency (from the essay):** assets evolve by building on them, not replacing
+them. The register records the core asset AND its permitted evolution; a new execution of a
+registered asset is drift to examine and rule on, not an automatic violation.
+
+**Product handshake:** the 7-stage /dba pipeline (audit -> development -> machine ->
+questionnaire -> fieldwork -> analysis -> training) DISCOVERS, develops, produces and
+MEASURES the assets; the Guardian ENFORCES them in every piece of work, daily, consuming the
+register the pipeline produces. Commercially it chains: the audit sells the Guardian, the
+Guardian's reports sell the fieldwork.
+
+**Proof this already runs in production (RWF's own systems):**
+- The fox guide (`~/projects/fox-ads/docs/FOX_AD_COMPLETE_GUIDE.md`, Feb 2026) is a working
+  CHARACTER-asset guardian: written identity spec, expression rules, the describe-first
+  blind protocol (describe the work using no words from the brief, THEN compare), per-frame
+  drift review, an 85% brief-match gate, no-euphemism verdicts, 21 numbered hard-won
+  learnings (the failure log, third independent sighting). Its patterns lift into the
+  Guardian's judgment pass wholesale. Also lift verbatim: any AI-generated text visible in
+  an image is an automatic flag.
+- The banner machine is a working AD-STYLE-GRAMMAR guardian (Match Gate receipts).
+- The Sabre photo profile is a working SCENE/STYLE guardian (CLIP fingerprint, held-back test).
+The Guardian product is the productization of practice already running - not a spec.
+
 ## The learning loop - the difference between a junior guardian and Paul
 A junior makes the same mistake forever; a senior learns. This is what makes it best-in-class:
 - **Every correction teaches it.** Override it ("that was fine" / "you missed this") and it
@@ -178,9 +242,20 @@ for the moment. The system holds the standard; the person keeps the taste.
 3. Build the numeric CLIP fingerprint into a reusable scorer (proven; test one call first per credit rule).
 4. Build the craft/UX checks (fit, density, count, spacing, contrast) - the everyday core.
    Seed from the Match Gate's proven checks + measurement code, don't start from scratch.
-5. Wire everything through the router into one graded verdict, output as sha-pinned receipts.
+   Include the OCR bridge (read the words out of every screengrab -> feed the copy checker)
+   and the logo geometry gates (stretch, clear space, minimum size).
+5. Build the DBA register format + the presence/prominence gate; write RWF's register first
+   (the fox guide is the character entry), then Sabre's (diamond, wordmark, coral, barcode
+   motif, photo style).
+6. Wire everything through the router into one graded verdict, output as sha-pinned receipts.
    Converge brand-guardian-visual + the banner-machine verify lineage into one gate toolkit.
-6. Run the honest blind test (assemble a mixed sheet, seal the key, blind grader).
-7. Turn the whole proven process into a skill, with the failure-log learning loop built in.
+7. Run the honest blind test (assemble a mixed sheet, seal the key, blind grader) - and
+   audition the masked-logo waterslide test inside it.
+8. Turn the whole proven process into a skill, with the failure-log learning loop built in.
    Rename the old Sabre deck auditor to sabre-brand-guardian so the router owns the name.
-8. Client deliverable available now: the Sabre guidelines-vs-reality deviations report.
+9. Client deliverable available now: the Sabre guidelines-vs-reality deviations report.
+
+Later, once alive (each auditioned via the blind test before it ships, never on a demo):
+stylometry copy fingerprint, pairwise/tournament judging for borderlines, saliency/attention
+(Paul leads the thinking), style-specific embeddings, threshold calibration from held-out
+sets, sonic-asset checking, brand-drift tracking.
