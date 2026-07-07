@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-27",
+  lastUpdated: "2026-07-07",
   feedbackContacts: ["softco.com"],
   targetDate: "2026-07-11",
   hideProgress: true,
@@ -388,6 +388,96 @@ export const work: WorkSection[] = [
     ],
   },
   /* ---- ZONE: work - the AI versions, grouped by QA state. ---- */
+  {
+    title: "Feedback responses · 7 July",
+    kind: "html",
+    zone: "work",
+    isNew: true,
+    groupLabel: "Latest · your 2 and 6 July feedback, addressed",
+    desc: "You commented on four assets. Here is each comment, what we changed, and the previous version beside the new one. The three reworked assets are now live on this page; the blog header is a new direction we are scoping.",
+    html: `<div class="fbr">
+<style>
+  .fbr{color:#060d2e;}
+  .fbr-asset{padding:30px 0;border-top:1px solid #e5e7eb;}
+  .fbr-asset:first-child{border-top:none;padding-top:6px;}
+  .fbr-h{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .fbr-h h4{font-size:20px;font-weight:700;margin:0;letter-spacing:-0.01em;}
+  .fbr-size{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#5b6270;border:1px solid #d9dbe0;padding:3px 8px;}
+  .fbr-pending{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#f7931e;border:1px solid #f7931e;padding:2px 7px;}
+  .fbr-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px;}
+  .fbr-fb,.fbr-fix,.fbr-prop{padding:16px 18px;font-size:14px;line-height:1.5;}
+  .fbr-fb{background:#fff;border:1px solid #e5e7eb;border-left:3px solid #9aa0ab;}
+  .fbr-fix{background:#e8f2fd;border:1px solid #cfe2fa;border-left:3px solid #047fe5;}
+  .fbr-prop{background:#fff;border:1px solid #e5e7eb;border-left:3px solid #f7931e;}
+  .fbr-lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+  .fbr-fb .fbr-lab{color:#5b6270;}.fbr-fix .fbr-lab{color:#047fe5;}.fbr-prop .fbr-lab{color:#f7931e;}
+  .fbr-fb em{font-style:normal;display:block;margin-bottom:8px;}
+  .fbr-attr{color:#5b6270;font-size:12px;}
+  .fbr-fix ul{margin:0;padding:0;list-style:none;}
+  .fbr-fix li{position:relative;padding-left:18px;margin-bottom:7px;}
+  .fbr-fix li:last-child{margin-bottom:0;}
+  .fbr-fix li:before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:#047fe5;}
+  .fbr-prop p{margin:0 0 9px;}.fbr-prop p:last-child{margin:0;}
+  .fbr-ba{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .fbr-shot .fbr-cap{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline;}
+  .fbr-shot.prev .fbr-cap .fbr-tag{color:#5b6270;}
+  .fbr-shot.next .fbr-cap .fbr-tag{color:#047fe5;}
+  .fbr-cap .fbr-px{font-weight:400;letter-spacing:0;text-transform:none;color:#5b6270;}
+  .fbr-shot img{display:block;width:100%;height:auto;border:1px solid #e5e7eb;}
+  .fbr-square img{max-width:320px;}
+  .fbr-ph{border:1px dashed #d9dbe0;aspect-ratio:1200/630;display:flex;align-items:center;justify-content:center;color:#5b6270;font-size:13px;text-align:center;padding:16px;}
+  @media(max-width:760px){.fbr-cols,.fbr-ba{grid-template-columns:1fr;}}
+</style>
+
+  <div class="fbr-asset">
+    <div class="fbr-h"><h4>Stat card</h4><span class="fbr-size">1080 × 1080</span></div>
+    <div class="fbr-cols">
+      <div class="fbr-fb"><div class="fbr-lab">Your feedback · 2 Jul</div><em>“There are accessibility issues with these [and throughout]. Font weight, not enough contrast, etc. IMO the data model visualisation works in dynamic assets, but when static it looks poor / blurred / introduces visual noise. It’s also a bit disconnected from the brand style as currently spec’d.”</em><em>“Where is the light blue drawn from? Secondary palette?”</em><div class="fbr-attr"> -  client, 2 Jul</div></div>
+      <div class="fbr-fix"><div class="fbr-lab">How we’ve addressed it</div><ul><li>Removed the particle field from the still. It is a motion element, and frozen it reads as noise. Statics now use the clean gradient plus the deliberate blueprint line only.</li><li>The key figure is now full-contrast white, not the light blue on blue that was hard to read. The most important element is now the most legible.</li><li>The light blue is your own secondary palette (Light Blue #e8f2fd, a tint of SoftCo Blue). The hue is on-brand; the fault was using it at low contrast for key data, now fixed.</li></ul></div>
+    </div>
+    <div class="fbr-ba">
+      <div class="fbr-shot prev fbr-square"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">shown at 320px</span></div><img src="/clients/softco/media/stat_card_prev.png" alt="previous stat card"></div>
+      <div class="fbr-shot next fbr-square"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">shown at 320px</span></div><img src="/clients/softco/media/stat_card.png" alt="new stat card"></div>
+    </div>
+  </div>
+
+  <div class="fbr-asset">
+    <div class="fbr-h"><h4>Meeting background</h4><span class="fbr-size">1920 × 1080</span></div>
+    <div class="fbr-cols">
+      <div class="fbr-fb"><div class="fbr-lab">Your feedback · 6 Jul</div><em>“Same issue with the static data model visualisation layered over the gradient image. Floating dots look off. Out of step with the whole gradient plus line based ‘tailored to perfection’ visual style, such as it is.”</em><div class="fbr-attr"> -  client, 6 Jul</div></div>
+      <div class="fbr-fix"><div class="fbr-lab">How we’ve addressed it</div><ul><li>Removed the floating dots entirely.</li><li>Left it as the clean gradient with the deliberate vertical boundary line and the blueprint rule, the gradient-plus-line style you pointed to.</li><li>Right side stays clear for the person on the call.</li></ul></div>
+    </div>
+    <div class="fbr-ba">
+      <div class="fbr-shot prev"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">16:9</span></div><img src="/clients/softco/media/meeting_bg_prev.png" alt="previous meeting background"></div>
+      <div class="fbr-shot next"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">16:9</span></div><img src="/clients/softco/media/meeting_bg.png" alt="new meeting background"></div>
+    </div>
+  </div>
+
+  <div class="fbr-asset">
+    <div class="fbr-h"><h4>Webinar promo</h4><span class="fbr-size">1080 × 1080</span></div>
+    <div class="fbr-cols">
+      <div class="fbr-fb"><div class="fbr-lab">Your feedback · 2 Jul</div><em>“As above, legibility issues. Is it possible to do lock ups with speaker photos for webinar promos?”</em><div class="fbr-attr"> -  client, 2 Jul</div></div>
+      <div class="fbr-fix"><div class="fbr-lab">How we’ve addressed it</div><ul><li>Removed the particle field and lifted the title and date to full contrast, so both read cleanly.</li><li>Speaker-photo lock-up: yes, we can do this. We will build a with-photo variant next, alongside this no-face version. We just need a presenter photo to cut out.</li></ul></div>
+    </div>
+    <div class="fbr-ba">
+      <div class="fbr-shot prev fbr-square"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">shown at 320px</span></div><img src="/clients/softco/media/webinar_promo_prev.png" alt="previous webinar promo"></div>
+      <div class="fbr-shot next fbr-square"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">shown at 320px</span></div><img src="/clients/softco/media/webinar_promo.png" alt="new webinar promo"></div>
+    </div>
+  </div>
+
+  <div class="fbr-asset">
+    <div class="fbr-h"><h4>Blog header</h4><span class="fbr-size">1200 × 630</span><span class="fbr-pending">New direction pending</span></div>
+    <div class="fbr-cols">
+      <div class="fbr-fb"><div class="fbr-lab">Your feedback · 6 Jul</div><em>“Strong preference for not using text within article header images and thumbnails [issues w/ duplication, readability, accessibility, etc.]. Title already exists alongside. Image doing a different job, ideally a thematic visual cue. Is it possible to automate creation of conceptual imagery rather than title cards?”</em><div class="fbr-attr"> -  client, 6 Jul</div></div>
+      <div class="fbr-prop"><div class="fbr-lab">Proposed direction</div><p>Agreed. The header image should not repeat the title. We are moving blog headers and thumbnails to a conceptual visual cue instead of a title card.</p><p>This is a new template rather than a tweak, so we are scoping the approach first: how we generate an on-brand conceptual image per post, repeatably, at the quality bar of your own examples. New versions to follow.</p></div>
+    </div>
+    <div class="fbr-ba">
+      <div class="fbr-shot prev"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">title card</span></div><img src="/clients/softco/media/blog_header_prev.png" alt="previous blog header"></div>
+      <div class="fbr-shot next"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">in design</span></div><div class="fbr-ph">Conceptual imagery direction<br>to follow</div></div>
+    </div>
+  </div>
+</div>`,
+  },
   {
     title: "Webinar editor",
     kind: "embed",
