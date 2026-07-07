@@ -152,10 +152,12 @@ the Guardian's first client-facing output. CORRECTED 7 Jul: a third claimed devi
 ("rounded pill CTA") was OURS, not theirs - Darren's shipped CTA is chamfered (~8-9px
 linear 45-degree corner cuts, measured; angular, arguably on-brand); the rounded pill was
 our calibrate's build.js. It passed the Match Gate because Gate A measures ink bounding
-boxes and corner geometry is invisible to x/y/w/h. Logged in the calibrate failure log;
-candidate new gate: corner/shape outline check; build.js fix owed. The catch itself is the
-methodology working: verify against the source before a claim ships, every miss becomes a
-new gate.
+boxes and corner geometry is invisible to x/y/w/h. CLOSED same night: build.js fixed and
+GATE E - SHAPE built into the calibrate's verify.js (per-row corner-inset profiles, all
+four corners, tol 2px/row), proven both directions - the chamfer passes, the original
+rounded build rebuilt as a regression fails with the curve signature in the receipt. The
+whole arc is the methodology working live: verify against the source before a claim ships,
+every miss becomes a new gate, the gate proven against the miss that created it.
 
 ## The distinctive-asset layer - the recognition gate (added 7 Jul, from Paul's DBA essay)
 Everything above answers "is this CONSISTENT with you?" The commercially decisive question is
