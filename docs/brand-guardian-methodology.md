@@ -33,8 +33,11 @@ the product, not the edge.
 ## Step 1 - Gather everything (two inputs)
 1. Your **guidelines + verbal-identity documents** - the rules you've written down (intent).
 2. Your **complete published work** - every ad, email, deck, page and photo (reality).
-Where the two disagree is useful (Sabre's own emails use em dashes and exclamation marks
-their guidelines ban).
+Where the two disagree is useful (Sabre's brand book locks the tagline as a standalone
+lockup, p20; their live emails modify it). CORRECTED 7 Jul: the earlier example here
+("their guidelines ban em dashes/exclamations") was wrong - the verbal identity PDF bans
+neither and uses em dashes itself; those bans are OUR craft bar, imported via the email
+writer. Verification against the actual PDF caught it. Hence the provenance rule below.
 
 ## Step 2 - Map every TYPE you make (however many that is)
 Categories are few (ads, emails, social, decks, imagery) but inside each are distinct
@@ -103,6 +106,15 @@ the previous (expression/element drift), per the video-QA scrub rule.
   machine shouldn't make alone. Flagged, not blocked. How it stays honest about the new.
 - **Clean** - holds and matches the pattern. Ships.
 
+**Every rule carries PROVENANCE, and the verdict says whose rule it is (added 7 Jul).**
+Two different rule sources produce two different verdict classes: "breaks YOUR guideline"
+(their brand book, page-referenced) vs "falls below OUR craft standard" (the RWF bar -
+em-dash bans, AI-tell rules, rhythm). Both are worth enforcing; conflating them is how a
+guardian loses a client's trust ("show me where our book says that"). Rules files tag each
+rule's source; reports separate the two classes. Three-tier evidence language for guideline
+claims: written-rule break > stated-typical-usage deviation > systemic-pattern deviation
+(present everywhere in the book, written nowhere).
+
 **The verdict is a RECEIPT, not an opinion** (adopted 7 Jul from the Match Gate doctrine,
 `~/paul-hub/methodology/dray-calibrate-and-the-match-gate.md`). Every check the Guardian runs
 writes a receipt JSON sha-pinned to the exact asset file: every gate run, its measurement, its
@@ -132,10 +144,18 @@ so there is a single ruler everything trusts.
 Proven techniques to lift into the craft layer: ink-box position measurement (<=3px), median
 flat-patch colour sampling (robust to GIF dither), ink-coverage font-weight matching (catches
 weight, not just family), containment (nothing clipped - an ugly-catcher in its own right).
-Live deliverable this doctrine already produced: Sabre's own shipped webinar set breaks their
-brand book three ways (rounded pill CTA, flat white vs cream, Helvetica vs APK Galeria) -
-reproduced faithfully in the calibrate, flagged for the Guardian to report to Sabre. That
-guidelines-vs-reality report (step 1) is the Guardian's first client-facing output.
+Live deliverable this doctrine already produced: Sabre's shipped webinar set deviates from
+their brand book TWO ways (flat white scene backgrounds vs the book's stated typical usage
+of white as a text colour, p11-12; Helvetica body vs the brand font APK Galeria) - plus a
+modified tagline lockup in their live emails. That guidelines-vs-reality report (step 1) is
+the Guardian's first client-facing output. CORRECTED 7 Jul: a third claimed deviation
+("rounded pill CTA") was OURS, not theirs - Darren's shipped CTA is chamfered (~8-9px
+linear 45-degree corner cuts, measured; angular, arguably on-brand); the rounded pill was
+our calibrate's build.js. It passed the Match Gate because Gate A measures ink bounding
+boxes and corner geometry is invisible to x/y/w/h. Logged in the calibrate failure log;
+candidate new gate: corner/shape outline check; build.js fix owed. The catch itself is the
+methodology working: verify against the source before a claim ships, every miss becomes a
+new gate.
 
 ## The distinctive-asset layer - the recognition gate (added 7 Jul, from Paul's DBA essay)
 Everything above answers "is this CONSISTENT with you?" The commercially decisive question is
@@ -220,10 +240,13 @@ It measures how CONSISTENT something is with you, not whether it's GOOD or the R
 for the moment. The system holds the standard; the person keeps the taste.
 
 ## What proved out on Sabre (6-7 Jul 2026)
-- **Copy: one rule from done.** Our OWN best-in-class Sabre emails: 8/9 pass clean; the 1
-  fail is a single Title Case mis-fire. Calibrate against best work, not shipped work
-  (Sabre's shipped emails break their own rules). Title Case is the checker's main false-fail
-  source (fires on names/dates/sign-offs) - fix = skip structural non-prose lines.
+- **Copy: DONE (8 Jul 4622fbc).** Our OWN best-in-class Sabre emails: now 9/9 pass clean
+  (was 8/9; the fail was a Title Case mis-fire on a labelled subject line). Fix: skip
+  structural non-prose lines (greeting, sign-off + signature block, dates, contact lines,
+  placeholders), check content behind Subject:/Preheader: labels, and a per-brand
+  properNouns list. Regression file with 3 planted violations still caught. Calibrate
+  against best work, not shipped work (Sabre's live emails fall below our craft bar and
+  modify their own tagline lockup - see provenance rule).
 - **Graphics colour: photo-aware fix scoped.** Open-mode checker wrongly fails 15/24 approved
   Sabre banner frames - all photo scenes (colour is the wrong question for a photo). Reuse
   the banner machine's known photo zones + settled-frame-per-scene.
@@ -231,8 +254,10 @@ for the moment. The system holds the standard; the person keeps the taste.
   passed a held-back test (unseen Sabre photo 0.15 = inside the family; off-brand fox 0.42 =
   far outside; on STYLE not colour). Visual "Sabre zone" constellation built (map = intuition,
   % = the truth). Profile: `brand-guardian-guidelines/profiles/sabre.photo-style.md`.
-- **Assets on hand:** 40 approved display ads (4 routes x 10 sizes), 60-photo imagery library
-  + 8 generation prompts (the style, in words), 11 real emails + our 9 best-in-class ones.
+- **Assets on hand:** 40 approved display ads (4 routes x 10 sizes), 49-photo imagery library
+  (corrected 7 Jul; earlier "60" was wrong) + 8 generation prompts (the style, in words),
+  11 real emails + our 9 best-in-class ones (`clients/sabre/notes/email-marketer/Sabre email
+  writer - sample emails.docx`).
 - Engines: `~/.claude/skills/brand-guardian-*` (router + copy + guidelines + visual-fidelity).
   Sabre profiles: `brand-guardian-copy/rules/sabre.json`, `guidelines/profiles/sabre.json` + `.photo-style.md`.
 
