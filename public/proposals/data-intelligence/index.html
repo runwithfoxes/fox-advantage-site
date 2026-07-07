@@ -69,9 +69,9 @@
   .agents{margin-top:8px;}
   .agent-embed{position:relative;border-top:1px dashed var(--border);padding-top:30px;margin-top:44px;}
   .agent-embed:first-child{border-top:none;padding-top:8px;margin-top:30px;}
-  .agent-embed::before{content:attr(data-n) " / 03";position:absolute;top:30px;left:50%;transform:translateX(-560px);
-    font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
-  @media(max-width:1200px){ .agent-embed::before{left:48px;transform:none;} }
+  .agent-embed::before{content:"";display:none;}
+  .wchip a,a.wchip{cursor:pointer;}
+  a.wchip:hover{border-color:var(--sky);color:var(--sky);}
   iframe.demo{display:block;width:100%;border:0;background:var(--bg);height:1750px;}
 
   /* website native block (no product page exists; the real page is the proof) */
@@ -281,41 +281,106 @@
   <div class="container">
     <div class="kicker">What I'd recommend</div>
     <h2 class="reveal">A new company, a clear space to own, and no time to waste.</h2>
-    <p class="sec-intro reveal">Everything here comes from our conversation. Data Intelligence is starting from a blank page, and that is the opportunity: no one yet owns the conversation about controlling technology costs, and you want to be the name that does, quickly. The thinking has to come first, the positioning and the plan, or the marketing is just noise. Then the machine to run it, so a small team can execute every day without starting from scratch each time. <strong>Here is what I'd build for Data Intelligence</strong>: the foundation first, then the two agents that run it, each configured for you and handed to your team.</p>
+    <p class="sec-intro reveal">Everything here comes from our conversation. Data Intelligence is starting from a blank page, and that is the opportunity: no one yet owns the conversation about controlling technology costs, and you want to be the name that does, quickly. The thinking has to come first, the positioning and the plan, or the marketing is just noise. Then the AI systems to run it, so a small team can execute every day at quality and speed. <strong>Here is what I'd build for Data Intelligence</strong>: the strategy and plan first, then the systems to execute it, with four shown below as examples, all scoped with you and handed to your team.</p>
   </div>
 
   <div class="agents">
 
-    <!-- THE FOUNDATION: the upfront thinking, no product page; a native block -->
-    <div class="agent-embed reveal" data-n="01">
+    <!-- PART ONE (a): the strategy and plan -->
+    <div class="agent-embed reveal">
       <div class="wsite">
-        <div class="eyebrow">The groundwork · before any agent</div>
-        <h3>The foundation</h3>
+        <div class="eyebrow">Part one · the thinking</div>
+        <h3>The strategy and plan</h3>
         <div class="sell">
-          <p>Before a single agent gets built, we do the thinking. What does Data Intelligence stand for, who is it for, and which moments does it want to own? In a world before AI, this is the work you would hire a brand strategist and a CMO to do. It is the part that makes everything after it good.</p>
-          <p>You want to be the name that comes to mind the moment a company realises its technology spend is out of control. That does not happen by accident. <b>We decide the position, write the messaging, and set the marketing strategy</b>, so the agents are not guessing. They run a plan, in a voice, against a set of triggers we have chosen on purpose.</p>
+          <p>Before anything gets built, we decide how Data Intelligence goes to market. Not a positioning document that sits in a drawer, a practical marketing strategy and execution plan: how to reach the market, where the budget goes, and the creative and messaging that carries it. Empirically grounded, and built to do one thing, create fame fast.</p>
+          <p>Winning early is not about doing a bit more of everything. It is about getting <b>as many inquiries and as much awareness as possible, as quickly as possible, and building the category entry points and mental availability</b> that make Data Intelligence the name people think of the moment their technology costs feel out of control. That means using channels like radio alongside the go-to-market work, chosen on purpose, never incrementally.</p>
         </div>
         <div class="wcols">
           <div>
-            <div class="wcol-l">What we do</div>
+            <div class="wcol-l">What the plan decides</div>
             <ul class="wflow">
-              <li><b>Positioning</b><span>Where Data Intelligence plays and how it wins. The trigger points it owns, and the ones it deliberately does not.</span></li>
-              <li><b>Messaging framework</b><span>The core argument and the proof, so every post, page and campaign says the same thing in the same voice.</span></li>
-              <li><b>Marketing strategy</b><span>The plan to build fame and market share: the channels, the cadence, and what good looks like at each stage.</span></li>
-              <li><b>The source of truth</b><span>All of it written down in one place, the file the agents read before they make anything.</span></li>
+              <li><b>How to go to market</b><span>The audiences, the channels (radio and beyond), and the sequence that builds awareness and inquiries fastest.</span></li>
+              <li><b>Where the budget goes</b><span>Allocation across channels and time, geared to fame and mental availability, not vanity metrics.</span></li>
+              <li><b>Creative and messaging</b><span>The positioning, the argument, the distinctive assets, and the trigger points Data Intelligence owns.</span></li>
+              <li><b>How we measure it</b><span>Empirically solid: category entry points, mental availability, inquiries and awareness, tracked over time.</span></li>
             </ul>
           </div>
           <div>
-            <div class="wcol-l">What you are left with</div>
-            <div class="wchips-g"><div class="wchips-k">Deliverables</div><div class="wchips"><span class="wchip">A positioning statement</span><span class="wchip">A messaging framework</span><span class="wchip">A marketing plan</span></div></div>
-            <div class="wchips-g"><div class="wchips-k">Then</div><div class="wchips"><span class="wchip g">The agents built on top</span><span class="wchip g">Your team running it</span></div></div>
+            <div class="wcol-l">The thinking behind this</div>
+            <div class="wchips-g"><div class="wchips-k">Reading</div><div class="wchips">
+              <a class="wchip g" href="https://runwithfoxes.substack.com/p/what-is-mental-availability-and-why" target="_blank" rel="noopener">What is mental availability →</a>
+              <a class="wchip g" href="https://runwithfoxes.substack.com/p/distinctive-brand-assets-in-an-ai" target="_blank" rel="noopener">Distinctive brand assets →</a>
+              <a class="wchip g" href="https://runwithfoxes.substack.com/p/the-955-rule-the-day-one-list" target="_blank" rel="noopener">The 95:5 rule, the day-one list →</a>
+            </div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="agent-embed reveal" data-n="02"><iframe class="demo" data-embed="ghostwriter" src="_data-intelligence-ghostwriter-demo.html" title="Ghostwriter, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
-    <div class="agent-embed reveal" data-n="03"><iframe class="demo" data-embed="campaign-manager" src="_data-intelligence-campaign-manager-demo.html" title="Campaign Manager, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
+    <!-- PART ONE (b): the AI systems, the range, shown by examples -->
+    <div class="agent-embed reveal">
+      <div class="wsite">
+        <div class="eyebrow">Part one · the build</div>
+        <h3>Then the AI systems to run it</h3>
+        <div class="sell">
+          <p>A plan is only worth as much as the execution. So the second half of part one is building the AI systems that run it, at the quality bar twenty years in brand sets, and at the speed a new company needs. Your team approves; the systems do the work.</p>
+          <p>I have a range of these already built and proven. <b>Which ones Data Intelligence needs is a decision that falls out of the strategy and plan, not something to fix now.</b> When I do the marketing strategy, I work out how to execute it, and that is what tells me which systems and agents are worth building for you. Here is the range I would choose from.</p>
+        </div>
+        <div class="wtag">The range I'd choose from</div>
+        <div class="wchips">
+          <span class="wchip g">Campaign Manager</span>
+          <span class="wchip g">Ghostwriter</span>
+          <span class="wchip g">Copywriter</span>
+          <span class="wchip g">Website Builder</span>
+          <span class="wchip">Outbound Agent</span>
+          <span class="wchip">Search Agent · GEO</span>
+          <span class="wchip">Brand Guardian</span>
+          <span class="wchip">Advertising Agent</span>
+          <span class="wchip">Lifecycle / email</span>
+        </div>
+        <div class="wcaption">The four highlighted are shown below, built as examples, so you can see the range and the standard. The rest I would build if the plan calls for them. A GEO Search Agent, getting Data Intelligence surfaced inside the answers AI tools give, may well have a role here; I would want more time to say.</div>
+        <div class="wtag" style="margin-top:24px;">A sense of how I build</div>
+        <div class="wchips">
+          <a class="wchip g" href="https://runwithfoxes.substack.com/p/dump-your-website-and-start-again" target="_blank" rel="noopener">Dump your website and start again →</a>
+          <a class="wchip g" href="https://runwithfoxes.substack.com/p/how-i-build-an-ai-writer" target="_blank" rel="noopener">How I build an AI writer →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-embed reveal"><iframe class="demo" data-embed="ghostwriter" src="_data-intelligence-ghostwriter-demo.html" title="Ghostwriter, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
+    <div class="agent-embed reveal"><iframe class="demo" data-embed="copywriter" src="_data-intelligence-copywriter-demo.html" title="Copywriter, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
+
+    <!-- WEBSITE BUILDER: no site exists yet, so it builds one; native block, no live exhibit -->
+    <div class="agent-embed reveal">
+      <div class="wsite">
+        <div class="eyebrow">An example · configured for Data Intelligence</div>
+        <h3>Website Builder</h3>
+        <div class="sell">
+          <p>In a world before AI, a new site meant a web designer, a front-end developer and a producer to manage it. The Website Builder is that whole role in one: it takes the brief, does the UX and the UI, builds the pages to your brand, and pushes them live to hosting.</p>
+          <p>Data Intelligence does not have a site yet, so there is nothing to rebuild, we build it. Once your design rules are set up front, <b>a new page, a launch page or a fixed line is a sentence, not a project.</b></p>
+        </div>
+        <div class="wcols">
+          <div>
+            <div class="wcol-l">Behind the scenes</div>
+            <ul class="wflow">
+              <li><b>Take the brief</b><span>The audience, the pages, the content, the look. The proper version, not a one-line prompt.</span></li>
+              <li><b>Decode the design</b><span>Type, spacing, components and imagery become precise rules in your brand.</span></li>
+              <li><b>UX and UI</b><span>Navigation and structure agreed, then designed to look as sharp as the thinking.</span></li>
+              <li><b>Build and check</b><span>Built to the rules and screenshot-checked before anyone sees it.</span></li>
+              <li><b>Approve and publish</b><span>Your yes, and it is live on hosting, updated later with a sentence.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="wcol-l">What it uses</div>
+            <div class="wchips-g"><div class="wchips-k">Does the work of</div><div class="wchips"><span class="wchip">A web designer</span><span class="wchip">A front-end developer</span><span class="wchip">A producer</span></div></div>
+            <div class="wchips-g"><div class="wchips-k">Tools</div><div class="wchips"><span class="wchip">Your own Claude</span><span class="wchip">Vercel (hosting)</span></div></div>
+            <div class="wchips-g"><div class="wchips-k">The plan</div><div class="wchips"><span class="wchip g">The main site first</span><span class="wchip g">Then a page per campaign</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-embed reveal"><iframe class="demo" data-embed="campaign-manager" src="_data-intelligence-campaign-manager-demo.html" title="Campaign Manager, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
   </div>
 </section>
 
@@ -329,15 +394,15 @@
     <div class="plans">
       <div class="plan reveal">
         <div class="pk">Part one · The build</div>
-        <div class="pn">The foundation and both agents, built and handed over</div>
+        <div class="pn">The strategy and plan, and the AI systems to run it</div>
         <ul>
-          <li>Positioning, messaging framework and marketing strategy</li>
-          <li>The Ghostwriter, trained on Dave's voice, building the name</li>
-          <li>The Campaign Manager, planning and tracking the whole operation</li>
-          <li>Your team trained to run all of it</li>
+          <li>A fame-first marketing strategy and execution plan: go-to-market, budget, creative and messaging</li>
+          <li>Built on category entry points and mental availability, empirically grounded</li>
+          <li>The AI systems to execute at quality and speed, scoped with you</li>
+          <li>Built around your brand and handed over</li>
         </ul>
         <div class="price">€15,000 <small>+ VAT</small></div>
-        <div class="phase">A one-off project. Tools (Claude Code, hosting, email platform) are separate, sized and agreed with you.</div>
+        <div class="phase">A one-off project. The mix of systems (Campaign Manager, Ghostwriter, Copywriter, Website Builder, Outbound, a GEO Search Agent) is scoped together, once the plan is set. Tools (Claude Code, hosting, email platform) are separate, sized with you.</div>
       </div>
       <div class="plan feat reveal">
         <div class="pk">Part two · Then, ongoing</div>
@@ -345,8 +410,8 @@
         <ul>
           <li>Two days a month, once the build is live</li>
           <li>Training and steering your junior marketer</li>
-          <li>Optimising the marketing plans as they run</li>
-          <li>A senior marketing head on call for the team</li>
+          <li>Fixing and tweaking, new creative, marketing analysis</li>
+          <li>The go-to person for whoever runs it day to day</li>
         </ul>
         <div class="price">€3,000 <small>per month</small></div>
         <div class="phase">Month to month, begins once the build is handed over. Tools separate, as above.</div>
@@ -356,7 +421,7 @@
     <div class="covers">
       <div class="reveal">
         <div class="k">What the price covers</div>
-        <p>The thinking, the two agents, the handover and the training, then a senior head kept on the work every month. You own the system and the strategy it runs on.</p>
+        <p>The strategy and plan, the AI systems built to run it, the handover and the training, then a senior head kept on the work every month. You own the system and the strategy it runs on.</p>
       </div>
       <div class="reveal">
         <div class="k">What it doesn't</div>
@@ -399,7 +464,9 @@
   /* hero: typed fox labels */
   var team=[
     {t:"Ghostwriter",        x:31, y:29},
-    {t:"Campaign Manager",   x:76, y:45}
+    {t:"Campaign Manager",   x:76, y:45},
+    {t:"Copywriter",         x:1,  y:64},
+    {t:"Website Builder",    x:20, y:73}
   ];
   var stage=document.getElementById('stage');
   var showAll=location.hash==='#done'||reduce;

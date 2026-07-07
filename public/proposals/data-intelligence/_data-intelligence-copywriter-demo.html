@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Copywriter · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* full site nav */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* tabs */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+
+  /* what it uses */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* ===== EXPERIENCE: before / after voice demo ===== */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:24px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+
+  .cw-formats{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .cw-fmtpill{ background:var(--bg); border:1px solid var(--border); font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted);
+    padding:7px 14px; cursor:pointer; transition:background .2s, color .2s, border-color .2s; }
+  .cw-fmtpill:hover{ color:var(--text); background:var(--card-hover); }
+  .cw-fmtpill.active{ background:var(--deep-sky); color:var(--bg); border-color:var(--deep-sky); }
+
+  .cw-panels{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:26px; }
+  @media(max-width:680px){ .cw-panels{ grid-template-columns:1fr; } }
+
+  .cw-col{ display:flex; flex-direction:column; }
+  .cw-col-label{ display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .cw-col-dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+  .cw-dot-muted{ background:#C4C4BC; }
+  .cw-dot-live{ background:#3FAE6E; animation:cw-pulse 1.8s infinite; }
+  @keyframes cw-pulse{
+    0%{ box-shadow:0 0 0 0 rgba(63,174,110,.5); }
+    70%{ box-shadow:0 0 0 7px rgba(63,174,110,0); }
+    100%{ box-shadow:0 0 0 0 rgba(63,174,110,0); } }
+
+  .cw-copy{ border:1px solid var(--border); background:var(--bg); padding:20px 22px;
+    font-size:14px; line-height:1.8; color:var(--text); min-height:130px; flex:1; }
+  .cw-copy-before{ color:var(--muted); border-style:dashed; font-style:italic; }
+  .cw-copy-after{ border-left:3px solid var(--sky-blue); }
+
+  .cw-rules{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; min-height:30px; }
+  .cw-rule{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.4px;
+    color:var(--sky-blue); border:1px solid rgba(58,124,165,.3); padding:4px 9px; background:var(--sky-soft); }
+
+  .cw-cursor{ display:inline-block; width:7px; height:15px; background:var(--sky-blue);
+    margin-left:2px; vertical-align:-2px; animation:cw-blink 1s step-end infinite; }
+  @keyframes cw-blink{ 50%{ opacity:0; } }
+
+  /* proof strip */
+  .cw-proof{ border:1px solid var(--border); border-left:3px solid var(--sky-blue);
+    background:var(--card-hover); padding:18px 20px; }
+  .cw-proof .lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--sky-blue); margin-bottom:10px; }
+  .cw-proof p{ font-size:13px; line-height:1.75; color:var(--text); max-width:none; }
+  .cw-proof p + p{ margin-top:8px; }
+  .cw-proof b{ font-weight:500; }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; max-width:none; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa: matched to the live site widget */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">An example · configured for Data Intelligence</div>
+      <h1>Copywriter</h1>
+      <div class="sell">
+        <p class="sell-lead">Nearly all marketing needs writing at some point: a web page, an email, an offer, a caption. In a world before AI, companies' options were limited. Hire a full-time copywriter, bring in a freelancer or an agency, or have a go yourself between everything else. <b>None of that keeps up with a company building fame fast.</b></p>
+        <p class="sell-body">And good writing is not fast. Writing that carries an insight, that is relevant and accurate, and that holds your positioning and messaging, takes real time and real craft. That is what a copywriter built for Data Intelligence gives you: web copy, emails, offers, social captions, all in your voice, at the volume this needs.</p>
+        <p class="sell-rail">The voice is the thing. <b>Provocative enough to get noticed, authoritative enough to be trusted</b>, and never the generic AI mush everyone else ships. It writes to your messaging framework, in your voice, and your team approves every line.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN TABS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">The same idea, written twice. Once by a generic AI, once by an agent trained on the Data Intelligence voice. <b>Pick a format to see the contrast.</b></div>
+
+      <div class="cw-formats" id="cwFormats">
+        <button class="cw-fmtpill active" data-i="0">Web headline</button>
+        <button class="cw-fmtpill" data-i="1">Email opening</button>
+        <button class="cw-fmtpill" data-i="2">Social caption</button>
+        <button class="cw-fmtpill" data-i="3">Offer / product copy</button>
+      </div>
+
+      <div class="cw-panels">
+        <div class="cw-col">
+          <div class="cw-col-label">
+            <span class="cw-col-dot cw-dot-muted"></span>Generic AI
+          </div>
+          <div class="cw-copy cw-copy-before" id="cwBefore"></div>
+        </div>
+        <div class="cw-col">
+          <div class="cw-col-label">
+            <span class="cw-col-dot cw-dot-live"></span><span id="cwAfterLabel">Data Intelligence voice</span>
+          </div>
+          <div class="cw-copy cw-copy-after"><span id="cwTyped"></span><span class="cw-cursor" id="cwCursor"></span></div>
+          <div class="cw-rules" id="cwRules"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEHIND THE SCENES (rendered by JS) -->
+    <div class="panel" data-p="bts"></div>
+
+    <!-- WHAT IT USES (rendered by JS) -->
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  build:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+  eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>',
+  format:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="9" x2="9" y2="21"/></svg>'
+};
+
+const TABS = {
+  bts:{
+    start:"Data Intelligence's voice guide + messaging framework",
+    end:"Copy in your voice, approved by your team",
+    nodes:[
+      {type:'node', badge:'1', when:'Set up once', icon:'brief', title:'Train it on your voice',
+        sub:"The copywriter is trained on Data Intelligence's voice guide, the messaging framework, and a sample of real approved work, so it writes like you, not like a generic AI."},
+      {type:'node', badge:'2', when:'From those materials', icon:'build', title:'Build the voice model',
+        sub:'Not a setting. A trained understanding of how Data Intelligence writes: the words it reaches for, the register, the arguments it makes, all on top of the messaging framework.',
+        check:'<strong>The bans are real rules</strong>, not suggestions. No corporate words, no hype, no em dashes, no unverified claims. Enforced at every draft.'},
+      {type:'node', badge:'3', when:'When you need copy', icon:'eye', title:'You brief it in plain language',
+        sub:'"A LinkedIn caption on auto-renewals, for the launch series." That is enough. The format and the thing you want said.'},
+      {type:'node', badge:'4', when:'Format by format', icon:'format', title:'Draft in your voice',
+        sub:"A web headline is a different job to an email subject, a social caption, or an offer line. Each format is its own craft, and each draft is written in Data Intelligence's register, not a generic house style."},
+      {type:'node', badge:'5', when:'Before your team sees it', icon:'gate', title:'The Brand Guardian audits it',
+        sub:'Every draft is checked against your standards before it reaches your team: the voice bans and the messaging framework underneath. Anything off is flagged, not shipped.',
+        check:'<strong>Gate:</strong> your team sees the draft and any flags together. You decide what ships.'},
+      {type:'node', badge:'6', when:'Your call', icon:'look', title:'Your team approves',
+        sub:'Read it, edit it, approve it. Nothing publishes without your yes.',
+        check:'<strong>Your team approves every line.</strong> Nothing goes anywhere without explicit sign-off.'}
+    ]
+  },
+  uses:{
+    groups:[
+      {label:'Skills', cls:'skill', items:['/copywriter (to build)','/brand-guardian-copy','/voice (calibration system)']},
+      {label:'Rules', items:["Data Intelligence's own voice",'provocative but authoritative','no fabricated specifics','anchored to your messaging framework','no corporate words','no em dashes']},
+      {label:'Gates', cls:'skill', items:['you approve every line','nothing publishes without your yes']},
+      {label:'Tools', items:['your own Claude','your CMS + email platform']},
+      {label:'Data', items:['your voice guide','your messaging framework','real approved work']},
+      {label:'Models', items:['Claude Opus 4.8']},
+      {label:'Memory', items:['your voice model','what has been written','what is on brand']}
+    ]
+  }
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    flow.appendChild(el(`<div class="node">
+      <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+      <div class="node-body">
+        <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+        <div class="node-text">
+          <div class="node-title">${nd.title}</div>
+          <div class="node-sub">${nd.sub}</div>
+          ${nd.check?`<div class="check">${nd.check}</div>`:''}
+        </div>
+      </div></div>`));
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// ===== Experience: before / after voice demo =====
+const CW_EXAMPLES = [
+  {
+    format:'Web headline',
+    property:'',
+    before:'Discover our powerful, world-class platform to optimise technology spend and unlock unparalleled savings across your business.',
+    after:'Find out what your software actually costs. Then decide what stays.',
+    rules:['a real promise, not a superlative','no "world-class", "unlock", "optimise"','say what it does']
+  },
+  {
+    format:'Email opening',
+    property:'',
+    before:'Dear Valued Customer, we hope this email finds you well in these fast-paced times of digital transformation.',
+    after:'Your cloud bill went up again last quarter. Nobody signed off on it.',
+    rules:['open on the problem, in their words','no "valued customer"','no "we hope this finds you well"']
+  },
+  {
+    format:'Social caption',
+    property:'',
+    before:'Excited to share how AI is revolutionising cost management! Book a demo today to supercharge your savings! #AI #FinOps #Innovation',
+    after:'Every team buys its own tools. No one sees the whole bill. That is the problem.',
+    rules:['one idea','no hashtag spam','no exclamation storm']
+  },
+  {
+    format:'Offer / product copy',
+    property:'',
+    before:'Indulge in our cutting-edge, best-in-class platform delivering seamless, end-to-end visibility and game-changing ROI.',
+    after:'One view of every tool, licence and cloud bill: what it costs, who owns it, what to cut.',
+    rules:['no "cutting-edge", "seamless", "game-changing"','say what you get','a concrete detail']
+  }
+];
+
+let cwTyper=null, cwCycle=null, cwActive=0;
+
+function cwShow(i){
+  cwActive=i;
+  document.querySelectorAll('.cw-fmtpill').forEach(p=> p.classList.toggle('active', +p.dataset.i===i));
+  const ex=CW_EXAMPLES[i];
+  document.getElementById('cwBefore').textContent=ex.before;
+  document.getElementById('cwAfterLabel').textContent=ex.property || 'Data Intelligence voice';
+  const typed=document.getElementById('cwTyped');
+  if(cwTyper){ clearInterval(cwTyper); cwTyper=null; }
+  if(reduceMotion){
+    typed.textContent=ex.after;
+  } else {
+    typed.textContent='';
+    let k=0;
+    cwTyper=setInterval(()=>{ k++; typed.textContent=ex.after.slice(0,k);
+      if(k>=ex.after.length){ clearInterval(cwTyper); cwTyper=null; } }, 14);
+  }
+  const rulesEl=document.getElementById('cwRules');
+  rulesEl.innerHTML='';
+  ex.rules.forEach(r=>{ const c=document.createElement('span'); c.className='cw-rule'; c.textContent=r; rulesEl.appendChild(c); });
+}
+
+document.querySelectorAll('.cw-fmtpill').forEach(p=> p.addEventListener('click', ()=>{
+  if(cwCycle){ clearInterval(cwCycle); cwCycle=null; }
+  cwShow(+p.dataset.i);
+}));
+
+cwShow(0);
+if(!reduceMotion){
+  cwCycle=setInterval(()=>{ cwShow((cwActive+1)%CW_EXAMPLES.length); }, 7000);
+}
+
+</script>
+
+<script>
+(function(){function h(){parent.postMessage({rwfEmbed:'copywriter',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
+</script>
+</body>
+</html>
