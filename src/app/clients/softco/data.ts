@@ -466,14 +466,14 @@ export const work: WorkSection[] = [
   </div>
 
   <div class="fbr-asset">
-    <div class="fbr-h"><h4>Blog header</h4><span class="fbr-size">1200 × 630</span><span class="fbr-pending">New direction pending</span></div>
+    <div class="fbr-h"><h4>Blog header</h4><span class="fbr-size">1200 × 630</span><span class="fbr-pending">New direction</span></div>
     <div class="fbr-cols">
       <div class="fbr-fb"><div class="fbr-lab">Your feedback · 6 Jul</div><em>“Strong preference for not using text within article header images and thumbnails [issues w/ duplication, readability, accessibility, etc.]. Title already exists alongside. Image doing a different job, ideally a thematic visual cue. Is it possible to automate creation of conceptual imagery rather than title cards?”</em><div class="fbr-attr"> -  client, 6 Jul</div></div>
       <div class="fbr-prop"><div class="fbr-lab">Proposed direction</div><p>Agreed. The header image should not repeat the title. We are moving blog headers and thumbnails to a conceptual visual cue instead of a title card.</p><p>This is a new template rather than a tweak, so we are scoping the approach first: how we generate an on-brand conceptual image per post, repeatably, at the quality bar of your own examples. New versions to follow.</p></div>
     </div>
     <div class="fbr-ba">
       <div class="fbr-shot prev"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">title card</span></div><img src="/clients/softco/media/blog_header_prev.png" alt="previous blog header"></div>
-      <div class="fbr-shot next"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">in design</span></div><div class="fbr-ph">Conceptual imagery direction<br>to follow</div></div>
+      <div class="fbr-shot next"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">1200 × 630 · no text</span></div><img src="/clients/softco/media/blog_header_concept.png" alt="new conceptual blog header"></div>
     </div>
   </div>
 </div>`,
@@ -507,6 +507,31 @@ export const work: WorkSection[] = [
     <div class="bnr-txt"><h4>Leads with the idea</h4><p>"Touchless AP." strips it to a single idea in the biggest possible type. No stat, no button, pure stopping power. Use this when the job is to build the brand line and be remembered.</p></div>
   </div>
 </div>`,
+  },
+  {
+    title: "Product-led ad · orange lane",
+    kind: "gallery",
+    zone: "work",
+    isNew: true,
+    groupLabel: "New formats · 7 July",
+    desc: "The product shown, on the orange lane. The AP screen is rebuilt as live UI, not a screenshot. Portrait for LinkedIn, headline swappable.",
+    items: [{ src: "orange_ad.png", ratio: "1080/1350", w: 300, cap: "Product-led · 1080×1350" }],
+  },
+  {
+    title: "eBook / guide download banner",
+    kind: "gallery",
+    zone: "work",
+    isNew: true,
+    desc: "A lead-magnet banner for a downloadable guide: headline, one button carrying the offer, and the guide cover. For blog, email and LinkedIn.",
+    items: [{ src: "ebook_banner.png", ratio: "1200/628", w: 520, cap: "Download banner · 1200×628" }],
+  },
+  {
+    title: "Blog header · conceptual, no text",
+    kind: "gallery",
+    zone: "work",
+    isNew: true,
+    desc: "The new blog-header direction from your comment: a thematic concept illustration in your blueprint linework, no text, so it never repeats the article title. This one reads build versus buy. One is generated per post.",
+    items: [{ src: "blog_header_concept.png", ratio: "1200/630", w: 480, cap: "Concept header · 1200×630" }],
   },
   {
     title: "Webinar editor",
