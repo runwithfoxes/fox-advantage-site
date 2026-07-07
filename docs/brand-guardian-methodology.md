@@ -98,15 +98,50 @@ can act on.
   machine shouldn't make alone. Flagged, not blocked. How it stays honest about the new.
 - **Clean** - holds and matches the pattern. Ships.
 
+**The verdict is a RECEIPT, not an opinion** (adopted 7 Jul from the Match Gate doctrine,
+`~/paul-hub/methodology/dray-calibrate-and-the-match-gate.md`). Every check the Guardian runs
+writes a receipt JSON sha-pinned to the exact asset file: every gate run, its measurement, its
+tolerance, its result. A stale file voids the receipt. "On-brand" becomes a checkable claim -
+the receipt is green or it isn't. Banned phrase: "on-brand on everything that matters." Reds
+are reported red. Accepted limits (a client signs off a deviation) are recorded as RULINGS in
+the brand profile, never as silently slackened tolerances.
+
 ## Step 6 - Prove it on the brand's own work (acceptance test)
 Calibrate against approved work, then the HELD-BACK test: hide some of their best pieces
 and confirm the system passes the good ones it has never seen and catches the off-brand
 ones. Only then trust it. A % is only honest if the reference set spans the type's range.
 
+## The two gates - where the Guardian sits in the production line (7 Jul 2026)
+The Match Gate and the Brand Guardian are siblings answering different questions with the same
+machinery (render -> measure -> compare to a coded truth -> receipt):
+- **Match Gate** (owned by `/banner-machine`, Calibrate mode): "is this the SAME as the
+  reference, to the pixel?" For recreating a client's existing work.
+- **Brand Gate** (owned by the Guardian): "does this BELONG to the brand?" For all new work.
+The handshake: Dray is the front door for ad work; a Calibrate job gates on the Match Gate, a
+Produce job and all new creative gate on the Brand Guardian. Nothing is reported "done" to Paul
+or a client without a green receipt from the relevant gate. The Guardian is the STANDING gate
+at the end of every creative pipeline, not a separate audit someone remembers to run.
+Consolidation owed: `brand-guardian-visual` (capture_spec/verify_spec) and the banner-machine
+verify lineage are two implementations of the same idea - converge on one shared gate toolkit
+so there is a single ruler everything trusts.
+Proven techniques to lift into the craft layer: ink-box position measurement (<=3px), median
+flat-patch colour sampling (robust to GIF dither), ink-coverage font-weight matching (catches
+weight, not just family), containment (nothing clipped - an ugly-catcher in its own right).
+Live deliverable this doctrine already produced: Sabre's own shipped webinar set breaks their
+brand book three ways (rounded pill CTA, flat white vs cream, Helvetica vs APK Galeria) -
+reproduced faithfully in the calibrate, flagged for the Guardian to report to Sabre. That
+guidelines-vs-reality report (step 1) is the Guardian's first client-facing output.
+
 ## The learning loop - the difference between a junior guardian and Paul
 A junior makes the same mistake forever; a senior learns. This is what makes it best-in-class:
 - **Every correction teaches it.** Override it ("that was fine" / "you missed this") and it
   records the ruling and updates calibration, so it never makes that exact mistake twice.
+- **The mechanism is the FAILURE LOG -> NEW GATE loop, and it is already proven** (7 Jul,
+  Sabre webinar calibrate): Paul caught a clipped wordmark -> containment became a coded gate;
+  Paul caught a too-bold weight -> ink-coverage became a coded gate. Every human-caught miss
+  becomes a new check in the brand's profile; the gate only gets stricter, converging on
+  Paul's eye. The Guardian inherits this mechanism wholesale: a per-brand failure log where
+  misses become gates and accepted deviations become recorded rulings.
 - **It sharpens with every new approved asset** - the reference sets tighten, patterns get richer.
 - **It builds a memory** of your standard, your intent and your edge-case calls, so its
   judgment converges on yours.
@@ -138,9 +173,14 @@ for the moment. The system holds the standard; the person keeps the taste.
   Sabre profiles: `brand-guardian-copy/rules/sabre.json`, `guidelines/profiles/sabre.json` + `.photo-style.md`.
 
 ## Next
-1. Wire the two visual layers into one graded banner verdict (colour on graphics, style on the photo region).
-2. Fix the copy Title Case rule (skip structural non-prose lines).
+1. Fix the copy Title Case rule (skip structural non-prose lines).
+2. Photo-aware colour fix for the guidelines checker (reuse the banner machine's photo zones).
 3. Build the numeric CLIP fingerprint into a reusable scorer (proven; test one call first per credit rule).
 4. Build the craft/UX checks (fit, density, count, spacing, contrast) - the everyday core.
-5. Run the honest blind test (I assemble, seal the key, blind grader) through the screengrab constellation.
-6. Turn the whole proven process into a skill, with the learning loop built in.
+   Seed from the Match Gate's proven checks + measurement code, don't start from scratch.
+5. Wire everything through the router into one graded verdict, output as sha-pinned receipts.
+   Converge brand-guardian-visual + the banner-machine verify lineage into one gate toolkit.
+6. Run the honest blind test (assemble a mixed sheet, seal the key, blind grader).
+7. Turn the whole proven process into a skill, with the failure-log learning loop built in.
+   Rename the old Sabre deck auditor to sabre-brand-guardian so the router owns the name.
+8. Client deliverable available now: the Sabre guidelines-vs-reality deviations report.
