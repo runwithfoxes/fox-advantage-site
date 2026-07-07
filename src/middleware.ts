@@ -34,6 +34,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/data-intelligence/")) {
+    if (req.cookies.get("data-intelligence_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -43,5 +49,6 @@ export const config = {
     "/presentation-app/:path*",
     "/proposals/ardan/:path*",
     "/proposals/kapture/:path*",
+    "/proposals/data-intelligence/:path*",
   ],
 };

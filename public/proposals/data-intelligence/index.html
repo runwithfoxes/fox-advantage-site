@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Intelligence · a proposal from Run with Foxes</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky:#3A7CA5; --sky-hover:#2F6688;
+    --deep:#1A3A4E; --border:#E0E0DC; --cream:#F7EAD9; --orange:#F47521;
+    --card:#FFFFFF; --soft:#F1F1EC;
+    --sans:'Space Grotesk',sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--mono);font-weight:300;
+    font-size:0.9375rem;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:var(--sky);text-decoration:none;}
+  .container{max-width:1200px;margin:0 auto;padding:0 48px;}
+  h2,h3,h4{font-family:var(--sans);font-weight:300;letter-spacing:-0.01em;}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;transition:background .3s ease;}
+  nav.scrolled{background:rgba(250,250,248,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .nav-in{max-width:1200px;margin:0 auto;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:2px;color:var(--muted);}
+  .logo span{color:var(--orange);}
+  .navmeta{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .navmeta svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:1.6;}
+  .navright{display:flex;flex-direction:column;align-items:flex-end;gap:7px;}
+  .navpdf{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);display:flex;align-items:center;gap:6px;cursor:pointer;background:none;border:none;}
+  .navpdf svg{width:12px;height:12px;stroke:var(--sky);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .navpdf:hover{opacity:.7;}
+
+  /* hero */
+  .hero{position:relative;padding:120px 0 84px;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle,#d0d0cc 0.8px,transparent 0.8px);
+    background-size:28px 28px;opacity:.4;pointer-events:none;}
+  .hero .container{position:relative;}
+  .stage{position:relative;border:1px solid var(--border);overflow:hidden;line-height:0;}
+  .stage>img{display:block;width:100%;height:auto;}
+  .plabel{position:absolute;transform:translateY(6px);opacity:0;
+    background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--sky);
+    padding:7px 12px;font-family:var(--mono);font-size:13px;font-weight:400;color:var(--text);
+    white-space:nowrap;box-shadow:0 8px 24px rgba(26,58,78,.20);
+    transition:opacity .28s ease,transform .28s ease;}
+  .plabel.show{opacity:1;transform:translateY(0);}
+  .plabel .cursor{display:inline-block;width:7px;height:13px;background:var(--sky);
+    vertical-align:-2px;margin-left:1px;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .headwrap{padding:52px 0 0;}
+  .forline{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:18px;}
+  h1{font-family:var(--mono);font-weight:300;font-size:clamp(28px,4.6vw,50px);line-height:1.12;letter-spacing:-0.01em;}
+  h1 .hl{color:var(--sky);}
+  .lede{font-family:var(--mono);font-weight:300;font-size:1.0625rem;line-height:1.6;color:#33322f;margin-top:26px;}
+  .lede strong{font-weight:500;}
+
+  /* section scaffolding */
+  section.block{padding:76px 0;border-top:1px solid var(--border);}
+  .kicker{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:16px;}
+  h2{font-size:clamp(24px,3.2vw,34px);line-height:1.15;}
+  h3{font-size:clamp(21px,2.4vw,27px);line-height:1.2;}
+  .sec-intro{font-size:1.0625rem;line-height:1.65;color:#33322f;margin-top:22px;}
+  .sec-intro strong{font-weight:500;}
+
+  /* agent embeds */
+  .agents{margin-top:8px;}
+  .agent-embed{position:relative;border-top:1px dashed var(--border);padding-top:30px;margin-top:44px;}
+  .agent-embed:first-child{border-top:none;padding-top:8px;margin-top:30px;}
+  .agent-embed::before{content:attr(data-n) " / 03";position:absolute;top:30px;left:50%;transform:translateX(-560px);
+    font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+  @media(max-width:1200px){ .agent-embed::before{left:48px;transform:none;} }
+  iframe.demo{display:block;width:100%;border:0;background:var(--bg);height:1750px;}
+
+  /* website native block (no product page exists; the real page is the proof) */
+  .wsite{max-width:1120px;margin:0 auto;padding:0 40px;}
+  .wsite .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:13px;}
+  .wsite h3{font-family:var(--sans);font-weight:300;font-size:clamp(30px,4.4vw,48px);letter-spacing:-1px;line-height:1;margin-bottom:20px;}
+  .wsite .sell p{font-size:0.9375rem;line-height:1.85;color:var(--text);margin-top:14px;}
+  .wsite .sell p:first-child{margin-top:0;}
+  .wsite .sell b{font-weight:500;}
+  .wtag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);border:1px solid rgba(58,124,165,.35);padding:5px 11px;margin:28px 0 16px;}
+  .browser{background:#fff;border:1px solid var(--border);overflow:hidden;box-shadow:0 12px 34px rgba(26,58,78,.12);}
+  .browser .bar{background:var(--soft);border-bottom:1px solid var(--border);padding:9px 14px;display:flex;align-items:center;gap:7px;}
+  .browser .bar i{width:9px;height:9px;border-radius:50%;background:#d3d3ce;display:inline-block;}
+  .browser .url{margin-left:12px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .browser .live-tag{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#4f8f5f;display:flex;align-items:center;gap:6px;}
+  .browser .live-tag i{width:7px;height:7px;border-radius:50%;background:#4f8f5f;}
+  iframe.wlive{display:block;width:100%;height:560px;border:0;background:#fff;}
+  .wcaption{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.6;}
+  .wcols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px;}
+  .wcol-l{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep);font-weight:500;margin-bottom:14px;border-top:2px solid var(--deep);padding-top:14px;}
+  .wflow{list-style:none;display:flex;flex-direction:column;}
+  .wflow li{position:relative;padding:0 0 14px 22px;}
+  .wflow li:not(:last-child)::after{content:"";position:absolute;left:4px;top:16px;bottom:2px;width:1px;background:var(--border);}
+  .wflow li::before{content:"";position:absolute;left:0;top:5px;width:9px;height:9px;background:var(--sky);border-radius:50%;}
+  .wflow b{font-weight:500;color:var(--text);display:block;font-size:0.875rem;}
+  .wflow span{font-size:0.8125rem;color:var(--muted);line-height:1.5;}
+  .wchips-g{margin-bottom:14px;}
+  .wchips-k{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+  .wchips{display:flex;flex-wrap:wrap;gap:6px;}
+  .wchip{font-family:var(--mono);font-size:11px;color:#3a3936;background:var(--soft);border:1px solid var(--border);padding:5px 10px;}
+  .wchip.g{border-left:2px solid var(--sky);}
+
+  /* calibre */
+  .cal-grid{display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:start;margin-top:20px;}
+  .cal-photo{border:1px solid var(--border);overflow:hidden;max-width:260px;}
+  .cal-photo img{display:block;width:100%;height:auto;}
+  .cal-body p{font-size:1.0625rem;line-height:1.68;color:#33322f;margin-bottom:18px;}
+  .cal-body p strong{font-weight:500;}
+  .cal-award{font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--sky);margin-bottom:22px;}
+  .clients{margin-top:8px;}
+  .clients .k{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .clients .list{display:flex;flex-wrap:wrap;gap:8px;}
+  .clients .list span{font-family:var(--mono);font-size:12px;color:#3a3936;background:var(--soft);border:1px solid var(--border);padding:6px 12px;}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;}
+  .quote{border-left:2px solid var(--sky);padding-left:20px;}
+  .quote p{font-family:var(--sans);font-weight:300;font-size:1.0625rem;line-height:1.5;color:var(--text);margin-bottom:12px;}
+  .quote .who{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.5;}
+  .quote .who b{color:var(--text);font-weight:500;}
+
+  /* pricing */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+  .plan{background:var(--card);border:1px solid var(--border);padding:32px 30px;display:flex;flex-direction:column;}
+  .plan.feat{border:1.5px solid var(--deep);}
+  .plan .pk{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);margin-bottom:6px;}
+  .plan .pn{font-family:var(--sans);font-weight:400;font-size:22px;margin-bottom:20px;}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;flex:1;}
+  .plan li{font-size:13.5px;line-height:1.5;color:#3a3936;padding-left:18px;position:relative;}
+  .plan li::before{content:"›";position:absolute;left:0;color:var(--sky);}
+  .plan .price{font-family:var(--sans);font-weight:400;font-size:34px;color:var(--text);}
+  .plan .price small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.5px;}
+  .plan .phase{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5;}
+  .plan .pmath{font-family:var(--mono);font-size:15px;color:var(--text);margin-top:8px;line-height:1.5;}
+  .plan .pmath b{font-weight:500;color:var(--sky);}
+  .rollout{font-size:13.5px;color:var(--muted);margin-top:20px;line-height:1.6;}
+  .rollout b{color:var(--text);font-weight:500;}
+  .covers{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;padding-top:28px;border-top:1px solid var(--border);}
+  .covers .k{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep);margin-bottom:10px;}
+  .covers p{font-size:13px;line-height:1.6;color:#3a3936;}
+
+  /* next steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px;}
+  .step-c{border-top:2px solid var(--sky);padding-top:16px;}
+  .step-c .n{font-family:var(--mono);font-size:12px;color:var(--sky);margin-bottom:8px;}
+  .step-c .h{font-family:var(--sans);font-weight:400;font-size:17px;margin-bottom:8px;}
+  .step-c p{font-size:13px;line-height:1.55;color:#4a4946;}
+  .cta-wrap{margin-top:44px;padding:34px 36px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--sky);}
+  .cta-wrap .t{font-family:var(--sans);font-weight:300;font-size:22px;color:var(--text);margin-bottom:8px;}
+  .cta-wrap .s{font-family:var(--mono);font-size:12.5px;color:#4a4946;line-height:1.6;margin-bottom:20px;}
+  .cta-btn{display:inline-block;background:var(--deep);color:var(--cream);font-family:var(--mono);font-size:13px;letter-spacing:1px;padding:13px 24px;font-weight:500;}
+  .cta-btn:hover{background:var(--sky-hover);color:var(--cream);}
+  .workspace-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:18px;line-height:1.6;}
+  .ctarow{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:6px;}
+  .cta-or{font-family:var(--mono);font-size:13px;color:#4a4946;}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);}
+  footer .container{padding-top:30px;padding-bottom:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-brand{font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:2px;color:var(--muted);}
+  .footer-brand span{color:var(--orange);}
+  .footer-meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* Isa */
+  .isa-launch{position:fixed;bottom:22px;right:22px;z-index:80;background:var(--deep);color:var(--cream);
+    font-family:var(--mono);font-size:12px;letter-spacing:1px;border:none;cursor:pointer;padding:13px 18px;
+    box-shadow:0 8px 30px rgba(26,58,78,.28);display:flex;align-items:center;gap:9px;}
+  .isa-launch:hover{background:var(--sky-hover);}
+  .isa-launch i{width:8px;height:8px;border-radius:50%;background:#7fd0a0;}
+  .isaw{position:fixed;bottom:22px;right:22px;width:380px;max-width:calc(100vw - 28px);border:1px solid var(--border);
+    background:var(--bg);box-shadow:0 10px 44px rgba(0,0,0,.16);display:none;flex-direction:column;z-index:81;}
+  .isaw.open{display:flex;}
+  .isa-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .isa-h .ht{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--text);}
+  .isa-h .ht b{color:var(--sky);font-weight:400;}
+  .isa-h .x{background:none;border:none;color:var(--muted);font-size:19px;cursor:pointer;line-height:1;}
+  .isa-h .x:hover{color:var(--sky);}
+  .isa-body{display:flex;flex-direction:column;gap:11px;padding:16px 18px;max-height:320px;overflow-y:auto;}
+  .m{font-family:var(--mono);font-size:12.5px;font-weight:300;line-height:1.65;padding:10px 14px;max-width:88%;}
+  .m.bot{background:#F0F0EC;color:var(--text);align-self:flex-start;}
+  .m.you{background:var(--sky);color:#fff;align-self:flex-end;}
+  .m a{color:var(--sky);text-decoration:underline;}
+  .isa-in{display:flex;gap:8px;padding:11px 14px;border-top:1px solid var(--border);}
+  .isa-in textarea{flex:1;border:1px solid var(--border);resize:none;height:40px;font-family:var(--mono);font-size:12.5px;font-weight:300;padding:9px 12px;color:var(--text);background:#fff;outline:none;}
+  .isa-in textarea:focus{border-color:var(--sky);}
+  .isa-in button{background:var(--deep);color:#fff;border:none;cursor:pointer;padding:9px 15px;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+  .isa-in button:hover{background:var(--sky);}
+
+  @media(max-width:900px){
+    .cal-grid{grid-template-columns:1fr;gap:28px;}
+    .quotes,.plans,.steps,.covers,.wcols{grid-template-columns:1fr;}
+  }
+  @media(max-width:768px){
+    .container{padding:0 24px;} .nav-in{padding:16px 24px;} .navmeta{display:none;}
+    .hero{padding:96px 0 60px;} .plabel{font-size:11px;padding:5px 8px;}
+    .wsite{padding:0 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+    .plabel{opacity:1;transform:none;} .cursor{display:none;}
+    .reveal{opacity:1;transform:none;}
+  }
+  @media print{
+    nav,.cta-wrap,.isa-launch,.isaw{display:none;}
+    .hero{padding:20px 0 30px;} .stage{display:none;}
+    section.block{padding:22px 0;break-inside:avoid;}
+    iframe.demo,iframe.wlive{border:1px solid var(--border);}
+    .reveal{opacity:1!important;transform:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <div class="logo">/<span>Run</span>withfoxes</div>
+    <div class="navright">
+      <div class="navmeta">
+        <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        Private proposal · Data Intelligence
+      </div>
+      <a class="navpdf" href="data-intelligence-proposal.pdf" download><svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>Download as PDF</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="stage" id="stage">
+      <img src="fox-office-crop.png" alt="A marketing department of AI agents at work">
+    </div>
+    <div class="headwrap">
+      <div class="forline">Prepared for Dave Hackett, Data Intelligence</div>
+      <h1>Build the Data Intelligence marketing team you <span class="hl">never had</span></h1>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE STARTING POINT (about Paul) ============ -->
+<section class="block">
+  <div class="container">
+    <div class="kicker">How I work</div>
+    <h2 class="reveal">Quality first, then automate</h2>
+    <div class="cal-grid">
+      <div class="cal-photo reveal"><img src="Paul_photo.jpg" alt="Paul Dervan, Run with Foxes"></div>
+      <div class="cal-body reveal">
+        <div class="cal-award">Ireland's Marketer of the Year, 2022</div>
+        <p>Before I build anything, I ask one question: what does really good look like here? Not what AI can do, but what the best version of this marketing would be, and the level of quality and effectiveness I would want to stand over.</p>
+        <p>So I start where I always have. If there were no AI at all, what team would I hire to do this properly? A strategist to set the positioning and the plan, someone building your authority in public, and someone running the campaigns and keeping score. The capabilities, the craft and the resources it would genuinely take to be good. <strong>I map that team first, the one I would build in a world before any of this existed.</strong></p>
+        <p>Then I build exactly that, with agents instead of hires. The quality bar is set by the team I would have wanted, not by whatever a tool happens to make easy. Twenty years in brand is what tells me where that bar sits: Head of Brand at O2 Ireland, then CMO at the National Lottery, Head of Brand at Indeed and Miro, both global roles. Positioning, messaging and tone written first, then built into everything the agents make.</p>
+        <div class="clients">
+          <div class="k">Who I work with</div>
+          <div class="list">
+            <span>Moloco</span><span>Heineken</span><span>Norcros</span><span>Alltech</span><span>Smurfit</span><span>Hostelworld</span><span>Eaton Square</span><span>Weatherbys</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal">
+        <p>"His command of marketing science as well as his instincts for great thinking and ideas are, in my opinion, superb."</p>
+        <div class="who"><b>Peter Field</b><br>The Godfather of Effectiveness, author of The Long and the Short of It</div>
+      </div>
+      <div class="quote reveal">
+        <p>"Paul reported into me as Head of Brand when I was at Indeed. I have learned more from him than anyone else in my career."</p>
+        <div class="who"><b>Paul D'Arcy</b><br>CMO, Moloco. Former CMO at Miro and Indeed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE DEPARTMENT ============ -->
+<section class="block">
+  <div class="container">
+    <div class="kicker">What I'd recommend</div>
+    <h2 class="reveal">A new company, a clear space to own, and no time to waste.</h2>
+    <p class="sec-intro reveal">Everything here comes from our conversation. Data Intelligence is starting from a blank page, and that is the opportunity: no one yet owns the conversation about controlling technology costs, and you want to be the name that does, quickly. The thinking has to come first, the positioning and the plan, or the marketing is just noise. Then the machine to run it, so a small team can execute every day without starting from scratch each time. <strong>Here is what I'd build for Data Intelligence</strong>: the foundation first, then the two agents that run it, each configured for you and handed to your team.</p>
+  </div>
+
+  <div class="agents">
+
+    <!-- THE FOUNDATION: the upfront thinking, no product page; a native block -->
+    <div class="agent-embed reveal" data-n="01">
+      <div class="wsite">
+        <div class="eyebrow">The groundwork · before any agent</div>
+        <h3>The foundation</h3>
+        <div class="sell">
+          <p>Before a single agent gets built, we do the thinking. What does Data Intelligence stand for, who is it for, and which moments does it want to own? In a world before AI, this is the work you would hire a brand strategist and a CMO to do. It is the part that makes everything after it good.</p>
+          <p>You want to be the name that comes to mind the moment a company realises its technology spend is out of control. That does not happen by accident. <b>We decide the position, write the messaging, and set the marketing strategy</b>, so the agents are not guessing. They run a plan, in a voice, against a set of triggers we have chosen on purpose.</p>
+        </div>
+        <div class="wcols">
+          <div>
+            <div class="wcol-l">What we do</div>
+            <ul class="wflow">
+              <li><b>Positioning</b><span>Where Data Intelligence plays and how it wins. The trigger points it owns, and the ones it deliberately does not.</span></li>
+              <li><b>Messaging framework</b><span>The core argument and the proof, so every post, page and campaign says the same thing in the same voice.</span></li>
+              <li><b>Marketing strategy</b><span>The plan to build fame and market share: the channels, the cadence, and what good looks like at each stage.</span></li>
+              <li><b>The source of truth</b><span>All of it written down in one place, the file the agents read before they make anything.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="wcol-l">What you are left with</div>
+            <div class="wchips-g"><div class="wchips-k">Deliverables</div><div class="wchips"><span class="wchip">A positioning statement</span><span class="wchip">A messaging framework</span><span class="wchip">A marketing plan</span></div></div>
+            <div class="wchips-g"><div class="wchips-k">Then</div><div class="wchips"><span class="wchip g">The agents built on top</span><span class="wchip g">Your team running it</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-embed reveal" data-n="02"><iframe class="demo" data-embed="ghostwriter" src="_data-intelligence-ghostwriter-demo.html" title="Ghostwriter, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
+    <div class="agent-embed reveal" data-n="03"><iframe class="demo" data-embed="campaign-manager" src="_data-intelligence-campaign-manager-demo.html" title="Campaign Manager, built for Data Intelligence" loading="lazy" scrolling="no"></iframe></div>
+  </div>
+</section>
+
+<!-- ============ THE CASTING ============ -->
+<section class="block">
+  <div class="container">
+    <div class="kicker">How to start</div>
+    <h2 class="reveal">One engagement, in two parts</h2>
+    <p class="sec-intro reveal">This is not a menu to choose from, it is one piece of work with two phases. First I build the foundation and the two agents, and hand them over, in your own tools, in your name. Then I stay on as your fractional CMO, a couple of days a month, so the system keeps improving and whoever runs it day to day has a senior marketing head to go to.</p>
+
+    <div class="plans">
+      <div class="plan reveal">
+        <div class="pk">Part one · The build</div>
+        <div class="pn">The foundation and both agents, built and handed over</div>
+        <ul>
+          <li>Positioning, messaging framework and marketing strategy</li>
+          <li>The Ghostwriter, trained on Dave's voice, building the name</li>
+          <li>The Campaign Manager, planning and tracking the whole operation</li>
+          <li>Your team trained to run all of it</li>
+        </ul>
+        <div class="price">€15,000 <small>+ VAT</small></div>
+        <div class="phase">A one-off project. Tools (Claude Code, hosting, email platform) are separate, sized and agreed with you.</div>
+      </div>
+      <div class="plan feat reveal">
+        <div class="pk">Part two · Then, ongoing</div>
+        <div class="pn">Fractional CMO, two days a month</div>
+        <ul>
+          <li>Two days a month, once the build is live</li>
+          <li>Training and steering your junior marketer</li>
+          <li>Optimising the marketing plans as they run</li>
+          <li>A senior marketing head on call for the team</li>
+        </ul>
+        <div class="price">€3,000 <small>per month</small></div>
+        <div class="phase">Month to month, begins once the build is handed over. Tools separate, as above.</div>
+      </div>
+    </div>
+
+    <div class="covers">
+      <div class="reveal">
+        <div class="k">What the price covers</div>
+        <p>The thinking, the two agents, the handover and the training, then a senior head kept on the work every month. You own the system and the strategy it runs on.</p>
+      </div>
+      <div class="reveal">
+        <div class="k">What it doesn't</div>
+        <p>Your own tool subscriptions: Claude Code, hosting and the email platform, which stay in your name and your ownership. A modest, predictable software bill, sized and agreed with you before a euro is spent.</p>
+      </div>
+    </div>
+
+    <div class="cta-wrap reveal">
+      <div class="t">Book a time to chat</div>
+      <div class="ctarow">
+        <a class="cta-btn" href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener">Book time with Paul →</a>
+        <span class="cta-or">or email me, <a href="mailto:paul@runwithfoxes.com?subject=Data%20Intelligence%20proposal">paul@runwithfoxes.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-brand">/<span>Run</span>withfoxes</div>
+    <div class="footer-meta">Private · unlisted · runwithfoxes.com/proposals/data-intelligence</div>
+  </div>
+</footer>
+
+<!-- Data Intelligence Isa · PAUSED (not yet briefed to answer proposal questions). To re-enable: remove the inline display:none below. Wire the real briefed Isa before turning back on. -->
+<button class="isa-launch" id="isaLaunch" style="display:none"><i></i>Ask about the proposal</button>
+<div class="isaw" id="isaw">
+  <div class="isa-h"><span class="ht">isa · <b>Data Intelligence</b></span><button class="x" id="isaX">✕</button></div>
+  <div class="isa-body" id="isaBody">
+    <div class="m bot">Hi Dave, I'm Isa. This proposal is for Data Intelligence: the marketing team Paul would build, to own the conversation on controlling technology costs. Ask me what the foundation covers, how the agents run, or what the two parts cost. Or grab thirty minutes with Paul <a href="mailto:paul@runwithfoxes.com?subject=Data%20Intelligence%20proposal">here</a>.</div>
+  </div>
+  <div class="isa-in"><textarea id="isaText" placeholder="Ask about the department..."></textarea><button id="isaSend">Send</button></div>
+</div>
+
+<script>
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>20);});
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* hero: typed fox labels */
+  var team=[
+    {t:"Ghostwriter",        x:31, y:29},
+    {t:"Campaign Manager",   x:76, y:45}
+  ];
+  var stage=document.getElementById('stage');
+  var showAll=location.hash==='#done'||reduce;
+  var els=team.map(function(m){var d=document.createElement('div');d.className='plabel';d.style.left=m.x+'%';d.style.top=m.y+'%';stage.appendChild(d);return d;});
+  if(showAll){els.forEach(function(d,i){d.classList.add('show');d.textContent=team[i].t;});}
+  else{
+    function typeBox(i){
+      if(i>=team.length)return;
+      var d=els[i];d.classList.add('show');
+      var txt=document.createTextNode(''),cur=document.createElement('span');cur.className='cursor';d.appendChild(txt);d.appendChild(cur);
+      var s=team[i].t,ci=0;
+      (function type(){if(ci<s.length){txt.textContent+=s[ci++];setTimeout(type,30);}else{cur.remove();setTimeout(function(){typeBox(i+1);},380);}})();
+    }
+    setTimeout(function(){typeBox(0);},550);
+  }
+
+  /* reveal on scroll */
+  if(reduce){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+  else{
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }
+
+  /* iframe auto-height from embedded demos */
+  addEventListener('message',function(e){
+    var d=e.data; if(!d||!d.rwfEmbed||!d.rwfHeight) return;
+    var f=document.querySelector('iframe[data-embed="'+d.rwfEmbed+'"]');
+    if(f) f.style.height=(d.rwfHeight+10)+'px';
+  });
+
+  /* Isa */
+  var isaw=document.getElementById('isaw'),launch=document.getElementById('isaLaunch'),isaBody=document.getElementById('isaBody'),isaText=document.getElementById('isaText');
+  function openIsa(){isaw.classList.add('open');launch.style.display='none';}
+  function closeIsa(){isaw.classList.remove('open');launch.style.display='flex';}
+  launch.addEventListener('click',openIsa);
+  document.getElementById('isaX').addEventListener('click',closeIsa);
+  function addMsg(cls,html){var m=document.createElement('div');m.className='m '+cls;m.innerHTML=html;isaBody.appendChild(m);isaBody.scrollTop=isaBody.scrollHeight;}
+  function isaReply(q){
+    q=q.toLowerCase();
+    if(q.indexOf('foundation')>-1||q.indexOf('positioning')>-1||q.indexOf('strategy')>-1||q.indexOf('messaging')>-1)
+      return "The foundation is the thinking that comes first: the positioning, the messaging framework and the marketing strategy. It decides what Data Intelligence stands for and which trigger points it owns, and it becomes the source of truth the agents read before they make anything.";
+    if(q.indexOf('build')>-1||q.indexOf('15')>-1||q.indexOf('part one')>-1)
+      return "Part one is the build, €15,000 plus VAT: the foundation, plus the Ghostwriter and the Campaign Manager, built, configured and handed to your team. Tools like Claude Code, hosting and the email platform are separate, sized with you.";
+    if(q.indexOf('cmo')>-1||q.indexOf('ongoing')>-1||q.indexOf('month')>-1||q.indexOf('3,000')>-1||q.indexOf('3000')>-1||q.indexOf('part two')>-1)
+      return "Part two is the fractional CMO, €3,000 a month for two days: it starts once the build is live, training your junior marketer, optimising the plans, and keeping a senior marketing head on the work. Month to month.";
+    if(q.indexOf('price')>-1||q.indexOf('cost')>-1)
+      return "One engagement in two parts: €15,000 plus VAT for the build (foundation plus both agents), then €3,000 a month for the fractional CMO, two days a month once it is live. Tools are your own, separate and sized with you.";
+    return "Good question. The short version: the thinking first, then a small marketing team built to run it, each part configured for Data Intelligence and handed to your team. Easiest next step is thirty minutes with Paul, grab a time <a href=\"mailto:paul@runwithfoxes.com?subject=Data%20Intelligence%20proposal\">here</a>.";
+  }
+  document.getElementById('isaSend').addEventListener('click',function(){
+    var v=isaText.value.trim(); if(!v) return;
+    addMsg('you',v.replace(/</g,'&lt;')); isaText.value='';
+    setTimeout(function(){addMsg('bot',isaReply(v));},400);
+  });
+  isaText.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();document.getElementById('isaSend').click();}});
+</script>
+</body>
+</html>
