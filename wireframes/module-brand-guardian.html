@@ -84,7 +84,36 @@
   .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
   .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
 
-  /* experience: the check demo - five pieces in, five receipted verdicts out */
+  /* experience: Beat the Guardian (the game) + the X-ray slider */
+  .gm-score{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; padding:12px 14px; border:1px solid var(--border); background:#fff; margin:26px 0 0; display:none; line-height:1.7; }
+  .gm-score.show{ display:block; }
+  .gm-score b{ font-weight:500; color:var(--deep-sky); }
+  .gm-acts{ display:flex; gap:8px; }
+  .gm-btn{ flex:1; border:1px solid var(--border); background:var(--bg); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; padding:9px 0; color:var(--muted); transition:all .15s; }
+  .gm-btn:hover{ color:var(--text); background:var(--card-hover); }
+  .gm-btn.picked-ship{ background:var(--ok); border-color:var(--ok); color:#fff; }
+  .gm-btn.picked-stop{ background:var(--bad); border-color:var(--bad); color:#fff; }
+  .gm-call{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:1px; display:none; }
+  .gm-call.show{ display:block; }
+  .gm-call.right{ color:var(--ok); } .gm-call.wrong{ color:var(--bad); }
+  /* x-ray slider */
+  .xr{ margin-top:56px; border-top:1px solid var(--border); padding-top:34px; }
+  .xr h3{ font-size:20px; letter-spacing:-.3px; margin-bottom:8px; }
+  .xr .xr-lead{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:24px; max-width:none; }
+  .xr .xr-lead b{ color:var(--text); font-weight:400; }
+  .xr-stage{ position:relative; width:min(620px,100%); margin:0 auto; aspect-ratio:1/1; border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; touch-action:none; cursor:ew-resize; }
+  .xr-stage img{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .xr-layer{ position:absolute; inset:0; clip-path:inset(0 0 0 var(--cut,50%)); background:rgba(26,58,78,.06); }
+  .xr-note-el{ position:absolute; font-family:'JetBrains Mono',monospace; font-size:10px; line-height:1.45; background:rgba(255,255,255,.95); border:1px solid var(--deep-sky); border-left:3px solid var(--sky-blue); padding:5px 8px; color:var(--text); box-shadow:var(--shadow); max-width:220px; opacity:0; transition:opacity .25s ease-out; }
+  .xr-note-el.on{ opacity:1; }
+  .xr-note-el b{ font-weight:500; color:var(--deep-sky); }
+  .xr-box{ position:absolute; border:1.5px dashed var(--sky-blue); }
+  .xr-divider{ position:absolute; top:0; bottom:0; width:2px; background:var(--deep-sky); left:var(--cut,50%); }
+  .xr-handle{ position:absolute; top:50%; left:var(--cut,50%); transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%; background:var(--deep-sky); color:var(--cream); display:flex; align-items:center; justify-content:center; font-size:13px; box-shadow:var(--shadow); pointer-events:none; }
+  .xr-tags{ display:flex; justify-content:space-between; width:min(620px,100%); margin:8px auto 0; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+  .xr-receipt{ width:min(620px,100%); margin:14px auto 0; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); border:1px solid var(--border); background:#fff; padding:9px 12px; line-height:1.6; }
+  .xr-receipt b{ color:var(--ok); font-weight:500; }
+  /* shared demo card styles kept below */
   .exp-lead{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:34px; max-width:none; }
   .exp-lead b{ color:var(--text); font-weight:400; }
   .gd-prompt{ display:flex; align-items:center; gap:10px; margin:0 0 30px; border:1px solid var(--border); background:#fff; padding:11px 13px; }
@@ -163,42 +192,63 @@
     </div>
 
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">Five pieces of work are about to ship. One is genuine approved work; the others each carry a fault a busy team ships every week. These are <b>real checks from our own Guardian, run on our own brand</b>. Every verdict names the fault, the number, and whose rule it broke.</div>
-      <div class="gd-prompt"><span class="gd-caret">›</span><span class="gd-cmd">check these before they ship</span><button class="gd-run" id="gdRun">Run ▶</button></div>
+      <div class="exp-lead"><b>Play brand guardian for a minute.</b> Four pieces of Run with Foxes work are about to ship. Some are genuine, some carry a fault. Call each one: ship it, or stop it. Then see what the Guardian measured. Every verdict below is a real check from our own Guardian, receipts and all.</div>
       <div class="gd-grid" id="gdGrid">
-        <div class="gd-item">
-          <span class="dim">The approved ad · 300 × 250</span>
-          <div class="frame"><img src="assets/guardian/gd-genuine-300x250.png" alt="approved chart ad"></div>
-          <div class="verdict ok"><span class="vh">Clean</span>Every measure sits inside the brand's own numbers. Ships.</div>
+        <div class="gd-item" data-truth="ship">
+          <span class="dim">Ad A · 1080 × 1080</span>
+          <div class="frame"><img src="assets/guardian/gx-genuine-1080.png" alt="ad A"></div>
+          <div class="gm-acts"><button class="gm-btn" data-pick="ship">Ship it</button><button class="gm-btn" data-pick="stop">Stop it</button></div>
+          <div class="gm-call"></div>
+          <div class="verdict ok"><span class="vh">Clean</span>Graphic layer 99.1% on the calibrated palette, wordmark present at its true aspect. Ships, receipt pinned.</div>
         </div>
-        <div class="gd-item">
-          <span class="dim">Same ad, recoloured · 300 × 250</span>
-          <div class="frame"><img src="assets/guardian/gd-recolour-300x250.png" alt="recoloured ad"></div>
-          <div class="verdict bad"><span class="vh">Breaks a fundamental</span>#A878B8 is not a brand colour, and it is 5.6% of the graphic layer. <span class="prov">(their book)</span></div>
+        <div class="gd-item" data-truth="stop">
+          <span class="dim">Ad B · 1080 × 1080</span>
+          <div class="frame"><img src="assets/guardian/gx-stretch-1080.png" alt="ad B"></div>
+          <div class="gm-acts"><button class="gm-btn" data-pick="ship">Ship it</button><button class="gm-btn" data-pick="stop">Stop it</button></div>
+          <div class="gm-call"></div>
+          <div class="verdict bad"><span class="vh">Breaks a fundamental</span>The wordmark measures 9.71 wide-to-tall against its true 8.64: it has been stretched. Do not manipulate the logo. <span class="prov">(their work)</span></div>
         </div>
-        <div class="gd-item">
-          <span class="dim">Same ad, wordmark gone · 300 × 250</span>
-          <div class="frame"><img src="assets/guardian/gd-nomark-300x250.png" alt="ad without the wordmark"></div>
-          <div class="verdict warn"><span class="vh">Borderline · human eye</span>0 of 7 registered distinctive assets present. Consistent, but carrying no memory trigger. <span class="prov">(their work)</span></div>
+        <div class="gd-item" data-truth="stop">
+          <span class="dim">Ad C · 1080 × 1080</span>
+          <div class="frame"><img src="assets/guardian/gx-nomark-1080.png" alt="ad C"></div>
+          <div class="gm-acts"><button class="gm-btn" data-pick="ship">Ship it</button><button class="gm-btn" data-pick="stop">Stop it</button></div>
+          <div class="gm-call"></div>
+          <div class="verdict warn"><span class="vh">Borderline · human eye</span>0 of 7 registered distinctive assets present. On-palette, on-craft, and carrying no memory trigger at all. <span class="prov">(their work)</span></div>
         </div>
-        <div class="gd-item">
-          <span class="dim">A crowded ad · 300 × 250</span>
-          <div class="frame"><img src="assets/guardian/gd-craft-300x250.png" alt="crowded ad"></div>
-          <div class="verdict bad"><span class="vh">Breaks a fundamental</span>Headline clipped · 112 words in a 24-word format · 7px type · grey on grey at 1.66:1. <span class="prov">(craft)</span></div>
-        </div>
-        <div class="gd-item">
-          <span class="dim">An email, ready to send</span>
-          <div class="gd-copycard">Subject: Discover The Future Of Brand Consistency
+        <div class="gd-item" data-truth="stop">
+          <span class="dim">The post, ready to publish</span>
+          <div class="gd-copycard">The 92% stat comes from our own buying study: most category buyers pick from the shortlist they already hold in memory — and almost never go looking beyond it.
 
-Your brand is your most valuable asset, and every piece of work either builds it or erodes it.
-
-Book a demo today!</div>
-          <div class="verdict warn"><span class="vh">Borderline · human eye</span>Title Case heading and a hype close. Nothing broken, not our standard either. <span class="prov">(our bar)</span></div>
+That is why the list matters more than the pitch. Get remembered first, persuade second.</div>
+          <div class="gm-acts"><button class="gm-btn" data-pick="ship">Ship it</button><button class="gm-btn" data-pick="stop">Stop it</button></div>
+          <div class="gm-call"></div>
+          <div class="verdict bad"><span class="vh">Breaks a fundamental</span>One character: an em dash at line 1, column 120. An AI tell this brand bans. Everything else passes. <span class="prov">(our bar)</span></div>
         </div>
       </div>
+      <div class="gm-score" id="gmScore"></div>
       <div class="gd-note"><b>How we know it works:</b> we test it the way brand tracking should be tested. A mixed sheet of genuine and faulted work, an answer key sealed before grading, and a fresh grader who has never seen the work. In its acceptance test it called all twelve pieces correctly, and caught two mistakes in the test itself. Every check it runs is written to a receipt, pinned to the exact file it checked.</div>
-    </div>
 
+      <!-- X-RAY: what the Guardian sees -->
+      <div class="xr">
+        <h3>What it sees that you don't</h3>
+        <div class="xr-lead">Drag the line. Left of it: the ad as anyone sees it. Right of it: <b>the measurements the Guardian took</b> on this exact file. Real numbers, from the real receipt.</div>
+        <div class="xr-stage" id="xrStage">
+          <img src="assets/guardian/gx-genuine-1080.png" alt="the ad">
+          <div class="xr-layer" id="xrLayer">
+            <div class="xr-box" style="left:70.5%;top:88.7%;width:22.5%;height:3.6%"></div>
+          </div>
+          <div class="xr-note-el" data-at="7" style="left:4%;top:3%"><b>graphic layer</b> 99.1% on the calibrated palette · 0% photography, graphic rules apply</div>
+          <div class="xr-note-el" data-at="34" style="left:34%;top:12%"><b>ring</b> #6697B5 · inside the calibrated ring family</div>
+          <div class="xr-note-el" data-at="30" style="left:30%;top:44%"><b>stat figure</b> #F7944E · contrast 1.98:1 on the field, display size</div>
+          <div class="xr-note-el" data-at="8" style="left:8%;top:70%"><b>caption</b> #9F9D98 on #F3F0E9 · 2.38:1 measured</div>
+          <div class="xr-note-el" data-at="62" style="right:2%;top:79%"><b>wordmark</b> found at (780, 975) · 225px · aspect 8.64 = its true aspect · exclusion zone clear</div>
+          <div class="xr-divider"></div>
+          <div class="xr-handle">↔</div>
+        </div>
+        <div class="xr-tags"><span>What you see</span><span>What it measures</span></div>
+        <div class="xr-receipt">receipt: <b>CLEAN</b> · sha-pinned 697c7b18d18b · every gate, measurement and tolerance on file. A stale file voids the receipt.</div>
+      </div>
+    </div>
     <div class="panel" data-p="bts"></div>
     <div class="panel" data-p="uses"></div>
   </div>
@@ -304,15 +354,49 @@ function renderInto(container, tab){
 
 ['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
 
-// Experience: Run, and the verdicts land one by one
-const gdGrid = document.getElementById('gdGrid');
-function runCheck(){
-  const vs = gdGrid.querySelectorAll('.verdict');
-  vs.forEach(v=>v.classList.remove('in'));
-  void gdGrid.offsetWidth;
-  vs.forEach((v,i)=> setTimeout(()=> v.classList.add('in'), 260 + i*320));
+// Beat the Guardian: call each piece, then the reveal
+const items = [...document.querySelectorAll('.gd-item')];
+const score = document.getElementById('gmScore');
+const picks = new Map();
+items.forEach(item=>{
+  item.querySelectorAll('.gm-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    if (picks.has(item)) return;                       // one call per piece
+    picks.set(item, btn.dataset.pick);
+    btn.classList.add(btn.dataset.pick === 'ship' ? 'picked-ship' : 'picked-stop');
+    item.querySelectorAll('.gm-btn').forEach(b=> b.disabled = true);
+    if (picks.size === items.length) reveal();
+  }));
+});
+function reveal(){
+  let right = 0;
+  items.forEach((item,i)=>{
+    const truth = item.dataset.truth, pick = picks.get(item);
+    const ok = truth === pick; if (ok) right++;
+    const call = item.querySelector('.gm-call');
+    call.textContent = ok ? 'You called it.' : (truth === 'stop' ? 'You shipped a fault.' : 'You stopped genuine work.');
+    call.classList.add('show', ok ? 'right' : 'wrong');
+    setTimeout(()=> item.querySelector('.verdict').classList.add('in'), 300 + i*340);
+  });
+  score.innerHTML = `You called <b>${right} of ${items.length}</b>. The Guardian called 4 of 4, each with a measurement, and wrote a receipt for every one. That is the difference between an opinion and a standard.`;
+  setTimeout(()=> score.classList.add('show'), 300 + items.length*340);
 }
-document.getElementById('gdRun').addEventListener('click', runCheck);
+
+// X-ray slider: drag to reveal what the Guardian measures
+const stage = document.getElementById('xrStage');
+function setCut(clientX){
+  const r = stage.getBoundingClientRect();
+  const pct = Math.max(2, Math.min(98, (clientX - r.left) / r.width * 100));
+  stage.style.setProperty('--cut', pct + '%');
+  stage.querySelector('.xr-layer').style.clipPath = `inset(0 0 0 ${pct}%)`;
+  stage.querySelector('.xr-divider').style.left = pct + '%';
+  stage.querySelector('.xr-handle').style.left = pct + '%';
+  stage.querySelectorAll('.xr-note-el').forEach(n=> n.classList.toggle('on', pct <= parseFloat(n.dataset.at)));
+}
+let dragging = false;
+stage.addEventListener('pointerdown', e=>{ dragging = true; stage.setPointerCapture(e.pointerId); setCut(e.clientX); });
+stage.addEventListener('pointermove', e=>{ if (dragging) setCut(e.clientX); });
+stage.addEventListener('pointerup', ()=> dragging = false);
+setCut(stage.getBoundingClientRect().left + stage.getBoundingClientRect().width * 0.55);
 
 // staggered reveal of the flow when its tab opens (nodes ease UP and fade in)
 const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
