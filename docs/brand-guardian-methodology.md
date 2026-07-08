@@ -106,14 +106,25 @@ the previous (expression/element drift), per the video-QA scrub rule.
   machine shouldn't make alone. Flagged, not blocked. How it stays honest about the new.
 - **Clean** - holds and matches the pattern. Ships.
 
-**Every rule carries PROVENANCE, and the verdict says whose rule it is (added 7 Jul).**
-Two different rule sources produce two different verdict classes: "breaks YOUR guideline"
-(their brand book, page-referenced) vs "falls below OUR craft standard" (the RWF bar -
-em-dash bans, AI-tell rules, rhythm). Both are worth enforcing; conflating them is how a
-guardian loses a client's trust ("show me where our book says that"). Rules files tag each
-rule's source; reports separate the two classes. Three-tier evidence language for guideline
-claims: written-rule break > stated-typical-usage deviation > systemic-pattern deviation
-(present everywhere in the book, written nowhere).
+**Every rule carries PROVENANCE, and the verdict says whose rule it is (added 7 Jul,
+vocabulary locked 8 Jul).** FOUR provenance classes, carried through every finding and
+printed in the merged verdict ("2 fundamentals: 1 their-book, 1 craft"):
+- **their-book** - page-referenced in the client's written guidelines.
+- **their-work** - distilled from the client's APPROVED work, not written anywhere: the
+  style fingerprint, calibrated palette entries (Sabre's echo grey), voice patterns
+  distilled from their materials.
+- **our-bar** - the RWF craft standard (em-dash bans, AI-tell rules, rhythm), applied by
+  recorded ruling.
+- **craft** - measured quality floors (fit, density, contrast, fidelity misses).
+Conflating them is how a guardian loses a client's trust ("show me where our book says
+that"). Three-tier evidence language for their-book claims: written-rule break >
+stated-typical-usage deviation > systemic-pattern deviation (present everywhere in the
+book, written nowhere).
+
+**A gate that didn't run can never be CLEAN (8 Jul).** If any applicable checker cannot
+run (scorer refuses on a version-pin mismatch, network down), that surfaces as a
+could-not-run finding and the merged verdict floors at borderline/human-eye. Silence is
+never a pass.
 
 **The verdict is a RECEIPT, not an opinion** (adopted 7 Jul from the Match Gate doctrine,
 `~/paul-hub/methodology/dray-calibrate-and-the-match-gate.md`). Every check the Guardian runs
@@ -263,24 +274,31 @@ for the moment. The system holds the standard; the person keeps the taste.
 - Engines: `~/.claude/skills/brand-guardian-*` (router + copy + guidelines + visual-fidelity).
   Sabre profiles: `brand-guardian-copy/rules/sabre.json`, `guidelines/profiles/sabre.json` + `.photo-style.md`.
 
-## Next
-1. Fix the copy Title Case rule (skip structural non-prose lines).
-2. Photo-aware colour fix for the guidelines checker (reuse the banner machine's photo zones).
-3. Build the numeric CLIP fingerprint into a reusable scorer (proven; test one call first per credit rule).
-4. Build the craft/UX checks (fit, density, count, spacing, contrast) - the everyday core.
-   Seed from the Match Gate's proven checks + measurement code, don't start from scratch.
-   Include the OCR bridge (read the words out of every screengrab -> feed the copy checker)
-   and the logo geometry gates (stretch, clear space, minimum size).
-5. Build the DBA register format + the presence/prominence gate; write RWF's register first
-   (the fox guide is the character entry), then Sabre's (diamond, wordmark, coral, barcode
-   motif, photo style).
-6. Wire everything through the router into one graded verdict, output as sha-pinned receipts.
-   Converge brand-guardian-visual + the banner-machine verify lineage into one gate toolkit.
-7. Run the honest blind test (assemble a mixed sheet, seal the key, blind grader) - and
-   audition the masked-logo waterslide test inside it.
+## Next (status 8 Jul morning)
+1. DONE (4622fbc) - copy Title Case fix; 9/9 best Sabre emails, regression proven.
+2. DONE (b899b7e) - photo-aware colour; 0/150 approved frames wrongly failing, detector
+   validated 99-100% vs LOCK rects, tolerances calibrated from approved work.
+3. DONE (1205eca + f5b9c03) - cached CLIP scorer (style_fingerprint.js); version-pinned
+   vectors; Sabre family = the 48-photo client canon per Paul's two 8 Jul rulings (Kyoto
+   out; our 11 route photos = standing validation set, 7 ON / 4 BORDERLINE / 0 OFF).
+   OCR bridge + logo geometry gates moved into step 5's presence gate work.
+4. DONE (f3c9484) - brand-guardian-craft, 8 measured checks, calibrated both directions.
+   Plus Gate E - SHAPE in the Match Gate (corner profiles, proven vs the rounded-pill bug).
+5. IN PROGRESS - DBA register format + presence/prominence gate; RWF register (fox guide =
+   the character entry), Sabre register (diamond, wordmark, coral, barcode motif, photo
+   style, tagline lockup).
+6. DONE (5cfbbf1) - router one-verdict + receipts everywhere; four-class provenance in the
+   merged output; could-not-run floor; six acceptance gates green. Convergence = approved
+   PLAN only (brand-guardian-router/docs/convergence-plan.md), builds AFTER the blind test.
+7. Run the honest blind test (assemble a mixed sheet, seal the key, FRESH context-free
+   terminal as grader) - audition the masked-logo waterslide test inside it. Docket so
+   far: band conventions (4/48 family photos beyond own p90), rhythm-warn rate on best
+   emails, font-pending scoping.
 8. Turn the whole proven process into a skill, with the failure-log learning loop built in.
    Rename the old Sabre deck auditor to sabre-brand-guardian so the router owns the name.
-9. Client deliverable available now: the Sabre guidelines-vs-reality deviations report.
+   Revisit the gate-toolkit home (a client-facing skill can't reach into sibling skills).
+9. DONE (4e1c563, live) - Sabre brand consistency notes shipped to the client page as
+   three neutral rulings for Sabre; report draft in the build folder.
 
 Later, once alive (each auditioned via the blind test before it ships, never on a demo):
 stylometry copy fingerprint, pairwise/tournament judging for borderlines, saliency/attention
