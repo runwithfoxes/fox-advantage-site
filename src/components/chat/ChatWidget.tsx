@@ -90,6 +90,12 @@ export default function ChatWidget() {
     if (!trimmed || isBusy) return;
     setInput("");
     sendMessage({ text: trimmed });
+    // On touch devices, dismiss the keyboard after sending. iOS Safari can
+    // scroll the fixed full-screen panel while the keyboard is up, pushing
+    // the header (and the close X) out of view.
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      inputRef.current?.blur();
+    }
   }
 
   if (!isOpen) {
