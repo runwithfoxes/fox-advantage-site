@@ -303,9 +303,16 @@ for the moment. The system holds the standard; the person keeps the taste.
    family bands). Full scoring: clients/rwf/builds/brand-guardian/blind-test/SCORING.md.
    Masked-logo waterslide audition: deferred to the candidate-gate round (sheet had no
    logo-stripped genuine item - add one).
-8. Turn the whole proven process into a skill, with the failure-log learning loop built in.
-   Rename the old Sabre deck auditor to sabre-brand-guardian so the router owns the name.
-   Revisit the gate-toolkit home (a client-facing skill can't reach into sibling skills).
+8. DONE (8 Jul, b8e8d5d) - the router owns the brand-guardian name (deck auditor renamed
+   sabre-brand-guardian); ONBOARDING.md in the router skill is the stand-up-any-brand
+   playbook, proven end-to-end on sabre; the DBA presence leg is wired into the router.
+   The three blind-test candidate gates are BUILT and calibrated (a1ad4aa): mark-integrity
+   edge scan (overlap NCC, windows hang off the frame, anamorphic sweep = the
+   logo-manipulation catch), photo-grade neighbour gate (composition twin speaks alone;
+   zero false flags across the family), graphics-vs-photo fingerprint routing. Full blind
+   sheet re-run: both tool misses now caught by measurement, all genuine items at honest
+   tiers. Still open: gate-toolkit convergence (approved plan, supervised session), motion
+   pass, OCR bridge, masked-logo audition, the later-once-alive list.
 9. DONE (4e1c563, live) - Sabre brand consistency notes shipped to the client page as
    three neutral rulings for Sabre; report draft in the build folder.
 
