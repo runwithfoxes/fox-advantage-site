@@ -74,6 +74,9 @@ export default function ChatWidget() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // No auto-open on mobile: at <=768px the panel is full-screen, so opening
+    // uninvited replaces the whole page. The bubble stays; the visitor taps it.
+    if (window.matchMedia("(max-width: 768px)").matches) return;
     // Contact page tracks its own dismissal so closing Isa on the homepage
     // doesn't stop her opening when someone reaches the contact page.
     const dismissKey = isContact ? "isa-dismissed-contact" : "isa-dismissed";
