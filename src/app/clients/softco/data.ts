@@ -542,6 +542,17 @@ export const work: WorkSection[] = [
     items: [{ src: "survey_promo.png", ratio: "1200/628", w: 520, cap: "Survey promo · 1200×628" }],
   },
   {
+    title: "Event graphics · Gartner",
+    kind: "gallery",
+    zone: "work",
+    isNew: true,
+    desc: "Conference promos, the same clean chassis as the webinar but for an in-person event: it names the event, the stand and location, and uses a book-a-meeting CTA. Two of the three moments shown, pre-event with the speaker and on-the-day 'come see us'. Event details and the speaker are placeholder, to swap for the real ones.",
+    items: [
+      { src: "event_gartner.png", ratio: "1/1", w: 300, cap: "Pre-event · with speaker" },
+      { src: "event_gartner_live.png", ratio: "1/1", w: 300, cap: "On the day · come see us" },
+    ],
+  },
+  {
     title: "Webinar editor",
     kind: "embed",
     zone: "work",
