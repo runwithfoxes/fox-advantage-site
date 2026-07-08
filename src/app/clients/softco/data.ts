@@ -534,6 +534,14 @@ export const work: WorkSection[] = [
     items: [{ src: "blog_header_concept.png", ratio: "1200/630", w: 480, cap: "Concept header · 1200×630" }],
   },
   {
+    title: "Survey promo",
+    kind: "gallery",
+    zone: "work",
+    isNew: true,
+    desc: "Promotes a survey the way John sketched it: header, subheading, one button carrying the offer, plus an image. The image is the survey itself, an honest poll card, not fabricated results. Works as a landing hero, email or LinkedIn.",
+    items: [{ src: "survey_promo.png", ratio: "1200/628", w: 520, cap: "Survey promo · 1200×628" }],
+  },
+  {
     title: "Webinar editor",
     kind: "embed",
     zone: "work",
