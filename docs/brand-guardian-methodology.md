@@ -290,10 +290,19 @@ for the moment. The system holds the standard; the person keeps the taste.
 6. DONE (5cfbbf1) - router one-verdict + receipts everywhere; four-class provenance in the
    merged output; could-not-run floor; six acceptance gates green. Convergence = approved
    PLAN only (brand-guardian-router/docs/convergence-plan.md), builds AFTER the blind test.
-7. Run the honest blind test (assemble a mixed sheet, seal the key, FRESH context-free
-   terminal as grader) - audition the masked-logo waterslide test inside it. Docket so
-   far: band conventions (4/48 family photos beyond own p90), rhythm-warn rate on best
-   emails, font-pending scoping.
+7. DONE (8 Jul) - blind test PASSED with teeth: 12-item sealed sheet, sha-committed key,
+   fresh context-free grader. The product judged all 12 items' ACTUAL content correctly,
+   including two sheet-assembly errors by the director (the blind protocol caught the test
+   author - a mid-animation frame sealed as genuine, a remade plant sealed unseen). Tools
+   alone caught 7/9 defects; the eye pass caught the other two, which became CANDIDATE
+   GATES: (a) mark-integrity raster gate (clipped wordmark scored 0.731 just under the
+   0.75 template threshold; nothing measures mark-cut-by-frame on rasters), (b) photo-grade
+   stats gate (desaturation invisible to CLIP - composition dominates; the fix is family
+   saturation/temperature distributions, mean sat 33 vs 96 caught it), (c) graphics-vs-photo
+   routing before the fingerprint's error tier (flat endframes all false-pressure the photo
+   family bands). Full scoring: clients/rwf/builds/brand-guardian/blind-test/SCORING.md.
+   Masked-logo waterslide audition: deferred to the candidate-gate round (sheet had no
+   logo-stripped genuine item - add one).
 8. Turn the whole proven process into a skill, with the failure-log learning loop built in.
    Rename the old Sabre deck auditor to sabre-brand-guardian so the router owns the name.
    Revisit the gate-toolkit home (a client-facing skill can't reach into sibling skills).
