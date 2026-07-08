@@ -5,6 +5,7 @@
 
 import type { Meta, Deliverable, WorkSection } from "../_components/ClientWorkspace";
 import { briefExamplesHtml } from "./brief-examples-html";
+import { consistencyNotesHtml } from "./consistency-notes-html";
 
 export const meta: Meta = {
   client: "Sabre",
@@ -12,7 +13,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Sabre. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-28",
+  lastUpdated: "2026-07-08",
   // worked one-pager + brief examples added to the brief zone for Darren to validate
   targetDate: "2026-07-06",
   hideProgress: true,
@@ -39,6 +40,7 @@ export const deliverables: Deliverable[] = [
   { name: "Brief coach", detail: "AI that takes a rough brief and makes it good, inside Sabre's Claude", status: "in-progress", date: "2026-06-25", target: "2026-07-06", note: "First version built and in testing. Shaped with Darren around how the team works. Comes to you to try shortly." },
   { name: "What would April say?", detail: "On-demand positioning advisor in Sabre's Claude, April Dunford's thinking applied to any positioning question", status: "in-progress", statusLabel: "Experiment Paul added", date: "2026-06-25", note: "Something Paul added as an experiment, not part of the agreed plan. Ask it what April would say about a tagline, a claim, a category or a competitive move, and it gives her positioning read, grounded in your own Mosaic positioning. Early version, have a play in the work area below.", isNew: true },
   { name: "Marketing calendar", detail: "Shared, always-current event calendar as a live artefact", status: "in-progress", date: "2026-06-21", note: "Concept to react to. Live preview in the work area.", isNew: true },
+  { name: "Brand consistency notes", detail: "Three places where the webinar files and the brand book differ, measured during the pixel rebuild", status: "ready", statusLabel: "Three rulings for you", date: "2026-07-08", note: "Neutral notes, each with the page reference and the measurement. In the work area below.", isNew: true },
 ];
 
 /* Banner sets, grouped by shape. [size, aspect-ratio, display-width-px] */
@@ -171,6 +173,10 @@ export const work: WorkSection[] = [
     compare: { before: "compare-open-original.mp4", after: "compare-open-ours.mp4", ratio: "970/250", w: 760,
       labelBefore: "← Your original", labelAfter: "Rebuilt by the machine →", download: false,
       accent: "#ffffff", bg: "#E2553C" } },
+
+  { title: "Brand consistency notes: the webinar set and the brand book", kind: "html", zone: "work", wideDesc: true, isNew: true, badge: "Three rulings for you",
+    desc: "A by-product of the rebuild above. Matching the webinar set to the pixel meant measuring everything in the original files, and three of those measurements differ from the brand book. Each note below shows both sides, with the page reference and the number, then asks for a ruling. There is no recommendation in these; the look is yours to call, and whichever way you rule becomes the standard applied to everything that follows.",
+    html: consistencyNotesHtml },
 
   { title: "Display ads - OPEN route", kind: "media", zone: "work", layout: "grouped", badge: "Reviewed and paused by Darren",
     desc: "The OPEN route across the full IAB range. Every size at true proportion, animated.",
