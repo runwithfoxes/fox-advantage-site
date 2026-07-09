@@ -42,8 +42,8 @@ export const work: WorkSection[] = [
 
   /* ---- ZONE: work - what we'd produce. ---- */
   { title: "The machine in action: a Heineken worked example", kind: "compare", zone: "work", status: "ready", badge: "Worked example",
-    desc: "Drag the slider. Left is a finished Heineken Champions League retail static; right is the same ad rebuilt by our machine, measured to within 3 pixels. This is the calibrate step: we measure a brand's finished work until the machine can reproduce it exactly, and from then on new ads in that system are production runs, not design projects. We'd do the same calibration for Coca-Cola.",
-    compare: { before: "heineken-ucl-original.png", after: "heineken-ucl-rebuilt.png", ratio: "786/1102", w: 440,
+    desc: "Drag the slider. Left is a finished Heineken Champions League retail static; right is the same ad rebuilt by our machine, measured off the original to within 3 pixels. Heineken's typeface is licensed, so the headline on both sides is set in our matched stand-in font; with a brand's own font files the match is exact. Once a brand is calibrated like this, new ads in the system are production runs, not design projects. We'd do the same calibration for Coca-Cola.",
+    compare: { before: "heineken-ucl-before.png", after: "heineken-ucl-after.png", ratio: "786/1102", w: 440,
       labelBefore: "Heineken's original", labelAfter: "Rebuilt by the machine", download: false } },
 
   { title: "What we'd produce: formats, shapes and sizes", kind: "copy", zone: "work", badge: "Format catalogue",
