@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Tesco Retail Media",
   intro:
     "A live view of the Tesco retail media formats and what we can produce for Coca-Cola. The deliverables sit up top, the real in-store references and the full format catalogue underneath. Have a look and send back your thoughts.",
-  lastUpdated: "2026-06-20",
+  lastUpdated: "2026-07-09",
   zoneIntros: {
     deliverables: "The production machines we'd build for you, in priority order, and where each one stands.",
     brief: "Genuine Coca-Cola retail media running in Tesco today. This is the brand treatment any machine has to feed.",
@@ -41,6 +41,11 @@ export const work: WorkSection[] = [
     ]},
 
   /* ---- ZONE: work - what we'd produce. ---- */
+  { title: "The machine in action: a Heineken worked example", kind: "compare", zone: "work", status: "ready", badge: "Worked example",
+    desc: "Drag the slider. Left is a finished Heineken Champions League retail static; right is the same ad rebuilt by our machine, measured to within 3 pixels. This is the calibrate step: we measure a brand's finished work until the machine can reproduce it exactly, and from then on new ads in that system are production runs, not design projects. We'd do the same calibration for Coca-Cola.",
+    compare: { before: "heineken-ucl-original.png", after: "heineken-ucl-rebuilt.png", ratio: "786/1102", w: 440,
+      labelBefore: "Heineken's original", labelAfter: "Rebuilt by the machine", download: false } },
+
   { title: "What we'd produce: formats, shapes and sizes", kind: "copy", zone: "work", badge: "Format catalogue",
     desc: "Every Tesco retail media format we'd create for, grouped by type. Screen sizes are confirmed; onsite banner sizes are the standard retail-media set (Tesco onsite runs on CitrusAd), with the exact set locked at booking.",
     blocks: [
