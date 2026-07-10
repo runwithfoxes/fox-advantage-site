@@ -497,8 +497,10 @@ const cwSlug = (t: string) =>
 
 // Every media filename in a section, across its single/items/grouped shapes.
 // assetId for the feedback control is the tile's src. PairItem: include src, ignore img.
+// Embed sections count as one asset, keyed by embedSrc.
 function collectAssetSrcs(section: WorkSection): string[] {
   const srcs: string[] = [];
+  if (section.embedSrc) srcs.push(section.embedSrc);
   if (section.item?.src) srcs.push(section.item.src);
   for (const it of section.items || []) {
     if ("src" in it && it.src) srcs.push(it.src);
@@ -694,6 +696,7 @@ function WorkBlock({ s, base, slug, feedback }: { s: WorkSection; base: string; 
               <path d="M14 5h5v5M19 5l-8 8M11 5H6a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1v-5" />
             </svg>
           </a>
+          {s.feedback && <AssetFeedback slug={slug} assetId={s.embedSrc} held={s.qa === "pending"} initial={feedback?.assets[s.embedSrc]} />}
         </div>
       )}
 

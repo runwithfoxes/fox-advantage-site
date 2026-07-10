@@ -19,14 +19,15 @@ export const meta: Meta = {
    target: optional due date. If ANY row sets it, a Target column appears.
    note:   free text for what we said / what's next. */
 export const deliverables: Deliverable[] = [
-  { name: "Board session presentation", detail: "How brands grow - 26 slides, ~40 minute session", status: "ready", date: "2026-07-10", target: "2026-07-27", note: "New visual direction for review" },
+  { name: "Board session presentation", detail: "How brands grow - 26 slides, ~40 minute session", status: "ready", date: "2026-07-10", target: "2026-07-27", note: "New visual direction for review", anchor: "cw-s-the-presentation" },
 ];
 
 /* The work area. Media/file references point at files in
    public/clients/hostelworld/media/. */
 export const work: WorkSection[] = [
   { title: "The presentation", kind: "embed", status: "ready",
-    desc: "The full deck, live below. Click inside it, then use the arrow keys, space bar, or a click to move through the slides. Full screen is best.",
+    desc: "The full deck, live below. Click inside it, then use the arrow keys, space bar, or a click to move through the slides. Full screen is best. Underneath there is a place to approve it or leave comments, and we pick them up from there.",
     embedSrc: "deck/index.html",
-    embedHeight: 720 },
+    embedHeight: 720,
+    feedback: true },
 ];
