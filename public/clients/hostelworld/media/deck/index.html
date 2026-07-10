@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How brands grow - board session</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF4E8; --ink:#141414; --coral:#F1613D; --yellow:#F5C51C; --teal:#2BD9D9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{ height:100%; }
+  body{ background:var(--ink); font-family:'Archivo',sans-serif; color:var(--ink); overflow:hidden; cursor:default; }
+
+  .slide{ position:absolute; inset:0; display:none; background:var(--cream); overflow:hidden; }
+  .slide.on{ display:block; }
+  .slide.dark{ color:var(--cream); }
+
+  .h-block{ font-family:'Anton',sans-serif; text-transform:uppercase; line-height:.94; letter-spacing:.5px; }
+  .h-block em{ font-style:normal; color:var(--coral); }
+  .mono-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:2px; text-transform:uppercase; background:var(--ink); color:var(--cream); padding:7px 14px; margin-bottom:2.4vh; }
+  .mono-cap{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.6; }
+
+  .photo-right{ position:absolute; top:0; right:0; bottom:0; width:40vw; height:100vh; object-fit:cover; }
+  .txt-left{ position:absolute; left:56px; top:26vh; width:52vw; }
+  .txt-left .h-block{ font-size:9.5vh; }
+  .link{ display:inline-block; margin-top:3.4vh; font-family:'JetBrains Mono',monospace; font-size:1.8vh; letter-spacing:1px; color:var(--coral); text-decoration:none; border-bottom:2px solid var(--coral); padding-bottom:2px; }
+
+  .divider .h-block{ position:absolute; left:56px; top:34vh; font-size:15vh; z-index:2; }
+  .divider .kicker{ position:absolute; left:58px; top:25vh; z-index:2; }
+  .divider img{ position:absolute; right:0; top:0; bottom:0; width:40vw; height:100vh; object-fit:cover; }
+  .divider.coral{ background:var(--coral); }
+  .divider.coral .h-block{ color:var(--ink); }
+  .divider.coral .h-block .w{ color:var(--cream); }
+  .divider.yellow{ background:var(--yellow); }
+  .divider.teal{ background:var(--teal); }
+
+  .cover{ background:linear-gradient(115deg, #E8542E 0%, #F1613D 45%, #E98A2B 75%, #94A83B 100%); }
+  .cover .h-block{ position:absolute; left:56px; top:26vh; font-size:13vh; z-index:2; color:var(--ink); }
+  .cover .h-block .w{ color:var(--cream); }
+  .cover img{ position:absolute; right:0; top:0; bottom:0; width:38vw; height:100vh; object-fit:cover; }
+
+  .stat-stack{ position:absolute; left:56px; top:34vh; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:1.12; }
+
+  /* full-bleed single image slides */
+  .full-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--cream); }
+  .full-img.cover-fit{ object-fit:cover; }
+
+  /* CEP circles */
+  .cep-row{ position:absolute; left:56px; right:56px; top:52vh; transform:translateY(-38%); display:flex; gap:1.6vw; }
+  .cep{ flex:1; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--cream); text-align:center; padding:1.4vw; }
+  .cep b{ font-family:'Anton',sans-serif; font-size:3.1vh; letter-spacing:1px; text-transform:uppercase; margin-bottom:.6vh; font-weight:400; }
+  .cep span{ font-size:1.4vh; line-height:1.3; font-weight:600; }
+
+  /* 95/5 */
+  .big95{ position:absolute; left:56px; top:20vh; font-family:'Anton',sans-serif; font-size:32vh; line-height:1; }
+  .big95 em{ font-style:normal; color:var(--coral); }
+  .sub-line{ position:absolute; left:58px; top:56vh; max-width:46vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:4.2vh; line-height:1.15; }
+  .dove-line{ position:absolute; left:56px; bottom:9vh; max-width:46vw; font-size:2.2vh; line-height:1.5; font-weight:700; }
+  .dove-line .mono-cap{ display:block; margin-top:1vh; font-weight:400; }
+  .dove-img{ position:absolute; right:4vw; top:10vh; height:80vh; width:38vw; object-fit:contain; mix-blend-mode:multiply; }
+
+  /* lottery results */
+  .res-stats{ position:absolute; left:8vw; right:8vw; top:12vh; display:flex; gap:3vw; }
+  .res-stats > div{ flex:1; text-align:center; }
+  .res-stats .h-block{ font-size:9vh; }
+  .res-chart{ position:absolute; left:10vw; right:10vw; bottom:8vh; }
+  .res-chart svg{ width:100%; height:auto; }
+
+  /* linkage bars, centred and big */
+  .bars{ position:absolute; left:14vw; right:14vw; top:32vh; display:flex; flex-direction:column; gap:2.6vh; }
+  .bar-row{ display:flex; align-items:center; gap:18px; }
+  .bar-lbl{ flex:none; width:16vw; font-family:'JetBrains Mono',monospace; font-size:1.8vh; text-align:right; }
+  .bar-track{ flex:1; height:4.6vh; background:rgba(20,20,20,.07); }
+  .bar{ display:block; height:100%; background:var(--coral); }
+  .bar.y{ background:var(--yellow); }
+  .bar-val{ flex:none; width:4vw; font-family:'Anton',sans-serif; font-size:3.2vh; }
+
+  /* dull slide chart */
+  .dull-chart{ position:absolute; left:56px; bottom:9vh; width:44vw; }
+  .dull-chart .cols{ display:flex; align-items:flex-end; gap:4vw; height:26vh; }
+  .dull-chart .col{ flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:1vh; height:100%; }
+  .dull-chart .colbar{ width:100%; }
+  .dull-chart .num{ font-family:'Anton',sans-serif; font-size:3.4vh; color:var(--cream); }
+  .dull-chart .lbl{ font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; color:var(--cream); opacity:.7; text-align:center; }
+  .dull-x{ position:absolute; left:32vw; bottom:26vh; font-family:'Anton',sans-serif; font-size:6vh; color:var(--coral); }
+
+  /* case videos side by side, uncropped */
+  .vid-pair{ position:absolute; left:56px; right:56px; top:30vh; bottom:8vh; display:flex; gap:20px; }
+  .vid-pair video{ flex:1; min-width:0; height:100%; object-fit:contain; background:var(--ink); }
+
+  /* full-screen video slide */
+  .vid-full{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--ink); cursor:pointer; }
+  .play-hint{ position:absolute; left:50%; bottom:5vh; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:2px; text-transform:uppercase; color:var(--cream); opacity:.65; pointer-events:none; }
+
+  /* question cards */
+  .qcards{ position:absolute; left:56px; right:56px; top:28vh; bottom:10vh; display:flex; gap:20px; }
+  .qcard{ flex:1; padding:2.8vh 1.8vw; display:flex; flex-direction:column; }
+  .qcard .qn{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; letter-spacing:2px; margin-bottom:1.8vh; }
+  .qcard .qt{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:3.6vh; line-height:1.1; margin-bottom:2vh; }
+  .qcard .qa{ font-size:2vh; line-height:1.5; font-weight:600; margin-top:auto; }
+  .qcard.c1{ background:var(--coral); color:var(--cream); }
+  .qcard.c2{ background:var(--teal); color:var(--ink); }
+  .qcard.c3{ background:var(--yellow); color:var(--ink); }
+
+  /* two-pillar plus slide */
+  .plus-wrap{ position:absolute; left:56px; right:56px; top:18vh; display:flex; align-items:flex-start; gap:2.6vw; }
+  .plus-col{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .pill{ width:100%; min-height:12vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+    font-family:'Anton',sans-serif; font-size:4vh; letter-spacing:1px; text-transform:uppercase; border-radius:12vh; text-align:center; padding:2vh 2vw; }
+  .pill.m{ background:var(--coral); color:var(--cream); }
+  .pill.p{ background:var(--yellow); color:var(--ink); }
+  .pill small{ font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:1.5px; text-transform:none; margin-top:.8vh; font-weight:400; }
+  .plus-sign{ flex:none; align-self:flex-start; margin-top:3vh; font-family:'Anton',sans-serif; font-size:9vh; line-height:1; color:var(--ink); }
+  .lane-item{ font-size:2.3vh; font-weight:600; padding:1.3vh 0; text-align:center; }
+  .lane-item span{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; color:var(--coral); margin-right:8px; }
+
+  /* working post-its on the close slide (remove before submission) */
+  .stickies{ position:absolute; inset:0; z-index:3; pointer-events:none; }
+  .sticky{ position:absolute; width:13vw; min-height:14vh; background:#FDF06F; color:#141414; padding:1.6vh 1vw;
+    font-family:'JetBrains Mono',monospace; font-size:1.35vh; line-height:1.45; box-shadow:0 6px 18px rgba(20,20,20,.28); }
+
+  .counter{ position:fixed; bottom:22px; right:28px; z-index:9; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--cream); mix-blend-mode:difference; opacity:.7; }
+
+  .lightbox{ display:none; position:fixed; inset:0; z-index:60; background:rgba(20,20,20,.6); padding:3vh 4vw; }
+  .lightbox.open{ display:block; }
+  .lightbox-inner{ position:relative; width:100%; height:100%; background:#fff; overflow:hidden; }
+  .lightbox-inner iframe{ width:100%; height:100%; border:none; display:block; }
+  .lightbox-close{ position:absolute; top:12px; right:12px; z-index:2; width:38px; height:38px; border-radius:50%; border:none; background:var(--ink); color:var(--cream); font-size:18px; cursor:pointer; line-height:1; }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="slide cover dark">
+  <div class="h-block">The principles<br>behind <span class="w">sustained<br>brand growth</span></div>
+  <img src="hero-hostel.jpg" alt="">
+</section>
+
+<!-- 2 OPENING CLAIM -->
+<section class="slide">
+  <div class="txt-left" style="top:30vh">
+    <div class="h-block">Marketing is<br>a system. <em>Not a line<br>of separate bets.</em></div>
+  </div>
+  <img class="photo-right" src="travel1.jpg" alt="">
+</section>
+
+<!-- 3 TWO PILLARS -->
+<section class="slide">
+  <div class="plus-wrap">
+    <div class="plus-col">
+      <div class="pill m">Mental availability<small>easy to think of</small></div>
+      <div style="height:3vh"></div>
+      <div class="lane-item"><span>01</span>Come to mind when the trigger fires</div>
+      <div class="lane-item"><span>02</span>Reach the 95% not in market today</div>
+      <div class="lane-item"><span>03</span>One big idea, run for decades</div>
+      <div class="lane-item"><span>04</span>Distinctive assets, measured</div>
+      <div class="lane-item"><span>05</span>Memorable to a person and a model</div>
+    </div>
+    <div class="plus-sign">+</div>
+    <div class="plus-col">
+      <div class="pill p">Physical availability<small>easy to buy</small></div>
+      <div style="height:3vh"></div>
+      <div class="lane-item"><span>06</span>Buying as easy as thinking of you</div>
+      <div class="lane-item"><span>07</span>Search and performance are the storefront</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 DIVIDER: MENTAL -->
+<section class="slide divider coral">
+  <span class="kicker mono-tag">#Easytothinkof</span>
+  <div class="h-block">Mental<br><span class="w">availability</span></div>
+  <img src="travel2.webp" alt="">
+</section>
+
+<!-- 5 PRINCIPLE 1: TRIGGERS -->
+<section class="slide">
+  <div class="txt-left">
+    <div class="h-block">Be the brand<br>that comes to mind <em>when the trigger fires.</em></div>
+  </div>
+  <img class="photo-right" src="travel4.jpeg" alt="">
+</section>
+
+<!-- 6 CEPs (before the lottery example) -->
+<section class="slide">
+  <div class="txt-left" style="top:10vh; width:84vw">
+    <div class="h-block" style="font-size:8vh">What are <em>category entry points?</em></div>
+  </div>
+  <div class="cep-row">
+    <div class="cep" style="background:#C0392B"><b>Why</b><span>Do I decide to buy product</span></div>
+    <div class="cep" style="background:#76C7B0; color:#141414"><b>When</b><span>Do I decide what to buy</span></div>
+    <div class="cep" style="background:#2E4A5A"><b>Where</b><span>Do I make decisions to buy</span></div>
+    <div class="cep" style="background:#E67E22"><b>Who</b><span>Am I with</span></div>
+    <div class="cep" style="background:#5B9BBF"><b>What</b><span>Else am I doing</span></div>
+    <div class="cep" style="background:#5B3A6E"><b>How</b><span>Do I want to feel</span></div>
+  </div>
+</section>
+
+<!-- 7 LOTTERY: TV AD LEFT, RESULTS RIGHT -->
+<section class="slide">
+  <div style="position:absolute; left:0; top:0; bottom:0; width:50vw; background:var(--ink); display:flex; align-items:center">
+    <video class="svid" src="raffle-tv-ad.mp4" preload="metadata" playsinline style="width:100%; cursor:pointer"></video>
+  </div>
+  <div class="play-hint" style="left:25vw">Click to play with sound</div>
+  <div style="position:absolute; right:0; top:0; bottom:0; width:50vw; padding:8vh 3vw 6vh; display:flex; flex-direction:column; justify-content:center; gap:5vh">
+    <div style="display:flex; gap:2vw">
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh; color:var(--coral)">27:1</div><div class="mono-cap" style="opacity:1">Short term ROI</div><div class="mono-cap">up from 18.6:1 in 2019</div></div>
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh">15%</div><div class="mono-cap" style="opacity:1">Digital sales</div><div class="mono-cap">up from 9% in 2019</div></div>
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh; color:var(--coral)">500k</div><div class="mono-cap" style="opacity:1">Tickets sold out</div><div class="mono-cap">by 24 December</div></div>
+    </div>
+    <svg viewBox="0 0 600 320" style="width:100%; height:auto">
+      <g stroke="rgba(20,20,20,.1)" stroke-dasharray="3 4">
+        <line x1="40" y1="30" x2="590" y2="30"/><line x1="40" y1="95" x2="590" y2="95"/>
+        <line x1="40" y1="160" x2="590" y2="160"/><line x1="40" y1="225" x2="590" y2="225"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="#141414" opacity=".55">
+        <text x="2" y="34">€2.5m</text><text x="2" y="99">€1.5m</text><text x="2" y="164">€1m</text><text x="2" y="229">€500k</text>
+        <text x="40" y="292">1</text><text x="300" y="292">15</text><text x="575" y="292">30</text>
+      </g>
+      <polyline fill="none" stroke="rgba(20,20,20,.18)" stroke-width="2" points="40,278 100,272 160,262 220,252 260,246 285,262 310,238 340,225 370,218 400,205 420,160 435,110 450,278 470,272 500,250 530,235 560,205 590,190"/>
+      <polyline fill="none" stroke="rgba(20,20,20,.35)" stroke-width="2" points="40,278 100,268 160,256 220,246 260,240 285,258 310,230 340,214 370,208 400,192 420,150 435,86 450,276 470,268 500,242 530,222 560,150 590,98"/>
+      <polyline fill="none" stroke="#F1613D" stroke-width="4" points="40,278 100,262 160,248 220,240 260,232 285,250 310,215 340,198 370,188 400,170 420,120 435,30 450,274 470,268 500,238 530,225 560,165 590,158"/>
+      <circle cx="435" cy="30" r="6" fill="#F1613D"/>
+      <text x="450" y="26" font-family="Anton, sans-serif" font-size="20" fill="#F1613D">€2.5m</text>
+      <text x="40" y="315" font-family="JetBrains Mono, monospace" font-size="11" fill="#141414" opacity=".55">DAILY TICKET SALES BY YEAR, DECEMBER</text>
+    </svg>
+  </div>
+</section>
+
+<!-- 9 95/5 -->
+<section class="slide">
+  <div class="big95">95<em>/5</em></div>
+  <div class="sub-line">of the category is not<br>in market <em style="font-style:normal; color:var(--coral)">today.</em></div>
+  <div class="dove-line">Over one-third of Dove&rsquo;s buyers in the UK bought the brand just once in a six-year period.
+    <span class="mono-cap">Wiemer Snijders &amp; Charles Graham</span>
+  </div>
+  <img class="dove-img" src="dove-new.png" alt="Dove Original">
+</section>
+
+<!-- 10 BIG IDEA: one image -->
+<section class="slide">
+  <div class="txt-left" style="width:38vw; top:34vh">
+    <div class="h-block" style="font-size:8.5vh">One big idea.<br><em>Run for decades.</em></div>
+  </div>
+  <img style="position:absolute; right:6vw; top:50%; transform:translateY(-50%); width:46vw; box-shadow:0 24px 60px rgba(20,20,20,.18)" src="econ-1-never-read.png" alt="I never read The Economist">
+</section>
+
+<!-- 11 FOUR MORE ECONOMIST, no copy -->
+<section class="slide">
+  <div style="position:absolute; inset:5vh 8vw; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-4-outside-bot.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-6-ai-worried.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-2-lightbulb.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-5-facts-sake.png" alt="">
+  </div>
+</section>
+
+<!-- 12-14 SPECSAVERS / KITKAT / MEERKAT, one image per slide -->
+<section class="slide"><img class="full-img" src="big-idea-specsavers.png" alt="Specsavers"></section>
+<section class="slide"><img class="full-img" src="big-idea-kitkat.png" alt="KitKat"></section>
+<section class="slide"><img class="full-img" src="big-idea-meerkat.png" alt="Compare the Market"></section>
+
+<!-- 15 COST OF DULL -->
+<section class="slide dark" style="background:var(--ink)">
+  <img style="position:absolute; left:0; top:0; bottom:0; width:42vw; height:100vh; object-fit:cover" src="dull-cow.jpg" alt="50% of ads are less engaging than cows in a field">
+  <div style="position:absolute; left:46vw; right:5vw; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center">
+    <div class="h-block" style="font-size:9vh; color:var(--coral); margin-bottom:4vh">6.1x</div>
+    <div class="dull-chart" style="position:static; width:100%">
+      <div class="cols">
+        <div class="col"><div class="num">0.21</div><div class="colbar" style="height:17%; background:var(--yellow)"></div><div class="lbl">Rational ads</div></div>
+        <div class="col"><div class="num">1.25</div><div class="colbar" style="height:100%; background:var(--coral)"></div><div class="lbl">Fame ads</div></div>
+      </div>
+      <div class="mono-cap" style="color:var(--cream); margin-top:2vh; display:block">Share growth per unit of ad investment &middot; IPA Effectiveness Databank, 1998&ndash;2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 ASSETS RANGE, full slide -->
+<section class="slide"><img class="full-img" src="assets-range.webp" alt="Distinctive brand assets can be"></section>
+
+<!-- 17 OATLY, full slide -->
+<section class="slide"><img class="full-img cover-fit" src="oatly-voice.jpg" alt="Oatly - tastes totally normal"></section>
+
+<!-- 18 MEASURED -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:10vh; font-size:7vh">And you <em>measure them.</em></div>
+  <div class="bars">
+    <div class="bar-row"><span class="bar-lbl">Logo</span><span class="bar-track"><span class="bar" style="width:95%"></span></span><span class="bar-val">95</span></div>
+    <div class="bar-row"><span class="bar-lbl">"It could be you"</span><span class="bar-track"><span class="bar" style="width:87%"></span></span><span class="bar-val">87</span></div>
+    <div class="bar-row"><span class="bar-lbl">Waterslide ad</span><span class="bar-track"><span class="bar" style="width:82%"></span></span><span class="bar-val">82</span></div>
+    <div class="bar-row"><span class="bar-lbl">Yellow leisure ring</span><span class="bar-track"><span class="bar y" style="width:71%"></span></span><span class="bar-val">71</span></div>
+    <div class="bar-row"><span class="bar-lbl">Green background</span><span class="bar-track"><span class="bar y" style="width:64%"></span></span><span class="bar-val">64</span></div>
+    <div class="bar-row"><span class="bar-lbl">"Mr Blue Sky"</span><span class="bar-track"><span class="bar y" style="width:62%"></span></span><span class="bar-val">62</span></div>
+  </div>
+</section>
+
+<!-- 19 DISTINCTIVE VOICE / ISA -->
+<section class="slide">
+  <div class="txt-left" style="width:48vw; top:30vh">
+    <div class="h-block" style="font-size:8vh">Distinctive voice is brilliant <em>for AI amplification.</em></div>
+  </div>
+  <div style="position:absolute; right:56px; top:14vh; bottom:14vh; width:34vw; display:flex; align-items:center">
+    <img style="width:100%" src="isa-chat.png" alt="Isa answering in the brand voice">
+  </div>
+</section>
+
+<!-- 20 DIVIDER: PHYSICAL -->
+<section class="slide divider yellow">
+  <span class="kicker mono-tag">#Easytobuy</span>
+  <div class="h-block">Physical<br><span style="color:var(--cream)">availability</span></div>
+  <img src="travel5.webp" alt="">
+</section>
+
+<!-- 21 EASY TO BUY -->
+<section class="slide">
+  <div class="txt-left" style="top:32vh">
+    <div class="h-block" style="font-size:8.5vh">Make buying as easy <em>as thinking of you.</em></div>
+  </div>
+  <img class="photo-right" style="object-fit:contain; background:var(--cream)" src="hostel-app-chat.jpg" alt="Hostelworld app">
+</section>
+
+<!-- 22 FAME -->
+<section class="slide divider coral">
+  <div class="h-block" style="top:34vh">Fame, and<br><span class="w">growth that compounds.</span></div>
+</section>
+
+<!-- 23 CASES: side-by-side films -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:10vh; font-size:7vh">Humans originate. <em>AI amplifies.</em></div>
+  <div class="vid-pair">
+    <video class="svid" src="big-idea-sharelove.mp4" poster="big-idea-sharelove-poster.jpg" preload="metadata" playsinline style="cursor:pointer"></video>
+    <video src="big-idea-foxslide.mp4" poster="big-idea-foxslide-poster.jpg" muted loop autoplay playsinline></video>
+  </div>
+  <div class="play-hint" style="color:var(--ink); left:28vw">Click left film to play with sound</div>
+</section>
+
+<!-- 24 AI -->
+<section class="slide dark" style="background:var(--ink)">
+  <div class="stat-stack" style="font-size:10vh">
+    <div style="color:var(--cream)">AI is not a cost play.</div>
+    <div style="color:var(--coral)">It is the reason to invest in brand.</div>
+  </div>
+</section>
+
+<!-- 25 QUESTIONS 1-3 -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:12vh; font-size:7vh">Six questions <em>for this board.</em></div>
+  <div class="qcards">
+    <div class="qcard c1"><div class="qn">Question 01</div><div class="qt">Are we building against the real entry points?</div><div class="qa">&rarr; Cohort Intelligence Engine; Unmissable Social Engine</div></div>
+    <div class="qcard c2"><div class="qn">Question 02</div><div class="qt">Too few know us; fewer know what we stand for</div><div class="qa">&rarr; Brand positioning and creative idea; Creative Engine</div></div>
+    <div class="qcard c3"><div class="qn">Question 03</div><div class="qt">All our spend chases today&rsquo;s booking</div><div class="qa">&rarr; Build Demand Creation; maintain Demand Capture</div></div>
+  </div>
+</section>
+
+<!-- 26 QUESTIONS 4-6 -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:12vh; font-size:7vh">Six questions <em>for this board.</em></div>
+  <div class="qcards">
+    <div class="qcard c3"><div class="qn">Question 04</div><div class="qt">Is buying us as easy as thinking of us?</div><div class="qa">&rarr; CRM and Lifecycle Engine</div></div>
+    <div class="qcard c1"><div class="qn">Question 05</div><div class="qt">Is there a human idea behind our AI?</div><div class="qa">&rarr; AI-informed Insight; Creative Engine tooling</div></div>
+    <div class="qcard c2"><div class="qn">Question 06</div><div class="qt">How do we know it works before trading shows it?</div><div class="qa">&rarr; Measurement and Decisioning Engine</div></div>
+  </div>
+</section>
+
+<!-- 27 CLOSE -->
+<section class="slide divider teal">
+  <div class="h-block" style="top:34vh">Sustained<br><span style="color:var(--cream)">growth.</span></div>
+  <img src="travel1.jpg" alt="">
+  <!-- working stickies: outline gaps still to resolve (delete before the 20 July submission) -->
+  <div class="stickies">
+    <div class="sticky" style="left:4vw; top:6vh; transform:rotate(-2deg)">1. Double Jeopardy: growth comes from acquisition, not loyalty. No slide yet.</div>
+    <div class="sticky" style="left:20vw; top:9vh; transform:rotate(1.5deg)">2. Built slowly, spent quickly: the two clocks. Judging brand on this month&rsquo;s bookings = wrong thing, wrong time.</div>
+    <div class="sticky" style="left:36vw; top:5vh; transform:rotate(-1deg)">3. Memorable to a person AND a model (GEO / get talked about) lost its slide.</div>
+    <div class="sticky" style="left:4vw; top:64vh; transform:rotate(1deg)">4. Search + performance are the storefront: talk track or slide?</div>
+    <div class="sticky" style="left:20vw; top:68vh; transform:rotate(-1.5deg)">5. AI&rsquo;s three areas: analytics / authority / creative at scale. Dropped in redesign.</div>
+    <div class="sticky" style="left:36vw; top:63vh; transform:rotate(2deg)">6. Restore the 2.6x figure beside the 6.1x on the dull slide.</div>
+  </div>
+</section>
+
+<div class="counter" id="counter"></div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+function show(i){
+  // pause any sound videos when leaving a slide
+  slides[cur] && slides[cur].querySelectorAll('video').forEach(v=>{ if(!v.muted) v.pause(); });
+  cur = Math.max(0, Math.min(slides.length-1, i));
+  slides.forEach((s,k)=> s.classList.toggle('on', k===cur));
+  document.getElementById('counter').textContent = (cur+1) + ' / ' + slides.length;
+  slides[cur].querySelectorAll('video[autoplay]').forEach(v=>v.play());
+}
+function openLightbox(id){
+  const lb = document.getElementById(id);
+  const fr = lb.querySelector('iframe');
+  if(fr && !fr.src) fr.src = fr.dataset.src;
+  lb.classList.add('open');
+}
+function closeLightboxes(){ document.querySelectorAll('.lightbox.open').forEach(lb=>lb.classList.remove('open')); }
+
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('[data-lightbox]');
+  if(t){ e.preventDefault(); openLightbox(t.dataset.lightbox); return; }
+  const lb = e.target.closest('.lightbox');
+  if(lb){ if(e.target.closest('.lightbox-close') || e.target === lb) closeLightboxes(); return; }
+  const sv = e.target.closest('video.svid');
+  if(sv){ // click-to-play with sound; click again to pause
+    if(sv.paused){ sv.muted = false; sv.play(); } else { sv.pause(); }
+    return;
+  }
+  if(e.target.closest('a, video')) return;
+  show(cur+1);
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){ closeLightboxes(); return; }
+  if(document.querySelector('.lightbox.open')) return;
+  if(e.key==='ArrowRight' || e.key===' ' || e.key==='Enter' || e.key==='ArrowDown'){ e.preventDefault(); show(cur+1); }
+  if(e.key==='ArrowLeft' || e.key==='ArrowUp'){ e.preventDefault(); show(cur-1); }
+});
+const m = location.hash.match(/^#s(\d+)$/);
+show(m ? parseInt(m[1],10) : 0);
+</script>
+</body>
+</html>
