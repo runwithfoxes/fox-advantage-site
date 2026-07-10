@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/distinctive",
+        destination: "/distinctive/index.html",
+      },
+      {
         source: "/broad-lake",
         destination: "/broad-lake/index.html",
       },

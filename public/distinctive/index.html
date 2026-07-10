@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distinctive brands have an incredible opportunity with AI | Run with Foxes</title>
+<meta name="description" content="The hard work is becoming distinctive. After that, AI lets you amplify that distinctiveness over and over. No writing room, no studio, no heavy overhead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF8;
+  --text:#1D1B1B;
+  --muted:#8A8A85;
+  --sky-blue:#3A7CA5;
+  --sky-blue-hover:#2F6688;
+  --deep-sky:#1A3A4E;
+  --border:#E0E0DC;
+  --card-hover:#F5F5F0;
+  --cream:#F7EAD9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'JetBrains Mono',monospace;
+  font-weight:300;
+  font-size:0.9375rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--deep-sky);color:var(--cream);padding:8px 16px;z-index:200;}
+.skip-link:focus{left:0;}
+
+/* nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background 0.3s ease-out;
+}
+nav.scrolled{background:rgba(250,250,248,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;letter-spacing:2px;color:var(--muted);text-decoration:none;}
+.nav-brand span{color:#F47521;}
+.nav-links{display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{
+  font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color 0.3s ease-out;white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--sky-blue);}
+
+/* layout */
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+
+/* hero */
+.hero{padding:140px 0 0;position:relative;}
+.hero.dot-grid::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle,#d0d0cc 0.8px,transparent 0.8px);
+  background-size:28px 28px;opacity:0.4;pointer-events:none;
+}
+.hero > *{position:relative;}
+.kicker{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--sky-blue);margin-bottom:20px;display:block;}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,3.4vw,48px);font-weight:300;letter-spacing:-1px;line-height:1.15;text-wrap:balance;}
+.hero-sub{margin-top:20px;}
+.byline{font-size:0.875rem;color:var(--muted);margin-top:24px;padding-bottom:40px;}
+
+/* article */
+article{padding:24px 0 96px;}
+article p{margin:18px 0;}
+h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:300;letter-spacing:-1px;line-height:1.2;margin:88px 0 8px;}
+strong{font-weight:500;}
+.hl{color:var(--sky-blue);}
+.small{font-size:0.875rem;color:var(--muted);}
+a{color:var(--sky-blue);}
+a:hover{opacity:0.7;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sky-blue);outline-offset:2px;}
+
+/* fade in */
+.fade{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease-out,transform 0.6s ease-out;}
+.fade.in{opacity:1;transform:translateY(0);}
+
+/* figures */
+figure{margin:36px 0;}
+.fig-narrow{max-width:560px;}
+.fig-mid{max-width:760px;}
+figure img,figure video{width:100%;display:block;border:1px solid var(--border);}
+figcaption{font-size:0.875rem;color:var(--muted);padding-top:12px;}
+figcaption b{font-weight:500;color:var(--text);}
+
+/* asset chips */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0;}
+.chip{border:1px solid var(--border);padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text);background:var(--bg);}
+.chip.on{border-color:var(--sky-blue);color:var(--sky-blue);}
+
+/* media grids */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:36px 0;}
+.grid-2 figure{margin:0;}
+
+/* youtube click-to-play */
+.yt{position:relative;aspect-ratio:16/9;border:1px solid var(--border);background:var(--card-hover);cursor:pointer;overflow:hidden;padding:0;width:100%;display:block;}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;border:0;}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.yt .play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:var(--deep-sky);color:var(--cream);
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;
+  padding:14px 24px;transition:background 0.3s ease-out;
+}
+.yt:hover .play{background:var(--sky-blue);}
+
+/* quote blocks */
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:36px 0;}
+.q{border-left:2px solid var(--sky-blue);padding:8px 0 8px 28px;}
+.q p{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:300;letter-spacing:-0.5px;line-height:1.3;margin:0;}
+.q span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:12px;}
+
+/* fox float */
+.fox-section{width:150px;float:right;margin:0 0 20px 32px;shape-outside:margin-box;filter:drop-shadow(0 12px 24px rgba(29,27,27,0.1));pointer-events:none;user-select:none;}
+
+/* cta */
+.btn{
+  display:inline-block;background:var(--sky-blue);color:var(--bg);text-decoration:none;
+  font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;
+  padding:16px 32px;transition:background 0.3s ease-out;border:0;cursor:pointer;
+}
+.btn:hover{background:var(--sky-blue-hover);opacity:1;}
+.btn-outline{
+  display:inline-block;background:transparent;color:var(--sky-blue);text-decoration:none;
+  font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;
+  padding:16px 32px;border:1px solid var(--sky-blue);transition:background 0.3s ease-out;
+}
+.btn-outline:hover{background:var(--card-hover);opacity:1;}
+.cta-row{display:flex;gap:20px;margin-top:36px;flex-wrap:wrap;}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:40px 0;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.footer-brand{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;letter-spacing:2px;color:var(--muted);text-decoration:none;}
+.footer-brand span{color:#F47521;}
+footer .small a{color:var(--muted);}
+
+@media (max-width:768px){
+  .container{padding:0 24px;}
+  .hero{padding:110px 0 0;}
+  .nav-inner{padding:16px 24px;}
+  .nav-links{display:none;}
+  h2{margin:64px 0 4px;}
+  .grid-2,.qs{grid-template-columns:1fr;}
+  .fox-section{width:120px;margin:0 auto 20px;float:none;display:block;}
+}
+@media (max-width:380px){.container{padding:0 16px;}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav" aria-label="Page">
+  <div class="nav-inner">
+    <a class="nav-brand" href="https://runwithfoxes.com">/<span>Run</span>withfoxes</a>
+    <div class="nav-links">
+      <a href="#lottery">/the_lottery</a>
+      <a href="#characters">/characters</a>
+      <a href="#voice">/voice</a>
+      <a href="#foxes">/grumpy_foxes</a>
+      <a href="https://runwithfoxes.com/contact">/contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div class="container">
+
+<header class="hero dot-grid">
+  <span class="kicker">Distinctive brand assets, in an AI world</span>
+  <h1>Distinctive brands have an incredible opportunity with&nbsp;AI</h1>
+  <p class="hero-sub">The hard work is becoming distinctive. After that, you can amplify it <span class="hl">over and over</span>: no writing room, no studio, no heavy overhead.</p>
+  <p class="byline">Paul Dervan · Run with Foxes</p>
+</header>
+
+<article>
+
+  <p>Building distinctive brand assets is one of the smartest things we can do in marketing. AI makes this something we can exploit even more.</p>
+
+  <p>We get about 2-3 seconds before people scroll past or stop watching our ad. Some ads might get six seconds in the right channel with the right creative, but we have this tiny window of seconds where we must get our brand into people's memories. They must notice our <strong>brand</strong> if we want them to retrieve it later. Not just notice the ad, but the brand.</p>
+
+  <p>Plastering your brand name from the opening frame is an option, but it can feel bolted on and makes it harder to land your idea. That's why distinctive brand assets are so useful. They do the heavy lifting.</p>
+
+  <h2 id="lottery">The waterslides</h2>
+
+  <p>In 2021, when I was running marketing at The National Lottery in Ireland, we would show this waterslide image in our research. No name. No logo. No tagline. Yet <strong>72% of the country could still spontaneously name the brand</strong>.</p>
+
+  <figure class="fade">
+    <img src="assets/waterslide-research.jpg" alt="The National Lottery waterslide image shown in research with no branding" loading="lazy" />
+    <figcaption><b>The research stimulus.</b> Shown exactly like this: no name, no logo, no tagline.</figcaption>
+  </figure>
+
+  <p>The waterslides were a distinctive asset we had built through consistent and rigorous advertising. People recognised the brand without us having to cram our name into opening frames. That gave us freedom to push creativity, safe in the knowledge that every ad impression wasn't falling at the first hurdle: getting the brand noticed. People knew who was advertising, so we could focus on making the ads enjoyable, another useful goal in ads.</p>
+
+  <p>We can credit the brilliant Jenni Romaniuk with the phrase, and the science behind distinctive brand assets. I wrote about them in my first book six years ago. And when I joined The National Lottery, we built a bunch of them and were extremely rigorous and disciplined in using them.</p>
+
+  <p>Our logo, our tagline, our waterslides, our green background and our music track: we used them consistently, as a toolbox. And we measured them often. You cannot manage what you don't measure.</p>
+
+  <div class="chips fade" aria-label="The National Lottery asset toolbox">
+    <span class="chip">Logo</span>
+    <span class="chip">It could be you</span>
+    <span class="chip on">Waterslides</span>
+    <span class="chip on">Yellow ring</span>
+    <span class="chip">Green background</span>
+    <span class="chip">Music track</span>
+  </div>
+
+  <figure class="fade">
+    <img src="assets/dba-tracking-chart.jpg" alt="Tracking chart showing attribution scores for six National Lottery brand cues" loading="lazy" />
+  </figure>
+
+  <p>This first campaign, internally known as William, was our introduction of the asset, and our re-introduction of the tagline "It could be you", which had been dropped some years earlier. Few brands have taglines that are liked, famous and still relevant, so it was an easy enough decision to bring it back.</p>
+
+  <figure class="fade">
+    <button class="yt" data-id="fKiL5-g8Eyw" aria-label="Play the William waterpark film">
+      <img src="https://img.youtube.com/vi/fKiL5-g8Eyw/maxresdefault.jpg" alt="" loading="lazy" />
+      <span class="play">Play</span>
+    </button>
+    <figcaption><b>William.</b> The campaign that introduced the waterslides and brought back "It could be you".</figcaption>
+  </figure>
+
+  <p>The following year we launched Village, which played into a different insight but let us tell new, entertaining and joyful stories linked to our waterslides. Joy is a big thing for this brand.</p>
+
+  <figure class="fade">
+    <button class="yt" data-id="j2ggzmvTsc8" aria-label="Play the Village film">
+      <img src="https://img.youtube.com/vi/j2ggzmvTsc8/sddefault.jpg" alt="" loading="lazy" />
+      <span class="play">Play</span>
+    </button>
+    <figcaption><b>Village.</b> A year later: new insight, new story, same slides. Fresh consistency, not reinvention.</figcaption>
+  </figure>
+
+  <p>We resisted the temptation to move away from this, and instead always looked at how we could build onto it, to have fresh consistency. For example, we focused on the yellow inflatable ring and developed that into a distinctive asset itself. Which we measured.</p>
+
+  <figure class="fade fig-narrow">
+    <img src="assets/lottery-activation-19m.jpg" alt="National Lottery activation ad, 19 million euro jackpot, swimmer in the yellow ring" loading="lazy" />
+    <figcaption><b>The ring on its own.</b> Carrying activation ads without the slides.</figcaption>
+  </figure>
+
+  <h2 id="characters">Character brand assets</h2>
+
+  <p>Character assets are some of the strongest distinctive brand assets a company can have. One advantage is flexibility: you can use characters as <strong>heroes in your ads</strong>, not just aesthetics within them. Over time, if consistently used, people recognise your brand at a glance. This is far more important than folks realise.</p>
+
+  <p>We created a Dream Inspector character for this reason, and built him into a recognisable asset. Within a year or so, over 60% of adults could attribute our brand to this character.</p>
+
+  <div class="grid-2">
+    <figure class="fade">
+      <img src="assets/dream-inspector.jpg" alt="The Dream Inspector character on a beach" loading="lazy" />
+      <figcaption><b>The Dream Inspector.</b> Over 60% brand attribution within a year.</figcaption>
+    </figure>
+    <figure class="fade">
+      <button class="yt" data-id="NdajbCD5Vr8" aria-label="Play the Dream Inspector film">
+        <img src="https://img.youtube.com/vi/NdajbCD5Vr8/maxresdefault.jpg" alt="" loading="lazy" />
+        <span class="play">Play</span>
+      </button>
+      <figcaption><b>In the opening seconds.</b> How we used him in short-format activation ads.</figcaption>
+    </figure>
+  </div>
+
+  <h2 id="voice">Voice can be the asset too</h2>
+
+  <p>Distinctiveness doesn't have to be visual. A voice, held consistently, does the same job: people know who's talking before they see a name. Oatly is the obvious example. Cover the logo and you'd still know who wrote it.</p>
+
+  <figure class="fade">
+    <img src="assets/oatly-voice.jpg" alt="Oatly billboard copy written in its unmistakable voice" loading="lazy" />
+    <figcaption><b>Oatly.</b> The voice is doing the work the logo would normally do.</figcaption>
+  </figure>
+
+  <p>Isa is ours. She answers visitors on <a href="https://runwithfoxes.com">runwithfoxes.com</a> in our voice: same tone, every conversation, any hour. She's live now, ask her something.</p>
+
+  <figure class="fade fig-mid">
+    <img src="assets/isa-chat.png" alt="Isa, the Run with Foxes site assistant, answering in the brand voice" loading="lazy" />
+    <figcaption><b>Isa.</b> A real exchange. The voice holds because it was built once, properly.</figcaption>
+  </figure>
+
+  <h2 id="sweat">Use AI to sweat your assets</h2>
+
+  <p>The challenge in the past was production. I could do a two-day shoot and plan in as much footage and photography as possible, to get all sorts of ads for all our channels. I was lucky we had the resources for that. Small teams and small brands do not. And even with that, it had to be planned ahead. Few brands have writing teams and art directors ready to create new ads or content every week. Not if you care about quality and consistency.</p>
+
+  <p><strong>AI removes that constraint. If you are willing to build a system.</strong></p>
+
+  <h2 id="foxes">Grumpy foxes</h2>
+
+  <p>The title of my first book, and now my consultancy, is Run with Foxes. My grumpy fox is my distinctive asset character. Or foxes, there's more than one.</p>
+
+  <p>I've built an ad engine that creates ads using my fox. I can brief my system and get back something in a few minutes. The level of consistency, right down to the grumpy attitude of the fox, is impressive.</p>
+
+  <figure class="fade">
+    <img src="assets/fox-coffee.jpg" alt="The grumpy fox drinking coffee in a cafe" loading="lazy" />
+    <figcaption><b>"Grumpy fox drinking coffee."</b> The lazy prompt, first time, no retouching.</figcaption>
+  </figure>
+
+  <p>It took a few marathon sessions to get this right. But once built, a lazy prompt like "grumpy fox drinking coffee" will get me what I want almost always first time. If it makes a mistake, my focus is not on the output, but on why it didn't do what I hoped, and how to fix it for next time, so it works every time.</p>
+
+  <p>We started with images, but I've patiently trained it to understand that images need space for headlines. It must think about headline placement before it creates the image. It has been trained for contrast, for different font styles, different colours, alignment of the headline: all the small decisions you would intentionally make when you are making ads.</p>
+
+  <figure class="fade">
+    <img src="assets/fox-killbill.jpg" alt="Fox ad in a cinematic style with the headline: you and I have unfinished business" loading="lazy" />
+    <figcaption><b>Space left for the headline.</b> Decided before the image exists.</figcaption>
+  </figure>
+
+  <figure class="fade fig-mid">
+    <img src="assets/fox-vespa-loyalty.jpg" alt="Fox on a Vespa ad with the headline: does brand loyalty exist?" loading="lazy" />
+    <figcaption><b>Contrast, font, alignment.</b> The small decisions, made on purpose.</figcaption>
+  </figure>
+
+  <p>It can create video too. I'm still just creating short videos, under ten seconds, but that is mostly what's needed for ads. I've focused on two types. One is my Tarantino-style cinematic ones: high on visual impact, low on any messaging.</p>
+
+  <div class="grid-2">
+    <figure class="fade">
+      <video src="/video/fox-tarantino-trunk.mp4" poster="/video/fox-tarantino-trunk-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <figcaption><b>Cinematic.</b> High visual impact, under ten seconds.</figcaption>
+    </figure>
+    <figure class="fade">
+      <video src="/video/waterslide.mp4" muted loop playsinline autoplay preload="metadata"></video>
+      <figcaption><b>The fox borrows a waterslide.</b> Two distinctive worlds, one system.</figcaption>
+    </figure>
+  </div>
+
+  <p>But often we need video ads that are more informative, with datapoints, benefit headlines, charts and CTAs. For these, the role of the fox is just a small nudge to make it easy for people to notice the brand. The headline is often the hero. These are what some call sales activation ads.</p>
+
+  <div class="grid-2">
+    <figure class="fade">
+      <video src="/video/animated-6040-activate.mp4" muted loop playsinline autoplay preload="metadata"></video>
+      <figcaption><b>The headline is the hero.</b> The fox just gets the brand noticed.</figcaption>
+    </figure>
+    <figure class="fade">
+      <video src="/video/animated-lottery.mp4" muted loop playsinline autoplay preload="metadata"></video>
+      <figcaption><b>Datapoints as ads.</b> The lottery measurement story, animated.</figcaption>
+    </figure>
+  </div>
+
+  <p>My focus is quality and speed. Speed is easy if you don't care about quality. But I do. Getting both takes more time. The best way I've found is to build each system for a very narrow use case and put the hours into getting that exactly right, every time. I've lost hours of my life testing, over and over, that the headline is not touching the fox. I'm not saying this is a good way to spend my time, but it upsets me otherwise.</p>
+
+  <h2 id="headlines">How it writes headlines</h2>
+
+  <p>I spent many years in direct-response advertising, the predecessor of performance marketing. Back in my youth I learned the finer details of what headlines work and why. I studied the classics: Drayton Bird, David Ogilvy, John Caples, Claude Hopkins, Bob Stone.</p>
+
+  <p>So before writing any headline, my system has been trained to answer two questions from classic direct response.</p>
+
+  <div class="qs">
+    <div class="q fade">
+      <span>Question one</span>
+      <p>What is the strongest benefit to the reader?</p>
+    </div>
+    <div class="q fade">
+      <span>Question two</span>
+      <p>What would make a stranger stop scrolling?</p>
+    </div>
+  </div>
+
+  <p>Only after answering those does it write headlines.</p>
+
+  <h2 id="system">Build a system</h2>
+
+  <img class="fox-section" src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+
+  <p>The fundamentals are the same. Attention decay is a thing. Purchases come from retrieving things from our brains: our memories are the biggest search engines. We must make sure the brand gets noticed, not just the ad. And building distinctive brand assets is as important as ever.</p>
+
+  <p>What's changed is that one person with a terminal window can sweat these assets every day, in every format.</p>
+
+  <p>My focus is not making an ad. But building a system that makes quality ads consistently, easily. If your brand is distinctive, visually or in voice, that system is available to you. We build it with you: your assets, your voice, your rules.</p>
+
+  <div class="cta-row">
+    <a class="btn" href="https://runwithfoxes.com/contact">\ talk_to_us</a>
+    <a class="btn-outline" href="https://runwithfoxes.com">\ chat_with_isa</a>
+  </div>
+  <p class="small" style="margin-top:16px;">Isa will answer in our voice. Which is the point.</p>
+
+</article>
+</div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a class="footer-brand" href="https://runwithfoxes.com">/<span>Run</span>withfoxes</a>
+    <p class="small">Paul Dervan · <a href="https://runwithfoxes.com">runwithfoxes.com</a> · Dublin</p>
+  </div>
+</footer>
+
+<script>
+// nav frosted glass on scroll
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>10);},{passive:true});
+// fade-ins
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.12});
+document.querySelectorAll('.fade').forEach(function(el){io.observe(el);});
+// youtube click-to-play
+document.querySelectorAll('.yt').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var id=btn.getAttribute('data-id');
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+    f.allow='autoplay; encrypted-media; picture-in-picture';
+    f.allowFullscreen=true;
+    f.title='YouTube video';
+    btn.innerHTML='';
+    btn.appendChild(f);
+  },{once:true});
+});
+</script>
+</body>
+</html>
