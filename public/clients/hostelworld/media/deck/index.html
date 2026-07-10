@@ -28,6 +28,8 @@
   .link{ display:inline-block; margin-top:3.4vh; font-family:'JetBrains Mono',monospace; font-size:1.8vh; letter-spacing:1px; color:var(--coral); text-decoration:none; border-bottom:2px solid var(--coral); padding-bottom:2px; }
 
   .divider .h-block{ position:absolute; left:56px; top:34vh; font-size:15vh; z-index:2; }
+  .divider:has(img) .h-block{ right:43vw; font-size:min(15vh, 8.5vw); }
+  .divider:not(:has(img)) .h-block{ right:6vw; font-size:min(15vh, 8.5vw); }
   .divider .kicker{ position:absolute; left:58px; top:25vh; z-index:2; }
   .divider img{ position:absolute; right:0; top:0; bottom:0; width:40vw; height:100vh; object-fit:cover; }
   .divider.coral{ background:var(--coral); }
@@ -37,7 +39,7 @@
   .divider.teal{ background:var(--teal); }
 
   .cover{ background:linear-gradient(115deg, #E8542E 0%, #F1613D 45%, #E98A2B 75%, #94A83B 100%); }
-  .cover .h-block{ position:absolute; left:56px; top:26vh; font-size:13vh; z-index:2; color:var(--ink); }
+  .cover .h-block{ position:absolute; left:56px; top:26vh; right:41vw; font-size:min(13vh, 7.5vw); z-index:2; color:var(--ink); }
   .cover .h-block .w{ color:var(--cream); }
   .cover img{ position:absolute; right:0; top:0; bottom:0; width:38vw; height:100vh; object-fit:cover; }
 
