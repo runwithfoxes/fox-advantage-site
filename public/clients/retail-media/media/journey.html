@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tesco shopper journey</title>
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:#FAFAF8; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; padding:8px 0;}
+  .journey-stage{position:relative; width:100%; max-width:1200px; margin:0 auto;}
+  .journey-stage svg{width:100%; height:auto; display:block; overflow:visible;}
+  .jpath{fill:none; stroke:#C9C9C4; stroke-width:4; stroke-dasharray:9 8;}
+  .jnode{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease;}
+  .jnode.on{opacity:1; transform:translateY(0);}
+  .jnode text.lab{font-size:14px; font-weight:600; fill:#1E1E1C;}
+  .jnode text.sublab{font-size:11.5px; fill:#6B675F;}
+  .jnode .ring{fill:#fff; stroke:#E0E0DC; stroke-width:2;}
+  .jnode .ring.live{stroke:#007118; stroke-width:3;}
+  .jnode text.soon{font-size:10.5px; fill:#A3A39E; letter-spacing:.06em;}
+</style>
+</head>
+<body>
+<div class="journey-stage" id="journey"></div>
+<script>
+const NODES = [
+  [1,"eCRM email","at home", null],
+  [2,"Tesco.ie web/app","online", null],
+  [3,"Tesco socials","geo map", null],
+  [4,"Convenience wrap","en route", null],
+  [5,"JCD screens","brand creative", null],
+  [6,"Totem screens","to the BWS aisle", null],
+  [7,"Hanging boards","directional", null],
+  [8,"Power aisle screen","digital", null],
+  [9,"Goal post screens","cross collab", "bundle-original-x-finest.png"],
+  [10,"BWS gate - outside","0.0 message", null],
+  [11,"BWS gate - inside","full alcohol", null],
+  [12,"BWS special build","sound on", null]
+];
+const W=1200,H=760,cols=4,rows=3,cw=W/cols,rh=H/rows;
+let svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+const pts=NODES.map((n,i)=>{
+  const r=Math.floor(i/cols), c=i%cols, cc=(r%2===0)?c:cols-1-c;
+  return [cc*cw+cw/2, r*rh+rh/2];
+});
+let d=`M${pts[0][0]} ${pts[0][1]}`;
+for(let i=1;i<pts.length;i++){
+  const [x0,y0]=pts[i-1],[x1,y1]=pts[i];
+  if(y0===y1){ d+=` L${x1} ${y1}`; }
+  else { const off=(x0>W/2)?112:-112; d+=` L${x0+off} ${y0} L${x0+off} ${y1} L${x1} ${y1}`; }
+}
+svg+=`<path class="jpath" id="jp" d="${d}"/>`;
+NODES.forEach((n,i)=>{
+  const [x,y]=pts[i];
+  const img=n[3];
+  svg+=`<g class="jnode" id="jn${i}">
+    <circle class="ring ${img?'live':''}" cx="${x}" cy="${y}" r="58"/>
+    ${img
+      ? `<clipPath id="cp${i}"><circle cx="${x}" cy="${y}" r="54"/></clipPath>
+         <image href="${img}" x="${x-54}" y="${y-54}" width="108" height="108"
+                preserveAspectRatio="xMidYMid slice" clip-path="url(#cp${i})"/>`
+      : `<text class="soon" x="${x}" y="${y+4}" text-anchor="middle">IN BUILD</text>`}
+    <text class="lab" x="${x}" y="${y+84}" text-anchor="middle">${n[0]} · ${n[1]}</text>
+    <text class="sublab" x="${x}" y="${y+101}" text-anchor="middle">${n[2]}</text>
+  </g>`;
+});
+svg+="</svg>";
+document.getElementById("journey").innerHTML=svg;
+const jp=document.getElementById('jp');
+const plen=jp.getTotalLength();
+jp.style.strokeDasharray=plen; jp.style.strokeDashoffset=plen;
+window.addEventListener('load',()=>{
+  jp.style.transition='stroke-dashoffset 3.2s ease';
+  requestAnimationFrame(()=>{ jp.style.strokeDashoffset=0; });
+  NODES.forEach((_,i)=>setTimeout(()=>document.getElementById('jn'+i).classList.add('on'), 240*i+250));
+  setTimeout(()=>{ jp.style.strokeDasharray='9 8'; jp.style.strokeDashoffset=0; }, 3600);
+});
+</script>
+</body>
+</html>
