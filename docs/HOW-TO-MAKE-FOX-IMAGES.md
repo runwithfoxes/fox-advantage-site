@@ -76,7 +76,7 @@ Only change two bits:
 ### API Details (if using the API)
 
 ```
-Replicate Token: r8_cG5N3xVoDObCkArR9telsMhDgS9nPwp1Q8PL8
+Replicate Token: get it from the vault -> `key replicate` (never paste a key into a doc)
 Model version: 8356ab00a2acd0f79338ecf1ffa0e32493c6f7cdfc7178b5cfbdb1461202fdc2
 ```
 

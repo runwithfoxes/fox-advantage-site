@@ -54,7 +54,7 @@ Vercel picks up the push. Your site updates at runwithfoxes.com in about 60 seco
 | Add or edit a project card | `src/components/Landing.tsx` |
 | Change how it looks (CSS) | `src/app/globals.css` |
 | Edit a chapter | `src/content/chapters/chXX-slug.md` |
-| Add a fox image | `public/fox/` (see `HOW-TO-MAKE-FOX-IMAGES.md`) |
+| Add a fox image | `public/fox/` (see `docs/HOW-TO-MAKE-FOX-IMAGES.md`) |
 | Change chapter gating | `src/lib/chapters.ts` (change `part >= 3` threshold) |
 | Change the signup text | `src/components/EmailGate.tsx` and `Landing.tsx` |
 
@@ -81,7 +81,6 @@ next-site/
 │   └── chapters/                ← 41 markdown chapter files
 ├── public/
 │   ├── fox/                     ← all fox images
-│   │   └── HOW-TO-MAKE-FOX-IMAGES.md
 │   └── Paul_photo.jpg
 ├── SITE-GUIDE.md                ← this file
 └── package.json
@@ -182,7 +181,7 @@ If you ever need to change DNS records, do it in Vercel, not GoDaddy.
 | Change text on the site | Tell Claude Code what to change |
 | Add a project card | Tell Claude Code, or edit `Landing.tsx` |
 | Ungating chapters | Tell Claude Code, or change `chapters.ts` |
-| Add a fox image | Follow `public/fox/HOW-TO-MAKE-FOX-IMAGES.md` |
+| Add a fox image | Follow `docs/HOW-TO-MAKE-FOX-IMAGES.md` |
 | Fix mobile layout | Tell Claude Code the issue |
 | See changes live | Claude Code pushes, Vercel auto-deploys in ~60s |
 | Check email subscribers | Log into `runwithfoxes.substack.com` → Subscribers |
