@@ -45,6 +45,71 @@
 
   .stat-stack{ position:absolute; left:56px; top:34vh; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:1.12; }
 
+  /* split slide: text left, image revealed on click */
+  .half-left{ position:absolute; left:56px; top:0; bottom:0; width:40vw; display:flex; align-items:center; }
+  .half-left .h-block{ font-size:min(8vh, 4.4vw); }
+  .half-right{ position:absolute; right:0; top:0; bottom:0; width:50vw; background:var(--ink); opacity:0; transition:opacity .5s ease; }
+  .half-right img{ width:100%; height:100%; object-fit:cover; object-position:center; }
+  .step.on{ opacity:1; }
+
+  /* case slide: copy left, uncropped asset right, source footer */
+  .case-txt{ position:absolute; left:56px; top:50%; transform:translateY(-50%); width:42vw; }
+  .case-txt .h-block{ font-size:min(7vh, 3.9vw); }
+  .case-body{ margin-top:3vh; font-size:2.1vh; line-height:1.55; font-weight:600; max-width:36vw; }
+  .case-img{ position:absolute; right:0; top:0; bottom:0; width:50vw; height:100vh; object-fit:cover; object-position:center; }
+  .case-src{ position:absolute; left:56px; bottom:4vh; max-width:44vw; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:.5px; color:var(--ink); opacity:.5; text-decoration:none; word-break:break-all; }
+
+  /* lottery distinctive assets, measured */
+  .asset-row{ position:absolute; left:56px; right:56px; top:32vh; display:flex; gap:1.4vw; align-items:flex-start; }
+  .asset{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .asset-pic{ width:100%; height:16vh; display:flex; align-items:center; justify-content:center; background:var(--ink); overflow:hidden; }
+  .asset-pic img{ width:100%; height:100%; object-fit:cover; }
+  .asset-num{ font-family:'Anton',sans-serif; font-size:6vh; line-height:1.1; color:var(--coral); margin-top:1.6vh; }
+  .asset-lbl{ font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; line-height:1.35; opacity:.75; margin-top:.6vh; }
+  .asset-src{ position:absolute; left:56px; bottom:5vh; font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* magnum cue-builder slide */
+  .cue-head{ position:absolute; left:56px; top:9vh; font-size:7vh; }
+  .cue-panel{ position:absolute; left:56px; top:26vh; width:30vw; background:var(--ink); color:var(--cream); padding:3vh 2vw; }
+  .cue-panel-t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.9vh; letter-spacing:.5px; margin-bottom:1.8vh; color:var(--yellow); }
+  .cue-panel p{ font-size:1.95vh; line-height:1.55; font-weight:500; }
+  .cue-phone{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:92vh; width:auto; }
+  .cue-lines{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .cue-lines line{ stroke:var(--coral); stroke-width:3; }
+  .cue-tag{ position:absolute; left:70%; background:var(--coral); color:var(--ink); font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.6vh; line-height:1.15; letter-spacing:.5px; padding:1.6vh 1.4vw; transform:translateY(-50%); }
+  .cue-src{ position:absolute; right:3vw; bottom:4vh; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* penetration: headline left, Binet & Field chart right, used as supplied */
+  .pen-txt{ position:absolute; left:56px; right:54vw; top:50%; transform:translateY(-50%); }
+  .pen-txt .h-block{ font-size:min(7.4vh, 4.1vw); }
+  .pen-sub{ margin-top:3vh; font-size:2vh; line-height:1.5; font-weight:600; opacity:.8; }
+  .pen-chart{ position:absolute; right:3vw; top:50%; transform:translateY(-50%); width:46vw; height:76vh; object-fit:contain; object-position:center; }
+
+
+  /* system set-up: words only, big and bold, in the slide-5 register */
+  .sys-txt{ position:absolute; left:56px; right:56px; top:50%; transform:translateY(-50%); }
+  .sys-block{ font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.5px;
+              font-size:min(8.4vh, 4.7vw); line-height:1.08; }
+  .sys-block em{ font-style:normal; color:var(--coral); }
+
+  /* cost of dull: type on the left, photo on the right, never over it */
+  .cow-txt{ position:absolute; left:56px; right:52vw; top:50%; transform:translateY(-50%); }
+  .cow-txt .h-block{ font-size:min(7.4vh, 4.1vw); }
+  .cow-sub{ margin-top:3vh; font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:1px; text-transform:uppercase; opacity:.65; }
+  .cow-img{ position:absolute; right:0; top:0; bottom:0; width:48vw; height:100vh; object-fit:cover; object-position:center; }
+
+  /* aim for fame: chart sits on the cream, headline above it */
+  .fame-head{ position:absolute; left:56px; top:7vh; font-size:7vh; }
+  .fame-chart{ position:absolute; left:56px; top:19vh; width:calc(100vw - 112px); height:73vh; object-fit:contain; object-position:center; }
+  .fame-src{ position:absolute; left:56px; bottom:4vh; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* 60/40 simulation, embedded as-is from the original deck */
+  .sim-frame{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  /* click targets that sit OUTSIDE the iframe, so the sim stays interactive but the deck still advances */
+  .sim-nav{ position:absolute; top:0; bottom:0; width:3.4vw; z-index:5; cursor:pointer; }
+  .sim-nav.next{ right:0; }
+  .sim-nav.prev{ left:0; }
+
   /* full-bleed single image slides */
   .full-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--cream); }
   .full-img.cover-fit{ object-fit:cover; }
@@ -59,9 +124,12 @@
   .big95{ position:absolute; left:56px; top:20vh; font-family:'Anton',sans-serif; font-size:32vh; line-height:1; }
   .big95 em{ font-style:normal; color:var(--coral); }
   .sub-line{ position:absolute; left:58px; top:56vh; max-width:46vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:4.2vh; line-height:1.15; }
+  .dove-head{ position:absolute; left:56px; top:22vh; max-width:50vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:min(8vh, 4.6vw); line-height:1.0; letter-spacing:.5px; }
+  .dove-head em{ font-style:normal; color:var(--coral); }
   .dove-line{ position:absolute; left:56px; bottom:9vh; max-width:46vw; font-size:2.2vh; line-height:1.5; font-weight:700; }
+  .dove-line .ninefive{ color:var(--coral); }
   .dove-line .mono-cap{ display:block; margin-top:1vh; font-weight:400; }
-  .dove-img{ position:absolute; right:4vw; top:10vh; height:80vh; width:38vw; object-fit:contain; mix-blend-mode:multiply; }
+  .dove-img{ position:absolute; right:6vw; top:50%; transform:translateY(-50%); height:54vh; width:30vw; object-fit:contain; object-position:center; mix-blend-mode:multiply; }
 
   /* lottery results */
   .res-stats{ position:absolute; left:8vw; right:8vw; top:12vh; display:flex; gap:3vw; }
@@ -155,10 +223,10 @@
       <div class="pill m">Mental availability<small>easy to think of</small></div>
       <div style="height:3vh"></div>
       <div class="lane-item"><span>01</span>Come to mind when the trigger fires</div>
-      <div class="lane-item"><span>02</span>Reach the 95% not in market today</div>
-      <div class="lane-item"><span>03</span>One big idea, run for decades</div>
-      <div class="lane-item"><span>04</span>Distinctive assets, measured</div>
-      <div class="lane-item"><span>05</span>Memorable to a person and a model</div>
+      <div class="lane-item"><span>02</span>Penetration drives customer growth</div>
+      <div class="lane-item"><span>03</span>Distinctive brand assets</div>
+      <div class="lane-item"><span>04</span>One big idea, run for decades</div>
+      <div class="lane-item"><span>05</span>Aim for fame</div>
     </div>
     <div class="plus-sign">+</div>
     <div class="plus-col">
@@ -180,12 +248,17 @@
 <!-- 5 PRINCIPLE 1: TRIGGERS -->
 <section class="slide">
   <div class="txt-left">
-    <div class="h-block">Be the brand<br>that comes to mind <em>when the trigger fires.</em></div>
+    <div class="h-block">Mental availability<br>is <em>not the same as</em><br>brand awareness.</div>
   </div>
   <img class="photo-right" src="travel4.jpeg" alt="">
 </section>
 
-<!-- 6 CEPs (before the lottery example) -->
+<!-- 6 BAILEYS TREAT BAR: full-screen CEP example -->
+<section class="slide">
+  <img class="full-img cover-fit" src="baileys-treat-bar.webp" alt="Baileys Treat Bar at Bewley's">
+</section>
+
+<!-- 7 CEPs (before the lottery example) -->
 <section class="slide">
   <div class="txt-left" style="top:10vh; width:84vw">
     <div class="h-block" style="font-size:8vh">What are <em>category entry points?</em></div>
@@ -231,101 +304,72 @@
   </div>
 </section>
 
+<!-- PENETRATION: growth comes from acquisition, not loyalty. Binet & Field. -->
+<section class="slide">
+  <div class="pen-txt">
+    <div class="h-block">Penetration drives <em>customer growth.</em></div>
+    <div class="pen-sub">Loyalty has a ceiling. Growth comes from buyers you do not have yet.</div>
+  </div>
+  <img class="pen-chart" src="penetration-chart.png" alt="Penetration is the main driver of very large business effects. Loyalty only 7%, penetration only 22%, both 7%. Binet and Field, Eff Week 2016, IPA.">
+</section>
+
 <!-- 9 95/5 -->
 <section class="slide">
-  <div class="big95">95<em>/5</em></div>
-  <div class="sub-line">of the category is not<br>in market <em style="font-style:normal; color:var(--coral)">today.</em></div>
-  <div class="dove-line">Over one-third of Dove&rsquo;s buyers in the UK bought the brand just once in a six-year period.
-    <span class="mono-cap">Wiemer Snijders &amp; Charles Graham</span>
+  <div class="dove-head">33% of Dove&rsquo;s buyers<br>bought it <em>just once</em><br>in six years.</div>
+  <div class="dove-line"><b class="ninefive">95/5.</b> At any moment, 95% of the category is not in market today.
+    <span class="mono-cap">UK buyers &middot; Wiemer Snijders &amp; Charles Graham</span>
   </div>
-  <img class="dove-img" src="dove-new.png" alt="Dove Original">
+  <img class="dove-img" src="dove-cropped.png" alt="Dove Original">
 </section>
 
-<!-- 10 BIG IDEA: one image -->
+<!-- 10 60/40 SIMULATION: Binet & Field, carried over from the original deck, unchanged -->
 <section class="slide">
-  <div class="txt-left" style="width:38vw; top:34vh">
-    <div class="h-block" style="font-size:8.5vh">One big idea.<br><em>Run for decades.</em></div>
-  </div>
-  <img style="position:absolute; right:6vw; top:50%; transform:translateY(-50%); width:46vw; box-shadow:0 24px 60px rgba(20,20,20,.18)" src="econ-1-never-read.png" alt="I never read The Economist">
-</section>
-
-<!-- 11 FOUR MORE ECONOMIST, no copy -->
-<section class="slide">
-  <div style="position:absolute; inset:5vh 8vw; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-4-outside-bot.png" alt="">
-    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-6-ai-worried.png" alt="">
-    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-2-lightbulb.png" alt="">
-    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-5-facts-sake.png" alt="">
-  </div>
-</section>
-
-<!-- 12-14 SPECSAVERS / KITKAT / MEERKAT, one image per slide -->
-<section class="slide"><img class="full-img" src="big-idea-specsavers.png" alt="Specsavers"></section>
-<section class="slide"><img class="full-img" src="big-idea-kitkat.png" alt="KitKat"></section>
-<section class="slide"><img class="full-img" src="big-idea-meerkat.png" alt="Compare the Market"></section>
-
-<!-- 15 COST OF DULL -->
-<section class="slide dark" style="background:var(--ink)">
-  <img style="position:absolute; left:0; top:0; bottom:0; width:42vw; height:100vh; object-fit:cover" src="dull-cow.jpg" alt="50% of ads are less engaging than cows in a field">
-  <div style="position:absolute; left:46vw; right:5vw; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center">
-    <div class="h-block" style="font-size:9vh; color:var(--coral); margin-bottom:4vh">6.1x</div>
-    <div class="dull-chart" style="position:static; width:100%">
-      <div class="cols">
-        <div class="col"><div class="num">0.21</div><div class="colbar" style="height:17%; background:var(--yellow)"></div><div class="lbl">Rational ads</div></div>
-        <div class="col"><div class="num">1.25</div><div class="colbar" style="height:100%; background:var(--coral)"></div><div class="lbl">Fame ads</div></div>
-      </div>
-      <div class="mono-cap" style="color:var(--cream); margin-top:2vh; display:block">Share growth per unit of ad investment &middot; IPA Effectiveness Databank, 1998&ndash;2022</div>
-    </div>
-  </div>
+  <iframe class="sim-frame" src="sim-6040.html" title="60/40 brand building and sales activation simulation"></iframe>
+  <div class="sim-nav prev" title="Previous"></div>
+  <div class="sim-nav next" title="Next"></div>
 </section>
 
 <!-- 16 ASSETS RANGE, full slide -->
 <section class="slide"><img class="full-img" src="assets-range.webp" alt="Distinctive brand assets can be"></section>
 
-<!-- 17 OATLY, full slide -->
+<!-- 2.5 SECONDS OF ATTENTION, full slide -->
+<section class="slide"><img class="full-img" src="two-seconds-chart.jpeg" alt="85% of digital ads get less than 2.5 seconds of attention"></section>
+
+<!-- MAGNUM: be deliberate / distinctive cue builders -->
+<section class="slide">
+  <div class="cue-head h-block">Be <em>deliberate.</em></div>
+  <div class="cue-panel">
+    <div class="cue-panel-t">Distinctive cue builders</div>
+    <p>Build and reinforce your distinctive brand assets. Pieces of comms specifically designed to refresh cues and serve as a small reminder that the brand exists, and how you remember it.</p>
+  </div>
+  <img class="cue-phone" src="magnum-phone.png" alt="Magnum Instagram ad">
+  <svg class="cue-lines" viewBox="0 0 1600 900" preserveAspectRatio="none">
+    <line x1="1023" y1="378" x2="1120" y2="378"/>
+    <line x1="1023" y1="473" x2="1120" y2="473"/>
+    <line x1="1023" y1="675" x2="1120" y2="675"/>
+  </svg>
+  <div class="cue-tag" style="top:42%">Shape asset</div>
+  <div class="cue-tag" style="top:52.5%">Logo asset</div>
+  <div class="cue-tag" style="top:75%">Brand name<br>asset</div>
+  <div class="cue-src">Source: Amplified Intelligence</div>
+</section>
+
+<!-- 18 OATLY, full slide -->
 <section class="slide"><img class="full-img cover-fit" src="oatly-voice.jpg" alt="Oatly - tastes totally normal"></section>
 
-<!-- 18 MEASURED -->
+<!-- 17 MEASURED: National Lottery distinctive assets, tracked -->
 <section class="slide">
-  <div class="h-block" style="position:absolute; left:56px; top:10vh; font-size:7vh">And you <em>measure them.</em></div>
-  <div class="bars">
-    <div class="bar-row"><span class="bar-lbl">Logo</span><span class="bar-track"><span class="bar" style="width:95%"></span></span><span class="bar-val">95</span></div>
-    <div class="bar-row"><span class="bar-lbl">"It could be you"</span><span class="bar-track"><span class="bar" style="width:87%"></span></span><span class="bar-val">87</span></div>
-    <div class="bar-row"><span class="bar-lbl">Waterslide ad</span><span class="bar-track"><span class="bar" style="width:82%"></span></span><span class="bar-val">82</span></div>
-    <div class="bar-row"><span class="bar-lbl">Yellow leisure ring</span><span class="bar-track"><span class="bar y" style="width:71%"></span></span><span class="bar-val">71</span></div>
-    <div class="bar-row"><span class="bar-lbl">Green background</span><span class="bar-track"><span class="bar y" style="width:64%"></span></span><span class="bar-val">64</span></div>
-    <div class="bar-row"><span class="bar-lbl">"Mr Blue Sky"</span><span class="bar-track"><span class="bar y" style="width:62%"></span></span><span class="bar-val">62</span></div>
+  <div class="h-block" style="position:absolute; left:56px; top:8vh; font-size:6.4vh">Distinctive assets can be<br><em>measured.</em></div>
+  <div class="asset-row">
+    <div class="asset"><div class="asset-pic"><img src="lot-star.png" alt="National Lottery star"></div><div class="asset-num">98%</div><div class="asset-lbl">Star logo</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-couldbeyou.png" alt="It could be you"></div><div class="asset-num">90%</div><div class="asset-lbl">&ldquo;It could be you&rdquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-yellowring.png" alt="Yellow ring"></div><div class="asset-num">88%</div><div class="asset-lbl">Yellow ring</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-waterslides.png" alt="Waterslides house"></div><div class="asset-num">83%</div><div class="asset-lbl">Waterslides &lsquo;House&rsquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-bluesky.png" alt="Mr Blue Sky"></div><div class="asset-num">79%</div><div class="asset-lbl">&ldquo;Mr Blue Sky&rdquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-green.png" alt="Green background"></div><div class="asset-num">79%</div><div class="asset-lbl">Green background</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-dreaminspector.png" alt="Dream Inspector"></div><div class="asset-num">62%</div><div class="asset-lbl">Dream Inspector</div></div>
   </div>
-</section>
-
-<!-- 19 DISTINCTIVE VOICE / ISA -->
-<section class="slide">
-  <div class="txt-left" style="width:48vw; top:30vh">
-    <div class="h-block" style="font-size:8vh">Distinctive voice is brilliant <em>for AI amplification.</em></div>
-  </div>
-  <div style="position:absolute; right:56px; top:14vh; bottom:14vh; width:34vw; display:flex; align-items:center">
-    <img style="width:100%" src="isa-chat.png" alt="Isa answering in the brand voice">
-  </div>
-</section>
-
-<!-- 20 DIVIDER: PHYSICAL -->
-<section class="slide divider yellow">
-  <span class="kicker mono-tag">#Easytobuy</span>
-  <div class="h-block">Physical<br><span style="color:var(--cream)">availability</span></div>
-  <img src="travel5.webp" alt="">
-</section>
-
-<!-- 21 EASY TO BUY -->
-<section class="slide">
-  <div class="txt-left" style="top:32vh">
-    <div class="h-block" style="font-size:8.5vh">Make buying as easy <em>as thinking of you.</em></div>
-  </div>
-  <img class="photo-right" style="object-fit:contain; background:var(--cream)" src="hostel-app-chat.jpg" alt="Hostelworld app">
-</section>
-
-<!-- 22 FAME -->
-<section class="slide divider coral">
-  <div class="h-block" style="top:34vh">Fame, and<br><span class="w">growth that compounds.</span></div>
+  <div class="asset-src">% prompted link of asset to the National Lottery &middot; brand tracking, March 2023</div>
 </section>
 
 <!-- 23 CASES: side-by-side films -->
@@ -338,12 +382,93 @@
   <div class="play-hint" style="color:var(--ink); left:28vw">Click left film to play with sound</div>
 </section>
 
-<!-- 24 AI -->
-<section class="slide dark" style="background:var(--ink)">
-  <div class="stat-stack" style="font-size:10vh">
-    <div style="color:var(--cream)">AI is not a cost play.</div>
-    <div style="color:var(--coral)">It is the reason to invest in brand.</div>
+<!-- 19 DISTINCTIVE VOICE / ISA: sits after Oatly, ahead of the Economist run -->
+<section class="slide">
+  <div class="txt-left" style="width:48vw; top:30vh">
+    <div class="h-block" style="font-size:8vh">Distinctive voice is brilliant <em>for AI amplification.</em></div>
   </div>
+  <div style="position:absolute; right:56px; top:14vh; bottom:14vh; width:34vw; display:flex; align-items:center">
+    <img style="width:100%" src="isa-chat.png" alt="Isa answering in the brand voice">
+  </div>
+</section>
+
+<!-- 11 BIG IDEA: one image -->
+<section class="slide">
+  <div class="txt-left" style="width:38vw; top:34vh">
+    <div class="h-block" style="font-size:8.5vh">One big idea.<br><em>Run for decades.</em></div>
+  </div>
+</section>
+
+<!-- 11 PERSIL: proposition left, DIRT IS GOOD revealed on click -->
+<section class="slide">
+  <div class="half-left">
+    <div class="h-block">Persil&rsquo;s proposition<br><em>= modern parenting.</em></div>
+  </div>
+  <div class="half-right step" style="width:54vw">
+    <img src="dirt-is-good-boy.jpeg" alt="Persil Dirt is Good" style="object-position:51% center">
+  </div>
+</section>
+
+<!-- 12 SPECSAVERS: IPA gold, £1.1bn over 30 years -->
+<section class="slide">
+  <div class="case-txt">
+    <div class="h-block">&pound;1.1bn of<br><em>incremental profit.</em><br>One idea. 30 years.</div>
+    <p class="case-body">Specsavers won the IPA Gold for long-term effectiveness. The case calculated that its big idea, &ldquo;Should&rsquo;ve gone to Specsavers&rdquo;, contributed &pound;1.1bn of incremental profit over 30 years.</p>
+  </div>
+  <img class="case-img" src="specsavers-billboard.jpeg" alt="Should've gone to Specsavers billboard with ladder">
+  <a class="case-src" href="https://ipa.co.uk/knowledge/case-studies/should-ve-gone-to-specsavers-a-far-sighted-view-of-advertising-s-role-in-building-a-business-over-30-years" target="_blank">ipa.co.uk/knowledge/case-studies/should-ve-gone-to-specsavers-a-far-sighted-view-of-advertising-s-role-in-building-a-business-over-30-years</a>
+</section>
+
+<!-- 21 AIM FOR FAME: Binet & Field, fame campaigns out-perform on every business metric -->
+<section class="slide">
+  <div class="fame-head h-block">Aim for <em>fame.</em></div>
+  <img class="fame-chart" src="fame-chart.png" alt="Fame-driving campaigns out-perform others on all business metrics. Sales 55% vs 47%, market share 32% vs 29%, price sensitivity 8% vs 3%, loyalty 14% vs 9%, penetration 34% vs 28%, profit 35% vs 21%.">
+</section>
+
+<!-- 20 COST OF DULL: headline left, clean cow right. no type over the photo. -->
+<section class="slide">
+  <div class="cow-txt">
+    <div class="h-block">50% of ads are <em>less engaging</em><br>than cows in a field.</div>
+    <div class="cow-sub">The extraordinary cost of dull.</div>
+  </div>
+  <img class="cow-img" src="dull-cow-clean.jpg" alt="Cows in a field">
+</section>
+
+<!-- SYSTEM SET-UP: words only, sets up the Economist as everything working together -->
+<section class="slide">
+  <div class="sys-txt">
+    <p class="sys-block">This is what it looks like when it all comes together. <em>Broad reach across the category.</em> Distinctive brand assets. <em>Consistency.</em> One big idea. <em>Aim for fame.</em></p>
+  </div>
+</section>
+
+<!-- 22 THE ORIGINAL ECONOMIST AD, full slide: the one big idea, before the variants -->
+<section class="slide">
+  <img class="full-img" src="econ-1-never-read.png" alt="I never read The Economist. Management trainee. Aged 42.">
+</section>
+
+<!-- 20 FOUR MORE ECONOMIST, the variants that follow the original -->
+<section class="slide">
+  <div style="position:absolute; inset:5vh 8vw; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-4-outside-bot.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-6-ai-worried.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-2-lightbulb.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-5-facts-sake.png" alt="">
+  </div>
+</section>
+
+<!-- DIVIDER: PHYSICAL -->
+<section class="slide divider yellow">
+  <span class="kicker mono-tag">#Easytobuy</span>
+  <div class="h-block">Physical<br><span style="color:var(--cream)">availability</span></div>
+  <img src="travel5.webp" alt="">
+</section>
+
+<!-- 21 EASY TO BUY -->
+<section class="slide">
+  <div class="txt-left" style="top:32vh">
+    <div class="h-block" style="font-size:8.5vh">Make buying as easy <em>as thinking of you.</em></div>
+  </div>
+  <img class="photo-right" style="object-fit:contain; background:var(--cream)" src="hostel-app-chat.jpg" alt="Hostelworld app">
 </section>
 
 <!-- 25 QUESTIONS 1-3 -->
@@ -366,21 +491,6 @@
   </div>
 </section>
 
-<!-- 27 CLOSE -->
-<section class="slide divider teal">
-  <div class="h-block" style="top:34vh">Sustained<br><span style="color:var(--cream)">growth.</span></div>
-  <img src="travel1.jpg" alt="">
-  <!-- working stickies: outline gaps still to resolve (delete before the 20 July submission) -->
-  <div class="stickies">
-    <div class="sticky" style="left:4vw; top:6vh; transform:rotate(-2deg)">1. Double Jeopardy: growth comes from acquisition, not loyalty. No slide yet.</div>
-    <div class="sticky" style="left:20vw; top:9vh; transform:rotate(1.5deg)">2. Built slowly, spent quickly: the two clocks. Judging brand on this month&rsquo;s bookings = wrong thing, wrong time.</div>
-    <div class="sticky" style="left:36vw; top:5vh; transform:rotate(-1deg)">3. Memorable to a person AND a model (GEO / get talked about) lost its slide.</div>
-    <div class="sticky" style="left:4vw; top:64vh; transform:rotate(1deg)">4. Search + performance are the storefront: talk track or slide?</div>
-    <div class="sticky" style="left:20vw; top:68vh; transform:rotate(-1.5deg)">5. AI&rsquo;s three areas: analytics / authority / creative at scale. Dropped in redesign.</div>
-    <div class="sticky" style="left:36vw; top:63vh; transform:rotate(2deg)">6. Restore the 2.6x figure beside the 6.1x on the dull slide.</div>
-  </div>
-</section>
-
 <div class="counter" id="counter"></div>
 
 <script>
@@ -391,8 +501,15 @@ function show(i){
   slides[cur] && slides[cur].querySelectorAll('video').forEach(v=>{ if(!v.muted) v.pause(); });
   cur = Math.max(0, Math.min(slides.length-1, i));
   slides.forEach((s,k)=> s.classList.toggle('on', k===cur));
+  // reset click-to-reveal steps on the slide we land on
+  slides[cur].querySelectorAll('.step').forEach(el=>el.classList.remove('on'));
   document.getElementById('counter').textContent = (cur+1) + ' / ' + slides.length;
   slides[cur].querySelectorAll('video[autoplay]').forEach(v=>v.play());
+}
+function advance(){
+  const nextStep = slides[cur].querySelector('.step:not(.on)');
+  if(nextStep){ nextStep.classList.add('on'); return; }
+  show(cur+1);
 }
 function openLightbox(id){
   const lb = document.getElementById(id);
@@ -403,6 +520,10 @@ function openLightbox(id){
 function closeLightboxes(){ document.querySelectorAll('.lightbox.open').forEach(lb=>lb.classList.remove('open')); }
 
 document.addEventListener('click', (e)=>{
+  if(e.target.classList.contains('sim-nav')){
+    if(e.target.classList.contains('prev')) show(cur-1); else advance();
+    return;
+  }
   const t = e.target.closest('[data-lightbox]');
   if(t){ e.preventDefault(); openLightbox(t.dataset.lightbox); return; }
   const lb = e.target.closest('.lightbox');
@@ -413,14 +534,23 @@ document.addEventListener('click', (e)=>{
     return;
   }
   if(e.target.closest('a, video')) return;
-  show(cur+1);
+  advance();
 });
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape'){ closeLightboxes(); return; }
   if(document.querySelector('.lightbox.open')) return;
-  if(e.key==='ArrowRight' || e.key===' ' || e.key==='Enter' || e.key==='ArrowDown'){ e.preventDefault(); show(cur+1); }
+  if(e.key==='ArrowRight' || e.key===' ' || e.key==='Enter' || e.key==='ArrowDown'){ e.preventDefault(); advance(); }
   if(e.key==='ArrowLeft' || e.key==='ArrowUp'){ e.preventDefault(); show(cur-1); }
 });
+// the 60/40 sim lives in an iframe, which swallows clicks and keys.
+// it forwards nav keys up to us; the .sim-nav strips give a click target outside it.
+window.addEventListener('message', (e)=>{
+  const k = e.data && e.data.simNav;
+  if(!k) return;
+  if(k==='ArrowLeft' || k==='ArrowUp') show(cur-1);
+  else advance();
+});
+
 const m = location.hash.match(/^#s(\d+)$/);
 show(m ? parseInt(m[1],10) : 0);
 </script>

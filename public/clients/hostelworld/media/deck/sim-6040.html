@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The principles for building a brand today - Hostelworld board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #FAFAF8;
+  --text: #1D1B1B;
+  --muted: #8A8A85;
+  --sky-blue: #3A7CA5;
+  --sky-blue-hover: #2F6688;
+  --deep-sky: #1A3A4E;
+  --border: #E0E0DC;
+  --card-hover: #F5F5F0;
+  --cream: #F7EAD9;
+  --orange: #F47521;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+
+strong { font-weight: 500; }
+
+a { color: var(--sky-blue); text-decoration: none; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+/* skip link */
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--deep-sky); color: var(--cream);
+  padding: 12px 20px; z-index: 200;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+}
+.skip-link:focus { left: 0; }
+
+/* nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent;
+  transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+}
+nav.scrolled {
+  background: rgba(250, 250, 248, 0.85);
+  backdrop-filter: blur(12px);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 300; letter-spacing: 2px;
+  color: var(--muted); white-space: nowrap;
+}
+.nav-brand span { color: var(--orange); }
+.nav-links {
+  display: flex; gap: 28px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 400; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+  white-space: nowrap; transition: color 0.3s ease-out;
+}
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--sky-blue); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* hero */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  opacity: 0.4; pointer-events: none;
+}
+.hero-inner {
+  position: relative; display: flex; align-items: center;
+  justify-content: space-between; gap: 48px; width: 100%;
+}
+.hero-text { max-width: 100%; }
+.hero .eyebrow {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sky-blue); margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(40px, 5vw, 64px); font-weight: 300;
+  letter-spacing: -1px; line-height: 1.05; margin-bottom: 28px;
+}
+.hero .lede {
+  font-size: 1.0625rem; max-width: 100%; color: var(--text);
+  margin-bottom: 24px;
+}
+.hero .meta {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted);
+}
+.fox-hero {
+  width: 280px; flex-shrink: 0;
+  filter: drop-shadow(0 24px 48px rgba(29, 27, 27, 0.15));
+  pointer-events: none; user-select: none;
+}
+@media (max-width: 900px) {
+  .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+  .fox-hero { width: 180px; }
+}
+
+/* sections */
+section.block { position: relative; padding: 120px 0; }
+section.block + section.block { border-top: 1px solid var(--border); }
+.kicker {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sky-blue); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.kicker .num { color: var(--muted); }
+.block h2 {
+  font-size: clamp(36px, 5vw, 64px); font-weight: 300;
+  letter-spacing: -1px; line-height: 1.05; margin-bottom: 32px;
+  max-width: 100%;
+}
+.block .body { max-width: 100%; }
+.block .body p { margin-bottom: 20px; max-width: 100%; }
+
+/* ── section hero image band (full-bleed image, copy sits underneath) ── */
+section.block.has-hero { padding-top: 0; }
+.section-hero {
+  position: relative; width: 100vw; left: 50%; transform: translateX(-50%);
+  height: 58vh; min-height: 360px; max-height: 560px;
+  margin-bottom: 72px; overflow: hidden;
+  opacity: 0; transition: opacity 0.8s ease-out;
+}
+.section-hero.in { opacity: 1; }
+.section-hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* video hero: show the whole cinematic 16:9 frame (title + laurels never cropped) */
+.section-hero.video-hero {
+  height: auto; min-height: 0; max-height: none;
+  aspect-ratio: 16 / 9; background: var(--deep-sky);
+}
+.section-hero.video-hero > video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* placeholder look until real photography lands */
+.section-hero.ph {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.10) 1px, transparent 0) 0 0 / 26px 26px,
+    linear-gradient(135deg, var(--deep-sky) 0%, var(--sky-blue) 100%);
+  display: flex; align-items: flex-end;
+}
+.section-hero.ph .ph-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  padding: 36px 48px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.section-hero.ph .ph-concept {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 300;
+  font-size: clamp(19px, 2.3vw, 28px); letter-spacing: -0.5px;
+  color: #fff; max-width: 70%; line-height: 1.2;
+}
+.section-hero.ph .ph-concept em {
+  display: block; font-style: normal; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cream); margin-bottom: 10px; opacity: 0.75;
+}
+.section-hero.ph .ph-tag {
+  flex-shrink: 0; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--cream);
+  border: 1px solid rgba(247,234,217,0.5); padding: 6px 12px; border-radius: 2px;
+}
+@media (max-width: 768px) {
+  .section-hero { height: 44vh; min-height: 260px; margin-bottom: 48px; }
+  .section-hero.ph .ph-inner { padding: 24px; flex-direction: column; align-items: flex-start; }
+  .section-hero.ph .ph-concept { max-width: 100%; }
+}
+
+/* concept diagram (§1) */
+.system {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch; gap: 0; margin-top: 48px;
+}
+.system .node {
+  border: 1px solid var(--border); background: var(--bg);
+  padding: 32px 28px; opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.system.in .node { opacity: 1; transform: translateY(0); }
+.system.in .node:nth-child(3) { transition-delay: 0.15s; }
+.system.in .node:nth-child(5) { transition-delay: 0.3s; }
+.system .op {
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 40px;
+  font-weight: 300; color: var(--sky-blue); padding: 0 20px;
+  opacity: 0; transition: opacity 0.6s ease-out;
+}
+.system.in .op { opacity: 1; }
+.system.in .op:nth-child(4) { transition-delay: 0.22s; }
+.system .node .label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.system .node .big {
+  font-family: 'Space Grotesk', sans-serif; font-size: 22px;
+  font-weight: 400; letter-spacing: -0.5px; margin-bottom: 10px;
+}
+.system .node p { font-size: 0.8125rem; color: var(--muted); margin: 0; }
+@media (max-width: 768px) {
+  .system { grid-template-columns: 1fr; }
+  .system .op { padding: 12px 0; }
+}
+
+/* four shifts (§8) */
+.shifts { margin-top: 48px; display: grid; gap: 0; border-top: 1px solid var(--border); }
+.shift {
+  border-bottom: 1px solid var(--border);
+}
+.shift summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 28px 0; transition: color 0.3s ease-out;
+}
+.shift summary::-webkit-details-marker { display: none; }
+.shift summary:hover, .shift summary:focus-visible { color: var(--sky-blue); }
+.shift summary .s-num {
+  font-size: 11px; letter-spacing: 2px; color: var(--muted);
+  flex-shrink: 0; width: 32px;
+}
+.shift summary .s-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 24px;
+  font-weight: 400; letter-spacing: -0.5px; flex: 1;
+}
+.shift summary .s-plus {
+  font-family: 'Space Grotesk', sans-serif; font-size: 24px;
+  font-weight: 300; color: var(--sky-blue); flex-shrink: 0;
+  transition: transform 0.3s ease-out;
+}
+.shift[open] summary .s-plus { transform: rotate(45deg); }
+.shift .s-body {
+  padding: 0 0 32px 52px; max-width: 100%; color: var(--text);
+}
+.case-note {
+  margin-top: 40px; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--orange);
+}
+.source-note {
+  margin-top: 40px; font-size: 11px; letter-spacing: 1px; color: var(--muted);
+}
+
+/* floated section fox (headline stays full width, body wraps beside it) */
+.fox-float {
+  width: 170px; float: right;
+  margin: 8px 0 24px 40px; shape-outside: margin-box;
+  filter: drop-shadow(0 12px 24px rgba(29, 27, 27, 0.1));
+  pointer-events: none; user-select: none;
+}
+@media (max-width: 768px) {
+  .fox-float { float: none; display: block; margin: 0 auto 24px; width: 130px; }
+}
+
+/* big-idea example gallery */
+.examples { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.examples figure { margin: 0; border: 1px solid var(--border); background: var(--bg); overflow: hidden; }
+.examples img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.examples figcaption {
+  padding: 14px 18px; font-size: 0.8125rem; color: var(--muted);
+  border-top: 1px solid var(--border); background: var(--bg);
+}
+@media (max-width: 768px) { .examples { grid-template-columns: 1fr; } }
+
+/* big-idea: origination vs activation video pair (creativity + AI) */
+.vidpair { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vidpair figure { margin: 0; }
+.vidpair video { width: 100%; aspect-ratio: 16 / 9; display: block; border: 1px solid var(--border); background: #000; }
+.vidpair .vid-label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sky-blue); margin-bottom: 12px;
+}
+.vidpair figcaption { margin-top: 14px; font-size: 0.8125rem; letter-spacing: 1px; color: var(--muted); }
+@media (max-width: 768px) { .vidpair { grid-template-columns: 1fr; } }
+
+/* footer */
+footer {
+  border-top: 1px solid var(--border); padding: 48px 0;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.footer-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 300; letter-spacing: 2px;
+  color: var(--muted);
+}
+.footer-brand span { color: var(--orange); }
+.footer-meta { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+/* fade-in */
+.fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade.in { opacity: 1; transform: translateY(0); }
+
+/* back to top */
+.totop {
+  position: fixed; bottom: 24px; right: 24px; z-index: 90;
+  background: var(--sky-blue); color: var(--bg);
+  border: none; width: 44px; height: 44px; cursor: pointer;
+  font-size: 16px; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease-out;
+}
+.totop.show { opacity: 1; pointer-events: auto; }
+.totop:hover { background: var(--sky-blue-hover); }
+
+:focus-visible { outline: 2px solid var(--sky-blue); outline-offset: 3px; }
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .nav-inner { padding: 16px 24px; }
+  section.block { padding: 80px 0; }
+}
+@media (max-width: 380px) { .container { padding: 0 16px; } }
+
+/* §2 long-and-short interactive chart (ported from UCD teaching asset, rebranded) */
+.lns { margin-top: 48px; font-family: 'JetBrains Mono', monospace; color: var(--text); }
+
+/* §2 navy hero band: the whole interactive simulator sits together on the blue */
+section.block#sixty-forty { padding-top: 0; }
+.sim-hero {
+  position: relative; width: 100vw; left: 50%; transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0) 0 0 / 26px 26px,
+    linear-gradient(135deg, var(--deep-sky) 0%, var(--sky-blue) 100%);
+  padding: 60px 0 56px; margin-bottom: 72px;
+  opacity: 0; transition: opacity 0.8s ease-out;
+}
+.sim-hero.in { opacity: 1; }
+.sim-hero .sim-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.sim-hero .sim-head { margin-bottom: 36px; }
+.sim-hero .sim-kicker { color: var(--cream); margin-bottom: 18px; }
+.sim-hero .sim-kicker .num { color: rgba(247,234,217,0.55); }
+.sim-hero .sim-h2 { color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: clamp(36px, 5vw, 64px); letter-spacing: -1px; line-height: 1.05; margin: 0; max-width: 100%; }
+.sim-hero .lns { margin-top: 0; }
+.sim-hero .chart-section { border-color: rgba(255,255,255,0.18); }
+/* legend, month counter and timeline sit INSIDE the light chart card, so keep their dark base colours */
+.sim-hero .control-card { background: rgba(250,250,248,0.97); border-color: rgba(255,255,255,0.2); }
+.sim-hero .control-card.insight-box { background: var(--deep-sky); border-color: rgba(255,255,255,0.3); }
+.sim-hero .control-card.insight-box .insight-text { color: var(--cream); }
+.sim-hero .sim-source { margin-top: 26px; font-size: 0.72rem; color: var(--cream); opacity: 0.7; }
+@media (max-width: 768px) { .sim-hero { padding: 40px 0; margin-bottom: 48px; } }
+
+/* Double Jeopardy penetration bar chart (simple, on-brand, bars grow in on scroll) */
+.dj-chart { margin-top: 64px; font-family: 'JetBrains Mono', monospace; }
+.dj-chart-title { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.5px; line-height: 1.15; color: var(--text); margin-bottom: 8px; }
+.dj-chart-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 44px; }
+.dj-plot { display: flex; align-items: flex-end; gap: 48px; height: 340px; border-bottom: 2px solid var(--text); padding: 0 20px; }
+.dj-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.dj-val { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 12px; position: relative; }
+.dj-val.dj-circled::after { content: ''; position: absolute; inset: -10px -16px; border: 2px dashed var(--text); border-radius: 50%; }
+.dj-bar { width: 100%; max-width: 240px; height: 0; background: #c2ccd1; transition: height 1s cubic-bezier(.2,.7,.2,1); }
+.dj-bar-hero { background: var(--sky-blue); }
+.dj-chart.in .dj-bar { height: var(--h); }
+.dj-cats { display: flex; gap: 48px; padding: 0 20px; margin-top: 14px; }
+.dj-cat { flex: 1; text-align: center; font-size: 0.82rem; color: var(--text); line-height: 1.3; }
+.dj-source { font-size: 0.72rem; color: var(--muted); margin-top: 28px; }
+.chart-section .dj-chart { margin-top: 0; }
+.esov-card { background: var(--bg); padding: 44px 44px 36px; border: 1px solid rgba(255,255,255,0.18); }
+@media (max-width: 640px) { .esov-card { padding: 24px 20px; } }
+@media (max-width: 640px) { .dj-plot { height: 240px; gap: 14px; padding: 0 6px; } .dj-cats { gap: 14px; padding: 0 6px; } .dj-cat { font-size: 0.68rem; } }
+.lns .main-content { display: grid; grid-template-columns: 1fr 320px; gap: 30px; }
+@media (max-width: 900px) { .lns .main-content { grid-template-columns: 1fr; } }
+.lns .chart-section { background: var(--bg); padding: 25px; border: 1px solid var(--border); }
+.lns .chart-container { position: relative; width: 100%; height: 400px; background: var(--bg); border: 1px solid var(--border); }
+.lns #chart { width: 100%; height: 100%; display: block; }
+.lns .legend { display: flex; justify-content: center; gap: 40px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.lns .legend-item { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; }
+.lns .legend-line { width: 40px; height: 4px; }
+.lns .legend-activation .legend-line { background: var(--sky-blue); }
+.lns .legend-brand .legend-line { background: var(--deep-sky); }
+.lns .current-time { text-align: center; margin-top: 15px; font-size: 1.05rem; }
+.lns .current-time span { color: var(--sky-blue); }
+.lns .time-markers { display: flex; justify-content: space-between; margin-top: 15px; padding: 0 40px; }
+.lns .time-marker { font-size: 0.72rem; color: var(--muted); }
+.lns .time-marker.active { color: var(--sky-blue); }
+.lns .controls-section { display: flex; flex-direction: column; gap: 20px; }
+.lns .control-card { background: var(--bg); padding: 20px; border: 1px solid var(--border); }
+.lns .control-card h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: var(--sky-blue); margin-bottom: 15px; font-weight: 400; }
+.lns .scenarios { display: flex; flex-direction: column; gap: 10px; }
+.lns .scenario-btn { padding: 12px 16px; background: transparent; border: 1px solid var(--border); color: var(--text); font-size: 0.8rem; cursor: pointer; transition: background 0.2s ease-out, color 0.2s ease-out; text-align: left; font-family: 'JetBrains Mono', monospace; }
+.lns .scenario-btn:hover { background: var(--card-hover); }
+.lns .scenario-btn.active { background: var(--sky-blue); border-color: var(--sky-blue); color: var(--bg); }
+.lns .scenario-desc { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+.lns .scenario-btn.active .scenario-desc { color: var(--bg); }
+.lns .playback { display: flex; gap: 10px; }
+.lns .play-btn { flex: 1; padding: 14px; background: var(--sky-blue); border: none; color: var(--bg); font-size: 0.85rem; cursor: pointer; font-family: 'JetBrains Mono', monospace; }
+.lns .play-btn:hover { background: var(--sky-blue-hover); }
+.lns .reset-btn { padding: 14px 20px; background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; font-family: 'JetBrains Mono', monospace; }
+.lns .reset-btn:hover { border-color: var(--sky-blue); color: var(--sky-blue); }
+.lns .insight-box { background: var(--deep-sky); border-color: var(--deep-sky); }
+.lns .insight-box h3 { color: var(--cream); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+.lns .insight-text { font-size: 0.82rem; line-height: 1.6; color: var(--cream); }
+.lns .key-insight { margin-top: 25px; padding: 20px; background: var(--card-hover); border-left: 4px solid var(--sky-blue); }
+.lns .key-insight h4 { color: var(--sky-blue); margin-bottom: 8px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+.lns .key-insight p { font-size: 0.85rem; line-height: 1.6; color: var(--text); }
+.lns .lns-source { font-size: 11px; letter-spacing: 1px; color: var(--muted); margin-top: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* standalone slide build: pin reveal-on-scroll elements visible, fit to one 100vh slide */
+.sim-hero, .sim-hero.in { opacity: 1 !important; margin-bottom: 0 !important; }
+.fade { opacity: 1 !important; transform: none !important; }
+html, body { margin:0; padding:0; background:#1A3A4E; overflow:hidden; height:100%; }
+.sim-hero { height: 100vh !important; max-height: none !important; min-height: 0 !important;
+            display: flex; align-items: center; }
+.sim-hero .sim-inner { width: 100%; max-width: 1440px; padding: 0 4vw; }
+.sim-hero .sim-head { margin-bottom: 2.2vh !important; }
+.sim-hero .sim-h2 { font-size: clamp(24px, 2.9vw, 44px) !important; }
+.sim-hero .sim-kicker { margin-bottom: 1vh !important; }
+.lns .chart-container { height: 42vh !important; }
+.lns .chart-section { padding: 1.6vh 1.2vw !important; }
+.lns .legend { margin-top: 1.2vh !important; padding-top: 1.2vh !important; }
+.lns .control-card { padding: 1.4vh 1vw !important; }
+.lns .controls-section { gap: 1.2vh !important; }
+.sim-source { margin-top: 1.4vh !important; }
+
+</style>
+</head>
+<body>
+<section class="block" id="sixty-forty" style="padding:0;">
+  <div class="sim-hero">
+    <div class="sim-inner">
+      <div class="sim-head">
+        <div class="kicker sim-kicker"><span class="num">02</span> Principle one</div>
+        <h2 class="sim-h2">Growth comes from a mix of brand building and sales activation</h2>
+      </div>
+      <div class="lns">
+      <div class="main-content">
+        <div class="chart-section">
+          <div class="chart-container">
+            <canvas id="chart"></canvas>
+          </div>
+          <div class="legend">
+            <div class="legend-item legend-activation">
+              <div class="legend-line"></div>
+              <span>Sales activation, short-term uplifts</span>
+            </div>
+            <div class="legend-item legend-brand">
+              <div class="legend-line"></div>
+              <span>Brand building, long-term growth</span>
+            </div>
+          </div>
+          <div class="current-time">Month: <span id="monthDisplay">24</span> / 24</div>
+          <div class="time-markers">
+            <div class="time-marker active" data-month="0">Start</div>
+            <div class="time-marker active" data-month="6">6 months</div>
+            <div class="time-marker active" data-month="12">12 months</div>
+            <div class="time-marker active" data-month="18">18 months</div>
+            <div class="time-marker active" data-month="24">24 months</div>
+          </div>
+        </div>
+
+        <div class="controls-section">
+          <div class="control-card">
+            <h3>Compare scenarios</h3>
+            <div class="scenarios">
+              <button class="scenario-btn" data-scenario="activation">
+                <strong>Pure activation</strong>
+                <div class="scenario-desc">Spikes but no growth, always returns to zero</div>
+              </button>
+              <button class="scenario-btn" data-scenario="brand">
+                <strong>Pure brand building</strong>
+                <div class="scenario-desc">Slow steady staircase, a rising baseline</div>
+              </button>
+              <button class="scenario-btn active" data-scenario="combined">
+                <strong>60:40 combined</strong>
+                <div class="scenario-desc">Spikes on a rising floor, the Binet and Field way</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-card">
+            <h3>Playback</h3>
+            <div class="playback">
+              <button class="play-btn" id="playBtn">▶ Play 24 months</button>
+              <button class="reset-btn" id="resetBtn">Reset</button>
+            </div>
+          </div>
+
+          <div class="control-card insight-box">
+            <h3>What you're seeing</h3>
+            <p class="insight-text" id="dynamicInsight">Select a scenario and hit play to see how brand building and activation create different growth patterns over 24 months.</p>
+          </div>
+        </div>
+      </div>
+      <p class="sim-source">Based on research by Les Binet and Peter Field, IPA</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+// §2 long-and-short chart (ported from UCD; colours mapped to RWF brand, logic unchanged)
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Brand colours (was fox orange/green/cream/black)
+  const FOX_ORANGE = '#3A7CA5'; // activation line -> sky blue
+  const FOX_GREEN = '#1A3A4E';  // brand line -> deep sky
+  const FOX_CREAM = '#1D1B1B';  // axes/labels -> text (chart now on light bg)
+  const FOX_BLACK = '#FAFAF8';  // chart background -> page cream
+
+  const canvas = document.getElementById('chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    const container = canvas.parentElement;
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', function() {
+    resizeCanvas();
+    draw();
+  });
+
+  let scenario = 'combined';
+  let month = 24;
+  let playing = false;
+  let intervalId = null;
+
+  const playBtn = document.getElementById('playBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const monthDisplay = document.getElementById('monthDisplay');
+  const dynamicInsight = document.getElementById('dynamicInsight');
+  const insightText = document.getElementById('insightText');
+
+  function getActivationValue(m) {
+    const cycle = 1.5;
+    const phase = (m % cycle) / cycle;
+    if (phase < 0.15) {
+      return (phase / 0.15) * 100;
+    } else {
+      return 100 * Math.exp(-4 * ((phase - 0.15) / 0.85));
+    }
+  }
+
+  function getBrandValue(m) {
+    const stepInterval = 2;
+    const stepSize = 16;
+    const stepNum = Math.floor(m / stepInterval);
+    return stepNum * stepSize;
+  }
+
+  function getCombinedActivation(m) {
+    const brandBase = getBrandValue(m);
+    const spike = getActivationValue(m) * 0.7;
+    return brandBase + spike;
+  }
+
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+    const padding = { top: 50, right: 40, bottom: 50, left: 60 };
+    const chartW = w - padding.left - padding.right;
+    const chartH = h - padding.top - padding.bottom;
+
+    ctx.fillStyle = FOX_BLACK;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.strokeStyle = 'rgba(29, 27, 27, 0.12)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+      const y = padding.top + (chartH / 5) * i;
+      ctx.beginPath();
+      ctx.moveTo(padding.left, y);
+      ctx.lineTo(padding.left + chartW, y);
+      ctx.stroke();
+    }
+
+    const sixMonthX = padding.left + (chartW / 24) * 6;
+    ctx.strokeStyle = 'rgba(29, 27, 27, 0.22)';
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(sixMonthX, padding.top);
+    ctx.lineTo(sixMonthX, padding.top + chartH);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.strokeStyle = FOX_CREAM;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, padding.top);
+    ctx.lineTo(padding.left, padding.top + chartH);
+    ctx.lineTo(padding.left + chartW, padding.top + chartH);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.fillStyle = FOX_CREAM;
+    ctx.font = '12px JetBrains Mono';
+    ctx.translate(18, padding.top + chartH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center';
+    ctx.fillText('Sales uplift over base', 0, 0);
+    ctx.restore();
+
+    ctx.fillStyle = FOX_CREAM;
+    ctx.font = '12px JetBrains Mono';
+    ctx.textAlign = 'center';
+    ctx.fillText('Time', padding.left + chartW / 2, h - 15);
+
+    ctx.font = '10px JetBrains Mono';
+    ctx.fillStyle = 'rgba(29, 27, 27, 0.45)';
+    ctx.textAlign = 'left';
+    ctx.fillText('Short term effects dominate, first 6 months', padding.left + 5, padding.top + chartH + 30);
+
+    if (month === 0) return;
+
+    const maxY = 200;
+    const scaleX = chartW / 24;
+    const scaleY = chartH / maxY;
+
+    if (scenario === 'activation' || scenario === 'combined') {
+      ctx.beginPath();
+      ctx.strokeStyle = FOX_ORANGE;
+      ctx.lineWidth = 3;
+      for (let m = 0; m <= month; m += 0.1) {
+        const val = scenario === 'combined' ? getCombinedActivation(m) : getActivationValue(m);
+        const x = padding.left + m * scaleX;
+        const y = padding.top + chartH - (val * scaleY);
+        if (m === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    if (scenario === 'brand' || scenario === 'combined') {
+      ctx.beginPath();
+      ctx.strokeStyle = FOX_GREEN;
+      ctx.lineWidth = 4;
+      for (let m = 0; m <= month; m += 0.1) {
+        const val = getBrandValue(m);
+        const x = padding.left + m * scaleX;
+        const y = padding.top + chartH - (val * scaleY);
+        if (m === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    if (month > 4) {
+      ctx.font = 'bold 11px JetBrains Mono';
+      if (scenario === 'activation' || scenario === 'combined') {
+        ctx.fillStyle = FOX_ORANGE;
+        ctx.textAlign = 'left';
+        ctx.fillText('Sales activation', padding.left + 4 * scaleX, padding.top + 25);
+        ctx.font = '10px JetBrains Mono';
+        ctx.fillText('Short-term sales uplifts', padding.left + 4 * scaleX, padding.top + 40);
+      }
+    }
+
+    if (month > 10 && (scenario === 'brand' || scenario === 'combined')) {
+      const labelX = padding.left + 13 * scaleX;
+      const labelY = padding.top + chartH - 44;
+      ctx.fillStyle = FOX_GREEN;
+      ctx.textAlign = 'left';
+      ctx.font = 'bold 11px JetBrains Mono';
+      ctx.fillText('Brand building', labelX, labelY);
+      ctx.font = '10px JetBrains Mono';
+      ctx.fillText('Long-term sales growth', labelX, labelY + 15);
+    }
+  }
+
+  function updateInsight() {
+    const insights = {
+      activation: {
+        0: 'Watch the spikes. Each activation campaign creates an immediate sales uplift.',
+        6: 'But notice: each spike decays right back to zero. No lasting growth.',
+        12: 'After a year of pure activation, the baseline has not moved. It is a treadmill.',
+        18: 'The trap of short-termism: lots of activity, no growth. Every month starts from zero.'
+      },
+      brand: {
+        0: 'No immediate spikes, so the question comes early: where are the results? This needs patience.',
+        6: 'Each brand investment creates a step up. Crucially, it holds. The staircase forms.',
+        12: 'The compounding is visible now. The baseline keeps rising with each investment.',
+        18: 'After 24 months, the sales floor is much higher. This is the long-term payoff.'
+      },
+      combined: {
+        0: 'Short-term effects dominate early. Activation spikes are visible, brand effects are not yet.',
+        6: 'Watch the valleys between spikes, they are rising. Brand is lifting the floor.',
+        12: 'Even the low points are now higher than the original peaks. The combined strategy is working.',
+        18: 'The optimal mix: activation captures demand now, brand builds future demand. Both rise.'
+      }
+    };
+    const thresholds = [18, 12, 6, 0];
+    for (const t of thresholds) {
+      if (month >= t) {
+        dynamicInsight.textContent = insights[scenario][t];
+        break;
+      }
+    }
+  }
+
+  function updateStaticInsight() {
+    const texts = {
+      activation: 'Sales activation creates immediate, visible sales spikes. But each spike decays back to the same baseline. After 24 months of pure activation, you are no better off than when you started.',
+      brand: 'Brand building shows no immediate spikes, which is hard for quarterly reports. But each investment creates a step-change in the baseline that holds. After 24 months, the floor is much higher.',
+      combined: 'The Binet and Field insight: combine both. Brand building raises the baseline (the staircase). Activation creates spikes on top of that rising floor. Over time, even the valleys are higher than the original peaks.'
+    };
+    if (insightText) insightText.textContent = texts[scenario];
+  }
+
+  function updateMarkers() {
+    document.querySelectorAll('.lns .time-marker').forEach(function(marker) {
+      const m = parseInt(marker.dataset.month);
+      marker.classList.toggle('active', month >= m);
+    });
+  }
+
+  function play() {
+    if (month >= 24) { month = 0; }
+    playing = true;
+    playBtn.textContent = '⏸ Pause';
+    intervalId = setInterval(function() {
+      month += 0.5;
+      monthDisplay.textContent = Math.floor(month);
+      updateMarkers();
+      updateInsight();
+      draw();
+      if (month >= 24) {
+        stop();
+        playBtn.textContent = '▶ Replay';
+      }
+    }, 200);
+  }
+
+  function stop() {
+    playing = false;
+    playBtn.textContent = '▶ Play';
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  function reset() {
+    stop();
+    month = 0;
+    monthDisplay.textContent = '0';
+    updateMarkers();
+    draw();
+    dynamicInsight.textContent = 'Select a scenario and hit play to see how brand building and activation create different growth patterns.';
+  }
+
+  playBtn.addEventListener('click', function() {
+    if (playing) { stop(); } else { play(); }
+  });
+  resetBtn.addEventListener('click', reset);
+
+  document.querySelectorAll('.lns .scenario-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.lns .scenario-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+      scenario = btn.dataset.scenario;
+      reset();
+      updateStaticInsight();
+    });
+  });
+
+  updateStaticInsight();
+  monthDisplay.textContent = '24';
+  updateMarkers();
+  updateInsight();
+  draw();
+});
+</script>
+
+<script>
+/* slide embed: the deck (parent) owns navigation, but this iframe swallows key events.
+   Forward the nav keys up so arrows/space still move the deck. */
+document.addEventListener('keydown', (e)=>{
+  if(['ArrowRight','ArrowLeft','ArrowUp','ArrowDown',' ','Enter'].includes(e.key)){
+    if(window.parent !== window){
+      e.preventDefault();
+      window.parent.postMessage({simNav:e.key}, '*');
+    }
+  }
+});
+</script>
+</body>
+</html>
