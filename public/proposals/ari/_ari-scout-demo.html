@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The 95 Engine · built for ARI Athletics</title>
+<title>Scout · configured for ARI Athletics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -215,11 +215,11 @@
   <div class="wrap dot">
     <div class="head">
       <div class="eyebrow">Agent · configured for ARI Athletics</div>
-      <h1>The 95 Engine</h1>
+      <h1>Scout</h1>
       <div class="sell">
-        <p class="sell-lead">Around 1,000 colleges make up ARI's realistic market, and ARI already holds the list. At any given time only a small number of them are looking to buy an athletic CRM. The other 950 will not be ready for a year or longer. Keeping those 950 informed and interested over that period, without contacting them so often that they stop paying attention, is a real job, and it normally requires a hire, an agency, or a freelancer. <b>The 95 Engine does that job.</b></p>
-        <p class="sell-body">It monitors the list for the events that change a college's situation, writes the one message that is genuinely useful to that college given where it is, and then builds the flows and triggers inside ARI's own Klaviyo or HubSpot, on ARI's subscription and in ARI's name. The writing is where the quality sits, and it is specific to the reader. A newly appointed athletic director receives a different email to a college president who has started asking for recruiting data.</p>
-        <p class="sell-rail">The system is designed to contact a college only when there is a good reason to. In many months it will decide that no message is warranted, and it will send nothing. This is deliberate, because contacting a college repeatedly when nothing has changed reduces the chance they will pay attention when something has. Ben reviews all of the content before any flow goes live.</p>
+        <p class="sell-lead">Scout is a trigger-based outbound engine. It watches a curated list of the colleges ARI would most like as customers, and it reaches out at the moment a genuine buying-window signal appears. One college at a time, on the right channel, never as a blast. <b>It watches for the opening, and takes it.</b></p>
+        <p class="sell-body">The thesis behind it is straightforward. In cold outreach, the lever is timing and targeting rather than clever words. A live signal tells you that a college is in the market now, and that is the window Scout is built to catch. ARI already holds the list of roughly 1,000 realistic colleges, and Ben has already named the four signals that matter: a new athletic director is appointed, a president or VP of enrolment starts asking the athletics department for recruiting funnel data it cannot produce, a recruiting or athletics administration role is advertised, or a competitor raises its price at renewal or is acquired and its product stops moving forward. ARI has already won a customer through that last signal, when a large competitor raised prices at the end of a three-year contract.</p>
+        <p class="sell-rail">Scout decides who to contact and when. It does not write the message. Once a college is approved, Scout hands it to the Outbound Agent, which does the research and writes that college its own message. The two work as one pipeline. In most weeks, most of the list produces no signal, and nothing is sent to those colleges. Ben approves the shortlist before anything goes out.</p>
       </div>
     </div>
   </div>
@@ -236,41 +236,41 @@
       <div class="oa-demo" id="oaDemo">
         <div class="oa-board" id="oaBoard">
           <div class="oa-stats">
-            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">Colleges on the list</div></div>
-            <div class="oa-tile"><div class="num" data-to="950" data-comma="1">0</div><div class="lbl">Not currently buying</div></div>
-            <div class="oa-tile"><div class="num" data-to="4">0</div><div class="lbl">Signals monitored</div></div>
-            <div class="oa-tile"><div class="num" data-to="4">0</div><div class="lbl">Stages in the journey</div></div>
+            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">Colleges on the watch list</div></div>
+            <div class="oa-tile"><div class="num" data-to="4">0</div><div class="lbl">Signals watched for</div></div>
+            <div class="oa-tile"><div class="num" data-to="2">0</div><div class="lbl">Channels used</div></div>
+            <div class="oa-tile"><div class="num" data-to="1">0</div><div class="lbl">Approval before anything sends</div></div>
           </div>
 
           <div class="oa-main">
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> The journey</div>
+              <div class="oa-card-h"><span class="oa-live"></span> What Scout does with a college</div>
               <div class="lc-journey" id="lcJourney">
-                <div class="lc-stage" data-st="quiet"><span class="lc-num">1</span><div><div class="lc-st-name">Not looking</div><div class="lc-st-sub">No signal recorded and no current need</div></div></div>
-                <div class="lc-stage" data-st="changed"><span class="lc-num">2</span><div><div class="lc-st-name">Something changed</div><div class="lc-st-sub">A signal has been detected on the account</div></div></div>
-                <div class="lc-stage" data-st="looking"><span class="lc-num">3</span><div><div class="lc-st-name">Starting to look</div><div class="lc-st-sub">Reading about the category, no enquiry yet</div></div></div>
-                <div class="lc-stage" data-st="inmarket"><span class="lc-num">4</span><div><div class="lc-st-name">In-market</div><div class="lc-st-sub">Actively assessing vendors and building a shortlist</div></div></div>
+                <div class="lc-stage" data-st="quiet"><span class="lc-num">1</span><div><div class="lc-st-name">On the watch list</div><div class="lc-st-sub">Checked every week, with no signal found</div></div></div>
+                <div class="lc-stage" data-st="fired"><span class="lc-num">2</span><div><div class="lc-st-name">A signal fires</div><div class="lc-st-sub">Something has changed at the college this week</div></div></div>
+                <div class="lc-stage" data-st="shortlist"><span class="lc-num">3</span><div><div class="lc-st-name">On the shortlist</div><div class="lc-st-sub">Checked against history, then put in front of Ben</div></div></div>
+                <div class="lc-stage" data-st="handed"><span class="lc-num">4</span><div><div class="lc-st-name">Handed to the Outbound Agent</div><div class="lc-st-sub">Approved, researched, written and sent</div></div></div>
               </div>
-              <div class="lc-jnote">Most colleges remain at stage one for long periods. <b>When there is no signal, the system holds and sends nothing.</b></div>
+              <div class="lc-jnote">In most weeks, most of the list stays at stage one. <b>Where no signal has fired, no college is contacted.</b></div>
             </div>
 
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> The list · in progress</div>
+              <div class="oa-card-h"><span class="oa-live"></span> This week's shortlist</div>
               <div class="oa-rows" id="oaRows"></div>
               <div class="oa-msg">
-                <div class="oa-trigger"><b id="oaTrigLbl">Signal</b><span id="oaTrigger">No change in the staff directory for eleven months</span></div>
-                <div class="subj">Subject: <b id="oaSubj">No email sent this month</b></div>
+                <div class="oa-trigger"><b id="oaTrigLbl">Signal</b><span id="oaTrigger">No signal recorded on this college.</span></div>
+                <div class="subj">Action: <b id="oaSubj">No contact made</b></div>
                 <div class="oa-open2">
-                  <p class="greet" id="oaGreetLine">Hi <span id="oaGreet">Dana</span>,</p>
+                  <p class="greet" id="oaGreetLine">Contact: <span id="oaGreet">the athletic director</span></p>
                   <span id="oaOpen"></span><span class="oa-cursor"></span>
                 </div>
                 <div class="oa-close2">
-                  <p id="oaClose">Next directory check runs on Monday.</p>
-                  <p class="sig" id="oaSig">Ben Pickrell · ARI Athletics</p>
+                  <p id="oaClose">The next check on this college runs on Monday.</p>
+                  <p class="sig" id="oaSig">Scout · held, nothing sent</p>
                 </div>
                 <div class="oa-tagrow">
-                  <span class="u">Each email is triggered by a signal on the account</span>
-                  <span class="s">Where there is no signal, no email is sent</span>
+                  <span class="u">Scout decides who to contact and when</span>
+                  <span class="s">The Outbound Agent researches and writes the message</span>
                 </div>
               </div>
             </div>
@@ -305,29 +305,30 @@ const ICONS = {
 };
 
 const TABS = {
-  bts:{ start:'Around 1,000 colleges, most of them not currently buying', end:'ARI is already known to them when the search begins', nodes:[
-    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'ARI sets the objective: keep the colleges that are not yet buying informed and interested. The work is aimed at the roughly 950 colleges that will not make a decision this quarter, rather than at the active pipeline.'},
-    {type:'node', badge:'2', when:'Already yours', icon:'find', title:'Use the list ARI already holds', sub:'ARI already has the list of roughly 1,000 NCAA Division III and NAIA colleges, and each of those colleges publishes a public athletics staff directory. There is no list to source or build first.'},
-    {type:'node', badge:'3', when:'Map it', icon:'share', title:'Map the stages and the signals', sub:'We map four stages, from not looking through to in-market, and we define the signals that move a college between them. Those signals are: a new athletic director is appointed, a president or VP of enrolment starts asking for recruiting data, a coach wants to recruit better, or a competitor raises prices at renewal.',
-      check:'<strong>Gate 1:</strong> ARI approves the stages and the signals. You decide what counts as a valid reason to contact a college.'},
-    {type:'node', badge:'4', when:'One at a time', icon:'make', title:'Write the message that fits', sub:'Each email is written for a specific stage and a specific reader, in ARI\'s voice. An athletic director three weeks into the job needs different information to a coach who is trying to improve recruiting.',
-      check:'<strong>Quality check:</strong> if a sentence could appear unchanged in any other vendor\'s email, it is rewritten. Every product claim is verified against what the product actually does.'},
-    {type:'node', badge:'5', when:'Most weeks', icon:'gate', title:'Decide whether to send at all', sub:'For most colleges in most months, the decision is not to send. If no signal has been recorded, no email goes out. Contacting a college when nothing has changed makes it less likely they will read the message that matters later. Every decision to hold is logged alongside every decision to send.',
-      check:'<strong>This restraint is intentional.</strong> A month with no sends means the system found no good reason to make contact.'},
-    {type:'node', badge:'6', when:'In your own platform', icon:'build', title:'Build and load the flows', sub:'The flows are built inside ARI\'s own Klaviyo or HubSpot account, on ARI\'s subscription and in ARI\'s name. Every email is loaded, each signal is wired to the message it triggers, and frequency rules cap how often any one person can be contacted.',
-      check:'<strong>Gate 2:</strong> Ben reviews all of the content before any flow goes live.'},
-    {type:'node', badge:'7', when:'It runs', icon:'ship', title:'Run it', sub:'The flows are switched on. Each email is sent when its signal is met rather than on a fixed calendar, and a college that moves to a new stage receives the email written for the stage it is now at.',
-      check:'<strong>Gate 3:</strong> ARI switches it on. Nothing is sent before that point.'},
-    {type:'node', badge:'8', when:'Always', icon:'eye', title:'Track how each email is read', sub:'The system records what happens after each send. A quick open tells you little. Reading an email to the end and then visiting the Slate integration page twice tells you a lot more, and that is the kind of behaviour that moves a college to the next stage.'},
-    {type:'node', badge:'9', when:'Every week', icon:'inbox', title:'Report back', sub:'A weekly summary showing which colleges moved stage, what was sent, what is recommended next, and how many colleges were deliberately left alone.'}
+  bts:{ start:'Around 1,000 colleges on the watch list', end:'A small number of colleges contacted in the week their situation changed', nodes:[
+    {type:'node', badge:'1', when:'Already yours', icon:'find', title:'The watch list', sub:'ARI already holds the list of roughly 1,000 NCAA Division III and NAIA colleges that make up its realistic market. Scout watches that list rather than sourcing a new one. Each college carries the people ARI would want to reach: the athletic director, the head coaches, the VP of enrolment and the college president.'},
+    {type:'node', badge:'2', when:'Every week', icon:'eye', title:'Pull the signals', sub:'Once a week Scout checks each college against the four signals Ben identified. It reads the public athletics staff directory to see who is in post, the college job board for recruiting and athletics administration roles, the college news and strategic planning pages for enrolment pressure on athletics, and public competitor announcements for price rises and acquisitions.'},
+    {type:'node', badge:'3', when:'Compare', icon:'filter', title:'Detect what is new', sub:'Scout compares this week against its record of last week and keeps only what has actually changed. A director who was already in post is not a new appointment, and a job advert already seen is not a new advert. In most weeks, most of the list produces nothing new, and those colleges are left alone.',
+      check:'<strong>Restraint by design.</strong> A quiet week means Scout found no reason to contact anyone, and no contact is made.'},
+    {type:'node', badge:'4', when:'Check the history', icon:'look', title:'Drop anyone already contacted', sub:'Before a signal becomes an approach, Scout checks whether that person is already in an active conversation, is already in a live campaign, or has already been contacted about this same event. If any of those are true, the signal is recorded and no new approach is made.'},
+    {type:'node', badge:'5', when:'Match', icon:'share', title:'Match the approach to the trigger', sub:'The trigger decides the subject of the approach. A new athletic director is approached about the first months in the role. A president asking for recruiting data is approached about the reporting the department cannot currently produce. An advertised recruiting role is approached about how the work gets done. A competitor price rise at renewal is approached about what happens at the end of a contract.'},
+    {type:'node', badge:'6', when:'Route', icon:'mail', title:'Choose the channel', sub:'Each approach is routed to email or to LinkedIn, depending on which one is likely to reach that person. One person per college per signal, so a single event never produces several approaches into the same department.'},
+    {type:'node', badge:'7', when:'Ben decides', icon:'gate', title:'The approval gate', sub:'Scout presents the week\'s shortlist to Ben: the college, the signal, the evidence for it, the person it proposes to approach and the channel. Ben approves, changes or removes any of them. Nothing leaves the system without his approval.',
+      check:'<strong>Gate:</strong> Ben approves the shortlist. Scout sends nothing on its own.'},
+    {type:'node', badge:'8', when:'Hand-off', icon:'make', title:'Hand the college to the Outbound Agent', sub:'Scout has now decided who to contact and when, and its work on that college is done. It passes the approved college and the signal to the Outbound Agent, which researches that college and writes it its own message. Scout does not write the message.',
+      check:'<strong>Two agents, one pipeline.</strong> Scout supplies the timing and the target. The Outbound Agent supplies the research and the writing.'},
+    {type:'node', badge:'9', when:'Then it remembers', icon:'ship', title:'Write it back', sub:'Every fired signal, every approval, every approach and every decision to hold is written back to Scout\'s record. That record is what stops a person being approached twice for the same thing, and it is what tells you at the end of a quarter which signals produced conversations.'}
   ]},
   uses:{ groups:[
-    {label:'Rules', items:['Emails are triggered by signals, not by a calendar','No signal means no email is sent','A college is contacted only when there is a reason to','One clear, useful message at a time','Written in ARI\'s voice']},
-    {label:'Gates', cls:'skill', items:['ARI approves the stages and signals','Ben reviews all content before it goes live','ARI switches the flows on']},
-    {label:'Tools', items:['Klaviyo or HubSpot (ARI\'s own account)','Public athletics staff directories','ARI\'s own Claude']},
-    {label:'Data', items:['The 1,000-college list ARI already holds','NCAA Division III and NAIA','Athletic directors, head coaches, VPs of enrolment, college presidents','Engagement data on how each email was read']},
+    {label:'Signals', items:['A new athletic director is appointed','A president or VP of enrolment asks athletics for recruiting funnel data it cannot produce','A recruiting or athletics administration role is advertised','A competitor raises its price at renewal, or is acquired and its product stagnates']},
+    {label:'Rules', items:['An approach is made only when a signal has fired','No signal means no contact','One person per college per signal','Anyone already contacted or in an active campaign is dropped','Nobody is approached twice for the same event']},
+    {label:'Gates', cls:'skill', items:['Ben approves the weekly shortlist','Ben confirms the person and the channel','Nothing sends before he approves it']},
+    {label:'Hand-off', cls:'skill', items:['Scout decides who and when','The Outbound Agent researches and writes the message','Scout does not write copy']},
+    {label:'Sources', items:['Public athletics staff directories','College job boards','College news and strategic planning pages','Public competitor announcements']},
+    {label:'Channels', items:['Email','LinkedIn']},
+    {label:'Data', items:['The 1,000-college watch list ARI already holds','NCAA Division III and NAIA','Athletic directors, head coaches, VPs of enrolment, college presidents']},
     {label:'Models', items:['Claude Opus 4.8']},
-    {label:'Memory', items:['The stage each college is currently at','What has been sent to each college, and when','Which colleges were deliberately left alone']}
+    {label:'Memory', items:['What each college looked like at the last check','Which signals have fired, and when','Who has been contacted, about what, and on which channel','Which colleges were deliberately left alone']}
   ]}
 };
 
@@ -392,40 +393,46 @@ document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
   if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
 }));
 
-// Experience: the agent console. On arrival -> tiles count up, ring fills, messages write live.
+// Experience: Scout's weekly shortlist. On arrival -> tiles count up, the week's fires write out live.
 const oaDemo = document.getElementById('oaDemo');
 const OA_MSGS = [
-  {name:'', stage:'quiet', stLabel:'Not looking', hold:true, trigLbl:'Decision', sig:'No email sent. Decision logged in ARI\'s Klaviyo.',
-   trigger:'NAIA college. Same athletic director as last year, no athletics roles posted, no competitor renewal due. Eleven months with no signal.',
-   subj:'No email sent this month',
-   row:'Hold. No email sent.',
-   open:'Nothing has changed at this college. There is no new athletic director, no indication that the president is asking for recruiting data, and no competitor contract due for renewal. Sending an email now would give the college no reason to read it, and it would make them less likely to read the next one. The system therefore holds. The college stays on the list, the staff directory continues to be monitored, and no email is sent this month.',
-   close:'The next directory check runs on Monday.'},
-  {name:'Dana', stage:'changed', stLabel:'Something changed', trigLbl:'Signal', sig:'Ben Pickrell · ARI Athletics',
-   trigger:'New athletic director listed in the staff directory. Started three weeks ago.',
-   subj:'The first ninety days as athletic director',
-   row:'The first ninety days as athletic director',
-   open:'Congratulations on the new role. The first few months usually involve taking stock of the department: what your coaches are working on, where recruits are coming from, and what you can show the president when they ask. We have written up how other Division III athletic directors build that picture in their first term. There is nothing to buy and no meeting to book. The guide is attached.',
-   close:'If it is useful, I will send you the section on recruiting next month.'},
-  {name:'Marcus', stage:'looking', stLabel:'Starting to look', trigLbl:'Signal', sig:'Ben Pickrell · ARI Athletics',
-   trigger:'Read the compliance guide, then visited the Slate integration page twice in one week.',
-   subj:'How the Slate admissions integration works',
-   row:'How the Slate admissions integration works',
-   open:'You have visited our Slate pages twice recently, which often means recruiting and admissions are working from separate systems and your coaches are re-entering names by hand. Our Slate integration is a real-time, two-way link, so a recruit entered by a coach appears in admissions without anyone retyping the details. Below is an explanation of exactly how it works, so you can assess it without needing to take a call first.',
-   close:'I am happy to answer any questions by email before you speak to anyone.'},
-  {name:'Elaine', stage:'inmarket', stLabel:'In-market', trigLbl:'Signal', sig:'Ben Pickrell · ARI Athletics',
-   trigger:'Athletics administrator role posted. Competitor contract up for renewal in the spring.',
-   subj:'What to ask when you draw up your shortlist',
-   row:'What to ask when you draw up your shortlist',
-   open:'You are evaluating options now, and by the time you get to demos you will probably have four or five vendors on the list. Here is what makes us different. We work only with Division III and NAIA departments, which is why our compliance forms are retained for seven years for NCAA audit and why the Slate integration works the way these departments need it to. You will be able to reach us directly. And we do not raise the price at renewal.',
-   close:'There is no rush. Reply whenever your shortlist is drawn up.'}
+  {name:'', stage:'quiet', stLabel:'No signal', hold:true, trigLbl:'Decision', sig:'Scout · held, nothing sent',
+   trigger:'A NAIA college in Kansas. The same athletic director as last week, no athletics roles advertised, no enrolment reporting pressure on record and no competitor renewal due. Eleven months with no signal.',
+   subj:'No contact made',
+   row:'Held. No signal, so no contact.',
+   open:'Nothing has changed at this college. Approaching them now would give them no reason to read the message, and it would make them less likely to read the one that matters when a signal does fire. Scout therefore holds. The college stays on the watch list, it is checked again next week, and nobody at the college is contacted. This is what happens to most of the list in most weeks.',
+   close:'The next check on this college runs on Monday.'},
+  {name:'the new athletic director', stage:'fired', stLabel:'New athletic director', trigLbl:'Signal', sig:'Scout · approved by Ben, handed to the Outbound Agent',
+   trigger:'A Division III college in Ohio. A new athletic director appeared in the public athletics staff directory this week, in place of the name recorded at the last check.',
+   subj:'Approach the new athletic director on email',
+   row:'New athletic director appointed',
+   open:'A new athletic director is a buying window. They are taking stock of the department, they are forming a view on what is working, and they are not tied to the decisions their predecessor made. Scout confirms this is a genuine change rather than a directory correction, checks that nobody at ARI is already in conversation with the college, and puts it on the shortlist. Once Ben approves, the college goes to the Outbound Agent, which researches the department and writes the message.',
+   close:'Trigger recorded, so this appointment will not be raised again.'},
+  {name:'the athletic director', stage:'fired', stLabel:'Enrolment pressure', trigLbl:'Signal', sig:'Scout · approved by Ben, handed to the Outbound Agent',
+   trigger:'A Division III college in Pennsylvania. The college published an enrolment plan that names athletics recruitment as a target and asks the department to report on its recruiting funnel.',
+   subj:'Approach the athletic director on email',
+   row:'Enrolment reporting asked of athletics',
+   open:'A president or VP of enrolment asking athletics for recruiting funnel data is one of the strongest signals ARI has, because most departments cannot produce that reporting from the tools they have. The athletic director now has a question to answer and a short period in which to answer it. Scout puts the college on the shortlist with the published plan as the evidence, and Ben decides whether to approach.',
+   close:'The signal is dated, so the approach is made while the request is still live.'},
+  {name:'the athletic director', stage:'shortlist', stLabel:'Role advertised', trigLbl:'Signal', sig:'Scout · on the shortlist, waiting for Ben',
+   trigger:'A NAIA college in the Midwest. A recruiting and athletics administration role was posted on the college job board this week.',
+   subj:'Awaiting approval, LinkedIn suggested',
+   row:'Recruiting role advertised',
+   open:'A college advertising a recruiting or athletics administration role has decided that the work matters enough to fund a person to do it, and it is thinking about how that work gets done. Scout has checked that the advert is new, that the college is not already in an active campaign, and that nobody there has been contacted about this. It proposes LinkedIn as the channel. The approach is not made until Ben approves it.',
+   close:'Waiting on Ben. Nothing is sent before he approves the shortlist.'},
+  {name:'the athletic director', stage:'handed', stLabel:'Competitor renewal', trigLbl:'Signal', sig:'Scout · approved by Ben, handed to the Outbound Agent',
+   trigger:'A competitor announced a price increase at renewal. Scout has matched the announcement against the watch list and found colleges reaching the end of a contract term with that vendor.',
+   subj:'Approach the athletic director on email',
+   row:'Competitor raised its price at renewal',
+   open:'This is the signal ARI has already won a customer through, when a large competitor raised its prices at the end of a three-year contract. The same applies when a competitor is acquired and its product stops moving forward. In both cases a department that was not looking is suddenly looking, and it has a deadline. Scout identifies the affected colleges on the watch list and puts them on the shortlist. The Outbound Agent then writes each one its own message.',
+   close:'The renewal date sets the timing, so the approach is made before the decision is taken.'}
 ];
 let oaTyper=null, oaCycle=null;
 function oaCountTiles(){
   document.querySelectorAll('#oaBoard .num').forEach(n=>{
     const to=+n.dataset.to, comma=n.dataset.comma; const dur=1100, t0=performance.now();
     if(reduceMotion){ n.textContent = comma? to.toLocaleString() : to; return; }
-    (function step(now){ const t=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-t,3), v=Math.round(to*e);
+    (function step(now){ const t=Math.min(1,Math.max(0,(now-t0)/dur)), e=1-Math.pow(1-t,3), v=Math.round(to*e);
       n.textContent = comma? v.toLocaleString() : v; if(t<1) requestAnimationFrame(step); })(t0);
   });
 }
@@ -464,7 +471,7 @@ function oaStart(){
 oaStart();
 </script>
 <script>
-(function(){function h(){parent.postMessage({rwfEmbed:'nurture',rwfHeight:document.body.scrollHeight},'*');}
+(function(){function h(){parent.postMessage({rwfEmbed:'scout',rwfHeight:document.body.scrollHeight},'*');}
 addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
 try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
 </script>

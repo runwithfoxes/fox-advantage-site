@@ -201,9 +201,9 @@
       <div class="eyebrow">Agent · configured for ARI</div>
       <h1>Outbound Agent</h1>
       <div class="sell">
-        <p class="sell-lead">Outbound has always been a job someone has to do by hand. Someone has to decide which colleges are worth approaching, keep track of what is changing at each of them, find the right person in the athletics staff directory, and then write to that person about the thing that has just changed. Doing that properly across a thousand colleges has traditionally required a full-time hire, an agency, or a freelancer. <b>The Outbound Agent carries out that whole job for you.</b></p>
-        <p class="sell-body">ARI already holds the list. There are roughly a thousand Division III and NAIA colleges in the realistic market, and each one publishes a public athletics staff directory, so there is no sourcing phase and no list to buy. The list is also finite, and you only get one chance to make a first approach to each college, so the quality of each message matters more than the volume of messages sent. The agent therefore monitors the full list and only acts when something relevant changes at a particular college: a new athletic director is appointed, a president or VP of enrolment starts asking for recruiting data, a recruiting or athletics role is advertised, or a competitor raises its prices at renewal. <b>The agent then writes to the person concerned about that specific change.</b></p>
-        <p class="sell-rail">The agent works across two channels, email and LinkedIn. It pauses for your approval at three points: when the watch list is set, when the messages are written, and before anything is sent. <b>Nothing is sent and nothing is spent until you approve it.</b> We would build the agent around ARI's positioning and messaging, hand it over to you, and it would run in your own Claude account.</p>
+        <p class="sell-lead">Outbound is a job a person does. Someone has to work through the list of colleges, find the right person inside each athletics department, learn enough about that college to have something worth saying, and then write to that person properly. Doing that across a thousand colleges has traditionally required a full-time hire, an agency, or a freelancer, and the work usually degrades into a template with a few fields swapped in. <b>The Outbound Agent carries out that whole job for you, and it writes every message individually.</b></p>
+        <p class="sell-body">ARI already holds the list. There are roughly a thousand Division III and NAIA colleges in the realistic market, and every one of them publishes a public athletics staff directory, so there is no list to buy and no sourcing phase. The agent identifies the right person at each college, which is the athletic director, the relevant head coach, or the VP of enrolment, and then researches both the college and that individual: the sports programme they run, how recruiting is handled today, what the admissions setup looks like, and what the person has said publicly. <b>Every message is written from that research, so it could not have been sent to anyone else.</b></p>
+        <p class="sell-rail">The agent works across two channels, email and LinkedIn. It pauses for your approval at three points: when the colleges and the roles are chosen, when the messages are written, and before anything is sent. Ben reads every message in full first. <b>Nothing is sent and nothing is spent until you approve it.</b> We would build the agent around ARI's positioning and messaging, hand it over to you, and it would run in your own Claude account.</p>
       </div>
     </div>
   </div>
@@ -217,46 +217,46 @@
     </div>
 
     <div class="panel active" data-p="exp">
-      <div class="exp-lead">You give the agent a single instruction, for example <b>"monitor the watch list and write to anyone worth writing to this week"</b>. It then monitors the colleges on the list and takes no action until one of the agreed signals appears. The example below shows the signals that came up in a given week and the messages the agent produced from them. <b>The opening of each message is written from that college's own signal</b>, while the closing section, which describes the product, stays consistent across every message. <!-- TODO: colleges here are described, not named, until the agent is pointed at ARI's real list. Swap in real colleges and real signals from ARI's own watch list before this goes to Ben as live output. --></div>
+      <div class="exp-lead">You give the agent a single instruction, for example <b>"work through the Division III colleges on our list and write to the right person at each one"</b>. It finds that person in the college's public athletics staff directory, researches the college and the individual, and writes a message from what it found. The example below is the same product pitched to three different people. Select any of them: the panel on the left shows <b>what the agent researched</b>, and the message shows the generic template opening that most outbound uses, followed by the opening the agent actually writes from that research. <!-- TODO: the colleges here are described, not named, and the people are illustrative. Swap in real colleges, real names and real research from ARI's own list before this goes out as live output. --></div>
 
       <div class="oa-demo" id="oaDemo">
         <div class="oa-board" id="oaBoard">
           <div class="oa-stats">
-            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">Colleges watched</div></div>
-            <div class="oa-tile"><div class="num" data-to="9">0</div><div class="lbl">Signals this week</div></div>
-            <div class="oa-tile"><div class="num" data-to="9">0</div><div class="lbl">Messages written</div></div>
-            <div class="oa-tile"><div class="num" data-to="2">0</div><div class="lbl">Channels live</div></div>
+            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">Colleges on ARI's list</div></div>
+            <div class="oa-tile"><div class="num" data-to="4">0</div><div class="lbl">Buyer roles per college</div></div>
+            <div class="oa-tile"><div class="num" data-to="2">0</div><div class="lbl">Channels: email, LinkedIn</div></div>
+            <div class="oa-tile"><div class="num" data-to="0">0</div><div class="lbl">Templates used</div></div>
           </div>
 
           <div class="oa-main">
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> Trigger layer</div>
-              <div class="oa-ringwrap">
-                <div class="oa-ring">
-                  <svg width="150" height="150"><circle class="track" cx="75" cy="75" r="65"/><circle class="bar" cx="75" cy="75" r="65"/></svg>
-                  <div class="mid"><span class="big">9/9</span><span class="small">signals written</span></div>
-                </div>
-                <div class="oa-ringnote">In this week, 9 colleges showed a relevant change and were written to. The remaining 991 were not contacted, because nothing had changed at them. <b>No templates are used.</b></div>
+              <div class="oa-card-h"><span class="oa-live"></span> What was researched</div>
+              <div class="oa-msg">
+                <div class="chips" id="oaChips"></div>
+                <div class="oa-ringnote">Every line of the opening is written from this evidence, and each item is traced back to a public source before the message is put forward. <b>No templates are used.</b></div>
               </div>
             </div>
 
             <div class="oa-card">
-              <div class="oa-card-h"><span class="oa-live"></span> Signals · writing live</div>
+              <div class="oa-card-h"><span class="oa-live"></span> The message · writing live</div>
               <div class="oa-rows" id="oaRows"></div>
               <div class="oa-msg">
-                <div class="subj">Signal: <b id="oaSubj">New athletic director appointed</b></div>
+                <div class="subj">Recipient: <b id="oaSubj">Athletic director, Division III college in Ohio</b></div>
+                <div class="oa-close2">
+                  <p>Generic template opening, the one most outbound sends: "Hi there, I hope this finds you well. I wanted to introduce ARI, an athletic CRM that helps college athletic departments run recruiting more efficiently. Would you be open to a quick call this week?" That paragraph could be sent unchanged to any of the thousand colleges on the list, which is why it reads as though it was.</p>
+                </div>
                 <div class="oa-open2">
                   <p class="greet">Hi <span id="oaGreet">Marcus</span>,</p>
                   <span id="oaOpen"></span><span class="oa-cursor"></span>
                 </div>
                 <div class="oa-close2">
                   <p>ARI is an athletic CRM and department management suite built for Division III and NAIA colleges. It gives you recruiting metrics across every sport, compliance forms retained for the seven years the NCAA requires for audit, in-app chat with your student athletes, and a real-time bidirectional integration with Slate, so that athletics and admissions are working from the same recruit record.</p>
-                  <p>Hendrix, Macalester, McPherson, Ottawa and Wabash are all customers. I would be glad to walk you through the director's view in twenty minutes.</p>
+                  <p>Hendrix, Macalester, McPherson, Ottawa and Wabash are all customers. I would be glad to walk you through it in twenty minutes.</p>
                   <p class="sig">Ben Pickrell<br>ARI Athletics</p>
                 </div>
                 <div class="oa-tagrow">
-                  <span class="u">The opening is written for this person, from the signal at their college</span>
-                  <span class="s">The closing section describing the product is consistent across all messages</span>
+                  <span class="u">The opening is written for this one person, from the research on the left</span>
+                  <span class="s">The generic opening above, and the closing section describing the product, are the same for everyone</span>
                 </div>
               </div>
             </div>
@@ -291,31 +291,32 @@ const ICONS = {
 };
 
 const TABS = {
-  bts:{ start:'A finite list of around 1,000 colleges', end:'Replies in your inbox and meetings in your calendar', nodes:[
-    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'You give the agent a single instruction, such as "monitor the watch list and write to anyone worth writing to this week". That is the only input required.'},
-    {type:'node', badge:'2', when:'The list you own', icon:'find', title:'Load the watch list', sub:'The agent loads the Division III and NAIA colleges ARI already holds, roughly a thousand of them. Because there is no list to source or buy, the agent can begin work immediately.'},
-    {type:'node', badge:'3', when:'Public contact data', icon:'eye', title:'Read the staff directories', sub:'Every college publishes a public athletics staff directory. The agent collects the athletic director, the head coaches, the president and the VP of enrolment, and refreshes those records on a schedule.',
-      check:'<strong>Approval point 1:</strong> you approve which colleges go on the watch list.'},
-    {type:'node', badge:'4', when:'Wait for a change', icon:'filter', title:'Monitor for a signal', sub:'The agent monitors each college for the changes that make a conversation worthwhile: a new athletic director is appointed, a president or VP of enrolment starts asking for recruiting data, a recruiting or athletics role is advertised, or a competitor raises its prices at renewal. If nothing changes at a college, the agent does not contact it.'},
-    {type:'node', badge:'5', when:'Then research', icon:'look', title:'Research the individual', sub:'When a signal appears, the agent reads the person\'s LinkedIn profile, the college\'s athletics news, the sports the department runs and how recruiting is handled today. This is the material the message is written from.'},
-    {type:'node', badge:'6', when:'One message at a time', icon:'make', title:'Write the message', sub:'The agent writes a distinct opening for each person, based on the signal at their college, and grounds the rest of the message in ARI\'s positioning: built for Division III and NAIA, the real-time bidirectional Slate integration, compliance forms retained for seven years for NCAA audit, in-app chat with student athletes, and recruiting metrics.',
-      check:'<strong>Quality check:</strong> if an opening line could be sent unchanged to a different college, it is rejected and rewritten. Every factual claim is checked against the source evidence before the message is put forward for approval.'},
+  bts:{ start:'The list of around 1,000 colleges ARI already holds', end:'Replies in your inbox and meetings in your calendar', nodes:[
+    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'You give the agent a single instruction, such as "work through the Division III colleges on our list and write to the right person at each one". That is the only input required.'},
+    {type:'node', badge:'2', when:'The list you own', icon:'find', title:'Load the college list', sub:'The agent loads the Division III and NAIA colleges ARI already holds, roughly a thousand of them. Because there is no list to source or buy, the agent can begin work immediately.'},
+    {type:'node', badge:'3', when:'Public contact data', icon:'eye', title:'Find the right person', sub:'Every college publishes a public athletics staff directory. The agent reads it and identifies the person the message should go to at that particular college: the athletic director, the head coach of the relevant sport, the VP of enrolment, or the president.',
+      check:'<strong>Approval point 1:</strong> you approve which colleges the agent works through and which roles it writes to.'},
+    {type:'node', badge:'4', when:'Understand the college', icon:'filter', title:'Enrich the college', sub:'The agent builds a picture of the department: how many varsity teams it runs and in which sports, how recruiting is handled today, which admissions system the college uses, and how athletics and admissions currently work together.'},
+    {type:'node', badge:'5', when:'Understand the person', icon:'look', title:'Research the individual', sub:'The agent then reads the person\'s LinkedIn profile, how long they have been in the role, the athletics news the college publishes, and anything they have said publicly. This, together with the college research, is the material the message is written from.'},
+    {type:'node', badge:'6', when:'One message at a time', icon:'make', title:'Write the message', sub:'The agent writes an opening for that one person, built from the evidence it gathered, and grounds the rest of the message in ARI\'s positioning: built for Division III and NAIA, the real-time bidirectional Slate integration, compliance forms retained for seven years for NCAA audit, in-app chat with student athletes, and recruiting metrics for the athletic director.',
+      check:'<strong>Quality check:</strong> if an opening could be sent unchanged to a different college, it is rejected and rewritten. Every factual claim is checked against the source evidence before the message is put forward for approval.'},
     {type:'node', badge:'7', when:'Loaded by API', icon:'build', title:'Build and load the campaign', sub:'The agent builds a Smartlead campaign for email and a HeyReach sequence for LinkedIn. Each lead carries its own subject line and body, which are resolved at send time, so each recipient receives a message written specifically for them rather than a template with fields swapped in.',
-      check:'<strong>Approval point 2:</strong> you read every message in full before anything is loaded.'},
-    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'The agent sends across both channels, within safe daily sending limits. Because the market is finite, each college receives one message about one signal rather than repeated approaches.',
+      check:'<strong>Approval point 2:</strong> Ben reads every message in full before anything is loaded.'},
+    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'The agent sends across both channels, within safe daily sending limits. The market is finite and you get one first approach to each college, so the agent works through the list at a pace that keeps the quality of each message intact.',
       check:'<strong>Approval point 3:</strong> you start the campaign. Nothing is sent and nothing is spent before you do.'},
-    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Track the replies', sub:'Each morning the agent checks both channels for replies and emails you a summary: who replied, which college they are at, their role, and the signal the message was written from.'},
-    {type:'node', badge:'10', when:'On a positive reply', icon:'cal', title:'Brief you, then book the meeting', sub:'When someone replies with interest, the agent assembles the background on the college, its sports, the signal and the question they asked, and drafts a response containing your booking link. You arrive at the call already briefed.'}
+    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Track the replies', sub:'Each morning the agent checks both channels for replies and emails you a summary: who replied, which college they are at, their role, and what the message to them said.'},
+    {type:'node', badge:'10', when:'On a positive reply', icon:'cal', title:'Brief you, then book the meeting', sub:'When someone replies with interest, the agent assembles the background on the college, its sports programme, the research behind the message and the question they asked, and drafts a response containing your booking link. You arrive at the call already briefed.'}
   ]},
   uses:{ groups:[
     {label:'Channels', cls:'skill', items:['Email','LinkedIn']},
-    {label:'Signals', cls:'skill', items:['a new athletic director is appointed','a new president or VP of enrolment arrives','a president or VP of enrolment asks for recruiting data','a recruiting or athletics role is advertised','a competitor raises prices at renewal','a competitor is acquired']},
-    {label:'Rules', items:['contact a college only when something has changed there','one college, one signal, one message','send within safe daily limits','every hook must come from a source, or the message is dropped','all factual claims verified before approval']},
-    {label:'Approvals', cls:'skill', items:['you approve the watch list','you review every message','you start the campaign']},
+    {label:'People', cls:'skill', items:['athletic directors','head coaches','VPs of enrolment','college presidents']},
+    {label:'Research', cls:'skill', items:['the public athletics staff directory','the sports programme and the number of varsity teams','how recruiting is run in the department today','the admissions system the college uses','how athletics and admissions work together','LinkedIn profile and time in role','college athletics news and public statements']},
+    {label:'Rules', items:['one person, one message, written for them','every line of the opening is traced to a public source','an opening that could be sent to another college is rewritten','no templates and no merge fields','send within safe daily limits','all factual claims verified before approval']},
+    {label:'Approvals', cls:'skill', items:['you approve the colleges and the roles','Ben reads every message before it is loaded','you start the campaign']},
     {label:'Tools', items:['Clay','Apify','Smartlead','HeyReach','your own Claude account']},
-    {label:'Data', items:['the roughly 1,000 D-III and NAIA colleges ARI already holds','public athletics staff directories','job boards and college news','ARI positioning and messaging framework']},
+    {label:'Data', items:['the roughly 1,000 D-III and NAIA colleges ARI already holds','public athletics staff directories','college athletics websites and news','ARI positioning and messaging framework']},
     {label:'Models', items:['Claude Opus 4.8']},
-    {label:'Memory', items:['which college was contacted, when, and from which signal','who replied and who should be skipped','what was said in the last message']}
+    {label:'Memory', items:['who has been written to, at which college, and when','the research each message was written from','who replied and who should be skipped']}
   ]}
 };
 
@@ -383,17 +384,22 @@ document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
 // Experience: the agent console. On arrival -> tiles count up, ring fills, messages write live.
 const oaDemo = document.getElementById('oaDemo');
 const OA_MSGS = [
-  {name:'Marcus', chan:'email', subj:'New athletic director appointed, Division III college in Ohio', open:'Congratulations on the athletic director appointment. One of the earliest requests most new directors receive is for recruiting numbers: how many prospects are in the funnel and how that is changing. That request usually comes from the president\'s office within the first few weeks, and in most departments the answer is spread across a number of separate spreadsheets held by individual coaches.'},
-  {name:'Dana', chan:'linkedin', subj:'New college president asking for recruiting data, NAIA college in Kansas', open:'I understand your new president has begun asking athletics for recruiting data. In most departments that request is difficult to answer quickly, because each sport records its recruiting differently and the information sits in different places. Baseball and lacrosse recruit in very different ways, so a single shared spreadsheet rarely holds up in practice.'},
-  {name:'Tyler', chan:'email', subj:'Recruiting coordinator role advertised, Division III college in Pennsylvania', open:'I saw that you are advertising for a recruiting coordinator. Whoever takes the role will inherit recruiting activity spread across individual coaches, compliance paperwork held in filing cabinets, and no single view of where each recruit stands. That is a difficult first few months, and it is worth putting the right system in place before they start.'},
-  {name:'Renee', chan:'linkedin', subj:'Competitor price rise at renewal, NAIA college in Iowa', open:'I understand your current system is up for renewal and the price has increased again. Another college moved to us at the end of a three-year contract for the same reason: a significant increase on software that had not improved. Our pricing does not change in that way at renewal, and that was the main reason they contacted us.'}
+  {name:'Marcus', chan:'email', subj:'Athletic director, Division III college in Ohio',
+   ev:['18 varsity teams','recruiting tracked in spreadsheets','a separate spreadsheet per coach','Slate is the admissions system','no shared recruit record','athletic director for six years'],
+   open:'You run 18 varsity teams, and from what your coaches describe publicly, each sport keeps its own recruiting spreadsheet. That is workable until the president asks how many prospects are in the funnel across the department, at which point the answer has to be assembled by hand from eighteen different files. The colleges we work with had the same problem, and what they wanted was one recruit record that every sport writes into and that you can read across in a single view.'},
+  {name:'Tyler', chan:'linkedin', subj:'Head coach, men\'s lacrosse, Division III college in Pennsylvania',
+   ev:['head coach, men\'s lacrosse','roster of 42 student athletes','the coach also runs recruiting','recruiting kept in a personal spreadsheet','compliance forms held on paper','in post since March'],
+   open:'You coach the lacrosse programme and you also run its recruiting, which means the prospect list, the follow-ups and the compliance paperwork all sit with you on top of the coaching itself. The forms in particular are the part nobody budgets time for, and they have to be kept for seven years for NCAA audit. Coaches who moved to us mostly did so because the recruiting list and the compliance file stopped being two separate jobs.'},
+  {name:'Dana', chan:'email', subj:'VP of enrolment, NAIA college in Kansas',
+   ev:['Slate is the admissions system','athletics recruits across 14 sports','athletics data re-keyed into admissions','enrolment targets published in the strategic plan','no shared view of athletic recruits'],
+   open:'You run admissions on Slate, and athletics recruits across 14 sports. In most colleges with that setup, the athletic recruits reach admissions late and are re-keyed by hand, so the two teams are counting different numbers for the same students. We integrate with Slate in real time and in both directions, which means an athletic recruit appears in your Slate record as the coaches work, and your enrolment figures include them without anyone re-typing anything.'}
 ];
 let oaTyper=null, oaCycle=null;
 function oaCountTiles(){
   document.querySelectorAll('#oaBoard .num').forEach(n=>{
     const to=+n.dataset.to, comma=n.dataset.comma; const dur=1100, t0=performance.now();
     if(reduceMotion){ n.textContent = comma? to.toLocaleString() : to; return; }
-    (function step(now){ const t=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-t,3), v=Math.round(to*e);
+    (function step(now){ const t=Math.min(1,Math.max(0,(now-t0)/dur)), e=1-Math.pow(1-t,3), v=Math.round(to*e);
       n.textContent = comma? v.toLocaleString() : v; if(t<1) requestAnimationFrame(step); })(t0);
   });
 }
@@ -409,6 +415,8 @@ function oaShow(i){
   document.querySelectorAll('#oaRows .oa-row').forEach(r=> r.classList.toggle('active', +r.dataset.i===i));
   document.getElementById('oaSubj').textContent = OA_MSGS[i].subj;
   document.getElementById('oaGreet').textContent = OA_MSGS[i].name;
+  const chips=document.getElementById('oaChips'); chips.innerHTML='';
+  OA_MSGS[i].ev.forEach(e=> chips.appendChild(el(`<span class="chip skill">${e}</span>`)));
   const node=document.getElementById('oaOpen'), text=OA_MSGS[i].open;
   if(oaTyper) clearInterval(oaTyper);
   if(reduceMotion){ node.textContent=text; return; }
