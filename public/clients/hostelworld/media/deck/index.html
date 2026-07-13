@@ -115,6 +115,11 @@
   .full-img.cover-fit{ object-fit:cover; }
 
   /* CEP circles */
+  .cep-def{ margin-top:2.4vh; max-width:68vw; font-size:2.5vh; line-height:1.45; font-weight:600; }
+  .cep-eg{ position:absolute; left:56px; right:56px; bottom:5vh; background:var(--ink); color:var(--cream); padding:2.2vh 2vw; display:flex; align-items:center; gap:2vw; }
+  .cep-eg-tag{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); }
+  .cep-eg p{ font-size:2.3vh; line-height:1.4; font-weight:500; }
+  .cep-eg b{ color:var(--coral); }
   .cep-row{ position:absolute; left:56px; right:56px; top:52vh; transform:translateY(-38%); display:flex; gap:1.6vw; }
   .cep{ flex:1; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--cream); text-align:center; padding:1.4vw; }
   .cep b{ font-family:'Anton',sans-serif; font-size:3.1vh; letter-spacing:1px; text-transform:uppercase; margin-bottom:.6vh; font-weight:400; }
@@ -191,6 +196,74 @@
   .sticky{ position:absolute; width:13vw; min-height:14vh; background:#FDF06F; color:#141414; padding:1.6vh 1vw;
     font-family:'JetBrains Mono',monospace; font-size:1.35vh; line-height:1.45; box-shadow:0 6px 18px rgba(20,20,20,.28); }
 
+  /* physical availability: real screens */
+  /* the site: whole page visible, centred in the right half */
+  .screen-centred{ position:absolute; right:4vw; top:50%; transform:translateY(-50%);
+    width:44vw; max-height:84vh; object-fit:contain; box-shadow:0 10px 40px rgba(20,20,20,.16); }
+  /* the SERP: full height down the right, anchored top-left so the query and the listing survive */
+  .screen-right{ width:46vw; object-fit:cover; object-position:left top; background:#fff; }
+
+  /* footnote block under a headline (used for the AI note on the system slide) */
+  .sys-note{ margin-top:4vh; max-width:44vw; border-left:5px solid var(--coral); padding-left:1.4vw; }
+  .sys-note-tag{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:1vh; }
+  .sys-note p{ font-size:1.95vh; line-height:1.5; font-weight:600; }
+
+  /* AI opinion slide: three panels + the behaviours line */
+  .ai-head{ position:absolute; left:56px; top:8vh; font-size:7vh; }
+  .ai-panels{ position:absolute; left:56px; right:56px; top:30vh; display:flex; gap:1.6vw; }
+  .ai-panel{ flex:1; background:var(--ink); color:var(--cream); padding:3vh 1.6vw; }
+  .ai-panel h4{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:3.1vh; line-height:1.1; letter-spacing:.5px; color:var(--yellow); margin-bottom:1.6vh; }
+  .ai-panel p{ font-size:1.9vh; line-height:1.5; font-weight:500; }
+  .ai-foot{ position:absolute; left:56px; right:56px; bottom:7vh; }
+  .ai-foot .lbl{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; opacity:.6; margin-bottom:1.2vh; }
+  .ai-foot .line{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:4.4vh; line-height:1.12; letter-spacing:.5px; }
+  .ai-foot .line em{ font-style:normal; color:var(--coral); }
+
+  /* summary / bridge slide. one accent only: coral. everything else is ink on cream. */
+  .sum-head{ position:absolute; left:56px; top:7vh; font-size:6.4vh; }
+  .sum-cols{ position:absolute; left:56px; right:56px; top:26vh; display:flex; gap:4vw; }
+  .sum-col{ flex:1; }
+  .sum-pill{ display:block; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.8vh; letter-spacing:.5px; padding-bottom:1.4vh; margin-bottom:1vh; border-bottom:2px solid var(--ink); }
+  .sum-pill small{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; font-weight:400; opacity:.55; margin-top:.7vh; }
+  .sum-item{ display:flex; gap:14px; align-items:baseline; padding:1.3vh 0; font-size:2.1vh; line-height:1.4; font-weight:400; border-top:1px solid rgba(20,20,20,.1); }
+  .sum-item:first-of-type{ border-top:none; }
+  .sum-item span{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.5vh; color:var(--coral); }
+  .sum-ai{ position:absolute; left:56px; right:56px; bottom:15vh; background:var(--ink); color:var(--cream); padding:2.4vh 2vw; font-size:2.4vh; line-height:1.45; font-weight:400; }
+  .sum-ai em{ font-style:normal; color:var(--coral); }
+  .sum-bridge{ position:absolute; left:56px; right:56px; bottom:6vh; font-size:2.1vh; line-height:1.45; font-weight:400; }
+
+  /* Richard's five questions: table slide. no bold, size does the work. */
+  .qt-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+  .qtable{ position:absolute; left:56px; right:56px; top:20vh; bottom:5vh; display:flex; flex-direction:column; }
+  .qt-row{ display:flex; gap:2vw; padding:1.6vh 0; border-top:1px solid rgba(20,20,20,.25); flex:1; align-items:flex-start; }
+  .qt-row.head{ flex:none; border-top:none; padding-bottom:.8vh; }
+  .qt-row.head div{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; opacity:.5; font-weight:400; }
+  .qt-n{ flex:none; width:2.6vw; font-family:'JetBrains Mono',monospace; font-size:1.8vh; color:var(--coral); line-height:1.5; }
+  .qt-q{ flex:1.35; font-size:2.5vh; line-height:1.3; font-weight:400; }
+  .qt-t{ flex:1; font-size:1.85vh; line-height:1.45; font-weight:400; opacity:.65; }
+  .qt-j{ flex:1; font-size:1.85vh; line-height:1.45; font-weight:400; }
+
+  /* Richard's detail slides */
+  .qd-head{ position:absolute; left:56px; top:6vh; font-size:5.4vh; }
+  .qd-row{ position:absolute; left:56px; right:56px; top:19vh; bottom:5vh; display:flex; gap:2.4vw; }
+  .qd-card{ flex:1; display:flex; flex-direction:column; border-top:2px solid var(--ink); padding-top:2vh; }
+  .qd-n{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:1.4vh; }
+  .qd-q{ font-size:2.5vh; line-height:1.25; font-weight:500; margin-bottom:1vh; }
+  .qd-t{ font-size:1.8vh; line-height:1.45; font-weight:400; opacity:.6; margin-bottom:1.6vh; }
+  .qd-card ul{ list-style:none; margin-bottom:auto; }
+  .qd-card li{ font-size:1.8vh; line-height:1.45; font-weight:400; padding:1.2vh 0; border-top:1px solid rgba(20,20,20,.1); }
+  .qd-card li b{ font-weight:600; }
+  .qd-eng{ margin-top:2vh; padding-top:1.4vh; border-top:1px solid rgba(20,20,20,.25); font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; line-height:1.4; text-transform:uppercase; opacity:.6; }
+
+  /* H2 priorities: five columns, no fills */
+  .h2-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+  .h2-row{ position:absolute; left:56px; right:56px; top:24vh; display:flex; gap:2.4vw; align-items:stretch; }
+  .h2-box{ flex:1; border-top:2px solid var(--ink); padding-top:2vh; display:flex; flex-direction:column; }
+  .h2-box h4{ font-size:2.5vh; line-height:1.2; font-weight:500; margin-bottom:1.6vh; }
+  .h2-box h4 span{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); font-weight:400; margin-bottom:.8vh; }
+  .h2-box ul{ list-style:none; }
+  .h2-box li{ font-size:1.8vh; line-height:1.45; font-weight:400; padding:1.2vh 0; border-top:1px solid rgba(20,20,20,.1); }
+
   .counter{ position:fixed; bottom:22px; right:28px; z-index:9; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--cream); mix-blend-mode:difference; opacity:.7; }
 
   .lightbox{ display:none; position:fixed; inset:0; z-index:60; background:rgba(20,20,20,.6); padding:3vh 4vw; }
@@ -208,10 +281,14 @@
   <img src="hero-hostel.jpg" alt="">
 </section>
 
-<!-- 2 OPENING CLAIM -->
+<!-- 2 OPENING CLAIM. AI named up front as a force running THROUGH the system, not a separate topic. -->
 <section class="slide">
-  <div class="txt-left" style="top:30vh">
+  <div class="txt-left" style="top:26vh">
     <div class="h-block">Marketing is<br>a system. <em>Not a line<br>of separate bets.</em></div>
+    <div class="sys-note">
+      <span class="sys-note-tag">A note on AI</span>
+      <p>AI runs through every one of these principles. It is not a separate topic at the end. An AI-enabled marketing team is how you do all of this faster, and how you keep finding the gaps.</p>
+    </div>
   </div>
   <img class="photo-right" src="travel1.jpg" alt="">
 </section>
@@ -258,18 +335,23 @@
   <img class="full-img cover-fit" src="baileys-treat-bar.webp" alt="Baileys Treat Bar at Bewley's">
 </section>
 
-<!-- 7 CEPs (before the lottery example) -->
+<!-- 7 CEPs (before the lottery example). Written-out definition at the top, worked example at the foot. -->
 <section class="slide">
-  <div class="txt-left" style="top:10vh; width:84vw">
-    <div class="h-block" style="font-size:8vh">What are <em>category entry points?</em></div>
+  <div class="txt-left" style="top:7vh; width:84vw">
+    <div class="h-block" style="font-size:7.2vh">What are <em>category entry points?</em></div>
+    <p class="cep-def">The situations that send someone looking to buy. Link your brand to the ones that come up most, and you get thought of when they happen.</p>
   </div>
-  <div class="cep-row">
+  <div class="cep-row" style="top:50vh">
     <div class="cep" style="background:#C0392B"><b>Why</b><span>Do I decide to buy product</span></div>
     <div class="cep" style="background:#76C7B0; color:#141414"><b>When</b><span>Do I decide what to buy</span></div>
     <div class="cep" style="background:#2E4A5A"><b>Where</b><span>Do I make decisions to buy</span></div>
     <div class="cep" style="background:#E67E22"><b>Who</b><span>Am I with</span></div>
     <div class="cep" style="background:#5B9BBF"><b>What</b><span>Else am I doing</span></div>
     <div class="cep" style="background:#5B3A6E"><b>How</b><span>Do I want to feel</span></div>
+  </div>
+  <div class="cep-eg">
+    <span class="cep-eg-tag">Written as a sentence</span>
+    <p>&ldquo;I need a gift to put in a card.&rdquo; <b>That is the entry point the National Lottery went after.</b></p>
   </div>
 </section>
 
@@ -377,9 +459,9 @@
   <div class="h-block" style="position:absolute; left:56px; top:10vh; font-size:7vh">Humans originate. <em>AI amplifies.</em></div>
   <div class="vid-pair">
     <video class="svid" src="big-idea-sharelove.mp4" poster="big-idea-sharelove-poster.jpg" preload="metadata" playsinline style="cursor:pointer"></video>
-    <video src="big-idea-foxslide.mp4" poster="big-idea-foxslide-poster.jpg" muted loop autoplay playsinline></video>
+    <video class="svid" src="big-idea-foxslide.mp4" poster="big-idea-foxslide-poster.jpg" preload="metadata" playsinline style="cursor:pointer"></video>
   </div>
-  <div class="play-hint" style="color:var(--ink); left:28vw">Click left film to play with sound</div>
+  <div class="play-hint" style="color:var(--ink); left:28vw">Click either film to play with sound</div>
 </section>
 
 <!-- 19 DISTINCTIVE VOICE / ISA: sits after Oatly, ahead of the Economist run -->
@@ -471,23 +553,220 @@
   <img class="photo-right" style="object-fit:contain; background:var(--cream)" src="hostel-app-chat.jpg" alt="Hostelworld app">
 </section>
 
-<!-- 25 QUESTIONS 1-3 -->
+<!-- PHYSICAL 2: THE PRODUCT IS THE BOTTLE. Richard's point: the app and the site ARE the packaging. -->
 <section class="slide">
-  <div class="h-block" style="position:absolute; left:56px; top:12vh; font-size:7vh">Six questions <em>for this board.</em></div>
-  <div class="qcards">
-    <div class="qcard c1"><div class="qn">Question 01</div><div class="qt">Are we building against the real entry points?</div><div class="qa">&rarr; Cohort Intelligence Engine; Unmissable Social Engine</div></div>
-    <div class="qcard c2"><div class="qn">Question 02</div><div class="qt">Too few know us; fewer know what we stand for</div><div class="qa">&rarr; Brand positioning and creative idea; Creative Engine</div></div>
-    <div class="qcard c3"><div class="qn">Question 03</div><div class="qt">All our spend chases today&rsquo;s booking</div><div class="qa">&rarr; Build Demand Creation; maintain Demand Capture</div></div>
+  <div class="txt-left" style="top:24vh; width:40vw">
+    <div class="h-block" style="font-size:6.6vh">Your app and your site <em>are the bottle.</em></div>
+    <p class="case-body" style="max-width:34vw">Dove invests in the bottle because the bottle is where the promise is kept. Hostelworld does not have a bottle. It has an app and a website. That is the product, the packaging and the shelf, all at once. Every promise the marketing makes gets paid off, or lost, right there.</p>
+  </div>
+  <img class="screen-centred" src="hw-homepage.png" alt="Hostelworld.com homepage">
+</section>
+
+<!-- PHYSICAL 3: SEARCH IS THE STOREFRONT, NOT THE BRAND -->
+<section class="slide">
+  <div class="txt-left" style="top:22vh; width:40vw">
+    <div class="h-block" style="font-size:6.6vh">Search captures demand. <em>It does not create it.</em></div>
+    <p class="case-body" style="max-width:34vw">This is essential. It is the till at the front of the shop, and it has to work. But it only reaches people who are already looking. Spend everything here and you are not bringing customers in, you are collecting the ones who arrived on their own. It is a cold call from a brand nobody has heard of, and it only pays once the work above it is done.</p>
+  </div>
+  <img class="photo-right screen-right" src="serp-solo.png" alt="Google search results for meet people traveling solo">
+</section>
+
+<!-- AI: PAUL'S OPINION. Richard: the board WILL ask, and this is the bit he wants bottled. -->
+<section class="slide">
+  <div class="ai-head h-block">AI runs through <em>all of it.</em></div>
+  <div class="ai-panels">
+    <div class="ai-panel">
+      <h4>A thinking partner</h4>
+      <p>Interrogating a plan, finding the gaps in your own process, arguing with your assumptions before the market does. This is the use most teams never get to.</p>
+    </div>
+    <div class="ai-panel">
+      <h4>Speed of execution</h4>
+      <p>Making the work faster to produce, so more of the budget goes into ideas and reach and less into production. Speed is the obvious use. It is not the biggest one.</p>
+    </div>
+    <div class="ai-panel">
+      <h4>Repeatable systems</h4>
+      <p>Turning the things you do every week into workflows that run the same way every time, so the team is freed up for the work that only humans can do.</p>
+    </div>
+  </div>
+  <div class="ai-foot">
+    <div class="lbl">What I would ask of a marketing team today</div>
+    <div class="line">Be curious. <em>Think critically.</em> Keep pushing at the edge of what it can do, because the edge moves every month.</div>
   </div>
 </section>
 
-<!-- 26 QUESTIONS 4-6 -->
+<!-- SUMMARY + BRIDGE TO RICHARD. Richard's explicit ask: all the principles on one slide, AI as the enabler, hand over. -->
 <section class="slide">
-  <div class="h-block" style="position:absolute; left:56px; top:12vh; font-size:7vh">Six questions <em>for this board.</em></div>
-  <div class="qcards">
-    <div class="qcard c3"><div class="qn">Question 04</div><div class="qt">Is buying us as easy as thinking of us?</div><div class="qa">&rarr; CRM and Lifecycle Engine</div></div>
-    <div class="qcard c1"><div class="qn">Question 05</div><div class="qt">Is there a human idea behind our AI?</div><div class="qa">&rarr; AI-informed Insight; Creative Engine tooling</div></div>
-    <div class="qcard c2"><div class="qn">Question 06</div><div class="qt">How do we know it works before trading shows it?</div><div class="qa">&rarr; Measurement and Decisioning Engine</div></div>
+  <div class="sum-head h-block">The principles, <em>in one place.</em></div>
+  <div class="sum-cols">
+    <div class="sum-col">
+      <span class="sum-pill">Mental availability<small>Easy to think of</small></span>
+      <div class="sum-item"><span>01</span>Come to mind when the trigger fires. Category entry points, not awareness.</div>
+      <div class="sum-item"><span>02</span>Penetration drives customer growth. Loyalty has a ceiling.</div>
+      <div class="sum-item"><span>03</span>Build distinctive brand assets. Table stakes, and measurable.</div>
+      <div class="sum-item"><span>04</span>One big idea, run for decades. Assets get you recognised. An idea makes you mean something.</div>
+      <div class="sum-item"><span>05</span>Aim for fame. It moves every business metric, and dull is the expensive option.</div>
+    </div>
+    <div class="sum-col">
+      <span class="sum-pill">Physical availability<small>Easy to buy</small></span>
+      <div class="sum-item"><span>06</span>Make buying as easy as thinking of you. The app and the site are the bottle.</div>
+      <div class="sum-item"><span>07</span>Search captures demand, it does not create it. Essential, but not the brand.</div>
+    </div>
+  </div>
+  <div class="sum-ai">And an <em>AI-enabled marketing team</em> is how you do all seven faster, and how you keep finding the gaps.</div>
+  <div class="sum-bridge">Those are the principles. Richard&rsquo;s strategic questions are already working through every one of them.</div>
+</section>
+
+<!-- RICHARD 1: FIVE QUESTIONS FOR THIS BOARD -->
+<section class="slide">
+  <div class="qt-head h-block">Five questions <em>for this board.</em></div>
+  <div class="qtable">
+    <div class="qt-row head">
+      <div class="qt-n"></div><div class="qt-q">The question</div><div class="qt-t">The tension</div><div class="qt-j">Marketing&rsquo;s job</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">1</div>
+      <div class="qt-q">Are we building against the real entry points?</div>
+      <div class="qt-t">Growth that adds bookings is not the same as growth that adds value.</div>
+      <div class="qt-j">Acquire the valuable customer type, deliberately.</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">2</div>
+      <div class="qt-q">Too few know us. Fewer know what we stand for.</div>
+      <div class="qt-t">Recognition is not meaning.</div>
+      <div class="qt-j">Build one creative idea, and the assets that carry it.</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">3</div>
+      <div class="qt-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
+      <div class="qt-t">Search only reaches people who are already ready to buy.</div>
+      <div class="qt-j">Create demand before they search.</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">4</div>
+      <div class="qt-q">Is buying us easy? The first time, and every time after?</div>
+      <div class="qt-t">Friction anywhere undoes the investment that got them there.</div>
+      <div class="qt-j">Route new customers right. Keep existing ones close.</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">5</div>
+      <div class="qt-q">How do we know it works before trading shows it?</div>
+      <div class="qt-t">We need proof, not platforms marking their own homework.</div>
+      <div class="qt-j">Build the system that judges results honestly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RICHARD 2: DETAIL Q1-Q3 -->
+<section class="slide">
+  <div class="qd-head h-block">Questions <em>one to three.</em></div>
+  <div class="qd-row">
+    <div class="qd-card">
+      <div class="qd-n">Question 01</div>
+      <div class="qd-q">Are we building against the real entry points?</div>
+      <div class="qd-t">Growth that adds bookings is not the same as growth that adds value.</div>
+      <ul>
+        <li>8x the margin. Social members vs non-social, &euro;35 vs &euro;4. Engaged members 11x, at &euro;46.</li>
+        <li>New social members outnumber non-social every quarter, 0.83m vs 0.45m. The mix is improving. It needs accelerating.</li>
+        <li>6 entry points identified. Find My People and Cheap Bed validating first, the rest through H2.</li>
+      </ul>
+      <div class="qd-eng">&rarr; Customer and Cohort Intelligence Engine</div>
+    </div>
+    <div class="qd-card">
+      <div class="qd-n">Question 02</div>
+      <div class="qd-q">Too few know us. Fewer know what we stand for.</div>
+      <div class="qd-t">Recognition is not meaning. No single idea, and no distinctive assets yet.</div>
+      <ul>
+        <li>UK test, quality execution alone: +40% click-through.</li>
+        <li>Tracksuit: 12% aware against a 34% category in the UK. Among those who are aware, social association is already above 50%.</li>
+      </ul>
+      <div class="qd-eng">&rarr; Brand Positioning and Creative Engine</div>
+    </div>
+    <div class="qd-card">
+      <div class="qd-n">Question 03</div>
+      <div class="qd-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
+      <div class="qd-t">Search only reaches people who are already ready to buy.</div>
+      <ul>
+        <li>Search reaches roughly 5% of the category that is in market today.</li>
+        <li>EU test: +12% new customers, with 1.5 to 2.5x payback inside the year.</li>
+        <li>660k+ Instagram brand tags, 2.5m+ followers. A creator-led, long-term compounding play.</li>
+      </ul>
+      <div class="qd-eng">&rarr; Demand Creation Engine + Unmissable Social Engine</div>
+    </div>
+  </div>
+</section>
+
+<!-- RICHARD 3: DETAIL Q4-Q5 -->
+<section class="slide">
+  <div class="qd-head h-block">Questions <em>four and five.</em></div>
+  <div class="qd-row">
+    <div class="qd-card">
+      <div class="qd-n">Question 04</div>
+      <div class="qd-q">Is buying us easy? The first time, and every time after?</div>
+      <div class="qd-t">Friction anywhere between wanting to book and booking again undoes the investment that got them there in the first place.</div>
+      <ul>
+        <li>At the click, for new customers. Route straight to the app, not to mobile web. Correctly routed clicks already convert at 3.9% against 2.7% on web.</li>
+        <li>After the fact, for existing customers. CRM migrates past web bookers onto the app and keeps the brand in mind between trips. Win-back of roughly 940k lapsed customers is proven. Second booking and home-city events are piloting.</li>
+      </ul>
+      <div class="qd-eng">&rarr; CRM, Lifecycle and Web-to-App Engine</div>
+    </div>
+    <div class="qd-card">
+      <div class="qd-n">Question 05</div>
+      <div class="qd-q">How do we know it works before trading shows it?</div>
+      <div class="qd-t">We need a system that judges results over the right timeframe, not just the click.</div>
+      <ul>
+        <li>Meta self-reported 87% incremental. The independent check said 67%.</li>
+        <li>Effects take time to land. Roughly a 3-week onset and 6 to 10 weeks of carryover. Day-to-day attribution misses this, and cannot referee whether spend created new demand.</li>
+        <li>Build it properly. Tracksuit reads the market moving. Live incrementality testing is the referee. Channel attribution stays in its lane, sharpened, but not the judge.</li>
+      </ul>
+      <div class="qd-eng">&rarr; Measurement and Decisioning Engine</div>
+    </div>
+  </div>
+</section>
+
+<!-- RICHARD 4: H2 PRIORITIES -->
+<section class="slide">
+  <div class="h2-head h-block">H2 <em>priorities.</em></div>
+  <div class="h2-row">
+    <div class="h2-box">
+      <h4>Mean<br>something</h4>
+      <ul>
+        <li>Craft the Hostelworld creative platform. Agency briefed, first work in October.</li>
+        <li>Define the positioning and the distinctive codes.</li>
+        <li>Build the Creative Engine: GenAI plus human craft.</li>
+      </ul>
+    </div>
+    <div class="h2-box">
+      <h4>Create<br>demand</h4>
+      <ul>
+        <li>Scale proven paid social. EU now, with a pipeline of around 10 markets.</li>
+        <li>Unmissable Social Engine, phase one. Creator-led, by entry point.</li>
+        <li>The signal is app downloads, not revenue.</li>
+      </ul>
+    </div>
+    <div class="h2-box">
+      <h4>Reclaim and<br>reallocate</h4>
+      <ul>
+        <li>Release roughly &euro;3m to &euro;4m a year that has no measurable effect.</li>
+        <li>Redirect Meta traffic to the app.</li>
+        <li>Test which affiliate partners are genuinely incremental.</li>
+      </ul>
+    </div>
+    <div class="h2-box">
+      <h4>Invest and<br>deepen</h4>
+      <ul>
+        <li>Win-back of roughly 940k lapsed customers. CRM-led, and proven.</li>
+        <li>Web-to-app migration. CRM-led, and proven.</li>
+        <li>Piloting: second booking, and home-city events. Not yet proven, and partly product-dependent.</li>
+      </ul>
+    </div>
+    <div class="h2-box">
+      <h4>Prove it&rsquo;s<br>working</h4>
+      <ul>
+        <li>Live incrementality testing referees every scale decision.</li>
+        <li>Brand tracking with Tracksuit, robust by August.</li>
+        <li>Sharpen attribution. Useful for efficiency, but not the judge.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -529,8 +808,11 @@ document.addEventListener('click', (e)=>{
   const lb = e.target.closest('.lightbox');
   if(lb){ if(e.target.closest('.lightbox-close') || e.target === lb) closeLightboxes(); return; }
   const sv = e.target.closest('video.svid');
-  if(sv){ // click-to-play with sound; click again to pause
-    if(sv.paused){ sv.muted = false; sv.play(); } else { sv.pause(); }
+  if(sv){ // click-to-play with sound; click again to pause. only one film plays at a time.
+    if(sv.paused){
+      slides[cur].querySelectorAll('video').forEach(v=>{ if(v!==sv) v.pause(); });
+      sv.muted = false; sv.play();
+    } else { sv.pause(); }
     return;
   }
   if(e.target.closest('a, video')) return;
