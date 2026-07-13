@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>See the direction before you pick it</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF8;
+    --panel:#FFFFFF;
+    --text:#1C1B19;
+    --muted:#6E6C67;
+    --line:#E4E1DB;
+    --accent:#1F5C4D;
+    --accent-soft:#EDF3F1;
+    --warn:#8A4B1E;
+    --warn-soft:#FBF1E9;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:24px}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--sans);font-weight:300;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{display:flex;max-width:1400px;margin:0 auto;gap:0}
+
+  aside{
+    width:280px;flex:0 0 280px;
+    position:sticky;top:0;height:100vh;
+    overflow-y:auto;padding:48px 32px 48px 40px;
+    border-right:1px solid var(--line);
+  }
+  aside .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:8px;
+  }
+  aside h2{font-size:19px;font-weight:600;line-height:1.3;margin-bottom:28px;letter-spacing:-0.2px}
+  aside nav a{
+    display:block;padding:7px 0;font-size:14px;color:var(--muted);
+    text-decoration:none;border-left:2px solid transparent;padding-left:12px;
+    margin-left:-14px;transition:color .2s,border-color .2s;
+  }
+  aside nav a:hover{color:var(--accent);border-left-color:var(--accent)}
+  aside nav a .n{font-family:var(--mono);font-size:11px;margin-right:8px;opacity:.6}
+  aside nav .grp{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+    color:#A9A69F;margin:22px 0 6px;
+  }
+
+  main{flex:1;min-width:0;padding:64px 72px 140px;max-width:900px}
+
+  header.hero{padding-bottom:44px;margin-bottom:56px;border-bottom:1px solid var(--line)}
+  header.hero .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:18px;
+  }
+  header.hero h1{
+    font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-1px;margin-bottom:22px;
+  }
+  header.hero .lede{font-size:20px;color:var(--muted);line-height:1.6;font-weight:300}
+  header.hero .lede strong{color:var(--text);font-weight:500}
+
+  section{margin-bottom:80px;scroll-margin-top:24px}
+  section > .phase{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;
+  }
+  h2{font-size:32px;font-weight:600;line-height:1.2;letter-spacing:-0.6px;margin-bottom:20px}
+  h3{font-size:20px;font-weight:600;margin:38px 0 14px;letter-spacing:-0.2px}
+  h4{font-size:16px;font-weight:600;margin:26px 0 8px}
+  p{margin-bottom:16px}
+  p strong,li strong{font-weight:600}
+  a{color:var(--accent)}
+
+  ul,ol{margin:0 0 18px 22px}
+  li{margin-bottom:8px}
+
+  code{
+    font-family:var(--mono);font-size:13.5px;
+    background:#F1EFEA;padding:2px 6px;color:#3A3833;
+  }
+  pre{
+    background:#1C1B19;color:#E8E5DE;padding:22px 24px;overflow-x:auto;
+    margin:18px 0 24px;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  }
+  pre code{background:none;color:inherit;padding:0;font-size:13.5px}
+
+  table{width:100%;border-collapse:collapse;margin:20px 0 26px;font-size:15.5px}
+  th{
+    text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--muted);font-weight:500;
+    padding:0 16px 10px 0;border-bottom:1px solid var(--line);
+  }
+  td{padding:13px 16px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:500}
+
+  .say{
+    background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--accent);
+    padding:20px 24px;margin:20px 0 26px;
+  }
+  .say .label{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;
+  }
+  .say p{margin:0 0 10px;font-style:italic;color:#3A3833}
+  .say p:last-child{margin-bottom:0}
+
+  .note{
+    background:var(--accent-soft);border-left:2px solid var(--accent);
+    padding:18px 22px;margin:22px 0;
+  }
+  .note.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+  .note p:last-child{margin-bottom:0}
+  .note .h{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:8px;
+  }
+  .note.warn .h{color:var(--warn)}
+
+  .rules{counter-reset:r;margin:24px 0 0;padding:0;list-style:none}
+  .rules li{
+    counter-increment:r;position:relative;padding:16px 0 16px 46px;
+    border-bottom:1px solid var(--line);margin:0;font-size:16.5px;
+  }
+  .rules li:before{
+    content:counter(r);position:absolute;left:0;top:16px;
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    border:1px solid var(--line);width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  figure{margin:26px 0 30px}
+  figure img{width:100%;display:block;border:1px solid var(--line)}
+  figcaption{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.3px;color:var(--muted);
+    margin-top:10px;line-height:1.6;
+  }
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:26px 0 30px}
+  .pair figure{margin:0}
+
+  footer{
+    margin-top:90px;padding-top:32px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.3px;
+  }
+
+  @media (max-width:1000px){
+    aside{display:none}
+    main{padding:40px 24px 90px}
+    header.hero h1{font-size:34px}
+    header.hero .lede{font-size:18px}
+    h2{font-size:26px}
+    .pair{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="kicker">Skill guide</div>
+  <h2>See the direction before you pick it</h2>
+  <nav>
+    <a href="#top"><span class="n">00</span>What this is</a>
+    <div class="grp">Set up once</div>
+    <a href="#install"><span class="n">1</span>Install it</a>
+    <a href="#token"><span class="n">2</span>Your own token</a>
+    <div class="grp">Use it</div>
+    <a href="#homepage"><span class="n">3</span>Restyle a homepage</a>
+    <a href="#billboard"><span class="n">4</span>Make a billboard</a>
+    <a href="#prompt"><span class="n">5</span>Writing the prompt</a>
+    <div class="grp">Reality</div>
+    <a href="#truth"><span class="n">6</span>What it cannot do</a>
+    <a href="#fail"><span class="n">7</span>When it goes wrong</a>
+    <a href="#short"><span class="n">→</span>The short version</a>
+  </nav>
+</aside>
+
+<main id="top">
+
+<header class="hero">
+  <div class="tag">Skill guide / pinterest</div>
+  <h1>See the direction before you pick it</h1>
+  <p class="lede">Choosing a look by talking about it is a bad way to choose a look. Everyone nods at "warm, human, a bit editorial" and everyone is picturing something different. <strong>This turns a Pinterest pin into a picture of your actual site in that world, in about two minutes, for about three cents.</strong> Then you argue about something real.</p>
+</header>
+
+<section id="what">
+  <div class="phase">What it is</div>
+  <h2>A pin goes in, your brand comes out</h2>
+
+  <p>You find a pin. Any pin. A film still, an old campaign poster, a magazine spread, someone else's website. You paste it to Claude Code and say what you want. It pulls the image down, reads the aesthetic out of it, and generates your brand living inside it.</p>
+
+  <p>It does two different things, and they are worth keeping straight in your head because they work in opposite directions.</p>
+
+  <table>
+    <tr><th>Surface</th><th>What it does</th></tr>
+    <tr>
+      <td>Homepage</td>
+      <td>Takes a screenshot of your <strong>real, live homepage</strong> and re-renders it in the pin's look. Same layout, same nav, same headline, same photo of you. New world. This is the one that makes people sit up, because they are looking at their own page.</td>
+    </tr>
+    <tr>
+      <td>Billboard</td>
+      <td>Generates a fresh cinematic scene of the brand in that aesthetic, and lays your real headline over it. Nothing is being restyled here. It is being invented.</td>
+    </tr>
+  </table>
+
+  <p>Here is the homepage one, run on a real site. The pin was a 1960 Kennedy campaign poster. Nobody redesigned anything. The site is untouched. This is a photograph of a possibility.</p>
+
+  <div class="pair">
+    <figure>
+      <img src="aubrey-live-homepage.png" alt="The real homepage, before">
+      <figcaption>Before. The live page.</figcaption>
+    </figure>
+    <figure>
+      <img src="aubrey-jfk-homepage.png" alt="The same homepage in the aesthetic of a 1960 campaign poster">
+      <figcaption>After. The same page, same nav, same photo, in the pin's two inks.</figcaption>
+    </figure>
+  </div>
+
+  <div class="note">
+    <div class="h">Why it works on people</div>
+    <p>A moodboard asks someone to do the imagining. This does the imagining for them. The argument stops being "do you like this aesthetic" and starts being "do you want to be this", which is the argument you actually wanted to have.</p>
+  </div>
+</section>
+
+<section id="install">
+  <div class="phase">Set up once</div>
+  <h2>Install it</h2>
+
+  <p>Unzip the kit into your project so it sits at exactly this path:</p>
+
+<pre><code>your-project/
+  .claude/
+    skills/
+      pinterest/
+        SKILL.md
+        SETUP.md
+        requirements.txt
+        scripts/</code></pre>
+
+  <p>That is the whole installation. The folder being called <code>pinterest</code>, with a <code>SKILL.md</code> directly inside it, <em>is</em> how Claude Code finds it. There is no config file, no registration step, nothing to switch on. If you want it in every project instead of just this one, put it at <code>~/.claude/skills/pinterest/</code> instead.</p>
+
+  <p>Restart Claude Code, type <code>/pinterest</code>, and it should be there.</p>
+
+  <p>Then install the four packages it leans on. From inside the <code>pinterest</code> folder:</p>
+
+<pre><code>pip3 install -r requirements.txt
+python3 -m playwright install chromium</code></pre>
+
+  <p>The second line downloads a browser with no windows, which is what takes the screenshot of your live site and what prints crisp text onto the images. It is a large download and it will look like it has frozen. It has not.</p>
+</section>
+
+<section id="token">
+  <div class="phase">Set up once</div>
+  <h2>Get your own token</h2>
+
+  <p>The images are generated by a model called Seedream, which you reach through a service called Replicate. Replicate charges per image. So you need your own account, and your own key, on your own card. Full steps are in <code>SETUP.md</code>, but it is three minutes:</p>
+
+  <ol class="rules">
+    <li>Make an account at <a href="https://replicate.com">replicate.com</a> and add a card. Pay as you go, no subscription.</li>
+    <li>Copy your token from <a href="https://replicate.com/account/api-tokens">replicate.com/account/api-tokens</a>. It starts with <code>r8_</code>.</li>
+    <li>Put <code>export REPLICATE_API_TOKEN='r8_your_token'</code> at the bottom of <code>~/.zshrc</code>, save, and open a <strong>new</strong> terminal. The old one will never see it.</li>
+  </ol>
+
+  <div class="note warn">
+    <div class="h">The one rule about the token</div>
+    <p>Never paste it into a document, a chat, a shared file or a repo. Anyone holding it can spend your money. It lives in one file on your laptop and nowhere else. If you think it has got out, revoke it on that same Replicate page and make a new one. Ten seconds, costs nothing.</p>
+  </div>
+
+  <h3>What it actually costs</h3>
+
+  <table>
+    <tr><th>Thing</th><th>Cost</th></tr>
+    <tr><td>Pulling the pin</td><td>Free</td></tr>
+    <tr><td>Screenshotting your live site</td><td>Free</td></tr>
+    <tr><td>Laying the headline on</td><td>Free</td></tr>
+    <tr><td><strong>Generating an image</strong></td><td><strong>About 3 cents</strong></td></tr>
+  </table>
+
+  <p>Ten directions, generated two or three times each while you circle in on it, is about a dollar. This is not something to budget for. It is something to be aware of, which is a different thing. The skill is built to stop and show you a gate check before it spends anything, and if it ever generates without showing you that first, it is broken and you should tell it so.</p>
+</section>
+
+<section id="homepage">
+  <div class="phase">Use it</div>
+  <h2>Restyle a homepage</h2>
+
+  <p>Find a pin. Then say this to Claude Code, in whatever words come naturally:</p>
+
+  <div class="say">
+    <div class="label">Say</div>
+    <p>Take aubreymccarthy.com and show me the homepage in the aesthetic of this pin: [paste the link]</p>
+  </div>
+
+  <p>What it will do, in order: screenshot the live page, download the pin, look at both, write you a short read of the aesthetic (palette, type, texture, mood), then stop and show you a gate check with the exact prompt it intends to send. You say yes. Sixty seconds later there is a PNG.</p>
+
+  <p>The screenshot of your real page is the important part, and it is the part people get wrong. It goes in as the <em>structure</em>. That is why the nav survives, why the headline survives, why the photograph of you is still the photograph of you. Without it the model just makes a nice picture that has nothing to do with your site, and a nice picture proves nothing.</p>
+</section>
+
+<section id="billboard">
+  <div class="phase">Use it</div>
+  <h2>Make a billboard</h2>
+
+  <div class="say">
+    <div class="label">Say</div>
+    <p>Make a billboard in the aesthetic of this pin: [link]. The headline is "A time for greatness".</p>
+  </div>
+
+  <p>Two things happen here that are worth knowing about, because they are where all the quality lives.</p>
+
+  <p><strong>The empty band.</strong> Before it writes a word of the prompt, it decides where the text is going and reserves that part of the frame as deliberately empty. Open sky, a blank wall, a flat field of colour. If you skip this, the model happily fills every inch of the frame and your headline lands across somebody's face.</p>
+
+  <p><strong>The text goes on afterwards.</strong> The model cannot spell. It will produce something that looks like your headline from across the room and is complete gibberish up close. So the scene is generated first, and then the real type is printed onto it in a browser, sharp, at double resolution. That is why you get two files: the raw scene, and the finished thing. Keep the raw scene. Re-typesetting a new headline onto it is free. Generating it again is not.</p>
+</section>
+
+<section id="prompt">
+  <div class="phase">Use it</div>
+  <h2>Writing the prompt, if you want to write it yourself</h2>
+
+  <p>You mostly do not have to. But the difference between a flat result and a good one is nearly always in three words, so it is worth knowing what they are.</p>
+
+  <ul>
+    <li><strong>Name the inks, not the mood.</strong> "Deep petrol teal and aged cream newsprint" beats "vintage feel" every time.</li>
+    <li><strong>Say the thing is photographed.</strong> "Photographed on location, shot on 35mm film" pulls it out of illustration and into the real world.</li>
+    <li><strong>Say what is empty, as a fraction.</strong> "The entire top quarter is open sky with nothing in it."</li>
+    <li><strong>Say what must not change.</strong> "Keep the top navigation bar, the headline and the body paragraph in their current positions, so it still reads as a real website homepage."</li>
+  </ul>
+</section>
+
+<section id="truth">
+  <div class="phase">Reality</div>
+  <h2>What it cannot do, and will not learn to do</h2>
+
+  <p>This matters more than any of the above, because it is the thing that will embarrass you if you do not know it.</p>
+
+  <div class="note warn">
+    <div class="h">The body copy will be nonsense</div>
+    <p>Zoom into the paragraphs on any restyled homepage and the words are mush. Real-looking mush, correct shape, correct rhythm, complete gibberish. That is not a bug in the prompt and no amount of re-prompting fixes it. Image models do not write text, they draw the shape of text.</p>
+  </div>
+
+  <p>So be honest with yourself about what you are holding. <strong>This is a vibe shot, not a deployable page.</strong> It is for a conversation, a positioning deck, a decision between three directions. It is not a design file, it is not a spec, and nobody can build from it. Show it at the size it works at, which is the size a person sees a page at, and do not invite anyone to lean in.</p>
+
+  <p>If one headline genuinely has to be perfect, say so, and the skill will print it on crisply afterwards. That part is real type and it holds up to any amount of zooming.</p>
+</section>
+
+<section id="fail">
+  <div class="phase">Reality</div>
+  <h2>When it goes wrong, which it will</h2>
+
+  <p>Every one of these has actually happened. None of them are mysterious once you know the cause.</p>
+
+  <table>
+    <tr><th>What you get</th><th>What to say</th></tr>
+    <tr>
+      <td>Your homepage came back as a poster or a newspaper, complete with fake printed columns</td>
+      <td>The pin <em>was</em> a poster and the model followed the pin harder than it followed your page. Say: "this is a website, not a poster. No printed columns, no fake headlines."</td>
+    </tr>
+    <tr>
+      <td>The background got the treatment but the person's face is still in normal colour, like a cutout pasted on</td>
+      <td>Say: "the portrait itself is fully duotone, with no original colour left in the face."</td>
+    </tr>
+    <tr>
+      <td>You asked for flat vector and got something soft, rendered and airbrushed</td>
+      <td>"Flat" is a weak word to a model. Say: "hard-edged flat vector shapes, no gradients, no shading, no soft light."</td>
+    </tr>
+    <tr>
+      <td>The headline is sitting on someone's face</td>
+      <td>No empty band was reserved. Go back and reserve one. This is a prompt failure, not bad luck.</td>
+    </tr>
+  </table>
+
+  <h3>The one case where this method is the wrong tool</h3>
+
+  <p>If the pin is <em>itself a web design</em>, rather than a photograph or a poster or a film still, this fights you. Image models are very good at scenes and quite bad at interfaces. You will get the colour and the warmth and none of the crispness. When that happens the honest route is to generate the illustration on its own and build the page around it in real HTML, and the skill will tell you so rather than pretending.</p>
+</section>
+
+<section id="short">
+  <div class="phase">Reference</div>
+  <h2>The short version</h2>
+
+  <ol class="rules">
+    <li>Unzip the kit to <code>.claude/skills/pinterest/</code>, run the two install lines, put your Replicate token in <code>~/.zshrc</code>.</li>
+    <li>Find a pin. Anything. A poster, a film still, a magazine page.</li>
+    <li>Say: "show me our homepage in the aesthetic of this pin", and paste the link.</li>
+    <li>Read the gate check. That is the moment before it spends money. Say yes.</li>
+    <li>Look at what comes back, properly, at the size a person would see it.</li>
+    <li>Remember the body copy is gibberish and the picture is an argument, not an artefact.</li>
+  </ol>
+</section>
+
+<footer>
+  Run with Foxes / the pinterest skill / built for the Aubrey McCarthy site build
+</footer>
+
+</main>
+</div>
+</body>
+</html>
