@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build your own website with Claude Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF8;
+    --panel:#FFFFFF;
+    --text:#1C1B19;
+    --muted:#6E6C67;
+    --line:#E4E1DB;
+    --accent:#1F5C4D;
+    --accent-soft:#EDF3F1;
+    --warn:#8A4B1E;
+    --warn-soft:#FBF1E9;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:24px}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:var(--sans);font-weight:300;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{display:flex;max-width:1400px;margin:0 auto;gap:0}
+
+  /* ---------- sidebar ---------- */
+  aside{
+    width:280px;flex:0 0 280px;
+    position:sticky;top:0;height:100vh;
+    overflow-y:auto;padding:48px 32px 48px 40px;
+    border-right:1px solid var(--line);
+  }
+  aside .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:8px;
+  }
+  aside h2{font-size:19px;font-weight:600;line-height:1.3;margin-bottom:28px;letter-spacing:-0.2px}
+  aside nav a{
+    display:block;padding:7px 0;font-size:14px;color:var(--muted);
+    text-decoration:none;border-left:2px solid transparent;padding-left:12px;
+    margin-left:-14px;transition:color .2s,border-color .2s;
+  }
+  aside nav a:hover{color:var(--accent);border-left-color:var(--accent)}
+  aside nav a .n{font-family:var(--mono);font-size:11px;margin-right:8px;opacity:.6}
+  aside nav .grp{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;
+    color:#A9A69F;margin:22px 0 6px;
+  }
+
+  /* ---------- main ---------- */
+  main{flex:1;min-width:0;padding:64px 72px 140px;max-width:900px}
+
+  header.hero{padding-bottom:44px;margin-bottom:56px;border-bottom:1px solid var(--line)}
+  header.hero .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:18px;
+  }
+  header.hero h1{
+    font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-1px;margin-bottom:22px;
+  }
+  header.hero .lede{font-size:20px;color:var(--muted);line-height:1.6;font-weight:300}
+  header.hero .lede strong{color:var(--text);font-weight:500}
+
+  section{margin-bottom:80px;scroll-margin-top:24px}
+  section > .phase{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;
+  }
+  h2{font-size:32px;font-weight:600;line-height:1.2;letter-spacing:-0.6px;margin-bottom:20px}
+  h3{font-size:20px;font-weight:600;margin:38px 0 14px;letter-spacing:-0.2px}
+  h4{font-size:16px;font-weight:600;margin:26px 0 8px}
+  p{margin-bottom:16px}
+  p strong,li strong{font-weight:600}
+  a{color:var(--accent)}
+
+  ul,ol{margin:0 0 18px 22px}
+  li{margin-bottom:8px}
+
+  code{
+    font-family:var(--mono);font-size:13.5px;
+    background:#F1EFEA;padding:2px 6px;color:#3A3833;
+  }
+  pre{
+    background:#1C1B19;color:#E8E5DE;padding:22px 24px;overflow-x:auto;
+    margin:18px 0 24px;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  }
+  pre code{background:none;color:inherit;padding:0;font-size:13.5px}
+
+  table{width:100%;border-collapse:collapse;margin:20px 0 26px;font-size:15.5px}
+  th{
+    text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--muted);font-weight:500;
+    padding:0 16px 10px 0;border-bottom:1px solid var(--line);
+  }
+  td{padding:13px 16px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:500;white-space:nowrap}
+
+  .say{
+    background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--accent);
+    padding:20px 24px;margin:20px 0 26px;
+  }
+  .say .label{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;
+  }
+  .say p{margin:0 0 10px;font-style:italic;color:#3A3833}
+  .say p:last-child{margin-bottom:0}
+
+  .note{
+    background:var(--accent-soft);border-left:2px solid var(--accent);
+    padding:18px 22px;margin:22px 0;
+  }
+  .note.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+  .note p:last-child{margin-bottom:0}
+  .note .h{
+    font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:8px;
+  }
+  .note.warn .h{color:var(--warn)}
+
+  .test{margin:18px 0 26px}
+  .test div{
+    padding:10px 0 10px 30px;border-bottom:1px solid var(--line);position:relative;font-size:16px;
+  }
+  .test div:before{
+    position:absolute;left:0;top:10px;font-family:var(--mono);font-size:14px;font-weight:500;
+  }
+  .test .no:before{content:"✕";color:#B3453A}
+  .test .yes:before{content:"✓";color:var(--accent)}
+  .test .no{color:var(--muted)}
+  .test code{font-size:14px}
+
+  .bans{
+    display:grid;grid-template-columns:1fr 1fr;gap:0 32px;
+    margin:20px 0 26px;
+  }
+  .bans div{
+    padding:9px 0 9px 24px;border-bottom:1px solid var(--line);position:relative;font-size:15px;
+  }
+  .bans div:before{content:"✕";position:absolute;left:0;top:9px;color:#B3453A;font-family:var(--mono);font-size:13px}
+
+  .rules{counter-reset:r;margin:24px 0 0;padding:0;list-style:none}
+  .rules li{
+    counter-increment:r;position:relative;padding:16px 0 16px 46px;
+    border-bottom:1px solid var(--line);margin:0;font-size:16.5px;
+  }
+  .rules li:before{
+    content:counter(r);position:absolute;left:0;top:16px;
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    border:1px solid var(--line);width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  footer{
+    margin-top:90px;padding-top:32px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.3px;
+  }
+
+  @media (max-width:1000px){
+    aside{display:none}
+    main{padding:40px 24px 90px}
+    header.hero h1{font-size:34px}
+    header.hero .lede{font-size:18px}
+    h2{font-size:26px}
+    .bans{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="kicker">Training guide</div>
+  <h2>Build your own website with Claude Code</h2>
+  <nav>
+    <a href="#top"><span class="n">00</span>Start here</a>
+    <a href="#kit"><span class="n">→</span>The kit</a>
+    <div class="grp">Before any code</div>
+    <a href="#p0"><span class="n">0</span>Get set up</a>
+    <a href="#p1"><span class="n">1</span>Find the aesthetic</a>
+    <a href="#p2"><span class="n">2</span>Write the brand spec</a>
+    <a href="#p3"><span class="n">3</span>Messaging framework</a>
+    <div class="grp">Build</div>
+    <a href="#p4"><span class="n">4</span>Scaffold the site</a>
+    <a href="#p5"><span class="n">5</span>Wire the brand in</a>
+    <a href="#p6"><span class="n">6</span>Build the pages</a>
+    <div class="grp">Ship</div>
+    <a href="#p7"><span class="n">7</span>Deploy to Vercel</a>
+    <a href="#p8"><span class="n">8</span>Living with it</a>
+    <a href="#p9"><span class="n">9</span>The chatbot</a>
+    <div class="grp">Reference</div>
+    <a href="#short"><span class="n">→</span>The short version</a>
+  </nav>
+</aside>
+
+<main id="top">
+
+<header class="hero">
+  <div class="tag">Training guide / for Thomas</div>
+  <h1>Build your own website with Claude Code</h1>
+  <p class="lede">You are going to build a website by talking to your laptop. Not a template, not a page builder. A real Next.js site, every pixel yours, deployed on Vercel, that you change by <strong>saying what you want out loud</strong>.</p>
+</header>
+
+<section>
+  <p>The hard part is not the code. Claude Code writes the code, and it writes it well.</p>
+  <p>The hard part is that an agent with no constraints will happily make you a <em>different website</em> every time you ask it for a page. Rounded corners here, a gradient there, a headline in Title Case because it felt right in the moment. Ten pages in, you have ten designs and no brand.</p>
+  <p>So this guide front-loads the boring bit. Before you write a single line of code you build two documents: a <strong>brand spec</strong> and a <strong>messaging framework</strong>. They are the contract. Once they exist, every new page is a lookup rather than a negotiation. That is the whole trick, and it is the reason this works when it works.</p>
+  <div class="note">
+    <div class="h">How to read this</div>
+    <p>Nine phases, in order. Phases 1 to 3 contain no code at all. Do not skip them. They are the ones that decide whether you have a website or a pile of pages.</p>
+  </div>
+</section>
+
+<section id="kit">
+  <div class="phase">Two artefacts</div>
+  <h2>This page, and the kit</h2>
+  <p>There are two things here, and they are for two different readers.</p>
+  <p><strong>This page is for you.</strong> It explains why each phase exists and what a good decision looks like. Read it once, end to end, before you start.</p>
+  <p><strong>The kit is for your laptop.</strong> It sits in the <code>kit/</code> folder next to this file: seven files you paste straight into Claude Code. They are literal and complete. Where this page says <em>"the audit gate is what saves you"</em>, the kit contains the actual <code>CLAUDE.md</code> with the gate already written into it, ready to drop into your repo.</p>
+  <table>
+    <tr><th>File</th><th>When</th><th>What it does</th></tr>
+    <tr><td>00-README</td><td>First</td><td>How to use the kit, and the one idea everything else follows from.</td></tr>
+    <tr><td>01-brand-extraction</td><td>Phase 1</td><td>Three prompts that make Claude pull an aesthetic out of your screengrabs and then argue with you about it.</td></tr>
+    <tr><td>02-BRAND.template</td><td>Phase 2</td><td>The empty brand spec. Ten sections, with the checkable-rule test baked in.</td></tr>
+    <tr><td>03-MESSAGING.template</td><td>Phase 3</td><td>The empty messaging framework.</td></tr>
+    <tr><td>04-CLAUDE.template</td><td>Phase 5</td><td><strong>The most important file in the project.</strong> The always-on law and the audit gate.</td></tr>
+    <tr><td>05-build-prompts</td><td>Phase 6</td><td>The exact prompts for the styleguide, each page, and the change loop.</td></tr>
+    <tr><td>06-deploy</td><td>Phase 7</td><td>Deploy, domain, rollback, and the two things that will bite you.</td></tr>
+    <tr><td>07-chatbot</td><td>Phase 9</td><td>Real code. The API route, the widget, and the prompt that stops it inventing things.</td></tr>
+  </table>
+  <div class="note">
+    <div class="h">Read the page, paste the kit</div>
+    <p>Do not paste the kit blindly. The templates have brackets in them that only you can fill. But once they are filled, they are the contract, and everything after that gets easier.</p>
+  </div>
+</section>
+
+<!-- PHASE 0 -->
+<section id="p0">
+  <div class="phase">Phase 0</div>
+  <h2>Get set up</h2>
+  <p>Five things. Twenty minutes.</p>
+
+  <h3>The accounts</h3>
+  <table>
+    <tr><th>What</th><th>Where</th><th>Why</th></tr>
+    <tr><td>GitHub</td><td>github.com</td><td>Your code lives here. Vercel watches it. Every change is saved forever and you can always go back to a version that worked. Free.</td></tr>
+    <tr><td>Vercel</td><td>vercel.com</td><td>Your hosting. Sign up <strong>with your GitHub account</strong>, not with email. That link is what makes deploys automatic. The free tier is genuinely enough.</td></tr>
+    <tr><td>Your domain</td><td>wherever you bought it</td><td>You have one. You will point it at Vercel in Phase 7.</td></tr>
+    <tr><td>Anthropic key</td><td>console.anthropic.com</td><td>Only for the chatbot in Phase 9. Skip it for now.</td></tr>
+  </table>
+
+  <h3>The tools on your laptop</h3>
+  <table>
+    <tr><th>What</th><th>How</th><th>Why</th></tr>
+    <tr><td>Node.js</td><td>nodejs.org, take the LTS build</td><td>Next.js runs on it. If <code>node --version</code> prints a number, you already have it.</td></tr>
+    <tr><td>Git</td><td>ships with macOS. <code>git --version</code> to check</td><td>Talks to GitHub.</td></tr>
+    <tr><td>Claude Code</td><td>you have it</td><td>The one doing the work.</td></tr>
+    <tr><td>SuperWhisper<br>or Monologue</td><td>superwhisper.com / monologue.to</td><td>This is how you talk to your laptop. Either is fine.</td></tr>
+  </table>
+
+  <h3>Set up voice properly, it matters more than you think</h3>
+  <p>You are about to dictate long, precise instructions for weeks. Get this right now and the build is a pleasure. Get it wrong and you will fight it the whole way.</p>
+  <ol>
+    <li><strong>Pick one push-to-talk key and never change it.</strong> Hold, speak, release. Do not use always-on listening, or you will eventually dictate half a phone call into your terminal.</li>
+    <li><strong>Add a custom vocabulary</strong> if your tool supports it. Feed it the words it will mangle: Next.js, Vercel, Tailwind, npm, repo, hex, viewport, and your own brand and product names. Whisper models turn "Vercel" into "Verso" and "Versailles" with real enthusiasm.</li>
+    <li><strong>Read what it typed before you hit enter.</strong> Every time. A transcription slip in a hex code is a silent bug. A slip in a filename is a file you did not mean to touch.</li>
+    <li><strong>Speak in whole thoughts.</strong> Voice rewards this. One paragraph beats five short commands.</li>
+  </ol>
+  <div class="note">
+    <div class="h">The one habit that changes everything</div>
+    <p><strong>Describe the outcome, not the code.</strong> Say "the nav feels cramped on mobile", not "add horizontal padding of 6 to the nav". You are the client and the art director. Let it be the builder. It is better at being a builder than you are, and you are better at knowing what looks right.</p>
+  </div>
+</section>
+
+<!-- PHASE 1 -->
+<section id="p1">
+  <div class="phase">Phase 1 / no code</div>
+  <h2>Find the aesthetic</h2>
+  <p>You do not have a design. Good. You are not going to invent one from nothing and you are not going to pick a template. You are going to <strong>steal an aesthetic and make it yours</strong>, which is what every designer who has ever lived actually does.</p>
+
+  <h3>Collect the evidence</h3>
+  <p>Go and find <strong>ten to fifteen websites you genuinely admire</strong>. Not competitors. Anything at all. A furniture shop, a magazine, a bank, a Japanese stationery brand. Range is good, because the pattern that survives across very different sites is the pattern that is actually yours.</p>
+  <p>For each one, take these screengrabs. On a Mac, <code>Cmd + Shift + 4</code>, then drag a box.</p>
+  <ol>
+    <li><strong>The full homepage,</strong> top to bottom. Use a full-page capture if you can, or three or four grabs down the page.</li>
+    <li><strong>One section you love,</strong> close in. The hero. A card grid. The footer.</li>
+    <li><strong>The typography,</strong> tight. Zoom the browser to 150% and grab a heading with a paragraph under it, so the <em>relationship</em> between the two sizes is visible. That relationship is most of what you are responding to.</li>
+    <li><strong>A button.</strong> Seriously. Buttons carry far more brand than people realise.</li>
+    <li><strong>The mobile view.</strong> In Chrome: right-click, Inspect, click the phone icon, choose an iPhone, grab it.</li>
+  </ol>
+  <p>All of them into one folder, named so you can talk about them: <code>01-kinfolk-homepage.png</code>, <code>01-kinfolk-type.png</code>, <code>02-monzo-buttons.png</code>.</p>
+
+  <h3>Write down why, before Claude tells you</h3>
+  <p>Two lines per site in a text file next to the images. What you like, what you hate. Do this <em>before</em> you show Claude anything, because the moment it starts describing them back to you it will anchor you and you will quietly lose your own opinion.</p>
+
+  <h3>Now hand them over</h3>
+  <div class="say">
+    <div class="label">Say this</div>
+    <p>"Look at every image in this folder. For each site, tell me what makes it feel the way it does. Be specific and physical: how much white space, how big is the type, how many colours are actually on the page, are the corners sharp or round, is there any shadow, does anything move. Then find the pattern across all of them and tell me what I seem to be drawn to. Do not be polite about it. If my taste is inconsistent, say so and show me where."</p>
+  </div>
+  <p>That last sentence earns its place. You want the contradictions surfaced now, not in Phase 6.</p>
+  <p>Then push it:</p>
+  <div class="say">
+    <div class="label">Then say this</div>
+    <p>"Give me three different directions I could take, each one a paragraph, each one a real choice with a real trade-off. Do not give me a safe middle option."</p>
+  </div>
+  <p>Pick one. Or take pieces from each. But <strong>decide</strong>, and say out loud what you decided and why. That sentence becomes the first line of your brand spec.</p>
+
+  <div class="note warn">
+    <div class="h">The one rule for this phase</div>
+    <p><strong>Do not let it copy a site.</strong> You are extracting a feeling, not cloning a layout. Ask for "a homepage like Stripe's" and you will get a bad Stripe. Ask for "the calm, generous white space and the one-accent-colour discipline that Stripe has, applied to my brand", and you will get yours.</p>
+  </div>
+</section>
+
+<!-- PHASE 2 -->
+<section id="p2">
+  <div class="phase">Phase 2 / no code</div>
+  <h2>Write the brand spec</h2>
+  <p>This is the most important document in the project.</p>
+  <p>A brand spec is not a mood board. It is <strong>a contract an agent cannot argue with</strong>. Every rule in it has to be mechanically checkable. If a rule cannot be checked, it is not a rule, it is a vibe, and a vibe will not survive contact with page four.</p>
+
+  <h3>The test for every single line</h3>
+  <p><strong>Could a script check this?</strong></p>
+  <div class="test">
+    <div class="no">"Modern and clean." Not a rule. Means nothing. Delete it.</div>
+    <div class="no">"Approachable but professional." Same. Delete it.</div>
+    <div class="yes">"The accent colour is <code>#3A7CA5</code> and it is the only saturated colour on the page."</div>
+    <div class="yes">"No border-radius anywhere. Corners are sharp."</div>
+    <div class="yes">"Body text is 16px, weight 300, line-height 1.7."</div>
+    <div class="yes">"Transitions are 0.3s ease, and only on <code>transform</code> and <code>opacity</code>."</div>
+    <div class="yes">"Headings are sentence case. Never Title Case."</div>
+  </div>
+  <p>Numbers, hex codes, and flat bans. That is the entire vocabulary.</p>
+
+  <h3>The ten sections</h3>
+  <p>Ask Claude to draft each one from your screengrabs and your chosen direction, then argue with it until every line passes the test above.</p>
+  <table>
+    <tr><th>#</th><th>Section</th><th>What it must contain</th></tr>
+    <tr><td>1</td><td>Colours</td><td>Every colour as a hex code, with the CSS variable name and what it is for. Then the rules: which colour is the only loud one, what never goes on what, what is banned. Keep the palette small. Two neutrals, one accent, one dark. If you are at seven colours you have not made a decision.</td></tr>
+    <tr><td>2</td><td>Typography</td><td>The full scale as a table: hero, section heading, sub-heading, body, small, label. For each: family, size in px, weight, letter-spacing, where it is used. Then the rules. Which weights are allowed. Sentence case or not.</td></tr>
+    <tr><td>3</td><td>Logo</td><td>How it is built, what colour, how much clear space, what you may never do to it.</td></tr>
+    <tr><td>4</td><td>Layout &amp; spacing</td><td>Container max-width. Section padding, desktop and mobile. A spacing scale you are allowed to use (8, 16, 24, 32, 48, 64, 96) and a ban on any number outside it. How wide body copy may run.</td></tr>
+    <tr><td>5</td><td>Components</td><td>Buttons in every state, exact colours, exact type. Cards. Links. Form fields. Rendered as real examples, not descriptions.</td></tr>
+    <tr><td>6</td><td>Motion</td><td>Durations, easing, and what is allowed to animate: <code>transform</code> and <code>opacity</code>, essentially nothing else, because everything else makes the page stutter. Three or four moments of motion per page. Not more. Must respect <code>prefers-reduced-motion</code>, always.</td></tr>
+    <tr><td>7</td><td>Imagery</td><td>What kind, what treatment, what is banned. "No stock photography" is a real and excellent rule.</td></tr>
+    <tr><td>8</td><td>Responsive</td><td>Your breakpoints, with the exact padding and type changes at each one.</td></tr>
+    <tr><td>9</td><td>Voice</td><td>Not adjectives. Examples. Five real sentences you would be happy to publish, five you would not, and why.</td></tr>
+    <tr><td>10</td><td>Never do this</td><td>A flat list of bans. Fifteen to twenty of them.</td></tr>
+  </table>
+
+  <h3>Section 10 does most of the work</h3>
+  <p>Write it last, once you know what you hate. It will look something like this:</p>
+  <div class="bans">
+    <div>Rounded corners</div>
+    <div>Gradients</div>
+    <div>Drop shadows</div>
+    <div>Pure black or pure white</div>
+    <div>Title Case headings</div>
+    <div>Em dashes</div>
+    <div>Stock photography</div>
+    <div>Emoji as decoration</div>
+    <div>Decorative icons</div>
+    <div>Text on a photo with no scrim</div>
+    <div>A second accent colour</div>
+    <div>Content hidden behind hover</div>
+    <div>Animating layout properties</div>
+    <div>Ignoring prefers-reduced-motion</div>
+  </div>
+  <div class="note">
+    <div class="h">Why this section matters</div>
+    <p><strong>A rule phrased as a ban is a rule an agent cannot negotiate with.</strong> "Keep it clean" is an invitation to interpret. "No gradients" is not.</p>
+  </div>
+
+  <div class="say">
+    <div class="label">Say this</div>
+    <p>"Turn what we agreed into a brand spec. Every rule must be something a script could check: a hex code, a number, or a flat ban. If you write a line I could not check, delete it and replace it with one I could. Use these ten sections: colours, typography, logo, layout and spacing, components, motion, imagery, responsive, voice, never-do-this. End with at least fifteen flat prohibitions."</p>
+  </div>
+</section>
+
+<!-- PHASE 3 -->
+<section id="p3">
+  <div class="phase">Phase 3 / no code</div>
+  <h2>Write the messaging framework</h2>
+  <p>Paul will do this one with you, and it is worth an hour of his time. Here is what it is, so you turn up ready.</p>
+  <p>A messaging framework stops you renegotiating what the whole thing <em>is</em> every time you write a headline. Same principle as the brand spec, applied to words instead of pixels.</p>
+  <p>Five sections, top down. Each feeds the next, so do not skip ahead.</p>
+
+  <h3>1. Core value proposition</h3>
+  <ul>
+    <li><strong>The one line.</strong> It has to survive "so what?"</li>
+    <li><strong>Functional benefit.</strong> Concretely, what it does.</li>
+    <li><strong>Emotional benefit.</strong> What internal state it resolves.</li>
+    <li><strong>Social benefit.</strong> What choosing you says about the person choosing. Skip it if it is not really true. A forced one is worse than none.</li>
+  </ul>
+
+  <h3>2. Positioning</h3>
+  <p>The strategic anchor. Everything downstream hangs off this one.</p>
+  <ul>
+    <li><strong>Category.</strong> Be precise. "HRIS technology consulting", not "consulting".</li>
+    <li><strong>Target audience.</strong> A role, in a situation, with a tension, that creates a need. Not a demographic.</li>
+    <li><strong>What makes you different.</strong> <em>One</em> thing. Not a feature list. If you have three, you have none.</li>
+    <li><strong>The statement,</strong> filled in: <em>"For [audience] who [tension], [brand] is the [category] that [key benefit] because [proof]."</em></li>
+  </ul>
+
+  <h3>3. Messaging pillars</h3>
+  <p>Three or four. Each a genuinely different dimension. If two overlap, merge them. For each pillar:</p>
+  <ul>
+    <li><strong>Name.</strong> Short, specific, memorable. "Quality service" is not a pillar.</li>
+    <li><strong>Claim.</strong> The belief you want the market to accept.</li>
+    <li><strong>Proof points.</strong> Facts, numbers, named things. <strong>Real ones.</strong> Never invent a proof point. If you have not got one, the pillar is not ready.</li>
+    <li><strong>Competitive contrast.</strong> What others do worse, specifically.</li>
+  </ul>
+
+  <h3>4. Messaging hierarchy</h3>
+  <p>Most important message to least.</p>
+  <ul>
+    <li><strong>Hero message.</strong> The billboard.</li>
+    <li><strong>Primary headline.</strong> The rational backing underneath it.</li>
+    <li><strong>Approved lines.</strong> A small bank of exact phrases, pre-cleared, so you are not rewriting your own boilerplate at midnight.</li>
+  </ul>
+
+  <h3>5. Voice and tone</h3>
+  <ul>
+    <li>One sentence, using a metaphor. "Like a smart colleague sharing war stories over coffee."</li>
+    <li>Four to six writing principles as <strong>"X, not Y"</strong> pairs. The contrast is what makes them usable.</li>
+    <li>A never-use list. Actual banned words.</li>
+  </ul>
+
+  <div class="note">
+    <div class="h">The rule that makes it operational</div>
+    <p>When you ask Claude for copy, it must <strong>cite</strong> which pillar and which proof point it used. Not "theme around" the framework. Cite it.</p>
+    <p style="margin-top:10px;font-style:italic">"Before you write, tell me which pillar this page leads with and which proof point backs it. Then write. Then list which framework elements you used."</p>
+    <p style="margin-top:10px">Without that, a pillar quietly decays into a loose label within a fortnight and you are back to making it up as you go.</p>
+  </div>
+</section>
+
+<!-- PHASE 4 -->
+<section id="p4">
+  <div class="phase">Phase 4</div>
+  <h2>Scaffold the site</h2>
+  <p>Now we build. Open your terminal.</p>
+<pre><code>cd ~/projects            # or wherever you keep things
+npx create-next-app@latest my-site</code></pre>
+  <p>It asks you some questions. Answer:</p>
+  <table>
+    <tr><th>Question</th><th>Answer</th></tr>
+    <tr><td>TypeScript</td><td>Yes</td></tr>
+    <tr><td>ESLint</td><td>Yes</td></tr>
+    <tr><td>Tailwind CSS</td><td>Yes</td></tr>
+    <tr><td><code>src/</code> directory</td><td>Yes</td></tr>
+    <tr><td>App Router</td><td>Yes</td></tr>
+    <tr><td>Turbopack</td><td>Yes</td></tr>
+    <tr><td>Custom import alias</td><td>No</td></tr>
+  </table>
+<pre><code>cd my-site
+npm run dev</code></pre>
+  <p>Open <strong>http://localhost:3000</strong>. That is your site, running on your laptop. Leave that terminal running. Every change appears there instantly.</p>
+  <p>Now put it on GitHub, <em>before</em> you write anything, so you can always get back:</p>
+<pre><code>git init
+git add -A
+git commit -m "Fresh Next.js scaffold"
+gh repo create my-site --private --source=. --push</code></pre>
+  <p>If <code>gh</code> is not installed: <code>brew install gh</code>, then <code>gh auth login</code>.</p>
+  <div class="note">
+    <div class="h">Commit constantly</div>
+    <p>Every time something works, commit it. It is your undo button, it costs nothing, and it is the difference between a bad ten minutes and a bad afternoon.</p>
+  </div>
+</section>
+
+<!-- PHASE 5 -->
+<section id="p5">
+  <div class="phase">Phase 5 / the important one</div>
+  <h2>Wire the brand in so it cannot be ignored</h2>
+  <p>This is where most people go wrong. They write a beautiful brand document, put it in a folder, and then wonder why page four has rounded corners.</p>
+  <div class="note warn">
+    <div class="h">Read this twice</div>
+    <p><strong>A rule in a document is not a gate. It is a note.</strong> A gate is something that <em>blocks</em>. If a failure matters, it needs a check that stops the work.</p>
+  </div>
+  <p>You need four layers. Each one exists for a different reader.</p>
+
+  <h3>Layer 1. <code>CLAUDE.md</code> at the root of the repo</h3>
+  <p>Claude Code reads this automatically at the start of every session in that folder, forever. It is the always-on law. Keep it <strong>short and terse</strong>. This is not the place for the full spec, it is the place for the things that must never be forgotten.</p>
+<pre><code># my-site
+
+Next.js + Tailwind. Deployed on Vercel from `main`.
+
+## Brand (law)
+- Accent: #3A7CA5 (--accent). The only saturated colour on any page.
+- Dark:   #1A3A4E (--dark). Not black. Never use #000.
+- Background: #FAFAF8 (--bg). Never pure white.
+- Text:  #1D1B1B (--text).
+- Fonts: JetBrains Mono (default), Space Grotesk (display only).
+- Full spec: docs/BRAND.md. Read it before building any page.
+- Messaging: docs/MESSAGING.md. Read it before writing any copy.
+
+## Never
+- No rounded corners. No gradients. No box-shadows.
+- No Title Case. Sentence case everywhere.
+- No em dashes.
+- No stock photography.
+- Never animate anything except transform and opacity.
+- Never commit to main without running `npm run build` first.</code></pre>
+
+  <h3>Layer 2. The tokens, in real CSS</h3>
+  <p>The actual values in <code>globals.css</code> as CSS custom properties, mirrored into your Tailwind config. This is ground truth. If a colour is not in here, it does not exist.</p>
+<pre><code>:root {
+  --bg:     #FAFAF8;
+  --text:   #1D1B1B;
+  --accent: #3A7CA5;
+  --dark:   #1A3A4E;
+  --muted:  #8A8A85;
+}</code></pre>
+
+  <h3>Layer 3. The full spec at <code>docs/BRAND.md</code></h3>
+  <p>Your Phase 2 document, in full, in the repo. <code>CLAUDE.md</code> points at it. This is the file that answers "what exactly is the accent colour used for". Put the messaging framework beside it at <code>docs/MESSAGING.md</code>.</p>
+  <div class="note">
+    <div class="h">One source of truth</div>
+    <p>When you later write helper prompts or skills, they must <strong>point at</strong> this file, never copy it. The moment you have two copies of your brand spec they begin drifting apart, and you will not notice until the day they contradict each other.</p>
+  </div>
+
+  <h3>Layer 4. The audit gate, which is the one that actually saves you</h3>
+  <p>This is the step that separates a site which stays on-brand from one that slowly rots. <strong>Make it check its own work before it shows you anything.</strong> Add this to <code>CLAUDE.md</code>:</p>
+<pre><code>## Before showing me any new or changed page, you MUST:
+1. Run `npm run build`. It must pass.
+2. Grep the file for every banned pattern and paste the results:
+   - `rounded`, `border-radius`  -> must be zero hits
+   - `gradient`                  -> must be zero hits
+   - `shadow`                    -> must be zero hits
+   - hex codes                   -> every one must be in the palette above
+3. Screenshot the page at 1440px and at 390px, and LOOK at both.
+4. Show me a table: check | what I grepped | expected | found | pass/fail.
+Do not tell me it is done until every row passes.</code></pre>
+  <p>Blunt, mechanical, and it works. An agent cannot mark its own homework "looks good to me" if you have told it exactly what to grep for.</p>
+
+  <h4>Layer 5, optional, once you are shipping regularly</h4>
+  <p>A <code>brand.json</code> holding your palette, your allowed fonts and a CSS never-list (<code>maxBorderRadiusPx: 0</code>, <code>noGradient: true</code>, <code>noBoxShadow: true</code>), plus a small script that measures a rendered screenshot against it. Overkill on day one. Worth it by page twenty.</p>
+</section>
+
+<!-- PHASE 6 -->
+<section id="p6">
+  <div class="phase">Phase 6</div>
+  <h2>Build the pages</h2>
+  <p>Now it is fun, and it is fast.</p>
+
+  <h3>Build the design system before the pages</h3>
+  <p>Do not start with the homepage. Start with the alphabet.</p>
+  <div class="say">
+    <div class="label">Say this</div>
+    <p>"Build me a page at /styleguide that renders every element in docs/BRAND.md: the full type scale, every colour swatch with its hex and variable name, every button state, the card, the form fields. Live rendered, not described. This page is for me to check the system, it will not be public."</p>
+  </div>
+  <p>Look at it. Fix it here. Everything downstream inherits from it, so an hour spent now saves ten later. This page is also your future public <code>/brand</code> page, the human-readable mirror of the spec. Keep it.</p>
+
+  <h3>Then the pages, one at a time</h3>
+  <p>Wireframe in words first, always:</p>
+  <div class="say">
+    <div class="label">Say this</div>
+    <p>"Before you write any code, describe the about page to me section by section. What is in each one, what does it do, why is it in that order. Do not code yet."</p>
+  </div>
+  <p>Argue with the structure. <em>Then</em> let it build. Structure first, then prose, and the approved structure never drifts.</p>
+
+  <h3>The loop, once it is on screen</h3>
+  <p>This is where you will spend most of your time, and it is all voice.</p>
+  <div class="say">
+    <div class="label">Things you will say a lot</div>
+    <p>"The gap between the heading and the paragraph is too tight."</p>
+    <p>"That accent colour is doing too much work on this page. Pull it back to just the links."</p>
+    <p>"This section is fine but it is boring. Give me three other ways to lay it out and show me all three."</p>
+    <p>"It looks wrong on my phone. Screenshot it at 390 wide and tell me what is broken."</p>
+  </div>
+  <div class="note">
+    <div class="h">The most useful sentence in this guide</div>
+    <p><strong>"Screenshot it and look at it."</strong> Make it show you, not tell you. An agent will happily describe a beautiful page that it has never actually looked at.</p>
+  </div>
+
+  <h3>And when it goes sideways</h3>
+  <p>It will. A change will break something else. When it does, do not patch forward.</p>
+<pre><code>git diff              # what did it actually change
+git checkout .        # throw it away, start that instruction again</code></pre>
+  <p>This is why you commit constantly. A bad ten minutes should cost you ten minutes.</p>
+</section>
+
+<!-- PHASE 7 -->
+<section id="p7">
+  <div class="phase">Phase 7</div>
+  <h2>Deploy to Vercel</h2>
+  <p>The good news: about four minutes.</p>
+  <ol>
+    <li>Go to <strong>vercel.com</strong>, log in with GitHub.</li>
+    <li><strong>Add New → Project.</strong> It lists your repos. Pick <code>my-site</code>.</li>
+    <li>It detects Next.js on its own. Change nothing. Click <strong>Deploy</strong>.</li>
+    <li>A minute later you have a live URL like <code>my-site-xyz.vercel.app</code>. That is your site, on the internet.</li>
+  </ol>
+
+  <h3>What just happened, and why it is the good bit</h3>
+  <p>Vercel is now <strong>watching your GitHub repo</strong>. From here on:</p>
+<pre><code>git add -A
+git commit -m "New about page"
+git push</code></pre>
+  <p>and it is live in about a minute. That is your entire deploy process, forever. <strong>"Commit" now means "publish".</strong> Get comfortable with that.</p>
+
+  <h3>Your domain</h3>
+  <p>In Vercel: <strong>Project → Settings → Domains → Add.</strong> Type your domain. Vercel tells you exactly which DNS records to create. Go to wherever you bought the domain, paste them in, wait. Usually minutes, occasionally a couple of hours. Vercel handles the SSL certificate itself, so you get HTTPS without lifting a finger.</p>
+
+  <h3>The two things that will bite you</h3>
+  <div class="note warn">
+    <div class="h">Remember these</div>
+    <p><strong>1. Vercel only deploys <code>main</code>.</strong> If you are working on a branch, your changes are not live no matter how many times you commit.</p>
+    <p style="margin-top:10px"><strong>2. It builds on Vercel's machine, not yours.</strong> A page that works locally can still fail the deploy. This is exactly why <code>npm run build</code> before every push is written into your <code>CLAUDE.md</code>. If it builds locally, it will build there.</p>
+  </div>
+
+  <h3>Preview deploys, free and excellent</h3>
+  <p>Push a branch instead of <code>main</code> and Vercel builds a private URL for that branch alone. Send it to Paul. He looks, he comments, and nothing on the live site has moved. Merge to <code>main</code> when you are happy.</p>
+</section>
+
+<!-- PHASE 8 -->
+<section id="p8">
+  <div class="phase">Phase 8</div>
+  <h2>Living with it</h2>
+  <p>The site is live. Now it is a thing you own and change constantly. Four habits that decide whether this is a joy or a chore.</p>
+
+  <h4>Orient it at the start of every session</h4>
+  <p>Claude Code reads <code>CLAUDE.md</code> automatically, but say it anyway: <em>"Read docs/BRAND.md and docs/MESSAGING.md before you touch anything today."</em></p>
+
+  <h4>Keep <code>CLAUDE.md</code> alive</h4>
+  <p>Every time you catch yourself correcting the same thing twice, that correction is a missing rule. Add it. <em>"Add that to CLAUDE.md as a permanent rule so I never have to say it again."</em> That is how the file earns its keep, and how the site gets easier to build rather than harder.</p>
+
+  <h4>One job per session</h4>
+  <p>Do not do the pricing page and the nav and the blog in one conversation. Long conversations drift, and so does the work in them.</p>
+
+  <h4>Never let it say "done" without evidence</h4>
+  <p>Not "I've updated the page." Show me the build passing, show me the screenshot, show me the audit table. Reading a diff and finding it convincing is not proof that a page works.</p>
+</section>
+
+<!-- PHASE 9 -->
+<section id="p9">
+  <div class="phase">Phase 9</div>
+  <h2>The chatbot</h2>
+  <p>Once the site is live and stable. It is genuinely not hard. Three pieces.</p>
+
+  <h3>1. An API key</h3>
+  <p>From console.anthropic.com. Put it in a file called <code>.env.local</code> at the root of the project:</p>
+<pre><code>ANTHROPIC_API_KEY=sk-ant-...</code></pre>
+  <div class="note warn">
+    <div class="h">Do not get this wrong</div>
+    <p><strong>Check <code>.env.local</code> is in your <code>.gitignore</code>.</strong> With your own eyes. A key pushed to GitHub is compromised within minutes, and deleting it afterwards does not help, because it is already in the history and already scraped. Never paste a key into a document, a chat, or a page.</p>
+    <p style="margin-top:10px">Add it in <strong>Vercel → Settings → Environment Variables</strong> too, or it will work on your laptop and break in production.</p>
+  </div>
+
+  <h3>2. A server route</h3>
+  <p>At <code>src/app/api/chat/route.ts</code>. It takes the visitor's message, calls the Claude API, returns the answer. The key stays on the server and never reaches the browser.</p>
+
+  <h3>3. A chat widget, in your brand</h3>
+  <p>Not a bubble in somebody else's colours. Yours. It obeys <code>docs/BRAND.md</code> like every other component.</p>
+
+  <h3>The bit that actually matters: what it knows</h3>
+  <p>A chatbot that knows nothing is a toy. A chatbot that makes things up is a liability.</p>
+  <ul>
+    <li><strong>Give it a system prompt built from your messaging framework.</strong> It should sound like the brand because it has been handed the brand.</li>
+    <li><strong>Give it only your real content.</strong> Your pages, your positions, your facts. Nothing else.</li>
+    <li><strong>Tell it explicitly what to do when it does not know.</strong> <em>"If you do not know, say so and offer to put them in touch. Never guess a figure, a date, a position or a commitment."</em></li>
+  </ul>
+  <p>That last rule is not optional. An agent will invent a plausible-sounding answer if you do not forbid it, and it will do so in a warm, confident, entirely convincing tone. On a public-facing site, a made-up answer is a quote you did not say.</p>
+
+  <div class="say">
+    <div class="label">Say this</div>
+    <p>"Build me a chat widget in the site's brand, with an API route that calls Claude. The system prompt should be built from docs/MESSAGING.md and the real content of my pages, and nothing else. It must refuse to invent figures, dates, positions or commitments, and should offer to put the person in touch with me instead. Keep the key server-side only, and check it is gitignored."</p>
+  </div>
+</section>
+
+<!-- SHORT VERSION -->
+<section id="short">
+  <div class="phase">Reference</div>
+  <h2>The short version</h2>
+  <p>Pin this somewhere.</p>
+  <ol class="rules">
+    <li><strong>Screengrabs before decisions.</strong> Steal an aesthetic, do not clone a site.</li>
+    <li><strong>A rule that cannot be checked is not a rule.</strong> Hex codes, numbers, flat bans.</li>
+    <li><strong>A rule in a doc is not a gate.</strong> Put it in <code>CLAUDE.md</code> and make it grep for its own violations before it shows you anything.</li>
+    <li><strong>One source of truth.</strong> Point at the spec. Never copy it.</li>
+    <li><strong>Structure before prose.</strong> Wireframe in words, argue, then build.</li>
+    <li><strong>Make it show you, not tell you.</strong> Screenshot it and look at it.</li>
+    <li><strong>Commit constantly.</strong> It is your undo button and it is free.</li>
+    <li><strong>Describe the outcome, not the code.</strong> You are the art director, not the builder.</li>
+    <li><strong>Correcting the same thing twice means a rule is missing.</strong> Go and write it.</li>
+  </ol>
+</section>
+
+<footer>
+  Written for Thomas / Run with Foxes / July 2026
+</footer>
+
+</main>
+</div>
+</body>
+</html>
