@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 //  - SoftCo media:        softco_auth
 //  - Presentation app:    presentation_auth  (the "AI at Sabre" working session)
 //  - Ardán proposal:      ardan_auth  (static proposal assets under /proposals/ardan)
+//  - ARI proposal:        ari_auth    (static proposal assets under /proposals/ari)
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -40,6 +41,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/ari/")) {
+    if (req.cookies.get("ari_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -50,5 +57,6 @@ export const config = {
     "/proposals/ardan/:path*",
     "/proposals/kapture/:path*",
     "/proposals/data-intelligence/:path*",
+    "/proposals/ari/:path*",
   ],
 };

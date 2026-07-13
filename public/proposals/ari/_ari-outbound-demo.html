@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Outbound Agent · a Run with Foxes product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  /* full site nav (the new product-page standard) */
+  .nav{ display:flex; align-items:center; max-width:1120px; margin:0 auto; padding:18px 40px; }
+  .nav .logo{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; letter-spacing:2px; color:var(--muted); text-decoration:none; }
+  .nav .logo span{ color:var(--fox-orange); }
+  .nav .sp{ flex:1; }
+  .nav .links{ display:flex; gap:26px; align-items:center; }
+  .nav .nlink{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--text); text-decoration:none; }
+  .nav .nlink:hover{ color:var(--sky-blue); }
+  .nav .nlink.cta{ color:var(--sky-blue); }
+  @media(max-width:680px){ .nav .links{ gap:16px; } .nav .nlink{ font-size:11px; } }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: the agent console (brief in -> a campaign of bespoke messages out) */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:24px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .oa-demo{ border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); }
+  .oa-prompt{ display:flex; align-items:center; gap:11px; padding:13px 16px; border-bottom:1px solid var(--border); background:var(--card-hover); }
+  .oa-caret{ color:var(--sky-blue); font-weight:500; font-family:'JetBrains Mono',monospace; }
+  .oa-cmd{ flex:1; min-width:0; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--text); }
+  .oa-run{ flex:none; background:var(--sky-blue); color:var(--bg); border:none; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; padding:9px 16px; transition:background .2s; }
+  .oa-run:hover{ background:#2F6688; }
+  .oa-hint{ padding:46px 16px; text-align:center; color:var(--muted); font-size:12px; font-family:'JetBrains Mono',monospace; letter-spacing:.3px; }
+  .oa-revealed .oa-hint{ display:none; }
+
+  .oa-board{ display:block; padding:16px; }
+
+  /* stat tiles */
+  .oa-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:12px; }
+  @media(max-width:680px){ .oa-stats{ grid-template-columns:repeat(2,1fr); } }
+  .oa-tile{ border:1px solid var(--border); background:#fff; padding:14px 15px; }
+  .oa-tile .num{ font-family:'Space Grotesk',sans-serif; font-size:29px; font-weight:300; color:var(--sky-blue); line-height:1; letter-spacing:-1px; }
+  .oa-tile .lbl{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:9px; }
+
+  /* main: ring card + composer */
+  .oa-main{ display:grid; grid-template-columns:236px 1fr; gap:12px; align-items:start; }
+  @media(max-width:680px){ .oa-main{ grid-template-columns:1fr; } }
+  .oa-card{ border:1px solid var(--border); background:#fff; }
+  .oa-card-h{ padding:10px 14px; border-bottom:1px solid var(--border); background:var(--card-hover); font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .oa-live{ width:7px; height:7px; border-radius:50%; background:#3FAE6E; flex:none; animation:oa-pulse 1.8s infinite; }
+  @keyframes oa-pulse{ 0%{ box-shadow:0 0 0 0 rgba(63,174,110,.5); } 70%{ box-shadow:0 0 0 7px rgba(63,174,110,0); } 100%{ box-shadow:0 0 0 0 rgba(63,174,110,0); } }
+
+  .oa-ringwrap{ padding:24px 18px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .oa-ring{ position:relative; width:150px; height:150px; }
+  .oa-ring svg{ transform:rotate(-90deg); }
+  .oa-ring .track{ fill:none; stroke:var(--border); stroke-width:10; }
+  .oa-ring .bar{ fill:none; stroke:var(--sky-blue); stroke-width:10; stroke-linecap:round; stroke-dasharray:408; stroke-dashoffset:408; transition:stroke-dashoffset 1.5s ease-out; }
+  .oa-revealed .oa-ring .bar{ stroke-dashoffset:0; }
+  .oa-ring .mid{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .oa-ring .mid .big{ font-family:'Space Grotesk',sans-serif; font-size:25px; font-weight:300; color:var(--text); line-height:1; letter-spacing:-.5px; }
+  .oa-ring .mid .small{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+  .oa-ringnote{ margin-top:16px; font-size:12px; line-height:1.6; color:var(--text); }
+  .oa-ringnote b{ font-weight:500; color:var(--sky-blue); }
+
+  /* composer */
+  .oa-rows{ display:flex; flex-direction:column; border-bottom:1px solid var(--border); }
+  .oa-row{ display:flex; align-items:center; gap:10px; padding:9px 14px; border-bottom:1px solid var(--border); cursor:pointer; font-size:12px; transition:background .15s; }
+  .oa-row:last-child{ border-bottom:none; }
+  .oa-row:hover{ background:var(--card-hover); }
+  .oa-row.active{ background:var(--sky-soft); box-shadow:inset 3px 0 0 var(--sky-blue); }
+  .oa-row .dot{ width:6px; height:6px; border-radius:50%; background:#3FAE6E; flex:none; }
+  .oa-row .who{ flex:1; min-width:0; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .oa-row .st{ font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--sky-blue); flex:none; }
+  .oa-msg{ padding:15px 16px; }
+  .oa-msg .subj{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.5px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .oa-msg .subj b{ color:var(--text); text-transform:none; letter-spacing:0; font-weight:400; }
+  .oa-open2{ border-left:3px solid var(--sky-blue); padding:1px 0 1px 14px; min-height:104px; }
+  .oa-open2 .greet{ font-size:13px; line-height:1.75; margin-bottom:9px; }
+  .oa-open2 #oaOpen{ font-size:13px; line-height:1.75; display:inline; }
+  .oa-cursor{ display:inline-block; width:7px; height:15px; background:var(--sky-blue); margin-left:2px; vertical-align:-2px; animation:oa-blink 1s step-end infinite; }
+  @keyframes oa-blink{ 50%{ opacity:0; } }
+  .oa-close2{ border-left:3px solid #D2D2CC; background:#FBFBF9; padding:12px 14px; margin-top:14px; }
+  .oa-close2 p{ font-size:12px; line-height:1.7; color:var(--muted); margin-bottom:8px; }
+  .oa-close2 p:last-child{ margin-bottom:0; }
+  .oa-close2 .sig{ color:var(--text); }
+  .oa-tagrow{ display:flex; flex-wrap:wrap; gap:20px; margin-top:13px; }
+  .oa-tagrow span{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.4px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+  .oa-tagrow span::before{ content:""; width:10px; height:10px; flex:none; }
+  .oa-tagrow .u::before{ background:var(--sky-blue); }
+  .oa-tagrow .s::before{ background:#D2D2CC; }
+  /* honest, real proof strip (process facts, no performance numbers) */
+  .oa-proof{ margin-top:26px; border:1px solid var(--border); border-left:3px solid var(--sky-blue); background:var(--card-hover); padding:18px 20px; }
+  .oa-proof .lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:10px; }
+  .oa-proof p{ font-size:13px; line-height:1.75; color:var(--text); }
+  .oa-proof p + p{ margin-top:8px; }
+  .oa-proof b{ font-weight:500; }
+
+  /* footer */
+  .foot{ border-top:1px solid var(--border); margin-top:44px; padding:56px 0 84px; }
+  .foot h2{ font-size:clamp(24px,3.5vw,36px); letter-spacing:-.7px; margin-bottom:12px; }
+  .foot p{ font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:26px; }
+  .foot-acts{ display:flex; flex-wrap:wrap; gap:18px; align-items:center; }
+  .btn-primary{ display:inline-block; background:var(--sky-blue); color:var(--bg); font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; padding:13px 20px; text-decoration:none; transition:background .2s; }
+  .btn-primary:hover{ background:#2F6688; }
+  .btn-quiet{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  .btn-quiet:hover{ color:var(--text); }
+
+  /* Isa: matched to the live site widget */
+  .isaw{ position:fixed; bottom:24px; right:24px; width:400px; max-width:calc(100vw - 28px); border:1px solid var(--border); background:var(--bg); box-shadow:0 8px 40px rgba(0,0,0,.12); display:none; flex-direction:column; z-index:60; }
+  .isaw.open{ display:flex; animation:isa-enter .25s ease-out; }
+  @keyframes isa-enter{ from{ transform:scale(.9) translateY(10px); opacity:0; } to{ transform:scale(1) translateY(0); opacity:1; } }
+  .isa-h{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); background:var(--bg); }
+  .isa-h .ht{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:400; letter-spacing:2px; text-transform:lowercase; color:var(--text); }
+  .isa-h .x{ background:none; border:none; color:var(--muted); font-size:20px; line-height:1; cursor:pointer; padding:0; transition:color .2s; }
+  .isa-h .x:hover{ color:var(--sky-blue); }
+  .isa-body{ display:flex; flex-direction:column; gap:12px; padding:16px 20px; max-height:340px; overflow-y:auto; }
+  .m{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.7; padding:10px 16px; max-width:85%; }
+  .m.bot{ background:#F0F0EC; color:var(--text); align-self:flex-start; }
+  .m.you{ background:var(--sky-blue); color:#fff; align-self:flex-end; white-space:pre-wrap; }
+  .m a{ color:var(--sky-blue); text-decoration:underline; text-underline-offset:2px; }
+  .isa-in{ display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--border); background:var(--bg); }
+  .isa-in textarea{ flex:1; border:1px solid var(--border); resize:none; height:42px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:300; line-height:1.5; padding:10px 14px; color:var(--text); background:#fff; outline:none; }
+  .isa-in textarea:focus{ border-color:var(--sky-blue); }
+  .isa-in button{ align-self:stretch; background:var(--deep-sky); color:#fff; border:none; cursor:pointer; padding:10px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:400; letter-spacing:1px; text-transform:uppercase; transition:background .2s; }
+  .isa-in button:hover{ background:var(--sky-blue); }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Agent · configured for ARI</div>
+      <h1>Outbound Agent</h1>
+      <div class="sell">
+        <p class="sell-lead">Outbound has always been a job someone has to do by hand. Someone has to decide which colleges are worth approaching, keep track of what is changing at each of them, find the right person in the athletics staff directory, and then write to that person about the thing that has just changed. Doing that properly across a thousand colleges has traditionally required a full-time hire, an agency, or a freelancer. <b>The Outbound Agent carries out that whole job for you.</b></p>
+        <p class="sell-body">ARI already holds the list. There are roughly a thousand Division III and NAIA colleges in the realistic market, and each one publishes a public athletics staff directory, so there is no sourcing phase and no list to buy. The list is also finite, and you only get one chance to make a first approach to each college, so the quality of each message matters more than the volume of messages sent. The agent therefore monitors the full list and only acts when something relevant changes at a particular college: a new athletic director is appointed, a president or VP of enrolment starts asking for recruiting data, a recruiting or athletics role is advertised, or a competitor raises its prices at renewal. <b>The agent then writes to the person concerned about that specific change.</b></p>
+        <p class="sell-rail">The agent works across two channels, email and LinkedIn. It pauses for your approval at three points: when the watch list is set, when the messages are written, and before anything is sent. <b>Nothing is sent and nothing is spent until you approve it.</b> We would build the agent around ARI's positioning and messaging, hand it over to you, and it would run in your own Claude account.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">You give the agent a single instruction, for example <b>"monitor the watch list and write to anyone worth writing to this week"</b>. It then monitors the colleges on the list and takes no action until one of the agreed signals appears. The example below shows the signals that came up in a given week and the messages the agent produced from them. <b>The opening of each message is written from that college's own signal</b>, while the closing section, which describes the product, stays consistent across every message. <!-- TODO: colleges here are described, not named, until the agent is pointed at ARI's real list. Swap in real colleges and real signals from ARI's own watch list before this goes to Ben as live output. --></div>
+
+      <div class="oa-demo" id="oaDemo">
+        <div class="oa-board" id="oaBoard">
+          <div class="oa-stats">
+            <div class="oa-tile"><div class="num" data-to="1000" data-comma="1">0</div><div class="lbl">Colleges watched</div></div>
+            <div class="oa-tile"><div class="num" data-to="9">0</div><div class="lbl">Signals this week</div></div>
+            <div class="oa-tile"><div class="num" data-to="9">0</div><div class="lbl">Messages written</div></div>
+            <div class="oa-tile"><div class="num" data-to="2">0</div><div class="lbl">Channels live</div></div>
+          </div>
+
+          <div class="oa-main">
+            <div class="oa-card">
+              <div class="oa-card-h"><span class="oa-live"></span> Trigger layer</div>
+              <div class="oa-ringwrap">
+                <div class="oa-ring">
+                  <svg width="150" height="150"><circle class="track" cx="75" cy="75" r="65"/><circle class="bar" cx="75" cy="75" r="65"/></svg>
+                  <div class="mid"><span class="big">9/9</span><span class="small">signals written</span></div>
+                </div>
+                <div class="oa-ringnote">In this week, 9 colleges showed a relevant change and were written to. The remaining 991 were not contacted, because nothing had changed at them. <b>No templates are used.</b></div>
+              </div>
+            </div>
+
+            <div class="oa-card">
+              <div class="oa-card-h"><span class="oa-live"></span> Signals · writing live</div>
+              <div class="oa-rows" id="oaRows"></div>
+              <div class="oa-msg">
+                <div class="subj">Signal: <b id="oaSubj">New athletic director appointed</b></div>
+                <div class="oa-open2">
+                  <p class="greet">Hi <span id="oaGreet">Marcus</span>,</p>
+                  <span id="oaOpen"></span><span class="oa-cursor"></span>
+                </div>
+                <div class="oa-close2">
+                  <p>ARI is an athletic CRM and department management suite built for Division III and NAIA colleges. It gives you recruiting metrics across every sport, compliance forms retained for the seven years the NCAA requires for audit, in-app chat with your student athletes, and a real-time bidirectional integration with Slate, so that athletics and admissions are working from the same recruit record.</p>
+                  <p>Hendrix, Macalester, McPherson, Ottawa and Wabash are all customers. I would be glad to walk you through the director's view in twenty minutes.</p>
+                  <p class="sig">Ben Pickrell<br>ARI Athletics</p>
+                </div>
+                <div class="oa-tagrow">
+                  <span class="u">The opening is written for this person, from the signal at their college</span>
+                  <span class="s">The closing section describing the product is consistent across all messages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>',
+  find:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>',
+  filter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.5 10 19 14 21 14 12.5 22 3"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>',
+  eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+  build:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+  inbox:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.5h13l3.5 6.5v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5z"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'A finite list of around 1,000 colleges', end:'Replies in your inbox and meetings in your calendar', nodes:[
+    {type:'node', badge:'1', when:'You ask', icon:'brief', title:'The brief', sub:'You give the agent a single instruction, such as "monitor the watch list and write to anyone worth writing to this week". That is the only input required.'},
+    {type:'node', badge:'2', when:'The list you own', icon:'find', title:'Load the watch list', sub:'The agent loads the Division III and NAIA colleges ARI already holds, roughly a thousand of them. Because there is no list to source or buy, the agent can begin work immediately.'},
+    {type:'node', badge:'3', when:'Public contact data', icon:'eye', title:'Read the staff directories', sub:'Every college publishes a public athletics staff directory. The agent collects the athletic director, the head coaches, the president and the VP of enrolment, and refreshes those records on a schedule.',
+      check:'<strong>Approval point 1:</strong> you approve which colleges go on the watch list.'},
+    {type:'node', badge:'4', when:'Wait for a change', icon:'filter', title:'Monitor for a signal', sub:'The agent monitors each college for the changes that make a conversation worthwhile: a new athletic director is appointed, a president or VP of enrolment starts asking for recruiting data, a recruiting or athletics role is advertised, or a competitor raises its prices at renewal. If nothing changes at a college, the agent does not contact it.'},
+    {type:'node', badge:'5', when:'Then research', icon:'look', title:'Research the individual', sub:'When a signal appears, the agent reads the person\'s LinkedIn profile, the college\'s athletics news, the sports the department runs and how recruiting is handled today. This is the material the message is written from.'},
+    {type:'node', badge:'6', when:'One message at a time', icon:'make', title:'Write the message', sub:'The agent writes a distinct opening for each person, based on the signal at their college, and grounds the rest of the message in ARI\'s positioning: built for Division III and NAIA, the real-time bidirectional Slate integration, compliance forms retained for seven years for NCAA audit, in-app chat with student athletes, and recruiting metrics.',
+      check:'<strong>Quality check:</strong> if an opening line could be sent unchanged to a different college, it is rejected and rewritten. Every factual claim is checked against the source evidence before the message is put forward for approval.'},
+    {type:'node', badge:'7', when:'Loaded by API', icon:'build', title:'Build and load the campaign', sub:'The agent builds a Smartlead campaign for email and a HeyReach sequence for LinkedIn. Each lead carries its own subject line and body, which are resolved at send time, so each recipient receives a message written specifically for them rather than a template with fields swapped in.',
+      check:'<strong>Approval point 2:</strong> you read every message in full before anything is loaded.'},
+    {type:'node', badge:'8', when:'It runs', icon:'ship', title:'Send and follow up', sub:'The agent sends across both channels, within safe daily sending limits. Because the market is finite, each college receives one message about one signal rather than repeated approaches.',
+      check:'<strong>Approval point 3:</strong> you start the campaign. Nothing is sent and nothing is spent before you do.'},
+    {type:'node', badge:'9', when:'Every morning', icon:'inbox', title:'Track the replies', sub:'Each morning the agent checks both channels for replies and emails you a summary: who replied, which college they are at, their role, and the signal the message was written from.'},
+    {type:'node', badge:'10', when:'On a positive reply', icon:'cal', title:'Brief you, then book the meeting', sub:'When someone replies with interest, the agent assembles the background on the college, its sports, the signal and the question they asked, and drafts a response containing your booking link. You arrive at the call already briefed.'}
+  ]},
+  uses:{ groups:[
+    {label:'Channels', cls:'skill', items:['Email','LinkedIn']},
+    {label:'Signals', cls:'skill', items:['a new athletic director is appointed','a new president or VP of enrolment arrives','a president or VP of enrolment asks for recruiting data','a recruiting or athletics role is advertised','a competitor raises prices at renewal','a competitor is acquired']},
+    {label:'Rules', items:['contact a college only when something has changed there','one college, one signal, one message','send within safe daily limits','every hook must come from a source, or the message is dropped','all factual claims verified before approval']},
+    {label:'Approvals', cls:'skill', items:['you approve the watch list','you review every message','you start the campaign']},
+    {label:'Tools', items:['Clay','Apify','Smartlead','HeyReach','your own Claude account']},
+    {label:'Data', items:['the roughly 1,000 D-III and NAIA colleges ARI already holds','public athletics staff directories','job boards and college news','ARI positioning and messaging framework']},
+    {label:'Models', items:['Claude Opus 4.8']},
+    {label:'Memory', items:['which college was contacted, when, and from which signal','who replied and who should be skipped','what was said in the last message']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Experience: the agent console. On arrival -> tiles count up, ring fills, messages write live.
+const oaDemo = document.getElementById('oaDemo');
+const OA_MSGS = [
+  {name:'Marcus', chan:'email', subj:'New athletic director appointed, Division III college in Ohio', open:'Congratulations on the athletic director appointment. One of the earliest requests most new directors receive is for recruiting numbers: how many prospects are in the funnel and how that is changing. That request usually comes from the president\'s office within the first few weeks, and in most departments the answer is spread across a number of separate spreadsheets held by individual coaches.'},
+  {name:'Dana', chan:'linkedin', subj:'New college president asking for recruiting data, NAIA college in Kansas', open:'I understand your new president has begun asking athletics for recruiting data. In most departments that request is difficult to answer quickly, because each sport records its recruiting differently and the information sits in different places. Baseball and lacrosse recruit in very different ways, so a single shared spreadsheet rarely holds up in practice.'},
+  {name:'Tyler', chan:'email', subj:'Recruiting coordinator role advertised, Division III college in Pennsylvania', open:'I saw that you are advertising for a recruiting coordinator. Whoever takes the role will inherit recruiting activity spread across individual coaches, compliance paperwork held in filing cabinets, and no single view of where each recruit stands. That is a difficult first few months, and it is worth putting the right system in place before they start.'},
+  {name:'Renee', chan:'linkedin', subj:'Competitor price rise at renewal, NAIA college in Iowa', open:'I understand your current system is up for renewal and the price has increased again. Another college moved to us at the end of a three-year contract for the same reason: a significant increase on software that had not improved. Our pricing does not change in that way at renewal, and that was the main reason they contacted us.'}
+];
+let oaTyper=null, oaCycle=null;
+function oaCountTiles(){
+  document.querySelectorAll('#oaBoard .num').forEach(n=>{
+    const to=+n.dataset.to, comma=n.dataset.comma; const dur=1100, t0=performance.now();
+    if(reduceMotion){ n.textContent = comma? to.toLocaleString() : to; return; }
+    (function step(now){ const t=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-t,3), v=Math.round(to*e);
+      n.textContent = comma? v.toLocaleString() : v; if(t<1) requestAnimationFrame(step); })(t0);
+  });
+}
+function oaBuildRows(){
+  const rows=document.getElementById('oaRows'); rows.innerHTML='';
+  OA_MSGS.forEach((m,i)=>{
+    const r=el(`<div class="oa-row" data-i="${i}"><span class="dot"></span><span class="who">${m.subj}</span><span class="st">${m.chan}</span></div>`);
+    r.addEventListener('click', ()=>{ if(oaCycle){ clearInterval(oaCycle); oaCycle=null; } oaShow(i); });
+    rows.appendChild(r);
+  });
+}
+function oaShow(i){
+  document.querySelectorAll('#oaRows .oa-row').forEach(r=> r.classList.toggle('active', +r.dataset.i===i));
+  document.getElementById('oaSubj').textContent = OA_MSGS[i].subj;
+  document.getElementById('oaGreet').textContent = OA_MSGS[i].name;
+  const node=document.getElementById('oaOpen'), text=OA_MSGS[i].open;
+  if(oaTyper) clearInterval(oaTyper);
+  if(reduceMotion){ node.textContent=text; return; }
+  node.textContent=''; let k=0;
+  oaTyper=setInterval(()=>{ k++; node.textContent=text.slice(0,k); if(k>=text.length) clearInterval(oaTyper); }, 12);
+}
+let oaStarted=false;
+function oaStart(){
+  if(oaStarted) return; oaStarted=true;
+  oaCountTiles(); oaBuildRows(); oaShow(0);
+  if(!reduceMotion){ let i=0; oaCycle=setInterval(()=>{ i=(i+1)%OA_MSGS.length; oaShow(i); }, 6800); }
+  // defer the class add a frame so the ring fill animates from empty
+  requestAnimationFrame(()=> requestAnimationFrame(()=> oaDemo.classList.add('oa-revealed')));
+}
+oaStart();
+</script>
+<script>
+(function(){function h(){parent.postMessage({rwfEmbed:'outbound',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
+</script>
+</body>
+</html>
