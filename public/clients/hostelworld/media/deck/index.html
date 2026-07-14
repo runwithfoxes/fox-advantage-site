@@ -255,15 +255,49 @@
   .qd-card li b{ font-weight:600; }
   .qd-eng{ margin-top:2vh; padding-top:1.4vh; border-top:1px solid rgba(20,20,20,.25); font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; line-height:1.4; text-transform:uppercase; opacity:.6; }
 
-  /* H2 priorities: five columns, no fills */
+  /* H2 priorities: seven cells (Richard v4) */
   .h2-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
-  .h2-row{ position:absolute; left:56px; right:56px; top:24vh; display:flex; gap:2.4vw; align-items:stretch; }
-  .h2-box{ flex:1; border-top:2px solid var(--ink); padding-top:2vh; display:flex; flex-direction:column; }
-  .h2-box h4{ font-size:2.5vh; line-height:1.2; font-weight:500; margin-bottom:1.6vh; }
-  .h2-box h4 span{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); font-weight:400; margin-bottom:.8vh; }
-  .h2-box ul{ list-style:none; }
-  .h2-box li{ font-size:1.8vh; line-height:1.45; font-weight:400; padding:1.2vh 0; border-top:1px solid rgba(20,20,20,.1); }
 
+
+  /* Richard: THE WHO. argument left, cohort margin chart right. */
+  .who-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+  .who-left{ position:absolute; left:56px; top:19vh; width:40vw; }
+  .who-sub{ font-size:2.4vh; line-height:1.35; font-weight:500; margin-bottom:2vh; }
+  .who-item{ display:flex; gap:14px; align-items:baseline; padding:1.3vh 0; font-size:1.9vh; line-height:1.45; border-top:1px solid rgba(20,20,20,.12); }
+  .who-item span{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.4vh; color:var(--coral); }
+  .who-job{ position:absolute; left:56px; bottom:6vh; width:40vw; border-top:2px solid var(--ink); padding-top:1.6vh; font-size:2.1vh; line-height:1.4; }
+  .who-panel{ position:absolute; right:56px; top:14vh; width:46vw; }
+  .who-ct{ font-size:2.2vh; line-height:1.3; font-weight:500; margin-bottom:.8vh; }
+  .who-cs{ font-size:1.6vh; line-height:1.4; opacity:.6; margin-bottom:1.6vh; }
+  .who-ylab{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.55; margin-bottom:.8vh; }
+  .who-svg{ width:100%; height:auto; display:block; }
+  .who-svg .grid{ stroke:rgba(20,20,20,.12); stroke-width:1; }
+  .who-svg .axis{ stroke:rgba(20,20,20,.45); stroke-width:1.5; }
+  .who-svg .ln{ fill:none; stroke-width:3; stroke-linejoin:round; }
+  .who-svg .ln.appplus{ stroke:var(--coral); }
+  .who-svg .ln.social{ stroke:var(--ink); }
+  .who-svg .ln.nsm{ stroke:rgba(20,20,20,.32); stroke-width:2.5; }
+  .who-svg text{ font-family:'JetBrains Mono',monospace; font-size:11px; fill:var(--ink); }
+  .who-svg text.tick{ opacity:.5; }
+  .who-svg text.endlbl{ font-family:'Archivo',sans-serif; font-size:14px; font-weight:600; }
+  .who-svg text.endval{ font-family:'Anton',sans-serif; font-size:19px; }
+  .who-foot{ position:absolute; right:56px; bottom:6vh; width:45vw; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1px; text-transform:uppercase; opacity:.55; line-height:1.6; }
+
+  /* Richard: five questions, AI band under the table */
+  .qt-band{ position:absolute; left:56px; right:56px; bottom:8.5vh; background:var(--ink); color:var(--cream); padding:1.6vh 2vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.6vh; letter-spacing:1px; }
+  .qt-foot{ position:absolute; left:56px; right:56px; bottom:4.5vh; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1px; opacity:.55; }
+  .qtable.with-band{ bottom:14vh; }
+
+  /* Richard: H2 priorities, now seven */
+  .h2-sub{ position:absolute; left:56px; top:16.5vh; font-size:2vh; font-weight:500; opacity:.75; }
+  .h2-grid{ position:absolute; left:56px; right:56px; top:23vh; bottom:5vh; display:grid; grid-template-columns:repeat(4,1fr); gap:2.4vh 2vw; }
+  .h2-cell{ border-top:2px solid var(--ink); padding-top:1.3vh; display:flex; flex-direction:column; }
+  .h2-cell .n{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:.7vh; }
+  .h2-cell h4{ font-size:2vh; line-height:1.2; font-weight:500; margin-bottom:.9vh; }
+  .h2-cell .d{ font-size:1.6vh; line-height:1.4; margin-bottom:1vh; }
+  .h2-cell .s{ font-size:1.5vh; line-height:1.4; opacity:.65; padding:1vh 0; border-top:1px solid rgba(20,20,20,.12); }
+  .h2-cell .s i{ font-style:normal; font-family:'JetBrains Mono',monospace; font-size:1.1vh; letter-spacing:1.5px; color:var(--coral); display:block; margin-bottom:.4vh; }
+  .h2-cell .why{ margin-top:auto; padding-top:1vh; border-top:1px solid rgba(20,20,20,.12); font-size:1.55vh; line-height:1.4; }
   .counter{ position:fixed; bottom:22px; right:28px; z-index:9; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--cream); mix-blend-mode:difference; opacity:.7; }
 
   .lightbox{ display:none; position:fixed; inset:0; z-index:60; background:rgba(20,20,20,.6); padding:3vh 4vw; }
@@ -616,156 +650,218 @@
   <div class="sum-bridge">Those are the principles. Richard&rsquo;s strategic questions are already working through every one of them.</div>
 </section>
 
-<!-- RICHARD 1: FIVE QUESTIONS FOR THIS BOARD -->
+<!-- RICHARD 1: THE WHO. his v4 slide 1. chart rebuilt from the CohortChart data in his pptx. -->
+<section class="slide">
+  <div class="who-head h-block">The <em>who?</em></div>
+  <div class="who-left">
+    <div class="who-sub">Social members are worth more, and there are more of them every quarter.</div>
+    <div class="who-item"><span>01</span>New Social Members already outnumber non-social every quarter (0.83m vs 0.45m). Deliberate, not accidental.</div>
+    <div class="who-item"><span>02</span>11x more margin, engaged first-trip Social Members (&euro;46 vs &euro;4). 8x overall (&euro;35 vs &euro;4).</div>
+    <div class="who-item"><span>03</span>Gap widens with time. Value compounds, not a one-off skew.</div>
+    <div class="who-item"><span>04</span>Fixed cohorts strip out acquisition-mix noise. This is real value, not selection bias.</div>
+  </div>
+  <div class="who-job">Marketing&rsquo;s job: acquire more of this cohort. It shapes every question that follows.</div>
+  <div class="who-panel">
+    <div class="who-ct">Social members are worth materially more than non-members</div>
+    <div class="who-cs">Fixed cohorts strip out acquisition-mix effects and isolate the value the social network creates per customer</div>
+    <div class="who-ylab">Cumulative direct margin / customer</div>
+    <svg class="who-svg" viewBox="0 0 640 448" preserveAspectRatio="xMidYMid meet">
+      <line class="grid" x1="62" y1="400.0" x2="500" y2="400.0"/>
+      <line class="grid" x1="62" y1="324.0" x2="500" y2="324.0"/>
+      <line class="grid" x1="62" y1="248.0" x2="500" y2="248.0"/>
+      <line class="grid" x1="62" y1="172.0" x2="500" y2="172.0"/>
+      <line class="grid" x1="62" y1="96.0" x2="500" y2="96.0"/>
+      <line class="grid" x1="62" y1="20.0" x2="500" y2="20.0"/>
+      <text class="tick" x="52" y="404.0" text-anchor="end">&euro;0</text>
+      <text class="tick" x="52" y="328.0" text-anchor="end">&euro;10</text>
+      <text class="tick" x="52" y="252.0" text-anchor="end">&euro;20</text>
+      <text class="tick" x="52" y="176.0" text-anchor="end">&euro;30</text>
+      <text class="tick" x="52" y="100.0" text-anchor="end">&euro;40</text>
+      <text class="tick" x="52" y="24.0" text-anchor="end">&euro;50</text>
+      <line class="axis" x1="62" y1="20" x2="62" y2="400"/>
+      <polyline class="ln nsm" points="62.0,377.2 70.4,379.2 78.8,380.1 87.3,380.4 95.7,380.1 104.1,380.0 112.5,379.7 121.0,379.4 129.4,379.2 137.8,378.8 146.2,378.6 154.7,378.3 163.1,377.9 171.5,377.6 179.9,377.4 188.3,377.0 196.8,376.9 205.2,376.7 213.6,376.5 222.0,376.3 230.5,376.1 238.9,375.9 247.3,375.7 255.7,375.4 264.2,375.3 272.6,375.1 281.0,374.9 289.4,374.7 297.8,374.5 306.3,374.2 314.7,374.0 323.1,373.8 331.5,373.6 340.0,373.3 348.4,373.1 356.8,372.9 365.2,372.7 373.7,372.4 382.1,372.2 390.5,371.9 398.9,371.6 407.3,371.4 415.8,371.2 424.2,370.9 432.6,370.6 441.0,370.4 449.5,370.1 457.9,369.8 466.3,369.5 474.7,369.1 483.2,368.8 500.0,368.5"/>
+      <polyline class="ln social" points="62.0,290.1 70.4,275.0 78.8,262.6 87.3,252.0 95.7,242.8 104.1,234.7 112.5,227.5 121.0,221.1 129.4,215.5 137.8,210.3 146.2,205.7 154.7,201.6 163.1,197.9 171.5,194.5 179.9,191.4 188.3,188.6 196.8,186.2 205.2,183.8 213.6,181.6 222.0,179.5 230.5,177.6 238.9,175.8 247.3,174.1 255.7,172.5 264.2,170.9 272.6,169.5 281.0,168.0 289.4,166.7 297.8,165.3 306.3,164.0 314.7,162.7 323.1,161.5 331.5,160.3 340.0,159.2 348.4,158.0 356.8,156.8 365.2,155.7 373.7,154.5 382.1,153.4 390.5,152.2 398.9,151.1 407.3,150.0 415.8,148.9 424.2,147.8 432.6,146.6 441.0,145.5 449.5,144.3 457.9,143.0 466.3,141.7 474.7,140.4 483.2,139.0 500.0,137.5"/>
+      <polyline class="ln appplus" points="62.0,256.9 70.4,234.3 78.8,216.0 87.3,200.8 95.7,187.7 104.1,176.3 112.5,166.3 121.0,157.4 129.4,149.5 137.8,142.4 146.2,136.0 154.7,130.3 163.1,125.3 171.5,120.6 179.9,116.4 188.3,112.5 196.8,109.1 205.2,105.9 213.6,103.0 222.0,100.2 230.5,97.6 238.9,95.2 247.3,92.9 255.7,90.8 264.2,88.7 272.6,86.8 281.0,84.9 289.4,83.0 297.8,81.3 306.3,79.6 314.7,78.0 323.1,76.4 331.5,74.9 340.0,73.4 348.4,71.9 356.8,70.4 365.2,69.0 373.7,67.5 382.1,66.2 390.5,64.7 398.9,63.4 407.3,62.0 415.8,60.6 424.2,59.2 432.6,57.8 441.0,56.4 449.5,55.0 457.9,53.5 466.3,52.0 474.7,50.4 483.2,48.7 500.0,46.7"/>
+      <text class="endval" x="508" y="44.7" fill="#F1613D">&euro;46</text>
+      <text class="endlbl" x="508" y="61.7" fill="#F1613D">Engaged social</text>
+      <text class="endval" x="508" y="135.5">&euro;35</text>
+      <text class="endlbl" x="508" y="152.5">Social member</text>
+      <text class="endval" x="508" y="366.5" opacity=".55">&euro;4</text>
+      <text class="endlbl" x="508" y="383.5" opacity=".55">Non-social</text>
+      <line class="axis" x1="62" y1="400" x2="500" y2="400"/>
+      <text class="tick" x="62.0" y="420" text-anchor="middle">0</text>
+      <text class="tick" x="171.5" y="420" text-anchor="middle">13</text>
+      <text class="tick" x="281.0" y="420" text-anchor="middle">26</text>
+      <text class="tick" x="390.5" y="420" text-anchor="middle">39</text>
+      <text class="tick" x="500.0" y="420" text-anchor="middle">52</text>
+      <text class="tick" x="281" y="442" text-anchor="middle">WEEKS SINCE FIRST TRIP</text>
+    </svg>
+  </div>
+  <div class="who-foot">Engaged social member = read/write messages on first trip</div>
+</section>
+
+<!-- RICHARD 2: FIVE QUESTIONS FOR THIS BOARD (v4: marketing's job is now the engine) -->
 <section class="slide">
   <div class="qt-head h-block">Five questions <em>for this board.</em></div>
-  <div class="qtable">
+  <div class="qtable with-band">
     <div class="qt-row head">
       <div class="qt-n"></div><div class="qt-q">The question</div><div class="qt-t">The tension</div><div class="qt-j">Marketing&rsquo;s job</div>
     </div>
     <div class="qt-row">
       <div class="qt-n">1</div>
       <div class="qt-q">Are we building against the real entry points?</div>
-      <div class="qt-t">Growth that adds bookings is not the same as growth that adds value.</div>
-      <div class="qt-j">Acquire the valuable customer type, deliberately.</div>
+      <div class="qt-t">We&rsquo;ve identified who&rsquo;s valuable, not yet which entry points reliably create more of them.</div>
+      <div class="qt-j">Know Who Is Valuable<br>(Customer &amp; Cohort Intelligence Engine)</div>
     </div>
     <div class="qt-row">
       <div class="qt-n">2</div>
       <div class="qt-q">Too few know us. Fewer know what we stand for.</div>
-      <div class="qt-t">Recognition is not meaning.</div>
-      <div class="qt-j">Build one creative idea, and the assets that carry it.</div>
+      <div class="qt-t">Brand recognition is not meaning. Both = growth.</div>
+      <div class="qt-j">Mean Something<br>(Brand Positioning and Creative Engine)</div>
     </div>
     <div class="qt-row">
       <div class="qt-n">3</div>
       <div class="qt-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
       <div class="qt-t">Search only reaches people who are already ready to buy.</div>
-      <div class="qt-j">Create demand before they search.</div>
+      <div class="qt-j">Create Demand<br>(Demand Creation Engine + Unmissable Social Engine)</div>
     </div>
     <div class="qt-row">
       <div class="qt-n">4</div>
-      <div class="qt-q">Is buying us easy? The first time, and every time after?</div>
+      <div class="qt-q">Is buying us easy? The first time, and every time after.</div>
       <div class="qt-t">Friction anywhere undoes the investment that got them there.</div>
-      <div class="qt-j">Route new customers right. Keep existing ones close.</div>
+      <div class="qt-j">Invest &amp; Deepen Relationships<br>(CRM, Lifecycle and Web-to-App Engine*)</div>
     </div>
     <div class="qt-row">
       <div class="qt-n">5</div>
       <div class="qt-q">How do we know it works before trading shows it?</div>
       <div class="qt-t">We need proof, not platforms marking their own homework.</div>
-      <div class="qt-j">Build the system that judges results honestly.</div>
+      <div class="qt-j">Know It&rsquo;s Working &amp; Enrich<br>(Measurement and Decisioning Engine)</div>
     </div>
   </div>
+  <div class="qt-band">AI enabled marketing organisation</div>
+  <div class="qt-foot">* Product Customer UX Roadmap also identifies and eliminates friction</div>
 </section>
 
-<!-- RICHARD 2: DETAIL Q1-Q3 -->
+<!-- RICHARD 3: DETAIL Q1-Q3 -->
 <section class="slide">
   <div class="qd-head h-block">Questions <em>one to three.</em></div>
   <div class="qd-row">
     <div class="qd-card">
       <div class="qd-n">Question 01</div>
       <div class="qd-q">Are we building against the real entry points?</div>
-      <div class="qd-t">Growth that adds bookings is not the same as growth that adds value.</div>
+      <div class="qd-t">We know who&rsquo;s valuable, not yet which entry points reliably create more of them.</div>
       <ul>
-        <li>8x the margin. Social members vs non-social, &euro;35 vs &euro;4. Engaged members 11x, at &euro;46.</li>
-        <li>New social members outnumber non-social every quarter, 0.83m vs 0.45m. The mix is improving. It needs accelerating.</li>
-        <li>6 entry points identified. Find My People and Cheap Bed validating first, the rest through H2.</li>
+        <li>Entry point testing. 6 identified. Find My People and Cheap Bed validating first.</li>
+        <li>CEP validation depends on the same cohort model (UDM) referenced throughout this section.</li>
       </ul>
-      <div class="qd-eng">&rarr; Customer and Cohort Intelligence Engine</div>
+      <div class="qd-eng">&rarr; Know Who Is Valuable (Customer and Cohort Intelligence Engine)</div>
     </div>
     <div class="qd-card">
       <div class="qd-n">Question 02</div>
       <div class="qd-q">Too few know us. Fewer know what we stand for.</div>
-      <div class="qd-t">Recognition is not meaning. No single idea, and no distinctive assets yet.</div>
+      <div class="qd-t">Recognition is not meaning.</div>
       <ul>
-        <li>UK test, quality execution alone: +40% click-through.</li>
-        <li>Tracksuit: 12% aware against a 34% category in the UK. Among those who are aware, social association is already above 50%.</li>
+        <li>No single creative idea or distinctive assets yet.</li>
+        <li>Creative executional excellence critical. UK test, quality execution alone: +40% ad click-through.</li>
+        <li>Brand Tracking early signal. 12% aware vs 34% category (UK). Among aware, social association &gt;50%.</li>
       </ul>
-      <div class="qd-eng">&rarr; Brand Positioning and Creative Engine</div>
+      <div class="qd-eng">&rarr; Mean Something (Brand Positioning, Creative Platform and Creative Engine)</div>
     </div>
     <div class="qd-card">
       <div class="qd-n">Question 03</div>
       <div class="qd-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
       <div class="qd-t">Search only reaches people who are already ready to buy.</div>
       <ul>
-        <li>Search reaches roughly 5% of the category that is in market today.</li>
-        <li>EU test: +12% new customers, with 1.5 to 2.5x payback inside the year.</li>
-        <li>660k+ Instagram brand tags, 2.5m+ followers. A creator-led, long-term compounding play.</li>
+        <li>Search reaches just ~5% of the category in-market today.</li>
+        <li>EU test: +12% new customers, 1.5 to 2.5x payback within the year.</li>
+        <li>Social presence. 2.5m+, engagement on-par with category. Shift to creator-led by category entry point, a compounding play.</li>
       </ul>
-      <div class="qd-eng">&rarr; Demand Creation Engine + Unmissable Social Engine</div>
+      <div class="qd-eng">&rarr; Create Demand (Demand Creation Engine + Unmissable Social Engine)</div>
     </div>
   </div>
 </section>
 
-<!-- RICHARD 3: DETAIL Q4-Q5 -->
+<!-- RICHARD 4: DETAIL Q4-Q5 -->
 <section class="slide">
   <div class="qd-head h-block">Questions <em>four and five.</em></div>
   <div class="qd-row">
     <div class="qd-card">
       <div class="qd-n">Question 04</div>
-      <div class="qd-q">Is buying us easy? The first time, and every time after?</div>
-      <div class="qd-t">Friction anywhere between wanting to book and booking again undoes the investment that got them there in the first place.</div>
+      <div class="qd-q">Is buying us easy? The first time, and every time after.</div>
+      <div class="qd-t">Friction anywhere undoes the investment that got them there. The opportunity is to keep them warm thereafter.</div>
       <ul>
-        <li>At the click, for new customers. Route straight to the app, not to mobile web. Correctly routed clicks already convert at 3.9% against 2.7% on web.</li>
-        <li>After the fact, for existing customers. CRM migrates past web bookers onto the app and keeps the brand in mind between trips. Win-back of roughly 940k lapsed customers is proven. Second booking and home-city events are piloting.</li>
+        <li>At the click, new customers: route to app, not web. 3.9% vs 2.7% conversion.</li>
+        <li>Win-back already pays back &euro;2.67 per &euro;1 spent (~940k lapsed customers). Proven, CRM-led.</li>
       </ul>
-      <div class="qd-eng">&rarr; CRM, Lifecycle and Web-to-App Engine</div>
+      <div class="qd-eng">&rarr; Invest &amp; Deepen Relationships (CRM; Lapsed customer reactivation + Web-to-App Engine)</div>
     </div>
     <div class="qd-card">
       <div class="qd-n">Question 05</div>
       <div class="qd-q">How do we know it works before trading shows it?</div>
       <div class="qd-t">We need a system that judges results over the right timeframe, not just the click.</div>
       <ul>
-        <li>Meta self-reported 87% incremental. The independent check said 67%.</li>
-        <li>Effects take time to land. Roughly a 3-week onset and 6 to 10 weeks of carryover. Day-to-day attribution misses this, and cannot referee whether spend created new demand.</li>
-        <li>Build it properly. Tracksuit reads the market moving. Live incrementality testing is the referee. Channel attribution stays in its lane, sharpened, but not the judge.</li>
+        <li>Meta self-reported 87% incremental. Independent check: 67%. Can&rsquo;t rely on the advertiser.</li>
+        <li>Measure lag. Effects land over 3 weeks, carry 6 to 10 more. Day-to-day attribution misses this.</li>
+        <li>Track Brand and Measurement system. Brand (Tracksuit) reads the market. Live incrementality is the referee. Attribution stays in its lane.</li>
       </ul>
-      <div class="qd-eng">&rarr; Measurement and Decisioning Engine</div>
+      <div class="qd-eng">&rarr; Know It&rsquo;s Working &amp; Enrich (Measurement and Decisioning Engine)</div>
     </div>
   </div>
 </section>
 
-<!-- RICHARD 4: H2 PRIORITIES -->
+<!-- RICHARD 5: H2 PRIORITIES. seven in v4, was five. -->
 <section class="slide">
   <div class="h2-head h-block">H2 <em>priorities.</em></div>
-  <div class="h2-row">
-    <div class="h2-box">
-      <h4>Mean<br>something</h4>
-      <ul>
-        <li>Craft the Hostelworld creative platform. Agency briefed, first work in October.</li>
-        <li>Define the positioning and the distinctive codes.</li>
-        <li>Build the Creative Engine: GenAI plus human craft.</li>
-      </ul>
+  <div class="h2-sub">Focus on acquiring more &lsquo;Social Members&rsquo;</div>
+  <div class="h2-grid">
+    <div class="h2-cell">
+      <div class="n">01</div>
+      <h4>Mean Something</h4>
+      <div class="d">Give the brand one idea, and the craft to execute it consistently.</div>
+      <div class="s"><i>H2</i>Idea crafted (agency briefed) &rarr; creative engine built (GenAI + human craft).</div>
+      <div class="why">Turns spend that resets every campaign into spend that compounds.</div>
     </div>
-    <div class="h2-box">
-      <h4>Create<br>demand</h4>
-      <ul>
-        <li>Scale proven paid social. EU now, with a pipeline of around 10 markets.</li>
-        <li>Unmissable Social Engine, phase one. Creator-led, by entry point.</li>
-        <li>The signal is app downloads, not revenue.</li>
-      </ul>
+    <div class="h2-cell">
+      <div class="n">02</div>
+      <h4>Create Demand</h4>
+      <div class="d">Scale what&rsquo;s proven to create new demand, before testing what&rsquo;s next.</div>
+      <div class="s"><i>H2</i>Scale proven paid social (8 markets) &rarr; scope new channels (gated to paid social benchmark).</div>
+      <div class="why">Grows the pool of buyers who think of us first, not just those already searching.</div>
     </div>
-    <div class="h2-box">
-      <h4>Reclaim and<br>reallocate</h4>
-      <ul>
-        <li>Release roughly &euro;3m to &euro;4m a year that has no measurable effect.</li>
-        <li>Redirect Meta traffic to the app.</li>
-        <li>Test which affiliate partners are genuinely incremental.</li>
-      </ul>
+    <div class="h2-cell">
+      <div class="n">03</div>
+      <h4>Reclaim &amp; Reallocate</h4>
+      <div class="d">Test where reclaimed spend can fund this, carefully, so we don&rsquo;t lose the bookings it&rsquo;s currently protecting.</div>
+      <div class="s"><i>H2</i>Set up and test priority channel (incrementality, hold out) &rarr; reallocate.</div>
+      <div class="why">Raises the ceiling on everything else, at no incremental cost.</div>
     </div>
-    <div class="h2-box">
-      <h4>Invest and<br>deepen</h4>
-      <ul>
-        <li>Win-back of roughly 940k lapsed customers. CRM-led, and proven.</li>
-        <li>Web-to-app migration. CRM-led, and proven.</li>
-        <li>Piloting: second booking, and home-city events. Not yet proven, and partly product-dependent.</li>
-      </ul>
+    <div class="h2-cell">
+      <div class="n">04</div>
+      <h4>Invest &amp; Deepen Relationships</h4>
+      <div class="d">Retention working. The next test is whether we can deepen it further.</div>
+      <div class="s"><i>H2</i>Scale win-back + web-to-app (proven) &rarr; test new incentives and offers.</div>
+      <div class="why">Protects value already earned, rather than letting it leak between trips.</div>
     </div>
-    <div class="h2-box">
-      <h4>Prove it&rsquo;s<br>working</h4>
-      <ul>
-        <li>Live incrementality testing referees every scale decision.</li>
-        <li>Brand tracking with Tracksuit, robust by August.</li>
-        <li>Sharpen attribution. Useful for efficiency, but not the judge.</li>
-      </ul>
+    <div class="h2-cell">
+      <div class="n">05</div>
+      <h4>Know Who Is Valuable</h4>
+      <div class="d">Turn scattered customer insight into one connected, real-time view.</div>
+      <div class="s"><i>H2</i>Build cohort and CEP model (phase 1).</div>
+      <div class="why">Makes every other priority sharper and more efficient.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">06</div>
+      <h4>Know It&rsquo;s Working</h4>
+      <div class="d">Judge results on our own evidence, not platform-reported numbers.</div>
+      <div class="s"><i>H2</i>Onboard incrementality testing &rarr; validate brand tracking &rarr; close UDM data gaps.</div>
+      <div class="why">Visibility and robustness to invest with confidence, at pace.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">07</div>
+      <h4>Building an AI-Enabled Marketing Org</h4>
+      <div class="d">Rebuild how the function operates. Capability, structure, accountability.</div>
+      <div class="s"><i>H2</i>Stand up three layers: Intelligence (UDM) &rarr; Platform (Creative) &rarr; Activation (AI champions).</div>
+      <div class="why">Makes the other six priorities move faster.</div>
     </div>
   </div>
 </section>
