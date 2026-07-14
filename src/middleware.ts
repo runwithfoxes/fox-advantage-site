@@ -47,6 +47,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/santegic/")) {
+    if (req.cookies.get("santegic_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -58,5 +64,6 @@ export const config = {
     "/proposals/kapture/:path*",
     "/proposals/data-intelligence/:path*",
     "/proposals/ari/:path*",
+    "/proposals/santegic/:path*",
   ],
 };

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campaign Manager, built for Santegic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(208,208,204,0.4) 0.8px,transparent 0.8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header */
+  .head{ padding:34px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* tabs */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW (behind the scenes) ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:640px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); text-align:center; }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .badge.gate{ background:var(--sky-blue); }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.6; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.6; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .check.gate-check{ background:rgba(58,124,165,0.18); border:1px solid rgba(58,124,165,0.3); }
+
+  /* "what it uses" chips */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 120px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+  .chip.product{ color:var(--deep-sky); border-color:rgba(26,58,78,.35); background:rgba(26,58,78,.04); font-weight:400; }
+  .uses-note{ margin-top:18px; font-size:12px; line-height:1.8; color:var(--muted); }
+  .uses-note b{ color:var(--text); font-weight:400; }
+
+  /* ===== EXPERIENCE: campaign board ===== */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:24px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+
+  .cm-board{ border:1px solid var(--border); background:var(--bg); box-shadow:var(--shadow); }
+  .cm-board-header{ display:flex; align-items:center; gap:11px; padding:13px 16px; border-bottom:1px solid var(--border); background:var(--card-hover); flex-wrap:wrap; }
+  .cm-board-title{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); flex:1; }
+  .cm-live-dot{ width:7px; height:7px; border-radius:50%; background:#3FAE6E; flex:none; animation:cm-pulse 1.8s infinite; }
+  @keyframes cm-pulse{ 0%{ box-shadow:0 0 0 0 rgba(63,174,110,.5); } 70%{ box-shadow:0 0 0 7px rgba(63,174,110,0); } 100%{ box-shadow:0 0 0 0 rgba(63,174,110,0); } }
+  .cm-live-label{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.8px; text-transform:uppercase; color:#3FAE6E; }
+
+  .cm-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:16px; border-bottom:1px solid var(--border); }
+  @media(max-width:680px){ .cm-stats{ grid-template-columns:repeat(2,1fr); } }
+  .cm-tile{ border:1px solid var(--border); background:#fff; padding:14px 15px; }
+  .cm-tile .num{ font-family:'Space Grotesk',sans-serif; font-size:29px; font-weight:300; color:var(--sky-blue); line-height:1; letter-spacing:-1px; }
+  .cm-tile .num.win{ color:#2E7D52; }
+  .cm-tile .lbl{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-top:9px; }
+  .cm-spend{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); padding:11px 16px; border-bottom:1px solid var(--border); line-height:1.7; }
+
+  /* gantt */
+  .cm-gantt-wrap{ padding:14px 16px 18px; }
+  .cm-seclbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:14px; font-weight:500; }
+  .cm-glabelcol{ width:200px; flex:0 0 200px; }
+  .cm-gaxis{ display:flex; margin-bottom:4px; }
+  .cm-gaxistrack{ position:relative; flex:1; height:22px; }
+  .cm-gmonth{ position:absolute; top:0; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); transform:translateX(2px); }
+  .cm-gcampname{ font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:400; margin:14px 0 2px; color:var(--text); }
+  .cm-gcampstage{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); margin-bottom:8px; line-height:1.6; }
+  .cm-grow{ display:flex; align-items:center; }
+  .cm-grow + .cm-grow{ margin-top:4px; }
+  .cm-gname{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); }
+  .cm-gsub{ font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--muted); margin-top:1px; }
+  .cm-gtrack{ position:relative; flex:1; height:34px; border-left:1px solid var(--border); }
+  .cm-gtrack.body{ background:linear-gradient(90deg,transparent 0,transparent calc(100% - 1px),var(--border) 100%); }
+  .cm-gbar{ position:absolute; top:8px; height:18px; transform-origin:left center; }
+  .cm-gbar.live{ background:var(--sky-blue); opacity:.6; }
+  .cm-gbar.tent{ background:transparent; border:1.5px dashed var(--sky-blue); opacity:.85; }
+  .cm-gbar.fin{ background:#7CA53A; opacity:.4; }
+  @keyframes cmGrowBar{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  @media(prefers-reduced-motion:no-preference){ .cm-gbar{ animation:cmGrowBar .5s ease-out both; } }
+  .cm-gtoday{ position:absolute; top:-4px; bottom:-4px; width:0; border-left:1.5px dashed #C98A3A; z-index:2; pointer-events:none; }
+  .cm-gtodaylbl{ position:absolute; top:-18px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:#C98A3A; transform:translateX(-50%); white-space:nowrap; }
+
+  /* channel / agent palette */
+  .cm-channels{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; padding:6px 16px 16px; }
+  .cm-panelhead{ padding:14px 16px 0; border-top:1px solid var(--border); }
+  .cm-ch{ border:1px solid var(--border); background:var(--bg); padding:10px 12px; }
+  .cm-ch .nm{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); }
+  .cm-ch .sb{ font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .cm-chdot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--sky-blue); margin-right:5px; vertical-align:middle; }
+  @media(max-width:680px){ .cm-glabelcol{ width:130px; flex-basis:130px; } }
+
+  /* agent presence block */
+  .cm-agent{ padding:18px 16px 16px; border-bottom:1px solid var(--border); }
+  .cm-agent-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:11px; flex-wrap:wrap; }
+  .cm-agent-title{ font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:400; color:var(--text); }
+  .cm-agent-status{ display:inline-flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); border:1px solid rgba(58,124,165,.4); padding:4px 10px; }
+  .cm-pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--sky-blue); animation:cm-pulse 1.8s infinite; flex:none; }
+  .cm-agent-msg{ font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.85; color:var(--text); margin-bottom:14px; }
+  .cm-agent-msg b{ font-weight:500; }
+  .cm-spine{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+  .cm-step{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.5px; border:1px solid var(--border); padding:5px 12px; color:var(--muted); }
+  .cm-step.done::before{ content:"+ "; color:var(--sky-blue); }
+  .cm-step.done{ color:var(--text); }
+  .cm-step.here{ border-color:var(--sky-blue); color:var(--sky-blue); background:rgba(58,124,165,.06); }
+  .cm-nextrow{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:640px){ .cm-nextrow{ grid-template-columns:1fr; } }
+  .cm-nextlbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:5px; }
+  .cm-nextp{ font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.7; color:var(--muted); margin:0; }
+  .cm-nextp b{ color:var(--text); font-weight:400; }
+
+  .cm-gate-banner{ margin:16px; padding:12px 14px; background:rgba(58,124,165,0.08); border-left:3px solid var(--sky-blue); font-size:11.5px; line-height:1.7; color:var(--text); }
+  .cm-gate-banner b{ font-weight:500; color:var(--sky-blue); }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">Campaign Manager · built for Santegic</div>
+      <h1>Campaign Manager</h1>
+      <div class="sell">
+        <p class="sell-lead">The Campaign Manager is the layer that runs the other agents and drives the tools you already pay for. Keeping outbound moving is a job in itself. Someone has to load the sequence into HubSpot, work through the LinkedIn tasks HubSpot creates, copy drafts back and forth between Claude and HubSpot, and keep track of what is actually getting replies. That work used to need a full-time campaign or marketing manager, or an agency retainer. At the moment it is Marie-Claire, in the evenings.</p>
+        <p class="sell-body">This does not replace HubSpot. As Paul put it on the call, it would not replace HubSpot, it would replace the person who has to look after HubSpot. You are on HubSpot Professional at about €140 a month, upgraded mainly to get email sequencing, and you are committed for the year. Our honest read is that it is over-specced for what you use it for and there are cheaper tools, but you are locked in, so we connect to it through its API and drive it rather than ask you to rip anything out.</p>
+        <p class="sell-rail">What is left for you and Larry is the judgement: which prospects are worth a real conversation, what to run next, and what to stop. Nothing sends and nothing spends until one of you approves it. The aim we discussed on the call is that running outbound becomes about an hour of your week rather than a full-time job.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE TABS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">How it works</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <!-- EXPERIENCE TAB -->
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">This is the board Marie-Claire and Larry would open. It is the one place where you can see what the agents are doing, what is waiting on you, and what is working. The campaigns, dates and figures below are <b>illustrative</b>, put there to show how the board reads. They are not Santegic results.</div>
+
+      <div class="cm-board">
+        <div class="cm-board-header">
+          <span class="cm-live-dot"></span>
+          <span class="cm-live-label">Live</span>
+          <span class="cm-board-title" style="margin-left:4px;">Campaign Manager · Santegic</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:var(--muted);">Illustrative example, not real data</span>
+        </div>
+
+        <!-- Agent presence block -->
+        <div class="cm-agent">
+          <div class="cm-agent-head">
+            <span class="cm-agent-title">Your campaign manager, right now</span>
+            <span class="cm-agent-status"><span class="cm-pulse-dot"></span> Waiting on your approval</span>
+          </div>
+          <p class="cm-agent-msg">This week's sequence is ready. The Outbound Agent has built the list and written the messages, and I have loaded the full run into HubSpot: four emails and three LinkedIn touches per person, on the schedule you set. <b>Nothing has sent.</b> Approve it and I will run the emails through HubSpot and carry out the LinkedIn touches on the days they fall, so there are no tasks left sitting in a queue for you.</p>
+          <div class="cm-spine">
+            <span class="cm-step done">Brief the agents</span>
+            <span class="cm-step done">Collect the work</span>
+            <span class="cm-step done">Load into HubSpot</span>
+            <span class="cm-step here">Your approval</span>
+            <span class="cm-step">Run the sequence</span>
+            <span class="cm-step">Report back</span>
+          </div>
+          <div class="cm-nextrow">
+            <div>
+              <div class="cm-nextlbl">Next, once you approve</div>
+              <p class="cm-nextp">I run the four emails through HubSpot on the schedule and do the three LinkedIn touches on the days they fall. <b>Anything that gets a reply comes straight to you.</b></p>
+            </div>
+            <div>
+              <div class="cm-nextlbl">Then</div>
+              <p class="cm-nextp">I report each week on which emails drew replies and which LinkedIn touches led to a conversation, and I propose what to change for the next run.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Illustrative tiles -->
+        <div class="cm-stats">
+          <div class="cm-tile"><div class="num">3</div><div class="lbl">Agents running</div></div>
+          <div class="cm-tile"><div class="num">7</div><div class="lbl">Touches per prospect</div></div>
+          <div class="cm-tile"><div class="num">12</div><div class="lbl">Conversations open</div></div>
+          <div class="cm-tile"><div class="num win">0</div><div class="lbl">Sent without approval</div></div>
+        </div>
+        <div class="cm-spend">Illustrative. The seven touches are the sequence you run today: four emails and three LinkedIn touches. The tiles show how the board keeps score, not Santegic figures.</div>
+
+        <div class="cm-gate-banner"><b>Approval gate.</b> Nothing sends and nothing spends until Marie-Claire or Larry approves it. That holds for every email, every LinkedIn touch and every piece of content on this board.</div>
+
+        <!-- Gantt: static HTML, renders without JS. Bars have final widths; JS animates as enhancement. -->
+        <div class="cm-gantt-wrap">
+          <div class="cm-seclbl">What is running, and when</div>
+          <div class="cm-gantt" id="cmGantt">
+
+            <div class="cm-gaxis">
+              <div class="cm-glabelcol"></div>
+              <div class="cm-gaxistrack">
+                <div class="cm-gmonth" style="left:0%">Aug</div>
+                <div class="cm-gmonth" style="left:20%">Sep</div>
+                <div class="cm-gmonth" style="left:40%">Oct</div>
+                <div class="cm-gmonth" style="left:60%">Nov</div>
+                <div class="cm-gmonth" style="left:80%">Dec</div>
+                <div class="cm-gtoday" style="left:34%"><span class="cm-gtodaylbl">Today</span></div>
+              </div>
+            </div>
+
+            <div class="cm-gcampname">Medical device readiness, health-tech founders</div>
+            <div class="cm-gcampstage">The main outbound run. Email and LinkedIn on one sequence, driven through HubSpot.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Email sequence</div><div class="cm-gsub">4 emails · via HubSpot · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:4%;width:66%" data-w="66%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">LinkedIn touches</div><div class="cm-gsub">3 touches · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:4%;width:66%" data-w="66%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Next week's list</div><div class="cm-gsub">From the Outbound Agent · Awaiting your approval</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar tent" style="left:36%;width:34%" data-w="34%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+
+            <div class="cm-gcampname">Signal-triggered outreach</div>
+            <div class="cm-gcampstage">Scout watches the named list. When it flags a funding round, a US partnership or a move into the device process, I open a sequence for that company and bring it to you.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Scout watching brief</div><div class="cm-gsub">Always on · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:0%;width:100%" data-w="100%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Triggered sequences</div><div class="cm-gsub">Opened when Scout flags something</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar tent" style="left:20%;width:80%" data-w="80%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+
+            <div class="cm-gcampname">LinkedIn content, Marie-Claire and Larry</div>
+            <div class="cm-gcampstage">The Ghostwriter drafts the posts. I hold the schedule, put each draft in front of you, and post the ones you approve.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Posts drafted</div><div class="cm-gsub">From the Ghostwriter · Live</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar live" style="left:0%;width:70%" data-w="70%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Posting schedule</div><div class="cm-gsub">Planned to the end of the year</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar tent" style="left:0%;width:100%" data-w="100%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+
+            <div class="cm-gcampname">First run, August</div>
+            <div class="cm-gcampstage">The pilot batch we build together during the handover, so you can see the sequence run end to end before it goes wide.</div>
+            <div class="cm-grow">
+              <div class="cm-glabelcol"><div class="cm-gname">Pilot batch</div><div class="cm-gsub">Finished</div></div>
+              <div class="cm-gtrack body"><div class="cm-gbar fin" style="left:0%;width:20%" data-w="20%"></div><div class="cm-gtoday" style="left:34%"></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="cm-panelhead"><div class="cm-seclbl">The channels it runs</div></div>
+        <div class="cm-channels">
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Email</div><div class="sb">4 emails per prospect, sent through HubSpot</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>LinkedIn</div><div class="sb">3 touches per prospect, done for you</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>LinkedIn content</div><div class="sb">Posts the Ghostwriter drafts</div></div>
+        </div>
+
+        <div class="cm-panelhead"><div class="cm-seclbl">The agents it coordinates</div></div>
+        <div class="cm-channels">
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Outbound Agent</div><div class="sb">Finds the prospects and writes the messages</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Scout</div><div class="sb">Watches for funding, partnerships, device filings</div></div>
+          <div class="cm-ch"><div class="nm"><span class="cm-chdot"></span>Ghostwriter</div><div class="sb">Drafts the LinkedIn posts and articles</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS TAB (rendered by JS) -->
+    <div class="panel" data-p="bts"></div>
+
+    <!-- WHAT IT USES TAB (rendered by JS) -->
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+
+const ICONS = {
+  plan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  watch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+  analyse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>',
+  learn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>'
+};
+
+const TABS = {
+  bts:{
+    start:'The plan you and Larry agree',
+    end:'What we learn from each run goes into the next one, so the sequence gets better rather than staying the same.',
+    nodes:[
+      { badge:'1', when:'It holds the plan', icon:'plan',
+        title:'One plan for the quarter, in one place',
+        sub:'Who you are targeting, which sequences are running, what is scheduled and what is finished. Today that plan lives in HubSpot tasks, a Prospeo list and Marie-Claire\'s head. The Campaign Manager holds it in one place that you and Larry can both open.' },
+      { badge:'2', when:'It briefs the other agents', icon:'brief',
+        title:'It tells each agent what is needed this week',
+        sub:'It asks the Outbound Agent for the list and the messages, gives Scout the companies to watch, and tells the Ghostwriter what to draft. It does not do their jobs. It makes sure the work arrives when it is needed rather than when someone remembers to ask for it.' },
+      { badge:'3', when:'It loads the sequence', icon:'calendar',
+        title:'It builds the run inside HubSpot',
+        sub:'Four emails and three LinkedIn touches per person, loaded through HubSpot\'s API on the schedule you use today. This is the step that currently means copying drafts out of Claude and pasting them into HubSpot by hand. That step goes away.' },
+      { badge:'4', when:'You approve', icon:'gate', gate:true,
+        title:'Nothing goes out until you say so',
+        sub:'You see the list, the emails and the LinkedIn messages before any of it moves. You can edit anything, remove anyone, or send the whole batch back.',
+        check:'<strong>Nothing sends and nothing spends without Marie-Claire or Larry approving it.</strong> Your edits are kept, so the next batch reflects them.' },
+      { badge:'5', when:'It runs the sequence', icon:'ship',
+        title:'Email and LinkedIn, both handled',
+        sub:'The emails go out through HubSpot on the schedule. The LinkedIn touches happen on the days they fall, instead of sitting in HubSpot as tasks waiting for someone to open LinkedIn and do them. Replies come to you.' },
+      { badge:'6', when:'You watch it', icon:'watch',
+        title:'One board for both of you',
+        sub:'What has sent, what is waiting on you, who has replied, and where each conversation stands. You and Larry are looking at the same thing, so neither of you has to ask the other where something got to.' },
+      { badge:'7', when:'It reports', icon:'analyse',
+        title:'It tells you what worked',
+        sub:'Which emails drew replies, which LinkedIn touches led to a conversation, and which of those conversations are moving toward a retained contract rather than a one-off project. That is the measure that matters to you, so that is what it reports on.' },
+      { badge:'8', when:'It proposes the change', icon:'learn',
+        title:'It suggests what to try next, and you decide',
+        sub:'A different opening line, a different job title, a different order of touches. It proposes the change, sets up the test, and shows you the result. You keep the decision. Run the agents together and the work compounds, because what Scout sees feeds the sequence, and what the sequence learns feeds what the Ghostwriter writes.' }
+    ]
+  },
+  uses:{
+    groups:[
+      { label:'Agents it runs', cls:'product',
+        items:['Outbound Agent','Scout','Ghostwriter'] },
+      { label:'Your tools', cls:'',
+        items:['HubSpot Professional (via its API)','Prospeo','LinkedIn','Claude Code'] },
+      { label:'The sequence', cls:'',
+        items:['4 emails','3 LinkedIn touches','Follow-up on every reply'] },
+      { label:'Approval', cls:'skill',
+        items:['Marie-Claire or Larry approves before anything sends','Nothing spends without your go'] },
+      { label:'What it reports', cls:'',
+        items:['Replies by email and by LinkedIn','Conversations opened','Meetings booked','Movement toward retained contracts'] },
+      { label:'Models', cls:'',
+        items:['Claude Opus 4.8'] }
+    ]
+  }
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap);
+    container.appendChild(el('<p class="uses-note">We are not asking you to change tools. You upgraded to HubSpot Professional a few months ago, mainly for email sequencing, and you are committed for the year, so the Campaign Manager connects to it through its API and drives it. <b>It runs the tools you already have.</b> If you decide later that HubSpot is more than you need, the same setup can point at something cheaper.</p>'));
+    return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    const isGateNode = !!nd.gate;
+    flow.appendChild(el(`<div class="node">
+      <div class="node-head">
+        <span class="badge${isGateNode?' gate':''}">${nd.badge}</span> ${nd.when}
+      </div>
+      <div class="node-body">
+        <div class="node-icon">${ICONS[nd.icon]||ICONS.brief}</div>
+        <div class="node-text">
+          <div class="node-title">${nd.title}</div>
+          <div class="node-sub">${nd.sub}</div>
+          ${nd.check?`<div class="check${isGateNode?' gate-check':''}">${nd.check}</div>`:''}
+        </div>
+      </div>
+    </div>`));
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k => renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{
+    k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out';
+  });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+// Bar animation: CSS scaleX handles the grow; JS sets staggered delays.
+let boardAnimated=false;
+function animateBoard(){
+  if(boardAnimated||reduceMotion) return;
+  boardAnimated=true;
+  document.querySelectorAll('.cm-gbar').forEach((b,i)=>{ b.style.animationDelay=(i*90)+'ms'; });
+}
+
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+  if(t.dataset.p==='exp') animateBoard();
+}));
+
+// run on load (Experience is the default-active tab)
+animateBoard();
+</script>
+<script>(function(){function h(){parent.postMessage({rwfEmbed:'campaign-manager',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();</script>
+</body>
+</html>

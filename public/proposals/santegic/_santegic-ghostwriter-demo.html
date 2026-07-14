@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ghostwriter · configured for Santegic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: a draft in Larry's voice, then a second draft in Marie-Claire's */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:30px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .gw-show{ display:flex; gap:20px; align-items:stretch; }
+  @media(max-width:860px){ .gw-show{ flex-direction:column; } }
+  /* hero: the LinkedIn draft, big, in Larry's voice */
+  .gw-hero{ flex:1 1 56%; min-width:0; display:flex; flex-direction:column; }
+  .gw-frame{ display:block; border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; background:#fff; flex:1; display:flex; }
+  .gw-frame .shot{ display:block; width:100%; padding:26px 26px 24px; }
+  .gw-cap{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 16px; border:1px solid var(--border); border-top:none; background:var(--bg); }
+  .gw-cap .t{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text); }
+  .gw-cap .lnk{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--sky-blue); text-decoration:none; white-space:nowrap; }
+  .gw-cap .lnk:hover{ text-decoration:underline; }
+  /* the post card itself: name row + typed body */
+  .gw-postcard{ display:flex; flex-direction:column; height:100%; }
+  .gw-who{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .gw-avatar{ flex:none; width:38px; height:38px; border-radius:50%; background:var(--deep-sky); color:var(--cream); font-family:'Space Grotesk',sans-serif; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .gw-who .nm{ font-size:13px; color:var(--text); font-weight:400; }
+  .gw-who .rl{ font-size:11px; color:var(--muted); }
+  .gw-hook{ font-family:'Space Grotesk',sans-serif; font-size:20px; line-height:1.35; color:var(--text); margin-bottom:14px; }
+  .gw-body{ font-size:13px; line-height:1.85; color:var(--text); }
+  .gw-cursor{ display:inline-block; width:6px; height:14px; background:var(--sky-blue); margin-left:2px; vertical-align:-2px; animation:gw-blink 1s step-end infinite; }
+  @keyframes gw-blink{ 50%{ opacity:0; } }
+  /* the honest label: this is our sample, not published work */
+  .gw-note{ margin-top:12px; border:1px solid var(--border); background:var(--card-hover); padding:11px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.6; color:var(--muted); }
+  .gw-note b{ font-weight:400; color:var(--text); }
+  /* spread: the second draft and what is queued behind it */
+  .gw-spread{ flex:1 1 44%; min-width:0; display:flex; flex-direction:column; gap:12px; }
+  .gw-spread-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-bottom:2px; }
+  .gw-mini{ display:flex; flex-direction:column; text-decoration:none; color:inherit; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); overflow:hidden; padding:16px 18px; transition:transform .2s ease-out; }
+  .gw-mini:hover{ transform:translateY(-2px); }
+  .gw-mini .meta{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+  .gw-mini .meta .ch{ font-family:'Space Grotesk',sans-serif; font-size:15px; color:var(--text); }
+  .gw-mini .meta .tag{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; }
+  .gw-mini .meta .tag.post{ color:var(--sky-blue); }
+  .gw-mini .meta .tag.auto{ color:var(--fox-orange); }
+  .gw-mini .snip{ font-size:12px; line-height:1.7; color:var(--muted); }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">An example · configured for Santegic</div>
+      <h1>Ghostwriter</h1>
+      <div class="sell">
+        <p class="sell-lead">A content writer or a ghostwriter used to mean a full-time hire, an agency, or a freelancer. The grind in the job is the volume and the consistency, which is where most companies fall down, and it is why the posts and the SEO content currently get squeezed in around everything else. The quality is in the argument and the accuracy, and in a regulated field the accuracy has to be right. <b>Santegic knows more about this subject than the people you are writing for, and almost none of that knowledge currently reaches them.</b></p>
+        <p class="sell-body">Ghostwriter writes LinkedIn posts for <b>Larry and Marie-Claire</b>, in their own voices, on the subjects you already deal with every week: what a new regulation actually means for a health-tech founder in plain English, how the medical device classification process works and where companies go wrong early, where the line sits between a wellness product and a clinical claim, why the right time to sort compliance is long before you think you need to, and the cybersecurity obligations that come with holding patient data. It works from what you have already written and said, so the posts argue what Santegic argues rather than drifting into generic content.</p>
+        <p class="sell-rail">The reason to do it is the one you already give your own clients when you tell them the best time to come to you is well before they think they need you. Most of the companies who will eventually need Santegic are not looking this quarter, which is exactly what your outbound replies were telling you. Writing that is genuinely useful to those people means that when a regulation lands or an investor asks a hard question, Santegic is a name they have already read and already trust, and in a trust-led category that is what gets you the call. <b>Nothing publishes without Larry or Marie-Claire approving it</b>, and the system does not invent statistics, clients or regulatory facts.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">We have not seen enough of your writing to copy the voice properly yet, so rather than guess we wrote the drafts ourselves, from your website and the discovery call, on subjects you raised on the call. <b>Everything below is a draft awaiting review. None of it has been published.</b> The post on the left is written for Larry, the one on the right for Marie-Claire, and both would go to the named person for approval before they went anywhere. The subjects we would actually publish would come out of the positioning work we do with you.</div>
+      <div class="gw-show">
+        <div class="gw-hero">
+          <div class="gw-frame">
+            <div class="shot">
+              <div class="gw-postcard">
+                <div class="gw-who">
+                  <span class="gw-avatar">LB</span>
+                  <div><div class="nm">Larry Breen</div><div class="rl">CEO, Santegic · Regulatory compliance and cybersecurity for digital health</div></div>
+                </div>
+                <div class="gw-hook" id="gwHook">The line between a wellness product and a clinical claim is thinner than most founders think it is.</div>
+                <div class="gw-body"><span id="gwOpen"></span><span class="gw-cursor"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="gw-cap">
+            <span class="t" id="gwCapLbl">LinkedIn post, written in Larry's voice</span>
+            <span class="lnk" style="cursor:default;">Draft, awaiting Larry's review</span>
+          </div>
+          <div class="gw-note"><b>Illustrative draft by Run with Foxes. Not published by Santegic.</b> We wrote it from your website and the discovery call, it is written for Larry to approve or reject, and it has not been posted anywhere.</div>
+        </div>
+        <div class="gw-spread">
+          <div class="gw-spread-lbl">A second draft, and what sits behind it</div>
+          <div class="gw-mini">
+            <div class="meta">
+              <span class="ch">Written for Marie-Claire</span>
+              <span class="tag auto">Draft, awaiting review</span>
+            </div>
+            <div class="snip" id="gwSecond">Why the right time to sort compliance is long before you think you need to. It makes the argument Santegic already makes to clients: the companies who come early spend less and move faster, because the rules shape the product while it is still being built. The ones who arrive the month before an audit are paying to unpick decisions they made two years ago, usually in time they do not have.</div>
+          </div>
+          <div class="gw-mini">
+            <div class="meta">
+              <span class="ch">Next up</span>
+              <span class="tag post">Two further subjects, drafted for review</span>
+            </div>
+            <div class="snip">"Medical device classification, and the mistakes companies make in the first month." · "What the Big Four get wrong when they give a healthcare company generic cross-industry advice."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:'What Santegic already knows', end:'Approved, published, and known before you are needed', nodes:[
+    {type:'node', badge:'1', when:'Set up once', icon:'mic', title:'Learn the voice from what you have already written and said', sub:'We read the LinkedIn posts and the website content you have already published, and we listen to how Larry and Marie-Claire explain a regulation to a founder who has never had to deal with one. That becomes two voices the system writes in, so a post reads like the person whose name is on it.'},
+    {type:'branch', lanes:[
+      {cls:'keep', pill:'A voice note', text:'Larry or Marie-Claire records a couple of minutes after a client call, and the system turns it into a draft in <strong>their</strong> own words.'},
+      {cls:'hold', pill:'What you have already published', text:'Or the system works from the website, the SEO content and the LinkedIn posts you have written up to now.'}
+    ]},
+    {type:'node', badge:'2', when:'Set up once', icon:'brief', title:'Hold the positioning and the messages', sub:'We agree what Santegic argues and who it is arguing to: health-tech founders getting a product certified, compliance and cybersecurity leads inside larger organisations, and buyers at HSE and NHS scale. The system holds that, so every post argues the same thing instead of drifting week to week.'},
+    {type:'node', badge:'3', when:'Every week', icon:'look', title:'Find the subject', sub:'A new regulation landing and what it actually means for a founder in plain English. A question three different clients asked in the same month. A mistake worth warning someone about before they make it. You can also just name the subject yourself.'},
+    {type:'node', badge:'4', when:'In their own voice', icon:'make', title:'Write the draft', sub:'The post has to be useful to a founder or a compliance lead on its own terms, whether or not they ever become a client. It is written in Larry\'s voice or Marie-Claire\'s, and it is written in plain English rather than regulatory language.',
+      check:'<strong>Nothing is fabricated:</strong> no invented statistics, no named client, and no regulatory claim that is not checkable against the source.'},
+    {type:'node', badge:'5', when:'Before anything goes out', icon:'gate', title:'It goes to Larry or Marie-Claire to approve', sub:'Every draft is read and approved, edited, or rejected by the person whose name is on it. Nothing posts unreviewed.',
+      check:'<strong>Approval gate:</strong> nothing publishes without Larry or Marie-Claire signing it off.'},
+    {type:'node', badge:'6', when:'Once approved', icon:'ship', title:'Schedule and publish', sub:'The approved post is scheduled and published on the right profile. Where a subject is worth a longer piece, it can also go to the website alongside the SEO content already there.'},
+    {type:'node', badge:'7', when:'Over time', icon:'share', title:'Keep a record of what has been covered', sub:'The system keeps a record of every subject published, so it does not repeat itself, and so the two of you can see at a glance what has been covered and what is still missing.'}
+  ]},
+  uses:{ groups:[
+    {label:'Rules', items:['written in Larry\'s voice or Marie-Claire\'s, never a generic company voice','no fabricated statistics, clients, dates or regulatory claims','useful to a founder even if they never become a client','plain English, not regulatory language']},
+    {label:'Gates', cls:'skill', items:['Larry or Marie-Claire approves every post before it is published']},
+    {label:'Audience', items:['health-tech founders and CEOs','compliance and regulatory leads','cybersecurity and data protection leads','buyers at HSE and NHS scale']},
+    {label:'Data', items:['your website and the posts you have already published','voice notes recorded after client calls','the questions clients actually ask','your positioning and messages']},
+    {label:'Channels', items:['LinkedIn, on Larry\'s and Marie-Claire\'s profiles','your website, for longer pieces']},
+    {label:'Tools', items:['Claude Code','LinkedIn','your website (Webflow)']},
+    {label:'Models', items:['Claude Opus 4.8']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Experience: the LinkedIn draft types out in Larry's voice (illustrative draft, not published)
+const GW_POST = "A fitness app that shows you your resting heart rate is one thing. The same app telling you that you should probably see a doctor about it is something else, and the second one can put you into medical device territory whether you intended it or not. Most of the founders we talk to were not trying to make a clinical claim. They added a feature, then another feature, and somewhere along the way the product started giving advice that could lead to a clinical decision. A regulator looks at what the product does and what you say it does, not at what you meant by it. If you think you might be near that line, the cheapest time to look at it properly is while the feature is still a decision, rather than after it has shipped and people are relying on it.";
+(function(){
+  const node = document.getElementById('gwOpen');
+  if(!node) return;
+  if(reduceMotion){ node.textContent = GW_POST; return; }
+  let k = 0;
+  const typer = setInterval(()=>{ k++; node.textContent = GW_POST.slice(0,k); if(k>=GW_POST.length) clearInterval(typer); }, 14);
+})();
+</script>
+<script>
+(function(){function h(){parent.postMessage({rwfEmbed:'ghostwriter',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
+</script>
+</body>
+</html>
