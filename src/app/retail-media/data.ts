@@ -30,8 +30,8 @@ export const deliverables: Deliverable[] = [
   { name: "7 · Hanging boards", detail: "Landscape, arrow directional", status: "in-progress", note: "Landscape plate registered; creative in build." },
   { name: "8 · Power aisle screen", detail: "Wide digital strip", status: "in-progress", note: "Same landscape/band family; sized after the boards land." },
   { name: "9 · Goal post screens", detail: "Cross-collaboration bundle: brand x Tesco partner pack", status: "ready", anchor: "cw-s-the-bundle-remade-in-one-line", note: "Pair built and gated. Hi-res pack shot swap pending." },
-  { name: "10 · BWS gate, outside", detail: "Print gate panel, 0.0 message only outside the zone", status: "in-progress", anchor: "cw-s-bws-gates", note: "0.0 message; placeholder until we have a 0.0 pack shot - we don't fake the product." },
-  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "ready", anchor: "cw-s-bws-gates", note: "Landscape gate panel built off the registered plate, carrying the €19 offer." },
+  { name: "10 · BWS gate, outside", detail: "Print gate panel, 0.0 message only outside the zone", status: "in-progress", note: "In build: needs a real 0.0 pack shot before the panel is made - we don't fake the product." },
+  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "ready", anchor: "cw-s-bws-gate-inside", note: "Landscape gate panel built off the registered plate, carrying the €19 offer." },
   { name: "12 · BWS special build", detail: "In-bay screens, sound on", status: "todo" },
 ];
 
@@ -68,16 +68,11 @@ export const work: WorkSection[] = [
     embedSrc: "email.html",
     embedHeight: 1180 },
 
-  { title: "BWS gates", kind: "media", badge: "Placements 10 & 11 · The drinks zone",
-    desc: "The security gates into the beer, wine and spirits zone. Inside the zone the full alcohol offer runs; outside it, only a 0.0 message is allowed. Inside is built. Outside is a placeholder until we have a 0.0 pack shot - we don't fake the product.",
+  { title: "BWS gate, inside", kind: "media", badge: "Placement 11 · The drinks zone",
+    desc: "The security gate into the beer, wine and spirits zone, carrying the full €19 alcohol offer. The outside-zone panel (0.0 message only) is in build: it needs a real 0.0 pack shot, which we won't fake.",
     wideDesc: true,
-    layout: "grouped",
-    groups: [
-      { label: "11 · Inside the zone · full alcohol offer",
-        items: [ { src: "node11-gate-inside.png", w: 540, ratio: "1920 / 1080", cap: "The €19 landscape panel, off the same registered plate." } ] },
-      { label: "10 · Outside the zone · 0.0 message only",
-        items: [ { src: "node10-gate-outside.png", w: 540, ratio: "1920 / 1080", cap: "Placeholder - 0.0 message only outside the zone; awaiting a 0.0 pack shot." } ] },
-    ] },
+    layout: "single",
+    item: { src: "node11-gate-inside.png", w: 620, ratio: "1920 / 1080" } },
 
   { title: "The fingerprint: original vs rebuild", kind: "compare", badge: "The method",
     desc: "Drag the slider. Left is the finished Heineken Champions League static, right is the same ad rebuilt by our machine, measured to within 3 pixels. Both are set in the same type, so what you are judging is the rebuild of the scene, the layout and the containment, not a font swap. This piece is a sponsorship promo, not a retail ad; we use it here purely to show the fingerprint step. The retail creative lives in the journey above, each ad in its placement's own grammar.",
