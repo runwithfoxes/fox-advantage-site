@@ -74,6 +74,21 @@ export const work: WorkSection[] = [
     layout: "single",
     item: { src: "node11-gate-inside.png", w: 620, ratio: "1920 / 1080" } },
 
+  { title: "In the real world", kind: "media", badge: "In situ",
+    desc: "The same campaign as a shopper actually meets it: on the in-store screen, in the inbox on a phone, on the drinks-zone gate, and onsite on Tesco.ie. Each one is our creative rebuilt into the real placement, from a photo of that placement.",
+    wideDesc: true,
+    layout: "grouped",
+    groups: [
+      { label: "In-store screen · JCD / totem",
+        items: [ { src: "insitu-totem.png", w: 340, ratio: "1250 / 2130" } ] },
+      { label: "In the inbox · eCRM email on a phone",
+        items: [ { src: "insitu-email.png", w: 330, ratio: "784 / 1556" } ] },
+      { label: "The BWS security gate",
+        items: [ { src: "insitu-gate.png", w: 560, ratio: "890 / 914" } ] },
+      { label: "Onsite · Tesco.ie search",
+        items: [ { src: "insitu-onsite.png", w: 940, ratio: "2912 / 1800", cap: "Sponsored hero banner and MPU on the live results page - the €19 Clubcard price in the grid is real." } ] },
+    ] },
+
   { title: "The fingerprint: original vs rebuild", kind: "compare", badge: "The method",
     desc: "Drag the slider. Left is the finished Heineken Champions League static, right is the same ad rebuilt by our machine, measured to within 3 pixels. Both are set in the same type, so what you are judging is the rebuild of the scene, the layout and the containment, not a font swap. This piece is a sponsorship promo, not a retail ad; we use it here purely to show the fingerprint step. The retail creative lives in the journey above, each ad in its placement's own grammar.",
     wideDesc: true,
