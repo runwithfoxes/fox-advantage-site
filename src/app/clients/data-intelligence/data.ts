@@ -32,8 +32,11 @@ export const work: WorkSection[] = [
     desc: "Transcript of our strategy session on 15 July, edited for readability. The material the messaging framework was built from.",
     files: [ { name: "Discovery call transcript", file: "discovery-call-2026-07-15.txt", note: "Text - 15 Jul 2026" } ] },
 
-  // Work sections land here as deliverables complete. The messaging framework draft
-  // is deliberately NOT shown yet - it carries internal review flags and is not client-ready.
+  { title: "Messaging framework", kind: "files", status: "in-progress", isNew: true,
+    desc: "The working draft of your messaging framework - core value proposition, positioning, pillars, proof and voice. Still in review: a few lines carry open questions we want your input on. Have a read and send back your thoughts.",
+    files: [ { name: "Messaging framework (working draft)", file: "data-intelligence-messaging-framework.xlsx", note: "Excel - 15 Jul 2026" } ] },
+
+  // Further work sections land here as deliverables complete.
   // 1) MEDIA - grouped (sized tiles by shape, e.g. an IAB ad set)
   // { title: "Chart Ad set", kind: "media", layout: "grouped", status: "ready",
   //   desc: "The animated display ad across the full IAB range.",
