@@ -1,0 +1,842 @@
+<!-- Slow. Then fast. Smurfit Executive Development staff session, 16 July 2026 -->
+<meta charset="utf-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slow. Then fast.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --sky-blue: #3A7CA5;
+    --sky-blue-hover: #2F6688;
+    --deep-sky: #1A3A4E;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --cream: #F7EAD9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+  a { color: var(--sky-blue); text-decoration: none; }
+
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--deep-sky); color: var(--cream);
+    padding: 12px 20px; z-index: 200; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .skip-link:focus { left: 0; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: transparent;
+    transition: background 0.3s ease-out, backdrop-filter 0.3s ease-out;
+  }
+  nav.scrolled { background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(12px); }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300;
+    letter-spacing: 2px; color: var(--muted);
+  }
+  .nav-brand span { color: #F47521; }
+  .nav-links { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    white-space: nowrap; transition: color 0.3s ease-out;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--sky-blue); }
+  @media (max-width: 768px) { .nav-links { display: none; } }
+
+  .hero { position: relative; padding: 150px 0 120px; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+    background-size: 28px 28px; opacity: 0.4; pointer-events: none;
+  }
+  .hero .container { position: relative; }
+  .hero-label {
+    font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sky-blue); margin-bottom: 28px;
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 300; letter-spacing: -1.5px; line-height: 1.02; text-wrap: balance;
+  }
+  .hero-sub { font-size: 0.9375rem; font-weight: 300; color: var(--text); margin-top: 28px; }
+  .hero-meta { font-size: 0.875rem; color: var(--muted); margin-top: 20px; }
+  .fox-hero {
+    width: 260px; float: right; margin: -10px -10px 12px 40px; shape-outside: margin-box;
+    filter: drop-shadow(0 24px 48px rgba(29, 27, 27, 0.15));
+    pointer-events: none; user-select: none;
+  }
+  @media (max-width: 900px) { .fox-hero { display: none; } }
+
+  section.block { padding: 110px 0; position: relative; }
+  section.block + section.block { border-top: 1px solid var(--border); }
+  .eyebrow {
+    font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sky-blue); margin-bottom: 20px;
+  }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 3vw, 38px);
+    font-weight: 300; letter-spacing: -1px; line-height: 1.15; margin-bottom: 24px;
+  }
+  p.lede, p.body {
+    font-size: 0.9375rem; font-weight: 300; line-height: 1.7; margin-bottom: 20px;
+  }
+  p.body strong, p.lede strong, li strong { font-weight: 500; }
+
+  /* Agenda */
+  .agenda { margin-top: 40px; }
+  .agenda-row {
+    display: grid; grid-template-columns: 64px 1fr; gap: 24px;
+    padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start;
+  }
+  .agenda-row:first-child { border-top: 1px solid var(--border); }
+  .agenda-n {
+    font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 300; color: var(--sky-blue);
+  }
+  .agenda-row h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 400;
+    letter-spacing: -0.3px; margin-bottom: 8px;
+  }
+  .agenda-row p { font-size: 0.9375rem; font-weight: 300; line-height: 1.7; }
+  @media (max-width: 768px) { .agenda-row { grid-template-columns: 40px 1fr; gap: 16px; } }
+
+  /* Example cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+  .card {
+    border: 1px solid var(--border); background: var(--bg); padding: 30px 26px;
+    transition: background 0.3s ease-out;
+  }
+  .card:hover { background: var(--card-hover); }
+  .card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 400;
+    letter-spacing: -0.3px; margin-bottom: 12px;
+  }
+  .card p { font-size: 0.875rem; font-weight: 300; line-height: 1.65; }
+  .card .live {
+    display: inline-block; margin-top: 14px; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--sky-blue);
+  }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+
+  /* Live example embeds */
+  .demo { margin-top: 56px; }
+  .demo-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 400;
+    letter-spacing: -0.3px; margin-bottom: 18px;
+  }
+  .demo-frame {
+    width: 100%; height: 700px; border: 1px solid var(--border);
+    background: var(--bg); display: block;
+  }
+  .demo-tall { height: 2660px; }
+  .demo-coach { height: 1120px; }
+  .demo-blueprint { height: 1880px; }
+
+  /* Real site screenshots above the blueprint */
+  .site-shot { margin: 0 0 52px; }
+  .site-shot img { width: 100%; height: auto; display: block; border: 1px solid var(--border); }
+  .site-shot figcaption { font-size: 12px; color: var(--muted); margin-top: 14px; letter-spacing: 1px; }
+  a.site-link { display: block; text-decoration: none; }
+  a.site-link .site-shot img { transition: border-color 0.3s ease-out, transform 0.3s ease-out; }
+  a.site-link:hover .site-shot img { border-color: var(--sky-blue); transform: translateY(-2px); }
+  a.site-link:hover figcaption { color: var(--sky-blue); }
+
+  /* Five behaviours spider chart (from the alltech workshop page) */
+  .behaviours-chart { max-width: 700px; margin: 28px auto 0; }
+
+  /* AI Maturity Curve (from the presentation deck) */
+  .levels-wrap { position: relative; margin: 40px 0 0; }
+  .levels-chart { width: 100%; height: auto; display: block; overflow: visible; }
+  .levels-chart text { font-family: 'JetBrains Mono', monospace; }
+  .levels-chart .axis { stroke: var(--border); stroke-width: 1; }
+  .levels-chart .curve { fill: none; stroke: var(--deep-sky); stroke-width: 1.75; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.7s cubic-bezier(0.4, 0, 0.1, 1) 0.1s; }
+  .levels-wrap.in .curve { stroke-dashoffset: 0; }
+  .levels-chart .axlabel { fill: var(--muted); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  .levels-chart .ylabel { fill: var(--muted); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  .lv-node { position: absolute; transform: translate(-50%, -50%); z-index: 2;
+    opacity: 0; transition: opacity 0.55s ease-out; }
+  .levels-wrap.in .lv-node { opacity: 1; }
+  .lv-marker { display: block; width: 12px; height: 12px; border-radius: 50%;
+    border: 1.5px solid var(--deep-sky); background: var(--bg); position: relative; cursor: pointer;
+    transition: box-shadow 0.35s ease-out; }
+  .lv-marker::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--deep-sky);
+    transition: inset 0.35s ease-out; }
+  .lv-node:hover .lv-marker { box-shadow: 0 0 0 8px rgba(58, 124, 165, 0.12); }
+  .lv-node:hover .lv-marker::after { inset: 2px; }
+  .lv-lab { position: absolute; left: 50%; bottom: calc(100% + 15px); transform: translateX(-50%);
+    white-space: nowrap; text-align: center; transition: opacity 0.3s ease-out; pointer-events: none; }
+  .lv-lab .n { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: var(--sky-blue); margin-bottom: 5px; }
+  .lv-lab .t { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: -0.2px; color: var(--text); }
+  .lv-node:hover .lv-lab { opacity: 0; }
+  .lv-tip { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(8px);
+    width: 218px; background: var(--bg); border: 1px solid var(--border); padding: 16px 18px; text-align: left;
+    opacity: 0; pointer-events: none; z-index: 6; transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    box-shadow: 0 18px 44px rgba(29, 27, 27, 0.10); }
+  .lv-node:hover .lv-tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .lv-tip .tt { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: -0.2px;
+    color: var(--text); margin-bottom: 13px; line-height: 1.3; }
+  .lv-tip ul { list-style: none; }
+  .lv-tip li { font-size: 11px; color: var(--muted); padding-left: 14px; position: relative; margin-bottom: 8px; line-height: 1.45; }
+  .lv-tip li:last-child { margin-bottom: 0; }
+  .lv-tip li::before { content: ""; position: absolute; left: 0; top: 6px; width: 4px; height: 4px; background: var(--sky-blue); }
+  .lv-node.tip-below .lv-tip { bottom: auto; top: calc(100% + 15px); transform: translateX(-50%) translateY(-8px); }
+  .lv-node.tip-below:hover .lv-tip { transform: translateX(-50%) translateY(0); }
+  .lv-node.edge-r .lv-tip { left: auto; right: -8px; transform: translateX(0) translateY(-8px); }
+  .lv-node.edge-r:hover .lv-tip { transform: translateX(0) translateY(0); }
+  @media (max-width: 768px) {
+    .lv-lab .t { font-size: 12px; }
+    .lv-tip { width: 168px; padding: 13px 14px; }
+  }
+
+  /* Agents: three questions */
+  .q-block { margin-top: 52px; padding-top: 44px; border-top: 1px solid var(--border); }
+  .q-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  .q-n { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 300; color: var(--sky-blue); line-height: 1; }
+  .q-head h3 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.4vw, 27px); font-weight: 400; letter-spacing: -0.5px; }
+  .traits { margin: 26px 0 22px; }
+  .trait { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 0.9375rem; line-height: 1.6; }
+  .trait:first-child { border-top: 1px solid var(--border); }
+  .trait b { font-weight: 500; }
+  .jobs-line { font-size: 0.9375rem; line-height: 1.75; }
+  .jobs-line b { font-weight: 500; }
+
+  .spec-wrap { overflow-x: auto; margin: 26px 0 14px; }
+  .spec-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  .spec-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 0 24px 14px 0; border-bottom: 1px solid var(--border); }
+  .spec-table td { padding: 15px 24px 15px 0; border-bottom: 1px solid var(--border); vertical-align: top;
+    font-size: 0.875rem; line-height: 1.55; color: var(--text); }
+  .spec-table tr:last-child td { border-bottom: none; }
+  .spec-table td:first-child { width: 42%; }
+  .sp-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-right: 8px; }
+  .sp-k { font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: var(--sky-blue); }
+  .sp-q { color: var(--muted); }
+
+  .ladder { margin: 24px 0 22px; }
+  .rung { display: grid; grid-template-columns: 210px 1fr; gap: 26px; padding: 15px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+  .rung:first-child { border-top: 1px solid var(--border); }
+  .rung-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; letter-spacing: -0.3px; }
+  .rung.start .rung-name { color: var(--sky-blue); }
+  .rung-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--sky-blue); margin-top: 6px; }
+  .rung-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
+  @media (max-width: 768px) { .rung { grid-template-columns: 1fr; gap: 6px; } }
+
+  .callout-big { border-left: 3px solid var(--sky-blue); padding: 6px 0 6px 32px; margin: 48px 0 40px;
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.4vw, 28px); font-weight: 300;
+    line-height: 1.35; letter-spacing: -0.5px; }
+  .body-note { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 6px; }
+  .demo-pending { border: 1px dashed var(--border); padding: 32px; }
+  @media (max-width: 768px) { .demo-frame { height: 520px; } .demo-tall { height: 1600px; } }
+
+  /* How-it-works three habits */
+  .habits { margin-top: 40px; }
+  .habit {
+    display: grid; grid-template-columns: 220px 1fr; gap: 32px;
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+  }
+  .habit:first-child { border-top: 1px solid var(--border); }
+  .habit .name {
+    font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 400;
+    letter-spacing: -0.3px; color: var(--text);
+  }
+  .habit p { font-size: 0.9375rem; font-weight: 300; }
+  @media (max-width: 768px) { .habit { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* Start small: three starters + before/after brief */
+  .starters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 44px 0 60px; }
+  .starter { border: 1px solid var(--border); padding: 26px; display: flex; flex-direction: column; gap: 10px; transition: background 0.3s ease-out; }
+  .starter:hover { background: var(--card-hover); }
+  .starter.pick { border-color: var(--sky-blue); }
+  .starter .s-n { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 300; color: var(--sky-blue); }
+  .starter .s-t { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 400; letter-spacing: -0.3px; }
+  .starter .s-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sky-blue); margin-top: 2px; }
+  @media (max-width: 768px) { .starters { grid-template-columns: 1fr; } }
+
+  .ba { display: grid; grid-template-columns: 1fr 52px 1.5fr; align-items: stretch; margin-top: 8px; }
+  .ba-side { border: 1px solid var(--border); padding: 30px; }
+  .ba-side.good { border-color: var(--sky-blue); border-left-width: 2px; }
+  .ba-arrow { display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: var(--muted); }
+  .ba-lab { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .ba-side.good .ba-lab { color: var(--sky-blue); }
+  .ba-prompt { font-family: 'JetBrains Mono', monospace; font-size: 0.9375rem; background: var(--card-hover); padding: 16px 18px; line-height: 1.6; }
+  .ba-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+  .anat { display: flex; flex-direction: column; }
+  .anat-row { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+  .anat-row:last-child { border-bottom: none; }
+  .anat-k { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 400; color: var(--text); }
+  .anat-v { font-size: 12px; color: var(--muted); }
+  .ba-take { font-family: 'Space Grotesk', sans-serif; font-size: clamp(19px, 2vw, 24px); font-weight: 300; letter-spacing: -0.3px; margin-top: 44px; border-left: 2px solid var(--sky-blue); padding-left: 26px; }
+  @media (max-width: 768px) { .ba { grid-template-columns: 1fr; } .ba-arrow { transform: rotate(90deg); padding: 14px 0; } }
+  .ba-tip { font-size: 12px; color: var(--muted); margin-top: 18px; font-style: italic; }
+  .checkstrip { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 44px; }
+  .cs-lab { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+  .cs-chip { font-size: 0.875rem; padding: 9px 18px; border: 1px solid var(--sky-blue); color: var(--sky-blue); }
+
+  /* Research process flow */
+  .flow { margin-top: 44px; }
+  .fstep { display: grid; grid-template-columns: 54px 1fr; gap: 26px; padding-bottom: 34px; position: relative; }
+  .fstep:not(.last)::before { content: ""; position: absolute; left: 27px; top: 54px; bottom: -6px; width: 1px; background: var(--border); }
+  .fnum { width: 54px; height: 54px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 300; color: var(--sky-blue); background: var(--bg); position: relative; z-index: 1; }
+  .fbody { padding-top: 10px; }
+  .ft { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 400; letter-spacing: -0.3px; margin-bottom: 6px; }
+  .fd { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .engines { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .eng { font-size: 0.8125rem; padding: 8px 14px; border: 1px solid var(--sky-blue); color: var(--sky-blue); }
+  .authority { font-size: 12px; color: var(--muted); margin-top: 22px; font-style: italic; }
+
+  /* Worked example: bad prompt -> brief -> real output */
+  .worked { display: flex; flex-direction: column; gap: 30px; margin-top: 20px; }
+  .wk-lab { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--sky-blue); display: block; margin-bottom: 12px; }
+  .wk-bad { font-family: 'JetBrains Mono', monospace; font-size: 0.9375rem; background: var(--card-hover); padding: 16px 18px; color: var(--muted); }
+  .wk-brief { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; border: 1px solid var(--border); padding: 24px; }
+  .wk-part { font-size: 0.875rem; line-height: 1.5; }
+  .wk-part b { font-family: 'Space Grotesk', sans-serif; font-weight: 400; color: var(--sky-blue); margin-right: 8px; }
+  .wk-report { border: 1px solid var(--sky-blue); border-left-width: 2px; padding: 30px 32px; }
+  .wk-sum { font-size: 0.9375rem; line-height: 1.7; margin-bottom: 18px; }
+  .wk-sum b, .wk-thin b { font-weight: 500; }
+  .wk-finding { display: grid; grid-template-columns: 68px 1fr; gap: 18px; padding: 16px 0; border-top: 1px solid var(--border); align-items: baseline; }
+  .wk-stat { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 300; color: var(--sky-blue); }
+  .wk-txt { font-size: 0.875rem; line-height: 1.65; }
+  .wk-thin { font-size: 0.9375rem; line-height: 1.7; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .wk-briefdoc { border: 1px solid var(--border); background: var(--card-hover); padding: 28px 30px; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; line-height: 1.75; display: flex; flex-direction: column; gap: 14px; }
+  .bd-k { color: var(--sky-blue); font-weight: 500; }
+  @media (max-width: 768px) { .wk-brief { grid-template-columns: 1fr; } .wk-finding { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* Where this is going: chat -> create -> build progression */
+  .progression { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 56px; }
+  .prog-step { flex: 1 1 0; min-width: 170px; border: 1px solid var(--border); background: var(--bg); padding: 34px 26px; text-align: center; transition: background 0.3s ease-out; }
+  .prog-step:hover { background: var(--card-hover); }
+  .prog-step .ps-stage { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 14px; }
+  .prog-step .ps-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 400; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .prog-step .ps-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .prog-arrow { color: var(--sky-blue); font-size: 24px; flex: 0 0 auto; }
+  @media (max-width: 680px) { .progression { flex-direction: column; } .prog-step { width: 100%; } .prog-arrow { transform: rotate(90deg); } }
+
+  .fox-section {
+    width: 170px; float: right; margin: -10px -10px 20px 32px; shape-outside: margin-box;
+    filter: drop-shadow(0 12px 24px rgba(29, 27, 27, 0.1)); pointer-events: none; user-select: none;
+  }
+  @media (max-width: 768px) { .fox-section { width: 120px; float: none; display: block; margin: 0 auto 20px; } }
+
+  .callout {
+    border-left: 2px solid var(--sky-blue); padding: 8px 0 8px 28px; margin: 32px 0;
+    font-size: 0.9375rem; font-weight: 300;
+  }
+
+  footer { padding: 80px 0 120px; border-top: 1px solid var(--border); }
+  .footer-brand {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300;
+    letter-spacing: 2px; color: var(--muted);
+  }
+  .footer-brand span { color: #F47521; }
+  .footer-meta { font-size: 0.875rem; color: var(--muted); margin-top: 16px; }
+
+  .to-top {
+    position: fixed; bottom: 32px; right: 32px; background: var(--deep-sky); color: var(--cream);
+    border: none; padding: 12px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer; opacity: 0;
+    pointer-events: none; transition: opacity 0.3s ease-out; z-index: 90;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  :focus-visible { outline: 2px solid var(--sky-blue); outline-offset: 3px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .nav-inner { padding: 18px 24px; }
+    .hero { padding: 118px 0 80px; }
+    section.block { padding: 80px 0; }
+  }
+  @media (max-width: 380px) { .container { padding: 0 16px; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">/<span>Run</span>withfoxes</a>
+    <div class="nav-links">
+      <a href="#possible">/whats_possible</a>
+      <a href="#how">/how</a>
+      <a href="#research">/good_research</a>
+      <a href="#website">/website</a>
+      <a href="#systems">/systems</a>
+      <a href="#maturity">/maturity</a>
+      <a href="#agents">/agents</a>
+      <a href="#behaviours">/behaviours</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <img class="fox-hero" src="/ucd/fox-book.png" alt="" />
+      <p class="hero-label">Smurfit Executive Development / 16 July</p>
+      <h1>Slow. Then fast.</h1>
+      <p class="hero-sub">The trick with AI isn't a cleverer prompt. It's getting clear on what good looks like once, then making it fast every time. Two hours on doing that with your own work.</p>
+      <p class="hero-meta">Run with Foxes, with Paul Dervan</p>
+    </div>
+  </header>
+
+  <!-- WHAT'S POSSIBLE NOW -->
+  <section class="block" id="possible">
+    <div class="container reveal">
+      <p class="eyebrow">Item one</p>
+      <h2>What's possible now</h2>
+      <p class="lede">Not toys. Real work, at a quality you'd be happy with, in a fraction of the time. A lot of this used to need a designer, a developer, or a data team.</p>
+
+      <div class="demo">
+        <h3 class="demo-title">A simulator students can play with</h3>
+        <iframe class="demo-frame" src="/ucd/example-6040-simulator.html" title="Brand and activation simulator" loading="lazy"></iframe>
+      </div>
+
+      <div class="demo">
+        <h3 class="demo-title">Real analysis on your own data</h3>
+        <iframe class="demo-frame" src="/ucd/example-segmentation.html" title="Segmentation examples" loading="lazy"></iframe>
+      </div>
+
+      <div class="demo">
+        <iframe class="demo-frame demo-coach" src="/ucd/example-brief-coach.html" title="An AI coach" loading="lazy"></iframe>
+      </div>
+
+      <div class="demo">
+        <h3 class="demo-title">A whole video, edited in Claude Code</h3>
+        <iframe class="demo-frame demo-tall" src="/ucd/example-anthropic.html" title="An example from Anthropic" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="block" id="how">
+    <div class="container reveal">
+      <p class="eyebrow">How it's done</p>
+      <h2>Slow, then fast</h2>
+      <p class="body">Every one of those works the same way underneath. You get clear on what good looks like first, slowly, once. Then you give the tool three things so it hits that standard every time. After that it's fast, and you're not starting from a blank chat every time you sit down.</p>
+      <div class="habits">
+        <div class="habit">
+          <div class="name">A clear job</div>
+          <p>One thing you want it to do, said plainly. Not a vague question.</p>
+        </div>
+        <div class="habit">
+          <div class="name">The stuff it needs</div>
+          <p>Give it what you'd give a colleague to do the job: the notes, the data, the examples.</p>
+        </div>
+        <div class="habit">
+          <div class="name">What good looks like</div>
+          <p>Show it a good result, so it has a standard to hit, not a guess to make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO GET GOOD RESEARCH -->
+  <section class="block" id="research">
+    <div class="container reveal">
+      <p class="eyebrow">The one worth having</p>
+      <h2>How to get good research from AI</h2>
+      <p class="lede">Good research from AI isn't a magic prompt, it's a process. Brief it properly, run it more than once, and make the models check each other. Specs, not tricks.</p>
+
+      <div class="flow">
+        <div class="fstep">
+          <div class="fnum">1</div>
+          <div class="fbody"><div class="ft">Write a bad prompt</div><div class="fd">The rough one-liner. Don't polish it.</div></div>
+        </div>
+        <div class="fstep">
+          <div class="fnum">2</div>
+          <div class="fbody"><div class="ft">Get the AI to write the brief</div><div class="fd">It turns the rough ask into a proper one: the goal, a good and a bad example, the sources that count, what it's for.</div></div>
+        </div>
+        <div class="fstep">
+          <div class="fnum">3</div>
+          <div class="fbody"><div class="ft">Run it in all three research modes</div><div class="fd">Not a plain chat. The mode that actually reads live sources.</div>
+            <div class="engines"><span class="eng">Claude research</span><span class="eng">ChatGPT research</span><span class="eng">Gemini research</span></div>
+          </div>
+        </div>
+        <div class="fstep">
+          <div class="fnum">4</div>
+          <div class="fbody"><div class="ft">Make them mark each other's work</div><div class="fd">Give each model the other two reports. Critique and build.</div></div>
+        </div>
+        <div class="fstep">
+          <div class="fnum">5</div>
+          <div class="fbody"><div class="ft">Then a fresh, hostile pass</div><div class="fd">A clean model: find the gaps, verify the claims, challenge everything, say what's missing.</div></div>
+        </div>
+        <div class="fstep last">
+          <div class="fnum">6</div>
+          <div class="fbody"><div class="ft">A strong starting point, not the truth</div><div class="fd">You decide what's credible and what it means.</div></div>
+        </div>
+      </div>
+
+      <p class="lede" style="margin-top:64px">Here it is run for real, on a question a team like yours might ask.</p>
+
+      <div class="worked">
+        <div class="wk-stage">
+          <span class="wk-lab">1 &middot; The bad prompt</span>
+          <div class="wk-bad">What does the research say about AI tutoring?</div>
+        </div>
+
+        <div class="wk-stage">
+          <span class="wk-lab">2 &middot; The brief it writes back</span>
+          <div class="wk-briefdoc">
+            <div class="bd-row"><span class="bd-k">Role.</span> Act as a senior education-technology analyst briefing the leadership of a university executive-education group. You are numerate, sceptical of vendor and press claims, and you separate peer-reviewed evidence from marketing.</div>
+            <div class="bd-row"><span class="bd-k">The decision this feeds.</span> We're deciding whether and how to build AI tutoring and AI-assisted feedback into our executive programmes over the next two years. I need a clear-eyed read of what the evidence supports, not a hype piece and not a doom piece.</div>
+            <div class="bd-row"><span class="bd-k">Core question.</span> What does the current evidence say about whether AI tutoring and AI-assisted feedback improve adult and executive learning outcomes, where it works, where it doesn't, and what the real risks are?</div>
+            <div class="bd-row"><span class="bd-k">Specifically cover.</span> (1) The strongest studies on outcomes, with effect sizes and the populations studied, and how strong that evidence really is. (2) Where it helps most and least. (3) The known failure modes: over-reliance, deskilling, shallow engagement, accuracy. (4) What good implementations do differently from bad ones. (5) The gaps, especially for professional and executive learners.</div>
+            <div class="bd-row"><span class="bd-k">Sources.</span> Prioritise peer-reviewed studies, meta-analyses and named institutional research. Treat vendor case studies and "up to X%" press figures as claims to check, not facts. When a number comes from a vendor, say so.</div>
+            <div class="bd-row"><span class="bd-k">Output.</span> Open with a 150-word executive summary giving your actual read. Then a section per question above. End with a short "what I'd watch" list.</div>
+            <div class="bd-row"><span class="bd-k">Honesty.</span> Where the evidence is thin or conflicting, show both sides rather than averaging them. Flag your confidence on each major claim. If a widely repeated figure traces to a single unreplicated study, call it out. Note anything you couldn't verify.</div>
+          </div>
+        </div>
+
+        <div class="wk-stage">
+          <span class="wk-lab">3 &middot; A slice of what comes back</span>
+          <div class="wk-report">
+            <p class="wk-sum"><b>The read.</b> Well-built AI tutoring genuinely lifts learning, and the newest trials are striking, but the size of the gain depends on how the tutor is designed, and almost all the hard evidence is on students, not executives.</p>
+            <div class="wk-finding">
+              <span class="wk-stat">2&times;</span>
+              <span class="wk-txt">A Harvard randomised trial (194 students) found people learned more than twice as much, in less time, with a well-built AI tutor than in an active-learning class. <a href="https://www.nature.com/articles/s41598-025-97652-6" target="_blank" rel="noopener">Scientific Reports, 2025</a></span>
+            </div>
+            <div class="wk-finding">
+              <span class="wk-stat">0.66</span>
+              <span class="wk-txt">A meta-analysis of 50 trials put the median effect at 0.66 standard deviations, 50th to 75th percentile, but far smaller on standardised tests than on local ones. <a href="https://journals.sagepub.com/doi/10.3102/0034654315581420" target="_blank" rel="noopener">Kulik &amp; Fletcher, 2016</a></span>
+            </div>
+            <div class="wk-finding">
+              <span class="wk-stat">0.42</span>
+              <span class="wk-txt">A larger meta-analysis (107 studies, 14,321 learners) found a more modest but real edge over ordinary class teaching. <a href="https://www.apa.org/pubs/journals/features/edu-a0037123.pdf" target="_blank" rel="noopener">Ma et al., 2014</a></span>
+            </div>
+            <p class="wk-thin"><b>What's thin.</b> Nearly all of this is school and university students. The evidence for executive and professional learners barely exists. That gap is the opportunity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkstrip">
+        <span class="cs-lab">Sanity-check it</span>
+        <span class="cs-chip">Credible sources, not just easy ones?</span>
+        <span class="cs-chip">Does the cited source actually say it?</span>
+        <span class="cs-chip">Where's it thin?</span>
+      </div>
+      <p class="authority">The shape of this is Wharton's prompting research and how Anthropic runs its own.</p>
+    </div>
+  </section>
+
+  <!-- WEBSITE CHANGE BLUEPRINT -->
+  <section class="block" id="website">
+    <div class="container reveal">
+      <figure class="site-shot">
+        <img src="/ucd/rwf-homepage.png" alt="The Run with Foxes homepage: Paul and the fox character in a car on a desert road, headline 'Build the marketing team you never had'" />
+        <figcaption>My actual site, runwithfoxes.com</figcaption>
+      </figure>
+      <a class="site-link" href="https://runwithfoxes.com/experts" target="_blank" rel="noopener">
+        <figure class="site-shot">
+          <img src="/ucd/experts-panel.png" alt="A live tool on the site: 'Put your plan through the panel', a text box to paste a marketing plan and three experts to choose from, the Commercial Manager, the Strategy Purist and the Consulting Partner" />
+          <figcaption>A live tool on the site: put your plan through the panel &rarr;</figcaption>
+        </figure>
+      </a>
+      <p class="eyebrow">What a system looks like</p>
+      <h2>What "change my website" really sets off</h2>
+      <p class="lede">I ask for one small change to my site in plain English. Behind that one line, a whole set of steps runs every time: checking it against the brand, building it, looking at it, and pushing it live. That is the system. You build it once, then every change goes through it.</p>
+      <div class="demo">
+        <iframe class="demo-frame demo-blueprint" src="/ucd/example-website-blueprint.html" title="The steps behind a website change" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE THIS IS GOING: build in systems -->
+  <section class="block" id="systems">
+    <div class="container reveal">
+      <p class="eyebrow">Where this is going</p>
+      <h2>It went from chatting, to making things, to building things.</h2>
+      <p class="lede">Which changes the move. You stop opening a fresh chat every time and start building in systems that hold your context, your examples and your standard, so the good version comes back every time.</p>
+      <div class="progression">
+        <div class="prog-step">
+          <div class="ps-stage">Then</div>
+          <div class="ps-title">Chat</div>
+          <div class="ps-desc">You ask it things in a box.</div>
+        </div>
+        <div class="prog-arrow">&rarr;</div>
+        <div class="prog-step">
+          <div class="ps-stage">Recently</div>
+          <div class="ps-title">Create &amp; connect</div>
+          <div class="ps-desc">It makes things, and plugs into your work.</div>
+        </div>
+        <div class="prog-arrow">&rarr;</div>
+        <div class="prog-step">
+          <div class="ps-stage">Now</div>
+          <div class="ps-title">Build</div>
+          <div class="ps-desc">It builds things for you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI MATURITY CURVE (exact from the presentation deck) -->
+  <section class="block" id="maturity">
+    <div class="container reveal">
+      <h2>AI Maturity Curve</h2>
+      <div class="levels-wrap">
+        <svg class="levels-chart" viewBox="0 0 1000 520" role="img" aria-label="A rising curve from bottom-left to top-right showing five levels of AI use, increasing in value and ambition.">
+          <line class="axis" x1="90" y1="40" x2="90" y2="470" />
+          <line class="axis" x1="90" y1="470" x2="965" y2="470" />
+          <text class="ylabel axlabel" transform="rotate(-90 30 255)" x="30" y="255" text-anchor="middle">Value &amp; ambition &#8594;</text>
+          <path class="curve" pathLength="1" d="M 95 450
+            C 115 444, 130 435, 150 425
+            C 215 405, 285 382, 345 360
+            C 410 337, 475 308, 535 282
+            C 600 253, 665 218, 725 185
+            C 790 152, 850 118, 905 80" />
+          <text class="axlabel" x="150" y="497" text-anchor="middle">An individual</text>
+          <text class="axlabel" x="345" y="497" text-anchor="middle">You, expanded</text>
+          <text class="axlabel" x="535" y="497" text-anchor="middle">A team</text>
+          <text class="axlabel" x="725" y="497" text-anchor="middle">Many functions</text>
+          <text class="axlabel" x="905" y="497" text-anchor="middle">Net-new</text>
+        </svg>
+        <div class="lv-node" style="left:15%;top:81.7%;transition-delay:.7s">
+          <span class="lv-marker"></span>
+          <span class="lv-lab"><span class="t">Individual speed</span></span>
+          <div class="lv-tip">
+            <div class="tt">Individual speed</div>
+            <ul>
+              <li>Writing blog posts</li>
+              <li>Doing analysis</li>
+              <li>And the rest of the day-to-day</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lv-node" style="left:34.5%;top:69.2%;transition-delay:.95s">
+          <span class="lv-marker"></span>
+          <span class="lv-lab"><span class="t">Creating adjacent value</span></span>
+          <div class="lv-tip">
+            <div class="tt">Creating adjacent value</div>
+            <ul>
+              <li>Analyst-grade segmentation, no analyst</li>
+              <li>Ads built with motion, no motion designer</li>
+              <li>Doing the work you used to hire out</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lv-node" style="left:53.5%;top:54.2%;transition-delay:1.2s">
+          <span class="lv-marker"></span>
+          <span class="lv-lab"><span class="t">Team productivity</span></span>
+          <div class="lv-tip">
+            <div class="tt">Team productivity</div>
+            <ul>
+              <li>Teams working together with AI</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lv-node tip-below" style="left:72.5%;top:35.6%;transition-delay:1.45s">
+          <span class="lv-marker"></span>
+          <span class="lv-lab"><span class="t">Building systems</span></span>
+          <div class="lv-tip">
+            <div class="tt">Building systems</div>
+            <ul>
+              <li>A website you edit by talking to it</li>
+              <li>Outreach, site, inbound and research, all connected</li>
+              <li>The pieces start to flow together</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lv-node tip-below edge-r" style="left:90.5%;top:15.4%;transition-delay:1.7s">
+          <span class="lv-marker"></span>
+          <span class="lv-lab"><span class="t">Not possible before</span></span>
+          <div class="lv-tip">
+            <div class="tt">Doing things not possible before</div>
+            <ul>
+              <li>A researcher calling hundreds of customers a day</li>
+              <li>Longitudinal, deep-qual research at scale</li>
+              <li>The work that resources always stopped</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTS: THREE QUESTIONS -->
+  <section class="block" id="agents">
+    <div class="container reveal">
+      <p class="eyebrow">Putting it to work</p>
+      <h2>Three questions for an agent</h2>
+      <p class="lede">A simple, memorable spine. Where does it fit? What is it, exactly? How do we adopt it safely? Everything else hangs off these three.</p>
+
+      <div class="q-block" style="border-top:none;padding-top:8px">
+        <div class="q-head"><span class="q-n">1</span><h3>Where does an agent fit?</h3></div>
+        <p class="body">Pick the job that's costing you: staff hours, or students falling through the cracks. A good candidate job is one that:</p>
+        <div class="traits">
+          <div class="trait"><b>Happens all the time.</b> Every student email, every application, every deadline.</div>
+          <div class="trait"><b>Has a clear finish line.</b> Query answered, form checked, reminder sent, flag raised.</div>
+          <div class="trait"><b>Touches systems you already use.</b> Email, Moodle or Canvas, student records, calendars, spreadsheets.</div>
+          <div class="trait"><b>Has edge cases that are annoying but learnable.</b> Not so rote a simple rule handles it, not so sensitive it needs pure human judgement.</div>
+          <div class="trait"><b>Has someone who feels the loss.</b> Staff drowning in admin, missed deadlines.</div>
+        </div>
+        <p class="jobs-line"><b>Jobs they'll recognise:</b> answering repetitive student FAQs, triaging the programme inbox to the right office, chasing missing enrolment documents, first-draft feedback on formative (not graded) work, coordinating placement or event logistics, checking application completeness, deadline reminders.</p>
+      </div>
+
+      <div class="q-block">
+        <div class="q-head"><span class="q-n">2</span><h3>What is an agent, really?</h3></div>
+        <p class="body">An agent isn't magic. It's seven decisions. Here they are for one running example, a programme query assistant.</p>
+        <div class="spec-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr><th>The 7 parts</th><th>For a student-query assistant</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="sp-n">1</span><span class="sp-k">Trigger.</span> <span class="sp-q">What wakes it up?</span></td><td>A student emails the programme inbox.</td></tr>
+              <tr><td><span class="sp-n">2</span><span class="sp-k">Context.</span> <span class="sp-q">What must it know?</span></td><td>The handbook, timetable, key dates, FAQs.</td></tr>
+              <tr><td><span class="sp-n">3</span><span class="sp-k">Tools.</span> <span class="sp-q">What can it use?</span></td><td>Search the handbook, look up the timetable, draft an email.</td></tr>
+              <tr><td><span class="sp-n">4</span><span class="sp-k">Allowed actions.</span> <span class="sp-q">What can it do itself?</span></td><td>Draft a reply, tag the query.</td></tr>
+              <tr><td><span class="sp-n">5</span><span class="sp-k">Approval.</span> <span class="sp-q">Where does a human sign off?</span></td><td>Staff approve every reply before it sends, at first.</td></tr>
+              <tr><td><span class="sp-n">6</span><span class="sp-k">Escalation.</span> <span class="sp-q">When does it hand to a human?</span></td><td>Anything about extenuating circumstances, welfare, appeals, grades.</td></tr>
+              <tr><td><span class="sp-n">7</span><span class="sp-k">Success.</span> <span class="sp-q">What does good look like?</span></td><td>Accurate answer, fast. Staff time saved. Nothing sensitive auto-handled.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="body-note">If the room leaves understanding only this table, the talk has done its job.</p>
+      </div>
+
+      <div class="q-block">
+        <div class="q-head"><span class="q-n">3</span><h3>How do you adopt one responsibly?</h3></div>
+        <p class="body">Think of it as a safety ladder. Start at the top rung, and only descend as trust is earned.</p>
+        <div class="ladder">
+          <div class="rung start">
+            <div><div class="rung-name">Draft and approve</div><span class="rung-tag">Always start here</span></div>
+            <div class="rung-desc">A human signs off every time.</div>
+          </div>
+          <div class="rung">
+            <div class="rung-name">Triage</div>
+            <div class="rung-desc">It routes, it doesn't act.</div>
+          </div>
+          <div class="rung">
+            <div class="rung-name">Coordinator</div>
+            <div class="rung-desc">It moves things along: reminders, booking, chasing info.</div>
+          </div>
+          <div class="rung">
+            <div class="rung-name">Bounded action</div>
+            <div class="rung-desc">It does one defined thing under clear rules, like sending a standard deadline reminder or booking a room.</div>
+          </div>
+        </div>
+        <p class="body">Start as a predictable workflow, earn autonomy over time. The wrapper is the accountability: logs of what it did and why, human approval, the ability to test before go-live, and an override always available.</p>
+        <p class="body">Before you let an agent near real student queries, run it against 50 real past ones with known-good answers, and show where it's right, where it flags, and where it errs. That is also exactly what you'd show an ethics or validation committee.</p>
+      </div>
+
+      <div class="callout-big">You don't need to become a programmer. You need to be able to describe a job precisely enough that something else can do it, and to know where a human must stay in the loop.</div>
+
+      <div class="callout">Some things stay human: welfare, mental health, grades of record, appeals, and anything pastoral. Agents clear the admin around those, so staff have more time for them, not less.</div>
+    </div>
+  </section>
+
+  <!-- FIVE BEHAVIOURS -->
+  <section class="block" id="behaviours">
+    <div class="container reveal">
+      <p class="eyebrow" style="text-align:center">The five behaviours</p>
+      <div class="behaviours-chart">
+        <svg viewBox="0 0 900 480" role="img" aria-label="Spider chart of the five fox behaviours: Poke, Skeptically optimistic, Do the reps, Build, Multi-tool marketer" style="width:100%;height:auto;display:block;overflow:visible">
+          <polygon points="450.0,208.8 489.2,237.3 474.2,283.4 425.8,283.4 410.8,237.3" fill="none" stroke="#E0E0DC" stroke-width="1"/>
+          <polygon points="450.0,167.5 528.5,224.5 498.5,316.7 401.5,316.7 371.5,224.5" fill="none" stroke="#E0E0DC" stroke-width="1"/>
+          <polygon points="450.0,126.3 567.7,211.8 522.7,350.1 377.3,350.1 332.3,211.8" fill="none" stroke="#E0E0DC" stroke-width="1"/>
+          <polygon points="450.0,85.0 606.9,199.0 547.0,383.5 353.0,383.5 293.1,199.0" fill="none" stroke="#E0E0DC" stroke-width="1"/>
+          <line x1="450" y1="250" x2="450.0" y2="85.0" stroke="#E0E0DC" stroke-width="1"/>
+          <line x1="450" y1="250" x2="606.9" y2="199.0" stroke="#E0E0DC" stroke-width="1"/>
+          <line x1="450" y1="250" x2="547.0" y2="383.5" stroke="#E0E0DC" stroke-width="1"/>
+          <line x1="450" y1="250" x2="353.0" y2="383.5" stroke="#E0E0DC" stroke-width="1"/>
+          <line x1="450" y1="250" x2="293.1" y2="199.0" stroke="#E0E0DC" stroke-width="1"/>
+          <polygon points="450.0,85.0 606.9,199.0 547.0,383.5 353.0,383.5 293.1,199.0" fill="#3A7CA5" fill-opacity="0.14" stroke="#3A7CA5" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="450.0" cy="85.0" r="4.5" fill="#3A7CA5"/>
+          <circle cx="606.9" cy="199.0" r="4.5" fill="#3A7CA5"/>
+          <circle cx="547.0" cy="383.5" r="4.5" fill="#3A7CA5"/>
+          <circle cx="353.0" cy="383.5" r="4.5" fill="#3A7CA5"/>
+          <circle cx="293.1" cy="199.0" r="4.5" fill="#3A7CA5"/>
+          <text x="450.0" y="47.0" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="400" fill="#1D1B1B"><tspan x="450.0" dy="0">Poke</tspan></text>
+          <text x="450.0" y="66.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="0.5" fill="#8A8A85">curiosity as a system</text>
+          <text x="637.4" y="180.1" text-anchor="start" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="400" fill="#1D1B1B"><tspan x="637.4" dy="0">Skeptically</tspan><tspan x="637.4" dy="18">optimistic</tspan></text>
+          <text x="637.4" y="217.1" text-anchor="start" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="0.5" fill="#8A8A85">trust, then verify</text>
+          <text x="565.8" y="415.4" text-anchor="start" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="400" fill="#1D1B1B"><tspan x="565.8" dy="0">Do the reps</tspan></text>
+          <text x="565.8" y="434.4" text-anchor="start" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="0.5" fill="#8A8A85">earn the competence</text>
+          <text x="334.2" y="415.4" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="400" fill="#1D1B1B"><tspan x="334.2" dy="0">Build</tspan></text>
+          <text x="334.2" y="434.4" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="0.5" fill="#8A8A85">make the real thing</text>
+          <text x="262.6" y="180.1" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="400" fill="#1D1B1B"><tspan x="262.6" dy="0">Multi-tool</tspan><tspan x="262.6" dy="18">marketer</tspan></text>
+          <text x="262.6" y="217.1" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="0.5" fill="#8A8A85">ship without a chain</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <a class="footer-brand" href="#top">/<span>Run</span>withfoxes</a>
+    <p class="footer-meta">Slow. Then fast. Smurfit Executive Development, 16 July 2026.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">Top</button>
+
+<script>
+  var nav = document.getElementById('nav');
+  var toTop = document.getElementById('toTop');
+  function onScroll() {
+    if (window.scrollY > 40) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    if (window.scrollY > 600) { toTop.classList.add('show'); } else { toTop.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  var reveals = document.querySelectorAll('.reveal, .levels-wrap');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (r) { io.observe(r); });
+  } else { reveals.forEach(function (r) { r.classList.add('in'); }); }
+
+  var sections = document.querySelectorAll('section.block, header.hero');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var id = e.target.getAttribute('id');
+        navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(function (s) { spy.observe(s); });
+</script>

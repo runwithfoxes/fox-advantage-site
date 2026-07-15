@@ -1,0 +1,452 @@
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>An AI coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1D1B1B;
+    --muted: #8A8A85;
+    --sky-blue: #3A7CA5;
+    --sky-blue-hover: #2F6688;
+    --deep-sky: #1A3A4E;
+    --border: #E0E0DC;
+    --card-hover: #F5F5F0;
+    --cream: #F7EAD9;
+    --sky-soft: rgba(58, 124, 165, 0.10);
+    --shadow: 0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 300; }
+
+  .skip-link { position: absolute; left: -999px; }
+  .skip-link:focus { left: 16px; top: 16px; background: var(--deep-sky); color: var(--cream); padding: 8px 16px; z-index: 200; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between; gap: 48px;
+    padding: 18px 48px;
+    transition: background 0.3s ease-out;
+  }
+  nav.scrolled { background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(12px); }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300;
+    letter-spacing: 2px; color: var(--muted); text-decoration: none; flex-shrink: 0;
+  }
+  .nav-brand span { color: #F47521; }
+  .nav-links { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    text-decoration: none; white-space: nowrap; transition: color 0.3s ease-out;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--sky-blue); }
+  @media (max-width: 768px) { .nav-links { display: none; } }
+
+  .container { max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 48px; }
+  section { padding: 120px 0; position: relative; }
+  @media (max-width: 768px) { section { padding: 80px 0; } .container { padding: 0 24px; } }
+
+  /* Dot grids */
+  .dotgrid::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+    background-size: 28px 28px; opacity: 0.4; pointer-events: none;
+  }
+  .dark { background: var(--deep-sky); color: var(--cream); }
+  .dark .dotgrid::before, section.dark.dotgrid::before {
+    background-image: radial-gradient(circle, rgba(58, 124, 165, 0.6) 0.8px, transparent 0.8px);
+    opacity: 0.08;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--sky-blue);
+    margin-bottom: 20px;
+  }
+  .dark .eyebrow { color: var(--sky-blue); }
+
+  /* Hero */
+  .hero { min-height: 92vh; display: flex; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; width: 100%; }
+  .hero h1 { font-size: clamp(48px, 8vw, 96px); letter-spacing: -2px; line-height: 1.02; margin-bottom: 24px; }
+  .hero p { font-size: 1.05rem; color: var(--muted); max-width: 560px; }
+  .hero .source { margin-top: 28px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .fox-hero { width: 280px; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.15)); pointer-events: none; user-select: none; }
+  @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } .fox-hero { width: 180px; margin: 0 auto; } }
+
+  .wf-banner {
+    display: inline-block; border: 1px solid var(--sky-blue); color: var(--sky-blue);
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; margin-bottom: 28px;
+  }
+
+  h2.section-title { font-size: clamp(36px, 5vw, 64px); letter-spacing: -1px; line-height: 1.05; margin-bottom: 16px; }
+  .section-sub { color: var(--muted); max-width: none; margin-bottom: 56px; font-size: 0.95rem; }
+  .bio p { font-size: 1.05rem; line-height: 1.75; color: var(--text); margin-bottom: 22px; }
+  .bio p:last-child { margin-bottom: 0; }
+  .bio p.lead { font-size: 1.15rem; }
+  .slide-space { min-height: 560px; }
+
+  /* Adjacent value - the Ad Resizer "Run" demo */
+  .adj-lead { font-size: 1.05rem; line-height: 1.75; color: var(--text); max-width: none; margin-bottom: 8px; }
+  .adj-lead b { font-weight: 400; color: var(--text); }
+  .adj-sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 48px; }
+  .rz-shadow { box-shadow: 0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  .resizer { display: flex; gap: 40px; align-items: flex-start; }
+  @media (max-width: 860px) { .resizer { flex-direction: column; } .rz-arrow { display: none; } }
+  .rz-source { flex: 0 0 340px; display: block; }
+  .hero-ad { display: block; }
+  .hero-ad .dim { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+  .hero-frame { width: 320px; height: 320px; border: 1px solid var(--border); background: #F5F4F0; overflow: hidden; box-shadow: 0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  .hero-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .rz-source { flex-basis: auto; width: 100%; max-width: 360px; } }
+  .rz-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 12px; }
+  .rz-prompt { display: flex; align-items: center; gap: 10px; margin-top: 18px; border: 1px solid var(--border); background: #fff; padding: 11px 13px; }
+  .rz-caret { color: var(--sky-blue); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .rz-cmd { flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text); }
+  .rz-run { background: var(--sky-blue); color: #fff; border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; padding: 8px 13px; transition: background .2s; }
+  .rz-run:hover { background: var(--deep-sky); }
+  .rz-arrow { align-self: center; color: var(--muted); font-size: 22px; flex: none; }
+  .rz-out { flex: 1; min-width: 0; min-height: 320px; }
+  .rz-out-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .cluster { display: flex; gap: 14px; align-items: stretch; }
+  .cluster-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .out-row { display: flex; gap: 12px; align-items: flex-start; }
+  .col2 { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .ad { flex-grow: 1; flex-basis: 0; min-width: 0; display: flex; flex-direction: column; gap: 6px; opacity: 0; transform: translateY(12px); transition: opacity .45s ease-out, transform .45s ease-out; }
+  .col2 .ad { flex: 0 0 auto; }
+  .ad.in { opacity: 1; transform: none; }
+  .ad.hero { opacity: 1; transform: none; }
+  .ad .dim { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+  .ad .frame { width: 100%; aspect-ratio: var(--ar); border: 1px solid var(--border); background: #F5F4F0; overflow: hidden; box-shadow: 0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  .ad .frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .sky { flex: 0 0 140px; align-self: flex-start; }
+  .sky .frame { flex: none; aspect-ratio: 160/600; height: auto; }
+  @media (prefers-reduced-motion: reduce) { .ad { opacity: 1; transform: none; transition: none; } }
+  .dark .section-sub { color: var(--cream); opacity: 0.8; }
+
+  /* Team Productivity - Brief Coach (Experience widget, copied from module-brief-coach) */
+  .exp-lead { font-size: 14px; color: var(--text); line-height: 1.8; margin-bottom: 34px; max-width: none; }
+  .exp-lead b { font-weight: 400; }
+  .bc-show { display: flex; gap: 30px; align-items: stretch; }
+  @media (max-width: 900px) { .bc-show { flex-direction: column; } .bc-chat { flex-basis: auto !important; max-width: none !important; } }
+  .bc-pyr-col { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+  .bc-pyr-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding-bottom: 6px; }
+  .bc-pyr-sub { font-size: 12px; line-height: 1.6; color: var(--muted); margin-bottom: 20px; }
+  .bc-pyr { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .tier { width: 100%; padding: 14px 18px; color: #fff; border: 1px solid rgba(26,58,78,.16); transition: opacity .35s ease, transform .35s ease, box-shadow .35s ease; opacity: .55; }
+  .tier.t-commercial { width: 58%; background: #2E5645; }
+  .tier.t-behaviour { width: 71%; background: #3E6E57; }
+  .tier.t-memory { width: 84%; background: #E0660F; }
+  .tier.t-comms { width: 92%; background: #C99457; color: #fff; }
+  .tier.t-activity { width: 100%; background: #B9A98F; color: #fff; }
+  .bc-pyr.idle .tier { opacity: 1; }
+  .tier.lit { opacity: 1; transform: translateY(-1px); box-shadow: 0 5px 18px rgba(29,27,27,.22); }
+  .tier.done { opacity: .9; }
+  .t-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500; }
+  .t-metrics { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; line-height: 1.5; margin-top: 4px; opacity: .92; }
+  .bc-pyr-foot { margin-top: 16px; font-size: 11.5px; line-height: 1.65; color: var(--muted); }
+  .bc-pyr-foot b { color: var(--deep-sky); font-weight: 500; }
+  .bc-chat { flex: 0 0 460px; max-width: 460px; min-width: 0; min-height: 478px; display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--bg); box-shadow: var(--shadow); }
+  .bc-chat-h { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bc-chat-h .ht { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: lowercase; color: var(--text); }
+  .bc-chat-h .badge-live { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sky-blue); }
+  .bc-chat-body { display: flex; flex-direction: column; gap: 14px; padding: 18px; flex: 1; overflow-y: auto; }
+  .bc-turn2 { display: flex; flex-direction: column; max-width: 90%; opacity: 0; transform: translateY(10px); transition: opacity .4s ease-out, transform .4s ease-out; }
+  .bc-turn2.shown { opacity: 1; transform: none; }
+  .bc-turn2.bot { align-self: flex-start; align-items: flex-start; }
+  .bc-turn2.you { align-self: flex-end; align-items: flex-end; }
+  .bc-who { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 2px 4px; }
+  .bc-turn2.bot .bc-who { color: var(--sky-blue); }
+  .bc-msg { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 300; line-height: 1.65; padding: 11px 15px; }
+  .bc-msg.bot { background: #F0F0EC; color: var(--text); }
+  .bc-msg.you { background: var(--sky-blue); color: #fff; white-space: pre-wrap; }
+  .bc-msg .em { color: var(--deep-sky); font-weight: 500; }
+  .bc-msg.bot .pin { display: block; width: fit-content; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--sky-blue); border: 1px solid rgba(58,124,165,.4); padding: 3px 7px; margin-bottom: 9px; }
+  .bc-chat-in { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-top: 1px solid var(--border); background: var(--bg); }
+  .bc-step { background: var(--sky-blue); color: #fff; border: none; cursor: pointer; padding: 11px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: background .2s; }
+  .bc-step:hover { background: var(--deep-sky); }
+  .bc-step:disabled { background: var(--border); color: var(--muted); cursor: default; }
+  .bc-progress { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .5px; color: var(--muted); }
+
+  /* Demo wall */
+  .demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--border); }
+  @media (max-width: 768px) { .demo-grid { grid-template-columns: 1fr; } }
+  .demo-card {
+    border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+    padding: 32px; transition: background 0.3s ease-out; position: relative;
+  }
+  .demo-grid .demo-card:nth-child(2n) { border-right: none; }
+  @media (max-width: 768px) { .demo-card { border-right: none; } }
+  .demo-card:hover { background: var(--card-hover); }
+  .demo-ref { font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 14px; }
+  .demo-card h3 { font-size: 22px; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 12px; }
+  .demo-claim { font-size: 0.85rem; color: var(--muted); margin-bottom: 18px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 9px; border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.live { border-color: var(--sky-blue); color: var(--sky-blue); }
+  .tag.real { border-color: var(--deep-sky); color: var(--deep-sky); }
+  .tag.illus { border-color: var(--border); color: var(--muted); }
+
+  /* Simple stacked list sections */
+  .stack { display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(247,234,217,0.25); }
+  .dark .stack-item { border-bottom: 1px solid rgba(247,234,217,0.25); }
+  .stack-item { padding: 28px 0; border-bottom: 1px solid var(--border); }
+  .stack-item h3 { font-size: 24px; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .stack-item p { font-size: 0.9rem; color: var(--muted); }
+  .dark .stack-item p { color: var(--cream); opacity: 0.75; }
+
+  .fox-section { width: 160px; float: right; margin: -20px -10px 20px 32px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.1)); pointer-events: none; user-select: none; }
+  @media (max-width: 768px) { .fox-section { width: 120px; margin: 0 auto 20px; float: none; display: block; } }
+
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 0; }
+  .footer-brand { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 300; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+  .footer-brand span { color: #F47521; }
+
+  /* Rising scale chart */
+  .levels-wrap { position: relative; margin: 24px 0 0; }
+  .levels-chart { width: 100%; height: auto; display: block; overflow: visible; }
+  .levels-chart text { font-family: 'JetBrains Mono', monospace; }
+  .levels-chart .axis { stroke: var(--border); stroke-width: 1; }
+  .levels-chart .curve { fill: none; stroke: var(--deep-sky); stroke-width: 1.75; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.7s cubic-bezier(0.4, 0, 0.1, 1) 0.1s; }
+  .levels-wrap.in .curve { stroke-dashoffset: 0; }
+  .levels-chart .axlabel { fill: var(--muted); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  .levels-chart .ylabel { fill: var(--muted); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* nodes - refined ring markers, HTML overlay on the curve */
+  .lv-node { position: absolute; transform: translate(-50%, -50%); z-index: 2;
+    opacity: 0; transition: opacity 0.55s ease-out; }
+  .levels-wrap.in .lv-node { opacity: 1; }
+  .lv-marker { display: block; width: 12px; height: 12px; border-radius: 50%;
+    border: 1.5px solid var(--deep-sky); background: var(--bg); position: relative; cursor: pointer;
+    transition: box-shadow 0.35s ease-out; }
+  .lv-marker::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--deep-sky);
+    transition: inset 0.35s ease-out; }
+  .lv-node:hover .lv-marker { box-shadow: 0 0 0 8px rgba(58, 124, 165, 0.12); }
+  .lv-node:hover .lv-marker::after { inset: 2px; }
+
+  .lv-lab { position: absolute; left: 50%; bottom: calc(100% + 15px); transform: translateX(-50%);
+    white-space: nowrap; text-align: center; transition: opacity 0.3s ease-out; pointer-events: none; }
+  .lv-lab .n { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: var(--sky-blue); margin-bottom: 5px; }
+  .lv-lab .t { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: -0.2px; color: var(--text); }
+  .lv-node:hover .lv-lab { opacity: 0; }
+
+  .lv-tip { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(8px);
+    width: 218px; background: var(--bg); border: 1px solid var(--border); padding: 16px 18px; text-align: left;
+    opacity: 0; pointer-events: none; z-index: 6; transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    box-shadow: 0 18px 44px rgba(29, 27, 27, 0.10); }
+  .lv-node:hover .lv-tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .lv-tip .tt { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: -0.2px;
+    color: var(--text); margin-bottom: 13px; line-height: 1.3; }
+  .lv-tip ul { list-style: none; }
+  .lv-tip li { font-size: 11px; color: var(--muted); padding-left: 14px; position: relative; margin-bottom: 8px; line-height: 1.45; }
+  .lv-tip li:last-child { margin-bottom: 0; }
+  .lv-tip li::before { content: ""; position: absolute; left: 0; top: 6px; width: 4px; height: 4px; background: var(--sky-blue); }
+
+  /* high nodes drop their card below to avoid the top edge */
+  .lv-node.tip-below .lv-tip { bottom: auto; top: calc(100% + 15px); transform: translateX(-50%) translateY(-8px); }
+  .lv-node.tip-below:hover .lv-tip { transform: translateX(-50%) translateY(0); }
+  /* right-edge node aligns its card to the right */
+  .lv-node.edge-r .lv-tip { left: auto; right: -8px; }
+  .lv-node.edge-r .lv-tip { transform: translateX(0) translateY(-8px); }
+  .lv-node.edge-r:hover .lv-tip { transform: translateX(0) translateY(0); }
+
+  @media (max-width: 768px) {
+    .lv-lab .t { font-size: 12px; }
+    .lv-tip { width: 168px; padding: 13px 14px; }
+  }
+
+  /* Fade in */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+    .levels-chart .curve { stroke-dashoffset: 0 !important; }
+    .lv-node { opacity: 1 !important; }
+  }
+
+  /* ===== Audience check (ported widget, RWF-scoped tokens) ===== */
+  #audience {
+    --card-bg: #FFFFFF;
+    --charcoal: var(--text);
+    --off-white: #F7F4EC;
+    --terracotta: var(--sky-blue);
+  }
+  .ac-hl { cursor: pointer; padding: 1px 3px; transition: outline 0.2s; }
+  .ac-hl.green { background: #dcfce7; border-bottom: 2px solid #16a34a; }
+  .ac-hl.amber { background: #fef3c7; border-bottom: 2px solid #d97706; }
+  .ac-hl.red { background: #fee2e2; border-bottom: 2px solid #dc2626; }
+  .ac-hl.active { outline: 2px solid var(--charcoal); outline-offset: 2px; }
+  .ac-card { padding: 20px; }
+  .ac-card-quote { font-size: 16px; font-weight: 400; padding: 10px 14px; border-left: 3px solid; margin-bottom: 12px; background: var(--off-white); }
+  .ac-card-meta { display: flex; gap: 8px; margin-bottom: 14px; }
+  .ac-tag { font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border: 1px solid var(--border); color: var(--muted); }
+  .ac-card-section { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; margin-top: 12px; }
+  .ac-card-text { font-size: 13px; line-height: 1.7; color: var(--charcoal); }
+  .ac-card-source { font-size: 12px; line-height: 1.6; color: var(--muted); font-style: italic; background: var(--off-white); padding: 10px 12px; border-left: 3px solid var(--border); }
+  .ac-gap { display: flex; gap: 10px; padding: 8px 0; cursor: pointer; }
+  .ac-gap:hover div:first-child { border-color: var(--terracotta); }
+  @keyframes acSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) {
+    #audience .briefs-flow { grid-template-columns: 1fr !important; }
+  }
+
+  /* ===== Studio measurement (embedded overview, isolated in iframe) ===== */
+  .studio-embed { width: min(1440px, calc(100vw - 48px)); margin: 8px auto 0; }
+  .studio-embed iframe { display: block; width: 100%; height: 1300px; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); background: #fff; overflow: hidden; }
+  @media (max-width: 1100px) { .studio-embed iframe { height: 2000px; } }
+
+  /* ===== Segmentation (charts lifted from runwithfoxes.com, iframe-isolated) ===== */
+  .seg-embed { width: min(1100px, calc(100vw - 96px)); margin: 8px auto 0; }
+  .seg-embed iframe { display: block; width: 100%; height: 600px; border: none; background: transparent; overflow: hidden; }
+
+  /* ===== Sales coach (worked example lifted from Norcros, iframe-isolated) ===== */
+  .coach-embed { width: min(1180px, calc(100vw - 48px)); margin: 8px auto 0; }
+  .coach-embed iframe { display: block; width: 100%; height: 1400px; border: none; background: transparent; overflow: hidden; }
+
+  /* ===== Building a system (two embedded animated flows, iframe-isolated) ===== */
+  .system-embed { width: min(1120px, calc(100vw - 80px)); margin: 0 auto; }
+  .system-embed iframe { display: block; width: 100%; border: none; background: transparent; overflow: hidden; }
+  #btsFrame { height: 1760px; }
+  #expFrame { height: 1060px; }
+  .sys-cap { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 48px 0 6px; }
+
+  /* ===== Anthropic example: full-width stacked slides ===== */
+  #anthropic .fable-stack { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+  #anthropic .fable-shot { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
+  #anthropic .ex-source { display: inline-block; margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--sky-blue); text-decoration: none; }
+  #anthropic .ex-source:hover { text-decoration: underline; }
+
+  /* ===== Messaging framework: the scrolling walkthrough ===== */
+  #messaging .mf-video { display: block; width: 100%; margin-top: 8px; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); background: #fff; }
+
+  /* ===== Behaviours to succeed: spider chart + the five behaviours ===== */
+  #behaviours .beh-grid { display: grid; grid-template-columns: 0.85fr 1fr; gap: 56px; align-items: center; margin-top: 8px; }
+  #behaviours .beh-chart img { width: 100%; height: auto; display: block; }
+  #behaviours .beh-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+  #behaviours .beh-item:first-child { padding-top: 0; }
+  #behaviours .beh-item:last-child { border-bottom: none; padding-bottom: 0; }
+  #behaviours .beh-name { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 1.35rem; letter-spacing: -0.5px; margin-bottom: 6px; }
+  #behaviours .beh-name span { color: #F47521; }
+  #behaviours .beh-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  @media (max-width: 860px) { #behaviours .beh-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ===== How to roll it out: implementation bullets ===== */
+  #implement .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 56px; margin-top: 8px; }
+  #implement .impl-item { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  #implement .impl-mark { color: #F47521; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; line-height: 1.4; }
+  #implement .impl-name { font-family: 'Space Grotesk', sans-serif; font-weight: 400; font-size: 1.15rem; letter-spacing: -0.3px; margin-bottom: 4px; }
+  #implement .impl-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+  @media (max-width: 860px) { #implement .impl-grid { grid-template-columns: 1fr; gap: 24px; } }
+</style>
+<style>.reveal{opacity:1!important;transform:none!important} body{margin:0}</style>
+<section class="dotgrid" id="team">
+  <div class="container">
+    <h2 class="section-title">An AI coach</h2>
+    <div class="exp-lead">A coaching session, in full. A marketer brings a credible-looking brief, and the coach pressure-tests it: <b>where the objective and KPIs sit on the ladder of marketing metrics, which of them is a commercial outcome and which isn't, and what's missing.</b> Press the button to take each turn, and watch which rung the coaching is on. (Illustrative, not a real client.)</div>
+    <div class="bc-show">
+      <div class="bc-pyr-col">
+        <div class="bc-pyr-lbl">The ladder of marketing metrics</div>
+        <div class="bc-pyr-sub">Every goal sits on one of these. Only the top is a commercial outcome; only the bottom is an output, not an outcome. The coach lights the rung it's working on.</div>
+        <div class="bc-pyr idle" id="bcPyr">
+          <div class="tier t-commercial" data-lvl="commercial"><div class="t-name">Commercial</div><div class="t-metrics">Profit · Revenue</div></div>
+          <div class="tier t-behaviour" data-lvl="behaviour"><div class="t-name">Customer behaviour</div><div class="t-metrics">Penetration · Frequency · Share of wallet</div></div>
+          <div class="tier t-memory" data-lvl="memory"><div class="t-name">Memory</div><div class="t-metrics">Salience · Consideration · Coming to mind</div></div>
+          <div class="tier t-comms" data-lvl="comms"><div class="t-name">Communication</div><div class="t-metrics">Reach · Engagement · Registrations</div></div>
+          <div class="tier t-activity" data-lvl="activity"><div class="t-name">Activity</div><div class="t-metrics">Budget spent · Impressions bought · Assets shipped</div></div>
+        </div>
+        <div class="bc-pyr-foot">The brief measured only the bottom two rungs. <b>The coaching walks it up.</b></div>
+      </div>
+      <div class="bc-chat">
+        <div class="bc-chat-h"><span class="ht">brief coach</span><span class="badge-live">A coaching session</span></div>
+        <div class="bc-chat-body" id="bcBody">
+          <div class="bc-turn2 you shown">
+            <span class="bc-who">You, a marketer</span>
+            <div class="bc-msg you">I'm briefing a launch campaign for our new product. The objective is to build awareness and consideration with our target buyers. The KPIs are 2 million in reach, a 4% engagement rate, and 1,500 registrations for the launch webinar. Can you pressure-test it before it goes to the agency?</div>
+          </div>
+        </div>
+        <div class="bc-chat-in">
+          <button class="bc-step" id="bcStep">Coach it ▶</button>
+          <span class="bc-progress" id="bcProg">Step 1 of 13</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+// Brief Coach: the coaching session, revealed one step at a time, lighting the metric ladder
+  const el = h => { const d = document.createElement('template'); d.innerHTML = h.trim(); return d.content.firstChild; };
+  const STEPS = [
+    {who:'bot', lvl:'comms', html:`Start with the KPIs, before the creative. Reach, engagement and registrations are real and trackable, but they're all <span class="em">communication</span> metrics. They tell you people saw the work and reacted to it. They don't tell you the business moved. None of them is a commercial outcome.`},
+    {who:'you', lvl:null, html:`Where should they sit?`},
+    {who:'bot', lvl:'commercial', html:`<span class="pin">The ladder</span>Marketing goals stack up in rungs. At the top, commercial: profit and revenue, the only true business goal. Below it, customer behaviour: more buyers, buying more often, or spending more each time. Below that, memory: whether you come to mind when someone is in the market. Then communication, where your three KPIs sit. At the bottom, activity: budget spent, impressions bought, assets shipped, the spend and effort going in, not an outcome coming out. Your brief is measuring the bottom two rungs. What does this launch need to move, commercially?`},
+    {who:'you', lvl:null, html:`New customers for the product.`},
+    {who:'bot', lvl:'behaviour', html:`That is customer behaviour, winning new buyers, one rung below commercial. This campaign can own that. It needs a number you can be judged on. It could be 5,000 new customers, or penetration from 12% to 14%, or £2m of new revenue influenced. Which one does this campaign own, and what is the figure?`},
+    {who:'you', lvl:null, html:`5,000 new customers in the first quarter after launch.`},
+    {who:'bot', lvl:'behaviour', html:`<span class="pin">The number</span>Test it before it goes in. Is there a benchmark behind 5,000, a past launch or a comparable, or is it a first estimate? And if it comes in 10% short, did the campaign fail? If you would still call 4,500 a win, then 5,000 is not the real bar.`},
+    {who:'you', lvl:null, html:`It's a first estimate. We haven't launched anything quite like this.`},
+    {who:'bot', lvl:null, html:`Then don't invent a benchmark, and don't drop the target. Write it in plainly: no prior benchmark, 5,000 is a best estimate, it may be wrong. That makes the uncertainty a decision now, before the spend, instead of a number people treat as fact later.`},
+    {who:'you', lvl:null, html:`Fair. I'll flag it as an estimate.`},
+    {who:'bot', lvl:'memory', html:`<span class="pin">The gap</span>One thing is still missing. Your KPIs cover communication, but nothing covers <span class="em">memory</span>, whether the new product actually comes to mind for these buyers afterwards. That is what tells you if the launch built anything lasting. Right now there is no measure for it.`},
+    {who:'you', lvl:null, html:`So: 5,000 new customers in Q1, flagged as an estimate, plus a measure of whether the product's coming to mind.`},
+    {who:'bot', lvl:'commercial', html:`That is a brief with a spine. A commercial behaviour at the top with a number you can be judged on, the missing benchmark flagged, and a memory measure underneath. Your reach and registrations stay, as the things you watch on the way, not the goal itself. You wrote it, not me. I gave you the ladder and the questions.`}
+  ];
+  const bcBody = document.getElementById('bcBody'), bcPyr = document.getElementById('bcPyr');
+  const bcStep = document.getElementById('bcStep'), bcProg = document.getElementById('bcProg');
+  let bcAt = 0; const bcSeen = new Set();
+  const bcBaseCount = bcBody ? bcBody.children.length : 0;
+  function lightLevel(lvl) {
+    if (!lvl) return;
+    bcPyr.classList.remove('idle');
+    bcSeen.add(lvl);
+    bcPyr.querySelectorAll('.tier').forEach(t => {
+      const l = t.dataset.lvl;
+      t.classList.toggle('lit', l === lvl);
+      t.classList.toggle('done', l !== lvl && bcSeen.has(l));
+    });
+  }
+  function bcAdvance() {
+    if (bcAt >= STEPS.length) return;
+    const s = STEPS[bcAt];
+    const turn = el(`<div class="bc-turn2 ${s.who}"><span class="bc-who">${s.who === 'you' ? 'You' : 'Brief Coach'}</span><div class="bc-msg ${s.who}">${s.html}</div></div>`);
+    bcBody.appendChild(turn);
+    requestAnimationFrame(() => turn.classList.add('shown'));
+    bcBody.scrollTop = bcBody.scrollHeight;
+    lightLevel(s.lvl);
+    bcAt++;
+    bcProg.textContent = bcAt >= STEPS.length ? 'End of session' : ('Step ' + (bcAt + 1) + ' of ' + STEPS.length);
+    if (bcAt === 1) bcStep.textContent = 'Next ▶';
+    if (bcAt >= STEPS.length) { bcStep.textContent = 'Replay'; bcStep.dataset.done = '1'; }
+  }
+  if (bcStep) bcStep.addEventListener('click', () => {
+    if (bcStep.dataset.done) {
+      while (bcBody.children.length > bcBaseCount) bcBody.lastElementChild.remove();
+      bcPyr.querySelectorAll('.tier').forEach(t => t.classList.remove('lit', 'done'));
+      bcPyr.classList.add('idle'); bcSeen.clear(); bcAt = 0; bcStep.dataset.done = '';
+      bcStep.textContent = 'Coach it ▶'; bcProg.textContent = 'Step 1 of ' + STEPS.length; return;
+    }
+    bcAdvance();
+  });
+</script>

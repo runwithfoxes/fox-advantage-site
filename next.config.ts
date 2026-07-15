@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         destination: "/bellinter/index.html",
       },
       {
+        source: "/ucd",
+        destination: "/ucd/index.html",
+      },
+      {
         source: "/prep",
         destination: "https://ucd-prep.vercel.app/",
       },
