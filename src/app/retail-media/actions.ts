@@ -6,7 +6,7 @@
 
 import { cookies } from "next/headers";
 
-const PASSWORD = process.env.RETAIL_MEDIA_PASSWORD || "Retailmedia26";
+const PASSWORD = process.env.RETAIL_MEDIA_PASSWORD || "retail26";
 const COOKIE = "retail-media_auth";
 const PATH = "/retail-media";
 

@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "One campaign, every Tesco placement",
   intro:
     "A worked example on the Heineken brand. We fingerprint a brand's retail ads once, then remake them with different products, offers and messages in minutes. Below: the full Tesco shopper journey, then each placement up close, rebuilt and remade.",
-  lastUpdated: "2026-07-10",
+  lastUpdated: "2026-07-15",
   hideProgress: true,
   zoneIntros: {
     deliverables: "The twelve touchpoints of the Tesco shopper journey, and where each one stands.",
@@ -21,17 +21,17 @@ export const meta: Meta = {
 
 /* The 12 journey nodes as the scoreboard. Honest statuses only. */
 export const deliverables: Deliverable[] = [
-  { name: "1 · eCRM email", detail: "Tesco eCRM module, rebuilt from the real layout", status: "todo" },
-  { name: "2 · Tesco.ie web/app", detail: "Onsite hero and MPU set", status: "todo" },
-  { name: "3 · Tesco socials", detail: "Geo-map social, 1080x1080", status: "todo" },
-  { name: "4 · Convenience / store wrap", detail: "Large-format print wrap", status: "todo" },
-  { name: "5 · JCD screens", detail: "1080x1920 portrait chassis, static and motion", status: "in-progress", anchor: "cw-s-the-fingerprint-original-vs-rebuild", note: "Fingerprint method proven (demo below). Placement-native brand creative in build." },
-  { name: "6 · Totem screens", detail: "Same portrait chassis, directional to the drinks aisle", status: "in-progress", note: "Same portrait chassis; directional creative in build." },
-  { name: "7 · Hanging boards", detail: "Landscape, arrow directional", status: "todo" },
-  { name: "8 · Power aisle screen", detail: "Wide digital strip", status: "in-progress", note: "Same portrait-chassis family; sized after the screens land." },
+  { name: "1 · eCRM email", detail: "Tesco eCRM module, rebuilt from the real layout", status: "ready", anchor: "cw-s-ecrm-email-rebuilt-from-the-real-tesco-layout", note: "Rebuilt in the real Tesco layout; hero carries the headline and the €19 Clubcard price." },
+  { name: "2 · Tesco.ie web/app", detail: "Onsite hero strip and MPU set", status: "ready", anchor: "cw-s-each-placement-up-close", note: "Hero strip (1456x180) and MPU (300x250) both built." },
+  { name: "3 · Tesco socials", detail: "Geo-map social, 1080x1080", status: "ready", anchor: "cw-s-each-placement-up-close" },
+  { name: "4 · Convenience / store wrap", detail: "Large-format print wrap, 720x1800", status: "ready", anchor: "cw-s-each-placement-up-close" },
+  { name: "5 · JCD screens", detail: "1080x1920 portrait chassis, static and motion", status: "ready", anchor: "cw-s-each-placement-up-close", note: "Static receipted to within 3px; 10s motion built on the same chassis." },
+  { name: "6 · Totem screens", detail: "Same portrait chassis, directional to the drinks aisle", status: "ready", anchor: "cw-s-each-placement-up-close", note: "Runs on the same portrait chassis as the JCD screen." },
+  { name: "7 · Hanging boards", detail: "Landscape, arrow directional", status: "in-progress", note: "Landscape plate registered; creative in build." },
+  { name: "8 · Power aisle screen", detail: "Wide digital strip", status: "in-progress", note: "Same landscape/band family; sized after the boards land." },
   { name: "9 · Goal post screens", detail: "Cross-collaboration bundle: brand x Tesco partner pack", status: "ready", anchor: "cw-s-the-bundle-remade-in-one-line", note: "Pair built and gated. Hi-res pack shot swap pending." },
-  { name: "10 · BWS gate, outside", detail: "Print gate panel, 0.0 message only outside the zone", status: "todo" },
-  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "todo" },
+  { name: "10 · BWS gate, outside", detail: "Print gate panel, 0.0 message only outside the zone", status: "in-progress", note: "0.0 message; awaiting a 0.0 pack shot before the panel is finished." },
+  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "in-progress", note: "Gate panel in build off the registered landscape plate." },
   { name: "12 · BWS special build", detail: "In-bay screens, sound on", status: "todo" },
 ];
 
@@ -41,6 +41,32 @@ export const work: WorkSection[] = [
     wideDesc: true,
     embedSrc: "journey.html",
     embedHeight: 820 },
+
+  { title: "Each placement, up close", kind: "media", badge: "The placements",
+    desc: "One campaign - Spain v France, Heineken Original at the €19 Clubcard price - remade into each placement's own format from a single machine. Every ad carries the price, because retail is about acting now, not admiring the brand. Same proportions, same disc, re-laid-out per shape, never scaled.",
+    wideDesc: true,
+    layout: "grouped",
+    groups: [
+      { label: "In-store screen · JCD & totem · 1080x1920",
+        items: [
+          { src: "screen-still.png", w: 300, ratio: "1080 / 1920", cap: "The still - receipted to within 3px of the reference." },
+          { src: "screen-motion.mp4", w: 300, ratio: "1080 / 1920", cap: "The 10-second motion, built on the same chassis." },
+        ] },
+      { label: "Tesco social · 1080x1080",
+        items: [ { src: "social-square.png", w: 440, ratio: "1 / 1" } ] },
+      { label: "Convenience / store wrap · 720x1800",
+        items: [ { src: "store-wrap.png", w: 210, ratio: "720 / 1800" } ] },
+      { label: "Tesco.ie hero strip · 1456x180",
+        items: [ { src: "hero-strip.png", w: 760, ratio: "1456 / 180", cap: "The copy flanks the can; the price flash sits on the right." } ] },
+      { label: "Tesco.ie MPU · 300x250 (actual size)",
+        items: [ { src: "mpu.png", w: 300, ratio: "300 / 250", cap: "At true size - the price flash moves to the corner so it still reads." } ] },
+    ] },
+
+  { title: "eCRM email, rebuilt from the real Tesco layout", kind: "embed", badge: "Placement 1 · At home",
+    desc: "The Tesco eCRM email, rebuilt: Tesco chrome, our machine's creative as the hero carrying the headline and the €19 Clubcard price, the offer in the body, the live footer and terms. The price does the work.",
+    wideDesc: true,
+    embedSrc: "email.html",
+    embedHeight: 1180 },
 
   { title: "The fingerprint: original vs rebuild", kind: "compare", badge: "The method",
     desc: "Drag the slider. Left is a finished Heineken Champions League static from the brand's own kit; right is the same ad rebuilt by our machine, measured to within 3 pixels. This piece is a sponsorship promo, not a retail ad - we use it here purely to show the fingerprint step. The retail creative lives in the journey above, each ad in its placement's own grammar.",

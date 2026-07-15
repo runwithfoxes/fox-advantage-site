@@ -1,0 +1,69 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Node 1 - Tesco eCRM email</title>
+<style>
+  html,body{margin:0;background:#eef0f2;font-family:Arial,Helvetica,sans-serif;color:#333;}
+  .mail{width:600px;margin:0 auto;background:#fff;}
+  /* Tesco header */
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;}
+  .logo{font-weight:800;color:#ee1c2e;font-size:30px;letter-spacing:.5px;line-height:1;font-family:Arial,Helvetica,sans-serif;}
+  .logo .bars{display:block;height:7px;width:118px;margin-top:3px;
+    background:repeating-linear-gradient(90deg,#0053a0 0 16px,#fff 16px 21px);}
+  .signin{color:#666;font-size:13px;}
+  /* hero - landscape lifestyle image, ~16:9, like the real Tesco eCRM hero (offer lives in the body) */
+  .hero{width:600px;height:auto;display:block;}
+  /* body */
+  .bd{padding:24px 26px 8px;}
+  .bd h1{font-size:18px;margin:0 0 12px;color:#111;}
+  .bd p{font-size:15px;line-height:1.55;margin:0 0 20px;color:#333;}
+  .cta{display:block;width:150px;margin:6px auto 22px;background:#00539f;color:#fff;
+    text-align:center;padding:13px 0;border-radius:24px;font-size:14px;font-weight:700;text-decoration:none;}
+  .rule{border:0;border-top:1px solid #e2e2e2;margin:0 26px;}
+  .fine{padding:14px 26px 2px;font-size:11.5px;color:#8a8a8a;line-height:1.5;}
+  .fine a{color:#00539f;}
+  /* footer bar */
+  .ft{background:#f4f5f6;margin-top:10px;padding:16px 26px;}
+  .ft .links{display:flex;gap:26px;font-size:12.5px;color:#444;flex-wrap:wrap;}
+  .ft .fol{font-size:12px;color:#777;margin:14px 0 8px;}
+  .soc{display:flex;gap:10px;}
+  .soc span{width:26px;height:26px;border-radius:50%;display:inline-block;}
+  .soc .fb{background:#3b5998;} .soc .x{background:#111;} .soc .ig{
+    background:radial-gradient(circle at 30% 110%,#fdf497 0,#fd5949 45%,#d6249f 70%,#285AEB 100%);}
+  .legal{padding:16px 26px 26px;font-size:10.5px;color:#a6a6a6;line-height:1.55;}
+</style>
+<div class="mail">
+  <div class="hd">
+    <div class="logo">TESCO<span class="bars"></span></div>
+    <div class="signin">Sign in</div>
+  </div>
+  <img class="hero" src="node1-email-hero-landscape.png" alt="Heineken Spain v France - €19 Clubcard Price">
+  <div class="bd">
+    <h1>Hi Elizabeth,</h1>
+    <p>The big match is nearly here - so why not make a night of it? Get the fridge sorted with
+      Heineken® Original, now just <b>€19 for 10 × 500ml</b> with Clubcard Price on selected packs.
+      So don't wait - order now and bank that match-night feeling.</p>
+    <a class="cta" href="#">Shop now</a>
+  </div>
+  <hr class="rule">
+  <div class="fine">
+    Standard terms and conditions apply. For more details <a href="#">click here</a>.<br>
+    Trouble viewing this email? <a href="#">View the web version</a>.
+  </div>
+  <div class="ft">
+    <div class="links"><span>Contact us</span><span>Unsubscribe</span><span>Amend your details</span><span>Privacy policy</span></div>
+    <div class="fol">Follow us</div>
+    <div class="soc"><span class="fb"></span><span class="x"></span><span class="ig"></span></div>
+  </div>
+  <div class="legal">
+    *Clubcard Price. Offer subject to availability while stocks last. You must present your Clubcard
+    or App in order to avail of Clubcard prices. Please note the deposit return scheme fee will still
+    be required to be paid on the packs.<br><br>
+    This is an email from Tesco Ireland. Neither Tesco Ireland nor any company with the Tesco Plc
+    Group accepts responsibility for the accuracy or completeness of the contents of this email as it
+    has been transmitted over a public network. If you receive this email in error please accept our
+    apologies. If this is the case we would be obliged if you would contact the sender and then delete
+    this email.<br><br>
+    Tesco Ireland Limited. Company no. 19542. Registered in Ireland.<br>
+    Registered office address: Gresham House, Marine Road, Dun Laoghaire, Co Dublin.
+  </div>
+</div>
