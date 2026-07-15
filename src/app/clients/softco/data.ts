@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Creative deliverables",
   intro:
     "A live view of the work for SoftCo in the new brand system. The full asset list is below with status. The finished pieces are shown in full underneath, static and animated. Have a look and send back your thoughts.",
-  lastUpdated: "2026-07-07",
+  lastUpdated: "2026-07-15",
   feedbackContacts: ["softco.com"],
   targetDate: "2026-07-11",
   hideProgress: true,
@@ -561,6 +561,43 @@ export const work: WorkSection[] = [
     desc: "How the webinar clip editor would work, step by step: who does each part, the tool it uses, and what comes out. This is the plan, for your feedback.",
     embedSrc: "blueprint-webinar-editor.html",
     embedHeight: 2150,
+  },
+  {
+    title: "The webinar engine · what it can do",
+    kind: "html",
+    zone: "work",
+    isNew: true,
+    groupLabel: "The whole webinar request, in one place",
+    desc: "Everything we have built for turning one recorded webinar into finished content, and what each part does. The finished clip below is the first full example, made end to end.",
+    html: `<div class="wbe">
+<style>
+  .wbe{color:#060d2e;}
+  .wbe-list{list-style:none;margin:0;padding:0;}
+  .wbe-list li{position:relative;padding:0 0 20px 26px;font-size:15px;line-height:1.6;border-top:1px solid #e5e7eb;padding-top:20px;}
+  .wbe-list li:first-child{border-top:none;padding-top:2px;}
+  .wbe-list li:before{content:"";position:absolute;left:0;top:24px;width:9px;height:9px;background:#047fe5;}
+  .wbe-list li:first-child:before{top:6px;}
+  .wbe-list b{font-weight:700;}
+  .wbe-note{margin:22px 0 0;padding:16px 18px;background:#e8f2fd;border:1px solid #cfe2fa;border-left:3px solid #047fe5;font-size:14px;line-height:1.6;}
+</style>
+<ul class="wbe-list">
+  <li><b>One webinar into finished speaker clips.</b> We take each speaker's own full-HD recording, find the strong moments, cut them, clean the audio and brand them. Out comes a set of vertical clips, ready to post.</li>
+  <li><b>Finding the moments.</b> The whole webinar is transcribed word for word, and the strongest, most quotable lines are surfaced with their timecodes. Oisín still makes the final call on what to use.</li>
+  <li><b>Cleaning the audio, the slow part.</b> We strip the ums, the false starts and the dead air, and tighten the pauses, with no editor round trip. On the clip below it removed a stutter and a filler on its own.</li>
+  <li><b>Branding every clip.</b> The SoftCo frame, a hook line, captions burned to the speaker's own words, and the name lockup. The same finished look your team makes by hand.</li>
+  <li><b>More from the same recording.</b> A webinar is raw material for more than clips: articles in each speaker's voice, teaser and thank-you emails, checklists and sales snippets. One recording, many formats. This is the next layer to build.</li>
+</ul>
+<p class="wbe-note"><b>One thing for sharper clips.</b> This first example was cut from a 720p recording, so the picture is a little soft. Recording the speakers at 1080p with a good webcam gives genuinely crisp clips. The rest of the machine is already there.</p>
+</div>`,
+  },
+  {
+    title: "Finished clip · Human in the loop",
+    kind: "media",
+    zone: "work",
+    layout: "single",
+    isNew: true,
+    desc: "The whole pipeline end to end, on one moment from the webinar. Ben's clip, cut from his own full-HD feed, cleaned, branded, and captioned to his words. Vertical for social. Cut from a 720p source, so it is a little soft, see the note above.",
+    item: { src: "webinar-clip-human-in-the-loop.mp4", poster: "webinar-clip-human-in-the-loop-poster.png", ratio: "720/1280", w: 300, cap: "9:16 · cut, cleaned and branded", download: true },
   },
   {
     title: "Blog & content cards",
