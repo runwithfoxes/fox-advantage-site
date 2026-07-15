@@ -37,10 +37,10 @@ export const deliverables: Deliverable[] = [
 
 export const work: WorkSection[] = [
   { title: "The Tesco shopper journey", kind: "embed", badge: "The map",
-    desc: "Twelve touchpoints in the order a shopper meets them: at home, online, on the way, into the store, down the aisle, into the drinks zone. Green rings carry finished creative; the rest are in build.",
+    desc: "Twelve touchpoints in the order a shopper meets them: at home, online, on the way, into the store, down the aisle, into the drinks zone. Each tile is the actual ad at its real format shape; the dashed tiles are still in build.",
     wideDesc: true,
     embedSrc: "journey.html",
-    embedHeight: 820 },
+    embedHeight: 1240 },
 
   { title: "Each placement, up close", kind: "media", badge: "The placements",
     desc: "One campaign - Spain v France, Heineken Original at the €19 Clubcard price - remade into each placement's own format from a single machine. Every ad carries the price, because retail is about acting now, not admiring the brand. Same proportions, same disc, re-laid-out per shape, never scaled.",

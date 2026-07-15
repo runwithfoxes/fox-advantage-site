@@ -1,79 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Tesco shopper journey</title>
 <style>
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{background:#FAFAF8; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; padding:8px 0;}
-  .journey-stage{position:relative; width:100%; max-width:1200px; margin:0 auto;}
-  .journey-stage svg{width:100%; height:auto; display:block; overflow:visible;}
-  .jpath{fill:none; stroke:#C9C9C4; stroke-width:4; stroke-dasharray:9 8;}
-  .jnode{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease;}
-  .jnode.on{opacity:1; transform:translateY(0);}
-  .jnode text.lab{font-size:14px; font-weight:600; fill:#1E1E1C;}
-  .jnode text.sublab{font-size:11.5px; fill:#6B675F;}
-  .jnode .ring{fill:#fff; stroke:#E0E0DC; stroke-width:2;}
-  .jnode .ring.live{stroke:#007118; stroke-width:3;}
-  .jnode text.soon{font-size:10.5px; fill:#A3A39E; letter-spacing:.06em;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#FAFAF8;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1E1E1C;padding:6px 2px 18px;}
+  .stage{margin:0 0 6px;}
+  .stagehead{display:flex;align-items:center;gap:12px;margin:18px 4px 12px;}
+  .stagehead:first-child{margin-top:4px;}
+  .stagehead .n{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8A867C;font-weight:700;white-space:nowrap;}
+  .stagehead .rule{flex:1;height:1px;background:#E6E3DC;}
+  .row{display:flex;flex-wrap:wrap;gap:20px;padding:0 4px;}
+  .tile{width:210px;}
+  .frame{height:150px;background:#F1EFEA;border:1px solid #E6E3DC;border-radius:8px;
+         display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+  .frame.live{border-color:#BFE0C4;}
+  .frame img{max-height:132px;max-width:188px;width:auto;height:auto;display:block;
+             box-shadow:0 2px 10px rgba(0,0,0,.16);border-radius:2px;}
+  .ph{border:1.5px dashed #CFCBC1;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+  .ph span{font-size:10px;letter-spacing:.08em;color:#A8A49A;font-weight:600;}
+  .cap{margin:9px 2px 0;}
+  .cap .name{font-size:13.5px;font-weight:700;}
+  .cap .fmt{font-size:11.5px;color:#6B675F;margin-top:1px;}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .dot.live{background:#12922B;} .dot.build{background:#C9C4B8;}
 </style>
-</head>
-<body>
-<div class="journey-stage" id="journey"></div>
+<div id="j"></div>
 <script>
-const NODES = [
-  [1,"eCRM email","at home", "node1-email-hero-landscape.png"],
-  [2,"Tesco.ie web/app","online", "mpu.png"],
-  [3,"Tesco socials","geo map", "social-square.png"],
-  [4,"Convenience wrap","en route", "store-wrap.png"],
-  [5,"JCD screens","brand creative", "screen-still.png"],
-  [6,"Totem screens","to the BWS aisle", "screen-still.png"],
-  [7,"Hanging boards","directional", null],
-  [8,"Power aisle screen","digital", null],
-  [9,"Goal post screens","cross collab", "bundle-original-x-finest.png"],
-  [10,"BWS gate - outside","0.0 message", null],
-  [11,"BWS gate - inside","full alcohol", "node11-gate-inside.png"],
-  [12,"BWS special build","sound on", null]
+const STAGES = [
+  ["At home", [[1,"eCRM email","node1-email-hero-landscape.png","Email hero",16,9]]],
+  ["Online", [
+    [2,"Tesco.ie MPU","mpu.png","Display · 300×250",300,250],
+    [3,"Tesco social","social-square.png","Social · 1080×1080",1,1]]],
+  ["On the way", [[4,"Convenience wrap","store-wrap.png","Store wrap · 720×1800",720,1800]]],
+  ["Into the store", [
+    [5,"JCD screen","screen-still.png","Screen · 1080×1920",1080,1920],
+    [6,"Totem screen","screen-still.png","Screen · 1080×1920",1080,1920],
+    [7,"Hanging board",null,"Landscape board",16,6],
+    [8,"Power-aisle strip",null,"Wide digital strip",16,4]]],
+  ["The drinks zone", [
+    [9,"Goal-post bundle","bundle-original-x-finest.png","Cross-collab bundle",1144,860],
+    [11,"BWS gate · inside","node11-gate-inside.png","Gate panel · full alcohol",16,9],
+    [10,"BWS gate · outside",null,"0.0 message panel",16,9],
+    [12,"BWS special build",null,"In-bay screen · sound on",16,9]]],
 ];
-const W=1200,H=760,cols=4,rows=3,cw=W/cols,rh=H/rows;
-let svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
-const pts=NODES.map((n,i)=>{
-  const r=Math.floor(i/cols), c=i%cols, cc=(r%2===0)?c:cols-1-c;
-  return [cc*cw+cw/2, r*rh+rh/2];
-});
-let d=`M${pts[0][0]} ${pts[0][1]}`;
-for(let i=1;i<pts.length;i++){
-  const [x0,y0]=pts[i-1],[x1,y1]=pts[i];
-  if(y0===y1){ d+=` L${x1} ${y1}`; }
-  else { const off=(x0>W/2)?112:-112; d+=` L${x0+off} ${y0} L${x0+off} ${y1} L${x1} ${y1}`; }
+let html="";
+for(const [stage,nodes] of STAGES){
+  html+=`<div class="stage"><div class="stagehead"><span class="n">${stage}</span><span class="rule"></span></div><div class="row">`;
+  for(const [num,name,img,fmt,aw,ah] of nodes){
+    const live=!!img;
+    // fit the format's aspect inside 188x132 for the placeholder box
+    let w,h; if(aw/ah > 188/132){w=188;h=Math.round(188*ah/aw);} else {h=132;w=Math.round(132*aw/ah);}
+    const inner = live
+      ? `<img src="${img}" alt="${name}">`
+      : `<div class="ph" style="width:${w}px;height:${h}px;"><span>IN BUILD</span></div>`;
+    html+=`<div class="tile">
+      <div class="frame ${live?'live':''}">${inner}</div>
+      <div class="cap">
+        <div class="name">${num} · ${name}</div>
+        <div class="fmt"><span class="dot ${live?'live':'build'}"></span>${fmt}</div>
+      </div></div>`;
+  }
+  html+=`</div></div>`;
 }
-svg+=`<path class="jpath" id="jp" d="${d}"/>`;
-NODES.forEach((n,i)=>{
-  const [x,y]=pts[i];
-  const img=n[3];
-  svg+=`<g class="jnode" id="jn${i}">
-    <circle class="ring ${img?'live':''}" cx="${x}" cy="${y}" r="58"/>
-    ${img
-      ? `<clipPath id="cp${i}"><circle cx="${x}" cy="${y}" r="54"/></clipPath>
-         <image href="${img}" x="${x-54}" y="${y-54}" width="108" height="108"
-                preserveAspectRatio="xMidYMid slice" clip-path="url(#cp${i})"/>`
-      : `<text class="soon" x="${x}" y="${y+4}" text-anchor="middle">IN BUILD</text>`}
-    <text class="lab" x="${x}" y="${y+84}" text-anchor="middle">${n[0]} · ${n[1]}</text>
-    <text class="sublab" x="${x}" y="${y+101}" text-anchor="middle">${n[2]}</text>
-  </g>`;
-});
-svg+="</svg>";
-document.getElementById("journey").innerHTML=svg;
-const jp=document.getElementById('jp');
-const plen=jp.getTotalLength();
-jp.style.strokeDasharray=plen; jp.style.strokeDashoffset=plen;
-window.addEventListener('load',()=>{
-  jp.style.transition='stroke-dashoffset 3.2s ease';
-  requestAnimationFrame(()=>{ jp.style.strokeDashoffset=0; });
-  NODES.forEach((_,i)=>setTimeout(()=>document.getElementById('jn'+i).classList.add('on'), 240*i+250));
-  setTimeout(()=>{ jp.style.strokeDasharray='9 8'; jp.style.strokeDashoffset=0; }, 3600);
-});
+document.getElementById('j').innerHTML=html;
 </script>
-</body>
-</html>
