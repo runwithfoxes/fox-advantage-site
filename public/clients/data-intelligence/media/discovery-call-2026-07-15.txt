@@ -1,0 +1,2234 @@
+Data Intelligence - Strategy session, 15 July 2026
+Participants: Paul Dervan (Run with Foxes), Dave Hackett (Data Intelligence), Dave Soraghan
+Edited for readability: speakers labelled, off-topic tangents removed. Substance unchanged, wording verbatim.
+
+Paul: What do you want to get out of this? So what I would be useful for me is just to ask a whole load of questions and. And basically we're trying to pour stuff out of your head.
+
+Dave S: Yeah.
+
+Paul: And then we can. There may be stuff that you want, but like the starting point for me is like understanding the commercial goals. We don't have to worry too much about them, but other than commercial goals. And then the important kind of piece for me, for everything afterwards is taking knowledge and information from you and converting that into a messaging framework which basically says this is our positioning, this is our messages, these are key customers. Here's our problems, here's our major insights. Here's what we could do about that, which can go on for months, but we can do in about a day. And you may not know all the answers and that's okay. But you will know lots of stuff.
+
+Dave H: Okay.
+
+Paul: So that's. Once we have that, that becomes a source of truth for everything after it.
+
+Dave H: Okay.
+
+Paul: You know what I mean?
+
+Dave H: Yeah.
+
+Paul: So. So that's the starting point for me. Now you might want to get a little stuff out of it at the same time. Yeah, Dave, you might want stuff that you want to clarify and figure out as well.
+
+Dave S: Yeah. Because I had a question. I always said like, oh, let's take like there's a lot of momentum here as well.
+
+Dave H: Yeah, no, I don't want to lose that.
+
+Dave S: I don't think we can lose that because I actually just to bring up speed like where we got into with, with Dave business Paul, it was very simple. We're all going to run through the information lab. We had kind of soft contacts who he's already got relationships with one of the guys in house. We started reaching, reaching out to them.
+
+Dave H: Look, we were, we were running down
+
+Dave S: dead ends though, you know, I mean people weren't open to. That's right, they weren't open. It's just we weren't getting much response.
+
+Dave H: I think it was just a confusion
+
+Dave S: piece and it definitely was, was like the information labs. Yeah, Rob's bringing me what's going on. So that's why I think Dave pivoted
+
+Paul: a couple weeks ago.
+
+Dave S: Like what about the brand? Like what is data intelligence? How do we market that? How do we go to market with that? So I mean we have, have lists, we have all sorts of things we can start delving into. But I mean one thing I did want you to talk about two things actually Dave. One is that story because I started going through the findings that you used. You've eaten your own dog food, you've
+
+Paul: done on the information lab.
+
+Dave S: So they've been. When you talk to Paul about the findings around the savings because that's really important because that is the USP nearly. But then secondly it was round. Sorry, there was that part,
+
+Dave H: it comes backwards.
+
+Dave S: Yeah, yeah, yeah, exactly.
+
+Dave H: So. Oh, I've got news here as well. I've got more news here.
+
+Dave S: Okay.
+
+Dave H: But I, I want to do on a. Distract the whole thing. But, but I met an MSP.
+
+Dave S: Sorry, sorry, the MSP was.
+
+Paul: Sorry, that was the second one.
+
+Dave S: MSPs were big part of his business. I want you to understand Paul and these guys have access to hundreds of different clients. So yeah, that was probably the second one just you to touch on in this conversation because I think your end goal is trying to get that first client. You know, trying to get, you know, what does that look like? So you can really sort of iterate this before you Go to Marketplace. You're probably going to need to know what's working, what's not working. You've got it from your own business, but no external client right now. So that's the only piece missing for me. But maybe it's one of those ASPs, you know, start bringing this to life
+
+Dave H: for us, you know, I just depend how you want the information, of course.
+
+Paul: So if you're able to record, I'll ask about a few paths. So let's start with customer. Right?
+
+Dave S: Yeah.
+
+Paul: So who are your ideal customer target? And it might not be one, it could be three different altogether. But like, how much do you know about them?
+
+Dave H: I suppose if you were to be agnostic of industry or function, the first protocol will be the bill size. I think we can make the service tiered so that we can allow people of various different bill sizes to join our business, to use our business as customers. But really, like from five grand a month upwards in terms of bills is kind of what we're looking for really, to get going. And it's really wide for Azure and then for Claude, which is going to be the next one. That's what I want to talk to you about. We may look. It'll be very wide. Yeah, it'll be people using Claude. Basically we've got significant bills.
+
+Paul: Okay.
+
+Dave S: So.
+
+Dave H: And then that's by size.
+
+Paul: Yeah.
+
+Dave H: By industry. No preference. By function. I think the big play is going to be in the finance market, finance side of things, but reasons behind that which we can come into. And then. But there's also then the guys who run data and analytics, who run the IT infrastructure. So they're two different people. So there's the finances, the infrastructure and there's the finance, the infrastructure and the data analytics people. And then of course there's the CEO who's going, why am I spending so much money on. And I think that person could be the most important of them all.
+
+Paul: Yeah. Are there any companies that aren't your target?
+
+Dave H: Good question. Where the bill size is really small. Like a small, small company. Yeah, like I said, you've got small, medium and large. Because this is the way we're talking
+
+Dave S: now at the moment.
+
+Dave H: And you've got the small versions of each of them and the large versions of each of them. Yeah, the, the small and small, really we don't want. But I can see us taking them on some at the higher level and the very large enterprise. I don't know what we do with like a Ford Motor company.
+
+Paul: Like.
+
+Dave H: Yeah, we'll have to figure that out.
+
+Paul: Down the line might be a good problem to have.
+
+Dave H: I was about to say. Yeah, well that is a problem.
+
+Dave S: Yeah.
+
+Dave H: How many tenants do you have across how many countries? How many people do we need to speak to? Like it could be an enterprise rollout, but then you're getting into salesforce territory.
+
+Paul: So.
+
+Dave S: Yeah.
+
+Dave H: And maybe that does happen for us, but at the moment, like it will be today and I think will it all evolve and by the way, I can see that for all of us here, like I think this is a journey that we're all going on. So it's not just a short term engagement.
+
+Paul: Yeah, yeah.
+
+Dave H: But today I really want the ends like the medium sized enterprises. That's what I'm. That's the holy grail right there.
+
+Paul: Okay.
+
+Dave S: And the second one, but the second one there, Dave, just to maybe note, Dave's obviously raised right now comes from the Microsoft fabric and Azure.
+
+Dave H: Just from your going. We're starting with these. The categories are Azure and fabric. They go together. So it's Azure and fabric. Or it could be Azure on its own.
+
+Dave S: Yep.
+
+Dave H: And then the other category is Claude.
+
+Dave S: It's Claude. It's just that, that, that, that we can't go after like AWS clients like
+
+Paul: that have that right now because.
+
+Dave H: Till January.
+
+Dave S: Okay, Till January. Just so you understand that.
+
+Dave H: Just so I think about it. Sorry. So everything I'm saying to you is like the next six months.
+
+Dave S: Yeah, yeah.
+
+Paul: So. So the key people are those who care about the money. Yeah. Starting so like the CFO and finance.
+
+Dave S: Finance directors.
+
+Paul: Finance senior finance people. People.
+
+Dave S: Yeah.
+
+Paul: Okay. Who are always chasing the rest of the business and find out why they're not spending their money or whatever. They're spending it.
+
+Dave H: Yeah.
+
+Paul: And then we're saying it's. It may be CEO who obviously has to be accountable to the costs.
+
+Dave H: And now these days like a data and AI strategy, you know, like so what are we doing for data AI and what's the. Like what does that look like? So it's become a strategic play from a C perspective.
+
+Paul: Okay.
+
+Dave S: Yeah.
+
+Paul: And then the other one is, is either an IT or like I've seen the beginning of it.
+
+Dave H: Well it's really the I runs the IT spend. Right. But then you've also got the data analytics use now. So like it used to be just the infrastructure but now you've got all these analysts pushing their data through and making arguments for snowflake databricks, whatever. So they are going to have a say or an interest in this.
+
+Paul: So as an example, I used to work in lottery and the. The guy who ran our technology, he's now in the aa, and so he's presumably chief technology officer or something like that. Someone like that, yeah. Yeah. And then actually the woman who was our cfo, she met there too, but she's gone somewhere else.
+
+Dave H: I suppose there'll be people who are interested. Right. But the guy who's got the real problem is the finance guy.
+
+Dave S: He's the cfo. Finance. Yeah. Okay, so.
+
+Dave H: So you're right. Like the cto.
+
+Dave S: Yeah, yeah, yeah.
+
+Dave H: He's kind of hoping, like, whereas the finance guy is going like, I've never understood these bills. I still don't understand these bills. Why are we getting.
+
+Paul: Okay, great. Right, so that's clear, I think. And so if I am a CFO or a finance director now for a
+
+Dave H: company or head of it.
+
+Dave S: Yeah.
+
+Paul: Well, take the finance people first. My question is, what are their pain points? So I guess what are their pain points? And when are the times that they. This would come to mind. I know I was saying this the other day. And they're called like, trigger points or category entry points. Okay. So. And there's usually a whole bunch of them, but some of them are more frequent than others. And you want to hit the frequent ones.
+
+Dave H: Okay. So let's list them all out and see which ones are the more frequent ones. So when they get the bill. Yeah, when they have to pay the bill.
+
+Paul: Yeah.
+
+Dave H: The money goes out of the bank yard when they're doing the budget.
+
+Paul: Yeah.
+
+Dave H: And then when they're looking at them, the actual actual costs against the budget every month. And, like, there's a variance.
+
+Paul: Okay.
+
+Dave H: So like, you know, I said we're going to spend 10 grand a month on it, and we're spending 14 grand. So, like, why are we 4 grand over what we said? We're going to spend 10 grand. So, like, that's every month.
+
+Paul: Yeah, the.
+
+Dave H: The annual budgeting can take place three times, two or three times a year. Yeah, budgeting. Like, I know it's an annual budgeting, but they revise it during the year. The monthly actual versus budget is. Is monthly. And when they receive a bill, it's probably once a month as well.
+
+Paul: Okay. And I'm guessing that there's going to be external triggers, like when it's turning up a lot in the media. So. So as in, like, it's not a trigger internally, but. But they're gonna.
+
+Dave H: Like when they hear about AI span.
+
+Dave S: Yeah, exactly. Exactly.
+
+Paul: Is going to. Or maybe that'll be stored away until the next bill comes or something like that.
+
+Dave H: No, it did resonate.
+
+Dave S: Yeah.
+
+Dave H: I think, I think it's a. It is a very hot topic.
+
+Dave S: Yeah.
+
+Dave H: Yeah. That's what. We put Claude in there. We can do Claude at the same time.
+
+Paul: Yeah. Okay. And the. They're the entry points in there. And the pain point, I think is pretty clear. Which is. Let me say it. You tell me if I'm right or wrong. So they are. They are seeing bills. They, they're high or they're. They, they are. They're. They seem high. And it's not clear to them whether it's good value for money. And it's hard to pin down what they get for it. And they don't know if anyone is taking it seriously enough to look at alternatives to drive down those costs or is that generalization too much?
+
+Dave H: But you just said it's perfect.
+
+Paul: Yeah.
+
+Dave H: There's only one other bit I would add. They're high and growing.
+
+Paul: Okay.
+
+Dave S: Yeah.
+
+Paul: Yes.
+
+Dave S: Yeah.
+
+Dave H: And that's.
+
+Dave S: Yeah.
+
+Dave H: How does this thing keep going?
+
+Dave S: Exactly.
+
+Dave H: And like, it's a, It's a black box.
+
+Dave S: Yeah.
+
+Dave H: Like, I'll tell you the story about my finance guy. Just got off the phone with. Because I wanted to. To get the call for you before I came in here. It's a black box.
+
+Paul: Yeah. So like, I, I, it's growing. The. I thought in the past the costs would have come from the IT department. I could imagine. Like, I drive. I drive up costs. Like I. In at least two companies.
+
+Dave S: I've made a play with your tokens plan for.
+
+Paul: No. To get licenses in.
+
+Dave S: Oh, sorry.
+
+Paul: I'm just like, listen, I know we have, like, open AI or we have Gemini, but I want to.
+
+Dave S: Yep.
+
+Paul: So that ends up being a demand that's coming. And they don't know enough. So they're. I'm on the. I'm explaining why I need it. They may have to believe me or not believe me, depending on, you know. And it's hard to also. Oh, sorry. I was on a call today with a company who are actually trying to invest in some AI stuff. And I say pick a very narrow use case and just do it end to end. That way you can find it. Because, like, there's no point in getting individual productivity. You're not getting team or company productivity. Which is why you keep seeing these headlines, which is very productive. No one's seeing any productivity gains.
+
+Dave S: Yeah.
+
+Paul: Because they're getting stuck along the way somewhere. Yeah.
+
+Dave S: Yeah.
+
+Paul: But anyway, it was the same point. Which was now a whole bunch of marketing people are asking for extra stuff. Like.
+
+Dave S: Absolutely.
+
+Paul: Every day I keep adding something around.
+
+Dave S: Yeah. It is more your tech stack. Absolutely. No, like outreach HeyReach.
+
+Paul: Probably like what SAS was 10 years ago. Except.
+
+Dave H: So even the, even the use of the app, like the biggest problem in the business right now is that everyone's using their own.
+
+Dave S: Yeah.
+
+Dave H: And. And you're like, no, no, hang on. We have to use sensible.
+
+Dave S: Yeah.
+
+Paul: Okay, well if we.
+
+Dave H: Then we need 200 copilot licenses.
+
+Dave S: Yeah.
+
+Dave H: So. So there's coming from the normal performance person that was never there before.
+
+Dave S: Yeah.
+
+Dave H: Like business. Like only the sales team asked for a sales license.
+
+Dave S: Yeah.
+
+Dave H: You know, like a software sales CRM license.
+
+Paul: Yeah.
+
+Dave H: When we did bi. Like the dashboards, it was still 5 to 10% of the whole company. Like it wasn't everybody.
+
+Dave S: Yeah.
+
+Dave H: Whereas AI is everybody.
+
+Dave S: Yeah, absolutely.
+
+Paul: And will be more.
+
+Dave S: Yeah.
+
+Paul: Yeah. Okay, great. And so that's finance things.
+
+Dave S: Yeah.
+
+Paul: What would be the trigger is the same trigger points for like an it. A trigger has to be defined that person coming to them.
+
+Dave H: But what, what are the other triggers? Well, when he gets the bill or she gets the bill.
+
+Paul: Okay.
+
+Dave H: It's the same thing. Because he's looking around like, you know.
+
+Dave S: Yeah.
+
+Dave H: I hope this gets true. When one of the big things for IT is always protecting particular infrastructure is the demands from the business for more infrastructure. That is an incessant demand.
+
+Paul: Yeah.
+
+Dave H: We need this too. We need that too. We need more servers. We need more server performance. We need, you know, and that just racks up the bills. That's what Azure is. That's why it's such a winner for Microsoft. It allows you to scale in, like across. It's elastic.
+
+Paul: Yeah.
+
+Dave H: And so what you're. You're dealing with all the time is we need more. We need more. We need more, more. So that's a trigger. Any man's going like, I. I can't give you any more. Like, it's already blowing my budget right now.
+
+Paul: Yeah, I can imagine. Also, I can imagine it doesn't put you in a great position if you're the person saying no. Because then you'd be accused of, oh,
+
+Dave H: well, then it's going to be a proper meeting. Why did you say no to him?
+
+Dave S: Yeah, yeah.
+
+Paul: Also our competitors doing X and yes. And like you're like going to let us not move advance. Like I've been, I've been multiple companies where they don't on AI. I was like, you do know that your insurance company are full of this. And I was like, I'm, I'm. But I'm being sincere in the sense that they can do things a lot faster than you can. And they will if they're buying it. Yeah. Okay, so they're the two. Two kind of two.
+
+Dave S: There's a CEO and you mentioned CEO as well.
+
+Dave H: Just until when you think about medium sized businesses. Yeah. Like that's the guy who's like, I don't get this. Like, my bills just keep going up.
+
+Paul: Yeah, yeah.
+
+Dave H: You know, and, and like, you know, the finance guy doesn't understand it. Yeah, I don't understand it. What's going on? So I think the continuous spend in IT and technology now and AI is a. Is because they're saying now they're like, you know, you need to manage your resources. Like in the information app where saying, we're gonna have 100% human resource today, but we want to drive our gross margins so we're gonna blend in. Digital resource.
+
+Dave S: Yeah.
+
+Dave H: And so. Okay, well, how much does that cost?
+
+Dave S: Yeah.
+
+Dave H: You know, so it's even on a strategic perspective these days with the CEO, the spend is coming into his or her head because, you know, she's like, oh, I don't know how much. I know I need to have more agents and they're supposed to be cheaper. I can drive my gross margin, but are they cheaper? Like, I, I don't know.
+
+Dave S: Yeah.
+
+Dave H: So I think it's a strategic perspective from a sea level.
+
+Paul: Yeah. Yeah. It is interesting the kind of the narrative from the AI companies as well. Is it like, first of all they had those leaderboards, which is crazy. And then. And then.
+
+Dave S: Yeah.
+
+Paul: But then there's also the sense that like if you listen to Lenny's podcast, they're. They're talking about how the cost were will at some stage outpace the cost of a high end engineer. So they're almost making you normalized.
+
+Dave S: Yeah.
+
+Paul: So basically they're saying they're waiting for the moment where someone spends more on tokens than they do on their salary. These are expensive engineers. This isn't.
+
+Dave S: But this is beautiful for your business names. This is coming down the tracks. We're always talking about it. When you talk about the pain from a sales perspective, this is exactly the pale we're drilling into. It's like, can you really afford to wait until it's that bad?
+
+Paul: Like, this is what that intelligence does.
+
+Dave S: It surfaces up all this in one fell swoop and helps you turn off the levers. Like, that's why I think the proposition so strong.
+
+Paul: And again, it's all narrative. The other instinct piece, which I thought was really fun, the idea that when people go for jobs, there'll be like salary, holidays, tokens.
+
+Dave S: Yeah.
+
+Paul: Like, to be honest with you, if I had to go back into full time employment, I'm not going to a company that doesn't give me tokens.
+
+Dave S: No, no, no.
+
+Paul: Yeah, so. So you can see the normalization of that.
+
+Dave H: Yeah, There you go. So then you must. An employee request. But I think to your external point perspective, which is really. It's incessant in the news now.
+
+Dave S: Yeah.
+
+Dave H: It's on every podcast, everything.
+
+Paul: Would you like to do this?
+
+Dave S: I sent him the AI or. Yeah. What's called. The hell. What are they called all in the allin part. All they're talking about was token. Token usage. And it's just frightening. You know what I mean? Look. Yeah, right.
+
+Paul: So that's, that's, that's pretty good, I think. On and then on. Just before we move off customers geographically is there.
+
+Dave H: All I want to do is quickly prove it here and then into UK and then it scales, then we go from there.
+
+Dave S: Yeah.
+
+Paul: Right. So Ireland first.
+
+Dave H: I think so.
+
+Dave S: Yeah.
+
+Dave H: Like it seems for the three of us proved that we can make something work.
+
+Dave S: Absolutely.
+
+Dave H: If we spend this, if we do that and then we get this. Okay, right, let's. Let's move fast. Yeah, but it's like the first bit is just whatever scope we all believe is sensible enough to be able to start extrapolating going. Okay, well, if we went into our town in America or if we went into.
+
+Paul: So let's just talk about competition for a second. The not direct competitor competitors, but alternative options for them.
+
+Dave H: Interesting. There's one I know of. Do you know of a few of you?
+
+Paul: No, no, no. But I don't even mean. I don't even mean companies. I just mean if I'm not doing this.
+
+Dave S: Yeah.
+
+Dave H: Okay.
+
+Paul: I have to answer to the cfo. What am I saying? Am I just given the narrative which is like, like everybody's doing it for booked if they don't. Like, am I using spreadsheets? Am I doing anything to figure this out?
+
+Dave H: You see, I suspect there's a high degree of mystery about the bills and I think nobody really wants to look that stupid. Like what you. I'll give you an example. I got. I was supposed to do a demo last week for the information app to the information lab, but I couldn't do it last week, so I asked him actually to send me over the report and I sent it on to you guys today.
+
+Dave S: Yeah.
+
+Dave H: And the fucking headline of the report is you've got four grand waste and a five grand Bill. So I fired it back to the David's elephants table and I said, lads, like I told you. I said Dave earlier, like I fucking believe in accuracy, right? And like, you know, could someone not have checked these numbers before you sent me the report? Yeah, and three paragraph response from my engineer. And this is, this is correct. Like, you know, like boom, boom, boom. So I sent it on to Jackie, who's brilliant, and Kevin and then Jono, who's our finance guy. And then I was in a meeting with him this morning. So can I just ask you, like how, how did you feel? And he saw the reporter given that like we are wasting 80% of for SP.
+
+Dave S: Yeah.
+
+Dave H: They're like, everything's.
+
+Paul: Yeah, yeah. Okay.
+
+Dave H: So.
+
+Paul: So I guess what, that's the question I'm interested in what they doing.
+
+Dave H: See, they're not doing. I don't know how to explain this. Like they're like, they're not. I don't think they're doing a great deal.
+
+Dave S: Like to me, the narrative so much clearer. People have a clue what they're spending money on.
+
+Dave H: Okay.
+
+Dave S: And we're, we're trying to drill, we're trying to drill into the pain kind of go, have you any idea, idea how much wastage did you have on your ID infrastructure? Yada, yada, yada. The answer is no.
+
+Paul: You know, you want to become an
+
+Dave S: educator in this market.
+
+Dave H: Yeah.
+
+Dave S: And the narrative is we've done this
+
+Paul: in our own business.
+
+Dave S: We realized that we were spending up to 80% wastage on a bill per month, which was wild. We didn't actually knew it till we run. We ran the figures through bad intelligence. It was stark and we went, well, Jesus, if this happened in our own business, I'm imagine what's happening in every other business. Like this is a huge problem that is only going to get worse. So to me it's all about, it's that narrative. So we package it up and then we go tomorrow. We spread. I'm not saying you spread the fear. People already themselves talking costs are going through the roof. My it's infrastructure course are going to go through. This is your whole premise of this. It's getting that out there and kind of going folks, it's getting you thought leadership pieces. It's kind of whatever their avenues he starts talking about, we kind of start, you know, creating a bit of a story of rainbow this and kind of go. I was like, you can't wait. You know, they don't know what they don't know right now, but they're not doing anything about it until you kind of rattle the cages a bit more. So I got. I genuinely. I showed them last night about it. It was like, you're onto something ginger.
+
+Dave H: It's actually massive because if we got
+
+Dave S: it right, if we get it right and it's only going to get bigger and bigger, this problem, Dave. So, like no one's really told away, as you said. Burying the head in the sand sink wouldn't look anything.
+
+Dave H: So. So the story, like. So there was. Look, I'm coming at it from a finance perspective, but also it was kind of. So. So anyway, I said to them, like, are you guys serious? Like 80%.
+
+Paul: Yeah.
+
+Dave H: They're like, okay, well, we'll check, you know, but there's no defense.
+
+Paul: Yeah.
+
+Dave H: And then I was like, okay. There's one thing, though, I don't really understand the bit that really annoys me.
+
+Paul: I know.
+
+Dave H: Okay, what is it? You're not tagging the resources. So we've listed out that we've got these 12. Imagine me at 12 little engines burning away in the garden.
+
+Paul: Yeah.
+
+Dave H: She. What does that engine do now? I don't know. What do you mean? Like the. It's connected to the electricity supply, like in its own. Right.
+
+Paul: Who are you asking that question to?
+
+Dave H: That's what I was asking.
+
+Paul: Who's the person you're asking?
+
+Dave H: The head of it.
+
+Paul: Yeah.
+
+Dave S: Yeah.
+
+Paul: See, I don't.
+
+Dave S: I.
+
+Paul: My experience of IT people is they're not really commercially.
+
+Dave S: No, they're not.
+
+Paul: It's not their thing. Right. So things cost money, but they just care. They to care about am I going to get this thing to work or not? Are they going to break?
+
+Dave H: It's an engineer. They're an engineer mindset.
+
+Dave S: Yeah, absolutely.
+
+Dave H: And actually an engineer mindset and a commercial mindset are very unusual.
+
+Paul: Yeah.
+
+Dave S: Yes.
+
+Paul: You might find a CEO, like. So my CEO in the lottery. Very smart guy. He was an. He had an engineering background, although he wasn't an engineer, but he taught like an engineer. Extraordinary commercial. So he'd be the kind of. Of person that would go nuts. Like, he'd be down trying to. In the weeds, trying to find out where his token was going on.
+
+Dave H: I think it's a really important nuance. I don't know how we address it, but, like, I, I. Because I've had this experience in the consultancy business, like, you send in engineers in to see a client and they come back after three weeks. And I thought, we fixed everything, but did we build them for any of that? Or like, did you just fix everything? And they were like, no, no, we just fixed everything. I'm like, lads, like, this isn't a charge.
+
+Paul: This is for mercy.
+
+Dave S: Yeah.
+
+Paul: It's not, it's not in there from.
+
+Dave H: They wouldn't look for expansion. They wouldn't look for, like, they genuinely. They wouldn't say, the shed's on fire over there. Don't do that. They're like, this is the problem.
+
+Dave S: Fix where we go.
+
+Dave H: Yeah, yeah, but, but the finance perspective on it was. I rang Jon and he said, he said he wanted to see there's a change to the report he wanted, but he couldn't believe it. And he was like, like, his, his, his. He was lit up.
+
+Paul: Yeah.
+
+Dave H: Because it gave him. And this is more of an emotional thing. It gave him his first ever insight into an area that he's traditionally been told, like, you know, he doesn't have to do it to you. We just spend the money.
+
+Dave S: Yeah.
+
+Dave H: You sign the check.
+
+Dave S: Yeah.
+
+Dave H: Whereas he told us today, he was like, oh, my God.
+
+Dave S: Yeah.
+
+Paul: What's the solution to that particular instance today?
+
+Dave H: That will be today to your competition. So there's a couple of ways you can do it. You can hire some billing expert who'll do it full time.
+
+Paul: Yeah.
+
+Dave H: And no one will do that, really, because they won't know that the ROI is there. Right. So they'll just see, like, why am I hiring, like a billing accountant for 60 grand a year? My bills are only 80 grand.
+
+Dave S: Yeah.
+
+Dave H: So there's the, there's that piece. There's the. You can hire a consultancy firm to come in and do it, but they'll be one and done. They go away. And then in the States, there is an established industry in FinOps, it's called where there's companies. I think, like, Vantage was one. And they do what data intelligence does, but slightly differently. Yeah.
+
+Paul: Okay. And then. So is that the. Is that the entire gambit across competition? So who's your direct competitors.
+
+Dave H: Well, I suppose, you know, Microsoft will tell you that there's a billing solution on their platform that you can go in and understand your bills and you can't. AWS probably do the same. Gcp do the same. Claude, don't do that. But it's not as simple as that.
+
+Paul: Okay, so if I, like if I went to Google and said my bills,
+
+Dave H: well, they'll say, upload your bill, but there's only so much they can tell you when you upload your bill. We go to seven different. You would have to connect the seven different sources of information to Google, which would be clever if you did, but it's not something you're going to even think about doing necessarily, particularly if you're the IT guy who doesn't really care about the bill and the finance guy who doesn't understand the bill. Like the guy who goes to get the seven different sources of information. He's a pretty motivated person, like knowledgeable person.
+
+Paul: Okay.
+
+Dave H: So he's probably not a customer anyway.
+
+Dave S: Yeah.
+
+Paul: Okay, so let's talk a bit about the proposition then, if that's all right. So how difficult is it to do what you guys do? Like, is it hard to make? And the reason I'm asking is the harder the better.
+
+Dave H: Well, there's two parts to that, though. I think it's more than just one part. I think it's more than just a hard.
+
+Paul: Yeah,
+
+Dave H: Like, I suppose I probably underestimate. It is hard. Like, like you have to go into there's sources of information that our engineers, who are experienced engineers, have looked at but went, no one has ever analyzed this before. It's like going into the coal mines for information.
+
+Paul: Okay.
+
+Dave H: Like there's audit logs and really obscure files and you have to look at.
+
+Paul: Okay. Nobody thinks you'd be experienced.
+
+Dave H: It's not just the bill.
+
+Dave S: Yeah.
+
+Dave H: I don't know how we'll ever get that message across, but it is not just.
+
+Paul: Why explain that to me then.
+
+Dave H: That's what everyone thinks. Like it's the bill, the invoice.
+
+Dave S: Yeah.
+
+Dave H: It's like your electricity bill. Right. It doesn't tell you what plugs were plugged in, whether you left your oven running over. So we have to go through, like pull out the open diagnostic program, out the frit, Then we correlate them all and we look at the timing of everything and stitch it all together and go, ah. Your problem is you left your oven on. That's why you're built so high. But what you don't know, when you look at the bill. Yeah, it's the same thing. And now we can't get oven and kitchen and diagnostics, but with cloud, you can get those if you go digging for them. Okay, so there's a. There is a complexity. There's an unknown complexity there. Because even when you get them all, like, we spent nine months just getting the information and then figuring out how to stitch it together, the stitching together bit is really tricky.
+
+Paul: Okay, good.
+
+Dave H: But that's the one part, and I think the second part is what you guys bring to the table. I think it is taking the opportunity that we have now to go really fast and really loud from a marketing perspective, a message that really resonate and just who moved the market and what that gives. If you get companies like, signing up, like hundreds and thousands of companies signing up, that's where you get your benchmarking from. And that was the piece that the MSB said to me during the week. He said, you okay? Yeah. And I'll tell you that story in a second. So I think there's two. Like, when I look at what you're doing, I'm like, this is our competitive advantage. We've done the complexity around engineering, but that's not enough.
+
+Dave S: Yeah.
+
+Dave H: The top address is what you're about to do, which is we are going to make so many people aware. We're going to hit them with emotionally resonating messages. We're going to get them to sign up, and then from that, we're going to get our benchmarking. And once we get the benchmarking, we're cold. We're absolute gold from there. Because the benchmarking is this. We've analyzed your bill, Dave.
+
+Dave S: Yeah.
+
+Dave H: And in the thousand customers that are on our system, you're scoring about at 30 out of 100. We will get you to 90 over the next six months.
+
+Dave S: Gotcha.
+
+Dave H: And then we'll keep you at 90. Gotcha.
+
+Paul: How many companies do you need to get the benchmark? It depends on the category.
+
+Dave H: I think a few hundred percent. Okay.
+
+Paul: Yeah, yeah. How much does it cost you to do the benchmark?
+
+Dave H: This whole thing is cost much. Whole shooting match. Okay. We designed it to be entirely scalable. Like, there'll be tweaking and there'll be camera ship done along the line, but it's not as the real thing for me is the benchmarking. And that's what came. I met an MSP during the week and he said, Jesus Christ, this is a customer acquisition machine.
+
+Paul: Yeah. Well, that's what I was wondering. If it doesn't Cost you an awful lot. And you need that benchmark. That might be a marketing tactic for them. How, how, how do I buy it? So let's just say I hear an ad on the radio, right? I'm driving the car, I hear it. And I don't mean physically, but like, what. What's the process to me, from not being a customer to becoming a customer?
+
+Dave H: The idea is that you go onto your website, you'll fill in a couple of details and you request a free report. Okay, that's today.
+
+Paul: Yeah.
+
+Dave H: Yeah.
+
+Paul: Okay. And then I get a.
+
+Dave H: No, you don't get the report. You get a call back from us.
+
+Paul: Okay, right. So I just go, I want a free report. What's the proof? What. What is the promise of the free report?
+
+Dave H: We will tell you how much of your spend you're wasting over what period of time? A month, so. Or longer if you give us more information.
+
+Paul: Okay, so I can go. I could, I could go onto your website and I could request
+
+Dave H: a.
+
+Paul: Request an audit or Aura. Yeah, whatever we want to call it of my.
+
+Dave S: What?
+
+Dave H: Cloud. Spent.
+
+Paul: Cloud spend. Now, is that what people call it?
+
+Dave H: Well, it's Microsoft Azure at the moment.
+
+Paul: That's what they do call it.
+
+Dave H: Yeah.
+
+Paul: Okay. Like, you know the way you get phrases that become category phrases over time?
+
+Dave H: Yeah. So like, it's, it is, it's. It's cloud computing. Spend. Cloud spend, Azure spend. There are three of the things. And then it'll be Azure, identity, cloud and AI.
+
+Dave S: Yeah, yeah.
+
+Dave H: And then in AI it'll be, you know, OpenAI.
+
+Paul: And what are the big costs? So, like, so, so Atlassian.
+
+Dave H: We're not going for them just yet.
+
+Paul: Why? Getting rid of people again. I think they. They. But. Sorry, I just, I'm just thinking about JJIRA.
+
+Dave H: So the SaaS piece is that we can go in and look at your estate and say, Paul Durbin hasn't logged in for three months. Does he really need license? Yeah, that is on our roadmap.
+
+Paul: Okay.
+
+Dave H: But we decided we'd start with the things the easiest. Well, I suppose JIRA isn't. There's another one called Datadog that they're telling me about. Now there's another thing.
+
+Dave S: Yeah.
+
+Dave H: So. So their name's taking up their hand and coming to me going, she said, didn't realize that this application, 75 grand a year. This is this and this. But we just have to pick them off from a road map perspective. At the moment it's just a zor and it's just close.
+
+Paul: And how many companies use.
+
+Dave H: Yeah, well, not my Exaggeration. Remember? Exaggerated. I thought the number was bigger, but
+
+Paul: it's anyone who's Microsoft company, is it?
+
+Dave H: Yeah.
+
+Paul: Well, yeah, they might not use it, but what do they use it for?
+
+Dave H: All your operational data goes onto the cloud. Or it used to go on prem. Like if you want to store your data from your like backup essentially to all your systems and to use it for data analysis, it sits on servers. Those servers used to be on premise and now they're in the cloud.
+
+Dave S: Okay.
+
+Paul: Now it doesn't really matter, I guess, because if you're. Would a finance person know that?
+
+Dave H: Yes. Well, the proton defines for some. Knows what the cloud spend is.
+
+Dave S: Yeah, yeah.
+
+Paul: They know what's in it. Like if I was trying.
+
+Dave H: No, no, no. They won't know all that's in it. They'll guess what's in it and they're guessing that it's operational spend. That's all they know. There'll be no further than that. They won't. They don't know about Target.
+
+Paul: So if I'm a cfo, right, and the. What's a typical. If I was a midsize company, is there. Is there an average.
+
+Dave H: Yeah, yeah. There's 1500 companies in Ireland that spend more than 10 grand a month.
+
+Paul: 10 grand a month on their cloud spend.
+
+Dave S: Yeah.
+
+Paul: So if I was a CFO, right, and hopefully nobody would employ me as a CFO. If I was a CFO for a company and a bill comes in for 10 grand. Right. And I popped down to my IT.
+
+Dave S: Yep.
+
+Paul: Here. And I was like, listen, what's the story? What's going on? My question people.
+
+Dave S: What.
+
+Paul: What's that company like?
+
+Dave H: What's.
+
+Dave S: What's in that?
+
+Paul: Like, what's the buckets? Or does it matter?
+
+Dave H: Because like, let's put it at an infrastructure spent.
+
+Paul: Yeah.
+
+Dave H: And then you'll be on your way back. Are you looking at you like. Don't ask me the question again.
+
+Dave S: Yeah, yeah, yeah, yeah.
+
+Paul: What does it not cover? Like, so what is. It is like how big is cloud as part of a general IT spend?
+
+Dave H: They're saying that tax spend now is about 4%, 3 to 4%, I think. And then of revenue or. Sorry, of total spent.
+
+Paul: Either way it's ten grand or. And then what?
+
+Dave S: What.
+
+Paul: So they said there's a certain number of people paying a 10 grand in. In the.
+
+Dave H: Not just as it were, 1500. So there's like the same again for AWS, the same again for GCP. And then there's all your Claude people.
+
+Paul: Yes.
+
+Dave H: And then you're OpenAI People. So you're going to get into the thousands very quickly.
+
+Paul: Okay. And then later you might think about kind of your SaaS stack. Is it like the other ones?
+
+Dave H: We've just released Datadog, we've just released Atlassian, We've just released Salesforce, We've just released. Yeah. Like it's a. Yeah. Non stop.
+
+Dave S: Yeah.
+
+Dave H: When you ask about, like.
+
+Dave S: Yeah.
+
+Dave H: The complexity of like, One of the things I've discovered about it is that, like, it's unbelievably complex for the IT manager and particularly the IT manager who has not been absolutely focused on setting it up correctly from the start. Right.
+
+Paul: Yeah.
+
+Dave H: So soon as, like if you're a chef in the kitchen and you want food to drop on the floor, like, you know, after three months, it can be assumed you're gonna have a fairly messy floor. You have to be meticulous as a chef. Right. Out of every single thing.
+
+Dave S: Yeah.
+
+Dave H: Now I, I really suspect that they are not meticulous. Right. And what's happening is that these resources are being lit up and fired up. And they're being fired up. Well, just like we need more resource over in operations. Okay. Fire up this. Eventually it becomes quicker just to go, yeah, release that resource. Fire it up.
+
+Dave S: Exactly.
+
+Dave H: Did you tag it? Probably not. Right.
+
+Dave S: Yeah.
+
+Dave H: And but one of the things that I've noticed is, and I don't know how to translate this in any other way, is that it really is very simple to save money. Because all you're actually looking at is what resources are being used and what are not being used and what are being used at the right time and what are being Used at the wrong time.
+
+Paul: What's an example of the right time?
+
+Dave H: Well, powerful bar mostly came from we are running all our servers 247 and people using the money to provide you after officer so there's nobody. So if you add up your Saturday and your Sunday and your 12 hours when the office is shut five days a week, you're already at a greater than 50% cost of saving.
+
+Paul: That's very good. Are you other examples like that?
+
+Dave H: Well the other one was the licenses. So we looked at the software licenses which I didn't think we were going to get into but the labs have managed to pull in the data source and it's really simple. Who hasn't logged in in the last 30 days? Who hasn't logged in in the last. And then you can extrapolate that. So even though yes it's a mess to understand and like what server the fact is like we knew that these are untagged so that's just a pothole of information. We're not saying it's waste, we're just saying it's pothole. These are being not used at the right times like so they should be just shut off. Just set another to shut them down and then these are licenses that nobody's using. So even though it is unbelievably complicated it actually very easy.
+
+Dave S: Yeah.
+
+Paul: Is. Are the IT people going to be happy with this? Like I could. I can see it going both ways. You don't want to get hit with that look, you don't want to the CEO to show you it. But if you were to get on the upper on the forefront you could be the person who is.
+
+Dave H: We brought in data intelligence and we cut our bills by 40%. My stuff is pristine.
+
+Paul: Same reason I do all of talking about media buying because spending 10 million I need to show.
+
+Dave S: Yeah.
+
+Paul: That I'm spending it as well as anyone else.
+
+Dave H: Yeah. And it gives you that like the report that I sent this morning to you, like you just read the report. Like you can literally go oh, it's server one, it's server two, it's server three. It just tells you where all the things are. Okay, that's a really interesting point because when you get to the wider market and I have to talk to you about msps, what you've just said is really okay.
+
+Paul: Right. So buying it is easy because I'm just going to go in and ask for it and then there's going to be a call from a consultant.
+
+Dave H: There'll be a consult from one of our experts who's going to.
+
+Paul: And what do they need to do?
+
+Dave H: Well, they need to connect your system to ours.
+
+Paul: What does that involve?
+
+Dave H: Like a username and password or rights to look at your billing data so that, like, it is sensitive.
+
+Paul: Do I sign an NDA?
+
+Dave H: Yeah, we will put all that in place.
+
+Paul: Yeah.
+
+Dave S: Okay.
+
+Paul: Right. And there's any reason why I wouldn't go ahead with that?
+
+Dave H: Yeah. You might say I don't trust you.
+
+Paul: Yeah.
+
+Dave S: Yeah.
+
+Paul: So, yeah. Do you have client case studies that can meet a surfer?
+
+Dave H: So this is why we were launching as part of the Information Lab, to give credibility to the brand from our ISO certification. And our clients, we've got pretty premium clients across Ireland, like return the IRFU, KPMG, PwC, Primark, they're all our customers. But when you take data intelligence and you put it out on its own, even though it's in a group structure or it's going to be in a group structure, it doesn't have any clients yet.
+
+Paul: If I go on to the website, who can I see who these people are who run this company?
+
+Dave H: Not today, but who would they be? Like, well, they be me.
+
+Paul: Okay.
+
+Dave H: You know, I could get you a couple of pictures from, like, there's, there's a couple of guys on our information lab team who could be there, but there's also, there's the data intelligence team. There's four employees there just trying to find a way.
+
+Paul: Is there a way to steal credibility from your information?
+
+Dave S: Yeah.
+
+Dave H: So you can put in, like, our board of advisors is Kevin Lynch, CTO of Information Lab. Jackie Lavara, head of service delivery for the Information Lab. You know, Lisa, man, like, it's new
+
+Paul: company, so it's fine.
+
+Dave H: It's just there's other people, like Mark Ryan, who's the former head of Accenture in Ireland. He's on our board of advisors. So you could say, can you put
+
+Paul: your board on then? Okay. Because that they're heavy hitters.
+
+Dave S: It gives you credibility.
+
+Paul: Yeah. Like, one of the issues I have at the moment with websites in general is they're so easy to make that they, they, they can feel like they could just feel throwaway and an absence of. Hang on. The difference between, oh, hang on, this is a heavyweight group of people versus this is someone in their bedroom.
+
+Dave S: Exactly.
+
+Paul: Or in their garden, you know, so, so, okay, so it's easy enough to buy and then the consultant does get, get the details. Or, and, and then.
+
+Dave S: But let's talk there for a second because that is possibly. I know we skipped over it a bit, but having to access that information request, that information. I can see that slowing us down. You know what I mean? There's no.
+
+Dave H: As it stands today, there isn't like Claude. Even worse.
+
+Paul: Yeah.
+
+Dave H: There's nothing to do with us. Make it really tricky to get the information out. So there is a little bit of like going in and doing a little bit of fiddling around before you got it. But like if we, like we just have to do that.
+
+Dave S: I know. And there's no light for.
+
+Dave H: It should get easier. It should be automated. We'll make it easier. Like.
+
+Dave S: Yeah.
+
+Dave H: You know, today though, we just need to go in and talk to them
+
+Dave S: and that's what we need. Yeah.
+
+Paul: It might be possible though that even if you can't do everything, you can still find some of these. You can find some things immediately. Like, so, for example, you know, we couldn't find extra data because they're not giving it to you, but we did find you keeping your fridges on. You know, maybe just like there's already three grand.
+
+Dave S: Yeah, yeah.
+
+Dave H: You know, and that's what happened with us. The 14 findings weren't relevant to us in the information lab. It was only three findings that were relevant. We still found 80 of the cost.
+
+Paul: Like, if you provide value for me,
+
+Dave H: that's our whole premise. Our whole premise is like, we're not going to take money off you unless we do find.
+
+Dave S: Absolutely.
+
+Paul: Let's talk about that then. So. Yeah, so. Because I'm trying to. I'm trying to get my head around the, the, the various messages, but I think I understand the customer well and the geographic is fine. I think competition there isn't like a big player that is doing this already. Except for obviously in America.
+
+Dave S: In the U.S. yeah.
+
+Paul: What's the name of the company in America?
+
+Dave H: I have to go back and get the list. One of them I thought was Vantage.
+
+Dave S: Yeah, they came up. Yeah.
+
+Paul: Vantage sounds like a company I should be aware of. There's not a really big company.
+
+Dave S: There's a couple of companies. There was Vantage and there was one or two others. They're not in Ireland or uk.
+
+Paul: It's not a. Okay.
+
+Dave S: And even the name data I haven't listed home.
+
+Dave H: Yeah.
+
+Paul: Yeah. Okay, tell us.
+
+Dave H: We're ranking higher than IBM and DataBricks in the SEO for data intelligence today.
+
+Paul: Do you know why?
+
+Dave S: No.
+
+Dave H: We're number one.
+
+Dave S: Really?
+
+Paul: I can run GEO on it. Yeah.
+
+Dave H: We are number one in the world right now.
+
+Paul: Is that driving anything for you? Do you.
+
+Dave H: There is traffic, but it's smaller because we haven't promoted this to anyone.
+
+Paul: Like us.
+
+Dave S: But it's a great name, Dave.
+
+Dave H: And that's why don't lose sight of that.
+
+Dave S: Like dead Intelligence is a new.
+
+Dave H: Yeah, it is. I can check after.
+
+Dave S: You know what I mean?
+
+Paul: It is a good name.
+
+Dave S: Such a good name.
+
+Paul: The only challenge you have with names like this, naming falls into two types of two categories. There is names that sound like the category.
+
+Dave S: Yeah.
+
+Paul: Which are helpful when people are thinking, oh, this is probably what I need. And then. And then there's names that don't sound like, like the category, which would be distinctive, that would be more memorable.
+
+Dave H: But don't tell you anything about, like Amazon.
+
+Paul: Yeah, yeah. So we take Roll Foxes. If you know anything about Roll Foxes, you know idea what that's about.
+
+Dave S: Yeah.
+
+Paul: So you. So. And other ways to this way, like in fairness, like back in the day, Google meant it was just an unusual name. It was a reason behind it. But it wasn't an unusual name as opposed to. Because I worked on search. Back then, a lot of search engines had like, names that sounded like searching, you know.
+
+Dave S: Yeah.
+
+Paul: So. But it's fine. It just means that if you're early, you can kind of coin the category a little bit. If not, you can get bossed. So, like, if I were to telco the number of shops and stores around the country that had the word phone in it written with like a F and all sorts of things. And so the problem. Problem is you just can't remember them because they all sound kind of similar.
+
+Dave S: Okay, so that's.
+
+Paul: That's the challenge. Yeah, but it's like. Yeah, most companies, a name can kill them. They don't win on the back of a name, but they can lose on the back of a name that can't be pronounced. Like companies I work with. I still can't remember the name though, because I can't pronounce their name. I use them.
+
+Dave S: Yeah.
+
+Paul: Even cryo, I get a wrong.
+
+Dave S: Yeah, no, you're right.
+
+Dave H: Okay, so just so you're aware, I'm the name while we're here.
+
+Paul: Yeah.
+
+Dave H: It's trademarked in Europe and the UK and Ireland with the distinctive logo.
+
+Paul: It's expensive to do. No, no, that's good. Okay, so, sorry, what were we on there a moment ago?
+
+Dave H: Great glass for bringing them off topic.
+
+Paul: No, it's fine.
+
+Dave S: It's important.
+
+Paul: No, it's fine, actually. It's fine. So, okay, so, Dave, you're asking about. You're asking about the customer experience. The. That audit. Oh, sorry, it was about free. So the audit is free. Are you saying the audit Is three.
+
+Dave H: A month out of the three, we'll give you a free diagnostic report.
+
+Paul: Diagnostic report, okay, that's what we've called it.
+
+Dave H: No marketing expertise.
+
+Paul: And does that, does that, what does that look like? Like the ones.
+
+Dave H: It looks like the actual report. So it doesn't tell you where the problems are, it just tells you how much we've estimated, having run the analysis, how much you're going to save.
+
+Paul: Okay, fine. And then the product, kind of the.
+
+Dave H: Then we want you to subscribe to our business. To subscribe to the offering.
+
+Paul: Yeah.
+
+Dave H: And then we can either release the entire report.
+
+Paul: Yeah.
+
+Dave H: Or we can release it in order of the findings of the most value.
+
+Dave S: Yeah.
+
+Dave H: So instead of like telling you like there's this much money need can be saved across every part of it, we can reach like one finding a month to you to give you the time to fix it yourself.
+
+Dave S: Okay.
+
+Dave H: And also to kind of sticky. But I don't have.
+
+Paul: And when you say subscribe to the business. So let's say I get the report back. Right. I'm like, oh, I'm spending a lot of money here.
+
+Dave S: Yeah.
+
+Paul: And then who says subscribe, what does subscribe to the business mean?
+
+Dave H: Well, we want you to pay for a subscription to get the details of the diagnostics report.
+
+Paul: And how's that going to work?
+
+Dave H: But as soon as you sign up with your car details.
+
+Paul: No, before that. So let's say I get the report.
+
+Dave H: The diagnostic report.
+
+Paul: Yeah.
+
+Dave H: But it doesn't tell you about the kitchen or it doesn't tell you.
+
+Paul: No, but I get it. Like, I'm interested as in, like, oh, this isn't. This isn't great news.
+
+Dave H: Or it is good news. I can save.
+
+Paul: Yeah, exactly. Yeah.
+
+Dave S: Yeah.
+
+Paul: And so. So then the next.
+
+Dave H: That's the idea, actually. It should be very good news.
+
+Paul: The next step then is to go, oh, I want that. And then I contact you again or.
+
+Dave H: No, no, no, no, no. We need to get into digital here. So it needs to be like, click a button, enter your credit card details, activate made a subscription, create a customer, a user profile, you know, and, and then we'll send you out the report, whatever, by bit or by info.
+
+Paul: Okay.
+
+Dave H: Yeah.
+
+Paul: And do you get them to do that before they get the first. Before they even do the diagnostic? No. Why?
+
+Dave H: At the moment, no. But we, we can do like, like bear in mind, like, we haven't done really anything.
+
+Dave S: Yeah, yeah.
+
+Dave H: Dave and I are speaking to you. Like, when I spoke to Dave, it was like at the start of this, two weeks after.
+
+Dave S: Yeah.
+
+Paul: Okay.
+
+Dave H: And now I'm like we're not doing anything until you hear what we're doing.
+
+Dave S: And the only question I have on that Dave is I get your subscription model and why you want to go that route but is there another alternative option where you can actually.
+
+Dave H: There's two parts to it, there's the saving share and the subscription.
+
+Dave S: Yeah but could you actually just pay for the report up front like it's a fixed cost of X thousand for
+
+Dave H: the report as opposed to it explaining how we've designed our it.
+
+Dave S: Fine.
+
+Dave H: I'm absolutely open to.
+
+Paul: Yeah Although I quite like the current
+
+Dave S: setup so I know I like this sass. I'm just wondering how many people are willing to go Yep, here's the glass.
+
+Paul: How much, how much would I put sign up to?
+
+Dave H: Yeah like you're signed up to 200 quid a month. Okay, okay okay fine.
+
+Paul: So it's a low races that's going to say good point.
+
+Dave H: If you have a five grand bill. Right.
+
+Dave S: Yeah.
+
+Dave H: And I find you two and a half grand savings and I split that with you. Yeah okay. You're not really going to spend 200 quid a month with me I don't think going forward so I have to figure because otherwise it's going to eat it like it's going to become larger than your.
+
+Dave S: Yeah exactly the savings.
+
+Dave H: So, so we have to have a kind of. It has to be based around to a point around the lower customers too who we actually want in from a benchmarking perspective but we don't like we have to be very careful about that. So the subscription like it should be tiered you know like, like I, I think and I have modeled it like that but the 200 quid was the simple explanation.
+
+Paul: So I get, if I, I get my report back NSS then I could save 3 grand next month if I did get some changes.
+
+Dave S: Yep.
+
+Paul: And I go okay, I'm in. So I, I fill out some, some sort of details to say so actually I've been a details to say I want you to obviously I want the rest of the report but I want you to identify these things now if I know what they are like obviously turning off the machines the weekend sounds like something my IT people know how to do. Yeah but generally will the IT people be able to implement the things that
+
+Dave S: you say
+
+Dave H: did this never exist to the MSP point We don't think so.
+
+Dave S: Okay what makes you say that?
+
+Paul: It's hard. Hang on.
+
+Dave H: Yeah there's kind of two parts to, to that I wake you up that's
+
+Dave S: Right, Yeah, yeah, let me tread.
+
+Paul: No, no, no. Okay.
+
+Dave S: No, it's maybe go back a step then just to your subscription based model. Cuz like you said you're so right with the tiering. Imagine some 75 grand a month but you're after a year you have to spend two days. 400 quid.
+
+Dave H: Yeah.
+
+Dave S: Just on the subscription. It's like, well you know, it's this really good value but I guess you've tiered it then. So what's this five grand a month or ten plus?
+
+Dave H: I don't know, we'll max it out and bottom it out. Of course, of course. Say like you know up to ten grand a month and above this subscription is X. Yeah. You know, ten grand this subscription and then below five grand this is subscription.
+
+Dave S: Exactly. Fine. And then so it makes it worth
+
+Dave H: your while, you know, you'll be presented with your amount.
+
+Dave S: Gotcha.
+
+Dave H: Because we'll see your bill and go. Okay.
+
+Dave S: Of course, 50 quid a month.
+
+Dave H: You're on 200 quid a month.
+
+Dave S: Yeah, yeah, yeah, good. And all kind of nets out 200 is kind of the as like the average sales price from a SaaS.
+
+Dave H: No, no, of course, of course. And but then, but there's also the language. Right. Not return. It's like there's a saving share element to this.
+
+Dave S: Sorry. Which is probably the bigger part. But if they're spend that five grand
+
+Dave H: first two years it is. But in, in year three, four and five the subscriptions go to the roof.
+
+Dave S: Why?
+
+Dave H: But because you've got this compounding effect of all these businesses that are signing up to your system that don't see. I think there's going to be an assumption here that the customer will come off.
+
+Dave S: Yes.
+
+Dave H: I don't think that's going to happen.
+
+Dave S: Okay, okay. Because they want to have the insights every month that they need it. Well if they come off your bills are going to go back up to where they were.
+
+Dave H: Yeah, well like the argument is there like you know, there's I, I have one of these food plans. I bought one for two of my friends and then one got bought and one and the four of us were in holidays. They're all giving out about it and I was listening to this like so you know. Okay, you obviously don't make us. No, no, this is not right. This is not right. Okay, so. So you're all not renewing your subscription. Oh no, no, we're renewing our subscription.
+
+Dave S: Yeah. Enough saying.
+
+Dave H: There might be a. In case there is a reason that they'll. Come on, you know they'll, they'll realize their savings and they'll come off.
+
+Paul: Yeah.
+
+Dave H: And I don't think that's the case
+
+Paul: at all because it's not as easy
+
+Dave H: to solve problem because it's a moving feast.
+
+Paul: Okay.
+
+Dave H: You know, like, you know, you, you bring in more systems, your goes back up again. Suddenly people.
+
+Paul: So it becomes a regular check.
+
+Dave S: Exactly.
+
+Dave H: I think there's like, I would never give up this subscription if I had the subscription, you know?
+
+Dave S: Yeah.
+
+Dave H: I don't think Jon or financial director would give up the subscription. In fact, if anything, the subscription is the only person who's telling me the truth.
+
+Paul: Yeah.
+
+Dave S: Yeah.
+
+Dave H: So I want to know, like, why are these potheads not and tagged everything and done this and done that?
+
+Dave S: Yeah.
+
+Dave H: So like as soon as you come off it, you're like, the span goes
+
+Dave S: back up to there.
+
+Paul: And so. So I'm subscribing to a monthly check report. Yeah.
+
+Dave H: Benchmark forecasting.
+
+Paul: Okay.
+
+Dave H: So we're going to tell you if you keep going the way we're telling you to go, your score is getting stronger and your spend is going to be X. And that allows you now to go into the CFO or the finance director. You are forecast your IT spend for X, Y and Z for next year. So at all times we're looking forward and back and we're saying this is where you're at.
+
+Paul: And so you only charge 200 quid
+
+Dave H: for the, for the per tenant. Now this is a conversation that's happened this week. Realistically, you will have one tenant when you run your business. But if you go to what's a tenant. Yeah. So tenant is a unique. Like a company ID.
+
+Paul: Okay.
+
+Dave S: Okay.
+
+Dave H: Like my company Sales Arm Ltd. I could have two tenants, one for my license sales business and one for my thing. But we have to charge you per tenant because it's the same amount of work for us per tenant.
+
+Paul: Okay.
+
+Dave H: But you, in a tenant, you can have many environments. This is. I don't think you need to get into this.
+
+Paul: But like, if I'm finding the CEO or CFO of the aa.
+
+Dave H: You have a myriad of tenants. Yeah, you don't know that. You will when you get any, speak to your head of it.
+
+Paul: Okay. So we can't say no one even knows. So does anyone know what it is?
+
+Dave H: The IT guys?
+
+Dave S: Really?
+
+Dave H: Yeah. Oh, yeah. Because if they heard this, they're bread and butter. Because tenants are also another way of like safeguarding information from.
+
+Paul: So is tenants, like, is that a technical term?
+
+Dave H: Oh, yeah.
+
+Dave S: Okay.
+
+Dave H: Like I didn't even know what it was up like a few months ago. Yeah, I was like, what? Cuz I was kind of thinking, like, is there what? Like, can. Can Primark just tell us?
+
+Dave S: We'll pay a month.
+
+Dave H: Like, no, like they many, many, many tenants and then we will charge you per tenant.
+
+Paul: And do you need to charge. Sorry, I'm putting on a copy. You don't want.
+
+Dave S: No, no.
+
+Paul: You. And do you need all the tenants?
+
+Dave H: No, we don't. We do. It's up to you. What tenants? You, you, you.
+
+Paul: I don't, but I know. Let's just say I'm the aaa, right. And I get this.
+
+Dave H: I'd have it for all my tenants. I'd have it for all my tenants. Any business?
+
+Dave S: Yeah.
+
+Paul: Like if I was. If I was. Jeremy is the guy in the. In the ia. So he's sprawling it a bit. And although it can't be as lottery. And. And so if he gets this and
+
+Dave H: he goes, he'll know. He'll know how many and he'll say, look.
+
+Paul: And he'll use that language.
+
+Dave H: Oh, he would do, yeah. You can ask him.
+
+Paul: Yeah, yeah. So, so, so.
+
+Dave S: And how many tenants would they have?
+
+Dave H: Well, it depends how many. Like they might split it by entity, by region, by territory, easily.
+
+Paul: Wow.
+
+Dave S: So that's then two grand a month from the aa.
+
+Dave H: Oh, no, sorry, I think.
+
+Paul: Oh, okay, sorry.
+
+Dave S: It could be 20, 30, 40. Okay, so you're multiplying that so every tenant by 200 quid.
+
+Dave H: Oh, that's. That's what I'm saying.
+
+Dave S: Yeah. And then their bills will be itemized by tenant.
+
+Dave H: Yes.
+
+Dave S: Sorry, this is very interesting. I didn't understand this at all.
+
+Dave H: So now you're going to turn around and go like, well, how do we roll it all up into one consolidated report? And we haven't done that yet, but we will, you know, we will have to be able to start doing that for enterprise licensing.
+
+Dave S: Okay. Ah, now we're getting.
+
+Paul: Sorry.
+
+Dave S: Even I didn't understand this. Sorry. This intrigue with the tenants.
+
+Dave H: Oh, my God. Right? It's a single cl. I've got two tenants, two subscriptions.
+
+Dave S: So have I.
+
+Dave H: So that's two tenants.
+
+Dave S: Yeah, yeah, yeah, yeah. Of course you do. Yeah. Jesus.
+
+Dave H: Okay, but look at. I got PLC. 40,000 employees.
+
+Dave S: Yeah.
+
+Dave H: 25 countries, 30 different businesses. How many?
+
+Dave S: Suddenly, when you're going up your SAS model now this is all taken for me. I thought it was more of the savings, you know, it's like 50, 50 split. I was okay, that's an interesting way,
+
+Paul: you know, that's good. But it could end up being.
+
+Dave S: Oh, suddenly this is the unlock for
+
+Paul: me now with the tenants.
+
+Dave S: I didn't.
+
+Paul: Yeah.
+
+Dave H: And, and what happens with the model is like you know, you've got all this saving share that kind of depletes because people get their together and they start doing what they're supposed to be doing and running like in a high octopus tax like in theory in your model like the savings share kind of goes away except for like new tools and new softwares and new things. Fine. But like every window like by territory, Ireland territory will last like one, two years before the saving share comes down. And that's just for.
+
+Paul: Or.
+
+Dave H: But then for Claude maybe it's you know, whatever.
+
+Dave S: Yeah.
+
+Dave H: For each thing, each territory there's going to be a window where the savings share comes down.
+
+Dave S: Yeah.
+
+Dave H: But what you've got is this mounting line of subscriptions and by the time you get to year five it's nearly all like barring just avoiding bringing out new tools and new products. The subscription line is the holy grail.
+
+Dave S: Yeah.
+
+Dave H: You know, you've got the whole for everybody subscribing and to optimize their spend and you're not going to like it's like on hoop like you don't get to 90 to go okay, I'm gonna cancel my subscription. Who does that?
+
+Dave S: Yeah.
+
+Dave H: And you get to 90. Like how the do I keep it here?
+
+Dave S: Yeah, I don't want to go back
+
+Dave H: to 80 or 70 or 60.
+
+Paul: In the beginning you're using the benchmark to figure out how to get better and then later on using the benchmark to show that you're good.
+
+Dave H: Correct.
+
+Paul: Okay.
+
+Dave S: Yeah.
+
+Dave H: And that brings us to the MSP point which I want to talk to you about.
+
+Paul: Yeah, sorry, it's just parallel.
+
+Dave S: Yeah.
+
+Dave H: Anyway, yeah, because yeah, the thing with the AI bills is really simple. It's massively been subsidized by all the private investment to know open AI and in cloud. Right. So there's billions of money being raised and so all our subscriptions are being run on a unit economic basis at a massive loss.
+
+Dave S: Yeah.
+
+Dave H: That's why open air losing 40 billion.
+
+Paul: Yeah.
+
+Dave H: So what's going to happen? At some point that trajectory needs to change. And so what's going to happen is they estimate that it's going to go between 7 and 12 times what the bill is today. So although we all think this is before Fable, which we spoke about when we were here, so although our bill is 200 quid today, the argument is that nothing else changing. Nothing else changing, that bill is going to, to be 1400 quid a month in like two years time. So what's going to happen? As you said earlier on, all these bills are going to explode just by the very nature of the fact that they're being subsidized today.
+
+Dave S: Yeah, yeah.
+
+Paul: Like I spent 200 quid. The amount of value I get.
+
+Dave S: It's incredible. It's incredible.
+
+Dave H: So it's going to be 1400 and then you're going to be going like, that's just a real.
+
+Paul: I got to get into a new business.
+
+Dave S: But here's the thing, we'd continue with 1400 quid because you couldn't run your business with.
+
+Dave H: Then they'll be into like, okay, well how do we manage the 1400?
+
+Dave S: Of course.
+
+Dave H: And that's where this thing should come into its own.
+
+Dave S: Absolutely.
+
+Dave H: Which is like give these employees absolutely in those employees, give them these bits of advice and coaching and yeah, we're already seeing that.
+
+Paul: So I'm only here listening to the podcasts on that, which is talking about people. So first it was gangbusters and then it was, okay, this is ridiculous.
+
+Dave S: Yeah.
+
+Paul: But now it's like, hang on, let me be strategic on this. So certain people like those who trust.
+
+Dave S: Exactly.
+
+Paul: And they get what they're doing with their, with their tokens. Yeah, that will be fine. And, and Some people are putting limits on them and things like that. But even, like, you know, I was showing you yesterday or the other day, like the ability just to move from one model to the next. No one know how to do that. Yeah, within the model. Like, like, like. So people are, people are using Fable, like, and asking them questions probably. Who knows?
+
+Dave H: Yeah.
+
+Paul: Anyway, okay, so, yeah, I think that's good, by the way. I think that, I think there's. You've got at least two really interesting angles. The, the free report is definitely interesting. Or the audit. The, the other bit, though, tell me a little bit about. Because I know I could pay 200 quid per tenant. Right. And whatever way you explained it, or we explained that because. Anyway, the, the second part though is how does that tally up with I. Unless. Unless you save me money, I don't spend it. Is that a separate stream of income? No, no.
+
+Dave H: I think it's a really good question
+
+Paul: because that's you fixing things now, isn't it?
+
+Dave H: Yeah, like you're kind of, you know, you could get a situation where you're, well, look, there's two things here. There's the customer, the desire, and then there's the brand promise. So the brand promise might be like, we'll never earn more than you save now. We could eat up your savings though.
+
+Paul: Yeah.
+
+Dave H: Do you know, that way. So, like. But there's a premise behind it. So I don't want to more than the customer says. Right. I just want to be absolutely clear about that. There's a reason behind that. But then if the customer then moves or graduates from maybe that to saying, well, I want to keep paying you because I want the benchmarking and I want the forecasting. So we may have to have a bridge there because I think that's what's going to happen. And then, because when they've expired all their savings there, they're going to say, well, now we're moving you on to the monetary package and the monitoring package is 50% of the savings package or whatever.
+
+Paul: Is it possible, then, that last point about not taking more than they say is more of a point of view that your brand has as opposed to locked in as a feature?
+
+Dave H: Well, let me explain the thesis behind it and then you can tell me what you think. So the reason I like this category so much is that nobody spent any more money than they were spending in the first place. So all I'm actually doing is running an economic process against the spend that exists today. What do you mean they won't be
+
+Paul: spending Any more than the current.
+
+Dave H: So if you go into a company and say like use Data Intelligence and that company was saying spending a million quid a year. Well, we're not asking them to spend 1,100,000 a year, we're asking them to spend like we're just taking some of their million and giving it to ourselves. So it's a really interesting product because all it does is it takes from one person and redistributes it to the other. But the customer doesn't pay any more money. So the reason for the brand promise is because I believe there's a whole new economic business in waste. And, and actually if you just can monetize the waste, you can save for the rest of your life. Like all data intelligence ever did was take money from that you were wasting anyway and just put it in our own pocket and you were better off. It's a win win kind of situation. So it's a belief, it's an economic belief. But, and I think it's a good brand promise. But I'm not.
+
+Paul: Yeah, that's okay.
+
+Dave H: I do think there's a stepping stone into like, well, we want to stay with you anyway. Like because the way you help us manage our bills and we know they're optimized and we're 90 out of 100 and we want to stay at 90 out of 100. So I don't know, it's a bit
+
+Paul: like, like again in different parallels. Like in the recruiting industry, if I, if a recruiter puts me into a job, it's not going to come out of my salary. Do you know what I mean? Like, like I'm still getting the salary.
+
+Dave S: Yeah.
+
+Paul: Big company is having to spend their money in two different platforms. But it doesn't affect me.
+
+Dave S: Yeah.
+
+Paul: Like I've been offered my hundred grand or whatever.
+
+Dave S: Exactly.
+
+Paul: The, the, and then the other thing is in the advertising media world, media agencies buy media on behalf of customers like the aaa and the media agency gets a big discount but they still give a better deal than I could get on my own anyway.
+
+Dave H: Yeah, correct.
+
+Paul: Yeah. So I could go to Newstalk like I did actually. I got a good deal, Chris. But I go to Newstalk or I could go to an agency. The agencies already. Already has the powers.
+
+Dave S: Exactly.
+
+Paul: To go.
+
+Dave S: Exactly.
+
+Paul: I can get you a better deal and we still take our cut. You still come out better.
+
+Dave S: Yeah, yeah, yeah.
+
+Paul: I mean it's distribution.
+
+Dave S: Absolutely. Yeah, yeah, yeah, yeah.
+
+Dave H: Okay. So once you're like, then that's it. I don't have a very Strong. I do think there's a lifetime subscription here.
+
+Dave S: Yeah.
+
+Dave H: And I just want, I want to understand that, but I don't know it because I, I don't have that experience, but I just bring it back to Whoop. Or your Apple Health or your Garmin. There's no one goes off the subscription when they optimize their health.
+
+Paul: Yeah.
+
+Dave H: And so I need to know how to monetize that.
+
+Dave S: Yes.
+
+Paul: And so it's a, it's a number of products though, isn't it? Because you have. There's a subscription which is, which is a. Which is kind of. We're tracking and making sure. And then there's fixing, as in we're going to come in and we're going to. That can help you solve it with different revenue stream.
+
+Dave H: There's a saving share, which is so, so. Well, the idea is that like if we come into your business and your bills are like our bill.
+
+Paul: Yeah.
+
+Dave H: Is five grand a year. It's tiny. That. Well, that's probably a bad example. So say, let's say it's 50 grand a year and there's 20 grand savings in there in year one. We want 10 of that. 20.
+
+Paul: Okay.
+
+Dave H: And the subscription.
+
+Paul: Okay.
+
+Dave S: Yeah.
+
+Paul: Okay.
+
+Dave H: Now that's expensive.
+
+Paul: Yeah. But still cheaper than the 50 that I'm spending already.
+
+Dave H: Yeah, but you're going to get competition into the marketplace who are just going to undercut that. That, that percentage like, that percentage will come down over time. Like, it will have to be. It'll be under, like as soon as data intelligence becomes the all seeing almighty, there'll be about 100 more data intelligence that pop out of the box really quickly.
+
+Paul: So you're.
+
+Dave H: So that will drive that percentage down.
+
+Dave S: Okay.
+
+Paul: So if I, again, if I'm a customer, I get the free audit, which is grand.
+
+Dave S: Yep.
+
+Paul: I subscribe to get this ongoing diagnostic check, which is 200 quid per tenant. And then I. But I actually, but I might not get a. The, the savings piece has to come from. I could still get a check and not do anything about my. I could get the check and say. So let's say I get.
+
+Dave H: No, we would only say we send you a savings share bill. It is important if you've done the savings.
+
+Paul: Okay. And so I, let's say I find out that I'm spending ten grand a month and I'm like, oh, and, and the report says, you know, you could save four of them straight off the bat. Right. So I go, great, give me the rest report. And I want, I want a monthly check. So I can get down what's what. How do I get that four grand
+
+Dave H: off my bill as you implement the changes we're telling you to implement.
+
+Paul: Okay, okay, so. And where does that, when, how am I signing up for that? Is that signing up for this?
+
+Dave H: That's a good point. That's a good question. Yeah.
+
+Paul: Okay, so I'm the client and I go, right, I want to say four grand, what's the deal? And then someone goes, look, the deal is this. It's a very small amount of money per tenant. Right. And but you signing up to this means that if you implement any of these changes we get a kickback of 50% or something. And how do you enforce that?
+
+Dave H: By the person staying on the site or not. Like if they choose not to pay us, then we just shut down the subscription.
+
+Paul: I don't know what they would savings there. Could I, I do the thing.
+
+Dave H: Yeah, in theory you could. Yeah. But then you're not coming back to our site.
+
+Paul: Yeah, okay. Also they've just broken a contract. Yeah, yeah.
+
+Dave H: So we could enforce it but, but
+
+Paul: either way there you're an element of. Yeah, an element of I'm signing up to this so in advance. That's probably a meeting. Is it? Is that a meeting? Is that going to happen? Like can, will I subscribe? Can I on an online page sign up to something that says give me the report, I'll implement it and you get half of the savings.
+
+Dave H: You know, there's an agreement in there. I just wanted to say one thing to you because you might have a better idea than I do on this. For me, the subscription represents value for the customer. When there's benchmarking in the system.
+
+Paul: Yeah.
+
+Dave H: I think there's a natural like saving share in. Into subscription. I just want you to know like I am not sensitive about that first six months subscription.
+
+Dave S: Yeah.
+
+Dave H: Like if that first six months is just a saving share and then you move into a subscription, I'm very comfortable. I'll absolutely, like I'm not sensitive about that at all.
+
+Dave S: Yeah.
+
+Dave H: So like if you start on a savings share and you stay on a subscription, I'd be delighted with that to be quite honest with you. Because then the brand promise is, you know, you're only. And you kind of get to the point market because that may change in time because I think the subscription is really only valuable when you've got many other people to compare it against and you've got a score and you know,
+
+Paul: are you going to publish those benchmarks?
+
+Dave H: We should be told leader on this subject like what is tagging like an index? Yeah. Big time data report spend in Ireland or in France this year has grown by 50% year on year here. Like you want to become the absolute global industry leader on it.
+
+Paul: Yeah, because they're probably interesting and you can do fun insights.
+
+Dave S: Yeah, good compared to the rest of
+
+Paul: the country, you know what I mean? Or whatever. You know, I mean.
+
+Dave S: Yeah, yeah, yeah, yeah, yeah, yeah.
+
+Paul: You know what I mean? Like if you have good, good data on that you can, you can into, into kind of interesting headlines, you know.
+
+Dave S: Yeah.
+
+Paul: Like as any can become machine for headlines if, if it's, if we have the data ideally. Yeah, yeah. You know what I mean? Who does that? Well, in fairness on Tropic do a really good job. But back when, you know, when I was indeed they, I don't know how successful they were, but they used to do a lot of these kind of index reports on like the state of the jobs industry completely. Like a lot of people do.
+
+Dave S: Yeah, yeah, yeah, yeah.
+
+Paul: But, but like some of it could be more interesting than others.
+
+Dave S: Yeah, no, you're absolutely right.
+
+Paul: Okay, the. Okay, let's talk a little bit. So we've kind of covered competition. I've got a good understanding of the product I think and we monetize your customer.
+
+Dave S: Yeah, yeah.
+
+Paul: So let's talk about kind of your world go to market just before we do.
+
+Dave H: There's one other customer that hasn't been spoken about.
+
+Paul: Yeah. Okay, explain that to me.
+
+Dave H: So in, in the world of specifically cloud spend.
+
+Paul: Yeah.
+
+Dave H: Not so much AI, but in cloud spend. The way a company like Microsoft goes to market, less so with AWS and less so with Google cloud.
+
+Dave S: Yeah.
+
+Dave H: Okay. So this is really much bigger around Microsoft. So the way Microsoft typically go to market is they allow people like managed service providers MSP to do the end to end client billing. So what the managed service provider does and they account for about 50, 60% of the market. What they will do is they will have customers and those customers will spend their Microsoft cloud spend via the NFC.
+
+Paul: Okay.
+
+Dave H: Now there are certain markets in Europe where MSPs are dominant. There are certain markets like the United States where MSPs are not dominant. Are they big here? It's very big in Ireland. MSPS is very big in Ireland. So in Ireland typically customers will have an msp. Now why do you have an msp? There's two reasons, right? Typically. So one is that you didn't have a big IT department. You had one or two people. But these guys know how to manage tickets for support okay. So if Salesforce goes down, you don't really know why. You can log a ticket and your MSP will come along and fix it kind of thing. Right. So that's in principle are these big brands, you won't really know them. So like there's companies like Echo ec, I know Ekco, Ergo E or G O and then there's three other ones, Viatel HCS and Swerve Argos Drive in
+
+Dave S: Ireland
+
+Dave H: and they have sometimes hundreds, sometimes thousands of customers and they're considered like break fix. I don't know if you've ever heard that term before. It means if something breaks, we'll help you fix it. But you log a support ticket. That's what an MSP does.
+
+Paul: They're basically adding a layer of service
+
+Dave H: managed service provider to a software subscription level. Correct?
+
+Dave S: Yeah.
+
+Dave H: Okay. Larger medium companies and enterprise Companies don't have MFCs typically.
+
+Dave S: Okay.
+
+Paul: Because they don't need them. They have their own talent.
+
+Dave H: Yeah. The small companies are too small for us anyway. And so this probably only practices really in the small medium sized company space.
+
+Dave S: Okay.
+
+Paul: Okay.
+
+Dave H: So the smaller medium sized company space. But either way MSPs are currently having a a bad time of things because they're weren't designed for data and AI and they're not able to provide data and AI services to their customers. So a lot of customers are now asking the question that's why the reason that's what the information lab is going after in the market space. However, they do have customers. MSP is there on Monday. A guy I know and I told him about this and I said look, I think I can white label data intelligence to you so you can call it strive data intelligence and you can provide it to your customers. And the first thing he said was this is incredible because I can provide a service to those customers to help them activate the recommendations that you're to going giving in the report.
+
+Paul: So they in terms of the level of who's got the power, the you would have more than them and then they'll want you more than you want them. I know they got the customer.
+
+Dave H: This is an interesting dynamic. So let me answer that question.
+
+Paul: Yeah.
+
+Dave H: So it depends, right? So when he, when I told him he was like, two things. One, I can now provide, provide an additional service that I can charge my customers for and I'll still give you the subscription fee and I'll still give you the half of the savings share kind of piece. I'll split it with you. Okay. But I now have my new service which is we will implement the recommendations, the Data Intelligence report on behalf of the customer. Yeah, yeah, that was the first thing he said. Second thing he said is I'm going to have a lead table now for all my customers. So I'm going to have guys who score 90, guys who score 60, guys who score 10. So I'm going to rank all my customers and then I'm going to help my 10s become 90s. And then the third thing he goes is, this is a customer acquisition tool. I can go to market and I can provide this betting service and win other customers off other MSPs. So like, if Strive Data Intelligence launches, he can go out to my market. Now come back to your point. If we launch it, it's going to go around very quickly because people are going to go to their, to their MSP and go like these guys are offering, you know, I heard about them on Newstalk or saw an advertisement. Can you do that as well? And they can't do that. And they won't be able to do that very quickly. They really won't. They don't have the expertise for that. So from our perspective, there's a compelling reason for the MSPs to sign up with us as customers very early on.
+
+Dave S: Yeah.
+
+Dave H: Or else they'll kind of will eat their lunch over time. So just to call that out.
+
+Paul: So the only. On my mind. Yeah, on that is. So as a channel to market, that sounds great.
+
+Dave S: Yeah.
+
+Paul: As a white, white label, it's not great for building the brand.
+
+Dave S: Okay.
+
+Paul: Now, but there might be a middle ground which is.
+
+Dave H: Well, we just say calling it co.
+
+Dave S: Brand.
+
+Paul: Like for example, if they don't know that you're the provider of that then. Or the opposite, every time the, your name does turn up, it's helping like just build continuous impressions of the company who are powering those things.
+
+Dave S: Yeah.
+
+Paul: You know what I mean?
+
+Dave H: Well, you, you can decide.
+
+Paul: Yeah, yeah. Let's just think it through because.
+
+Dave S: Absolutely. Yeah, yeah.
+
+Paul: The, the, the, if you can, if you can find a way for them to be a, a route to market while your brand still being part of that awareness of everybody. I just think, I think that would work out better if they would go for it. And they sound like they might go for it.
+
+Dave S: Yeah.
+
+Paul: If they don't have it. Yeah.
+
+Dave H: All right, good.
+
+Paul: Okay. So I think,
+
+Dave H: I guess the other
+
+Paul: question that, like I think you've said already because there's all marginal gains. If you've got like a thousand people signing up tomorrow, you can handle that. Not tomorrow, in a month.
+
+Dave H: Or two. Yeah, if you want to.
+
+Paul: Yeah, yeah. Like I guess there's this manual having people waiting for the checks and stuff and it's actually to do the actual work.
+
+Dave H: Yeah, but the work, the work should be no problem. But then there's also like, you know, like just to bear in mind, like the website at the moment is just a website.
+
+Dave S: Yeah.
+
+Dave H: Front end application's being built, is being built as we speak behind the scenes. So there's going to be a different version of the website in September, October, you know, where it's an operating application that you can log in and see your account, you know, so that's being built at the moment. At the moment it's in this kind of closed phase where we're hoping to sign some customers up and just plug in all the stuff behind the scenes. But like that's what we're. Our CTO is building at the front end application as we speak.
+
+Paul: Yeah. Okay. We didn't really talk about the positioning in any particular way but, but what you have. But the. I can see the free offer being useful tactic if I think about the positioning of the company and the brand to some extent you want to be able to have a single line that says we are X company for this, for X product offering X promise with this, with X benefit features. And that becomes like I can, what I can probably do is take it pass from listening to this and then it's actually, it's actually much harder than it sounds. But once you have that, you kind of lock it in. It's not a tagline, it's just a, it's a dry statement that says we are X for this. We offer this promise. And these are the, these are the practical or feature reasons why we do that. And that becomes the soul of, of data intelligence always when you think about your positioning.
+
+Dave H: So I give you some pass on it.
+
+Paul: Yeah.
+
+Dave H: Yeah. We are a billing management company that helps you manage and control or see and understand your cloud and AI build.
+
+Paul: Say again? It doesn't like, it doesn't have to be functional. It doesn't have to be.
+
+Dave H: We are a build management company that helps you see and understand our. Manage and control your cloud and AI bills.
+
+Paul: Okay.
+
+Dave H: That provides benchmarking and forecasting to enable you to predict your future spend and optimize your current spend in your business today.
+
+Paul: And the emotional benefits, because we spoke about them loads of times, is for example, where a billing company does that. That allows you to take control. Yeah.
+
+Dave H: Control, see and understand.
+
+Paul: Yeah.
+
+Dave H: Okay.
+
+Dave S: Yeah.
+
+Paul: So I, I, and that will Give me. And that will be peace of mind. Peace of mind also. So peace of mind is one thing. Right. And again, just to stretch it, the like a lot of like, like when I, when I pitched for it to get Claude into. Into like a couple of businesses.
+
+Dave S: Yeah.
+
+Paul: If I think about the emotional drivers, for me, Right. One is I really want Claude, but I also, if I'm honest, Right. I'm doing it to signal to those who give a. That I am very forward thinking.
+
+Dave S: Yeah.
+
+Paul: In my AI approach. Right. So whether people admit or not, that's kind of part of. Yeah, yeah, yeah. Right. I was very obvious about it. As in I admitted to anyone. Yeah. So. So there may be. There may be emotional kind of benefits that. That would. Would. Would be beyond just control. Like.
+
+Dave H: Yeah.
+
+Paul: So if I am, if I'm a cfo, like. So you're CFO background, aren't you? Like, yeah, like, if I see what are the things that most CEOs, like, do they all want to become CEO? Like, are they. Is there a. They're the obvious candidate. Often what's going on in their heads in terms of that they know exactly
+
+Dave H: what they're talking about.
+
+Paul: Okay. Right.
+
+Dave H: So they don't necessarily need to become CEO.
+
+Paul: Yeah.
+
+Dave H: But they are the absolute guardian of truth.
+
+Paul: Okay.
+
+Dave H: You know, within the business. So, like, you want to be seen as like, it's a bit loose being a cfo, not understanding your bills.
+
+Dave S: Yeah, yeah, yeah.
+
+Paul: That's the line.
+
+Dave H: We got to keep exactly what it is.
+
+Paul: Okay.
+
+Dave S: You're the guardian of truth.
+
+Dave H: Huge pride in their accuracy and their, their, their accuracy of their forecast, accuracy of the numbers.
+
+Paul: Is that, Is that across policy?
+
+Dave H: Yeah.
+
+Paul: Okay.
+
+Dave H: That's the desire. Is that like you were seen as the bastion of the truth. Yeah, yeah, yeah. The last best. Like there's no. You are the person who. The safest rock of the business.
+
+Paul: Okay.
+
+Dave H: When the CFO speaks, there's no argument.
+
+Dave S: It starts with you.
+
+Dave H: Like, the salesperson will come in and go, we're doing sales. It's one minute and everyone goes, one minute.
+
+Dave S: Yeah, yeah.
+
+Paul: Okay. So that's kind of interesting. So. So we get into tonalities a little bit. Right? So like, for example, places I used to market engineers. And, and I used to. I. Because I listened to all these calls. Yeah. It was very clear to me very quickly. They hate marketing talk. Like.
+
+Dave H: Yes.
+
+Paul: Yeah. Like most people did, including marketers. But like, the marketing talk is like, it repels engineers. It repels engineers because it's all hand waving.
+
+Dave S: It's. Yeah.
+
+Paul: It's all like, we. We don't know how much money we spent. We can never tell. It's like. It's like. It's all about how much we're spending
+
+Dave S: as opposed to life. And sales people hate marketers as well.
+
+Paul: Exactly.
+
+Dave S: Trying to tie in the roi.
+
+Paul: There's a survey every. I get a cent every year. The surveys show that, like, advertising people is like. It's like they're. They're below car sales. They're so disliked in the work. There you go. Every time the survey comes out, I get it from, like, five different people.
+
+Dave H: Yeah.
+
+Paul: So. So. And what I'm interested in, though, is tonally. Tonally. Right. Because. And we like this. Like, once we crack it, then we'll just leave it. Right. So just to show you, though, the guardrails, the. If you. It sounds like there's something interesting in the tone of preciseness. Kind of like pride in kind of being. Being, like, the source of truth, like you said. Right. At the same time. Right. The balancing act is. Is you don't want to be boring. Okay. So. So, sorry, the reason I say that is boring. Doesn't sell.
+
+Dave S: Yeah.
+
+Paul: Well. And so. So finding especially your challenger branding for a while. So the idea behind a challenger brand is you might come out and say things that are controversial, or you might say things that are provocative, or you might say things that are. That actually. Are people gonna argue with you about all that is good. Sorry. It's not good for humans in the sense that it all happens on Twitter and it's all very negative, but it's good for brands that want to get attention. And so there's a point along the way where founder owners of a company have to find out what they feel, how far they want to push.
+
+Dave S: Yeah.
+
+Paul: Yeah.
+
+Dave H: There's a relationship part to all of this, which is like, kind of data intelligence, bringing finance and IT teams together for years. Make your CFO your best friend. Like, there's. There's. If you play. Because. Because the two of them are fundamentally. They're just two different sets of engineers.
+
+Dave S: Yeah, yeah.
+
+Dave H: Right. A finance engineer and an IT engineer.
+
+Dave S: Yeah.
+
+Dave H: And they really find it hard to speak to each other.
+
+Paul: Yeah.
+
+Dave H: And I don't know if there's anything there on the mindseat. No, I know. That's not shocking.
+
+Paul: No, it's fine. And it might be funny. Like, for example, there's a lot. There's a lot of means between. Between engineers and. And product marketing.
+
+Dave S: Yeah.
+
+Paul: And. And you'll be like you. Because engineers are like, just tell me exactly what the Problem is and, and the product marketing, like they'll be explaining to you the visual. Yeah, and, and you can like there's great memes on that stuff, you know,
+
+Dave H: so that's definitely one thing that exists. But I know what you mean.
+
+Paul: So they're from different worlds. As in like they're actually the exact
+
+Dave H: same type of people. Cuz I'm financing. I spent the last 10 years in data. Like you two groups like you're exactly the same as. Yeah, but you just spend all these years not talking to each other. Yeah, but there is a, there is a common language.
+
+Paul: How, how. Sorry, I know I'm domining all this day. No, no, no, no. This is how, How provocative would the brand be willing to go? I'll show like. And like this isn't. This is mostly just to push the boundaries and see because like so like if you look at like my background's effectiveness and I can say with an awful lot of confidence that the most successful marketing campaigns, right are what are known as fame campaigns. But it's all good for Challenger brands because now the. There's a line because there's a credibility line and there's a kind of listen, you can't, you know, be jokey. So, so like it's. But there's like for example I was just doing some work yesterday for, for a crowd and one of the references I was giving them, they're doing some promises is. Is the Economist which we never expected to be Connie. For certain. They've managed to do intelligent wit for I don't know, 50 years now. And actually it's pretty good.
+
+Dave H: Yeah.
+
+Paul: There's no point getting the brand something different, although God knows what they're getting at the moment. So. So there's a. There's a. There's gonna be a. In one way you can just have flat T and it won't do any harm for you. But the other option is to see are you willing to push things that
+
+Dave H: would cause
+
+Paul: arguments and fights. Now, I'll give you a bad example. You might go, hang on, we can't do that for a bunch of reasons. Right. Or you might go, hang on, don't know why we wouldn't do that.
+
+Dave H: I have two thought, like, so the. My only thoughts on it are. Yeah, fundamentally the biggest objection to our business is going to be trust. And like the P. Like when you're giving them the money, like you kind of weren't expecting even to get it back.
+
+Paul: Yeah, yeah.
+
+Dave H: You know, like you, like, you know, stood there and taking a punting horse.
+
+Dave S: Exactly.
+
+Dave H: I presume it's not going to win, but if it does, it does have your eyes.
+
+Dave S: Yeah.
+
+Dave H: Whereas ours is. You're saying, like, we're, you know, we're, we're kind of more on the high performance. Like, we, we really focus on you performing well, optimizing your builds.
+
+Dave S: Yeah.
+
+Dave H: Like, because there's even a range on that. Like, are we saying reduce your bills, which we've spoken about before, are we saying manage and optimize your bills and become better prepared to scale, not more paying to that high performance side. So I don't know. But the trust thing, like, I think if you went out a bit too loose, you know, you're just going to tarnish it and then the name's never going to recover from that because. Or even worse, you go out loose and there's a fucking cyber attack and you do lose down data and people like, they were jokers to begin with.
+
+Paul: And also the other angle.
+
+Dave S: Sorry, Paul, on that was because you mentioned earlier, Dave was like, it's driving into the pain of the CFO or your bills are out of control. It's like it's only going to get worse. Like something a little bit catastrophic, but something around that. It's like create more awareness to people, kind of go, do you have any idea how much you're spending? No, we don't.
+
+Dave H: People, I. I don't mind being funny to them, but I think to your point about the Economist, it's more of a drier wit.
+
+Dave S: It's a drier wit, exactly.
+
+Dave H: Like if they are our customers, like, Christ almighty. They're a different breed.
+
+Paul: Yeah. By the way. And also the thing I'd say is this, it has to be true to the DNA of people running the company.
+
+Dave S: Absolutely.
+
+Paul: Like it. It won't work if it's not what. Who they are. Yeah, I, I do believe that strongly.
+
+Dave S: Yeah.
+
+Paul: On the trust, though, an interesting counterpoint is.
+
+Dave H: Yeah.
+
+Paul: Okay, so you basically have to do signaling, which is what do I have to signal about this brand? And that can come from a whole range of things, but certainly for example, how you speak, how you speak and how you look, they should all be thought through. Like, it's not that complicated, but they all need to be thought through. There's this coherency to those things. A lot of small brands make mistakes, but they look really small. But you can see like, for example, when they do ads, they just fucking shove loads of shit in. And this immediately signals this is a cheap brand. And so you may find that some of your reference points that you've hit on performance brands. So you may actually say some of the reference points are, well, let's look visually at tech, like even products like, and see how do they signal performance. And you just steal some of those cues and you wrap it up in your own, in your own thing. So we'll get to that. Okay, I think that's, that's most of the stuff I'm interested in. I do want to talk about go to market because like up to now I'm just trying to get my head around all these things so I can throw out a few ideas about the stuff that you might do. The website. So the website, it's going to become not just a website, but it's actually the entire product. What's the. You have a UX or UI designer who can make changes and do things and she has capacity and capability to do that still.
+
+Dave H: Yeah, okay, but, but you know, I spoke to them yesterday and I said, I described what you shown me, you know, in terms of like, you know, looking for those buying signals, trying out different messaging and then updating the copy on your site and like kind of an agentic loop. Yeah, they're. That's fine. She, she, she's a lot of work on her hands just even describing the user journey for the site itself.
+
+Paul: Never mind the marketing or the journeys for that too.
+
+Dave H: Well that's what she's doing at the moment.
+
+Paul: Yeah.
+
+Dave H: Yeah. So like we, you know, I need her to map out the whole shoot Marauder. So like if, if we give up the front of the page or the messaging on the side or whatever and you take that over like that's all.
+
+Paul: Okay.
+
+Dave S: Do you know what?
+
+Paul: You know what?
+
+Dave H: I. Sorry, that was question supposed to ask her. Just a sec.
+
+Paul: Yeah, it's, that's mostly, it's mostly just to figure out how quickly we can move and change and make things like that completely. The. And like the way like I know we talked about before but like we're thinking about this as an agent led marketing and, and go to market operation as in as much as possible drive AI to operationalize this as much as possible.
+
+Dave S: I, I absolutely think so. Because Dave doesn't need a massive team here for this.
+
+Dave H: What's that?
+
+Dave S: He was just talking to me.
+
+Paul: Can we have AI Our general view is this. We're going to go as agent operationalize.
+
+Dave S: Absolutely.
+
+Paul: Yeah.
+
+Dave S: Yeah.
+
+Dave H: Oh I wanted to be the absolute test case for what you believe in. Yeah.
+
+Dave S: 100. Yeah.
+
+Paul: Which is 100.
+
+Dave S: Which.
+
+Dave H: Absolutely. So on a movie phone.
+
+Dave S: Yeah.
+
+Dave H: That part would be all right.
+
+Dave S: Yeah.
+
+Dave H: First.
+
+Dave S: Yeah.
+
+Paul: So to get it up and running. Right. So you already have a website. There's probably some things we would do to make sure it signals credibility. The, the other thing is all the stuff talks about positioning and stuff like that. I'm of the view that gets something up that's we like is good knowing that we have the ability to make changes exactly.
+
+Dave S: Quickly.
+
+Paul: Like if we don't then it becomes a longer decision. But like if you find after talking to 20 customers that the headline on the homepage is not hitting the right thing. Change that in like a half an hour.
+
+Dave S: Absolutely.
+
+Dave H: Three year process.
+
+Paul: If it, if it, if it can't that quickly it just every other decision becomes this, this big decision. Like I've seen this in every other.
+
+Dave S: Yeah.
+
+Paul: Where like they're spending. They're like we need to get the copy three weeks in advance. I was like that's ridiculous.
+
+Dave S: Yeah. Like why don't that's going to be
+
+Paul: the case for you and then you change it at all?
+
+Dave H: No, it's whatever you want it to be.
+
+Dave S: Yeah.
+
+Dave H: The copy needs to be changed dynamically. Then can we change the name of it? Like there's no.
+
+Paul: Yeah, well, I'd be advocating for. And maybe what's the woman's name?
+
+Dave H: It does here now. She's young. Like she's. This is her first job at a college.
+
+Paul: Okay, great. Yeah. So she's not gonna have any like problem with like a lot of direction.
+
+Dave S: Yeah. Yeah.
+
+Paul: So what I'd be advocating for is build at least the front end of the website in plot code and push to. To Vercel using Next js because it just seems so easy and fast and the design aesthetics can all be changed. Like it doesn't have a set design or anything like that. And I, with the exception of a couple of things, I can do all that. You already have a logo. Yeah, yeah. So. So I'm not a graphic designer, but. But I, I think we can get away with most things.
+
+Dave H: But.
+
+Paul: But you're probably using graphic design, your product, right?
+
+Dave H: Well, Nahalas. Yeah.
+
+Paul: Okay.
+
+Dave H: We'll have a look at the. Like it's all on the website there.
+
+Dave S: Yeah.
+
+Paul: Okay.
+
+Dave H: What's on the website is all we've got. Yeah. But now there's brand guidelines and all that kind of stuff. Designed and built.
+
+Dave S: Yes.
+
+Dave H: Idea. I think she was using Claude design.
+
+Paul: Well, that's good stuff.
+
+Dave S: Yeah.
+
+Dave H: So. But there no one's sensitive and she doesn't have any. She's one of the nicest people you'll ever meet.
+
+Paul: Yeah. Also she's busy. She's trying to design a easier.
+
+Dave H: Yeah. So she's. They always want to see it to be successful. Like they're as excited about this.
+
+Dave S: Yeah.
+
+Paul: So I think, so I, I think that we, we. So we build from an operational perspective and then we can talk about how to get them in the operating perspective. I. What I would do is I would, I would build the website in Claude code and I would then connect it to Vercel, which is the hosting and also the next js. That gives us end to end control to make changes by just talking to your laptop. Then I would also build a lifecycle agent using Klaviyo as part of your signup. If you do that, that will give us full control from when they go and sign up for something. Anything that they touch on the website can trigger the appropriate email back to them automatically.
+
+Dave H: Okay.
+
+Paul: So. So as opposed to going in and building all these manual Systems.
+
+Dave S: I've got everything down.
+
+Dave H: It was built in framer.
+
+Paul: Okay.
+
+Dave S: Framer. Oh, yeah.
+
+Paul: I still think we should dump it and use the thing. But, but, but you should ask her if she knows how much she's paying for framer.
+
+Dave H: I wouldn't say very much.
+
+Paul: No.
+
+Dave H: Because it didn't come across my attention. I don't know why she's paying.
+
+Paul: Here's what I'm thinking from an operation.
+
+Dave S: Absolutely.
+
+Paul: Because once we get that, the most important. Right. So we build the website through cloud code, we take it from framer, we can host an inversal. We build a lifecycle agent, ideally for anyone signing up because that means we have this single control. And so, for example, if you put some new, let's say on the website, you have, have here's our latest index or here's something like that or whatever content you need to use. I think content will probably be important part of this. If they've signed up as an email, we have the ability to, if we design it properly, the ability to trigger fully personalized emails automatically based on an action they did on the website.
+
+Dave H: Okay.
+
+Paul: Yeah. So that. And then what we say and how we say it can be completely determined by what actions we're trying to get them to do.
+
+Dave H: Yeah.
+
+Paul: But even like, oh, watched half a video or downloaded this or that stuff.
+
+Dave H: Yeah.
+
+Paul: So yeah, triggering all that I think would be very useful. I think from a. That is the kind of the website, the back. The kind of email back and forth to the website. In terms of stuff coming in. I like the obvious ones. First off is to use like an outbound agent which would do a combination. So it would go and it would find, let's say CFOs. Find CFOs. It would find the company, the CFO, the email address, the LinkedIn details. And then we would do a combination of enrichment. So things they said or things about them or things they care about. And then that would. We then have that to write personalized, personalized messages which would just go out on a regular basis. So. And then you'd agree what's the flow from those. So what that means from a user experience. Experiences. I see a message on my, on my phone. Someone has linked in and said oh there's a free thing, blah blah, blah. Right. I think that actually that hook will be very strong and you make a bunch of decisions about what you're asking to say and you can just do AB tests and things like that. The important part with that now is to find. So you know, Plaud code is attaching a. To other pieces of the software. It's not doing everything itself. So it would attach itself through
+
+Dave S: to
+
+Paul: a tool called Heyreach. So Heyreach is probably the best known LinkedIn outreach tool that hasn't been banned. And the way that works is you can get about 25 messages. So to scale that up you'd have to find yourself and a few.
+
+Dave S: Well he's got people on his team. He's got Rob 100 people.
+
+Paul: If you had 10 people you'd be actually able to turn that into a proper. Yeah scaling machine. Right. And that will start to bring some straight in the bat.
+
+Dave S: We also have a couple of lists as well by the way. But yeah.
+
+Paul: How many people do you have in kindness?
+
+Dave H: Well I, I think that listed you now don't we that we could go to 250 companies and all of whom use Microsoft.
+
+Dave S: Yeah. Yeah.
+
+Paul: Okay.
+
+Dave H: And then you're looking at two, three people per company. So 750 people.
+
+Dave S: Yeah, yeah.
+
+Paul: If like if you, if it's a small list of useful people it might be makes sense to actually send them direct mail because in a direct mail.
+
+Dave S: Yeah you can actually send something the
+
+Paul: size of this table. Like it's, it's the. I used to, when I, when I just small stint in an agency 100 years ago and we used to target. We had a small list of 30 companies in each one of them. We started CMO and they're quite a lot of money. I used to send like inflated gold posts into their offices with the, with the football and, and then I had personalized letters to 11 different people in the department and it was like going
+
+Dave H: to work or something.
+
+Paul: I used to send fishing rods like, like I was anything that, that was standard their attention because, because so, so, so like expensive because the list was so small. Like we, we, we like out of 30 we, we. We signed up three. Like the horror. I was insane like because yeah like you're talking about spending €25 on each target.
+
+Dave S: Yeah.
+
+Paul: Nothing you know so I would consider for high value targets where the numbers are small. Direct mail is good. Email's a bit of a challenge because of g. Yeah. So now it's more of a Risk appetite. I spoke to a bunch of companies. I spoke to one yesterday. They're like, yeah, whatever. So it's essentially you're not allowed to send emails to someone who unsolicited with a gdpr. Now it could take you under. So I don't know if anyone ever does go under with it. In the UK it's less strict.
+
+Dave S: Is direct mail okay?
+
+Paul: Direct mail, you can send them. Like, to be honest with you, why direct mail works is this. Yeah. You'd set it up to go, I have a direct mail agent who can write really good. I came from a direct marketing background. And so you could set up to go write, we're going to send this and then we're going to send another one. Basically you're just over time just tapping away and beyond switchability. As long as you're respectful. Like.
+
+Dave H: Yeah, a little bit funny.
+
+Paul: Exactly, exactly. Like, for example, if you add the index, send it through. Do you know what I mean? Like there's, there's things that make it like the, the general view on this is. And all communications is are you adding
+
+Dave S: any value to that?
+
+Paul: Is that's what you want to. Okay. I think then like those things will help.
+
+Dave S: Yeah.
+
+Paul: I do think then that like rave advertising is really strong. Ireland, it's, it's your audiences. I think we could ask without even going to an agency. We could ask contracts in like I see whether. Get a good deal like they gave me. Yeah. That's probably about 10, 15 grand a month, depending how much you're willing to do. And, and you'd know. Did we talk with the 95 rule that I. Yeah, there's a bit of that going on.
+
+Dave H: So I really like it.
+
+Dave S: Yeah.
+
+Paul: So it's pretty empirically solid. So. Yeah. But the idea is to make sure that your house is in order once the advertising starts.
+
+Dave S: Yeah.
+
+Paul: And you could advertise. You could run two different radio ads. You could have one talking. Basically you can go for high volume. That might build your index or you go for a smaller volume. We've got more intent. And your messaging could determine that. I'll give you an example. I'm gonna, I'm gonna launch a training course for AI for marketers in September. And it'll be free, but it'll be good. And if I could take. I might take half of my radio spots and talk about that. I'll get a wider response, but I won't find people who want to buy something. I'll just find people who are interested in that. But that might be okay if I'M
+
+Dave S: trying to build like a, like a lot of train.
+
+Paul: So it's just kind of his decisions just on that.
+
+Dave H: So like I, if we went really wide and tried to get that index built as fast as possible, they still have to sign up for the savings share. Right. So like even though they get the free report, I suppose if they get the free report, we still have their information. So is that what you're saying? So like just give like if you did 2,000 free reports, you have 2,000 people's information to build up your index, Is that what you're saying?
+
+Dave S: Yeah.
+
+Paul: Well you might, it might be.
+
+Dave H: Then we would do that.
+
+Dave S: Yeah.
+
+Paul: So. So, so we're on the same page.
+
+Dave S: Yeah.
+
+Paul: The goal is to build the index then, then.
+
+Dave H: Well, the sooner you build me the index, the sooner I can start charging for a subscription.
+
+Dave S: Yeah, yeah.
+
+Paul: So that became like the, the, the.
+
+Dave S: That's the North Star overarching
+
+Paul: go one is the, the easiest way to do it. What would they want? Like why, how would you make it?
+
+Dave H: I think it is, I think you got, I think you got to go for this. I've got to talk to my cto, make sure we can handle this. But I think like my business thing would be go for it.
+
+Dave S: Yeah.
+
+Paul: So then would you offer ability to, to do it without them having to sign up to something? So. Because that like you think of the barriers. If I hear.
+
+Dave H: Well, the pre. Pre report you capture, you don't.
+
+Paul: Yeah, but you would want their email address.
+
+Dave H: Well, we have to because we have to get them to connect.
+
+Paul: So let's just say you did a radius spot. Right.
+
+Dave H: But what we're saying in return is we're using this data in an anonymized fashion.
+
+Paul: Yeah, absolutely. So. So like if you take that to the entry. Right. I know I'm into writing for the weeds here, but like if you use the radiuspot and the radiuspot said X percent of companies are burning X amount of stuff, you can be the CFO that gets this sorted, blah blah, blah. Right. Or you or another one can be. Do you want access to like Ireland's first index on how much people are spending on cloud and things like that?
+
+Dave S: Exactly.
+
+Paul: Right. You know, no cost this blah blah blah. Right. Like once you throw in where it's cost, no cost and free, you'll see.
+
+Dave S: Yeah.
+
+Paul: Responses go up. Yeah, yeah, but they'll be lower intent in there.
+
+Dave H: I'm okay with that.
+
+Paul: Yeah, yeah. Cuz your goal is to get the int.
+
+Dave S: Exactly.
+
+Dave H: Yeah, exactly.
+
+Dave S: Exactly.
+
+Paul: So like yeah, you take my free training course I don't make any money from it, but it actually doesn't. It's not that hard for me to build either. Yeah, so. So the reason I'm going to promote that is it will spread more people about the stuff I do.
+
+Dave S: Yeah.
+
+Paul: So, you know.
+
+Dave H: Oh, I got it here.
+
+Paul: Yeah. So again, the good goal isn't an immediate purchase. The goal is fame. And so you just, you can think about. You don't have to do one or the other. You can have concurrent.
+
+Dave H: No, no, no, I agree. I think about the content as well. One of the big things that's occurring to me is that this is a big black box for a lot of people and like I said, really important. I really don't understand it.
+
+Dave S: Yeah, absolutely.
+
+Dave H: If you were able to take a line of content that was working in parallel, which is understand these bills, understand timing.
+
+Dave S: Exactly.
+
+Dave H: Why resources are turned on and turned. There's a huge amount of that there as well. Because this is an uninformed marketplace.
+
+Dave S: Exactly. It's an education.
+
+Paul: Okay. The two last things. Two last things on my mind is there's just kind of search and geo, which is just kind of like it just needs to be done. So I can take as far as I can. Like the. For example, I'm prototyping a, like a search where I want to build that just can do searching every day. And that's just like. I think we should just run it to find out is it useful and find out what does it cost. Are you familiar with like Google advertising? Some terms are really expensive. Like you bought the term insurance, car insurance, you could pay 15 quid for it, even more and you might go, hang on, that's just a waste. Yeah. You might find a whole long tail of certain terms that actually do bring you it in. It's just numbers, like it's. You can just go, let us find out. That's just kind of housekeeping.
+
+Dave S: Yeah.
+
+Paul: It still could drive, drive extra traffic and things like that as well, as well as doing the work on geo. Now the work on GEO is connected to my last point, which is about content. So I think it's. I think the potential for the index and the numbers and all that stuff feels to me like the kind of stuff you could be creating headlines all the time if it was thought through properly. For example, you could connect something that happens in the news and write a headline and you can do that through robots. So for example, I've built this scout agent that can scour the media and then all it needs to do is write a headline. Relevant to us, relevant to the thing. You can just keep pouring that out. But I think content will also be useful for. For geo. So it's not what happens on your site, it happens outside your site. It seems to work for. For GEO at the moment.
+
+Dave S: Yeah.
+
+Paul: It probably means. The last part then is I think it's worth considering pr. Pr because it. There's an element of trust turning up business post turning up in. In radio interviews and advertising like I'm going to do for myself. Advertising does awareness but it's a narrow frame. It's a narrow frame while you kind of want to be turning up in lots of places and once you get pick up some pr, other people see it, you start being the person they ring to comment on things. Now I'm not a PR expert but I've been tracking people. I've worked for the other agencies for a long time and there's a spectrum like all marketing agencies of those who are really good, those who are terrible.
+
+Dave S: Yeah.
+
+Paul: So I've got a few people out scouring after me at the moment to find someone who are good but not too expensive.
+
+Dave S: Yeah.
+
+Paul: So what I'm looking for is ex agencies who've gone out on their own, who have contacts with journalists, who are good when it comes to pure. And if you do any PO in your current company but you can't say get us a news article every week, they just burn their. It would just burn their relationship to the journalists.
+
+Dave S: Yeah.
+
+Paul: So there's a meltdown element of just having some sort of agreed. What do KPIs look like here?
+
+Dave H: Things like that.
+
+Paul: We'll get into that. I think those things apart from radio and checking out how much search would cost. I'm not sure what other advertising I would consider because the gambit. The gambit is not huge. You're not like most people. People are not business people. So that rules out a lot of mass marketing unless it worked out to be worthwhile like for example.
+
+Dave S: The other big one is Dave's actual network himself. Like he's obviously got. He's part of Enterprise Ireland which is a big network there. Both the total leadership piece, how you put in his total content. What about like his LinkedIn content that all that like, like, like getting that out there but like that needs to be part of this and like building
+
+Paul: this ghost rider agent which basically interviews other people and then puts it up into articles and things like that. The idea to get your own opinion
+
+Dave S: right? Oh, yeah, we can get all that, but it's just. It all comes into. Fine.
+
+Paul: So what I'm going to do next is I'm going to create a messaging frame.
+
