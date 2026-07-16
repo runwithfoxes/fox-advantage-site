@@ -99,6 +99,15 @@ export const work: WorkSection[] = [
       download: false,
     } },
 
+  { title: "The next match, same machine", kind: "media", badge: "Next occasion",
+    desc: "Spain meet Argentina in the final next week. One new brief re-originates the campaign for it: the real can held exactly as it is, a new scene made for the new match - Argentina's colours on one side, Spain's on the other - with the €19 Clubcard price carried through. A new picture, not a new headline on the old one, and every placement follows from here.",
+    wideDesc: true,
+    layout: "grouped",
+    groups: [
+      { label: "The new scene, from one brief", items: [ { src: "next-match-hero.png", w: 300, ratio: "1080 / 2007" } ] },
+      { label: "As the in-store screen", items: [ { src: "next-match-instore.png", w: 300, ratio: "1080 / 1920" } ] },
+    ] },
+
   { title: "How it works: calibrate once, produce always", kind: "copy", badge: "The machine",
     desc: "",
     blocks: [
