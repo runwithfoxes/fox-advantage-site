@@ -53,6 +53,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/yellowharbour/")) {
+    if (req.cookies.get("yellowharbour_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -65,5 +71,6 @@ export const config = {
     "/proposals/data-intelligence/:path*",
     "/proposals/ari/:path*",
     "/proposals/santegic/:path*",
+    "/proposals/yellowharbour/:path*",
   ],
 };
