@@ -59,6 +59,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/supplyit/")) {
+    if (req.cookies.get("supplyit_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -72,5 +78,6 @@ export const config = {
     "/proposals/ari/:path*",
     "/proposals/santegic/:path*",
     "/proposals/yellowharbour/:path*",
+    "/proposals/supplyit/:path*",
   ],
 };
