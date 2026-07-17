@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RWF hero - scroll assemble</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8; --sky:#3A7CA5; --sky-light:#6CAAC8; --deep:#1A3A4E;
+    --orange:#F47521; --text:#1D1B1B; --muted:#8A8A85; --border:#E0E0DC;
+    --dot:rgba(208,208,204,.5); --frame:#edeef1; --frame-line:rgba(20,20,30,.10);
+    --line:rgba(20,20,30,.07); --line-soft:rgba(20,20,30,.045);
+    --ink:#1b1b1f; --faint:#b7b7bd; --green:#2e7d46; --purple:#6a5acd; --sel:#f3f6f9; --bubble:#f4f2ee;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:var(--mono); color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased}
+
+  .nav{position:fixed; top:0; left:0; right:0; z-index:20; display:flex; align-items:center; gap:26px; padding:16px 32px; font-size:13.5px; background:rgba(250,250,248,.85); backdrop-filter:blur(8px); border-bottom:1px solid transparent}
+  .nav.scrolled{border-bottom-color:var(--border)}
+  .nav .logo{font-family:var(--mono); font-weight:300; font-size:13px; letter-spacing:2px; color:var(--text); text-decoration:none}
+  .nav .logo b{color:var(--orange); font-weight:300}
+  .nav .links{display:flex; gap:22px; margin-left:28px; letter-spacing:1px; font-weight:300}
+  .nav .links a{color:var(--text); text-decoration:none; opacity:.72}
+  .nav .sp{flex:1}
+  .nav .signin{color:var(--text); opacity:.75; text-decoration:none; letter-spacing:1px; font-weight:300}
+  .nav .cta{background:var(--deep); color:#fff; padding:8px 15px; text-decoration:none; letter-spacing:1px; font-weight:300}
+
+  .hero{height:280vh; position:relative}
+  .sticky{position:sticky; top:0; height:100vh; overflow:hidden;
+    background-image:radial-gradient(circle, var(--dot) .9px, transparent .9px); background-size:28px 28px}
+
+  .head{position:absolute; left:0; right:0; top:15vh; z-index:3; text-align:center; display:flex; flex-direction:column; align-items:center; padding:0 24px; will-change:opacity,transform,filter}
+  .kicker{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--sky); border:1px solid var(--border); background:#fff; padding:5px 12px; border-radius:20px; margin-bottom:30px; box-shadow:0 1px 2px rgba(20,16,40,.05)}
+  h1{font-size:clamp(28px,3.4vw,46px); line-height:1.05; letter-spacing:-.03em; word-spacing:-.16em; margin:0; font-weight:700; white-space:nowrap}
+  .sub{margin:22px 0 0; font-family:var(--sans); font-size:17px; line-height:1.5; color:#565452; max-width:44ch}
+  .ctas{display:flex; gap:11px; margin-top:30px; font-size:14px}
+  .ctas a{text-decoration:none; padding:10px 19px}
+  .ctas .ghost{color:var(--text); border:1px solid var(--border); background:#fff}
+  .ctas .primary{background:var(--deep); color:#fff; font-weight:500}
+
+  .stage{position:absolute; left:50%; top:50%; width:0; height:0; z-index:2}
+  .win{position:absolute; will-change:transform,opacity; user-select:none; -webkit-user-select:none; touch-action:none}
+  .stage.live .win{cursor:grab}
+  .stage.live .win:active{cursor:grabbing}
+
+  /* rest of the page (scrolls in after the hero) */
+  .rest{position:relative; background:var(--bg); border-top:1px solid var(--border); padding:120px 32px 160px;
+    background-image:radial-gradient(circle, var(--dot) .9px, transparent .9px); background-size:28px 28px}
+  .rest-in{max-width:1100px; margin:0 auto; text-align:center}
+  .rest h2{font-family:var(--mono); font-size:clamp(24px,2.6vw,34px); font-weight:700; letter-spacing:-.025em; margin:0}
+  .rest .rp{font-family:var(--sans); font-size:17px; line-height:1.5; color:#565452; margin:16px auto 0; max-width:52ch}
+  .rest .agents{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:34px; font-family:var(--mono); font-size:12.5px}
+  .rest .agents span{border:1px solid var(--border); background:#fff; border-radius:20px; padding:7px 15px; color:var(--deep)}
+  .frame-win{background:var(--frame); border:1px solid var(--frame-line); border-radius:15px; padding:0 8px 8px;
+    box-shadow:0 1px 1px rgba(26,58,78,.05), 0 20px 42px -14px rgba(26,58,78,.26), 0 64px 110px -54px rgba(26,58,78,.42)}
+  .tl{display:flex; gap:6px; align-items:center; padding:10px 11px 8px}
+  .tl i{width:11px;height:11px;border-radius:50%;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06)}
+  .tl i:nth-child(1){background:#ff5f57}.tl i:nth-child(2){background:#febc2e}.tl i:nth-child(3){background:#28c840}
+  .tl .t{margin-left:6px;font-size:11.5px;font-weight:600;color:#54545c;font-family:var(--mono)}
+  .tl .live{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--sky);font-weight:600;font-family:var(--mono);padding-right:4px}
+  .tl .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 1.7s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+
+  /* ---- FILM (Advertising) : wide landscape, moves down-right ---- */
+  .film{width:1160px; margin-left:-580px; margin-top:-273px; z-index:5}
+  .film video{width:100%; height:460px; object-fit:cover; object-position:center 82%; background:#0d1b24; display:block}
+  .film .cap{display:flex;justify-content:space-between;align-items:center;padding:11px 15px;font-family:var(--sans);font-size:13px;color:var(--muted)}
+  .film .cap b{color:var(--text);font-weight:600}
+
+  /* ---- BLUEPRINT : DOMINANT centre window (canvas + run panel) ---- */
+  .blueprint{width:940px; margin-left:-470px; margin-top:-228px; z-index:7}
+  .bpw{display:flex; flex-direction:column; height:420px; font-family:var(--sans)}
+  .bpbar{display:flex; align-items:center; gap:12px; padding:11px 15px; border-bottom:1px solid var(--line-soft); font-size:12.5px}
+  .bpbar .crumb{color:var(--muted)} .bpbar .crumb b{color:var(--ink); font-weight:600}
+  .bpbar .tabs{display:flex; gap:16px; margin-left:14px; color:var(--muted); font-size:12px}
+  .bpbar .tabs .on{color:var(--ink); font-weight:600; position:relative}
+  .bpbar .tabs .on::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:2px;background:var(--deep)}
+  .bpbar .tabs .cnt{color:var(--sky); font-weight:600}
+  .bpbar .rt{margin-left:auto; display:flex; align-items:center; gap:12px; font-size:11.5px; color:var(--muted); font-family:var(--mono)}
+  .bpbar .rt .livepill{display:flex;align-items:center;gap:6px;color:var(--green);font-weight:600}
+  .bpbar .rt .livepill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.7s ease-in-out infinite}
+  .bpbar .rt .trig{color:var(--ink);font-weight:600}
+  .bpmain{flex:1; display:flex; min-height:0}
+  .bpcanvas{flex:1; position:relative; background:
+      linear-gradient(rgba(20,20,30,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20,20,30,.028) 1px, transparent 1px);
+      background-size:26px 26px; overflow:hidden}
+  .bpcanvas svg{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+  .bpcanvas .edge{fill:none; stroke:#d5dbe0; stroke-width:2}
+  .bpcanvas .edge.flow{stroke:var(--sky); stroke-dasharray:5 8; animation:dash 1.1s linear infinite; opacity:0; transition:opacity .4s}
+  .bpcanvas .edge.flow.on{opacity:1}
+  @keyframes dash{to{stroke-dashoffset:-26}}
+  .bpnode{position:absolute; transform:translate(-50%,-50%); width:132px; background:#fff; border:1.5px solid var(--line); border-radius:9px; box-shadow:0 1px 2px rgba(26,58,78,.05); transition:border-color .35s, box-shadow .35s}
+  .bpnode .nh{display:flex; align-items:center; gap:7px; padding:8px 10px 7px}
+  .bpnode .ic{width:20px;height:20px;border-radius:5px;background:#eef1f4;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted); transition:background .35s,color .35s}
+  .bpnode .nm{font-size:11.5px; font-weight:600; color:var(--ink); line-height:1.15}
+  .bpnode .st{border-top:1px solid var(--line-soft); padding:5px 10px; font-size:9.5px; font-family:var(--mono); color:var(--muted); display:flex; align-items:center; gap:5px}
+  .bpnode .st::before{content:"";width:6px;height:6px;border-radius:50%;background:#cfd3d8}
+  .bpnode.done{border-color:#bfe3cd}
+  .bpnode.done .ic{background:#e7f2ec;color:var(--green)}
+  .bpnode.done .st{color:var(--green)} .bpnode.done .st::before{background:var(--green)}
+  .bpnode.run{border-color:#c3bdf0; box-shadow:0 4px 16px -6px rgba(106,90,205,.4)}
+  .bpnode.run .ic{background:#eae7f7;color:var(--purple)}
+  .bpnode.run .st{color:var(--purple)} .bpnode.run .st::before{background:var(--purple);animation:pulse 1.2s infinite}
+  .bpnode.trig.done .ic{background:#e3edf6;color:var(--sky)}
+  .bppanel{width:288px; border-left:1px solid var(--line-soft); display:flex; flex-direction:column; background:#fcfcfb}
+  .bppanel .ph{padding:12px 15px 8px; font-size:12px; font-weight:700; color:var(--ink)}
+  .bprun{display:flex; align-items:center; gap:9px; padding:8px 15px; font-size:11.5px}
+  .bprun .rs{width:16px;height:16px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:8px}
+  .bprun .rs.on{background:#eae7f7;color:var(--purple)} .bprun .rs.ok{background:#e7f2ec;color:var(--green)}
+  .bprun .rn{color:var(--ink); font-weight:600} .bprun .rt2{margin-left:auto; color:var(--faint); font-size:10.5px}
+  .bprun.cur{background:#f4f2fb}
+  .bpov{margin-top:auto; padding:12px 15px 14px; border-top:1px solid var(--line-soft)}
+  .bpov .lab{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:9px}
+  .bpgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:11px}
+  .bpstat{border:1px solid var(--line-soft); border-radius:8px; padding:8px 10px; background:#fff}
+  .bpstat .n{font-size:17px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1}
+  .bpstat .k{font-size:10px; color:var(--muted); margin-top:3px}
+  .bpstat.g .n{color:var(--green)}
+  .bpcred{font-size:10.5px; color:var(--muted); margin-bottom:5px; display:flex; justify-content:space-between}
+  .bpbar2{height:5px; border-radius:3px; background:#ececea; overflow:hidden}
+  .bpbar2 i{display:block; height:100%; width:22%; background:var(--sky); border-radius:3px}
+
+  /* ---- OUTREACH inbox : left ---- */
+  .inbox{width:470px; margin-left:-235px; margin-top:-215px; z-index:9}
+  .ibx{display:flex; height:400px; font-family:var(--sans)}
+  .ibx .list{width:196px; border-right:1px solid var(--line-soft); display:flex; flex-direction:column}
+  .ibx .tabs{display:flex; gap:15px; padding:11px 13px 9px; font-size:11.5px; color:var(--muted); border-bottom:1px solid var(--line-soft)}
+  .ibx .tabs .on{color:var(--ink); font-weight:600; position:relative}
+  .ibx .tabs .on::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:2px;background:var(--deep)}
+  .ibx .tabs .badge{background:#eef1f4; color:var(--sky); font-size:10px; font-weight:600; padding:1px 6px; border-radius:9px; margin-left:4px; transition:transform .2s}
+  .ibx .tabs .badge.bump{transform:scale(1.2)}
+  .ibx .threads{flex:1; overflow:hidden}
+  .ibx .th{display:flex; gap:9px; padding:10px 12px; position:relative; border-bottom:1px solid var(--line-soft); transition:background .3s}
+  .ibx .th.sel{background:var(--sel)}
+  .ibx .th.sel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2.5px;background:var(--deep)}
+  .ibx .th.new{animation:slidein .5s cubic-bezier(.22,1,.36,1)}
+  @keyframes slidein{from{opacity:0; transform:translateY(-10px); background:#eef5fb} to{opacity:1; transform:translateY(0)}}
+  .ibx .th .av{width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600}
+  .ibx .th .mid{flex:1; min-width:0}
+  .ibx .th .nm{font-size:11.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:5px}
+  .ibx .th .nm .u{width:6px;height:6px;border-radius:50%;background:var(--sky);flex:none}
+  .ibx .th .pv{font-size:10.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:2px}
+  .ibx .th .pv b{color:#6f6f77; font-weight:500}
+  .ibx .th .t{font-size:10px; color:var(--faint); flex:none; font-variant-numeric:tabular-nums}
+  .ibx .conv{flex:1; display:flex; flex-direction:column; min-width:0}
+  .ibx .chd{display:flex; align-items:center; gap:9px; padding:10px 13px; border-bottom:1px solid var(--line-soft)}
+  .ibx .chd .av{width:30px;height:30px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600; transition:background .3s}
+  .ibx .chd .who{font-size:12px; font-weight:600; color:var(--ink)}
+  .ibx .chd .who .sub2{font-size:10.5px; font-weight:400; color:var(--muted); margin-top:1px}
+  .ibx .chd .pill{margin-left:auto; font-size:10px; font-weight:600; color:var(--green); background:#e9f3ec; padding:4px 9px; border-radius:20px; display:flex; align-items:center; gap:5px; opacity:0; transition:opacity .4s}
+  .ibx .chd .pill.show{opacity:1}
+  .ibx .chd .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .ibx .stream{flex:1; padding:14px; overflow:hidden}
+  .ibx .day{text-align:center; font-size:10px; color:var(--faint); margin-bottom:11px}
+  .ibx .b{max-width:85%; padding:9px 12px; font-size:11.5px; line-height:1.5; border-radius:13px; margin-bottom:9px; opacity:0; transform:translateY(8px); animation:pop .4s cubic-bezier(.22,1,.36,1) forwards}
+  .ibx .b.out{background:var(--bubble); color:#33322f; border-bottom-right-radius:5px; margin-left:auto}
+  .ibx .b.in{background:#fff; border:1px solid var(--line); color:var(--ink); border-bottom-left-radius:5px}
+  @keyframes pop{to{opacity:1; transform:translateY(0)}}
+  .ibx .b.type{display:inline-flex; gap:5px; align-items:center; background:#fff; border:1px solid var(--line); border-bottom-left-radius:5px; padding:10px 13px}
+  .ibx .b.type span{width:5px;height:5px;border-radius:50%;background:var(--faint);animation:td 1.15s ease-in-out infinite}
+  .ibx .b.type span:nth-child(2){animation-delay:.16s}.ibx .b.type span:nth-child(3){animation-delay:.32s}
+  @keyframes td{0%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+  .a1{background:#e3edf6;color:#3a6ea5}.a2{background:#eee7f4;color:#7a5ea0}
+  .a3{background:#e7f1ea;color:#3a8560}.a4{background:#f5ebe4;color:#b07a3a}
+  .a5{background:#f4e7ea;color:#b0506a}.a6{background:#e5eef0;color:#3a7a8a}
+  .a7{background:#e7ecf5;color:#4a5aa0}.a8{background:#f0ece4;color:#8a7a4a}
+
+  /* ---- RESEARCH : email, upper-right ---- */
+  .email{width:430px; margin-left:-215px; margin-top:-175px; z-index:6}
+  .eml{font-family:var(--sans)}
+  .eml .ehd{padding:13px 17px 11px; border-bottom:1px solid var(--line-soft)}
+  .eml .subj{font-size:13.5px; font-weight:700; color:var(--ink); letter-spacing:-.01em}
+  .eml .addr{display:flex; align-items:center; gap:8px; margin-top:9px; font-size:11px; color:var(--muted)}
+  .eml .addr .av{width:23px;height:23px;border-radius:50%;background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700}
+  .eml .addr b{color:var(--ink); font-weight:600}
+  .eml .addr .tag{margin-left:auto; font-size:9.5px; color:var(--sky); font-weight:600; font-family:var(--mono)}
+  .eml .ebody{padding:14px 17px 8px; height:234px; overflow:hidden; -webkit-mask-image:linear-gradient(to bottom,#000 90%,transparent); mask-image:linear-gradient(to bottom,#000 90%,transparent)}
+  .eml .reveal{opacity:0; transform:translateY(8px); animation:rin .5s cubic-bezier(.22,1,.36,1) forwards}
+  @keyframes rin{to{opacity:1; transform:translateY(0)}}
+  .eml p{margin:0 0 11px; font-size:12px; color:#33322f; line-height:1.6}
+  .eml p b{color:var(--ink); font-weight:600}
+  .eml .lead{margin-bottom:11px; font-size:12px; color:#33322f; line-height:1.6}
+  .eml ul{margin:0 0 11px; padding:0; list-style:none; display:flex; flex-direction:column; gap:7px}
+  .eml li{font-size:11.5px; color:#33322f; line-height:1.45; padding-left:16px; position:relative}
+  .eml li::before{content:"→";position:absolute;left:0;color:var(--sky);font-weight:700}
+  .eml li b{color:var(--ink); font-weight:600}
+  .eml .att{display:inline-flex; align-items:center; gap:8px; font-size:11px; color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:6px 11px}
+  .eml .att .ic{width:16px;height:16px;border-radius:4px;background:#eef1f4;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--muted)}
+
+  /* ---- TERMINAL : dark instruction card, lower-left (contrast) ---- */
+  .terminal{width:436px; margin-left:-218px; margin-top:-108px; z-index:8}
+  .term-win{background:#12242f; border:1px solid #24414f; border-radius:15px; padding:0 8px 8px;
+    box-shadow:0 1px 1px rgba(6,20,30,.2), 0 20px 42px -14px rgba(6,20,30,.5), 0 64px 110px -54px rgba(6,20,30,.6)}
+  .term-tl{display:flex; gap:6px; align-items:center; padding:10px 11px 8px}
+  .term-tl i{width:11px;height:11px;border-radius:50%}
+  .term-tl i:nth-child(1){background:#ff5f57}.term-tl i:nth-child(2){background:#febc2e}.term-tl i:nth-child(3){background:#28c840}
+  .term-tl .t{margin-left:6px;font-size:11.5px;font-weight:600;color:#8fb0c0;font-family:var(--mono)}
+  .term-tl .live{margin-left:auto;font-size:11px;color:#6CAAC8;font-family:var(--mono);padding-right:4px}
+  .term-body{background:#0c1a23; border:1px solid #1e3743; border-radius:9px; padding:16px 16px 14px; font-family:var(--mono); min-height:150px}
+  .term-body .ln{font-size:12.5px; line-height:1.65; color:#cfe0ea}
+  .term-body .pr{color:var(--sky-light); margin-right:8px}
+  .term-body .cur{display:inline-block; width:8px; height:15px; background:var(--sky-light); vertical-align:-2px; animation:blink 1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .term-body .resp{margin-top:14px; font-size:11.5px; color:#7fa8bd; display:flex; align-items:center; gap:8px; opacity:0; transition:opacity .5s}
+  .term-body .resp.show{opacity:1}
+  .term-body .resp .dot{width:6px;height:6px;border-radius:50%;background:#3fae74;box-shadow:0 0 0 0 rgba(63,174,116,.6);animation:pulse 1.4s infinite}
+  .term-body .resp b{color:#a9cadb; font-weight:600}
+</style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <span class="logo">/<b>Run</b>withfoxes</span>
+    <span class="links"><a href="#">Tools</a><a href="#">Previous</a><a href="#">Book</a></span>
+    <span class="sp"></span>
+    <a href="#" class="signin">Sign in</a>
+    <a href="#" class="cta">Get in touch</a>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="sticky">
+      <div class="head" id="head">
+        <!-- kicker hidden for now; reuse later to promote the training course -->
+        <span class="kicker" style="visibility:hidden">A marketing studio, run with AI →</span>
+        <h1>Marketing Agents for your business</h1>
+        <p class="sub">They make the ads, write the outreach, and run the campaigns, around the clock.</p>
+        <div class="ctas"><a href="#" class="ghost">Products</a><a href="#" class="primary">Get in touch</a></div>
+      </div>
+
+      <div class="stage" id="stage">
+
+        <!-- TERMINAL (dark instruction, lower-left) -->
+        <div class="win terminal sat" data-dx="-476" data-dy="238" data-sc="0.84">
+          <div class="term-win">
+            <div class="term-tl"><i></i><i></i><i></i><span class="t">You</span><span class="live">~ run with foxes</span></div>
+            <div class="term-body">
+              <div class="ln"><span class="pr">›</span><span id="termtype"></span><span class="cur"></span></div>
+              <div class="resp" id="termresp"><span class="dot"></span><span><b>5 agents on it</b> - researching, writing, sending, tracking</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTREACH inbox (left) -->
+        <div class="win inbox sat" data-dx="-496" data-dy="-74" data-sc="0.68">
+          <div class="frame-win">
+            <div class="tl"><i></i><i></i><i></i><span class="t">Outreach Agent</span><span class="live" id="livecount">214 sent</span></div>
+            <div class="panel"><div class="ibx">
+              <div class="list">
+                <div class="tabs"><span class="on">All</span><span>Unread<span class="badge" id="unread">29</span></span><span>Fav</span></div>
+                <div class="threads" id="threads">
+                  <div class="th sel"><span class="av a1">CH</span><div class="mid"><div class="nm">Claire Hughes</div><div class="pv"><b>You:</b> noticed you just stepped in…</div></div><span class="t">now</span></div>
+                  <div class="th"><span class="av a3">TR</span><div class="mid"><div class="nm">Tom Reilly <span class="u"></span></div><div class="pv"><b>Tom:</b> yes, let's find a time</div></div><span class="t">2m</span></div>
+                  <div class="th"><span class="av a2">MO</span><div class="mid"><div class="nm">Marie O'Brien</div><div class="pv"><b>You:</b> quick idea for your Q3 launch…</div></div><span class="t">6m</span></div>
+                  <div class="th"><span class="av a4">SK</span><div class="mid"><div class="nm">Sinéad Kelly</div><div class="pv"><b>You:</b> congrats on the new role…</div></div><span class="t">11m</span></div>
+                </div>
+              </div>
+              <div class="conv">
+                <div class="chd">
+                  <span class="av a1" id="hav">CH</span>
+                  <div class="who" id="hwho">Claire Hughes<div class="sub2">Head of Growth · Vero</div></div>
+                  <span class="pill" id="pill">Replied</span>
+                </div>
+                <div class="stream" id="stream"></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- RESEARCH email (upper-right) -->
+        <div class="win email sat" data-dx="454" data-dy="-206" data-sc="0.76">
+          <div class="frame-win">
+            <div class="tl"><i></i><i></i><i></i><span class="t">Research Agent</span><span class="live" id="rmeta">compiling</span></div>
+            <div class="panel"><div class="eml">
+              <div class="ehd">
+                <div class="subj">Research ahead of your meeting with Vero</div>
+                <div class="addr"><span class="av">R</span><span>from <b>Research Agent</b> · to <b>Paul</b></span><span class="tag">✦ by AI</span></div>
+              </div>
+              <div class="ebody" id="ebody"></div>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- FILM (Advertising) - arrives big, moves down-right -->
+        <div class="win film" id="film">
+          <div class="frame-win">
+            <div class="tl"><i></i><i></i><i></i><span class="t">Advertising Agent</span><span class="live">playing</span></div>
+            <div class="panel"><video src="../public/video/fox-tarantino-trunk.mp4" poster="../public/video/fox-tarantino-trunk-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+            <div class="cap"><b>Ads and video, made in minutes</b><span>runwithfoxes.com</span></div></div>
+          </div>
+        </div>
+
+        <!-- BLUEPRINT : dominant centre -->
+        <div class="win blueprint sat" data-dx="0" data-dy="6" data-sc="0.80">
+          <div class="frame-win">
+            <div class="tl"><i></i><i></i><i></i><span class="t">Campaign Agent</span><span class="live">running</span></div>
+            <div class="panel"><div class="bpw">
+              <div class="bpbar">
+                <span class="crumb">Workflows › <b>New-role outbound</b></span>
+                <span class="tabs"><span>Editor</span><span class="on">Runs <span class="cnt">13</span></span><span>Settings</span></span>
+                <span class="rt"><span class="livepill">Live</span><span class="trig">▶ Trigger</span></span>
+              </div>
+              <div class="bpmain">
+                <div class="bpcanvas">
+                  <svg viewBox="0 0 600 360" preserveAspectRatio="none">
+                    <path class="edge" d="M121,180 L155,180"></path>
+                    <path class="edge" d="M277,180 C355,180 300,101 323,101"></path>
+                    <path class="edge" d="M277,180 C355,180 300,259 323,259"></path>
+                    <path class="edge" d="M445,101 C500,101 500,180 467,180"></path>
+                    <path class="edge" d="M445,259 C500,259 500,180 467,180"></path>
+                    <path class="edge flow" data-step="1" d="M121,180 L155,180"></path>
+                    <path class="edge flow" data-step="2" d="M277,180 C355,180 300,101 323,101"></path>
+                    <path class="edge flow" data-step="2" d="M277,180 C355,180 300,259 323,259"></path>
+                    <path class="edge flow" data-step="3" d="M445,101 C500,101 500,180 467,180"></path>
+                    <path class="edge flow" data-step="3" d="M445,259 C500,259 500,180 467,180"></path>
+                  </svg>
+                  <div class="bpnode trig" data-step="0" style="left:10%;top:50%"><div class="nh"><span class="ic">◆</span><span class="nm">New-role signal</span></div><div class="st">trigger</div></div>
+                  <div class="bpnode" data-step="1" style="left:36%;top:50%"><div class="nh"><span class="ic">◱</span><span class="nm">Enrich account</span></div><div class="st">step</div></div>
+                  <div class="bpnode" data-step="2" style="left:64%;top:28%"><div class="nh"><span class="ic">▤</span><span class="nm">Research brief</span></div><div class="st">agent</div></div>
+                  <div class="bpnode" data-step="2" style="left:64%;top:72%"><div class="nh"><span class="ic">✎</span><span class="nm">Draft outreach</span></div><div class="st">agent</div></div>
+                  <div class="bpnode" data-step="3" style="left:88%;top:50%"><div class="nh"><span class="ic">➤</span><span class="nm">Send + track</span></div><div class="st">step</div></div>
+                </div>
+                <div class="bppanel">
+                  <div class="ph">Run history</div>
+                  <div class="bprun cur"><span class="rs on">◐</span><span class="rn">Run #13</span><span class="rt2" id="runstate">Running</span></div>
+                  <div class="bprun"><span class="rs ok">✓</span><span class="rn">Run #12</span><span class="rt2">yesterday</span></div>
+                  <div class="bprun"><span class="rs ok">✓</span><span class="rn">Run #11</span><span class="rt2">3 days ago</span></div>
+                  <div class="bpov">
+                    <div class="lab">This week</div>
+                    <div class="bpgrid">
+                      <div class="bpstat"><div class="n" id="s-sent">214</div><div class="k">Contacted</div></div>
+                      <div class="bpstat g"><div class="n" id="s-rep">38</div><div class="k">Replied</div></div>
+                      <div class="bpstat g"><div class="n" id="s-book">9</div><div class="k">Calls booked</div></div>
+                      <div class="bpstat"><div class="n">1</div><div class="k">Running</div></div>
+                    </div>
+                    <div class="bpcred"><span>credits used</span><span id="s-cred">214 / 5,000</span></div>
+                    <div class="bpbar2"><i></i></div>
+                  </div>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="rest">
+    <div class="rest-in">
+      <h2>One team. Every job in marketing.</h2>
+      <p class="rp">Each agent runs a real part of the work, on its own and around the clock. Here's where we most often build them in.</p>
+      <div class="agents"><span>Advertising</span><span>Outreach</span><span>Research</span><span>Writing</span><span>Campaigns</span><span>Lifecycle</span><span>Reporting</span></div>
+    </div>
+  </section>
+
+<script>
+  var hero=document.getElementById('hero'), head=document.getElementById('head'),
+      film=document.getElementById('film'), nav=document.getElementById('nav'),
+      stage=document.getElementById('stage');
+  var filmVid=film.querySelector('video');
+  var sats=Array.prototype.slice.call(document.querySelectorAll('.sat'));
+  var cards=sats.concat([film]);           // the film is draggable too
+  function lerp(a,b,t){return a+(b-a)*t}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+  cards.forEach(function(c){ c._dx=0; c._dy=0; c._vx=0; c._vy=0; });
+
+  var currentP=0, DRAG_AT=0.22;             // grabbable throughout the transition, like Attio
+
+  function frame(){
+    var rect=hero.getBoundingClientRect();
+    var total=hero.offsetHeight-window.innerHeight;
+    var p=clamp(-rect.top/total,0,1);
+    currentP=p;
+
+    var hp=clamp(p/0.40,0,1);
+    head.style.opacity=(1-hp).toFixed(3);
+    head.style.filter='blur('+(hp*3).toFixed(2)+'px)';
+    head.style.transform='translateY('+(-hp*36).toFixed(1)+'px)';
+    head.style.pointerEvents = hp>0.4 ? 'none' : 'auto';   // let cards underneath be grabbed once faded
+
+    // scrolled back up above the assemble: ease dragged cards home
+    if(p<0.45){ cards.forEach(function(c){ c._dx*=0.8; c._dy*=0.8; c._vx=0; c._vy=0; }); }
+
+    // film: arrives big+low+centre, moves DOWN-RIGHT and shrinks (+ drag offset)
+    var fp=clamp(p/0.72,0,1);
+    var fe=1-Math.pow(1-fp,3);
+    var ftx=lerp(0, 336, fe)+film._dx;
+    var fty=lerp(window.innerHeight*0.44, 214, fe)+film._dy;
+    film.style.transform='translate('+ftx.toFixed(1)+'px,'+fty.toFixed(1)+'px) scale('+lerp(1.0,0.44,fp).toFixed(3)+')';
+    filmVid.style.objectPosition='center '+lerp(82,50,fp).toFixed(1)+'%';  // fox/desert at arrival, re-centre as it shrinks
+
+    var sp=clamp((p-0.20)/0.58,0,1);
+    var se=1-Math.pow(1-sp,3);
+    sats.forEach(function(s){
+      var dx=+s.dataset.dx, dy=+s.dataset.dy, tsc=+s.dataset.sc;
+      s.style.opacity=sp.toFixed(3);
+      s.style.transform='translate('+(dx*se+s._dx).toFixed(1)+'px,'+(dy*se+s._dy).toFixed(1)+'px) scale('+lerp(tsc*0.86,tsc,se).toFixed(3)+')';
+    });
+
+    stage.classList.toggle('live', p>=DRAG_AT);
+    nav.classList.toggle('scrolled', p>0.02);
+    requestAnimationFrame(frame);
+  }
+  sats.forEach(function(s){s.style.opacity='0';s.style.transform='scale('+(+s.dataset.sc*0.86)+')';});
+  requestAnimationFrame(frame);
+
+  /* ===== DRAG (movable cards, with momentum, once assembled) ===== */
+  var drag=null, sx=0, sy=0, bx=0, by=0, lx=0, ly=0, zTop=60;
+  cards.forEach(function(c){
+    c.style.touchAction='none';
+    c.addEventListener('pointerdown', function(e){
+      if(currentP < DRAG_AT) return;                 // not yet assembled
+      drag=c; try{ c.setPointerCapture(e.pointerId); }catch(_){}
+      sx=e.clientX; sy=e.clientY; bx=c._dx; by=c._dy; lx=e.clientX; ly=e.clientY;
+      c._vx=0; c._vy=0; c.style.zIndex=++zTop;
+      e.preventDefault();
+    });
+  });
+  window.addEventListener('pointermove', function(e){
+    if(!drag) return;
+    drag._dx = bx + (e.clientX - sx);
+    drag._dy = by + (e.clientY - sy);
+    drag._vx = e.clientX - lx; drag._vy = e.clientY - ly;
+    lx=e.clientX; ly=e.clientY;
+  });
+  function endDrag(){
+    if(!drag) return;
+    var c=drag; drag=null;
+    (function glide(){                                // momentum glide out
+      if(Math.abs(c._vx)<0.4 && Math.abs(c._vy)<0.4) return;
+      c._dx += c._vx; c._dy += c._vy; c._vx*=0.90; c._vy*=0.90;
+      requestAnimationFrame(glide);
+    })();
+  }
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+
+  /* ===== OUTREACH inbox ===== */
+  var cyc = [
+    {ini:'CH', cls:'a1', name:'Claire Hughes', sub:'Head of Growth · Vero',
+     out:"Hi Claire - noticed you just stepped into Head of Growth at Vero. We help small marketing teams get more from every campaign without adding headcount. Worth a look?",
+     reply:"Sounds good - send me a time this week."},
+    {ini:'TR', cls:'a3', name:'Tom Reilly', sub:'VP Marketing · Northbeam',
+     out:"Hi Tom - saw Northbeam is hiring across marketing. We help lean teams punch above their weight with AI. Open to a quick chat?",
+     reply:"Yes, let's find a time."},
+    {ini:'MO', cls:'a2', name:"Marie O'Brien", sub:'CMO · Loop',
+     out:"Hi Marie - one idea for Loop's Q3 launch that might be worth ten minutes of your time.",
+     reply:"Interested - tell me more."},
+    {ini:'SK', cls:'a4', name:'Sinéad Kelly', sub:'Head of Demand · Arc',
+     out:"Hi Sinéad - congrats on the move to Arc. We help teams like yours get more from every campaign. Worth a look?",
+     reply:"Happy to chat, send a time that suits."}
+  ];
+  var hav=document.getElementById('hav'), hwho=document.getElementById('hwho'),
+      pill=document.getElementById('pill'), stream=document.getElementById('stream');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#threads > .th'), 0, 4);
+  var timers=[];
+  function clr(){ timers.forEach(clearTimeout); timers=[]; }
+  function showConv(i){
+    clr();
+    var q=cyc[i];
+    hav.className='av '+q.cls; hav.textContent=q.ini;
+    hwho.innerHTML=q.name+'<div class="sub2">'+q.sub+'</div>';
+    pill.classList.remove('show');
+    rows.forEach(function(r,idx){ r.classList.toggle('sel', idx===i); });
+    stream.innerHTML='<div class="day">Today</div><div class="b out">'+q.out+'</div><div id="rs"></div>';
+    var rs=document.getElementById('rs');
+    timers.push(setTimeout(function(){ rs.innerHTML='<div class="b type"><span></span><span></span><span></span></div>'; }, 1100));
+    timers.push(setTimeout(function(){ rs.innerHTML='<div class="b in">'+q.reply+'</div>'; }, 2600));
+    timers.push(setTimeout(function(){ pill.classList.add('show'); }, 3100));
+  }
+  var ci=0; showConv(0);
+  setInterval(function(){ ci=(ci+1)%cyc.length; showConv(ci); }, 5600);
+
+  var pool = [
+    ['Aoife Nolan','a7','You: saw the Series A news - congrats…'],
+    ['David Okafor','a8','David: sure, happy to chat', true],
+    ['Priya Shah','a2','You: one idea for your ABM push…'],
+    ['Liam Byrne','a3','You: noticed you’re scaling the team…'],
+    ['Hannah Frost','a5','Hannah: what did you have in mind?', true],
+    ['Marcus Lund','a6','You: quick thought on your ICP…'],
+    ['Ruth Whelan','a1','Ruth: interested, send more', true],
+    ['Owen Clarke','a4','You: congrats on the promotion…']
+  ];
+  var threads=document.getElementById('threads'), unread=document.getElementById('unread');
+  var sent=214, uc=29, pi=0;
+  var sSent=document.getElementById('s-sent'), sCred=document.getElementById('s-cred');
+  setInterval(function(){
+    var q=pool[pi%pool.length]; pi++;
+    var el=document.createElement('div'); el.className='th new';
+    var ini=q[0].split(' ').map(function(w){return w[0];}).join('');
+    el.innerHTML='<span class="av '+q[1]+'">'+ini+'</span><div class="mid"><div class="nm">'+q[0]+(q[3]?' <span class="u"></span>':'')+
+      '</div><div class="pv"><b>'+q[2].split(':')[0]+':</b>'+q[2].split(':').slice(1).join(':')+'</div></div><span class="t">now</span>';
+    threads.insertBefore(el, threads.children[4]);
+    while(threads.children.length>8) threads.removeChild(threads.lastChild);
+    sent+=Math.floor(2+Math.random()*4);
+    document.getElementById('livecount').textContent=sent+' sent';
+    if(sSent) sSent.textContent=sent;
+    if(sCred) sCred.textContent=sent+' / 5,000';
+    if(q[3]){ uc++; unread.textContent=uc; unread.classList.add('bump'); setTimeout(function(){unread.classList.remove('bump');},220); }
+  }, 2600);
+
+  /* ===== RESEARCH email ===== */
+  var ebody=document.getElementById('ebody'), rmeta=document.getElementById('rmeta');
+  var EHTML = ''
+  + '<div class="lead reveal" style="animation-delay:.15s">Hi Paul,</div>'
+  + '<p class="reveal" style="animation-delay:.45s">Here’s the research ahead of your meeting with <b>Vero</b> on Thursday. Their new Head of Growth is <b>Aoife Nolan</b>, six weeks in.</p>'
+  + '<p class="reveal" style="animation-delay:.8s">Series A closed in February, they’re hiring four marketers, and a self-serve tier lands in Q3. She ran demand at Loop before this.</p>'
+  + '<ul>'
+  +   '<li class="reveal" style="animation-delay:1.15s">She owns growth with <b>no team yet</b> - lead with the machine, not headcount.</li>'
+  +   '<li class="reveal" style="animation-delay:1.45s">The <b>Q3 launch</b> is the wedge - outbound and lifecycle in one.</li>'
+  + '</ul>'
+  + '<div class="att reveal" style="animation-delay:1.75s"><span class="ic">▤</span>vero-brief.pdf · 2 pages</div>';
+  function runResearch(){
+    ebody.innerHTML = EHTML;
+    rmeta.textContent = 'compiling';
+    setTimeout(function(){ rmeta.textContent = 'ready'; }, 2300);
+    setTimeout(runResearch, 6800);
+  }
+  runResearch();
+
+  /* ===== TERMINAL instruction typewriter ===== */
+  var termtype=document.getElementById('termtype'), termresp=document.getElementById('termresp');
+  var INSTR = "launch a campaign to 200 marketers who just changed roles";
+  var tti=0, tState=0;
+  function termStep(){
+    if(tState===0){
+      tti++;
+      termtype.textContent = INSTR.slice(0,tti);
+      if(tti<INSTR.length){ setTimeout(termStep, 34+Math.random()*46); }
+      else { tState=1; setTimeout(function(){ termresp.classList.add('show'); setTimeout(termStep, 3600); }, 500); }
+    } else {
+      termresp.classList.remove('show'); tti=0; tState=0;
+      termtype.textContent=''; setTimeout(termStep, 700);
+    }
+  }
+  termStep();
+
+  /* ===== BLUEPRINT animated flow ===== */
+  var bpNodes = Array.prototype.slice.call(document.querySelectorAll('.blueprint .bpnode'));
+  var bpFlows = Array.prototype.slice.call(document.querySelectorAll('.blueprint .edge.flow'));
+  var runstate=document.getElementById('runstate');
+  function bpReset(){ bpNodes.forEach(function(n){n.classList.remove('done','run');}); bpFlows.forEach(function(f){f.classList.remove('on');}); }
+  function bpRun(){
+    bpReset(); if(runstate) runstate.textContent='Running';
+    var step=0, maxStep=3;
+    function tick(){
+      bpNodes.forEach(function(n){ if(+n.dataset.step===step){ n.classList.remove('done'); n.classList.add('run'); } });
+      bpFlows.forEach(function(f){ f.classList.toggle('on', +f.dataset.step===step+1); });
+      bpNodes.forEach(function(n){ if(+n.dataset.step<step){ n.classList.remove('run'); n.classList.add('done'); } });
+      if(step<maxStep){ step++; setTimeout(tick, 820); }
+      else {
+        bpNodes.forEach(function(n){ n.classList.remove('run'); n.classList.add('done'); });
+        bpFlows.forEach(function(f){f.classList.remove('on');});
+        if(runstate) runstate.textContent='Done';
+        setTimeout(bpRun, 2600);
+      }
+    }
+    tick();
+  }
+  bpRun();
+</script>
+</body>
+</html>
