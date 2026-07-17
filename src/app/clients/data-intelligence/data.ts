@@ -10,7 +10,7 @@ export const meta: Meta = {
   slug: "data-intelligence",
   headline: "Deliverables", // generic, e.g. "Deliverables" / "Programme" / "Workstreams"
   intro: "A live view of the work for Data Intelligence. The deliverables and status are below. Have a look and send back your thoughts.",
-  lastUpdated: "2026-07-15", // bump this whenever you update the page
+  lastUpdated: "2026-07-17", // bump this whenever you update the page
 };
 
 /* The tracker (top of the page).
@@ -35,6 +35,10 @@ export const work: WorkSection[] = [
   { title: "Messaging framework", kind: "files", status: "in-progress", isNew: true,
     desc: "The working draft of your messaging framework - core value proposition, positioning, pillars, proof and voice. Still in review: a few lines carry open questions we want your input on. Have a read and send back your thoughts.",
     files: [ { name: "Messaging framework (working draft)", file: "data-intelligence-messaging-framework.xlsx", note: "Excel - 15 Jul 2026" } ] },
+
+  { title: "Newstalk radio proposal", kind: "files", status: "ready", isNew: true,
+    desc: "The radio advertising proposal from Newstalk (Bauer Media). One option on the media side of the plan - have a read and let us know your thoughts.",
+    files: [ { name: "Newstalk radio proposal", file: "newstalk-offer.pdf", note: "PDF - 5 pages" } ] },
 
   // Further work sections land here as deliverables complete.
   // 1) MEDIA - grouped (sized tiles by shape, e.g. an IAB ad set)
