@@ -19,7 +19,7 @@ export default function CourseClient() {
   useEffect(() => initCourseBoard(), []);
 
   return (
-    <div className="co-root">
+    <>
       {/*
         The site nav, copied from BookLanding.tsx rather than extracted into a
         shared component. This is the FOURTH copy of this markup on the site and
@@ -28,6 +28,14 @@ export default function CourseClient() {
         Reasoning in COURSE-QA.md Q1 (nav-shape). It carries hp-nav-scrolled from
         the top because the course page is cream, the same reason the homepage
         does it since the hero landed.
+
+        ⚠️ IT SITS OUTSIDE .co-root DELIBERATELY. The course page's own CSS
+        includes a bare `nav { padding: 26px 0 }` rule. Scoped, that becomes
+        `.co-root nav`, which matched this element when it was inside and beat
+        the site's own `.hp-nav { padding: 14px 48px }` on specificity - the
+        logo rendered flush against the left edge of the window, cut off. Keeping
+        the nav outside the scope means the course CSS cannot reach it at all,
+        which is a better fix than a counter-rule.
       */}
       <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
         <Link href="/" className="hp-nav-logo">
@@ -70,6 +78,7 @@ export default function CourseClient() {
         </div>
       </nav>
 
+      <div className="co-root">
       <header className="hero wrap" id="top">
         <h1>
           AI fluency for
@@ -107,6 +116,7 @@ export default function CourseClient() {
           {/* cards injected by courseBoard.js */}
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
