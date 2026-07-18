@@ -81,6 +81,23 @@ export default function ChatWidget() {
     // doesn't stop her opening when someone reaches the contact page.
     const dismissKey = isContact ? "isa-dismissed-contact" : "isa-dismissed";
     if (sessionStorage.getItem(dismissKey)) return;
+
+    // Homepage: the agents hero is a scroll-assemble that fills the screen, so
+    // Isa would open straight over it. Wait until the visitor has scrolled past
+    // the hero, then give them 3 seconds before she opens.
+    const hero = document.querySelector<HTMLElement>(".ah-hero");
+    if (hero && !isContact) {
+      let delayId: ReturnType<typeof setTimeout> | undefined;
+      const onScroll = () => {
+        if (window.scrollY < hero.offsetHeight) return;
+        window.removeEventListener("scroll", onScroll);
+        delayId = setTimeout(() => setIsOpen(true), 3000);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+      return () => { window.removeEventListener("scroll", onScroll); clearTimeout(delayId); };
+    }
+
     const id = setTimeout(() => setIsOpen(true), isContact ? 2000 : 5000);
     return () => clearTimeout(id);
   }, [isContact]);
