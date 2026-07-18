@@ -388,8 +388,11 @@ export default function AgentsHero() {
       <div className="ah-hero">
         <div className="ah-sticky">
           <div className="ah-head">
-            {/* kicker space reserved - reuse later to promote the training course */}
-            <span className="ah-kicker" style={{ visibility: "hidden" }}>A marketing studio, run with AI →</span>
+            {/* Training-course pill. Copy is final; it stays hidden (holding its
+                own space, so revealing it shifts nothing) until the course is
+                live and we have a URL to point it at. To ship it: drop the
+                style below and wrap this in a link. */}
+            <span className="ah-kicker" style={{ visibility: "hidden" }}>New: Free AI training course for marketers →</span>
             <h1>Marketing Agents for your business</h1>
             <p className="ah-sub">They make the ads, write the outreach, and run the campaigns, around the clock.</p>
             <div className="ah-ctas">

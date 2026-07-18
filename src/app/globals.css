@@ -5322,7 +5322,7 @@ a.project-card {
 }
 
 .ah-head {
-  position: absolute; left: 0; right: 0; top: 15vh; z-index: 3; text-align: center;
+  position: absolute; left: 0; right: 0; top: 11vh; z-index: 3; text-align: center;
   display: flex; flex-direction: column; align-items: center; padding: 0 24px;
   will-change: opacity, transform, filter;
 }
@@ -5537,7 +5537,13 @@ a.project-card {
   .ah-hero { height: 320vh; }
   .ah-sticky { padding-top: 0; }
 
-  .ah-head { top: 9vh; padding: 0 22px; }
+  .ah-head { top: 6.75vh; padding: 0 22px; }
+  /* the training-course pill is the longest single line in the hero; at 375px
+     and below it wrapped to two lines, so it eases down a touch to hold one */
+  .ah-kicker { font-size: 11px; padding: 5px 10px; }
+}
+@media (max-width: 400px) {
+  .ah-head { padding: 0 18px; }
   .ah-head h1 { white-space: normal; font-size: clamp(28px, 7.4vw, 40px); }
   .ah-sub { font-size: 15.5px; margin-top: 18px; }
   .ah-ctas { margin-top: 24px; }
