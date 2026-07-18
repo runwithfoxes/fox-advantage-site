@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { SubstackPost } from "@/lib/substack";
+import AgentsHero from "./AgentsHero";
 
 function LazyVideo({ src, className, loop }: { src: string; className?: string; loop?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -134,28 +135,15 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    const nav = navRef.current;
-    const hero = heroRef.current;
-    if (!nav || !hero) return;
-
-    const onScroll = () => {
-      const heroH = hero.offsetHeight;
-      nav.classList.toggle("hp-nav-scrolled", window.scrollY > heroH - 60);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
+  // The nav no longer toggles on scroll: the agents hero is cream, so the nav
+  // carries hp-nav-scrolled from the top (see the nav element below).
 
   return (
     <div className="hp-root">
       <div id="top" />
 
-      <nav className="hp-nav" ref={navRef} id="topNav">
+      {/* the agents hero is cream, so the nav sits in its light state from the top */}
+      <nav className="hp-nav hp-nav-scrolled" ref={navRef} id="topNav">
         <a href="#heroWrapper" className="hp-nav-logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           /<span>Run</span>withfoxes
         </a>
@@ -192,30 +180,8 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
         </div>
       </nav>
 
-      <div className="hp-hero-wrapper" ref={heroRef} id="heroWrapper">
-        <video
-          className="hp-hero-video hp-hero-video-landscape"
-          autoPlay
-          muted
-          playsInline
-          poster="/video/fox-tarantino-trunk-poster.jpg"
-        >
-          <source src="/video/fox-tarantino-trunk.mp4" type="video/mp4" />
-        </video>
-        <video
-          className="hp-hero-video hp-hero-video-portrait"
-          autoPlay
-          muted
-          playsInline
-          poster="/video/fox-tarantino-trunk-portrait-poster.jpg"
-        >
-          <source src="/video/fox-tarantino-trunk-portrait.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      <div className="hp-hero-text">
-        <h1>Build the marketing team you <span className="hpx-hl">never had</span></h1>
-        <div className="hpx-hero-desc">We turn repeated marketing work into practical AI systems: brand strategists, ad builders, brand guardians, campaign managers, performance analysts, content engines and reporting systems.</div>
+      <div ref={heroRef} id="heroWrapper">
+        <AgentsHero />
       </div>
 
       {/* BIO (left) + RECENT ESSAYS compact list (right), then the contact-CTA strip */}
