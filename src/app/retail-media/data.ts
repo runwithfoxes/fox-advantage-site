@@ -41,13 +41,12 @@ export const work: WorkSection[] = [
     embedSrc: "journey.html",
     embedHeight: 1240 },
 
-  { title: "Next week it is a different match", kind: "media", badge: "Same machine",
-    desc: "The same placement, two matches. Spain meet Argentina in the final next week, so the campaign is re-originated for it: the headline changes and the stands take the two nations' colours, Argentina's sky blue on one side, Spain's red on the other. Everything else is identical to the pixel - the can is the same photograph, untouched, and the grass, the sky and the light are unchanged. That is the whole point: the structure is built once, and a new occasion is an input swap, not a new shoot.",
-    wideDesc: true,
+  { title: "Next week, a different match", kind: "media", badge: "Same machine",
+    desc: "Spain meet Argentina in the final. The campaign re-originates for it - new line, and the stands take the two nations' colours. The structure is built once; a new occasion is an input swap, not a new shoot.",
     layout: "grouped",
     groups: [
-      { label: "This week · Spain v France", items: [ { src: "screen-still.png", w: 300, ratio: "1080 / 1920" } ] },
-      { label: "Next week · Spain v Argentina", items: [ { src: "next-match-instore.png", w: 300, ratio: "1080 / 1920", cap: "Can, grass and sky measured identical to the pixel; only the crowd and the line changed." } ] },
+      { label: "This week · Spain v France", items: [ { src: "screen-still.png", w: 260, ratio: "1080 / 1920" } ] },
+      { label: "Next week · Spain v Argentina", items: [ { src: "next-match-instore.png", w: 260, ratio: "1080 / 1920" } ] },
     ] },
 
   { title: "Each placement, up close", kind: "media", badge: "The placements",
