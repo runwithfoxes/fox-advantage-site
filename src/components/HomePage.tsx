@@ -230,7 +230,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
 
         {/* ===== PRODUCTS STOREFRONT (replaces the old module accordion) ===== */}
         <div className="hpx-wrap">
-          <section className="sf-store">
+          <section className="sf-store" id="products">
             <div className="sf-shop">
               <div className="sf-shop-kick">/products</div>
               <div className="sf-fbar">

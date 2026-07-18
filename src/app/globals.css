@@ -5537,13 +5537,14 @@ a.project-card {
   .ah-hero { height: 320vh; }
   .ah-sticky { padding-top: 0; }
 
-  .ah-head { top: 13vh; padding: 0 22px; }
+  .ah-head { top: 9vh; padding: 0 22px; }
   .ah-head h1 { white-space: normal; font-size: clamp(28px, 7.4vw, 40px); }
   .ah-sub { font-size: 15.5px; margin-top: 18px; }
   .ah-ctas { margin-top: 24px; }
 
   /* one rail, cards pinned to the left edge so the crop falls on the right */
-  .ah-stage { left: 0; top: 56%; width: 100%; }
+  /* the rail sits low enough that the CTAs never touch the first card */
+  .ah-stage { left: 0; top: 63%; width: 100%; }
   .ah-win {
     left: 18px; top: 0; margin: 0 !important;
     transform: translateY(calc(-50% + var(--ah-roll, 0px))); transform-origin: left center;
@@ -5600,6 +5601,30 @@ a.project-card {
   /* tablets have room to centre the rail rather than pin it left */
   .ah-win { left: 50%; transform: translate(-50%, calc(-50% + var(--ah-roll, 0px))); transform-origin: center; }
   .ah-film { width: min(560px, calc(100vw - 48px)); }
+}
+
+/* ---- REDUCED MOTION: no scroll-assemble at all ----
+   The JS stands down here, so without these rules the five cards would sit
+   stacked on the same point over the headline. Lay the hero out as a calm
+   static stack and drop its extra scroll height, since nothing animates. ---- */
+@media (prefers-reduced-motion: reduce) {
+  .ah-hero { height: auto; }
+  .ah-sticky { position: static; height: auto; overflow: visible; padding: 132px 24px 88px; }
+  .ah-head { position: static; padding: 0; }
+  .ah-head h1 { white-space: normal; }
+  .ah-stage {
+    position: static; width: auto; height: auto; left: auto; top: auto;
+    display: flex; flex-direction: column; align-items: center; gap: 32px; margin-top: 64px;
+  }
+  .ah-win {
+    position: static; width: 100%; max-width: 560px; margin: 0 !important;
+    transform: none !important; opacity: 1 !important; cursor: default !important;
+  }
+  /* lead with the film, whatever the DOM order */
+  .ah-film { order: -1; }
+  .ah-film video { height: 240px; object-position: center 72%; }
+  .ah-blueprint .ah-bpw { height: 380px; }
+  .ah-email, .ah-terminal { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
