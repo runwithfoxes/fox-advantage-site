@@ -5552,10 +5552,46 @@ a.project-card {
   /* the film is a video, so it scales cleanly to the viewport */
   .ah-film { width: calc(100vw - 36px); }
   .ah-film video { height: 210px; }
-  /* these two keep their real size and crop, so their text stays legible */
-  .ah-inbox { width: 470px; }
-  .ah-blueprint { width: 940px; }
-  .ah-blueprint .ah-bpw { height: 360px; }
+  /* These two are relaid out to FIT the screen rather than crop off it.
+     Same markup and same animation, different arrangement: the workflow
+     stands up vertically (its natural mobile form) and the inbox shows the
+     conversation only, the way any mail app does at this width. */
+  .ah-inbox, .ah-blueprint { width: calc(100vw - 36px); }
+
+  /* --- Outreach Agent: conversation only, thread list dropped --- */
+  .ah-inbox .ah-ibx { height: 320px; }
+  .ah-inbox .ah-list { display: none; }
+
+  /* --- Campaign Agent: the flow stands up --- */
+  .ah-blueprint .ah-bpw { height: auto; }
+  .ah-blueprint .ah-bptabs, .ah-blueprint .ah-bpbar .ah-rt { display: none; }
+  .ah-blueprint .ah-bpmain { flex-direction: column; }
+  .ah-blueprint .ah-bpcanvas { background: none; padding: 16px 14px 4px; }
+  /* the fixed-viewBox edges only make sense in the horizontal layout */
+  .ah-blueprint .ah-bpcanvas svg { display: none; }
+  .ah-blueprint .ah-bpnode {
+    position: relative; transform: none; width: 100%;
+    /* the desktop canvas positions these inline (left:10%, top:50% ...),
+       so the vertical layout has to beat those inline values */
+    left: 0 !important; top: 0 !important;
+    margin: 0 0 22px; display: flex; align-items: center;
+  }
+  .ah-blueprint .ah-bpnode .ah-nh { flex: 1; }
+  .ah-blueprint .ah-bpnode .ah-st { border-top: 0; border-left: 1px solid var(--ah-line-soft); }
+  /* connector between stacked nodes, drawn in CSS instead of the SVG */
+  .ah-blueprint .ah-bpnode::after {
+    content: ""; position: absolute; left: 50%; top: 100%;
+    width: 1.5px; height: 22px; background: #d5dbe0;
+  }
+  .ah-blueprint .ah-bpnode:last-of-type { margin-bottom: 8px; }
+  .ah-blueprint .ah-bpnode:last-of-type::after { display: none; }
+  .ah-blueprint .ah-bpnode.ah-done::after { background: var(--ah-green); }
+  /* run history goes, the week's numbers stay */
+  .ah-blueprint .ah-bppanel { width: auto; border-left: 0; border-top: 1px solid var(--ah-line-soft); }
+  .ah-blueprint .ah-bppanel .ah-ph, .ah-blueprint .ah-bprun { display: none; }
+  .ah-blueprint .ah-bpov { border-top: 0; }
+  .ah-blueprint .ah-bpgrid { grid-template-columns: 1fr 1fr; }
+
   /* not in the mobile roll */
   .ah-terminal, .ah-email { display: none; }
 }
