@@ -53,7 +53,7 @@ export default function AgentsHero() {
       let currentP = 0;
       const DRAG_AT = 0.22; // grabbable throughout the transition, like Attio
 
-      // Static resting state for narrow viewports / reduced motion.
+      // Static resting state for reduced motion.
       const settle = () => {
         head.style.opacity = "";
         head.style.filter = "";
@@ -65,8 +65,49 @@ export default function AgentsHero() {
         stage.classList.remove("ah-live");
       };
 
+      /* --- NARROW VIEWPORTS: cards roll one at a time (the Attio move) ---
+         Five windows can't assemble on a phone, and shrinking a 940px workflow
+         to fit would make its text unreadable. So we keep each card at its own
+         readable size, let it crop off the right edge, and cross-fade between
+         three of them as the visitor scrolls. Order: Advertising, Outreach,
+         Campaign. */
+      const rollCards = () => [film, q<HTMLDivElement>(".ah-inbox"), q<HTMLDivElement>(".ah-blueprint")]
+        .filter(Boolean) as HTMLDivElement[];
+
+      const rollFrame = (p: number) => {
+        // headline holds a little longer than on desktop, then clears
+        const hp = clamp(p / 0.3, 0, 1);
+        head.style.opacity = (1 - hp).toFixed(3);
+        head.style.transform = "translateY(" + (-hp * 24).toFixed(1) + "px)";
+        head.style.filter = "blur(" + (hp * 2).toFixed(2) + "px)";
+        head.style.pointerEvents = hp > 0.5 ? "none" : "auto";
+
+        const cards = rollCards();
+        // spread the remaining scroll across the cards, with a soft cross-fade
+        const cp = clamp((p - 0.26) / 0.68, 0, 1) * cards.length;
+        cards.forEach((c, i) => {
+          // full opacity while this card owns the range, fading at the edges
+          const d = Math.abs(cp - (i + 0.5));
+          const o = clamp(1.35 - d * 1.9, 0, 1);
+          c.style.opacity = o.toFixed(3);
+          // offset via a custom property so the CSS keeps owning the centring
+          c.style.setProperty("--ah-roll", ((cp - (i + 0.5)) * -26).toFixed(1) + "px");
+          c.style.zIndex = String(10 + Math.round(o * 10));
+        });
+        // the film keeps its arrival crop on mobile - the fox stays in shot
+        filmVid.style.objectPosition = "center 72%";
+      };
+
       const frame = () => {
-        if (!mq.matches || reduced) { raf = requestAnimationFrame(frame); return; }
+        if (reduced) { raf = requestAnimationFrame(frame); return; }
+
+        if (!mq.matches) {
+          const r = hero.getBoundingClientRect();
+          const t = hero.offsetHeight - window.innerHeight;
+          rollFrame(clamp(-r.top / t, 0, 1));
+          raf = requestAnimationFrame(frame);
+          return;
+        }
 
         const rect = hero.getBoundingClientRect();
         const total = hero.offsetHeight - window.innerHeight;
@@ -108,13 +149,17 @@ export default function AgentsHero() {
       };
 
       const applyMode = () => {
-        if (mq.matches && !reduced) {
+        if (reduced) { settle(); return; }
+        // clear anything the other mode left behind before it takes over
+        [...sats, film].forEach((c) => {
+          c.style.transform = ""; c.style.opacity = ""; c.style.zIndex = "";
+          c.style.removeProperty("--ah-roll");
+        });
+        if (mq.matches) {
           sats.forEach((s) => {
             s.style.opacity = "0";
             s.style.transform = "scale(" + (+(s.dataset.sc || 1) * 0.86) + ")";
           });
-        } else {
-          settle();
         }
       };
       applyMode();
