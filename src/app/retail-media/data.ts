@@ -10,7 +10,7 @@ export const meta: Meta = {
   slug: "retail-media",
   headline: "One campaign, every Tesco placement",
   intro: "",
-  lastUpdated: "2026-07-15",
+  lastUpdated: "2026-07-18",
   hideProgress: true,
   zoneIntros: {
     deliverables: "The twelve touchpoints of the Tesco shopper journey, and where each one stands.",
@@ -28,9 +28,9 @@ export const deliverables: Deliverable[] = [
   { name: "6 · Totem screens", detail: "Same portrait chassis, directional to the drinks aisle", status: "ready", anchor: "cw-s-each-placement-up-close", note: "Runs on the same portrait chassis as the JCD screen." },
   { name: "7 · Hanging boards", detail: "Landscape, arrow directional", status: "in-progress", note: "Landscape plate registered; creative in build." },
   { name: "8 · Power aisle screen", detail: "Wide digital strip", status: "in-progress", note: "Same landscape/band family; sized after the boards land." },
-  { name: "9 · Goal post screens", detail: "Cross-collaboration bundle: brand x Tesco partner pack", status: "in-progress", note: "Bundle creative in rebuild." },
+  { name: "9 · Goal post screens", detail: "Cross-collaboration bundle: brand x Tesco partner pack", status: "in-progress", note: "Bundle creative pulled - it was not up to standard. Rebuild pending." },
   { name: "10 · BWS gate, outside", detail: "Print gate panel, 0.0 message only outside the zone", status: "in-progress", note: "In build: needs a real 0.0 pack shot before the panel is made - we don't fake the product." },
-  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "ready", anchor: "cw-s-bws-gate-inside", note: "Landscape gate panel built off the registered plate, carrying the €19 offer." },
+  { name: "11 · BWS gate, inside", detail: "Print gate panel, full alcohol message inside", status: "ready", anchor: "cw-s-bws-gate-inside", note: "Portrait gate panel, laid out for the real leaf shape (measured 5:7) and sized to be read across the shop floor." },
   { name: "12 · BWS special build", detail: "In-bay screens, sound on", status: "todo" },
 ];
 
@@ -68,13 +68,13 @@ export const work: WorkSection[] = [
     embedHeight: 1180 },
 
   { title: "BWS gate, inside", kind: "media", badge: "Placement 11 · The drinks zone",
-    desc: "The security gate into the beer, wine and spirits zone, carrying the full €19 alcohol offer. The outside-zone panel (0.0 message only) is in build: it needs a real 0.0 pack shot, which we won't fake.",
+    desc: "The security gate into the beer, wine and spirits zone, carrying the full €19 alcohol offer. The panel is portrait, measured off a real gate leaf, and the type is sized to be read from across the shop floor rather than at arm's length. The outside-zone panel (0.0 message only) is in build: it needs a real 0.0 pack shot, which we won't fake.",
     wideDesc: true,
     layout: "single",
-    item: { src: "node11-gate-inside.png", w: 620, ratio: "1920 / 1080" } },
+    item: { src: "node11-gate-portrait.png", w: 400, ratio: "1080 / 1561" } },
 
   { title: "In the real world", kind: "media", badge: "In situ",
-    desc: "The same campaign as a shopper actually meets it: on the in-store screen, in the inbox on a phone, and onsite on Tesco.ie. Each one is our creative rebuilt into the real placement, from a photo of that placement.",
+    desc: "The same campaign as a shopper actually meets it: on the in-store screen, in the inbox on a phone, onsite on Tesco.ie, and at the gate into the drinks zone. Each one is our creative rebuilt into the real placement, each panel on its own plane, so the copy sits at the angle of the thing it is printed on.",
     wideDesc: true,
     layout: "grouped",
     groups: [
@@ -84,6 +84,8 @@ export const work: WorkSection[] = [
         items: [ { src: "insitu-email.png", w: 330, ratio: "784 / 1556" } ] },
       { label: "Onsite · Tesco.ie search",
         items: [ { src: "insitu-onsite.png", w: 940, ratio: "2912 / 1800", cap: "Sponsored hero banner and MPU on the live results page - the €19 Clubcard price in the grid is real." } ] },
+      { label: "At the gate · into the beer, wine and spirits zone",
+        items: [ { src: "insitu-gate.png", w: 940, ratio: "1200 / 900", cap: "Both leaves carrying the campaign, each panel on its own plane - the copy sits at the angle of the gate it is printed on." } ] },
     ] },
 
   { title: "The fingerprint: original vs rebuild", kind: "compare", badge: "The method",
@@ -98,15 +100,6 @@ export const work: WorkSection[] = [
       labelAfter: "Rebuilt by the machine",
       download: false,
     } },
-
-  { title: "The next match, same machine", kind: "media", badge: "Next occasion",
-    desc: "Spain meet Argentina in the final next week. One new brief re-originates the campaign for it: the real can held exactly as it is, a new scene made for the new match - Argentina's colours on one side, Spain's on the other - with the €19 Clubcard price carried through. A new picture, not a new headline on the old one, and every placement follows from here.",
-    wideDesc: true,
-    layout: "grouped",
-    groups: [
-      { label: "The new scene, from one brief", items: [ { src: "next-match-hero.png", w: 300, ratio: "1080 / 2007" } ] },
-      { label: "As the in-store screen", items: [ { src: "next-match-instore.png", w: 300, ratio: "1080 / 1920" } ] },
-    ] },
 
   { title: "How it works: calibrate once, produce always", kind: "copy", badge: "The machine",
     desc: "",
