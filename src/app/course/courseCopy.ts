@@ -45,7 +45,7 @@ export const HERO = {
      "A genuinely competent standard" is lifted verbatim from his signed-off module 3
      rather than invented, which means the hero and card 3 rhyme. His call whether that
      is repetition or reinforcement. Flagged in QA-A rather than marked on the page. */
-  sub: "A free course for marketers. The marketing work you can take on now that you could not before, and how to get it to a genuinely competent standard. Six modules, one a fortnight, starting 21 September.",
+  sub: "A free course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one a fortnight, starting 21 September.",
 
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
      18 Jul: say free, never bind his future pricing. "Nothing to buy" is inside
