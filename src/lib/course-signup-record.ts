@@ -1,20 +1,31 @@
 /*
   Paul's own record of who signed up, separate from Klaviyo.
 
-  Two reasons it exists rather than trusting the ESP: if a Klaviyo call fails the
-  person is still recoverable from here, and it is the only view of the signups
-  that does not require logging into someone else's dashboard.
+  It earns its place on one property: it survives Klaviyo failing. If the API
+  call is rejected or rate-limited, the person is still here and recoverable.
+  A Klaviyo-only record turns a failed call into a person who silently never
+  existed. It is also the only view of the signups that does not require
+  logging into someone else's dashboard.
 
-  SHAPE IS PROVISIONAL - proposed in QA-B Q1 and not yet ruled on. The durable
-  production half (Upstash, mirroring the client-feedback store) is deliberately
-  NOT wired yet, because the shape was put to the director before building. What
-  is here works locally and never throws, so a recording problem can never cost a
-  signup: the visitor's subscription is the thing that matters and it has already
-  happened by the time this is called.
+  Two halves, because Vercel's filesystem is ephemeral:
+   - deployed, it appends to Upstash Redis, reusing the getRedis() pattern from
+     conversation-store.ts and client-feedback-store.ts
+   - locally, it appends to an NDJSON file
+
+  NDJSON rather than a JSON array or a CSV: Paul reads this in Claude Code, so
+  the format that matters is the one a terminal can grep, wc -l and tail without
+  a client, and NDJSON survives a partial write where an array does not.
+
+  Nothing in here may ever throw. By the time it is called the visitor is already
+  subscribed, and a recording problem must not turn a successful signup into an
+  error on their screen.
+
+  Shape approved in QA-B Q1, 19 Jul.
 */
 
 import { appendFile } from "fs/promises";
 import path from "path";
+import { Redis } from "@upstash/redis";
 
 export interface SignupRecord {
   ts: string;
@@ -27,28 +38,71 @@ export interface SignupRecord {
   klaviyo: "ok" | "failed";
 }
 
-// Overridable so a test run does not write into the real record.
+const REDIS_KEY = "course:signups";
+
+// Mirrors the existing getRedis() in conversation-store.ts.
+function getRedis(): Redis | null {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL ||
+    process.env.UPSTASH_REDIS_REST_KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN ||
+    process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  return new Redis({ url, token });
+}
+
+// Overridable so a test run never writes into the real record.
 const LOCAL_PATH =
   process.env.COURSE_SIGNUP_RECORD_PATH ||
   path.join(
     process.env.HOME || "",
-    "paul-hub/intelligence/course-build/signups.ndjson"
+    "paul-hub/intelligence/course-launch/signups.ndjson"
   );
 
 export async function recordSignup(rec: SignupRecord): Promise<void> {
-  // Always log. On Vercel this is the only durable trace until the store is
-  // agreed, and it is greppable in the deployment logs.
+  // Always log. Greppable in the Vercel deployment logs, and a last resort if
+  // both stores are unavailable.
   console.info("[course-signup] record", JSON.stringify(rec));
 
-  // Vercel's filesystem is ephemeral and read-only outside /tmp, so the local
-  // file is a local-run convenience, not the production record.
+  const redis = getRedis();
+  if (redis) {
+    try {
+      // A list, appended to. Ordered, cheap to read back, and one failed write
+      // cannot corrupt the others.
+      await redis.rpush(REDIS_KEY, JSON.stringify(rec));
+    } catch (err) {
+      console.error("[course-signup] redis append failed", err);
+    }
+  }
+
   if (process.env.VERCEL) return;
 
   try {
     await appendFile(LOCAL_PATH, JSON.stringify(rec) + "\n", "utf8");
   } catch (err) {
-    // Never let a recording failure surface to a visitor who has already
-    // successfully signed up.
     console.error("[course-signup] local record write failed", err);
+  }
+}
+
+/* Read the record back. Used by the admin route so Paul can pull the signups
+   in Claude Code with a curl, the way he already reads client feedback. */
+export async function readSignups(): Promise<SignupRecord[]> {
+  const redis = getRedis();
+  if (!redis) return [];
+  try {
+    const rows = await redis.lrange<string>(REDIS_KEY, 0, -1);
+    return rows
+      .map((r) => {
+        try {
+          return typeof r === "string" ? (JSON.parse(r) as SignupRecord) : (r as SignupRecord);
+        } catch {
+          return null;
+        }
+      })
+      .filter((r): r is SignupRecord => r !== null);
+  } catch (err) {
+    console.error("[course-signup] redis read failed", err);
+    return [];
   }
 }
