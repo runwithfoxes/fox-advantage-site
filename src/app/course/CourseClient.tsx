@@ -65,7 +65,8 @@ function countPlaceholders(): number {
     ...Object.values(ASK),
     ...QUESTIONS.map((q) => q.a),
   ];
-  return all.length;
+  /* signed-off copy is written, so it is not counted */
+  return all.filter((v) => v.tier !== "real").length;
 }
 
 /* ---------------------------------------------------------------- module card */

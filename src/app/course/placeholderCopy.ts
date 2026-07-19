@@ -23,6 +23,9 @@
  *   "terminal" INVENTED BY A TERMINAL. Sample copy written to a real standard so
  *              Paul can judge rhythm, per §4. None of it is approved. Replace.
  *
+ *   "real"     PAUL HAS SIGNED IT OFF. Renders unmarked, not counted. Modules 2 and
+ *              3 as of 19 Jul.
+ *
  *   "owed"     PAUL OWES THIS AND NOTHING HAS BEEN INVENTED. §4 marks four of these
  *              explicitly (who it is for, what you end with, how long a module
  *              takes) and says do not invent a certificate. The slot renders as an
@@ -32,7 +35,7 @@
  * `note` is the hover tooltip: where the words came from, or what is owed.
  */
 
-export type Tier = "paul" | "terminal" | "owed";
+export type Tier = "real" | "paul" | "terminal" | "owed";
 
 export type Placeholder = {
   tier: Tier;
@@ -41,6 +44,11 @@ export type Placeholder = {
 };
 
 const p = (tier: Tier, text: string, note: string): Placeholder => ({ tier, text, note });
+
+/* COPY PAUL HAS SIGNED OFF. It renders unmarked and is NOT counted as unwritten,
+   because it is written. It still lives in this file so that every word on the card
+   faces sits in one place and the diff from draft to final is one line. */
+const REAL = (text: string): Placeholder => ({ tier: "real", text, note: "" });
 
 /* ---------- hero ---------- */
 
@@ -88,20 +96,32 @@ export const FORMATS = p(
 /* ---------- the six modules ---------- */
 
 export const MODULE_BLURBS: Record<number, Placeholder> = {
+  /* WRITTEN WITH PAUL BY INTERVIEW, 19 Jul (module-descriptions.md §1). This is
+     VARIANT A, 49 words. Still carries a mark because he has NOT signed it off and
+     the length is the open question - the cards are uniform, so whatever length
+     module 1 lands on is the length all six get. Variant B is his cut, dropping
+     "and they are not the obvious ones". */
   1: p(
-    "paul",
-    "The small number of things that get you to a good, fast start. The ones you would use this week on a brief, a campaign or a set of ads.",
-    "PAUL'S OWN FRAMING, 18 Jul: \"The small number of things that you can do very quickly to get you to a good fast start, up and running.\" THE SECOND SENTENCE IS A TERMINAL'S, added against the marketing-lens directive - his own line is true of any job, and his point is that the examples have to be marketing work. Needs his writing pass.",
+    "terminal",
+    "A small number of habits get you most of the way with AI in marketing work, and they are not the obvious ones. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats. Showing it the content you liked rather than describing it.",
+    "DRAFT written with Paul by interview, 19 Jul - his material, not invented, but NOT SIGNED OFF. Variant A, 49 words. The terminal is deliberately not named here even though it is in the module: it is the single item most likely to make a marketer decide the course is not for them, so it gets answered in the questions block rather than met cold on a card.",
   ),
-  2: p(
-    "paul",
-    "Spend the time up front on what you want and what good looks like, the way you would on a brand guideline. Then decode that to the AI until it turns out the same quality every time. That is not a single prompt, and it is what makes the tenth ad as good as the first.",
-    "PAUL'S OWN FRAMING, 18 Jul, compressed from his dictation in canon SIX-MODULES-TOTAL.what_each_one_is.slow_then_fast. His: \"That takes time. That's NOT A SINGLE PROMPT... then you get speed over and over and over again.\" Substance is his, the compression is a terminal's.",
+  /* ✅ SIGNED OFF BY PAUL, 19 Jul. Real copy, so no mark and no entry in the
+     not-written-yet count. 41 words.
+     Rejected drafts are recorded in module-descriptions.md so nobody re-treads them:
+     "Most people open a chat and start writing" (he does not use "most", and it made
+     the module about copywriting), "The temptation is to..." (asserts something about
+     the reader he will not assert), "Do that once" (the context is living and gets
+     revisited), and listing four behaviours (made the module look like only those). */
+  2: REAL(
+    "An intentional way of setting about marketing work. Techniques for getting clear on what good looks like, for fast research, for building in defences against hallucination. All of it before the work starts, so what follows is quick and consistently good.",
   ),
-  3: p(
-    "paul",
-    "Marketers can now do other things, not just what they used to do before. The campaign, and the tool behind it, and the page it runs on, and the report after it.",
-    "PAUL'S OWN WORDS, 18 Jul, verbatim from canon: \"Marketers can now do OTHER things, not just what they used to do before.\" Also his own Substack title from 9 Jul. The four examples are a terminal's, lifted from the drawn window built for this module so the card and its artefact say the same thing.",
+  /* ✅ SIGNED OFF BY PAUL, 19 Jul. 48 words.
+     ⭐ Worth carrying: this is the only module so far that answers "why should I do
+     it" - it is about the reader's career rather than the work. The hero paragraph
+     carries no version of that argument and probably should. Open with the director. */
+  3: REAL(
+    "A deep dive into the wide range of marketing capabilities you can now build with AI, and how to get them to a genuinely competent standard. No need to stay specialised as a brand, performance, product or research marketer. You add to what you are already good at.",
   ),
   4: p(
     "paul",

@@ -29,6 +29,13 @@ export function useMarks() {
 export function Ph({ v, as = "span" }: { v: Placeholder; as?: "span" | "p" }) {
   const marks = useMarks();
 
+  /* Copy Paul has signed off renders exactly as it will ship - no mark, no tooltip,
+     no toggle. It goes through <Ph> only so every card-face string lives in one file. */
+  if (v.tier === "real") {
+    const T = as;
+    return <T>{v.text}</T>;
+  }
+
   /* An OWED slot has no text by design - Paul owes the answer and nothing has been
      invented in its place. It renders as a visible empty slot rather than a plausible
      sentence, because a plausible sentence is exactly what the fabrication ban is
