@@ -218,11 +218,7 @@ export default function CourseClient() {
       <div className="co-root">
 
         <header className="co-hero wrap" id="top">
-          <h1 className="co-h1">
-            {HERO.headline[0]}
-            <br />
-            {HERO.headline[1]}
-          </h1>
+          <h1 className="co-h1">{HERO.headline}</h1>
 
           <p>{HERO.sub}</p>
 

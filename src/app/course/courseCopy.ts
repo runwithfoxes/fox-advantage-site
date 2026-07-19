@@ -31,7 +31,12 @@ export const HERO = {
      14 Jul "Advanced AI for ambitious marketers" note that had been sitting unresolved
      in canon and that BRIEF-A's wireframe still showed.
      NO TERMINAL FULL STOP after "marketers" - his call, same conversation. */
-  headline: ["AI fluency for", "ambitious marketers"],
+  /* ⚠️ ONE STRING, NOT TWO. It used to be a two-part array rendered with a <br>,
+     which forced the break rather than letting it wrap - so the "wrap" Paul saw on
+     desktop was a hard break I had put there. Paul, 19 Jul: "I don't want the headline
+     to go across two lines. It can fit on one." The type size now holds it on one line
+     at desktop widths; on a phone it wraps naturally, which is fine and expected. */
+  headline: "AI fluency for ambitious marketers",
 
   /* ⚠️ STILL A TERMINAL'S SENTENCE, not Paul's, and the only one left on the page.
      It is a proposal against the open thought that of the six descriptions only
