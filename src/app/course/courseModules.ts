@@ -15,7 +15,7 @@ export type Art =
   | { kind: "photo"; src: string }
   | { kind: "none" };
 
-export type WindowKey = "few" | "cal" | "adj" | "sys" | "agent" | "hard";
+export type WindowKey = "few" | "cal" | "setup" | "adj" | "sys" | "agent" | "hard";
 
 export type Module = {
   n: number;
@@ -53,7 +53,16 @@ export const MODULES: Module[] = [
     built: false,
     /* The Ladder of marketing metrics, ported from Paul's brief-coach module with
        its tier widths and colours verbatim. The lit rung walks Activity ->
-       Commercial and holds: think at the top of the ladder before you spend. */
+       Commercial and holds: think at the top of the ladder before you spend.
+
+       🔴 THIS ARTEFACT NO LONGER MATCHES THE COPY, AND IT IS LEFT IN ANYWAY.
+       Paul picked the ladder himself on 18 Jul, when module 2 was framed around
+       thinking-through-strategy. His locked 19 Jul copy is about SETTING WORK UP
+       before it starts - research, hallucination defences, defining what good looks
+       like - and a metrics pyramid does not meet that sentence.
+       An alternative is BUILT and rendered (win: "setup", see ModuleArtefact), but
+       swapping it in would be a terminal reversing a decision Paul made himself, off
+       a note he has not seen. It waits for him. */
     art: { kind: "window", win: "cal" },
   },
   {

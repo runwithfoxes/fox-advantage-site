@@ -311,6 +311,43 @@ function WinAgent() {
   );
 }
 
+/* ---------- 2b. AN ALTERNATIVE FOR MODULE 2, BUILT BUT NOT SWAPPED IN ----------
+   🔴 THE PROBLEM IT ANSWERS. Card 2 currently shows the Ladder of Marketing Metrics,
+   and module-descriptions.md flags that it no longer matches the copy. Paul's locked
+   module 2 is about SETTING A PIECE OF WORK UP before it starts - fast research,
+   defences against hallucination, getting clear on what good looks like. A reader
+   meets that sentence beside a metrics pyramid and the two do not connect.
+
+   ⚠️ IT IS NOT ASSIGNED, AND THAT IS DELIBERATE. Paul chose the ladder himself on
+   18 Jul, when module 2 was framed around thinking-through-strategy: "just have the
+   pyramid, which has the commercial metrics right down to the activity metrics."
+   His copy changed on 19 Jul; his artefact ruling has not been revisited with him.
+   Overwriting his own call on the strength of a note he has not seen would be a
+   terminal deciding something he decided. So this is BUILT so he can react to a
+   render rather than to an argument, and the ladder stays on the card until he says
+   otherwise.
+
+   WHAT IT SHOWS: the AI asking questions back before any work starts, which is the
+   module's argument in one image and is straight out of Paul's own description
+   ("having it ask you questions instead of handing you answers", "that takes time,
+   that's NOT A SINGLE PROMPT"). Three questions at native type size, no results, no
+   counts, nothing claimed. */
+function WinSetup() {
+  return (
+    <div className="w w-setup">
+      <div className="wbar">
+        <span>Before the work starts</span>
+        <span className="live">asking back</span>
+      </div>
+      <div className="wbody">
+        <div className="ask">Who is this campaign for?</div>
+        <div className="ask">What does good look like here?</div>
+        <div className="ask">What should I read before I start?</div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- drawn but currently unassigned ----------
    Modules 3 and 6 carry the film and the photograph, so these two windows are not
    rendered today. They are kept, not deleted: both were drawn and accepted on 18 Jul,
@@ -367,6 +404,7 @@ function WinHard() {
 const WINDOWS: Record<WindowKey, () => React.JSX.Element> = {
   few: WinFew,
   cal: WinLadder,
+  setup: WinSetup,
   adj: WinAdjacent,
   sys: WinSystem,
   agent: WinAgent,

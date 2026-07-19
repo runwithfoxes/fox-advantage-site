@@ -6470,6 +6470,8 @@ a.project-card {
 .co-cardbody{
   display:grid;grid-template-columns:1fr var(--art-w);grid-template-rows:var(--art-h);
   gap:44px;align-items:start;padding:28px 30px 30px;
+  /* the whole body is the tap target - see CourseClient */
+  cursor:pointer;
 }
 .co-cardinfo{display:flex;flex-direction:column;height:var(--art-h)}
 .co-cardtitle{
@@ -6772,4 +6774,20 @@ a.project-card {
 /* very narrow phones: the photo stops competing with the text for the line */
 @media (max-width:460px){
   .co-bio{flex-direction:column}
+}
+
+/* 2b. BEFORE THE WORK STARTS - the alternative artefact for module 2, built but not
+   assigned. See the comment above WinSetup in ModuleArtefact.tsx: Paul picked the
+   ladder himself when module 2 was framed differently, and his copy has since
+   changed, so this exists for him to react to rather than as a swap made for him.
+   Incoming bubbles only - the AI asking, nobody answering yet, which is the point. */
+.co-root .w-setup .wbody{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:10px 11px}
+/* Tinted, not white. On white they read as three plain lines of text and the fact
+   that something is ASKING is carried only by the window bar. A tint plus the clipped
+   bottom-left corner makes them read as incoming messages at a glance, which is the
+   whole point of the window. */
+.co-root .w-setup .ask{
+  align-self:flex-start;max-width:94%;background:#F4F2EE;border:1px solid #E7E4DE;
+  border-radius:11px;border-bottom-left-radius:4px;padding:6px 9px;
+  font-size:9px;line-height:1.45;color:#33322F;
 }

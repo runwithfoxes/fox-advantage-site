@@ -103,7 +103,23 @@ function ModuleCard({
         <span className="co-chrome-name">Module {m.n}</span>
       </div>
 
-      <div className="co-cardbody">
+      {/* ⭐ THE WHOLE CARD BODY IS THE TAP TARGET, not just the link.
+          BRIEF-A §3 says "clicking a module card asks for the signup", and until now
+          only the small text link did. On a phone that is a 13px line inside a 611px
+          card, which is a poor target for the page's main conversion. The link stays
+          as the visible affordance and as the keyboard control; the body just widens
+          what counts as a tap.
+          The ask panel is OUTSIDE this div on purpose - a click inside it must never
+          toggle the card shut while someone is typing into the form. */}
+      <div
+        className="co-cardbody"
+        onClick={(e) => {
+          /* the button handles its own click; without this it would fire twice and
+             cancel itself out */
+          if ((e.target as HTMLElement).closest(".co-cardaction")) return;
+          onToggle();
+        }}
+      >
         <div className="co-cardinfo">
           <h3 className="co-cardtitle">{m.title}</h3>
           <Ph v={blurb} as="p" />
