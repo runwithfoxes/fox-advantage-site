@@ -6359,6 +6359,12 @@ a.project-card {
   font-family:var(--mono);font-size:13.5px;color:var(--text);
   background:transparent;border:0;outline:none;padding:13px 18px;width:172px;
 }
+/* A first name needs ~12 characters. An email needs ~28, and a password manager
+   injects its own icons over the right-hand end of the field. Equal 172px boxes
+   cut "paul.dervan@moloco.com" to "paul.dervan@m", so a person could not read
+   back what they had typed before submitting - on the only CTA on the page. */
+.co-joinbar input.nm{width:150px}
+.co-joinbar input.em{width:288px;padding-right:46px}
 .co-joinbar input::placeholder{color:#B4B4AE}
 .co-joinbar .sep{width:1px;background:var(--border);margin:9px 0}
 .co-joinbar button{
