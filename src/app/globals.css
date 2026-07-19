@@ -6257,257 +6257,330 @@ a.project-card {
 
 
 /* ============================================================================
-   COURSE  (/course)  -  ported 18 Jul 2026 from
-   lifecycle-agent/training-page/course-home-v2.html @ 89ea41e.
+   COURSE  (/course)
 
-   Every rule below is the page's own CSS with its selector scoped under
-   .co-root and nothing else changed. The page was authored standalone and uses
-   generic class names (.hero, .card, .wrap, .sub) that would otherwise collide
-   with site-wide styles in both directions. Rule BODIES are byte-identical to
-   the source - a lot of the small values in here were measured against real
-   renders rather than chosen, and the comments say which.
+   REBUILT 19 Jul 2026 to the wireframe Paul drew that morning. It replaces the
+   draggable-board CSS ported on 18 Jul, which went with the board.
 
-   One deliberate change: the source had `overflow-x:hidden`, which per spec
-   coerces the other axis to `auto`, makes the element a scroll container and
-   silently kills `position: sticky`. That cost an hour on the homepage hero on
-   18 Jul. It is `clip` here, matching the rest of the site.
+   Paul's diagnosis of the old page: "it doesn't feel like a course landing page,
+   it feels like a random bunch of buttons." The reference for STRUCTURE ONLY is
+   anthropic.com/academy - Paul: "Don't worry about their colours. I already have
+   my colours. It's more the structure and the wireframe." Everything visual below
+   is RWF's own vocabulary.
+
+   THE FEEL: premium, clean, calm. What produces that on the reference pages is
+   very few things, a lot of empty space, TYPE DOING THE HIERARCHY RATHER THAN
+   BOXES, and nothing moving. The only motion on this page is inside the three
+   drawn artefacts, which are depictions of software running.
+
+   Everything is scoped under .co-root. The page inherited generic class names
+   (.hero, .card, .wrap, .sub) from its standalone origin and they collided with
+   site-wide styles in BOTH directions; the new markup uses co- prefixed names for
+   its own furniture and keeps the unprefixed ones only INSIDE the artefacts, where
+   the measured window CSS lives and where renaming would mean re-verifying values
+   that were matched against real renders.
    ========================================================================== */
 .co-root{
   --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky:#3A7CA5; --orange:#F47521;
   --border:#E0E0DC; --dot:rgba(208,208,204,.55);
   --mono:'JetBrains Mono',monospace; --sans:'Space Grotesk',sans-serif; --serif:'Source Serif 4',Georgia,serif;
-  /* SHAPE LANGUAGE - ported from the new homepage hero, 18 Jul.
-     Depictions of real software are drawn as that software actually looks. */
+  /* SHAPE LANGUAGE - from the homepage hero. Depictions of real software are drawn
+     the way that software actually looks. */
   --r-window:15px;   /* window chrome */
   --r-pill:20px;     /* invitations */
-  --r-bubble:13px;   /* chat */
   --shadow-soft:0 1px 2px rgba(20,16,40,.05);
   --shadow-card:0 6px 24px rgba(20,16,40,.07), 0 1px 2px rgba(20,16,40,.05);
   --shadow-lift:0 18px 44px rgba(20,16,40,.16), 0 2px 6px rgba(20,16,40,.08);
-}
-.co-root *{box-sizing:border-box}
-.co-root{margin:0;padding:0}
-.co-root{
+
+  /* THE ARTEFACT SCALE. Every drawn window is authored at 284x186 - the size its
+     type was measured against - and the frame scales it. One number, and every
+     internal relationship survives exactly. See ModuleArtefact.tsx. */
+  --art-w:380px; --art-h:249px; --art-scale:1.338;
+
   background:var(--bg); color:var(--text);
   font-family:var(--sans); -webkit-font-smoothing:antialiased;
   background-image:radial-gradient(circle,var(--dot) .9px,transparent .9px);
   background-size:28px 28px;
+  /* NEVER overflow-x:hidden. Per spec it coerces the other axis to auto, makes the
+     element a scroll container and silently kills position:sticky. That cost an hour
+     on the homepage hero on 18 Jul. clip blocks horizontal scroll without creating a
+     scroll container. */
   overflow-x:clip;
+  /* FIXED-NAV CLEARANCE. The site nav is position:fixed and 88px tall. */
+  padding-top:88px;
+  margin:0;
 }
+.co-root *{box-sizing:border-box}
 .co-root .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 
-/* ---------- nav ---------- */
-.co-root nav{position:relative;z-index:80;padding:26px 0}
-/* THE WORDMARK, matched to the live site rather than approximated.
-   Source: .hp-nav-logo in globals.css on origin/main (its scrolled state, which
-   is the light-background version this page needs).
-   Paul, 18 Jul: "my light logo is a lighter font, it's not the font that's
-   there at the moment." He was right, and it was four things, not one -
-   weight 400 -> 300, 15px -> 13px, letter-spacing -.02em -> +2px, and ink ->
-   muted. The TRACKING was doing most of the damage: the real wordmark is widely
-   spaced and this was squeezed tighter than normal. */
-.co-root .mark{font-family:var(--mono);font-size:13px;font-weight:300;letter-spacing:2px;
-  text-decoration:none;color:var(--muted)}
-.co-root .mark b{color:var(--orange);font-weight:300}
+/* INBOUND COLLISIONS. Scoping under .co-root stops this CSS leaking OUT; it does
+   nothing about the site's own rules leaking IN. Two were measured on 18 Jul: the
+   site's bare `.hero` carries min-height:90vh, and its `h1` carries max-width:800px,
+   which pinned the old centred headline 220px left of centre. Both are neutralised
+   here rather than avoided, because the new markup could easily reintroduce them. */
+.co-root h1{max-width:none}
 
-/* ---------- hero ---------- */
-.co-root .hero{text-align:center;padding:52px 0 30px}
-.co-root .kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:12px;color:var(--sky);
-  border:1px solid var(--border);background:#fff;padding:5px 12px;
-  border-radius:var(--r-pill);box-shadow:var(--shadow-soft);margin-bottom:26px;
+/* ---------- the wireframe marks bar ----------
+   BUILD-TIME AFFORDANCE, NOT PART OF THE DESIGN. It exists so a page carrying sample
+   copy cannot be mistaken for the real thing, and it comes out the day Paul's copy
+   lands. Deliberately plain and sitting above the page rather than inside it. */
+.co-marksbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  max-width:1240px;margin:0 auto 26px;padding:9px 40px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:#FFFDF7;
 }
-.co-root h1{
+.co-marksnote{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--muted)}
+.co-marksnote b{color:var(--orange);font-weight:400}
+.co-marksbtn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);
+  background:#fff;border:1px solid var(--border);padding:5px 12px;cursor:pointer;
+}
+.co-marksbtn:hover{color:var(--text);border-color:var(--muted)}
+
+/* ---------- the placeholder mark ----------
+   A dotted underline and nothing else. Badges and boxes would wreck the rhythm Paul
+   is being asked to judge, which is the whole reason the page exists. */
+.co-ph{text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:2px;text-underline-offset:4px}
+.co-ph-terminal{text-decoration-color:rgba(244,117,33,.75)}   /* invented by a terminal */
+.co-ph-paul{text-decoration-color:rgba(58,124,165,.75)}       /* Paul's own words, not yet page copy */
+.co-ph-owed{
+  display:inline-block;text-decoration:none;font-family:var(--mono);font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase;color:#B4342B;
+  border:1px dashed rgba(180,52,43,.5);padding:4px 10px;
+}
+
+/* ---------- hero ----------
+   🔴 LEFT-ALIGNED, and no fox, no illustration, nothing in the space beside it.
+   Paul, 19 Jul: "I want to have as few things on as possible so that people can just
+   see it and sign up." Centring is part of why the old page read as a splash rather
+   than a course page. THE OPEN SPACE BESIDE THE TEXT IS THE DESIGN. */
+.co-hero{padding:64px 0 44px}
+.co-h1{
   font-family:var(--sans);font-weight:300;letter-spacing:-.03em;
-  font-size:clamp(34px,5vw,60px);line-height:1.03;margin:0;
+  font-size:clamp(36px,5vw,62px);line-height:1.04;margin:0;
 }
-.co-root .sub{
-  font-family:var(--sans);font-weight:300;color:var(--muted);
-  font-size:clamp(17px,1.6vw,21px);line-height:1.5;margin:20px auto 0;max-width:none;
+/* ⚠️ THE ONE PLACE THIS PAGE HOLDS A MEASURE. COURSE-BRIEF doctrine 5 says body and
+   intro copy run the FULL content-container width and are never capped at 560-640px.
+   Paul's 19 Jul wireframe draws this paragraph narrow, wrapping after three short
+   lines, with the open space beside it doing the work - and §3 supersedes the older
+   layout doctrine. Set in ch rather than px so it is a MEASURE (a typographic
+   decision about line length) rather than the arbitrary pixel cap the doctrine bans.
+   Raised in QA-A; reverts to full width in one line if the director disagrees. */
+.co-hero p{
+  font-family:var(--sans);font-weight:300;color:#6E6C68;
+  font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin:22px 0 0;max-width:44ch;
 }
+.co-herojoin{margin-top:34px}
 
 /* ---------- the way in ----------
-   ONE pill that already holds both fields. Nothing to click open,
-   nothing that reads as a form. Type, hit the arrow, done. */
-.co-root .join{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:11px}
-.co-root .join-bar{
+   ONE pill already holding both fields. Nothing to click open, nothing that reads as
+   a form. Type, hit the arrow, done. */
+.co-join{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.co-joinbar{
   display:inline-flex;align-items:stretch;background:#fff;
   border:1px solid var(--border);border-radius:var(--r-pill);
   box-shadow:var(--shadow-soft);overflow:hidden;
   transition:border-color .2s ease,box-shadow .2s ease;
 }
-.co-root .join-bar:focus-within{border-color:var(--sky);box-shadow:0 2px 10px rgba(58,124,165,.13)}
-.co-root .join-bar input{
+.co-joinbar:focus-within{border-color:var(--sky);box-shadow:0 2px 10px rgba(58,124,165,.13)}
+.co-joinbar input{
   font-family:var(--mono);font-size:13.5px;color:var(--text);
   background:transparent;border:0;outline:none;padding:13px 18px;width:172px;
 }
-.co-root .join-bar input::placeholder{color:#B4B4AE}
-.co-root .join-bar .sep{width:1px;background:var(--border);margin:9px 0}
-.co-root .join-bar button{
+.co-joinbar input::placeholder{color:#B4B4AE}
+.co-joinbar .sep{width:1px;background:var(--border);margin:9px 0}
+.co-joinbar button{
   border:0;background:var(--sky);color:#fff;cursor:pointer;
   font-family:var(--mono);font-size:15px;padding:0 20px;
   transition:background .18s ease;
 }
-.co-root .join-bar button:hover{background:#33708f}
-.co-root .join-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
-.co-root .join-done{display:none;font-family:var(--mono);font-size:13.5px;color:var(--sky)}
-.co-root .join.done .join-bar, .co-root .join.done .join-note{display:none}
-.co-root .join.done .join-done{display:block}
+.co-joinbar button:hover{background:#33708f}
+.co-joinbar button:disabled{opacity:.6;cursor:default}
+.co-joinnote{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.co-joinerr{font-family:var(--mono);font-size:11.5px;color:#B4342B;letter-spacing:.02em}
+.co-join-done{font-family:var(--mono);font-size:13.5px;color:var(--sky)}
+/* inside a card the pill is tighter, and the fields share the width rather than
+   holding two fixed 172px columns that would not fit the panel */
+.co-join-compact .co-joinbar input{font-size:12.5px;padding:10px 14px;width:auto;flex:1 1 0;min-width:0}
+.co-join-compact .co-joinbar{max-width:460px;width:100%}
+.co-join-compact .co-joinbar input.nm{flex:.75 1 0}
+.co-join-compact .co-joinbar input.em{flex:1.25 1 0}
 
-/* ---------- the board ---------- */
-.co-root .board-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:56px 0 6px}
-.co-root .lead-in{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0}
-.co-root .board-hint{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
-.co-root .board-hint b{color:var(--sky);font-weight:400}
-
-.co-root .board{
-  position:relative;width:100%;height:800px;margin:26px 0 90px;
-  touch-action:pan-y;
+/* ---------- the strip ----------
+   ONE LINE, NOT A SECTION. It answers how big this is and how long it runs before
+   anyone scrolls - the Coursera reassurance device, compressed. */
+.co-strip{
+  margin-top:20px;display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:15px 0;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);
 }
-/* WIRES ALWAYS BEHIND CARDS. z-index 1 vs the card's 5 (and 61 while grabbed).
-   The card's own white fill is what hides the tail of each line, so a line can
-   never appear to cross a card face. */
-.co-root #wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.co-stripdot{
+  display:inline-block;width:3px;height:3px;border-radius:50%;background:#C6C6C0;
+  margin:0 14px;vertical-align:middle;
+}
 
-.co-root .card{
-  position:absolute;top:0;left:0;width:320px;
+/* ---------- section headings ---------- */
+.co-h2{
+  font-family:var(--sans);font-weight:300;letter-spacing:-.02em;
+  font-size:clamp(26px,2.6vw,34px);line-height:1.15;margin:0;
+}
+.co-modules{padding:64px 0 0}
+.co-moduleshead{margin-bottom:34px}
+.co-moduleshead p{
+  font-family:var(--sans);font-weight:300;color:#6E6C68;
+  font-size:17px;line-height:1.6;margin:14px 0 0;max-width:78ch;
+}
+
+/* ---------- the module card ----------
+   ONE LONG RECTANGLE PER MODULE. Paul, 19 Jul: "I do like the shape of the card, so
+   it's one long rectangle card the way you have it." Information on the left, image
+   on the right. Every card the same height and the same treatment.
+
+   The three traffic lights stay as HOUSE STYLE - the same motif runs through the
+   homepage hero and the agent cards - and Paul has explicitly accepted that here they
+   are decorative rather than an affordance now the drag is gone. His call, closed. */
+.co-card{
   background:#fff;border:1px solid var(--border);border-radius:var(--r-window);
-  box-shadow:var(--shadow-card);cursor:grab;z-index:5;
+  box-shadow:var(--shadow-card);margin-bottom:22px;overflow:hidden;
   transition:box-shadow .2s ease;
-  user-select:none;
 }
-.co-root .card:hover{box-shadow:var(--shadow-lift)}
-.co-root .card.grabbing{cursor:grabbing;box-shadow:var(--shadow-lift);z-index:61}
-/* A not-yet-live card is QUIETER, never TRANSPARENT. Fading the whole card
-   lets the connectors show through its face, which broke rule 2 (lines behind
-   cards). Dim the contents; the white fill stays fully opaque. */
-/* ⚠️ THE DIM IS APPLIED TO THE TITLE AND FOOT, NEVER TO .body AS A WHOLE.
-   It used to sit on .body, which was fine when the art was a grey schematic.
-   With a drawn window inside, dimming the parent gutted it - the dark terminal
-   composited to grey and all six read as broken rather than quiet. And opacity
-   cannot be undone by a child, because it applies to the whole subtree, so
-   exempting .art from a parent dim is impossible. Dim the siblings instead.
-   (Every card is Coming today anyway, so a dim that hits all six signals
-   nothing - it only becomes a contrast cue once something is actually live.) */
-.co-root .card.soon .t, .co-root .card.soon .foot{opacity:.66}
-.co-root .card.soon .tl .name, .co-root .card.soon .tl .no{opacity:.7}
+.co-card:hover{box-shadow:var(--shadow-lift)}
 
-/* window chrome - drawn the way a real window looks */
-.co-root .tl{display:flex;align-items:center;gap:7px;padding:9px 12px;border-bottom:1px solid var(--border)}
-.co-root .tl i{width:11px;height:11px;border-radius:50%;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06)}
-.co-root .tl .r{background:#FF5F57}.tl .y{background:#FEBC2E}.tl .g{background:#28C840}
-.co-root .tl .name{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* .tl .no (the "01" in the corner) was REMOVED 18 Jul. Once Paul numbered the
-   titles, the number appeared three times on every card - "Module 1" in the
-   chrome, "01" in the corner, "(1)" in the title. The chrome names the window
-   and the title carries the content; the corner was saying nothing a third time. */
+.co-chrome{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--border)}
+.co-chrome i{width:11px;height:11px;border-radius:50%;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06)}
+.co-chrome i.r{background:#FF5F57}
+.co-chrome i.y{background:#FEBC2E}
+.co-chrome i.g{background:#28C840}
+.co-chrome-name{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-left:5px}
+/* A not-yet-live card is QUIETER, never TRANSPARENT, and the dim NEVER lands on a
+   parent of the artefact. Opacity applies to the whole subtree and cannot be undone
+   by a child, so dimming a wrapper gutted the drawn windows - they composited to grey
+   and all six read as broken rather than quiet. Dim the siblings instead.
+   (Every module is Coming today, so this signals nothing yet. It only becomes a
+   contrast cue once something is genuinely live.) */
+.co-card.soon .co-chrome-name{opacity:.7}
 
-.co-root .body{padding:15px 17px 14px}
-.co-root .t{font-family:var(--sans);font-weight:400;font-size:17.5px;line-height:1.25;letter-spacing:-.01em;margin:0 0 11px}
-
-/* ARTEFACT PREVIEW - the homepage cards are the spec: real media, not metaphor.
-   .art.real holds a genuine screen grab or the actual ad video.
-   .art (schematic) survives only where we do not yet HAVE the real asset, and
-   says so on its face - never dress a placeholder up as evidence. */
-.co-root .art{border:1px solid var(--border);border-radius:9px;overflow:hidden;background:#FCFCFB;height:110px;position:relative}
-/* 154px in the source. Raised to 186 (Paul, 18 Jul) so every card is the same
-   height. Measured before changing: only TWO card heights existed, 287 and 319,
-   a 32px spread, and the entire difference was this one value - .art.real.vid
-   and .art.real.photo were already 186. Every title is one line at 22px and the
-   rest of the card is fixed, so matching this to 186 makes all six cards 319px.
-   The four shorter cards gain breathing room around their artwork; nothing is
-   cropped or re-fitted. Mirror this in the source page when the board is
-   rebuilt - see COURSE-QA.md final ruling. */
-.co-root .art.real{height:186px;background:#fff;display:block}
-.co-root .art.real img, .co-root .art.real video{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
-.co-root .art.real.vid img, .co-root .art.real.vid video{object-position:center}
-/* VIDEO RUNS TALLER AND FULL BLEED. It is real footage rather than a depiction,
-   so it carries the card on its own - no caption bar over it, nothing competing.
-   Paul, 18 Jul: "nice and strong and visual." */
-.co-root .art.real.vid{height:186px}
-/* A FULL-BLEED PHOTOGRAPH gets the same room as the video and the same silence -
-   no caption bar, nothing over the picture. */
-.co-root .art.real.photo{height:186px}
-.co-root .art.real.photo img{object-fit:cover;object-position:center}
-.co-root .cap{
-  position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;
-  align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.94);
-  border-top:1px solid var(--border);font-family:var(--mono);font-size:9px;color:var(--muted);
+ /* UNIFORMITY IS A REQUIREMENT, NOT A PREFERENCE. Paul, 19 Jul: "every card the same
+    height and treatment." So the row is FIXED at the artefact's height rather than
+    sized by its content - otherwise a long blurb makes one card taller than the rest
+    and the set stops reading as a set. The blurbs are written to fit; if one ever does
+    not, it clips visibly here rather than silently stretching the card, which is the
+    failure you want to see. */
+.co-cardbody{
+  display:grid;grid-template-columns:1fr var(--art-w);grid-template-rows:var(--art-h);
+  gap:44px;align-items:start;padding:28px 30px 30px;
 }
-.co-root .cap b{font-weight:400;color:var(--text)}
-.co-root .art .strip{height:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:5px;padding:0 8px;background:#F6F6F3}
-.co-root .art .strip s{display:block;height:5px;background:#E4E4DE;border-radius:3px;text-decoration:none}
-.co-root .art .rows{padding:8px;display:flex;flex-direction:column;gap:6px}
-.co-root .art .rows s{display:block;height:6px;background:#E9E9E3;border-radius:3px;text-decoration:none}
-.co-root .art .rows s.sky{background:#CFE0EB}
-.co-root .art .rows s.or{background:#F6DCC6}
-.co-root .art.term{background:#12242f;border-color:#24414f}
-.co-root .art.term .strip{background:#0d1c25;border-color:#24414f}
-.co-root .art.term .rows s{background:#1e3b4a}
-.co-root .art.term .rows s.sky{background:#2f6688}
-.co-root .art .ph{position:absolute;right:6px;bottom:5px;font-family:var(--mono);font-size:8.5px;color:#C2C2BC;letter-spacing:.04em}
+.co-cardinfo{display:flex;flex-direction:column;height:var(--art-h)}
+.co-cardtitle{
+  font-family:var(--sans);font-weight:400;font-size:clamp(21px,2vw,26px);line-height:1.2;
+  letter-spacing:-.015em;margin:0 0 14px;
+}
+/* THE SENTENCE OR TWO THAT MAKES THE MODULE SELL ITSELF. This is the part the old
+   square cards could not carry, and the reason a click no longer needs to explain
+   anything. */
+.co-cardinfo p{
+  font-family:var(--sans);font-weight:300;color:#57554F;
+  font-size:16px;line-height:1.6;margin:0;max-width:56ch;
+}
+.co-cardfoot{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:22px}
+.co-badge{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--border);border-radius:var(--r-pill);padding:3px 9px;color:var(--muted);background:#fff;
+}
+.co-card:not(.soon) .co-badge{color:#2E7D4F;border-color:#CFE6D9;background:#F2F9F5}
+.co-card:not(.soon) .co-badge::before{
+  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:#2E7D4F;margin-right:6px;vertical-align:middle;
+}
+.co-when{font-family:var(--mono);font-size:11px;color:var(--muted)}
+/* CARD FACE SELLS, CLICK CONVERTS. The action names what the click actually does. */
+.co-cardaction{
+  align-self:flex-start;margin-top:14px;background:none;border:0;padding:0;cursor:pointer;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;color:var(--sky);text-decoration:none;
+}
+.co-cardaction:hover{text-decoration:underline;text-underline-offset:3px}
+.co-card.open .co-cardaction{color:var(--muted)}
+
+/* the ask, specific to this module. It opens inside the card's own window chrome
+   rather than as a modal, so it stays in the page's visual language. */
+.co-cardask{border-top:1px solid var(--border);background:#FCFCFB;padding:20px 30px 24px}
+.co-asklead{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--muted);margin:0 0 12px}
+
+/* ---------- the artefact frame ----------
+   Fixed box, same on every card, so all six cards are the same height whatever is
+   inside them. */
+.co-artframe{
+  width:var(--art-w);height:var(--art-h);position:relative;overflow:hidden;
+  border:1px solid var(--border);border-radius:9px;background:#fff;
+}
+.co-artscale{
+  width:284px;height:186px;transform:scale(var(--art-scale));transform-origin:top left;
+  position:absolute;top:0;left:0;
+}
+/* the artefact's own box, inside the scaled layer, at its authored size */
+.co-root .art{position:absolute;inset:0;overflow:hidden;background:#FCFCFB}
+.co-root .art.real{background:#fff}
+.co-root .art.real img,.co-root .art.real video{width:100%;height:100%;object-fit:cover;display:block}
+/* full-bleed picture and film: nothing over them, no caption competing. Paul,
+   18 Jul: "nice and strong and visual." */
+.co-root .art.real.vid,.co-root .art.real.photo{border:0}
+.co-root .art.real.vid video,.co-root .art.real.photo img{object-position:center}
+/* ⭐ NEVER DRESS A PLACEHOLDER AS EVIDENCE. Where a module has no asset the card says
+   so on its face. Nothing on the page currently renders this - all six are assigned -
+   and it exists so that unassigning one cannot silently leave a decorative grey box. */
+.co-artmissing{display:flex;align-items:center;justify-content:center;background:#FAFAF8}
+.co-artmissing span{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#B4B4AE}
 
 /* ============================================================
-   MODULE WINDOWS - one moment each, per /agent-cards.
-   Paul, 18 Jul: the cards do not have to be real grabs, because the
-   modules do not exist yet. The bar is the homepage windows.
+   THE DRAWN WINDOWS - one moment each, per /agent-cards.
+   Ported unchanged from the 18 Jul board, where Paul accepted all six.
 
-   ⚠️ THE SIZE RULING THAT SHAPED ALL SIX. The archetypes are drawn
-   at 436-940px wide. This box is 284x154. Scaling a full archetype
-   in puts its labels at ~8px, which is the unreadable trap the skill
-   warns about, and the responsive law forbids cropping. So each
-   window carries FEWER ELEMENTS AT NATIVE TYPE SIZE - one moment,
-   three or four parts, nothing shrunk. That is what the homepage
-   terminal does too: a title, one typed line, one response.
+   ⚠️ THE SIZE RULING THAT SHAPED ALL SIX. The archetypes are drawn at 436-940px
+   wide; this box is 284x186. Scaling a full archetype in puts its labels at ~8px,
+   which is the unreadable trap the skill warns about, and the responsive law forbids
+   cropping. So each window carries FEWER ELEMENTS AT NATIVE TYPE SIZE - one moment,
+   three or four parts, nothing shrunk. At this width WORDS READ AND ABSTRACT BARS DO
+   NOT, which is why every window that works here uses words.
 
-   ⚠️ NO INVENTED RESULTS. These windows show the SHAPE of a module's
-   output. No counts, no metrics, no performance claims - a number
-   inside a drawn window is still a claim, and brief:claims bans them.
+   ⚠️ NO INVENTED RESULTS. These show the SHAPE of a module's output. No counts, no
+   metrics, no performance claims - a number inside a drawn window is still a claim,
+   and brief:claims bans them. "214 sent" came across from the homepage's own Outreach
+   Agent card and is the only number on the page.
    ============================================================ */
-.co-root .w{--w-mono:var(--mono);--w-sans:var(--sans);
-   position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;font-family:var(--w-sans)}
+.co-root .w{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;font-family:var(--sans)}
 .co-root .w .wbar{display:flex;align-items:center;gap:6px;height:21px;flex:none;padding:0 8px;
   background:#F6F6F3;border-bottom:1px solid var(--border);
-  font-family:var(--w-mono);font-size:8.5px;color:var(--muted);letter-spacing:.02em}
+  font-family:var(--mono);font-size:8.5px;color:var(--muted);letter-spacing:.02em}
 .co-root .w .wbar .live{margin-left:auto;display:flex;align-items:center;gap:4px;color:var(--sky)}
 .co-root .w .wbar .live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--sky);
-  animation:wpulse 1.7s ease-in-out infinite}
-@keyframes wpulse{0%,100%{opacity:1}50%{opacity:.25}}
+  animation:co-wpulse 1.7s ease-in-out infinite}
+@keyframes co-wpulse{0%,100%{opacity:1}50%{opacity:.25}}
 .co-root .w .wbody{flex:1;min-height:0;padding:9px 10px;overflow:hidden}
 
-/* 1. THE FOX AND THE PROMISE. Paul, 18 Jul: "show a small image of a fox and
-   have a headline inside the module that says 20 things that get you 80% of the
-   way." Headline is his, verbatim.
-   No window bar on this one. It is not a depiction of software, it is a
-   statement - so it sits with the film and the phone as a bare card rather than
-   pretending to be a UI. It is also module 1, the first card anyone sees, and a
-   headline lands faster than a list of five rows ever did.
-   The headline runs BIGGER than anything else inside a card, because it is the
-   only card whose content IS a sentence. */
+/* 1. THE FOX AND THE PROMISE. Paul, 18 Jul: "show a small image of a fox and have a
+   headline inside the module that says 20 things that get you 80% of the way."
+   Headline is his, verbatim. No window bar: it is not a depiction of software, it is
+   a statement, so it sits with the film and the photograph as a bare card rather than
+   pretending to be a UI. The headline runs bigger than anything else inside a card,
+   because it is the only card whose content IS a sentence. */
 .co-root .w-fox{flex-direction:row;align-items:center;gap:10px;padding:12px 14px;background:#fff}
-/* ⚠️ Specificity: `.art.real img` (0,2,1) sets width:100%/object-fit:cover for
-   real grabs and BEAT a plain `.w-fox img` (0,1,1) - the fox was stretched to
-   fill the box and cropped to its head, and the headline was squeezed into a
-   one-character column. Scoped through .art.real to win cleanly. */
+/* ⚠️ Specificity: `.art.real img` (0,2,1) sets width:100%/object-fit:cover and BEAT a
+   plain `.w-fox img` (0,1,1) - the fox was stretched to fill the box and cropped to
+   its head, and the headline was squeezed into a one-character column. Scoped through
+   .art.real to win cleanly. */
 .co-root .art.real .w-fox img{width:74px;height:74px;object-fit:contain;flex:none}
-.co-root .w-fox .hl{font-family:var(--w-sans);font-size:13.5px;line-height:1.3;font-weight:400;
-  letter-spacing:-.01em;color:var(--text)}
+.co-root .w-fox .hl{font-size:13.5px;line-height:1.3;font-weight:400;letter-spacing:-.01em;color:var(--text);margin:0}
 .co-root .w-fox .hl b{font-weight:500}
 
-/* 2. THE LADDER OF MARKETING METRICS - ported from Paul's brief-coach module
-   (fox-advantage-site/wireframes/module-brief-coach.html), tier widths and
-   colours verbatim so it is the same object, not a lookalike.
-   Paul, 18 Jul: "just have the pyramid, which has the commercial metrics right
-   down to the activity metrics. You don't need to explain anything... my
-   thinking is that slow is partly thinking through what are you trying to do in
-   strategy. Also, it's visually different."
-   The sub-metrics are dropped: "Penetration - Frequency - Share of wallet" at
-   this width would land near 6px, and the set's own rule is fewer elements at a
-   readable size rather than everything shrunk.
-   The lit rung WALKS UP, which is what the source pyramid does while coaching -
-   and it is the module's argument in one move: think at the top of the ladder
-   before you spend. */
+/* 2. THE LADDER OF MARKETING METRICS - ported from Paul's brief-coach module, tier
+   widths and colours verbatim so it is the same object rather than a lookalike. Paul,
+   18 Jul: "just have the pyramid, which has the commercial metrics right down to the
+   activity metrics. You don't need to explain anything."
+   Sub-metrics dropped: at this width "Penetration - Frequency - Share of wallet" would
+   land near 6px, and the set's rule is fewer elements at a readable size.
+   The lit rung WALKS UP, which is the module's argument in one move: think at the top
+   of the ladder before you spend. */
 .co-root .w-pyr .wbody{padding:7px 9px;display:flex;flex-direction:column;gap:3px;justify-content:center}
 .co-root .w-pyr .tier{align-self:center;padding:3px 8px;color:#fff;border:1px solid rgba(26,58,78,.16);
   font-size:8.5px;font-weight:500;line-height:1.35;opacity:.5;transition:opacity .5s ease,transform .5s ease}
@@ -6517,9 +6590,8 @@ a.project-card {
 .co-root .w-pyr .t-memory{width:84%;background:#E0660F}
 .co-root .w-pyr .t-comms{width:92%;background:#C99457}
 .co-root .w-pyr .t-activity{width:100%;background:#B9A98F}
-@media (prefers-reduced-motion:reduce){ .w-pyr .tier{opacity:1;transform:none} }
 
-/* 3. THE JOB WIDENS - what a marketer makes now, beyond the old brief */
+/* 3. THE JOB WIDENS - drawn, currently unassigned (module 3 carries the real film). */
 .co-root .w-adj .tiles{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:100%}
 .co-root .w-adj .tile{border:1px solid var(--border);border-radius:6px;padding:6px 7px;background:#FCFCFB;
   display:flex;flex-direction:column;justify-content:space-between}
@@ -6528,23 +6600,17 @@ a.project-card {
 .co-root .w-adj .tile.new{border-color:#CFE0EB;background:#F7FBFD}
 .co-root .w-adj .tile.new s{background:#CFE0EB}
 
-/* 4. THE BLUEPRINT - the Campaign Agent flow, in miniature.
-   Paul asked whether the homepage blueprint has a smaller mobile version we
-   could reuse. It HAS one (globals.css ~5566 on origin/main) but it does not
-   help: that relayout stands the nodes UP vertically, so five nodes plus their
-   connectors run ~330px tall. It solves NARROW; our constraint is SHORT (154px).
-   Wrong axis, so it is rebuilt rather than reused.
-   What IS portable is the SHAPE - branch and converge - which is the thing that
-   makes the Campaign Agent recognisable, and it is also exactly what "build all
-   the steps in a system" means: the work forks and comes back together.
-   ⚠️ Four nodes, not five. "Enrich account" is dropped for room. Node styling
-   follows the source: white fill, 1.5px border, 9px radius, icon chip, and the
-   done/running colours (#2E7D4F green, #6a5acd purple). */
+/* 4. THE BLUEPRINT - the Campaign Agent flow in miniature. What is portable is the
+   SHAPE, branch and converge, which is what makes the Campaign Agent recognisable and
+   is exactly what "build all the steps in a system" means: the work forks and comes
+   back together. Four nodes, not five; "Enrich account" dropped for room.
+   The homepage's own mobile relayout was checked and rejected - it stands the nodes UP
+   vertically and runs ~330px tall. It solves NARROW; the constraint here is SHORT. */
 .co-root .w-bp .wbody{position:relative;padding:0}
 .co-root .w-bp svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .co-root .w-bp .edge{fill:none;stroke:#d5dbe0;stroke-width:1.5}
-.co-root .w-bp .edge.on{stroke:var(--sky);stroke-dasharray:4 6;animation:wdash 1s linear infinite}
-@keyframes wdash{to{stroke-dashoffset:-20}}
+.co-root .w-bp .edge.on{stroke:var(--sky);stroke-dasharray:4 6;animation:co-wdash 1s linear infinite}
+@keyframes co-wdash{to{stroke-dashoffset:-20}}
 .co-root .w-bp .node{position:absolute;transform:translate(-50%,-50%);width:78px;background:#fff;
   border:1.5px solid var(--border);border-radius:8px;padding:5px 6px;display:flex;align-items:center;gap:5px;
   transition:border-color .35s,box-shadow .35s}
@@ -6555,24 +6621,19 @@ a.project-card {
 .co-root .w-bp .node.done .ic{background:#E7F2EC;color:#2E7D4F}
 .co-root .w-bp .node.run{border-color:#C3BDF0;box-shadow:0 3px 12px -4px rgba(106,90,205,.4)}
 .co-root .w-bp .node.run .ic{background:#EAE7F7;color:#6a5acd}
-@media (prefers-reduced-motion:reduce){
-.co-root .w-bp .node{border-color:#BFE3CD} .w-bp .node .ic{background:#E7F2EC;color:#2E7D4F}
-.co-root .w-bp .edge.on{animation:none}
-}
 
-/* 5b. OUTREACH AGENT - the CONVERSATION pane, ported from the homepage.
-   Paul, 18 Jul: "it can't be static", and "there was a version done for mobile
-   that you might prefer." Both point the same way. The homepage runs a TWO-PANE
-   inbox and its MOBILE relayout drops the thread list and gives the conversation
-   full width - which is exactly what fits 284px, and it is the half that actually
-   moves. A thread list is a photograph; a conversation is the agent working.
-   Timings and bubble styling lifted from origin/main, not re-invented:
-   out -> 1.1s -> typing dots -> 2.6s -> reply -> 3.1s -> Replied, cycling 5.6s. */
+/* 5. OUTREACH AGENT - the CONVERSATION pane, ported from the homepage's MOBILE
+   relayout, which drops the thread list and gives the conversation full width. That is
+   both what fits 284px and the half that actually moves: a thread list is a
+   photograph, a conversation is the agent working. Timings and bubble styling lifted
+   from origin/main, not re-invented. */
 .co-root .w-conv .chd{display:flex;align-items:center;gap:7px;padding:6px 0 7px;border-bottom:1px solid var(--border)}
 .co-root .w-conv .av{width:22px;height:22px;border-radius:50%;flex:none;display:flex;align-items:center;
   justify-content:center;font-size:8px;font-weight:600;transition:background .3s}
-.co-root .w-conv .a1{background:#e3edf6;color:#3a6ea5}.w-conv .a2{background:#eee7f4;color:#7a5ea0}
-.co-root .w-conv .a3{background:#e7f1ea;color:#3a8560}.w-conv .a4{background:#f5ebe4;color:#b07a3a}
+.co-root .w-conv .a1{background:#e3edf6;color:#3a6ea5}
+.co-root .w-conv .a2{background:#eee7f4;color:#7a5ea0}
+.co-root .w-conv .a3{background:#e7f1ea;color:#3a8560}
+.co-root .w-conv .a4{background:#f5ebe4;color:#b07a3a}
 .co-root .w-conv .who{font-size:9.5px;font-weight:600;color:var(--text);line-height:1.2;min-width:0}
 .co-root .w-conv .who .sub2{font-size:8px;font-weight:400;color:var(--muted);margin-top:1px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -6582,121 +6643,133 @@ a.project-card {
 .co-root .w-conv .pill::before{content:"";width:5px;height:5px;border-radius:50%;background:#2E7D4F}
 .co-root .w-conv .stream{padding:8px 0 0}
 .co-root .w-conv .b{max-width:88%;padding:6px 9px;font-size:9px;line-height:1.45;border-radius:11px;
-  margin-bottom:6px;opacity:0;transform:translateY(6px);animation:wpop .4s cubic-bezier(.22,1,.36,1) forwards}
+  margin-bottom:6px;opacity:0;transform:translateY(6px);animation:co-wpop .4s cubic-bezier(.22,1,.36,1) forwards}
 .co-root .w-conv .b.out{background:#f4f2ee;color:#33322f;border-bottom-right-radius:4px;margin-left:auto}
 .co-root .w-conv .b.in{background:#fff;border:1px solid var(--border);color:var(--text);border-bottom-left-radius:4px}
-@keyframes wpop{to{opacity:1;transform:translateY(0)}}
+@keyframes co-wpop{to{opacity:1;transform:translateY(0)}}
 .co-root .w-conv .b.type{display:inline-flex;gap:4px;align-items:center;background:#fff;border:1px solid var(--border);
   border-bottom-left-radius:4px;padding:8px 10px}
-.co-root .w-conv .b.type span{width:4px;height:4px;border-radius:50%;background:#C2C2BC;animation:wtd 1.15s ease-in-out infinite}
+.co-root .w-conv .b.type span{width:4px;height:4px;border-radius:50%;background:#C2C2BC;animation:co-wtd 1.15s ease-in-out infinite}
 .co-root .w-conv .b.type span:nth-child(2){animation-delay:.16s}
 .co-root .w-conv .b.type span:nth-child(3){animation-delay:.32s}
-@keyframes wtd{0%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+@keyframes co-wtd{0%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
 
-/* 6. THE HARD ONE, BROKEN UP - a problem too big, taken apart */
+/* 6. THE HARD ONE, BROKEN UP - drawn, currently unassigned (module 6 carries the
+   photograph). */
 .co-root .w-hard .q{font-size:10px;color:var(--text);line-height:1.35;margin-bottom:8px;font-weight:500}
 .co-root .w-hard .part{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:9px;color:var(--muted)}
 .co-root .w-hard .part::before{content:"";width:9px;height:1.5px;background:var(--sky);flex:none;opacity:.5}
 
+/* A stood-down animation must leave a calm READABLE card, never an empty one - the
+   JS renders the finished state and these stop the remaining CSS loops. */
 @media (prefers-reduced-motion:reduce){
-.co-root .w .wbar .live::before, .co-root .w-term .cur{animation:none}
+  .co-root .w .wbar .live::before,
+  .co-root .w-bp .edge.on,
+  .co-root .w-conv .b.type span{animation:none}
+  .co-root .w-pyr .tier{opacity:1;transform:none}
+  .co-root .w-bp .node{border-color:#BFE3CD}
+  .co-root .w-bp .node .ic{background:#E7F2EC;color:#2E7D4F}
+  .co-root .w-conv .b{opacity:1;transform:none;animation:none}
 }
 
-.co-root .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
-.co-root .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
-  border:1px solid var(--border);border-radius:var(--r-pill);padding:3px 9px;color:var(--muted);background:#fff}
-.co-root .badge.live{color:#2E7D4F;border-color:#CFE6D9;background:#F2F9F5}
-.co-root .badge.live::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#2E7D4F;margin-right:6px;vertical-align:middle}
-.co-root .when{font-family:var(--mono);font-size:10px;color:var(--muted)}
+/* ---------- questions ----------
+   Quiet. This is the part of the page that answers rather than sells, so it is type
+   and hairlines and nothing else. */
+.co-qs{padding:88px 0 0}
+.co-qlist{margin-top:28px;border-top:1px solid var(--border)}
+.co-q{border-bottom:1px solid var(--border)}
+.co-qhead{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:none;border:0;cursor:pointer;padding:20px 2px;text-align:left;
+  font-family:var(--sans);font-weight:300;font-size:18px;color:var(--text);
+}
+.co-qhead:hover{color:var(--sky)}
+.co-qmark{font-family:var(--mono);font-size:16px;color:var(--muted);flex:none}
+.co-qbody{padding:0 2px 24px}
+.co-qbody p{
+  font-family:var(--sans);font-weight:300;color:#57554F;
+  font-size:16px;line-height:1.65;margin:0;max-width:74ch;
+}
 
-/* ---------- the ask, on the card ----------
-   Paul, 18 Jul: "when we click on a card, if we can find a way to get them to put
-   their name and email address, that would be good." It opens INSIDE the card's own
-   window chrome rather than as a modal, so it stays in the page's visual language,
-   and it reuses the hero's one-pill pattern rather than becoming a form.
-   ⚠️ ALL COPY HERE IS PROVISIONAL - Paul's or Isa's words, not mine. */
-.co-root .cardjoin{display:none;border-top:1px solid var(--border);margin:12px -17px -14px;padding:12px 17px 14px;background:#FCFCFB;border-radius:0 0 9px 9px}
-.co-root .card.open .cardjoin{display:block}
-.co-root .card.open{z-index:40}
-.co-root .cj-line{font-family:var(--mono);font-size:10.5px;line-height:1.5;color:var(--muted);margin:0 0 9px}
-.co-root .cj-line b{color:var(--text);font-weight:400}
-.co-root .cj-bar{display:flex;align-items:stretch;background:#fff;border:1px solid var(--border);
-  border-radius:var(--r-pill);overflow:hidden;box-shadow:var(--shadow-soft)}
-.co-root .cj-bar:focus-within{border-color:var(--sky)}
-.co-root .cj-bar input{font-family:var(--mono);font-size:12px;color:var(--text);background:transparent;
-  border:0;outline:none;padding:9px 12px;min-width:0}
-/* the email field needs more room than the name field, so they are not 50/50 -
-   at this width an even split clips "your@email.com" */
-.co-root .cj-bar input.nm{flex:0.75 1 0}
-.co-root .cj-bar input.em{flex:1.25 1 0}
-.co-root .cj-bar input::placeholder{color:#B4B4AE}
-.co-root .cj-bar .sep{width:1px;background:var(--border);margin:7px 0}
-.co-root .cj-bar button{border:0;background:var(--sky);color:#fff;cursor:pointer;font-family:var(--mono);
-  font-size:13px;padding:0 14px}
-.co-root .cj-done{display:none;font-family:var(--mono);font-size:11px;color:var(--sky);line-height:1.5}
-.co-root .cardjoin.done .cj-bar, .co-root .cardjoin.done .cj-line{display:none}
-.co-root .cardjoin.done .cj-done{display:block}
+/* ---------- bio ----------
+   BOTTOM OF THE PAGE, BELOW THE QUESTIONS, AND SHORT. Paul's reasoning: it is on the
+   homepage already and this is not a big website. Do not build it into a feature. */
+.co-bio{display:flex;align-items:flex-start;gap:26px;padding:80px 0 0}
+.co-biophoto{width:112px;height:112px;object-fit:cover;flex:none;border:1px solid var(--border)}
+.co-biotext{max-width:74ch}
+.co-bioname{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--sky)}
+.co-biotext p{font-family:var(--sans);font-weight:300;color:#57554F;font-size:16px;line-height:1.65;margin:10px 0 0}
 
-.co-root .season-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#B4B4AE}
+/* ---------- the pill again ---------- */
+.co-footjoin{padding:64px 0 110px}
 
-/* ---------- honest note ---------- */
-.co-root .note{border-top:1px solid var(--border);margin-top:20px;padding:26px 0 70px}
-.co-root .note p{font-family:var(--serif);font-size:18px;line-height:1.7;margin:0 0 14px;max-width:none}
-.co-root .note .lbl{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-
-/* ---------- mobile: no drag, honest stack ---------- */
+/* ---------- mobile ----------
+   🔴 COURSE TRAFFIC LANDS OVERWHELMINGLY ON PHONES (LinkedIn and radio), so this is
+   the layout that matters, not the desktop one.
+   PRECEDENT PAID FOR: the old signup pill was 396px wide (two 172px inputs plus a
+   49px button) on a ~346px viewport, so the blue arrow - the only call to action on
+   the page - sat entirely off-screen, and overflow-x hid the evidence rather than
+   revealing it. The pill now takes the width available and the fields share what is
+   left after the button. RELAYOUT, NEVER CROP. */
 @media (max-width:900px){
-.co-root .wrap{padding:0 22px}
-.co-root .board{height:auto;display:flex;flex-direction:column;gap:14px}
-.co-root #wires{display:none}
-.co-root .card{position:static!important;transform:none!important;width:100%;cursor:default}
+  .co-root .wrap{padding:0 22px}
+  .co-marksbar{padding:9px 22px}
+  .co-hero{padding:34px 0 32px}
+  .co-hero p{max-width:none}
+  .co-join{width:100%}
+  .co-joinbar{width:100%;max-width:420px}
+  .co-joinbar input{width:auto;flex:1 1 0;min-width:0}
+  .co-joinbar input.nm{flex:.8 1 0}
+  .co-joinbar input.em{flex:1.2 1 0}
 
-  /* 🔴 THE SIGNUP WAS CLIPPED ON EVERY PHONE. The pill is 396px wide (two 172px
-     inputs + a 49px button); an iPhone 14 leaves ~346px inside the 22px page
-     padding. It overflowed by 50px, the button is 49px, so the blue arrow - the
-     ONLY call to action on the page - sat entirely off-screen, and body's
-     overflow-x:clip hid the evidence rather than revealing it.
-     Root cause: the rule here targeted .join-fields, the class name the form had
-     BEFORE it was rebuilt as one pill. It has been .join-bar since, so the rule
-     silently matched nothing. A dead .board-hint rule sat beside it, left over
-     from the deleted hint line. Both removed.
-     The pill now fits the phone instead of the phone cropping the pill: it takes
-     the full width available and the two fields share what is left after the
-     button, which is the same relayout-not-removal call the homepage made. */
-.co-root .join{width:100%}
-.co-root .join-bar{width:100%;max-width:420px}
-.co-root .join-bar input{width:auto;flex:1 1 0;min-width:0}
+  /* THE CARD STANDS UP: information first, artefact under it. Stacking also releases
+     the fixed desktop row - a phone card is as tall as its own content, and they all
+     have the same shape anyway, so the set still reads as a set. */
+  .co-cardbody{grid-template-columns:1fr;grid-template-rows:auto;gap:22px;padding:20px 20px 24px}
+  .co-cardinfo{height:auto}
+  .co-cardinfo p{max-width:none}
+  .co-cardask{padding:18px 20px 22px}
+  .co-modules{padding:44px 0 0}
+  .co-qs{padding:56px 0 0}
+  .co-bio{padding:56px 0 0;gap:18px}
+  .co-biophoto{width:84px;height:84px}
+  .co-footjoin{padding:48px 0 96px}
+
+  /* THE ARTEFACT DROPS TO ITS AUTHORED 284x186. At 1:1 every measured value inside
+     the window is exactly what it was designed at, which is the whole reason the
+     frame scales rather than the windows being re-typeset. */
+  .co-card{--art-w:284px;--art-h:186px;--art-scale:1}
+  .co-artframe{max-width:100%}
 }
 
-/* --- PORT ADJUSTMENTS (added 18 Jul by the port, not present in the source) ---
-   Everything above this line is the page's own CSS. These two rules exist only
-   because the page moved from a standalone file into the site, and each one is
-   here for a measured reason.                                                  */
+/* TABLET: stacked, but the card is still wide, so the artefact keeps its DESKTOP size
+   rather than dropping to the phone one. Measured at 768px: a 284px window sat in a
+   724px card with 440px of nothing beside it, which reads as a mistake rather than as
+   space. Stacking is still right at this width - side by side would squeeze the
+   selling sentence into a 300px column. */
+@media (min-width:601px) and (max-width:900px){
+  .co-card{--art-w:380px;--art-h:249px;--art-scale:1.338}
+}
 
-/* 1. INBOUND COLLISION. The site has its own bare `.hero` rule carrying
-   `min-height: 90vh` and `padding-top: 160px`. The course page also uses the
-   class name `.hero`, so those leak in. Scoping the course CSS under .co-root
-   stops it leaking OUT; it does nothing about leaking IN.
-   Measured: original hero 337px, ported hero 695px, min-height 0 vs 694.8px.
-   The course's own padding already wins on specificity (0,2,0 beats 0,1,0);
-   min-height is the only property the course never declares, so it is the only
-   one that gets through. Checked the other seven shared class names - card, on,
-   open, soon, new - and every one of them is a compound selector on the site
-   side (.sf-card.soon, .hpx-wdot.on) so none can match here. This is the only
-   leak. */
-.co-root .hero { min-height: 0; }
+/* 🔴 NARROW PHONES: THE ARTEFACT SHRINKS, IT DOES NOT CROP.
+   Measured in a 316px iframe before this existed: the frame held its authored 284px
+   inside a card whose content box was only 232px, ran 34px past the card edge, and
+   .co-card's overflow:hidden quietly cropped the window. That is the same shape of
+   failure as the signup pill that lost its arrow off the right of the screen - an
+   overflow rule hiding the evidence instead of revealing it.
+   The responsive law forbids cropping, so the frame steps down and the scale steps
+   down with it, proportionally, so nothing inside reflows. Each width below is
+   (viewport - 44px page gutters - 40px card padding).
+   Scale 1 holds from 368px up, which covers almost every handset in use; these two
+   steps only bite on a 360 or a 320. */
+@media (max-width:367px){
+  .co-card{--art-w:252px;--art-h:165px;--art-scale:.887}
+}
+@media (max-width:335px){
+  .co-card{--art-w:228px;--art-h:149px;--art-scale:.803}
+}
 
-/* 2. FIXED-NAV CLEARANCE. The standalone page had a static wordmark nav in the
-   flow. The site nav is `position: fixed` and 88px tall, so it sat on top of the
-   headline - "AI fluency for" was clipped behind it. The page content starts
-   below the nav instead. */
-.co-root { padding-top: 88px; }
-
-/* 3. INBOUND COLLISION, headline. The site's own h1 rule carries
-   `max-width: 800px`. The course h1 never declares max-width, so it got through
-   and the headline sat 220px left of centre inside a centred hero - it was
-   capped at 800px in a 1240px container with margin:0, so it hugged the left
-   edge while the sub-line below it centred correctly. That is also a straight
-   breach of COURSE-BRIEF doctrine 5: body and intro copy run the FULL
-   content-container width, never capped. */
-.co-root h1 { max-width: none; }
+/* very narrow phones: the photo stops competing with the text for the line */
+@media (max-width:460px){
+  .co-bio{flex-direction:column}
+}
