@@ -59,10 +59,23 @@ export const HERO = {
      placeholder - this is the settled name, so it carries no mark. */
   headline: ["AI fluency for", "ambitious marketers."],
 
+  /* 🔴 NOT SETTLED, AND PROPOSED RATHER THAN DECIDED (director's ruling 4, 19 Jul).
+     THE PROBLEM IT IS TRYING TO SOLVE: of the six locked descriptions, only module 3
+     answers "why should I do it" - it is about the reader's career rather than the
+     work. Everything else, including the hero, says what the course IS. A hero that
+     says what a course is but not what it does for the reader is exactly the vagueness
+     Paul opened the day complaining about ("it didn't sell the course to me").
+     WHAT THIS VERSION DOES: keeps what it is, free, the cadence and the date, and adds
+     one clause of the module 3 argument - the work you can take on now that you could
+     not before, at a standard worth having.
+     ⚠️ IT BORROWS PAUL'S OWN SIGNED-OFF WORDING ON PURPOSE. "A genuinely competent
+     standard" is his, verbatim from module 3. Reusing his approved phrase beats a
+     terminal inventing a second way to say the same thing, but it does mean the hero
+     and card 3 currently rhyme, which he may or may not want. */
   sub: p(
     "terminal",
-    "A free course for marketers on doing the actual work with AI: the brief, the campaign, the ads, the research, the report after it. Six modules, one every fortnight, starting 21 September.",
-    "Written by a terminal. REWRITTEN against the marketing-lens directive - the first version read \"a free course for marketers who want to work with AI properly\", which passes if you swap marketer for accountant, and Paul's whole position is that the hook is the marketing, not the AI. The shape is right (what it is, free, the cadence, the date); the words are not Paul's.",
+    "A free course for marketers. The marketing work you can take on now that you could not before, and how to get it to a genuinely competent standard. Six modules, one a fortnight, starting 21 September.",
+    "PROPOSED, NOT SETTLED. Paul has approved none of this. It is a version of the open thought from the 19 Jul session: module 3 is the only one of the six that answers WHY SHOULD I DO IT, and the hero carried no version of that argument. The clause \"a genuinely competent standard\" is lifted verbatim from his signed-off module 3 rather than invented, so the hero and card 3 currently rhyme - his call whether that is repetition or reinforcement. Previous version said \"on doing the actual work with AI: the brief, the campaign, the ads\", which named the work but still never said what the reader gets out of it.",
   ),
 
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
@@ -96,15 +109,16 @@ export const FORMATS = p(
 /* ---------- the six modules ---------- */
 
 export const MODULE_BLURBS: Record<number, Placeholder> = {
-  /* WRITTEN WITH PAUL BY INTERVIEW, 19 Jul (module-descriptions.md §1). This is
-     VARIANT A, 49 words. Still carries a mark because he has NOT signed it off and
-     the length is the open question - the cards are uniform, so whatever length
-     module 1 lands on is the length all six get. Variant B is his cut, dropping
-     "and they are not the obvious ones". */
-  1: p(
-    "terminal",
-    "A small number of habits get you most of the way with AI in marketing work, and they are not the obvious ones. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats. Showing it the content you liked rather than describing it.",
-    "DRAFT written with Paul by interview, 19 Jul - his material, not invented, but NOT SIGNED OFF. Variant A, 49 words. The terminal is deliberately not named here even though it is in the module: it is the single item most likely to make a marketer decide the course is not for them, so it gets answered in the questions block rather than met cold on a card.",
+  /* ✅ LOCKED BY PAUL, 19 Jul. VARIANT B, 42 words, after seeing both rendered at
+     390px: "I'm okay with the number of words... the one with the fewer words is
+     good." "And they are not the obvious ones" is dropped - he had already called
+     that sentence unnecessary, and the render showed it cost a single line, so it
+     was never a layout decision.
+     ⚠️ THE TERMINAL IS DELIBERATELY NOT NAMED even though it is in the module. It is
+     the single item most likely to make a marketer decide the course is not for
+     them, so it gets answered in the questions block rather than met cold here. */
+  1: REAL(
+    "A small number of habits get you most of the way with AI in marketing work. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats. Showing it the content you liked rather than describing it.",
   ),
   /* ✅ SIGNED OFF BY PAUL, 19 Jul. Real copy, so no mark and no entry in the
      not-written-yet count. 41 words.
@@ -123,20 +137,44 @@ export const MODULE_BLURBS: Record<number, Placeholder> = {
   3: REAL(
     "A deep dive into the wide range of marketing capabilities you can now build with AI, and how to get them to a genuinely competent standard. No need to stay specialised as a brand, performance, product or research marketer. You add to what you are already good at.",
   ),
-  4: p(
-    "paul",
-    "Think about the whole system and build every step in it. The signal that starts a campaign, the brief it produces, the work that comes off that, and what happens after it ships.",
-    "PAUL'S OWN WORDS, 18 Jul: \"Think about the systems and build ALL THE STEPS in a system.\" The four steps naming a campaign are a terminal's, added against the marketing-lens directive and matched to the Campaign Agent blueprint on this card.",
+  /* ✅ LOCKED BY PAUL, 19 Jul. 38 words, opening line his own wording.
+     ⭐ THE DISTINCTION FROM MODULE 2, which is what kept earlier drafts vague: module
+     2 is ONE part of the puzzle set up properly; module 4 is END TO END, many parts
+     joined into a journey.
+     NAMING MODULE 3 IN THIS CARD IS DELIBERATE - it makes the ladder explicit, so the
+     six read as an order rather than six separate things.
+     Deliberately left out: the time trade ("takes time, then saves me time"), which
+     is the same promise module 2 makes and would make four read as a repeat of two. */
+  4: REAL(
+    "Once you can create adjacent value, you can build the whole system. A website, a chatbot, a calendar, the email, the research that lands before a call. Wired together into one experience for the customer, end to end.",
   ),
-  5: p(
-    "terminal",
-    "Build an agent that does one real piece of marketing work end to end and keeps doing it. The weekly performance read, an outreach sequence, a first draft of every brief that lands.",
-    "INVENTED, and this is the one module where canon carries NO framing from Paul at all - only his naming ruling (MARKETING agents, never just \"agents\"). He owes the substance here, not just the wording, so treat the three examples as a terminal guessing at his course.",
+  /* ✅ LOCKED BY PAUL, 19 Jul. 35 words, largely his own wording.
+     ⚠️ THIS IS THE ONLY FIRST-PERSON CARD AND IT IS DELIBERATE. DO NOT NORMALISE IT
+     TO MATCH THE OTHERS. The other five describe a subject; this one describes Paul's
+     own practice. "Building marketing agents" is the most technical-sounding title of
+     the six and the one where a marketer is most likely to think "that is for
+     engineers, not me". "I've used" answers that in two words and no impersonal
+     version can.
+     "Whether that is" is load-bearing - the four are illustrations of a general
+     practice, not the module's syllabus. Naming them as JOBS rather than as the named
+     agents also keeps distance from the storefront: Outbound Agent, Copywriter and
+     Brief Coach are products Paul sells, and a free course page listing them by name
+     would read as a shop window. */
+  5: REAL(
+    "The processes, structures and tools I've used to build agents that do real marketing work, whether that is research, outbound, writing emails or coaching a brief. Getting the workflow right, and getting the quality right.",
   ),
-  6: p(
-    "paul",
-    "Attempt the difficult things. Why customers leave in month two, what the pricing should really be, which half of the media is working. The ones written off as too big to go at.",
-    "PAUL'S IDEA, 18 Jul: \"I want people to attempt difficult things.\" He chose TACKLE over solve deliberately - solve promises the outcome, and the module is an invitation to go at things, so a marketer who does not solve it has still done the module. The three examples are a terminal's, added against the marketing-lens directive; the month-two question is the one already drawn into this module's own window.",
+  /* ✅ LOCKED BY PAUL, 19 Jul. 42 words.
+     It is a PUSH, not an observation - "some of them might be possible now" was
+     rejected as too passive: "now is the time to be ambitious and try and tackle
+     difficult problems that are possibly solvable now."
+     OPPORTUNITIES sits beside problems on purpose. Problems alone reads as
+     firefighting; adding opportunities makes it a choice rather than something you
+     are forced into, and keeps the always-positive rule.
+     "Even for a big team" carries the scale point WITHOUT "with fewer people", which
+     is where the description naturally goes and which trips the rule that AI is never
+     framed as replacement. */
+  6: REAL(
+    "The other modules are about doing your work faster and better. This one is about the marketing problems and opportunities that were never possible at all, even for a big team. Now is the time to be ambitious and take them on.",
   ),
 };
 
@@ -145,32 +183,43 @@ export const MODULE_BLURBS: Record<number, Placeholder> = {
    contradicts the wireframe's "What's in it ->" label. Raised as QA-A Q3
    (whats-in-it). Proceeding with a line that names what the click actually does; the
    slot is the same one the real "What's in it ->" takes over post-launch. */
-export const CARD_ACTION = "Sign up and we'll tell you when it opens";
+export const CARD_ACTION = "Sign up and we'll email you when it opens";
 
 /* ---------- the ask ---------- */
 
+/* ⭐ SAY EMAIL, NEVER "TELL". Paul, 19 Jul, looking at the 390px render: "I think it
+   should say sign up and we'll email you when it opens. My point is we're saying the
+   word EMAIL, not tell you."
+   It is not a word swap. The journey has to be obvious before anyone types: "we'll
+   tell you" is vague about the mechanism and could mean anything, "we'll email you"
+   states the medium and sets the expectation. It also matters for consent - someone
+   handing over an email address should be told in plain words that email is what they
+   get. Applies to every place on the page that describes what happens next, including
+   the confirmation states.
+   ⚠️ It still never says the COURSE arrives by email. brief:product.access: email is
+   the layer that POINTS INTO the course, never the container it arrives in. */
 export const ASK = {
   /* NOT "we email it to you" - brief:product.access, and Kit got it wrong once
      already: "email is the layer that POINTS INTO it, not the container the content
      arrives in." The email is a notification; the work happens on the page. */
   cardLine: p(
     "terminal",
-    "Lands {when}. Sign up and we'll tell you when {title} opens.",
+    "Lands {when}. Sign up and we'll email you when {title} opens.",
     "Invented. Doctrinally correct (names the module, names the act, does not promise the course by email) but the words are a terminal's.",
   ),
   cardDone: p(
     "terminal",
-    "You're in. We'll tell you when {title} opens on {when}.",
+    "You're in. We'll email you when {title} opens on {when}.",
     "Invented.",
   ),
   footLine: p(
     "terminal",
-    "Sign up and we'll tell you when it opens.",
+    "Sign up and we'll email you when it opens.",
     "Invented. Sits beside the repeated pill at the foot of the page.",
   ),
   heroDone: p(
     "terminal",
-    "You're in. We'll tell you when module one opens.",
+    "You're in. We'll email you when module one opens.",
     "Invented. Close to the line already on the live page.",
   ),
   /* Error copy. B's route contract, BRIEF-A §5. already:true is a 200 and must read
@@ -187,9 +236,9 @@ export const QUESTIONS: Question[] = [
   {
     q: "Do I need to be technical?",
     a: p(
-      "terminal",
-      "No. It starts in the chat window you already have open, on a brief or a campaign you are working on this week. There is a module later on that gets into heavier tooling, and by then you will want it.",
-      "Invented, but built on a real canon ruling: brief:lesson-1-REVERSED, Paul 18 Jul, moved the terminal OFF day one because \"just the work required to get into the terminal is enough to stop them from doing the work.\" The answer is right; the words are a terminal's.",
+      "owed",
+      "",
+      "🔴 PAUL OWES THIS AND IT IS THE MOST CONSEQUENTIAL SENTENCE ON THE PAGE. A terminal had invented an answer here and it was pulled on the director's ruling, 19 Jul: do not invent this one. It is where a marketer decides the course is or is not for them, and it is the question module 1 deliberately does not answer on its face - the terminal is in that module but is kept off the card because it is the single item most likely to put someone off. So this question is carrying that weight on purpose, and the answer has to be Paul's. Canon that constrains it: brief:lesson-1-REVERSED, where he moved the terminal off day one because \"just the work required to get into the terminal is enough to stop them from doing the work.\"",
     ),
   },
   {
