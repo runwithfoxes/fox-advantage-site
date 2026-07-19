@@ -18,6 +18,23 @@ import { recordSignup } from "@/lib/course-signup-record";
   welcome fire before the intent data it might reference exists.
 */
 
+/*
+  🔴 THIS ROUTE SENDS NO KLAVIYO EVENTS, AND THAT IS DELIBERATE.
+
+  The `onboarding` flow (SyvF2A) does not trigger on any list. It triggers on a
+  custom metric named `Joined`, which the Movement signup page sends. That flow
+  tells the reader their first module is below. Send a `Joined` event from here
+  and every course signup is pointed at a module that does not exist yet.
+
+  Adding people to a list is safe: `GET /lists/U33KxM/flow-triggers/` returns
+  zero flows. Sending an event named `Joined` is what is dangerous, which is the
+  reverse of what most of the project docs used to warn about.
+
+  If the course ever needs events, give it its OWN metric name (for example
+  `Course Signup`), never `Joined`, so the two products cannot collide by
+  naming accident.
+*/
+
 const LIST_ID = "U33KxM"; // course-interest
 const KLAVIYO = "https://a.klaviyo.com/api";
 const REVISION = "2024-10-15";
