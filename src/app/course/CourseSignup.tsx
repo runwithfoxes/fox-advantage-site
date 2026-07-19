@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ASK } from "./placeholderCopy";
-import { Ph } from "./Ph";
+import { ASK } from "./courseCopy";
 
 /**
  * THE SIGNUP PILL. One pill holding both fields - nothing to click open, nothing that
@@ -159,7 +158,7 @@ export default function CourseSignup({
       </form>
       {state.kind === "error" ? (
         <span className="co-joinerr" role="alert">
-          <Ph v={state.which === "email" ? ASK.errEmail : ASK.errServer} />
+          {state.which === "email" ? ASK.errEmail : ASK.errServer}
         </span>
       ) : (
         note

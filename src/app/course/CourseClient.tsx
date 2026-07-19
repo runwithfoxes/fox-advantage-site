@@ -1,13 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { MODULES, isLive } from "./courseModules";
 import ModuleArtefact from "./ModuleArtefact";
 import CourseSignup from "./CourseSignup";
-import { MarksContext, Ph } from "./Ph";
-import { ASK, BIO_LINES, BIO_NAME, CARD_ACTION, FORMATS, HERO, MODULE_BLURBS, QUESTIONS, STRIP } from "./placeholderCopy";
-import type { Placeholder } from "./placeholderCopy";
+import { ASK, BIO_LINES, BIO_NAME, CARD_ACTION, HERO, MODULE_BLURBS, STRIP } from "./courseCopy";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -52,22 +50,6 @@ import type { Placeholder } from "./placeholderCopy";
  * before they do anything, so they'll know where they are." THE OPEN SPACE BESIDE THE
  * TEXT IS THE DESIGN. Do not fill it.
  */
-
-/* Marks default ON. The page is a wireframe carrying sample copy and it must not be
-   possible to look at it and mistake it for the real thing by accident. */
-const MARKS_DEFAULT = true;
-
-function countPlaceholders(): number {
-  const all: Placeholder[] = [
-    HERO.sub,
-    FORMATS,
-    ...Object.values(MODULE_BLURBS),
-    ...Object.values(ASK),
-    ...QUESTIONS.map((q) => q.a),
-  ];
-  /* signed-off copy is written, so it is not counted */
-  return all.filter((v) => v.tier !== "real").length;
-}
 
 /* ---------------------------------------------------------------- module card */
 
@@ -122,7 +104,7 @@ function ModuleCard({
       >
         <div className="co-cardinfo">
           <h3 className="co-cardtitle">{m.title}</h3>
-          <Ph v={blurb} as="p" />
+          <p>{blurb}</p>
 
           <div className="co-cardfoot">
             <span className="co-badge">{live ? "Live" : "Coming"}</span>
@@ -153,26 +135,14 @@ function ModuleCard({
       {open ? (
         <div className="co-cardask">
           <p className="co-asklead">
-            <Ph
-              v={{
-                ...ASK.cardLine,
-                text: ASK.cardLine.text.replace("{when}", m.when).replace("{title}", m.title),
-              }}
-            />
+            {ASK.cardLine.replace("{when}", m.when).replace("{title}", m.title)}
           </p>
           <CourseSignup
             source="card"
             module={m.n}
             lands={m.on}
             compact
-            doneText={
-              <Ph
-                v={{
-                  ...ASK.cardDone,
-                  text: ASK.cardDone.text.replace("{when}", m.when).replace("{title}", m.title),
-                }}
-              />
-            }
+            doneText={ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title)}
           />
         </div>
       ) : null}
@@ -180,43 +150,17 @@ function ModuleCard({
   );
 }
 
-/* ---------------------------------------------------------------- questions */
-
-function Questions() {
-  const [open, setOpen] = useState<number | null>(null);
-  return (
-    <section className="co-qs" id="questions">
-      <h2 className="co-h2">Questions</h2>
-      <div className="co-qlist">
-        {QUESTIONS.map((item, i) => (
-          <div className={"co-q" + (open === i ? " open" : "")} key={item.q}>
-            <button type="button" className="co-qhead" onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
-              <span>{item.q}</span>
-              <span className="co-qmark" aria-hidden>
-                {open === i ? "−" : "+"}
-              </span>
-            </button>
-            {open === i ? (
-              <div className="co-qbody">
-                <Ph v={item.a} as="p" />
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+/* ⛔ THE QUESTIONS BLOCK WAS DELETED IN FULL, 19 Jul. Reasoning is in courseCopy.ts
+   so it does not creep back. If real questions arrive from real signups, it gets
+   rebuilt from their actual wording. */
 
 /* ---------------------------------------------------------------- the page */
 
 export default function CourseClient() {
-  const [marks, setMarks] = useState(MARKS_DEFAULT);
   const [openCard, setOpenCard] = useState<number | null>(null);
-  const phCount = useMemo(countPlaceholders, []);
 
   return (
-    <MarksContext.Provider value={marks}>
+    <>
       {/*
         The site nav, copied from BookLanding.tsx rather than extracted into a shared
         component. This is the FOURTH copy of this markup on the site and that is a
@@ -272,17 +216,6 @@ export default function CourseClient() {
       </nav>
 
       <div className="co-root">
-        {/* BUILD-TIME AFFORDANCE, NOT PART OF THE DESIGN. It comes out the day the real
-            copy lands. Marks on by default; off lets Paul judge rhythm and structure on
-            a clean page. The count is rendered from the data, never typed. */}
-        <div className="co-marksbar">
-          <span className="co-marksnote">
-            Wireframe. <b>{phCount}</b> pieces of copy on this page are not written yet.
-          </span>
-          <button type="button" className="co-marksbtn" onClick={() => setMarks(!marks)}>
-            marks {marks ? "on" : "off"}
-          </button>
-        </div>
 
         <header className="co-hero wrap" id="top">
           <h1 className="co-h1">
@@ -291,12 +224,12 @@ export default function CourseClient() {
             {HERO.headline[1]}
           </h1>
 
-          <Ph v={HERO.sub} as="p" />
+          <p>{HERO.sub}</p>
 
           <div className="co-herojoin">
             <CourseSignup
               source="hero"
-              doneText={<Ph v={ASK.heroDone} />}
+              doneText={ASK.heroDone}
               note={<span className="co-joinnote">{HERO.freeNote}</span>}
             />
           </div>
@@ -320,10 +253,6 @@ export default function CourseClient() {
           <section className="co-modules">
             <div className="co-moduleshead">
               <h2 className="co-h2">The six modules</h2>
-              {/* ⭐ THE MOST CONCRETE FACT THE COURSE OWNS, and until now it appeared on
-                  no page anywhere. It is identical across all six modules, so it sits
-                  once above them rather than six times inside them. */}
-              <Ph v={FORMATS} as="p" />
             </div>
 
             {MODULES.map((m) => (
@@ -335,8 +264,6 @@ export default function CourseClient() {
               />
             ))}
           </section>
-
-          <Questions />
 
           {/* PAUL'S BIO, AT THE BOTTOM AND SHORT. His reasoning: it is on the homepage
               already and this is not a big website. Do not build it into a feature. */}
@@ -355,11 +282,9 @@ export default function CourseClient() {
           <section className="co-footjoin">
             <CourseSignup
               source="foot"
-              doneText={<Ph v={ASK.heroDone} />}
+              doneText={ASK.heroDone}
               note={
-                <span className="co-joinnote">
-                  <Ph v={ASK.footLine} />
-                </span>
+                <span className="co-joinnote">{ASK.footLine}</span>
               }
             />
           </section>
@@ -374,6 +299,6 @@ export default function CourseClient() {
           </Link>
         </div>
       </div>
-    </MarksContext.Provider>
+    </>
   );
 }

@@ -6320,36 +6320,6 @@ a.project-card {
    here rather than avoided, because the new markup could easily reintroduce them. */
 .co-root h1{max-width:none}
 
-/* ---------- the wireframe marks bar ----------
-   BUILD-TIME AFFORDANCE, NOT PART OF THE DESIGN. It exists so a page carrying sample
-   copy cannot be mistaken for the real thing, and it comes out the day Paul's copy
-   lands. Deliberately plain and sitting above the page rather than inside it. */
-.co-marksbar{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  max-width:1240px;margin:0 auto 26px;padding:9px 40px;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:#FFFDF7;
-}
-.co-marksnote{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--muted)}
-.co-marksnote b{color:var(--orange);font-weight:400}
-.co-marksbtn{
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);
-  background:#fff;border:1px solid var(--border);padding:5px 12px;cursor:pointer;
-}
-.co-marksbtn:hover{color:var(--text);border-color:var(--muted)}
-
-/* ---------- the placeholder mark ----------
-   A dotted underline and nothing else. Badges and boxes would wreck the rhythm Paul
-   is being asked to judge, which is the whole reason the page exists. */
-.co-ph{text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:2px;text-underline-offset:4px}
-.co-ph-terminal{text-decoration-color:rgba(244,117,33,.75)}   /* invented by a terminal */
-.co-ph-paul{text-decoration-color:rgba(58,124,165,.75)}       /* Paul's own words, not yet page copy */
-.co-ph-owed{
-  display:inline-block;text-decoration:none;font-family:var(--mono);font-size:11px;
-  letter-spacing:.06em;text-transform:uppercase;color:#B4342B;
-  border:1px dashed rgba(180,52,43,.5);padding:4px 10px;
-}
-
 /* ---------- hero ----------
    🔴 LEFT-ALIGNED, and no fox, no illustration, nothing in the space beside it.
    Paul, 19 Jul: "I want to have as few things on as possible so that people can just
@@ -6360,16 +6330,17 @@ a.project-card {
   font-family:var(--sans);font-weight:300;letter-spacing:-.03em;
   font-size:clamp(36px,5vw,62px);line-height:1.04;margin:0;
 }
-/* ⚠️ THE ONE PLACE THIS PAGE HOLDS A MEASURE. COURSE-BRIEF doctrine 5 says body and
-   intro copy run the FULL content-container width and are never capped at 560-640px.
-   Paul's 19 Jul wireframe draws this paragraph narrow, wrapping after three short
-   lines, with the open space beside it doing the work - and §3 supersedes the older
-   layout doctrine. Set in ch rather than px so it is a MEASURE (a typographic
-   decision about line length) rather than the arbitrary pixel cap the doctrine bans.
-   Raised in QA-A; reverts to full width in one line if the director disagrees. */
+/* 🔴 FULL CONTENT WIDTH. NO CAP. Paul, 19 Jul: "I have this as a rule but it keeps
+   getting broken. I don't want copy stopping halfway across the page."
+   I had this capped at 44ch on the argument that his own wireframe drew the hero
+   paragraph narrow. He looked at the render and overruled it. The rule is
+   feedback_consistent_text_width and it is a standing one.
+   ⚠️ THE ENFORCEMENT IS THE RULE BELOW, NOT THIS COMMENT. Writing the rule down again
+   is not the fix - it had been written down and was still broken. See the guard at
+   the end of this block: no descendant of .co-root may cap a run of copy. */
 .co-hero p{
   font-family:var(--sans);font-weight:300;color:#6E6C68;
-  font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin:22px 0 0;max-width:44ch;
+  font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin:22px 0 0;
 }
 .co-herojoin{margin-top:34px}
 
@@ -6427,10 +6398,8 @@ a.project-card {
 }
 .co-modules{padding:64px 0 0}
 .co-moduleshead{margin-bottom:34px}
-.co-moduleshead p{
-  font-family:var(--sans);font-weight:300;color:#6E6C68;
-  font-size:17px;line-height:1.6;margin:14px 0 0;max-width:78ch;
-}
+/* the paragraph that used to sit here is DELETED and must not come back - see
+   courseCopy.ts. The subhead stays on its own. */
 
 /* ---------- the module card ----------
    ONE LONG RECTANGLE PER MODULE. Paul, 19 Jul: "I do like the shape of the card, so
@@ -6483,7 +6452,7 @@ a.project-card {
    anything. */
 .co-cardinfo p{
   font-family:var(--sans);font-weight:300;color:#57554F;
-  font-size:16px;line-height:1.6;margin:0;max-width:56ch;
+  font-size:16px;line-height:1.6;margin:0;
 }
 .co-cardfoot{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:22px}
 .co-badge{
@@ -6674,31 +6643,14 @@ a.project-card {
   .co-root .w-conv .b{opacity:1;transform:none;animation:none}
 }
 
-/* ---------- questions ----------
-   Quiet. This is the part of the page that answers rather than sells, so it is type
-   and hairlines and nothing else. */
-.co-qs{padding:88px 0 0}
-.co-qlist{margin-top:28px;border-top:1px solid var(--border)}
-.co-q{border-bottom:1px solid var(--border)}
-.co-qhead{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
-  background:none;border:0;cursor:pointer;padding:20px 2px;text-align:left;
-  font-family:var(--sans);font-weight:300;font-size:18px;color:var(--text);
-}
-.co-qhead:hover{color:var(--sky)}
-.co-qmark{font-family:var(--mono);font-size:16px;color:var(--muted);flex:none}
-.co-qbody{padding:0 2px 24px}
-.co-qbody p{
-  font-family:var(--sans);font-weight:300;color:#57554F;
-  font-size:16px;line-height:1.65;margin:0;max-width:74ch;
-}
+/* the questions block was deleted in full, 19 Jul - reasoning in courseCopy.ts */
 
 /* ---------- bio ----------
    BOTTOM OF THE PAGE, BELOW THE QUESTIONS, AND SHORT. Paul's reasoning: it is on the
    homepage already and this is not a big website. Do not build it into a feature. */
 .co-bio{display:flex;align-items:flex-start;gap:26px;padding:80px 0 0}
 .co-biophoto{width:112px;height:112px;object-fit:cover;flex:none;border:1px solid var(--border)}
-.co-biotext{max-width:74ch}
+.co-biotext{min-width:0}
 .co-bioname{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--sky)}
 .co-biotext p{font-family:var(--sans);font-weight:300;color:#57554F;font-size:16px;line-height:1.65;margin:10px 0 0}
 
@@ -6715,7 +6667,6 @@ a.project-card {
    left after the button. RELAYOUT, NEVER CROP. */
 @media (max-width:900px){
   .co-root .wrap{padding:0 22px}
-  .co-marksbar{padding:9px 22px}
   .co-hero{padding:34px 0 32px}
   .co-hero p{max-width:none}
   .co-join{width:100%}
@@ -6732,7 +6683,6 @@ a.project-card {
   .co-cardinfo p{max-width:none}
   .co-cardask{padding:18px 20px 22px}
   .co-modules{padding:44px 0 0}
-  .co-qs{padding:56px 0 0}
   .co-bio{padding:56px 0 0;gap:18px}
   .co-biophoto{width:84px;height:84px}
   .co-footjoin{padding:48px 0 96px}
@@ -6791,3 +6741,26 @@ a.project-card {
   border-radius:11px;border-bottom-left-radius:4px;padding:6px 9px;
   font-size:9px;line-height:1.45;color:#33322F;
 }
+
+/* ============================================================================
+   🔴 THE WIDTH GUARD. Paul, 19 Jul: "I have this as a rule but it keeps getting
+   broken. I don't want copy stopping halfway across the page."
+
+   It had been written down (feedback_consistent_text_width, and COURSE-BRIEF
+   doctrine 5) and was still broken three times on this page alone - the hero
+   paragraph at 44ch, the card copy at 56ch, the bio at 74ch. A rule in a document
+   is not a gate. So the container enforces it instead of a person remembering.
+
+   Every run of copy on this page inherits its width from its LAYOUT CONTAINER -
+   .wrap, the card's info column, the bio column - and no text element is allowed
+   to cap itself below that. If a future change adds a max-width to a paragraph
+   inside .co-root, this rule overrides it and the copy keeps running full width.
+
+   ⚠️ IF YOU EVER NEED A NARROWER MEASURE, CHANGE THE CONTAINER, NOT THE TEXT.
+   That keeps the decision visible in the layout rather than hidden on a <p>.
+   ========================================================================== */
+.co-root p,
+.co-root .co-cardinfo p,
+.co-root .co-biotext,
+.co-root .co-biotext p,
+.co-root .co-hero p{ max-width:none; }
