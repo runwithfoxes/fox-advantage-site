@@ -2835,6 +2835,12 @@ a.project-card {
   to { transform: scale(1); opacity: 1; }
 }
 
+/* ISA AS A WINDOW.
+   Isa is not page furniture, she is the one piece of real software running on
+   the site. The rest of the site is flat and sharp; drawn software is rounded,
+   white and shadowed. She belongs in the second language, so she is drawn the
+   way the hero cards are drawn. Values match the hero deliberately: 15px chrome,
+   9px inner panels, the same layered shadow. Do NOT round anything else. */
 .chat-panel {
   position: fixed;
   bottom: 84px;
@@ -2844,11 +2850,55 @@ a.project-card {
   height: 520px;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05),
+              0 20px 42px -14px rgba(26, 58, 78, 0.26),
+              0 64px 110px -54px rgba(26, 58, 78, 0.42);
   animation: chat-panel-enter 0.25s ease-out;
+  transition: width 0.25s ease-out, height 0.25s ease-out;
 }
+
+/* Expand, the green control. Earns its place on a long conversation.
+   The cap is a max-height rather than a breakpoint: at 680px tall the panel
+   reaches the nav on a laptop viewport and would slide under it on anything
+   shorter. Caught by looking at it, not by reading the diff. */
+.chat-panel-expanded {
+  width: 560px;
+  height: 680px;
+}
+
+.chat-panel,
+.chat-panel-expanded {
+  max-height: calc(100vh - 160px);
+}
+
+/* Window controls. These are real, so every one does something. */
+.chat-panel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.chat-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  transition: filter 0.2s;
+}
+
+.chat-dot:hover { filter: brightness(0.92); }
+
+.chat-dot-close { background: #ff5f57; }
+.chat-dot-min   { background: #febc2e; }
+.chat-dot-zoom  { background: #28c840; }
 
 @keyframes chat-panel-enter {
   from { transform: scale(0.9) translateY(10px); opacity: 0; }
@@ -2873,10 +2923,16 @@ a.project-card {
   text-transform: lowercase;
 }
 
+/* The labelled way out. The dots only announce themselves on hover, and touch
+   users cannot hover, so the word is what makes closing discoverable. Uses the
+   site's backslash syntax, the same device as \build it for you. */
 .chat-panel-close {
   background: none;
   border: none;
-  font-size: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
   color: var(--text-muted);
   cursor: pointer;
   padding: 0;
@@ -3042,7 +3098,11 @@ a.project-card {
     font-size: 20px;
   }
 
-  .chat-panel {
+  /* On mobile she is the whole screen, which is not a window, so the window
+     language comes off: no rounding, no chrome, no expand control. The labelled
+     \close stays and is the only way out, which is why it exists. */
+  .chat-panel,
+  .chat-panel-expanded {
     top: 0;
     bottom: 0;
     right: 0;
@@ -3050,8 +3110,12 @@ a.project-card {
     width: 100%;
     height: 100dvh;
     border: none;
+    border-radius: 0;
+    box-shadow: none;
     animation: chat-panel-mobile-enter 0.25s ease-out;
   }
+
+  .chat-panel-dots { display: none; }
 
   .chat-panel-header {
     padding-top: calc(16px + env(safe-area-inset-top, 0px));

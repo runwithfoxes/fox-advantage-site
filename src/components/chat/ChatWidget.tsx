@@ -41,9 +41,19 @@ export default function ChatWidget() {
   const pathname = usePathname();
   const isContact = pathname === "/contact";
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  /* Close and minimise are deliberately different. Close means "not now", and is
+     remembered for the rest of the visit, which is the behaviour the X has always
+     had. Minimise just puts her back in the bubble and leaves her openable, which
+     is what you want when she is only in the way for a moment. */
+  const dismiss = () => {
+    setIsOpen(false);
+    sessionStorage.setItem(isContact ? "isa-dismissed-contact" : "isa-dismissed", "1");
+  };
 
   const { messages, sendMessage, status, error, setMessages } = useChat({
     messages: [isContact ? CONTACT_WELCOME : WELCOME],
@@ -134,15 +144,37 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="chat-panel">
+    <div className={`chat-panel${isExpanded ? " chat-panel-expanded" : ""}`}>
       <div className="chat-panel-header">
+        {/* Window controls. Isa is the one piece of real software on the site, so
+            these are actual controls, not the drawn ones the hero cards carry.
+            Every dot does something: close, minimise to the bubble, expand.
+            The dots alone are not a discoverable way out (they only reveal their
+            meaning on hover, and touch users cannot hover), so the header also
+            carries a labelled \close in the site's own syntax. */}
+        <div className="chat-panel-dots">
+          <button
+            className="chat-dot chat-dot-close"
+            onClick={dismiss}
+            aria-label="Close chat"
+            title="Close"
+          />
+          <button
+            className="chat-dot chat-dot-min"
+            onClick={() => setIsOpen(false)}
+            aria-label="Minimise chat"
+            title="Minimise"
+          />
+          <button
+            className="chat-dot chat-dot-zoom"
+            onClick={() => setIsExpanded((v) => !v)}
+            aria-label={isExpanded ? "Shrink chat" : "Expand chat"}
+            title={isExpanded ? "Shrink" : "Expand"}
+          />
+        </div>
         <span className="chat-panel-title">isa</span>
-        <button
-          className="chat-panel-close"
-          onClick={() => { setIsOpen(false); sessionStorage.setItem(isContact ? "isa-dismissed-contact" : "isa-dismissed", "1"); }}
-          aria-label="Close chat"
-        >
-          &times;
+        <button className="chat-panel-close" onClick={dismiss} aria-label="Close chat">
+          \close
         </button>
       </div>
 
