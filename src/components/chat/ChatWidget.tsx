@@ -192,9 +192,14 @@ export default function ChatWidget() {
                 text
               ) : m.id === "welcome" ? (
                 <div>
-                  <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  {/* Cover stacks above the copy rather than sitting beside it.
+                      Beside it, the cover took 60px of a 380px panel and left a
+                      23 character measure, which turned a 40 word greeting into
+                      a seven line ribbon. Stacked, the copy runs the full width
+                      of the bubble. */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/book_cover.JPG" alt="The Fox Advantage" style={{ width: 60, height: "auto", flexShrink: 0 }} />
+                    <img src="/book_cover.JPG" alt="The Fox Advantage" style={{ width: 52, height: "auto", flexShrink: 0 }} />
                     <p>Hi, I&apos;m Isa. The first two sections of Paul&apos;s new book are <a href="/book#signup">free to download</a>. The rest will be here soon. Or ask me anything about what we do.</p>
                   </div>
                 </div>

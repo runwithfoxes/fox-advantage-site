@@ -2846,8 +2846,13 @@ a.project-card {
   bottom: 84px;
   right: 24px;
   z-index: 101;
-  width: 400px;
-  height: 520px;
+  width: 380px;
+  /* Height follows the content. A fixed 520px was mostly empty on a one line
+     welcome, and once she had chrome and a shadow that emptiness read as a
+     box sitting on the page rather than a small window. She starts compact
+     and grows with the conversation up to the cap. */
+  height: auto;
+  min-height: 260px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 15px;
@@ -2867,10 +2872,13 @@ a.project-card {
    shorter. Caught by looking at it, not by reading the diff. */
 .chat-panel-expanded {
   width: 560px;
-  height: 680px;
+  min-height: 560px;
 }
 
-.chat-panel,
+.chat-panel {
+  max-height: min(520px, calc(100vh - 160px));
+}
+
 .chat-panel-expanded {
   max-height: calc(100vh - 160px);
 }
@@ -2954,11 +2962,18 @@ a.project-card {
 }
 
 .chat-msg {
-  max-width: 85%;
+  /* 85% left a 23 character measure in a 380px panel. Isa's own messages get
+     the full width; a visitor's message still insets so the two are told apart
+     by shape as well as alignment. */
+  max-width: 100%;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
   line-height: 1.7;
+}
+
+.chat-msg-user {
+  max-width: 85%;
 }
 
 .chat-msg-user {
