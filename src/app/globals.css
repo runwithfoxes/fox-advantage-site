@@ -2846,7 +2846,7 @@ a.project-card {
   bottom: 84px;
   right: 24px;
   z-index: 101;
-  width: 380px;
+  width: 320px;
   /* Height follows the content. A fixed 520px was mostly empty on a one line
      welcome, and once she had chrome and a shadow that emptiness read as a
      box sitting on the page rather than a small window. She starts compact
