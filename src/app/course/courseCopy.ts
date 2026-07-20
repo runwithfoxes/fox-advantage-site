@@ -157,6 +157,36 @@ export const ASK = {
   errServer: "Something went wrong at our end. We are on it, try again shortly.",
 };
 
+/* ---------- sharing ----------
+   Added 20 Jul. ⚠️ EVERY STRING HERE IS A TERMINAL'S PROPOSAL, NOT PAUL'S, and is
+   flagged to him rather than treated as settled. Same status as the ASK lines above.
+
+   The constraints they were written against:
+   - the page never begs. "Know someone" is an offer, not a request, and it is only ever
+     shown to somebody who has already signed up;
+   - no salesy closer, no "spread the word", no exclamation;
+   - `text` is what the native share sheet pre-fills into WhatsApp or Messages, so it has
+     to read as a sentence a person would actually send, not as ad copy. */
+export const SHARE = {
+  /* shown in the signup confirmation only */
+  lead: "Know someone who would get something out of it?",
+  /* shown on a module card, where the context is already on screen */
+  cardLead: "Pass this module on",
+  linkedin: "Share on LinkedIn",
+  native: "Share",
+  copy: "Copy link",
+  copied: "Link copied",
+  /* the native sheet's own fields */
+  title: "AI Fluency for Ambitious Marketers",
+  text: "A free online course for marketers, six modules, starts 21 September.",
+};
+
+/* ⚠️ ABSOLUTE, AND HARDCODED ON PURPOSE. A share target cannot resolve a relative URL,
+   and window.location is not available when the component first renders on the server.
+   This is the canonical address of the page; if the route ever moves, this moves with it
+   and so does `alternates.canonical` in page.tsx. */
+export const COURSE_URL = "https://runwithfoxes.com/course";
+
 /* ⛔ THE QUESTIONS BLOCK WAS DELETED IN FULL, 19 Jul, including its three unanswered
    slots. The reasoning, recorded so it does not creep back:
    - time per module is a number Paul does not have and will not invent;

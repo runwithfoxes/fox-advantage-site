@@ -5,7 +5,18 @@ import Link from "next/link";
 import { MODULES, isLive } from "./courseModules";
 import ModuleArtefact from "./ModuleArtefact";
 import CourseSignup from "./CourseSignup";
-import { ASK, BIO_LINES, BIO_NAME, CARD_ACTION, HERO, MODULE_BLURBS, STRIP } from "./courseCopy";
+import ShareRow, { CopyModuleLink } from "./ShareRow";
+import {
+  ASK,
+  BIO_LINES,
+  BIO_NAME,
+  CARD_ACTION,
+  COURSE_URL,
+  HERO,
+  MODULE_BLURBS,
+  SHARE,
+  STRIP,
+} from "./courseCopy";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -76,7 +87,13 @@ function ModuleCard({
   const MODULE_HREF: string | null = null;
 
   return (
-    <article className={"co-card" + (live ? "" : " soon") + (open ? " open" : "")}>
+    /* ⭐ THE ID IS WHAT MAKES THE PAGE FORWARDABLE IN PIECES. Added 20 Jul. Before it,
+       the only two ids on the whole page were #top and #about, so there was no way for
+       anyone to send a colleague one module rather than the entire course. The copy
+       control in the card foot hands out this anchor.
+       ⚠️ .co-card needs scroll-margin-top to clear the fixed nav, or an arriving link
+       parks the card under it. That rule is in the .co- block in globals.css. */
+    <article id={"m" + m.n} className={"co-card" + (live ? "" : " soon") + (open ? " open" : "")}>
       {/* window chrome - drawn the way a real window looks. Decorative here. */}
       <div className="co-chrome">
         <i className="r" />
@@ -98,7 +115,9 @@ function ModuleCard({
         onClick={(e) => {
           /* the button handles its own click; without this it would fire twice and
              cancel itself out */
-          if ((e.target as HTMLElement).closest(".co-cardaction")) return;
+          /* the copy control is inside the body, so without it here a click would copy
+             the link AND toggle the card, which reads as the page misfiring */
+          if ((e.target as HTMLElement).closest(".co-cardaction, .co-copylink")) return;
           onToggle();
         }}
       >
@@ -109,6 +128,8 @@ function ModuleCard({
           <div className="co-cardfoot">
             <span className="co-badge">{live ? "Live" : "Coming"}</span>
             <span className="co-when">{live ? "Open now" : `Opens ${m.when}`}</span>
+            {/* hard right, out of the reading path. One control, not a share cluster. */}
+            <CopyModuleLink n={m.n} />
           </div>
 
           {live && MODULE_HREF ? (
@@ -142,7 +163,17 @@ function ModuleCard({
             module={m.n}
             lands={m.on}
             compact
-            doneText={ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title)}
+            /* ⭐ THE SHARE CONTROLS LIVE IN THE CONFIRMATION, NOT ON THE PAGE FACE.
+               Somebody who has just signed up is the most likely person on the page to
+               pass it on, and showing it only here means nobody sees a share prompt
+               before they have done the thing the page is for. It carries the MODULE
+               anchor, because they signed up for this module specifically. */
+            doneText={
+              <>
+                {ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title)}
+                <ShareRow url={`${COURSE_URL}#m${m.n}`} lead={SHARE.lead} compact />
+              </>
+            }
           />
         </div>
       ) : null}
@@ -225,7 +256,17 @@ export default function CourseClient() {
           <div className="co-herojoin">
             <CourseSignup
               source="hero"
-              doneText={ASK.heroDone}
+              /* 🔴 THE SHARE ROW APPEARS ONLY AFTER SIGNUP, NEVER BESIDE THE PILL. Paul,
+                 19 Jul: "as few things on as possible so that people can just see it and
+                 sign up." A share cluster above the fold competes with the one thing the
+                 hero exists to do. This replaces the pill once it has done its job, so
+                 the hero at rest is unchanged. */
+              doneText={
+                <>
+                  {ASK.heroDone}
+                  <ShareRow url={COURSE_URL} lead={SHARE.lead} />
+                </>
+              }
               note={<span className="co-joinnote">{HERO.freeNote}</span>}
             />
           </div>
@@ -278,7 +319,12 @@ export default function CourseClient() {
           <section className="co-footjoin">
             <CourseSignup
               source="foot"
-              doneText={ASK.heroDone}
+              doneText={
+                <>
+                  {ASK.heroDone}
+                  <ShareRow url={COURSE_URL} lead={SHARE.lead} />
+                </>
+              }
               note={
                 <span className="co-joinnote">{ASK.footLine}</span>
               }

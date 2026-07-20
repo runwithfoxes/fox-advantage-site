@@ -6472,13 +6472,52 @@ a.project-card {
 .co-joinbar button:disabled{opacity:.6;cursor:default}
 .co-joinnote{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
 .co-joinerr{font-family:var(--mono);font-size:11.5px;color:#B4342B;letter-spacing:.02em}
-.co-join-done{font-family:var(--mono);font-size:13.5px;color:var(--sky)}
+/* ⚠️ COLUMN, NOT ROW. .co-join-done carries .co-join too, which is a horizontal flex
+   row, so the share controls landed BESIDE the confirmation sentence and vertically
+   adrift of it. The confirmation is a sentence and the share row is a footnote under
+   it; they are not two things sitting side by side. Caught on screen, not in the diff. */
+.co-join-done{font-family:var(--mono);font-size:13.5px;color:var(--sky);
+  flex-direction:column;align-items:flex-start;gap:0}
 /* inside a card the pill is tighter, and the fields share the width rather than
    holding two fixed 172px columns that would not fit the panel */
 .co-join-compact .co-joinbar input{font-size:12.5px;padding:10px 14px;width:auto;flex:1 1 0;min-width:0}
 .co-join-compact .co-joinbar{max-width:460px;width:100%}
 .co-join-compact .co-joinbar input.nm{flex:.75 1 0}
 .co-join-compact .co-joinbar input.em{flex:1.25 1 0}
+
+/* ---------- sharing (20 Jul) ----------
+   The controls that appear INSIDE the signup confirmation, never beside the pill. The
+   hero at rest is unchanged; this only exists once somebody has signed up.
+
+   ⚠️ SQUARE, per the house rule. No rounded corners anywhere on this site, which is why
+   these are bordered boxes rather than the pill shape a share button usually takes. */
+.co-share{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.co-sharelead{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em;
+  flex-basis:100%}
+.co-sharebtn{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;line-height:1.3;
+  color:var(--sky);background:transparent;border:1px solid var(--border);
+  padding:7px 13px;cursor:pointer;text-decoration:none;display:inline-block}
+.co-sharebtn:hover{border-color:var(--sky);background:#fff}
+/* the confirmed state borrows the Live badge's green rather than inventing a colour */
+.co-sharebtn.is-copied{color:#2E7D4F;border-color:#CFE6D9;background:#F2F9F5}
+.co-share-compact{margin-top:12px;gap:9px}
+.co-share-compact .co-sharebtn{font-size:11px;padding:6px 11px}
+
+/* THE PER-MODULE CONTROL, hard right in the card foot.
+   ⚠️ ALWAYS VISIBLE, NEVER HOVER-REVEALED. That was the Isa window lesson on 20 Jul:
+   a control that only announces itself on hover does not exist for a touch user, and
+   this page's traffic on Wednesday is a LinkedIn campaign, so most of it is a phone.
+   Quiet is fine; hidden is not. */
+.co-copylink{
+  margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.02em;
+  color:var(--muted);background:transparent;border:0;padding:4px 0;cursor:pointer;
+  opacity:.8;transition:color .16s ease,opacity .16s ease}
+.co-copylink:hover{color:var(--sky);opacity:1}
+.co-copylink.is-copied{color:#2E7D4F;opacity:1}
+
+/* an arriving #m4 link must not park the card under the fixed nav */
+.co-card{scroll-margin-top:96px}
 
 /* ---------- the strip ----------
    ONE LINE, NOT A SECTION. It answers how big this is and how long it runs before
