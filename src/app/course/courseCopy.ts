@@ -36,7 +36,7 @@ export const HERO = {
      desktop was a hard break I had put there. Paul, 19 Jul: "I don't want the headline
      to go across two lines. It can fit on one." The type size now holds it on one line
      at desktop widths; on a phone it wraps naturally, which is fine and expected. */
-  headline: "AI fluency for ambitious marketers",
+  headline: "AI Fluency for Ambitious Marketers",
 
   /* ✅ NOW PAUL'S OWN WORDING, 20 Jul. He dictated the whole string, so it is no longer
      a terminal's proposal. What he was fixing: the page never said anywhere that this is
