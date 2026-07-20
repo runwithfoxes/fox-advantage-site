@@ -16,6 +16,7 @@ const sans = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://runwithfoxes.com"),
   title: "Run with Foxes \\ Paul Dervan",
   description:
     "How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.",
