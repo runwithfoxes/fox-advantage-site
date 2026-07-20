@@ -38,14 +38,14 @@ export const HERO = {
      at desktop widths; on a phone it wraps naturally, which is fine and expected. */
   headline: "AI fluency for ambitious marketers",
 
-  /* ⚠️ STILL A TERMINAL'S SENTENCE, not Paul's, and the only one left on the page.
-     It is a proposal against the open thought that of the six descriptions only
-     module 3 answers "why should I do it", so the hero said what the course IS but
-     never what it does for the reader.
-     "A genuinely competent standard" is lifted verbatim from his signed-off module 3
-     rather than invented, which means the hero and card 3 rhyme. His call whether that
-     is repetition or reinforcement. Flagged in QA-A rather than marked on the page. */
-  sub: "A free course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one a fortnight, starting 21 September.",
+  /* ✅ NOW PAUL'S OWN WORDING, 20 Jul. He dictated the whole string, so it is no longer
+     a terminal's proposal. What he was fixing: the page never said anywhere that this is
+     an ONLINE course a marketer does themselves, in their own time.
+     Three changes from the 19 Jul version: "online" goes in; "one a fortnight" becomes
+     "one released every fortnight" (release schedule, not a pace you have to keep); and
+     the two new closing sentences carry the self-paced promise and the full date.
+     The middle sentence is unchanged - it was already his structure and he kept it. */
+  sub: "A free online course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one released every fortnight. Do at your own pace. Starts 21st September 2026.",
 
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
      18 Jul: say free, never bind his future pricing. "Nothing to buy" is inside
