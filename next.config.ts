@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
+      /* Campaign entry paths for /course. A rewrite, not a redirect, so the
+         address stays as sent and Web Analytics records the entry path as its
+         own page. That is how a visit is attributed to a campaign: Vercel does
+         not capture UTM parameters outside the Plus add-on, and a query string
+         in a one-to-one LinkedIn message reads as marketing automation.
+         /li = Jo's HeyReach campaign. Add one line per channel. */
+      {
+        source: "/course/li",
+        destination: "/course",
+      },
       {
         source: "/distinctive",
         destination: "/distinctive/index.html",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
         </div>
         <ChatWidgetLoader />
+        <Analytics />
       </body>
     </html>
   );
