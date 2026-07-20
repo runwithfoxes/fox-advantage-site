@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MODULES, isLive } from "./courseModules";
 import ModuleArtefact from "./ModuleArtefact";
@@ -189,6 +189,42 @@ function ModuleCard({
 
 export default function CourseClient() {
   const [openCard, setOpenCard] = useState<number | null>(null);
+
+  /**
+   * 🔴 THE BROWSER DOES NOT HONOUR #m4 ON A COLD LOAD, AND THIS SHIPPED BROKEN.
+   * Measured on the live domain 20 Jul: hash "#m4", the card 1669px down the page,
+   * scroll-margin-top correctly computed at 96px, and window.scrollY sitting at 3.
+   * Next's App Router restores scroll to the top during hydration and the native
+   * anchor jump is lost.
+   *
+   * ⚠️ HOW IT GOT PAST VERIFICATION, worth more than the fix: it was "tested" by
+   * loading /course and THEN navigating to /course#m4. That is a same-document hash
+   * jump, which always works and exercises none of this. The case that matters is the
+   * COLD load, because that is what the person receiving a copied link does. A test
+   * that cannot fail is not a test.
+   *
+   * 🔴 behavior:"instant" IS LOAD-BEARING, DO NOT DROP IT. globals.css sets
+   * scroll-behavior:smooth on html, so a bare scrollIntoView() starts a SMOOTH
+   * ANIMATION rather than jumping. On a cold load that animation is competing with
+   * hydration and never survives it, which is why the first attempt at this fix still
+   * left scrollY at 0. Measured: window.scrollTo(0,1672) read back as 3 mid-animation,
+   * while scrollIntoView({behavior:"instant"}) landed at 1576 immediately, which is
+   * 1672 minus the 96px scroll-margin-top. Smooth is right for a click on the page and
+   * wrong for arriving at an address.
+   *
+   * Two passes on purpose. The first lands it; the second corrects for the module
+   * artefacts finishing their layout underneath and shifting the target.
+   */
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!/^m[1-6]$/.test(id)) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    const jump = () => el.scrollIntoView({ behavior: "instant", block: "start" });
+    jump();
+    const t = setTimeout(jump, 350);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <>
