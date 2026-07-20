@@ -1,0 +1,55 @@
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:#111}
+  .og{width:1200px;height:630px;position:relative;overflow:hidden;background:#111}
+  .og img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    object-position:center 58%;display:block}
+
+  /* The scrim is what makes the contrast GUARANTEED rather than lucky. The photo happens
+     to be dark up top; that is not the same as knowing white type will hold on it. */
+  .scrim{position:absolute;left:0;right:0;top:0;height:64%;
+    background:linear-gradient(180deg,rgba(10,10,12,.9) 0%,rgba(10,10,12,.76) 46%,rgba(10,10,12,0) 100%)}
+
+  .txt{position:absolute;left:64px;top:52px;right:64px}
+
+  /* ⭐ THE KICKER IS THE WHOLE POINT OF THIS CARD. Paul, 20 Jul: "it's not obvious from
+     reading them that it's a free course." The headline alone could be a book, a
+     newsletter or a conference, and "Free" in the small line was not doing the job.
+     A solid cream chip makes it the brightest object on the card, so it is read BEFORE
+     the headline and before the fox. Chosen over the same words set as plain white
+     letterspaced type, which half-dissolved into the photo at real feed size. */
+  .k{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:24px;
+    letter-spacing:.16em;font-weight:500;text-transform:uppercase;
+    background:#FAFAF8;color:#1F1E1C;padding:11px 18px 10px;margin-bottom:22px}
+
+  .h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:70px;
+    letter-spacing:-.015em;line-height:1.04;color:#fff}
+
+  /* ⭐ "SIGN UP TODAY", NOT THE START DATE. Paul, 20 Jul, overruling the terminal, and
+     he was right. I had argued the date does more work than an instruction. But the
+     date reads as "come back in September" and gives the reader nothing to do now,
+     when capturing the email on Wednesday is the entire job of the card. The date is
+     still on the page itself, in the hero, where somebody who has clicked can find it.
+     "Six modules" cut in the same conversation. */
+  .m{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:.02em;
+    margin-top:22px;color:rgba(255,255,255,.94)}
+
+  /* ⚠️ WHITEOUT, "Run" INCLUDED. Orange appears ONLY on cream. This is not a choice made
+     here, it is what .hp-nav-logo in globals.css already does over the dark hero video.
+     See memory/feedback/feedback_logo_whiteout_on_dark.md. */
+  .wm{position:absolute;left:64px;bottom:50px;font-family:'JetBrains Mono',monospace;
+    font-weight:300;font-size:22px;letter-spacing:.16em;color:#fff}
+  .wm b{color:#fff;font-weight:300}
+</style>
+<div class="og">
+  <img src="fox-tarantino-trunk-poster.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="txt">
+    <div class="k">Free training course</div>
+    <div class="h">AI Fluency for Ambitious Marketers</div>
+    <div class="m">Sign up today.</div>
+  </div>
+  <div class="wm">/<b>Run</b>withfoxes</div>
+</div>

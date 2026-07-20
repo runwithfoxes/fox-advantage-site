@@ -168,8 +168,13 @@ export const ASK = {
    - `text` is what the native share sheet pre-fills into WhatsApp or Messages, so it has
      to read as a sentence a person would actually send, not as ad copy. */
 export const SHARE = {
-  /* shown in the signup confirmation only */
-  lead: "Know someone who would get something out of it?",
+  /* ✅ PAUL'S OWN WORDING, 20 Jul. He replaced the terminal's proposal outright.
+     What he cut: "Know someone who would get something out of it?" It asks a question
+     the reader has to answer before doing anything, and "get something out of it" is
+     hedged and faintly apologetic about the course.
+     His version is an instruction, not a question, and it flatters the person being
+     sent it rather than the course being sent. */
+  lead: "Share with brilliant marketers you know",
   /* shown on a module card, where the context is already on screen */
   cardLead: "Pass this module on",
   linkedin: "Share on LinkedIn",
