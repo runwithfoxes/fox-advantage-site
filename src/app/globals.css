@@ -2908,6 +2908,23 @@ a.project-card {
 .chat-dot-min   { background: #febc2e; }
 .chat-dot-zoom  { background: #28c840; }
 
+/* Draggable from almost anywhere, the way the hero cards are. The exceptions
+   are handled in useDraggable: input, buttons, links and live text selections
+   are not handles, because dragging from those would break typing and copying.
+   Everything else, including the header and all the dead space, is a handle. */
+.chat-panel-draggable { cursor: grab; }
+.chat-panel-dragging  { cursor: grabbing; }
+
+/* The controls and the copy keep their own cursors. */
+.chat-panel-draggable input,
+.chat-panel-draggable button,
+.chat-panel-draggable a { cursor: pointer; }
+.chat-panel-draggable input { cursor: text; }
+.chat-panel-draggable .chat-panel-messages { cursor: auto; }
+
+/* No transition while dragging, or the panel lags behind the pointer. */
+.chat-panel-dragging { transition: none; }
+
 @keyframes chat-panel-enter {
   from { transform: scale(0.9) translateY(10px); opacity: 0; }
   to { transform: scale(1) translateY(0); opacity: 1; }

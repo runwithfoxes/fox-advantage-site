@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent } from "react";
+import { useDraggable } from "@/lib/useDraggable";
 import { usePathname } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
@@ -45,6 +46,20 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  /* Drag is desktop only. Below 768px she is the whole screen, which is not a
+     window and has nowhere to be moved to. */
+  const [canDrag, setCanDrag] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () => setCanDrag(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const { isDragging } = useDraggable(panelRef, { enabled: canDrag && isOpen });
 
   /* Close and minimise are deliberately different. Close means "not now", and is
      remembered for the rest of the visit, which is the behaviour the X has always
@@ -144,7 +159,12 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className={`chat-panel${isExpanded ? " chat-panel-expanded" : ""}`}>
+    <div
+      ref={panelRef}
+      className={`chat-panel${isExpanded ? " chat-panel-expanded" : ""}${
+        canDrag ? " chat-panel-draggable" : ""
+      }${isDragging ? " chat-panel-dragging" : ""}`}
+    >
       <div className="chat-panel-header">
         {/* Window controls. Isa is the one piece of real software on the site, so
             these are actual controls, not the drawn ones the hero cards carry.
@@ -172,7 +192,13 @@ export default function ChatWidget() {
             title={isExpanded ? "Shrink" : "Expand"}
           />
         </div>
-        <span className="chat-panel-title">isa</span>
+        {/* The name is doing no work here: the fox bubble identifies her, and her
+            first line says who she is. So the most visible slot in the header
+            carries the one thing you cannot otherwise discover, which is that
+            she moves. On mobile she cannot, so it falls back to her name. */}
+        <span className="chat-panel-title">
+          {canDrag ? "drag to move" : "isa"}
+        </span>
         <button className="chat-panel-close" onClick={dismiss} aria-label="Close chat">
           \close
         </button>
