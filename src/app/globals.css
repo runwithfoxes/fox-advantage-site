@@ -6996,3 +6996,28 @@ a.project-card {
 .co-root .co-biotext,
 .co-root .co-biotext p,
 .co-root .co-hero p{ max-width:none; }
+
+/* /about - who we are (entity page) */
+.about-inner {
+  max-width: 820px;
+}
+.about-prose p {
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.about-prose p:last-child {
+  margin-bottom: 0;
+}
+.about-prose a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 768px) {
+  .about-prose p {
+    font-size: 17px;
+  }
+}

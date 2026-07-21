@@ -18,6 +18,7 @@ export interface Chapter {
   section?: string;
   content?: string;
   released?: boolean;
+  description?: string;
 }
 
 // Map chapter files to their display order and part assignments
@@ -30,25 +31,26 @@ const chapterMap: {
   partName: string;
   section?: string;
   released?: boolean;
+  description?: string;
 }[] = [
   // Part 1: What Just Collapsed
-  { file: "ch02-the-marketing-department-autopsy-report.md", number: 1, title: "The marketing department autopsy report", part: 1, partName: "What Just Collapsed", released: true },
-  { file: "ch03-the-robots-arent-coming-theyve-already-moved-in.md", number: 2, title: "The robots aren't coming. They've already moved in", part: 1, partName: "What Just Collapsed", released: true },
-  { file: "ch05-the-algorithm-will-see-you-now.md", number: 3, title: "The algorithm will see you now", part: 1, partName: "What Just Collapsed", released: true },
-  { file: "ch06-everything-everywhere-all-at-once.md", number: 4, title: "Everything. Everywhere. All at once", part: 1, partName: "What Just Collapsed", released: true },
-  { file: "ch07-average-is-the-new-invisible.md", number: 5, title: "Average is the new invisible", part: 1, partName: "What Just Collapsed", released: true },
+  { file: "ch02-the-marketing-department-autopsy-report.md", number: 1, title: "The marketing department autopsy report", part: 1, partName: "What Just Collapsed", released: true, description: "We built marketing like a civil service, layered and slow, right as small teams with AI tools started moving faster than big teams with process." },
+  { file: "ch03-the-robots-arent-coming-theyve-already-moved-in.md", number: 2, title: "The robots aren't coming. They've already moved in", part: 1, partName: "What Just Collapsed", released: true, description: "The threat isn't robots taking your job, it's that the middle of the org chart thins out because there's less to move and less to tidy." },
+  { file: "ch05-the-algorithm-will-see-you-now.md", number: 3, title: "The algorithm will see you now", part: 1, partName: "What Just Collapsed", released: true, description: "If your site is slow, you're not losing attention, you're failing an entry test the algorithm set before a customer ever sees your brand." },
+  { file: "ch06-everything-everywhere-all-at-once.md", number: 4, title: "Everything. Everywhere. All at once", part: 1, partName: "What Just Collapsed", released: true, description: "If your brand isn't on the algorithm's shortlist, you're not in the conversation, and when every option looks the same, meaning breaks the tie." },
+  { file: "ch07-average-is-the-new-invisible.md", number: 5, title: "Average is the new invisible", part: 1, partName: "What Just Collapsed", released: true, description: "Google Maps lets you filter out anything below 4.5 stars, which makes it less a search feature and more a Delete Average button." },
   // Part 2: Better Together
-  { file: "ch09-drivers-wanted.md", number: 6, title: "Drivers Wanted", part: 2, partName: "Better Together", released: true },
-  { file: "ch10-robots-dont-have-skin-in-the-game.md", number: 7, title: "Robots don't have skin in the game", part: 2, partName: "Better Together", released: true },
-  { file: "ch11-kill-bugs-fast.md", number: 8, title: "Kill bugs fast", part: 2, partName: "Better Together", released: true },
-  { file: "ch12-critical-thinking-has-never-been-more-critical.md", number: 9, title: "Critical thinking has never been more critical", part: 2, partName: "Better Together", released: true },
-  { file: "ch13-ai-has-turned-us-all-into-little-hemingways.md", number: 10, title: "AI has turned us all into little Hemingways", part: 2, partName: "Better Together", released: true },
-  { file: "ch14-the-friction-is-the-point.md", number: 11, title: "The friction is the point", part: 2, partName: "Better Together", released: true },
-  { file: "ch15-a-very-tidy-wrong-answer.md", number: 12, title: "A very tidy wrong answer", part: 2, partName: "Better Together", released: true },
+  { file: "ch09-drivers-wanted.md", number: 6, title: "Drivers Wanted", part: 2, partName: "Better Together", released: true, description: "AI doesn't replace great marketing, it makes average work free, so the job now is to define what should never be outsourced." },
+  { file: "ch10-robots-dont-have-skin-in-the-game.md", number: 7, title: "Robots don't have skin in the game", part: 2, partName: "Better Together", released: true, description: "AI can spot problems and suggest alternatives, but it can't feel the weight of a decision, and you need that weight to actually make one." },
+  { file: "ch11-kill-bugs-fast.md", number: 8, title: "Kill bugs fast", part: 2, partName: "Better Together", released: true, description: "AI can analyse what customers do, but it can't experience what customers experience, and that gap is where the real creative leap comes from." },
+  { file: "ch12-critical-thinking-has-never-been-more-critical.md", number: 9, title: "Critical thinking has never been more critical", part: 2, partName: "Better Together", released: true, description: "AI is brilliant at pattern recognition and terrible at pattern relevance, which is why critical thinking matters more now, not less." },
+  { file: "ch13-ai-has-turned-us-all-into-little-hemingways.md", number: 10, title: "AI has turned us all into little Hemingways", part: 2, partName: "Better Together", released: true, description: "AI won't make marketing writing worse, it'll make the nothingness sound good, so the job now is asking what any of it actually means." },
+  { file: "ch14-the-friction-is-the-point.md", number: 11, title: "The friction is the point", part: 2, partName: "Better Together", released: true, description: "The struggle of working something out is not a tax on learning, it is the learning, and skipping it means borrowing someone else's judgment." },
+  { file: "ch15-a-very-tidy-wrong-answer.md", number: 12, title: "A very tidy wrong answer", part: 2, partName: "Better Together", released: true, description: "AI gave a doctor a plausible, confident diagnosis that was wrong, and the same trap is waiting in every tidy marketing strategy it hands you." },
   // Part 3: Behaviours
-  { file: "ch16-fox-behaviours.md", number: 13, title: "Fox behaviours", part: 3, partName: "Behaviours", released: true },
-  { file: "ch17-mr-beast.md", number: 14, title: "Mr Beast", part: 3, partName: "Behaviours", released: true },
-  { file: "ch20-gotta-put-in-the-reps.md", number: 15, title: "Gotta put in the reps", part: 3, partName: "Behaviours", released: true },
+  { file: "ch16-fox-behaviours.md", number: 13, title: "Fox behaviours", part: 3, partName: "Behaviours", released: true, description: "The marketers thriving right now don't have the longest prompt libraries, they've built habits that make them better at the judgement parts AI is bad at." },
+  { file: "ch17-mr-beast.md", number: 14, title: "Mr Beast", part: 3, partName: "Behaviours", released: true, description: "Mr Beast's videos look like chaos, but behind them is someone who knows the exact second viewers click off and drills that detail relentlessly." },
+  { file: "ch20-gotta-put-in-the-reps.md", number: 15, title: "Gotta put in the reps", part: 3, partName: "Behaviours", released: true, description: "AI will write you a positioning statement in eight seconds, but if you haven't done the reps yourself, you won't know if it's good or just clean." },
   { file: "ch18-look-for-the-smell.md", number: 16, title: "Look for the smell", part: 3, partName: "Behaviours" },
   { file: "ch19-standards-decide-what-stays.md", number: 17, title: "Standards decide what stays", part: 3, partName: "Behaviours" },
   { file: "ch21-dont-help-ask-me-questions.md", number: 18, title: "Don't help. Ask me questions", part: 3, partName: "Behaviours" },
@@ -122,6 +124,7 @@ export function getChapterMeta(slug: string): Chapter | null {
     partName: mapping.partName,
     section: mapping.section,
     released: mapping.released,
+    description: mapping.description,
   };
 }
 
