@@ -37,6 +37,7 @@ const PUBLIC_ROUTES = [
   "/students",
   "/students/tools/ai-writer",
   "/training",
+  "/what-is-a-marketing-agent",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
