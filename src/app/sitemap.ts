@@ -37,6 +37,7 @@ const PUBLIC_ROUTES = [
   "/students",
   "/students/tools/ai-writer",
   "/training",
+  "/when-an-ai-agent-needs-a-human",
   "/what-does-a-marketing-agent-cost",
   "/what-is-a-marketing-agent",
 ];
