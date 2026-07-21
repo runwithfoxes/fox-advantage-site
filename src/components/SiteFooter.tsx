@@ -8,6 +8,7 @@ const links: { href: string; label: string }[] = [
   { href: "/what-is-a-marketing-agent", label: "What is a marketing agent?" },
   { href: "/what-does-a-marketing-agent-cost", label: "What does a marketing agent cost?" },
   { href: "/ai-marketing-agent-vs-agency", label: "AI marketing agent vs a marketing agency" },
+  { href: "/ai-marketing-ireland", label: "AI marketing for Irish businesses" },
   { href: "/when-an-ai-agent-needs-a-human", label: "What should an AI agent never do on its own?" },
   { href: "/answer-engine-optimization", label: "Answer engine optimization: 18 things worth knowing" },
   { href: "/answers", label: "Marketing questions, answered" },
