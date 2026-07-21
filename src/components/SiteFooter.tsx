@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const links: { href: string; label: string }[] = [
   { href: "/what-is-a-marketing-agent", label: "What is a marketing agent?" },
+  { href: "/what-does-a-marketing-agent-cost", label: "What does a marketing agent cost?" },
   { href: "/ai-marketing-agent-vs-agency", label: "AI marketing agent vs a marketing agency" },
   { href: "/answer-engine-optimization", label: "Answer engine optimization: 18 things worth knowing" },
   { href: "/answers", label: "Marketing questions, answered" },
