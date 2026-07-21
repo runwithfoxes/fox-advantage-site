@@ -116,9 +116,11 @@ export default function AgentVsAgencyPage() {
               teach the National Lottery team.
             </p>
             <p>
-              <strong>Copy craft.</strong> Writing that leads with the benefit and
-              earns attention with something the reader didn't expect, not a list
-              of features dressed up in adjectives.
+              <strong>Copy craft.</strong> Before the agent writes a headline it
+              answers the two questions Paul learned across twenty years of
+              direct-response advertising, studying the classics like Ogilvy,
+              Caples and Hopkins: what is the strongest benefit to the reader, and
+              what would make a stranger stop scrolling. Only then does it write.
             </p>
             <p>
               <strong>Art direction.</strong> Images and artwork chosen and
