@@ -118,18 +118,27 @@ function BookLandingContent({ parts }: Props) {
         <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
         <div className="hp-nav-links">
           <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/tools &#9662;</span>
+            <span className="hp-dropdown-trigger">/products &#9662;</span>
             <div className="hp-mega">
               <div className="hp-mega-inner">
                 <div className="hp-mega-col">
-                  <div className="hp-mega-label">MODULES</div>
-                  <Link href="/#mod-effectiveness">Marketing effectiveness</Link>
-                  <Link href="/#mod-segmentation">Segmentation</Link>
-                  <Link href="/#mod-brand-strategy">Brand strategy</Link>
-                  <Link href="/#mod-advertising">Advertising</Link>
-                  <Link href="/#mod-studio">Studio</Link>
-                  <Link href="/#mod-business-development">Business development</Link>
-                  <Link href="/#mod-research">Research and insights</Link>
+                  {/* ⭐ MIRRORS THE LIVE HOMEPAGE NAV (SF_MODS/SF_PAGES in HomePage.tsx),
+                      21 Jul. The old /tools -> MODULES list pointed at homepage anchors
+                      (#mod-effectiveness ...) that stopped existing when the homepage
+                      became the storefront, so all seven were dead links. This is a
+                      hand-copy of the products dropdown; if the storefront list changes,
+                      it must be updated here and in CourseClient.tsx too. The real fix is
+                      one shared <SiteNav>, on the backlog. */}
+                  <div className="hp-mega-label">PRODUCTS</div>
+                  <a href="/products/module-campaign-manager.html">Campaign Manager</a>
+                  <a href="/products/module-advertising-agent.html">Advertising Agent</a>
+                  <a href="/products/module-outbound-agent.html">Outbound Agent</a>
+                  <a href="/products/module-lifecycle-agent.html">Lifecycle Agent</a>
+                  <a href="/products/module-brand-guardian.html">Brand Guardian</a>
+                  <a href="/products/module-brief-coach.html">Brief Coach</a>
+                  <a href="/products/module-copywriter.html">Copywriter</a>
+                  <a href="/products/module-ghostwriter.html">Ghostwriter</a>
+                  <a href="/products/module-ad-maker.html">Ad Resizer</a>
                 </div>
               </div>
             </div>
