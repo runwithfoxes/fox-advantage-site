@@ -27,7 +27,7 @@ export default function AboutPage() {
           <div className="section-label">/about</div>
           <h1 className="contact-heading">Who we are</h1>
 
-          <div className="about-prose">
+          <div className="rwf-body">
             <p>
               Run with Foxes is a marketing consultancy run by Paul Dervan. We
               build marketing agents for businesses, software that makes the
