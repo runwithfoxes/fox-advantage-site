@@ -7001,3 +7001,21 @@ a.project-card {
 .about-inner {
   max-width: 820px;
 }
+
+/* /ai-marketing-agent-vs-agency comparison page. Scoped rhythm in Ren's reading register. */
+.avc-reading {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.avc-reading > * + * {
+  margin-top: 22px;
+}
+.avc-reading > .rwf-h2 {
+  margin-top: 52px;
+}
+.avc-reading .page-faq-item + .page-faq-item {
+  margin-top: 26px;
+}
+.avc-reading .page-faq-item .rwf-body {
+  margin-top: 10px;
+}

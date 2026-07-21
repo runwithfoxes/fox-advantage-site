@@ -12,6 +12,8 @@ const BASE = "https://runwithfoxes.com";
 const PUBLIC_ROUTES = [
   "/",
   "/48",
+  "/about",
+  "/ai-marketing-agent-vs-agency",
   "/ai-writer",
   "/answers",
   "/book",
