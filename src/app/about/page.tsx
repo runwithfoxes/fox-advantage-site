@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteFooter from "@/components/SiteFooter";
 
 export const metadata = {
   title: "About - Run with Foxes",
@@ -48,6 +49,8 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
+
+      <SiteFooter current="/about" />
 
       <div className="bottom-bar">
         <Link href="/" className="active">

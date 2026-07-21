@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Answer Engine Optimization: 18 Things Worth Knowing",
@@ -211,6 +212,8 @@ export default function AeoHubPage() {
           </div>
         </div>
       </main>
+
+      <SiteFooter current="/answer-engine-optimization" />
 
       <div className="bottom-bar">
         <Link href="/" className="active">

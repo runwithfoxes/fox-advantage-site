@@ -7040,3 +7040,36 @@ a.project-card {
 .geo-point .rwf-meta {
   margin-top: 10px;
 }
+
+/* Site links footer (SiteFooter.tsx), so content pages are not orphans. */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 44px 48px 48px;
+}
+.site-footer-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.site-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.site-footer-links a {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  width: fit-content;
+}
+.site-footer-links a:hover {
+  border-bottom-color: var(--orange);
+}
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 36px 24px;
+  }
+}

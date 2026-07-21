@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "What Is a Marketing Agent? | Run with Foxes",
@@ -213,6 +214,8 @@ export default function WhatIsAMarketingAgentPage() {
           </div>
         </div>
       </main>
+
+      <SiteFooter current="/what-is-a-marketing-agent" />
 
       <div className="bottom-bar">
         <Link href="/" className="active">
