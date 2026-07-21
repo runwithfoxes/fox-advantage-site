@@ -5517,7 +5517,9 @@ a.project-card {
   display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ah-sky);
   border: 1px solid var(--ah-border); background: #fff; padding: 5px 12px; border-radius: 20px;
   margin-bottom: 30px; box-shadow: 0 1px 2px rgba(20,16,40,.05);
+  text-decoration: none; transition: border-color .2s, color .2s;
 }
+.ah-kicker:hover { border-color: var(--ah-sky); color: var(--ah-deep); }
 .ah-head h1 {
   font-family: var(--mono);
   font-size: clamp(28px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -.03em;

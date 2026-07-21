@@ -21,7 +21,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hi, I'm Isa. The first two sections of Paul's new book are [free to download](/book#signup). The rest will be here soon. Or ask me anything about what we do.",
+      text: "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. [Register today](/course). Did I mention it is free? Paul asked me to say it was brilliant...",
     },
   ],
 };
@@ -218,16 +218,9 @@ export default function ChatWidget() {
                 text
               ) : m.id === "welcome" ? (
                 <div>
-                  {/* Cover stacks above the copy rather than sitting beside it.
-                      Beside it, the cover took 60px of a 380px panel and left a
-                      23 character measure, which turned a 40 word greeting into
-                      a seven line ribbon. Stacked, the copy runs the full width
-                      of the bubble. */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/book_cover.JPG" alt="The Fox Advantage" style={{ width: 52, height: "auto", flexShrink: 0 }} />
-                    <p>Hi, I&apos;m Isa. The first two sections of Paul&apos;s new book are <a href="/book#signup">free to download</a>. The rest will be here soon. Or ask me anything about what we do.</p>
-                  </div>
+                  {/* Text-only welcome, no course card (Paul's call). The link
+                      carries the CTA; the copy carries the voice. */}
+                  <p>Hi, we&apos;re launching a new free online training course: AI Fluency for Ambitious Marketers. <a href="/course">Register today</a>. Did I mention it is free? Paul asked me to say it was brilliant...</p>
                 </div>
               ) : (
                 <div
