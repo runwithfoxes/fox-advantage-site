@@ -15,6 +15,7 @@ const PUBLIC_ROUTES = [
   "/about",
   "/ai-marketing-agent-vs-agency",
   "/ai-writer",
+  "/answer-engine-optimization",
   "/answers",
   "/book",
   "/books",
