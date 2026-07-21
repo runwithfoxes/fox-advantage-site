@@ -52,10 +52,10 @@ export const work: WorkSection[] = [
     ] },
 
   { title: "The growth desk files", kind: "files", zone: "work", status: "ready", isNew: true,
-    desc: "Two downloads. The instructions get pasted into the project, the zip holds the six knowledge files that go in alongside them.",
+    desc: "Two downloads. The instructions get pasted into the project, the zip holds the seven knowledge files that go in alongside them.",
     files: [
       { name: "The instructions", file: "growth-desk-instructions.md", note: "Open it, copy all of it, paste into the project's Instructions box" },
-      { name: "The growth desk files", file: "eaton-growth-desk.zip", note: "Unzip and upload the six .md files into the project as knowledge. Covers the message rules, how to read the numbers honestly, Sarah's and Sean's voices, the content playbook and the letter structure" },
+      { name: "The growth desk files", file: "eaton-growth-desk.zip", note: "Unzip and upload the seven .md files into the project as knowledge. Covers the message rules, how to read the numbers honestly, Sarah's and Sean's voices, the content playbook, the letter structure, and a guide to maintaining the desk over time" },
     ] },
 
   { title: "ICP outreach, step by step", kind: "embed", zone: "work", status: "ready",
