@@ -394,7 +394,7 @@ export const work: WorkSection[] = [
     zone: "work",
     isNew: true,
     groupLabel: "Latest · your 2 and 6 July feedback, addressed",
-    desc: "You commented on four assets. Here is each comment, what we changed, and the previous version beside the new one. The three reworked assets are now live on this page; the blog header is a new direction we are scoping.",
+    desc: "Here is each comment, what we changed, and the previous version beside the new one. All three reworked assets are now live on this page.",
     html: `<div class="fbr">
 <style>
   .fbr{color:#060d2e;}
@@ -465,17 +465,6 @@ export const work: WorkSection[] = [
     </div>
   </div>
 
-  <div class="fbr-asset">
-    <div class="fbr-h"><h4>Blog header</h4><span class="fbr-size">1200 × 630</span><span class="fbr-pending">New direction</span></div>
-    <div class="fbr-cols">
-      <div class="fbr-fb"><div class="fbr-lab">Your feedback · 6 Jul</div><em>“Strong preference for not using text within article header images and thumbnails [issues w/ duplication, readability, accessibility, etc.]. Title already exists alongside. Image doing a different job, ideally a thematic visual cue. Is it possible to automate creation of conceptual imagery rather than title cards?”</em><div class="fbr-attr"> -  client, 6 Jul</div></div>
-      <div class="fbr-prop"><div class="fbr-lab">Proposed direction</div><p>Agreed. The header image should not repeat the title. We are moving blog headers and thumbnails to a conceptual visual cue instead of a title card.</p><p>This is a new template rather than a tweak, so we are scoping the approach first: how we generate an on-brand conceptual image per post, repeatably, at the quality bar of your own examples. New versions to follow.</p></div>
-    </div>
-    <div class="fbr-ba">
-      <div class="fbr-shot prev"><div class="fbr-cap"><span class="fbr-tag">Previous</span><span class="fbr-px">title card</span></div><img src="/clients/softco/media/blog_header_prev.png" alt="previous blog header"></div>
-      <div class="fbr-shot next"><div class="fbr-cap"><span class="fbr-tag">New</span><span class="fbr-px">1200 × 630 · no text</span></div><img src="/clients/softco/media/blog_header_concept.png" alt="new conceptual blog header"></div>
-    </div>
-  </div>
 </div>`,
   },
   {
@@ -524,14 +513,6 @@ export const work: WorkSection[] = [
     isNew: true,
     desc: "A lead-magnet banner for a downloadable guide: headline, one button carrying the offer, and the guide cover. For blog, email and LinkedIn.",
     items: [{ src: "ebook_banner.png", ratio: "1200/628", w: 520, cap: "Download banner · 1200×628" }],
-  },
-  {
-    title: "Blog header · conceptual, no text",
-    kind: "gallery",
-    zone: "work",
-    isNew: true,
-    desc: "The new blog-header direction from your comment: a thematic concept illustration in your blueprint linework, no text, so it never repeats the article title. This one reads build versus buy. One is generated per post.",
-    items: [{ src: "blog_header_concept.png", ratio: "1200/630", w: 480, cap: "Concept header · 1200×630" }],
   },
   {
     title: "Survey promo",
