@@ -1,0 +1,568 @@
+/* ==========================================================================
+   /softco - brand-consistency demonstration page.
+
+   Everything here is scoped under .sft-root so it cannot touch the rest of
+   the site. The values are not invented: colours and type come from SoftCo's
+   brand guidelines (clients/softco/memory/softco-brand-spec-for-ads.md, which
+   condenses their 48-page bible), cross-checked against computed styles read
+   off softco.com on 23 Jul 2026. Where the two disagree, the page follows the
+   guideline and says so out loud (see the receipts section).
+
+   Prefix: sft-  (hp- / hpx- / cl- / ah- / co- are all taken)
+   ========================================================================== */
+
+/* Erode is SoftCo's headline face. Free for commercial use (Indian Type
+   Foundry, via befonts). Files come from their own brand pack:
+   brand-assets/AI Production engine/SoftCo Brand/erode-font-family-*.zip */
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/erode/Erode-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/erode/Erode-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.sft-root {
+  /* Measured brand values. Share-of-page targets in the comments. */
+  --sft-blue: #047fe5;        /* signature colour, 40-60% of the page */
+  --sft-navy: #060d2e;        /* body text and depth, 30-50% */
+  --sft-orange: #f7931e;      /* accent only, 0-10% */
+  --sft-lightblue: #e8f2fd;   /* panel tint */
+  --sft-grey: #f2f2f2;
+
+  /* The hero gradient, read off softco.com's own hero element. */
+  --sft-hero-a: #1f99f2;
+  --sft-hero-b: #0d72d4;
+
+  --sft-serif: "Erode", "Lora", Georgia, serif;
+  --sft-sans: var(--font-jakarta), "Plus Jakarta Sans", Arial, sans-serif;
+
+  --sft-max: 1240px;
+  --sft-gut: 40px;
+
+  font-family: var(--sft-sans);
+  color: var(--sft-navy);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sft-root *,
+.sft-root *::before,
+.sft-root *::after {
+  box-sizing: border-box;
+}
+
+.sft-wrap {
+  max-width: var(--sft-max);
+  margin: 0 auto;
+  padding: 0 var(--sft-gut);
+}
+
+/* --- Type primitives -------------------------------------------------- */
+
+/* Their H1: Erode Semibold 80/84, white on the hero. */
+.sft-h1 {
+  font-family: var(--sft-serif);
+  font-weight: 600;
+  font-size: clamp(36px, 5.4vw, 80px);
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+/* Their H2: Erode Semibold 60/64, navy on light, white on dark. */
+.sft-h2 {
+  font-family: var(--sft-serif);
+  font-weight: 600;
+  font-size: clamp(30px, 3.9vw, 60px);
+  line-height: 1.08;
+  margin: 0;
+}
+
+.sft-h3 {
+  font-family: var(--sft-serif);
+  font-weight: 600;
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* The highlight technique: one key phrase in a headline switches to SoftCo
+   Blue. Headings only, never body. */
+.sft-hl { color: var(--sft-blue); }
+.sft-hl-light { color: #7cc0ff; }
+
+/* Their eyebrow: Plus Jakarta Sans 800, 14px, 1.4px tracking, uppercase. */
+.sft-eyebrow {
+  font-family: var(--sft-sans);
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--sft-orange);
+  margin: 0 0 22px;
+}
+.sft-eyebrow-white { color: #fff; }
+
+.sft-body {
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(6, 13, 46, 0.78);
+  margin: 0;
+}
+.sft-body-light { color: rgba(255, 255, 255, 0.85); }
+
+.sft-lede {
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Button ----------------------------------------------------------- */
+/* Orange field, 5px radius, 15px 30px, Jakarta 700 14px / 0.35px tracking:
+   all measured off their live button. The TEXT COLOUR is the one deliberate
+   departure and it is argued in the receipts section. */
+.sft-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--sft-orange);
+  color: var(--sft-navy);
+  font-family: var(--sft-sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  transition: filter 0.18s ease;
+}
+.sft-btn:hover { filter: brightness(0.94); }
+
+.sft-btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--sft-navy);
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Their quieter text link, e.g. "EXPLORE SOLUTION >" */
+.sft-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--sft-navy);
+}
+.sft-link span { color: var(--sft-orange); }
+.sft-link-light { color: #fff; }
+
+/* --- Blueprint linework ------------------------------------------------
+   L2 "precision" level from the guidelines: one to three fine elements in
+   the margins, low density, brand colours only. Never a pattern. */
+.sft-rule {
+  position: relative;
+  height: 1px;
+  background: rgba(6, 13, 46, 0.14);
+  margin: 0;
+}
+.sft-rule::before,
+.sft-rule::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background: var(--sft-blue);
+}
+.sft-rule::before { left: 0; }
+.sft-rule::after { right: 0; }
+.sft-rule-light { background: rgba(255, 255, 255, 0.22); }
+.sft-rule-light::before,
+.sft-rule-light::after { background: #7cc0ff; }
+
+/* --- 0. Run with Foxes frame ------------------------------------------
+   Deliberately NOT in SoftCo's language. This bar exists so the page can
+   never be mistaken for softco.com. */
+.sft-frame {
+  background: #1a3a4e;
+  color: #fff;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+.sft-frame-inner {
+  max-width: var(--sft-max);
+  margin: 0 auto;
+  padding: 11px var(--sft-gut);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.sft-frame a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.4); }
+.sft-frame-tag { color: rgba(255, 255, 255, 0.62); }
+
+/* --- 1. Hero ----------------------------------------------------------- */
+.sft-hero {
+  background: linear-gradient(var(--sft-hero-a), var(--sft-hero-b));
+  color: #fff;
+  padding: 34px 0 96px;
+}
+.sft-hero-nav {
+  max-width: var(--sft-max);
+  margin: 0 auto 76px;
+  padding: 0 var(--sft-gut);
+}
+.sft-hero-nav img { height: 30px; width: auto; display: block; }
+
+.sft-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+  max-width: 940px;
+}
+.sft-hero-sub {
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.88);
+}
+.sft-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+/* --- 2. The animation --------------------------------------------------- */
+.sft-anim {
+  background: linear-gradient(var(--sft-hero-b), #0a5fb4);
+  color: #fff;
+  padding: 0 0 90px;
+}
+.sft-anim-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+.sft-anim-head .sft-eyebrow { margin-bottom: 10px; }
+.sft-anim-frame {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(6, 13, 46, 0.32);
+  background: #4c9be9;
+  line-height: 0;
+}
+.sft-anim-frame video { width: 100%; height: auto; display: block; }
+.sft-anim-note {
+  margin-top: 20px;
+  max-width: 760px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- 3. Their own section, rebuilt -------------------------------------- */
+.sft-sec { padding: 104px 0; }
+.sft-sec-light { background: #fff; }
+.sft-sec-tint { background: var(--sft-lightblue); }
+.sft-sec-dark { background: var(--sft-navy); color: #fff; }
+
+.sft-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: start;
+}
+.sft-split > div { min-width: 0; }
+
+.sft-complex-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sft-complex-list li {
+  padding: 22px 0;
+  border-top: 1px solid rgba(6, 13, 46, 0.12);
+}
+.sft-complex-list li:first-child { border-top: 0; padding-top: 0; }
+.sft-complex-list .sft-eyebrow { margin-bottom: 10px; }
+
+.sft-actions { margin-top: 36px; }
+
+/* Provenance line: says where a block of copy or an asset came from. */
+.sft-src {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  color: rgba(6, 13, 46, 0.5);
+  margin: 18px 0 0;
+}
+.sft-src-light { color: rgba(255, 255, 255, 0.55); }
+
+/* --- 4. Photograph ------------------------------------------------------ */
+.sft-photo-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.sft-photo {
+  position: relative;
+  line-height: 0;
+}
+.sft-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+/* Light blueprint overlay: the treatment their guidelines allow on imagery.
+   Corner alignment marks, not rules across the picture, so nothing crosses
+   the hands or the process flow on the tablet. */
+.sft-photo::before,
+.sft-photo::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+.sft-photo::before { left: 28px; top: 0; height: 74px; width: 1px; }
+.sft-photo::after { left: 0; width: 74px; top: 28px; height: 1px; }
+.sft-photo-mark {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 9px;
+  height: 9px;
+  background: var(--sft-orange);
+  z-index: 2;
+}
+
+.sft-quote {
+  font-family: var(--sft-serif);
+  font-weight: 400;
+  font-size: clamp(21px, 2vw, 29px);
+  line-height: 1.34;
+  margin: 0 0 24px;
+  color: var(--sft-navy);
+}
+.sft-attrib {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+.sft-attrib strong { display: block; font-weight: 700; }
+.sft-attrib span { color: rgba(6, 13, 46, 0.62); }
+
+.sft-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(6, 13, 46, 0.14);
+}
+.sft-stat-n {
+  font-family: var(--sft-serif);
+  font-weight: 600;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1;
+  color: var(--sft-blue);
+  display: block;
+}
+.sft-stat-l {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: rgba(6, 13, 46, 0.62);
+  margin-top: 10px;
+  display: block;
+}
+
+/* --- 5. Receipts -------------------------------------------------------- */
+.sft-receipt-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: start;
+  margin-bottom: 66px;
+}
+
+.sft-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-bottom: 54px;
+}
+/* Dark Blue is the section background, so its chip would vanish without an
+   edge. The border is what makes it readable as a swatch rather than a hole. */
+.sft-swatch-chip {
+  height: 96px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+.sft-swatch-hex {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  margin: 14px 0 4px;
+  color: #fff;
+}
+.sft-swatch-name { font-size: 13px; font-weight: 700; margin: 0 0 4px; }
+.sft-swatch-role {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.sft-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 60px;
+}
+.sft-spec {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 20px;
+  padding: 17px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.sft-spec dt { color: rgba(255, 255, 255, 0.6); margin: 0; }
+.sft-spec dd {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+
+/* The one disagreement between the two sources, called out rather than
+   quietly resolved. */
+.sft-flag {
+  margin-top: 56px;
+  border-left: 3px solid var(--sft-orange);
+  padding: 4px 0 4px 30px;
+}
+.sft-flag h3 {
+  font-family: var(--sft-serif);
+  font-weight: 600;
+  font-size: clamp(21px, 1.9vw, 27px);
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+.sft-flag p {
+  font-size: 16px;
+  line-height: 1.66;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 14px;
+  max-width: 760px;
+}
+.sft-flag p:last-child { margin-bottom: 0; }
+.sft-contrast {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.sft-contrast-card {
+  border-radius: 5px;
+  padding: 15px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sft-contrast-card small {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.85;
+}
+.sft-c-white { background: var(--sft-orange); color: #fff; }
+.sft-c-dark { background: var(--sft-orange); color: var(--sft-navy); }
+
+/* --- 6. Close ----------------------------------------------------------- */
+.sft-close {
+  background: linear-gradient(var(--sft-hero-a), var(--sft-hero-b));
+  color: #fff;
+  padding: 100px 0;
+}
+.sft-close .sft-h2 { max-width: 800px; margin-bottom: 24px; }
+.sft-close .sft-body-light { max-width: 660px; margin-bottom: 38px; }
+
+.sft-foot {
+  background: #fff;
+  padding: 40px 0 60px;
+}
+.sft-foot-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(6, 13, 46, 0.55);
+}
+.sft-foot-inner a { color: var(--sft-blue); text-decoration: none; }
+.sft-foot-inner img { height: 22px; width: auto; display: block; }
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 980px) {
+  .sft-root { --sft-gut: 26px; }
+  .sft-sec { padding: 72px 0; }
+  .sft-hero { padding: 26px 0 70px; }
+  .sft-hero-nav { margin-bottom: 52px; }
+  .sft-split,
+  .sft-photo-grid,
+  .sft-receipt-head { grid-template-columns: 1fr; gap: 40px; }
+  .sft-specs { grid-template-columns: 1fr; gap: 0; }
+  .sft-swatches { grid-template-columns: repeat(2, 1fr); }
+  .sft-anim { padding-bottom: 66px; }
+}
+
+@media (max-width: 560px) {
+  .sft-stats { grid-template-columns: 1fr; gap: 20px; }
+  .sft-spec { grid-template-columns: 1fr; gap: 4px; }
+  .sft-swatches { grid-template-columns: 1fr; }
+  .sft-swatch-chip { height: 62px; }
+  .sft-flag { padding-left: 20px; }
+}

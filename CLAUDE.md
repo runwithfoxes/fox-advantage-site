@@ -192,3 +192,35 @@ Every module section follows:
 - 2026-05-30 (night): Ported wireframe to Next.js, iterated with Paul on foxes/ads/testimonials/spacing, deployed to production
 - 2026-06-03/04 (night): Homepage "list problem" exploration. Ruled out floor-plan/department-render/revolving-hero; confirmed and tightened the accordion direction (see "Homepage direction (2026-06-04)" above). Keeper mock added to wireframes/.
 - 2026-06-04: **Ported the accordion homepage to production.** Built off `wireframes/PORT-BRIEF.md` (two-terminal flow: this terminal ported, a design terminal answered in `wireframes/PORT-QA.md`). New `src/lib/substack.ts` (live RSS feed, ISR), `page.tsx` async, `HomePage.tsx` rebuilt (panels reused verbatim), `globals.css` `hpx-` block, `BookLanding.tsx` nav. Built on branch `homepage-accordion-port`, Vercel preview, Paul reviewed. Paul tweaks: headline trimmed to one line (mono is wider than the old Space Grotesk so it was wrapping), contact-CTA strip 14px + blue, carousel dates `MAY 28 · PAUL DERVAN`. Resolved questions: foxes OUT of the accordion, tool panels multi-open. Fast-forward merged to main + live. Session: `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`.
+
+## /softco (2026-07-23) - BRAND CONSISTENCY DEMONSTRATION, unlisted
+
+Public route `runwithfoxes.com/softco`. An experiment Paul asked for: one page built
+entirely out of SoftCo's own brand system, to show that a brand can be held exactly on
+the web and not just in ads. **Unlisted by design** - `robots: {index:false, follow:false}`,
+absent from `sitemap.ts`, and linked from nowhere on the site. It is NOT the gated client
+workspace (that is `/clients/softco`).
+
+- **Files:** `src/app/softco/page.tsx` + `src/app/softco/softco.css` (a plain global CSS
+  import, deliberately NOT appended to `globals.css` - that file already has a known
+  collision point at its end). Every class is `sft-` prefixed and scoped under `.sft-root`.
+- **Isa is suppressed here** via `NO_CHAT_ROUTES` in `ChatWidgetLoader.tsx`. She arrives in
+  Run with Foxes' chrome and colours, which breaks the demonstration.
+- **Fonts:** Erode (their headline face, self-hosted OTF at `public/fonts/erode/`, taken
+  from their own brand pack, free for commercial use) and Plus Jakarta Sans via
+  `next/font/google`. Erode was never on this site before.
+- **Assets in `public/softco/`:** `hero-animation.mp4` (the 23 Jul animated rebuild of
+  SoftCo's still homepage hero, source `~/paul-hub/clients/softco/builds/softco_hero_v1/`),
+  its poster, `softco-p2p-flow.jpg` (a real photograph from their brand library,
+  `08_Images`), and both logo lockups.
+- ⭐ **Every value on the page is sourced and shown.** Colours and type come from
+  `clients/softco/memory/softco-brand-spec-for-ads.md`, cross-checked against computed
+  styles read off softco.com on 23 Jul 2026. Section copy, the Primark quote and the three
+  figures are verbatim from their live homepage. The `sft-src` provenance lines say so.
+- ⭐ **The one deliberate departure, argued on the page:** their signed-off ad system puts
+  dark `#060d2e` on the orange button; their live site ships white. White on `#f7931e`
+  measures 2.3:1, under the 3:1 floor for large text; dark measures 8.3:1. The page uses
+  dark and shows both swatches. Do not "fix" this to match the website without reading
+  that section first.
+- **A top frame bar in Run with Foxes' own mono type** sits above the SoftCo hero so the
+  page can never be mistaken for softco.com. Keep it.
