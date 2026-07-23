@@ -264,6 +264,58 @@
   .h2-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
 
 
+  /* Richard: WHY MARKETING. his opener, sits before the cover. two proof blocks. */
+  .wm-head{ position:absolute; left:56px; top:5.5vh; font-size:5.2vh; }
+  .wm-claim{ position:absolute; left:56px; right:56px; top:14vh; font-size:2.5vh; line-height:1.3; font-weight:600; }
+  .wm-cols{ position:absolute; left:56px; right:56px; top:23vh; display:grid; grid-template-columns:3fr 4fr; gap:2.6vw; }
+  .wm-col-t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.9vh; letter-spacing:.5px; color:var(--coral); border-bottom:2px solid var(--ink); padding-bottom:1vh; margin-bottom:1.4vh; }
+  .wm-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:3.4vh 1.8vw; }
+  .wm-grid.one{ grid-template-columns:1fr; gap:3.6vh 0; }
+  .wm-item h4{ font-size:2.3vh; line-height:1.2; font-weight:600; margin-bottom:.6vh; }
+  .wm-item p{ font-size:1.85vh; line-height:1.45; opacity:.8; }
+  .wm-job{ position:absolute; left:56px; right:56px; bottom:11vh; background:var(--ink); color:var(--cream); padding:1.8vh 2vw; font-size:2.1vh; line-height:1.35; font-weight:600; }
+  .wm-job em{ font-style:normal; color:var(--yellow); }
+  .wm-src{ position:absolute; left:56px; right:56px; bottom:3.5vh; font-family:'JetBrains Mono',monospace; font-size:1.05vh; letter-spacing:.5px; line-height:1.5; opacity:.5; }
+
+  /* Richard: the two H2 asks. shared furniture. */
+  .ask-head{ position:absolute; left:56px; top:5.5vh; font-size:5.2vh; }
+  .ask-sub{ position:absolute; left:56px; right:56px; top:15vh; font-size:2.1vh; line-height:1.35; font-weight:600; }
+  .ask-cols{ position:absolute; left:56px; right:56px; top:22vh; display:grid; grid-template-columns:5fr 4fr; gap:2.4vw; }
+  .ask-blk{ margin-bottom:1.8vh; }
+  .ask-blk h4{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:.7vh; }
+  .ask-blk p{ font-size:1.6vh; line-height:1.4; }
+  .ask-blk ul{ list-style:none; }
+  .ask-blk li{ font-size:1.6vh; line-height:1.4; padding:.45vh 0 .45vh 14px; position:relative; }
+  .ask-blk li:before{ content:''; position:absolute; left:0; top:1.1vh; width:5px; height:5px; background:var(--coral); }
+  .ask-card{ border-top:2px solid var(--ink); padding:1.1vh 0 1.4vh; }
+  .ask-card .w{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; }
+  .ask-card .st{ font-family:'JetBrains Mono',monospace; font-size:1.1vh; letter-spacing:1px; text-transform:uppercase; opacity:.6; margin-bottom:.8vh; }
+  .ask-card .scope{ font-size:1.55vh; line-height:1.35; margin-bottom:.8vh; }
+  .ask-card .fig{ font-family:'Anton',sans-serif; font-size:4.4vh; line-height:1; }
+  .ask-card .figc{ color:var(--coral); }
+  .ask-card .note{ font-size:1.45vh; line-height:1.35; opacity:.75; margin-top:.5vh; }
+  .ask-card.live{ border-top:2px solid var(--coral); }
+  .ask-intro{ position:absolute; left:56px; right:56px; top:25vh; font-size:1.6vh; line-height:1.4; opacity:.8; }
+  .ask-src{ position:absolute; left:56px; right:56px; bottom:3.5vh; font-family:'JetBrains Mono',monospace; font-size:1.05vh; letter-spacing:.5px; line-height:1.5; opacity:.5; }
+
+  /* Ask 2: org chart across the top, hires table under it */
+  .org-row{ position:absolute; left:56px; right:56px; top:31vh; display:flex; gap:1vw; align-items:stretch; }
+  .org-cmo{ background:var(--ink); color:var(--cream); padding:1.2vh 1.2vw; min-width:13vw; }
+  .org-cmo .r{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.2vh; }
+  .org-cmo .n{ font-size:1.5vh; opacity:.75; margin-top:.3vh; }
+  .org-fn{ flex:1; border:1.5px solid rgba(20,20,20,.35); padding:1.2vh 1vw; font-size:1.6vh; line-height:1.25; display:flex; align-items:center; }
+  .org-fn.gap{ border:1.5px solid var(--coral); background:rgba(241,97,61,.1); }
+  .org-fn .tag{ display:block; font-family:'JetBrains Mono',monospace; font-size:1vh; letter-spacing:1.5px; text-transform:uppercase; color:var(--coral); margin-top:.4vh; }
+  .hires{ position:absolute; left:56px; right:56px; top:46vh; border-collapse:collapse; width:calc(100vw - 112px); }
+  .hires th{ font-family:'JetBrains Mono',monospace; font-size:1.15vh; letter-spacing:2px; text-transform:uppercase; text-align:left; opacity:.55; padding:0 0 .9vh; border-bottom:2px solid var(--ink); }
+  .hires th.num, .hires td.num{ text-align:right; }
+  .hires td{ font-size:1.7vh; line-height:1.35; padding:1.3vh 1.4vw 1.3vh 0; border-bottom:1px solid rgba(20,20,20,.12); vertical-align:top; }
+  .hires td.role{ font-weight:600; width:22%; }
+  .hires td.num{ font-family:'Anton',sans-serif; font-size:2.6vh; padding-right:0; white-space:nowrap; }
+  .hires tr.band td{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2vh; letter-spacing:.5px; color:var(--coral); padding:1.6vh 0 .5vh; border-bottom:none; }
+  .hires tr.total td{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.4vh; border-bottom:none; padding-top:1.6vh; }
+  .ask-note{ position:absolute; left:56px; right:56px; bottom:7vh; font-size:1.5vh; line-height:1.4; opacity:.75; }
+
   /* Richard: THE WHO. argument left, cohort margin chart right. */
   .who-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
   .who-left{ position:absolute; left:56px; top:19vh; width:40vw; }
@@ -313,6 +365,63 @@
 </style>
 </head>
 <body>
+
+<!-- 0 WHY MARKETING. Richard's opener (23 Jul), sits BEFORE the cover.
+     SPEAKER NOTE (Richard, verbatim):
+     "Why marketing. Before Paul takes you through the brand laws and our H2 priorities,
+      I want to answer that question first, and this isn't my view, it's Gary's, from his
+      own market briefing. His fact: we have a large, growing market that already wants what
+      we offer, and we've built the only platform that responds to that need. That's a
+      business fact, not a marketing pitch. That fact is what defines marketing's job to be
+      done; get more of these travellers onto the platform. Everything Paul takes you through
+      next is in service of that one job. A few slides from now, we'll get sharper still on
+      exactly which travellers matter most." -->
+<section class="slide">
+  <div class="wm-head h-block">Why <em>marketing.</em></div>
+  <div class="wm-claim">A large market that wants what we offer, and the only platform built for it.</div>
+  <div class="wm-cols">
+    <div>
+      <div class="wm-col-t">A large market that wants what we offer</div>
+      <div class="wm-grid one">
+        <div class="wm-item">
+          <h4>Large and growing</h4>
+          <p>~$424bn a year, up from $333bn in 2018; 350m travellers who spend ~2.8x the average tourist.</p>
+        </div>
+        <div class="wm-item">
+          <h4>They want to meet people</h4>
+          <p>Travel is now the #1 way young Europeans meet people, 45%, versus just 9% via apps.</p>
+        </div>
+        <div class="wm-item">
+          <h4>&hellip; and things to do</h4>
+          <p>Gen Z prioritise experiences, 52% splurge on them, the pull our OccasionGenius catalogue serves.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="wm-col-t">The only platform built for it</div>
+      <div class="wm-grid">
+        <div class="wm-item">
+          <h4>Asset-light &amp; app-centric</h4>
+          <p>No property or inventory, the app is the product. The mature social base runs ~35% marketing / ~65% margin, behind targets of &gt;20% EBITDA and ~70% cash conversion.</p>
+        </div>
+        <div class="wm-item">
+          <h4>A compounding data moat</h4>
+          <p>~4m members &middot; 3,000+ city networks &middot; ~20m messages, a proprietary graph that deepens with every trip.</p>
+        </div>
+        <div class="wm-item">
+          <h4>AI plays to our strengths</h4>
+          <p>Our data makes AI-powered matching, recommendations and discovery sharper as we scale.</p>
+        </div>
+        <div class="wm-item">
+          <h4>No direct competitor</h4>
+          <p>Social apps have no booking engine; OTAs have no social layer. We are the only social travel platform at scale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wm-job">Marketing&rsquo;s job to be done: <em>get more of these travellers onto the platform.</em> A large, growing market wants what we uniquely offer, and our asset-light social platform is the only one built to win it. The question is how we get more of that market onto it. That is a marketing problem.</div>
+  <div class="wm-src">Sources. Market: WYSE Travel Confederation (international youth tourism receipts, 2025); WeRoad &lsquo;How Travel is Changing&rsquo; 2026 (5,000 travellers aged 20-40, IT/ES/FR/DE/UK); McKinsey (experiences). Financial targets: Hostelworld Group FY2025 results &amp; Capital Markets Day medium-term targets (EBITDA margin &gt;20%, ~70% FCF conversion, marketing 45-50% of revenue). Internal (PE/UDM): mature social-member cohort economics and live social-network stats (Jun 2026).</div>
+</section>
 
 <!-- 1 COVER -->
 <section class="slide cover dark">
@@ -666,11 +775,11 @@
   <div class="who-left">
     <div class="who-sub">Social members are worth more, and there are more of them every quarter.</div>
     <div class="who-item"><span>01</span>New Social Members already outnumber non-social every quarter (0.83m vs 0.45m). Deliberate, not accidental.</div>
-    <div class="who-item"><span>02</span>11x more margin, engaged first-trip Social Members (&euro;46 vs &euro;4). 8x overall (&euro;35 vs &euro;4).</div>
+    <div class="who-item"><span>02</span>8x more margin, engaged first-trip Social Members (&euro;47 vs &euro;6). 6x overall (&euro;35 vs &euro;6).</div>
     <div class="who-item"><span>03</span>Gap widens with time. Value compounds, not a one-off skew.</div>
     <div class="who-item"><span>04</span>Fixed cohorts strip out acquisition-mix noise. This is real value, not selection bias.</div>
   </div>
-  <div class="who-job">Marketing&rsquo;s job: acquire more of this cohort. It shapes every question that follows.</div>
+  <div class="who-job">Not every traveller is equally valuable. Marketing&rsquo;s job to be done gets sharper here: grow the valuable customer base by creating demand for the social proposition. It shapes every question that follows.</div>
   <div class="who-panel">
     <div class="who-ct">Social members are worth materially more than non-members</div>
     <div class="who-cs">Fixed cohorts strip out acquisition-mix effects and isolate the value the social network creates per customer</div>
@@ -689,15 +798,15 @@
       <text class="tick" x="52" y="100.0" text-anchor="end">&euro;40</text>
       <text class="tick" x="52" y="24.0" text-anchor="end">&euro;50</text>
       <line class="axis" x1="62" y1="20" x2="62" y2="400"/>
-      <polyline class="ln nsm" points="62.0,377.2 70.4,379.2 78.8,380.1 87.3,380.4 95.7,380.1 104.1,380.0 112.5,379.7 121.0,379.4 129.4,379.2 137.8,378.8 146.2,378.6 154.7,378.3 163.1,377.9 171.5,377.6 179.9,377.4 188.3,377.0 196.8,376.9 205.2,376.7 213.6,376.5 222.0,376.3 230.5,376.1 238.9,375.9 247.3,375.7 255.7,375.4 264.2,375.3 272.6,375.1 281.0,374.9 289.4,374.7 297.8,374.5 306.3,374.2 314.7,374.0 323.1,373.8 331.5,373.6 340.0,373.3 348.4,373.1 356.8,372.9 365.2,372.7 373.7,372.4 382.1,372.2 390.5,371.9 398.9,371.6 407.3,371.4 415.8,371.2 424.2,370.9 432.6,370.6 441.0,370.4 449.5,370.1 457.9,369.8 466.3,369.5 474.7,369.1 483.2,368.8 500.0,368.5"/>
-      <polyline class="ln social" points="62.0,290.1 70.4,275.0 78.8,262.6 87.3,252.0 95.7,242.8 104.1,234.7 112.5,227.5 121.0,221.1 129.4,215.5 137.8,210.3 146.2,205.7 154.7,201.6 163.1,197.9 171.5,194.5 179.9,191.4 188.3,188.6 196.8,186.2 205.2,183.8 213.6,181.6 222.0,179.5 230.5,177.6 238.9,175.8 247.3,174.1 255.7,172.5 264.2,170.9 272.6,169.5 281.0,168.0 289.4,166.7 297.8,165.3 306.3,164.0 314.7,162.7 323.1,161.5 331.5,160.3 340.0,159.2 348.4,158.0 356.8,156.8 365.2,155.7 373.7,154.5 382.1,153.4 390.5,152.2 398.9,151.1 407.3,150.0 415.8,148.9 424.2,147.8 432.6,146.6 441.0,145.5 449.5,144.3 457.9,143.0 466.3,141.7 474.7,140.4 483.2,139.0 500.0,137.5"/>
-      <polyline class="ln appplus" points="62.0,256.9 70.4,234.3 78.8,216.0 87.3,200.8 95.7,187.7 104.1,176.3 112.5,166.3 121.0,157.4 129.4,149.5 137.8,142.4 146.2,136.0 154.7,130.3 163.1,125.3 171.5,120.6 179.9,116.4 188.3,112.5 196.8,109.1 205.2,105.9 213.6,103.0 222.0,100.2 230.5,97.6 238.9,95.2 247.3,92.9 255.7,90.8 264.2,88.7 272.6,86.8 281.0,84.9 289.4,83.0 297.8,81.3 306.3,79.6 314.7,78.0 323.1,76.4 331.5,74.9 340.0,73.4 348.4,71.9 356.8,70.4 365.2,69.0 373.7,67.5 382.1,66.2 390.5,64.7 398.9,63.4 407.3,62.0 415.8,60.6 424.2,59.2 432.6,57.8 441.0,56.4 449.5,55.0 457.9,53.5 466.3,52.0 474.7,50.4 483.2,48.7 500.0,46.7"/>
-      <text class="endval" x="508" y="44.7" fill="#F1613D">&euro;46</text>
-      <text class="endlbl" x="508" y="61.7" fill="#F1613D">Engaged social</text>
-      <text class="endval" x="508" y="135.5">&euro;35</text>
-      <text class="endlbl" x="508" y="152.5">Social member</text>
-      <text class="endval" x="508" y="366.5" opacity=".55">&euro;4</text>
-      <text class="endlbl" x="508" y="383.5" opacity=".55">Non-social</text>
+      <polyline class="ln nsm" points="62.0,370.4 70.6,371.4 79.2,371.7 87.8,371.5 96.4,371.0 104.9,370.5 113.5,369.9 122.1,369.4 130.7,368.9 139.3,368.4 147.9,367.9 156.5,367.5 165.1,367.0 173.6,366.7 182.2,366.3 190.8,365.9 199.4,365.7 208.0,365.3 216.6,365.0 225.2,364.7 233.8,364.4 242.4,364.1 250.9,363.9 259.5,363.6 268.1,363.3 276.7,363.1 285.3,362.8 293.9,362.6 302.5,362.3 311.1,361.9 319.6,361.7 328.2,361.4 336.8,361.1 345.4,360.8 354.0,360.6 362.6,360.2 371.2,360.0 379.8,359.7 388.4,359.5 396.9,359.1 405.5,358.9 414.1,358.6 422.7,358.4 431.3,358.0 439.9,357.7 448.5,357.4 457.1,357.1 465.6,356.8 474.2,356.5 482.8,356.1 491.4,355.8 500.0,355.4"/>
+      <polyline class="ln social" points="62.0,281.8 70.6,266.5 79.2,254.1 87.8,243.7 96.4,234.7 104.9,226.8 113.5,219.8 122.1,213.6 130.7,208.2 139.3,203.2 147.9,198.7 156.5,194.7 165.1,191.1 173.6,187.8 182.2,184.7 190.8,181.9 199.4,179.5 208.0,177.1 216.6,174.9 225.2,172.8 233.8,170.8 242.4,169.0 250.9,167.2 259.5,165.5 268.1,163.9 276.7,162.3 285.3,160.8 293.9,159.4 302.5,158.0 311.1,156.7 319.6,155.4 328.2,154.1 336.8,152.9 345.4,151.7 354.0,150.5 362.6,149.3 371.2,148.2 379.8,147.0 388.4,145.9 396.9,144.8 405.5,143.8 414.1,142.7 422.7,141.6 431.3,140.5 439.9,139.4 448.5,138.3 457.1,137.2 465.6,136.0 474.2,134.8 482.8,133.5 491.4,132.2 500.0,130.6"/>
+      <polyline class="ln appplus" points="62.0,257.8 70.6,235.3 79.2,217.3 87.8,202.2 96.4,189.3 104.9,178.0 113.5,168.2 122.1,159.4 130.7,151.7 139.3,144.7 147.9,138.3 156.5,132.7 165.1,127.6 173.6,122.9 182.2,118.7 190.8,114.7 199.4,111.3 208.0,108.0 216.6,104.9 225.2,102.0 233.8,99.2 242.4,96.7 250.9,94.3 259.5,92.0 268.1,89.8 276.7,87.6 285.3,85.6 293.9,83.7 302.5,81.8 311.1,79.9 319.6,78.1 328.2,76.4 336.8,74.8 345.4,73.2 354.0,71.6 362.6,70.0 371.2,68.5 379.8,67.0 388.4,65.5 396.9,64.0 405.5,62.6 414.1,61.1 422.7,59.7 431.3,58.2 439.9,56.8 448.5,55.3 457.1,53.8 465.6,52.3 474.2,50.7 482.8,49.0 491.4,47.3 500.0,45.2"/>
+      <text class="endval" x="508" y="43.2" fill="#F1613D">&euro;47</text>
+      <text class="endlbl" x="508" y="60.2" fill="#F1613D">Engaged social</text>
+      <text class="endval" x="508" y="128.6">&euro;35</text>
+      <text class="endlbl" x="508" y="145.6">Social member</text>
+      <text class="endval" x="508" y="353.4" opacity=".55">&euro;6</text>
+      <text class="endlbl" x="508" y="370.4" opacity=".55">Non-social</text>
       <line class="axis" x1="62" y1="400" x2="500" y2="400"/>
       <text class="tick" x="62.0" y="420" text-anchor="middle">0</text>
       <text class="tick" x="171.5" y="420" text-anchor="middle">13</text>
@@ -813,6 +922,109 @@
       <div class="why">Makes the other six priorities move faster.</div>
     </div>
   </div>
+</section>
+
+<!-- RICHARD 6: ASK 1, PAID SOCIAL FUNDING TEST. added 23 Jul, additive after H2 priorities. -->
+<section class="slide">
+  <div class="ask-head h-block">Ask 01. <em>Paid social funding test.</em></div>
+  <div class="ask-sub">Paid social incrementality test; &euro;600k over 10 weeks. Prove paid social incrementality holds as we scale.</div>
+  <div class="ask-cols">
+    <div>
+      <div class="ask-blk">
+        <h4>What we&rsquo;ve run so far</h4>
+        <p>Two test waves, both English creative only. Results opposite.</p>
+      </div>
+      <div class="ask-blk">
+        <h4>What we&rsquo;ve found</h4>
+        <p>Incrementality shown across 2 waves, but test limitations:</p>
+        <ul>
+          <li>Investment; below levels to prove incrementality holds as it scales (below test market significance).</li>
+          <li>Creative; every result from English only. UK inconclusive. We don&rsquo;t yet know if additional creative routes unlock more demand across more Category Entry Points.</li>
+        </ul>
+      </div>
+      <div class="ask-blk">
+        <h4>What the investment ask buys us</h4>
+        <ul>
+          <li>Funding paid media to reach statistical significance across priority &lsquo;must win&rsquo; feeder 5 EU markets.</li>
+          <li>Includes smaller markets, testing elasticity across market size. Validation of lag effect to realise value (currently 9-13wks).</li>
+          <li>Creative testing in three non-English languages and two new Category Entry Points.</li>
+          <li>Evidence for a bigger-ticket rollout ask, rather than a projection.</li>
+        </ul>
+      </div>
+      <div class="ask-blk">
+        <h4>The commitment</h4>
+        <ul>
+          <li>Back to the board in October with latest results to show if it holds as we scale.</li>
+          <li>Some effects may still be landing given known measurement lag, but enough will be resolved to inform the investment decision.</li>
+          <li>Next ask part-funded by reclaim &amp; reallocation test programme set up and running H2.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="ask-card">
+        <div class="w">Wave 1</div>
+        <div class="st">Complete, statistically significant</div>
+        <div class="scope">12 EU markets* &middot; English creative</div>
+        <div class="fig">+6.8-12.0%</div>
+        <div class="note">Incremental bookings &middot; 2.03x ROAS</div>
+      </div>
+      <div class="ask-card">
+        <div class="w">Wave 2</div>
+        <div class="st">Complete, flagged</div>
+        <div class="scope">UK &middot; full-market &amp; creative quality test</div>
+        <div class="fig">+2.5-15.3%</div>
+        <div class="note">App installs. Creative refresh mid-test +40% CTR. However, booking inconclusive due to market noise &amp; creative test prevented clean comparison. Wave 3 reruns under stable conditions.</div>
+      </div>
+      <div class="ask-card live">
+        <div class="w" style="color:var(--coral)">Ask; Wave 3</div>
+        <div class="scope" style="margin-top:.8vh">5 EU feeder mkts scaled to reach significance. Small &amp; large mkt cluster; (including UK). 3 new languages &middot; 2 new Category Entry Points.</div>
+        <div class="fig figc">1.5-2.5x</div>
+        <div class="note">Est. ROAS, based on results to date</div>
+      </div>
+    </div>
+  </div>
+  <div class="ask-src">Wave 1 EU test mkts; &euro;0.2m test investment. Wave 2; UK test &euro;0.3m investment. Wave 3; DK+NL+FR+IT deliver large and small cluster &amp; cost effectively reach test significance. Why these markets: EU 18-34 TikTok reach efficiency (18-48% penetration) far exceeds scale markets (US 2%, Brazil 6%, Germany 8%). Methodology: DiD, Synthetic Control &amp; BSTS, cross-validated. Onboarding Incrmntal, a third-party incrementality vendor, this month for independent validation and speed to scale.</div>
+</section>
+
+<!-- RICHARD 7: ASK 2, MARKETING ORGANISATION. added 23 Jul. -->
+<section class="slide">
+  <div class="ask-head h-block">Ask 02. <em>Marketing organisation.</em></div>
+  <div class="ask-sub">Marketing capacity and capability investment; &euro;80k max H2 2026.<br>
+    To deliver the H2 plan, we need to deploy dedicated capacity as we ramp up and scale demand building and measurement activity (incrementality and reclaim and reallocate testing programme).</div>
+  <div class="ask-intro">This investment moves the team from a channel-based structure to one organised around the marketing system itself, creating demand against valuable cohorts, with capability added where it is critical to H2: Media, Creative and Analytics.</div>
+  <div class="org-row">
+    <div class="org-cmo">
+      <div class="r">CMO</div>
+      <div class="n">Richard Bowden</div>
+    </div>
+    <div class="org-fn gap">Media &amp; Performance<span class="tag">H2 capability gap</span></div>
+    <div class="org-fn gap">Brand &amp; Creative<span class="tag">H2 capability gap</span></div>
+    <div class="org-fn">Social Media and Creators</div>
+    <div class="org-fn gap">Marketing Analytics &amp; Insights<span class="tag">H2 capability gap</span></div>
+    <div class="org-fn">CRM</div>
+  </div>
+  <table class="hires">
+    <tr><th>Role / hire</th><th>Purpose</th><th class="num">H2 &euro;</th></tr>
+    <tr class="band"><td colspan="2">Build demand</td><td class="num">&euro;40k</td></tr>
+    <tr>
+      <td class="role">Motion Designer x 1</td>
+      <td>Closes a creative capability gap and strengthens brand control as we scale paid social.</td>
+      <td class="num"></td>
+    </tr>
+    <tr>
+      <td class="role">Paid Media Executive x 1</td>
+      <td>Adds dedicated capacity to execute demand generation channels and reallocate spend where headroom is identified.</td>
+      <td class="num"></td>
+    </tr>
+    <tr class="band"><td colspan="2">Measure demand</td><td class="num">&euro;40k</td></tr>
+    <tr>
+      <td class="role">Analyst x 2</td>
+      <td>Builds the measurement capability behind reclaim &amp; reallocate and incrementality testing, harnessing UDM so budget decisions are evidence-led.</td>
+      <td class="num"></td>
+    </tr>
+    <tr class="total"><td>Total ask</td><td></td><td class="num">&euro;80k max</td></tr>
+  </table>
+  <div class="ask-note">Note; to complete the marketing structure further Brand, CRM and Social capability will be brought to the board in October for approval from January 2027.</div>
 </section>
 
 <!-- ===================== APPENDIX (Richard, 21 Jul) =====================
