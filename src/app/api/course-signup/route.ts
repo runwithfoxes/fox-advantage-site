@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recordSignup } from "@/lib/course-signup-record";
+import { getSignupRateLimiter } from "@/lib/rate-limit";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -52,6 +53,51 @@ function doorFor(now: number): Door {
 // trying to be RFC 5322. Klaviyo is the real validator and rejects what it will.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/*
+  ⭐ THE NAME CHECK FLAGS. IT MUST NEVER REJECT. READ THIS BEFORE CHANGING IT.
+
+  Three signups on 23-24 Jul carried names like `NFwOvyDxsnSLKyUC` and
+  `nnWOuGIySjweUFTXmLhJUqU` - form-filling bots, not people. The temptation is to
+  validate the name field. Do not: a filter tight enough to catch those is tight
+  enough to reject a real person, and `Jean O' Neill` is ALREADY on the list with
+  an apostrophe and an interior space. Ó, Ní, fadas, hyphens, non-Latin scripts
+  and one-word names all have to pass, and a rejected human gets an error they
+  cannot act on and never comes back. A false positive here costs a member; a
+  false negative costs one row in a count.
+
+  So this only writes a property. `course_status.py` subtracts flagged profiles
+  from the headline number and prints them by name, the same way it handles test
+  profiles - Paul stays the ground truth, the script only proposes.
+
+  The tell is CASE FLIPS, not length or vowels. "Papadopoulos" flips once,
+  "MacGillycuddy" three times, "NFwOvyDxsnSLKyUC" eight.
+*/
+function looksMachineGenerated(name: string): boolean {
+  const t = name.trim();
+
+  // Short names are left alone entirely, and any space, apostrophe, hyphen or
+  // accent means a human shape - bail before we can do any damage.
+  if (t.length < 12) return false;
+  if (/[^A-Za-z]/.test(t)) return false;
+
+  let flips = 0;
+  for (let i = 1; i < t.length; i++) {
+    const a = t[i - 1];
+    const b = t[i];
+    if ((a === a.toUpperCase()) !== (b === b.toUpperCase())) flips++;
+  }
+  if (flips >= 4) return true;
+
+  // The other machine shape: a long stretch with no vowel in it at all.
+  return /[bcdfghjklmnpqrstvwxz]{6,}/i.test(t);
+}
+
+/* Vercel puts the caller's address in x-forwarded-for, first entry. */
+function clientIp(req: NextRequest): string {
+  const fwd = req.headers.get("x-forwarded-for");
+  return fwd?.split(",")[0]?.trim() || "unknown";
+}
+
 function headers(key: string, write: boolean) {
   const h: Record<string, string> = {
     Authorization: `Klaviyo-API-Key ${key}`,
@@ -97,11 +143,46 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
   }
 
+  /*
+    ⭐ THE HONEYPOT, CHECKED FIRST - before validation, before Redis, before
+    Klaviyo. `company_url` is an off-screen field the page renders but no human
+    can see or tab into, so anything in it came from something filling the DOM
+    blind.
+
+    IT ANSWERS 200 OK, NOT AN ERROR, AND THAT IS THE WHOLE POINT. A 400 teaches
+    a bot which field gave it away and it comes back without that field. A
+    cheerful success teaches it nothing and it goes away happy. Nothing is
+    written anywhere: no profile, no list, no welcome email, no Upstash record.
+
+    This is the piece that actually stops the junk. The name check below only
+    counts, and the rate limit only slows.
+  */
+  if (String(body.company_url ?? "").trim() !== "") {
+    return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
+  }
+
   const email = String(body.email ?? "").trim().toLowerCase();
   const firstName = String(body.first_name ?? "").trim();
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
+  }
+
+  /*
+    Per-IP ceiling. Deliberately generous (see getSignupRateLimiter) because a
+    shared office or mobile-carrier IP is a roomful of real people. Redis being
+    unconfigured returns null and the signup proceeds - a missing limiter must
+    never cost a real signup.
+  */
+  const limiter = getSignupRateLimiter();
+  if (limiter) {
+    const { success } = await limiter.limit(clientIp(req));
+    if (!success) {
+      console.warn("[course-signup] rate limited", clientIp(req));
+      // 429 lands in the page's "our fault, we will fix it" branch, which is the
+      // right thing to show the rare real person who trips this.
+      return NextResponse.json({ ok: false, error: "server" }, { status: 429 });
+    }
   }
 
   const source = body.signup_source === "card" ? "card" : "hero";
@@ -134,6 +215,12 @@ export async function POST(req: NextRequest) {
       properties.signup_door = door;
       if (signupModule !== null) properties.signup_module = signupModule;
       if (lands !== null) properties.signup_module_lands = lands;
+    }
+
+    /* Written on every touch, not just the first: it describes THIS submission,
+       not what pulled the person in. The person is subscribed either way. */
+    if (looksMachineGenerated(firstName)) {
+      properties.signup_name_shape = "machine";
     }
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {

@@ -51,6 +51,18 @@ export type SignupPayload = {
    */
   signup_module?: number;
   signup_module_lands?: string;
+  /**
+   * ⭐ THE TRAP. A field no human ever fills, because no human ever sees it: it
+   * is positioned off-screen, out of the tab order and hidden from the
+   * accessibility tree. Bots fill every input they find in the DOM, so a
+   * non-empty value here is the single most reliable "this is not a person"
+   * signal available without putting a puzzle in front of a real visitor.
+   *
+   * Named `company_url` on purpose. Call it `website` or `address` and a
+   * password manager will helpfully autofill it, which would silently reject
+   * real people - the one way this technique goes wrong.
+   */
+  company_url?: string;
 };
 
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "done" } | { kind: "error"; which: "email" | "server" };
@@ -103,6 +115,8 @@ export default function CourseSignup({
   const [state, setState] = useState<State>({ kind: "idle" });
   const [first, setFirst] = useState("");
   const [email, setEmail] = useState("");
+  /* Stays "" for every real visitor. See SignupPayload.company_url. */
+  const [trap, setTrap] = useState("");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -119,6 +133,7 @@ export default function CourseSignup({
         first_name: first.trim(),
         email: email.trim(),
         signup_source: source,
+        company_url: trap,
         ...(module !== undefined ? { signup_module: module, signup_module_lands: lands } : {}),
       }),
     );
@@ -131,6 +146,26 @@ export default function CourseSignup({
   return (
     <div className={"co-join" + (compact ? " co-join-compact" : "")}>
       <form className="co-joinbar" onSubmit={onSubmit} noValidate>
+        {/*
+          THE TRAP. Four things here are load-bearing, do not "tidy" any of them:
+            - positioned off-screen, NOT display:none. A hidden required field can
+              make a browser refuse to submit and give no visible reason.
+            - never `required`, for the same reason.
+            - tabIndex={-1} + aria-hidden keep it out of the tab order and out of
+              the accessibility tree, so a screen reader user never meets it. A
+              careless honeypot is an accessibility trap; this one is not.
+            - the name is deliberately unfamiliar to autofill heuristics.
+        */}
+        <input
+          type="text"
+          name="company_url"
+          value={trap}
+          onChange={(e) => setTrap(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+        />
         <input
           type="text"
           className="nm"
