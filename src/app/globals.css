@@ -7102,8 +7102,28 @@ a.project-card {
 .mod-isabar .a{background:#febc2e;}
 .mod-isabar .g{background:#28c840;}
 .mod-isatitle{font-family:var(--mono);font-size:.75rem;color:#8A8A85;margin-left:auto;margin-right:auto;letter-spacing:.08em;}
+/* Grows only once there is a conversation. On load it is her opening line and nothing
+   else, which is what the drawn version showed and what the layout was measured against.
+   Capped so a long exchange scrolls inside the panel instead of pushing the contents
+   rail off the bottom of a pinned column. */
 .mod-isamsg{padding:14px;font-family:var(--mono);font-size:.75rem;line-height:1.7;color:#1D1B1B;background:#FAFAF8;}
-.mod-isamsg b{color:#3A7CA5;font-weight:400;}
+.mod-isamsg[data-started="1"]{max-height:46vh;overflow-y:auto;}
+.mod-isamsg b,.mod-isamsg strong{color:#3A7CA5;font-weight:400;}
+.mod-isamsg a{color:#3A7CA5;}
+.mod-isaline{margin:0 0 12px;}
+.mod-isaline:last-of-type{margin-bottom:0;}
+/* The reader's own words sit indented and quieter, so the column reads as a conversation
+   without needing bubbles, which would fight the square, hairline register of the page. */
+.mod-isaline[data-role="user"]{color:#5E7280;padding-left:14px;border-left:2px solid #E0E0DC;}
+.mod-isaline[data-role="error"]{color:#B4562A;}
+.mod-isadots{display:inline-flex;gap:4px;align-items:center;}
+.mod-isadots i{width:4px;height:4px;border-radius:50%;background:#A8A8A2;display:block;
+  animation:mod-isablink 1.2s infinite ease-in-out;}
+.mod-isadots i:nth-child(2){animation-delay:.15s;}
+.mod-isadots i:nth-child(3){animation-delay:.3s;}
+@keyframes mod-isablink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.mod-isadots i{animation:none;opacity:.6}}
+.mod-isaask button:disabled{opacity:.5;cursor:default;}
 .mod-isaask{display:flex;border-top:1px solid #E0E0DC;}
 .mod-isaask input{flex:1;border:0;padding:11px 14px;font-family:var(--mono);font-size:.75rem;background:transparent;color:#1D1B1B;}
 .mod-isaask input::placeholder{color:#A8A8A2;}

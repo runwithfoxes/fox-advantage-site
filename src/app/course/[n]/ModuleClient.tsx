@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
+import ModuleIsa from "./ModuleIsa";
 import {
   KIND_LABEL,
   kindOf,
@@ -183,32 +184,8 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           Right holds everything that used to run full width, masthead included. */}
       <div className="mod-grid">
         <div className="mod-railcol">
-          {/* Embedded Isa has NO close, minimise or drag. Those exist on the floating
-              version to get her out of the way; in the column she is never in the way,
-              so none of them have a job. The three dots stay: they are the signature
-              that says "this is software", and they are the one thing here that is
-              decoration rather than control. */}
-          <div className="mod-isa">
-            <div className="mod-isabar">
-              <i className="r" />
-              <i className="a" />
-              <i className="g" />
-              <span className="mod-isatitle">isa</span>
-            </div>
-            <div className="mod-isamsg">
-              I&rsquo;m here for this module. Ask me anything about{" "}
-              <b>{mod.title.toLowerCase()}</b>, or paste something back and
-              I&rsquo;ll tell you whether it does what item 02 is asking for.
-            </div>
-            <div className="mod-isaask">
-              <input
-                type="text"
-                placeholder="Ask about this module..."
-                aria-label="Ask Isa about this module"
-              />
-              <button type="button">Send</button>
-            </div>
-          </div>
+          {/* The REAL Isa, scoped to this module. v8 drew this panel; it is wired now. */}
+          <ModuleIsa mod={mod} />
 
           <nav className="mod-rail">
             <p>/in this module</p>

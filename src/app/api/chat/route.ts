@@ -7,8 +7,45 @@ import {
   saveInboundQuestion,
 } from "@/lib/conversation-store";
 import { getRateLimiter } from "@/lib/rate-limit";
+import { MODULES_BY_N } from "@/app/course/moduleData";
 
 export const maxDuration = 30;
+
+/**
+ * Module-scoped Isa, for the widget in the module page rail.
+ *
+ * ⭐ THE CLIENT SENDS A NUMBER, NOT TEXT. The context is built HERE from module data
+ * the server already holds, so nothing a visitor can type ever reaches the system
+ * prompt. Accepting a context string from the browser would be a prompt-injection
+ * hole dressed up as a feature.
+ *
+ * Additive only: no moduleN means the site-wide Isa is completely unchanged.
+ */
+function moduleContext(n: unknown): string {
+  if (typeof n !== "number" || !Number.isInteger(n)) return "";
+  const mod = MODULES_BY_N[n];
+  if (!mod) return "";
+  const items = mod.items.map((it, i) => `${i + 1}. ${it.t}`).join("\n");
+  return `
+
+## YOU ARE ON A COURSE MODULE PAGE, AND YOU ARE SCOPED TO IT
+
+The reader is on module ${mod.n} of 6 of "AI Fluency for Ambitious Marketers",
+titled "${mod.title}", which opens ${mod.when}.
+
+What the module is about: ${mod.blurb}
+
+The ${mod.items.length} things in it, in order:
+${items}
+
+How to behave here:
+- Answer about THIS module first. You can see the item titles above, not the full text.
+- If they paste something back and ask whether it does the job, judge it against the
+  item they name and say plainly what is missing. Be useful, not encouraging.
+- If they ask about something outside the module, answer briefly and bring it back.
+- The module is not live until ${mod.when}. NEVER say it is available now, and never
+  invent the contents of an item beyond its title.`;
+}
 
 const MAX_MESSAGE_LENGTH = 2000;
 const MAX_MESSAGES_PER_REQUEST = 20;
@@ -50,9 +87,10 @@ export async function POST(req: Request) {
     return new Response("Invalid request body", { status: 400 });
   }
 
-  const { messages, id: chatId } = body as {
+  const { messages, id: chatId, moduleN } = body as {
     messages?: unknown;
     id?: unknown;
+    moduleN?: unknown;
   };
 
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -121,7 +159,7 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: provider("claude-sonnet-4-6"),
-      system: getSystemPrompt(sanitizedChatId),
+      system: getSystemPrompt(sanitizedChatId) + moduleContext(moduleN),
       messages: modelMessages,
       maxOutputTokens: 200,
       onFinish: async ({ text }) => {
