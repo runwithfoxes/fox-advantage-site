@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MODULES, isLive } from "./courseModules";
 import ModuleArtefact from "./ModuleArtefact";
 import CourseSignup from "./CourseSignup";
-import { ASK, BIO_LINES, BIO_NAME, CARD_ACTION, HERO, MODULE_BLURBS, STRIP } from "./courseCopy";
+import ShareRow, { CopyModuleLink } from "./ShareRow";
+import {
+  ASK,
+  BIO_LINES,
+  BIO_NAME,
+  CARD_ACTION,
+  COURSE_URL,
+  HERO,
+  MODULE_BLURBS,
+  SHARE,
+  STRIP,
+} from "./courseCopy";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -76,7 +87,13 @@ function ModuleCard({
   const MODULE_HREF: string | null = null;
 
   return (
-    <article className={"co-card" + (live ? "" : " soon") + (open ? " open" : "")}>
+    /* ⭐ THE ID IS WHAT MAKES THE PAGE FORWARDABLE IN PIECES. Added 20 Jul. Before it,
+       the only two ids on the whole page were #top and #about, so there was no way for
+       anyone to send a colleague one module rather than the entire course. The copy
+       control in the card foot hands out this anchor.
+       ⚠️ .co-card needs scroll-margin-top to clear the fixed nav, or an arriving link
+       parks the card under it. That rule is in the .co- block in globals.css. */
+    <article id={"m" + m.n} className={"co-card" + (live ? "" : " soon") + (open ? " open" : "")}>
       {/* window chrome - drawn the way a real window looks. Decorative here. */}
       <div className="co-chrome">
         <i className="r" />
@@ -98,7 +115,9 @@ function ModuleCard({
         onClick={(e) => {
           /* the button handles its own click; without this it would fire twice and
              cancel itself out */
-          if ((e.target as HTMLElement).closest(".co-cardaction")) return;
+          /* the copy control is inside the body, so without it here a click would copy
+             the link AND toggle the card, which reads as the page misfiring */
+          if ((e.target as HTMLElement).closest(".co-cardaction, .co-copylink")) return;
           onToggle();
         }}
       >
@@ -109,6 +128,8 @@ function ModuleCard({
           <div className="co-cardfoot">
             <span className="co-badge">{live ? "Live" : "Coming"}</span>
             <span className="co-when">{live ? "Open now" : `Opens ${m.when}`}</span>
+            {/* hard right, out of the reading path. One control, not a share cluster. */}
+            <CopyModuleLink n={m.n} />
           </div>
 
           {live && MODULE_HREF ? (
@@ -142,7 +163,17 @@ function ModuleCard({
             module={m.n}
             lands={m.on}
             compact
-            doneText={ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title)}
+            /* ⭐ THE SHARE CONTROLS LIVE IN THE CONFIRMATION, NOT ON THE PAGE FACE.
+               Somebody who has just signed up is the most likely person on the page to
+               pass it on, and showing it only here means nobody sees a share prompt
+               before they have done the thing the page is for. It carries the MODULE
+               anchor, because they signed up for this module specifically. */
+            doneText={
+              <>
+                {ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title)}
+                <ShareRow url={`${COURSE_URL}#m${m.n}`} lead={SHARE.lead} compact />
+              </>
+            }
           />
         </div>
       ) : null}
@@ -158,6 +189,42 @@ function ModuleCard({
 
 export default function CourseClient() {
   const [openCard, setOpenCard] = useState<number | null>(null);
+
+  /**
+   * 🔴 THE BROWSER DOES NOT HONOUR #m4 ON A COLD LOAD, AND THIS SHIPPED BROKEN.
+   * Measured on the live domain 20 Jul: hash "#m4", the card 1669px down the page,
+   * scroll-margin-top correctly computed at 96px, and window.scrollY sitting at 3.
+   * Next's App Router restores scroll to the top during hydration and the native
+   * anchor jump is lost.
+   *
+   * ⚠️ HOW IT GOT PAST VERIFICATION, worth more than the fix: it was "tested" by
+   * loading /course and THEN navigating to /course#m4. That is a same-document hash
+   * jump, which always works and exercises none of this. The case that matters is the
+   * COLD load, because that is what the person receiving a copied link does. A test
+   * that cannot fail is not a test.
+   *
+   * 🔴 behavior:"instant" IS LOAD-BEARING, DO NOT DROP IT. globals.css sets
+   * scroll-behavior:smooth on html, so a bare scrollIntoView() starts a SMOOTH
+   * ANIMATION rather than jumping. On a cold load that animation is competing with
+   * hydration and never survives it, which is why the first attempt at this fix still
+   * left scrollY at 0. Measured: window.scrollTo(0,1672) read back as 3 mid-animation,
+   * while scrollIntoView({behavior:"instant"}) landed at 1576 immediately, which is
+   * 1672 minus the 96px scroll-margin-top. Smooth is right for a click on the page and
+   * wrong for arriving at an address.
+   *
+   * Two passes on purpose. The first lands it; the second corrects for the module
+   * artefacts finishing their layout underneath and shifting the target.
+   */
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (!/^m[1-6]$/.test(id)) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    const jump = () => el.scrollIntoView({ behavior: "instant", block: "start" });
+    jump();
+    const t = setTimeout(jump, 350);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <>
@@ -180,18 +247,27 @@ export default function CourseClient() {
         </Link>
         <div className="hp-nav-links">
           <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/tools &#9662;</span>
+            <span className="hp-dropdown-trigger">/products &#9662;</span>
             <div className="hp-mega">
               <div className="hp-mega-inner">
                 <div className="hp-mega-col">
-                  <div className="hp-mega-label">MODULES</div>
-                  <Link href="/#mod-effectiveness">Marketing effectiveness</Link>
-                  <Link href="/#mod-segmentation">Segmentation</Link>
-                  <Link href="/#mod-brand-strategy">Brand strategy</Link>
-                  <Link href="/#mod-advertising">Advertising</Link>
-                  <Link href="/#mod-studio">Studio</Link>
-                  <Link href="/#mod-business-development">Business development</Link>
-                  <Link href="/#mod-research">Research and insights</Link>
+                  {/* ⭐ MIRRORS THE LIVE HOMEPAGE NAV (SF_MODS/SF_PAGES in HomePage.tsx),
+                      21 Jul. The old /tools -> MODULES list pointed at homepage anchors
+                      (#mod-effectiveness ...) that stopped existing when the homepage
+                      became the storefront, so all seven were dead links. This is a
+                      hand-copy of the products dropdown; if the storefront list changes,
+                      it must be updated here and in BookLanding.tsx too. The real fix is
+                      one shared <SiteNav>, on the backlog. */}
+                  <div className="hp-mega-label">PRODUCTS</div>
+                  <a href="/products/module-campaign-manager.html">Campaign Manager</a>
+                  <a href="/products/module-advertising-agent.html">Advertising Agent</a>
+                  <a href="/products/module-outbound-agent.html">Outbound Agent</a>
+                  <a href="/products/module-lifecycle-agent.html">Lifecycle Agent</a>
+                  <a href="/products/module-brand-guardian.html">Brand Guardian</a>
+                  <a href="/products/module-brief-coach.html">Brief Coach</a>
+                  <a href="/products/module-copywriter.html">Copywriter</a>
+                  <a href="/products/module-ghostwriter.html">Ghostwriter</a>
+                  <a href="/products/module-ad-maker.html">Ad Resizer</a>
                 </div>
               </div>
             </div>
@@ -225,7 +301,17 @@ export default function CourseClient() {
           <div className="co-herojoin">
             <CourseSignup
               source="hero"
-              doneText={ASK.heroDone}
+              /* 🔴 THE SHARE ROW APPEARS ONLY AFTER SIGNUP, NEVER BESIDE THE PILL. Paul,
+                 19 Jul: "as few things on as possible so that people can just see it and
+                 sign up." A share cluster above the fold competes with the one thing the
+                 hero exists to do. This replaces the pill once it has done its job, so
+                 the hero at rest is unchanged. */
+              doneText={
+                <>
+                  {ASK.heroDone}
+                  <ShareRow url={COURSE_URL} lead={SHARE.lead} />
+                </>
+              }
               note={<span className="co-joinnote">{HERO.freeNote}</span>}
             />
           </div>
@@ -278,7 +364,12 @@ export default function CourseClient() {
           <section className="co-footjoin">
             <CourseSignup
               source="foot"
-              doneText={ASK.heroDone}
+              doneText={
+                <>
+                  {ASK.heroDone}
+                  <ShareRow url={COURSE_URL} lead={SHARE.lead} />
+                </>
+              }
               note={
                 <span className="co-joinnote">{ASK.footLine}</span>
               }

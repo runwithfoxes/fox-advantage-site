@@ -11,7 +11,7 @@ export const meta: Meta = {
   headline: "Deliverables",
   intro:
     "A live view of the work for Eaton Square. The deliverables and status are below, with the work shown underneath as it lands. Have a look and send back your thoughts.",
-  lastUpdated: "2026-07-05",
+  lastUpdated: "2026-07-20",
   // skills library added 2026-06-23
   zoneIntros: {
     deliverables: "Everything we're producing for Eaton Square and where each piece stands.",
@@ -21,6 +21,7 @@ export const meta: Meta = {
 };
 
 export const deliverables: Deliverable[] = [
+  { name: "The growth desk", detail: "One thing you talk to that runs the outbound and the content as a single job, and writes everything it learns into your own Smartsheet so the whole team can see it", status: "ready", date: "2026-07-20", note: "Ready to set up. The tables are built in your Smartsheet and the two-step setup is below. It replaces having to pick the right skill for each job, and the skills you already use are still here underneath.", isNew: true },
   { name: "AI-run outreach engine", detail: "Claude as your project manager: it finds and enriches companies with the Clay skills, writes and merges personalised messages in your voice, and feeds HeyReach (LinkedIn) and Smartlead (email), so the team spends far less time finding, enriching and sending by hand", status: "in-progress", date: "2026-06-21", note: "Most of the pieces are built. Next is getting the team fluent on them and on Claude, plus clear workflow guides to follow (below). One open item: the email sending setup.", isNew: true },
   { name: "Copywriters for Sarah and Sean", detail: "An AI copywriter in each person's own voice, built from the messaging framework and their own writing", status: "complete", date: "2026-06-21", note: "Built and uploaded as Claude Skills. Format-agnostic: posts, emails, anything, in their own voice." },
   { name: "Content creators for Sarah and Sean", detail: "Turn documents and ideas into branded content", status: "complete", date: "2026-06-21", note: "Skills built and uploaded. Sean is set up via Claude Design with the HR Path brand kit. (Sarah's LinkedIn visuals are a separate item, below.)" },
@@ -38,6 +39,24 @@ export const work: WorkSection[] = [
   // reference (kinds: media, copy, files, gallery). Letters, decks, charts or
   // copy go here once their files are dropped into
   // public/clients/eaton-square/media/. Give each one zone: "work".
+
+  { title: "The growth desk", kind: "copy", zone: "work", status: "ready", isNew: true,
+    desc: "Up to now every job had its own skill and you had to know which one to reach for. Nobody wakes up thinking \"I need the content-review skill\", so that was always going to be a filing problem rather than a colleague. The desk replaces it. You talk to one thing, it treats the outbound and the content as the same job, and it writes what it learns into your own Smartsheet so it is still there next week and everyone can see it.",
+    blocks: [
+      { label: "What it does", text: "It reads the numbers, writes the messages and the posts, and remembers the things people forget. The follow-up nobody sent. The meeting nobody confirmed. The person who said come back in the new year, on the day they meant. It holds the line on the things that matter too: nothing sends without Sarah's approval, no message goes out without real evidence behind the reason for it, and no testimonial gets used until it is cleared." },
+      { label: "Where the memory lives", text: "In your Smartsheet, not in Claude. That was deliberate. Claude's own memory is private to each person, so if Sarah wrote a post into it, Ben would never see it. Your Smartsheet is shared, you own it, and the data never leaves your tenant.\n\nThere are thirteen tables set up in the growth workspace: everyone you know, the campaigns and their weekly numbers, the calendar, the content, the meetings and what came of them, the proof library, what clients actually tell us is broken by sector, and the offer catalogue built from Ben's campaign process. They are empty and waiting for the real thing." },
+      { label: "Set it up (once)", text: "1. Download the two files below.\n2. In Claude, make a project and call it Growth Desk. Open the instructions file, copy all of it, and paste it into the project's Instructions box.\n3. Unzip the other download and upload the six .md files into the same project as knowledge.\n4. Connect Smartsheet in Claude (Settings, then Customize, then Connectors). Each person connects their own.\n\nThat is it. Then just talk to it." },
+      { label: "What to ask it", text: "Sean: show me every campaign by service line. Show me the funnel for the IE campaign, all six steps. Where is the drop-off worst, and is that a targeting problem or a message problem. What came of every meeting we have booked. Is there enough data to call this yet.\n\nSarah: what is waiting for me. Show me the actual words, not a summary. Show me the evidence behind this message before I approve it. Who engaged with our posts, and are any of them already on the list.\n\nBen: what is on today. Who replied and has not been answered. How many leads are left in the campaign. Acceptance is fine but replies are down, which bit is broken. Who said come back later, and is anyone due." },
+      { label: "What it will not do", text: "It will not research a company from scratch, quote you an industry benchmark, or forecast next month. It answers from your sheets and from HeyReach, and when the answer is not in there it says so rather than inventing something that sounds right. It also stops at SQL, because past that is Salesforce's job." },
+      { label: "What we need from you", text: "Ben's campaign process gave us the real shape and we have built the tables around it, so a few things are our best read rather than confirmed.\n\nThe service lines are set up as Advise, Optimise, Run and Implement with the services underneath. Sean mentioned five, and Ben's file documents four, so tell us if one is missing.\n\nCampaigns are numbered HCM-1 to HCM-12 as Ben has them, with the Health Check running as the IE and UK campaigns underneath it. Say if you would rather they were named another way.\n\nAnd Joe, Gavin and Brian are set up as people who can send, not only own an account. Worth confirming." },
+    ] },
+
+  { title: "The growth desk files", kind: "files", zone: "work", status: "ready", isNew: true,
+    desc: "Two downloads. The instructions get pasted into the project, the zip holds the seven knowledge files that go in alongside them.",
+    files: [
+      { name: "The instructions", file: "growth-desk-instructions.md", note: "Open it, copy all of it, paste into the project's Instructions box" },
+      { name: "The growth desk files", file: "eaton-growth-desk.zip", note: "Unzip and upload the seven .md files into the project as knowledge. Covers the message rules, how to read the numbers honestly, Sarah's and Sean's voices, the content playbook, the letter structure, and a guide to maintaining the desk over time" },
+    ] },
 
   { title: "ICP outreach, step by step", kind: "embed", zone: "work", status: "ready",
     desc: "The full campaign as a visual flow: get the list, clean, enrich, emails, write the messages, merge, load, monitor. Each stage has its skill to download right there. Open full screen for the best view.",

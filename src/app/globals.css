@@ -23,6 +23,7 @@
   --border: #E0E0DC;
   --mono: var(--font-mono), 'JetBrains Mono', monospace;
   --sans: var(--font-sans), 'Space Grotesk', sans-serif;
+  --serif: var(--font-serif), 'Source Serif 4', Georgia, serif;
 }
 
 * {
@@ -50,6 +51,96 @@ body {
   line-height: 1.6;
   overflow-x: clip;
 }
+
+/* ============================================================
+   READING REGISTER  (source: rwf-type-system.md, locked 20 Jul 2026)
+   Opt-in primitive. Body stays mono by default; reading pages apply
+   these classes. One weight per face: hierarchy comes from size,
+   position and space, never from bolding. Reading pages are the ones
+   someone stays on (modules, proposals, essays, /about, /brand).
+   ============================================================ */
+
+/* Statement register: front doors only (home/product/course heroes).
+   JetBrains Mono 700, centred, short line. Does NOT travel to a page
+   with a paragraph on it. Kept as a class so it is named, not reinvented. */
+.rwf-statement {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.12;
+  text-align: center;
+  color: var(--text);
+}
+
+/* Headline register: Space Grotesk 500, h1 through h3. Size changes, weight does not.
+   (h2/h3 sizes are a reasonable derived scale; the spec fixes 500 + the H1 ~52px.) */
+.rwf-h1 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(34px, 5.2vw, 52px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text);
+}
+.rwf-h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 30px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--text);
+}
+.rwf-h3 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+/* Reading: Source Serif 4. Standfirst 20px/1.5 once under the H1; body 17px/1.65 everywhere else.
+   Anything wanting to be smaller than body is not reading copy: it becomes .rwf-label/.rwf-meta. */
+.rwf-standfirst {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.rwf-body {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.rwf-body p + p { margin-top: 1.05em; }
+.rwf-body strong, .rwf-body b { font-weight: 600; } /* genuine inline emphasis only, never a whole line */
+.rwf-body em, .rwf-body i { font-style: italic; }
+.rwf-body a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--border); }
+.rwf-body a:hover { opacity: 0.7; }
+
+/* The machine: JetBrains Mono for anything smaller than body (labels, meta, sources, counts). */
+.rwf-label {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.rwf-meta {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Width: copy runs the FULL width of its container. Never a 60-66ch cap.
+   The only exception is a real two-column grid with content in the other column. */
+.rwf-reading { width: 100%; }
 
 /* ---- DOT GRID BACKGROUND (cream sections only) ---- */
 .hp-hero-text,
@@ -2835,20 +2926,95 @@ a.project-card {
   to { transform: scale(1); opacity: 1; }
 }
 
+/* ISA AS A WINDOW.
+   Isa is not page furniture, she is the one piece of real software running on
+   the site. The rest of the site is flat and sharp; drawn software is rounded,
+   white and shadowed. She belongs in the second language, so she is drawn the
+   way the hero cards are drawn. Values match the hero deliberately: 15px chrome,
+   9px inner panels, the same layered shadow. Do NOT round anything else. */
 .chat-panel {
   position: fixed;
   bottom: 84px;
   right: 24px;
   z-index: 101;
-  width: 400px;
-  height: 520px;
+  width: 320px;
+  /* Height follows the content. A fixed 520px was mostly empty on a one line
+     welcome, and once she had chrome and a shadow that emptiness read as a
+     box sitting on the page rather than a small window. She starts compact
+     and grows with the conversation up to the cap. */
+  height: auto;
+  min-height: 260px;
   background: var(--bg);
   border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05),
+              0 20px 42px -14px rgba(26, 58, 78, 0.26),
+              0 64px 110px -54px rgba(26, 58, 78, 0.42);
   animation: chat-panel-enter 0.25s ease-out;
+  transition: width 0.25s ease-out, height 0.25s ease-out;
 }
+
+/* Expand, the green control. Earns its place on a long conversation.
+   The cap is a max-height rather than a breakpoint: at 680px tall the panel
+   reaches the nav on a laptop viewport and would slide under it on anything
+   shorter. Caught by looking at it, not by reading the diff. */
+.chat-panel-expanded {
+  width: 560px;
+  min-height: 560px;
+}
+
+.chat-panel {
+  max-height: min(520px, calc(100vh - 160px));
+}
+
+.chat-panel-expanded {
+  max-height: calc(100vh - 160px);
+}
+
+/* Window controls. These are real, so every one does something. */
+.chat-panel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.chat-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  transition: filter 0.2s;
+}
+
+.chat-dot:hover { filter: brightness(0.92); }
+
+.chat-dot-close { background: #ff5f57; }
+.chat-dot-min   { background: #febc2e; }
+.chat-dot-zoom  { background: #28c840; }
+
+/* Draggable from almost anywhere, the way the hero cards are. The exceptions
+   are handled in useDraggable: input, buttons, links and live text selections
+   are not handles, because dragging from those would break typing and copying.
+   Everything else, including the header and all the dead space, is a handle. */
+.chat-panel-draggable { cursor: grab; }
+.chat-panel-dragging  { cursor: grabbing; }
+
+/* The controls and the copy keep their own cursors. */
+.chat-panel-draggable input,
+.chat-panel-draggable button,
+.chat-panel-draggable a { cursor: pointer; }
+.chat-panel-draggable input { cursor: text; }
+.chat-panel-draggable .chat-panel-messages { cursor: auto; }
+
+/* No transition while dragging, or the panel lags behind the pointer. */
+.chat-panel-dragging { transition: none; }
 
 @keyframes chat-panel-enter {
   from { transform: scale(0.9) translateY(10px); opacity: 0; }
@@ -2873,10 +3039,16 @@ a.project-card {
   text-transform: lowercase;
 }
 
+/* The labelled way out. The dots only announce themselves on hover, and touch
+   users cannot hover, so the word is what makes closing discoverable. Uses the
+   site's backslash syntax, the same device as \build it for you. */
 .chat-panel-close {
   background: none;
   border: none;
-  font-size: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
   color: var(--text-muted);
   cursor: pointer;
   padding: 0;
@@ -2898,11 +3070,18 @@ a.project-card {
 }
 
 .chat-msg {
-  max-width: 85%;
+  /* 85% left a 23 character measure in a 380px panel. Isa's own messages get
+     the full width; a visitor's message still insets so the two are told apart
+     by shape as well as alignment. */
+  max-width: 100%;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
   line-height: 1.7;
+}
+
+.chat-msg-user {
+  max-width: 85%;
 }
 
 .chat-msg-user {
@@ -3042,7 +3221,11 @@ a.project-card {
     font-size: 20px;
   }
 
-  .chat-panel {
+  /* On mobile she is the whole screen, which is not a window, so the window
+     language comes off: no rounding, no chrome, no expand control. The labelled
+     \close stays and is the only way out, which is why it exists. */
+  .chat-panel,
+  .chat-panel-expanded {
     top: 0;
     bottom: 0;
     right: 0;
@@ -3050,8 +3233,12 @@ a.project-card {
     width: 100%;
     height: 100dvh;
     border: none;
+    border-radius: 0;
+    box-shadow: none;
     animation: chat-panel-mobile-enter 0.25s ease-out;
   }
+
+  .chat-panel-dots { display: none; }
 
   .chat-panel-header {
     padding-top: calc(16px + env(safe-area-inset-top, 0px));
@@ -5330,7 +5517,9 @@ a.project-card {
   display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ah-sky);
   border: 1px solid var(--ah-border); background: #fff; padding: 5px 12px; border-radius: 20px;
   margin-bottom: 30px; box-shadow: 0 1px 2px rgba(20,16,40,.05);
+  text-decoration: none; transition: border-color .2s, color .2s;
 }
+.ah-kicker:hover { border-color: var(--ah-sky); color: var(--ah-deep); }
 .ah-head h1 {
   font-family: var(--mono);
   font-size: clamp(28px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -.03em;
@@ -6376,13 +6565,52 @@ a.project-card {
 .co-joinbar button:disabled{opacity:.6;cursor:default}
 .co-joinnote{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
 .co-joinerr{font-family:var(--mono);font-size:11.5px;color:#B4342B;letter-spacing:.02em}
-.co-join-done{font-family:var(--mono);font-size:13.5px;color:var(--sky)}
+/* ⚠️ COLUMN, NOT ROW. .co-join-done carries .co-join too, which is a horizontal flex
+   row, so the share controls landed BESIDE the confirmation sentence and vertically
+   adrift of it. The confirmation is a sentence and the share row is a footnote under
+   it; they are not two things sitting side by side. Caught on screen, not in the diff. */
+.co-join-done{font-family:var(--mono);font-size:13.5px;color:var(--sky);
+  flex-direction:column;align-items:flex-start;gap:0}
 /* inside a card the pill is tighter, and the fields share the width rather than
    holding two fixed 172px columns that would not fit the panel */
 .co-join-compact .co-joinbar input{font-size:12.5px;padding:10px 14px;width:auto;flex:1 1 0;min-width:0}
 .co-join-compact .co-joinbar{max-width:460px;width:100%}
 .co-join-compact .co-joinbar input.nm{flex:.75 1 0}
 .co-join-compact .co-joinbar input.em{flex:1.25 1 0}
+
+/* ---------- sharing (20 Jul) ----------
+   The controls that appear INSIDE the signup confirmation, never beside the pill. The
+   hero at rest is unchanged; this only exists once somebody has signed up.
+
+   ⚠️ SQUARE, per the house rule. No rounded corners anywhere on this site, which is why
+   these are bordered boxes rather than the pill shape a share button usually takes. */
+.co-share{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px}
+.co-sharelead{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em;
+  flex-basis:100%}
+.co-sharebtn{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;line-height:1.3;
+  color:var(--sky);background:transparent;border:1px solid var(--border);
+  padding:7px 13px;cursor:pointer;text-decoration:none;display:inline-block}
+.co-sharebtn:hover{border-color:var(--sky);background:#fff}
+/* the confirmed state borrows the Live badge's green rather than inventing a colour */
+.co-sharebtn.is-copied{color:#2E7D4F;border-color:#CFE6D9;background:#F2F9F5}
+.co-share-compact{margin-top:12px;gap:9px}
+.co-share-compact .co-sharebtn{font-size:11px;padding:6px 11px}
+
+/* THE PER-MODULE CONTROL, hard right in the card foot.
+   ⚠️ ALWAYS VISIBLE, NEVER HOVER-REVEALED. That was the Isa window lesson on 20 Jul:
+   a control that only announces itself on hover does not exist for a touch user, and
+   this page's traffic on Wednesday is a LinkedIn campaign, so most of it is a phone.
+   Quiet is fine; hidden is not. */
+.co-copylink{
+  margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.02em;
+  color:var(--muted);background:transparent;border:0;padding:4px 0;cursor:pointer;
+  opacity:.8;transition:color .16s ease,opacity .16s ease}
+.co-copylink:hover{color:var(--sky);opacity:1}
+.co-copylink.is-copied{color:#2E7D4F;opacity:1}
+
+/* an arriving #m4 link must not park the card under the fixed nav */
+.co-card{scroll-margin-top:96px}
 
 /* ---------- the strip ----------
    ONE LINE, NOT A SECTION. It answers how big this is and how long it runs before
@@ -6909,4 +7137,81 @@ a.project-card {
   .mod-shell{padding:0 20px 80px;}
   .mod-readerbody{padding:26px 20px 32px;}
   .mod-lcard{grid-template-columns:110px 1fr;gap:14px;}
+}
+
+/* /about - who we are (entity page). Body uses Ren's .rwf-body reading register. */
+.about-inner {
+  max-width: 820px;
+}
+
+/* /ai-marketing-agent-vs-agency comparison page. Scoped rhythm in Ren's reading register. */
+.avc-reading {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.avc-reading > * + * {
+  margin-top: 22px;
+}
+.avc-reading > .rwf-h2 {
+  margin-top: 52px;
+}
+.avc-reading .page-faq-item + .page-faq-item {
+  margin-top: 26px;
+}
+.avc-reading .page-faq-item .rwf-body {
+  margin-top: 10px;
+}
+
+/* /answer-engine-optimization GEO hub. Scoped; reuses the .avc-reading column. */
+.geo-stats {
+  list-style: disc;
+  padding-left: 20px;
+}
+.geo-stats li + li {
+  margin-top: 10px;
+}
+.geo-points {
+  margin-top: 8px;
+}
+.geo-point + .geo-point {
+  margin-top: 40px;
+}
+.geo-point .rwf-h3 {
+  margin-bottom: 10px;
+}
+.geo-point .rwf-meta {
+  margin-top: 10px;
+}
+
+/* Site links footer (SiteFooter.tsx), so content pages are not orphans. */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 44px 48px 48px;
+}
+.site-footer-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.site-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.site-footer-links a {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  width: fit-content;
+}
+.site-footer-links a:hover {
+  border-bottom-color: var(--orange);
+}
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 36px 24px;
+  }
 }

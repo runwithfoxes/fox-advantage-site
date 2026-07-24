@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, FormEvent } from "react";
+import { useDraggable } from "@/lib/useDraggable";
 import { usePathname } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
@@ -20,7 +21,7 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hi, I'm Isa. The first two sections of Paul's new book are [free to download](/book#signup). The rest will be here soon. Or ask me anything about what we do.",
+      text: "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. [Register today](/course). Did I mention it is free? Paul asked me to say it was brilliant...",
     },
   ],
 };
@@ -41,9 +42,33 @@ export default function ChatWidget() {
   const pathname = usePathname();
   const isContact = pathname === "/contact";
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  /* Drag is desktop only. Below 768px she is the whole screen, which is not a
+     window and has nowhere to be moved to. */
+  const [canDrag, setCanDrag] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 769px)");
+    const sync = () => setCanDrag(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const { isDragging } = useDraggable(panelRef, { enabled: canDrag && isOpen });
+
+  /* Close and minimise are deliberately different. Close means "not now", and is
+     remembered for the rest of the visit, which is the behaviour the X has always
+     had. Minimise just puts her back in the bubble and leaves her openable, which
+     is what you want when she is only in the way for a moment. */
+  const dismiss = () => {
+    setIsOpen(false);
+    sessionStorage.setItem(isContact ? "isa-dismissed-contact" : "isa-dismissed", "1");
+  };
 
   const { messages, sendMessage, status, error, setMessages } = useChat({
     messages: [isContact ? CONTACT_WELCOME : WELCOME],
@@ -134,15 +159,48 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="chat-panel">
+    <div
+      ref={panelRef}
+      className={`chat-panel${isExpanded ? " chat-panel-expanded" : ""}${
+        canDrag ? " chat-panel-draggable" : ""
+      }${isDragging ? " chat-panel-dragging" : ""}`}
+    >
       <div className="chat-panel-header">
-        <span className="chat-panel-title">isa</span>
-        <button
-          className="chat-panel-close"
-          onClick={() => { setIsOpen(false); sessionStorage.setItem(isContact ? "isa-dismissed-contact" : "isa-dismissed", "1"); }}
-          aria-label="Close chat"
-        >
-          &times;
+        {/* Window controls. Isa is the one piece of real software on the site, so
+            these are actual controls, not the drawn ones the hero cards carry.
+            Every dot does something: close, minimise to the bubble, expand.
+            The dots alone are not a discoverable way out (they only reveal their
+            meaning on hover, and touch users cannot hover), so the header also
+            carries a labelled \close in the site's own syntax. */}
+        <div className="chat-panel-dots">
+          <button
+            className="chat-dot chat-dot-close"
+            onClick={dismiss}
+            aria-label="Close chat"
+            title="Close"
+          />
+          <button
+            className="chat-dot chat-dot-min"
+            onClick={() => setIsOpen(false)}
+            aria-label="Minimise chat"
+            title="Minimise"
+          />
+          <button
+            className="chat-dot chat-dot-zoom"
+            onClick={() => setIsExpanded((v) => !v)}
+            aria-label={isExpanded ? "Shrink chat" : "Expand chat"}
+            title={isExpanded ? "Shrink" : "Expand"}
+          />
+        </div>
+        {/* The name is doing no work here: the fox bubble identifies her, and her
+            first line says who she is. So the most visible slot in the header
+            carries the one thing you cannot otherwise discover, which is that
+            she moves. On mobile she cannot, so it falls back to her name. */}
+        <span className="chat-panel-title">
+          {canDrag ? "drag to move" : "isa"}
+        </span>
+        <button className="chat-panel-close" onClick={dismiss} aria-label="Close chat">
+          \close
         </button>
       </div>
 
@@ -160,11 +218,9 @@ export default function ChatWidget() {
                 text
               ) : m.id === "welcome" ? (
                 <div>
-                  <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/book_cover.JPG" alt="The Fox Advantage" style={{ width: 60, height: "auto", flexShrink: 0 }} />
-                    <p>Hi, I&apos;m Isa. The first two sections of Paul&apos;s new book are <a href="/book#signup">free to download</a>. The rest will be here soon. Or ask me anything about what we do.</p>
-                  </div>
+                  {/* Text-only welcome, no course card (Paul's call). The link
+                      carries the CTA; the copy carries the voice. */}
+                  <p>Hi, we&apos;re launching a new free online training course: AI Fluency for Ambitious Marketers. <a href="/course">Register today</a>. Did I mention it is free? Paul asked me to say it was brilliant...</p>
                 </div>
               ) : (
                 <div

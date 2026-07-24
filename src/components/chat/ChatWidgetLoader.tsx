@@ -15,8 +15,12 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
  * has no course knowledge yet - the Isa-on-course-pages wiring has been open since
  * 12 Jul - so she would be answering questions about a course she has not been
  * told about.
+ *
+ * /softco - the brand-consistency demonstration page. The whole point of that
+ * page is that every pixel on it comes from SoftCo's brand system; Isa arrives
+ * in Run with Foxes' own chrome and colours, which breaks the demonstration.
  */
-const NO_CHAT_ROUTES = ["/course"];
+const NO_CHAT_ROUTES = ["/course", "/softco"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();

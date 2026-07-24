@@ -65,7 +65,7 @@ A long exploration session worked the problem "the homepage reduces to a list of
 ### Working wireframe + deploy spec (2026-06-04, evening)
 - **Current working wireframe:** `wireframes/wireframe-accordion-homepage.html` (supersedes the keeper mock for build). Single font throughout (JetBrains Mono, no Space Grotesk). Real module/tool copy pulled from the live `HomePage.tsx`. Sequential green status dots on the contact-CTA strip under the bio. Thought-leadership carousel above the modules, manual rotation, wired to the live Substack feed (`runwithfoxes.substack.com/feed`) with a curated post list. Rotating testimonial band (manual, fixed height) above the book block. Book block mirrors the `/book` hero.
 - **DEPLOY GUARDRAIL:** when porting the accordion homepage, do NOT modify the nav or hero-video code (`hp-nav`, `hp-nav-scrolled`, `hp-hero-wrapper`, the landscape + portrait `hp-hero-video` elements, posters, and the nav-over-video overlay). That overlay was hard-won; leave it byte-for-byte. The ONLY permitted change above the fold is the nav dropdown contents.
-- **DEPLOY GUARDRAIL (Isa chatbot):** do NOT change the Isa chatbot or its rules WITHOUT Paul's explicit say-so. Default behaviour: auto-opens after 5 seconds on first load (DESKTOP ONLY since 2026-07-08, approved by Paul: no auto-open at <=768px where the panel is full-screen - the bubble stays and the visitor taps it), shows the welcome message with the book-cover thumbnail and the "free to download" link to `/book#signup`, stays closed for the rest of the visit once dismissed (sessionStorage), reopens on the next visit. **Contact-page exception (added 2026-06-04, approved by Paul):** on `/contact` ONLY, Isa opens after 2 seconds with a booking-led welcome (cal.com strategy-chat link) instead of the book message, and uses a separate `isa-dismissed-contact` key so a dismissal elsewhere doesn't suppress the contact open. Same personality/knowledge/backend, just the opening message + timing branch on `pathname === "/contact"`. Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`. Leave the rest as-is (see the "Isa chatbot behaviour" section below).
+- **DEPLOY GUARDRAIL (Isa chatbot):** do NOT change the Isa chatbot or its rules WITHOUT Paul's explicit say-so. Default behaviour: auto-opens after 5 seconds on first load (DESKTOP ONLY since 2026-07-08, approved by Paul: no auto-open at <=768px where the panel is full-screen - the bubble stays and the visitor taps it), shows the welcome message (as of 2026-07-21 a text-only course welcome with a "Register today" link to `/course`; previously the book-cover thumbnail + "free to download" -> `/book#signup`), stays closed for the rest of the visit once dismissed (sessionStorage), reopens on the next visit. **Contact-page exception (added 2026-06-04, approved by Paul):** on `/contact` ONLY, Isa opens after 2 seconds with a booking-led welcome (cal.com strategy-chat link) instead of the book message, and uses a separate `isa-dismissed-contact` key so a dismissal elsewhere doesn't suppress the contact open. Same personality/knowledge/backend, just the opening message + timing branch on `pathname === "/contact"`. Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`. Leave the rest as-is (see the "Isa chatbot behaviour" section below).
 - **DEPLOY GUARDRAIL (bottom bar):** keep the sliding bottom bar (`hp-bottom-bar`) exactly as-is: `#top`, `#about`, `/book`, `get in touch`. No logo, no content change.
 - **Nav dropdown changes (the one allowed top change):**
   - Rename the `/projects` menu to **`/previous`**.
@@ -168,11 +168,12 @@ Every module section follows:
 
 ## Isa chatbot behaviour
 - Auto-opens after 5 seconds on first page load (2 seconds on `/contact`) - DESKTOP ONLY (2026-07-08): no auto-open at <=768px viewports, where the panel is full-screen; on mobile the bubble stays and only opens on tap
-- Welcome message shows Fox Advantage book cover thumbnail + "Hi, I'm Isa. The first two sections of Paul's new book are free to download. The rest will be here soon. Or ask me anything about what we do."
-- "free to download" links to `/book#signup` (email gate + PDF download)
+- Welcome message (updated 2026-07-21 for the course launch, was the book message): text-only, "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. Register today. Did I mention it is free? Paul asked me to say it was brilliant..."
+- "Register today" links to `/course`. (The old book-cover thumbnail + "free to download" -> `/book#signup` welcome was replaced; the book is still a real free offer, just no longer Isa's opening line.)
+- Isa's system prompt (`src/lib/chat-system-prompt.ts`) now carries the course as first-class knowledge (six modules, one a fortnight, 21 Sep to 30 Nov 2026, free, links `/course`), so she answers course questions coherently instead of steering to the book. Do NOT teach her a per-module format promise (article/how-to/video/skill) - canon (`src/app/course/courseCopy.ts`) has a ⛔ on it.
 - Once dismissed (X button), stays closed for the rest of the visit (sessionStorage)
 - Reopens on next visit (new browser session)
-- Welcome message rendered as custom JSX (not through markdown renderer) to support the book cover image
+- Welcome message rendered as custom JSX (not through markdown renderer); as of 2026-07-21 it is text-only (the course-card image was tried then removed on Paul's call), so the JSX now holds just the paragraph
 - **Contact-page variant (2026-06-04):** on `/contact` only, the opening message is booking-led ("You found the contact page... Paul does 30-minute strategy chats: [book one here](https://cal.com/paul-dervan-mjfd50)...") rendered via the normal markdown path (id `welcome-contact`, no book cover). Opens after 2s. The widget lives in the root layout so it doesn't remount on client-side nav; the welcome reacts to `pathname` (swaps only while no user message has been sent, so an active chat is never wiped). Contact uses its own `isa-dismissed-contact` sessionStorage key, so closing Isa on another page doesn't stop her opening on `/contact`; closing her on `/contact` keeps her closed there. After the first message she is standard Isa (scope: opening line only, not a full behaviour override).
 - Files: `src/components/chat/ChatWidget.tsx`, `src/components/chat/ChatWidgetLoader.tsx`
 
@@ -191,3 +192,35 @@ Every module section follows:
 - 2026-05-30 (night): Ported wireframe to Next.js, iterated with Paul on foxes/ads/testimonials/spacing, deployed to production
 - 2026-06-03/04 (night): Homepage "list problem" exploration. Ruled out floor-plan/department-render/revolving-hero; confirmed and tightened the accordion direction (see "Homepage direction (2026-06-04)" above). Keeper mock added to wireframes/.
 - 2026-06-04: **Ported the accordion homepage to production.** Built off `wireframes/PORT-BRIEF.md` (two-terminal flow: this terminal ported, a design terminal answered in `wireframes/PORT-QA.md`). New `src/lib/substack.ts` (live RSS feed, ISR), `page.tsx` async, `HomePage.tsx` rebuilt (panels reused verbatim), `globals.css` `hpx-` block, `BookLanding.tsx` nav. Built on branch `homepage-accordion-port`, Vercel preview, Paul reviewed. Paul tweaks: headline trimmed to one line (mono is wider than the old Space Grotesk so it was wrapping), contact-CTA strip 14px + blue, carousel dates `MAY 28 · PAUL DERVAN`. Resolved questions: foxes OUT of the accordion, tool panels multi-open. Fast-forward merged to main + live. Session: `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`.
+
+## /softco (2026-07-23) - BRAND CONSISTENCY DEMONSTRATION, unlisted
+
+Public route `runwithfoxes.com/softco`. An experiment Paul asked for: one page built
+entirely out of SoftCo's own brand system, to show that a brand can be held exactly on
+the web and not just in ads. **Unlisted by design** - `robots: {index:false, follow:false}`,
+absent from `sitemap.ts`, and linked from nowhere on the site. It is NOT the gated client
+workspace (that is `/clients/softco`).
+
+- **Files:** `src/app/softco/page.tsx` + `src/app/softco/softco.css` (a plain global CSS
+  import, deliberately NOT appended to `globals.css` - that file already has a known
+  collision point at its end). Every class is `sft-` prefixed and scoped under `.sft-root`.
+- **Isa is suppressed here** via `NO_CHAT_ROUTES` in `ChatWidgetLoader.tsx`. She arrives in
+  Run with Foxes' chrome and colours, which breaks the demonstration.
+- **Fonts:** Erode (their headline face, self-hosted OTF at `public/fonts/erode/`, taken
+  from their own brand pack, free for commercial use) and Plus Jakarta Sans via
+  `next/font/google`. Erode was never on this site before.
+- **Assets in `public/softco/`:** `hero-animation.mp4` (the 23 Jul animated rebuild of
+  SoftCo's still homepage hero, source `~/paul-hub/clients/softco/builds/softco_hero_v1/`),
+  its poster, `softco-p2p-flow.jpg` (a real photograph from their brand library,
+  `08_Images`), and both logo lockups.
+- ⭐ **Every value on the page is sourced and shown.** Colours and type come from
+  `clients/softco/memory/softco-brand-spec-for-ads.md`, cross-checked against computed
+  styles read off softco.com on 23 Jul 2026. Section copy, the Primark quote and the three
+  figures are verbatim from their live homepage. The `sft-src` provenance lines say so.
+- ⭐ **The one deliberate departure, argued on the page:** their signed-off ad system puts
+  dark `#060d2e` on the orange button; their live site ships white. White on `#f7931e`
+  measures 2.3:1, under the 3:1 floor for large text; dark measures 8.3:1. The page uses
+  dark and shows both swatches. Do not "fix" this to match the website without reading
+  that section first.
+- **A top frame bar in Run with Foxes' own mono type** sits above the SoftCo hero so the
+  page can never be mistaken for softco.com. Keep it.

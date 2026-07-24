@@ -1,6 +1,10 @@
 // Cookie notice for runwithfoxes.com.
-// Created 8 June 2026. Reflects the site's ACTUAL behaviour: no tracking/analytics/advertising
-// cookies. Only functional first-party browser storage:
+// Created 8 June 2026. Updated 20 July 2026 when Vercel Web Analytics was added.
+// Reflects the site's ACTUAL behaviour: no cookies of any kind, no advertising pixels.
+// Analytics is Vercel Web Analytics, which is cookieless: it identifies a visitor by a hash
+// of the incoming request that resets every day, so nobody can be followed between days or
+// between sites. If that ever changes, or a cookie-setting tool is added, this page changes
+// FIRST. Functional first-party browser storage:
 //   localStorage  fox_access            -> remembers the book download has been unlocked (EmailGate.tsx)
 //   sessionStorage isa-dismissed(-contact) -> remembers Isa was closed this visit (ChatWidget.tsx)
 //   sessionStorage research-ref          -> matches a research referral to its study (ResearchClient.tsx)
@@ -10,7 +14,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Cookies \\ Run with Foxes",
-  description: "How Run with Foxes Limited uses cookies and browser storage. We use no tracking, advertising, or analytics cookies.",
+  description: "How Run with Foxes Limited uses cookies and browser storage. We set no cookies, and our analytics is cookieless and anonymous.",
 };
 
 const wrap: React.CSSProperties = {
@@ -37,9 +41,21 @@ export default function CookiesPage() {
         <p style={{ ...p, fontFamily: "var(--font-mono)", color: "#3A7CA5" }}>Run with Foxes Limited</p>
 
         <p style={p}>
-          The short version: this site does not use tracking, advertising, or analytics cookies. We do not use
-          Google Analytics, advertising pixels, or any third-party tracking. We do not build a profile of you, and we
-          do not sell data.
+          The short version: this site sets no cookies. We do use analytics, but the cookieless kind, so we can see
+          that a page was visited without knowing who visited it. We do not use Google Analytics, we run no advertising
+          pixels, we do not build a profile of you, and we do not sell data.
+        </p>
+
+        <h2 style={h2}>What we measure</h2>
+        <p style={p}>
+          We use Vercel Web Analytics, which counts page views and tells us roughly where visitors arrived from. It sets
+          no cookies and stores nothing on your device. Instead of following a person, it works from a scrambled version
+          of the request your browser makes, and that scramble is thrown away and rebuilt every day. The practical
+          effect is that you cannot be recognised tomorrow, and you cannot be recognised on any other website.
+        </p>
+        <p style={p}>
+          What we see is counts: how many people read a page, which pages, and which link or site sent them. It tells us
+          whether something we wrote was worth writing. It does not tell us who you are.
         </p>
 
         <h2 style={h2}>What we do store</h2>

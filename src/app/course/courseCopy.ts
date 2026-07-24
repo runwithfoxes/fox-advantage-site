@@ -36,16 +36,16 @@ export const HERO = {
      desktop was a hard break I had put there. Paul, 19 Jul: "I don't want the headline
      to go across two lines. It can fit on one." The type size now holds it on one line
      at desktop widths; on a phone it wraps naturally, which is fine and expected. */
-  headline: "AI fluency for ambitious marketers",
+  headline: "AI Fluency for Ambitious Marketers",
 
-  /* ⚠️ STILL A TERMINAL'S SENTENCE, not Paul's, and the only one left on the page.
-     It is a proposal against the open thought that of the six descriptions only
-     module 3 answers "why should I do it", so the hero said what the course IS but
-     never what it does for the reader.
-     "A genuinely competent standard" is lifted verbatim from his signed-off module 3
-     rather than invented, which means the hero and card 3 rhyme. His call whether that
-     is repetition or reinforcement. Flagged in QA-A rather than marked on the page. */
-  sub: "A free course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one a fortnight, starting 21 September.",
+  /* ✅ NOW PAUL'S OWN WORDING, 20 Jul. He dictated the whole string, so it is no longer
+     a terminal's proposal. What he was fixing: the page never said anywhere that this is
+     an ONLINE course a marketer does themselves, in their own time.
+     Three changes from the 19 Jul version: "online" goes in; "one a fortnight" becomes
+     "one released every fortnight" (release schedule, not a pace you have to keep); and
+     the two new closing sentences carry the self-paced promise and the full date.
+     The middle sentence is unchanged - it was already his structure and he kept it. */
+  sub: "A free online course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one released every fortnight. Do at your own pace. Starts 21st September 2026.",
 
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
      18 Jul: say free, never bind his future pricing. "Nothing to buy" is inside
@@ -156,6 +156,41 @@ export const ASK = {
   errEmail: "That email address does not look right. Mind checking it?",
   errServer: "Something went wrong at our end. We are on it, try again shortly.",
 };
+
+/* ---------- sharing ----------
+   Added 20 Jul. ⚠️ EVERY STRING HERE IS A TERMINAL'S PROPOSAL, NOT PAUL'S, and is
+   flagged to him rather than treated as settled. Same status as the ASK lines above.
+
+   The constraints they were written against:
+   - the page never begs. "Know someone" is an offer, not a request, and it is only ever
+     shown to somebody who has already signed up;
+   - no salesy closer, no "spread the word", no exclamation;
+   - `text` is what the native share sheet pre-fills into WhatsApp or Messages, so it has
+     to read as a sentence a person would actually send, not as ad copy. */
+export const SHARE = {
+  /* ✅ PAUL'S OWN WORDING, 20 Jul. He replaced the terminal's proposal outright.
+     What he cut: "Know someone who would get something out of it?" It asks a question
+     the reader has to answer before doing anything, and "get something out of it" is
+     hedged and faintly apologetic about the course.
+     His version is an instruction, not a question, and it flatters the person being
+     sent it rather than the course being sent. */
+  lead: "Share with brilliant marketers you know",
+  /* shown on a module card, where the context is already on screen */
+  cardLead: "Pass this module on",
+  linkedin: "Share on LinkedIn",
+  native: "Share",
+  copy: "Copy link",
+  copied: "Link copied",
+  /* the native sheet's own fields */
+  title: "AI Fluency for Ambitious Marketers",
+  text: "A free online course for marketers, six modules, starts 21 September.",
+};
+
+/* ⚠️ ABSOLUTE, AND HARDCODED ON PURPOSE. A share target cannot resolve a relative URL,
+   and window.location is not available when the component first renders on the server.
+   This is the canonical address of the page; if the route ever moves, this moves with it
+   and so does `alternates.canonical` in page.tsx. */
+export const COURSE_URL = "https://runwithfoxes.com/course";
 
 /* ⛔ THE QUESTIONS BLOCK WAS DELETED IN FULL, 19 Jul, including its three unanswered
    slots. The reasoning, recorded so it does not creep back:

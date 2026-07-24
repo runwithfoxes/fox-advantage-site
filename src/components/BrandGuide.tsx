@@ -2,85 +2,85 @@
 
 import Link from "next/link";
 
-function Swatch({ hex, name, cssVar, usage }: { hex: string; name: string; cssVar: string; usage: string }) {
-  const isLight = ["#FAFAF8", "#F7EAD9", "#E0E0DC", "#F5F5F0", "#F0F0EC"].includes(hex);
-  return (
-    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginBottom: 20 }}>
-      <div
-        style={{
-          width: 64,
-          height: 64,
-          minWidth: 64,
-          background: hex,
-          border: isLight ? "1px solid var(--border)" : "none",
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
-          padding: 6,
-        }}
-      >
-        <span style={{ fontFamily: "var(--mono)", fontSize: 9, fontWeight: 400, color: isLight ? "var(--text-muted)" : "#fff", letterSpacing: 0.5 }}>{hex}</span>
-      </div>
-      <div>
-        <div style={{ fontFamily: "var(--sans)", fontSize: 16, fontWeight: 400, letterSpacing: -0.3 }}>{name}</div>
-        <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "var(--text-muted)", marginTop: 2 }}>{cssVar}</div>
-        <div style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 300, color: "var(--text-muted)", lineHeight: 1.7, marginTop: 4 }}>{usage}</div>
-      </div>
-    </div>
-  );
+/* ---------------------------------------------------------------------------
+   Run with Foxes brand guide.
+   Source of truth: ~/paul-hub/clients/rwf/memory/rwf-type-system.md (type),
+   rwf-brand-spec-for-ads.md (Anton, the fox, the ad voice). This page is
+   rendered IN the system it documents: reading register throughout, chrome
+   square, one weight per face. If you change a rule here, change it there too.
+--------------------------------------------------------------------------- */
+
+function Label({ children }: { children: React.ReactNode }) {
+  return <div className="rwf-label" style={{ color: "var(--orange)", marginBottom: 18 }}>{children}</div>;
 }
 
-function SectionBlock({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
+function Section({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} style={{ padding: "80px 0" }}>
-      <div className="container">
-        <div className="section-label">{label}</div>
-        <h2 className="section-title">{title}</h2>
-        {children}
-      </div>
+    <section id={id} style={{ padding: "56px 0", borderTop: "1px solid var(--border)" }}>
+      <div className="rwf-label" style={{ marginBottom: 14 }}>{label}</div>
+      <h2 className="rwf-h2" style={{ marginBottom: 24 }}>{title}</h2>
+      {children}
     </section>
   );
 }
 
-function Rule({ text }: { text: string }) {
+function Rule({ text }: { text: React.ReactNode }) {
   return (
     <div style={{ display: "flex", gap: 10, alignItems: "baseline", marginBottom: 10 }}>
-      <span style={{ color: "var(--orange)", fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400 }}>\\</span>
-      <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, lineHeight: 1.8, color: "var(--text)" }}>{text}</span>
+      <span style={{ color: "var(--orange)", fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400 }}>{"\\"}</span>
+      <span className="rwf-body" style={{ fontSize: 15 }}>{text}</span>
     </div>
   );
 }
 
-function TypeRow({ font, size, weight, spacing, usage, sample }: { font: string; size: string; weight: string; spacing: string; usage: string; sample: string }) {
-  const fontFamily = font === "Space Grotesk" ? "var(--sans)" : "var(--mono)";
+/* Because. Every rule carries its reason so the next person does not follow a rule they cannot explain. */
+function Because({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ paddingBottom: 28, marginBottom: 28, borderBottom: "1px solid var(--border)" }}>
-      <div style={{ fontFamily, fontSize: size, fontWeight: weight, letterSpacing: spacing, lineHeight: 1.2, marginBottom: 8 }}>{sample}</div>
-      <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 1, color: "var(--orange)" }}>{font}</span>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "var(--text-muted)" }}>{size} / {weight} / {spacing}</span>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "var(--text-muted)" }}>{usage}</span>
+    <p className="rwf-meta" style={{ marginTop: 12, borderLeft: "2px solid var(--border)", paddingLeft: 14, maxWidth: 620 }}>
+      {children}
+    </p>
+  );
+}
+
+function Swatch({ hex, name, cssVar, usage }: { hex: string; name: string; cssVar: string; usage: string }) {
+  const isLight = ["#FAFAF8", "#F7EAD9", "#E0E0DC", "#F5F5F0", "#F0F0EC"].includes(hex);
+  return (
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginBottom: 20 }}>
+      <div style={{ width: 64, height: 64, minWidth: 64, background: hex, border: isLight ? "1px solid var(--border)" : "none", display: "flex", alignItems: "flex-end", padding: 6 }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 9, fontWeight: 400, color: isLight ? "var(--text-muted)" : "#fff", letterSpacing: 0.5 }}>{hex}</span>
       </div>
+      <div>
+        <div className="rwf-h3" style={{ fontSize: 16 }}>{name}</div>
+        <div className="rwf-meta" style={{ marginTop: 2 }}>{cssVar}</div>
+        <div className="rwf-meta" style={{ marginTop: 4, color: "var(--text-muted)" }}>{usage}</div>
+      </div>
+    </div>
+  );
+}
+
+/* A live type specimen: the sample is set in the very class it names. */
+function Spec({ cls, sample, note }: { cls: string; sample: string; note: string }) {
+  return (
+    <div style={{ paddingBottom: 24, marginBottom: 24, borderBottom: "1px solid var(--border)" }}>
+      <div className={cls} style={{ marginBottom: 10 }}>{sample}</div>
+      <div className="rwf-meta">{note}</div>
     </div>
   );
 }
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <div style={{
-      background: "#1D1B1B",
-      padding: "20px 24px",
-      marginTop: 16,
-      marginBottom: 16,
-      fontFamily: "var(--mono)",
-      fontSize: 13,
-      fontWeight: 300,
-      lineHeight: 2,
-      color: "rgba(255,255,255,0.6)",
-      maxWidth: 560,
-      overflowX: "auto",
-    }}>
+    <div style={{ background: "#1D1B1B", padding: "20px 24px", margin: "16px 0", fontFamily: "var(--mono)", fontSize: 13, fontWeight: 400, lineHeight: 2, color: "rgba(255,255,255,0.65)", overflowX: "auto" }}>
       <pre style={{ margin: 0, whiteSpace: "pre-wrap" }}>{children}</pre>
+    </div>
+  );
+}
+
+function Dont({ children }: { children: React.ReactNode }) {
+  return (
+    <div style={{ display: "flex", gap: 10, alignItems: "baseline" }}>
+      <span style={{ color: "#c44", fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400 }}>&#10007;</span>
+      <span className="rwf-body" style={{ fontSize: 15 }}>{children}</span>
     </div>
   );
 }
@@ -94,540 +94,376 @@ export default function BrandGuide() {
         <span className="chapter-nav-count">brand guide</span>
       </header>
 
-      <div className="chapter-main" style={{ paddingTop: 100 }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <div className="chapter-main" style={{ paddingTop: 96 }}>
+        <div className="rwf-reading" style={{ maxWidth: 880, margin: "0 auto", paddingBottom: 120 }}>
 
           {/* HERO */}
-          <div style={{ marginBottom: 80 }}>
-            <div className="chapter-part-label">// internal reference</div>
-            <h1 style={{ fontFamily: "var(--sans)", fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 300, letterSpacing: -1, lineHeight: 1.1, marginBottom: 24 }}>
-              Brand guide
-            </h1>
-            <p style={{ fontFamily: "var(--mono)", fontSize: 14, fontWeight: 300, lineHeight: 1.9, color: "var(--text-muted)", maxWidth: 560 }}>
-              Everything you need to keep runwithfoxes.com looking and sounding like itself. Colours, fonts, components, writing rules, and the things we never do.
+          <div style={{ marginBottom: 12 }}>
+            <div className="rwf-label" style={{ marginBottom: 20 }}>// internal reference</div>
+            <h1 className="rwf-h1" style={{ marginBottom: 24 }}>Brand guide</h1>
+            <p className="rwf-standfirst" style={{ marginBottom: 16 }}>
+              How runwithfoxes.com is made, not what it says. This page is built in its own system,
+              so it doubles as the specimen. If a rule here is broken by the page you are reading, one
+              of them is wrong.
+            </p>
+            <p className="rwf-body">
+              The source of truth is two memory files, not this page: the type system and the ad spec.
+              This is where they are made legible, with the reason under every rule so nobody follows
+              one they cannot explain.
             </p>
           </div>
 
-          <hr className="divider" />
+          {/* THE ONE IDEA */}
+          <Section id="idea" label="/the_one_idea" title="Two things held in tension">
+            <p className="rwf-body" style={{ marginBottom: 16 }}>
+              The brand is bright, colourful, crafted creativity and, at the same time, a techie,
+              low-key, typewriter restraint. Both have to be legible in any encounter with the brand,
+              in whatever format. Neither half on its own is the brand. Type carries the restraint.
+              Colour and craft come in through the artwork, never through the chrome.
+            </p>
+            <p className="rwf-body" style={{ marginBottom: 24 }}>
+              The enemy is not dark and it is not quiet. The enemy is dull. Kill Bill is dark and still
+              brilliant because of the gold. A restrained page is still brilliant if the craft is visible.
+            </p>
+            <Label>two layers, kept separate</Label>
+            <Rule text={<><strong>Reasons</strong> are durable: both-ness legible everywhere, brilliance not brightness, craft visible, colour through artwork not chrome, effectiveness underneath.</>} />
+            <Rule text={<><strong>Vehicles</strong> are current practice and replaceable: the three faces, the fox, the window, mono and the slash, film references. Any vehicle can be swapped for one that serves the reasons better.</>} />
+            <Because>
+              The test for anything new: is both-ness legible, and if not, which half is under-weighted.
+              This keeps the guide from turning into a cage.
+            </Because>
+          </Section>
 
-          {/* COLOURS */}
-          <SectionBlock id="colours" label="/colours" title="Colour palette">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px 64px", marginTop: 32 }}>
+          {/* TYPE */}
+          <Section id="type" label="/typography" title="Type system">
+            <p className="rwf-body" style={{ marginBottom: 28 }}>
+              Three faces, each with one job. Two registers. Two reading sizes. One weight per face.
+              Hierarchy comes from size, position and space, never from making things heavier.
+            </p>
+
+            <Label>the three faces</Label>
+            <Spec cls="rwf-statement" sample="Build an unfair advantage" note="JetBrains Mono 700 / statement register / front doors only" />
+            <Spec cls="rwf-h1" sample="Fox thinking, not hedgehog thinking" note="Space Grotesk 500 / headline register / h1 through h3, reading pages" />
+            <Spec cls="rwf-standfirst" sample="The specialists are being replaced by generalists with tools, and the tools are getting very good." note="Source Serif 4 / standfirst / 20px / 1.5, once per page under the H1" />
+            <Spec cls="rwf-body" sample="Everything a person actually reads runs in Source Serif at one size. If a line wants to be smaller than this, it is not reading copy. It becomes the machine, so it changes face, not size." note="Source Serif 4 / body / 17px / 1.65" />
+            <Spec cls="rwf-label" sample="\MENTAL_AVAILABILITY" note="JetBrains Mono / the machine / 11 to 12px, labels, meta, sources, counts" />
+
+            <div style={{ marginTop: 24 }}>
+              <Label>the rules</Label>
+              <Rule text="Two registers. Statement (Mono 700, centred, ~54px) is for front doors only, where nobody is reading yet. Reading (Grotesk 500 headline, Source Serif body) is for every page someone stays on. Statement does not travel to a page with a paragraph on it." />
+              <Rule text="Two reading sizes only. Standfirst 20px, once, under the H1. Body 17px, everything else. No sub-body, no small print, no caption-sized serif." />
+              <Rule text="Anything smaller than body becomes mono, not small serif. That removes the when-do-I-drop-a-size question. You do not. You change face." />
+              <Rule text="One weight per face. Mono 400 (700 for the one statement headline). Grotesk 500. Serif 400, with 600 for a genuine inline emphasis inside a sentence, never a whole line or a heading." />
+              <Because>
+                Grotesk 500 was chosen over 600, which read too insistent over long copy, and over 300,
+                which went weak at size. 500 holds a page without shouting. Nothing is bolded for
+                emphasis, because heavy-everything is the drift this rule exists to stop.
+              </Because>
+            </div>
+          </Section>
+
+          {/* WIDTH */}
+          <Section id="width" label="/measure" title="Copy runs the full width of its container">
+            <p className="rwf-body" style={{ marginBottom: 16 }}>
+              If there is empty space to the right of a paragraph and nothing is in it, that is the bug:
+              four lines and a dead column instead of two lines across. Body copy is never capped at a
+              62 to 66 character measure. Standard typographic advice says otherwise here, and it loses.
+            </p>
+            <Rule text="The only exception is a real two-column grid with something actually in the other column, almost always the fox. It works either side. That is a grid column, not a max-width on the text." />
+            <Because>
+              A cap on the text is the bug; a grid column is legitimate. A hook already polices the cap,
+              but the hook cannot see intent, so the rule is stated plainly here.
+            </Because>
+          </Section>
+
+          {/* COLOUR */}
+          <Section id="colours" label="/colour" title="Colour palette">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 48px", marginTop: 8 }}>
               <div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Primary</div>
-                <Swatch hex="#3A7CA5" name="Sky blue" cssVar="--sky-blue" usage="Primary accent. CTAs, links, hover states, stats, active nav" />
-                <Swatch hex="#2F6688" name="Sky blue hover" cssVar="n/a" usage="Button hover state" />
-                <Swatch hex="#1A3A4E" name="Deep sky" cssVar="--deep-sky" usage="Dark sections, bottom bar, chat send button. Deep blue, not black" />
-                <Swatch hex="#F7EAD9" name="Cream" cssVar="--cream" usage="Warm highlight. Used sparingly" />
+                <Label>the palette</Label>
+                <Swatch hex="#3A7CA5" name="Sky blue" cssVar="--orange (misnamed, see below)" usage="The one accent. Links, hover, active nav, stats, the slash." />
+                <Swatch hex="#1A3A4E" name="Deep sky" cssVar="--charcoal" usage="Chrome only. Dark bars, chat send button. A deep blue, not black." />
+                <Swatch hex="#F47521" name="Logo orange" cssVar="--logo-orange" usage="The word Run in the logo, and nothing else." />
+                <Swatch hex="#F7EAD9" name="Cream" cssVar="--color-cream" usage="Warm highlight, used sparingly." />
               </div>
               <div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Neutrals</div>
-                <Swatch hex="#FAFAF8" name="Background" cssVar="--bg" usage="Page background. Warm off-white" />
-                <Swatch hex="#1D1B1B" name="Text" cssVar="--text" usage="Primary body text. Near-black" />
-                <Swatch hex="#8A8A85" name="Text muted" cssVar="--text-muted" usage="Secondary text, labels, nav defaults" />
-                <Swatch hex="#E0E0DC" name="Border" cssVar="--border" usage="Dividers, card borders, subtle lines" />
-                <Swatch hex="#F5F5F0" name="Card hover" cssVar="n/a" usage="Card background on hover" />
+                <Label>neutrals</Label>
+                <Swatch hex="#FAFAF8" name="Background" cssVar="--bg" usage="Page background. Warm off-white. The fox only appears here." />
+                <Swatch hex="#1D1B1B" name="Text" cssVar="--text" usage="Body text. Near-black, not pure black." />
+                <Swatch hex="#8A8A85" name="Text muted" cssVar="--text-muted" usage="Meta, labels, nav defaults." />
+                <Swatch hex="#E0E0DC" name="Border" cssVar="--border" usage="Dividers, thin lines." />
               </div>
             </div>
 
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 16 }}>Rules</div>
-              <Rule text="Sky blue is the only loud colour. The rest is warm neutrals." />
-              <Rule text="Deep sky is NOT black. It's a deep blue (#1A3A4E)." />
-              <Rule text="Never use pure black (#000) or pure white (#FFF) as backgrounds." />
-              <Rule text="No additional accent colours beyond sky blue." />
-              <Rule text="White text only on deep-sky backgrounds and sky blue buttons." />
-              <Rule text="Fox images only appear on cream (#FAFAF8) backgrounds. Never on deep-sky or sky blue sections." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* TYPOGRAPHY */}
-          <SectionBlock id="type" label="/typography" title="Type system">
             <div style={{ marginTop: 32 }}>
-              <TypeRow font="Space Grotesk" size="clamp(48px, 8vw, 96px)" weight="300" spacing="-2px" usage="Hero heading" sample="The Fox Advantage" />
-              <TypeRow font="Space Grotesk" size="clamp(36px, 5vw, 64px)" weight="300" spacing="-1px" usage="Section titles" sample="Fox thinking, not hedgehog thinking" />
-              <TypeRow font="Space Grotesk" size="24px" weight="400" spacing="-0.5px" usage="Part and project names" sample="Mental Availability in action" />
-              <TypeRow font="Space Grotesk" size="18px" weight="400" spacing="-0.3px" usage="Chapter titles in lists" sample="The marketing department autopsy report" />
-              <TypeRow font="JetBrains Mono" size="0.9375rem" weight="300" spacing="0" usage="Chapter prose, body copy" sample="The marketing department as we knew it is gone. The stack collapsed." />
-              <TypeRow font="JetBrains Mono" size="0.875rem" weight="300" spacing="0" usage="About text, descriptions" sample="This book started as notes to myself. Then it became a Substack." />
-              <TypeRow font="JetBrains Mono" size="12px" weight="400" spacing="2px" usage="Buttons (uppercase)" sample="GET THE BOOK" />
-              <TypeRow font="JetBrains Mono" size="11px" weight="400" spacing="2px" usage="Labels, tags (uppercase)" sample="\MENTAL_AVAILABILITY" />
+              <Label>the rules</Label>
+              <Rule text="Colour enters through the artwork, not the chrome. The chrome (nav, dividers, labels, rules) stays quiet. A photo, a scene, a slide can be as loud as the idea needs." />
+              <Rule text="Sky blue is the only loud colour in the chrome. No accent beyond it." />
+              <Rule text="Content sits on cream. Never put writing on the blue. Deep sky is chrome only." />
+              <Rule text="Never pure black or pure white as a background." />
+              <Rule text={<>Orange (#F47521) is the logo word Run only. It is not a content colour.</>} />
+              <Because>
+                Build note, not a colour decision: the CSS variable <code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>--orange</code> holds the blue #3A7CA5,
+                a leftover from a rebrand where the value changed and the name did not. The accent is
+                genuinely sky blue. Use <code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>--logo-orange</code> for the real orange. Renaming <code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>--orange</code> is
+                on the backlog; until then, do not read the name as the truth.
+              </Because>
             </div>
-
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 16 }}>Rules</div>
-              <Rule text="Headings are always light weight (300). Never bold." />
-              <Rule text="Body copy is light weight (300). Strong tags use 500." />
-              <Rule text="Negative letter-spacing on large headings, positive on small uppercase labels." />
-              <Rule text="Sentence case for all headings. Never Title Case." />
-              <Rule text="JetBrains Mono is the default body font. Monospace is the brand." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
+          </Section>
 
           {/* LOGO */}
-          <SectionBlock id="logo" label="/logo" title="Logo">
-            <div style={{ marginTop: 32, padding: "48px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", textAlign: "center" }}>
-              <span style={{ fontFamily: "var(--mono)", fontSize: 26, fontWeight: 300, letterSpacing: 4, color: "var(--text-muted)" }}>
+          <Section id="logo" label="/logo" title="Logo">
+            <div style={{ padding: "40px 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", textAlign: "center", marginBottom: 20 }}>
+              <span style={{ fontFamily: "var(--mono)", fontSize: 26, fontWeight: 400, letterSpacing: 4, color: "var(--text-muted)" }}>
                 /<span style={{ color: "#F47521" }}>Run</span>withfoxes
               </span>
             </div>
-            <div style={{ marginTop: 24 }}>
-              <Rule text="Text-only. No image logo, no icon." />
-              <Rule text='JetBrains Mono, weight 300, letter-spacing 2px.' />
-              <Rule text='"Run" is orange (#F47521). Everything else is muted (#8A8A85).' />
-              <Rule text="Starts with a forward slash." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
+            <Rule text="Text only. No image logo, no icon. There is no logo file: read .chapter-nav-back or .hp-nav-logo and match it." />
+            <Rule text="JetBrains Mono, weight 400, starts with a forward slash." />
+            <Rule text={<>Run is orange (#F47521) on cream. Everything else is muted.</>} />
+            <Rule text="On a dark background the wordmark is a full whiteout, Run included. Orange only on cream." />
+          </Section>
 
           {/* NAVIGATION */}
-          <SectionBlock id="nav" label="/navigation" title="Navigation">
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Top bar</div>
-              <div style={{
-                background: "rgba(250, 250, 248, 0.85)",
-                backdropFilter: "blur(12px)",
-                borderBottom: "1px solid var(--border)",
-                padding: "16px 48px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 16,
-              }}>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, letterSpacing: 2, color: "var(--text-muted)" }}>
-                  /<span style={{ color: "#F47521" }}>Run</span>withfoxes
-                </span>
-                <div style={{ display: "flex", gap: 32 }}>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--orange)" }}>#about</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--text-muted)" }}>chapters.md</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--text-muted)" }}>/projects</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--text-muted)" }}>author.txt</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--orange)" }}>/get_the_book</span>
-                </div>
-              </div>
-              <Rule text="Fixed position, z-index 100, backdrop-filter: blur(12px)." />
-              <Rule text="Semi-transparent background: rgba(250, 250, 248, 0.85)." />
-              <Rule text="Links use terminal/code aesthetic: #about, chapters.md, /projects." />
-              <Rule text="Default link colour: muted. Hover and active: orange. Transition 0.3s." />
-              <Rule text="Mobile (under 768px): nav links hidden, logo only." />
-            </div>
-
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Bottom bar</div>
-              <div style={{
-                background: "var(--charcoal)",
-                display: "inline-flex",
-                marginBottom: 16,
-              }}>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--orange)", padding: "14px 28px" }}>#top</span>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "rgba(255,255,255,0.5)", padding: "14px 28px" }}>chapters.md</span>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "rgba(255,255,255,0.5)", padding: "14px 28px" }}>/projects</span>
-                <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "#fff", padding: "14px 28px", background: "var(--orange)" }}>get the book</span>
-              </div>
-              <Rule text="Fixed to bottom centre. Background: deep sky (#1A3A4E)." />
-              <Rule text="Links: white at 50% opacity, hover to full white. Active: sky blue." />
-              <Rule text="CTA: sky blue background, white text." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* DOT GRID */}
-          <SectionBlock id="texture" label="/texture" title="Dot grid background">
-            <div style={{
-              marginTop: 32,
-              position: "relative",
-              height: 200,
-              border: "1px solid var(--border)",
-              overflow: "hidden",
-            }}>
-              <div style={{
-                position: "absolute",
-                top: 0, left: 0, width: "100%", height: "100%",
-                backgroundImage: "radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px)",
-                backgroundSize: "28px 28px",
-                opacity: 0.4,
-              }} />
-              <div style={{
-                position: "absolute",
-                bottom: 16, left: 20,
-                fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "var(--text-muted)",
-              }}>
-                0.8px dots · 28px grid · 0.4 opacity · #d0d0cc
-              </div>
-            </div>
-
-            <div style={{
-              marginTop: 16,
-              position: "relative",
-              height: 200,
-              background: "var(--charcoal)",
-              overflow: "hidden",
-            }}>
-              <div style={{
-                position: "absolute",
-                top: 0, left: 0, width: "100%", height: "100%",
-                backgroundImage: "radial-gradient(circle, rgba(58, 124, 165, 0.08) 0.8px, transparent 0.8px)",
-                backgroundSize: "28px 28px",
-              }} />
-              <div style={{
-                position: "absolute",
-                bottom: 16, left: 20,
-                fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "rgba(255,255,255,0.4)",
-              }}>
-                deep-sky variant · sky blue dots at 0.08 opacity
-              </div>
-            </div>
-
-            <div style={{ marginTop: 24 }}>
-              <Rule text="Fixed position, full viewport, pointer-events none, z-index 0." />
-              <Rule text="This dot grid appears on every page. It's a defining visual element." />
-              <Rule text="On deep-sky sections, dots switch to sky blue at 0.08 opacity." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* SECTION LABELS */}
-          <SectionBlock id="labels" label="/section_labels" title="Section labels">
-            <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 48px" }}>
-              {[
-                ["// a book by paul dervan", "Hero label"],
-                ["/what_collapsed", "About section"],
-                ["/structure", "Parts section"],
-                ["/chapters.md", "Chapters section"],
-                ["/projects", "Projects section"],
-                ["/author.txt", "Author section"],
-                ["/get_the_book", "Gate/signup section"],
-                ["\\part_01", "Part numbering"],
-              ].map(([label, desc]) => (
-                <div key={label} style={{ display: "flex", gap: 16, alignItems: "baseline" }}>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 2, color: "var(--text-muted)", textTransform: "uppercase" }}>{label}</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 300, color: "var(--text-muted)", opacity: 0.6 }}>{desc}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: 24 }}>
-              <Rule text="JetBrains Mono, 12px, weight 400, letter-spacing 2px, uppercase." />
-              <Rule text="Use forward slashes, hashtags, backslashes, and file extensions." />
-              <Rule text="This terminal aesthetic is core to the brand identity." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* CARDS AND HOVER */}
-          <SectionBlock id="hover" label="/interactions" title="Cards and hover effects">
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Part and project cards</div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "var(--border)", marginBottom: 16 }}>
-                <div className="part-card">
-                  <div className="part-number">\01</div>
-                  <div className="part-name">What just collapsed</div>
-                  <div className="part-desc">Hover this card to see the background shift to #F5F5F0</div>
-                </div>
-                <div className="part-card">
-                  <div className="part-number">\02</div>
-                  <div className="part-name">Better together</div>
-                  <div className="part-desc">Subtle. No dramatic transforms. Just a gentle warmth.</div>
-                </div>
-              </div>
-              <Rule text="Background shifts from #FAFAF8 to #F5F5F0 on hover." />
-              <Rule text="No border-radius. Sharp corners throughout." />
-              <Rule text="All transitions use 0.3s duration." />
-            </div>
-
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Chapter list items</div>
-              <div style={{ borderBottom: "1px solid var(--border)" }}>
-                <div className="chapter-item" style={{ cursor: "pointer" }}>
-                  <span className="chapter-num">01</span>
-                  <span className="chapter-title">Hover to see the slide and colour shift</span>
-                  <span className="chapter-arrow">→</span>
-                </div>
-                <div className="chapter-item" style={{ cursor: "pointer" }}>
-                  <span className="chapter-num">02</span>
-                  <span className="chapter-title">Title turns orange, arrow fades in</span>
-                  <span className="chapter-arrow">→</span>
-                </div>
-              </div>
-              <div style={{ marginTop: 16 }}>
-                <Rule text="Hover slides content right (translateX 12px, not padding-left)." />
-                <Rule text="Title colour transitions to sky blue." />
-                <Rule text="Arrow (initially opacity 0) fades in as sky blue." />
-              </div>
-            </div>
-
-            <div style={{ marginTop: 40 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Hover philosophy</div>
-              <Rule text="Subtle. No dramatic transforms, no scale changes." />
-              <Rule text="Colour shift to sky blue is the primary hover pattern." />
-              <Rule text="Use translateX for slide effects, not padding shifts (avoids layout recalculation)." />
-              <Rule text="'Read more →' links: opacity or translateX shift on hover (not letter-spacing, which triggers layout)." />
-              <Rule text="Link hover: opacity drops to 0.7." />
-              <Rule text="Never hide content behind hover-only. Touch users can't hover. Use click/tap reveal patterns instead." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* BUTTONS */}
-          <SectionBlock id="buttons" label="/buttons" title="Buttons and CTAs">
-            <div style={{ marginTop: 32, display: "flex", gap: 24, alignItems: "center", flexWrap: "wrap" }}>
-              <button className="gate-button">get the book</button>
-              <a href="#" className="rwf-buy-btn" onClick={e => e.preventDefault()}>buy on amazon</a>
-              <a href="#" style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, color: "var(--orange)", textDecoration: "none", letterSpacing: 0.5 }} onClick={e => e.preventDefault()}>text link →</a>
-            </div>
-            <div style={{ marginTop: 24 }}>
-              <Rule text="Primary: sky blue bg (#3A7CA5), white text, hover darkens to #2F6688." />
-              <Rule text="Outline: transparent bg, 1px sky blue border, hover border shifts to text colour." />
-              <Rule text="Link: sky blue text, hover opacity 0.7." />
-              <Rule text="All buttons: JetBrains Mono, 12px, weight 400, letter-spacing 2px, uppercase." />
-              <Rule text="No border-radius. Sharp corners." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* FOX IMAGERY */}
-          <SectionBlock id="fox" label="/fox_imagery" title="Fox placement">
-            <div style={{ marginTop: 32 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 32 }}>
-                <div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>Hero</div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                    340px width<br />
-                    Right side of grid<br />
-                    Double drop-shadow (24px + 8px)<br />
-                    Mobile: 240px
-                  </div>
-                </div>
-                <div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>Gate section</div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                    260px width<br />
-                    Right column<br />
-                    Opacity 0.9<br />
-                    Mobile: 160px
-                  </div>
-                </div>
-                <div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>Chapter pages</div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                    180px, float right<br />
-                    Negative margin (-60px)<br />
-                    shape-outside: margin-box<br />
-                    Mobile: 140px, centred
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style={{ marginTop: 32 }}>
-              <Rule text="All foxes are transparent PNGs with preserved semi-transparent shadows." />
-              <Rule text="Multiple poses: holding book, sitting, bored, arms folded, walking away." />
-              <Rule text="The fox has attitude. Grumpy, slightly bored. Not cute, not corporate." />
-              <Rule text="No stock photography. Ever." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* ANIMATIONS */}
-          <SectionBlock id="motion" label="/motion" title="Animations">
-            <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 48px" }}>
-              {[
-                ["Chat bubble", "Scales from 0 to 1 with opacity. 0.4s ease-out. Hover: scale 1.08, shadow expands."],
-                ["Chat panel", "Scale 0.9→1, translateY 10px→0. 0.25s. Mobile: slides up from bottom."],
-                ["Chapter accordion", "Click to expand/collapse. First group open by default. +/− indicator."],
-                ["SVG chart", "Stroke-dashoffset animation for line drawing effect."],
-                ["Fade-in", "Scroll-triggered. translateY(24px) → 0, opacity 0 → 1. Subtle and sparse."],
-                ["Fox imagery", "The fox is the distinctive element. Use fox poses, placement, and attitude to create moments no other site has."],
-              ].map(([name, desc]) => (
-                <div key={name} style={{ paddingBottom: 24, borderBottom: "1px solid var(--border)" }}>
-                  <div style={{ fontFamily: "var(--sans)", fontSize: 16, fontWeight: 400, letterSpacing: -0.3, marginBottom: 8 }}>{name}</div>
-                  <div style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>{desc}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: 24 }}>
-              <Rule text="Global transition default: 0.3s on all properties." />
-              <Rule text="Chat uses 0.2s for snappier feel." />
-              <Rule text="No bouncy or elastic easing. Clean ease-out only." />
-              <Rule text="Only animate transform and opacity. Never padding, letter-spacing, height, or other layout-triggering properties." />
-              <Rule text="Always respect prefers-reduced-motion. Include @media (prefers-reduced-motion: reduce) block that disables all animation." />
-              <Rule text="Aim for 3-4 purposeful interactive moments per page, not more. Each one should help the reader understand the content." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* BLOCKQUOTES */}
-          <SectionBlock id="quotes" label="/blockquotes" title="Blockquotes and pull quotes">
-            <div style={{ marginTop: 32 }}>
-              <blockquote style={{ borderLeft: "2px solid var(--orange)", paddingLeft: 20, margin: "0 0 32px", color: "var(--text-muted)", fontStyle: "italic", fontFamily: "var(--mono)", fontSize: 15, fontWeight: 300, lineHeight: 2 }}>
-                The marketing department as we knew it is gone. The stack collapsed. The specialists are being replaced by generalists with tools.
-              </blockquote>
-              <div style={{ borderLeft: "2px solid var(--orange)", paddingLeft: 32, maxWidth: 560 }}>
-                <p style={{ fontFamily: "var(--sans)", fontSize: 17, fontWeight: 300, lineHeight: 1.7, fontStyle: "italic", color: "var(--text)", margin: 0 }}>
-                  This isn&apos;t about AI replacing marketers. It&apos;s about marketers who use AI replacing those who don&apos;t.
-                </p>
-              </div>
-            </div>
-            <div style={{ marginTop: 24 }}>
-              <Rule text="Left border: 2px solid orange. Always." />
-              <Rule text="In-chapter: JetBrains Mono, muted text, italic." />
-              <Rule text="Pull quotes: Space Grotesk, 17px, weight 300, italic." />
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* TERMINAL AESTHETIC */}
-          <SectionBlock id="terminal" label="/aesthetic" title="The code/terminal aesthetic">
-            <div style={{ marginTop: 32 }}>
-              <p style={{ fontFamily: "var(--mono)", fontSize: 14, fontWeight: 300, lineHeight: 1.9, color: "var(--text)", maxWidth: 640, marginBottom: 24 }}>
-                The entire site borrows from developer tools and terminals. This is a core brand decision, not decoration. It signals &quot;this person builds things, not just talks about them.&quot;
-              </p>
-              <CodeBlock>{`// Navigation uses file paths and commands
-#about    chapters.md    /projects    author.txt
-
-// Section labels use terminal prefixes
-/what_collapsed    /structure    /get_the_book
-
-// Part numbers are zero-padded with backslash
-\\part_01    \\part_02    \\part_03
-
-// Project tags use backslash prefix
-\\mental_availability    \\brand    \\fame_strategy
-
-// Meta items use backslash
-\\ 54 chapters    \\ 4 parts    \\ free to read`}</CodeBlock>
-            </div>
-          </SectionBlock>
-
-          <hr className="divider" />
-
-          {/* WRITING STYLE */}
-          <SectionBlock id="writing" label="/writing_style" title="Writing style">
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Voice</div>
-              <Rule text="Conversational, peer-to-peer. Like two mates in a pub." />
-              <Rule text="Direct. Short sentences mixed with longer ones. Uneven rhythm." />
-              <Rule text='Irish inflection where it fits: "deadly", "hoover", "mate". Nothing forced.' />
-              <Rule text='Uses "we" more than "you". Never "most people".' />
-              <Rule text="Evidence and observation first, judgement after." />
-            </div>
-
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Opening recipe</div>
-              <Rule text="Start with a small lived moment: a meeting, a phone call, a queue." />
-              <Rule text="One odd detail: a brand name, a timestamp, a place like Carrickmines." />
-              <Rule text="Short verdict line. Then the turn. Then the bigger point." />
-              <Rule text="No neat endings. No bow, no lesson, no moral. Just stop." />
-            </div>
-
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Hard bans</div>
-              <Rule text="No em dashes. Use a comma or full stop." />
-              <Rule text="No corporate words: future-proof, over-index, activation, ecosystem, leverage, unlock, synergy, reimagine." />
-              <Rule text="No invented specifics. If it wasn't given, don't make it up." />
-              <Rule text="Sentence case for all headings. Never Title Case." />
-            </div>
-
-            <div style={{ marginTop: 32 }}>
-              <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 20 }}>Examples from the site</div>
-              <div style={{ display: "grid", gap: 24 }}>
-                {[
-                  ["Hero", "How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff."],
-                  ["About", "The marketing department as we knew it is gone. The stack collapsed. The specialists are being replaced by generalists with tools."],
-                  ["Part description", "The reps. The poking. The building. The five behaviour shifts that separate foxes from hedgehogs."],
-                  ["Author bio", "Marketing leader. Currently figuring out what happens when AI collapses the marketing stack, one experiment at a time."],
-                  ["Gate CTA", "Parts 1 and 2 are live now. Drop your email and we'll send the rest when it's ready."],
-                ].map(([label, text]) => (
-                  <div key={label}>
-                    <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, color: "var(--text-muted)", letterSpacing: 1, marginBottom: 6 }}>{label}</div>
-                    <div style={{ fontFamily: "var(--mono)", fontSize: 14, fontWeight: 300, lineHeight: 1.8, color: "var(--text)", borderLeft: "2px solid var(--border)", paddingLeft: 16 }}>{text}</div>
-                  </div>
+          <Section id="nav" label="/navigation" title="Navigation">
+            <Label>top bar</Label>
+            <div style={{ background: "rgba(250,250,248,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)", padding: "16px 28px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 12 }}>
+              <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 400, letterSpacing: 2, color: "var(--text-muted)" }}>/<span style={{ color: "#F47521" }}>Run</span>withfoxes</span>
+              <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+                {["/tools", "/previous", "/book", "/contact"].map((l) => (
+                  <span key={l} style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: "var(--text-muted)" }}>{l}</span>
                 ))}
               </div>
             </div>
-          </SectionBlock>
+            <Rule text="Fixed, backdrop-filter blur(12px), semi-transparent cream background." />
+            <Rule text="/tools opens the module dropdown, /previous the case studies. Then /book, /contact." />
+            <Rule text="Default link muted, hover and active to sky blue, 0.3s." />
 
-          <hr className="divider" />
-
-          {/* RESPONSIVE */}
-          <SectionBlock id="responsive" label="/responsive" title="Responsive breakpoints">
-            <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 32 }}>
-              <div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>Desktop</div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                  Full layout<br />
-                  2-column grids<br />
-                  Visible top nav<br />
-                  Centred bottom bar<br />
-                  Container: 48px padding
-                </div>
+            <div style={{ marginTop: 32 }}>
+              <Label>bottom bar</Label>
+              <div style={{ background: "var(--charcoal)", display: "inline-flex", marginBottom: 16, flexWrap: "wrap" }}>
+                {[["#top", 0], ["#about", 0], ["/book", 0], ["get in touch", 1]].map(([l, cta]) => (
+                  <span key={l as string} style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 400, letterSpacing: 1, color: cta ? "#fff" : "rgba(255,255,255,0.55)", padding: "14px 24px", background: cta ? "var(--orange)" : "transparent" }}>{l}</span>
+                ))}
               </div>
-              <div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>max 768px</div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                  Single column<br />
-                  Top nav hidden<br />
-                  Full-width bottom bar<br />
-                  Container: 24px padding<br />
-                  Sections: 80px vertical
-                </div>
-              </div>
-              <div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400, letterSpacing: 2, color: "var(--orange)", textTransform: "uppercase", marginBottom: 12 }}>max 380px</div>
-                <div style={{ fontFamily: "var(--mono)", fontSize: 12, fontWeight: 300, lineHeight: 1.8, color: "var(--text-muted)" }}>
-                  Container: 16px padding<br />
-                  Hero fox: 180px<br />
-                  Chapter fox: 110px<br />
-                  Smaller fonts<br />
-                  Tighter bar padding
-                </div>
-              </div>
+              <Rule text="Fixed bottom centre on deep sky. Links white at 55%, hover to full white. The get-in-touch chip is sky blue." />
             </div>
-          </SectionBlock>
+          </Section>
 
-          <hr className="divider" />
+          {/* DOT GRID */}
+          <Section id="texture" label="/texture" title="Dot grid background">
+            <div style={{ position: "relative", height: 180, border: "1px solid var(--border)", overflow: "hidden" }}>
+              <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px)", backgroundSize: "28px 28px", opacity: 0.4 }} />
+              <div className="rwf-meta" style={{ position: "absolute", bottom: 14, left: 18 }}>0.8px dots &middot; 28px grid &middot; 0.4 opacity &middot; #d0d0cc</div>
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <Rule text="Fixed, full viewport, pointer-events none, behind everything. It appears on every cream page. A defining texture, not decoration." />
+              <Rule text="On deep-sky sections the dots switch to sky blue at 0.08 opacity." />
+            </div>
+          </Section>
 
-          {/* DO NOT */}
-          <SectionBlock id="donts" label="/never_do_this" title="What not to do">
-            <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px 48px" }}>
-              {[
-                "No rounded corners on cards, buttons, or panels",
-                "No gradients in UI elements",
-                "No heavy shadows",
-                "No decorative icons or emoji",
-                "No bold heading weights (300 or 400 only)",
-                "No pure black (#000) or pure white (#FFF) backgrounds",
-                "No additional accent colours beyond sky blue",
-                "No images with visible backgrounds",
-                "No stock photography",
-                "No Title Case in headings",
-                "No em dashes in copy",
-                "No corporate jargon",
-                "No hover-only content. Touch users can't hover. Use click/tap patterns",
-                "No animating layout properties (padding, letter-spacing, height). Use transform and opacity only",
-                "No skipping prefers-reduced-motion. Always include the media query",
-                "No animation overload. 3-4 purposeful moments per page, not a theme park",
-              ].map((rule) => (
-                <div key={rule} style={{ display: "flex", gap: 10, alignItems: "baseline" }}>
-                  <span style={{ color: "#c44", fontFamily: "var(--mono)", fontSize: 11, fontWeight: 400 }}>✕</span>
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 13, fontWeight: 300, lineHeight: 1.8, color: "var(--text)" }}>{rule}</span>
+          {/* SECTION LABELS */}
+          <Section id="labels" label="/section_labels" title="Section labels and the terminal aesthetic">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              The whole site borrows from developer tools and terminals. It is a brand decision, not
+              decoration: it signals someone who builds things, not just talks about them. This is the
+              restraint half made visible.
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px 40px", marginBottom: 20 }}>
+              {[["/tools", "Modules menu"], ["/previous", "Case studies"], ["\\build_it_for_you", "Engagement CTA"], ["/the_one_idea", "A section anchor"], ["#about", "In-page anchor"], ["\\ 54 chapters", "Meta item"]].map(([label, desc]) => (
+                <div key={label} style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
+                  <span className="rwf-label" style={{ color: "var(--text-muted)" }}>{label}</span>
+                  <span className="rwf-meta">{desc}</span>
                 </div>
               ))}
             </div>
-          </SectionBlock>
+            <Rule text="JetBrains Mono, 12px, letter-spacing 2px, uppercase." />
+            <Rule text="Forward slashes, hashes, backslashes and file extensions. Sentence-level meaning, machine styling." />
+          </Section>
 
-          <div style={{ height: 120 }} />
+          {/* CARDS AND CURVES */}
+          <Section id="cards" label="/cards_and_curves" title="Cards, chrome, and where curves are allowed">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              This is the one rule that changed. The site is not flat-everywhere anymore, and it is not
+              rounded-everywhere either. The line is between chrome and artwork.
+            </p>
+            <Label>chrome stays square</Label>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "var(--border)", marginBottom: 16 }}>
+              <div style={{ background: "var(--bg)", padding: "24px 20px" }}>
+                <div className="rwf-meta" style={{ color: "var(--orange)" }}>{"\\01"}</div>
+                <div className="rwf-h3" style={{ fontSize: 17, margin: "6px 0" }}>Square corners</div>
+                <div className="rwf-body" style={{ fontSize: 14 }}>Nav, dividers, section rows, buttons, labels, tables, content cards. All sharp. This is the typewriter-restraint half.</div>
+              </div>
+              <div style={{ background: "var(--bg)", padding: "24px 20px" }}>
+                <div className="rwf-meta" style={{ color: "var(--orange)" }}>{"\\02"}</div>
+                <div className="rwf-h3" style={{ fontSize: 17, margin: "6px 0" }}>Subtle hover</div>
+                <div className="rwf-body" style={{ fontSize: 14 }}>Background warms to #F5F5F0, or colour shifts to sky blue. No scale, no dramatic transform. translateX for slides, never padding.</div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 28 }}>
+              <Label>the agent windows are artwork, and they carry the soft corners of the software they depict</Label>
+              <div style={{ display: "flex", gap: 12, alignItems: "stretch", marginBottom: 16, flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 200px", background: "#fff", border: "1px solid var(--border)", borderRadius: 9, overflow: "hidden", boxShadow: "0 1px 2px rgba(26,58,78,0.06)" }}>
+                  <div style={{ display: "flex", gap: 6, padding: "9px 11px", borderBottom: "1px solid var(--border)" }}>
+                    <i style={{ width: 11, height: 11, borderRadius: "50%", background: "#ff5f57", display: "inline-block", boxShadow: "inset 0 0 0 .5px rgba(0,0,0,.06)" }} />
+                    <i style={{ width: 11, height: 11, borderRadius: "50%", background: "#febc2e", display: "inline-block", boxShadow: "inset 0 0 0 .5px rgba(0,0,0,.06)" }} />
+                    <i style={{ width: 11, height: 11, borderRadius: "50%", background: "#28c840", display: "inline-block", boxShadow: "inset 0 0 0 .5px rgba(0,0,0,.06)" }} />
+                  </div>
+                  <div style={{ padding: "14px 14px 18px" }}>
+                    <div className="rwf-meta" style={{ marginBottom: 8 }}>Campaign Agent</div>
+                    <div style={{ background: "#eef1f4", color: "#33322f", borderRadius: 13, borderBottomLeftRadius: 5, padding: "8px 11px", fontSize: 12, fontFamily: "var(--sans)", maxWidth: "85%" }}>Running the batch now.</div>
+                  </div>
+                </div>
+                <div className="rwf-body" style={{ flex: "1 1 240px", fontSize: 14 }}>
+                  A window that shows software working borrows the macOS window corner, the rounded chat
+                  bubble, the pill badge, because that is what real software looks like. The radius lives
+                  inside the window. The page around it stays square.
+                </div>
+              </div>
+              <Rule text="Rounded corners are allowed only on the agent-window artwork. The window frame ~9 to 15px, chat bubbles ~13px, pills fully round." />
+              <Rule text={<>The three window dots are real macOS traffic lights: red #ff5f57, amber #febc2e, green #28c840. House style, pinned in the locked agent-card template (card-core.css). They are the one place the depicted-software world shows through in colour, so they are exempt from no-accent-beyond-sky-blue. Do not recolour them to blue.</>} />
+              <Because>
+                Same logic as a borrowed typeface: a piece of artwork may borrow from the world it depicts,
+                and it stays ours because it lives inside our frame. Chrome is always quiet; artwork can be
+                as loud, or as soft, as the idea needs. A nav bar never rounds. A depicted app always does.
+              </Because>
+            </div>
+          </Section>
+
+          {/* BUTTONS */}
+          <Section id="buttons" label="/buttons" title="Buttons and CTAs">
+            <Rule text="Primary: sky blue background, white text, hover darkens to #2F6688. Square." />
+            <Rule text="Outline: transparent, 1px sky blue border, hover border to text colour. Square." />
+            <Rule text="Link: sky blue text, hover opacity 0.7." />
+            <Rule text="All buttons: JetBrains Mono, 12px, letter-spacing 2px, uppercase." />
+            <Rule text="The \\ prefix (\\build it for you) is the engagement-CTA syntax. Blue, mono." />
+          </Section>
+
+          {/* FOX */}
+          <Section id="fox" label="/fox" title="The fox">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              The fox is the distinctive asset. It carries the personality that keeps everything ours,
+              even when the world around it changes. It is the character in the costume.
+            </p>
+            <Rule text="Transparent PNGs with their soft shadows preserved. Only ever on cream, never on the blue." />
+            <Rule text="Many poses: holding the book, sitting, bored, arms folded, walking away. The fox has attitude. Grumpy, slightly bored. Not cute, not corporate." />
+            <Rule text="On the homepage the fox drives the scroll: the film shrinks and moves down-right as the agent windows assemble. On reading pages it sits in its own grid column, either side, and is the only reason to split the copy into two columns." />
+            <Rule text="No stock photography, ever." />
+          </Section>
+
+          {/* ISA */}
+          <Section id="isa" label="/isa" title="Isa">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              Isa is the site&apos;s AI, and a brand surface in her own right. She is now a draggable
+              window, not a bubble stuck to the corner: rounded window chrome with three working
+              controls, grab her almost anywhere and move her aside. She belongs to the agent-window
+              family, so she rounds for the same reason they do.
+            </p>
+            <Rule text="Do not change Isa or her rules without Paul's say-so. She is a guarded surface." />
+            <Rule text="Behaviour: opens herself after a beat on desktop only (she waits for the homepage hero to be scrolled past). On mobile the bubble stays and the visitor taps it. Once dismissed she stays closed for the visit, and reopens next visit." />
+            <Rule text="On /contact she opens booking-led instead of book-led, with her own dismissal memory." />
+            <Rule text={<>Her voice is a personality, not a tone. Do not improvise her. Load her real system prompt (<code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>src/lib/chat-system-prompt.ts</code>) before writing a word as Isa.</>} />
+          </Section>
+
+          {/* HOMEPAGE */}
+          <Section id="homepage" label="/homepage" title="The homepage and the agents hero">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              The homepage is the fullest statement of both-ness. It opens on the statement register (a
+              mono headline, almost nothing else), then a fox film shrinks and slides down-right on
+              scroll while five draggable agent windows assemble around the dominant Campaign Agent. The
+              restraint is the type and the chrome; the life is the film, the fox, and the working
+              software in the windows.
+            </p>
+            <Rule text="The hero lives entirely in AgentsHero.tsx so it can be swapped in one move. Its styles are the ah- block in globals.css." />
+            <Rule text={<>Never put <code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>overflow-x: hidden</code> on html, body or .page-wrapper. It silently kills the sticky scroll and the hero renders nothing. Use <code style={{ fontFamily: "var(--mono)", fontSize: 12 }}>overflow-x: clip</code>.</>} />
+            <Rule text="Below the hero: bio and contact strip, live Substack carousel, the seven-module nested accordion, testimonials, book block. Mobile is a relayout of the same markup, never a second version and never a crop." />
+            <Rule text="Do not touch the nav, the hero or Isa without Paul's explicit say-so." />
+          </Section>
+
+          {/* MOTION */}
+          <Section id="motion" label="/motion" title="Motion">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px 40px", marginBottom: 20 }}>
+              {[
+                ["Agents assemble", "The homepage signature. Fox film shrinks and moves on scroll while agent windows slide into place around the Campaign Agent."],
+                ["Isa window", "Scales and fades in. Draggable. Slides up from the bottom on mobile."],
+                ["Accordion", "Click to expand a module, then a tool. No auto-advance."],
+                ["Fade-in", "Scroll-triggered, translateY(24px) to 0, opacity 0 to 1. Subtle and sparse."],
+              ].map(([n, d]) => (
+                <div key={n} style={{ paddingBottom: 18, borderBottom: "1px solid var(--border)" }}>
+                  <div className="rwf-h3" style={{ fontSize: 16, marginBottom: 6 }}>{n}</div>
+                  <div className="rwf-body" style={{ fontSize: 14 }}>{d}</div>
+                </div>
+              ))}
+            </div>
+            <Rule text="Only animate transform and opacity. Never padding, height, letter-spacing, or anything that triggers layout." />
+            <Rule text="Clean ease-out, no bounce or elastic. 0.3s default, 0.2s for the snappier chat." />
+            <Rule text="Always include a prefers-reduced-motion block that disables animation." />
+            <Rule text="Three or four purposeful moments per page, not a theme park. A workflow or flow diagram always animates." />
+          </Section>
+
+          {/* BLOCKQUOTES */}
+          <Section id="quotes" label="/blockquotes" title="Pull quotes">
+            <div style={{ borderLeft: "2px solid var(--orange)", paddingLeft: 24, marginBottom: 20 }}>
+              <p className="rwf-standfirst" style={{ fontStyle: "italic" }}>
+                This isn&apos;t about AI replacing marketers. It&apos;s about marketers who use AI
+                working alongside those who don&apos;t.
+              </p>
+            </div>
+            <Rule text="Left border 2px sky blue, always. Set in the reading register, Source Serif, italic, standfirst size." />
+            <Rule text="Never on the blue. The quote is content; it sits on cream." />
+          </Section>
+
+          {/* ANTON / BORROWED FACES */}
+          <Section id="art" label="/art_direction" title="Anton and borrowed faces">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              Anton is not in the three-face reading system. It is the art-directed voice for ads, decks
+              and anywhere the brand makes a loud creative statement. That is artwork, so it lives by
+              different rules to the chrome.
+            </p>
+            <Rule text="A piece of artwork may borrow a typeface from the world it depicts. The spaced serif on a film-poster ad is correct precisely because it is not our font. Rounders can look like Rounders." />
+            <Rule text="The borrowed face lives inside the artwork only. The chrome around it (logo, caption, frame) stays in our voice. Fox in a costume: the character keeps it ours while the world changes." />
+            <Rule text="The dial: chrome is always quiet, artwork can be as loud as the idea needs. A deck can run gold-on-black for ten slides. A nav bar never can." />
+          </Section>
+
+          {/* WRITING */}
+          <Section id="writing" label="/writing" title="Writing style">
+            <p className="rwf-body" style={{ marginBottom: 20 }}>
+              Full spec lives in the writing-voice skill. The short version: pub voice, peer to peer,
+              never staccato. Evidence before opinion.
+            </p>
+            <Label>voice</Label>
+            <Rule text="Conversational, peer to peer, like two mates in a pub. We more than you. Never most teams." />
+            <Rule text="Quality and speed are the two themes running through everything." />
+            <Rule text="AI is always an opportunity, never a replacement or a threat." />
+            <Rule text="Start specific, not with a thesis. No neat endings, no bow, no moral. Just stop." />
+            <div style={{ marginTop: 24 }}>
+              <Label>hard bans</Label>
+              <Rule text="No em dashes. A comma or a full stop." />
+              <Rule text="No corporate words: leverage, unlock, activation, ecosystem, synergy, reimagine, future-proof, over-index." />
+              <Rule text="No invented specifics. If it was not given, do not make it up." />
+              <Rule text="Sentence case for headings. Never Title Case." />
+            </div>
+          </Section>
+
+          {/* DON'T */}
+          <Section id="donts" label="/never_do_this" title="What not to do">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
+              <Dont>No rounded corners on chrome. Rounded corners belong only to the agent-window artwork, which rounds because it depicts software.</Dont>
+              <Dont>No mono body on a reading page. Body is Source Serif. Mono is for the machine (labels, meta), not for paragraphs someone reads.</Dont>
+              <Dont>No bolding for emphasis, and no heading heavier than its face&apos;s one weight. Hierarchy is size and space.</Dont>
+              <Dont>No small serif. Anything smaller than body becomes mono.</Dont>
+              <Dont>No capped text measure. Copy runs the full container width unless a real second column holds something.</Dont>
+              <Dont>No writing on the blue. Content on cream, deep sky is chrome only.</Dont>
+              <Dont>No colour in the chrome beyond sky blue. Colour enters through the artwork.</Dont>
+              <Dont>No pure black or pure white backgrounds. No gradients in UI chrome.</Dont>
+              <Dont>No stock photography. No images with visible backgrounds.</Dont>
+              <Dont>No Title Case in headings. No em dashes. No corporate jargon.</Dont>
+              <Dont>No hover-only content. Touch users cannot hover, so use tap patterns.</Dont>
+              <Dont>No animating layout properties, and no skipping prefers-reduced-motion.</Dont>
+            </div>
+          </Section>
+
         </div>
       </div>
     </div>

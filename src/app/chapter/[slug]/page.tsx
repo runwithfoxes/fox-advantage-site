@@ -14,7 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!chapter) return { title: "Chapter not found" };
   return {
     title: `${String(chapter.number).padStart(2, "0")}. ${chapter.title} \\ The Fox Advantage`,
-    description: `Chapter ${chapter.number} of The Fox Advantage by Paul Dervan`,
+    description:
+      chapter.description ??
+      `Chapter ${chapter.number} of The Fox Advantage by Paul Dervan`,
   };
 }
 

@@ -65,6 +65,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/lonergan/")) {
+    if (req.cookies.get("lonergan_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -79,5 +85,6 @@ export const config = {
     "/proposals/santegic/:path*",
     "/proposals/yellowharbour/:path*",
     "/proposals/supplyit/:path*",
+    "/proposals/lonergan/:path*",
   ],
 };
