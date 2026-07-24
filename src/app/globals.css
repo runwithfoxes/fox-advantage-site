@@ -7075,8 +7075,46 @@ a.project-card {
 .mod-progress button:hover,.mod-filterstate button:hover{border-color:#3A7CA5;color:#3A7CA5;}
 .mod-flash{color:#3A7CA5;}
 
-.mod-grid{display:grid;grid-template-columns:210px 1fr;gap:56px;margin-top:48px;align-items:start;}
-.mod-rail{position:sticky;top:28px;font-family:var(--mono);font-size:.75rem;max-height:calc(100vh - 56px);overflow:auto;}
+/* ⭐ THE RAIL IS 320, NOT 210. Isa is 320 wide on the live site and does not fit a
+   210 rail. Rather than squeeze her, the rail widens. That costs the reading column
+   110px, and that is a GAIN: body copy measured 81 characters per line at 858px,
+   above the comfortable 45-75. At 748 it reads about 71. She earns her space by
+   fixing a measure that was already slightly wide. */
+.mod-grid{display:grid;grid-template-columns:320px 1fr;gap:56px;margin-top:0;align-items:start;}
+
+/* ONE STICKY COLUMN, NOT TWO STICKY THINGS. Isa and the contents both want to stay
+   visible and both live here. They cannot each pin, so the COLUMN pins as one block:
+   Isa at her natural height on top, contents taking what is left and scrolling inside.
+   margin-top 116px starts her level with the STANDFIRST, not the eyebrow: at the top
+   of the column she was shoulder to shoulder with the headline and the two competed.
+   She still rises to clear the fixed nav once pinned. */
+.mod-railcol{position:sticky;top:96px;max-height:calc(100vh - 124px);
+  display:flex;flex-direction:column;gap:44px;margin-top:116px;}
+.mod-rail{font-family:var(--mono);font-size:.75rem;overflow:auto;min-height:0;}
+
+/* Rounded at 15px ON PURPOSE, and it is not a breach of the no-rounded-corners rule:
+   this is a depicted software window, which is artwork. Our own chrome stays square. */
+.mod-isa{border:1px solid #E0E0DC;background:#fff;border-radius:15px;overflow:hidden;
+  flex:0 0 auto;box-shadow:0 1px 1px rgba(26,58,78,.05),0 20px 42px -14px rgba(26,58,78,.16);}
+.mod-isabar{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #E0E0DC;}
+.mod-isabar i{width:11px;height:11px;border-radius:50%;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06);}
+.mod-isabar .r{background:#ff5f57;}
+.mod-isabar .a{background:#febc2e;}
+.mod-isabar .g{background:#28c840;}
+.mod-isatitle{font-family:var(--mono);font-size:.75rem;color:#8A8A85;margin-left:auto;margin-right:auto;letter-spacing:.08em;}
+.mod-isamsg{padding:14px;font-family:var(--mono);font-size:.75rem;line-height:1.7;color:#1D1B1B;background:#FAFAF8;}
+.mod-isamsg b{color:#3A7CA5;font-weight:400;}
+.mod-isaask{display:flex;border-top:1px solid #E0E0DC;}
+.mod-isaask input{flex:1;border:0;padding:11px 14px;font-family:var(--mono);font-size:.75rem;background:transparent;color:#1D1B1B;}
+.mod-isaask input::placeholder{color:#A8A8A2;}
+.mod-isaask button{border:0;border-left:1px solid #E0E0DC;background:#E0E0DC;color:#8A8A85;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;padding:0 14px;cursor:pointer;text-transform:uppercase;}
+
+/* THE COUNTS STAY FIVE ACROSS AND GET SMALLER. Dropping them to 2x2 in the narrower
+   column DOUBLED their height: the information did not grow, the container did. */
+.mod-maincol .mod-comp button{padding:11px 12px;}
+.mod-maincol .mod-num{font-size:1.375rem;}
+.mod-maincol .mod-lbl{font-size:.625rem;letter-spacing:.07em;margin-top:5px;}
 /* "/in this module" - slash-prefix labels are the engagement-CTA syntax and are
    ALWAYS blue mono, the whole label, never orange. Orange is only the "Run" in the
    wordmark. (Paul corrected this on 21 Jul; rule lives in rwf-type-system.md.) */

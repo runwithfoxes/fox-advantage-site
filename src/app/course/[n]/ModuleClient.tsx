@@ -177,6 +177,54 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         </div>
       )}
 
+      {/* ⭐ v8's TWO-COLUMN PAGE. Left is ONE sticky block: Isa on top at her natural
+          height, the contents taking what is left and scrolling inside it. They both
+          want to stay visible and they cannot each pin, so the COLUMN pins as one.
+          Right holds everything that used to run full width, masthead included. */}
+      <div className="mod-grid">
+        <div className="mod-railcol">
+          {/* Embedded Isa has NO close, minimise or drag. Those exist on the floating
+              version to get her out of the way; in the column she is never in the way,
+              so none of them have a job. The three dots stay: they are the signature
+              that says "this is software", and they are the one thing here that is
+              decoration rather than control. */}
+          <div className="mod-isa">
+            <div className="mod-isabar">
+              <i className="r" />
+              <i className="a" />
+              <i className="g" />
+              <span className="mod-isatitle">isa</span>
+            </div>
+            <div className="mod-isamsg">
+              I&rsquo;m here for this module. Ask me anything about{" "}
+              <b>{mod.title.toLowerCase()}</b>, or paste something back and
+              I&rsquo;ll tell you whether it does what item 02 is asking for.
+            </div>
+            <div className="mod-isaask">
+              <input
+                type="text"
+                placeholder="Ask about this module..."
+                aria-label="Ask Isa about this module"
+              />
+              <button type="button">Send</button>
+            </div>
+          </div>
+
+          <nav className="mod-rail">
+            <p>/in this module</p>
+            {mod.items.map((it, i) =>
+              visible(it) ? (
+                <a key={i} href={`#i${i + 1}`} data-done={done.has(i) ? "1" : "0"}>
+                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mod-dot" />
+                  <span>{it.t}</span>
+                </a>
+              ) : null,
+            )}
+          </nav>
+        </div>
+
+        <div className="mod-maincol">
       <header className="mod-masthead">
         <p className="mod-eyebrow">
           Module {mod.n} of 6 &middot; opens {mod.when}
@@ -255,20 +303,6 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           </button>
         </div>
       )}
-
-      <div className="mod-grid">
-        <nav className="mod-rail">
-          <p>/in this module</p>
-          {mod.items.map((it, i) =>
-            visible(it) ? (
-              <a key={i} href={`#i${i + 1}`} data-done={done.has(i) ? "1" : "0"}>
-                <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
-                <span className="mod-dot" />
-                <span>{it.t}</span>
-              </a>
-            ) : null,
-          )}
-        </nav>
 
         <main>
           {mod.items.map((it, i) => {
@@ -379,6 +413,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
             );
           })}
         </main>
+        </div>
       </div>
 
       {open !== null && (
