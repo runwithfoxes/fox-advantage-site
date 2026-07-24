@@ -158,6 +158,19 @@ export async function POST(req: NextRequest) {
     counts, and the rate limit only slows.
   */
   if (String(body.company_url ?? "").trim() !== "") {
+    // Logged, not silent. This branch is the one place a real person could be
+    // wrongly turned away (a password manager filling the trap), and until now
+    // it left NO trace anywhere - the reply is a fake 200 and nothing is
+    // recorded. A visible line means a false positive is discoverable in the
+    // Vercel logs instead of being invisible, as it was when Maebh went missing
+    // on 24 Jul and could not be confirmed either way. The email is included on
+    // purpose so a human report can be matched to a rejection; the trap value is
+    // NOT logged (it is attacker-controlled and worthless).
+    console.warn(
+      "[course-signup] honeypot rejected",
+      String(body.email ?? "").trim().toLowerCase() || "(no email)",
+      clientIp(req),
+    );
     return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
   }
 
