@@ -2,8 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { SubstackPost } from "@/lib/substack";
 import AgentsHero from "./AgentsHero";
+
+/* The four most recent essays, read off local markdown by app/page.tsx. Was the live
+   Substack feed until 24 Jul 2026; see the note there. */
+export type HomeEssay = {
+  slug: string;
+  title: string;
+  href: string;
+  date: string;
+  image: string | null;
+};
 
 function LazyVideo({ src, className, loop }: { src: string; className?: string; loop?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -130,7 +139,7 @@ const SF_PAGES: Record<string, string> = {
   "campaign-manager": "/products/module-campaign-manager.html",
 };
 
-export default function HomePage({ posts }: { posts: SubstackPost[] }) {
+export default function HomePage({ essays }: { essays: HomeEssay[] }) {
   const navRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState("all");
@@ -175,6 +184,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
             </div>
           </div>
 
+          <Link href="/essays">/essays</Link>
           <Link href="/book">/book</Link>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
@@ -201,18 +211,18 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
             <aside className="hpx-nl">
               <div className="hpx-nl-head">
                 <span className="hpx-nl-kick">/recent essays</span>
-                <a className="hpx-nl-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="View newsletter">&rarr;</a>
+                <Link className="hpx-nl-more" href="/essays" aria-label="All essays">&rarr;</Link>
               </div>
               <div className="hpx-nl-list">
-                {posts.slice(0, 4).map((p) => (
-                  <a key={p.slug} className="hpx-nl-item" href={p.link} target="_blank" rel="noopener noreferrer">
+                {essays.map((p) => (
+                  <Link key={p.slug} className="hpx-nl-item" href={p.href}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {p.image ? <img className="hpx-nl-thumb" src={p.image} alt="" /> : <span className="hpx-nl-thumb" />}
                     <div className="hpx-nl-text">
                       <div className="hpx-nl-title">{p.title}</div>
                       <div className="hpx-nl-meta">{p.date.toUpperCase()} &middot; Paul Dervan</div>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </aside>

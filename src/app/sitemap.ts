@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllChapters, isChapterGated } from "@/lib/chapters";
+import { getAllEssays } from "@/lib/essays";
 import { toolBuckets } from "./students/toolData";
 
 const BASE = "https://runwithfoxes.com";
@@ -26,6 +27,7 @@ const PUBLIC_ROUTES = [
   "/contact",
   "/cookies",
   "/course",
+  "/essays",
   "/distinctive",
   "/experts",
   "/info",
@@ -52,7 +54,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const tools = toolBuckets.map((b) => `/students/tools/${b.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools];
+  /* same principle: read from the loader the pages render from, so an essay cannot
+     exist without being in the sitemap or linger in it after being removed */
+  const essays = getAllEssays().map((e) => `/essays/${e.slug}`);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }

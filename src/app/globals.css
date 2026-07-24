@@ -1266,14 +1266,16 @@ a.project-card {
 }
 
 /* ---- CHAPTER READER LAYOUT ---- */
-.chapter-page {
+.chapter-page,
+.essay-page {
   min-height: 100vh;
   background: var(--bg);
   position: relative;
   z-index: 1;
 }
 
-.chapter-nav {
+.chapter-nav,
+.essay-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -1288,7 +1290,8 @@ a.project-card {
   align-items: center;
 }
 
-.chapter-nav-logo {
+.chapter-nav-logo,
+.essay-nav-logo {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
@@ -1298,15 +1301,18 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-nav-logo span {
+.chapter-nav-logo span,
+.essay-nav-logo span {
   color: var(--logo-orange);
 }
 
-.chapter-nav-logo:hover {
+.chapter-nav-logo:hover,
+.essay-nav-logo:hover {
   color: var(--orange);
 }
 
-.chapter-nav-back {
+.chapter-nav-back,
+.essay-nav-back {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
@@ -1316,11 +1322,13 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-nav-back:hover {
+.chapter-nav-back:hover,
+.essay-nav-back:hover {
   color: var(--orange);
 }
 
-.chapter-nav-count {
+.chapter-nav-count,
+.essay-nav-count {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 400;
@@ -1328,16 +1336,19 @@ a.project-card {
   color: var(--text-muted);
 }
 
-.chapter-main {
+.chapter-main,
+.essay-main {
   padding: 128px 32px 160px;
 }
 
-.chapter-inner {
+.chapter-inner,
+.essay-inner {
   max-width: 680px;
   margin: 0 auto;
 }
 
-.chapter-header {
+.chapter-header,
+.essay-header {
   margin-bottom: 64px;
 }
 
@@ -1360,7 +1371,8 @@ a.project-card {
   margin-bottom: 24px;
 }
 
-.chapter-heading {
+.chapter-heading,
+.essay-heading {
   font-family: var(--sans);
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 300;
@@ -1368,7 +1380,8 @@ a.project-card {
   line-height: 1.15;
 }
 
-.chapter-footer {
+.chapter-footer,
+.essay-footer {
   margin-top: 96px;
   padding-top: 48px;
   border-top: 1px solid var(--border);
@@ -1377,11 +1390,13 @@ a.project-card {
   align-items: start;
 }
 
-.chapter-footer a {
+.chapter-footer a,
+.essay-footer a {
   text-decoration: none;
 }
 
-.chapter-footer-label {
+.chapter-footer-label,
+.essay-footer-label {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 2px;
@@ -1390,7 +1405,8 @@ a.project-card {
   margin-bottom: 8px;
 }
 
-.chapter-footer-title {
+.chapter-footer-title,
+.essay-footer-title {
   font-family: var(--sans);
   font-size: 18px;
   font-weight: 400;
@@ -1399,11 +1415,13 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-footer a:hover .chapter-footer-title {
+.chapter-footer a:hover .chapter-footer-title,
+.essay-footer a:hover .essay-footer-title {
   color: var(--orange);
 }
 
-.chapter-footer-next {
+.chapter-footer-next,
+.essay-footer-next {
   text-align: right;
 }
 
@@ -1523,7 +1541,8 @@ a.project-card {
 }
 
 /* ---- CHAPTER READER PROSE ---- */
-.chapter-prose {
+.chapter-prose,
+.essay-prose {
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   font-weight: 300;
@@ -1532,13 +1551,17 @@ a.project-card {
   max-width: 680px;
 }
 
-.chapter-prose p {
+.chapter-prose p,
+.essay-prose p {
   margin-bottom: 24px;
 }
 
 .chapter-prose h1,
 .chapter-prose h2,
-.chapter-prose h3 {
+.chapter-prose h3,
+.essay-prose h1,
+.essay-prose h2,
+.essay-prose h3 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -1546,11 +1569,12 @@ a.project-card {
   margin-bottom: 24px;
 }
 
-.chapter-prose h1 { font-size: 36px; }
-.chapter-prose h2 { font-size: 28px; }
-.chapter-prose h3 { font-size: 22px; }
+.chapter-prose h1, .essay-prose h1 { font-size: 36px; }
+.chapter-prose h2, .essay-prose h2 { font-size: 28px; }
+.chapter-prose h3, .essay-prose h3 { font-size: 22px; }
 
-.chapter-prose blockquote {
+.chapter-prose blockquote,
+.essay-prose blockquote {
   border-left: 2px solid var(--orange);
   padding-left: 20px;
   margin: 32px 0;
@@ -1558,28 +1582,233 @@ a.project-card {
   font-style: italic;
 }
 
-.chapter-prose a {
+.chapter-prose a,
+.essay-prose a {
   color: var(--orange);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .chapter-prose ul,
-.chapter-prose ol {
+.chapter-prose ol,
+.essay-prose ul,
+.essay-prose ol {
   margin: 24px 0;
   padding-left: 24px;
 }
 
-.chapter-prose li {
+.chapter-prose li,
+.essay-prose li {
   margin-bottom: 8px;
 }
 
-.chapter-prose strong {
+.chapter-prose strong,
+.essay-prose strong {
   font-weight: 500;
 }
 
-.chapter-prose em {
+.chapter-prose em,
+.essay-prose em {
   font-style: italic;
+}
+
+/* ---------- ESSAYS ----------
+   Paul's own writing, on his own domain first and on Substack after. The reading
+   register above is SHARED with the chapter reader on purpose, so the two never
+   drift apart. Only what genuinely differs lives down here: the index list, the
+   dated meta line, and the quiet Substack credit at the foot of a piece. */
+
+/* Substack images arrive at up to 1456px. Without this they blow out of the column. */
+.essay-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 32px 0;
+}
+
+/* the line under an essay title: date, and how long it takes to read */
+.essay-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* the dek, one line, sits under the heading */
+.essay-dek {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+/* ⚠️ QUIET, AND AT THE FOOT. The essay lives here first; Substack is where people
+   subscribe. A prominent link at the top would send a reader away before they read
+   the thing they arrived for. */
+.essay-substack {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.essay-substack a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.essay-substack a:hover {
+  color: var(--orange);
+}
+
+/* Three items do not fit across a phone: the logo, the back link and the date collide
+   and the date wraps onto two lines. It is redundant there anyway, it sits again in
+   .essay-meta directly under the title, so drop it and keep the two controls. */
+@media (max-width: 640px) {
+  .essay-nav {
+    padding: 16px 24px;
+  }
+  .essay-nav-count {
+    display: none;
+  }
+  .essay-main {
+    padding: 112px 24px 120px;
+  }
+}
+
+/* Essay titles are sentences, not chapter names, so the two feet meet in the middle
+   and read as one run-on line. Give them room and a hard stop. */
+.essay-footer {
+  gap: 48px;
+}
+
+.essay-footer > a {
+  max-width: calc(50% - 24px);
+}
+
+.essay-footer-next {
+  text-align: right;
+}
+
+/* two 50% columns on a phone leaves each title in a four-word ribbon, so stack them */
+@media (max-width: 640px) {
+  .essay-footer {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .essay-footer > a {
+    max-width: 100%;
+  }
+  .essay-footer-next {
+    text-align: left;
+  }
+}
+
+/* ---------- the index ---------- */
+.essay-index-head {
+  margin-bottom: 56px;
+}
+
+.essay-index-kick {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.essay-index-intro {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+.essay-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.essay-list-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.essay-list-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.essay-list-thumb {
+  width: 88px;
+  height: 88px;
+  flex: 0 0 88px;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.essay-list-title {
+  font-family: var(--sans);
+  font-size: 21px;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  transition: color 0.3s;
+}
+
+.essay-list-item:hover .essay-list-title {
+  color: var(--orange);
+}
+
+.essay-list-dek {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.essay-list-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .essay-list-thumb {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+  }
+  .essay-list-item {
+    gap: 16px;
+  }
+  .essay-list-title {
+    font-size: 18px;
+  }
 }
 
 .chapter-prose hr {

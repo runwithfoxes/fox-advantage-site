@@ -13,6 +13,7 @@ const links: { href: string; label: string }[] = [
   { href: "/answer-engine-optimization", label: "Answer engine optimization: 18 things worth knowing" },
   { href: "/answers", label: "Marketing questions, answered" },
   { href: "/about", label: "About Run with Foxes" },
+  { href: "/essays", label: "Essays" },
   { href: "/book", label: "The Fox Advantage (free book)" },
 ];
 
