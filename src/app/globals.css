@@ -1647,9 +1647,34 @@ a.project-card {
   margin-top: 20px;
 }
 
-/* ⚠️ QUIET, AND AT THE FOOT. The essay lives here first; Substack is where people
-   subscribe. A prominent link at the top would send a reader away before they read
-   the thing they arrived for. */
+/* ⭐ THE ONE ASK, at the foot, where the reader has just finished and liked it.
+   A LINK, NEVER A FORM: see the reasoning on COURSE_NOTE in src/lib/essays.ts. */
+.essay-course {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.essay-course a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.essay-course a:hover {
+  color: var(--ink, var(--text));
+}
+
+/* ⚠️ QUIET, AND AT THE FOOT, AND SMALLER THAN THE COURSE LINE ABOVE IT. Substack is a
+   mirror with a few hundred people on it, not a goal (Paul, 24 Jul). This is a credit
+   that the piece exists in two places, not a second ask. A prominent link at the top
+   would send a reader away before they read the thing they arrived for. */
 .essay-substack {
   margin-top: 56px;
   padding-top: 24px;
@@ -1669,6 +1694,14 @@ a.project-card {
 
 .essay-substack a:hover {
   color: var(--orange);
+}
+
+/* when the course line is above it there is already a rule and a gap, so the credit
+   tucks under rather than opening a second banded block */
+.essay-course + .essay-substack {
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: none;
 }
 
 /* Three items do not fit across a phone: the logo, the back link and the date collide

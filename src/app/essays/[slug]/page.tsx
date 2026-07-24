@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
+  COURSE_NOTE,
   getAllEssays,
   getEssayContent,
   getEssayMeta,
@@ -94,6 +95,16 @@ export default async function EssayPage({
             className="essay-prose"
             dangerouslySetInnerHTML={{ __html: essay.content || "" }}
           />
+
+          {/* THE ASK, and it comes FIRST because it is the only one on the page.
+              The Substack line under it is a footnote, not a second ask. */}
+          {COURSE_NOTE.show ? (
+            <div className="essay-course">
+              {COURSE_NOTE.lead}{" "}
+              <Link href={COURSE_NOTE.href}>{COURSE_NOTE.title}</Link>{" "}
+              {COURSE_NOTE.tail}
+            </div>
+          ) : null}
 
           {essay.substack ? (
             <div className="essay-substack">

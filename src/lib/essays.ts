@@ -26,6 +26,30 @@ import html from "remark-html";
 
 const essaysDirectory = path.join(process.cwd(), "src/content/essays");
 
+/**
+ * THE ONE ASK AT THE FOOT OF AN ESSAY, AND IT IS A LINK, NOT A FORM.
+ *
+ * ⭐ NO EMAIL FIELD ON AN ESSAY PAGE, EVER. Paul, 24 Jul: the only thing anyone can
+ * subscribe to is the training course, and they are told that is what it is. A box on
+ * an essay would collect people who typed their address expecting more essays and put
+ * them on the course list, which is both a bait and switch and a corruption of the
+ * intent properties /api/course-signup deliberately records. The link sends them to
+ * /course, which does the explaining in his own words.
+ *
+ * ⚠️ THIS IS ONE STRING IN ONE PLACE ON PURPOSE. The course will not be "starting"
+ * forever. When the date passes or the offer changes, this is the only edit, rather
+ * than ten markdown files. If the course ends, set `show: false`.
+ *
+ * Wording tracks courseCopy.ts. Paul's own date form is "21st September".
+ */
+export const COURSE_NOTE = {
+  show: true,
+  lead: "Free course:",
+  title: "AI Fluency for Ambitious Marketers",
+  href: "/course",
+  tail: "starts 21st September.",
+};
+
 export interface Essay {
   slug: string;
   title: string;
