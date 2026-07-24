@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import {
   KIND_LABEL,
@@ -142,8 +143,30 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
     { k: "links", label: "Worth saving" },
   ];
 
+  /* ⭐ THE FOX ROTATES BY MODULE NUMBER, exactly as the book chapters rotate by
+     chapter number, so no two of the six modules feel identical. */
+  const FOXES = [
+    "chapter-fox-sitting-nobg.png",
+    "fox-sideeye-right-nobg.png",
+    "chapter-fox-bored-nobg.png",
+    "fox-facepalm-nobg.png",
+    "fox-pm-nobg.png",
+    "fox-monday-nobg.png",
+  ];
+  const fox = FOXES[(mod.n - 1) % FOXES.length];
+
   return (
     <div className="mod-shell">
+      {/* Reuses the book chapter nav verbatim (.chapter-nav). The chapters' numeric
+          count is dropped: the eyebrow already says "Module N of 6". */}
+      <header className="chapter-nav">
+        <Link href="/" className="chapter-nav-logo">
+          /<span>Run</span>withfoxes
+        </Link>
+        <Link href="/course" className="chapter-nav-back">
+          ← course
+        </Link>
+      </header>
       {build && (
         <div className="mod-build">
           <b>BUILD VIEW. A member never sees this.</b> {grabsOutstanding}{" "}
@@ -159,6 +182,13 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           Module {mod.n} of 6 &middot; opens {mod.when}
         </p>
         <h1 className="mod-h1">{mod.title}</h1>
+        {/* Reuses .chapter-fox-hero verbatim: float right, 180px, negative -60px right
+            margin so it sits half out in the gutter and reads as casual rather than as
+            a boxed illustration, and a drop-shadow FILTER so the shadow follows the
+            fox's outline instead of a rectangle. */}
+        <div className="chapter-fox-hero">
+          <img className="chapter-fox-hero-img" src={`/fox/${fox}`} alt="" />
+        </div>
         <p className="mod-standfirst">{mod.blurb}</p>
         <div className="mod-meta">
           <span>
@@ -167,6 +197,11 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           <span>
             In this module<b>{mod.items.length} things</b>
           </span>
+          {mod.source && (
+            <span>
+              Source<b>{mod.source}</b>
+            </span>
+          )}
           <span>
             Sharing<b>Copy anything. Send it on.</b>
           </span>
@@ -174,6 +209,14 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
       </header>
 
       <div className="mod-comp">
+        <button
+          type="button"
+          aria-pressed={filter === null}
+          onClick={() => setFilter(null)}
+        >
+          <span className="mod-num">{mod.items.length}</span>
+          <span className="mod-lbl">All</span>
+        </button>
         {cells.map((c) => (
           <button
             key={c.k}
@@ -215,7 +258,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
       <div className="mod-grid">
         <nav className="mod-rail">
-          <p>In this module</p>
+          <p>/in this module</p>
           {mod.items.map((it, i) =>
             visible(it) ? (
               <a key={i} href={`#i${i + 1}`} data-done={done.has(i) ? "1" : "0"}>

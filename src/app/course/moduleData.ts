@@ -63,6 +63,9 @@ export type ModuleDef = {
   built: boolean;
   /** Paul's locked description, verbatim from courseCopy.MODULE_BLURBS. */
   blurb: string;
+  /** Where the module's content came from. Optional: only state it when it is a real,
+   *  citable thing. Never invent a provenance to fill the meta row. */
+  source?: string;
   items: Item[];
 };
 
@@ -103,7 +106,11 @@ export function slugOf(t: string): string {
 
 export const MODULE_1: ModuleDef = {
   n: 1,
-  title: "(1) The 80/20 of AI",
+  /* No "(1)" prefix: the eyebrow already says "Module 1 of 6", and numbering the title
+     put the number on screen twice. Same reasoning that removed the corner "01" from
+     the course home cards on 18 Jul. */
+  title: "The 80/20 of AI",
+  source: "Paul's own article, 21 May 2026",
   when: "Mon 21 Sep",
   on: "2026-09-21",
   built: false,
