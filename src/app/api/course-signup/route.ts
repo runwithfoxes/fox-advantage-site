@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recordSignup } from "@/lib/course-signup-record";
 import { getSignupRateLimiter } from "@/lib/rate-limit";
+import { looksUndeliverable } from "@/lib/email-dns";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -215,8 +216,20 @@ export async function POST(req: NextRequest) {
   const stamp = new Date(now).toISOString();
 
   try {
-    const existing = await existingProfile(key, email);
+    /* Run alongside the profile lookup rather than before it. The DNS answer is
+       needed to write the property below, but it costs no wall-clock time here -
+       the Klaviyo round trip it shares is always the slower of the two. */
+    const [existing, undeliverable] = await Promise.all([
+      existingProfile(key, email),
+      looksUndeliverable(email),
+    ]);
     const firstTouch = !existing?.hasIntent;
+
+    if (undeliverable) {
+      // Visible in the Vercel logs the same day, not three days later when
+      // someone happens to read the list.
+      console.warn("[course-signup] no mail route for domain", email);
+    }
 
     // Step 1: the profile and its intent. Intent properties are written on the
     // first touch only, so a second signup never overwrites what actually
@@ -235,6 +248,10 @@ export async function POST(req: NextRequest) {
     if (looksMachineGenerated(firstName)) {
       properties.signup_name_shape = "machine";
     }
+
+    /* Also every touch: the person may come back and type it correctly, and the
+       second submission should not inherit the first one's verdict. */
+    properties.signup_email_dns = undeliverable ? "no_mail_route" : "ok";
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
