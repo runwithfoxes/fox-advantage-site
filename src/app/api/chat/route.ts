@@ -2,6 +2,7 @@ import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
 import {
+  currentSource,
   saveConversationExchange,
   saveError,
   saveInboundQuestion,
@@ -25,7 +26,36 @@ function moduleContext(n: unknown): string {
   if (typeof n !== "number" || !Number.isInteger(n)) return "";
   const mod = MODULES_BY_N[n];
   if (!mod) return "";
-  const items = mod.items.map((it, i) => `${i + 1}. ${it.t}`).join("\n");
+
+  /**
+   * ⭐ SHE GETS THE FULL TEXT, NOT JUST THE TITLES. Until 25 Jul 2026 this sent the
+   * item headings alone plus an instruction not to invent the rest. She invented the
+   * rest anyway: asked what "Brief it like a person" means she produced a fluent
+   * four-part framework and a worked example, when Paul's actual item is five named
+   * headings (Task, Background, Audience, Format, Bar). A model handed a title and
+   * told not to elaborate will elaborate. The fix is to give it the words.
+   *
+   * Every `text` and `prompt` below is Paul's, verbatim, from "20 things I do to get
+   * more out of AI". That is why she can be told to quote rather than paraphrase.
+   */
+  const items = mod.items
+    .map((it, i) => {
+      const parts = [`${i + 1}. ${it.t}`, `   What it says: ${it.text}`];
+      if (it.prompt) {
+        parts.push(`   The exact prompt on the page:\n${it.prompt
+          .split("\n")
+          .map((l) => `   > ${l}`)
+          .join("\n")}`);
+      }
+      if (it.placeholder) {
+        parts.push(
+          `   ⚠️ DRAFT, not Paul's final words. Answer around it, never quote it back.`
+        );
+      }
+      return parts.join("\n");
+    })
+    .join("\n\n");
+
   return `
 
 ## YOU ARE ON A COURSE MODULE PAGE, AND YOU ARE SCOPED TO IT
@@ -35,16 +65,24 @@ titled "${mod.title}", which opens ${mod.when}.
 
 What the module is about: ${mod.blurb}
 
-The ${mod.items.length} things in it, in order:
+The ${mod.items.length} things in it, in order, with Paul's own words for each:
+
 ${items}
 
 How to behave here:
-- Answer about THIS module first. You can see the item titles above, not the full text.
+- Answer about THIS module first, USING THE WORDS ABOVE. They are Paul's, so quote or
+  closely paraphrase them. Do not restate an item in your own framework, and do not
+  add steps, headings or examples that are not there.
+- If an item has a prompt, give them that prompt exactly as written. Never write your
+  own version of it and never present an invented example as if it came from the course.
+- If they ask something the text above does not answer, say plainly that the module
+  does not cover it and offer what you do know from the rest of the site. Guessing and
+  sounding right is the failure mode here.
 - If they paste something back and ask whether it does the job, judge it against the
   item they name and say plainly what is missing. Be useful, not encouraging.
 - If they ask about something outside the module, answer briefly and bring it back.
 - The module is not live until ${mod.when}. NEVER say it is available now, and never
-  invent the contents of an item beyond its title.`;
+  offer links to videos or materials that do not exist yet.`;
 }
 
 const MAX_MESSAGE_LENGTH = 2000;
@@ -155,6 +193,7 @@ export async function POST(req: Request) {
       chatId: sanitizedChatId,
       messageCount: messages.length,
       userMessage: userText,
+      source: currentSource(),
     });
 
     const result = streamText({
@@ -168,6 +207,7 @@ export async function POST(req: Request) {
           messageCount: messages.length,
           userMessage: userText,
           isaResponse: text,
+          source: currentSource(),
         });
       },
       onError: async (event) => {

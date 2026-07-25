@@ -11,6 +11,8 @@ interface AlertConversation {
   startedAt: string;
   lastMessageAt: string;
   exchanges: AlertExchange[];
+  /** "preview" / "local" = our own traffic. Absent on pre-25-Jul-2026 records. */
+  source?: "production" | "preview" | "local";
 }
 
 // Conversations whose chatId starts with any of these are internal tests
@@ -129,12 +131,17 @@ function buildText(conversation: AlertConversation): string {
  * conversation (on its first exchange) by the store. The threading header keeps
  * it tidy if that ever changes. No-ops if RESEND_API_KEY is unset or it's an
  * internal test chat.
+ *
+ * ⭐ A NAMED TEST ID IS NOT THE ONLY KIND OF OUR-OWN-TRAFFIC. A page under
+ * construction on a preview or localhost generates ordinary random chat IDs and
+ * used to email exactly like a prospect. The source check is the one that holds.
  */
 export async function sendIsaConversationAlert(
   conversation: AlertConversation
 ): Promise<void> {
   if (!process.env.RESEND_API_KEY) return;
   if (isTestChat(conversation.chatId)) return;
+  if (conversation.source && conversation.source !== "production") return;
   if (!conversation.exchanges.length) return;
 
   const firstQuestion = conversation.exchanges[0].userMessage.slice(0, 80);

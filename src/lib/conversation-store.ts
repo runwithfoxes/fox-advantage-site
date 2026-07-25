@@ -15,11 +15,31 @@ function getRedis(): Redis | null {
   return new Redis({ url, token });
 }
 
+/**
+ * ⭐ WHERE THE REQUEST CAME FROM. One Upstash database serves production, every
+ * Vercel preview and every localhost dev server, so until 25 Jul 2026 a page being
+ * BUILT wrote into the same feed as a real visitor and was indistinguishable from
+ * one. It cost a morning: a module-page test read as a prospect quoting a page that
+ * was not live. Anything not "production" is our own traffic.
+ *
+ * Computed SERVER-SIDE from VERCEL_ENV, never sent by the browser, so it cannot be
+ * forgotten at a call site or spoofed from a console.
+ */
+export type ConversationSource = "production" | "preview" | "local";
+
+export function currentSource(): ConversationSource {
+  const env = process.env.VERCEL_ENV;
+  if (env === "production") return "production";
+  if (env === "preview") return "preview";
+  return "local";
+}
+
 export interface ConversationExchange {
   chatId: string;
   messageCount: number;
   userMessage: string;
   isaResponse: string;
+  source: ConversationSource;
 }
 
 interface StoredExchange {
@@ -33,6 +53,8 @@ interface StoredConversation {
   startedAt: string;
   lastMessageAt: string;
   exchanges: StoredExchange[];
+  /** Absent on anything stored before 25 Jul 2026. Read those as production. */
+  source?: ConversationSource;
 }
 
 /** Save a single exchange (user message + Isa response) to a conversation */
@@ -59,6 +81,7 @@ export async function saveConversationExchange(
       startedAt: now,
       lastMessageAt: now,
       exchanges: [],
+      source: exchange.source,
     };
 
     conversation.lastMessageAt = now;
@@ -134,6 +157,7 @@ export async function saveInboundQuestion(question: {
   chatId: string;
   userMessage: string;
   messageCount: number;
+  source: ConversationSource;
 }): Promise<void> {
   if (!question.userMessage) return;
 
@@ -166,16 +190,29 @@ interface StoredQuestion {
   chatId: string;
   userMessage: string;
   messageCount: number;
+  /** Absent on anything stored before 25 Jul 2026. Read those as production. */
+  source?: ConversationSource;
 }
 
-/** Get recent inbound questions, newest first */
+/**
+ * Get recent inbound questions, newest first.
+ *
+ * `includeInternal: false` (the default everywhere a human reads this feed) drops
+ * preview and localhost traffic. Records written before 25 Jul 2026 carry no
+ * source and are kept, so history never silently empties.
+ */
 export async function getRecentQuestions(
-  limit = 50
+  limit = 50,
+  includeInternal = false
 ): Promise<StoredQuestion[]> {
   const redis = getRedis();
   if (!redis) return [];
 
-  const ids = await redis.zrange<string[]>("question:index", 0, limit - 1, {
+  // Over-fetch when filtering, or a burst of our own dev traffic pushes real
+  // questions out of the window and the feed looks quiet when it isn't.
+  const window = includeInternal ? limit : Math.min(limit * 4, 500);
+
+  const ids = await redis.zrange<string[]>("question:index", 0, window - 1, {
     rev: true,
   });
   if (!ids.length) return [];
@@ -183,7 +220,10 @@ export async function getRecentQuestions(
   const questions: StoredQuestion[] = [];
   for (const id of ids) {
     const q = await redis.get<StoredQuestion>(id);
-    if (q) questions.push(q);
+    if (!q) continue;
+    if (!includeInternal && q.source && q.source !== "production") continue;
+    questions.push(q);
+    if (questions.length >= limit) break;
   }
   return questions;
 }
@@ -214,15 +254,23 @@ export async function getRecentErrors(
   return errors;
 }
 
-/** Get recent conversations, newest first */
+/**
+ * Get recent conversations, newest first.
+ *
+ * Same rule as questions: internal traffic is out unless asked for, and records
+ * with no source predate the tagging and count as production.
+ */
 export async function getRecentConversations(
-  limit = 50
+  limit = 50,
+  includeInternal = false
 ): Promise<StoredConversation[]> {
   const redis = getRedis();
   if (!redis) return [];
 
+  const window = includeInternal ? limit : Math.min(limit * 4, 500);
+
   // Get recent chat IDs from the sorted set
-  const chatIds = await redis.zrange<string[]>("chat:index", 0, limit - 1, {
+  const chatIds = await redis.zrange<string[]>("chat:index", 0, window - 1, {
     rev: true,
   });
 
@@ -232,7 +280,11 @@ export async function getRecentConversations(
   const conversations: StoredConversation[] = [];
   for (const chatId of chatIds) {
     const convo = await redis.get<StoredConversation>(`chat:${chatId}`);
-    if (convo) conversations.push(convo);
+    if (!convo) continue;
+    if (!includeInternal && convo.source && convo.source !== "production")
+      continue;
+    conversations.push(convo);
+    if (conversations.length >= limit) break;
   }
 
   return conversations;

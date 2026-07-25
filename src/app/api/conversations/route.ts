@@ -16,16 +16,25 @@ export async function GET(req: Request) {
   const limitParam = searchParams.get("limit");
   const limit = limitParam ? parseInt(limitParam, 10) : 50;
 
+  /**
+   * ⭐ REAL VISITORS ONLY, BY DEFAULT. Preview and localhost hit the same Upstash
+   * database as production, so without this the feed mixes our own build traffic in
+   * with prospects and reads identically. `?include=internal` shows everything, with
+   * each record's `source` on it.
+   */
+  const includeInternal = searchParams.get("include") === "internal";
+
   const [conversations, errors, questions] = await Promise.all([
-    getRecentConversations(limit),
+    getRecentConversations(limit, includeInternal),
     getRecentErrors(20),
-    getRecentQuestions(limit),
+    getRecentQuestions(limit, includeInternal),
   ]);
 
   return Response.json({
     count: conversations.length,
     errorCount: errors.length,
     questionCount: questions.length,
+    includesInternal: includeInternal,
     conversations,
     errors,
     questions,
