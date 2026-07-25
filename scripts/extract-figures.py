@@ -45,7 +45,8 @@ import re
 import sys
 
 SOURCE = pathlib.Path.home() / "paul-hub/intelligence/course-build/course-figures.html"
-OUT = pathlib.Path(__file__).resolve().parents[1] / "src/app/course/figures/figures.generated.ts"
+REPO = pathlib.Path(__file__).resolve().parents[1]
+OUT = REPO / "src/app/course/figures/figures.generated.ts"
 
 # Keyframe names get a prefix on the way out. `r30` as a global keyframe name is an
 # accident waiting to happen in an app that already has thousands of lines of CSS.
@@ -330,9 +331,36 @@ def main() -> int:
             "_drawing": drawing(svg),
         }
 
-    if len(figures) < 26:
-        raise SystemExit(f"only {len(figures)} figures found, expected at least 26: "
-                         "has the page changed shape?")
+    if not figures:
+        raise SystemExit("no figures found at all: has the page changed shape?")
+
+    # ⛔ THE COUNT IS NOT THE ASSERTION. This once read "at least 26", which was the number
+    # on the night it was written, and it went red the moment the figures terminal removed
+    # two figures on purpose. A count is a snapshot of a moving target; hard-coding one
+    # makes the gate cry wolf and teaches everyone to ignore it.
+    # What actually matters is that no figure the SITE POINTS AT has vanished underneath it.
+    referenced = set(re.findall(r'figure:\s*"([^"]+)"',
+                                (REPO / "src/app/course/moduleData.ts").read_text()))
+    missing = sorted(referenced - set(figures))
+    if missing:
+        raise SystemExit(
+            f"gone from the figures page but still pointed at by an item: {', '.join(missing)}. "
+            "Fix the pointer in moduleData.ts, or ask the figures terminal to put it back.")
+
+    prior = {}
+    if OUT.exists():
+        text = OUT.read_text()
+        try:
+            prior = json.loads(text[text.index("= {", text.index("export const FIGURES")) + 2:
+                                    text.rindex("};") + 1])
+        except ValueError:
+            pass
+    dropped = sorted(set(prior) - set(figures))
+    added = sorted(set(figures) - set(prior))
+    if dropped:
+        print(f"  ⚠️  no longer on the page: {', '.join(dropped)}")
+    if added:
+        print(f"  +   new since the last run: {', '.join(added)}")
 
     # Pair each still with the animated figure whose last frame it is. ⚠️ A STRIP HAS NO
     # STILL: fig-24 and fig-25 pan along a track, so their last frame is the last card and
