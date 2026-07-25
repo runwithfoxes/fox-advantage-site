@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AgentsHero from "./AgentsHero";
+import SiteFooter from "./SiteFooter";
 
 /* The four most recent essays, read off local markdown by app/page.tsx. Was the live
    Substack feed until 24 Jul 2026; see the note there. */
@@ -291,6 +292,12 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
 
         </div>
       </div>
+
+      {/* The GEO/agent content cluster was reachable only from within itself, so
+          the pages were orphans from the homepage, which is where radio traffic
+          lands. Same SiteFooter primitive the cluster uses, wide variant for this
+          container. No `current`: the homepage is not one of the links. */}
+      <SiteFooter wide />
 
       <footer className="hpx-footer">
         <span>&copy; 2026 Run with Foxes Limited</span>

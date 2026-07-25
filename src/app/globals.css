@@ -7337,3 +7337,23 @@ a.project-card {
     padding: 36px 24px;
   }
 }
+
+/* Homepage variant. The reading pages run an 820px measure, but the homepage
+   container is .hpx-wrap (max-width 1200px, 48px padding, so a 1104px content
+   box). Left at 820px the links sit as a narrow orphan column under the
+   storefront grid, so the wide variant matches 1104px and lines up with it.
+   Two columns because ten links stacked in one is a lot of dead height at this
+   width. Scoped to the modifier: the eight pages on the default are untouched. */
+.site-footer-wide .site-footer-inner {
+  max-width: 1104px;
+}
+.site-footer-wide .site-footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 48px;
+}
+@media (max-width: 768px) {
+  .site-footer-wide .site-footer-links {
+    grid-template-columns: 1fr;
+  }
+}

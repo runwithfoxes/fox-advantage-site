@@ -17,9 +17,17 @@ const links: { href: string; label: string }[] = [
   { href: "/book", label: "The Fox Advantage (free book)" },
 ];
 
-export default function SiteFooter({ current }: { current?: string }) {
+/* `wide` is for the homepage, whose container is 1200px rather than the 820px
+   reading measure. Layout only: same links, same component, one primitive. */
+export default function SiteFooter({
+  current,
+  wide,
+}: {
+  current?: string;
+  wide?: boolean;
+}) {
   return (
-    <footer className="site-footer">
+    <footer className={wide ? "site-footer site-footer-wide" : "site-footer"}>
       <div className="site-footer-inner">
         <div className="rwf-label">Explore</div>
         <nav className="site-footer-links">
