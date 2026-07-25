@@ -35,7 +35,6 @@ const PUBLIC_ROUTES = [
   "/millionaire-raffle",
   "/privacy",
   "/productivity",
-  "/research",
   "/run-with-foxes",
   "/students",
   "/students/tools/ai-writer",
