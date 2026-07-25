@@ -11,3 +11,6 @@ handover-qa/
 
 # python build scripts
 __pycache__/
+
+# figure comparison harness output
+.figure-compare/
