@@ -55,14 +55,13 @@ export const MODULES: Module[] = [
        its tier widths and colours verbatim. The lit rung walks Activity ->
        Commercial and holds: think at the top of the ladder before you spend.
 
-       🔴 THIS ARTEFACT NO LONGER MATCHES THE COPY, AND IT IS LEFT IN ANYWAY.
-       Paul picked the ladder himself on 18 Jul, when module 2 was framed around
-       thinking-through-strategy. His locked 19 Jul copy is about SETTING WORK UP
-       before it starts - research, hallucination defences, defining what good looks
-       like - and a metrics pyramid does not meet that sentence.
-       An alternative is BUILT and rendered (win: "setup", see ModuleArtefact), but
-       swapping it in would be a terminal reversing a decision Paul made himself, off
-       a note he has not seen. It waits for him. */
+       ✅ SETTLED 24 Jul 2026, Paul: "I'm fine with the artefacts." THE LADDER STAYS.
+       This closes an open question raised on 19 Jul - that the ladder was picked on
+       18 Jul when module 2 was framed around thinking-through-strategy, while the
+       locked copy is about SETTING WORK UP before it starts. Paul was shown that
+       mismatch and ruled the artefact fine as it is.
+       An alternative is still BUILT and rendered (win: "setup", see ModuleArtefact)
+       and is now simply unused. DO NOT re-raise this or swap it in. */
     art: { kind: "window", win: "cal" },
   },
   {
