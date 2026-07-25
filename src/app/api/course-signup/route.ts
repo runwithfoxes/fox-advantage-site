@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { recordSignup } from "@/lib/course-signup-record";
 import { getSignupRateLimiter } from "@/lib/rate-limit";
+import { looksUndeliverable } from "@/lib/email-dns";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -27,9 +28,19 @@ import { getSignupRateLimiter } from "@/lib/rate-limit";
   tells the reader their first module is below. Send a `Joined` event from here
   and every course signup is pointed at a module that does not exist yet.
 
-  Adding people to a list is safe: `GET /lists/U33KxM/flow-triggers/` returns
-  zero flows. Sending an event named `Joined` is what is dangerous, which is the
-  reverse of what most of the project docs used to warn about.
+  ⚠️ ADDING SOMEONE TO THIS LIST NOW SENDS THEM A LIVE EMAIL. This block used to
+  say the opposite - "adding people to a list is safe, `GET
+  /lists/U33KxM/flow-triggers/` returns zero flows" - and that was true when it
+  was written and is not true now. The same call returns one flow today:
+  `course - interest welcome` (YzmgvX), status live. It is what has sent the
+  welcome to every one of the 294 people on the list.
+
+  So a bulk import into `course-interest` mails every address in it,
+  immediately. Re-read the flow-triggers endpoint before doing anything of the
+  sort - do not trust this comment either, including this correction to it.
+
+  Sending an event named `Joined` is dangerous for a separate reason, unchanged
+  from below.
 
   If the course ever needs events, give it its OWN metric name (for example
   `Course Signup`), never `Joined`, so the two products cannot collide by
@@ -215,8 +226,20 @@ export async function POST(req: NextRequest) {
   const stamp = new Date(now).toISOString();
 
   try {
-    const existing = await existingProfile(key, email);
+    /* Run alongside the profile lookup rather than before it. The DNS answer is
+       needed to write the property below, but it costs no wall-clock time here -
+       the Klaviyo round trip it shares is always the slower of the two. */
+    const [existing, undeliverable] = await Promise.all([
+      existingProfile(key, email),
+      looksUndeliverable(email),
+    ]);
     const firstTouch = !existing?.hasIntent;
+
+    if (undeliverable) {
+      // Visible in the Vercel logs the same day, not three days later when
+      // someone happens to read the list.
+      console.warn("[course-signup] no mail route for domain", email);
+    }
 
     // Step 1: the profile and its intent. Intent properties are written on the
     // first touch only, so a second signup never overwrites what actually
@@ -235,6 +258,10 @@ export async function POST(req: NextRequest) {
     if (looksMachineGenerated(firstName)) {
       properties.signup_name_shape = "machine";
     }
+
+    /* Also every touch: the person may come back and type it correctly, and the
+       second submission should not inherit the first one's verdict. */
+    properties.signup_email_dns = undeliverable ? "no_mail_route" : "ok";
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
