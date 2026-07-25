@@ -120,7 +120,10 @@ def main(argv):
 
         # A still holds one state, so one frame proves it. An animated figure gets three:
         # before the first move, mid move, and the second it holds its finished state.
-        for t in (("0.5", "2.5", "4.8") if fig["animated"] else ("2.5",)):
+        # Under reduced motion every animation is off, so the figure holds one state and
+        # one frame proves it. Three frames there would just be the same picture, thrice.
+        frames = ("0.5", "2.5", "4.8") if (fig["animated"] and not reduced) else ("2.5",)
+        for t in frames:
             a = WORK / f"page-{name}-{t}.png"
             b = WORK / f"mine-{name}-{t}.png"
             shot_or_die(f"file://{WORK}/page.html?t={t}", a, 720, 320, 3.0, profile=PROFILE,

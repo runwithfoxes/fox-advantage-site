@@ -26,6 +26,12 @@
  * ⚠️ fig-24 and fig-25 are strips: they pan along a track and have no finished state, so
  * reduced motion parks them on card one of four. They are not wired to anything yet.
  *
+ * ⛔ A STILL THAT IS AN ANIMATED FIGURE'S LAST FRAME IS NOT A FIGURE YOU ASK FOR.
+ * fig-13 and fig-14 are one figure in two renderings (figures terminal, 25 Jul), and the
+ * animated one already collapses to the still under prefers-reduced-motion. Asking for the
+ * still gets you a picture that can never animate, so it throws in development and names
+ * the one to use instead. The pairing is derived by the extractor, never hand listed.
+ *
  * The data comes from `figures.generated.ts`, written by `scripts/extract-figures.py`.
  * ⛔ Never edit that file. Change the figure on the figures page and re-run the script.
  */
@@ -57,6 +63,14 @@ export function Figure({
       );
     }
     return <div className={styles.missing}>This picture is not built yet.</div>;
+  }
+
+  if (fig.stillOf && process.env.NODE_ENV !== "production") {
+    throw new Error(
+      `<Figure name="${name}"> is the still of ${fig.stillOf}, not a figure of its own. ` +
+        `Use name="${fig.stillOf}": it renders animated and collapses to exactly this ` +
+        `still under prefers-reduced-motion.`,
+    );
   }
 
   return (
