@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         source: "/course/li",
         destination: "/course",
       },
+      /* /info was a Next route whose whole body was an <iframe> pointing at
+         public/info/index.html. Crawlers and AI engines read the outer
+         document, so the sitemap advertised a URL serving zero words while
+         3,068 words of the distribution resource pack sat at a second URL
+         nothing linked to. Same rewrite pattern as the four below: one URL,
+         the real content, served at the pretty path. */
+      {
+        source: "/info",
+        destination: "/info/index.html",
+      },
       {
         source: "/distinctive",
         destination: "/distinctive/index.html",
