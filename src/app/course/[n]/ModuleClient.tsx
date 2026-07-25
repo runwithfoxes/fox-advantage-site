@@ -432,6 +432,13 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
               >
                 {mod.items[open].text}
               </p>
+
+              {/* THE SAME PICTURE, IN THE SECOND PLACE THE ITEM RENDERS. An item that
+                  shows a figure inline and then loses it when you open it is the same
+                  item telling you two different things. Order copied from the inline
+                  item, text then picture then prompt, not invented here. */}
+              {mod.items[open].figure && <Figure name={mod.items[open].figure} />}
+
               {mod.items[open].prompt && (
                 <div className="mod-copybox">
                   <div className="mod-copyhead">
