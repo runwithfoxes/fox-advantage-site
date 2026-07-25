@@ -9,6 +9,13 @@ const nextConfig: NextConfig = {
          not capture UTM parameters outside the Plus add-on, and a query string
          in a one-to-one LinkedIn message reads as marketing automation.
          /li = Jo's HeyReach campaign. Add one line per channel. */
+      /* /training was a Next route whose whole body was an <iframe> pointing
+         at public/training-app/index.html. Crawlers read the outer document, so the sitemap
+         advertised a URL serving zero words. Same pattern as the others here. */
+      {
+        source: "/training",
+        destination: "/training-app/index.html",
+      },
       {
         source: "/course/li",
         destination: "/course",
