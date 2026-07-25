@@ -7295,3 +7295,157 @@ a.project-card {
     padding: 36px 24px;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* /course/specimen - THE ARTEFACT CATALOGUE.                          */
+/* Not a module. One page carrying one real example of every artefact  */
+/* type and every interactive primitive, so the catalogue is reviewed  */
+/* once instead of discovered module by module. Built 25 Jul 2026.     */
+/* Reuses .mod-* wholesale. `spec-` only for genuinely new things.     */
+/* Square = our chrome. Rounded 15px = a depicted window (artwork).    */
+/* ------------------------------------------------------------------ */
+.spec-note{border-left:2px solid #F47521;padding:2px 0 2px 14px;margin:14px 0 0;
+  font-family:var(--mono);font-size:.6875rem;line-height:1.7;color:#8A8A85;}
+.spec-note b{color:#B4562A;font-weight:400;}
+
+/* HOW IT GETS IN - the intake block beside every specimen. */
+.spec-railnote{display:block;font-family:var(--mono);font-size:.6875rem;line-height:1.6;color:#A8A8A2;border-left:2px solid #E0E0DC;padding-left:10px;margin:0 0 4px;}
+.spec-intake{margin-top:18px;border:1px solid #E0E0DC;background:#FAFAF8;}
+.spec-intakehead{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 13px;border-bottom:1px solid #E0E0DC;font-family:var(--mono);font-size:.625rem;
+  letter-spacing:.1em;text-transform:uppercase;color:#8A8A85;}
+.spec-intakehead b{color:#3A7CA5;font-weight:400;}
+.spec-intake pre{margin:0;padding:14px 13px;font-family:var(--mono);font-size:.75rem;
+  line-height:1.7;white-space:pre-wrap;color:#1D1B1B;}
+.spec-intake pre i{color:#3A7CA5;font-style:normal;}
+.spec-cost{padding:9px 13px;border-top:1px solid #E0E0DC;font-family:var(--mono);
+  font-size:.625rem;letter-spacing:.05em;text-transform:uppercase;color:#A8A8A2;}
+.spec-cost b{color:#1D1B1B;font-weight:400;}
+
+/* Section headers between groups of specimens. */
+.spec-group{margin:64px 0 0;padding-top:26px;border-top:2px solid #1A3A4E;}
+.spec-group:first-of-type{margin-top:40px;border-top:0;padding-top:0;}
+.spec-grouph{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#3A7CA5;margin:0 0 10px;}
+.spec-groupd{font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.6;
+  margin:0;color:#1D1B1B;}
+
+/* ASSETS */
+.spec-img{margin-top:18px;border:1px solid #C9C9C3;background:#FAFAF8;}
+.spec-img img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:#FAFAF8;}
+.spec-cap{font-family:var(--mono);font-size:.6875rem;color:#8A8A85;padding:9px 12px;
+  border-top:1px solid #E0E0DC;}
+.spec-vid{margin-top:18px;border:1px solid #C9C9C3;background:#1D1B1B;}
+.spec-vid video{display:block;width:100%;height:auto;}
+.spec-file{margin-top:18px;display:flex;align-items:center;gap:14px;
+  border:1px solid #C9C9C3;background:#fff;padding:14px;}
+.spec-fileicon{width:34px;height:42px;border:1px solid #C9C9C3;background:#FAFAF8;flex:0 0 auto;
+  display:grid;place-items:center;font-family:var(--mono);font-size:.5625rem;color:#8A8A85;}
+.spec-filename{font-family:var(--sans);font-weight:500;font-size:1rem;color:#1D1B1B;display:block;}
+.spec-filemeta{font-family:var(--mono);font-size:.6875rem;color:#A8A8A2;margin-top:4px;display:block;}
+.spec-filedl{margin-left:auto;font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;padding:8px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;
+  text-decoration:none;}
+
+/* PRIMITIVE 1 - tune and keep */
+.spec-tune{margin-top:18px;border:1px solid #C9C9C3;background:#fff;}
+.spec-tunerow{display:grid;grid-template-columns:132px 1fr 92px;gap:16px;align-items:center;
+  padding:13px 16px;border-bottom:1px solid #E0E0DC;}
+.spec-tunelbl{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#8A8A85;}
+.spec-tuneval{font-family:var(--mono);font-size:.75rem;color:#3A7CA5;text-align:right;}
+.spec-tune input[type=range]{width:100%;accent-color:#3A7CA5;}
+.spec-tuneout{padding:16px;background:#FAFAF8;}
+.spec-tuneout pre{margin:0;font-family:var(--mono);font-size:.8125rem;line-height:1.7;
+  white-space:pre-wrap;color:#1D1B1B;}
+
+/* PRIMITIVE 2 - do one by hand, then watch a hundred */
+.spec-hundred{margin-top:18px;border:1px solid #C9C9C3;background:#fff;}
+.spec-hand{padding:16px;border-bottom:1px solid #E0E0DC;}
+.spec-handq{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;
+  color:#8A8A85;margin:0 0 10px;}
+.spec-brief{margin:0;padding-left:22px;list-style:decimal;font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.7;color:#1D1B1B;}
+.spec-brief li{padding:1px 0;}
+.spec-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.spec-chip{font-family:var(--mono);font-size:.75rem;padding:8px 12px;border:1px solid #C9C9C3;
+  background:#FAFAF8;color:#1D1B1B;cursor:pointer;}
+.spec-chip:hover{border-color:#3A7CA5;color:#3A7CA5;}
+.spec-chip[aria-pressed="true"]{background:#3A7CA5;border-color:#3A7CA5;color:#fff;}
+.spec-grid100{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;padding:16px;}
+.spec-cell{aspect-ratio:1;background:#EFEFEC;border:1px solid #E0E0DC;}
+.spec-cell[data-hit="1"]{background:#B4562A;border-color:#B4562A;}
+.spec-cell[data-hit="0"]{background:#2E7D5B;border-color:#2E7D5B;}
+.spec-runbar{display:flex;align-items:center;gap:16px;padding:13px 16px;border-top:1px solid #E0E0DC;
+  font-family:var(--mono);font-size:.6875rem;color:#8A8A85;flex-wrap:wrap;}
+.spec-runbar button{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;padding:8px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;
+  cursor:pointer;}
+.spec-runbar button:disabled{opacity:.45;cursor:default;}
+.spec-runbar b{color:#B4562A;font-weight:400;}
+
+/* PRIMITIVE 3 - compare two, commit, then reveal */
+.spec-pair{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.spec-opt{border:1px solid #C9C9C3;background:#fff;padding:16px;text-align:left;cursor:pointer;
+  font:inherit;color:inherit;display:flex;flex-direction:column;align-items:stretch;
+  justify-content:flex-start;}
+.spec-opt:hover{border-color:#3A7CA5;}
+.spec-opt[aria-pressed="true"]{border-color:#3A7CA5;box-shadow:inset 0 0 0 1px #3A7CA5;}
+.spec-optlbl{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#8A8A85;display:block;margin-bottom:9px;}
+.spec-opttext{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.6;
+  color:#1D1B1B;margin:0;}
+.spec-reveal{margin-top:14px;border-left:2px solid #3A7CA5;padding:2px 0 2px 14px;}
+.spec-revealh{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#3A7CA5;margin:0 0 7px;}
+.spec-revealt{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.6;
+  color:#1D1B1B;margin:0;}
+
+/* PRIMITIVE 4 - classify each line */
+.spec-classify{margin-top:18px;border:1px solid #C9C9C3;background:#fff;}
+.spec-line{padding:13px 16px;border-bottom:1px solid #E0E0DC;}
+.spec-line:last-child{border-bottom:0;}
+.spec-linetext{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.6;
+  color:#1D1B1B;margin:0 0 10px;}
+.spec-tags{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+.spec-tag{font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 10px;border:1px solid #C9C9C3;background:#FAFAF8;color:#8A8A85;cursor:pointer;}
+.spec-tag:hover{border-color:#3A7CA5;color:#3A7CA5;}
+.spec-tag[aria-pressed="true"]{background:#3A7CA5;border-color:#3A7CA5;color:#fff;}
+.spec-mark{font-family:var(--mono);font-size:.625rem;letter-spacing:.06em;text-transform:uppercase;
+  margin-left:auto;}
+.spec-mark[data-ok="1"]{color:#2E7D5B;}
+.spec-mark[data-ok="0"]{color:#B4562A;}
+
+/* PRIMITIVE 5 - ranked guesses */
+.spec-guess{margin-top:18px;border:1px solid #C9C9C3;background:#fff;}
+.spec-guess input{width:100%;border:0;border-bottom:1px solid #E0E0DC;padding:14px 16px;
+  font-family:var(--mono);font-size:.8125rem;color:#1D1B1B;background:transparent;}
+.spec-guess input::placeholder{color:#A8A8A2;}
+.spec-ranks{padding:6px 0;}
+.spec-rank{display:grid;grid-template-columns:26px 1fr 62px;gap:12px;align-items:center;
+  padding:9px 16px;font-family:var(--mono);font-size:.75rem;color:#1D1B1B;}
+.spec-rankn{color:#A8A8A2;font-variant-numeric:tabular-nums;}
+.spec-rankbar{height:4px;background:#E0E0DC;position:relative;}
+.spec-rankbar i{position:absolute;inset:0 auto 0 0;background:#3A7CA5;transition:width 200ms linear;}
+.spec-ranktext{grid-column:2;font-family:var(--mono);font-size:.75rem;}
+.spec-rankpct{text-align:right;color:#8A8A85;font-variant-numeric:tabular-nums;}
+.spec-guessempty{padding:16px;font-family:var(--mono);font-size:.75rem;color:#A8A8A2;}
+
+/* PRIMITIVE 6 - drag to assemble */
+.spec-drag{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.spec-bank,.spec-target{border:1px solid #C9C9C3;background:#fff;min-height:190px;}
+.spec-bankh{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#8A8A85;padding:10px 13px;border-bottom:1px solid #E0E0DC;}
+.spec-target[data-over="1"]{border-color:#3A7CA5;box-shadow:inset 0 0 0 1px #3A7CA5;}
+.spec-blocks{padding:11px;display:flex;flex-direction:column;gap:8px;}
+.spec-block{font-family:var(--mono);font-size:.75rem;padding:10px 12px;border:1px solid #C9C9C3;
+  background:#FAFAF8;color:#1D1B1B;cursor:grab;user-select:none;}
+.spec-block:active{cursor:grabbing;}
+.spec-block[data-placed="1"]{background:#fff;border-color:#3A7CA5;}
+.spec-dropempty{padding:16px 13px;font-family:var(--mono);font-size:.75rem;color:#A8A8A2;}
+
+@media (max-width:860px){
+  .spec-pair,.spec-drag{grid-template-columns:1fr;}
+  .spec-tunerow{grid-template-columns:104px 1fr 64px;gap:10px;}
+  .spec-grid100{grid-template-columns:repeat(10,1fr);}
+}
