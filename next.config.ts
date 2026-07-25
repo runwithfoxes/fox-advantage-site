@@ -9,27 +9,36 @@ const nextConfig: NextConfig = {
          not capture UTM parameters outside the Plus add-on, and a query string
          in a one-to-one LinkedIn message reads as marketing automation.
          /li = Jo's HeyReach campaign. Add one line per channel. */
-      /* /training was a Next route whose whole body was an <iframe> pointing
-         at public/training-app/index.html. Crawlers read the outer document, so the sitemap
-         advertised a URL serving zero words. Same pattern as the others here. */
+      {
+        source: "/course/li",
+        destination: "/course",
+      },
+
+      /* De-iframed pages. Each of these was a Next route whose entire body was
+         an <iframe> pointing at a static file. Crawlers and AI engines read the
+         outer document, so the sitemap advertised a URL serving zero words
+         while the real content sat at a second URL nothing linked to. Serving
+         the file at the pretty path gives one URL with the words in it. Each
+         static file carries rel="canonical" back to the path named here,
+         because the file stays directly reachable at its own URL too.
+         ⚠️ Before adding one: every asset, link and fetch target in the file
+         must be ROOT ABSOLUTE. The file gets served from a path it does not sit
+         at, so anything relative resolves against the pretty path and 404s
+         silently while a word count still passes clean. */
+      {
+        source: "/info",
+        destination: "/info/index.html",
+      },
       {
         source: "/training",
         destination: "/training-app/index.html",
       },
       {
-        source: "/course/li",
-        destination: "/course",
+        source: "/productivity",
+        destination: "/productivity-app/index.html",
       },
-      /* /info was a Next route whose whole body was an <iframe> pointing at
-         public/info/index.html. Crawlers and AI engines read the outer
-         document, so the sitemap advertised a URL serving zero words while
-         3,068 words of the distribution resource pack sat at a second URL
-         nothing linked to. Same rewrite pattern as the four below: one URL,
-         the real content, served at the pretty path. */
-      {
-        source: "/info",
-        destination: "/info/index.html",
-      },
+
+      /* Static article pages. Same mechanism, but these never had a Next route. */
       {
         source: "/distinctive",
         destination: "/distinctive/index.html",
