@@ -21,9 +21,22 @@
   --text: #1D1B1B;
   --text-muted: #8A8A85;
   --border: #E0E0DC;
-  --mono: var(--font-mono), 'JetBrains Mono', monospace;
-  --sans: var(--font-sans), 'Space Grotesk', sans-serif;
-  --serif: var(--font-serif), 'Source Serif 4', Georgia, serif;
+  /* ⛔ NEVER write these as `var(--font-mono), ...` again. `--font-mono`,
+     `--font-sans` and `--font-serif` are ALSO Tailwind v4 theme defaults, and
+     Tailwind declares them on :root. A custom property is substituted where it
+     is DECLARED, not where it is used, so `var(--font-serif)` HERE resolved
+     against Tailwind's own `ui-serif, Georgia, Cambria, ...` rather than the
+     next/font value on <body>, which arrives too late to win. Every alias below
+     therefore began with a system font, and the whole type system rendered in
+     ui-monospace / ui-sans-serif / ui-serif on every React page while all three
+     real fonts sat loaded and unused. It looks plausible in a screenshot, which
+     is why it survived from 21 Jul to 25 Jul.
+     These literal names are the families next/font registers, so they resolve to
+     the self-hosted files. Verify by reading the COMPUTED font-family of a real
+     element, never by looking at a render. */
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
 }
 
 * {
