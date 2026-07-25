@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import ModuleIsa from "./ModuleIsa";
+import { Figure } from "../figures/Figure";
 import {
   KIND_LABEL,
   kindOf,
@@ -90,7 +91,9 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
     return c;
   }, [mod.items]);
 
-  const grabsOutstanding = mod.items.filter((it) => it.grab).length;
+  /* An item whose picture slot is already filled by a drawn figure is not still owed.
+     Counting it would keep telling Paul he owes a screenshot he can already see. */
+  const grabsOutstanding = mod.items.filter((it) => it.grab && !it.figure).length;
   const wordsOutstanding = mod.items.filter((it) => it.placeholder).length;
 
   const visible = (it: Item) => filter === null || kindOf(it) === filter;
@@ -342,7 +345,13 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   </div>
                 )}
 
-                {it.grab && (
+                {/* THE PICTURE SLOT. A drawn figure fills it when there is one, and the
+                    orange unbuilt marker stands there when there is not. The figure knows
+                    nothing about items: it takes a name and a width, so this whole block
+                    can be moved or rebuilt without touching the figures. */}
+                {it.figure ? (
+                  <Figure name={it.figure} />
+                ) : it.grab ? (
                   <div className="mod-win">
                     <div className="mod-winbar">
                       <span className="mod-lights">
@@ -355,7 +364,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                     </div>
                     <div className="mod-shot" data-ph="" />
                   </div>
-                )}
+                ) : null}
 
                 {it.prompt && (
                   <div className="mod-copybox">

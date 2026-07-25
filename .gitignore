@@ -8,3 +8,6 @@ tsconfig.tsbuildinfo
 
 # Local cross-terminal Q&A channel (not for git)
 handover-qa/
+
+# python build scripts
+__pycache__/

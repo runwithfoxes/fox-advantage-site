@@ -1,0 +1,45 @@
+/* THE PLATE. The surface a figure sits on, and it belongs to the figure, not to the
+   page. Scoped as a CSS module so this component can be dropped into an item, beside
+   prose, or into a different page entirely and still look right.
+
+   ⛔ SQUARE. Our own surface never rounds. Only a window DEPICTED inside the drawing
+   rounds, at 15, because that one is artwork. (Paul, 21 Jul.)
+
+   ⚠️ THE 28px DOT GRID IS THE FIGURE PLATE. The 16px one is a different thing entirely:
+   it is the unbuilt-placeholder marker (`.mod-shot`). Do not reach for the wrong one. */
+
+.plate {
+  margin: 18px 0 0;
+  padding: 16px;
+  background: #ffffff;
+  border: 1.5px solid #e0e0dc;
+  background-image: radial-gradient(
+    circle,
+    rgba(208, 208, 204, 0.4) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 28px 28px;
+}
+
+/* Every figure is drawn on a 720x320 canvas and judged at the 748px column. It scales
+   to whatever width it is given, which is the point: the layout can change under it. */
+.plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The fallback when a figure is asked for by a name that no longer exists on the
+   figures page. Deliberately the same orange unbuilt marker the empty slot already
+   uses, so a renamed figure degrades to "not built yet" instead of a blank space.
+   In development this never renders: the component throws instead. */
+.missing {
+  margin: 18px 0 0;
+  padding: 28px 16px;
+  border: 1.5px dashed #f47521;
+  background: #fafaf8;
+  font-family: var(--mono, ui-monospace, Menlo, monospace);
+  font-size: 12px;
+  color: #8a8a85;
+  text-align: center;
+}

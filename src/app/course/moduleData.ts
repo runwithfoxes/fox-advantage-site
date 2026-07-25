@@ -46,6 +46,18 @@ export type Item = {
   prompt?: string;
   /** Short description of the screenshot needed. Its presence means the item owes a picture. */
   grab?: string;
+  /**
+   * ⭐ A DRAWN FIGURE that fills this item's picture slot, by the name the figures page
+   * prints, e.g. "fig-14". The figure itself lives in `figures/` and knows nothing about
+   * items, so this is a pointer and not a coupling: the layout can change under it.
+   * Source: ~/paul-hub/intelligence/course-build/course-figures.html, extracted by
+   * `scripts/extract-figures.py`.
+   *
+   * ⚠️ A figure and a `grab` are not the same thing. A grab is a screenshot of the real
+   * product; a figure is a drawing of the move. An item can want both, and the renderer
+   * shows the figure when there is one. PAUL'S CALL whether a figure retires the grab.
+   */
+  figure?: string;
   /** Other people's work. */
   links?: LinkEntry[];
   /** Marks anything Kit wrote standing in for Paul's words. Drives the build layer. */
@@ -121,6 +133,7 @@ export const MODULE_1: ModuleDef = {
       t: "Check which model you're on",
       text: "This matters more than anything else here, and it's the easiest thing to miss. There's a dropdown at the top of Claude or ChatGPT with a list of models in it. Pick the most capable one, the Opus or the top GPT, not whatever your plan opened with. Use that for anything hard, drop to the faster model for quick lookups, and if there's a “thinking” or “extended reasoning” toggle, turn it on for the harder problems. The difference between this year's best model and last year's is bigger than anything you can do with wording.",
       grab: "The model dropdown, open",
+      figure: "fig-14",
     },
     {
       t: "Brief it like a person",
