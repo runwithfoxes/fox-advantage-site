@@ -298,9 +298,9 @@
 
   /* Ask 2: org chart across the top, hires table under it */
   /* title card + Gary's supplied opening slide (dropped in as an image, unaltered) */
-  .title-card{ padding-left:56px; }
-  .tc-rule{ position:absolute; left:56px; top:34vh; width:9vw; height:5px; background:var(--coral); }
-  .tc-h{ position:absolute; left:56px; top:41vh; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:.95; letter-spacing:-1px; }
+  .title-card{ display:flex; flex-direction:column; justify-content:center; padding-left:56px; }
+  .tc-rule{ width:9vw; height:5px; background:var(--coral); margin-bottom:3.4vh; }
+  .tc-h{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:.95; letter-spacing:-1px; }
   .tc-h em{ font-style:normal; color:var(--coral); }
   .slide.gary{ align-items:center; justify-content:center; padding:0; background:#fff; }
   .slide.gary.on{ display:flex; }
@@ -377,8 +377,20 @@
   .lightbox-inner iframe{ width:100%; height:100%; border:none; display:block; }
   .lightbox-close{ position:absolute; top:12px; right:12px; z-index:2; width:38px; height:38px; border-radius:50%; border:none; background:var(--ink); color:var(--cream); font-size:18px; cursor:pointer; line-height:1; }
 </style>
+
+<style id="print-stack">
+  html,body{ height:auto !important; overflow:visible !important; background:#fff !important; }
+  #counter{ display:none !important; }
+  .slide{ position:relative !important; display:block !important; opacity:1 !important;
+          visibility:visible !important; transform:none !important;
+          width:1600px !important; height:900px !important; overflow:hidden !important;
+          page-break-after:always; break-after:page; margin:0 !important; }
+  .slide .step, .slide .half-right{ opacity:1 !important; visibility:visible !important; transform:none !important; }
+  .lightbox{ display:none !important; }
+  @page{ size:1600px 900px; margin:0; }
+</style>
 </head>
-<body>
+<body style="width:1600px">
 
 <!-- 0 WHY MARKETING. Richard's opener (23 Jul), sits BEFORE the cover.
      SPEAKER NOTE (Richard, verbatim):
