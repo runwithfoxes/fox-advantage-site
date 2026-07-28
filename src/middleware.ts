@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 //  - Presentation app:    presentation_auth  (the "AI at Sabre" working session)
 //  - Ardán proposal:      ardan_auth  (static proposal assets under /proposals/ardan)
 //  - ARI proposal:        ari_auth    (static proposal assets under /proposals/ari)
+//  - Nova HCM proposal:   nova-hcm_auth (static proposal assets under /proposals/nova-hcm)
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -71,6 +72,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/nova-hcm/")) {
+    if (req.cookies.get("nova-hcm_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -86,5 +93,6 @@ export const config = {
     "/proposals/yellowharbour/:path*",
     "/proposals/supplyit/:path*",
     "/proposals/lonergan/:path*",
+    "/proposals/nova-hcm/:path*",
   ],
 };
