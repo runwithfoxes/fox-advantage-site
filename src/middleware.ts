@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 //  - Ardán proposal:      ardan_auth  (static proposal assets under /proposals/ardan)
 //  - ARI proposal:        ari_auth    (static proposal assets under /proposals/ari)
 //  - Nova HCM proposal:   nova-hcm_auth (static proposal assets under /proposals/nova-hcm)
+//  - WeSwitchU proposal:  weswitchu_auth (static proposal assets under /proposals/weswitchu)
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -78,6 +79,12 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/proposals/weswitchu/")) {
+    if (req.cookies.get("weswitchu_auth")?.value !== "1") {
+      return new NextResponse("Not authorised", { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
@@ -94,5 +101,6 @@ export const config = {
     "/proposals/supplyit/:path*",
     "/proposals/lonergan/:path*",
     "/proposals/nova-hcm/:path*",
+    "/proposals/weswitchu/:path*",
   ],
 };
