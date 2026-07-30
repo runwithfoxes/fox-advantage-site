@@ -8,9 +8,14 @@ const nextConfig: NextConfig = {
          own page. That is how a visit is attributed to a campaign: Vercel does
          not capture UTM parameters outside the Plus add-on, and a query string
          in a one-to-one LinkedIn message reads as marketing automation.
-         /li = Jo's HeyReach campaign. Add one line per channel. */
+         /li = Jo's HeyReach campaign, /fb = the Meta ads for the free course.
+         Add one line per channel. */
       {
         source: "/course/li",
+        destination: "/course",
+      },
+      {
+        source: "/course/fb",
         destination: "/course",
       },
 
