@@ -63,7 +63,40 @@ export type SignupPayload = {
    * real people - the one way this technique goes wrong.
    */
   company_url?: string;
+  /**
+   * ⭐ META'S CLICK ID, read off the URL, never stored. Present only when the
+   * visitor arrived from a Facebook or Instagram ad, because Meta appends
+   * `?fbclid=...` to the landing URL (the ads point at `/course/fb`, and the
+   * rewrite preserves the query string).
+   *
+   * The route forwards it to Meta's Conversions API so a signup can be matched
+   * back to the ad that caused it. Without it the conversion is unattributed
+   * and cannot tell one creative from another.
+   */
+  fbclid?: string;
+  /** the page the signup happened on, so the event carries a source URL */
+  page_url?: string;
 };
+
+/**
+ * ⛔ READ FROM THE URL, DO NOT PERSIST. Not sessionStorage, not localStorage,
+ * not a cookie.
+ *
+ * This site stores nothing on a visitor's device and therefore needs no consent
+ * banner - that is a deliberate position, not an omission. Reading a query
+ * parameter is not storage and does not touch it. Writing the click id into
+ * sessionStorage to survive navigation WOULD be storage under ePrivacy, and
+ * would drag a banner in behind it for a few points of attribution.
+ *
+ * The cost of not persisting: someone who lands on /course/fb, navigates away
+ * and comes back before signing up loses their attribution. Accepted. The form
+ * sits on the landing page itself, so the common path keeps it.
+ */
+function readFbclid(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  const raw = new URLSearchParams(window.location.search).get("fbclid")?.trim();
+  return raw ? raw : undefined;
+}
 
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "done" } | { kind: "error"; which: "email" | "server" };
 
@@ -134,6 +167,11 @@ export default function CourseSignup({
         email: email.trim(),
         signup_source: source,
         company_url: trap,
+        ...(() => {
+          const fbclid = readFbclid();
+          return fbclid ? { fbclid } : {};
+        })(),
+        ...(typeof window !== "undefined" ? { page_url: window.location.href } : {}),
         ...(module !== undefined ? { signup_module: module, signup_module_lands: lands } : {}),
       }),
     );

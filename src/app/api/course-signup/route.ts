@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { recordSignup } from "@/lib/course-signup-record";
 import { getSignupRateLimiter } from "@/lib/rate-limit";
 import { looksUndeliverable } from "@/lib/email-dns";
+import { sendCourseSignupEvent } from "@/lib/meta-capi";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -221,6 +222,23 @@ export async function POST(req: NextRequest) {
       ? body.signup_module_lands
       : null;
 
+  /*
+    ⭐ THE META CLICK ID. Only ever present when the visitor arrived from a
+    Facebook or Instagram ad, because Meta appends `?fbclid=...` to the landing
+    URL. It is read off the URL by the page and posted here.
+
+    It is NOT stored anywhere and NOT written to Klaviyo. It exists for exactly
+    one purpose: `sendCourseSignupEvent` turns it into the `fbc` parameter so
+    Meta can tie this signup back to the ad that produced it. Without it the
+    conversion event still lands but is unattributed, and an unattributed
+    conversion teaches the optimiser nothing about WHICH ad worked - which is
+    the entire point of running one creative at a time.
+
+    Shape-checked in meta-capi.ts rather than here, so there is one gate on it.
+  */
+  const fbclid = typeof body.fbclid === "string" ? body.fbclid : undefined;
+  const pageUrl = typeof body.page_url === "string" ? body.page_url : undefined;
+
   const now = Date.now();
   const door = doorFor(now);
   const stamp = new Date(now).toISOString();
@@ -359,6 +377,47 @@ export async function POST(req: NextRequest) {
       ts: stamp, email, first_name: firstName, signup_source: source,
       signup_module: signupModule, signup_module_lands: lands,
       door, klaviyo: "ok",
+    });
+
+    /*
+      ⭐ META CONVERSIONS API - AFTER THE RESPONSE, NOT BEFORE IT.
+
+      `after()` runs this once the visitor already has their "You're in", so a
+      slow or unreachable Meta costs them nothing. It must never move above the
+      return, and it must never be awaited inline.
+
+      ⛔ IT ONLY RUNS ON THE SUCCESS PATH, DELIBERATELY. A honeypot bot (fake
+      200, nothing written), a failed Klaviyo call and a rate-limited caller all
+      return earlier, so none of them reach here. Sending a conversion for a bot
+      would teach the optimiser to go and find more bots, which is the single
+      most expensive thing that can go wrong on a conversion campaign.
+
+      ⚠️ `already: true` DOES reach here, on purpose: someone re-submitting is
+      still a person who responded to an ad, and meta-capi.ts dedupes them to
+      one event per day by `event_id`.
+
+      Never throws - `sendCourseSignupEvent` returns its failures rather than
+      raising, so nothing here can affect a signup that has already succeeded.
+    */
+    after(async () => {
+      const result = await sendCourseSignupEvent({
+        email,
+        firstName,
+        fbclid,
+        clientIp: clientIp(req),
+        userAgent: req.headers.get("user-agent") ?? undefined,
+        sourceUrl: pageUrl,
+        signupSource: source,
+      });
+      /* The ONLY visible difference between "configured and working" and "env
+         vars missing, silently sending nothing" - see the header of
+         meta-capi.ts. Read this line in the Vercel logs before believing the
+         integration is live. */
+      if (result.status !== "sent") {
+        console.warn("[course-signup] meta capi", result.status, result.reason);
+      } else {
+        console.log("[course-signup] meta capi sent", result.eventId, fbclid ? "attributed" : "no fbclid");
+      }
     });
 
     // Someone who submits twice, or refreshes mid-submit, has done nothing
