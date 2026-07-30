@@ -377,6 +377,30 @@ export default function CourseClient() {
           </section>
         </main>
 
+        {/*
+          ⭐ THE LEGAL FOOTER. This page had NONE, and that was the problem.
+
+          /cookies was reachable from exactly one place on the whole site: the
+          homepage footer. Someone arriving from a Facebook ad lands here on
+          /course/fb and never touches the homepage, so the notice describing
+          what we tell Meta about their signup was invisible to precisely the
+          people it is about.
+
+          ⛔ DELIBERATELY THE SMALL LEGAL LINE, NOT <SiteFooter />. The site-links
+          footer would offer a menu of other pages at the exact point someone is
+          meant to be signing up. Nothing goes near the pill either: a notice at
+          the moment of decision costs signups and protects nobody. Paul, 30 Jul:
+          "I don't want to add in lines that are distracting or off putting."
+          Honest and findable, not in the way.
+        */}
+        <footer className="hpx-footer co-footer">
+          <span>&copy; 2026 Run with Foxes Limited</span>
+          <span className="hpx-footer-sep">&middot;</span>
+          <Link href="/privacy">Privacy</Link>
+          <span className="hpx-footer-sep">&middot;</span>
+          <Link href="/cookies">Cookies</Link>
+        </footer>
+
         <div className="hp-bottom-bar hp-bb-visible">
           <a href="#top">#top</a>
           <a href="#about">#about</a>

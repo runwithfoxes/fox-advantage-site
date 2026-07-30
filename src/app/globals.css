@@ -7166,6 +7166,13 @@ a.project-card {
 /* ---------- the pill again ---------- */
 .co-footjoin{padding:64px 0 110px}
 
+/* The legal footer at the very bottom of /course. Unlike the homepage, this page's
+   hp-bottom-bar is PERMANENTLY visible (hp-bb-visible) and fixed to the viewport, so
+   the last ~44px of the document sits underneath it. .hpx-footer's own 36px of bottom
+   padding is not enough to clear it and the links end up behind the bar. Measured, not
+   guessed: the bar is 12px of type plus 14px padding top and bottom. */
+.co-footer{padding-bottom:76px}
+
 /* ---------- mobile ----------
    🔴 COURSE TRAFFIC LANDS OVERWHELMINGLY ON PHONES (LinkedIn and radio), so this is
    the layout that matters, not the desktop one.
@@ -7195,6 +7202,19 @@ a.project-card {
   .co-bio{padding:56px 0 0;gap:18px}
   .co-biophoto{width:84px;height:84px}
   .co-footjoin{padding:48px 0 96px}
+
+  /* The bottom bar WRAPS on a phone: measured 77px tall at 390px against 47px on
+     desktop. The 76px base clearance leaves the footer links only 10px above it,
+     which is close enough to read as a mistake on the layout that matters most
+     (course traffic is overwhelmingly phones). */
+  .co-footer{padding-bottom:104px; flex-wrap:wrap; row-gap:10px}
+
+  /* Left to itself the row squeezes the company name onto two ragged lines rather
+     than wrapping, because flex shrinks the text span before it breaks the row.
+     So give the name its own full-width line and let the two links share the next
+     one, and drop the separator that would otherwise lead that second line. */
+  .co-footer > span:first-child{flex-basis:100%; text-align:center}
+  .co-footer > span:nth-child(2){display:none}
 
   /* THE ARTEFACT DROPS TO ITS AUTHORED 284x186. At 1:1 every measured value inside
      the window is exactly what it was designed at, which is the whole reason the
