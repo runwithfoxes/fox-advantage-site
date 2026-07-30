@@ -63,6 +63,13 @@
   .sec-intro{font-size:1.0625rem;line-height:1.65;color:#33322f;margin-top:22px;}
   .sec-intro strong{font-weight:500;}
 
+  /* the six modules */
+  .mods{display:grid;grid-template-columns:1fr 1fr;gap:34px 44px;margin-top:44px;}
+  .mod{border-top:2px solid var(--deep);padding-top:16px;}
+  .mod .n{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--sky);margin-bottom:8px;}
+  .mod h3{font-family:var(--sans);font-weight:400;font-size:20px;line-height:1.2;margin-bottom:10px;}
+  .mod p{font-size:0.9375rem;line-height:1.68;color:#3a3936;}
+
   /* two-column detail blocks */
   .wcols{display:grid;grid-template-columns:1.35fr 1fr;gap:44px;margin-top:40px;}
   .wcol-l{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--deep);font-weight:500;margin-bottom:16px;border-top:2px solid var(--deep);padding-top:14px;}
@@ -135,7 +142,7 @@
 
   @media(max-width:900px){
     .cal-grid{grid-template-columns:1fr;gap:28px;}
-    .quotes,.covers,.wcols,.plan{grid-template-columns:1fr;gap:28px;}
+    .quotes,.covers,.wcols,.plan,.mods{grid-template-columns:1fr;gap:28px;}
   }
   @media(max-width:768px){
     .container{padding:0 24px;} .nav-in{padding:16px 24px;} .navmeta{display:none;}
@@ -172,12 +179,12 @@
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="container">
-    <div class="stage" id="stage">
+    <div class="stage">
       <img src="fox-office-web.jpg" alt="A marketing team at work">
     </div>
     <div class="headwrap">
       <div class="forline">Prepared for Rebecca O'Driscoll, Mervue Laboratories</div>
-      <h1>Half a day on AI, worked through on <span class="hl">Mervue's own material</span></h1>
+      <h1>Half a day on <span class="hl">AI fluency</span> with your marketing team</h1>
     </div>
   </div>
 </section>
@@ -192,7 +199,7 @@
       <div class="cal-body reveal">
         <div class="cal-award">Ireland's Marketer of the Year, 2022</div>
         <p>Before I use any of these tools I ask one question: what does really good look like here? Not what AI can do, but what the best version of this marketing would be, and the level of quality I would want to stand over. The tools come after that, and they are judged against it.</p>
-        <p>That is also how I teach it. A session that demonstrates tools in the abstract leaves a team with a list of product names and no judgement about when to trust them. So we spend the half day on Mervue's own work instead. <strong>By the end your team will have used these tools on your material, seen where they are genuinely good and where they fall over, and formed its own view.</strong></p>
+        <p>That is also how I teach it. A session that runs through tools one by one leaves a team with a list of product names and no judgement about when to trust any of them. <strong>Fluency is the thing worth having, and it is broader than the tools.</strong> It is knowing what these systems are good at, what they are poor at, how to set work up so the output holds its quality, and what is now possible that was not possible before.</p>
         <p>Twenty years in brand is what tells me where the quality bar sits: Head of Brand at O2 Ireland, then CMO at the National Lottery, then Head of Brand at Indeed and Miro, both global roles.</p>
         <div class="clients">
           <div class="k">Who I work with</div>
@@ -219,34 +226,35 @@
 <section class="block">
   <div class="container">
     <div class="kicker">The session</div>
-    <h2 class="reveal">What we would work through</h2>
-    <p class="sec-intro reveal">This comes from your emails and our conversation in June. You have three pieces of work in front of you that you think these tools should be able to help with: a plan for taking the new pet range into retail, video and social content built from footage you already own, and the year-to-date spend against annual budget. You also said the thing that matters most for this session, which is that you want to cover the basics first and then be specific about what you need. <strong>So we work on Mervue's own files rather than examples, and by the end the team can tell the difference between what these tools do well and what they do badly.</strong> Below is what we would cover.</p>
+    <h2 class="reveal">What we would cover</h2>
+    <p class="sec-intro reveal">You said you wanted to cover the basics first, and then be specific about what you need. The difficulty with that is that the basics of AI in marketing are wider than they look, and it is hard to know what to ask for while you can only see part of it.</p>
+    <p class="sec-intro reveal">So the half day is structured on the six parts of my AI fluency course, and I take examples from each. We would not run the whole course in an afternoon, and this is not that. <strong>The structure is there because it gives you the full picture of what AI fluency in marketing covers,</strong> from the daily habits through to the things nobody could do at all until recently. By the end your team can see the whole territory, and you can see which parts of it matter to Mervue.</p>
+    <p class="sec-intro reveal">Where it helps I point the examples at the kind of work your team does, so the ideas land against something familiar rather than a generic example. The session itself is about the fluency, not about any one piece of Mervue work.</p>
+
+    <div class="mods">
+      <div class="mod reveal"><div class="n">01</div><h3>The 80/20 of AI</h3><p>A small number of habits get you most of the way with AI in marketing work. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats. Showing it the content you liked rather than describing it.</p></div>
+      <div class="mod reveal"><div class="n">02</div><h3>Slow, then fast</h3><p>An intentional way of setting about marketing work. Techniques for getting clear on what good looks like, for fast research, for the metrics, for building in defences against hallucination. All of it before the work starts, so what follows is quick and consistently good.</p></div>
+      <div class="mod reveal"><div class="n">03</div><h3>Create adjacent value</h3><p>A deep dive into the wide range of marketing capabilities you can now build with AI, and how to get them to a genuinely competent standard. No need to stay specialised as a brand, performance, product or research marketer. You add to what you are already good at.</p></div>
+      <div class="mod reveal"><div class="n">04</div><h3>System thinking</h3><p>Once you can create adjacent value, you can build the whole system. A website, a chatbot, a calendar, the email, the research that lands before a call. Wired together into one experience for the customer, end to end.</p></div>
+      <div class="mod reveal"><div class="n">05</div><h3>Building marketing agents</h3><p>The processes, structures and tools I've used to build agents that do real marketing work, whether that is research, outbound, writing emails or coaching a brief. Getting the workflow right, and getting the quality right.</p></div>
+      <div class="mod reveal"><div class="n">06</div><h3>Tackle difficult problems</h3><p>The other modules are about doing your work faster and better. This one is about the marketing problems and opportunities that were never possible at all, even for a big team. Now is the time to be ambitious and take them on.</p></div>
+    </div>
 
     <div class="wcols">
       <div class="reveal">
-        <div class="wcol-l">The half day, in order</div>
-        <ul class="wflow">
-          <li><b>Where these tools are strong, and where they break</b><span>I ran generation tests on your Skin &amp; Coat sachet last week. The tool re-lettered your wordmark and printed "Est. 1026" instead of 1986, and produced the gel as a rigid ribbed cylinder rather than the soft blob it is. We start here, because a team that knows the failure modes checks the right things and stops trusting output that looks finished.</span></li>
-          <li><b>The retail launch</b><span>We brief the plan for taking the pet range into retail properly, then look at what comes back that is useful and what comes back generic. This is the one you said you were struggling to outline, and you would leave the day with a real start on it.</span></li>
-          <li><b>Written work at volume</b><span>Amazon listing copy, briefs for distributors and retail accounts, and export-language versions for Turkish, Spanish and your other markets.</span></li>
-          <li><b>Social and video, from what you already own</b><span>Your five cat clips and your eight Amazon listing images. What can be produced from footage and artwork you already have, what still needs your designer, and how to tell those apart before committing to a piece of work.</span></li>
-          <li><b>The numbers</b><span>We build the year-to-date spend against annual budget analysis during the session, so the method is yours to repeat each month rather than a file I hand over.</span></li>
-          <li><b>Staying on brand when more than one person is making things</b><span>Your logo and its clear space, your colours, your tone and your product claims, written down once in a form these tools can follow. This is the practical answer to distributors and retailers producing their own off-brand versions.</span></li>
-        </ul>
-      </div>
-      <div class="reveal">
         <div class="wcol-l">What you get afterwards</div>
         <div class="sidenote">
-          <p><b>A written map of where AI fits in Mervue's marketing</b>, ranked by what pays back soonest, with the effort and the cost against each item.</p>
+          <p><b>A written note of where Mervue sits against each of the six, and what is worth doing first.</b></p>
           <p>You said you would be able to be more specific about what you need once you knew more about what these tools can do. This is the document that lets you do that, whether you brief me, another supplier, or your own team.</p>
         </div>
-        <div class="wcol-l" style="margin-top:34px;">Practical details</div>
+      </div>
+      <div class="reveal">
+        <div class="wcol-l">Practical details</div>
         <ul class="facts">
           <li><b>Length.</b> Half a day, roughly four hours including a break.</li>
           <li><b>Where.</b> Your office in Cork, or online if that suits the team better.</li>
           <li><b>Who.</b> Up to eight people. Your marketing team, and I would suggest including your head of nutrition and your commercial manager, since they already use these tools and the session is better with them in the room.</li>
-          <li><b>Preparation.</b> I work through your brand guidelines, your assets and your Amazon listings beforehand, so the session runs on real Mervue material from the first minute. Much of this I have already done.</li>
-          <li><b>What you need to bring.</b> A short list of files, which I would send once we have a date.</li>
+          <li><b>What you need to bring.</b> Nothing to prepare. If there is a piece of work the team is in the middle of, tell me beforehand and I will point some of the examples at it.</li>
         </ul>
       </div>
     </div>
@@ -262,11 +270,11 @@
     <div class="plan reveal">
       <div>
         <div class="pk">The session</div>
-        <div class="pn">A working half day, and the plan that comes out of it</div>
+        <div class="pn">A working half day, and the note that comes out of it</div>
         <ul>
-          <li>Preparation against your own brand guidelines, assets and listings before the day</li>
-          <li>The half day itself, with your team, working on Mervue material throughout</li>
-          <li>The written map afterwards: where AI fits in Mervue's marketing, ranked by what pays back soonest, with effort and cost against each item</li>
+          <li>The half day with your team, structured on the six parts of the AI fluency course</li>
+          <li>Preparation beforehand, so the examples are pointed at the kind of work your team does</li>
+          <li>The written note afterwards: where Mervue sits against each of the six, and what is worth doing first</li>
         </ul>
       </div>
       <div>
@@ -279,7 +287,7 @@
       <div class="reveal">
         <div class="k">Why it is priced this way</div>
         <p>This session's job is to let you decide what happens next, so I have priced it to be an easy decision rather than a budget exercise. It is deliberately a small commitment.</p>
-        <p>Some of what the map points at, your team will do in-house once they have seen how. Some of it you may want built for you, and the brand consistency piece in particular tends to be the one companies want help with, because it only works if it is set up properly once. That is a conversation for after the day, when you know what you are asking for.</p>
+        <p>Some of what comes out of it your team will do in-house once they have seen how. Some of it you may want built for you, and that tends to be the pieces that only work if they are set up properly once. That is a conversation for after the day, when you know what you are asking for.</p>
       </div>
       <div class="reveal">
         <div class="k">What it does not include</div>
@@ -308,28 +316,6 @@
   var nav=document.getElementById('nav');
   addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>20);});
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* hero: typed labels */
-  var team=[
-    {t:"The retail launch plan",     x:31, y:29},
-    {t:"Copy and export languages",  x:76, y:45},
-    {t:"Social and video",           x:1,  y:64},
-    {t:"Brand consistency",          x:20, y:73}
-  ];
-  var stage=document.getElementById('stage');
-  var showAll=location.hash==='#done'||reduce;
-  var els=team.map(function(m){var d=document.createElement('div');d.className='plabel';d.style.left=m.x+'%';d.style.top=m.y+'%';stage.appendChild(d);return d;});
-  if(showAll){els.forEach(function(d,i){d.classList.add('show');d.textContent=team[i].t;});}
-  else{
-    function typeBox(i){
-      if(i>=team.length)return;
-      var d=els[i];d.classList.add('show');
-      var txt=document.createTextNode(''),cur=document.createElement('span');cur.className='cursor';d.appendChild(txt);d.appendChild(cur);
-      var s=team[i].t,ci=0;
-      (function type(){if(ci<s.length){txt.textContent+=s[ci++];setTimeout(type,30);}else{cur.remove();setTimeout(function(){typeBox(i+1);},380);}})();
-    }
-    setTimeout(function(){typeBox(0);},550);
-  }
 
   /* reveal on scroll */
   if(reduce){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
