@@ -42,9 +42,13 @@ const essaysDirectory = path.join(process.cwd(), "src/content/essays");
  *
  * Wording tracks courseCopy.ts. Paul's own date form is "21st September".
  */
+/* ⭐ `lead` widened from "Free course:" to name the category, 1 Aug 2026. It is the
+   anchor line on ten essay pages, so it is the site's largest single block of internal
+   linking to /course, and it was describing the course without saying what kind of
+   course it is. Same reasoning as the title tag in src/app/course/page.tsx. */
 export const COURSE_NOTE = {
   show: true,
-  lead: "Free course:",
+  lead: "Free AI marketing course:",
   title: "AI Fluency for Ambitious Marketers",
   href: "/course",
   tail: "starts 21st September.",

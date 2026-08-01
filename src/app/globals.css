@@ -6806,6 +6806,19 @@ a.project-card {
   font-family:var(--sans);font-weight:300;color:#6E6C68;
   font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin:22px 0 0;
 }
+/* The category line. Inherits family, colour and full width from .co-hero p above (the
+   no-cap rule at the end of this block applies to it too); the ONLY change is one step
+   down in size, so the headline still lands first and Paul's selling paragraph still
+   lands second.
+   ⚠️ SIZE, NOT COLOUR. A lighter grey was tried first and measured 3.4:1 on the cream,
+   under the 4.5:1 floor for body text. It is differentiated by scale alone on purpose.
+   ⚠️ SELECTOR IS .co-hero p.co-define, NOT .co-define. .co-hero p sets the size, and a
+   single class loses to it on specificity, so a bare .co-define silently does nothing.
+   No !important anywhere in this file's hero block; do not introduce one here. */
+.co-hero p.co-define{
+  font-size:clamp(15px,1.2vw,17px);
+  margin:16px 0 0;
+}
 .co-herojoin{margin-top:34px}
 
 /* ---------- the way in ----------
