@@ -47,6 +47,28 @@ export const HERO = {
      The middle sentence is unchanged - it was already his structure and he kept it. */
   sub: "A free online course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one released every fortnight. Do at your own pace. Starts 21st September 2026.",
 
+  /* ✅ APPROVED BY PAUL, 1 Aug 2026. The plain-category line, and the ONLY reason it
+     exists is that search and answer engines had no unambiguous statement anywhere on
+     this page of what kind of thing it is. The page said "AI fluency" and "course for
+     marketers"; it never once said "AI marketing course", which is the phrase a
+     marketer who has not heard of it actually types.
+
+     ⭐ THE TEST IT IS WRITTEN TO PASS: can this one sentence be lifted out whole and
+     dropped into someone else's answer and still be true and complete? A search engine
+     ranked pages; a model lifts a line. See search-doctrine.md, protocol point 6.
+
+     ⚠️ TWO WORDS TRIMMED FROM WHAT PAUL APPROVED, and this is the flag rather than a
+     silent edit. He approved "...a free online AI marketing course, six modules, from
+     Paul Dervan." The STRIP two elements below already reads "6 modules · one a
+     fortnight · 21 Sep to 30 Nov · free", so "six modules" said it twice within a
+     screen. To restore his exact wording, put ", six modules," back after "course".
+
+     ⚠️ IT NAMES PAUL ON PURPOSE. Entity resolution is the job here: the sentence has to
+     join the course, the category and the person, because that is the join an engine
+     cannot make from three separate elements on a page. */
+  definition:
+    "AI Fluency for Ambitious Marketers is a free online AI marketing course from Paul Dervan.",
+
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
      18 Jul: say free, never bind his future pricing. "Nothing to buy" is inside
      brief:claims ("No course to buy, no upsell"). */

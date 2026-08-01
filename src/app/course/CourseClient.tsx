@@ -296,6 +296,14 @@ export default function CourseClient() {
         <header className="co-hero wrap" id="top">
           <h1 className="co-h1">{HERO.headline}</h1>
 
+          {/* ⭐ THE CATEGORY LINE. Deliberately QUIETER than the paragraph below it and
+              deliberately ABOVE it. Above, because a third of a page is what gets read
+              and this is the sentence that has to survive being lifted. Quieter,
+              because the hero's job is still to sell and Paul's paragraph is what does
+              that: a definition set at the same weight would be the first thing read
+              and the sell would arrive second. Reasoning in courseCopy.ts. */}
+          <p className="co-define">{HERO.definition}</p>
+
           <p>{HERO.sub}</p>
 
           <div className="co-herojoin">
