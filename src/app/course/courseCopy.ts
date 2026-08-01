@@ -65,9 +65,23 @@ export const HERO = {
 
      ⚠️ IT NAMES PAUL ON PURPOSE. Entity resolution is the job here: the sentence has to
      join the course, the category and the person, because that is the join an engine
-     cannot make from three separate elements on a page. */
+     cannot make from three separate elements on a page.
+
+     ⚠️ "ONLINE" IS DELIBERATELY NOT IN THIS SENTENCE, and it is not an oversight. The
+     first render put it in, which made this line and the first line of HERO.sub below
+     it both read "a free online course" back to back. "Online" stays in HIS line,
+     because he put it there on purpose on 20 Jul (the page had never said anywhere
+     that this is an online course a marketer does themselves).
+
+     ⚠️ PLACEMENT WAS THE OTHER WAY TO FIX THAT ECHO AND IT WAS REJECTED. Moving this
+     line below HERO.sub separates the two, but it drops a line between the selling
+     paragraph and the signup pill, and Paul's rule for this hero (19 Jul: "as few
+     things on as possible so that people can just see it and sign up") outranks a mild
+     echo. If the echo ever bothers him more than the step does, the tighter page is
+     ONE category sentence, not two: fold "AI marketing course" into HERO.sub and
+     delete this. That needs his ruling, HERO.sub is his dictation. */
   definition:
-    "AI Fluency for Ambitious Marketers is a free online AI marketing course from Paul Dervan.",
+    "AI Fluency for Ambitious Marketers is a free AI marketing course from Paul Dervan.",
 
   /* "free", never "free forever" - brief:positioning.free_principle_amended, Paul
      18 Jul: say free, never bind his future pricing. "Nothing to buy" is inside
