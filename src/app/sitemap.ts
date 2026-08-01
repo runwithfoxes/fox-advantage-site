@@ -23,7 +23,19 @@ const PUBLIC_ROUTES = [
   "/books",
   "/brand",
   "/brief-diagnostician",
-  "/coach",
+  /* ⛔ "/coach" WAS HERE AND CAME OUT, 2 Aug 2026. It is not a page: the route is
+     an 11-line `redirect()` that 307s to metrics-pyramid.vercel.app, where the
+     Marketing Effectiveness Coach actually lives. A sitemap advertises URLs you
+     want indexed, and a URL that leaves the domain can never be indexed at that
+     URL, so this was asking Google to index a signpost. It lands in Search
+     Console as a "Page with redirect" exclusion.
+     ⚠️ THE REDIRECT ITSELF STAYS. /coach is a working vanity URL and anyone who
+     has it keeps landing on the tool. This removes it from the sitemap only.
+     ⚠️ Do NOT "fix" this by building a /coach page that describes the tool. That
+     is a new content page and the 21 Jul standing hold is live.
+     How it stayed hidden: site_gaps.py follows redirects, so it was counting the
+     DESTINATION's words, scoring 200+ and reporting "ok". Fixed the same day - it
+     now tests for an off-domain hop BEFORE the word count. */
   "/contact",
   "/cookies",
   "/course",
