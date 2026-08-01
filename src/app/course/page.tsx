@@ -58,9 +58,40 @@ const TITLE = "AI Fluency for Ambitious Marketers";
 const DESCRIPTION =
   "A free, practical, non-hype AI fluency course for ambitious marketers. Six modules, one a fortnight, opening Monday 21 September 2026.";
 
+/**
+ * ⭐ THE SEARCH TITLE AND DESCRIPTION ARE DELIBERATELY NOT THE SHARE-CARD ONES.
+ * Added 1 Aug 2026. The title tag has a different job from the H1 and from og:title,
+ * and this is the only place on the page where that job gets done.
+ *
+ * THE PROBLEM, measured on the live page on 1 Aug: the string "AI marketing course"
+ * appeared nowhere on /course. The page communicates the idea (AI fluency) clearly
+ * and the category (an AI marketing course) not at all, so it turns up for the course
+ * name and for "Run with Foxes", and not for the words a marketer who has never heard
+ * of it would actually type.
+ *
+ * WHY THIS AND NOT SCHEMA. The obvious-looking fix is Course JSON-LD. It was
+ * considered and rejected on evidence: Ahrefs' matched-control study (11 May 2026,
+ * 1,885 pages adding JSON-LD against ~4,000 controls) measured AI Overview presence
+ * DOWN 4.6%, statistically significant, and searchVIU built a page whose price existed
+ * only in JSON-LD which none of ChatGPT, Claude, Perplexity, Gemini or Google AI Mode
+ * retrieved. They read rendered HTML. Schema is classic-SERP hygiene on a shrinking
+ * surface, never an AI-citation lever. See ~/paul-hub/methodology/search-doctrine.md §6.
+ *
+ * ⚠️ THE H1 AND THE SHARE CARD ARE UNCHANGED AND MUST STAY THAT WAY. The course name
+ * is settled (Paul, 19 Jul: no rename) and it is more ownable than the category. The
+ * category is attached to it here, it does not replace it anywhere.
+ *
+ * ⚠️ KEEP THIS UNDER ABOUT 60 CHARACTERS or Google rewrites it. The brand suffix is
+ * dropped on purpose: the site name is emitted separately via og:siteName and the
+ * suffix would push the searched words off the end.
+ */
+const SEARCH_TITLE = "Free AI marketing course: AI Fluency for Ambitious Marketers";
+const SEARCH_DESCRIPTION =
+  "A free, practical, non-hype AI marketing course for ambitious marketers. Six modules, one a fortnight, opening Monday 21 September 2026.";
+
 export const metadata: Metadata = {
-  title: TITLE + " - Run with Foxes",
-  description: DESCRIPTION,
+  title: SEARCH_TITLE,
+  description: SEARCH_DESCRIPTION,
 
   /* stops the campaign's own tracking params splitting this page into many URLs in the
      eyes of search engines and of LinkedIn's cache */
