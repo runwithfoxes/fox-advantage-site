@@ -40,6 +40,58 @@ Route `src/app/api/clients/[slug]/feedback/route.ts`, guarded by the `CLIENT_FEE
 ## /distinctive page (2026-07-10) - LIVE
 Public article-style page at runwithfoxes.com/distinctive: "Distinctive brands have an incredible opportunity with AI". Static HTML at `public/distinctive/index.html` (assets in `public/distinctive/assets/`), served via a `/distinctive` rewrite in next.config.ts (same pattern as /broad-lake). **GOTCHA for every rewrite-served page: asset URLs must be ABSOLUTE (`/distinctive/assets/...`). The page URL has no trailing slash, so relative `assets/...` resolves to `/assets/` and 404s in the browser while direct curl checks of the full path still pass. Verify a deploy by RENDERING the live URL and checking the images paint, not by curling asset paths (b04253f shipped broken this way; fixed ff10cc6).** Content = the Substack DBA essay near-verbatim (National Lottery waterslides/William/Village/Dream Inspector, voice section with Oatly + Isa, grumpy fox engine), first person, byline, CTAs = /contact + chat-with-Isa (homepage). Videos reference the existing `/video/` files; three lottery films are click-to-play YouTube embeds. Built for Amy Mitchell (PT78) to send to a challenger-brand client, but generic. Page rules learned this session are baked into the /branded-page skill: hero headline one line (two max), clamp(32px,3.4vw,48px), hero close under the nav. Shipped b58f06c -> main.
 
+## /essays - Paul's writing, on his own domain first (14 live as of 2 Aug 2026)
+
+**Publishing is a drop-in-a-file job.** Put a markdown file in `src/content/essays/` with
+frontmatter (`title`, `date`, `dek`, optional `substack`) and it appears. The index, the
+reader and the sitemap all read `src/lib/essays.ts`, so they cannot drift apart. Images live
+in `public/essays/{slug}/` numbered in document order (`01.png`, `02.jpeg`, ...). Deliberately
+NOT built like `chapters.ts`, which hardcodes its order in a TS array. Do not add one here.
+
+### ⭐ `.essay-embed` - the ONE media primitive. Do not hand-roll another.
+`class="essay-embed"` on a bare `<video>` or `<iframe>` is the whole contract: full column
+width, no border, no rounded corners. `remark` runs with `sanitize: false`, so the tag passes
+through from markdown untouched. First used by `distinctive-brand-assets-in-an-ai-world`.
+
+- ⚠️ **The 16/9 ratio is on `iframe.essay-embed` ONLY, and that split is load-bearing.** An
+  iframe has no intrinsic size and collapses without a ratio. A `<video>` HAS one, and
+  hard-coding 16/9 over it is a real bug: `animated-6040-activate.mp4` is **1080x1080**, and
+  the black bars ran down both sides of a cream ad on a cream page. Let the file say how tall
+  it is.
+- ⚠️ **Every `<video class="essay-embed">` needs a `poster`.** Chrome paints nothing at all
+  until the first frame decodes, so without one it is a blank rectangle mid-essay for as long
+  as the network takes. Generate with `ffmpeg -ss <t> -i in.mp4 -frames:v 1 -q:v 3 out.jpg`.
+
+### Importing from Substack - the three traps, all of which have bitten
+The ten essays of 24 Jul (`16197cd`) and the four of 2 Aug (`130945f`) both came from the
+Substack API: `/api/v1/archive?sort=new&limit=50` lists every post, `/api/v1/posts/{slug}`
+returns full `body_html`. There is **no Substack export on Paul's laptop**; do not go looking.
+
+1. ⭐ **FETCH THE `<img src>` EXACTLY AS GIVEN.** It is already the `w_1456` CDN URL, which is
+   what the 680px reader column needs at 2x. Unwrapping to the original URL encoded inside it
+   pulls the 2500px source: four essays came down at **18MB instead of 3.5MB**.
+2. ⭐ **STRIP SUBSTACK'S FURNITURE.** Subscribe/share widgets arrive as bare markdown links
+   (seven across four essays). None of the live essays carry them; the foot of a piece already
+   has the course note and the Substack credit.
+3. ⭐ **Substack puts the leading space INSIDE `<em>`** (`Building<em> DBAs</em>`). Stripping
+   it welds words together (`Building*Distinctive*`). Move the space outside the marker.
+
+Substack-hosted videos (`native-video-embed`, identified only by a `mediaUploadId`) cannot be
+fetched: the API answers *"Cannot verify mediaUpload belongs to pub"*. Both in the DBA essay
+turned out to be files **already on this site**, which `/distinctive` confirms since it was
+built from the same essay. Identify them by the sentence each one follows.
+
+### ⚠️ Known gap, and it is not in this repo
+`src/app/essays/[slug]/page.tsx` canonicalises to runwithfoxes.com on the stated basis that
+the Substack copy points back here. **It does not.** All 14 posts self-canonicalise to
+substack.com, so Substack is telling Google it holds the original of every essay. Fixing it is
+a setting on Substack, not a code change. Flagged to Paul 2 Aug 2026.
+
+**Overlap with existing pages was measured, not assumed** (2 Aug): `18 things worth knowing
+about GEO` shares **24%** of its sentences with `/answer-engine-optimization`, and the DBA
+essay shares **18%** with `/distinctive`. That is related writing, not duplicate pages, so all
+of them stay. An older commit message called it a straight duplicate; that note was stale.
+
 ## Current state (2026-06-04) - accordion port LIVE
 Live and deployed. The homepage was ported from `wireframes/wireframe-accordion-homepage.html` to a single nested accordion and shipped to production (merge `ef84f97..69bae26` -> main, Vercel auto-deploy). Structure now: hero -> bio (magazine wrap) + contact-CTA strip (sequential green dots) -> LIVE Substack carousel -> 7-module nested accordion (L0 row -> L1 intro -> L2 reused rich panels) -> rotating testimonial band -> book block. Single font (JetBrains Mono) across the homepage via `--sans -> mono` on `.hp-root`. Nav is now `/tools` + `/previous`. All copy approved, zero 404s. See "Homepage structure" below (updated) and the session summary `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`. Rollback if ever needed: `git revert 69bae26` (or revert the merge) + push.
 
