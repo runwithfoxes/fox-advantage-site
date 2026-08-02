@@ -93,14 +93,46 @@ export type Item = {
 export type ModuleDef = {
   n: number;
   title: string;
+  /**
+   * ⭐ THE BLUE WORDS IN THE PAGE HEADLINE, PAUL 2 Aug 2026 ("in our page headlines, let's
+   * try adding a blue word"). An exact substring of `title`, rendered in Fox blue. The
+   * house pattern, already on the homepage as .hpx-hl.
+   *
+   * ⛔ DECLARED, NEVER DERIVED. The obvious shortcut is a rule like "colour the last word"
+   * or "colour after the comma". It breaks immediately across the six: "Slow, then fast"
+   * has a comma, "System thinking" has nothing to split on, and "The 80/20 of AI" would
+   * give you a two-character highlight from one rule and a number from another. A wrong
+   * guess here is silent, because a headline always renders. So each module names its own.
+   *
+   * Optional. No value means a plain headline, which is where modules 2 to 6 sit.
+   * If the string is not found in the title, the headline renders plain rather than
+   * throwing: a missing highlight is a cosmetic loss, never a broken page.
+   */
+  titleHl?: string;
   when: string;
   on: string;
   /** ⭐ NOTHING SAYS LIVE UNTIL IT IS LIVE. Same doctrine as courseModules.ts:
    *  a module reads live only when its date has passed AND it is genuinely built.
    *  Never simplify to a date check. */
   built: boolean;
-  /** Paul's locked description, verbatim from courseCopy.MODULE_BLURBS. */
+  /** Paul's locked description, verbatim from courseCopy.MODULE_BLURBS.
+   *  ⚠️ STILL LOAD-BEARING EVEN WHEN `opening` REPLACES IT ON THE PAGE: it is the page's
+   *  meta description ([n]/page.tsx) and the "what this module is about" line in Isa's
+   *  system prompt (api/chat/route.ts). Never delete a blurb to make room for an opening. */
   blurb: string;
+  /**
+   * ⭐ THE WORDS AT THE TOP OF THE MODULE PAGE, PAUL 2 Aug 2026. Blank line between
+   * paragraphs, same convention as an item's `text`.
+   *
+   * ⭐ WHY IT IS NOT THE BLURB. The blurb is a DESCRIPTION, written for someone deciding
+   * whether to open the module, and it is reused on the course index and in metadata. The
+   * opening is Paul TALKING TO SOMEONE WHO HAS ALREADY ARRIVED. Different jobs, different
+   * register, and merging them would drag the index-card copy into first person.
+   *
+   * Optional. A module with no opening falls back to rendering its blurb, which is where
+   * modules 2 to 6 sit until Paul writes theirs.
+   */
+  opening?: string;
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -148,18 +180,40 @@ export const MODULE_1: ModuleDef = {
      put the number on screen twice. Same reasoning that removed the corner "01" from
      the course home cards on 18 Jul. */
   title: "The 80/20 of AI",
+  /* Trailing blue, like the reference Paul sent ("The parts, in code"). "AI" is the subject
+     and it ends the line. The alternative worth trying if this reads thin is "80/20". */
+  titleHl: "AI",
   source: "Paul's own article, 21 May 2026",
   when: "Mon 21 Sep",
   on: "2026-09-21",
   built: false,
   blurb:
     "A small number of habits get you most of the way with AI in marketing work. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats, showing it the content you liked rather than describing it.",
+  /* ⭐ PAUL'S WORDS, VERBATIM, 2 Aug 2026. This replaced the blurb at the top of the page.
+     Do not reword, do not tidy, do not merge the paragraphs.
+
+     ⚠️ TWO LINES MAKE CLAIMS ABOUT THE PAGE ITSELF and break if the layout moves. "Isa, my
+     assistant chatbot on your left" depends on the rail staying left; "an AI fluency
+     question below" depends on the fluency panel staying below this. Both verified true on
+     2 Aug. If either moves, this copy is wrong and only Paul can rewrite it. */
+  opening:
+    "Hello and thank you for signing up to this. Later in this course we get into big things. Building agents, thinking in systems and doing stuff that wasn't possible six months ago.\n\nBut this module is not that. This is a bunch of things that I do, often without even thinking about it. If you already do these too, skip them. I'm not going to show you how to use AI, although will send you links to guides. There's loads available. My focus is marketing, and I care about both quality and speed, so that is the lens for this course.\n\nYou'll see Isa, my assistant chatbot on your left. It can answer questions if you have any. You know how to find me too.\n\nOne request. You'll see an AI fluency question below. I'd love if you can answer it now. And there's another one at the end of Module 6. That way, I can assess how useful this course is, and find ways to improve it.",
   items: [
     {
       t: "Check which model you're on",
-      /* Replaced 2 Aug 2026. Paul dictated this to Dray to stand in place of the 21 May
-         article's version. His words, verbatim, paragraph breaks his. */
-      text: "Be intentional about what version of AI model you're on. And switch depending on the task. There is a big difference in quality.\n\nFor example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if you're just asking simple questions, you might switch to their Sonnet.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in long run, as you get accuracy faster, in fewer prompts. My main point is be aware, test and be intentional.",
+      /* Paul's words, verbatim, rewritten 2 Aug 2026 (evening). Two paragraphs, his breaks.
+         It replaces his own earlier three-paragraph dictation from the same day, which
+         opened on the instruction ("Be intentional about what version of AI model you're
+         on"). This one opens on the REASON the instruction exists, that the models do not
+         all behave the same, and only then gets to what he does about it.
+
+         ⚠️ IT MAKES A PROMISE THE COURSE HAS NOT KEPT YET: "Later in this course, I'll show
+         how I train Claude to guess what model I want so I don't have to ask." Nothing in
+         modules 2 to 6 covers that today. Module 1 just lost a vaguer version of the same
+         problem, the dangling "(more on that later)" in item 03, so this one is written
+         down rather than left to be noticed later. Either it gets a home or the line goes,
+         and both are Paul's call. */
+      text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask. Anyway, for now, my main point is be aware, test and be intentional on the model you're using.",
       grab: "The model dropdown, open",
       figure: "fig-14",
     },

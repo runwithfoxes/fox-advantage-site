@@ -14,8 +14,12 @@ import { useState } from "react";
  * module 1 and again at the end of module 6, and show them what moved. Self-rated, so it
  * clears his standing rule that learners are never tested and never made to fail first.
  *
- * ⚠️ THE COPY IN HERE IS NOT PAUL'S. It is placeholder, written to hold the shape so he
- * can judge the layout at real size. Every line is his to rewrite.
+ * ⭐ THE OPENING PARAGRAPHS AND THE FLUENCY QUESTION ARE PAUL'S OWN WORDS (2 Aug 2026).
+ * Verbatim. Not to be reworded.
+ *
+ * ⚠️ STILL PLACEHOLDER AND STILL HIS TO REWRITE: the video slot's caption, the grey note
+ * under the fluency question, the slider's own descriptions, and the "no deadline" line at
+ * the bottom. Do not describe this whole block as his copy.
  *
  * ⚠️ NOT BUILT: storing the number anywhere, the matching capture at the end of module 6,
  * and how the change is shown back. This saves to nothing.
@@ -49,13 +53,16 @@ export default function ModuleArrival() {
           font-family:var(--mono);font-size:.75rem;color:#A8A8A2;line-height:1.9;
           margin:0 0 34px;
         }
-        .arr-welcome{
-          font-family:'Source Serif 4',Georgia,serif;font-size:1.25rem;line-height:1.55;
-          color:#1D1B1B;margin:0 0 18px;
-        }
-        .arr-rate{border-top:1px solid #C9C9C3;margin-top:40px;padding-top:34px;}
+        /* ⭐ A PANEL, NOT A STRIP BETWEEN TWO HAIRLINES. Paul, 2 Aug: "the ai fluency test
+           is really important that they do this, and again it feels like it is disappearing
+           into the background." It was loose elements under a border-top, which is the same
+           treatment as the pace note below it, so the one thing on the page he actually
+           wants people to DO looked like a footnote. Square corners, per brand. */
+        .arr-rate{background:#fff;border:1px solid #C9C9C3;margin-top:44px;padding:30px 32px 32px;}
+        /* Same size as an item heading (.mod-h3, 24px). This asks for an action, so it should
+           not read as smaller than the things that merely ask to be read. */
         .arr-q{
-          font-family:var(--sans);font-weight:500;font-size:1.25rem;line-height:1.35;
+          font-family:var(--sans);font-weight:500;font-size:1.5rem;line-height:1.3;
           color:#1D1B1B;margin:0 0 10px;
         }
         .arr-note{
@@ -63,8 +70,9 @@ export default function ModuleArrival() {
         }
         .arr-row{display:flex;align-items:flex-start;gap:28px;}
         .arr-shell{flex:1;min-width:0;}
+        /* 4px, not 2px. A 2px hairline track reads as a divider rather than a control. */
         .arr input[type=range]{
-          -webkit-appearance:none;appearance:none;width:100%;height:2px;background:#E0E0DC;
+          -webkit-appearance:none;appearance:none;width:100%;height:4px;background:#E0E0DC;
           outline:none;cursor:pointer;display:block;
         }
         .arr input[type=range]::-webkit-slider-thumb{
@@ -107,17 +115,10 @@ export default function ModuleArrival() {
         Paul, 60 seconds, why he is glad you are here
       </div>
 
-      {/* STILL MY WORDING, but now carrying the two jobs Paul named on 2 Aug: set the scene
-          for how deep the course goes, then be small. His words are in
-          module-descriptions.md under "Module 1, what it is FOR". */}
-      <p className="arr-welcome">
-        Later in this course we get into big things. Building agents. Whole systems. Work
-        that used to need a team.
-      </p>
-      <p className="arr-welcome">
-        This module is not that. It is a run of small things you can use today. Do enough of
-        them and you get fluent fast.
-      </p>
+      {/* ⛔ NO WELCOME PARAGRAPHS HERE. Deleted 2 Aug 2026 on Paul's instruction. His
+          opening now lives at the TOP of the page, under the h1, as MODULE_1.opening in
+          moduleData.ts. Do not reintroduce a second welcome: this block sits below the
+          video and its only job is the fluency question. */}
 
       <div className="arr-rate">
         {/* Paul's words, 2 Aug. Not to be reworded. */}

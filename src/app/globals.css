@@ -7029,11 +7029,25 @@ a.project-card {
 }
 /* 500, not 600: the documented reading-register weight. 600 reads too insistent
    over long copy. (Paul, 21 Jul.) */
+/* ⭐ THE BLUE WORDS IN A PAGE HEADLINE. Same Fox blue as the homepage's .hpx-hl.
+   Colour only: no weight change, no underline. The word is emphasis, not a link, and
+   blue means clickable elsewhere on this page, so it must not pick up link affordances. */
+.mod-hl{color:#3A7CA5;}
 .mod-h1{
   font-family:var(--sans);font-weight:500;font-size:clamp(2.25rem,5vw,3.25rem);
   line-height:1.05;letter-spacing:-.02em;text-wrap:balance;margin:0 0 22px;color:#1D1B1B;
 }
-.mod-standfirst{font-family:'Source Serif 4',Georgia,serif;font-size:1.25rem;line-height:1.5;margin:0;color:#1D1B1B;}
+/* ⭐ ONE PROSE SIZE ON THE PAGE, 17px, PAUL 2 Aug 2026: "the font size is too big at top
+   of page. Can it all be same size". The standfirst was 20px and the item body 17px, so
+   arriving felt like a different document to reading. The h1 still carries the hierarchy;
+   nothing else should. Matches .mod-body exactly, line-height included. Do not reintroduce
+   a larger lede: a bigger standfirst is the reflexive magazine move and he has ruled on it.
+   The arrival block's welcome paragraphs are the same size, set inline in ModuleArrival. */
+.mod-standfirst{font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.7;margin:0;color:#1D1B1B;}
+/* The opening can be several paragraphs since 2 Aug 2026. Same 30px as between an item's
+   paragraphs, for the reason given in the reading spec below: the gap between paragraphs
+   has to beat the gap between lines. */
+.mod-standfirst + .mod-standfirst{margin-top:30px;}
 /* The chapters float the fox beside a long prose column so it never runs out of text
    to wrap. Here the standfirst is short and the fox is taller, so it overhung the
    metadata row and squeezed four columns into a wrapped mess. The meta clears the
@@ -7147,14 +7161,25 @@ a.project-card {
 
 /* Part of the reading spec above. An item needs more air around it than between its own
    paragraphs, or the rule line reads as just another gap. 32px -> 44px. */
-.mod-item{border-bottom:1px solid #E0E0DC;padding:44px 0;scroll-margin-top:28px;}
+/* The boundary between items carries the darker grey, not the hairline used inside an item
+   for artifact borders. Same 2 Aug fix: a section needs a visible edge. */
+.mod-item{border-bottom:1px solid #C9C9C3;padding:44px 0;scroll-margin-top:28px;}
 /* Heading to first paragraph. 12px was tighter than the gap between paragraphs, so the
    heading looked stuck to the prose. */
 .mod-itemtop{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px;}
-.mod-n{font-family:var(--mono);font-size:.75rem;color:#A8A8A2;font-variant-numeric:tabular-nums;}
+/* ⭐ THE ITEM NUMBER IS THE SECTION MARKER, PAUL 2 Aug 2026: the items "feel apologetic and
+   not even obvious that it is a section. This is partly the grey and the 01 is hardly
+   noticeable." It was 12px at #A8A8A2, the lightest grey in the palette, which is the tone
+   used for machine chrome. A section number is structure, not chrome. Now 18px and the same
+   near-black as the title.
+   ⛔ NOT BLUE. Blue means clickable everywhere else on this page (.mod-openhint, the rail,
+   the actions) and the number is not a control. Making it blue would read as a link. */
+.mod-n{font-family:var(--mono);font-size:1.125rem;color:#1D1B1B;font-variant-numeric:tabular-nums;}
 /* LABEL, NOT A BUTTON. Never solid blue. */
 .mod-type{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;background:transparent;color:#8A8A85;border:1px solid #C9C9C3;}
-.mod-h3{font-family:var(--sans);font-weight:500;font-size:1.25rem;margin:0;letter-spacing:-.01em;flex:1 1 auto;color:#1D1B1B;}
+/* Bigger than the prose it sits over, so an item announces itself as a section. 20 -> 24px.
+   Part of the same 2 Aug fix as .mod-n above. */
+.mod-h3{font-family:var(--sans);font-weight:500;font-size:1.5rem;margin:0;letter-spacing:-.01em;flex:1 1 auto;color:#1D1B1B;}
 .mod-h3 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;border-bottom:1px solid transparent;}
 .mod-h3 button:hover{color:#3A7CA5;border-bottom-color:#3A7CA5;}
 /* Actions read BLUE AT REST, not only on hover. That was the root of the all-grey

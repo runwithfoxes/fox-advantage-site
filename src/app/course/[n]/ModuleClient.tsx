@@ -324,7 +324,23 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         <p className="mod-eyebrow">
           Module {mod.n} of 6 &middot; opens {mod.when}
         </p>
-        <h1 className="mod-h1">{mod.title}</h1>
+        {/* The headline, with its declared words in Fox blue. Falls back to a plain
+            headline when the module names no highlight, or names one that is not actually
+            in the title. */}
+        <h1 className="mod-h1">
+          {(() => {
+            const hl = mod.titleHl;
+            const at = hl ? mod.title.indexOf(hl) : -1;
+            if (!hl || at < 0) return mod.title;
+            return (
+              <>
+                {mod.title.slice(0, at)}
+                <span className="mod-hl">{hl}</span>
+                {mod.title.slice(at + hl.length)}
+              </>
+            );
+          })()}
+        </h1>
         {/* Reuses .chapter-fox-hero verbatim: float right, 180px, negative -60px right
             margin so it sits half out in the gutter and reads as casual rather than as
             a boxed illustration, and a drop-shadow FILTER so the shadow follows the
@@ -332,7 +348,15 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         <div className="chapter-fox-hero">
           <img className="chapter-fox-hero-img" src={`/fox/${fox}`} alt="" />
         </div>
-        <p className="mod-standfirst">{mod.blurb}</p>
+        {/* Paul's opening if the module has one, otherwise its blurb. Splits on a blank
+            line, same as an item's prose. The fox floats right, so the first paragraph
+            wraps beside it and the rest run full width: the magazine wrap the homepage
+            uses. */}
+        {(mod.opening ?? mod.blurb).split(/\n{2,}/).map((para, i) => (
+          <p className="mod-standfirst" key={i}>
+            {para}
+          </p>
+        ))}
         <div className="mod-meta">
           <span>
             Opens<b>{mod.when}</b>
