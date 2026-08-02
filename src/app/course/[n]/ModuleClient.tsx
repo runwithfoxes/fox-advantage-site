@@ -45,6 +45,70 @@ const SHOW_COUNTERS = false;
 const BUILD_PARAM = "build";
 
 /**
+ * ⭐ A LONG PROMPT IS A BUTTON, NOT A WALL. Paul, 2 Aug 2026, showing Spiral's
+ * "COPY PROMPT FOR AGENT": "this is how everyone does it. We don't see the prompt. We
+ * just click."
+ *
+ * The CFO persona is 828 words. Printed in full it buries the item, and it buries the
+ * next item too, which is the opposite of what a hack is meant to feel like. Nobody
+ * reads a system prompt before pasting it; they take it and use it.
+ *
+ * ⚠️ SHORT PROMPTS STAY VISIBLE, and that is not an oversight. Item 02's prose says
+ * "try a prompt like the one below", so hiding it would break the sentence pointing at
+ * it. A five-line prompt is READING material; an 800-word persona is CARGO. The
+ * threshold is what separates them.
+ *
+ * ⛔ THERE IS NO "SHOW IT" TOGGLE. The first attempt had one, plus a word count and the
+ * box around it, and Paul cut all three. A long prompt is one button. If someone wants
+ * to read 828 words before pasting them, they can paste them and read them there.
+ */
+const PROMPT_IS_LONG_AT = 120; /* words */
+
+function PromptBlock({
+  text,
+  label,
+  onCopy,
+}: {
+  text: string;
+  label?: string;
+  onCopy: () => void;
+}) {
+  const long = text.trim().split(/\s+/).length > PROMPT_IS_LONG_AT;
+
+  /* ⭐ A LONG PROMPT IS ONE BUTTON AND NOTHING ELSE. First attempt kept the box, a word
+     count and a "show it" toggle, and Paul killed all three on sight: "this is ugly, not
+     neat and clean... it is confusing. We can just use the copy button." He is right that
+     the extra furniture was explaining a control that explains itself. The label names
+     WHAT is being copied, so nothing else has to. */
+  if (long) {
+    return (
+      <button type="button" className="mod-promptbtn" onClick={onCopy}>
+        {label ?? "Copy prompt"}
+        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true">
+          <rect x="0.5" y="0.5" width="7" height="9" fill="none" stroke="currentColor" />
+          <path d="M4.5 2.5h7v9h-7" fill="none" stroke="currentColor" />
+        </svg>
+      </button>
+    );
+  }
+
+  /* Short prompts stay visible. Item 02's prose says "try a prompt like the one below",
+     so hiding five lines would break the sentence pointing at them. A short prompt is
+     reading material; an 800-word persona is cargo. */
+  return (
+    <div className="mod-copybox">
+      <div className="mod-copyhead">
+        <span>Paste this into Claude or ChatGPT</span>
+        <button type="button" onClick={onCopy}>
+          Copy
+        </button>
+      </div>
+      <pre>{text}</pre>
+    </div>
+  );
+}
+
+/**
  * A figure that lives as its own file under /public rather than in the figures library.
  * See the `figureFile` note in moduleData.ts for why this is an <img> and not inlined:
  * the standalone export carries UNSCOPED css on purpose, so inlining it would repaint
@@ -428,15 +492,11 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 )}
 
                 {it.prompt && (
-                  <div className="mod-copybox">
-                    <div className="mod-copyhead">
-                      <span>Paste this into Claude or ChatGPT</span>
-                      <button type="button" onClick={() => copyPrompt(it, i)}>
-                        Copy
-                      </button>
-                    </div>
-                    <pre>{it.prompt}</pre>
-                  </div>
+                  <PromptBlock
+                    text={it.prompt}
+                    label={it.promptLabel}
+                    onCopy={() => copyPrompt(it, i)}
+                  />
                 )}
 
                 <div className="mod-share">
@@ -499,18 +559,11 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
               {mod.items[open].figure && <Figure name={mod.items[open].figure} />}
 
               {mod.items[open].prompt && (
-                <div className="mod-copybox">
-                  <div className="mod-copyhead">
-                    <span>Paste this into Claude or ChatGPT</span>
-                    <button
-                      type="button"
-                      onClick={() => copyPrompt(mod.items[open], open)}
-                    >
-                      Copy
-                    </button>
-                  </div>
-                  <pre>{mod.items[open].prompt}</pre>
-                </div>
+                <PromptBlock
+                  text={mod.items[open].prompt as string}
+                  label={mod.items[open].promptLabel}
+                  onCopy={() => copyPrompt(mod.items[open], open)}
+                />
               )}
             </div>
           </div>

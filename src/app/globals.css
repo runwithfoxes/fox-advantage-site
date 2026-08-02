@@ -7167,6 +7167,15 @@ a.project-card {
 .mod-copybox pre{margin:0;padding:16px 14px;font-family:var(--mono);font-size:.8125rem;line-height:1.65;white-space:pre-wrap;color:#1D1B1B;}
 .mod-copyhead button{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;cursor:pointer;border-radius:0;}
 .mod-copyhead button:hover{background:#2F6688;border-color:#2F6688;}
+/* A LONG PROMPT IS ONE BUTTON (Paul, 2 Aug 2026, after Spiral's "copy prompt for agent",
+   then again after the first attempt: "we can just use the copy button"). Outlined rather
+   than solid so it reads as one of several things you can do in an item, not the item's
+   headline act. Square, mono, blue, same family as .mod-act. */
+.mod-promptbtn{display:inline-flex;align-items:center;gap:9px;margin-top:18px;
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:12px 16px;border:1px solid #3A7CA5;border-radius:0;background:#fff;color:#3A7CA5;
+  cursor:pointer;}
+.mod-promptbtn:hover{background:#3A7CA5;color:#fff;}
 
 .mod-win{border:1px solid #E0E0DC;background:#fff;border-radius:15px;box-shadow:0 6px 24px rgba(20,16,40,.07),0 1px 2px rgba(20,16,40,.05);overflow:hidden;margin-top:18px;}
 .mod-winbar{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #E0E0DC;background:#F5F5F2;}

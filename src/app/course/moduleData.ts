@@ -46,6 +46,13 @@ export type Item = {
   text: string;
   /** The exact words to paste. Lifted out of his prose into its own block. */
   prompt?: string;
+  /**
+   * The words on the copy button, for a prompt long enough to be a button rather than a
+   * visible block. Names WHAT is being copied, so no surrounding label has to.
+   * Paul, 2 Aug 2026: "we can just use the copy button 'Copy CFO prompt'".
+   * Ignored for short prompts, which render in full and need no naming.
+   */
+  promptLabel?: string;
   /** Short description of the screenshot needed. Its presence means the item owes a picture. */
   grab?: string;
   /**
@@ -213,6 +220,7 @@ export const MODULE_1: ModuleDef = {
       /* The persona itself, Paul's verbatim copy, pulled from the canonical file by
          scripts/extract-personas.py. Never hand-typed and never edited here. */
       prompt: PERSONAS["cfo-persona"],
+      promptLabel: "Copy CFO prompt",
     },
     {
       t: "Show it one example of good",
