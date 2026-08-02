@@ -21,6 +21,8 @@
  * Anything Kit wrote carries `placeholder: true` and must be replaced before this ships.
  */
 
+import { PERSONAS } from "./personas.generated";
+
 export type LinkEntry = {
   title: string;
   by: string;
@@ -58,6 +60,23 @@ export type Item = {
    * shows the figure when there is one. PAUL'S CALL whether a figure retires the grab.
    */
   figure?: string;
+  /**
+   * ⭐ A STANDALONE FIGURE FILE under /public, for a figure that is not in
+   * `course-figures.html`. Added 2 Aug 2026 for the CFO persona figure.
+   *
+   * ⛔ WHY NOT `figure`, AND WHY AN <img> RATHER THAN INLINE. Library figures carry
+   * their own <style> SCOPED TO THEIR OWN ID. The standalone export deliberately strips
+   * that scope (see HANDOVER-fig-persona-2026-08-02.md, warning 1), so inlining it beside
+   * another figure would put unscoped `svg{--paper:...}` rules onto every other SVG on the
+   * page. An <img> makes the SVG its own document, which isolates the CSS in both
+   * directions. Its animation still runs; a web font would not load, so the file falls
+   * back to Menlo for its two labels.
+   *
+   * ⚠️ TEMPORARY BY DESIGN. Paul signed the figure off on 2 Aug, so `add-fig-32.py` will
+   * put it in the library. When it lands, switch this item to `figure: "fig-32"` and
+   * delete the file from /public, or the same drawing exists in two places and they drift.
+   */
+  figureFile?: string;
   /** Other people's work. */
   links?: LinkEntry[];
   /** Marks anything Kit wrote standing in for Paul's words. Drives the build layer. */
@@ -131,15 +150,69 @@ export const MODULE_1: ModuleDef = {
   items: [
     {
       t: "Check which model you're on",
-      text: "This matters more than anything else here, and it's the easiest thing to miss. There's a dropdown at the top of Claude or ChatGPT with a list of models in it. Pick the most capable one, the Opus or the top GPT, not whatever your plan opened with. Use that for anything hard, drop to the faster model for quick lookups, and if there's a “thinking” or “extended reasoning” toggle, turn it on for the harder problems. The difference between this year's best model and last year's is bigger than anything you can do with wording.",
+      /* Replaced 2 Aug 2026. Paul dictated this to Dray to stand in place of the 21 May
+         article's version. His words, verbatim, paragraph breaks his. */
+      text: "Be intentional about what version of AI model you're on. And switch depending on the task. There is a big difference in quality.\n\nFor example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if you're just asking simple questions, you might switch to their Sonnet.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in long run, as you get accuracy faster, in fewer prompts. My main point is be aware, test and be intentional.",
       grab: "The model dropdown, open",
       figure: "fig-14",
     },
     {
-      t: "Brief it like a person",
-      text: "It knows nothing about my week until I tell it, so I give it what I'd give a good new hire. I use the same five headings every time. The same question with those five lines gets a much better answer.",
+      /* ⭐ TITLE IS PAUL'S, 2 Aug 2026. It replaces "Brief it like a person", which he
+         rejected because it presupposes the subject: on item 2 of day 1 nobody has yet
+         said what prompting is, so "brief it" reads as brief who. His rule, verbatim:
+         a title has to name the activity and the lesson. */
+      t: "When prompting, give AI context",
+      /* ⚠️ TEXT IS DRAY'S, NOT PAUL'S. Marked placeholder so it carries the orange
+         marker on the page and stays off the public /course/everything list until he
+         records over it. The change it makes: name AI once, then the five lines are in
+         the prose rather than hiding in the copy block underneath. Paul's objection to
+         the original was that every "it" had no antecedent. */
+      placeholder: true,
+      /* ⭐ RULE, PAUL, 2 Aug 2026: SAY IT DIRECTLY, DO NOT CLAIM A HABIT HE DOES NOT
+         HAVE. This line used to read "So I give it the same five lines every time."
+         His words: "the truth is I don't prompt much any more... I'd rather say it
+         directly. So 'try using a prompt like this' not what I do or don't do."
+         First person is allowed where it is TRUE and earns its place (item 01 is his
+         own dictated practice and stays). It is not the default register. */
+      text: "Tell AI who the work is for. A report for the CFO is a different thing to a report for your team, and it cannot know which one you meant. Try a prompt like the one below. The last line, what a good one looks like, is the easiest to skip and does the most work.",
+      /* ⚠️ PROMPT REWRITTEN BY DRAY, 2 Aug 2026, AND IT IS NOT MARKED ON THE PAGE.
+         `placeholder` only draws the orange marker on the prose, so this block LOOKS
+         like Paul's verbatim article text and is not. Two changes he asked for:
+         "Format: the shape I want back" was his own line and he rejected it as the
+         vaguest thing in the item; and the five slots are filled in rather than
+         abstract, so the block is a worked example a marketer can edit instead of a
+         template they have to interpret. No invented figures: nothing here states a
+         budget, a result or a metric. */
       prompt:
-        "Task: what I actually want.\nBackground: the context around it.\nAudience: who it's for.\nFormat: the shape I want back.\nBar: what good looks like.",
+        "Task: write a one-page summary of our campaign results.\nBackground: it is for the quarterly review, and we are being asked whether to keep spending.\nAudience: the CFO. She cares about what we got for the money, not impressions.\nFormat: one page. A short table of numbers, then three lines of plain English.\nBar: she should be able to decide in two minutes without coming back to me.",
+    },
+    {
+      /* ⭐ NEW ITEM, 2 Aug 2026, on Paul's instruction: "in item 3, we'll give the CFO
+         persona thing." It follows item 02 deliberately: 02 tells AI the work is for the
+         CFO, 03 hands them the CFO to read it back. Title is Paul's own framing from the
+         same conversation, verbatim.
+
+         ⚠️ THE PROSE IS NOT WRITTEN. Marked placeholder. His raw dictation, for whoever
+         writes it: "tell them to use this on their projects to understand what their CFO
+         might ask them. So the task is just pasting into claude alongside a doc that says
+         marketing plan." That is dictation, not copy, so it is not being passed off as
+         the item's words.
+
+         ⛔ NOTHING HERE IS LIFTED OUT OF THE FIGURE, and the figure quotes nothing back.
+         One legible string in the drawing, "The CFO". The verdict line on the drawn card
+         is Paul's to write and he has not written it. Do not invent one. */
+      t: "Quick hack to find the questions your CFO is likely to ask",
+      /* Paul's words, verbatim, dictated 2 Aug 2026. Not tidied: "in same chat" is his.
+         ⭐ Note what it does that the rest of module 1 does not yet. It opens on WHY
+         (quality of thinking, not speed), it names the other tools so nobody on ChatGPT
+         or Copilot feels shut out, it says plainly that the prompt is instructions, and
+         it generalises past the CFO to any role before offering a harder rung for
+         anyone whose company allows it. */
+      text: "You can use AI to improve the quality of your marketing planning. Not to give you answers (more on that later) but to help you spot gaps. So say you want to get the perspective of a CFO on your plans. Upload your plans to Claude (or ChatGPT or CoPilot / Gemini) and in same chat paste in this below prompt. The prompt is instructions telling your AI how to critique it. You can do this for all sorts of roles or personas. If your company permits, and if your CFO is ok with it, start to transcribe your calls with them and the quality will be better still.",
+      figureFile: "/course/rwf-fig-persona-cfo.svg",
+      /* The persona itself, Paul's verbatim copy, pulled from the canonical file by
+         scripts/extract-personas.py. Never hand-typed and never edited here. */
+      prompt: PERSONAS["cfo-persona"],
     },
     {
       t: "Show it one example of good",

@@ -29,6 +29,23 @@
   height: auto;
 }
 
+/* A figure served as its own file (see FigureFile in ModuleClient) arrives as an <img>
+   rather than inline markup. Same treatment, so the two are indistinguishable on the
+   page. aspect-ratio holds the 720x320 canvas so nothing reflows while the file loads. */
+.plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 320;
+}
+
+/* BANNER. A figure that sits ABOVE the prose rather than under it (Paul, 2 Aug 2026),
+   so it needs its top margin taken off and the gap moved below, where the writing that
+   explains it begins. The plate itself is unchanged: same surface, same dot grid. */
+.banner {
+  margin: 4px 0 20px;
+}
+
 /* The fallback when a figure is asked for by a name that no longer exists on the
    figures page. Deliberately the same orange unbuilt marker the empty slot already
    uses, so a renamed figure degrades to "not built yet" instead of a blank space.

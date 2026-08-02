@@ -1,0 +1,329 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" id="animpv" viewBox="0 0 720 320" role="img" aria-label="Two documents, one of them a persona called The CFO, meeting at a point and going into a chat as one attachment, and a larger window headed CFO questions coming back with written paragraphs in it"><defs><style>svg{
+    --paper:#FAFAF8; --surface:#FFFFFF; --plate:#F1F1ED; --cream:#F7EAD9;
+    --ink:#1D1B1B; --deep:#1A3A4E; --sky:#3A7CA5; --green:#2E7D5B;
+    --rule:#E0E0DC; --muted:#8A8A85; --fill:#D9D9D4;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+    --sans:'Space Grotesk',system-ui,sans-serif;
+    --serif:'Source Serif 4',Georgia,serif;
+  }
+  .f-frame{fill:#EDEEF1;stroke:rgba(20,20,30,.10);stroke-width:1}
+  .f-panel{fill:#FFFFFF;stroke:rgba(20,20,30,.07);stroke-width:1}
+  .f-win{fill:#FFFFFF;stroke:var(--rule);stroke-width:1}
+  /* added for the convergence figure. a BLOCK is not a window: it is a piece of
+     material you already own. Matches .ah-bpnode from agent-cards. */
+  .f-block{fill:#FFFFFF;stroke:rgba(20,20,30,.10);stroke-width:1.5}
+  .f-icon{fill:#EEF1F4}
+  /* the close-up: one card filling the frame, where the WORDS are the lesson.
+     legibility is earned by scale, so these are real strings, not greeked. */
+  .f-menu{fill:#FFFFFF;stroke:rgba(20,20,30,.12);stroke-width:1}
+  .f-sel{fill:#EAF1F6}
+  .f-opt{font-family:var(--mono);font-size:13px;fill:var(--ink)}
+  .f-optq{font-family:var(--mono);font-size:13px;fill:var(--muted)}
+  .f-chip{font-family:var(--mono);font-size:12px;fill:var(--sky)}
+  .f-bar{fill:#F5F5F2}
+  .f-hair{stroke:var(--rule);stroke-width:1;fill:none}
+  /* added 25 Jul for the three-card decode */
+  .f-addr{fill:#FFFFFF;stroke:rgba(20,20,30,.07);stroke-width:1}
+  .f-field{fill:#FAFAF8;stroke:rgba(20,20,30,.12);stroke-width:1}
+  .f-send{fill:var(--sky)}
+  /* added for the brand-guidelines and first-pass-website figures */
+  .f-ink{fill:var(--ink)}
+  .f-deep{fill:var(--deep)}
+  /* added for fig 03/04, the source-code-to-wireframe move */
+  .f-wire{fill:none;stroke:var(--muted);stroke-width:1.5;vector-effect:non-scaling-stroke}
+  .f-wirefill{fill:#F4F4F1;stroke:var(--muted);stroke-width:1.5;vector-effect:non-scaling-stroke}
+  .f-l1{fill:#FF5F57;stroke:rgba(0,0,0,.06);stroke-width:.5}
+  .f-l2{fill:#FEBC2E;stroke:rgba(0,0,0,.06);stroke-width:.5}
+  .f-l3{fill:#28C840;stroke:rgba(0,0,0,.06);stroke-width:.5}
+  .f-t{font-family:var(--mono);font-size:11.5px;font-weight:600;fill:#54545C}
+  .f-live{font-family:var(--mono);font-size:11px;font-weight:600;fill:var(--sky)}
+  .f-livedot{fill:var(--sky)}
+  .f-tint{fill:var(--cream);stroke:var(--muted);stroke-width:1.5;vector-effect:non-scaling-stroke}
+  .f-inner{fill:var(--surface);stroke:var(--muted);stroke-width:1.5;vector-effect:non-scaling-stroke}
+  .f-focus{fill:var(--sky)}
+  .f-done{fill:var(--green)}
+  .f-dot{fill:var(--fill)}
+  .f-dot-d{fill:#FFFFFF;opacity:.22}
+  .f-greek{fill:var(--fill)}
+  .f-greek-d{fill:#FFFFFF;opacity:.34}
+  .f-line{stroke:var(--muted);stroke-width:1.5;fill:none;vector-effect:non-scaling-stroke}
+  .f-lead{stroke:var(--sky);stroke-width:2;fill:none;stroke-linecap:round}
+  .f-dash{stroke-dasharray:6 5}
+  .f-lbl{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+  .f-lbl-d{font-family:var(--mono);font-size:11px;fill:#FFFFFF;opacity:.55}
+
+  /* ============================================================
+     MOTION. Everything runs on ONE 5s cycle with NO animation-delay,
+     so a single negative delay seeks the whole figure to a frame.
+     Five moves: cycle, draw, carry, rise, hold.
+     ============================================================ */
+  @keyframes rwf-cycle{0%{opacity:0}4%{opacity:1}88%{opacity:1}96%,100%{opacity:0}}
+  @keyframes rwf-draw{0%,7%{stroke-dashoffset:250}30%,100%{stroke-dashoffset:0}}
+  @keyframes rwf-carry{
+    0%,12%{transform:translate(52px,142px) scale(.62)}
+    24%{transform:translate(162px,161px) scale(.42)}
+    34%,100%{transform:translate(248px,169px) scale(.26)} }
+  /* a dashed line cannot also be a drawn line: one dasharray, two jobs. so the dashes
+     stay put and a clip slides along them. NOTE: animating the clip rect's `width`
+     silently does nothing, so this moves the rect with a transform instead. */
+  @keyframes rwf-carry2{
+    0%,10%{transform:translate(46px,108px) scale(1)}
+    19%{transform:translate(190px,150px) scale(.72)}
+    30%,100%{transform:translate(284px,203px) scale(.467)} }
+  @keyframes rwf-carry3{
+    0%,12%{transform:translate(60px,123px) scale(1.29)}
+    24%{transform:translate(172px,160px) scale(.7)}
+    34%,100%{transform:translate(248px,176.5px) scale(.34)} }
+  /* the carousel, Paul 25 Jul. ONE track moves, so every caption travels with its
+     own card and nothing has to fade out and back in. */
+  @keyframes rwf-slide{
+    0%,20%{transform:translateX(0)}
+    33%,53%{transform:translateX(-530px)}
+    66%,100%{transform:translateX(-1060px)} }
+  /* the picture leaving card one and landing in card two, in TRACK coordinates
+     so it pans with the strip. It starts moving at 10 percent and the camera only
+     starts following at 20, so the picture leads and the frame follows it. */
+  @keyframes rwf-carrystrip{
+    0%,10%{transform:translate(380px,86px) scale(1)}
+    22%{transform:translate(560px,150px) scale(.6)}
+    32%,100%{transform:translate(738px,180px) scale(.28)} }
+  /* fig-25's strip. Its own keyframes because its cards are different widths, so
+     the pan distances are not the same as fig-24's. Both run at 8s. */
+  @keyframes rwf-slide25{
+    0%,17%{transform:translateX(-0px)}
+    25%,42%{transform:translateX(-570px)}
+    50%,67%{transform:translateX(-1210px)}
+    75%,100%{transform:translateX(-1790px)} }
+  @keyframes rwf-carry25{
+    0%,40%{transform:translate(780px,142px) scale(1.35)}
+    46%{transform:translate(1180px,172px) scale(.8)}
+    52%,100%{transform:translate(1582px,74px) scale(.42)} }
+  @keyframes rwf-sweep4{0%,44%{transform:translateX(-250px)}64%,100%{transform:translateX(0)}}
+  @keyframes rwf-sweep3{0%,62%{transform:translateX(-118px)}82%,100%{transform:translateX(0)}}
+  @keyframes rwf-sweep1{0%,7%{transform:translateX(-104px)}26%,100%{transform:translateX(0)}}
+  @keyframes rwf-sweep2{0%,40%{transform:translateX(-74px)}54%,100%{transform:translateX(0)}}
+
+  /* one rise per start point. verbose on purpose: no delays means seek is exact. */
+  @keyframes r26{0%,26%{opacity:0}29%,100%{opacity:1}}
+  @keyframes r46{0%,46%{opacity:0}49%,100%{opacity:1}}
+  @keyframes r52{0%,52%{opacity:0}55%,100%{opacity:1}}
+  @keyframes r55{0%,55%{opacity:0}58%,100%{opacity:1}}
+  @keyframes r58{0%,58%{opacity:0}61%,100%{opacity:1}}
+  @keyframes r60{0%,60%{opacity:0}63%,100%{opacity:1}}
+  @keyframes r62{0%,62%{opacity:0}65%,100%{opacity:1}}
+  @keyframes r64{0%,64%{opacity:0}67%,100%{opacity:1}}
+  @keyframes r66{0%,66%{opacity:0}69%,100%{opacity:1}}
+  @keyframes r68{0%,68%{opacity:0}71%,100%{opacity:1}}
+  @keyframes r70{0%,70%{opacity:0}73%,100%{opacity:1}}
+  @keyframes r72{0%,72%{opacity:0}75%,100%{opacity:1}}
+  @keyframes r74{0%,74%{opacity:0}77%,100%{opacity:1}}
+  @keyframes r76{0%,76%{opacity:0}79%,100%{opacity:1}}
+
+  .r26{opacity:0;animation:r26 5s ease-out infinite}
+  .r46{opacity:0;animation:r46 5s ease-out infinite}
+  .r52{opacity:0;animation:r52 5s ease-out infinite}
+  .r55{opacity:0;animation:r55 5s ease-out infinite}
+  .r58{opacity:0;animation:r58 5s ease-out infinite}
+  .r60{opacity:0;animation:r60 5s ease-out infinite}
+  .r62{opacity:0;animation:r62 5s ease-out infinite}
+  .r64{opacity:0;animation:r64 5s ease-out infinite}
+  .r66{opacity:0;animation:r66 5s ease-out infinite}
+  .r68{opacity:0;animation:r68 5s ease-out infinite}
+  .r70{opacity:0;animation:r70 5s ease-out infinite}
+  .r72{opacity:0;animation:r72 5s ease-out infinite}
+  .r74{opacity:0;animation:r74 5s ease-out infinite}
+  .r76{opacity:0;animation:r76 5s ease-out infinite}
+  @keyframes rwf-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .m-pulse{animation:rwf-pulse 1.7s ease-in-out infinite}
+  @keyframes r56{0%,56%{opacity:0}59%,100%{opacity:1}}
+  .r56{opacity:0;animation:r56 5s ease-out infinite}
+  @keyframes r12{0%,12%{opacity:0}15%,100%{opacity:1}}
+  @keyframes r18{0%,18%{opacity:0}21%,100%{opacity:1}}
+  @keyframes r24{0%,24%{opacity:0}27%,100%{opacity:1}}
+  @keyframes r30{0%,30%{opacity:0}33%,100%{opacity:1}}
+  @keyframes r78{0%,78%{opacity:0}81%,100%{opacity:1}}
+  @keyframes r80{0%,80%{opacity:0}83%,100%{opacity:1}}
+  .r12{opacity:0;animation:r12 5s ease-out infinite}
+  .r18{opacity:0;animation:r18 5s ease-out infinite}
+  .r24{opacity:0;animation:r24 5s ease-out infinite}
+  .r30{opacity:0;animation:r30 5s ease-out infinite}
+  .r78{opacity:0;animation:r78 5s ease-out infinite}
+  .r80{opacity:0;animation:r80 5s ease-out infinite}
+  .m-cycle{animation:rwf-cycle 5s linear infinite}
+  .m-carry{animation:rwf-carry 5s cubic-bezier(.45,0,.3,1) infinite}
+  .m-carry2{animation:rwf-carry2 5s cubic-bezier(.45,0,.3,1) infinite}
+  .m-carry3{animation:rwf-carry3 5s cubic-bezier(.45,0,.3,1) infinite}
+  .m-slide{animation:rwf-slide 8s cubic-bezier(.65,0,.35,1) infinite}
+  .m-carrystrip{animation:rwf-carrystrip 8s cubic-bezier(.45,0,.3,1) infinite}
+  .m-slide25{animation:rwf-slide25 12s cubic-bezier(.65,0,.35,1) infinite}
+  .m-carry25{animation:rwf-carry25 12s cubic-bezier(.45,0,.3,1) infinite}
+  .m-sweep1{animation:rwf-sweep1 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-sweep3{animation:rwf-sweep3 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-sweep4{animation:rwf-sweep4 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-sweep2{animation:rwf-sweep2 5s cubic-bezier(.4,0,.2,1) infinite}
+  .r52{opacity:0;animation:r52 5s ease-out infinite}
+  .r55{opacity:0;animation:r55 5s ease-out infinite}
+  .r66{opacity:0;animation:r66 5s ease-out infinite}
+  .r68{opacity:0;animation:r68 5s ease-out infinite}
+  .r70{opacity:0;animation:r70 5s ease-out infinite}
+
+  /* deterministic frame seeking. one delay, no per-element offsets to get wrong. */
+
+  @media (prefers-reduced-motion: reduce){.m-listen,.m-listen2,.r20,.r32,.r38,.r44,.r54,.s0,.s1,.s2,.m-cycle,.m-carry,.m-carry2,.m-carry3,.m-slide,.m-carrystrip,.m-sweep1,.m-slide25,.m-carry25,.m-sweep2,.m-sweep3,.m-sweep4,.r12,.r18,.r24,.r26,.r30,.r46,.r52,.r55,.r56,.r58,.r60,.r62,.r64,.r66,.r68,.r70,.r72,.r74,.r76,.r78,.r80{animation:none !important;opacity:1 !important}
+    .m-carry{transform:translate(248px,169px) scale(.26) !important}
+    .m-carry2{transform:translate(284px,203px) scale(.467) !important}
+    .m-carry3{transform:translate(248px,176.5px) scale(.34) !important}
+    .m-slide{transform:translateX(0) !important}
+    .m-carrystrip{transform:translate(380px,86px) scale(1) !important}
+    .m-slide25{transform:translateX(0) !important}
+    .m-carry25{transform:translate(1582px,74px) scale(.42) !important}
+  }
+
+  /* fig-26. Its own pan and carry: the cards are 460, 540 and 620,
+     so neither matches fig-24 or fig-25. Both run at 8s. */
+  #anim26 .m-slide{animation:anim26-slide 8s cubic-bezier(.65,0,.35,1) infinite}
+  #anim26 .m-doccarry{animation:anim26-carry 8s cubic-bezier(.45,0,.3,1) infinite}
+  @media (prefers-reduced-motion: reduce){
+    #anim26 .m-slide{animation:none !important;transform:translateX(0) !important}
+    #anim26 .m-doccarry{animation:none !important;transform:translate(1844px,155px) scale(.32) !important}
+  }
+  @keyframes anim26-slide{
+    0%,23.3333%{transform:translateX(-0px)}
+    33.3333%,56.6667%{transform:translateX(-650px)}
+    66.6667%,100%{transform:translateX(-1380px)} }
+  @keyframes anim26-carry{
+    0%,48%{transform:translate(764px,87px) scale(.32)}
+    52%{transform:translate(790px,46px) scale(.4)}
+    61%{transform:translate(1355px,46px) scale(.44)}
+    66%{transform:translate(1798px,151px) scale(.38)}
+    70%,100%{transform:translate(1844px,155px) scale(.32)} }
+
+  /* the index */
+  .idx{border-collapse:collapse;width:100%;font-size:12.5px;margin:14px 0 30px}
+  .idx th,.idx td{text-align:left;padding:7px 14px 7px 0;border-bottom:1px solid var(--rule);
+    vertical-align:top}
+  .idx th{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    font-weight:400}
+  .idx td:nth-child(3),.idx td:nth-child(4),.idx td:nth-child(5),
+  .idx th:nth-child(3),.idx th:nth-child(4),.idx th:nth-child(5){width:64px;color:var(--muted)}
+  .idx td b{font-weight:400;color:var(--ink)}
+  .idx.axes td,.idx.axes th{width:auto}
+  .idx.axes td:nth-child(1),.idx.axes td:nth-child(3){width:104px;color:var(--ink)}
+  .flag p em{font-style:normal;font-weight:600;color:var(--ink)}
+  .idx-h{font-family:var(--sans);font-weight:500;font-size:19px;letter-spacing:-.01em;
+    margin-top:34px;margin-bottom:4px}
+
+  /* fig-27, the unfold. Five rises the library did not have. */
+  @keyframes r20{0%,20%{opacity:0}24%,100%{opacity:1}}
+  @keyframes r32{0%,32%{opacity:0}36%,100%{opacity:1}}
+  @keyframes r38{0%,38%{opacity:0}42%,100%{opacity:1}}
+  @keyframes r44{0%,44%{opacity:0}48%,100%{opacity:1}}
+  @keyframes r54{0%,54%{opacity:0}58%,100%{opacity:1}}
+  #anim27 .r20{opacity:0;animation:r20 5s ease-out infinite}
+  #anim27 .r32{opacity:0;animation:r32 5s ease-out infinite}
+  #anim27 .r38{opacity:0;animation:r38 5s ease-out infinite}
+  #anim27 .r44{opacity:0;animation:r44 5s ease-out infinite}
+  #anim27 .r54{opacity:0;animation:r54 5s ease-out infinite}
+
+  /* fig-28. The listening rings, at 5s to match the rise beside them. */
+  @keyframes dict-ring{
+    0%{transform:scale(1);opacity:.30}
+    38%{transform:scale(2.1);opacity:0}
+    55%,100%{transform:scale(2.1);opacity:0} }
+  @keyframes dict-ring2{
+    0%,14%{transform:scale(1);opacity:.30}
+    52%{transform:scale(2.1);opacity:0}
+    55%,100%{transform:scale(2.1);opacity:0} }
+  #anim28 .m-listen{animation:dict-ring 5s ease-out infinite}
+  #anim28 .m-listen2{animation:dict-ring2 5s ease-out infinite}
+
+  /* fig-29. Three screen states, all at 5s. */
+  @keyframes term-s0{0%,30%{opacity:1}35%,100%{opacity:0}}
+  @keyframes term-s1{0%,30%{opacity:0}35%,63%{opacity:1}68%,100%{opacity:0}}
+  @keyframes term-s2{0%,63%{opacity:0}68%,100%{opacity:1}}
+  #anim29 .s0{animation:term-s0 5s ease-out infinite}
+  #anim29 .s1{opacity:0;animation:term-s1 5s ease-out infinite}
+  #anim29 .s2{opacity:0;animation:term-s2 5s ease-out infinite}
+
+  /* fig-30, the ad loop. Its own pan-free cycle: three beats and a
+     return, every motion declared at 8s. */
+  @keyframes lp-sw1{0%,8%{transform:translateX(-74px)}17%,100%{transform:translateX(0)}}
+  @keyframes lp-sw2{0%,28%{transform:translateX(-74px)}37%,100%{transform:translateX(0)}}
+  @keyframes lp-swb{0%,52%{transform:translateX(530px)}66%,100%{transform:translateX(0)}}
+  @keyframes lp-a1{0%,17%{opacity:0}20%,100%{opacity:1}}
+  @keyframes lp-a2{0%,20%{opacity:0}26%,100%{opacity:1}}
+  @keyframes lp-a3{0%,37%{opacity:0}40%,100%{opacity:1}}
+  @keyframes lp-a4{0%,40%{opacity:0}48%,100%{opacity:1}}
+  @keyframes lp-a5{0%,66%{opacity:0}69%,100%{opacity:1}}
+  @keyframes lp-out{0%,67%{opacity:1}72%,100%{opacity:0}}
+  @keyframes lp-in{0%,67%{opacity:0}72%,100%{opacity:1}}
+  #anim30 .m-lp-sw1{animation:lp-sw1 8s cubic-bezier(.4,0,.2,1) infinite}
+  #anim30 .m-lp-sw2{animation:lp-sw2 8s cubic-bezier(.4,0,.2,1) infinite}
+  #anim30 .m-lp-swb{animation:lp-swb 8s cubic-bezier(.4,0,.2,1) infinite}
+  #anim30 .m-lp-a1{opacity:0;animation:lp-a1 8s ease-out infinite}
+  #anim30 .m-lp-a2{opacity:0;animation:lp-a2 8s ease-out infinite}
+  #anim30 .m-lp-a3{opacity:0;animation:lp-a3 8s ease-out infinite}
+  #anim30 .m-lp-a4{opacity:0;animation:lp-a4 8s ease-out infinite}
+  #anim30 .m-lp-a5{opacity:0;animation:lp-a5 8s ease-out infinite}
+  #anim30 .m-lp-out{animation:lp-out 8s ease-out infinite}
+  #anim30 .m-lp-in{opacity:0;animation:lp-in 8s ease-out infinite}
+  @media (prefers-reduced-motion: reduce){
+    #anim30 .m-lp-sw1,#anim30 .m-lp-sw2,#anim30 .m-lp-swb,#anim30 .m-lp-a1,
+    #anim30 .m-lp-a2,#anim30 .m-lp-a3,#anim30 .m-lp-a4,#anim30 .m-lp-a5,
+    #anim30 .m-lp-in{animation:none !important;opacity:1 !important;
+      transform:translateX(0) !important}
+    #anim30 .m-lp-out{animation:none !important;opacity:0 !important}
+  }
+
+
+  /* fig-31, the transcript hack. Its own 5s cycle: a highlight, the
+     transcript appearing, a swept lead and one carry. */
+  .f-mk{fill:var(--muted)}
+  .f-play{fill:rgba(29,27,27,.55)}
+  @keyframes t31-carry{
+    0%,46%{transform:translate(260px,121px) scale(1)}
+    74%,100%{transform:translate(520px,189px) scale(.15)} }
+  @keyframes t31-sel{0%,20%{opacity:0}27%,100%{opacity:1}}
+  @keyframes t31-in{0%,32%{opacity:0}39%,100%{opacity:1}}
+  @keyframes t31-sw{0%,44%{transform:translateX(-76px)}58%,100%{transform:translateX(0)}}
+  #anim31 .m-t31-carry{animation:t31-carry 5s cubic-bezier(.4,0,.2,1) infinite}
+  #anim31 .m-t31-sel{opacity:0;animation:t31-sel 5s ease-out infinite}
+  #anim31 .m-t31-in{opacity:0;animation:t31-in 5s ease-out infinite}
+  #anim31 .m-t31-sw{animation:t31-sw 5s cubic-bezier(.4,0,.2,1) infinite}
+  @media (prefers-reduced-motion: reduce){
+    #anim31 .m-t31-sel,#anim31 .m-t31-in{animation:none !important;opacity:1 !important}
+    #anim31 .m-t31-carry,#anim31 .m-t31-sw{animation:none !important;
+      transform:translate(520px,189px) scale(.15) !important}
+    #anim31 .m-t31-sw{transform:translateX(0) !important}
+  }
+
+
+  @keyframes pv-carry{
+    0%,38%{transform:translate(201px,135px) scale(1)}
+    58%,100%{transform:translate(288px,177px) scale(.5)} }
+  @keyframes pv-b1{0%,2%{opacity:0}10%,100%{opacity:1}}
+  @keyframes pv-b2{0%,8%{opacity:0}16%,100%{opacity:1}}
+  @keyframes pv-s1{0%,18%{transform:translateX(-86px)}30%,100%{transform:translateX(0)}}
+  @keyframes pv-s2{0%,20%{transform:translateX(-86px)}32%,100%{transform:translateX(0)}}
+  @keyframes pv-s3{0%,32%{transform:translateX(-60px)}40%,100%{transform:translateX(0)}}
+  @keyframes pv-s4{0%,56%{transform:translateX(-52px)}66%,100%{transform:translateX(0)}}
+  @keyframes pv-att{0%,30%{opacity:0}36%,100%{opacity:1}}
+  @keyframes pv-r1{0%,66%{opacity:0}73%,100%{opacity:1}}
+  @keyframes pv-r2{0%,72%{opacity:0}82%,100%{opacity:1}}
+  .m-pv-carry{animation:pv-carry 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-pv-b1{opacity:0;animation:pv-b1 5s ease-out infinite}
+  .m-pv-b2{opacity:0;animation:pv-b2 5s ease-out infinite}
+  .m-pv-s1{animation:pv-s1 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-pv-s2{animation:pv-s2 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-pv-s3{animation:pv-s3 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-pv-s4{animation:pv-s4 5s cubic-bezier(.4,0,.2,1) infinite}
+  .m-pv-att{opacity:0;animation:pv-att 5s ease-out infinite}
+  .m-pv-r1{opacity:0;animation:pv-r1 5s ease-out infinite}
+  .m-pv-r2{opacity:0;animation:pv-r2 5s ease-out infinite}
+  @media (prefers-reduced-motion: reduce){
+    .m-pv-b1,.m-pv-b2,.m-pv-att,.m-pv-r1,
+    .m-pv-r2{animation:none !important;opacity:1 !important}
+    .m-pv-s1,.m-pv-s2,.m-pv-s3,
+    .m-pv-s4{animation:none !important;transform:translateX(0) !important}
+    .m-pv-carry{animation:none !important;transform:translate(288px,177px) scale(.5) !important}
+  }</style><filter id="shpv" x="-14%" y="-14%" width="128%" height="140%"><feDropShadow dx="0" dy="1" stdDeviation=".5" flood-color="#1A3A4E" flood-opacity=".06"/><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1A3A4E" flood-opacity=".11"/><feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#1A3A4E" flood-opacity=".08"/></filter></defs><g class="m-pv-b1"><rect class="f-block" x="14" y="92" width="168" height="54" rx="9"/><rect class="f-icon" x="27" y="108" width="22" height="22" rx="5"/><g transform="translate(27,108)"><circle class="f-focus" cx="11" cy="8" r="4"/><path class="f-wire" d="M4 19 a7 7 0 0 1 14 0"/></g><text class="f-opt" x="60" y="124">The CFO</text></g><g class="m-pv-b2"><rect class="f-block" x="14" y="170" width="168" height="54" rx="9"/><rect class="f-icon" x="27" y="186" width="22" height="22" rx="5"/><g transform="translate(27,186)"><rect class="f-wire" x="4" y="3" width="14" height="17" rx="2"/><rect class="f-greek" x="7" y="7" width="8" height="2" rx="1"/><rect class="f-greek" x="7" y="11" width="8" height="2" rx="1"/><rect class="f-greek" x="7" y="15" width="8" height="2" rx="1"/></g><rect class="f-greek" x="60" y="190" width="92" height="5" rx="2.5"/><rect class="f-greek" x="60" y="202" width="66" height="5" rx="2.5"/></g><clipPath id="pvc1"><rect x="182" y="106" width="82" height="92"/></clipPath><g clip-path="url(#pvc1)"><g class="m-pv-s1"><path class="f-lead f-dash" d="M182 119 C 212 119, 190 140.78, 224 152"/></g></g><clipPath id="pvc2"><rect x="182" y="106" width="82" height="92"/></clipPath><g clip-path="url(#pvc2)"><g class="m-pv-s2"><path class="f-lead f-dash" d="M182 197 C 212 197, 190 167.3, 224 152"/></g></g><clipPath id="pvc3"><rect x="224" y="132" width="48" height="40"/></clipPath><g clip-path="url(#pvc3)"><g class="m-pv-s3"><path class="f-lead f-dash" d="M224 152 H258"/><path class="f-focus" d="M270 152 L257 145 L257 159 Z"/></g></g><rect class="f-frame" x="272" y="100" width="152" height="116" rx="15" filter="url(#shpv)"/><circle class="f-l1" cx="288.5" cy="115.5" r="5.5"/><circle class="f-l2" cx="305.5" cy="115.5" r="5.5"/><circle class="f-l3" cx="322.5" cy="115.5" r="5.5"/><text class="f-t" x="334" y="119.5">Claude</text><rect class="f-panel" x="280" y="129" width="136" height="79" rx="9"/><clipPath id="pvq1"><rect x="280" y="129" width="136" height="79" rx="9"/></clipPath><g clip-path="url(#pvq1)"><rect class="f-greek" x="292" y="143" width="82" height="5" rx="2.5"/><rect class="f-greek" x="292" y="156" width="108" height="5" rx="2.5"/><rect class="f-field" x="288" y="172" width="120" height="28" rx="10"/><rect class="f-greek" x="332" y="183" width="38" height="5" rx="2.5"/><circle class="f-send" cx="396" cy="186" r="8"/><path d="M393.5 182.5 L400 186 L393.5 189.5 Z" fill="#fff"/></g><g class="m-pv-att"><g class="m-pv-carry"><rect class="f-block" x="6" y="0" width="40" height="28" rx="4"/><rect class="f-block" x="0" y="6" width="40" height="28" rx="4"/><rect class="f-greek" x="6" y="13" width="26" height="3" rx="1.5"/><rect class="f-greek" x="6" y="19" width="22" height="3" rx="1.5"/><rect class="f-greek" x="6" y="25" width="18" height="3" rx="1.5"/></g></g><clipPath id="pvc4"><rect x="424" y="128" width="46" height="48"/></clipPath><g clip-path="url(#pvc4)"><g class="m-pv-s4"><path class="f-lead f-dash" d="M430 144 C 442 160, 448 158, 452 154"/><path class="f-focus" d="M462 151 L449 158 L449 144 Z"/></g></g><rect class="f-frame" x="464" y="38" width="240" height="244" rx="15" filter="url(#shpv)"/><circle class="f-l1" cx="480.5" cy="53.5" r="5.5"/><circle class="f-l2" cx="497.5" cy="53.5" r="5.5"/><circle class="f-l3" cx="514.5" cy="53.5" r="5.5"/><text class="f-t" x="526" y="57.5">CFO questions</text><rect class="f-panel" x="472" y="67" width="224" height="207" rx="9"/><clipPath id="pvq2"><rect x="472" y="67" width="224" height="207" rx="9"/></clipPath><g clip-path="url(#pvq2)"><g class="m-pv-r1"><rect class="f-greek" x="488" y="87" width="104" height="8" rx="4"/></g><g class="m-pv-r2"><path class="f-hair" d="M488 109 H680"/></g><g class="m-pv-r2"><rect class="f-greek" x="488" y="125" width="192" height="5" rx="2.5"/><rect class="f-greek" x="488" y="138" width="178" height="5" rx="2.5"/><rect class="f-greek" x="488" y="151" width="146" height="5" rx="2.5"/><rect class="f-greek" x="488" y="176" width="186" height="5" rx="2.5"/><rect class="f-greek" x="488" y="189" width="192" height="5" rx="2.5"/><rect class="f-greek" x="488" y="202" width="130" height="5" rx="2.5"/><rect class="f-greek" x="488" y="227" width="192" height="5" rx="2.5"/><rect class="f-greek" x="488" y="240" width="172" height="5" rx="2.5"/><rect class="f-greek" x="488" y="253" width="104" height="5" rx="2.5"/></g></g></svg>

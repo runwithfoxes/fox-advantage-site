@@ -7157,6 +7157,9 @@ a.project-card {
    feel: blue = clickable, grey = static machine text, dark serif = reading copy. */
 .mod-openhint{font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:#3A7CA5;}
 .mod-body{font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.65;margin:0;color:#1D1B1B;}
+/* An item's prose can be several paragraphs since 2 Aug 2026. margin:0 above stays, so
+   the first paragraph still sits tight under the heading; only the gaps BETWEEN get space. */
+.mod-body + .mod-body{margin-top:16px;}
 [data-ph]{border-bottom:1px dashed #F47521;}
 
 .mod-copybox{border:1px solid #C9C9C3;background:#fff;margin-top:18px;}
@@ -7174,6 +7177,9 @@ a.project-card {
 .mod-lights i:nth-child(3){background:#28C840;}
 .mod-wintitle{font-family:var(--mono);font-size:.75rem;color:#8A8A85;}
 .mod-winright{margin-left:auto;font-family:var(--mono);font-size:.6875rem;color:#F47521;}
+/* An unbuilt grab now sits ABOVE the prose too, same as a figure (Paul, 2 Aug 2026), so
+   the empty slot holds the same position the real picture will when it arrives. */
+.mod-win-banner{margin:4px 0 20px;}
 .mod-shot{aspect-ratio:21/9;background:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px) 0 0/16px 16px,#FAFAF8;}
 
 .mod-linklist{margin-top:18px;border-top:1px solid #E0E0DC;}

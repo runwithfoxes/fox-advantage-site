@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
 import { Figure } from "../figures/Figure";
+import figStyles from "../figures/Figure.module.css";
 import {
   KIND_LABEL,
   kindOf,
@@ -42,6 +43,47 @@ const SHOW_COUNTERS = false;
  */
 
 const BUILD_PARAM = "build";
+
+/**
+ * A figure that lives as its own file under /public rather than in the figures library.
+ * See the `figureFile` note in moduleData.ts for why this is an <img> and not inlined:
+ * the standalone export carries UNSCOPED css on purpose, so inlining it would repaint
+ * every other figure on the page. An <img> gives the SVG its own document.
+ *
+ * It reuses the figures' own plate, so a library figure and a file figure sit on the
+ * same surface and nobody can tell which is which by looking.
+ */
+function FigureFile({ src, banner }: { src: string; banner?: boolean }) {
+  return (
+    <div
+      className={
+        banner ? `${figStyles.plate} ${figStyles.banner}` : figStyles.plate
+      }
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- an SVG that animates
+          itself; next/image would rasterise it and the animation would be lost. */}
+      <img src={src} alt="" />
+    </div>
+  );
+}
+
+/**
+ * An item's prose. Splits on a blank line so Paul can dictate more than one paragraph
+ * and get more than one paragraph, which he could not before: `text` rendered into a
+ * single <p>, so his breaks vanished and three thoughts ran together as a wall.
+ * Added 2 Aug 2026 when item 01's text became three paragraphs.
+ */
+function Body({ text, ph }: { text: string; ph?: boolean }) {
+  return (
+    <>
+      {text.split(/\n{2,}/).map((para, i) => (
+        <p key={i} className="mod-body" data-ph={ph ? "" : undefined}>
+          {para}
+        </p>
+      ))}
+    </>
+  );
+}
 
 export default function ModuleClient({ mod }: { mod: ModuleDef }) {
   const [filter, setFilter] = useState<Kind | null>(null);
@@ -324,9 +366,31 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   <span className="mod-openhint">Open</span>
                 </div>
 
-                <p className="mod-body" data-ph={it.placeholder ? "" : undefined}>
-                  {it.text}
-                </p>
+                {/* ⭐ THE FIGURE SITS ABOVE THE PROSE. Paul, 2 Aug 2026: "put the
+                    figures above my writing. They are like a simple banner and then I
+                    explain below. For when I have just one figure in an item."
+                    It was underneath until now, which made the drawing a footnote to
+                    the words rather than the thing the words explain. */}
+                {it.figure ? (
+                  <Figure name={it.figure} className={figStyles.banner} />
+                ) : it.figureFile ? (
+                  <FigureFile src={it.figureFile} banner />
+                ) : it.grab ? (
+                  <div className="mod-win mod-win-banner">
+                    <div className="mod-winbar">
+                      <span className="mod-lights">
+                        <i />
+                        <i />
+                        <i />
+                      </span>
+                      <span className="mod-wintitle">{it.grab}</span>
+                      {build && <span className="mod-winright">grab needed</span>}
+                    </div>
+                    <div className="mod-shot" data-ph="" />
+                  </div>
+                ) : null}
+
+                <Body text={it.text} ph={it.placeholder} />
 
                 {it.links && (
                   <div className="mod-linklist">
@@ -362,27 +426,6 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                     ))}
                   </div>
                 )}
-
-                {/* THE PICTURE SLOT. A drawn figure fills it when there is one, and the
-                    orange unbuilt marker stands there when there is not. The figure knows
-                    nothing about items: it takes a name and a width, so this whole block
-                    can be moved or rebuilt without touching the figures. */}
-                {it.figure ? (
-                  <Figure name={it.figure} />
-                ) : it.grab ? (
-                  <div className="mod-win">
-                    <div className="mod-winbar">
-                      <span className="mod-lights">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span className="mod-wintitle">{it.grab}</span>
-                      {build && <span className="mod-winright">grab needed</span>}
-                    </div>
-                    <div className="mod-shot" data-ph="" />
-                  </div>
-                ) : null}
 
                 {it.prompt && (
                   <div className="mod-copybox">
@@ -444,12 +487,10 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
             </div>
             <div className="mod-readerbody">
               <h2>{mod.items[open].t}</h2>
-              <p
-                className="mod-body"
-                data-ph={mod.items[open].placeholder ? "" : undefined}
-              >
-                {mod.items[open].text}
-              </p>
+              <Body
+                text={mod.items[open].text}
+                ph={mod.items[open].placeholder}
+              />
 
               {/* THE SAME PICTURE, IN THE SECOND PLACE THE ITEM RENDERS. An item that
                   shows a figure inline and then loses it when you open it is the same
