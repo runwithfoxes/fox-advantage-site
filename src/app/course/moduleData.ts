@@ -86,6 +86,30 @@ export type Item = {
   figureFile?: string;
   /** Other people's work. */
   links?: LinkEntry[];
+  /**
+   * ⭐ FURTHER READING FOR THIS ONE ITEM, added 2 Aug 2026 on Paul's instruction: "Here is
+   * a link for reading more on this topic... As a link below my text." Renders under the
+   * prose, labelled "More on this".
+   *
+   * ⛔ NOT `links`, AND THE DIFFERENCE MATTERS. `links` makes the WHOLE ITEM a list of
+   * other people's work: kindOf() checks it first, so putting one here would silently flip
+   * item 01's type chip from "Show and copy" to "Worth saving" and move it under the wrong
+   * filter. This is a footnote on an item that is about something else. kindOf() ignores it
+   * on purpose.
+   *
+   * ⭐ WHY THE SLOT IS NOT CALLED "GUIDE". Paul's opening promises "links to guides", so
+   * that name would pay the promise off literally, but this slot will also hold videos,
+   * docs and articles across six modules and "guide" would be wrong on those. His call if
+   * he wants the tighter word.
+   *
+   * ⚠️ NO `why` FIELD, DELIBERATELY. LinkEntry has one and it is marked Paul's to write.
+   * A one-line reason invented on his behalf is exactly the fabrication the rest of this
+   * file bans, so the shape here cannot hold one.
+   * ⛔ STRIP TRACKING PARAMETERS BEFORE ADDING A URL. The link below arrived carrying
+   * ?utm_source=chatgpt.com, which credits someone else's referrer and tells every reader
+   * where Paul found it.
+   */
+  reading?: { title: string; by: string; url: string }[];
   /** Marks anything Kit wrote standing in for Paul's words. Drives the build layer. */
   placeholder?: boolean;
 };
@@ -148,6 +172,9 @@ export type Kind = "read" | "take" | "steps" | "links";
  * rather than someone remembering to set it.
  */
 export function kindOf(it: Item): Kind {
+  /* ⛔ `reading` IS NOT A KIND AND MUST NEVER BE ADDED HERE. It is a footnote under an
+     item's prose, not what the item IS. Checking it would retype every item that carries
+     one, and the retype is silent: the chip and the filter would just quietly be wrong. */
   if (it.links) return "links";
   if (it.prompt && it.grab) return "steps";
   if (it.prompt) return "take";
@@ -216,6 +243,15 @@ export const MODULE_1: ModuleDef = {
       text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask. Anyway, for now, my main point is be aware, test and be intentional on the model you're using.",
       grab: "The model dropdown, open",
       figure: "fig-14",
+      /* Paul's link, 2 Aug 2026. Title and publisher read off the page itself on the day,
+         not guessed from the URL. The ?utm_source=chatgpt.com he sent is stripped. */
+      reading: [
+        {
+          title: "Choosing the right Claude model: Haiku, Sonnet, Opus, or Fable",
+          by: "Anthropic",
+          url: "https://claude.com/resources/tutorials/choosing-the-right-claude-model",
+        },
+      ],
     },
     {
       /* ⭐ TITLE IS PAUL'S, 2 Aug 2026. It replaces "Brief it like a person", which he
@@ -223,19 +259,21 @@ export const MODULE_1: ModuleDef = {
          said what prompting is, so "brief it" reads as brief who. His rule, verbatim:
          a title has to name the activity and the lesson. */
       t: "When prompting, give AI context",
-      /* ⚠️ TEXT IS DRAY'S, NOT PAUL'S. Marked placeholder so it carries the orange
-         marker on the page and stays off the public /course/everything list until he
-         records over it. The change it makes: name AI once, then the five lines are in
-         the prose rather than hiding in the copy block underneath. Paul's objection to
-         the original was that every "it" had no antecedent. */
-      placeholder: true,
-      /* ⭐ RULE, PAUL, 2 Aug 2026: SAY IT DIRECTLY, DO NOT CLAIM A HABIT HE DOES NOT
-         HAVE. This line used to read "So I give it the same five lines every time."
-         His words: "the truth is I don't prompt much any more... I'd rather say it
-         directly. So 'try using a prompt like this' not what I do or don't do."
-         First person is allowed where it is TRUE and earns its place (item 01 is his
-         own dictated practice and stays). It is not the default register. */
-      text: "Tell AI who the work is for. A report for the CFO is a different thing to a report for your team, and it cannot know which one you meant. Try a prompt like the one below. The last line, what a good one looks like, is the easiest to skip and does the most work.",
+      /* ⭐ NOW PAUL'S OWN WORDS, VERBATIM, 2 Aug 2026 (evening). `placeholder` is gone with
+         them, so the orange marker comes off and this item joins /course/everything.
+
+         ⭐ THE LESSON MOVED. The version this replaces was mine and it taught "say who the
+         work is for". His teaches something wider and harder to arrive at on your own: say
+         what you are going to DO with the output. The audience is one example of that, not
+         the rule itself.
+
+         ⚠️ HIS INSTRUCTION REPLACED THE WHOLE OF THE OLD TEXT, which means two sentences
+         went with it: "Try a prompt like the one below." and "The last line, what a good
+         one looks like, is the easiest to skip and does the most work." The prompt block
+         underneath therefore has no lead-in sentence any more, and the note about the Bar
+         line doing the most work is gone. Flagged to Paul on the day. Do not restore them
+         quietly: if they come back it is because he said so. */
+      text: "Another really useful thing is to explain what you will do with the output you're asking AI for. So instead of asking it to run some research, explain why you want the research. Or if you're preparing a report for your Chief Financial Officer, tell your AI this. You'll get a better response. This is partly what people mean when they say give it context.",
       /* ⚠️ PROMPT REWRITTEN BY DRAY, 2 Aug 2026, AND IT IS NOT MARKED ON THE PAGE.
          `placeholder` only draws the orange marker on the prose, so this block LOOKS
          like Paul's verbatim article text and is not. Two changes he asked for:

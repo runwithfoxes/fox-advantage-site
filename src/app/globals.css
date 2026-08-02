@@ -7247,6 +7247,18 @@ a.project-card {
 .mod-win-banner{margin:4px 0 20px;}
 .mod-shot{aspect-ratio:21/9;background:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px) 0 0/16px 16px,#FAFAF8;}
 
+/* FURTHER READING under an item's prose, 2 Aug 2026. Sits 28px off the copy like every
+   other artifact. The label is mono/uppercase machine text; the link itself is blue, which
+   is what blue means everywhere on this page. Square, no card, no thumbnail: this is a
+   footnote, not a feature, and it must not compete with the item's own artifacts. */
+.mod-reading{margin-top:28px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;}
+.mod-readinglbl{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#8A8A85;flex:0 0 auto;}
+.mod-readinglink{font-family:var(--mono);font-size:.8125rem;line-height:1.6;color:#3A7CA5;
+  text-decoration:none;border-bottom:1px solid #C9C9C3;padding-bottom:2px;}
+.mod-readinglink:hover{border-bottom-color:#3A7CA5;}
+/* Who made it, so a reader knows whose work they are about to open. */
+.mod-readinglink i{font-style:normal;color:#A8A8A2;margin-left:9px;}
 .mod-linklist{margin-top:28px;border-top:1px solid #E0E0DC;}
 .mod-lcard{display:grid;grid-template-columns:168px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #E0E0DC;text-decoration:none;color:inherit;}
 .mod-lcard:hover .mod-ltitle{color:#3A7CA5;border-bottom-color:#3A7CA5;}

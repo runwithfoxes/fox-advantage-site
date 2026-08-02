@@ -480,6 +480,27 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
                 <Body text={it.text} ph={it.placeholder} />
 
+                {/* Further reading, directly under the prose as Paul asked. A labelled row
+                    rather than a bare link, so it reads as a deliberate pointer to someone
+                    else's work and names who wrote it. */}
+                {it.reading && (
+                  <div className="mod-reading">
+                    <span className="mod-readinglbl">More on this</span>
+                    {it.reading.map((R, j) => (
+                      <a
+                        key={j}
+                        className="mod-readinglink"
+                        href={R.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {R.title}
+                        <i>{R.by}</i>
+                      </a>
+                    ))}
+                  </div>
+                )}
+
                 {it.links && (
                   <div className="mod-linklist">
                     {it.links.map((L, j) => (
