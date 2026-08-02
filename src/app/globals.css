@@ -7145,8 +7145,12 @@ a.project-card {
 .mod-dot{width:7px;height:7px;border:1px solid #C9C9C3;background:#fff;display:block;margin-top:6px;}
 .mod-rail a[data-done="1"] .mod-dot{background:#3A7CA5;border-color:#3A7CA5;}
 
-.mod-item{border-bottom:1px solid #E0E0DC;padding:32px 0;scroll-margin-top:28px;}
-.mod-itemtop{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px;}
+/* Part of the reading spec above. An item needs more air around it than between its own
+   paragraphs, or the rule line reads as just another gap. 32px -> 44px. */
+.mod-item{border-bottom:1px solid #E0E0DC;padding:44px 0;scroll-margin-top:28px;}
+/* Heading to first paragraph. 12px was tighter than the gap between paragraphs, so the
+   heading looked stuck to the prose. */
+.mod-itemtop{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px;}
 .mod-n{font-family:var(--mono);font-size:.75rem;color:#A8A8A2;font-variant-numeric:tabular-nums;}
 /* LABEL, NOT A BUTTON. Never solid blue. */
 .mod-type{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;background:transparent;color:#8A8A85;border:1px solid #C9C9C3;}
@@ -7156,13 +7160,40 @@ a.project-card {
 /* Actions read BLUE AT REST, not only on hover. That was the root of the all-grey
    feel: blue = clickable, grey = static machine text, dark serif = reading copy. */
 .mod-openhint{font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;text-transform:uppercase;color:#3A7CA5;}
-.mod-body{font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.65;margin:0;color:#1D1B1B;}
-/* An item's prose can be several paragraphs since 2 Aug 2026. margin:0 above stays, so
-   the first paragraph still sits tight under the heading; only the gaps BETWEEN get space. */
-.mod-body + .mod-body{margin-top:16px;}
+/* ⭐⭐ THE READING SPEC FOR EVERY MODULE ITEM, SETTLED 2 Aug 2026 (Paul: "too blocky...
+   we need to have space for things to breathe... get formatting right now so we don't ask
+   each time"). It applies to all six modules. Do not tune it per item.
+
+   ⛔ THE ONE THING THIS SPEC MAY NOT DO IS NARROW THE PROSE. No max-width on .mod-body,
+   ever. Body copy runs the FULL width of its column, the same left and right edges as the
+   heading, the figure and the copy box. That is a 5x-repeated correction of Paul's with an
+   enforcement hook behind it (~/.claude/hooks/check_text_maxwidth.py). Capping the measure
+   to ~65ch is the reflexive web fix for "blocky" and it is the wrong one here. If a
+   narrower reading measure is ever wanted, PAUL WILL ASK. Do not add it because the line
+   looks long.
+
+   ⭐ WHICH MEANS THE SPACING HAS TO DO THE WORK THE WIDTH IS NOT ALLOWED TO DO.
+   The column is 748px, which is about 81 characters per line at this size. Long lines are
+   only comfortable when the vertical rhythm is generous, so these numbers are deliberately
+   looser than they would be in a narrow column. Do not "tidy" them back down.
+
+   ⭐⭐ AND THE HALF THE CSS CANNOT FIX: A PARAGRAPH OVER ~55 WORDS IS A SLAB AT THIS WIDTH.
+   Measured 2 Aug on this page: item 01 is three paragraphs of 23/39/40 words and reads
+   fine; item 03 was one paragraph of 109 words and was the thing Paul called blocky. Same
+   CSS, different copy. So the writing rule is part of the spec: 2 to 4 lines a paragraph,
+   roughly 25 to 45 words, blank line between. `Body` already splits on a blank line, so a
+   dictated break becomes a real one. */
+.mod-body{font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.7;margin:0;color:#1D1B1B;}
+/* The gap BETWEEN paragraphs must beat the gap between LINES, or a paragraph break reads as
+   an accident. It was 16px against a 28px line-height, which is exactly backwards and was
+   the single clearest cause of the blockiness. One line plus a little. */
+.mod-body + .mod-body{margin-top:30px;}
 [data-ph]{border-bottom:1px dashed #F47521;}
 
-.mod-copybox{border:1px solid #C9C9C3;background:#fff;margin-top:18px;}
+/* Part of the reading spec: an artifact (copy box, prompt button, window mock, link
+   list) sits 28px off the prose, so it reads as a separate thing to do rather than the
+   next line of the paragraph. Was 18px, tighter than the paragraph gap above it. */
+.mod-copybox{border:1px solid #C9C9C3;background:#fff;margin-top:28px;}
 .mod-copyhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid #E0E0DC;font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:#8A8A85;}
 .mod-copybox pre{margin:0;padding:16px 14px;font-family:var(--mono);font-size:.8125rem;line-height:1.65;white-space:pre-wrap;color:#1D1B1B;}
 .mod-copyhead button{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;cursor:pointer;border-radius:0;}
@@ -7171,13 +7202,13 @@ a.project-card {
    then again after the first attempt: "we can just use the copy button"). Outlined rather
    than solid so it reads as one of several things you can do in an item, not the item's
    headline act. Square, mono, blue, same family as .mod-act. */
-.mod-promptbtn{display:inline-flex;align-items:center;gap:9px;margin-top:18px;
+.mod-promptbtn{display:inline-flex;align-items:center;gap:9px;margin-top:28px;
   font-family:var(--mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;
   padding:12px 16px;border:1px solid #3A7CA5;border-radius:0;background:#fff;color:#3A7CA5;
   cursor:pointer;}
 .mod-promptbtn:hover{background:#3A7CA5;color:#fff;}
 
-.mod-win{border:1px solid #E0E0DC;background:#fff;border-radius:15px;box-shadow:0 6px 24px rgba(20,16,40,.07),0 1px 2px rgba(20,16,40,.05);overflow:hidden;margin-top:18px;}
+.mod-win{border:1px solid #E0E0DC;background:#fff;border-radius:15px;box-shadow:0 6px 24px rgba(20,16,40,.07),0 1px 2px rgba(20,16,40,.05);overflow:hidden;margin-top:28px;}
 .mod-winbar{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #E0E0DC;background:#F5F5F2;}
 .mod-lights{display:flex;gap:6px;}
 .mod-lights i{width:11px;height:11px;border-radius:50%;display:block;}
@@ -7191,7 +7222,7 @@ a.project-card {
 .mod-win-banner{margin:4px 0 20px;}
 .mod-shot{aspect-ratio:21/9;background:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px) 0 0/16px 16px,#FAFAF8;}
 
-.mod-linklist{margin-top:18px;border-top:1px solid #E0E0DC;}
+.mod-linklist{margin-top:28px;border-top:1px solid #E0E0DC;}
 .mod-lcard{display:grid;grid-template-columns:168px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #E0E0DC;text-decoration:none;color:inherit;}
 .mod-lcard:hover .mod-ltitle{color:#3A7CA5;border-bottom-color:#3A7CA5;}
 .mod-lthumb{aspect-ratio:16/10;background-size:cover;background-position:top center;border:1px solid #C9C9C3;display:grid;place-items:center;font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;color:#A8A8A2;background-color:#FAFAF8;}

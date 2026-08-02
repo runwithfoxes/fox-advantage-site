@@ -199,11 +199,8 @@ export const MODULE_1: ModuleDef = {
          CFO, 03 hands them the CFO to read it back. Title is Paul's own framing from the
          same conversation, verbatim.
 
-         ⚠️ THE PROSE IS NOT WRITTEN. Marked placeholder. His raw dictation, for whoever
-         writes it: "tell them to use this on their projects to understand what their CFO
-         might ask them. So the task is just pasting into claude alongside a doc that says
-         marketing plan." That is dictation, not copy, so it is not being passed off as
-         the item's words.
+         ⭐ THE PROSE IS NOW PAUL'S, WRITTEN 2 Aug 2026 (evening), replacing his earlier
+         dictation. Verbatim, three paragraphs, his breaks. Not tidied.
 
          ⛔ NOTHING HERE IS LIFTED OUT OF THE FIGURE, and the figure quotes nothing back.
          One legible string in the drawing, "The CFO". The verdict line on the drawn card
@@ -217,13 +214,24 @@ export const MODULE_1: ModuleDef = {
          the same thing. Imperative, like the module's other titles. Do not reword it to
          something that no longer matches the prompt. */
       t: "Run your plan past a CFO",
-      /* Paul's words, verbatim, dictated 2 Aug 2026. Not tidied: "in same chat" is his.
-         ⭐ Note what it does that the rest of module 1 does not yet. It opens on WHY
-         (quality of thinking, not speed), it names the other tools so nobody on ChatGPT
-         or Copilot feels shut out, it says plainly that the prompt is instructions, and
-         it generalises past the CFO to any role before offering a harder rung for
-         anyone whose company allows it. */
-      text: "You can use AI to improve the quality of your marketing planning. Not to give you answers (more on that later) but to help you spot gaps. So say you want to get the perspective of a CFO on your plans. Upload your plans to Claude (or ChatGPT or CoPilot / Gemini) and in same chat paste in this below prompt. The prompt is instructions telling your AI how to critique it. You can do this for all sorts of roles or personas. If your company permits, and if your CFO is ok with it, start to transcribe your calls with them and the quality will be better still.",
+      /* Paul's words, verbatim, written 2 Aug 2026. Three paragraphs, his breaks. The only
+         change made to what he sent is "personal" -> "persona", a dictation slip.
+
+         ⭐ WHAT THE REWRITE FIXED, so nobody restores the old one: it opens on the WHY
+         (quality, explicitly separated from speed) before it asks anyone to do anything,
+         and it turns the doing into three numbered steps instead of a run-on instruction.
+         It also drops the dangling "(more on that later)" promise, which had no home
+         anywhere in the course.
+
+         ⛔ PARAGRAPH TWO NAMES A BUTTON. "the 'Copy CFO Prompt' button" is the item's own
+         `promptLabel` below. Change one and you must change the other, or the page tells a
+         student to click something that is not there.
+
+         ⚠️ IT NAMES CLAUDE ONLY. The version before it listed ChatGPT, CoPilot and Gemini
+         so nobody on another tool felt shut out. Paul's call, and the steps are literal
+         enough that naming one product is what makes them followable. If it ever needs to
+         cover the others, that is a copy decision for him, not a tidy-up. */
+      text: "We can use AI to help improve the quality of our marketing. This is different to using AI to get us faster answers. So this is all about quality. One example is using it to see gaps in our thinking or get perspectives from others.\n\nFor example, say you're preparing your marketing plan. You can use AI to get the perspective of a CFO before you send to your CFO. To try this out (1) upload your plan into a Claude chat (2) click on the 'Copy CFO Prompt' button and paste into the same chat and (3) click return.\n\nThe prompt is telling your AI to assume the persona of a CFO with instructions on what to look for. If you haven't done this before, you'll be impressed with the quality of the response.",
       figureFile: "/course/rwf-fig-persona-cfo.svg",
       /* The persona itself, Paul's verbatim copy, pulled from the canonical file by
          scripts/extract-personas.py. Never hand-typed and never edited here. */
