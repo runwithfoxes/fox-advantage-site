@@ -118,9 +118,8 @@ export default function ModuleArrival() {
       </p>
 
       <div className="arr-rate">
-        <p className="arr-q">
-          Before you start, where do you think you are with AI right now?
-        </p>
+        {/* Paul's words, 2 Aug. Not to be reworded. */}
+        <p className="arr-q">How AI fluent do you feel that you are?</p>
         <p className="arr-note">
           Your own read of it, not a test. Nobody else sees it. At the end of module 6 I
           will ask again, and you will see what moved.
