@@ -107,14 +107,17 @@ export default function ModuleArrival() {
         Paul, 60 seconds, why he is glad you are here
       </div>
 
+      {/* STILL MY WORDING, but now carrying the two jobs Paul named on 2 Aug: set the scene
+          for how deep the course goes, then be small. His words are in
+          module-descriptions.md under "Module 1, what it is FOR". */}
       <p className="arr-welcome">
-        Everyone arriving here is at a different place with this, and that is completely
-        fine. Some of you use AI every day and want to get more out of it. Some of you have
-        opened it twice and closed it again. Both are a good place to start from.
+        This course goes a long way. Later on we build agents, wire whole systems together,
+        and take on work that was not possible at all a couple of years ago.
       </p>
       <p className="arr-welcome">
-        There is more in this module than you need on day one. Take what is useful now and
-        leave the rest.
+        This first module is not that. It is a run through of small things, each one useful
+        on its own, each one something you can use today. Do enough of them and the fluency
+        comes quickly.
       </p>
 
       <div className="arr-rate">
