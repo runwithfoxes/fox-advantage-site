@@ -111,13 +111,12 @@ export default function ModuleArrival() {
           for how deep the course goes, then be small. His words are in
           module-descriptions.md under "Module 1, what it is FOR". */}
       <p className="arr-welcome">
-        This course goes a long way. Later on we build agents, wire whole systems together,
-        and take on work that was not possible at all a couple of years ago.
+        Later in this course we get into big things. Building agents. Whole systems. Work
+        that used to need a team.
       </p>
       <p className="arr-welcome">
-        This first module is not that. It is a run through of small things, each one useful
-        on its own, each one something you can use today. Do enough of them and the fluency
-        comes quickly.
+        This module is not that. It is a run of small things you can use today. Do enough of
+        them and you get fluent fast.
       </p>
 
       <div className="arr-rate">
