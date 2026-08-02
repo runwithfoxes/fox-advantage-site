@@ -208,7 +208,15 @@ export const MODULE_1: ModuleDef = {
          ⛔ NOTHING HERE IS LIFTED OUT OF THE FIGURE, and the figure quotes nothing back.
          One legible string in the drawing, "The CFO". The verdict line on the drawn card
          is Paul's to write and he has not written it. Do not invent one. */
-      t: "Quick hack to find the questions your CFO is likely to ask",
+      /* ⭐ TITLE, PAUL, 2 Aug 2026 (evening). It replaces his own earlier "Quick hack to
+         find the questions your CFO is likely to ask", which he cut for length: ten words
+         against five and six on the items either side, and "hack" is a register the rest
+         of the course does not use.
+         ⭐ WHY THIS WORDING AND NOT A SHORTER PARAPHRASE: it repeats the persona's own
+         trigger line, "put this past the CFO", so the title and the thing they paste say
+         the same thing. Imperative, like the module's other titles. Do not reword it to
+         something that no longer matches the prompt. */
+      t: "Run your plan past a CFO",
       /* Paul's words, verbatim, dictated 2 Aug 2026. Not tidied: "in same chat" is his.
          ⭐ Note what it does that the rest of module 1 does not yet. It opens on WHY
          (quality of thinking, not speed), it names the other tools so nobody on ChatGPT
