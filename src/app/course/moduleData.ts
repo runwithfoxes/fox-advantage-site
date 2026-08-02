@@ -228,28 +228,50 @@ export const MODULE_1: ModuleDef = {
   items: [
     {
       t: "Check which model you're on",
-      /* Paul's words, verbatim, rewritten 2 Aug 2026 (evening). Two paragraphs, his breaks.
-         It replaces his own earlier three-paragraph dictation from the same day, which
-         opened on the instruction ("Be intentional about what version of AI model you're
-         on"). This one opens on the REASON the instruction exists, that the models do not
-         all behave the same, and only then gets to what he does about it.
+      /* Paul's words, verbatim, extended 2 Aug 2026 (evening) to four paragraphs, his
+         breaks. It replaces his own earlier dictation from the same day, which opened on
+         the instruction ("Be intentional about what version of AI model you're on"). This
+         one opens on the REASON the instruction exists, that the models do not all behave
+         the same, and only then gets to what he does about it.
+
+         ⭐ THE CLOSING LINE IS NOW ITS OWN PARAGRAPH. In the previous version "Anyway, for
+         now, my main point is..." was the tail of a 73-word paragraph, over the ~55-word
+         slab threshold in the reading spec. Standing alone at 18 words it also lands
+         harder. Do not merge it back.
+         Measured on the page: 56 / 55 / 50 / 18 words, at 4 / 3 / 3 / 2 lines. All four
+         pass the spec's line test; the first is one word over its word proxy, which is
+         noise, and the line count is the test that matters.
 
          ⚠️ IT MAKES A PROMISE THE COURSE HAS NOT KEPT YET: "Later in this course, I'll show
          how I train Claude to guess what model I want so I don't have to ask." Nothing in
-         modules 2 to 6 covers that today. Module 1 just lost a vaguer version of the same
-         problem, the dangling "(more on that later)" in item 03, so this one is written
-         down rather than left to be noticed later. Either it gets a home or the line goes,
-         and both are Paul's call. */
-      text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask. Anyway, for now, my main point is be aware, test and be intentional on the model you're using.",
+         modules 2 to 6 covers that today. Module 1 already lost a vaguer version of the
+         same problem, the dangling "(more on that later)" cut from item 03, so this one is
+         written down rather than left to be noticed. Either it gets a home or the line
+         goes, and both are Paul's call.
+
+         ⚠️ IT NAMES THREE MODELS AND TWO VERSION NUMBERS: Opus 4.8, Opus 5, Sonnet, Fable
+         5. Course copy that names live products dates faster than the rest of the page.
+         The module opens 21 Sep 2026. Check these are still current before it ships, and
+         never quietly update them: a version number is a specific and it is Paul's. */
+      text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask.\n\nCost aside, it's possible we'll start to use different models for different types of tasks. And we'll mix them up and pair them up. I use Fable 5 when I have a project that is clear and I'm comfortable it can work away for hours with little supervision from me.\n\nAnyway, for now, my main point is be aware, test and be intentional on the model you're using.",
       grab: "The model dropdown, open",
       figure: "fig-14",
-      /* Paul's link, 2 Aug 2026. Title and publisher read off the page itself on the day,
-         not guessed from the URL. The ?utm_source=chatgpt.com he sent is stripped. */
+      /* Paul's link, corrected by him 2 Aug 2026. It replaces the "Choosing the right
+         Claude model" tutorial, and the swap tracks the copy: his third paragraph now says
+         "we'll mix them up and pair them up", and this piece is specifically about pairing
+         a cheap executor model with Opus as an advisor. The old tutorial only covered
+         picking one.
+         Title and publisher read off the page itself, not guessed from the slug.
+
+         ⚠️ IT IS PITCHED AT DEVELOPERS, not marketers: it talks about the Claude Platform
+         API, agentic systems and a SWE-bench score. Flagged to Paul on the day and left in
+         on his instruction. If module 1 ever needs a gentler landing for this idea, that is
+         a copy decision for him, not a quiet substitution. */
       reading: [
         {
-          title: "Choosing the right Claude model: Haiku, Sonnet, Opus, or Fable",
+          title: "The advisor strategy: Give agents an intelligence boost",
           by: "Anthropic",
-          url: "https://claude.com/resources/tutorials/choosing-the-right-claude-model",
+          url: "https://claude.com/blog/the-advisor-strategy",
         },
       ],
     },
