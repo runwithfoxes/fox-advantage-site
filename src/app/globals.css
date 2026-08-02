@@ -1639,6 +1639,38 @@ a.project-card {
   margin: 32px 0;
 }
 
+/* ⭐ THE ONE MEDIA PRIMITIVE FOR ESSAYS. Video in a piece is rare, so the temptation
+   is to hand-roll a wrapper each time it comes up. Do not. `class="essay-embed"` on a
+   bare <video> or <iframe> is the whole contract, and it holds for both because the
+   sizing is identical: full column width, 16/9, no scrollbar, no layout shift while it
+   loads. remark runs with `sanitize: false`, so the tag passes through from markdown
+   untouched. First used by distinctive-brand-assets-in-an-ai-world, which carries four
+   YouTube films and two videos already hosted on this site.
+   ⚠️ NO ROUNDED CORNERS. */
+.essay-prose .essay-embed {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 32px 0;
+  border: 0;
+}
+
+/* ⭐ THE RATIO BELONGS TO THE IFRAME ONLY, and this is the whole reason the two are
+   split. An iframe has no intrinsic size, so without a ratio it collapses. A <video>
+   has one, and hard-coding 16/9 over it is a real bug rather than a tidy default:
+   animated-6040-activate.mp4 is SQUARE, and the black bars would have run down both
+   sides of a cream ad on a cream page. Let the file say how tall it is.
+   The black here is the letterbox inside a YouTube player, not page chrome, so the
+   light-mode rule still holds for everything around it. */
+.essay-prose iframe.essay-embed {
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+/* ⭐ EVERY <video class="essay-embed"> NEEDS A poster. Chrome paints nothing at all
+   until the first frame decodes, so a video without one is a blank rectangle sitting
+   in the middle of a piece for as long as the network takes. */
+
 /* the line under an essay title: date, and how long it takes to read */
 .essay-meta {
   font-family: var(--mono);
