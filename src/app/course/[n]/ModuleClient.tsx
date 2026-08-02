@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import ModuleIsa from "./ModuleIsa";
+import ModuleArrival from "./ModuleArrival";
 import { Figure } from "../figures/Figure";
 import {
   KIND_LABEL,
@@ -12,6 +13,14 @@ import {
   type Kind,
   type ModuleDef,
 } from "../moduleData";
+
+/**
+ * ⚠️ EXPERIMENT, 2 Aug 2026, UNCOMMITTED. The counter strip and the "0 of N done" bar are
+ * switched off and the arrival block (welcome, video placeholder, fluency slider) sits in
+ * their place. Set this back to true and delete the <ModuleArrival /> line to restore the
+ * page exactly as it was.
+ */
+const SHOW_COUNTERS = false;
 
 /**
  * A MODULE PAGE. Renders whatever is in the module's item array.
@@ -236,6 +245,12 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         </div>
       </header>
 
+      {/* THE ARRIVAL BLOCK, 2 Aug 2026, EXPERIMENT. Welcome, video placeholder and the
+          fluency slider take the position the counter strip and progress bar held.
+          Revert = delete this line and set SHOW_COUNTERS back to true. */}
+      <ModuleArrival />
+
+      {SHOW_COUNTERS && (
       <div className="mod-comp">
         <button
           type="button"
@@ -257,7 +272,9 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           </button>
         ))}
       </div>
+      )}
 
+      {SHOW_COUNTERS && (
       <div className="mod-progress">
         <span>
           {done.size} of {mod.items.length} done
@@ -272,6 +289,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         )}
         {flash && <span className="mod-flash">{flash}</span>}
       </div>
+      )}
 
       {filter !== null && (
         <div className="mod-filterstate">
