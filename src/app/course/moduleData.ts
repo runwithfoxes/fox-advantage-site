@@ -383,11 +383,24 @@ export const MODULE_1: ModuleDef = {
          actually "...in Claude.ai". Same discipline as item 01's links. Neither URL carried
          tracking parameters, so nothing was stripped.
 
-         ⭐ THIS IS THE FIRST ITEM IN THE COURSE WITH TWO. It is also the first time the slot
-         holds something that is literally a guide, which is what his opening promises ("I'm
-         not going to show you how to use AI, although will send you links to guides"). The
-         slot is still called "More on this" rather than "Guide", because it will hold videos
-         and articles across six modules. Worth revisiting once, not per item.
+         ⭐⭐ THIS SLOT IS NOW A LIST, NOT A FOOTNOTE, AND THE PAGE HAS TO CATCH UP. Paul,
+         3 Aug: "I expect that we will give lots of links for every piece. That's part of the
+         value... We could easily have five, six, seven, eight, even more links for each
+         section." It was designed for ONE link: the "MORE ON THIS" label sits INLINE with
+         the first row, so a second row wraps back under the label instead of lining up.
+         ⛔ Fix the layout before any item gets a long list.
+
+         ⭐ THE THIRD LINK IS NOT ANTHROPIC, and that settles a question. With two Anthropic
+         links the `by` field read as noise repeated twice. Kevin Stratvert is an independent
+         tutorial channel, and at eight links "the vendor's own guide" versus "someone else's"
+         is the main thing a reader sorts on. KEEP `by`.
+
+         ⚠️ THE MEDIUM IS STILL INVISIBLE and it is the first thing anyone decides: six
+         minutes of watching, or a page to skim. Proposed to Paul, not built: derive it from
+         the URL HOST rather than write it per link, so it costs nothing at fifty links.
+         ⛔ If that is built, derive ONLY from an explicit host list and show NOTHING for an
+         unknown host. A guessed medium is the same silent-wrong-answer failure as the type
+         badges, which infer from which fields happen to be filled.
 
          ⚠️ BOTH DOCUMENT A PRODUCT'S INTERFACE, AND MODULE 1 OPENS 21 Sep 2026. The video
          went up 2 Dec 2025. A UI walkthrough is the one kind of link that rots without
@@ -403,6 +416,11 @@ export const MODULE_1: ModuleDef = {
           title: "How can I create and manage projects?",
           by: "Anthropic",
           url: "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects",
+        },
+        {
+          title: "How to Use Claude Projects (Full Tutorial)",
+          by: "Kevin Stratvert",
+          url: "https://www.youtube.com/watch?v=w7_yWjYyxjE",
         },
       ],
       grab: "A Project, set up",
