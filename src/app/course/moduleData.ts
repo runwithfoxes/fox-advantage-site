@@ -335,6 +335,51 @@ export const MODULE_1: ModuleDef = {
       ],
     },
     {
+      /* ⭐ MOVED TO SLOT 03 ON 3 Aug 2026, on Paul's instruction: "projects is more
+         important and ealier than context", then "yes move projects to number item 3".
+         It was item 21, near the end. His reason, worth keeping: Projects is where the work
+         LIVES, and giving it context is something you do INSIDE one. A technique the reader
+         can only use properly once they have somewhere to put it.
+
+         ⭐⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, given minutes after the headline. Two
+         paragraphs, his break. The draft written for him is gone, so the whole front six is
+         now his. Nothing was repaired: no dictation slips in what he sent.
+
+         ⭐ WHAT HIS VERSION DOES THAT THE DRAFT DID NOT, so nobody restores the old one: it
+         opens on his own habit ("I almost never open a chat and start working") rather than
+         on a fact about chats, and it names what a project HOLDS - instructions, files, your
+         outputs going back in. The draft listed the equivalent feature in ChatGPT and Gemini;
+         his does not, which matches the CFO item's call to name Claude only.
+
+         ⭐ HIS SECOND PARAGRAPH IS A LESSON NOTHING ELSE IN THE MODULE TEACHES: a project is
+         shared with colleagues, "getting you a collective brain". It is the only place in
+         module 1 where the reader's team appears at all.
+
+         ⚠️ PARAGRAPH ONE IS 68 WORDS against the reading spec's 25 to 45, so it renders as a
+         slab. NOT split: capping his paragraphs is the reflexive fix he has corrected five
+         times. Count shown, his call.
+
+         ⭐ THE TITLE IS HIS, 3 Aug: "Headline should be 'Create Projects'". It replaces
+         "Turn your best chats into a system", a draft written before he named the thing.
+         ⭐ It rhymes with "Create a Red Team" two items down, and that is worth protecting:
+         both name an object the reader MAKES AND KEEPS, rather than a move they perform once.
+         The PROSE under it is still a draft. Only the headline is his.
+
+         ⭐ FIG-26, "a project and its standing set", a strip, 8s. Paul, 3 Aug: "you have the
+         figure in library." ⛔ NOT fig-27: that one is "one file in, a set back", the unfold,
+         which is the brand-interviewer lesson and belongs to module 2. The two sit next to
+         each other in the library and are easy to confuse by number.
+
+         ⚠️ THE `grab` BELOW IS NOW DORMANT, not deleted. The renderer draws the figure when
+         there is one, so "A Project, set up" no longer renders. Whether a figure retires a
+         screenshot is Paul's call, per the note on `figure` in the Item type above, so the
+         field stays until he says. */
+      t: "Create Projects",
+      figure: "fig-26",
+      text: "I almost never open a chat and start working. I recommend you work in Claude Projects, and start your chats there. When in a project, you can set instructions on how you want Claude to work inside this project. You can add files, and you can add your outputs back into your projects. This gives you speed, and means you don't have to explain prompts over and over.\n\nThe other great advantage is you can work with colleagues in a project, getting you a collective brain.",
+      grab: "A Project, set up",
+    },
+    {
       /* ⭐ TITLE IS PAUL'S, 2 Aug 2026. It replaces "Brief it like a person", which he
          rejected because it presupposes the subject: on item 2 of day 1 nobody has yet
          said what prompting is, so "brief it" reads as brief who. His rule, verbatim:
@@ -576,11 +621,6 @@ export const MODULE_1: ModuleDef = {
       text: "My favourite one. I take a single document and run it past three readers in one go, each with its own brief. Each catches a different hole. Then I decide, because they never fully agree.",
       prompt:
         "Read this three times. First as Roger Martin, looking for the strategy. Then as a CFO who only cares where the cash is. Then as a red team trying to kill it. Give me three separate verdicts.",
-    },
-    {
-      t: "Turn your best chats into a system",
-      text: "A one-off chat forgets everything the moment I close the tab, so the good ones I keep. In Claude they're Projects, in ChatGPT a Project or a Custom GPT, in Gemini a Gem. I load one with my brand guide, three examples and my standard for good, and after that it starts every job already knowing them. I build a narrow one for each job: one that only checks copy against the claims we're allowed to make, one that only preps me for a call. The more narrow the job, the better it does it.",
-      grab: "A Project, set up",
     },
     {
       t: "Do the reps",
