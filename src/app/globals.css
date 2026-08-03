@@ -7247,18 +7247,34 @@ a.project-card {
 .mod-win-banner{margin:4px 0 20px;}
 .mod-shot{aspect-ratio:21/9;background:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px) 0 0/16px 16px,#FAFAF8;}
 
-/* FURTHER READING under an item's prose, 2 Aug 2026. Sits 28px off the copy like every
-   other artifact. The label is mono/uppercase machine text; the link itself is blue, which
-   is what blue means everywhere on this page. Square, no card, no thumbnail: this is a
-   footnote, not a feature, and it must not compete with the item's own artifacts. */
-.mod-reading{margin-top:28px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;}
-.mod-readinglbl{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;
-  text-transform:uppercase;color:#8A8A85;flex:0 0 auto;}
-.mod-readinglink{font-family:var(--mono);font-size:.8125rem;line-height:1.6;color:#3A7CA5;
-  text-decoration:none;border-bottom:1px solid #C9C9C3;padding-bottom:2px;}
-.mod-readinglink:hover{border-bottom-color:#3A7CA5;}
-/* Who made it, so a reader knows whose work they are about to open. */
-.mod-readinglink i{font-style:normal;color:#A8A8A2;margin-left:9px;}
+/* ADDITIONAL READING at the end of an item, 2 Aug 2026, RESHAPED 3 Aug into a subhead and a
+   stacked list. Paul: "in the same way I write any article, I'd have a little subhead at the
+   very end that says additional reading, and then just a whole bunch of links."
+
+   ⛔ IT WAS A ONE-LINK LAYOUT AND IT BROKE THE MOMENT IT HELD TWO. The label was `flex:0 0
+   auto` on a wrapping row, so link one sat beside it and link two wrapped back to the left
+   margin, under the label. It read as a ragged pair rather than a list. The reason it stayed
+   hidden for a day is that the first item to use it had exactly one link.
+
+   ⭐ IT IS SIZED FOR EIGHT, NOT TWO. Paul, 3 Aug: "We could easily have five, six, seven,
+   eight, even more links for each section... That's part of the value." So the label is a
+   subhead on its own line, the links stack, and every row starts at the same x. Adding a
+   ninth changes nothing.
+
+   The label stays mono/uppercase machine text and the links stay blue, which is what blue
+   means everywhere on this page. Square, no card, no thumbnail. */
+.mod-reading{margin-top:32px;padding-top:20px;border-top:1px solid #E8E8E4;}
+.mod-readinglbl{display:block;font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#8A8A85;margin-bottom:12px;}
+.mod-readinglink{display:block;font-family:var(--mono);font-size:.8125rem;line-height:1.5;
+  color:#3A7CA5;text-decoration:none;padding:7px 0;border-bottom:1px solid #EDEDE9;}
+.mod-readinglink:last-child{border-bottom:none;}
+.mod-readinglink:hover{color:#1A3A4E;}
+/* Who made it, so a reader knows whose work they are about to open. ⭐ IT EARNS ITS SPACE
+   ONLY BECAUSE SOURCES VARY: two Anthropic links read as noise repeated, and the third link
+   added on 3 Aug was Kevin Stratvert, an independent channel. At eight links, the vendor's
+   own guide versus someone else's is the main thing a reader sorts on. */
+.mod-readinglink i{font-style:normal;color:#A8A8A2;margin-left:10px;}
 .mod-linklist{margin-top:28px;border-top:1px solid #E0E0DC;}
 .mod-lcard{display:grid;grid-template-columns:168px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #E0E0DC;text-decoration:none;color:inherit;}
 .mod-lcard:hover .mod-ltitle{color:#3A7CA5;border-bottom-color:#3A7CA5;}
@@ -7532,3 +7548,123 @@ a.project-card {
   .spec-tunerow{grid-template-columns:104px 1fr 64px;gap:10px;}
   .spec-grid100{grid-template-columns:repeat(10,1fr);}
 }
+
+/* ================================================================== */
+/* SPECIMEN 14 - the image lesson. Real material, not stand-ins.      */
+/* Square corners, light only, nothing set on the blue.               */
+/* Everything below is sized for a 748px module column, not 1124.     */
+/* ================================================================== */
+
+/* Paul's words, verbatim. Set as a quote so it can never be mistaken for
+   page copy written around him. */
+.spec-quote{margin:18px 0 0;padding:0 0 0 16px;border-left:2px solid #C9C9C3;}
+.spec-quote p{margin:0;font-family:'Source Serif 4',Georgia,serif;font-size:1rem;
+  line-height:1.75;color:#1D1B1B;}
+.spec-quote cite{display:block;margin-top:9px;font-family:var(--mono);font-size:.625rem;
+  letter-spacing:.1em;text-transform:uppercase;color:#8A8A85;font-style:normal;}
+
+/* --- format change 1: several images, in order, each labelled ------ */
+.spec-shot{margin:14px 0 0;padding:0;}
+/* Shrink-wrap to the image's own aspect and centre it. Do NOT use width:100% with
+   object-fit here: a portrait photo then sits in a wide box with a dead grey band beside
+   it, which reads as a broken image rather than a tall one. */
+.spec-shot img{display:block;max-width:100%;width:auto;height:auto;max-height:440px;
+  margin:0 auto;background:#FAFAF8;border:1px solid #E0E0DC;}
+.spec-shot figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-top:8px;}
+.spec-shotlbl{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#3A7CA5;}
+.spec-shotnote{font-family:var(--mono);font-size:.6875rem;line-height:1.6;color:#A8A8A2;
+  flex:1 1 220px;}
+
+/* --- an honest empty slot ----------------------------------------- */
+.spec-empty{margin:14px 0 0;padding:16px;background:repeating-linear-gradient(
+    135deg,#FAFAF8 0 7px,#F2F2EE 7px 14px);border:1px dashed #C9C9C3;}
+.spec-emptylbl{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#8A8A85;margin-right:10px;}
+.spec-emptymark{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#B4562A;}
+.spec-empty p{margin:9px 0 0;font-family:var(--mono);font-size:.75rem;line-height:1.7;
+  color:#6E6E68;}
+
+/* --- format change 2: OUTPUT, what the model gave BACK -------------- */
+/* ⭐ DELIBERATELY NOT A COPY BOX. .mod-copybox is mono, boxed, white, with a Copy
+   button, and every one of those says "paste me". This is evidence: serif prose on
+   paper, no box, no button, and the head says "nothing to copy" out loud. Hiding a
+   copybox button would NOT be enough, it would still read as one. Do not converge them. */
+.spec-output{margin:12px 0 0;background:#F4F1EA;padding:16px 18px 14px;}
+.spec-outputhead{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding-bottom:11px;margin-bottom:13px;border-bottom:1px solid #E2DDD0;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  color:#8A8A85;}
+.spec-outputhead b{font-weight:400;color:#A8A8A2;white-space:nowrap;}
+.spec-outputbody p{margin:0 0 13px;font-family:'Source Serif 4',Georgia,serif;
+  font-size:.9375rem;line-height:1.75;color:#33312D;}
+.spec-outputbody p:last-child{margin-bottom:0;}
+/* What the model rewrote when it was asked to. The point is how little moved. */
+.spec-outputbody p[data-changed="1"]{background:rgba(58,124,165,.10);
+  border-left:2px solid #3A7CA5;padding:11px 13px;color:#1D1B1B;}
+.spec-outputsrc{margin:13px 0 0;padding-top:11px;border-top:1px solid #E2DDD0;
+  font-family:var(--mono);font-size:.6875rem;line-height:1.6;color:#A8A8A2;}
+
+/* --- the few words the reader actually types ----------------------- */
+.spec-typed{margin:14px 0 0;padding:13px 16px;background:#fff;border:1px solid #C9C9C3;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;}
+.spec-typedlbl{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#8A8A85;flex:0 0 auto;}
+.spec-typed p{margin:0;flex:1 1 200px;font-family:'Source Serif 4',Georgia,serif;
+  font-size:1.0625rem;line-height:1.5;color:#1D1B1B;}
+.spec-typedn{font-family:var(--mono);font-size:.6875rem;color:#3A7CA5;flex:0 0 auto;}
+
+/* --- primitive 7: guess the gap ------------------------------------ */
+.spec-gap{margin-top:18px;border:1px solid #C9C9C3;background:#fff;}
+.spec-gappair{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;
+  border-bottom:1px solid #E0E0DC;align-items:start;}
+.spec-gappair .spec-shot{margin:0;}
+.spec-gappair .spec-shot img{height:250px;max-height:250px;object-position:center;}
+.spec-gappair .spec-empty{margin:0;min-height:250px;}
+.spec-gapask{padding:16px;border-bottom:1px solid #E0E0DC;}
+.spec-gapreveal{padding:16px;background:#FAFAF8;border-bottom:1px solid #E0E0DC;}
+.spec-gapnum{margin:0 0 9px;font-family:'Source Serif 4',Georgia,serif;font-size:1rem;
+  line-height:1.65;color:#1D1B1B;}
+.spec-gapnum b{font-weight:600;color:#B4562A;font-variant-numeric:tabular-nums;}
+.spec-gapverdict{margin-left:10px;font-family:var(--mono);font-size:.625rem;
+  letter-spacing:.08em;text-transform:uppercase;}
+.spec-gapverdict[data-ok="1"]{color:#2E7D5B;}
+.spec-gapverdict[data-ok="0"]{color:#A8A8A2;}
+.spec-gapclose{margin:13px 0 0;font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;
+  line-height:1.7;color:#33312D;}
+
+/* --- the four beats, run once per subject -------------------------- */
+.spec-subject{margin-top:26px;padding-top:20px;border-top:1px solid #C9C9C3;}
+.spec-subjecth{margin:0;font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#3A7CA5;}
+.spec-subjectlead{margin:9px 0 0;font-family:'Source Serif 4',Georgia,serif;font-size:1rem;
+  line-height:1.7;color:#1D1B1B;}
+.spec-beat{margin-top:22px;}
+.spec-beathead{margin:0;display:flex;align-items:center;gap:11px;
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;
+  color:#1D1B1B;}
+.spec-beatn{width:22px;height:22px;flex:0 0 auto;border:1px solid #3A7CA5;color:#3A7CA5;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.6875rem;
+  font-variant-numeric:tabular-nums;}
+
+@media (max-width:860px){
+  .spec-gappair{grid-template-columns:1fr;}
+  .spec-gappair .spec-shot img{height:auto;max-height:300px;}
+  .spec-gappair .spec-empty{min-height:0;}
+  .spec-shot img{max-height:340px;}
+}
+
+/* --- specimen 14: the three moves, stated before anything happens --- */
+/* ⛔ These are a STATEMENT, not a stepper. Nothing here is clickable and nothing
+   is hidden. Paul: "We need to say up front: this is what you do." */
+.spec-moves{margin:18px 0 0;padding:16px 18px;list-style:none;background:#F4F1EA;}
+.spec-moves li{display:flex;gap:13px;align-items:baseline;padding:7px 0;
+  font-family:'Source Serif 4',Georgia,serif;font-size:1rem;line-height:1.6;color:#1D1B1B;}
+.spec-moven{flex:0 0 auto;width:21px;height:21px;border:1px solid #3A7CA5;color:#3A7CA5;
+  display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);
+  font-size:.6875rem;font-variant-numeric:tabular-nums;}
+
+/* --- specimen 14: one variant, what you said and what it made ------- */
+.spec-variant{margin-top:20px;padding-top:18px;border-top:1px solid #E0E0DC;}
+.spec-varbody{margin:0;}

@@ -42,6 +42,43 @@ const SHOW_COUNTERS = false;
  *    what is placeholder is for Paul while building. A member sees none of it.
  */
 
+/**
+ * ⭐ ADDITIONAL READING. A subhead and a stacked list, at the END of an item.
+ * Paul, 3 Aug 2026: "in the same way I write any article, I'd have a little subhead at the
+ * very end that says additional reading, and then just a whole bunch of links."
+ *
+ * ⭐⭐ IT IS ONE COMPONENT BECAUSE AN ITEM RENDERS TWICE, and this file has now lost a field
+ * on the second render twice over. The opened window never drew `figureFile`, so the CFO
+ * silently lost its drawing on open, and it never drew `reading` at all, so Paul clicked
+ * Create Projects and found his three links gone. Both were the same mistake: the inline
+ * item was edited and the reader was not. Anything an item CARRIES goes in a shared
+ * component from here on, so the two renders cannot drift again.
+ *
+ * ⚠️ SIZED FOR EIGHT. Paul expects "five, six, seven, eight, even more links for each
+ * section... That's part of the value", so nothing here is written per link and adding a
+ * ninth costs nothing.
+ */
+function ReadingList({ reading }: { reading?: Item["reading"] }) {
+  if (!reading || reading.length === 0) return null;
+  return (
+    <div className="mod-reading">
+      <span className="mod-readinglbl">Additional reading</span>
+      {reading.map((R, j) => (
+        <a
+          key={j}
+          className="mod-readinglink"
+          href={R.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {R.title}
+          <i>{R.by}</i>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 const BUILD_PARAM = "build";
 
 /**
@@ -480,26 +517,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
                 <Body text={it.text} ph={it.placeholder} />
 
-                {/* Further reading, directly under the prose as Paul asked. A labelled row
-                    rather than a bare link, so it reads as a deliberate pointer to someone
-                    else's work and names who wrote it. */}
-                {it.reading && (
-                  <div className="mod-reading">
-                    <span className="mod-readinglbl">More on this</span>
-                    {it.reading.map((R, j) => (
-                      <a
-                        key={j}
-                        className="mod-readinglink"
-                        href={R.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {R.title}
-                        <i>{R.by}</i>
-                      </a>
-                    ))}
-                  </div>
-                )}
+                <ReadingList reading={it.reading} />
 
                 {it.links && (
                   <div className="mod-linklist">
@@ -627,6 +645,12 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   onCopy={() => copyPrompt(mod.items[open], open)}
                 />
               )}
+
+              {/* ⭐ LAST THING IN THE WINDOW, which is Paul's instruction and also where it
+                  belongs: you finish the piece, then you are handed where to go next.
+                  ⛔ It was MISSING here entirely until 3 Aug. He opened Create Projects and
+                  his three links were not in it. */}
+              <ReadingList reading={mod.items[open].reading} />
             </div>
           </div>
         </div>
