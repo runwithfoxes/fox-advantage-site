@@ -210,10 +210,26 @@ export default function EverythingClient({
                 ⛔ SO THESE THREE WORDS ARE A PLACEHOLDER FOR HIS, not a decision. */}
             <p className="mod-eyebrow">The library</p>
             <h1 className="mod-h1">Everything from the course</h1>
-            {/* The fox the module pages never use, so the library has its own. A fox is
-                furniture, not teaching, so it does not cross this page's own line. */}
+            {/* ⭐⭐ MODULE 1'S FOX, AT MODULE 1'S SIZE, Paul 3 Aug 2026: "The fox is too big
+                and it's pushing the page down. Look at the format for Module 1, the size of
+                the fox and how it indents into the text, and copy that."
+
+                ⭐ THE CAUSE WAS THE PICTURE, NOT THE CSS, and globals.css had already written
+                it down beside .mod-meta: the fox FLOATS and the metadata row CLEARS it, so
+                whenever the fox is taller than the prose beside it, the clear turns the
+                overhang into dead space. fox-book.png is portrait and stands about 235px at
+                180px wide; this page's standfirst is three lines. Every pixel of fox below
+                the last line of prose became a hole above the metadata.
+
+                ⛔ SO DO NOT SWAP THIS FOR A PORTRAIT ONE. chapter-fox-sitting-nobg.png is
+                module 1's own and is roughly square, which is what lets the same 180px width
+                and the same -60px gutter indent read identically on both pages. */}
             <div className="chapter-fox-hero">
-              <img className="chapter-fox-hero-img" src="/fox/fox-book.png" alt="" />
+              <img
+                className="chapter-fox-hero-img"
+                src="/fox/chapter-fox-sitting-nobg.png"
+                alt=""
+              />
             </div>
             <p className="mod-standfirst">
               Every prompt and every link, from all six modules, on one page. It is here
