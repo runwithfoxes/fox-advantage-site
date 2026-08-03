@@ -703,13 +703,11 @@ export const MODULE_1: ModuleDef = {
           figure: "fig-02",
         },
         {
-          placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. How you can create a video from an image.",
+          text: "And if you have an image, then it's easy to create a video or an animated version of this image. Again, this is just getting Claude to write the prompt for a video based on this image. This is not difficult, but it is interesting because in marketing creating video was always a trade-off: the cost and time to make animation versus the benefits of having video versus images. That trade-off no longer really exists.",
           figure: "fig-06",
         },
         {
-          placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. Taking the code of a website, like his own, and creating a wireframe for it.",
+          text: "Another great deconstruction is if you're building a website and you want inspiration for wireframes from websites you like. All you need to do is open up a website, right click to view source code, copy it, paste into Claude and ask it to create a wireframe for you.",
           figure: "fig-04",
         },
       ],
