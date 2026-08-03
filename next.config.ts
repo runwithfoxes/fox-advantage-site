@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* ⭐⭐ THE MODULE FILES SHIP WITH THE SERVERLESS FUNCTION, NOT AS STATIC ASSETS.
+     `course-files/` is outside `public/` on purpose, so that the only way to read one is
+     through `api/course-file`, which checks the course cookie. Nothing imports these files,
+     so Next's tracer cannot see them and would leave them out of the deployment: the route
+     would work locally and 404 every document in production. Naming them here is what puts
+     them in the bundle.
+     ⚠️ THE PATH IS RELATIVE TO THE PROJECT ROOT and the glob must keep matching if a
+     module 3 folder appears beside module-2. */
+  outputFileTracingIncludes: {
+    "/api/course-file/[...path]": ["./course-files/**/*"],
+  },
   async rewrites() {
     return [
       /* Campaign entry paths for /course. A rewrite, not a redirect, so the

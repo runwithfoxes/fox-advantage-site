@@ -1036,8 +1036,14 @@ const stub = (
  * to do." Nothing may number the walkthrough.
  *
  * ✅ RESOLVED 3 Aug 2026: the seven writer downloads and the Kite pack used to live only in
- * `course-build/`, unreachable from any page. They are in `files` below and under
- * `public/course/module-2/`. Paul's ruling: "Just have them all listed connected to module 2."
+ * `course-build/`, unreachable from any page. They are in `files` below. Paul's ruling:
+ * "Just have them all listed connected to module 2."
+ *
+ * ⛔ THE FILES THEMSELVES ARE NOT UNDER `public/`, and that is deliberate rather than
+ * tidiness. They shipped there first and every one of them answered 200 to anyone with the
+ * URL while the page around them was gated, because a static asset is served before any
+ * page code runs. They now sit in `course-files/` at the repo root and are served by
+ * `api/course-file/[...path]`, which checks the same cookie the module page checks.
  */
 export const MODULE_2: ModuleDef = {
   n: 2,
@@ -1075,44 +1081,44 @@ export const MODULE_2: ModuleDef = {
         {
           name: "writer-dna",
           what: "The instructions. What every other file is, when to read it, and how the writer behaves.",
-          href: "/course/module-2/writer/writer-dna.html",
-          take: "/course/module-2/writer/writer-dna.md",
+          href: "/api/course-file/module-2/writer/writer-dna.html",
+          take: "/api/course-file/module-2/writer/writer-dna.md",
         },
         {
           name: "brand-interviewer",
           what: "Interviews the learner and hands back the six brand documents below.",
-          href: "/course/module-2/writer/brand-interviewer.html",
-          take: "/course/module-2/writer/brand-interviewer.md",
+          href: "/api/course-file/module-2/writer/brand-interviewer.html",
+          take: "/api/course-file/module-2/writer/brand-interviewer.md",
         },
         {
           name: "slop-rules",
           what: "Two passes, words then patterns.",
-          href: "/course/module-2/writer/slop-rules.html",
-          take: "/course/module-2/writer/slop-rules.md",
+          href: "/api/course-file/module-2/writer/slop-rules.html",
+          take: "/api/course-file/module-2/writer/slop-rules.md",
         },
         {
           name: "claims-and-sources",
           what: "The ledger that makes the writer prove things or admit it cannot.",
-          href: "/course/module-2/writer/claims-and-sources.html",
-          take: "/course/module-2/writer/claims-and-sources.md",
+          href: "/api/course-file/module-2/writer/claims-and-sources.html",
+          take: "/api/course-file/module-2/writer/claims-and-sources.md",
         },
         {
           name: "format-email",
           what: "Craft of the format.",
-          href: "/course/module-2/writer/format-email.html",
-          take: "/course/module-2/writer/format-email.md",
+          href: "/api/course-file/module-2/writer/format-email.html",
+          take: "/api/course-file/module-2/writer/format-email.md",
         },
         {
           name: "format-blog",
           what: "Craft of the format.",
-          href: "/course/module-2/writer/format-blog.html",
-          take: "/course/module-2/writer/format-blog.md",
+          href: "/api/course-file/module-2/writer/format-blog.html",
+          take: "/api/course-file/module-2/writer/format-blog.md",
         },
         {
           name: "format-web-page",
           what: "Craft of the format.",
-          href: "/course/module-2/writer/format-web-page.html",
-          take: "/course/module-2/writer/format-web-page.md",
+          href: "/api/course-file/module-2/writer/format-web-page.html",
+          take: "/api/course-file/module-2/writer/format-web-page.md",
         },
       ],
     },
@@ -1126,38 +1132,38 @@ export const MODULE_2: ModuleDef = {
         {
           name: "audience",
           what: "Three segments with their share of the market, their trigger, and what we say to each first. Plus the 27% turned down on purpose.",
-          href: "/course/module-2/kite/audience.html",
-          take: "/course/module-2/kite/audience.md",
+          href: "/api/course-file/module-2/kite/audience.html",
+          take: "/api/course-file/module-2/kite/audience.md",
         },
         {
           name: "competitors",
           what: "Three invented competitors, the claims that are the category entry fee and may not be used, and staying put as the largest competitor of all.",
-          href: "/course/module-2/kite/competitors.html",
-          take: "/course/module-2/kite/competitors.md",
+          href: "/api/course-file/module-2/kite/competitors.html",
+          take: "/api/course-file/module-2/kite/competitors.md",
         },
         {
           name: "proof",
           what: "The numbers with their sources, one deliberately marked [unverified], and an honest list of what Kite cannot prove yet.",
-          href: "/course/module-2/kite/proof.html",
-          take: "/course/module-2/kite/proof.md",
+          href: "/api/course-file/module-2/kite/proof.html",
+          take: "/api/course-file/module-2/kite/proof.md",
         },
         {
           name: "positioning-statement",
           what: "The four slots, the two rejected versions with reasons, and the founder's decision in her own words.",
-          href: "/course/module-2/kite/positioning-statement.html",
-          take: "/course/module-2/kite/positioning-statement.md",
+          href: "/api/course-file/module-2/kite/positioning-statement.html",
+          take: "/api/course-file/module-2/kite/positioning-statement.md",
         },
         {
           name: "tone-of-voice",
           what: "Whose voice it is, the five beats, the device, what it never does, and a worked example.",
-          href: "/course/module-2/kite/tone-of-voice.html",
-          take: "/course/module-2/kite/tone-of-voice.md",
+          href: "/api/course-file/module-2/kite/tone-of-voice.html",
+          take: "/api/course-file/module-2/kite/tone-of-voice.md",
         },
         {
           name: "messaging-framework",
           what: "Value proposition, three pillars, the three by three grid, and what we will never say.",
-          href: "/course/module-2/kite/messaging-framework.html",
-          take: "/course/module-2/kite/messaging-framework.md",
+          href: "/api/course-file/module-2/kite/messaging-framework.html",
+          take: "/api/course-file/module-2/kite/messaging-framework.md",
         },
         {
           /* ⚠️ NOT IN THE KITE README's numbered list, which stops at six. This file was
@@ -1167,8 +1173,8 @@ export const MODULE_2: ModuleDef = {
              because the README never described it. */
           name: "segment-emails",
           what: "One email to each of the three segments, written by Paul.",
-          href: "/course/module-2/kite/segment-emails.html",
-          take: "/course/module-2/kite/segment-emails.md",
+          href: "/api/course-file/module-2/kite/segment-emails.html",
+          take: "/api/course-file/module-2/kite/segment-emails.md",
         },
       ],
     },
