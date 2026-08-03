@@ -128,7 +128,24 @@ def selector_wanted(sel: str, used: set[str]) -> bool:
 
 
 def scope(sel: str, fig_id: str) -> str:
+    """⛔ ALREADY-SCOPED SELECTORS ARE LEFT ALONE, and skipping this check is why every
+    figure from fig-26 on rendered as a still on the module page until 3 Aug 2026.
+
+    The early figures were written into the page's <style> unscoped (`.f-frame{...}`), so
+    this function's prefix is what makes them safe to inline. Every builder since fig-26
+    emits its own CSS ALREADY scoped (`#animbp01 .m-b1-you{...}`), because it has to: the
+    figures page carries thirty of them in one document. Prefixing that a second time
+    produces `#animbp01 #animbp01 .m-b1-you`, which asks for an element with that id INSIDE
+    another element with the same id, so it matches nothing.
+
+    ⚠️ IT FAILS SILENTLY AND IT FAILS PRETTY. The drawing ports perfectly, because only the
+    ANIMATION rules were scoped. Their `opacity:0` never lands either, so every element sits
+    at its final value and the figure shows a clean settled end frame. `compare-figures.py`
+    read red at 0.5s and green at 4.8s and the cause went unidentified for a day. A porting
+    bug that produces a correct-looking picture is the expensive kind."""
     sel = sel.strip()
+    if re.match(rf"#{re.escape(fig_id)}(?![\w-])", sel):
+        return sel
     return f"#{fig_id} {sel}"
 
 
@@ -271,9 +288,16 @@ def drawing(svg: str) -> str:
 
 
 def fig_number(src: str, after: int) -> str | None:
-    """The fig-NN label the page prints in the bar UNDER this figure. That is the name
-    Paul and the briefs use, so it is the name a component is asked for."""
-    m = re.search(r"<b>(fig-[\w-]+)</b>", src[after:])
+    """The fig-NN or bp-NN label the page prints in the bar UNDER this figure. That is the
+    name Paul and the briefs use, so it is the name a component is asked for.
+
+    ⚠️ `bp-` IS NOT OPTIONAL. This matched `fig-` only until 3 Aug 2026, and the failure it
+    caused is the reason to keep both here. A blueprint's bar says `<b>bp-01</b>`, so the
+    search walked straight past it and returned the next `fig-` label further DOWN the page.
+    Both blueprints landed on `fig-parts`, the run died on "two figures both called
+    fig-parts", and the whole registry sat seven figures stale because of it. A name that
+    silently belongs to a different figure is worse than no name."""
+    m = re.search(r"<b>((?:fig|bp)-[\w-]+)</b>", src[after:])
     return m.group(1) if m else None
 
 
@@ -296,7 +320,7 @@ def main() -> int:
     for svg, end in svgs(src):
         name = fig_number(src, end)
         if name is None:
-            raise SystemExit(f"an <svg> at offset {end} has no fig-NN bar under it")
+            raise SystemExit(f"an <svg> at offset {end} has no fig-NN or bp-NN bar under it")
         open_tag = re.match(r"<svg\b[^>]*>", svg).group(0)
         idm = re.search(r'id="([^"]+)"', open_tag)
         if idm:
@@ -388,7 +412,7 @@ def main() -> int:
         "",
         "export type GeneratedFigure = {",
         "  id: string;",
-        "  /** The fig-NN label the figures page prints, when it has one. */",
+        "  /** The fig-NN or bp-NN label the figures page prints, when it has one. */",
         "  name: string | null;",
         "  label: string;",
         "  viewBox: string;",

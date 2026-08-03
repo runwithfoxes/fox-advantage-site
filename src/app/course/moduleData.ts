@@ -227,6 +227,65 @@ export const MODULE_1: ModuleDef = {
     "Hello and thank you for signing up to this. Later in this course we get into big things. Building agents, thinking in systems and doing stuff that wasn't possible six months ago.\n\nBut this module is not that. This is a bunch of things that I do, often without even thinking about it. If you already do these too, skip them. I'm not going to show you how to use AI, although will send you links to guides. There's loads available. My focus is marketing, and I care about both quality and speed, so that is the lens for this course.\n\nYou'll see Isa, my assistant chatbot on your left. It can answer questions if you have any. You know how to find me too.\n\nOne request. You'll see an AI fluency question below. I'd love if you can answer it now. And there's another one at the end of Module 6. That way, I can assess how useful this course is, and find ways to improve it.",
   items: [
     {
+      /* ⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, headline and copy together in one go. It takes
+         slot one from "Check which model you're on", which moves down to item 2 rather than
+         out: his instruction was that item 1 is no longer the model check but the reason he
+         uses Claude, which is a reorder and not a deletion.
+
+         ⭐ THE HEADLINE IS HIS AND IS A STATEMENT, not an activity. Item 2's own note carries
+         his rule that a title names the activity and the lesson, and this one deliberately
+         does not; it is the argument of the whole module compressed to six words. His to keep.
+         He wrote it closing on a full stop. Recorded without one, because no other item title
+         in the course carries terminal punctuation and a lone full stop reads as a typo on a
+         heading. One character, and his to put back.
+
+         ⚠️ IT MAKES A PROMISE THE COURSE HAS NOT KEPT YET: "More on this later." That is the
+         THIRD in this module, after the model item's "I'll show how I train Claude to guess
+         what model I want" and the vaguer "(more on that later)" already cut from item 03.
+         Nothing in modules 2 to 6 covers how Claude connects to other software today. Either
+         it gets a home or the line goes, and both are Paul's call. Written down here so it is
+         a decision rather than something noticed the week it ships.
+
+         ⭐ THE BREAK AFTER "technical colleague" IS PAUL'S, 3 Aug: "put a space after
+         'technical colleague' so that lands." It was one 86-word paragraph running 7 rendered
+         lines, against 4/3/3/2 for item 2, and the claim that carries the whole second half of
+         the item was buried in the middle of it. Standing alone it is the shortest paragraph
+         in the item and the eye stops on it. Do not merge it back. Paragraph 1 still runs 66
+         words at 4 lines, which measures the same as item 2's longest and is his.
+
+         ⚠️ IT CLAIMS THE SITE ITSELF: "This training site and everything on it was built
+         through Claude." True on 3 Aug 2026. It is the same class of line as the opening's
+         "Isa, my assistant chatbot on your left" - it breaks if the fact behind it changes,
+         and only Paul can rewrite it.
+
+         Mis-transcriptions repaired and nothing else touched: "responds will to feedback" to
+         "responds well", "the image" to "the images" in the list that already runs plural, and
+         the mid-sentence capital in "What I mean by this, It's not" down to "it's" on Paul's
+         instruction, 3 Aug. "It is for me" in the last paragraph is left exactly as dictated,
+         twice flagged to him and twice kept. */
+      t: "Fluency matters more than the tool",
+      text: "I use Claude as my main AI. Marketers really like it. It is intuitive, responds well to feedback and writes well. So my examples will mostly be in Claude. But tools will change, evolve and get better. And they will copy each other. What I think matters more than the tool is becoming comfortable with how to use AI, to get speed without losing quality.\n\nThere is a very important other thing to understand about Claude. I use it as a technical colleague.\n\nWhat I mean by this, it's not what Claude can do itself, but its ability to connect with other software and other tools. For example, my entire website was built through Claude. This training site and everything on it was built through Claude. So not just the writing, but the navigation, the tools, the images. If you got my welcome email, that was created, and sent through Claude.\n\nIt's not doing all of this on its own. It connects with other tools. But the point is I'm not going into those tools. It is for me. More on this later.",
+      /* ⭐ bp-01, "the middle man", built 2 Aug. A BLUEPRINT rather than a figure, and the
+         distinction is the reason it fits here: a figure names nothing so it stays reusable,
+         a blueprint names everything so it is evidence. This one names Attio, Klaviyo, Vercel
+         and Meta, which are Paul's actual stack, and it draws the two-way runs between them
+         and a Claude window. It is the second paragraph of this item, drawn.
+
+         ⚠️ NAMING REAL PRODUCTS DATES like any other specific. The module opens 21 Sep 2026.
+         Check the four are still his stack before it ships, and never quietly swap one.
+
+         ✅ FIXED 3 Aug 2026, 07:41. It did not animate for a day, and the cause was one line
+         in `scripts/extract-figures.py`: `scope()` prefixed every selector with the figure's
+         id without checking whether it was scoped already. Every builder from fig-26 on emits
+         its own CSS pre-scoped, because the figures page holds thirty figures in one document,
+         so those rules came out as `#animbp01 #animbp01 .m-b1-you` and matched nothing.
+         bp-01, bp-02 and fig-26 through fig-32 were all affected; fig-14 was green because it
+         predates pre-scoped builders, NOT because it is half of a pair.
+         ⭐ `compare-figures.py` now reads 0.000% on all ten across every seek time, and its
+         `--control` goes red, so the pass is a real one. */
+      figure: "bp-01",
+    },
+    {
       t: "Check which model you're on",
       /* Paul's words, verbatim, extended 2 Aug 2026 (evening) to four paragraphs, his
          breaks. It replaces his own earlier dictation from the same day, which opened on
@@ -308,6 +367,65 @@ export const MODULE_1: ModuleDef = {
         "Task: write a one-page summary of our campaign results.\nBackground: it is for the quarterly review, and we are being asked whether to keep spending.\nAudience: the CFO. She cares about what we got for the money, not impressions.\nFormat: one page. A short table of numbers, then three lines of plain English.\nBar: she should be able to decide in two minutes without coming back to me.",
     },
     {
+      /* ⭐⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, title and copy together. The sample copy
+         written for him earlier the same day is GONE, and so is the title proposed with it
+         ("Run your work past a red team"). His title is "Create a Red Team".
+
+         ⭐⭐ THIS ITEM IS TWO OF HIS NINE, NOT ONE, and that is the thing to understand
+         before touching it. Paragraphs one and two are "insist on sources, make it prove it
+         read the whole doc", which was #4 on his 2 Aug list and had NOTHING behind it.
+         Paragraph three is the red team. He bundled them himself, which answers a question
+         that had been open since 2 Aug: his own sort put sources and personas in different
+         families ("different reasons"), and he then widened it, "but they are still part of
+         what I do... so they can be together if we choose." This is him choosing.
+
+         ⛔ SO DO NOT SPLIT IT to tidy the family spine. The spine serves the page, not the
+         other way round. Two families now meet inside one item and that is his call.
+
+         ⭐ IT SITS DIRECTLY BEFORE THE CFO, his instruction twice: "I want this not as 16,
+         but number 4", then "This comes before CFO." It reinforces his earlier ruling that
+         "getting accuracy should be ahead of cfo. I think this is needed first" - the reader
+         learns to distrust the output before being handed a persona to improve their own work.
+
+         ⚠️ ONE WORD REPAIRED, AND IT IS HIS TO PUT BACK. He dictated "I always run a bunch of
+         checks as given"; recorded as "as a given", a missing article in a dictated line. Same
+         class as the CFO item's "personal" -> "persona". Nothing else was touched.
+
+         ⚠️ TWO SPOKEN CONSTRUCTIONS LEFT EXACTLY AS HE SAID THEM: "a team dedicated to find
+         gaps" and "When you get response or answer back from your AI". Both read as dictation
+         rather than choice, but repairing a person's grammar is not the same as repairing a
+         dropped article, and the voice spec is explicit that spoken register stays. His call.
+
+         ⚠️ PARAGRAPH TWO IS 88 WORDS against the reading spec's 25-45 guide, so it will render
+         as a slab. NOT split: the spec says show him the count and let him call it, because
+         capping his paragraphs is the reflexive fix he has corrected five times.
+
+         ⭐ NO BUTTON NAME IN THE PROSE, and that is better than the CFO item. He wrote "the
+         copy button", generic, so the `promptLabel` below can change without falsifying the
+         copy. The CFO item names its button and the two must be changed together.
+
+         ⭐ FIG-33, built and signed off by Paul on 3 Aug by another terminal. Handover:
+         HANDOVER-fig-33-redteam-2026-08-03.md. A library figure, so `figure` and not
+         `figureFile` - it comes through scripts/extract-figures.py like every other one.
+
+         ⛔⛔ IT IS NOT A SIBLING OF FIG-32 AND MUST NEVER BE CAPTIONED AS ONE. The CFO
+         figure is a CONVERGENCE: your own document and the persona meet before they arrive,
+         because the CFO reviews what YOU wrote. This one is a HANDOFF with one run in,
+         because the red team reviews what the MACHINE just wrote and you paste the persona
+         alone. Paul ruled on that fork rather than being handed the wrong drawing. Any copy
+         written beside the two has to keep the distinction, or it says they are one move.
+
+         ⚠️ ITS PAYOFF IS A MARKED LIST because the persona's "How to respond" section asks
+         for one. Rewrite that section into prose and fig-33 silently goes out of date. */
+      t: "Create a Red Team",
+      figure: "fig-33",
+      text: "The robots still lie. We see fewer hallucinations on the new models, but I never believe what I read. I always run a bunch of checks as a given. It's just a step in the process.\n\nFirstly, I always ask it for sources. Often, I ask for the source of the source. When asking it to search online, I tell it to find credible sources, not vendor-supplied stats and not somebody's blog. When asking it to read something, I don't just ask Claude if it read the full doc. I ask it to prove to me with evidence that it read every single claim. Ask it to summarise each page.\n\nOne way to create a Red Team. So a team dedicated to find gaps, holes, flaws, inaccuracies. You can try it. When you get response or answer back from your AI, paste in the instructions from the button below. Just click on the copy button and paste into your Claude chat.",
+      /* Paul's verbatim persona, pulled from copy/red-team-persona.md by
+         scripts/extract-personas.py. 410 words, so it renders as one button. */
+      prompt: PERSONAS["red-team-persona"],
+      promptLabel: "Copy Red Team prompt",
+    },
+    {
       /* ⭐ NEW ITEM, 2 Aug 2026, on Paul's instruction: "in item 3, we'll give the CFO
          persona thing." It follows item 02 deliberately: 02 tells AI the work is for the
          CFO, 03 hands them the CFO to read it back. Title is Paul's own framing from the
@@ -328,8 +446,29 @@ export const MODULE_1: ModuleDef = {
          the same thing. Imperative, like the module's other titles. Do not reword it to
          something that no longer matches the prompt. */
       t: "Run your plan past a CFO",
-      /* Paul's words, verbatim, written 2 Aug 2026. Three paragraphs, his breaks. The only
-         change made to what he sent is "personal" -> "persona", a dictation slip.
+      /* Paul's words, verbatim. Three paragraphs, his breaks. Written 2 Aug 2026, and
+         PARAGRAPHS ONE AND TWO REWRITTEN BY HIM ON 3 Aug once the Red Team item existed.
+         Two dictation slips repaired across the two sittings, both his to put back:
+         "personal" -> "persona" (2 Aug) and "Note that is this is different" -> "Note that
+         this is different" (3 Aug). Nothing else has ever been touched.
+
+         ⭐⭐ IT NOW OPENS BY NAMING THE ITEM BEFORE IT: "You can take the same technique for
+         Red Team". ⛔ SO THE ORDER IS LOAD-BEARING IN BOTH DIRECTIONS. Red Team must come
+         first or this sentence points at nothing, and his instruction was explicit: "This
+         comes before CFO." Moving either card breaks the other. Read both before reordering.
+
+         ⭐ HIS 3 Aug REWRITE SHARPENED THE ARGUMENT, so nobody restores the old opening: it
+         was "improve the quality of our marketing... this is all about quality", which said
+         quality twice and named no mechanism. The new one names the mechanism, "push us to
+         think ourselves and ask better questions", and that is the thread tying this item to
+         the Red Team above it. It also drops "One example is using it to see gaps in our
+         thinking", which the Red Team item now covers.
+
+         ⚠️ "a CFO before you send to your CFO" became "a Chief Financial Officer before you
+         send to your actual CFO". Spelling the role out on first use, then "actual" to mark
+         the real person. His, and it fixes a sentence that used one word for two things.
+
+         ⛔ HIS 2 Aug RULING "keep cfo as is for now" IS SUPERSEDED by his own rewrite.
 
          ⭐ WHAT THE REWRITE FIXED, so nobody restores the old one: it opens on the WHY
          (quality, explicitly separated from speed) before it asks anyone to do anything,
@@ -345,7 +484,7 @@ export const MODULE_1: ModuleDef = {
          so nobody on another tool felt shut out. Paul's call, and the steps are literal
          enough that naming one product is what makes them followable. If it ever needs to
          cover the others, that is a copy decision for him, not a tidy-up. */
-      text: "We can use AI to help improve the quality of our marketing. This is different to using AI to get us faster answers. So this is all about quality. One example is using it to see gaps in our thinking or get perspectives from others.\n\nFor example, say you're preparing your marketing plan. You can use AI to get the perspective of a CFO before you send to your CFO. To try this out (1) upload your plan into a Claude chat (2) click on the 'Copy CFO Prompt' button and paste into the same chat and (3) click return.\n\nThe prompt is telling your AI to assume the persona of a CFO with instructions on what to look for. If you haven't done this before, you'll be impressed with the quality of the response.",
+      text: "You can take the same technique for Red Team and use it in many ways to improve the quality of our marketing. Note that this is different to simply using AI to get us faster answers. This is about using it to push us to think ourselves and ask better questions or get perspectives from others.\n\nFor example, say you're preparing your marketing plan. You can use AI to get the perspective of a Chief Financial Officer before you send to your actual CFO. To try this out (1) upload your plan into a Claude chat (2) click on the 'Copy CFO Prompt' button and paste into the same chat and (3) click return.\n\nThe prompt is telling your AI to assume the persona of a CFO with instructions on what to look for. If you haven't done this before, you'll be impressed with the quality of the response.",
       figureFile: "/course/rwf-fig-persona-cfo.svg",
       /* The persona itself, Paul's verbatim copy, pulled from the canonical file by
          scripts/extract-personas.py. Never hand-typed and never edited here. */
@@ -416,12 +555,6 @@ export const MODULE_1: ModuleDef = {
       text: "Ask “our sign-ups are down, what do we do” and back comes the usual shopping list. So I make it slow down. Fewer people arriving, the same people not converting, or a different crowd. Three problems, and the answer to one is the wrong answer to the others.",
       prompt:
         "Before you suggest anything, list the possible causes and what evidence would point to each one.",
-    },
-    {
-      t: "Turn it into your harshest critic",
-      text: "Sometimes I want a sparring partner with no manners, so I tell it exactly that. Better it finds the weak spot now than a real critic finds it later.",
-      prompt:
-        "You're a sceptical buyer and you're not here to help me. Find the weakest line, quote it back to me, and finish with the one question I can't answer yet.",
     },
     {
       t: "Run a pre-mortem",

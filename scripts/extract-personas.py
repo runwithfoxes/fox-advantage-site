@@ -27,7 +27,7 @@ OUT = pathlib.Path(__file__).resolve().parent.parent / "src/app/course/personas.
 
 # Only files that are actually reviewer personas. kite-*.md in the same folder are
 # unrelated campaign copy and must not be swept in.
-WANTED = ["cfo-persona.md"]
+WANTED = ["cfo-persona.md", "red-team-persona.md"]
 
 
 def strip_frontmatter(text: str) -> str:

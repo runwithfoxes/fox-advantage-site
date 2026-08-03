@@ -592,16 +592,33 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
             </div>
             <div className="mod-readerbody">
               <h2>{mod.items[open].t}</h2>
+
+              {/* ⭐ THE FIGURE SITS ABOVE THE PROSE HERE TOO. Paul, 3 Aug 2026, looking at
+                  an opened item: "the figure is below the copy. I want it above it... This
+                  is what I want generally." The inline item was fixed on 2 Aug ("put the
+                  figures above my writing. They are like a simple banner and then I explain
+                  below") and this second render was left behind, so opening an item flipped
+                  the reading order under you.
+
+                  ⛔ AND `figureFile` WAS MISSING ENTIRELY, which is worse than the order.
+                  The inline item draws `figure` OR `figureFile`; this one only ever drew
+                  `figure`. So the CFO item, whose picture is a standalone file, showed its
+                  drawing in the list and then LOST IT on open. That is the exact failure the
+                  old comment here claimed to prevent. Both branches now, same order as
+                  inline. */}
+              {mod.items[open].figure ? (
+                <Figure
+                  name={mod.items[open].figure as string}
+                  className={figStyles.banner}
+                />
+              ) : mod.items[open].figureFile ? (
+                <FigureFile src={mod.items[open].figureFile as string} banner />
+              ) : null}
+
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
               />
-
-              {/* THE SAME PICTURE, IN THE SECOND PLACE THE ITEM RENDERS. An item that
-                  shows a figure inline and then loses it when you open it is the same
-                  item telling you two different things. Order copied from the inline
-                  item, text then picture then prompt, not invented here. */}
-              {mod.items[open].figure && <Figure name={mod.items[open].figure} />}
 
               {mod.items[open].prompt && (
                 <PromptBlock
