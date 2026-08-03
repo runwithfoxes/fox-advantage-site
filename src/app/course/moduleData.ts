@@ -961,13 +961,46 @@ const stub = (
 
 /* Titles drop the "(N) " prefix from courseModules.ts for the same reason MODULE_1 does:
    the page eyebrow already reads "Module N of 6", so the prefix printed the number twice. */
-export const MODULE_2 = stub(
-  2,
-  "Slow, then fast",
-  "Mon 5 Oct",
-  "2026-10-05",
-  MODULE_BLURBS[2],
-);
+/**
+ * ⭐⭐ MODULE 2 IS NO LONGER A STUB. Paul, 3 Aug 2026: "do you have the content from original
+ * module 2. i spend a lot of time on it. Can we transfer into the proper ux / ui of our
+ * module template."
+ *
+ * ⭐ THE CONTENT CAME FROM THE MARKDOWN, NOT FROM `module-2-proto.html`. The prototype is a
+ * 1.3MB standalone page and it is the SECOND COPY that caused the two-places problem this
+ * file exists to end. Its markup carries no items to port anyway. What was worth having was
+ * always beside it: `module-2-item-01-prose.md`, approved by Paul on 26 Jul and written with
+ * him line by line, which is the item below, verbatim and unedited.
+ *
+ * ⛔ WHAT IS DELIBERATELY NOT HERE, so nobody reads one item as the whole module. Module 2's
+ * own handover (`HANDOVER-DRAY-2026-07-26-module-2-content.md`) records that the ten steps of
+ * the walkthrough were never written: "The brand pack exists, the copy at the end exists, the
+ * middle does not." The seven downloads and the Kite worked example are real files but they
+ * live in `course-build/`, outside this app, so they are not reachable from a page yet.
+ * Adding a plausible item for either would put Paul's own build to-do list in front of a
+ * learner, which is the exact failure the cut type badge was cut for.
+ */
+export const MODULE_2: ModuleDef = {
+  n: 2,
+  title: "Slow, then fast",
+  when: "Mon 5 Oct",
+  on: "2026-10-05",
+  built: false,
+  blurb: MODULE_BLURBS[2],
+  items: [
+    {
+      /* ⭐ PAUL'S WORDS, VERBATIM, approved 26 Jul 2026. Five paragraphs, about 170 words,
+         cut down from a nine-paragraph draft that made the same argument three times.
+         ⛔ Do not edit without him, and do not tighten. Two compressed rewrites of his own
+         points were rejected during the drafting: "what moves them" and "where you stand in
+         their heads against the alternatives" both lost to the longer, plainer versions
+         below. His rule, verbatim: "we're not trying to be clever or off the cuff. I'm
+         clinical and plain speaking." */
+      t: "Why slow, then fast",
+      text: "Good marketing requires doing the marketing. There are steps involved, and some of them have not changed in a long time and probably never will. Understanding the motivations of your customer. The hard work of understanding how you are positioning yourself in the minds of customers. You will not get that from the click of a button.\n\nA bad ad made in four seconds is still a bad ad, and now there are four hundred of them.\n\nGo through those steps and the quality of what you make afterwards will be good, and it will be fast.\n\nIt is worth thinking about appropriate speed, because parts of this can be sped up. You can do research faster. You can do the admin around the work faster. You can use AI to find the gaps in your thinking.\n\nIn this module I take one example, building a writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning. Do that as quickly as you can, but do not skip it, do not rush it, and do not make it sloppy.",
+    },
+  ],
+};
 export const MODULE_3 = stub(
   3,
   "Create adjacent value",
