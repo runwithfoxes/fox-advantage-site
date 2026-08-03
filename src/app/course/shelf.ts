@@ -363,6 +363,11 @@ export const SHELF: ShelfSection[] = [
          ⛔ THE LESSON, NOT THE FACT: a name is not an address. Two live sites one letter
          apart, and nothing about either would have announced the mistake once published. */
       { name: "HyperFrames", by: "heygen.com", url: "https://hyperframes.heygen.com" },
+      /* ⭐ ADDED 3 Aug 2026, Paul: "tool: https://www.monologue.to/". Its own title reads
+         "Monologue - Dictation, voice notes, and bot-free meeting notes", Mac and iOS.
+         The row carries the product name only, same as every tool above it: the strapline
+         is the vendor's copy, not a `note` from Paul. */
+      { name: "Monologue", by: "monologue.to", url: "https://www.monologue.to" },
     ],
   },
 ];
