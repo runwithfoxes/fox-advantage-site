@@ -93,6 +93,74 @@ export const SHELF: ShelfSection[] = [
       { name: "Dan Shipper", by: "x.com", url: "https://x.com/danshipper" },
       { name: "Greg Isenberg", by: "x.com", url: "https://x.com/gregisenberg" },
       { name: "Claire Vo", by: "x.com", url: "https://x.com/clairevo" },
+      /* ⭐ ADDED 3 Aug 2026, his third batch: "I follow: https://substack.com/@neilperkin
+         https://www.aibyaakash.com/ https://substack.com/@letstalkbranding
+         https://substack.com/@kylepoyar", then "https://substack.com/@dotmartin" a moment
+         later. In his order, his second message appended.
+
+         ⭐⭐ A HANDLE IS NOT A NAME, AND TWO OF THESE WOULD HAVE BEEN WRITTEN WRONG FROM THE
+         URL ALONE. `@letstalkbranding` is STEF HAMERLINCK, whose publication is what the
+         handle is named after; `aibyaakash.com` is written by AAKASH GUPTA, which the site
+         states itself ("by Aakash Gupta") rather than being inferred from the first name in
+         the domain. Every row below was read off the page's own og:title.
+
+         ⭐ AND THE SUBSTACK 200 IS WORTHLESS WITHOUT A CONTROL, exactly as x.com's is above.
+         A deliberately fake handle also returns 200, because substack.com/@anything falls
+         back to a SEARCH page: its og:title reads `Search "..." on Substack` while a real
+         profile returns the person's name. The name in og:title is the evidence, never the
+         status code.
+
+         ⚠️ `@dotmartin` PUBLISHES NO SURNAME, and this was pushed rather than assumed. The
+         profile page is JavaScript-rendered so its HTML says nothing; the public profile API
+         (`substack.com/api/v1/user/dotmartin/public_profile`) does answer, and it gives the
+         display name "Martin 🏹" and one publication, `uncharted` at
+         thisisuncharted.substack.com. No surname exists to find. So the row carries the
+         first name with the publication doing the identifying, and it is FLAGGED TO PAUL
+         rather than quietly settled. ⛔ Do not resolve it to a plausible Martin. */
+      { name: "Neil Perkin", by: "substack.com", url: "https://substack.com/@neilperkin" },
+      { name: "Aakash Gupta", by: "aibyaakash.com", url: "https://www.aibyaakash.com" },
+      {
+        name: "Stef Hamerlinck",
+        by: "substack.com",
+        url: "https://substack.com/@letstalkbranding",
+      },
+      { name: "Kyle Poyar", by: "substack.com", url: "https://substack.com/@kylepoyar" },
+      { name: "Martin", by: "uncharted", url: "https://substack.com/@dotmartin" },
+      /* ⭐ ADDED 3 Aug 2026, Paul: "i follow Thariq Thariq @trq212 https://x.com/trq212".
+         The handle is real on the same control test as the rows above, a made-up handle
+         returns 404 where this returns 200.
+
+         ⭐⭐ HE DICTATED "Thariq Thariq" AND THE NAME IS ONE WORD. Nothing server-side could
+         settle it: x.com serves a JavaScript shell with no og:title on profiles, the
+         syndication timeline endpoint returns zero bytes, and a reader proxy came back
+         without it. What settled it was RENDERING the profile in a browser, where the page's
+         own title reads "Thariq (@trq212) / X". So the row says Thariq.
+
+         ⭐ THE LESSON IS THE ORDER, not the answer. The row was written as he said it and
+         flagged, and only corrected once the profile itself was seen. ⛔ A doubled word is
+         the commonest artefact of dictation, but "probably a repetition" is not evidence,
+         and a plausible surname invented to fill the gap would have been worse than both. */
+      { name: "Thariq", by: "x.com", url: "https://x.com/trq212" },
+      /* ⭐ ADDED 3 Aug 2026, his fourth batch: "Boris Cherny https://x.com/bcherny", then
+         "Peter Steinberger 🦞 @steipete https://x.com/steipete", then "https://x.com/karpathy
+         Andrej Karpathy". In his order.
+
+         ⭐ ALL THREE HANDLES PASS THE CONTROL and all three names were read off X's own page
+         title, which is the method that finally settled Thariq: a rendered profile titles
+         itself "Boris Cherny (@bcherny) / X", where the raw HTML says nothing at all.
+
+         ⚠️ THE LOBSTER IS DROPPED, same as Martin's 🏹 above. An emoji is decoration on a
+         display name rather than part of a person's name, and the two rows should not
+         disagree about that. Paul pasted it, so it is FLAGGED not assumed: if he wants the
+         lobster it goes straight back.
+
+         ⛔ AND KARPATHY WAS NOT ADDED WHEN HE APPEARED IN A BROWSER TAB. A profile open on
+         Paul's screen mid-session is something seen, not something asked for; the row was
+         written only once he typed the name. The distinction matters more here than anywhere
+         else in this file, because a list of people is published under his name. */
+      { name: "Boris Cherny", by: "x.com", url: "https://x.com/bcherny" },
+      { name: "Peter Steinberger", by: "x.com", url: "https://x.com/steipete" },
+      { name: "Andrej Karpathy", by: "x.com", url: "https://x.com/karpathy" },
     ],
   },
   {
@@ -128,7 +196,113 @@ export const SHELF: ShelfSection[] = [
        other. */
     slug: "articles",
     title: "Articles and videos",
-    entries: [],
+    /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "articles for library:
+       https://runwithfoxes.com/chapter/ch12-critical-thinking-has-never-been-more-critical
+       https://runwithfoxes.com/chapter/ch16-fox-behaviours
+       https://substack.com/home/post/p-208545548". In his order. The first entries this
+       section has ever held.
+
+       ⭐ THE THIRD URL IS NOT WHERE THE PIECE LIVES. `substack.com/home/post/p-208545548`
+       is Substack's reader wrapper and 302s to `ruben.substack.com/p/1800-hours-of-claude`.
+       The canonical URL is written here instead, because the wrapper is a logged-in reading
+       surface rather than the post's address. Same read-through as "appify" -> Apify in
+       Tools: follow what he pointed at, then write down what it actually is.
+
+       ⭐ THE CHAPTER TITLES CARRY A NUMBER AND IT IS STRIPPED. Both pages return their
+       position in the book ("09. Critical thinking...", "13. Fox behaviours"), which is a
+       reading order that moves when the book is reordered, not part of the title. The
+       library's own module rows already drop `courseModules`' "(1) " prefix for the same
+       reason. Every title below was read off the page's own <title>; the Substack author
+       and publication were read off the post itself, not inferred from the subdomain.
+
+       ⭐⭐ THE TWO CHAPTERS ARE RELATIVE AND THE REST ARE ABSOLUTE, AND THAT IS THE POINT.
+       He sent them as `https://runwithfoxes.com/chapter/...`, but this page IS
+       runwithfoxes.com, so an absolute link jumps a reader on localhost or on a Vercel
+       preview straight to production, and nothing about the page looks wrong when it does.
+       `/chapter/...` is what the rest of the site uses for internal links (see
+       `StudentsContent.tsx`) and the row still opens in a new tab, because the anchor sets
+       `target="_blank"` regardless. ⛔ Never "tidy" these back to absolute for consistency
+       with the rows around them: the other entries are genuinely somewhere else.
+
+       ⭐ HIS NAME GOES ON HIS OWN CHAPTERS, his call 3 Aug when asked: "yes put my name on my
+       articles". So every row here reads author-then-publication in one shape, and a student
+       can tell at a glance which two are Paul's. ⛔ Not redundancy to be tidied away on a site
+       that is already his.
+
+       ⛔ NO `note` ON ANY OF THEM. His to write, and the section is correct without one. */
+    entries: [
+      {
+        name: "Critical thinking has never been more critical",
+        by: "Paul Dervan, The Fox Advantage",
+        url: "/chapter/ch12-critical-thinking-has-never-been-more-critical",
+      },
+      {
+        name: "Fox behaviours",
+        by: "Paul Dervan, The Fox Advantage",
+        url: "/chapter/ch16-fox-behaviours",
+      },
+      {
+        /* The trailing full stop is the publisher's, kept rather than tidied. */
+        name: "27 Claude tips after 1,800 hours.",
+        by: "Ruben Hassid, How to AI",
+        url: "https://ruben.substack.com/p/1800-hours-of-claude",
+      },
+      /* ⭐⭐ HE SENT THIS ONE IN THE "I FOLLOW" MESSAGE AND IT IS FILED HERE ANYWAY, because
+         it is a POST rather than a person: `substack.com/home/post/p-209120273`, which 302s
+         to `knowledge.gtmstrategist.com/p/5-gtm-skills-ai-agent-should-run`. That is his own
+         rule from earlier the same day doing its job unprompted, a shelf entry is filed by
+         WHAT IT IS and not by the message it arrived in. Maja Voje is not in People and this
+         does not put her there. */
+      {
+        name: "5 GTM Skills Your AI Agent Should Be Running by Now",
+        by: "Maja Voje, GTM Strategist",
+        url: "https://knowledge.gtmstrategist.com/p/5-gtm-skills-ai-agent-should-run",
+      },
+      /* ⭐ ADDED 3 Aug 2026, Paul: "x article showing video game built through claude". It is
+         a post carrying a VIDEO rather than an article, which is why this section is named
+         for both. Posted 25 Jul 2026.
+
+         ⭐⭐ A POST HAS NO TITLE, SO THE NAME IS HIS FIRST LINE VERBATIM. That is the only
+         honest option here: a headline written by us to summarise someone else's post is the
+         same fabrication as writing a `note`, and it would sit on the page unattributed.
+         Quoting him means the row makes MATT SHUMER'S claim in Matt Shumer's words, which is
+         what a link list does. ⚠️ Note that it IS a claim ("one-shotted"), not a finding, and
+         Paul has not endorsed it. If he ever wants distance from it, the fix is his own
+         `note`, never a rewritten name.
+
+         ⭐ VERIFIED AGAINST A CONTROL, the same discipline as the x.com rows in People: a
+         made-up status id under the same handle returns 404 while this returns 200. The text,
+         the author's display name and the date were read from Twitter's own syndication
+         endpoint (`cdn.syndication.twimg.com/tweet-result?id=...`), because x.com itself
+         serves a JavaScript shell that tells you nothing. */
+      {
+        name: "Claude Opus 5 one-shotted this game.",
+        by: "Matt Shumer, x.com",
+        url: "https://x.com/mattshumer_/status/2081054356405731740",
+      },
+      /* ⭐ ADDED 3 Aug 2026, Paul: "article https://x.com/trq212/status/2052809885763747935".
+         Posted 8 May 2026.
+
+         ⭐⭐ THIS ONE HAS A REAL TITLE AND THE POST IS NOT WHERE IT LIVES. The post carries NO
+         text, just a t.co link, which expands to `x.com/i/article/2052796100608974848`, one of
+         X's own long-form Articles. So unlike the Matt Shumer row above, this is not a post
+         being quoted, it is an article with a headline: "Using Claude Code: The Unreasonable
+         Effectiveness of HTML".
+
+         ⭐ THE STATUS URL IS KEPT ANYWAY, and that is the opposite call to the Substack
+         wrappers earlier in this section, for a reason. Those wrappers were a generic reader
+         surface that any post could sit behind; this status is Thariq's own post of his own
+         article, and it is the form that opens for a reader. The bare `/i/article/` URL 403s
+         to anything that is not a logged-in browser.
+
+         ⭐ HE IS ALSO IN "People I follow" and this is not a duplicate, by Paul's own filing
+         rule: the person is a person, the piece is a piece. Same as Dan Shipper and Every. */
+      {
+        name: "Using Claude Code: The Unreasonable Effectiveness of HTML",
+        by: "Thariq, x.com",
+        url: "https://x.com/trq212/status/2052809885763747935",
+      },
+    ],
   },
   {
     /* "They might not be tools I use, maybe just tools" (3 Aug). A tool is worth listing
