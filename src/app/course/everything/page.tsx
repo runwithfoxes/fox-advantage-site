@@ -51,6 +51,20 @@ export default function EverythingPage() {
          be published to strangers and to search. Hidden, and counted in the build view
          so it is never silently dropped. */
       if (item.placeholder) return;
+      /* ⭐⭐ `links` AND `reading`, FLATTENED INTO ONE LIST HERE, 3 Aug 2026. This page was
+         built on 2 Aug reading `links` only; `reading` was added to the Item type that same
+         evening, hours later, and nothing connected the two. The result was silent and total:
+         nine links went onto module 1 across 3 Aug and THE LIBRARY SHOWED NONE OF THEM, on
+         the one page built to hold them. A slot added after a consumer is written is invisible
+         to it, and no test fails.
+
+         ⭐ THE MODULE PAGE'S DISTINCTION DOES NOT SURVIVE THE TRIP, ON PURPOSE. Over there
+         `links` means the whole item IS other people's work (kindOf() reads it for the type
+         chip) and `reading` is a footnote on an item about something else. That difference is
+         about how a LESSON reads. Here every one of them is the same object: a link you can
+         take. Merging them is the point of a reference. */
+      const refs = [...(item.links ?? []), ...(item.reading ?? [])];
+
       rows.push({
         modN: m.n,
         modTitle: def.title,
@@ -58,7 +72,7 @@ export default function EverythingPage() {
         t: item.t,
         text: item.text,
         prompt: item.prompt,
-        links: item.links,
+        refs: refs.length ? refs : undefined,
       });
     });
   });

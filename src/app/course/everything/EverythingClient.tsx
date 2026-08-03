@@ -6,6 +6,18 @@ import type { LinkEntry } from "../moduleData";
 import { slugOf } from "../moduleData";
 import s from "./Everything.module.css";
 
+/**
+ * ⭐ ONE SHAPE FOR EVERY LINK ON THIS PAGE, whichever slot it came out of. page.tsx merges
+ * an item's `links` and `reading` into this; the note there says why the module page's
+ * distinction between them stops at the door.
+ *
+ * ⛔ `why` IS OPTIONAL HERE AND THAT IS NOT A LOOSENING. LinkEntry requires one and marks it
+ * PAUL'S TO WRITE; `reading` deliberately has no such field, because the alternative is a
+ * one-line reason invented on his behalf on a public page. So a reading row shows what it is
+ * and who made it, and stays silent about why, until he writes one.
+ */
+export type Ref = Omit<LinkEntry, "why"> & { why?: string };
+
 export type Row = {
   modN: number;
   modTitle: string;
@@ -14,7 +26,7 @@ export type Row = {
   t: string;
   text: string;
   prompt?: string;
-  links?: LinkEntry[];
+  refs?: Ref[];
 };
 
 type ModuleRow = { n: number; title: string; when: string; has: boolean };
@@ -66,7 +78,7 @@ export default function EverythingClient({
     const m = new Map<Row, string>();
     rows.forEach((r) => {
       const parts = [r.t, r.text, r.prompt ?? "", r.modTitle];
-      r.links?.forEach((L) => parts.push(L.title, L.why, L.by));
+      r.refs?.forEach((L) => parts.push(L.title, L.why ?? "", L.by));
       m.set(r, parts.join(" ").toLowerCase());
     });
     return m;
@@ -228,9 +240,9 @@ export default function EverythingClient({
               </div>
             )}
 
-            {r.links && (
+            {r.refs && (
               <div className={s.links}>
-                {r.links.map((L, j) => (
+                {r.refs.map((L, j) => (
                   <a
                     key={j}
                     href={L.url}
@@ -239,7 +251,8 @@ export default function EverythingClient({
                     className={s.link}
                   >
                     <span className={s.ltitle}>{L.title}</span>
-                    <span className={s.lwhy}>{L.why}</span>
+                    {/* Rendered only when it exists. See the note on Ref. */}
+                    {L.why && <span className={s.lwhy}>{L.why}</span>}
                     <span className={s.lmeta}>{L.by}</span>
                   </a>
                 ))}
