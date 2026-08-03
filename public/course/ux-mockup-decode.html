@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>UX mockup: teaching the decode trick</title>
+<style>
+  /* Module tokens, lifted from globals.css so this reads as the real page.
+     Column is 748px, the true width of a module item beside the rail. */
+  :root{
+    --ink:#1D1B1B; --muted:#8A8A85; --faint:#A8A8A2;
+    --rule:#E0E0DC; --rule2:#C9C9C3; --accent:#3A7CA5; --deep:#1A3A4E;
+    --paper:#FAFAF8; --surface:#fff; --warn:#B4562A; --good:#2E7D5B;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --serif:'Source Serif 4',Georgia,serif;
+    --sans:ui-sans-serif,-apple-system,'Helvetica Neue',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--mono);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:748px;margin:0 auto;padding:56px 24px 120px}
+  .eyebrow{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-family:var(--sans);font-weight:500;font-size:2.4rem;line-height:1.06;
+    letter-spacing:-.02em;margin:0 0 18px}
+  .standfirst{font-family:var(--serif);font-size:1.25rem;line-height:1.5;margin:0 0 34px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;font-family:var(--mono);font-size:.75rem;
+    color:var(--faint);padding-bottom:28px;border-bottom:2px solid var(--deep)}
+  .meta b{display:block;color:var(--ink);font-weight:400;margin-top:4px}
+
+  .step{border-bottom:1px solid var(--rule);padding:34px 0}
+  .steptop{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .n{font-family:var(--mono);font-size:.75rem;color:var(--faint)}
+  .tag{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 9px;border:1px solid var(--rule2);color:var(--muted)}
+  h3{font-family:var(--sans);font-weight:500;font-size:1.25rem;margin:0;letter-spacing:-.01em}
+  .body{font-family:var(--serif);font-size:1.0625rem;line-height:1.65;margin:0}
+
+  figure{margin:18px 0 0;border:1px solid var(--rule2);background:var(--surface)}
+  figure img{display:block;width:100%;height:auto;max-height:460px;object-fit:contain;background:var(--paper)}
+  figcaption{font-family:var(--mono);font-size:.6875rem;color:var(--muted);
+    padding:9px 12px;border-top:1px solid var(--rule)}
+
+  textarea{width:100%;min-height:96px;margin-top:16px;padding:13px;
+    font-family:var(--mono);font-size:.8125rem;line-height:1.6;color:var(--ink);
+    background:var(--surface);border:1px solid var(--rule2);resize:vertical}
+  textarea:focus{outline:2px solid var(--accent);outline-offset:-2px}
+  .countline{font-family:var(--mono);font-size:.6875rem;color:var(--faint);margin-top:8px}
+
+  button{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:9px 15px;border:1px solid var(--accent);background:var(--accent);color:#fff;
+    cursor:pointer;border-radius:0}
+  button:hover{background:#2F6688;border-color:#2F6688}
+  button:disabled{opacity:.4;cursor:default}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{font-family:var(--mono);font-size:.75rem;text-transform:none;letter-spacing:0;
+    padding:9px 13px;border:1px solid var(--rule2);background:var(--paper);color:var(--ink)}
+  .chip:hover{border-color:var(--accent);color:var(--accent);background:var(--paper)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .hidden{display:none}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+  .col{border:1px solid var(--rule2);background:var(--surface);display:flex;flex-direction:column}
+  .colhead{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);padding:10px 13px;border-bottom:1px solid var(--rule)}
+  .colbody{padding:13px;font-family:var(--mono);font-size:.75rem;line-height:1.65;
+    white-space:pre-wrap;flex:1}
+  .colfoot{font-family:var(--mono);font-size:.625rem;color:var(--faint);
+    padding:9px 13px;border-top:1px solid var(--rule)}
+  .colbody.long{max-height:290px;overflow:auto}
+  .yours{color:var(--warn)}
+  .theirs{color:var(--good)}
+
+  /* The block that holds what AI gave BACK. Deliberately not a copy box. */
+  .output{margin-top:18px;border-left:2px solid var(--accent);background:transparent;padding:0 0 0 15px}
+  .outputhead{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 8px}
+  .outputbody{font-family:var(--mono);font-size:.78rem;line-height:1.7;white-space:pre-wrap;margin:0}
+  mark{background:#DCE8F0;color:var(--ink);padding:0 2px}
+
+  .note{border-left:2px solid #F47521;padding:2px 0 2px 14px;margin-top:18px;
+    font-family:var(--mono);font-size:.6875rem;line-height:1.7;color:var(--muted)}
+  .note b{color:var(--warn);font-weight:400}
+  .recap{margin-top:44px;padding-top:26px;border-top:2px solid var(--deep)}
+  .recap ol{font-family:var(--serif);font-size:1.0625rem;line-height:1.7;padding-left:22px;margin:10px 0 0}
+  @media(max-width:700px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">UX mockup &middot; 25 Jul 2026 &middot; not a real page</p>
+  <h1>If you can write, you can create images</h1>
+  <p class="standfirst">This is the experience, not the finished article. It exists so Paul can
+  see what a learner actually does, rather than read a description of it. Four moves, one
+  screen, nothing sent anywhere.</p>
+  <div class="meta">
+    <span>Module<b>3, adjacent value</b></span>
+    <span>Reader does<b>Attempts, then compares</b></span>
+    <span>Cost per learner<b>Nothing, all precomputed</b></span>
+    <span>Model calls<b>None</b></span>
+  </div>
+
+  <!-- STEP 1 -->
+  <section class="step">
+    <div class="steptop"><span class="n">01</span><span class="tag">Try it first</span>
+      <h3>Describe this so a machine could rebuild it</h3></div>
+    <p class="body">Here is a photograph. Write the description you would hand a machine so it
+    could recreate this scooter somewhere else. Do it before you read on. It takes thirty
+    seconds and it is the whole lesson.</p>
+
+    <figure>
+      <img src="/course/vespa-paul.jpg" alt="A metallic light blue vintage Vespa on a paved driveway">
+      <figcaption>Paul's own Vespa. An ordinary photograph, taken on a driveway.</figcaption>
+    </figure>
+
+    <textarea id="attempt" placeholder="A blue Vespa..." aria-label="Your description"></textarea>
+    <p class="countline"><span id="mywords">0</span> words so far.</p>
+    <button id="reveal">I have written mine, show me a good one</button>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step hidden" id="s2">
+    <div class="steptop"><span class="n">02</span><span class="tag">Compare</span>
+      <h3>Yours, and one a machine wrote</h3></div>
+    <p class="body">No marking and no score. The only thing worth noticing is the gap, and
+    which kinds of thing you left out. Almost nobody mentions the light, the lens, or the
+    material of a surface, and those are what decide whether an image looks real.</p>
+
+    <div class="two">
+      <div class="col">
+        <p class="colhead yours">Yours</p>
+        <div class="colbody" id="mine">(nothing typed)</div>
+        <p class="colfoot"><span id="mywords2">0</span> words</p>
+      </div>
+      <div class="col">
+        <p class="colhead theirs">Asked AI to decode the photo</p>
+        <div class="colbody long" id="theirs"></div>
+        <p class="colfoot"><span id="theirwords">0</span> words</p>
+      </div>
+    </div>
+
+    <p class="note"><b>What you did not have to do.</b> You did not write that. You asked for
+    it, from a picture. Which is the point: the description does the work, and you are allowed
+    to have a machine write the description.</p>
+    <button id="tostep3" style="margin-top:18px">Now change the situation</button>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step hidden" id="s3">
+    <div class="steptop"><span class="n">03</span><span class="tag">Amend it in plain words</span>
+      <h3>Ask for a change. Do not rewrite it yourself</h3></div>
+    <p class="body">You do not edit that description by hand. You say what you want different,
+    in ordinary language, and ask for the prompt back with the change made. Pick one.</p>
+
+    <div class="chips">
+      <button class="chip" data-k="rome" aria-pressed="false">Put it on a street in Rome</button>
+      <button class="chip" data-k="night" aria-pressed="false">Make it night, in the rain</button>
+      <button class="chip" data-k="studio" aria-pressed="false">Put it in a white studio</button>
+    </div>
+
+    <div class="output hidden" id="amended">
+      <p class="outputhead">What came back, with the change folded in</p>
+      <p class="outputbody" id="amendedbody"></p>
+    </div>
+    <p class="countline hidden" id="amendednote">Only the highlighted parts changed. You did not
+    write any of it.</p>
+    <button id="tostep4" class="hidden" style="margin-top:18px">Generate it</button>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step hidden" id="s4">
+    <div class="steptop"><span class="n">04</span><span class="tag">The result</span>
+      <h3>Same object, somewhere else</h3></div>
+    <p class="body">One photograph you already had, one description you did not write, one
+    change you asked for in a sentence.</p>
+    <figure>
+      <div id="resultslot" style="aspect-ratio:3/4;background:
+        radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px) 0 0/16px 16px,#FAFAF8;
+        display:grid;place-items:center;font-family:var(--mono);font-size:.6875rem;
+        color:#A8A8A2;text-align:center;padding:20px"></div>
+      <figcaption id="resultcap"></figcaption>
+    </figure>
+
+    <p class="note"><b>Missing on purpose in this mockup.</b> The generated images do not exist
+    yet. Another terminal is producing them for real from the amended prompt. Everything else
+    on this page is the real interaction.</p>
+
+    <div class="recap">
+      <p class="eyebrow">What the learner just did</p>
+      <ol>
+        <li>Tried to describe a picture and found out how much they leave out.</li>
+        <li>Saw what a full description actually looks like, without writing one.</li>
+        <li>Changed the situation by asking, in one sentence, in plain English.</li>
+        <li>Got a new image of their own thing, somewhere else.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="step" style="border-bottom:none">
+    <div class="steptop"><span class="n">&mdash;</span><span class="tag">Second pass</span>
+      <h3>Then the same four moves with the fox</h3></div>
+    <p class="body">The Vespa comes first because it is an ordinary object, which is what a
+    marketer has. The fox comes second and does a different job: it shows the same trick
+    holding a character steady across situations, not just restaging an object.</p>
+    <div class="two">
+      <div class="col"><p class="colhead">Started with</p>
+        <img src="/fox/fox-pm-nobg.png" alt="The fox with a clipboard, looking at his watch"
+          style="width:100%;height:auto;max-height:260px;object-fit:contain;background:#FAFAF8">
+        <p class="colfoot">fox-pm-nobg.png</p></div>
+      <div class="col"><p class="colhead">Same character, restaged</p>
+        <img src="/fox/fox-arsenal-nobg.png" alt="The same fox in an Arsenal shirt"
+          style="width:100%;height:auto;max-height:260px;object-fit:contain;background:#FAFAF8">
+        <p class="colfoot">Stand-in from Paul's own set. NOT generated from the prompt above.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* Everything below is rules over data. No model call, nothing sent anywhere.
+   The decode is a genuine decode of the photograph, produced 25 Jul 2026. */
+const DECODE = `A photograph of a vintage Piaggio Vespa scooter, shot outdoors in bright direct
+sunlight, three-quarter view from the front and slightly to the left, at roughly chest height.
+
+The body is finished in a metallic light blue that shifts from pale sky in the highlights to a
+deeper steel tone in the shadowed panels, with the pressed-steel curves of the legshield and
+side cowl catching a broad soft reflection. A slim polished chrome trim strip runs the length
+of the legshield edge and around the front mudguard, which carries a single raised chrome flash
+along its spine. The chrome script "vespa" sits at the centre of the legshield, above a small
+hexagonal Piaggio badge in blue and gold.
+
+A large round chrome-rimmed headlight is mounted high on the handlebar nacelle, its ribbed
+glass lens throwing a hard specular highlight. One round mirror on a thin chrome stalk angles
+out to the left. The handlebars are the same blue as the body with chrome levers and dark rubber
+grips. The saddle is black leather with a studded trim and a grey cover, and the floorboard has
+worn aluminium ribbing over a dark rubber mat.
+
+The scooter rests on its side stand on a driveway of large pale grey paving slabs, with a hard
+black shadow thrown down and to the right, indicating a high sun almost overhead. Behind it, out
+of focus, a white rendered building wall with dark-framed windows on the left, and a dense
+clipped green hedge filling the right of the frame with a strip of pale gravel at its foot.
+
+Natural midday light, high contrast, deep shadows, shot on a phone camera with a slightly wide
+lens, portrait orientation, everything sharp on the scooter and the background gently soft.`;
+
+const AMEND = {
+  rome: {
+    label: "on a street in Rome",
+    swap: [["a driveway of large pale grey paving slabs",
+            "a narrow cobbled street in Rome, worn dark setts underfoot"],
+           ["a white rendered building wall with dark-framed windows on the left, and a dense\nclipped green hedge filling the right of the frame with a strip of pale gravel at its foot",
+            "a terrace of ochre and terracotta buildings with green shuttered windows, a scooter-lined\nkerb and a hanging basket of geraniums high on the wall"]],
+    cap: "Awaiting the real generation from the amended prompt."
+  },
+  night: {
+    label: "at night, in the rain",
+    swap: [["shot outdoors in bright direct\nsunlight", "shot outdoors at night in steady rain"],
+           ["a hard\nblack shadow thrown down and to the right, indicating a high sun almost overhead",
+            "wet slicked stone throwing long smeared reflections of orange street light"],
+           ["Natural midday light, high contrast, deep shadows",
+            "Night, lit only by a nearby street lamp and a shop window, low contrast, soft glow, raindrops on the paintwork"]],
+    cap: "Awaiting the real generation from the amended prompt."
+  },
+  studio: {
+    label: "in a white studio",
+    swap: [["shot outdoors in bright direct\nsunlight", "shot in a photographic studio on a clean white background"],
+           ["a driveway of large pale grey paving slabs", "a seamless white studio floor"],
+           ["a white rendered building wall with dark-framed windows on the left, and a dense\nclipped green hedge filling the right of the frame with a strip of pale gravel at its foot",
+            "nothing at all, pure white, no horizon line"]],
+    cap: "Awaiting the real generation from the amended prompt."
+  }
+};
+
+const words = s => s.trim() ? s.trim().split(/\s+/).length : 0;
+const $ = id => document.getElementById(id);
+
+const ta = $("attempt");
+ta.addEventListener("input", () => $("mywords").textContent = words(ta.value));
+
+$("reveal").addEventListener("click", () => {
+  $("mine").textContent = ta.value.trim() || "(nothing typed)";
+  $("mywords2").textContent = words(ta.value);
+  $("theirs").textContent = DECODE;
+  $("theirwords").textContent = words(DECODE);
+  $("s2").classList.remove("hidden");
+  $("s2").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+$("tostep3").addEventListener("click", () => {
+  $("s3").classList.remove("hidden");
+  $("s3").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(o => o.setAttribute("aria-pressed","false"));
+  c.setAttribute("aria-pressed","true");
+  const a = AMEND[c.dataset.k];
+  let html = DECODE.replace(/[&<>]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+  a.swap.forEach(([from,to]) => {
+    const f = from.replace(/[&<>]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+    html = html.replace(f, "<mark>" + to + "</mark>");
+  });
+  $("amendedbody").innerHTML = html;
+  $("amended").classList.remove("hidden");
+  $("amendednote").classList.remove("hidden");
+  $("tostep4").classList.remove("hidden");
+  $("resultslot").textContent = "The Vespa " + a.label + "\n\nNo image yet";
+  $("resultcap").textContent = a.cap;
+}));
+
+$("tostep4").addEventListener("click", () => {
+  $("s4").classList.remove("hidden");
+  $("s4").scrollIntoView({behavior:"smooth", block:"start"});
+});
+</script>
+</body>
+</html>

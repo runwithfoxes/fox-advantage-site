@@ -19,10 +19,13 @@ import {
   COMPARE,
   GUESSES,
   HUNDRED,
+  IMAGE_LESSON,
+  MOVES,
   PRIMITIVES,
   TUNE,
   VERBS,
 } from "./artefacts";
+import type { Variant } from "./artefacts";
 
 /* ------------------------------------------------------------------ */
 /* The wrapper every specimen shares.                                  */
@@ -425,6 +428,137 @@ function Assemble() {
 }
 
 /* ------------------------------------------------------------------ */
+/* FORMAT CHANGE 1 - an item carries SEVERAL images, in order, labelled */
+/* ------------------------------------------------------------------ */
+
+function Shot({ src, label, alt, note }: { src: string; label: string; alt: string; note?: string }) {
+  return (
+    <figure className="spec-shot">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} />
+      <figcaption>
+        <span className="spec-shotlbl">{label}</span>
+        {note && <span className="spec-shotnote">{note}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
+/**
+ * An honest empty slot. Used wherever a beat has no real material yet.
+ * ⭐ This is the alternative to the trap: filling the hole with something that looks right.
+ */
+function Empty({ label, note }: { label: string; note: string }) {
+  return (
+    <div className="spec-empty">
+      <span className="spec-emptylbl">{label}</span>
+      <span className="spec-emptymark">Nothing here yet</span>
+      <p>{note}</p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* FORMAT CHANGE 2 - OUTPUT. What the model gave BACK.                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * ⭐ THIS IS DELIBERATELY NOT A COPY BOX AND MUST NEVER BECOME ONE.
+ *
+ * `.mod-copybox` is mono type in a bordered white box with a Copy button, and every one of
+ * those signals says "paste me". This is the opposite kind of thing: it is what the model
+ * handed back, which the reader reads. So it is serif prose on paper, no border box, no
+ * button, and the head says so out loud. Hiding the button on a copybox would not be
+ * enough: it would still read as one.
+ *
+ * ⛔ NO COUNT IN THE HEAD. An earlier build put a word count here. Paul ruled it out: length
+ * is not a quality axis and any number attached to this makes its length the story.
+ */
+function Output({
+  label,
+  provenance,
+  children,
+}: {
+  label: string;
+  provenance: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="spec-output">
+      <div className="spec-outputhead">
+        <span>{label}</span>
+        <b>nothing to copy</b>
+      </div>
+      <div className="spec-outputbody">{children}</div>
+      <p className="spec-outputsrc">{provenance}</p>
+    </div>
+  );
+}
+
+/** Plain text to paragraphs. Runs to full height: never boxed, never clipped. */
+function Paras({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("\n\n").map((p, i) => (
+        <p key={i}>{p}</p>
+      ))}
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* THE THREE MOVES, stated before anything is demonstrated             */
+/* ------------------------------------------------------------------ */
+
+function Moves() {
+  return (
+    <ol className="spec-moves">
+      {MOVES.map((m, i) => (
+        <li key={i}>
+          <span className="spec-moven">{i + 1}</span>
+          <span>{m}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* ONE VARIANT: what you said, what came back, what it made            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * ⛔ NOTHING HERE IS BEHIND A CLICK. All three variants render on load, top to bottom.
+ * ⛔ NO MODEL CALL. Both the prompt and the image are static, made once, committed.
+ * ⭐ `prompt` and `src` are filled in TOGETHER from one real generation, so the words shown
+ * are the words that made the picture. While either is missing, both slots stay honest.
+ */
+function VariantRow({ v }: { v: Variant }) {
+  const ready = v.prompt !== null && v.src !== null;
+  return (
+    <div className="spec-variant">
+      <div className="spec-typed">
+        <span className="spec-typedlbl">You say</span>
+        <p>{v.typed}</p>
+      </div>
+      {ready ? (
+        <div className="spec-varbody">
+          <Output label="The prompt that came back" provenance="This is the exact text that produced the picture below.">
+            <Paras text={v.prompt as string} />
+          </Output>
+          <figure className="spec-shot">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={v.src as string} alt={v.alt ?? v.typed} />
+          </figure>
+        </div>
+      ) : (
+        <Empty label="The prompt and the picture" note={v.pending ?? ""} />
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* THE PAGE                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -449,6 +583,7 @@ const INDEX: [string, string][] = [
   ["11", "Supported, inferred, or invented"],
   ["12", "Ranked guesses, not a verdict"],
   ["13", "Build the brief out of blocks"],
+  ["14", "If you can write, you can create images"],
 ];
 
 export default function SpecimenClient() {
@@ -479,8 +614,9 @@ export default function SpecimenClient() {
           <nav className="mod-rail">
             <p>/specimen, not a module</p>
             <span className="spec-railnote">
-              Stand-in copy throughout. Nothing here is Paul&apos;s and nothing is course
-              content. Unlinked and noindexed.
+              01 to 13 are stand-in copy, and none of it is course content.{" "}
+              <b>14 is real</b>: Paul&apos;s lesson, his own fox and his own Vespa. Unlinked
+              and noindexed either way.
             </span>
             <p style={{ marginTop: 20 }}>/in this catalogue</p>
             {INDEX.map(([n, t]) => (
@@ -726,6 +862,56 @@ export default function SpecimenClient() {
         cost="List the blocks and mark which belong."
       >
         <Assemble />
+      </Spec>
+
+      <Group
+        h="Built for real &middot; the first item made of Paul's own material"
+        d="Everything above is a stand-in. This one is not. It is example one of the course, and it is the reason two things on this page changed shape: an item can now carry several images in order, each labelled, and an item can now show what the model gave BACK as distinct from what the reader pastes in."
+      />
+
+      <Spec
+        n="14"
+        badge="Read &middot; images"
+        title="If you can write, you can create images"
+        body="You do not have to learn how to write a prompt. You take a picture you already like, ask AI to describe it, then ask for the same description with one or two things changed. Here is that happening once, with an ordinary photograph off a phone."
+        intake={
+          "## If you can write, you can create images\nThe three moves, in your voice.\n\nIMAGE: vespa-source.jpg\nLABEL: The picture we started with\nOUTPUT: the prompt AI wrote from it\n\nTYPED: same Vespa, but on a street in Rome\nOUTPUT: the short prompt that came back\nIMAGE: vespa-rome.jpg\n\n(repeat TYPED + OUTPUT + IMAGE per variant)"
+        }
+        cost="One picture you already have, and a few words. Made once, then it is a file in the repo."
+      >
+        <Moves />
+
+        <Shot
+          src={IMAGE_LESSON.source.src}
+          label={IMAGE_LESSON.source.label}
+          alt={IMAGE_LESSON.source.alt}
+          note={IMAGE_LESSON.source.credit}
+        />
+
+        <Output
+          label={IMAGE_LESSON.decode.label}
+          provenance={IMAGE_LESSON.decode.provenance}
+        >
+          <Paras text={IMAGE_LESSON.decode.text} />
+        </Output>
+
+        <p className="spec-subjectlead">
+          Then you ask for the same thing somewhere else. Three of them, and nobody had to
+          write a prompt to get any of them.
+        </p>
+
+        {IMAGE_LESSON.variants.map((v) => (
+          <VariantRow key={v.key} v={v} />
+        ))}
+
+        <p className="spec-note">
+          <b>What is real here and what is not.</b> The photograph is Paul&apos;s own Vespa, and
+          the prompt under it was written by AI from that file on 25 July. <b>The three results
+          do not exist yet</b>, so all three slots are empty and say so. Each one gets its prompt
+          and its picture filled in together, from one real generation, so the words shown are
+          the words that made the image. Nothing on this page calls a model: every variant is
+          made once and committed as a file, so a thousand people reading it costs nothing.
+        </p>
       </Spec>
 
       <div className="spec-group">
