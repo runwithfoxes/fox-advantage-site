@@ -819,8 +819,28 @@ export const MODULE_1: ModuleDef = {
       text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
     },
     {
-      t: "Talk, don't type",
-      text: "I say a lot more than I'd type. I hit the voice button in the ChatGPT or Claude app, or use a dictation tool like Superwhisper on my laptop, and talk for two minutes. Rambling is fine. It's better at sorting my mess than I am.",
+      /* ⭐⭐ PAUL'S WORDS AND HIS HEADLINE, 3 Aug 2026. The last draft copy in module 1 is
+         gone: every item is now his. It replaces "Talk, don't type", written for him in May.
+
+         ⭐ fig-28, "you talk, it types". It has been built and unused since he named this as
+         #2 on his list of nine on 2 Aug. Paul, 3 Aug: "there is a figure for this."
+
+         ⚠️ ONE PRODUCT NAME REPAIRED, AND IT MATTERED MORE THAN THE USUAL SLIP. He dictated
+         "Monlogue"; the app is Monologue, verified live at monologue.to, "Dictation, voice
+         notes, and bot-free meeting notes". Shipping the misspelling would have sent students
+         looking for an app that does not exist.
+         ⚠️ ONE GRAMMAR SLIP REPAIRED: "more nuanced ways that if you have to think" -> "than
+         if". Both his to put back.
+         ⚠️ LEFT EXACTLY AS HE SAID IT: "I click a button on laptop", missing a possessive.
+         That is spoken register rather than an error, and the voice spec says it stays.
+
+         ⚠️ THE PROMPT IS KEPT AND HE DID NOT MENTION IT. "That was me thinking out loud. Turn
+         it into three clear points and a next step" is his own line from the May article and
+         fits his second paragraph, but his new copy does not point at it the way item 04's
+         does. His call whether it stays. */
+      t: "Use a Voice App",
+      figure: "fig-28",
+      text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
       prompt: "That was me thinking out loud. Turn it into three clear points and a next step.",
     },
     {
