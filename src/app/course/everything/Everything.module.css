@@ -4,12 +4,38 @@
  * A CSS MODULE, not an append to globals.css. Precedent: figures/Figure.module.css.
  * globals.css has a known collision point at its end (see the /softco note in
  * CLAUDE.md), and this page needs none of it: the shared furniture is reused by its
- * global class names (.mod-shell, .mod-masthead, .mod-copybox, .mod-type) so a prompt
- * on this page is pixel-identical to the same prompt on the module page.
+ * global class names (.mod-shell, .mod-grid, .mod-rail, .mod-masthead) so the top of this
+ * page is the same object as the top of a module page.
  *
- * Site rules held here: NO ROUNDED CORNERS on our own chrome, blue #3A7CA5 means
- * clickable and nothing else, mono for machine text, serif for reading.
+ * ⭐⭐ THE ROWS ARE A DELIBERATE BORROW FROM GITHUB'S FILE LIST, 3 Aug 2026, from a real
+ * repo page screenshotted that afternoon rather than from memory. Paul: "It doesn't have
+ * the discipline and neatness of a spreadsheet. I quite like how GitHub looks... This feels
+ * just vague and bloated." What is borrowed is DISCIPLINE and it is specific:
+ *
+ *   a bordered container with a header strip, not floating rows on the page background
+ *   one line per row, about 41px, never a paragraph
+ *   a 1px divider between every row, so the rhythm comes from rules and not whitespace
+ *   an icon column, folders above files
+ *   the name hard left, the metadata right-aligned in machine type
+ *
+ * ⛔ WHAT IS NOT BORROWED: rounded corners (a site rule, and GitHub's are 6px), its greys
+ * (ours is the cream palette), and its chrome density. The reference is the discipline, not
+ * a skin, and copying the skin would put a second design system on a Run with Foxes page.
+ *
+ * Site rules held here: NO ROUNDED CORNERS, blue #3A7CA5 means clickable and nothing else,
+ * mono for machine text, serif for reading.
  */
+
+/* ---------------------------------------------------------------- */
+/* THE RAIL'S COUNT. The rail itself is .mod-rail, shared verbatim   */
+/* with the module page so the two pages read as one system.         */
+/* ---------------------------------------------------------------- */
+
+.railn {
+  font-style: normal;
+  color: #a8a8a2;
+  margin-left: 8px;
+}
 
 /* ---------------------------------------------------------------- */
 /* SEARCH. The primary move on this page, so it is the biggest thing */
@@ -20,13 +46,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  margin-top: 36px;
+  gap: 12px;
+  margin-top: 32px;
 }
 
 .searchwrap {
   position: relative;
-  flex: 1 1 420px;
+  flex: 1 1 300px;
   display: flex;
   align-items: center;
 }
@@ -34,9 +60,9 @@
 .search {
   width: 100%;
   font-family: var(--mono);
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
-  padding: 16px 18px;
+  padding: 11px 14px;
   border: 1px solid #c9c9c3;
   border-radius: 0;
   background: #fff;
@@ -59,9 +85,9 @@
 
 .clear {
   position: absolute;
-  right: 12px;
+  right: 10px;
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #3a7ca5;
@@ -78,21 +104,18 @@
 /* Module numbers, one at a time. Quiet outlines: these are filters, not the point. */
 .mods {
   display: flex;
-  gap: 6px;
+  gap: 4px;
 }
 .mods button {
   font-family: var(--mono);
-  font-size: 0.75rem;
-  min-width: 38px;
-  padding: 12px 10px;
+  font-size: 0.6875rem;
+  min-width: 32px;
+  padding: 10px 8px;
   border: 1px solid #c9c9c3;
   border-radius: 0;
   background: #fff;
   color: #8a8a85;
   cursor: pointer;
-}
-.mods button:first-child {
-  padding: 12px 14px;
 }
 .mods button:hover:not(:disabled) {
   border-color: #3a7ca5;
@@ -110,112 +133,208 @@
   cursor: default;
 }
 
+/* ⭐ THE COUNT APPEARS ONLY WHILE FILTERING. On the first version it sat there always,
+   under a rule, announcing "9 things" directly below a masthead that had just said the
+   same. Two counts and a heavy rule for no news is most of what read as bloat. */
 .count {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 22px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #1a3a4e;
+  gap: 14px;
+  margin: 16px 0 0;
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #8a8a85;
 }
-.flash {
-  color: #3a7ca5;
-}
-
-/* ---------------------------------------------------------------- */
-/* THE ROWS                                                          */
-/* ---------------------------------------------------------------- */
-
-.row {
-  border-bottom: 1px solid #e0e0dc;
-  padding: 28px 0;
-}
-
-.rowtop {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.h2 {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-  margin: 0;
-  flex: 1 1 auto;
-  color: #1d1b1b;
-}
-
-.open {
+.flashline {
+  margin: 12px 0 0;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.6875rem;
   color: #3a7ca5;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-.open:hover {
-  border-bottom-color: #3a7ca5;
-}
-
-.desc {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  margin: 0;
-  color: #1d1b1b;
 }
 
 /* ---------------------------------------------------------------- */
-/* LINKS. The plain row is the default; no thumbnails on this page,  */
-/* because a library is scanned and a picture column halves how many */
-/* rows are visible at once.                                         */
+/* THE BOX. One per section. Header strip, then rows.                */
 /* ---------------------------------------------------------------- */
 
-.links {
-  margin-top: 16px;
-  border-top: 1px solid #e0e0dc;
+/* ⛔⛔ `padding: 0` IS LOAD-BEARING AND MUST NOT BE TIDIED AWAY. globals.css line 163
+   carries a BARE ELEMENT RULE, `section { padding: 120px 0 }`, written for the marketing
+   pages and inherited by every <section> on the site including this one. Each box rendered
+   with 120px of dead white above its own header strip and 120px below its last row, which
+   is most of what read as "vague and bloated" in the first version and none of it was in
+   this file. A CSS module scopes YOUR selectors; it does not defend you from a bare element
+   selector in a global sheet. Anything semantic here (section, article, main) has to null it
+   out explicitly. The same rule is why `.coming` below sets its padding in full. */
+.box {
+  margin-top: 26px;
+  padding: 0;
+  border: 1px solid #e0e0dc;
+  background: #fff;
+  scroll-margin-top: 96px;
 }
-.link {
-  display: block;
-  padding: 14px 0;
+
+.boxhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 16px;
+  background: #f4f4f0;
   border-bottom: 1px solid #e0e0dc;
-  text-decoration: none;
-  color: inherit;
 }
-.ltitle {
-  display: block;
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  letter-spacing: -0.01em;
+.boxtitle {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
   color: #1d1b1b;
-  border-bottom: 1px solid transparent;
 }
-.link:hover .ltitle {
-  color: #3a7ca5;
-  border-bottom-color: #3a7ca5;
-}
-.lwhy {
-  display: block;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.9375rem;
-  color: #1d1b1b;
-  margin-top: 6px;
-}
-.lmeta {
-  display: block;
+.boxcount {
   font-family: var(--mono);
   font-size: 0.6875rem;
   color: #a8a8a2;
-  margin-top: 8px;
+}
+.boxempty {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: #a8a8a2;
+}
+
+/* ---------------------------------------------------------------- */
+/* THE ROW. One line. The whole discipline lives in these rules.     */
+/* ---------------------------------------------------------------- */
+
+.rw {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  min-height: 41px;
+  border-top: 1px solid #e0e0dc;
+  text-decoration: none;
+  color: inherit;
+}
+.box .rw:first-of-type,
+.boxhead + .rw,
+.boxhead + div > .rw {
+  border-top: 0;
+}
+.rw:hover {
+  background: #fafaf8;
+}
+
+.rwmain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 10px 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.rwname {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: #1d1b1b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 1 auto;
+}
+.rw:hover .rwname {
+  color: #3a7ca5;
+}
+
+/* GitHub's commit-message column: the quiet context that lets you tell two rows apart
+   without adding a second line. It truncates rather than wraps, on purpose. */
+.rwdesc {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.8125rem;
+  color: #a8a8a2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.rwmeta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: #a8a8a2;
+  white-space: nowrap;
+}
+
+.rwopen,
+.rwcopy {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3a7ca5;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.rwopen:hover,
+.rwcopy:hover {
+  border-bottom-color: #3a7ca5;
+}
+
+/* A file inside a folder. Indented by the icon column so the tree is legible at a glance. */
+.child {
+  padding-left: 42px;
+  background: #fdfdfc;
+}
+
+.ico {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  color: #a8a8a2;
+}
+/* The one filled glyph, and the one piece of GitHub's own colour logic worth keeping:
+   a folder reads as a container at a glance and a file does not compete with it. */
+.folder {
+  fill: #3a7ca5;
+  stroke: #3a7ca5;
+  color: #3a7ca5;
+}
+
+/* ---------------------------------------------------------------- */
+/* THE PROMPT, opened from its own file row.                         */
+/* ---------------------------------------------------------------- */
+
+.promptwrap {
+  border-top: 1px solid #e0e0dc;
+  background: #fdfdfc;
+  padding: 0 16px 16px 42px;
+}
+.prompt {
+  margin: 16px 0 0;
+  padding: 16px;
+  background: #fafaf8;
+  border: 1px solid #e0e0dc;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: #1d1b1b;
+  white-space: pre-wrap;
+  overflow-x: auto;
 }
 
 /* ---------------------------------------------------------------- */
@@ -227,7 +346,7 @@
   font-size: 1.0625rem;
   line-height: 1.6;
   color: #1d1b1b;
-  padding: 48px 0;
+  padding: 40px 0;
   margin: 0;
 }
 .empty b {
@@ -250,9 +369,11 @@
 /* STILL TO COME                                                     */
 /* ---------------------------------------------------------------- */
 
+/* Padding in full, not `padding-top`, for the reason given on .box above: the bare
+   `section` rule in globals would otherwise leave 120px hanging off the bottom. */
 .coming {
-  margin-top: 48px;
-  padding-top: 22px;
+  margin-top: 40px;
+  padding: 20px 0 0;
   border-top: 1px solid #e0e0dc;
 }
 .comingtitle {
@@ -260,7 +381,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.02em;
   color: #3a7ca5;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
 }
 .comingrow {
   display: grid;
@@ -278,13 +399,13 @@
 }
 
 /* ---------------------------------------------------------------- */
-/* THE ASK. Cream panel, square, quiet. It is the last thing on the  */
-/* page rather than the first, because the page has to earn it.      */
+/* THE ASK. Square, quiet. It is the last thing on the page rather   */
+/* than the first, because the page has to earn it.                  */
 /* ---------------------------------------------------------------- */
 
 .signup {
-  margin-top: 56px;
-  padding: 34px 34px 36px;
+  margin-top: 48px;
+  padding: 30px 30px 32px;
   background: #fff;
   border: 1px solid #e0e0dc;
   border-radius: 0;
@@ -324,14 +445,22 @@
 }
 
 @media (max-width: 860px) {
-  .tools {
-    gap: 12px;
-  }
   .searchwrap {
     flex: 1 1 100%;
   }
   .mods {
     flex-wrap: wrap;
+  }
+  /* The description column is the first thing to go: on a narrow screen the name needs
+     the width more than the context does. */
+  .rwdesc {
+    display: none;
+  }
+  .child {
+    padding-left: 28px;
+  }
+  .promptwrap {
+    padding-left: 16px;
   }
   .signup {
     padding: 24px 20px 26px;

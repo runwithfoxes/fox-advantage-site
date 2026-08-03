@@ -2,31 +2,59 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import type { LinkEntry } from "../moduleData";
-import { slugOf } from "../moduleData";
 import s from "./Everything.module.css";
 
 /**
- * ⭐ ONE SHAPE FOR EVERY LINK ON THIS PAGE, whichever slot it came out of. page.tsx merges
- * an item's `links` and `reading` into this; the note there says why the module page's
- * distinction between them stops at the door.
+ * ⭐⭐ THE PAGE IS A FILE TREE, 3 Aug 2026. Paul named GitHub as the reference and named what
+ * he liked about it: "it's got little folders and links and things like this". So the borrow
+ * is mechanical, from a real repo page screenshotted the same afternoon rather than from
+ * memory of one: a bordered container with a header strip, one-line rows about 41px tall, a
+ * 1px divider between every row, an icon column, the name on the left, and the metadata
+ * right-aligned in machine type. Folders sort above files.
  *
- * ⛔ `why` IS OPTIONAL HERE AND THAT IS NOT A LOOSENING. LinkEntry requires one and marks it
- * PAUL'S TO WRITE; `reading` deliberately has no such field, because the alternative is a
- * one-line reason invented on his behalf on a public page. So a reading row shows what it is
- * and who made it, and stays silent about why, until he writes one.
+ * ⛔ WHAT DELIBERATELY DOES NOT COME ACROSS: GitHub's rounded corners (a site rule), its
+ * greys (ours are the cream palette), and its density of chrome. It is a reference for
+ * DISCIPLINE, which was the actual complaint, not a skin.
  */
-export type Ref = Omit<LinkEntry, "why"> & { why?: string };
 
-export type Row = {
-  modN: number;
-  modTitle: string;
-  /** 1-based position in its module. The module page numbers items, so this matches. */
-  i: number;
-  t: string;
-  text: string;
-  prompt?: string;
-  refs?: Ref[];
+export type FileRow = {
+  kind: "prompt" | "link";
+  name: string;
+  /** Right-aligned machine text. The source for a link, the size for a prompt. */
+  meta?: string;
+  /** Links only. */
+  url?: string;
+  /** Prompts only. The text the copy button puts on the clipboard. */
+  body?: string;
+};
+
+export type Row =
+  | {
+      type: "folder";
+      key: string;
+      name: string;
+      modN: number;
+      desc: string;
+      href: string;
+      files: FileRow[];
+      search: string;
+    }
+  | {
+      type: "file";
+      key: string;
+      name: string;
+      meta?: string;
+      url: string;
+      note?: string;
+      search: string;
+    };
+
+export type Section = {
+  slug: string;
+  title: string;
+  blurb?: string;
+  kind: "lessons" | "shelf";
+  rows: Row[];
 };
 
 type ModuleRow = { n: number; title: string; when: string; has: boolean };
@@ -48,18 +76,21 @@ function useIsMember(): boolean {
 }
 
 export default function EverythingClient({
-  rows,
+  sections,
   modules,
   hidden,
+  shelfCount,
 }: {
-  rows: Row[];
+  sections: Section[];
   modules: ModuleRow[];
   hidden: number;
+  shelfCount: number;
 }) {
   const [q, setQ] = useState("");
   const [mod, setMod] = useState<number | null>(null);
   const [flash, setFlash] = useState<string | null>(null);
   const [build, setBuild] = useState(false);
+  const [open, setOpen] = useState<Set<string>>(new Set());
   const isMember = useIsMember();
 
   useEffect(() => {
@@ -71,30 +102,37 @@ export default function EverythingClient({
     window.setTimeout(() => setFlash(null), 1600);
   };
 
+  const toggle = (key: string) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+
   /* ⭐ SEARCH COVERS THE BODY, NOT JUST TITLES. Somebody looking for this months later
      remembers "the one about the spreadsheet", and the word spreadsheet may only appear
-     in the prose. Titles-only search would fail exactly the person this page is for. */
-  const haystack = useMemo(() => {
-    const m = new Map<Row, string>();
-    rows.forEach((r) => {
-      const parts = [r.t, r.text, r.prompt ?? "", r.modTitle];
-      r.refs?.forEach((L) => parts.push(L.title, L.why ?? "", L.by));
-      m.set(r, parts.join(" ").toLowerCase());
-    });
-    return m;
-  }, [rows]);
-
+     in the prose. Titles-only search would fail exactly the person this page is for.
+     The haystack is built on the server now, so a slot added to an item cannot silently
+     fall out of search the way `reading` and `beats` both did. */
   const shown = useMemo(() => {
-    /* Every word must match, in any order and anywhere. "spreadsheet chart" finds the
-       item that mentions both, which is how people actually half-remember things. */
     const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-    return rows.filter((r) => {
-      if (mod !== null && r.modN !== mod) return false;
-      if (!terms.length) return true;
-      const h = haystack.get(r) ?? "";
-      return terms.every((t) => h.includes(t));
-    });
-  }, [rows, q, mod, haystack]);
+    return sections
+      .map((sec) => ({
+        ...sec,
+        rows: sec.rows.filter((r) => {
+          if (mod !== null && (r.type !== "folder" || r.modN !== mod)) return false;
+          if (!terms.length) return true;
+          return terms.every((t) => r.search.includes(t));
+        }),
+      }))
+      /* An empty shelf section is hidden from the public page, kept in the build view.
+         A heading over nothing reads as a broken page rather than an honest one. */
+      .filter((sec) => sec.rows.length > 0 || (build && sec.kind === "shelf"));
+  }, [sections, q, mod, build]);
+
+  const total = shown.reduce((n, sec) => n + sec.rows.length, 0);
+  const filtering = Boolean(q) || mod !== null;
 
   const copy = async (text: string, label: string) => {
     try {
@@ -105,12 +143,9 @@ export default function EverythingClient({
     }
   };
 
-  /* ⭐ THE LINK BACK IS FOR CONTEXT, NEVER FOR THE ARTEFACT. If someone has to click
-     into the module to get the prompt, this page is a second place to hunt and we have
-     made things worse. You leave with the thing from here. */
-  const moduleHref = (r: Row) => `/course/${r.modN}#i${r.i}`;
-
   const built = modules.filter((m) => m.has).length;
+  const lessonCount =
+    sections.find((sec) => sec.kind === "lessons")?.rows.length ?? 0;
 
   return (
     <div className="mod-shell">
@@ -125,8 +160,9 @@ export default function EverythingClient({
 
       {build && (
         <div className="mod-build">
-          <b>BUILD VIEW. A member never sees this.</b> {rows.length}{" "}
-          {rows.length === 1 ? "thing" : "things"} published
+          <b>BUILD VIEW. A member never sees this.</b> {lessonCount} from the lessons
+          {" · "}
+          {shelfCount} on the shelf
           {" · "}
           {hidden} {hidden === 1 ? "item is" : "items are"} hidden as placeholder
           {" · "}
@@ -134,195 +170,354 @@ export default function EverythingClient({
         </div>
       )}
 
-      <header className="mod-masthead">
-        <p className="mod-eyebrow">Free · nothing to sign up for</p>
-        <h1 className="mod-h1">Everything from the course</h1>
-        <p className="mod-standfirst">
-          Every prompt and every link, from all six modules, on one page. It is here so
-          you can find the thing you half-remember without going back through a lesson to
-          look for it. Take whatever is useful.
-        </p>
-        <div className="mod-meta">
-          <span>
-            On this page<b>{rows.length} things</b>
-          </span>
-          <span>
-            From<b>
-              {built} of {modules.length} modules
-            </b>
-          </span>
-          <span>
-            Cost<b>Free, and no email needed</b>
-          </span>
-          <span>
-            Sharing<b>Copy anything. Send it on.</b>
-          </span>
-        </div>
-      </header>
-
-      <div className={s.tools}>
-        <div className={s.searchwrap}>
-          <input
-            className={s.search}
-            type="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search everything. Try spreadsheet, or critic, or voice."
-            aria-label="Search everything from the course"
-          />
-          {q && (
-            <button type="button" className={s.clear} onClick={() => setQ("")}>
-              Clear
-            </button>
-          )}
+      {/* ⭐ THE SAME TWO-COLUMN GRID AS A MODULE PAGE, and the reason is measured rather than
+          felt. Paul, 3 Aug: "the fonts are too big". They were not. The h1 and the prose use
+          the identical classes on both pages; the module page indents them into a 748px
+          column and this page ran them across the full 1124px, so a 52px headline over a
+          50% wider measure read as shouting and the standfirst ran to about 120 characters
+          a line. Porting the grid fixes the type by fixing the column. */}
+      <div className="mod-grid">
+        <div className="mod-railcol">
+          <nav className="mod-rail">
+            <p>/the library</p>
+            {sections.map((sec, i) => {
+              const n = sec.rows.length;
+              /* An empty shelf section is listed for Paul and hidden from a learner, the
+                 same rule the sections themselves follow. */
+              if (n === 0 && !(build && sec.kind === "shelf")) return null;
+              return (
+                <a key={sec.slug} href={`#s-${sec.slug}`}>
+                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mod-dot" />
+                  <span>
+                    {sec.title}
+                    <em className={s.railn}>{n}</em>
+                  </span>
+                </a>
+              );
+            })}
+          </nav>
         </div>
 
-        {/* FILTERS ARE ONE AT A TIME. Paul's rule from the module page: multi-select
-            confused him. Search is the primary move here and these are for browsing. */}
-        <div className={s.mods}>
-          <button
-            type="button"
-            aria-pressed={mod === null}
-            onClick={() => setMod(null)}
-          >
-            Everything
-          </button>
-          {modules.map((m) => (
-            <button
-              key={m.n}
-              type="button"
-              aria-pressed={mod === m.n}
-              disabled={!m.has}
-              title={m.has ? m.title : `${m.title} · opens ${m.when}`}
-              onClick={() => setMod(mod === m.n ? null : m.n)}
-            >
-              {m.n}
-            </button>
-          ))}
-        </div>
-      </div>
+        <div className="mod-maincol">
+          <header className="mod-masthead">
+            <p className="mod-eyebrow">Free · nothing to sign up for</p>
+            <h1 className="mod-h1">Everything from the course</h1>
+            {/* The fox the module pages never use, so the library has its own. A fox is
+                furniture, not teaching, so it does not cross this page's own line. */}
+            <div className="chapter-fox-hero">
+              <img className="chapter-fox-hero-img" src="/fox/fox-book.png" alt="" />
+            </div>
+            <p className="mod-standfirst">
+              Every prompt and every link, from all six modules, on one page. It is here
+              so you can find the thing you half-remember without going back through a
+              lesson to look for it. Take whatever is useful.
+            </p>
+            <div className="mod-meta">
+              <span>
+                From the lessons<b>{lessonCount} things</b>
+              </span>
+              <span>
+                Modules<b>
+                  {built} of {modules.length} built
+                </b>
+              </span>
+              <span>
+                Cost<b>Free, and no email needed</b>
+              </span>
+              <span>
+                Sharing<b>Copy anything. Send it on.</b>
+              </span>
+            </div>
+          </header>
 
-      <div className={s.count}>
-        <span>
-          {shown.length} {shown.length === 1 ? "thing" : "things"}
-          {q || mod !== null ? " found" : ""}
-        </span>
-        {flash && <span className={s.flash}>{flash}</span>}
-      </div>
-
-      <main>
-        {shown.map((r) => (
-          <article key={`${r.modN}-${r.i}`} className={s.row}>
-            <div className={s.rowtop}>
-              <span className="mod-type">Module {r.modN}</span>
-              <h2 className={s.h2}>{r.t}</h2>
-              <Link className={s.open} href={moduleHref(r)}>
-                Open in module {r.modN}
-              </Link>
+          <div className={s.tools}>
+            <div className={s.searchwrap}>
+              <input
+                className={s.search}
+                type="search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search everything. Try transcript, or critic, or voice."
+                aria-label="Search everything from the course"
+              />
+              {q && (
+                <button type="button" className={s.clear} onClick={() => setQ("")}>
+                  Clear
+                </button>
+              )}
             </div>
 
-            {/* THE DESCRIPTION, NOT THE LESSON. One line of what it is so a scanner
-                knows whether this is the one. The teaching stays in the module. */}
-            <p className={s.desc}>{firstSentence(r.text)}</p>
+            {/* FILTERS ARE ONE AT A TIME. Paul's rule from the module page: multi-select
+                confused him. Search is the primary move here and these are for browsing. */}
+            <div className={s.mods}>
+              <button
+                type="button"
+                aria-pressed={mod === null}
+                onClick={() => setMod(null)}
+              >
+                All
+              </button>
+              {modules.map((m) => (
+                <button
+                  key={m.n}
+                  type="button"
+                  aria-pressed={mod === m.n}
+                  disabled={!m.has}
+                  title={m.has ? m.title : `${m.title} · opens ${m.when}`}
+                  onClick={() => setMod(mod === m.n ? null : m.n)}
+                >
+                  {m.n}
+                </button>
+              ))}
+            </div>
+          </div>
 
-            {r.prompt && (
-              <div className="mod-copybox">
-                <div className="mod-copyhead">
-                  <span>Paste this into Claude or ChatGPT</span>
-                  <button
-                    type="button"
-                    onClick={() => copy(r.prompt as string, "Prompt copied")}
-                  >
-                    Copy
-                  </button>
+          {filtering && (
+            <p className={s.count}>
+              <span>
+                {total} {total === 1 ? "thing" : "things"} found
+              </span>
+              <button
+                type="button"
+                className={s.linkbtn}
+                onClick={() => {
+                  setQ("");
+                  setMod(null);
+                }}
+              >
+                show everything
+              </button>
+            </p>
+          )}
+          {flash && <p className={s.flashline}>{flash}</p>}
+
+          <main>
+            {shown.map((sec) => (
+              <section key={sec.slug} id={`s-${sec.slug}`} className={s.box}>
+                <div className={s.boxhead}>
+                  <span className={s.boxtitle}>{sec.title}</span>
+                  <span className={s.boxcount}>
+                    {sec.rows.length} {sec.rows.length === 1 ? "thing" : "things"}
+                  </span>
                 </div>
-                <pre>{r.prompt}</pre>
-              </div>
-            )}
 
-            {r.refs && (
-              <div className={s.links}>
-                {r.refs.map((L, j) => (
-                  <a
-                    key={j}
-                    href={L.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={s.link}
-                  >
-                    <span className={s.ltitle}>{L.title}</span>
-                    {/* Rendered only when it exists. See the note on Ref. */}
-                    {L.why && <span className={s.lwhy}>{L.why}</span>}
-                    <span className={s.lmeta}>{L.by}</span>
-                  </a>
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
+                {sec.rows.length === 0 && (
+                  <p className={s.boxempty}>
+                    Nothing here yet. Paul writes this one.
+                  </p>
+                )}
 
-        {shown.length === 0 && (
-          <p className={s.empty}>
-            Nothing here matches <b>{q}</b>
-            {mod !== null && " in that module"}. Try a plainer word, or{" "}
-            <button
-              type="button"
-              className={s.linkbtn}
-              onClick={() => {
-                setQ("");
-                setMod(null);
-              }}
-            >
-              show everything
-            </button>
-            .
-          </p>
-        )}
-      </main>
+                {sec.rows.map((r) =>
+                  /* ⭐ AN ITEM WITH NO ARTEFACT IS NOT A FOLDER, 3 Aug 2026. "Use a Voice
+                     App" carries a figure and Paul's prose and nothing you can take, so the
+                     first build drew it as a folder reading "0 files", which is a container
+                     advertising its own emptiness. It still belongs on the page, because
+                     leaving it out would make the library disagree with the module about how
+                     many things are in it. It just isn't a folder: it is a row that points
+                     back at the lesson. */
+                  r.type === "folder" && r.files.length === 0 ? (
+                    <Link key={r.key} className={s.rw} href={r.href}>
+                      <span className={s.rwmain}>
+                        <FileIcon />
+                        <span className={s.rwname}>{r.name}</span>
+                        <span className={s.rwdesc}>{r.desc}</span>
+                      </span>
+                      <span className={s.rwmeta}>in the lesson</span>
+                      <span className={s.rwopen}>module {r.modN}</span>
+                    </Link>
+                  ) : r.type === "folder" ? (
+                    <div key={r.key}>
+                      <div className={s.rw}>
+                        <button
+                          type="button"
+                          className={s.rwmain}
+                          aria-expanded={open.has(r.key)}
+                          onClick={() => toggle(r.key)}
+                        >
+                          <FolderIcon on={open.has(r.key)} />
+                          <span className={s.rwname}>{r.name}</span>
+                          <span className={s.rwdesc}>{r.desc}</span>
+                        </button>
+                        <span className={s.rwmeta}>
+                          {r.files.length}{" "}
+                          {r.files.length === 1 ? "file" : "files"}
+                        </span>
+                        <Link className={s.rwopen} href={r.href}>
+                          module {r.modN}
+                        </Link>
+                      </div>
 
-      {/* WHAT IS STILL COMING. The page says plainly that it grows, rather than
-          implying six modules of material already sit here. */}
-      {modules.some((m) => !m.has) && (
-        <section className={s.coming}>
-          <p className={s.comingtitle}>Still to come</p>
-          {modules
-            .filter((m) => !m.has)
-            .map((m) => (
-              <p key={m.n} className={s.comingrow}>
-                <span>Module {m.n}</span>
-                <span>{m.title}</span>
-                <span>{m.when}</span>
-              </p>
+                      {/* ⛔⛔ RENDERED ALWAYS, HIDDEN WITH `hidden`, NEVER CONDITIONALLY
+                          MOUNTED. A first pass returned `open && files.map(...)` and it
+                          emptied the page of every external link: nine links were in the
+                          HTML before the folders existed and zero after. This page is public
+                          and ungated for one stated reason, that search and the AI engines
+                          can read the list, and a link that only exists after a click is a
+                          link they never see. The collapse is a reading affordance for a
+                          human, so it belongs in the DOM and not in the render. */}
+                      <div hidden={!open.has(r.key)}>
+                        {r.files.map((f, j) =>
+                          f.kind === "link" ? (
+                            <a
+                              key={j}
+                              className={`${s.rw} ${s.child}`}
+                              href={f.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className={s.rwmain}>
+                                <LinkIcon />
+                                <span className={s.rwname}>{f.name}</span>
+                              </span>
+                              <span className={s.rwmeta}>{f.meta}</span>
+                            </a>
+                          ) : (
+                            <div key={j} className={`${s.rw} ${s.child}`}>
+                              <button
+                                type="button"
+                                className={s.rwmain}
+                                onClick={() => toggle(`${r.key}-p`)}
+                                aria-expanded={open.has(`${r.key}-p`)}
+                              >
+                                <FileIcon />
+                                <span className={s.rwname}>{f.name}</span>
+                              </button>
+                              <span className={s.rwmeta}>{f.meta}</span>
+                              <button
+                                type="button"
+                                className={s.rwcopy}
+                                onClick={() => copy(f.body as string, "Prompt copied")}
+                              >
+                                copy
+                              </button>
+                            </div>
+                          ),
+                        )}
+
+                        {/* The prompt itself, opened from its own file row. Same rule as
+                            above: in the DOM always, so it is copyable by a machine that
+                            never clicks. */}
+                        {r.files
+                          .filter((f) => f.kind === "prompt")
+                          .map((f, j) => (
+                            <div
+                              key={j}
+                              className={s.promptwrap}
+                              hidden={!open.has(`${r.key}-p`)}
+                            >
+                              <pre className={s.prompt}>{f.body}</pre>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <a
+                      key={r.key}
+                      className={s.rw}
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className={s.rwmain}>
+                        <LinkIcon />
+                        <span className={s.rwname}>{r.name}</span>
+                        {r.note && <span className={s.rwdesc}>{r.note}</span>}
+                      </span>
+                      <span className={s.rwmeta}>{r.meta}</span>
+                    </a>
+                  ),
+                )}
+              </section>
             ))}
-        </section>
-      )}
 
-      {/* ⭐ THE ASK, AND ONLY FOR A STRANGER. A member has already given the email and
-          must never be asked again. Everything above this line is theirs either way. */}
-      {!isMember && (
-        <section className={s.signup}>
-          <h2 className={s.signuph}>These came from somewhere</h2>
-          <p className={s.signupp}>
-            Every one of these is lifted out of a lesson that says when to reach for it
-            and what good looks like when it comes back. That is the course. It is free,
-            it runs from 21 September, and it is six modules a fortnight apart.
-          </p>
-          <Link href="/course" className={s.signupcta}>
-            See the course
-          </Link>
-        </section>
-      )}
+            {total === 0 && !build && (
+              <p className={s.empty}>
+                Nothing here matches <b>{q}</b>
+                {mod !== null && " in that module"}. Try a plainer word, or{" "}
+                <button
+                  type="button"
+                  className={s.linkbtn}
+                  onClick={() => {
+                    setQ("");
+                    setMod(null);
+                  }}
+                >
+                  show everything
+                </button>
+                .
+              </p>
+            )}
+          </main>
+
+          {/* WHAT IS STILL COMING. The page says plainly that it grows, rather than
+              implying six modules of material already sit here. */}
+          {modules.some((m) => !m.has) && (
+            <section className={s.coming}>
+              <p className={s.comingtitle}>Still to come</p>
+              {modules
+                .filter((m) => !m.has)
+                .map((m) => (
+                  <p key={m.n} className={s.comingrow}>
+                    <span>Module {m.n}</span>
+                    <span>{m.title}</span>
+                    <span>{m.when}</span>
+                  </p>
+                ))}
+            </section>
+          )}
+
+          {/* ⭐ THE ASK, AND ONLY FOR A STRANGER. A member has already given the email and
+              must never be asked again. Everything above this line is theirs either way. */}
+          {!isMember && (
+            <section className={s.signup}>
+              <h2 className={s.signuph}>These came from somewhere</h2>
+              <p className={s.signupp}>
+                Every one of these is lifted out of a lesson that says when to reach for
+                it and what good looks like when it comes back. That is the course. It is
+                free, it runs from 21 September, and it is six modules a fortnight apart.
+              </p>
+              <Link href="/course" className={s.signupcta}>
+                See the course
+              </Link>
+            </section>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
 
-/**
- * The first sentence of Paul's prose, as the row's description.
- * ⛔ NEVER REWRITE HIS WORDS TO FIT. Taking his opening sentence is a cut, which is
- * reversible and honest. Summarising would put words in his mouth on a public page.
- */
-function firstSentence(text: string): string {
-  const m = text.match(/^[\s\S]*?[.?!](?=\s|$)/);
-  const out = (m ? m[0] : text).trim();
-  return out.length > 200 ? out.slice(0, 197).trimEnd() + "..." : out;
+/* ---------------------------------------------------------------- */
+/* ICONS. 16px, currentColor, square. Drawn rather than imported: a  */
+/* three-line path costs nothing and an icon font would be a network */
+/* request for four glyphs.                                          */
+/* ---------------------------------------------------------------- */
+
+function FolderIcon({ on }: { on: boolean }) {
+  return (
+    <svg className={`${s.ico} ${s.folder}`} viewBox="0 0 16 16" aria-hidden="true">
+      {on ? (
+        <path d="M1.5 13.5V4.5h4l1.5 2h7.5v7z" />
+      ) : (
+        <path d="M1.5 13.5v-11h5l1.5 2h7v9z" />
+      )}
+    </svg>
+  );
+}
+
+function FileIcon() {
+  return (
+    <svg className={s.ico} viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M3 1.5h6l4 4v9H3z" />
+    </svg>
+  );
+}
+
+function LinkIcon() {
+  return (
+    <svg className={s.ico} viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M6.5 9.5l3-3M7 4.5l1.5-1.5a2.5 2.5 0 013.5 3.5L10.5 8M9 11.5L7.5 13a2.5 2.5 0 01-3.5-3.5L5.5 8" />
+    </svg>
+  );
 }
