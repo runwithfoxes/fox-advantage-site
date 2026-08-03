@@ -256,31 +256,10 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
     window.setTimeout(() => setFlash(null), 2000);
   };
 
-  const urlFor = (it: Item) =>
-    `https://runwithfoxes.com/course/${mod.n}/${slugOf(it.t)}`;
-
-  const copyLink = async (it: Item) => {
-    try {
-      await navigator.clipboard.writeText(urlFor(it));
-      say("Link copied");
-    } catch {
-      say("Copy failed");
-    }
-  };
-
-  /* Copy text is the one that actually travels: it survives outside the site. */
-  const copyText = async (it: Item) => {
-    let out = `${it.t}\n\n${it.text}`;
-    if (it.prompt) out += `\n\n${it.prompt}`;
-    out += `\n\nFrom Paul Dervan's free AI course for marketers.\n${urlFor(it)}`;
-    try {
-      await navigator.clipboard.writeText(out);
-      say("Text copied");
-    } catch {
-      say("Copy failed");
-    }
-  };
-
+  /* ⛔ `urlFor`, `copyLink` and `copyText` DELETED 3 Aug 2026 with the buttons that called
+     them. They are in git, in the commit that removed the row, if sharing comes back.
+     ⚠️ When it does, build the per-item ROUTE first. All three composed a URL of the shape
+     /course/1/create-projects, and no such route exists. */
   const copyPrompt = async (it: Item, i: number) => {
     if (!it.prompt) return;
     try {
@@ -562,6 +541,22 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   />
                 )}
 
+                {/* ⛔ COPY LINK AND COPY TEXT REMOVED 3 Aug 2026. Paul: "I don't actually
+                    know what we're meant to do with copy link and copy text. What link? What
+                    text? It's confusing. We should take it away for now."
+
+                    ⭐ HE WAS RIGHT ON THE MECHANICS AS WELL AS THE MEANING. Copy link put
+                    runwithfoxes.com/course/1/create-projects on the clipboard, and THAT
+                    ROUTE DOES NOT EXIST: there is only /course/[n]. It copied a link to a
+                    404. Copy text carried the same dead URL at the foot of the prose.
+
+                    ⚠️ NOTHING IS LOST YET, because nobody can share this page anyway: it is
+                    linked from nowhere and has no email door. Sharing becomes real when the
+                    course is public, and it needs the per-item ROUTE first, not a button.
+                    The three functions behind these buttons are deleted rather than left to
+                    rot as lint warnings; git holds them. ⚠️ The same dead URL is still
+                    PRINTED in the reader bar when an item is open. Display only, and Paul
+                    has not called it, so it stands. */}
                 <div className="mod-share">
                   <button
                     type="button"
@@ -571,12 +566,6 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   >
                     <span className="mod-box" />
                     Done
-                  </button>
-                  <button type="button" className="mod-act" onClick={() => copyLink(it)}>
-                    Copy link
-                  </button>
-                  <button type="button" className="mod-act" onClick={() => copyText(it)}>
-                    Copy text
                   </button>
                 </div>
               </article>
