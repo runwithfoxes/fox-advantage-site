@@ -7,7 +7,6 @@ import ModuleArrival from "./ModuleArrival";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
-  KIND_LABEL,
   kindOf,
   slugOf,
   type Item,
@@ -503,7 +502,6 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         <main>
           {mod.items.map((it, i) => {
             if (!visible(it)) return null;
-            const k = kindOf(it);
             return (
               <article
                 key={i}
@@ -513,7 +511,37 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
               >
                 <div className="mod-itemtop">
                   <span className="mod-n">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mod-type">{KIND_LABEL[k]}</span>
+                  {/* ⛔ THE TYPE BADGE IS GONE, 3 Aug 2026. Paul asked what it meant twice
+                      ("I'm not sure what the show and copy badges are doing... do they make
+                      any sense at the moment?") and then ruled: "cut them."
+
+                      ⭐ THE AUDIT BEHIND THAT, so nobody rebuilds it from the same mistake.
+                      Across the 23 items it drew on: 14 of 23 carried the SAME label, so it
+                      sorted nothing; and all six "Show and copy" badges were FALSE, two on
+                      items with nothing to copy and four pointing at screenshots that had
+                      never been taken, which put Paul's own build to-do list in front of a
+                      learner. Two items that looked identical on screen carried different
+                      badges because one had a leftover `grab` field.
+
+                      ⛔ THE ROOT CAUSE, and it is the thing to avoid rather than the badge:
+                      kindOf() derives a label from WHICH FIELDS AN ITEM HAS, and then prints
+                      it as what the READER DOES. Assets and verbs are two axes and they were
+                      collapsed into one, which `specimen/artefacts.ts` diagnosed back in July.
+                      Any future signal must be DECLARED per item in his words, the way the
+                      blue headline word is, never inferred.
+
+                      ⚠️ kindOf AND THE FILTER STAY. The counter strip behind SHOW_COUNTERS
+                      counts with kindOf and is one flag away from returning, so the machinery
+                      is untouched. KIND_LABEL is no longer imported here, because the badge
+                      was its only reader.
+
+                      ⭐ AND THAT EXPOSED THE OTHER HALF OF THE JULY DEFECT. The counter strip
+                      never used KIND_LABEL at all: it carries its OWN labels in `cells`, so
+                      the same `steps` kind read "Show and copy" on the badge and "Shown with
+                      a picture" in the strip, both visible at once. One category, two names.
+                      Cutting the badge removed one of them by accident. If the strip ever
+                      comes back, its four labels are the only ones left and they should be
+                      read cold before anyone trusts them. */}
                   <h2 className="mod-h3">
                     <button type="button" onClick={() => setOpen(i)}>
                       {it.t}
