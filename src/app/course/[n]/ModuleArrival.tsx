@@ -26,9 +26,28 @@ import { useState } from "react";
  *
  * Styles are inline on purpose so this leaves no trace in globals.css when it goes.
  */
-export default function ModuleArrival() {
+/**
+ * ⭐⭐ THE FLUENCY PANEL IS ON MODULES 1 AND 6 ONLY, PAUL 3 Aug 2026, verbatim: "I only want
+ * the ai fluency assessment slider on module 1 and 6."
+ *
+ * ⭐ THIS COMPONENT USED TO TAKE NO PROPS, and that was invisible while module 1 was the only
+ * module that existed. The day 2 to 6 were registered it drew the opening fluency question on
+ * all six, including on module 6, where its own note promised to ask again at the end of
+ * module 6. Nothing failed and nothing looked broken. ⛔ The lesson is not "add a prop": it is
+ * that a component with no way to know where it is renders confidently in the wrong place.
+ *
+ * ⚠️ `end` VARIES THE PLACEHOLDER PROSE, NEVER PAUL'S QUESTION. The question is his own words
+ * and is deliberately IDENTICAL at both ends, because a number is only comparable when the
+ * question is. The note, the button and the saved line were already flagged in this file as
+ * placeholder and his to rewrite, which is the only reason they can differ at all.
+ */
+export default function ModuleArrival({ n }: { n: number }) {
   const [v, setV] = useState(5);
   const [saved, setSaved] = useState(false);
+
+  /** Module 1 opens the measurement, module 6 closes it. Nothing in between asks. */
+  const asks = n === 1 || n === 6;
+  const end = n === 6;
 
   const label =
     v <= 1
@@ -120,12 +139,16 @@ export default function ModuleArrival() {
           moduleData.ts. Do not reintroduce a second welcome: this block sits below the
           video and its only job is the fluency question. */}
 
+      {asks && (
       <div className="arr-rate">
-        {/* Paul's words, 2 Aug. Not to be reworded. */}
+        {/* Paul's words, 2 Aug. Not to be reworded, and identical at both ends on purpose. */}
         <p className="arr-q">How AI fluent do you feel that you are?</p>
+        {/* ⚠️ PLACEHOLDER, HIS TO REWRITE, both versions. The closing one exists because the
+            opening one promises a future that has already arrived by module 6. */}
         <p className="arr-note">
-          Your own read of it, not a test. Nobody else sees it. At the end of module 6 I
-          will ask again, and you will see what moved.
+          {end
+            ? "Your own read of it, not a test. Nobody else sees it. You answered this at the start of module 1, so this is the one that shows you what moved."
+            : "Your own read of it, not a test. Nobody else sees it. At the end of module 6 I will ask again, and you will see what moved."}
         </p>
 
         <div className="arr-row">
@@ -149,17 +172,21 @@ export default function ModuleArrival() {
           </div>
         </div>
 
+        {/* ⚠️ BOTH LABELS ARE PLACEHOLDER. "Save and begin" is wrong at the end of a course. */}
         <div className="arr-actions">
           <button type="button" onClick={() => setSaved(true)}>
-            Save and begin
+            {end ? "Save" : "Save and begin"}
           </button>
           {saved && (
             <span className="arr-saved">
-              Saved. I will ask you again at the end of module 6.
+              {end
+                ? "Saved."
+                : "Saved. I will ask you again at the end of module 6."}
             </span>
           )}
         </div>
       </div>
+      )}
 
       <p className="arr-pace">
         No deadline on this. The next module lands whether you finish or not, and nothing

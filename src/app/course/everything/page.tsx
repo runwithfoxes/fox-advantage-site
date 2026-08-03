@@ -170,7 +170,21 @@ export default function EverythingPage() {
        reasoning here: the row states the number. */
     title: m.title.replace(/^\(\d+\)\s*/, ""),
     when: m.when,
-    has: Boolean(MODULES_BY_N[m.n]),
+    /* ⭐⭐ HAS CONTENT, NOT MERELY REGISTERED, 3 Aug 2026. This read
+       `Boolean(MODULES_BY_N[m.n])` until modules 2 to 6 were registered as empty shells so
+       Paul could work across all six. The instant they existed this page announced "6 of 6
+       built", emptied its own "Still to come" list and lit all six filter chips, on the
+       strength of five modules containing nothing at all.
+
+       ⛔ NOBODY HAD LIED AND NOTHING HAD BROKEN, which is what makes it worth a comment. The
+       flag was named `has` and it truthfully reported what it measured: presence in the
+       registry. It was only ever a proxy for "built", and proxies come apart quietly the
+       day the thing they stand in for changes shape. The page kept rendering perfectly.
+
+       ⭐ SO IT NOW COUNTS ITEMS, which is the thing the word "built" was always pointing at.
+       A module joins the count when it has content and not one moment sooner, and that
+       holds however many empty modules get registered next. */
+    has: (MODULES_BY_N[m.n]?.items.length ?? 0) > 0,
   }));
 
   return (

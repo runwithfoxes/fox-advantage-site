@@ -491,7 +491,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
       {/* THE ARRIVAL BLOCK, 2 Aug 2026, EXPERIMENT. Welcome, video placeholder and the
           fluency slider take the position the counter strip and progress bar held.
           Revert = delete this line and set SHOW_COUNTERS back to true. */}
-      <ModuleArrival />
+      <ModuleArrival n={mod.n} />
 
       {SHOW_COUNTERS && (
       <div className="mod-comp">

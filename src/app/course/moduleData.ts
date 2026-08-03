@@ -22,6 +22,10 @@
  */
 
 import { PERSONAS } from "./personas.generated";
+/* ⭐ IMPORTED, NEVER RETYPED. Modules 2 to 6 take their blurb straight from the locked copy
+   so a signed-off line cannot exist twice and drift. Module 1's is inline above because it
+   predates this. */
+import { MODULE_BLURBS } from "./courseCopy";
 
 export type LinkEntry = {
   title: string;
@@ -918,7 +922,87 @@ export const MODULE_1: ModuleDef = {
   ],
 };
 
+/* ------------------------------------------------------------------ */
+/* MODULES 2 TO 6, REGISTERED AND EMPTY                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * ⭐⭐ PAUL, 3 Aug 2026: "I want to follow exact pixels from module 1, colours, hex, line
+ * weight, font, decisions on window, figures etc." HE ALREADY HAS THAT AND IT COST NOTHING,
+ * which is the only reason these five are eight lines each instead of an evening each.
+ * `/course/[n]` has one renderer, `ModuleClient`, so a module cannot look different from
+ * module 1 unless someone writes a second renderer. ⛔ Nobody should. The look is not
+ * copied here, it is inherited, and that is the difference between five pages that match
+ * today and five pages that still match after the next change to module 1.
+ *
+ * ⭐ WHAT IS ACTUALLY MISSING IS CONTENT, and these say so honestly by carrying `items: []`
+ * rather than a plausible-looking placeholder list. An invented item would render exactly
+ * like a real one.
+ *
+ * ⭐ EVERY FIELD BELOW IS ALREADY HIS. Titles and dates are read across from
+ * `courseModules.ts`; blurbs are the locked copy in `courseCopy.MODULE_BLURBS`, verbatim,
+ * some of it signed off line by line on 19 Jul. ⛔ Nothing here was written for him.
+ *
+ * ⚠️ NO `titleHl` AND NO `opening` ON ANY OF THEM, deliberately. Both are optional and the
+ * type's own comments say modules 2 to 6 are exactly where the fallbacks apply: a plain
+ * headline, and the blurb standing in until he writes an opening. A blue word guessed here
+ * would be a silent wrong answer, because a headline always renders.
+ *
+ * ⛔ `built` STAYS FALSE ON ALL FIVE. Registering a module is not building one, and the
+ * doctrine on that field is older than this file.
+ */
+const stub = (
+  n: number,
+  title: string,
+  when: string,
+  on: string,
+  blurb: string,
+): ModuleDef => ({ n, title, when, on, built: false, blurb, items: [] });
+
+/* Titles drop the "(N) " prefix from courseModules.ts for the same reason MODULE_1 does:
+   the page eyebrow already reads "Module N of 6", so the prefix printed the number twice. */
+export const MODULE_2 = stub(
+  2,
+  "Slow, then fast",
+  "Mon 5 Oct",
+  "2026-10-05",
+  MODULE_BLURBS[2],
+);
+export const MODULE_3 = stub(
+  3,
+  "Create adjacent value",
+  "Mon 19 Oct",
+  "2026-10-19",
+  MODULE_BLURBS[3],
+);
+export const MODULE_4 = stub(
+  4,
+  "System thinking",
+  "Mon 2 Nov",
+  "2026-11-02",
+  MODULE_BLURBS[4],
+);
+export const MODULE_5 = stub(
+  5,
+  "Building marketing agents",
+  "Mon 16 Nov",
+  "2026-11-16",
+  MODULE_BLURBS[5],
+);
+export const MODULE_6 = stub(
+  6,
+  "Tackle difficult problems",
+  "Mon 30 Nov",
+  "2026-11-30",
+  MODULE_BLURBS[6],
+);
+
 /** Every module, by number. Adding module 2 = one import and one line here. */
 export const MODULES_BY_N: Record<number, ModuleDef> = {
   1: MODULE_1,
+  2: MODULE_2,
+  3: MODULE_3,
+  4: MODULE_4,
+  5: MODULE_5,
+  6: MODULE_6,
 };
