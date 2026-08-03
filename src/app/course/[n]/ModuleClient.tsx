@@ -681,16 +681,19 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 ph={mod.items[open].placeholder}
               />
 
-              {/* ⭐⭐ THE LONG ARTICLE: a figure, then Paul's copy for that figure, repeated.
-                  His shape, 3 Aug 2026: "we show them all in the longer article with my copy
-                  after each one, as I explain it."
+              {/* ⭐⭐ THE LONG ARTICLE: a passage, then the picture of what you just read,
+                  repeated. ⛔ ORDER REVERSED 3 Aug 2026 once Paul WROTE the article: every
+                  passage in it is followed by "[figure here]". He had described it the other
+                  way round ("my copy after each one"), and the thing he wrote wins over the
+                  sentence about it. His "figures above my writing" rule is untouched: he
+                  scoped it himself to "when I have just one figure in an item".
                   ⭐ This is the second item type the 2 Aug note said would be needed the
                   moment one item carried several moves. It is not a gallery: the figures
                   share a move, and the repetition IS the lesson. */}
               {mod.items[open].beats?.map((b, j) => (
                 <div className="mod-beat" key={j}>
+                  {b.text && <Body text={b.text} ph={b.placeholder} />}
                   <Figure name={b.figure} className={figStyles.banner} />
-                  <Body text={b.text} ph={b.placeholder} />
                 </div>
               ))}
 

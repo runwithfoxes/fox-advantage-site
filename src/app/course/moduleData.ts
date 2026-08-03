@@ -88,10 +88,22 @@ export type Item = {
    * system's own founding argument (fig-05's note on the figures page). Four nice drawings
    * that do not share a move do not qualify.
    *
-   * ⚠️ EVERY `text` HERE IS PAUL'S TO WRITE. He said "with my copy after each one, as I
-   * explain it". Anything standing in for him carries the item's `placeholder` flag.
+   * ⛔⛔ A BEAT IS PROSE THEN ITS PICTURE, and this REVERSED on 3 Aug 2026 for a reason worth
+   * knowing. He first described it as "my copy after each one", which is figure then copy, and
+   * it was built that way. He then WROTE the article, and every passage in it is followed by
+   * "[figure here]". The artifact beat the description, because a thing he wrote is more
+   * reliable evidence than a sentence about the thing. FLAGGED TO HIM either way.
+   *
+   * ⭐ IT ALSO SETTLES A RULE THAT LOOKED BROKEN. "Put the figures above my writing... like a
+   * simple banner and then I explain below" was scoped by his own next words: "FOR WHEN I HAVE
+   * JUST ONE FIGURE IN AN ITEM." One figure is a banner over the prose. A long article with
+   * several is prose, then the picture of what you just read. The two rules never collided.
+   *
+   * ⚠️ `text` IS OPTIONAL, and beat one uses that. The item's own `text` is the article's
+   * opening passage, so the first figure follows it and carries no prose of its own.
+   * ⚠️ EVERY `text` HERE IS PAUL'S TO WRITE. Anything standing in for him is marked.
    */
-  beats?: { figure: string; text: string; placeholder?: boolean }[];
+  beats?: { text?: string; figure: string; placeholder?: boolean }[];
   /**
    * ⭐ A STANDALONE FIGURE FILE under /public, for a figure that is not in
    * `course-figures.html`. Added 2 Aug 2026 for the CFO persona figure.
@@ -683,25 +695,22 @@ export const MODULE_1: ModuleDef = {
          the figure with the prompt beside it" on the image beat. A real photograph beside a
          figure is a new shape and a beat currently holds exactly one drawing. Wait for him. */
       beats: [
+        /* Beat one carries NO prose: his article opens with the two paragraphs in `text`
+           above, and this figure follows them. */
+        { figure: "fig-31" },
         {
-          figure: "fig-31",
-          placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. The transcript comes off the video and goes into the project, so what the expert said is yours to work with.",
-        },
-        {
+          text: "You can deconstruct the prompt for an image. For example, you can take an image from your website, drop it into Claude and ask Claude to write a descriptive prompt that would create this type of image in an image generator. I use an image generator called GetImg, but there's many out there. And when I ask Claude for this prompt, I ask it to stay under a thousand characters. Once I have the prompt, then I can adjust and amend the prompt a little bit to change the details of the image, but keep the same aesthetic as the image. Beware of copyright, and I'm not endorsing that you steal any images or artwork or IP from anybody else.",
           figure: "fig-02",
-          placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. A picture goes into a chat and a description of it comes back, far longer than anyone would have typed. Then that description is a prompt you can change.",
         },
         {
+          placeholder: true,
+          text: "PLACEHOLDER, PAUL TO WRITE. How you can create a video from an image.",
           figure: "fig-06",
-          placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. The picture you made, turned into a video.",
         },
         {
-          figure: "fig-04",
           placeholder: true,
-          text: "PLACEHOLDER, PAUL TO WRITE. The source of a page you like goes in, and a first-pass wireframe comes back. A head start, with work still to do.",
+          text: "PLACEHOLDER, PAUL TO WRITE. Taking the code of a website, like his own, and creating a wireframe for it.",
+          figure: "fig-04",
         },
       ],
       /* ⭐⭐ PAUL'S TEASER COPY, VERBATIM, 3 Aug 2026. The sample written for him is gone.
@@ -709,7 +718,7 @@ export const MODULE_1: ModuleDef = {
          is why fig-31 is the figure standing above it.
          ⚠️ One dictation slip repaired, his to put back: "I do this for image, videos" ->
          "images". Nothing else touched, including the spaced hyphen, which is his. */
-      text: "AI is excellent for deconstructing things and rebuilding them. I do this for images, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
+      text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
     },
     {
       t: "Show it one example of good",
