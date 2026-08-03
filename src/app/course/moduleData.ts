@@ -850,26 +850,40 @@ export const MODULE_1: ModuleDef = {
          ⚠️ TITLE AND COPY ARE BOTH HIS TO WRITE. "Deep research" is his own phrase from
          2 Aug, standing in until he names it. ⛔ No figure exists for this lesson either. */
       t: "Deep research",
-      /* ⭐⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, hours after he asked for the slot to be held
-         open. Nothing repaired: no dictation slips in what he sent.
+      /* ⭐⭐ HIS OWN WORDS, RESTRUCTURED ON HIS INSTRUCTION, 3 Aug 2026. He read the rendered
+         item and said it looked terrible. The render was fine; the numbers draw. What was
+         wrong was the writing, and he confirmed the diagnosis rather than the guess.
 
-         ⭐ THE THREE NUMBERED LINES ARE ONE PARAGRAPH with single newlines, not three
-         paragraphs. Body renders a block whose every line is numbered as an <ol>. Split into
-         separate paragraphs they get a 30px gap each and stop reading as a list.
+         ⭐ THE NUMBERED LIST IS GONE, and that is the main change. The three lines were not
+         parallel: 1 was a naming fact, 2 was the instruction, 3 was a habit of his. Numbered
+         together, a reader cannot tell what the list is for. Worse, point 2 stated the
+         instruction and the method for it arrived three sentences later, separated by the
+         unrelated point about running all three tools. The instruction and its method are now
+         adjacent, which is the whole lesson.
+
+         ⭐ THE BURIED LESSON IS NOW THE SPINE. "Don't write the brief yourself, get Claude to
+         write it" was the last paragraph, rushed, and thrown away on "That's it."
+
+         ⭐⭐ "THE TOOLS HAVE IMPROVED DRAMATICALLY" IS HIS, 3 Aug, and it closes a real hole.
+         The opening retires the hallucination risk ("I don't feel that way now") and never
+         said what replaced it. Teaching without being in the room, that reads as permission
+         to trust the output. Asked him what the check was; the answer is that there is no
+         trick, the tools got better. So it says that, in his words, and claims nothing more.
 
          ⚠️ TITLE STILL HIS. "Deep research" is his own phrase from 2 Aug and stands in until
-         he names it. His own point 1 notes that Claude calls the feature "Research".
+         he names it. The Claude naming point survives in paragraph four.
          ⛔ STILL NO FIGURE for this lesson. Nothing in the library draws it. */
-      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nA few things.\n\n1 - Claude, ChatGPT and Gemini all have 'deep research' features. Claude just calls it \"Research\" but it's the same thing.\n2 - You need to write a decent research brief.\n3 - I often run all three in parallel and get them to critique and build on each other.\n\nThe way I get to a good research brief? I ask Claude. So I explain what I want, explain that I plan to click the Research button, and I want it to convert my bad prompt into a rigorous research brief prompt. That's it. There are also some decent websites you can use to help you write better prompts.",
-      /* ⭐ Paul's two links, 3 Aug 2026, both prompt generators, which is what his last line
-         points at: "some decent websites you can use to help you write better prompts".
+      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. The tools have improved dramatically. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nThe whole thing turns on the brief. A vague ask gets you a vague report, and you won't spot that it's vague until you've read it twice.\n\nSo don't write the brief yourself. Tell Claude what you want to find out, tell it you're about to click the Research button, and ask it to turn your rough ask into a proper research brief. Then run that.\n\nClaude, ChatGPT and Gemini all have this. Claude calls it Research rather than deep research, same thing. I often run all three in parallel and get them to critique and build on each other.\n\nAnyway, for now, the main point is that the brief is the work. Get that right and twenty minutes gets you something worth having.",
+      /* ⭐⭐ THE OPENAI LINK IS GONE, Paul's call, 3 Aug 2026: "lose the chatgpt link." It was
+         platform.openai.com, the developer platform rather than ChatGPT, a separate login
+         from a ChatGPT subscription that returns 403 to anyone not signed in. He wrote it up
+         as being "for anybody with ChatGPT account", so the link would have walled the very
+         reader it named. Flagged when it went in, cut when he saw it.
 
-         ⚠️ THE OPENAI ONE IS THE DEVELOPER PLATFORM, NOT CHATGPT. He wrote "for anybody with
-         ChatGPT account", and platform.openai.com is a separate login from a ChatGPT
-         subscription. It returns 403 to anyone not signed in, so a reader without a platform
-         account hits a wall rather than a page. His call, flagged.
-         ⭐ Its query string is KEPT: models= and optimize= are functional, not tracking. The
-         utm rule is about referrer credit, not about every parameter.
+         ⚠️ NOTHING IN THE BODY POINTS HERE ANY MORE. The old last line, "some decent websites
+         you can use to help you write better prompts", went with the restructure, so this is
+         now a bare offer rather than a promise the copy made. That reads fine, but if a
+         second link ever returns, the plural has to come back with it.
 
          ⭐ Prompt Cowboy title read off the live page. He was explicit that he does not use
          it, "I don't use this one, but it often mentioned", so nothing here implies he does.
@@ -877,11 +891,6 @@ export const MODULE_1: ModuleDef = {
          and not ours. Recorded as its name because that is the name, but if a self-awarded
          #1 sitting in Paul's course reads as an endorsement, trim it to "Prompt Cowboy". */
       reading: [
-        {
-          title: "Prompt optimizer",
-          by: "OpenAI Platform",
-          url: "https://platform.openai.com/chat/edit?models=gpt-5.5&optimize=true",
-        },
         {
           title: "Prompt Cowboy",
           by: "promptcowboy.ai",
