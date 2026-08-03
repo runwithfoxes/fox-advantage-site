@@ -7157,8 +7157,13 @@ a.project-card {
 /* ⭐ THE LIBRARY LINK at the foot of the rail. Written as `.mod-rail a.mod-rail-lib`
    because `.mod-rail a` above is the more specific selector and would otherwise force this
    one back into the numbered three-column grid. It is blue because it leaves the page, and
-   the numbered rows are not, which is the site's one colour rule doing its job. */
-.mod-rail a.mod-rail-lib{display:block;margin-top:12px;padding:12px 0 0;border-top:2px solid #1A3A4E;color:#3A7CA5;}
+   the numbered rows are not, which is the site's one colour rule doing its job.
+   ⛔ NO RULE ABOVE IT. It shipped with a 2px #1A3A4E border, borrowed from the masthead,
+   and Paul 3 Aug: "quite a heavy dark line compared to the rest of the elements we use on
+   this page. Feels wrong. I'd argue we don't need a line." The rail's own dividers are 1px
+   #E0E0DC, so a 2px near-black was the heaviest mark in the column and it was drawn around
+   the least important thing in it. Space separates it; the blue says it goes somewhere. */
+.mod-rail a.mod-rail-lib{display:block;margin-top:18px;padding:0;border-top:0;color:#3A7CA5;}
 .mod-rail a.mod-rail-lib:hover{text-decoration:underline;}
 .mod-rail a:hover{color:#3A7CA5;}
 .mod-k{color:#A8A8A2;font-variant-numeric:tabular-nums;}

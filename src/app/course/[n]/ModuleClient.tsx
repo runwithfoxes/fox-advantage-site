@@ -427,7 +427,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 this module's contents, in Paul's order. This is a different page. Giving it an
                 item number would make module 1 read as ten things when he wrote nine. */}
             <Link className="mod-rail-lib" href="/course/everything">
-              /library
+              /library of everything
             </Link>
           </nav>
         </div>

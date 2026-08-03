@@ -47,9 +47,37 @@ export type ShelfSection = {
 
 export const SHELF: ShelfSection[] = [
   {
+    /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "people i follow: Ethan Mollick, Lenny's
+       podcast, Peter Yang https://www.youtube.com/@PeterYangYT". In his order.
+
+       ⭐ HE GAVE ONE URL AND TWO NAMES. The other two were resolved and each page's own
+       <title> confirmed the identity before it was written here: oneusefulthing.org returns
+       "One Useful Thing | Ethan Mollick", lennyspodcast.com returns "Lenny's Podcast".
+       ⛔ He said PODCAST, so it is lennyspodcast.com and not lennysnewsletter.com. They are
+       different products by the same person and both resolve, which is exactly the kind of
+       near-miss that would never announce itself.
+
+       ⚠️ Lenny's Podcast is a show rather than a person and it is under People because that
+       is where he put it. Not a filing error to be tidied. */
     slug: "people",
     title: "People I follow",
-    entries: [],
+    entries: [
+      {
+        name: "Ethan Mollick",
+        by: "oneusefulthing.org",
+        url: "https://www.oneusefulthing.org",
+      },
+      {
+        name: "Lenny's Podcast",
+        by: "lennyspodcast.com",
+        url: "https://www.lennyspodcast.com",
+      },
+      {
+        name: "Peter Yang",
+        by: "youtube.com",
+        url: "https://www.youtube.com/@PeterYangYT",
+      },
+    ],
   },
   {
     /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "Companies I watch include Ramp, Every,
@@ -60,7 +88,9 @@ export const SHELF: ShelfSection[] = [
        why Ramp is worth watching, written on his behalf and published under his name, is the
        fabrication this file exists to prevent. The row is complete without one. */
     slug: "companies",
-    title: "Companies worth watching",
+    /* His own words for it, 3 Aug: "Companies I watch include...". Pairs with "People I
+       follow", so the four titles read in one voice instead of two. */
+    title: "Companies I watch",
     entries: [
       { name: "Ramp", by: "ramp.com", url: "https://ramp.com" },
       { name: "Every", by: "every.to", url: "https://every.to" },
@@ -70,14 +100,62 @@ export const SHELF: ShelfSection[] = [
     ],
   },
   {
+    /* ⭐ VIDEOS LIVE HERE TOO, Paul 3 Aug: "If I send you an Every article, it goes under
+       Articles. I'll also send YouTube links so that can go under articles. That may have to
+       be articles/videos."
+
+       ⭐⭐ AND THAT SETTLES THE ONE AMBIGUITY IN THE SHELF. Every is both a company and a
+       publication, so an Every article could sit in either folder. His ruling is that the
+       PUBLISHER goes in Companies and the PIECE goes here, which generalises: a shelf entry
+       is filed by WHAT IT IS, not by who made it. A named individual therefore has a row
+       under People and their articles have rows here, and neither is a duplicate of the
+       other. */
     slug: "articles",
-    title: "Articles worth your time",
+    title: "Articles and videos",
     entries: [],
   },
   {
+    /* "They might not be tools I use, maybe just tools" (3 Aug). A tool is worth listing
+       whether or not he has personally adopted it, and the shorter title does not quietly
+       claim he has. */
     slug: "tools",
-    title: "Tools I use",
-    entries: [],
+    title: "Tools",
+    /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "Tools: Clay.com, appify, vercel, Claude,
+       Chatgpt, Gemini, Seedance, GetImg, Smartlead, Klavyio, attio, Supabase, elevenlabs,
+       hyperframes". In his order. Every domain below was resolved and its own <title>
+       confirmed the product before it was written here.
+
+       ⭐ TWO OF HIS SPELLINGS WERE READ THROUGH, NOT COPIED: "appify" is Apify and "Klavyio"
+       is Klaviyo. Both are tools he already uses and both were confirmed by their page
+       titles, so this is reading a dictation slip rather than second-guessing him.
+
+       ⭐ claude.ai AND chatgpt.com RETURN 403 to a script. That is a bot challenge, not a
+       dead domain, and neither address is in any doubt.
+
+       ⛔⛔ TWO OF THE FOURTEEN ARE DELIBERATELY MISSING AND MUST NOT BE FILLED IN BY GUESS:
+       SEEDANCE. seedance.ai resolves but reads as a third-party aggregator rather than the
+       model's home, and Paul reaches Seedance through Replicate in the /fox-video skill. The
+       right URL depends on what he wants a reader to arrive at.
+       HYPERFRAMES. hyperframes.com returns 503 "Maintenance mode"; hyperframe.ai is a live
+       product called Hyperframe. Two plausible targets, one letter apart, and picking the
+       wrong one publishes a broken recommendation under his name.
+       Both are queued with him. */
+    entries: [
+      { name: "Clay", by: "clay.com", url: "https://clay.com" },
+      { name: "Apify", by: "apify.com", url: "https://apify.com" },
+      /* ⚠️ Also in "Companies I watch". He named it in both lists and both are true, so it
+         is listed twice on purpose rather than silently deduplicated. Flagged to him. */
+      { name: "Vercel", by: "vercel.com", url: "https://vercel.com" },
+      { name: "Claude", by: "claude.ai", url: "https://claude.ai" },
+      { name: "ChatGPT", by: "chatgpt.com", url: "https://chatgpt.com" },
+      { name: "Gemini", by: "gemini.google.com", url: "https://gemini.google.com" },
+      { name: "GetImg", by: "getimg.ai", url: "https://getimg.ai" },
+      { name: "Smartlead", by: "smartlead.ai", url: "https://smartlead.ai" },
+      { name: "Klaviyo", by: "klaviyo.com", url: "https://klaviyo.com" },
+      { name: "Attio", by: "attio.com", url: "https://attio.com" },
+      { name: "Supabase", by: "supabase.com", url: "https://supabase.com" },
+      { name: "ElevenLabs", by: "elevenlabs.io", url: "https://elevenlabs.io" },
+    ],
   },
 ];
 
