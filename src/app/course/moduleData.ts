@@ -825,51 +825,31 @@ export const MODULE_1: ModuleDef = {
          ⚠️ TITLE AND COPY ARE BOTH HIS TO WRITE. "Deep research" is his own phrase from
          2 Aug, standing in until he names it. ⛔ No figure exists for this lesson either. */
       t: "Deep research",
-      /* ⭐⭐ HIS OWN WORDS, RESTRUCTURED ON HIS INSTRUCTION, 3 Aug 2026. He read the rendered
-         item and said it looked terrible. The render was fine; the numbers draw. What was
-         wrong was the writing, and he confirmed the diagnosis rather than the guess.
+      /* ⭐⭐ PAUL'S WORDS, VERBATIM. Nothing repaired: no dictation slips in what he sent.
 
-         ⭐ THE NUMBERED LIST IS GONE, and that is the main change. The three lines were not
-         parallel: 1 was a naming fact, 2 was the instruction, 3 was a habit of his. Numbered
-         together, a reader cannot tell what the list is for. Worse, point 2 stated the
-         instruction and the method for it arrived three sentences later, separated by the
-         unrelated point about running all three tools. The instruction and its method are now
-         adjacent, which is the whole lesson.
+         ⛔⛔ RESTORED 3 Aug 2026 AFTER A REWRITE, ON HIS INSTRUCTION: "change back the copy to
+         what I gave you." Another terminal had restructured this item the same afternoon,
+         cutting the numbered list, promoting the last paragraph to the spine and adding
+         sentences he had not written ("The tools have improved dramatically", "A vague ask
+         gets you a vague report"). Its commit is 752b47b if the reasoning is ever wanted.
 
-         ⭐ THE BURIED LESSON IS NOW THE SPINE. "Don't write the brief yourself, get Claude to
-         write it" was the last paragraph, rushed, and thrown away on "That's it."
+         ⭐⭐ THE RULE THIS BREAKS IS THE OLDEST ONE IN THE FILE, and it is worth naming rather
+         than filing away: HIS WORDS ARE THE ONLY SOURCE OF COURSE CONTENT. A restructure that
+         improves an argument is still a rewrite. Diagnose in chat, propose in chat, and let
+         him hand back the new version. Do not edit his prose and describe it as his.
 
-         ⭐⭐ "THE TOOLS HAVE IMPROVED DRAMATICALLY" IS HIS, 3 Aug, and it closes a real hole.
-         The opening retires the hallucination risk ("I don't feel that way now") and never
-         said what replaced it. Teaching without being in the room, that reads as permission
-         to trust the output. Asked him what the check was; the answer is that there is no
-         trick, the tools got better. So it says that, in his words, and claims nothing more.
+         ⭐ THE THREE NUMBERED LINES ARE ONE PARAGRAPH with single newlines, not three
+         paragraphs. Body draws a block whose every line is numbered as an <ol>. Split into
+         separate paragraphs they take a 30px gap each and stop reading as a list.
 
          ⚠️ TITLE STILL HIS. "Deep research" is his own phrase from 2 Aug and stands in until
-         he names it. The Claude naming point survives in paragraph four. */
-      /* ⭐ fig-35, the Research button close-up, built 26 Jul and signed off by Paul 3 Aug.
-         Handover: HANDOVER-fig-34-research-2026-08-03.md. It arrived after the note above was
-         written, which said no figure existed. It does now.
+         he names it. His own point 1 notes Claude calls the feature "Research".
 
-         ⛔ fig-35 IS THE ONE FOR THE PAGE. fig-34 is its still twin, the animation's last
-         frame from the same source, kept for print and reduced motion. Wire 34 by mistake and
-         you get a card that never moves and looks entirely correct.
-
-         ⭐ THREE CALLS PAUL MADE THAT THE COPY BESIDE IT MUST NOT CONTRADICT: there is NO
-         payoff beat, because what research gives back is his prose rather than the drawing;
-         the prompt is TWO lines, because one short pill reads as a question typed in passing
-         and the lesson is writing a good brief; and there are FIVE menu rows rather than the
-         eight really there, because greeked rows are interchangeable and the count is not the
-         lesson. Do not "fix" any of the three.
-
-         ⭐ ITS ONE LEGIBLE STRING IS "Research", and the figure serves the next feature by
-         swapping that single word. Do not weld it to this lesson in wrapper copy.
-
-         ⭐ IT SUITS THE REWRITE BETTER THAN IT WOULD HAVE SUITED THE ORIGINAL. The restructure
-         made "the brief is the work" the spine, and this figure is a prompt being typed and
-         then the button being pressed. Prompt first, button second, which is the same order. */
+         ⚠️ HIS LAST LINE SAYS "some decent websites", PLURAL, and only one prompt website is
+         linked. The OpenAI prompt optimizer was cut during the rewrite. Restoring his copy
+         puts that plural back without putting the link back. His call. */
       figure: "fig-35",
-      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. The tools have improved dramatically. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nThe whole thing turns on the brief. A vague ask gets you a vague report, and you won't spot that it's vague until you've read it twice.\n\nSo don't write the brief yourself. Tell Claude what you want to find out, tell it you're about to click the Research button, and ask it to turn your rough ask into a proper research brief. Then run that.\n\nClaude, ChatGPT and Gemini all have this. Claude calls it Research rather than deep research, same thing. I often run all three in parallel and get them to critique and build on each other.\n\nAnyway, for now, the main point is that the brief is the work. Get that right and twenty minutes gets you something worth having.",
+      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nA few things.\n\n1 - Claude, ChatGPT and Gemini all have 'deep research' features. Claude just calls it \"Research\" but it's the same thing.\n2 - You need to write a decent research brief.\n3 - I often run all three in parallel and get them to critique and build on each other.\n\nThe way I get to a good research brief? I ask Claude. So I explain what I want, explain that I plan to click the Research button, and I want it to convert my bad prompt into a rigorous research brief prompt. That's it. There are also some decent websites you can use to help you write better prompts.",
       /* ⭐⭐ THE OPENAI LINK IS GONE, Paul's call, 3 Aug 2026: "lose the chatgpt link." It was
          platform.openai.com, the developer platform rather than ChatGPT, a separate login
          from a ChatGPT subscription that returns 403 to anyone not signed in. He wrote it up
