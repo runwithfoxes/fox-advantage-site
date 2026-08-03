@@ -583,6 +583,47 @@ export const MODULE_1: ModuleDef = {
       promptLabel: "Copy CFO prompt",
     },
     {
+      /* ⭐⭐ PAUL'S ITEM, NAMED AND SCOPED BY HIM ON 3 Aug 2026: "i'd like for number 7 to be
+         called 'Break down and rebuilt' and this is a longer article that covers the idea
+         that AI is really good to deconstruct things, so I can understand them, and then
+         rebuild." He corrected the title himself a minute later: "Break down and rebuild
+         (not rebuilt)". His words, his title.
+
+         ⭐⭐ IT IS THE SECOND BUNDLE OF THE DAY AND THE BIGGER ONE. He named four things it
+         absorbs: image to prompt and back to image, copying what experts say in YouTube
+         transcripts, photograph, and website code to create wireframes. Two of those are on
+         his 2 Aug list of nine (#8 image, #9 transcript) and one is already an item further
+         down (Photograph the mess). The fourth, website source to a wireframe, is new today.
+
+         ⛔ SO "PHOTOGRAPH THE MESS" IS NOW DUPLICATED and Paul has not said to cut it. It
+         still stands as its own item lower in the array. Do not delete his content on an
+         inference; ask him.
+
+         ⭐⭐ THE FIGURE LIBRARY ALREADY HELD THIS ARGUMENT, WHICH IS WHY IT NEEDS NO NEW
+         DRAWING. fig-01/02 decode an image, fig-03/04 a page source into a first-pass
+         wireframe, fig-05/06 the same shape for video, fig-31 a YouTube transcript.
+         fig-05's own note in course-figures.html says it outright: "The same three cards.
+         What changes is only what sits in the first and the last, which is the whole
+         argument for having a vocabulary rather than drawing each one." His lesson and the
+         figure system's founding insight are the same thing.
+
+         ⛔⛔ AND THAT IS THE PROBLEM THE RENDERER HAS. This item names FOUR decodes and an
+         item carries ONE picture. It is the open design question from 25 Jul, arriving with
+         a real item behind it for the first time. fig-02 is wired as the flagship, the image
+         one, because it is the example he led with. ⚠️ A reader who is shown one decode and
+         told about four is being told the picture is an illustration rather than the lesson.
+         Paul's call: one figure, a figure per beat, or a strip that pans across all four.
+
+         ⚠️ THE PROSE IS SAMPLE COPY, NOT HIS. He said "this is a longer article", so it is
+         his to write and this is short on purpose: something to react to, not a stand-in for
+         a long piece. `placeholder: true` marks it. It names ONLY the four things he named
+         and invents no example, no statistic and no claim about what he does. */
+      t: "Break down and rebuild",
+      placeholder: true,
+      figure: "fig-02",
+      text: "One of the things AI is best at is taking a finished thing apart. You hand it something someone else made and ask what it is built from, and back come the parts. Then you can put them together again as something of your own.\n\nFor example, an image. You paste in a picture you like and ask it to describe it as a prompt. Far more comes back than you would ever have typed. Feed that prompt back in and you have your own version of it.\n\nIt works on anything finished. The source of a web page you like, and back comes a first-pass wireframe. The transcript off a YouTube video, and back comes what an expert actually said in a form you can use. A photograph of the thing on your desk, and back come its parts in a table.\n\nAnyway, for now, the point is that a finished thing is not a wall. It is something you can open up, understand, and build your own version of.",
+    },
+    {
       t: "Show it one example of good",
       text: "“Punchy” and “on brand” mean nothing to it. So I paste in one thing that already gets it right. One example does more than a paragraph of description.",
       prompt:
