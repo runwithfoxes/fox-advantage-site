@@ -377,6 +377,34 @@ export const MODULE_1: ModuleDef = {
       t: "Create Projects",
       figure: "fig-26",
       text: "I almost never open a chat and start working. I recommend you work in Claude Projects, and start your chats there. When in a project, you can set instructions on how you want Claude to work inside this project. You can add files, and you can add your outputs back into your projects. This gives you speed, and means you don't have to explain prompts over and over.\n\nThe other great advantage is you can work with colleagues in a project, getting you a collective brain.",
+      /* Paul's two links, 3 Aug 2026: the video, then "as is a how to guide", the support
+         article. ⭐ BOTH TITLES READ OFF THE LIVE PAGES, not guessed and not taken from his
+         message: he called the video "Getting started with projects in Claude AI" and it is
+         actually "...in Claude.ai". Same discipline as item 01's links. Neither URL carried
+         tracking parameters, so nothing was stripped.
+
+         ⭐ THIS IS THE FIRST ITEM IN THE COURSE WITH TWO. It is also the first time the slot
+         holds something that is literally a guide, which is what his opening promises ("I'm
+         not going to show you how to use AI, although will send you links to guides"). The
+         slot is still called "More on this" rather than "Guide", because it will hold videos
+         and articles across six modules. Worth revisiting once, not per item.
+
+         ⚠️ BOTH DOCUMENT A PRODUCT'S INTERFACE, AND MODULE 1 OPENS 21 Sep 2026. The video
+         went up 2 Dec 2025. A UI walkthrough is the one kind of link that rots without
+         anyone touching it. Same class as the model version numbers in item 02: check both
+         before this ships, and never quietly swap one for a different source. */
+      reading: [
+        {
+          title: "Getting started with projects in Claude.ai",
+          by: "Anthropic",
+          url: "https://www.youtube.com/watch?v=GJ5jTgcbRHA",
+        },
+        {
+          title: "How can I create and manage projects?",
+          by: "Anthropic",
+          url: "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects",
+        },
+      ],
       grab: "A Project, set up",
     },
     {
