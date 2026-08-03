@@ -923,14 +923,17 @@ export const MODULE_1: ModuleDef = {
          ⚠️ LEFT EXACTLY AS HE SAID IT: "I click a button on laptop", missing a possessive.
          That is spoken register rather than an error, and the voice spec says it stays.
 
-         ⚠️ THE PROMPT IS KEPT AND HE DID NOT MENTION IT. "That was me thinking out loud. Turn
-         it into three clear points and a next step" is his own line from the May article and
-         fits his second paragraph, but his new copy does not point at it the way item 04's
-         does. His call whether it stays. */
+         ⛔ THE PROMPT IS GONE, his call, 3 Aug 2026: "delete this... That was me thinking out
+         loud. Turn it into three clear points and a next step. from voice app."
+
+         ⭐ IT WAS FLAGGED WHEN THE NEW COPY WENT IN, and the flag was the right one: his own
+         line from the May article, kept because it fitted, cut because his new copy never
+         points at it. Item 04 names its button in the prose; this one had a paste block
+         nobody had asked the reader to use. It is in git and in the May article if it ever
+         earns a sentence pointing at it. */
       t: "Use a Voice App",
       figure: "fig-28",
       text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
-      prompt: "That was me thinking out loud. Turn it into three clear points and a next step.",
     },
   ],
 };
