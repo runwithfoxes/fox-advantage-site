@@ -383,6 +383,22 @@ export const MODULE_1: ModuleDef = {
           by: "Anthropic",
           url: "https://claude.com/blog/the-advisor-strategy",
         },
+        /* Paul's link, 3 Aug 2026, "for more reading on topic 1". Title read off the live
+           page: "Connectors | Claude by Anthropic", trimmed to the page's own name.
+
+           ⛔ IT ARRIVED CARRYING ?utm_source=chatgpt.com AND THAT WAS STRIPPED. Left on, it
+           credits someone else's referrer on every click and tells every reader of this
+           course where Paul found the page. This is the SECOND link to arrive with that exact
+           parameter, which is what the standing rule on `reading` above was written for.
+
+           ⭐ IT IS THE RIGHT ITEM. Item 01's second half is Claude as a technical colleague,
+           "its ability to connect with other software and other tools", and this is the page
+           listing what it connects to. */
+        {
+          title: "Connectors",
+          by: "Anthropic",
+          url: "https://claude.com/connectors",
+        },
       ],
     },
     {
