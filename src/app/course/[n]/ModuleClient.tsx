@@ -43,6 +43,58 @@ const SHOW_COUNTERS = false;
  */
 
 /**
+ * ⭐ AN ITEM'S PICTURE, ABOVE ITS PROSE. Paul, 2 Aug 2026: "put the figures above my
+ * writing. They are like a simple banner and then I explain below."
+ *
+ * ⭐⭐ ONE COMPONENT FOR BOTH RENDERS, and that is not tidiness. The opened window used to
+ * draw `figure` and NOT `figureFile`, so the CFO showed its drawing in the list and lost it
+ * on open, and the same file lost `reading` the same way. Two fields, one mistake, twice.
+ * Anything an item CARRIES is drawn here now, so the list and the reader cannot disagree.
+ *
+ * ⛔ ONE FIGURE HERE, ALWAYS, even for an item that carries four. Paul, 3 Aug, correcting a
+ * first attempt that stacked them all in the list: "We show one figure only. And then we show
+ * them all in the longer article with my copy after each one." The rest live in `beats` and
+ * are drawn only inside the opened window.
+ *
+ * ⚠️ THE GRAB PLACEHOLDER IS LIST-ONLY, on purpose. It is a window drawn where a screenshot
+ * Paul has not taken yet will go, so it is build scaffolding rather than something a learner
+ * is meant to study. Pass `build` to label it.
+ */
+function ItemPicture({
+  item,
+  build,
+  showGrab = true,
+}: {
+  item: Item;
+  build?: boolean;
+  showGrab?: boolean;
+}) {
+  if (item.figure) {
+    return <Figure name={item.figure} className={figStyles.banner} />;
+  }
+  if (item.figureFile) {
+    return <FigureFile src={item.figureFile} banner />;
+  }
+  if (item.grab && showGrab) {
+    return (
+      <div className="mod-win mod-win-banner">
+        <div className="mod-winbar">
+          <span className="mod-lights">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="mod-wintitle">{item.grab}</span>
+          {build && <span className="mod-winright">grab needed</span>}
+        </div>
+        <div className="mod-shot" data-ph="" />
+      </div>
+    );
+  }
+  return null;
+}
+
+/**
  * ⭐ ADDITIONAL READING. A subhead and a stacked list, at the END of an item.
  * Paul, 3 Aug 2026: "in the same way I write any article, I'd have a little subhead at the
  * very end that says additional reading, and then just a whole bunch of links."
@@ -470,31 +522,31 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   <span className="mod-openhint">Open</span>
                 </div>
 
-                {/* ⭐ THE FIGURE SITS ABOVE THE PROSE. Paul, 2 Aug 2026: "put the
-                    figures above my writing. They are like a simple banner and then I
-                    explain below. For when I have just one figure in an item."
-                    It was underneath until now, which made the drawing a footnote to
-                    the words rather than the thing the words explain. */}
-                {it.figure ? (
-                  <Figure name={it.figure} className={figStyles.banner} />
-                ) : it.figureFile ? (
-                  <FigureFile src={it.figureFile} banner />
-                ) : it.grab ? (
-                  <div className="mod-win mod-win-banner">
-                    <div className="mod-winbar">
-                      <span className="mod-lights">
-                        <i />
-                        <i />
-                        <i />
-                      </span>
-                      <span className="mod-wintitle">{it.grab}</span>
-                      {build && <span className="mod-winright">grab needed</span>}
-                    </div>
-                    <div className="mod-shot" data-ph="" />
-                  </div>
-                ) : null}
+                <ItemPicture item={it} build={build} />
 
                 <Body text={it.text} ph={it.placeholder} />
+
+                {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
+                    of his teaser copy for "Break down and rebuild".
+
+                    ⛔ IT IS A REAL CONTROL, NOT A SENTENCE. Left in the prose it would be a
+                    line telling a reader to do something with nothing to click, which is the
+                    same fault as the "OPEN" hint he misread on 25 Jul, running the other way.
+                    It opens the same window the headline does.
+
+                    ⭐ DERIVED FROM `beats`, NOT DECLARED. An item HAS a full essay exactly
+                    when it has beats, so this cannot appear on an item with nothing behind
+                    it. That is a mechanical fact about the data, not a guess about intent,
+                    which is the line this file draws elsewhere between the two. */}
+                {it.beats && it.beats.length > 0 && (
+                  <button
+                    type="button"
+                    className="mod-essaylink"
+                    onClick={() => setOpen(i)}
+                  >
+                    Read full essay
+                  </button>
+                )}
 
                 <ReadingList reading={it.reading} />
 
@@ -611,21 +663,36 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   The inline item draws `figure` OR `figureFile`; this one only ever drew
                   `figure`. So the CFO item, whose picture is a standalone file, showed its
                   drawing in the list and then LOST IT on open. That is the exact failure the
-                  old comment here claimed to prevent. Both branches now, same order as
-                  inline. */}
-              {mod.items[open].figure ? (
-                <Figure
-                  name={mod.items[open].figure as string}
-                  className={figStyles.banner}
-                />
-              ) : mod.items[open].figureFile ? (
-                <FigureFile src={mod.items[open].figureFile as string} banner />
-              ) : null}
+                  old comment here claimed to prevent.
+
+                  ⭐ FIXED PROPERLY 3 Aug: both renders now call the SAME component, so a
+                  field added to an item cannot appear in one and not the other again.
+                  `showGrab={false}` is the one deliberate difference: the grab placeholder
+                  is build scaffolding for Paul, not something a learner opens an item to
+                  study. */}
+              {/* ⛔ THE TEASER FIGURE IS NOT REDRAWN WHEN THE ITEM HAS BEATS, because it is
+                  one OF the beats and would otherwise appear twice in the same window. */}
+              {!mod.items[open].beats && (
+                <ItemPicture item={mod.items[open]} showGrab={false} />
+              )}
 
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
               />
+
+              {/* ⭐⭐ THE LONG ARTICLE: a figure, then Paul's copy for that figure, repeated.
+                  His shape, 3 Aug 2026: "we show them all in the longer article with my copy
+                  after each one, as I explain it."
+                  ⭐ This is the second item type the 2 Aug note said would be needed the
+                  moment one item carried several moves. It is not a gallery: the figures
+                  share a move, and the repetition IS the lesson. */}
+              {mod.items[open].beats?.map((b, j) => (
+                <div className="mod-beat" key={j}>
+                  <Figure name={b.figure} className={figStyles.banner} />
+                  <Body text={b.text} ph={b.placeholder} />
+                </div>
+              ))}
 
               {mod.items[open].prompt && (
                 <PromptBlock

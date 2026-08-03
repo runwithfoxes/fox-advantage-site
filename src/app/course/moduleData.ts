@@ -68,6 +68,31 @@ export type Item = {
    */
   figure?: string;
   /**
+   * ⭐⭐ THE LONG ARTICLE. A run of BEATS, each one a figure followed by Paul's copy for that
+   * figure. Added 3 Aug 2026 for "Break down and rebuild", and it is the SECOND ITEM TYPE the
+   * 2 Aug note predicted would be needed once one item carried several moves.
+   *
+   * ⭐⭐ IT RENDERS ONLY IN THE OPENED WINDOW. Paul, 3 Aug, correcting a first attempt that
+   * stacked four figures in the list: "We show one figure only. And then we show them all in
+   * the longer article with my copy after each one, as I explain it... You can use the
+   * youtube transcript as one we [show] before we click to open window."
+   *
+   * So an item like this reads twice, differently and on purpose:
+   *   in the LIST   `figure` alone, one drawing, plus the short `text`. A teaser.
+   *   OPENED        `text`, then every beat in order. The article.
+   * ⛔ The item's own `figure` is NOT drawn again inside the window, or the teaser appears
+   * twice. Whichever figure is the teaser should also be a beat, in its place in the argument.
+   *
+   * ⛔ IT IS NOT A GALLERY. This item earns four pictures because its lesson IS the
+   * repetition: the same three cards, and only the first and last change, which is the figure
+   * system's own founding argument (fig-05's note on the figures page). Four nice drawings
+   * that do not share a move do not qualify.
+   *
+   * ⚠️ EVERY `text` HERE IS PAUL'S TO WRITE. He said "with my copy after each one, as I
+   * explain it". Anything standing in for him carries the item's `placeholder` flag.
+   */
+  beats?: { figure: string; text: string; placeholder?: boolean }[];
+  /**
    * ⭐ A STANDALONE FIGURE FILE under /public, for a figure that is not in
    * `course-figures.html`. Added 2 Aug 2026 for the CFO persona figure.
    *
@@ -619,9 +644,72 @@ export const MODULE_1: ModuleDef = {
          a long piece. `placeholder: true` marks it. It names ONLY the four things he named
          and invents no example, no statistic and no claim about what he does. */
       t: "Break down and rebuild",
-      placeholder: true,
-      figure: "fig-02",
-      text: "One of the things AI is best at is taking a finished thing apart. You hand it something someone else made and ask what it is built from, and back come the parts. Then you can put them together again as something of your own.\n\nFor example, an image. You paste in a picture you like and ask it to describe it as a prompt. Far more comes back than you would ever have typed. Feed that prompt back in and you have your own version of it.\n\nIt works on anything finished. The source of a web page you like, and back comes a first-pass wireframe. The transcript off a YouTube video, and back comes what an expert actually said in a form you can use. A photograph of the thing on your desk, and back come its parts in a table.\n\nAnyway, for now, the point is that a finished thing is not a wall. It is something you can open up, understand, and build your own version of.",
+      /* ⭐ THE TEASER, and it is his pick: "You can use the youtube transcript as one we
+         [show] before we click to open window." fig-31 alone in the list. */
+      figure: "fig-31",
+      /* ⭐⭐ THE ARTICLE. All four relevant figures, each with his copy after it, only inside
+         the opened window. His instruction, 3 Aug: "I want all of our figures relevant in
+         this article", then the correction that fixed the shape: "We show one figure only.
+         And then we show them all in the longer article with my copy after each one, as I
+         explain it."
+
+         Order: decode a picture, remake it as something new, take a transcript, take a
+         page's structure. fig-31 sits second-last rather than first, because it is the
+         teaser and a reader who clicked in on it should meet the general move first.
+
+         ⭐ fig-06 IS IMAGE TO VIDEO, not image back to image. Flagged to Paul because his
+         phrase was "image to prompt and back to image" and prompt-back-to-image does not
+         exist as a drawing. His ruling, 3 Aug: "image to video works." So nothing is missing.
+
+         ⚠️ EVERY BEAT'S COPY BELOW IS A STAND-IN AND IS DELIBERATELY THIN. It says what the
+         drawing shows and nothing more, so the shape can be judged without anyone inventing
+         Paul's teaching. He writes the real thing: "my copy after each one, as I explain it."
+
+         ⛔ PHOTOGRAPH HAS NO FIGURE. He named it as part of this item and the library has no
+         drawing for it. It is the one beat that would need a new one. */
+      /* ⭐⭐ THE ORDER IS HIS, 3 Aug 2026, given as a walkthrough of how he will write it:
+         "the first thing I'll talk about is using YouTube... Then I'll talk about using an
+         image to deconstruct... After image, I'll move to talking about how you can create a
+         video from an image. And then after that I'll talk about being able to take the code
+         of a website like my website and create a wireframe for it."
+
+         ⭐ SO YOUTUBE LEADS, and that is why fig-31 is also the teaser standing above the
+         list. A reader who clicked in on the transcript meets the transcript first.
+         ⛔ Do not "improve" this into general-to-specific. He is building from the thing he
+         does most often outward, and beat 2 to beat 3 is a deliberate chain: you deconstruct
+         a picture, then you make a video out of it.
+
+         ⚠️ OPEN, HIS, NOT BUILT: "I might show a real photograph of something here as well as
+         the figure with the prompt beside it" on the image beat. A real photograph beside a
+         figure is a new shape and a beat currently holds exactly one drawing. Wait for him. */
+      beats: [
+        {
+          figure: "fig-31",
+          placeholder: true,
+          text: "PLACEHOLDER, PAUL TO WRITE. The transcript comes off the video and goes into the project, so what the expert said is yours to work with.",
+        },
+        {
+          figure: "fig-02",
+          placeholder: true,
+          text: "PLACEHOLDER, PAUL TO WRITE. A picture goes into a chat and a description of it comes back, far longer than anyone would have typed. Then that description is a prompt you can change.",
+        },
+        {
+          figure: "fig-06",
+          placeholder: true,
+          text: "PLACEHOLDER, PAUL TO WRITE. The picture you made, turned into a video.",
+        },
+        {
+          figure: "fig-04",
+          placeholder: true,
+          text: "PLACEHOLDER, PAUL TO WRITE. The source of a page you like goes in, and a first-pass wireframe comes back. A head start, with work still to do.",
+        },
+      ],
+      /* ⭐⭐ PAUL'S TEASER COPY, VERBATIM, 3 Aug 2026. The sample written for him is gone.
+         Two paragraphs: the move, then the YouTube transcript worked through in full, which
+         is why fig-31 is the figure standing above it.
+         ⚠️ One dictation slip repaired, his to put back: "I do this for image, videos" ->
+         "images". Nothing else touched, including the spaced hyphen, which is his. */
+      text: "AI is excellent for deconstructing things and rebuilding them. I do this for images, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
     },
     {
       t: "Show it one example of good",

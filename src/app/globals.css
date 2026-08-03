@@ -7668,3 +7668,16 @@ a.project-card {
 /* --- specimen 14: one variant, what you said and what it made ------- */
 .spec-variant{margin-top:20px;padding-top:18px;border-top:1px solid #E0E0DC;}
 .spec-varbody{margin:0;}
+
+/* ⭐ A BEAT in a long article: a figure, then Paul's copy for that figure. Added 3 Aug 2026
+   for "Break down and rebuild". Renders only inside the opened window. The gap above is
+   larger than the gap between paragraphs, so a reader can tell a new beat has started
+   without a heading doing it. */
+.mod-beat{margin-top:36px;}
+/* ⭐ "Read full essay", Paul's own line, made a real control. Blue because blue means
+   clickable on this page and nothing else. Sits under the teaser prose at the same 28px the
+   other artifacts use. */
+.mod-essaylink{display:inline-block;margin-top:24px;font-family:var(--mono);font-size:.8125rem;
+  color:#3A7CA5;background:none;border:0;border-bottom:1px solid #C9C9C3;padding:0 0 2px;
+  cursor:pointer;}
+.mod-essaylink:hover{border-bottom-color:#3A7CA5;}
