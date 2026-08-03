@@ -693,7 +693,21 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
               {mod.items[open].beats?.map((b, j) => (
                 <div className="mod-beat" key={j}>
                   {b.text && <Body text={b.text} ph={b.placeholder} />}
-                  <Figure name={b.figure} className={figStyles.banner} />
+                  {/* ⛔ A FIGURE AND A REAL ARTEFACT ARE DIFFERENT THINGS AND THE PAGE SAYS SO.
+                      A figure is a drawing of the move, reusable, naming nothing. An image is
+                      evidence that Paul actually did it. His copy leans on that difference:
+                      "here is the wireframe I got back". A beat can also be prose alone,
+                      which is how this article closes. */}
+                  {b.figure ? (
+                    <Figure name={b.figure} className={figStyles.banner} />
+                  ) : b.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      className="mod-beatimg"
+                      src={b.image.src}
+                      alt={b.image.alt}
+                    />
+                  ) : null}
                 </div>
               ))}
 

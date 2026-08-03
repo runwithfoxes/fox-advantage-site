@@ -7681,3 +7681,9 @@ a.project-card {
   color:#3A7CA5;background:none;border:0;border-bottom:1px solid #C9C9C3;padding:0 0 2px;
   cursor:pointer;}
 .mod-essaylink:hover{border-bottom-color:#3A7CA5;}
+/* ⭐ A REAL ARTEFACT inside a beat, added 3 Aug 2026 for the wireframe Paul's own site
+   produced. Square, full column width, a hairline so it reads as a captured thing rather
+   than as part of the page. ⚠️ It is a whole homepage at 2400x5053, so at column width it
+   runs about 1575px tall. Deliberately NOT cropped or capped: his sentence is "here is the
+   wireframe I got back", and a cropped wireframe is not the wireframe he got back. */
+.mod-beatimg{display:block;width:100%;height:auto;margin-top:20px;border:1px solid #E0E0DC;}
