@@ -819,31 +819,6 @@ export const MODULE_1: ModuleDef = {
       text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
     },
     {
-      /* ⭐⭐ PAUL'S WORDS AND HIS HEADLINE, 3 Aug 2026. The last draft copy in module 1 is
-         gone: every item is now his. It replaces "Talk, don't type", written for him in May.
-
-         ⭐ fig-28, "you talk, it types". It has been built and unused since he named this as
-         #2 on his list of nine on 2 Aug. Paul, 3 Aug: "there is a figure for this."
-
-         ⚠️ ONE PRODUCT NAME REPAIRED, AND IT MATTERED MORE THAN THE USUAL SLIP. He dictated
-         "Monlogue"; the app is Monologue, verified live at monologue.to, "Dictation, voice
-         notes, and bot-free meeting notes". Shipping the misspelling would have sent students
-         looking for an app that does not exist.
-         ⚠️ ONE GRAMMAR SLIP REPAIRED: "more nuanced ways that if you have to think" -> "than
-         if". Both his to put back.
-         ⚠️ LEFT EXACTLY AS HE SAID IT: "I click a button on laptop", missing a possessive.
-         That is spoken register rather than an error, and the voice spec says it stays.
-
-         ⚠️ THE PROMPT IS KEPT AND HE DID NOT MENTION IT. "That was me thinking out loud. Turn
-         it into three clear points and a next step" is his own line from the May article and
-         fits his second paragraph, but his new copy does not point at it the way item 04's
-         does. His call whether it stays. */
-      t: "Use a Voice App",
-      figure: "fig-28",
-      text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
-      prompt: "That was me thinking out loud. Turn it into three clear points and a next step.",
-    },
-    {
       /* ⭐ PAUL'S, 3 Aug 2026: "I'm going to keep in the research which I need to write."
          There was NO research item on the page. Deep research was #5 on his list of nine and
          had nothing behind it, so this is a slot he asked to hold open, not a survivor.
@@ -871,8 +846,29 @@ export const MODULE_1: ModuleDef = {
          trick, the tools got better. So it says that, in his words, and claims nothing more.
 
          ⚠️ TITLE STILL HIS. "Deep research" is his own phrase from 2 Aug and stands in until
-         he names it. The Claude naming point survives in paragraph four.
-         ⛔ STILL NO FIGURE for this lesson. Nothing in the library draws it. */
+         he names it. The Claude naming point survives in paragraph four. */
+      /* ⭐ fig-35, the Research button close-up, built 26 Jul and signed off by Paul 3 Aug.
+         Handover: HANDOVER-fig-34-research-2026-08-03.md. It arrived after the note above was
+         written, which said no figure existed. It does now.
+
+         ⛔ fig-35 IS THE ONE FOR THE PAGE. fig-34 is its still twin, the animation's last
+         frame from the same source, kept for print and reduced motion. Wire 34 by mistake and
+         you get a card that never moves and looks entirely correct.
+
+         ⭐ THREE CALLS PAUL MADE THAT THE COPY BESIDE IT MUST NOT CONTRADICT: there is NO
+         payoff beat, because what research gives back is his prose rather than the drawing;
+         the prompt is TWO lines, because one short pill reads as a question typed in passing
+         and the lesson is writing a good brief; and there are FIVE menu rows rather than the
+         eight really there, because greeked rows are interchangeable and the count is not the
+         lesson. Do not "fix" any of the three.
+
+         ⭐ ITS ONE LEGIBLE STRING IS "Research", and the figure serves the next feature by
+         swapping that single word. Do not weld it to this lesson in wrapper copy.
+
+         ⭐ IT SUITS THE REWRITE BETTER THAN IT WOULD HAVE SUITED THE ORIGINAL. The restructure
+         made "the brief is the work" the spine, and this figure is a prompt being typed and
+         then the button being pressed. Prompt first, button second, which is the same order. */
+      figure: "fig-35",
       text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. The tools have improved dramatically. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nThe whole thing turns on the brief. A vague ask gets you a vague report, and you won't spot that it's vague until you've read it twice.\n\nSo don't write the brief yourself. Tell Claude what you want to find out, tell it you're about to click the Research button, and ask it to turn your rough ask into a proper research brief. Then run that.\n\nClaude, ChatGPT and Gemini all have this. Claude calls it Research rather than deep research, same thing. I often run all three in parallel and get them to critique and build on each other.\n\nAnyway, for now, the main point is that the brief is the work. Get that right and twenty minutes gets you something worth having.",
       /* ⭐⭐ THE OPENAI LINK IS GONE, Paul's call, 3 Aug 2026: "lose the chatgpt link." It was
          platform.openai.com, the developer platform rather than ChatGPT, a separate login
@@ -891,12 +887,50 @@ export const MODULE_1: ModuleDef = {
          and not ours. Recorded as its name because that is the name, but if a self-awarded
          #1 sitting in Paul's course reads as an endorsement, trim it to "Prompt Cowboy". */
       reading: [
+        /* ⭐ Paul's link, 3 Aug 2026: "a good link about reserach from Ethan Mollick, who is
+           an expert I'd recommend following". FIRST on purpose: it is about research itself,
+           where Prompt Cowboy below is a tool.
+
+           ⚠️ TITLE READ OFF og:title, NOT the slug and NOT <title>. Substack serves a useless
+           <title> on this page and its <h1> is the publication name, "One Useful Thing", not
+           the piece. The slug would have given the same answer here, and that is luck.
+           ⛔ ?utm_source=publication-search stripped. Fourth pasted URL today carrying one. */
+        {
+          title: "Four Singularities for Research",
+          by: "Ethan Mollick",
+          url: "https://www.oneusefulthing.org/p/four-singularities-for-research",
+        },
         {
           title: "Prompt Cowboy",
           by: "promptcowboy.ai",
           url: "https://www.promptcowboy.ai/",
         },
       ],
+    },
+    {
+      /* ⭐⭐ PAUL'S WORDS AND HIS HEADLINE, 3 Aug 2026. The last draft copy in module 1 is
+         gone: every item is now his. It replaces "Talk, don't type", written for him in May.
+
+         ⭐ fig-28, "you talk, it types". It has been built and unused since he named this as
+         #2 on his list of nine on 2 Aug. Paul, 3 Aug: "there is a figure for this."
+
+         ⚠️ ONE PRODUCT NAME REPAIRED, AND IT MATTERED MORE THAN THE USUAL SLIP. He dictated
+         "Monlogue"; the app is Monologue, verified live at monologue.to, "Dictation, voice
+         notes, and bot-free meeting notes". Shipping the misspelling would have sent students
+         looking for an app that does not exist.
+         ⚠️ ONE GRAMMAR SLIP REPAIRED: "more nuanced ways that if you have to think" -> "than
+         if". Both his to put back.
+         ⚠️ LEFT EXACTLY AS HE SAID IT: "I click a button on laptop", missing a possessive.
+         That is spoken register rather than an error, and the voice spec says it stays.
+
+         ⚠️ THE PROMPT IS KEPT AND HE DID NOT MENTION IT. "That was me thinking out loud. Turn
+         it into three clear points and a next step" is his own line from the May article and
+         fits his second paragraph, but his new copy does not point at it the way item 04's
+         does. His call whether it stays. */
+      t: "Use a Voice App",
+      figure: "fig-28",
+      text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
+      prompt: "That was me thinking out loud. Turn it into three clear points and a next step.",
     },
   ],
 };
