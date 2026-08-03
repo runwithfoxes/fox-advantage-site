@@ -694,6 +694,28 @@ export const MODULE_1: ModuleDef = {
          ⚠️ OPEN, HIS, NOT BUILT: "I might show a real photograph of something here as well as
          the figure with the prompt beside it" on the image beat. A real photograph beside a
          figure is a new shape and a beat currently holds exactly one drawing. Wait for him. */
+      /* Paul's link, 3 Aug 2026: "there is a brilliant link here for awesome nano banana
+         images and how to create them". Title and owner verified against the live repo
+         (23.4k stars) rather than guessed from the URL.
+
+         ⚠️ HIS URL CARRIES AN ANCHOR, #case-24-movie-storyboardby-geminiapp, so it lands a
+         reader in the middle of the page on ONE case. Kept exactly as he sent it, because
+         changing a URL somebody pasted is a real change, not a tidy-up. FLAGGED TO HIM: his
+         own description is about the whole collection, which is the top of the page.
+
+         ⚠️ IT IS A GITHUB README, a developer surface for an audience of marketers. Same
+         flag already standing on item 01's reading link, and the same person's call.
+
+         ⚠️ NANO BANANA IS GOOGLE'S GEMINI IMAGE MODEL, and the beat above names GetImg. Not
+         a contradiction, he says "there's many out there", but worth knowing they are
+         different tools before anyone edits either. */
+      reading: [
+        {
+          title: "Awesome-Nano-Banana-images",
+          by: "PicoTrex",
+          url: "https://github.com/PicoTrex/Awesome-Nano-Banana-images/blob/main/README_en.md#case-24-movie-storyboardby-geminiapp",
+        },
+      ],
       beats: [
         /* Beat one carries NO prose: his article opens with the two paragraphs in `text`
            above, and this figure follows them. */
