@@ -110,13 +110,16 @@ export const SHELF: ShelfSection[] = [
          profile returns the person's name. The name in og:title is the evidence, never the
          status code.
 
-         ⚠️ `@dotmartin` PUBLISHES NO SURNAME, and this was pushed rather than assumed. The
-         profile page is JavaScript-rendered so its HTML says nothing; the public profile API
-         (`substack.com/api/v1/user/dotmartin/public_profile`) does answer, and it gives the
-         display name "Martin 🏹" and one publication, `uncharted` at
-         thisisuncharted.substack.com. No surname exists to find. So the row carries the
-         first name with the publication doing the identifying, and it is FLAGGED TO PAUL
-         rather than quietly settled. ⛔ Do not resolve it to a plausible Martin. */
+         ⭐⭐ `@dotmartin` PUBLISHES NO SURNAME ANYWHERE, AND PAUL SUPPLIED IT: Martin O'Leary,
+         3 Aug 2026. Nothing online could have given it. The profile page is JavaScript-
+         rendered so its HTML says nothing, and the public profile API
+         (`substack.com/api/v1/user/dotmartin/public_profile`) answers with the display name
+         "Martin 🏹" and one publication, `uncharted` at thisisuncharted.substack.com, and no
+         surname at all.
+
+         ⭐ SO THE ROW SAT AS "Martin" AND WAS FLAGGED TO HIM RATHER THAN QUIETLY SETTLED,
+         which is the only reason the right name is here now. ⛔ A plausible surname invented
+         to finish the row would have looked exactly as complete as this one does. */
       { name: "Neil Perkin", by: "substack.com", url: "https://substack.com/@neilperkin" },
       { name: "Aakash Gupta", by: "aibyaakash.com", url: "https://www.aibyaakash.com" },
       {
@@ -125,7 +128,7 @@ export const SHELF: ShelfSection[] = [
         url: "https://substack.com/@letstalkbranding",
       },
       { name: "Kyle Poyar", by: "substack.com", url: "https://substack.com/@kylepoyar" },
-      { name: "Martin", by: "uncharted", url: "https://substack.com/@dotmartin" },
+      { name: "Martin O'Leary", by: "uncharted", url: "https://substack.com/@dotmartin" },
       /* ⭐ ADDED 3 Aug 2026, Paul: "i follow Thariq Thariq @trq212 https://x.com/trq212".
          The handle is real on the same control test as the rows above, a made-up handle
          returns 404 where this returns 200.
