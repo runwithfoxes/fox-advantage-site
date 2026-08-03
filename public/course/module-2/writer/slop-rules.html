@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Slop rules</title><style>
+  :root { color-scheme: light; }
+  body { margin:0; background:#FAFAF8; color:#1A1A18;
+         font:17px/1.65 Georgia,"Iowan Old Style",serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+  h1 { font-size:36px; line-height:1.15; margin:48px 0 20px; letter-spacing:-0.01em; }
+  h1:first-child { margin-top:0; }
+  h2 { font-size:26px; margin:52px 0 12px; }
+  h3 { font-size:20px; margin:36px 0 8px; }
+  p { margin:0 0 16px; }
+  ul { padding-left:22px; } li { margin-bottom:10px; }
+  ol { padding-left:22px; }
+  hr { border:0; border-top:1px solid #E0E0DA; margin:48px 0; }
+  blockquote { margin:24px 0; padding:18px 24px; background:#FFF8F0;
+               border:1px solid #E8DCC8; border-left:3px solid #F47521; font-size:16px; }
+  blockquote p:last-child { margin-bottom:0; }
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid #E0E0DA; }
+  th { font-family:ui-monospace,Menlo,monospace; font-size:13px; letter-spacing:.06em;
+       text-transform:uppercase; color:#3A7CA5; }
+  code { background:#EFEFE9; padding:2px 5px; font-size:15px; }
+  em { color:#44443E; }
+</style></head><body><main><h1>Slop rules</h1>
+<p>Add this file to your Claude project with the others. It does not describe your brand. It is the same for everybody, and it is the difference between copy that reads like a person wrote it and copy that reads like it came out of a machine.</p>
+<p>Two passes, and they catch different things. <strong>Pass one catches words. Pass two catches patterns.</strong> Running one and skipping the other leaves half the tells in place.</p>
+<hr>
+<h2>Pass one: the words</h2>
+<h3>Never</h3>
+<p>Delve, harness, unlock, leverage, seamless, revolutionary, game-changing, cutting-edge, unprecedented, transformative, captivate, elevate, empower, holistic, tapestry, realm, symphony, odyssey, at its core.</p>
+<h3>Almost never</h3>
+<p>Underscore, pivotal, navigate, illuminate, facilitate, optimise, comprehensive, robust, streamline, resonate. Each has a plainer word that means the same thing. Use, help, improve, strong, simplify, connect.</p>
+<h3>Transitions to cut</h3>
+<p>Moreover, furthermore, that being said, it&#x27;s worth noting, in light of this, at the end of the day, moving forward, to put it simply, in conclusion, without further ado, firstly and secondly and thirdly.</p>
+<p>Let the logic carry itself. If two sentences connect, the connection shows without a signpost. Where one is genuinely needed: but, and, so, still.</p>
+<h3>Buzzwords that cost you credibility</h3>
+<p>Synergy, paradigm shift, disruptive, best-in-class, thought leader, low-hanging fruit, move the needle, circle back, touch base, bandwidth, future-proof, scalable solution, value proposition, think outside the box, now more than ever, for all your needs.</p>
+<h3>Openers that give it away</h3>
+<p>&quot;In today&#x27;s fast-paced…&quot;, &quot;In the ever-evolving landscape of…&quot;, &quot;In a world where…&quot;, &quot;Let&#x27;s face it&quot;, &quot;The fact of the matter is&quot;, &quot;Have you ever wondered&quot;, &quot;Some experts say&quot; (name them or drop them), and &quot;Most [group] get this wrong&quot;, which is the contrarian generalisation that reads as LinkedIn bro.</p>
+<h3>Closers that give it away</h3>
+<p>&quot;In conclusion&quot;, &quot;Remember: [platitude]&quot;, &quot;The future belongs to those who…&quot;, &quot;The question isn&#x27;t whether, but when&quot;, &quot;Thoughts?&quot;, &quot;Agree?&quot;</p>
+<h3>Punctuation and formatting</h3>
+<table><tr><th>Tell</th><th>Rule</th></tr><tr><td>Em dashes</td><td>Zero. Use a full stop, a comma, or rewrite the sentence.</td></tr><tr><td>Bullet overload</td><td>Only list three or more genuinely parallel things, each with substance.</td></tr><tr><td>Title Case In Headers</td><td>Sentence case. Title case reads as template.</td></tr><tr><td>Emojis as formatting</td><td>None in business writing.</td></tr><tr><td>Bold everywhere</td><td>One phrase per section at most.</td></tr><tr><td>Single-sentence paragraphs as the default</td><td>Mix lengths. One-liners are for emphasis, not habit.</td></tr></table>
+<hr>
+<h2>Pass two: the patterns</h2>
+<p>Pass one is a search-and-replace. Pass two is harder, because nothing here is a word you can grep for. These are the statistical fingerprints machines leave.</p>
+<p><em>Source for the ten: Jabarian and Imas, &quot;Artificial Writing and Automated Detection&quot;, Chicago Booth, September 2025, SSRN 5407424. 1,992 passages across four models and three detectors.</em></p>
+<ol><li><strong>Even rhythm.</strong> Machine text has unnaturally consistent sentence length. Human writing is lumpy. If three sentences in a row land within five words of each other, break one.</li><li><strong>Transitional scaffolding.</strong> Connective tissue at rates humans never reach. Covered in pass one, and it comes back during rewrites.</li><li><strong>Predictable word choice.</strong> The statistically likely next word. Stalled, not stopped. Clattered, not fell. Any word that feels like the obvious one is worth a second look.</li><li><strong>Uniform hedging.</strong> Everything qualified the same way. Either commit to the claim or cut it. One specific hedge beats five vague ones.</li><li><strong>Predictable structure.</strong> Intro, three points, conclusion, each section the same length. Let the structure follow the argument. Some points need a sentence, others a paragraph. A list can have two items or seven.</li><li><strong>One temperature.</strong> The register never changes. An important claim should feel important and an aside should feel like an aside.</li><li><strong>No surprise.</strong> Nothing in it that could not have been predicted from the brief. Put one thing in every piece that only someone who knows this business would have said.</li><li><strong>Flawless grammar.</strong> Perfection is now a tell. A fragment for emphasis, a sentence starting with &quot;And&quot;, a deliberate comma splice. Do not tidy the speech out of it.</li><li><strong>Length.</strong> Patterns accumulate. Anything past about 500 words needs deliberate variation across its sections so no single fingerprint runs the whole way through. Never pad to sound authoritative. Padding is what detectors eat.</li><li><strong>Over-attribution.</strong> &quot;Research suggests&quot;, &quot;studies show&quot;, &quot;experts say&quot; on every claim. State what you know. Save the citation for when the source is part of the argument.</li></ol>
+<hr>
+<h2>The gotcha that catches everybody</h2>
+<p><strong>Em dashes come back during pass two.</strong> Fixing rhythm means rewriting complex sentences, and rewriting complex sentences is exactly where a model reaches for an em dash. Search for them again after pass two. Target: zero.</p>
+<h2>Show the work</h2>
+<p>The audit is not done when you have thought about the list. It is done when you can say what changed:</p>
+<blockquote><p>Slop audit clean, four fixes: cut two em dashes, replaced &quot;leverage&quot; with &quot;use&quot;, broke a three-point landing into two paragraphs, added a specific observation about renewal timing.</p></blockquote>
+<p>&quot;Slop audit: clean&quot; with no detail means it was not run.</p>
+<hr>
+<h2>For the writer reading this file</h2>
+<ol><li>Both passes, every time, before anything is shown.</li><li>Report the fixes. A tick with no evidence does not count.</li><li>Your brand has its own bans on top of these, in its messaging framework. Check both lists.</li><li>If a rule here fights the brand&#x27;s voice, the brand&#x27;s voice wins, and say which rule you broke and why.</li></ol></main></body></html>

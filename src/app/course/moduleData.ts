@@ -216,6 +216,57 @@ export type ModuleDef = {
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
   items: Item[];
+  /**
+   * ⭐⭐ THE MODULE'S OWN FILES, added 3 Aug 2026 on Paul's ruling: "Just have them all
+   * listed connected to module 2."
+   *
+   * ⛔ THEY HANG OFF THE MODULE, NOT AN ITEM, AND THAT IS THE WHOLE POINT. Module 2 has
+   * fourteen documents between the writer and the Kite pack. An item is a lesson, and no
+   * single lesson owns fourteen files, so hanging them on item 01 would have made the
+   * first thing a learner reads look like a filing cabinet. They belong to the module the
+   * way a project's files belong to the project.
+   *
+   * ⭐ WHY THIS IS A SET OF SETS. The writer files are BLANK, they are what a learner
+   * fills in about their own brand. The Kite pack is the SAME SIX DOCUMENTS ALREADY
+   * FILLED IN, on a brand that does not exist. Flattening them into one list of fourteen
+   * would put a learner's empty template beside a worked answer with nothing saying which
+   * is which, and the whole teaching point of the module is that you do the slow part
+   * yourself first.
+   */
+  files?: FileSet[];
+};
+
+/**
+ * ⭐ A NAMED GROUP OF DOCUMENTS a learner can read or take away.
+ *
+ * ⚠️ `warn` EXISTS FOR KITE AND IS NOT DECORATION. Paul, 26 Jul 2026: "Never ever ever
+ * carry any real examples from my clients or otherwise. That's a hard rule." Kite is
+ * invented, and a learner reading a positioning statement with market shares and savings
+ * in it will take it for research unless something on the page says otherwise. The
+ * warning renders with the set, never in a tooltip and never below the fold of the list.
+ */
+export type FileSet = {
+  title: string;
+  /** One line on what the set is for. */
+  blurb: string;
+  /** Shown with the set when the contents must not be mistaken for real. */
+  warn?: string;
+  files: CourseFile[];
+};
+
+export type CourseFile = {
+  /** The filename a learner will recognise, without its extension. */
+  name: string;
+  /**
+   * What it is. ⛔ VERBATIM FROM THE TWO READMEs WRITTEN WITH PAUL ON 26 JUL 2026
+   * (`course-build/downloads/README.md` and `course-build/kite/README.md`). These are the
+   * descriptions he built with, so nothing here is a paraphrase and nothing is invented.
+   */
+  what: string;
+  /** The readable page. Rendered light-mode HTML, sits beside the markdown. */
+  href: string;
+  /** The markdown, which is the thing that actually goes into a Claude project. */
+  take: string;
 };
 
 /** The kinds the renderer knows how to draw. */
@@ -972,13 +1023,21 @@ const stub = (
  * always beside it: `module-2-item-01-prose.md`, approved by Paul on 26 Jul and written with
  * him line by line, which is the item below, verbatim and unedited.
  *
- * ⛔ WHAT IS DELIBERATELY NOT HERE, so nobody reads one item as the whole module. Module 2's
- * own handover (`HANDOVER-DRAY-2026-07-26-module-2-content.md`) records that the ten steps of
- * the walkthrough were never written: "The brand pack exists, the copy at the end exists, the
- * middle does not." The seven downloads and the Kite worked example are real files but they
- * live in `course-build/`, outside this app, so they are not reachable from a page yet.
- * Adding a plausible item for either would put Paul's own build to-do list in front of a
- * learner, which is the exact failure the cut type badge was cut for.
+ * ⛔ WHAT IS DELIBERATELY NOT HERE, so nobody reads one item as the whole module. The middle
+ * of the module, the walkthrough itself, is unwritten: "The brand pack exists, the copy at
+ * the end exists, the middle does not." Adding a plausible item for it would put Paul's own
+ * build to-do list in front of a learner, which is the exact failure the cut type badge was
+ * cut for.
+ *
+ * ⚠️ IGNORE "THE TEN STEPS" IF YOU MEET IT IN AN OLDER NOTE. Module 2's own handover called
+ * the middle "the ten steps of the walkthrough", and `kite/README.md` still says "in ten
+ * steps". Paul killed that framing on 26 Jul, the same day: "they're not part one, part two,
+ * and part three. They don't go in that order... They're just three things that they're going
+ * to do." Nothing may number the walkthrough.
+ *
+ * ✅ RESOLVED 3 Aug 2026: the seven writer downloads and the Kite pack used to live only in
+ * `course-build/`, unreachable from any page. They are in `files` below and under
+ * `public/course/module-2/`. Paul's ruling: "Just have them all listed connected to module 2."
  */
 export const MODULE_2: ModuleDef = {
   n: 2,
@@ -998,6 +1057,120 @@ export const MODULE_2: ModuleDef = {
          clinical and plain speaking." */
       t: "Why slow, then fast",
       text: "Good marketing requires doing the marketing. There are steps involved, and some of them have not changed in a long time and probably never will. Understanding the motivations of your customer. The hard work of understanding how you are positioning yourself in the minds of customers. You will not get that from the click of a button.\n\nA bad ad made in four seconds is still a bad ad, and now there are four hundred of them.\n\nGo through those steps and the quality of what you make afterwards will be good, and it will be fast.\n\nIt is worth thinking about appropriate speed, because parts of this can be sped up. You can do research faster. You can do the admin around the work faster. You can use AI to find the gaps in your thinking.\n\nIn this module I take one example, building a writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning. Do that as quickly as you can, but do not skip it, do not rush it, and do not make it sloppy.",
+    },
+  ],
+  /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.
+     The writer set runs in install order: the DNA goes in first, the interviewer runs once
+     and can then be deleted, and the last five are the same for every brand.
+     The Kite set runs in the order the documents were BUILT, because each one feeds the
+     next: positioning cannot be written until audience, competitors and proof exist. The
+     Kite README says so in as many words: "That order is the lesson, so do not reorder
+     them on the page." */
+  files: [
+    {
+      title: "Your writer",
+      blurb:
+        "Seven files. The first two set it up, the last five are the same for every brand.",
+      files: [
+        {
+          name: "writer-dna",
+          what: "The instructions. What every other file is, when to read it, and how the writer behaves.",
+          href: "/course/module-2/writer/writer-dna.html",
+          take: "/course/module-2/writer/writer-dna.md",
+        },
+        {
+          name: "brand-interviewer",
+          what: "Interviews the learner and hands back the six brand documents below.",
+          href: "/course/module-2/writer/brand-interviewer.html",
+          take: "/course/module-2/writer/brand-interviewer.md",
+        },
+        {
+          name: "slop-rules",
+          what: "Two passes, words then patterns.",
+          href: "/course/module-2/writer/slop-rules.html",
+          take: "/course/module-2/writer/slop-rules.md",
+        },
+        {
+          name: "claims-and-sources",
+          what: "The ledger that makes the writer prove things or admit it cannot.",
+          href: "/course/module-2/writer/claims-and-sources.html",
+          take: "/course/module-2/writer/claims-and-sources.md",
+        },
+        {
+          name: "format-email",
+          what: "Craft of the format.",
+          href: "/course/module-2/writer/format-email.html",
+          take: "/course/module-2/writer/format-email.md",
+        },
+        {
+          name: "format-blog",
+          what: "Craft of the format.",
+          href: "/course/module-2/writer/format-blog.html",
+          take: "/course/module-2/writer/format-blog.md",
+        },
+        {
+          name: "format-web-page",
+          what: "Craft of the format.",
+          href: "/course/module-2/writer/format-web-page.html",
+          take: "/course/module-2/writer/format-web-page.md",
+        },
+      ],
+    },
+    {
+      title: "Kite Insurance, worked",
+      blurb:
+        "The same six documents, already filled in, so you can see what finished ones look like before you write your own.",
+      warn:
+        "Kite does not exist. It was invented for this course, and so are its competitors, its customers, its numbers and its quotes. Nothing in these files is research.",
+      files: [
+        {
+          name: "audience",
+          what: "Three segments with their share of the market, their trigger, and what we say to each first. Plus the 27% turned down on purpose.",
+          href: "/course/module-2/kite/audience.html",
+          take: "/course/module-2/kite/audience.md",
+        },
+        {
+          name: "competitors",
+          what: "Three invented competitors, the claims that are the category entry fee and may not be used, and staying put as the largest competitor of all.",
+          href: "/course/module-2/kite/competitors.html",
+          take: "/course/module-2/kite/competitors.md",
+        },
+        {
+          name: "proof",
+          what: "The numbers with their sources, one deliberately marked [unverified], and an honest list of what Kite cannot prove yet.",
+          href: "/course/module-2/kite/proof.html",
+          take: "/course/module-2/kite/proof.md",
+        },
+        {
+          name: "positioning-statement",
+          what: "The four slots, the two rejected versions with reasons, and the founder's decision in her own words.",
+          href: "/course/module-2/kite/positioning-statement.html",
+          take: "/course/module-2/kite/positioning-statement.md",
+        },
+        {
+          name: "tone-of-voice",
+          what: "Whose voice it is, the five beats, the device, what it never does, and a worked example.",
+          href: "/course/module-2/kite/tone-of-voice.html",
+          take: "/course/module-2/kite/tone-of-voice.md",
+        },
+        {
+          name: "messaging-framework",
+          what: "Value proposition, three pillars, the three by three grid, and what we will never say.",
+          href: "/course/module-2/kite/messaging-framework.html",
+          take: "/course/module-2/kite/messaging-framework.md",
+        },
+        {
+          /* ⚠️ NOT IN THE KITE README's numbered list, which stops at six. This file was
+             built the same day for the AI Writer agent card and its own header carries the
+             provenance: "Written by Paul, 26 July 2026, and this is the approved copy."
+             Described from what the file actually contains rather than from the README,
+             because the README never described it. */
+          name: "segment-emails",
+          what: "One email to each of the three segments, written by Paul.",
+          href: "/course/module-2/kite/segment-emails.html",
+          take: "/course/module-2/kite/segment-emails.md",
+        },
+      ],
     },
   ],
 };

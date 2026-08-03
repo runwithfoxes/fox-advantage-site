@@ -426,6 +426,16 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 ⛔ BELOW THE RULE AND WITHOUT A NUMBER, on purpose. The numbered rows above are
                 this module's contents, in Paul's order. This is a different page. Giving it an
                 item number would make module 1 read as ten things when he wrote nine. */}
+            {/* ⭐ THE MODULE'S OWN FILES, ABOVE THE LIBRARY AND BELOW THE SAME RULE. Both
+                sit outside the numbered contents for the same reason: neither is one of
+                Paul's lessons. The order between them is nearest-first, this module's
+                files before every module's library. Absent when a module has none. */}
+            {mod.files && mod.files.length > 0 && (
+              <a className="mod-rail-lib" href="#files">
+                /files in this module
+              </a>
+            )}
+
             <Link className="mod-rail-lib" href="/course/everything">
               /library of everything
             </Link>
@@ -698,6 +708,53 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
             );
           })}
         </main>
+
+        {/* ⭐⭐ THE MODULE'S FILES, 3 Aug 2026. Paul: "Just have them all listed connected
+            to module 2."
+
+            ⛔ BELOW THE LESSONS AND OUTSIDE <main>, on purpose and for the same reason the
+            library link sits below the rule in the rail. The numbered articles above are
+            what Paul wrote, in his order. This is the module's filing cabinet. Putting it
+            inside the list would make module 2 read as one lesson and fourteen documents,
+            which is the catalogue failure this page was rebuilt to end.
+
+            ⚠️ RENDERS ONLY WHEN A MODULE HAS FILES, so modules 1 and 3 to 6 are untouched
+            and the pixels Paul signed off on module 1 do not move. */}
+        {mod.files && mod.files.length > 0 && (
+          <section className="mod-files" id="files">
+            <p className="mod-fkicker">/files</p>
+            {mod.files.map((set) => (
+              <div className="mod-fset" key={set.title}>
+                <h2 className="mod-fsettitle">{set.title}</h2>
+                <p className="mod-fsetblurb">{set.blurb}</p>
+                {/* ⛔ ABOVE THE FILES, NEVER BELOW THEM. A learner who has already opened
+                    Kite's positioning statement and read its market shares has taken it for
+                    research, and a warning underneath arrives too late to stop that. */}
+                {set.warn && <p className="mod-fwarn">{set.warn}</p>}
+                <ul className="mod-frows">
+                  {set.files.map((f) => (
+                    <li className="mod-frow" key={f.name}>
+                      <a
+                        className="mod-fname"
+                        href={f.href}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        {f.name}
+                      </a>
+                      <span className="mod-fwhat">{f.what}</span>
+                      {/* The markdown, which is the thing that goes into a Claude project.
+                          The name above opens the readable page; this takes the file. */}
+                      <a className="mod-ftake" href={f.take} download>
+                        .md
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )}
         </div>
       </div>
 

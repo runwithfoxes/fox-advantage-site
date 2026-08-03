@@ -129,10 +129,65 @@ export default function EverythingPage() {
     });
   });
 
-  const hidden = MODULES.reduce((n, m) => {
+  /**
+   * ⭐⭐ THE MODULES' OWN FILES, 3 Aug 2026, added the same hour the `files` slot was added
+   * to ModuleDef and for one reason: THREE SLOTS HAVE NOW BEEN ADDED BEHIND THIS PAGE AND
+   * BEEN INVISIBLE ON IT. `reading` hid nine of Paul's links for a day, `beats` hid four
+   * passages from search, and neither broke a build or failed a test. The rule the comments
+   * above draw from that is followed here rather than restated: a slot is wired into this
+   * page the day it exists, not the day somebody notices.
+   *
+   * ⛔ A SET IS A FOLDER, WHICH IS THE SHAPE THE PAGE ALREADY HAS. Paul's folder framing
+   * ("I quite like how GitHub looks... little folders and links") fits a named group of
+   * documents exactly, so nothing new had to be invented to hold them.
+   *
+   * ⛔⛔ NOT PUBLISHED UNTIL THE MODULE IS BUILT, and this is Paul's constraint, not a
+   * design preference. 3 Aug: "I don't want people seeing these till we're live." The
+   * modules sit behind an email door; this page does not, so a file set listed here is
+   * public the moment anything links to it. `built` is the flag that already means
+   * genuinely finished and live, so it is the honest gate and no second switch exists to
+   * drift out of step with it. Module 2 is `built: false`, so its fourteen documents are
+   * reachable from the gated module page and NOT from here. They appear the day it ships.
+   */
+  const fileRows: Row[] = [];
+  let hiddenSets = 0;
+
+  MODULES.forEach((m) => {
+    const def = MODULES_BY_N[m.n];
+    if (!def?.files?.length) return;
+    def.files.forEach((set, si) => {
+      if (!def.built) {
+        hiddenSets += 1;
+        return;
+      }
+      fileRows.push({
+        type: "folder",
+        key: `m${m.n}-f${si + 1}`,
+        modN: m.n,
+        name: set.title,
+        desc: set.blurb,
+        href: `/course/${m.n}#files`,
+        files: set.files.map<FileRow>((f) => ({
+          kind: "link",
+          name: f.name,
+          /* The readable page is what a row opens. The markdown sits beside it at the same
+             path, and the module page is where the difference is explained, so this page
+             does not try to carry two affordances in a row built for one. */
+          meta: "document",
+          url: f.href,
+        })),
+        search: [set.title, set.blurb, set.warn ?? "", def.title, ...set.files.map((f) => `${f.name} ${f.what}`)]
+          .join(" ")
+          .toLowerCase(),
+      });
+    });
+  });
+
+  const hiddenItems = MODULES.reduce((n, m) => {
     const def = MODULES_BY_N[m.n];
     return n + (def ? def.items.filter((it) => it.placeholder).length : 0);
   }, 0);
+  const hidden = hiddenItems + hiddenSets;
 
   const sections: Section[] = [
     {
@@ -140,6 +195,19 @@ export default function EverythingPage() {
       title: "From the lessons",
       kind: "lessons",
       rows: lessonRows,
+    },
+    /* ⛔ ITS OWN SECTION, NOT MIXED INTO "From the lessons". A lesson folder is one of
+       Paul's items and its contents are that item's prompt and links. A file set is the
+       module's kit. Merging them would put a blank template beside a lesson and let a
+       reader think the template was the teaching. Empty until a module with files ships,
+       and an empty section is already hidden from the public page by the filter below. */
+    {
+      slug: "files",
+      title: "Files from the modules",
+      blurb:
+        "The documents a module hands you, ready to put straight into a project.",
+      kind: "lessons",
+      rows: fileRows,
     },
     /* ⛔ EVERY SHELF SECTION IS EMPTY UNTIL PAUL WRITES IT, and an empty one is HIDDEN from
        the public page rather than published as a heading over nothing. It stays visible under

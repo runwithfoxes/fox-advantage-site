@@ -7165,6 +7165,10 @@ a.project-card {
    the least important thing in it. Space separates it; the blue says it goes somewhere. */
 .mod-rail a.mod-rail-lib{display:block;margin-top:18px;padding:0;border-top:0;color:#3A7CA5;}
 .mod-rail a.mod-rail-lib:hover{text-decoration:underline;}
+/* Two of them from 3 Aug (files, then the library). They are a pair of destinations, so the
+   second sits under the first rather than repeating the 18px break that separates the pair
+   from the numbered contents above. */
+.mod-rail a.mod-rail-lib + a.mod-rail-lib{margin-top:7px;}
 .mod-rail a:hover{color:#3A7CA5;}
 .mod-k{color:#A8A8A2;font-variant-numeric:tabular-nums;}
 .mod-dot{width:7px;height:7px;border:1px solid #C9C9C3;background:#fff;display:block;margin-top:6px;}
@@ -7710,3 +7714,47 @@ a.project-card {
 .mod-list li{margin-bottom:6px;padding-left:4px;}
 .mod-list li:last-child{margin-bottom:0;}
 .mod-list li::marker{color:#8A8A85;}
+
+/* ⭐⭐ THE MODULE'S FILES, 3 Aug 2026. Paul: "Just have them all listed connected to
+   module 2." Fourteen documents across two sets, under the lessons.
+
+   ⛔ SQUARE, AND NO CARDS. Every row here is our own chrome, so it follows the site's
+   no-rounded-corners rule, and the separator is the same 1px #E0E0DC the rail uses. A
+   grid of bordered cards was the obvious way to draw fourteen things and it is wrong on
+   this page: nothing else on the module is a card, and fourteen of them would out-shout
+   Paul's prose above. A list with a rule between rows is what the rest of the page does. */
+.mod-files{margin-top:72px;padding-top:34px;border-top:1px solid #E0E0DC;}
+.mod-fkicker{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#A8A8A2;margin:0 0 28px;}
+.mod-fset{margin-bottom:44px;}
+.mod-fset:last-child{margin-bottom:0;}
+.mod-fsettitle{font-family:var(--sans);font-weight:600;font-size:1.25rem;letter-spacing:-.01em;
+  color:#1D1B1B;margin:0 0 6px;}
+.mod-fsetblurb{font-family:'Source Serif 4',Georgia,serif;font-size:1rem;line-height:1.6;
+  color:#44443E;margin:0 0 18px;}
+/* ⭐ THE FICTION WARNING. Orange, because #F47521 is the one colour on this site that is
+   never decorative, and this is the hardest rule in the course: never carry a real
+   example. Left rule rather than a filled panel, so it reads as a note on the set instead
+   of a banner competing with the headline above it. */
+.mod-fwarn{font-family:var(--mono);font-size:.75rem;line-height:1.6;color:#44443E;
+  margin:0 0 18px;padding-left:14px;border-left:2px solid #F47521;}
+.mod-frows{list-style:none;margin:0;padding:0;}
+.mod-frow{display:grid;grid-template-columns:190px 1fr auto;gap:20px;align-items:baseline;
+  padding:14px 0;border-top:1px solid #E0E0DC;}
+.mod-frow:last-child{border-bottom:1px solid #E0E0DC;}
+.mod-fname{font-family:var(--mono);font-size:.8125rem;color:#3A7CA5;
+  border-bottom:1px solid transparent;}
+.mod-fname:hover{border-bottom-color:#3A7CA5;}
+.mod-fwhat{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.55;
+  color:#1D1B1B;}
+.mod-ftake{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#A8A8A2;border-bottom:1px solid transparent;
+  white-space:nowrap;}
+.mod-ftake:hover{color:#3A7CA5;border-bottom-color:#3A7CA5;}
+/* ⛔ THE FILENAME COLUMN COLLAPSES FIRST. At the narrow end the three columns become two
+   rows: the name and its .md on one line, the description under them. Keeping a 190px
+   fixed column on a phone left about nine characters for the description. */
+@media (max-width:700px){
+  .mod-frow{grid-template-columns:1fr auto;gap:6px 20px;}
+  .mod-fwhat{grid-column:1 / -1;}
+}

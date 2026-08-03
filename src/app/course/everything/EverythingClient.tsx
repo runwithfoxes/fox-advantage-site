@@ -328,6 +328,24 @@ export default function EverythingClient({
           )}
           {flash && <p className={s.flashline}>{flash}</p>}
 
+          {/* ⭐⭐ THE HIDDEN COUNT, WIRED 3 Aug 2026. `hidden` has been computed on the
+              server and passed into this component since the page was built, and NOTHING
+              EVER RENDERED IT. page.tsx says in as many words that what it hides is
+              "counted in the build view so it is never silently dropped", and the count
+              arrived here and was dropped. A prop that is destructured but never used
+              raises no TypeScript error and fails no test, which is why it survived.
+
+              ⛔ BUILD VIEW ONLY. It reports what a member is deliberately not being
+              shown: Paul's unwritten placeholder items, and the file sets belonging to
+              modules that have not shipped. A member never sees this line. */}
+          {build && hidden > 0 && (
+            <p className={s.flashline}>
+              BUILD VIEW. {hidden} {hidden === 1 ? "thing is" : "things are"} hidden
+              from the public page: unwritten items, and files from modules that are not
+              built yet.
+            </p>
+          )}
+
           <main>
             {shown.map((sec) => (
               <section key={sec.slug} id={`s-${sec.slug}`} className={s.box}>
