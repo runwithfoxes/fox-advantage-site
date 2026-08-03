@@ -155,6 +155,21 @@ export const SHELF: ShelfSection[] = [
       { name: "Attio", by: "attio.com", url: "https://attio.com" },
       { name: "Supabase", by: "supabase.com", url: "https://supabase.com" },
       { name: "ElevenLabs", by: "elevenlabs.io", url: "https://elevenlabs.io" },
+      /* ⭐ THE TOOL'S OWN HOME, like every other row here. seedance.ai resolves and is not
+         it; the model is ByteDance's and this is ByteDance's page for it. Paul reaches it
+         through Replicate (replicate.com/bytedance/seedance-1-pro, also live) in the
+         /fox-video skill, and that link would have been the odd one out in a list where
+         everything else points at the product rather than at a reseller. */
+      { name: "Seedance", by: "seed.bytedance.com", url: "https://seed.bytedance.com/en/seedance" },
+      /* ⭐⭐ HEYGEN'S, AND PAUL'S "HGN" IS WHAT FOUND IT. Both of the addresses guessed from
+         the name alone were wrong and both were live, which is the worst version of wrong:
+         hyperframes.com is an unrelated domain in maintenance mode, and hyperframe.ai
+         (singular) is a different business-video product by different people. HyperFrames
+         plural is HeyGen's open-source framework for rendering video from HTML, source at
+         github.com/heygen-com/hyperframes.
+         ⛔ THE LESSON, NOT THE FACT: a name is not an address. Two live sites one letter
+         apart, and nothing about either would have announced the mistake once published. */
+      { name: "HyperFrames", by: "heygen.com", url: "https://hyperframes.heygen.com" },
     ],
   },
 ];
