@@ -1061,18 +1061,23 @@ export const MODULE_2: ModuleDef = {
    * lesson one of one. On the prototype it is the top of the page, above the contents,
    * before anything is numbered. `opening` is the slot that already means exactly that.
    *
-   * ⛔ THREE PARAGRAPHS AND HIS ORDER, NOT FIVE AND MINE. Pasted by Paul verbatim on
-   * 3 Aug and that is the canonical arrangement, matching the prototype:
-   *   - the bad ad line OPENS, inside the first paragraph rather than alone after it
-   *   - "Go through those steps and the quality of what you make afterwards will be good,
-   *     and it will be fast" is NOT here. It was cut on 26 Jul and stays cut: the piece
-   *     goes from the problem straight to appropriate speed.
-   * The item-01 version had the bad ad line standing alone as its own paragraph and the
-   * cut line restored, so it was the same words in a shape he had already rejected.
-   * ⛔ Do not rewrite, tighten or reorder it.
+   * ⛔⛔ TWO PARAGRAPHS. PAUL CUT IT HIMSELF ON 3 Aug 2026 AND THIS IS THAT VERSION,
+   * VERBATIM: "I've cut it back to this". It replaced a three-paragraph version, which had
+   * itself replaced a five-paragraph one, all on the same evening. What went in the cut:
+   *   - the bad ad line, "A bad ad made in four seconds is still a bad ad, and now there
+   *     are four hundred of them", which had opened the piece since 26 Jul
+   *   - the list of steps (motivations, positioning) and the list of speed-ups (research,
+   *     admin, finding gaps). Both are now one sentence each.
+   *   - "Do that as quickly as you can, but do not skip it, do not rush it, and do not
+   *     make it sloppy"
+   * ⭐ AND ONE THING WAS ADDED, which is the argument the cut was making room for: spend
+   * the time upfront, automate later, get the speed without compromising quality. The old
+   * version said the slow parts come first; this one says why that pays.
+   * ⭐ "an AI Writer", capitalised, is his. It was "a writer" until this version.
+   * ⛔ Do not rewrite, tighten or reorder it, and do not restore anything listed above.
    */
   opening:
-    "A bad ad made in four seconds is still a bad ad, and now there are four hundred of them. Good marketing requires doing the marketing. There are steps involved, and some of them have not changed in a long time and probably never will. Understanding the motivations of your customer. The hard work of understanding how you are positioning yourself in the minds of customers. You will not get that from the click of a button.\n\nIt is worth thinking about appropriate speed, because parts of this can be sped up. You can do research faster. You can do the admin around the work faster. You can use AI to find the gaps in your thinking.\n\nIn this module I take one example, building a writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning. Do that as quickly as you can, but do not skip it, do not rush it, and do not make it sloppy.",
+    "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
   items: [
     {
       /* ⭐ PAUL'S WORDS, VERBATIM, approved 26 Jul 2026. Five paragraphs, about 170 words,
