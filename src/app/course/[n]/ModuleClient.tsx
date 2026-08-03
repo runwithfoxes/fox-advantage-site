@@ -225,14 +225,43 @@ function FigureFile({ src, banner }: { src: string; banner?: boolean }) {
  * single <p>, so his breaks vanished and three thoughts ran together as a wall.
  * Added 2 Aug 2026 when item 01's text became three paragraphs.
  */
+/**
+ * ⭐ A NUMBERED LIST, added 3 Aug 2026 because Paul wrote one. His research copy runs "A few
+ * things." and then three lines beginning "1 - ", "2 - ", "3 - ".
+ *
+ * ⛔ WITHOUT THIS THEY COLLAPSE ONTO ONE LINE. Body splits on BLANK lines only, and HTML
+ * collapses a single newline to a space, so his three points would have run together as one
+ * sentence. The other way out was a blank line between each, which puts a 30px paragraph gap
+ * between three things that belong together and stops reading as a list at all.
+ *
+ * ⚠️ IT IS DETECTED, NOT DECLARED, and that is a deliberate exception to the rule this page
+ * follows elsewhere. A wrong guess here is NOT silent: the numbers are visible in his own
+ * copy, so a list that failed to render as a list is on screen in front of him. Compare the
+ * type badges, cut the same day, where a wrong guess looked exactly like a right one.
+ * The test is strict: EVERY line in the block must be numbered, or it stays prose.
+ */
+const NUMBERED = /^\s*\d+\s*[-.)]\s+/;
+
 function Body({ text, ph }: { text: string; ph?: boolean }) {
   return (
     <>
-      {text.split(/\n{2,}/).map((para, i) => (
-        <p key={i} className="mod-body" data-ph={ph ? "" : undefined}>
-          {para}
-        </p>
-      ))}
+      {text.split(/\n{2,}/).map((para, i) => {
+        const lines = para.split("\n").filter((l) => l.trim());
+        if (lines.length > 1 && lines.every((l) => NUMBERED.test(l))) {
+          return (
+            <ol key={i} className="mod-list" data-ph={ph ? "" : undefined}>
+              {lines.map((l, j) => (
+                <li key={j}>{l.replace(NUMBERED, "")}</li>
+              ))}
+            </ol>
+          );
+        }
+        return (
+          <p key={i} className="mod-body" data-ph={ph ? "" : undefined}>
+            {para}
+          </p>
+        );
+      })}
     </>
   );
 }

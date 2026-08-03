@@ -7687,3 +7687,15 @@ a.project-card {
    runs about 1575px tall. Deliberately NOT cropped or capped: his sentence is "here is the
    wireframe I got back", and a cropped wireframe is not the wireframe he got back. */
 .mod-beatimg{display:block;width:100%;height:auto;margin-top:20px;border:1px solid #E0E0DC;}
+/* ⭐ A NUMBERED LIST inside an item's prose, 3 Aug 2026, because Paul wrote one. Tight: the
+   gap between points is much smaller than the 30px between paragraphs, because three numbered
+   things belong together and paragraph spacing pulls them apart. */
+/* ⛔ BOTH `list-style` AND `font-family` HAVE TO BE SAID OUT LOUD. The reset in this file
+   strips list markers, so an <ol> renders with no numbers at all, and the page's default face
+   is the mono, so his three points came out as machine text beside his own serif prose. The
+   first render had both faults and neither was visible in the markup, only on screen. */
+.mod-list{margin:0 0 30px;padding-left:1.5em;list-style:decimal;
+  font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.7;color:#1D1B1B;}
+.mod-list li{margin-bottom:6px;padding-left:4px;}
+.mod-list li:last-child{margin-bottom:0;}
+.mod-list li::marker{color:#8A8A85;}

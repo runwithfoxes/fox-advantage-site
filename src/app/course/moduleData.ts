@@ -830,8 +830,44 @@ export const MODULE_1: ModuleDef = {
          ⚠️ TITLE AND COPY ARE BOTH HIS TO WRITE. "Deep research" is his own phrase from
          2 Aug, standing in until he names it. ⛔ No figure exists for this lesson either. */
       t: "Deep research",
-      placeholder: true,
-      text: "PLACEHOLDER, PAUL TO WRITE. Deep research.",
+      /* ⭐⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, hours after he asked for the slot to be held
+         open. Nothing repaired: no dictation slips in what he sent.
+
+         ⭐ THE THREE NUMBERED LINES ARE ONE PARAGRAPH with single newlines, not three
+         paragraphs. Body renders a block whose every line is numbered as an <ol>. Split into
+         separate paragraphs they get a 30px gap each and stop reading as a list.
+
+         ⚠️ TITLE STILL HIS. "Deep research" is his own phrase from 2 Aug and stands in until
+         he names it. His own point 1 notes that Claude calls the feature "Research".
+         ⛔ STILL NO FIGURE for this lesson. Nothing in the library draws it. */
+      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nA few things.\n\n1 - Claude, ChatGPT and Gemini all have 'deep research' features. Claude just calls it \"Research\" but it's the same thing.\n2 - You need to write a decent research brief.\n3 - I often run all three in parallel and get them to critique and build on each other.\n\nThe way I get to a good research brief? I ask Claude. So I explain what I want, explain that I plan to click the Research button, and I want it to convert my bad prompt into a rigorous research brief prompt. That's it. There are also some decent websites you can use to help you write better prompts.",
+      /* ⭐ Paul's two links, 3 Aug 2026, both prompt generators, which is what his last line
+         points at: "some decent websites you can use to help you write better prompts".
+
+         ⚠️ THE OPENAI ONE IS THE DEVELOPER PLATFORM, NOT CHATGPT. He wrote "for anybody with
+         ChatGPT account", and platform.openai.com is a separate login from a ChatGPT
+         subscription. It returns 403 to anyone not signed in, so a reader without a platform
+         account hits a wall rather than a page. His call, flagged.
+         ⭐ Its query string is KEPT: models= and optimize= are functional, not tracking. The
+         utm rule is about referrer credit, not about every parameter.
+
+         ⭐ Prompt Cowboy title read off the live page. He was explicit that he does not use
+         it, "I don't use this one, but it often mentioned", so nothing here implies he does.
+         ⚠️ Its own page calls it "#1 prompt generator", which is the site's marketing claim
+         and not ours. Recorded as its name because that is the name, but if a self-awarded
+         #1 sitting in Paul's course reads as an endorsement, trim it to "Prompt Cowboy". */
+      reading: [
+        {
+          title: "Prompt optimizer",
+          by: "OpenAI Platform",
+          url: "https://platform.openai.com/chat/edit?models=gpt-5.5&optimize=true",
+        },
+        {
+          title: "Prompt Cowboy",
+          by: "promptcowboy.ai",
+          url: "https://www.promptcowboy.ai/",
+        },
+      ],
     },
   ],
 };
