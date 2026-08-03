@@ -1105,6 +1105,20 @@ export const MODULE_2: ModuleDef = {
          ⛔ STILL MISSING FROM THIS MODULE, so nobody reads this as the port being done:
          the prototype's SIX figures (fig-11, anim24, fig-01, fig-16, fig-18, anim6), and
          the walkthrough itself, which was never written in any version. */
+      /* ⭐⭐ THE AI WRITER FIGURE, Paul 3 Aug 2026: "Added the figure for the AI Writer.
+         It's figure 11 in our library." Its own label: "Four blocks you already own
+         combine into one writer".
+
+         ⭐ IT IS A LIBRARY FIGURE, WHICH IS WHY THIS IS ONE WORD AND NOT A PORT. The
+         prototype carried six drawings lifted out of `module-2-wireframe-v2.html`, and
+         that file is not the library, which is exactly why the first port walked past all
+         six. fig-11 is the one of them that has since been promoted into
+         `course-figures.html`, so the app already holds it and `figure` just names it.
+         ⚠️ The other five (anim24, fig-01, fig-16, fig-18, anim6) are NOT the same case.
+         fig-01, fig-16 and fig-18 share ids with library figures but were taken from the
+         wireframe, so they must be checked against the library before anyone assumes the
+         name means the same drawing. Not done. */
+      figure: "fig-11",
       t: "What you end up with",
       text: "Once it is built, you open a chat inside the writer project and ask for what you need. It will write on brand, using your positioning and tailoring your messages to your segments. Below is an example writing emails for a fictional insurance brand to three different segment personas.\n\nWe'll go through how to set this up now using the fictional insurance brand. We'll give you the documents to do this for your brand. If you don't have your positioning work, segments, or messaging framework, we'll show you how to build an assistant in Claude that can help pull this information out of your head and convert it into usable instructions for your writer.",
     },
