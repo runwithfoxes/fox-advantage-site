@@ -77,6 +77,22 @@ export const SHELF: ShelfSection[] = [
         by: "youtube.com",
         url: "https://www.youtube.com/@PeterYangYT",
       },
+      /* ⭐ ADDED 3 Aug 2026, his second batch: "Dan Shipper, https://x.com/danshipper, GREG
+         ISENBERG https://x.com/gregisenberg, claire vo 🖤 @clairevo". He gave two URLs and
+         one handle; the handle is read straight across to the same address rather than
+         inferred from a name.
+
+         ⭐ ALL THREE WERE VERIFIED AGAINST A CONTROL, which is the only way a check on X
+         means anything: x.com serves a JavaScript shell, so a 200 alone proves nothing. A
+         deliberately fake handle returns 404 and these three return 200, so the 200 is
+         evidence rather than noise.
+
+         ⚠️ Dan Shipper runs Every, which sits in "Companies I watch". Not a duplicate: it is
+         his own filing rule working, the person under People and the publisher under
+         Companies. */
+      { name: "Dan Shipper", by: "x.com", url: "https://x.com/danshipper" },
+      { name: "Greg Isenberg", by: "x.com", url: "https://x.com/gregisenberg" },
+      { name: "Claire Vo", by: "x.com", url: "https://x.com/clairevo" },
     ],
   },
   {
