@@ -1052,6 +1052,27 @@ export const MODULE_2: ModuleDef = {
   on: "2026-10-05",
   built: false,
   blurb: MODULE_BLURBS[2],
+  /**
+   * ⭐⭐ THE OPENING, MOVED HERE 3 Aug 2026. Paul: "this information is meant to be the top
+   * knot in topic one... I did a fair bit of writing for the original one."
+   *
+   * ⛔ IT WAS WRONG AS AN ITEM AND THAT IS THE WHOLE CORRECTION. It shipped earlier today
+   * as item 01, "Why slow, then fast", which made the module's opening argument read as
+   * lesson one of one. On the prototype it is the top of the page, above the contents,
+   * before anything is numbered. `opening` is the slot that already means exactly that.
+   *
+   * ⛔ THREE PARAGRAPHS AND HIS ORDER, NOT FIVE AND MINE. Pasted by Paul verbatim on
+   * 3 Aug and that is the canonical arrangement, matching the prototype:
+   *   - the bad ad line OPENS, inside the first paragraph rather than alone after it
+   *   - "Go through those steps and the quality of what you make afterwards will be good,
+   *     and it will be fast" is NOT here. It was cut on 26 Jul and stays cut: the piece
+   *     goes from the problem straight to appropriate speed.
+   * The item-01 version had the bad ad line standing alone as its own paragraph and the
+   * cut line restored, so it was the same words in a shape he had already rejected.
+   * ⛔ Do not rewrite, tighten or reorder it.
+   */
+  opening:
+    "A bad ad made in four seconds is still a bad ad, and now there are four hundred of them. Good marketing requires doing the marketing. There are steps involved, and some of them have not changed in a long time and probably never will. Understanding the motivations of your customer. The hard work of understanding how you are positioning yourself in the minds of customers. You will not get that from the click of a button.\n\nIt is worth thinking about appropriate speed, because parts of this can be sped up. You can do research faster. You can do the admin around the work faster. You can use AI to find the gaps in your thinking.\n\nIn this module I take one example, building a writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning. Do that as quickly as you can, but do not skip it, do not rush it, and do not make it sloppy.",
   items: [
     {
       /* ⭐ PAUL'S WORDS, VERBATIM, approved 26 Jul 2026. Five paragraphs, about 170 words,
@@ -1061,8 +1082,26 @@ export const MODULE_2: ModuleDef = {
          their heads against the alternatives" both lost to the longer, plainer versions
          below. His rule, verbatim: "we're not trying to be clever or off the cuff. I'm
          clinical and plain speaking." */
-      t: "Why slow, then fast",
-      text: "Good marketing requires doing the marketing. There are steps involved, and some of them have not changed in a long time and probably never will. Understanding the motivations of your customer. The hard work of understanding how you are positioning yourself in the minds of customers. You will not get that from the click of a button.\n\nA bad ad made in four seconds is still a bad ad, and now there are four hundred of them.\n\nGo through those steps and the quality of what you make afterwards will be good, and it will be fast.\n\nIt is worth thinking about appropriate speed, because parts of this can be sped up. You can do research faster. You can do the admin around the work faster. You can use AI to find the gaps in your thinking.\n\nIn this module I take one example, building a writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning. Do that as quickly as you can, but do not skip it, do not rush it, and do not make it sloppy.",
+      /* ⭐⭐ THE NEXT THING ON THE PROTOTYPE AFTER THE OPENING, and it had never reached
+         this file. Paul's words, verbatim from `module-2-proto.src.html`, which is the
+         page he wrote on 26 Jul.
+
+         ⛔ THIS SLOT USED TO HOLD THE OPENING, WHICH WAS THE BUG. Item 01 was "Why slow,
+         then fast" and carried the module's opening argument, so moving that argument to
+         `opening` left the same words on the page twice. Restoring what the prototype
+         actually has here fixes both at once: the duplicate goes, and two paragraphs of
+         his writing that were never ported arrive.
+
+         ⚠️ "Building a writer" IS A SECTION LABEL ON THE PROTOTYPE, sitting above this,
+         not a title of its own. It is not reproduced as an item title because the page
+         has no section layer, and inventing one to hold two words would be building a
+         structure Paul has not seen. FLAGGED TO HIM.
+
+         ⛔ STILL MISSING FROM THIS MODULE, so nobody reads this as the port being done:
+         the prototype's SIX figures (fig-11, anim24, fig-01, fig-16, fig-18, anim6), and
+         the walkthrough itself, which was never written in any version. */
+      t: "What you end up with",
+      text: "Once it is built, you open a chat inside the writer project and ask for what you need. It will write on brand, using your positioning and tailoring your messages to your segments. Below is an example writing emails for a fictional insurance brand to three different segment personas.\n\nWe'll go through how to set this up now using the fictional insurance brand. We'll give you the documents to do this for your brand. If you don't have your positioning work, segments, or messaging framework, we'll show you how to build an assistant in Claude that can help pull this information out of your head and convert it into usable instructions for your writer.",
     },
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.
