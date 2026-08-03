@@ -408,11 +408,12 @@ export const MODULE_1: ModuleDef = {
         /* ⭐ Paul's link, 3 Aug 2026, "another link for topic 2". Title read off the live
            page. ?utm_source=chatgpt.com stripped, the third today.
 
-           ⚠️ HE IS PUTTING BACK THE TUTORIAL HE TOOK OUT. This exact page was item 02's
-           reading link until 2 Aug, when he replaced it with the advisor strategy piece
-           because his copy had moved to pairing models rather than picking one. Both now
-           stand, which is a change and not an oversight: the note above still explains why
-           the advisor piece is here. Flagged to him. */
+           ⭐ HE PUT BACK THE TUTORIAL HE HAD TAKEN OUT, AND THAT IS A DECISION, NOT A SLIP.
+           This exact page was item 02's reading link until 2 Aug, when he replaced it with
+           the advisor strategy piece because his copy had moved to pairing models rather
+           than picking one. Told that on 3 Aug, he ruled: "keep it in." So the item carries
+           both, the tutorial for picking and the advisor piece for pairing.
+           ⛔ Do not "tidy" this back to one link. It was two before anyone noticed. */
         {
           title: "Choosing the right Claude model: Haiku, Sonnet, Opus, or Fable",
           by: "Anthropic",
