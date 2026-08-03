@@ -52,9 +52,22 @@ export const SHELF: ShelfSection[] = [
     entries: [],
   },
   {
+    /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "Companies I watch include Ramp, Every,
+       Mercury, anthropic, Vercel." IN HIS ORDER, which is why it is not alphabetical.
+       ⭐ Every domain was requested and returned 200 before being written here rather than
+       typed from memory, and the page titles confirmed the identity of four of the five.
+       ⛔ NO `note` ON ANY OF THEM. He gave five names and no reasons, and a sentence about
+       why Ramp is worth watching, written on his behalf and published under his name, is the
+       fabrication this file exists to prevent. The row is complete without one. */
     slug: "companies",
     title: "Companies worth watching",
-    entries: [],
+    entries: [
+      { name: "Ramp", by: "ramp.com", url: "https://ramp.com" },
+      { name: "Every", by: "every.to", url: "https://every.to" },
+      { name: "Mercury", by: "mercury.com", url: "https://mercury.com" },
+      { name: "Anthropic", by: "anthropic.com", url: "https://anthropic.com" },
+      { name: "Vercel", by: "vercel.com", url: "https://vercel.com" },
+    ],
   },
   {
     slug: "articles",

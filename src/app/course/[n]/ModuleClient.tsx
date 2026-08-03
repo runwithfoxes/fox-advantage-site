@@ -412,6 +412,23 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 </a>
               ) : null,
             )}
+
+            {/* ⭐⭐ THE LIBRARY, AT THE FOOT OF EVERY MODULE'S RAIL, Paul 3 Aug 2026: "can we
+                link this from the rail in all modules? So call it the /library at the bottom
+                of the topics".
+
+                ⭐ IT IS THE PAGE'S ONLY WAY IN. /course/everything was built 2 Aug and until
+                this line existed NOTHING on the site linked to it and it was absent from
+                sitemap.ts, while its own header claimed it was public so that search and the
+                AI engines could reach it. Neither could. A public page linked from nowhere is
+                not published, it is deployed.
+
+                ⛔ BELOW THE RULE AND WITHOUT A NUMBER, on purpose. The numbered rows above are
+                this module's contents, in Paul's order. This is a different page. Giving it an
+                item number would make module 1 read as ten things when he wrote nine. */}
+            <Link className="mod-rail-lib" href="/course/everything">
+              /library
+            </Link>
           </nav>
         </div>
 

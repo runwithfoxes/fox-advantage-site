@@ -7154,6 +7154,12 @@ a.project-card {
    wordmark. (Paul corrected this on 21 Jul; rule lives in rwf-type-system.md.) */
 .mod-rail p{font-size:.75rem;letter-spacing:.02em;color:#3A7CA5;margin:0 0 16px;}
 .mod-rail a{display:grid;grid-template-columns:22px 9px 1fr;gap:8px;padding:8px 0;color:#8A8A85;text-decoration:none;border-top:1px solid #E0E0DC;line-height:1.35;}
+/* ⭐ THE LIBRARY LINK at the foot of the rail. Written as `.mod-rail a.mod-rail-lib`
+   because `.mod-rail a` above is the more specific selector and would otherwise force this
+   one back into the numbered three-column grid. It is blue because it leaves the page, and
+   the numbered rows are not, which is the site's one colour rule doing its job. */
+.mod-rail a.mod-rail-lib{display:block;margin-top:12px;padding:12px 0 0;border-top:2px solid #1A3A4E;color:#3A7CA5;}
+.mod-rail a.mod-rail-lib:hover{text-decoration:underline;}
 .mod-rail a:hover{color:#3A7CA5;}
 .mod-k{color:#A8A8A2;font-variant-numeric:tabular-nums;}
 .mod-dot{width:7px;height:7px;border:1px solid #C9C9C3;background:#fff;display:block;margin-top:6px;}

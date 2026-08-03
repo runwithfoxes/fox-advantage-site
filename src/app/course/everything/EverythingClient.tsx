@@ -158,18 +158,12 @@ export default function EverythingClient({
         </Link>
       </header>
 
-      {build && (
-        <div className="mod-build">
-          <b>BUILD VIEW. A member never sees this.</b> {lessonCount} from the lessons
-          {" · "}
-          {shelfCount} on the shelf
-          {" · "}
-          {hidden} {hidden === 1 ? "item is" : "items are"} hidden as placeholder
-          {" · "}
-          {built} of {modules.length} modules have content
-        </div>
-      )}
-
+      {/* ⛔ NO BUILD BANNER ON THIS PAGE, Paul 3 Aug 2026: "Can you take off the build view
+          blue thing at the top?" The module page keeps its own. Here the banner sat above the
+          masthead and pushed the whole page down, so the one page whose top is supposed to
+          match a module page's top did not, which was his next sentence. ?build still works
+          and is still the only way to see the empty shelf sections; those sections ARE the
+          cue that you are in it. */}
       {/* ⭐ THE SAME TWO-COLUMN GRID AS A MODULE PAGE, and the reason is measured rather than
           felt. Paul, 3 Aug: "the fonts are too big". They were not. The h1 and the prose use
           the identical classes on both pages; the module page indents them into a 748px
@@ -180,28 +174,41 @@ export default function EverythingClient({
         <div className="mod-railcol">
           <nav className="mod-rail">
             <p>/the library</p>
-            {sections.map((sec, i) => {
-              const n = sec.rows.length;
-              /* An empty shelf section is listed for Paul and hidden from a learner, the
-                 same rule the sections themselves follow. */
-              if (n === 0 && !(build && sec.kind === "shelf")) return null;
-              return (
+            {/* ⭐ NUMBERED OVER WHAT IS VISIBLE, NEVER OVER THE SOURCE ARRAY. Filtering first
+                and numbering second is the whole fix: numbering the source array printed
+                01 then 03 on the live page, because People I follow is empty and hidden but
+                still held position two. A rail that skips a number reads as a page with
+                something missing. */}
+            {sections
+              .filter(
+                (sec) =>
+                  sec.rows.length > 0 || (build && sec.kind === "shelf"),
+              )
+              .map((sec, i) => (
                 <a key={sec.slug} href={`#s-${sec.slug}`}>
                   <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
                   <span className="mod-dot" />
                   <span>
                     {sec.title}
-                    <em className={s.railn}>{n}</em>
+                    <em className={s.railn}>{sec.rows.length}</em>
                   </span>
                 </a>
-              );
-            })}
+              ))}
           </nav>
         </div>
 
         <div className="mod-maincol">
           <header className="mod-masthead">
-            <p className="mod-eyebrow">Free · nothing to sign up for</p>
+            {/* ⚠️ THE SLOT STAYS EVEN THOUGH THE WORDS CHANGED, and the two instructions are
+                connected. Paul, 3 Aug: "I don't want to say free nothing to sign up for. You
+                can take that off", and in the same breath, "I want to make sure that the
+                navigation of the page starts at the same place as my other ones." A module
+                page's eyebrow reads MODULE 1 OF 6 · OPENS MON 21 SEP and it is what sets the
+                height of everything under it. Deleting the element rather than its text lifts
+                this headline 29px above every module headline and breaks the second
+                instruction while obeying the first.
+                ⛔ SO THESE THREE WORDS ARE A PLACEHOLDER FOR HIS, not a decision. */}
+            <p className="mod-eyebrow">The library</p>
             <h1 className="mod-h1">Everything from the course</h1>
             {/* The fox the module pages never use, so the library has its own. A fox is
                 furniture, not teaching, so it does not cross this page's own line. */}
