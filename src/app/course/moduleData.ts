@@ -335,6 +335,28 @@ export const MODULE_1: ModuleDef = {
          ⭐ `compare-figures.py` now reads 0.000% on all ten across every seek time, and its
          `--control` goes red, so the pass is a real one. */
       figure: "bp-01",
+      /* ⭐ Paul's link, 3 Aug 2026, "for more reading on topic 1", and topic 1 is THIS item.
+         Title read off the live page, "Connectors | Claude by Anthropic", trimmed to the
+         page's own name.
+
+         ⛔ IT ARRIVED CARRYING ?utm_source=chatgpt.com AND THAT WAS STRIPPED. Left on it
+         credits someone else's referrer on every click and tells every reader where Paul
+         found the page. Second link today to arrive with that exact parameter.
+
+         ⚠️ IT FIRST WENT ONTO ITEM 02 BY MISTAKE, because item 02 already had a `reading`
+         block and item 01 had none, so the nearest one looked like the right one. Check
+         which item OWNS a block before appending to it: the `t:` above, not the nearest.
+
+         ⭐ It belongs here: this item's second half is Claude as a technical colleague, "its
+         ability to connect with other software and other tools", and this is the page that
+         lists what it connects to. */
+      reading: [
+        {
+          title: "Connectors",
+          by: "Anthropic",
+          url: "https://claude.com/connectors",
+        },
+      ],
     },
     {
       t: "Check which model you're on",
@@ -383,21 +405,18 @@ export const MODULE_1: ModuleDef = {
           by: "Anthropic",
           url: "https://claude.com/blog/the-advisor-strategy",
         },
-        /* Paul's link, 3 Aug 2026, "for more reading on topic 1". Title read off the live
-           page: "Connectors | Claude by Anthropic", trimmed to the page's own name.
+        /* ⭐ Paul's link, 3 Aug 2026, "another link for topic 2". Title read off the live
+           page. ?utm_source=chatgpt.com stripped, the third today.
 
-           ⛔ IT ARRIVED CARRYING ?utm_source=chatgpt.com AND THAT WAS STRIPPED. Left on, it
-           credits someone else's referrer on every click and tells every reader of this
-           course where Paul found the page. This is the SECOND link to arrive with that exact
-           parameter, which is what the standing rule on `reading` above was written for.
-
-           ⭐ IT IS THE RIGHT ITEM. Item 01's second half is Claude as a technical colleague,
-           "its ability to connect with other software and other tools", and this is the page
-           listing what it connects to. */
+           ⚠️ HE IS PUTTING BACK THE TUTORIAL HE TOOK OUT. This exact page was item 02's
+           reading link until 2 Aug, when he replaced it with the advisor strategy piece
+           because his copy had moved to pairing models rather than picking one. Both now
+           stand, which is a change and not an oversight: the note above still explains why
+           the advisor piece is here. Flagged to him. */
         {
-          title: "Connectors",
+          title: "Choosing the right Claude model: Haiku, Sonnet, Opus, or Fable",
           by: "Anthropic",
-          url: "https://claude.com/connectors",
+          url: "https://claude.com/resources/tutorials/choosing-the-right-claude-model",
         },
       ],
     },
