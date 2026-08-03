@@ -741,116 +741,19 @@ export const MODULE_1: ModuleDef = {
       text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
     },
     {
-      t: "Show it one example of good",
-      text: "“Punchy” and “on brand” mean nothing to it. So I paste in one thing that already gets it right. One example does more than a paragraph of description.",
-      prompt:
-        "Here's an example of the tone I want. Match this, don't improve on it: [paste the example]",
-    },
-    {
-      t: "Ask for a web page, not a document",
-      text: "The one I'd tell everybody first. Instead of “write me a report”, I ask for it as a web page. It comes back laid out properly, I can send a link instead of an attachment nobody opens, and in Claude it builds it in front of you as an Artifact.",
-      prompt:
-        "Make this a single-page HTML report I can open in my browser. Numbers in a table, a simple bar chart, and a button to copy the summary as text.",
-      grab: "The report rendering as an Artifact",
-    },
-    {
-      t: "Build the thing, don't describe it",
-      text: "I don't ask for a plan for a landing page. I ask it to build the page. In Claude that's an Artifact, in Claude Code it writes the actual files. A few minutes later there's a real page I can click around. It's easier to react to a real thing than to picture one from a description.",
-      prompt:
-        "Build a working landing page for [thing]. One screen: headline, three benefits, a sign-up box. Keep it clean and modern.",
-    },
-    {
-      t: "Do it once, then a hundred times",
-      text: "The first time I get something right, a resized ad, a reformatted report, I don't treat it as one job done. I work the steps out with it once, then hand the repeating over. For me that's the ad resizer: I set it up with Claude Code once, and now one line turns a single ad into nine sizes in about six seconds, using free tools like ffmpeg underneath. The slow part is the first one. After that it's almost free.",
-      grab: "The nine sizes, side by side",
-    },
-    {
-      t: "Point it at a spreadsheet",
-      text: "I drop a messy sheet straight into Claude or ChatGPT, or use Copilot inside Excel, and ask the same thing. Back come the charts, and usually a pattern I wouldn't have gone looking for. It's the fastest way I know to turn a spreadsheet into a decision.",
-      prompt:
-        "Three biggest trends in here and the one thing that doesn't fit. Plain English first, then show me the charts.",
-    },
-    {
       t: "Talk, don't type",
       text: "I say a lot more than I'd type. I hit the voice button in the ChatGPT or Claude app, or use a dictation tool like Superwhisper on my laptop, and talk for two minutes. Rambling is fine. It's better at sorting my mess than I am.",
       prompt: "That was me thinking out loud. Turn it into three clear points and a next step.",
     },
     {
-      t: "Photograph the mess",
-      text: "It reads images, so I stopped typing things up. A whiteboard covered in my own bad handwriting, a page of a book, a screenshot, a receipt. I photograph it and say “pull the key points out of this” or “put this into a table”. The thing on my desk is usable in one step.",
-      prompt: "Pull the key points out of this.",
-    },
-    {
-      t: "Make yourself a throwaway tool",
-      text: "When I've a fiddly one-off job, I get it to build me a small tool for exactly that. In Claude that's an Artifact you can use right there in the chat. A page with a few buttons beats doing it by hand.",
-      prompt:
-        "Build me a little tool where I can drag these twenty items into priority order, then give me the sorted list back.",
-      grab: "The little tool, working",
-    },
-    {
-      t: "Connect it to your stuff",
-      text: "It gets more useful once it can see your actual work. Claude and ChatGPT both connect to Google Drive, Gmail and Calendar now, and Copilot already sits inside your Microsoft files. Turn those on and you can ask about your real week. One catch: it only sees what you can see. Point it at a messy shared drive and you get messy answers back.",
-      prompt: "What did this client send me this week, and what am I on the hook for?",
-      grab: "The connectors screen",
-    },
-    {
-      t: "Use it to pressure-test your thinking",
-      text: "Not all of this is about making something. Often I hand it a decision I've already half made and tell it not to be nice. Half the time I don't use a word it writes back. I just think more clearly for being pushed.",
-      prompt:
-        "Don't help me improve this. Tell me what I'm assuming, and what a smart person who disagrees with me would say.",
-    },
-    {
-      t: "Make it find the cause before the fix",
-      text: "Ask “our sign-ups are down, what do we do” and back comes the usual shopping list. So I make it slow down. Fewer people arriving, the same people not converting, or a different crowd. Three problems, and the answer to one is the wrong answer to the others.",
-      prompt:
-        "Before you suggest anything, list the possible causes and what evidence would point to each one.",
-    },
-    {
-      t: "Run a pre-mortem",
-      text: "Ask it to assume the thing has already failed. Pretending it's already gone wrong gives everyone permission to say the awkward thing. Most of what comes back is stuff I half-knew and had decided not to look at.",
-      prompt: "It's six months from now and this has failed. Write the story of how it happened.",
-    },
-    {
-      t: "Ask it to score its own confidence",
-      text: "I get it to grade itself. The lowest score is nearly always the thing my argument is leaning on. A quick way to find the weak point before someone else does.",
-      prompt: "Rate your confidence 0 to 100 on every claim you just made, and list the three lowest.",
-    },
-    {
-      t: "Narrow the data before it goes in",
-      text: "Tip in four thousand replies and you get a grey average that means nothing. So I cut it down first. The narrower question gives you something useful. The full pile doesn't.",
-      prompt: "Just the last ninety days, just the people who cancelled. What's the common thread?",
-    },
-    {
-      t: "The expert panel",
-      text: "My favourite one. I take a single document and run it past three readers in one go, each with its own brief. Each catches a different hole. Then I decide, because they never fully agree.",
-      prompt:
-        "Read this three times. First as Roger Martin, looking for the strategy. Then as a CFO who only cares where the cash is. Then as a red team trying to kill it. Give me three separate verdicts.",
-    },
-    {
-      t: "Do the reps",
-      text: "For all of that, I still do plenty by hand. The best coders in the world still write their own code, not because they're quicker than the machine, they just don't want to lose the feel for it. I'm the same about the thinking and the writing. The tool doesn't know what matters in my business. I do, and I only keep knowing it by staying in the work.",
-    },
-    {
-      /* The links type. Demonstrated 19 Jul with the Fable piece, which Paul confirmed
-         does NOT belong in module 1. Kept here as the shape only, with placeholders,
-         until he decides what actually goes in module 1's list. */
-      t: "Worth saving",
+      /* ⭐ PAUL'S, 3 Aug 2026: "I'm going to keep in the research which I need to write."
+         There was NO research item on the page. Deep research was #5 on his list of nine and
+         had nothing behind it, so this is a slot he asked to hold open, not a survivor.
+         ⚠️ TITLE AND COPY ARE BOTH HIS TO WRITE. "Deep research" is his own phrase from
+         2 Aug, standing in until he names it. ⛔ No figure exists for this lesson either. */
+      t: "Deep research",
       placeholder: true,
-      text: "PLACEHOLDER, PAUL TO WRITE. One line on why this collection rather than any other. The curation is the value.",
-      links: [
-        {
-          title: "Placeholder source",
-          by: "Who made it",
-          url: "https://example.com",
-          why: "PAUL TO WRITE.",
-        },
-        {
-          title: "Placeholder source",
-          by: "Who made it",
-          url: "https://example.com",
-          why: "PAUL TO WRITE.",
-        },
-      ],
+      text: "PLACEHOLDER, PAUL TO WRITE. Deep research.",
     },
   ],
 };
