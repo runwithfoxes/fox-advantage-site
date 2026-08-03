@@ -65,6 +65,32 @@ export default function PrivacyPage() {
           see our <a href="/cookies" style={{ color: "#3A7CA5" }}>Cookies page</a>. We do not sell your data.
         </p>
 
+        {/* ⭐⭐ ADDED 3 Aug 2026, and it exists because the course started recording behaviour.
+            The door on every module page carries a one-sentence version in Paul's own words;
+            this is what stands behind it. ⛔ THE TWO MUST KEEP SAYING THE SAME THING. A
+            sentence on a door with nothing behind it is the weaker version, and the two
+            drifting apart is worse than either alone. If the door's copy changes, change this
+            in the same commit. Source of the door's wording: CourseDoor.tsx. */}
+        <h2 style={h2}>The course</h2>
+        <p style={p}>
+          The AI fluency course is free and you sign up with an email address. Once you are
+          signed up, we record what you do inside the course: which modules and lessons you
+          open, and what you copy or download. We use it to make the emails we send you about
+          the course relevant to what you are actually doing, rather than sending everyone the
+          same thing. We process this on the basis of our legitimate interests in running a
+          course we can improve and in supporting the people taking it.
+        </p>
+        <p style={p}>
+          This information sits alongside your signup in our own records and in Klaviyo, the
+          email platform we use to send the course emails. We do not sell your data. You can
+          unsubscribe from any course email using the link in it, and unsubscribing also stops
+          us recording what you do on the course pages. You can also email{" "}
+          <a href="mailto:paul@runwithfoxes.com" style={{ color: "#3A7CA5" }}>
+            paul@runwithfoxes.com
+          </a>{" "}
+          to ask us to stop, or to delete what we hold.
+        </p>
+
         <h2 style={h2}>How long we keep it</h2>
         <p style={p}>
           We keep business contact information only while a contact remains professionally relevant, and we remove it

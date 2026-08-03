@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { MODULES_BY_N } from "../moduleData";
+import CourseDoor from "./CourseDoor";
 import ModuleClient from "./ModuleClient";
 
 /**
@@ -41,5 +43,19 @@ export default async function ModulePage({
   const { n } = await params;
   const mod = MODULES_BY_N[Number(n)];
   if (!mod) notFound();
+
+  /* ⭐⭐ THE DOOR IS CHECKED ON THE SERVER, 3 Aug 2026. Paul: "I want everybody that does the
+     course must sign up through email." A client-side gate renders the whole module and then
+     hides it, so the lesson is in the page source and one devtools click away, which would
+     make the sentence on the door untrue for anyone who looked.
+
+     ⛔ IT IS STILL NOT A LOCK. Anyone who types an email is in, including an address we have
+     never seen, because the point is a NAME on the behaviour rather than keeping people out.
+     See CourseDoor. */
+  const identified = (await cookies()).get("rwf_course_id")?.value ?? "";
+  if (!identified.includes("@")) {
+    return <CourseDoor n={mod.n} title={mod.title} when={mod.when} />;
+  }
+
   return <ModuleClient mod={mod} />;
 }

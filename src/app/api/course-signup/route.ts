@@ -336,7 +336,35 @@ export async function POST(req: NextRequest) {
 
     // Someone who submits twice, or refreshes mid-submit, has done nothing
     // wrong. Both land here as a success with `already` set, not as an error.
-    return NextResponse.json({ ok: true, door, already: !!existing });
+    const res = NextResponse.json({ ok: true, door, already: !!existing });
+
+    /* ⭐⭐ THE IDENTITY COOKIE IS SET HERE AND NOWHERE ELSE, 3 Aug 2026. This is the moment
+       the course gets a name to attach behaviour to, which is the entire reason Paul wants
+       an email door: "When Sarah or John is doing the course, I want to know what Sarah
+       clicks on, what she copies, pastes."
+
+       ⛔ NOT ON THE HONEYPOT SUCCESS ABOVE. That branch returns ok:true to a BOT on purpose,
+       so it learns nothing from being rejected. Handing it an identity would put invented
+       people into the behaviour record, which is the one thing that record cannot survive.
+
+       ⭐ httpOnly, SO THE PAGE CANNOT READ IT. Nothing client-side needs the address: the
+       event route reads the cookie server-side, and the module page asks whether it exists
+       rather than what it says. A readable email is one XSS away from being harvested, and
+       it would tempt someone into posting identity from the client, which the event route
+       refuses for good reason.
+
+       A year, because the course runs 21 Sep to 30 Nov and someone who signs up in September
+       must still be recognised in November without signing up again. */
+    res.cookies.set({
+      name: "rwf_course_id",
+      value: email,
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+    });
+    return res;
   } catch (err) {
     console.error("[course-signup] unexpected failure", err);
     await recordSignup({

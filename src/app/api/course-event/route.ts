@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   domainOf,
+  isOptedOut,
   recordEvent,
   type CourseEvent,
   type CourseEventName,
@@ -84,6 +85,14 @@ export async function POST(req: NextRequest) {
     typeof body.module === "number" && body.module >= 1 && body.module <= 6
       ? body.module
       : null;
+
+  /* ⭐ OPTED OUT MEANS NOTHING IS WRITTEN, checked before the record and before Klaviyo. The
+     door's copy promises "You can unsubscribe from any email", and a person who takes that
+     at its word must stop generating rows here too. Returns 200: they have done nothing
+     wrong and there is nothing to report to them. */
+  if (await isOptedOut(email)) {
+    return NextResponse.json({ ok: true, recorded: false });
+  }
 
   const rec: CourseEvent = {
     ts: new Date().toISOString(),

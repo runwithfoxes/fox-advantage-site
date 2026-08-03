@@ -89,6 +89,48 @@ export function domainOf(email: string): string {
   return at === -1 ? "" : email.slice(at + 1).toLowerCase();
 }
 
+/**
+ * ⭐⭐ UNSUBSCRIBING STOPS THE RECORDING, NOT JUST THE EMAIL. Paul approved the door's copy on
+ * 3 Aug 2026 and it ends "You can unsubscribe from any email." Someone reading that assumes
+ * the whole thing stops, and they are right to: the sentence is what makes it true.
+ *
+ * ⛔ THE COOKIE AND THE KLAVIYO SUBSCRIPTION ARE SEPARATE THINGS, which is exactly how this
+ * would have gone wrong on its own. Unsubscribing happens in Klaviyo and does nothing to a
+ * browser cookie, so without this set a person who opted out would carry on generating events
+ * silently, and the door's promise would quietly become a lie. Nothing would fail.
+ *
+ * ⚠️ NOT AUTOMATIC YET. Something has to TELL us an unsubscribe happened, and Klaviyo does
+ * not volunteer it. `/api/course-optout` exists to be pointed at by a Klaviyo webhook, and
+ * until that webhook is configured in Klaviyo this set only fills when Paul adds someone by
+ * hand. The check below is correct either way; the gap is upstream and it is named here so
+ * nobody reads a working suppression check as a working suppression.
+ */
+const OPTOUT_KEY = "course:optout";
+
+export async function addOptOut(email: string): Promise<void> {
+  const redis = getRedis();
+  if (!redis) return;
+  try {
+    await redis.sadd(OPTOUT_KEY, email.trim().toLowerCase());
+  } catch (err) {
+    console.error("[course-event] optout write failed", err);
+  }
+}
+
+/** ⛔ FAILS OPEN, DELIBERATELY AND NARROWLY. If Redis is unreachable this returns false and
+ *  the event is recorded. The alternative, dropping every event whenever the store blinks,
+ *  loses real behaviour for everyone to protect a set that is usually empty. */
+export async function isOptedOut(email: string): Promise<boolean> {
+  const redis = getRedis();
+  if (!redis) return false;
+  try {
+    return (await redis.sismember(OPTOUT_KEY, email.trim().toLowerCase())) === 1;
+  } catch (err) {
+    console.error("[course-event] optout read failed", err);
+    return false;
+  }
+}
+
 export async function recordEvent(rec: CourseEvent): Promise<void> {
   console.info("[course-event] record", JSON.stringify(rec));
 
