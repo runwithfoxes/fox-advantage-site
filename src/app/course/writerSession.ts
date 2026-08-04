@@ -22,11 +22,37 @@
  * since gained a register row in its scoring grid so the same miss fails the grid next time.
  */
 
+/**
+ * ⭐ A SOURCE BEHIND ONE LINE. `file` is the module document as the learner knows it
+ * (e.g. "positioning-statement.md"), `quote` is a verbatim line from it. These render as
+ * the hover highlights on a finished artefact: the visual proof that the files are driving
+ * the writing. They come from the writer's own source map, which writer-dna now makes it
+ * close the claims ledger with, so the page shows the map in place instead of printing it
+ * as a second block of text.
+ * ⛔ A ref is part of the RUN. Never annotate a line after the fact with a file the writer
+ * did not name. `scripts/check-sessions.mjs` asserts every quote is really in its file.
+ */
+export type Ref = { file: string; quote: string };
+
 export type Block =
   | { kind: "p"; text: string }
   | { kind: "plan"; lines: [string, string][] }
   | { kind: "flag"; text: string }
-  | { kind: "email"; subject: string; body: string[]; sign: string[] }
+  | {
+      kind: "email";
+      subject: string;
+      body: string[];
+      sign: string[];
+      /** Index-aligned with `body`. `null` where a line is raw material or plain craft. */
+      refs?: (Ref | null)[];
+      subjectRef?: Ref | null;
+    }
+  | {
+      kind: "post";
+      body: string[];
+      /** Index-aligned with `body`, same contract as the email block. */
+      refs?: (Ref | null)[];
+    }
   | { kind: "audit"; label: string; text: string }
   | {
       kind: "grid";
