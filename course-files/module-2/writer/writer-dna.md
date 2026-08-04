@@ -68,6 +68,9 @@ Four or five lines, before a word of copy.
 - What it is, and which format file you are working from.
 - Who it is for. Which segment, in which situation.
 - Which pillar it carries.
+- **Which part of the positioning this piece leans on.** Quote it from `positioning-statement`.
+  If the piece drops one of the four parts on purpose, say which one and why. A part dropped
+  silently looks like a part missed.
 - **Which framework inside that format file you are using, and why.** Not just "an email", but the
   shape, and the reason it fits what this reader already knows.
 - Roughly how long, and the one thing they should take away.
@@ -97,6 +100,10 @@ run.
 
 Then the claims ledger. Every checkable statement, its status, and its evidence. Nothing is marked
 verified without a pasted source.
+
+Close the ledger with a source map. Line by line through the piece: the file that drove each line,
+or the raw material it came from, or plain craft where it is neither. The map is what lets someone
+check the files are driving the writing rather than decorating it.
 
 ### 6. Score it, twice, honestly
 
