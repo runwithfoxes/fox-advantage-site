@@ -1344,10 +1344,41 @@ export const MODULE_2: ModuleDef = {
          within minutes.
 
          ⚠️ PROSE NOT WRITTEN. The window carries the session; Paul's words around it are
-         still to come, which is why this is `placeholder`. */
+         still to come, which is why this is `placeholder`.
+
+         ⭐ A SECOND WINDOW, 4 Aug 2026, on Paul's ruling: the social post session, run WITH
+         the missing-file gap so the writer's refusal to invent a rulebook is real and on
+         show. Two windows, not one longer one: each is one recording with its own start
+         plate, and the reader chooses to watch the second. Both recordings live in
+         `writerSession.ts`; the hover source maps are part of the recordings. */
       t: "Watch it work",
-      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION}}",
+      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION}}\n\n{{SESSION_POST}}",
       session: true,
+      placeholder: true,
+    },
+    {
+      /* ⭐ ITEM 05, THE INTERVIEWER, CLOSING THE MODULE. Paul, 4 Aug 2026: "if you don't
+         have positioning work and messaging work, I've also built an assistant that you can
+         download into your cloud, and it can help you pull out your messaging and everything
+         into a messaging framework for you", and his ruling the same evening: make the
+         interviewer the closing item. This resolves the 4 Aug flag on item 01: the
+         interviewer was promised nowhere on the page after his rewrite. Now it is promised
+         here, as the on-ramp for the reader who hit item 02 with none of the slow work done.
+
+         ⭐ DEPTH RULED, 4 Aug: prose plus the file, NOT a third recorded session. A recorded
+         interview needs someone to play the learner for twenty turns and lengthens an
+         already long module. If the item feels thin later, a recording can be added.
+
+         ⚠️ PROSE NOT WRITTEN, and THE TITLE IS MINE, NOT HIS, a working label so the rail
+         reads sensibly until he gives the words. Both await Paul. */
+      t: "No positioning done yet?",
+      docs: {
+        dir: "module-2/writer",
+        folder: "writer/",
+        files: ["brand-interviewer"],
+        as: "links",
+      },
+      text: "AWAITING PAUL'S WORDS.",
       placeholder: true,
     },
   ],

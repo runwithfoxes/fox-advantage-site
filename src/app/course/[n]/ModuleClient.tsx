@@ -6,7 +6,7 @@ import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
 import FolderWindow from "./FolderWindow";
 import ChatWindow from "./ChatWindow";
-import { KITE_SESSION } from "../writerSession";
+import { KITE_SESSION, KITE_POST_SESSION } from "../writerSession";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
@@ -833,6 +833,12 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                       <ChatWindow
                         session={KITE_SESSION}
                         start={"A real session with Kite’s writer, start to finish."}
+                      />
+                    ) : undefined,
+                    SESSION_POST: it.session ? (
+                      <ChatWindow
+                        session={KITE_POST_SESSION}
+                        start={"A second ask: a social post, and a gap in the pack."}
                       />
                     ) : undefined,
                   }}
