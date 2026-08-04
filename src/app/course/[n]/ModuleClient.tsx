@@ -95,6 +95,109 @@ function ItemPicture({
 }
 
 /**
+ * ⭐ THE ITEM'S FILES, AS LINKS AT ITS FOOT. Paul, 4 Aug 2026: "just put them as links like
+ * we do links for extended reading."
+ *
+ * ⭐⭐ IT REUSES `.mod-reading` VERBATIM RATHER THAN GETTING ITS OWN LOOK, and that is the
+ * instruction rather than laziness: he named the existing treatment. Two blocks that do the
+ * same job at the foot of an item should not look like two different inventions.
+ *
+ * ⭐ THE HREF IS THE `.md`, NOT THE `.html`. The route sends markdown with a download
+ * disposition, and markdown is the thing that goes into a Claude project. These three are
+ * TAKEAWAYS, so the link has to hand over the file, not show a reading copy of it.
+ */
+function DocLinks({
+  docs,
+  onCopy,
+}: {
+  docs?: Item["docs"];
+  onCopy: (msg: string) => void;
+}) {
+  /* ⛔ STATE BEFORE THE EARLY RETURN. Hooks cannot sit behind a conditional. */
+  const [open, setOpen] = useState<string | null>(null);
+  if (!docs || docs.as !== "links") return null;
+
+  /* ⭐ COPY AS WELL AS OPEN, 4 Aug 2026. Paul: "as well of them being links that they can
+     click on and open, they should be able to just click and copy in the same way we did
+     for module 1... We had a copy CFO prompt."
+
+     ⭐⭐ AND COPY IS THE REAL AFFORDANCE HERE. These files exist to be pasted into a Claude
+     project. Opening one shows a person a page they then have to select and copy by hand,
+     which is the long way round to the only thing they came for. The link stays because
+     somebody will want to read before they take.
+
+     ⚠️ IT FETCHES THE MARKDOWN RATHER THAN HOLDING IT. The `.md` is the file that goes into
+     the project, it is served behind the same door as the page, and bundling ~600 words x
+     three into the client would ship them to anyone who views source, which is the hole
+     `course-files/` was moved out of `public/` to close. */
+  const copy = async (f: string) => {
+    try {
+      const r = await fetch(`/api/course-file/${docs.dir}/${f}.md`);
+      if (!r.ok) throw new Error(String(r.status));
+      await navigator.clipboard.writeText(await r.text());
+      onCopy(`${f}.md copied`);
+    } catch {
+      /* ⛔ Say so. A silent failure here looks exactly like a successful copy, and the
+         person only finds out when they paste nothing into their project. */
+      onCopy("Copy failed");
+    }
+  };
+
+  return (
+    <div className="mod-reading">
+      <span className="mod-readinglbl">The files</span>
+      {docs.files.map((f) => (
+        <span key={f} className="mod-filerow">
+          {/* ⛔⛔ THE NAME IS A NAME. THE ACTIONS ARE NAMED. Paul, 4 Aug: "the UX is not
+              entirely clear. I think we need to have a link that says open, a link that says
+              download, and a link that says copy."
+
+              ⭐ TWO EARLIER VERSIONS BOTH ASKED THE READER TO INFER, and that is the lesson.
+              First the filename downloaded, then the filename opened and `.MD` downloaded.
+              Either way the reader has to guess what clicking a word will do, and guess again
+              at what an extension means. A verb cannot be misread. */}
+          <span className="mod-filename">{f}</span>
+          <span className="mod-fileacts">
+            <button
+              type="button"
+              className="mod-fileact"
+              aria-expanded={open === f}
+              onClick={() => setOpen(open === f ? null : f)}
+            >
+              {open === f ? "Close" : "Open"}
+            </button>
+            <a
+              className="mod-fileact"
+              href={`/api/course-file/${docs.dir}/${f}.md`}
+              download
+            >
+              Download
+            </a>
+            <button
+              type="button"
+              className="mod-fileact"
+              onClick={() => copy(f)}
+            >
+              Copy
+            </button>
+          </span>
+        </span>
+      ))}
+      {open && (
+        <div className="mod-slot">
+          <FolderWindow
+            name={docs.folder}
+            dir={docs.dir}
+            files={docs.files.map((x) => ({ file: x, label: `${x}.md` }))}
+            start={docs.files.indexOf(open)}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
  * ⭐ ADDITIONAL READING. A subhead and a stacked list, at the END of an item.
  * Paul, 3 Aug 2026: "in the same way I write any article, I'd have a little subhead at the
  * very end that says additional reading, and then just a whole bunch of links."
@@ -129,6 +232,18 @@ function ReadingList({ reading }: { reading?: Item["reading"] }) {
       ))}
     </div>
   );
+}
+
+
+/* ⭐ "/api/course-file/module-2/kite/audience.md" -> "module-2/kite". The served root is
+   everything between the route prefix and the filename. Derived so a renamed heading or a
+   moved folder cannot put the window on the wrong directory while nothing fails. */
+function dirOf(take: string) {
+  return take
+    .replace(/^\/api\/course-file\//, "")
+    .split("/")
+    .slice(0, -1)
+    .join("/");
 }
 
 const BUILD_PARAM = "build";
@@ -322,6 +437,8 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
   const [done, setDone] = useState<Set<number>>(new Set());
   const [open, setOpen] = useState<number | null>(null);
   const [flash, setFlash] = useState<string | null>(null);
+  /* Which file in the /files section is open, and in which set. One at a time. */
+  const [setFile, setSetFile] = useState<{ set: string; file: string } | null>(null);
   const [build, setBuild] = useState(false);
 
   const key = `rwf-course-m${mod.n}-done`;
@@ -477,16 +594,17 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 ⛔ BELOW THE RULE AND WITHOUT A NUMBER, on purpose. The numbered rows above are
                 this module's contents, in Paul's order. This is a different page. Giving it an
                 item number would make module 1 read as ten things when he wrote nine. */}
-            {/* ⭐ THE MODULE'S OWN FILES, ABOVE THE LIBRARY AND BELOW THE SAME RULE. Both
-                sit outside the numbered contents for the same reason: neither is one of
-                Paul's lessons. The order between them is nearest-first, this module's
-                files before every module's library. Absent when a module has none. */}
-            {mod.files && mod.files.length > 0 && (
-              <a className="mod-rail-lib" href="#files">
-                /files in this module
-              </a>
-            )}
+            {/* ⛔ "/files in this module" DELETED FROM THE RAIL, 4 Aug 2026. Paul: "I don't
+                want files in this module on the left-hand side. I feel like they can just
+                find them in the library."
 
+                ⭐ THE RAIL IS FOR THE LESSON, and this is the second thing taken out of it
+                for that reason. It carries Isa, then Paul's numbered contents, then one way
+                out. A second destination made the column a menu of places rather than a map
+                of the module.
+
+                ⚠️ THE `#files` SECTION ITSELF IS UNTOUCHED and still sits at the foot of the
+                page. Only the rail shortcut is gone. */}
             <Link className="mod-rail-lib" href="/course/everything">
               /library of everything
             </Link>
@@ -669,7 +787,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   text={it.text}
                   ph={it.placeholder}
                   slot={
-                    it.docs ? (
+                    it.docs && it.docs.as !== "links" ? (
                       <FolderWindow
                         name={it.docs.folder}
                         dir={it.docs.dir}
@@ -704,6 +822,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   </button>
                 )}
 
+                <DocLinks docs={it.docs} onCopy={say} />
                 <ReadingList reading={it.reading} />
 
                 {it.links && (
@@ -803,26 +922,89 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                     Kite's positioning statement and read its market shares has taken it for
                     research, and a warning underneath arrives too late to stop that. */}
                 {set.warn && <p className="mod-fwarn">{set.warn}</p>}
+                {/* ⭐⭐ THREE THINGS PER ROW, 4 Aug 2026, and Paul's reason is the teaching
+                    rather than the convenience: "I think we should be able to open them as
+                    a window, download them as an MD file, and copy them... I think people
+                    might want to look at them and see what's actually in them so they're
+                    learning."
+
+                    ⭐ SO OPENING IS THE PRIMARY ACT AND IT HAPPENS IN PLACE. The name used
+                    to open the readable page in a NEW TAB, which takes a learner off the
+                    module to read a document about the module. It now opens the same folder
+                    window used by items 02 and 03, under this set, at this file.
+                    ⛔ Three affordances, three distinct controls: NAME reads, .MD takes,
+                    COPY pastes. None of them is a fallback for another. */}
                 <ul className="mod-frows">
                   {set.files.map((f) => (
                     <li className="mod-frow" key={f.name}>
-                      <a
-                        className="mod-fname"
-                        href={f.href}
-                        target="_blank"
-                        rel="noopener"
-                      >
-                        {f.name}
-                      </a>
+                      {/* ⛔⛔ NAMED VERBS, NOT INFERRED ONES. Same ruling as item 03's rows,
+                          4 Aug: "a link that says open, a link that says download, and a link
+                          that says copy." The filename is a name again. */}
+                      <span className="mod-fname">{f.name}</span>
                       <span className="mod-fwhat">{f.what}</span>
-                      {/* The markdown, which is the thing that goes into a Claude project.
-                          The name above opens the readable page; this takes the file. */}
-                      <a className="mod-ftake" href={f.take} download>
-                        .md
-                      </a>
+                      <span className="mod-fileacts">
+                        <button
+                          type="button"
+                          className="mod-fileact"
+                          aria-expanded={
+                            setFile?.set === set.title && setFile.file === f.name
+                          }
+                          onClick={() =>
+                            setSetFile(
+                              setFile?.set === set.title &&
+                                setFile.file === f.name
+                                ? null
+                                : { set: set.title, file: f.name },
+                            )
+                          }
+                        >
+                          {setFile?.set === set.title && setFile.file === f.name
+                            ? "Close"
+                            : "Open"}
+                        </button>
+                        {/* The markdown, which is the thing that goes into a Claude
+                            project. */}
+                        <a className="mod-fileact" href={f.take} download>
+                          Download
+                        </a>
+                        <button
+                          type="button"
+                          className="mod-fileact"
+                          onClick={async () => {
+                            try {
+                              const r = await fetch(f.take);
+                              if (!r.ok) throw new Error(String(r.status));
+                              await navigator.clipboard.writeText(await r.text());
+                              say(`${f.name}.md copied`);
+                            } catch {
+                              say("Copy failed");
+                            }
+                          }}
+                        >
+                          Copy
+                        </button>
+                      </span>
                     </li>
                   ))}
                 </ul>
+                {/* ⭐ THE FOLDER IS DERIVED FROM THE FILE'S OWN PATH, never from the set's
+                    title. A first pass read the title for the word "kite", which is a
+                    coupling between a HUMAN-EDITABLE HEADING and a directory name: rename
+                    the heading and the window silently opens the wrong folder, with nothing
+                    failing. `take` already carries the truth. */}
+                {setFile?.set === set.title && (
+                  <div className="mod-slot">
+                    <FolderWindow
+                      name={`${dirOf(set.files[0].take).split("/").pop()}/`}
+                      dir={dirOf(set.files[0].take)}
+                      files={set.files.map((x) => ({
+                        file: x.name,
+                        label: `${x.name}.md`,
+                      }))}
+                      start={set.files.findIndex((x) => x.name === setFile.file)}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </section>
@@ -926,6 +1108,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   belongs: you finish the piece, then you are handed where to go next.
                   ⛔ It was MISSING here entirely until 3 Aug. He opened Create Projects and
                   his three links were not in it. */}
+              <DocLinks docs={mod.items[open].docs} onCopy={say} />
               <ReadingList reading={mod.items[open].reading} />
             </div>
           </div>

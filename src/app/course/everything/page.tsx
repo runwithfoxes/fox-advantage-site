@@ -141,6 +141,11 @@ export default function EverythingPage() {
    * ("I quite like how GitHub looks... little folders and links") fits a named group of
    * documents exactly, so nothing new had to be invented to hold them.
    *
+   * ⚠️⚠️ THE PARAGRAPH BELOW IS SUPERSEDED, 4 Aug 2026. It said an unbuilt module's files
+   * are not listed here at all. They now ARE listed, named and not clickable, on Paul's
+   * call. The reasoning is kept because the part about the FILES still holds exactly: what
+   * changed is that NAMES are not contents. Read the note at the `!def.built` branch below.
+   *
    * ⛔⛔ NOT PUBLISHED UNTIL THE MODULE IS BUILT, and this is Paul's constraint, not a
    * design preference. 3 Aug: "I don't want people seeing these till we're live." The
    * modules sit behind an email door; this page does not, so a file set listed here is
@@ -150,14 +155,47 @@ export default function EverythingPage() {
    * reachable from the gated module page and NOT from here. They appear the day it ships.
    */
   const fileRows: Row[] = [];
-  let hiddenSets = 0;
 
   MODULES.forEach((m) => {
     const def = MODULES_BY_N[m.n];
     if (!def?.files?.length) return;
     def.files.forEach((set, si) => {
+      /* ⭐⭐ REVERSED 4 Aug 2026. THE FILES OF AN UNBUILT MODULE ARE NOW LISTED HERE, NAMED
+         BUT NOT CLICKABLE. The rule above said they were skipped entirely until `built`,
+         from Paul's 3 Aug line "I don't want people seeing these till we're live."
+
+         ⭐ HIS OWN ARGUMENT FOR THE REVERSAL IS BETTER THAN THE RULE: "put them in the
+         library of everything, but just make them not clickable until the time... They
+         won't make any sense till they read them anyway." A slop-rules document read by
+         somebody who has not built a writer is not a leak, it is a page of instructions for
+         a thing they do not have.
+
+         ⛔ WHAT HAS NOT CHANGED: the FILES stay unreachable. Only the names appear. The
+         contents are still served solely by `api/course-file` behind the identity cookie,
+         and that is the check that matters, because being unlinked was never privacy. */
       if (!def.built) {
-        hiddenSets += 1;
+        /* ⛔ NO LONGER COUNTED AS HIDDEN, and the counter's own words are why: the build
+           view says "N things are hidden from this page". As of 4 Aug the set is ON the
+           page, named, with only its contents held back. Counting it would make Paul's one
+           honest build-time number quietly untrue. */
+        fileRows.push({
+          type: "folder",
+          key: `m${m.n}-f${si + 1}`,
+          modN: m.n,
+          name: set.title,
+          desc: set.blurb,
+          /* The module, not the file. Someone who wants these can go and take the module,
+             which is exactly the journey we want, and the door will ask for an email. */
+          href: `/course/${m.n}`,
+          files: set.files.map<FileRow>((f) => ({
+            kind: "pending",
+            name: f.name,
+            meta: "with the module",
+          })),
+          search: [set.title, set.blurb, set.warn ?? "", def.title, ...set.files.map((f) => `${f.name} ${f.what}`)]
+            .join(" ")
+            .toLowerCase(),
+        });
         return;
       }
       fileRows.push({
@@ -187,7 +225,7 @@ export default function EverythingPage() {
     const def = MODULES_BY_N[m.n];
     return n + (def ? def.items.filter((it) => it.placeholder).length : 0);
   }, 0);
-  const hidden = hiddenItems + hiddenSets;
+  const hidden = hiddenItems;
 
   const sections: Section[] = [
     {

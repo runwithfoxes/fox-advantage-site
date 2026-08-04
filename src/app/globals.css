@@ -7290,6 +7290,28 @@ a.project-card {
    added on 3 Aug was Kevin Stratvert, an independent channel. At eight links, the vendor's
    own guide versus someone else's is the main thing a reader sorts on. */
 .mod-readinglink i{font-style:normal;color:#A8A8A2;margin-left:10px;}
+
+/* ⭐ A FILE ROW: the name opens it, the button takes it. 4 Aug 2026, Paul asked for both.
+   The row owns the divider so the two controls read as ONE row rather than a link with a
+   stray button after it; the link inside it therefore gives its border up. */
+.mod-filerow{display:flex;align-items:center;gap:14px;border-bottom:1px solid #EDEDE9;
+  padding:7px 0;}
+.mod-filerow:last-child{border-bottom:none;}
+.mod-filerow .mod-readinglink{flex:1 1 auto;border-bottom:none;}
+/* ⛔⛔ THE NAME IS A NAME, NOT A CONTROL, 4 Aug 2026. Two earlier versions made the filename
+   do a job the reader had to guess at. It is plain ink now and the verbs carry the actions.
+   ⭐ THE THREE VERBS ARE ALL BLUE because on this page SOLID BLUE MEANS "you can click this"
+   and all three are equally clickable. Making Open blue and the other two grey would have
+   ranked them, and a reader who wants the file does not care which one we prefer. */
+.mod-filename{flex:1 1 auto;font-family:var(--mono);font-size:.8125rem;line-height:1.5;
+  color:#1D1B1B;}
+.mod-fileacts{flex:0 0 auto;display:flex;align-items:center;gap:16px;}
+.mod-fileact{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#3A7CA5;background:none;border:0;padding:0;border-radius:0;
+  cursor:pointer;white-space:nowrap;text-decoration:none;
+  border-bottom:1px solid transparent;}
+.mod-fileact:hover,
+.mod-fileact[aria-expanded="true"]{border-bottom-color:#3A7CA5;}
 .mod-linklist{margin-top:28px;border-top:1px solid #E0E0DC;}
 .mod-lcard{display:grid;grid-template-columns:168px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #E0E0DC;text-decoration:none;color:inherit;}
 .mod-lcard:hover .mod-ltitle{color:#3A7CA5;border-bottom-color:#3A7CA5;}
@@ -7856,6 +7878,11 @@ a.project-card {
   text-transform:uppercase;color:#A8A8A2;border-bottom:1px solid transparent;
   white-space:nowrap;}
 .mod-ftake:hover{color:#3A7CA5;border-bottom-color:#3A7CA5;}
+
+/* ⛔ THE FILENAME IS PLAIN INK HERE TOO. It was blue and clickable; the three verbs beside
+   it now carry every action, so a blue name would be a fourth thing to wonder about. */
+.mod-fname{color:#1D1B1B;border-bottom:none;}
+.mod-fname:hover{border-bottom-color:transparent;}
 /* ⛔ THE FILENAME COLUMN COLLAPSES FIRST. At the narrow end the three columns become two
    rows: the name and its .md on one line, the description under them. Keeping a 190px
    fixed column on a phone left about nine characters for the description. */

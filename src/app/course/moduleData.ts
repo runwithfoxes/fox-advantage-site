@@ -91,7 +91,25 @@ export type Item = {
    * what keeps its files OUT of the public library, so a link there today would land on a
    * page that does not list them. The library fills itself the day the module ships.
    */
-  docs?: { dir: string; folder: string; files: string[] };
+  docs?: {
+    dir: string;
+    folder: string;
+    files: string[];
+    /**
+     * ⭐ HOW THE DOCUMENTS PRESENT, 4 Aug 2026. "window" stands a folder open in the prose
+     * at `{{FOLDER}}`. "links" puts them at the FOOT of the item in the additional-reading
+     * treatment, on Paul's instruction: "just put them as links like we do links for
+     * extended reading."
+     *
+     * ⭐⭐ THE CHOICE IS ABOUT WHAT THE READER IS MEANT TO DO. Kite's six are EVIDENCE: the
+     * lesson is what a finished positioning document looks like, so they have to be readable
+     * in place, and a window is the only thing that shows one without letting 3,800 words
+     * run away with the section. The writer's three are TAKEAWAYS: nobody needs to read the
+     * slop rules on this page, they need to download them. A link does that in one line and
+     * a window would be a big object doing a small job.
+     */
+    as?: "window" | "links";
+  };
   /**
    * ⭐⭐ THE LONG ARTICLE. A run of BEATS, each one a figure followed by Paul's copy for that
    * figure. Added 3 Aug 2026 for "Break down and rebuild", and it is the SECOND ITEM TYPE the
@@ -1229,6 +1247,78 @@ export const MODULE_2: ModuleDef = {
         ],
       },
       text: "Ok, so you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer to help you write emails, write copy for the website, write social posts, write training guides. All sorts of marketing communications. You're going to need the following things.\n\n{{FOLDER}}\n\nThis is the slow part. In the sense that decisions on your positioning, your messaging, your tone of voice won't come from the robots. This is the hard work that marketers do. If you've this work done, you're 90% sorted. If not, don't worry, as I'll show you how to speed up this work too. For now, we'll assume Kite has all this information.",
+    },
+    {
+      /* ⭐ ITEM 03 OPENED BY PAUL, 4 Aug 2026. His headline, his figure: "topic three is
+         going to use figure 26, which is an animated project. Headline is: Start a new
+         Claude Project."
+
+         ⭐⭐ THIS IS THE ONE GENUINELY NEW IDEA IN THE MODULE, and it is why the item exists
+         where it does. Item 02 said here is the information you need; this says here is
+         where you put it so the writer reads it EVERY time. For a marketer who has only
+         ever used a chat box, a project being a FOLDER the model reads on every turn is the
+         concept the whole module turns on. It was part three of the five agreed on 26 Jul.
+
+         ⭐ fig-26 is `anim26`, animated, "a strip of three cards: a project with its
+         instructions and files". It was in `module-2-proto.html` and never made the port;
+         it is in the library now, so this is one word rather than a port.
+
+         ⭐ HIS WORDS, DICTATED 4 Aug, and he asked only for typos: "I think the grammar here
+         is fine. Just look for typos." ONE FIX MADE: "drop in your documents into the files"
+         -> "drop your documents into the files". A doubled preposition from dictating, not a
+         style judgement, and it falls under his standing instruction of the same morning to
+         fix problems rather than flag them. ⛔ Nothing else touched. "So" opens both
+         paragraphs because that is how he talks, and "etc." stays.
+
+         ⭐⭐ SECOND PARAGRAPH REWRITTEN 4 Aug TO SAY WHAT ACTUALLY HAPPENS. The first
+         version promised "two more files" and only one of them was a file: `slop-rules.md`
+         existed, but "how you want your AI writer to interact with you" was the "How you
+         work" section INSIDE `writer-dna.md`, and `claims-and-sources.md` existed and went
+         unmentioned. A learner would have hunted a file that is not there and walked past
+         one that is. Paul: "we just say what actually happens, which is we put the writer
+         DNA into their instructions... say there are three more files."
+
+         ⭐ AND THE DISTINCTION IS THE TEACHING, not a correction. Two of the three go in the
+         files panel; `writer-dna.md` goes in the project INSTRUCTIONS, because it is the
+         file that says what every other file is and when to read them. Its own first line is
+         "# Instructions for Claude". A reader who drops it into files with the rest has a
+         project whose instructions are empty and a writer that reads its own manual as if it
+         were brand knowledge.
+
+         ⚠️ ONE WORD ORDER CHANGED FROM HIS DICTATION: he said "Sources and claims", the
+         file is `claims-and-sources.md` and that is what the file list on this same page
+         prints. Matched to the artefact so a reader is not hunting for the wrong name.
+         Trivial to flip back if he prefers his order.
+
+         ⚠️ ONE SENTENCE HERE IS MINE, NOT HIS, written on his invitation ("I'll mention it
+         also, or you can mention it also"): "None of these three are Kite's. They are the
+         same for every brand, so take them now and use them on any writer you build."
+         ⛔ It is the only line in this module not dictated by Paul. Replace it with his
+         wording when he has it. */
+      /* ⭐⭐ THE SECOND FOLDER ON THE PAGE, AND THE PAIR IS THE POINT. Paul, 4 Aug: "Am I
+         right in saying that the AI slop, the writer DNA, the sources and claims are
+         documents that users can take because it's not just connected to Kite?... we're
+         saying these three documents you can use yourself now. They can be used for any AI
+         writer." He is right, and the page already said it at the foot: "the last five are
+         the same for every brand." Nothing in these three mentions Kite.
+
+         ⭐ SO ITEM 02'S FOLDER IS `kite/` AND THIS ONE IS `writer/`, and the contrast does
+         the teaching that a single flat list could not: one folder is the slow work only
+         they can do, the other is what we hand them. That is the same reason the file sets
+         at the foot of the page are two lists and not one.
+
+         ⚠️ `writer/` IS HONEST EVEN THOUGH ONE OF THE THREE DOES NOT END UP IN A FILES
+         PANEL. It is the folder they DOWNLOAD; the prose says where each one then goes.
+         ⛔ Do not retitle it "files", which the copy directly contradicts one line above. */
+      figure: "fig-26",
+      docs: {
+        dir: "module-2/writer",
+        folder: "writer/",
+        files: ["claims-and-sources", "slop-rules", "writer-dna"],
+        as: "links",
+      },
+      t: "Start a new Claude Project",
+      text: "So create a new project in Claude. And drop your documents into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
     },
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.

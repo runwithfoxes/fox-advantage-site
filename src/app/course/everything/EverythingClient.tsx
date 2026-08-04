@@ -19,7 +19,19 @@ import { HERO } from "../courseCopy";
  */
 
 export type FileRow = {
-  kind: "prompt" | "link";
+  /**
+   * ⭐ "pending" ADDED 4 Aug 2026. A document that EXISTS and is NAMED here but cannot be
+   * opened until its module goes live. Paul: "put them in the library of everything, but
+   * just make them not clickable until the time... They won't make any sense till they read
+   * them anyway."
+   *
+   * ⭐⭐ THAT LAST CLAUSE IS THE ARGUMENT, AND IT IS BETTER THAN THE RULE IT REPLACES.
+   * A slop-rules document read by somebody who has not built a writer is not a leak, it is
+   * a page of instructions for a thing they do not have. So the risk was never the reading,
+   * and hiding the NAMES cost this page the one thing it exists for: being a public, ungated
+   * list that search and the AI engines can read.
+   */
+  kind: "prompt" | "link" | "pending";
   name: string;
   /** Right-aligned machine text. The source for a link, the size for a prompt. */
   meta?: string;
@@ -412,7 +424,23 @@ export default function EverythingClient({
                           human, so it belongs in the DOM and not in the render. */}
                       <div hidden={!open.has(r.key)}>
                         {r.files.map((f, j) =>
-                          f.kind === "link" ? (
+                          /* ⭐ NAMED, NOT CLICKABLE. A plain div: no href, no button, no
+                             disabled control, because a disabled control invites a click and
+                             then refuses it. The row simply is not interactive, and `meta`
+                             says why in the same column every other row uses. */
+                          f.kind === "pending" ? (
+                            <div
+                              key={j}
+                              className={`${s.rw} ${s.child}`}
+                              data-pending=""
+                            >
+                              <span className={s.rwmain}>
+                                <FileIcon />
+                                <span className={s.rwname}>{f.name}</span>
+                              </span>
+                              <span className={s.rwmeta}>{f.meta}</span>
+                            </div>
+                          ) : f.kind === "link" ? (
                             <a
                               key={j}
                               className={`${s.rw} ${s.child}`}
