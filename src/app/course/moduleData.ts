@@ -72,6 +72,27 @@ export type Item = {
    */
   figure?: string;
   /**
+   * ⭐⭐ A FOLDER OF DOCUMENTS, STANDING OPEN IN THE PROSE. Rendered wherever `{{FOLDER}}`
+   * appears in `text`, so it sits at the point in the argument that earned it.
+   *
+   * ⛔⛔ IT REPLACED A BULLETED LIST, AND THE REASON GENERALISES. For an hour this was seven
+   * bullets that each opened the window. Paul killed it on sight: "The figure you created in
+   * the window itself is good, which means we don't need the list of bullet points. They're
+   * duplication. I'm clicking on a bullet point and it's just bringing me down 10 cm to
+   * another point." The window already lists every document, so the bullets were the same
+   * list twice, and a link that moves you 10cm to the thing you can already see is worse
+   * than no link. ⛔ Do not reintroduce a list of the files beside a window that lists them.
+   *
+   * ⭐ `files` IS IN BUILD ORDER, and that is the lesson rather than a sort: positioning
+   * cannot be written until audience, competitors and proof exist, and tone and messaging
+   * come after. ⛔ Never sort it.
+   *
+   * ⛔ NOT A LINK TO `/course/everything`. Module 2 is `built: false`, which is precisely
+   * what keeps its files OUT of the public library, so a link there today would land on a
+   * page that does not list them. The library fills itself the day the module ships.
+   */
+  docs?: { dir: string; folder: string; files: string[] };
+  /**
    * ⭐⭐ THE LONG ARTICLE. A run of BEATS, each one a figure followed by Paul's copy for that
    * figure. Added 3 Aug 2026 for "Break down and rebuild", and it is the SECOND ITEM TYPE the
    * 2 Aug note predicted would be needed once one item carried several moves.
@@ -1118,9 +1139,96 @@ export const MODULE_2: ModuleDef = {
          fig-01, fig-16 and fig-18 share ids with library figures but were taken from the
          wireframe, so they must be checked against the library before anyone assumes the
          name means the same drawing. Not done. */
-      figure: "fig-11",
-      t: "What you end up with",
-      text: "Once it is built, you open a chat inside the writer project and ask for what you need. It will write on brand, using your positioning and tailoring your messages to your segments. Below is an example writing emails for a fictional insurance brand to three different segment personas.\n\nWe'll go through how to set this up now using the fictional insurance brand. We'll give you the documents to do this for your brand. If you don't have your positioning work, segments, or messaging framework, we'll show you how to build an assistant in Claude that can help pull this information out of your head and convert it into usable instructions for your writer.",
+      /* ⭐ SWAPPED fig-11 -> fig-12 ON PAUL'S INSTRUCTION, 4 Aug 2026: "The figure we have
+         for 01 is static. I want to use the animated one." They are the SAME DRAWING with
+         the same label; fig-12 is `anim6`, `animated: true`, and fig-11 is the still of it.
+         ⚠️ The 3 Aug session recorded anim6 as having NO library equivalent, which is why
+         the port left it out. That was already stale: it is in `figures.generated.ts`. */
+      figure: "fig-12",
+      /* ⭐⭐ TITLE AND COPY REPLACED WHOLESALE BY PAUL, 4 Aug 2026, dictated. This
+         SUPERSEDES the 26 Jul copy that decisions section 6b marked as his and not to be
+         rewritten: he wrote that one and he has now replaced it himself.
+
+         ⛔ OUT, and not to be restored: "Once it is built, you open a chat inside the
+         writer project...", the three-segment-personas sentence, and the promise of the
+         interviewer for anyone without positioning work. That last one matters, because
+         26 Jul recorded it as THE ONLY PLACE ON THE PAGE the interviewer was promised.
+         It is now promised nowhere. FLAGGED TO PAUL.
+
+         ⭐ The new copy does a different job: it names the objection (AI writes slop),
+         concedes it, then lists what a writer has to be given. The title moved from an
+         outcome ("What you end up with") to the thing itself ("An AI Writer").
+
+         ⚠️ TWO FIXES, BOTH ON PAUL'S STANDING INSTRUCTION OF 4 Aug: "You can fix grammar
+         problems when you see them. Fix them before you put them live."
+         1. Dictation slip: "on how want the writer" -> "on how we want the writer".
+         2. Number agreement: "Writers need to know... It needs to know" -> "They need to
+            know". Fixed on the SECOND sentence so his opening phrase is untouched. */
+      t: "An AI Writer",
+      text: "I read a lot about how AI writes slop. It does. But it doesn't have to. If you spend time up front. Writers need to know your brand's positioning, your target audience, insights or pain points related to your category. They need to know your brand's messaging, and your tone of voice. On top of that, we need to articulate instructions on how we want the writer to interact with us or our colleagues.\n\nI'll show you the process. It is not hard, and I'll give you the docs you need. We'll work through a fictional example of an insurance brand.",
+    },
+    {
+      /* ⭐ ITEM 02 OPENED BY PAUL, 4 Aug 2026: "The next section is going to be called Kite,
+         fictional insurance brand", confirmed as item number two. THE TITLE IS HIS. The
+         prose is NOT written yet and is marked `placeholder` so the build view counts it and
+         nobody mistakes it for his words.
+
+         ⛔ HE SAID "SECTION" AND THIS IS AN ITEM, because the app has no section layer and
+         inventing one has been refused twice before (the prototype's "Building a writer"
+         label was left out for exactly this reason). Flagged to him when it was built. If he
+         does want a grouping heading, that is a page-structure decision, not this line.
+
+         ⛔⛔ KITE IS FICTIONAL, invented with Paul on 26 Jul 2026, and so are its
+         competitors, customers, numbers and quotes. It may never be shown as a real company,
+         and its fiction warning already renders ABOVE its file list further down the page. */
+      /* ⭐ HIS WORDS, DICTATED 4 Aug 2026, verbatim. Two fixes and nothing else, both under
+         his standing instruction to fix problems rather than flag them:
+         1. "Okay" -> "Ok". He corrected this himself, mid-dictation: "ok not okay".
+         2. "you're gonna need" -> "you're going to need". A dictation artefact rather than
+            a word he chose; "gonna" appears nowhere else in his course copy.
+         ⛔ NOT touched: "If you've this work done" is correct Hiberno-English and is his
+         voice. "All sorts of marketing communications." stays a fragment. "won't come from
+         the robots" is his phrase and is the best line in the paragraph.
+
+         ⭐ TWO BULLETS ADDED 4 Aug ON HIS INSTRUCTION, "We can add the competitors and
+         proof." His five things covered only four of Kite's six documents, and the two with
+         nothing pointing at them were `competitors.md` and `proof.md`. They are not extras:
+         `positioning-statement.md` says at the top that it FEEDS ON audience, competitors
+         and proof, so a reader who opened positioning saw both named as its inputs and had
+         no way to reach either. Placed after the insights line so the chain reads audience,
+         competitors, proof, then the messages and tone that come out of them.
+
+         ⛔ "What you can prove" WAS REJECTED THE SAME HOUR. Paul: "We don't say what you can
+         prove. This is marketing language, not making up ad stuff." It reads as ad copy
+         rather than the name of a document a marketer already owns. Every other line in this
+         list is "Your [artefact you have]". ⭐ HIS WORDING IS "Your proof points", given
+         immediately after the rejection. Not "Your proof", which I had reached for: proof
+         points is what a marketer calls the thing, and the document is a LIST of them.
+         ⭐ Generalises: a label in this list NAMES A DOCUMENT in the words its owner would
+         use. The moment one starts selling the idea instead, it is wrong.
+
+         ⚠️ STILL UNRESOLVED, HIS CALL: "Your target audiences or segments" and "Insights
+         about them or their pain points" BOTH resolve to `audience.md`, whose three segments
+         carry their own triggers. Once the bullets are links, the second one will look
+         broken. Either they merge into one line, or the second points somewhere else. */
+      t: "Kite, fictional insurance brand",
+      /* ⛔ BUILD ORDER, NEVER SORTED. Each document feeds the next. It also quietly resolves
+         the duplicate that the bullets exposed: "your audiences" and "insights about their
+         pain points" were two bullets pointing at one file, and a folder has no such
+         problem because `audience.md` is simply one row carrying both. */
+      docs: {
+        dir: "module-2/kite",
+        folder: "kite/",
+        files: [
+          "audience",
+          "competitors",
+          "proof",
+          "positioning-statement",
+          "tone-of-voice",
+          "messaging-framework",
+        ],
+      },
+      text: "Ok, so you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer to help you write emails, write copy for the website, write social posts, write training guides. All sorts of marketing communications. You're going to need the following things.\n\n{{FOLDER}}\n\nThis is the slow part. In the sense that decisions on your positioning, your messaging, your tone of voice won't come from the robots. This is the hard work that marketers do. If you've this work done, you're 90% sorted. If not, don't worry, as I'll show you how to speed up this work too. For now, we'll assume Kite has all this information.",
     },
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.

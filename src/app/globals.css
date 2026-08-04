@@ -7709,11 +7709,116 @@ a.project-card {
    strips list markers, so an <ol> renders with no numbers at all, and the page's default face
    is the mono, so his three points came out as machine text beside his own serif prose. The
    first render had both faults and neither was visible in the markup, only on screen. */
+/* ⭐⭐ A LIST IS A BLOCK LIKE A PARAGRAPH AND GETS THE SAME 30px ABOVE IT. Paul, 4 Aug 2026:
+   "You need a space after the word things before you get into the bullets so it has room to
+   breathe. Make a rule of that."
+
+   ⚠️ It got NOTHING before this. `.mod-body` carries `margin:0` and only earns its 30px from
+   `.mod-body + .mod-body`, so a paragraph followed by a LIST fell through every selector and
+   the bullets started immediately under the sentence that introduced them.
+
+   ⭐ THE NUMBER IS MATCHED, NOT CHOSEN. 30px is the existing gap between paragraphs, and its
+   reason carries over exactly: the gap between blocks must beat the gap between lines or the
+   break reads as an accident. Picking a fresh number here would put a second rhythm on a page
+   that already has one. Same discipline as `.cardwrap` matching `#herofig` rather than
+   guessing ten pixels.
+
+   ⛔ Written as a SIBLING rule, not `margin-top` on `.mod-list` itself, so a list that opens
+   an item is not shoved down from nothing. */
+.mod-body + .mod-list,
+.mod-list + .mod-list{margin-top:30px;}
 .mod-list{margin:0 0 30px;padding-left:1.5em;list-style:decimal;
   font-family:'Source Serif 4',Georgia,serif;font-size:1.0625rem;line-height:1.7;color:#1D1B1B;}
 .mod-list li{margin-bottom:6px;padding-left:4px;}
 .mod-list li:last-child{margin-bottom:0;}
 .mod-list li::marker{color:#8A8A85;}
+/* ⭐ THE BULLETED VARIANT, 4 Aug 2026. Paul: "Don't make it ugly."
+   SQUARE, not a disc: the site's no-rounded-corners rule already governs our own chrome,
+   and the rail's own `.mod-dot` is a 7px square, so a square marker is the mark this page
+   already uses. It inherits everything else from `.mod-list` on purpose, so a bulleted list
+   and a numbered one sit on the same indent, in the same serif at the same size and
+   leading, and only the marker differs. The marker stays the muted grey above: the words
+   are the content, the bullet is just a tick of punctuation. */
+.mod-list-bullet{list-style:square;}
+
+
+/* ⭐⭐ THE FOLDER WINDOW, 4 Aug 2026. A depicted directory: file list left, open document
+   right. See FolderWindow.tsx for why it is one window and not six.
+
+   ⭐ ROUNDED AT 15px ON PURPOSE and it is NOT a breach of the no-rounded-corners rule. This
+   is a depicted software window, which is artwork; our own chrome stays square. Same
+   reasoning and same radius as `.mod-isa`, so the two windows on this page match. */
+/* ⭐⭐ ROOM TO BREATHE ON BOTH SIDES OF AN ARTIFACT, AND IT IS A RULE. Paul, 4 Aug 2026:
+   "you need room to breathe after the figure. You ALWAYS need room to breathe after the
+   figure." Said of the folder window, stated as a general law, so it lives on the slot that
+   holds ANY artifact dropped into the prose rather than on this one component.
+
+   ⚠️ IT HAD NONE BELOW IT, and the cause is the same one that bit the bulleted list an hour
+   earlier: `.mod-body` carries `margin:0` and earns its gap only from `.mod-body +
+   .mod-body`, so ANYTHING that is not a paragraph gets nothing on either side of it. That is
+   now two defects from one root. ⛔ Any new block type added to the prose needs its spacing
+   written here at the same time, or it will land flush against the next paragraph.
+
+   ⭐ 44px, MATCHED NOT CHOSEN, and deliberately bigger than the 30px between paragraphs. It
+   is the item's own `padding:44px 0`, whose documented reason is that a thing needs more air
+   around it than between its own paragraphs. A window is a bigger object than a sentence, so
+   it takes the bigger of the two gaps the page already uses. */
+.mod-slot{margin:44px 0;}
+.mod-slot:first-child{margin-top:0;}
+.mod-slot:last-child{margin-bottom:0;}
+
+.fw{container-type:inline-size;border:1px solid #E0E0DC;background:#fff;border-radius:15px;
+  overflow:hidden;margin:0;
+  box-shadow:0 1px 1px rgba(26,58,78,.05),0 20px 42px -14px rgba(26,58,78,.16);}
+.fw-bar{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #E0E0DC;}
+.fw-bar i{width:11px;height:11px;border-radius:50%;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06);}
+.fw-bar .r{background:#ff5f57;}
+.fw-bar .a{background:#febc2e;}
+.fw-bar .g{background:#28c840;}
+.fw-title{font-family:var(--mono);font-size:.75rem;color:#8A8A85;margin-left:auto;margin-right:auto;letter-spacing:.08em;}
+
+/* ⭐ 196px is MEASURED, not chosen: it is the width the AI Writer card's thread list narrows
+   to at module width, so the two windows on this page hold the same column. */
+.fw-body{display:grid;grid-template-columns:196px 1fr;}
+.fw-list{list-style:none;margin:0;padding:10px 0;border-right:1px solid #E0E0DC;background:#FCFCFA;}
+.fw-list li{margin:0;}
+/* ⛔ SQUARE. The window frame is artwork and may be round; the controls inside it are ours. */
+.fw-list button{display:block;width:100%;text-align:left;border:0;background:none;cursor:pointer;
+  font-family:var(--mono);font-size:.75rem;line-height:1.4;color:#8A8A85;padding:9px 14px;border-radius:0;}
+.fw-list button:hover{color:#3A7CA5;}
+.fw-list button.is-open{color:#1D1B1B;background:#fff;box-shadow:inset 2px 0 0 #3A7CA5;}
+
+/* ⭐⭐ THE FIXED HEIGHT IS THE FEATURE. Paul, 4 Aug: "without it overtaking the entire
+   section". 420px holds about a screen of the document; the rest scrolls inside here rather
+   than growing the page. ⛔ Do not make this `auto` to "show more" - that hands the section
+   back its ability to run to forty screens, which is the thing this window exists to stop. */
+.fw-pane{height:420px;overflow-y:auto;padding:24px 26px;}
+.fw-state{font-family:var(--mono);font-size:.75rem;color:#A8A8A2;margin:0;}
+.fw-doc{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.65;color:#1D1B1B;}
+.fw-doc > :first-child{margin-top:0;}
+.fw-doc h1{font-family:var(--sans);font-weight:500;font-size:1.25rem;line-height:1.2;margin:0 0 14px;}
+.fw-doc h2{font-family:var(--sans);font-weight:500;font-size:1rem;line-height:1.3;margin:26px 0 10px;}
+.fw-doc h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#8A8A85;margin:22px 0 8px;}
+.fw-doc p{margin:0 0 14px;}
+.fw-doc ul,.fw-doc ol{margin:0 0 14px;padding-left:1.4em;}
+.fw-doc li{margin-bottom:5px;}
+.fw-doc code{font-family:var(--mono);font-size:.8125rem;color:#3A7CA5;}
+.fw-doc blockquote{margin:0 0 14px;padding-left:14px;border-left:2px solid #E0E0DC;color:#54545C;}
+.fw-doc table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:.875rem;}
+.fw-doc th,.fw-doc td{border-bottom:1px solid #E8E8E4;padding:6px 8px;text-align:left;vertical-align:top;}
+.fw-doc th{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:#8A8A85;font-weight:400;}
+
+/* ⛔⛔ A CONTAINER QUERY, NEVER A MEDIA QUERY. The AI Writer card taught this expensively on
+   26 Jul: a 748px module column normally sits inside a 1400px page, so the viewport is wide
+   while the component is not, and no viewport breakpoint can ever see the overflow. Only the
+   component's own width can answer "do I still fit". */
+@container (max-width: 560px){
+  .fw-body{grid-template-columns:1fr;}
+  .fw-list{display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid #E0E0DC;padding:6px;}
+  .fw-list button{white-space:nowrap;}
+  .fw-list button.is-open{box-shadow:inset 0 -2px 0 #3A7CA5;}
+}
 
 /* ⭐⭐ THE MODULE'S FILES, 3 Aug 2026. Paul: "Just have them all listed connected to
    module 2." Fourteen documents across two sets, under the lessons.

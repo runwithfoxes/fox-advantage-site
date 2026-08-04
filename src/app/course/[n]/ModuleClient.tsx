@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
+import FolderWindow from "./FolderWindow";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
@@ -242,10 +243,47 @@ function FigureFile({ src, banner }: { src: string; banner?: boolean }) {
  */
 const NUMBERED = /^\s*\d+\s*[-.)]\s+/;
 
-function Body({ text, ph }: { text: string; ph?: boolean }) {
+/* ⭐⭐ A BULLETED LIST, added 4 Aug 2026 because Paul dictated one and the page could only
+   make a list out of NUMBERED lines. His five things for item 02 are "your brand
+   positioning / your target audiences or segments / insights about them or their pain
+   points / your key messages / your tone of voice".
+
+   ⛔ THEY ARE A SET, NOT A SEQUENCE, so they must not be numbered. This is the same ruling
+   as the three boxes on 26 Jul: "they're not part one, part two, and part three. They don't
+   go in that order." Numbering them would assert an order he did not give.
+
+   ⚠️ Without this, a multi-line block that is not numbered falls through to the <p> branch
+   below and the newlines collapse, so five things render as one run-on sentence. It fails
+   silently and reads as sloppy writing rather than a missing feature. */
+const BULLET = /^\s*[-•]\s+/;
+
+/* ⭐ A SLOT IN THE MIDDLE OF THE PROSE. `{{FOLDER}}` on its own line is replaced by whatever
+   node is passed in, so an artifact can sit at the point in the argument that earned it
+   rather than being stuck after every paragraph. Paul, 4 Aug: "Let's put the figure after
+   the word following things". */
+const FOLDER_SLOT = "{{FOLDER}}";
+
+function Body({
+  text,
+  ph,
+  slot,
+}: {
+  text: string;
+  ph?: boolean;
+  slot?: React.ReactNode;
+}) {
   return (
     <>
       {text.split(/\n{2,}/).map((para, i) => {
+        if (para.trim() === FOLDER_SLOT) {
+          /* ⛔ Renders nothing if the item has no slot, rather than printing the marker. A
+             visible {{FOLDER}} on a live page is worse than a missing artifact. */
+          return slot ? (
+            <div key={i} className="mod-slot">
+              {slot}
+            </div>
+          ) : null;
+        }
         const lines = para.split("\n").filter((l) => l.trim());
         if (lines.length > 1 && lines.every((l) => NUMBERED.test(l))) {
           return (
@@ -254,6 +292,19 @@ function Body({ text, ph }: { text: string; ph?: boolean }) {
                 <li key={j}>{l.replace(NUMBERED, "")}</li>
               ))}
             </ol>
+          );
+        }
+        if (lines.length > 1 && lines.every((l) => BULLET.test(l))) {
+          return (
+            <ul
+              key={i}
+              className="mod-list mod-list-bullet"
+              data-ph={ph ? "" : undefined}
+            >
+              {lines.map((l, j) => (
+                <li key={j}>{l.replace(BULLET, "")}</li>
+              ))}
+            </ul>
           );
         }
         return (
@@ -485,7 +536,13 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
             Opens<b>{mod.when}</b>
           </span>
           <span>
-            In this module<b>{mod.items.length} things</b>
+            {/* ⚠️ PLURALISATION FIXED 4 Aug 2026 under Paul's standing rule, "you can fix
+                grammar problems when you see them". It read "1 things" on module 2 for as
+                long as that module had one item. */}
+            In this module
+            <b>
+              {mod.items.length} {mod.items.length === 1 ? "thing" : "things"}
+            </b>
           </span>
           {mod.source && (
             <span>
@@ -608,7 +665,22 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
                 <ItemPicture item={it} build={build} />
 
-                <Body text={it.text} ph={it.placeholder} />
+                <Body
+                  text={it.text}
+                  ph={it.placeholder}
+                  slot={
+                    it.docs ? (
+                      <FolderWindow
+                        name={it.docs.folder}
+                        dir={it.docs.dir}
+                        files={it.docs.files.map((f) => ({
+                          file: f,
+                          label: `${f}.md`,
+                        }))}
+                      />
+                    ) : undefined
+                  }
+                />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
