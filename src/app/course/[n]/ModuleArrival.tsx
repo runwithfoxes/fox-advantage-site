@@ -49,6 +49,14 @@ export default function ModuleArrival({ n }: { n: number }) {
   const asks = n === 1 || n === 6;
   const end = n === 6;
 
+  /* ⭐ RENDER NOTHING RATHER THAN AN EMPTY SECTION, 4 Aug 2026. This component used to
+     carry three things: a video placeholder, the fluency question, and the pace line. Paul
+     deleted the first and the third on 4 Aug, and the middle one only appears on modules 1
+     and 6. So on modules 2 to 5 the section had no content left and rendered as 50px of
+     dead space between the masthead rule and item 01. An empty box with margins is still a
+     box. If a third thing is ever added back for the middle modules, widen this guard. */
+  if (!asks) return null;
+
   const label =
     v <= 1
       ? "Not started yet"
@@ -66,12 +74,6 @@ export default function ModuleArrival({ n }: { n: number }) {
     <section className="arr">
       <style>{`
         .arr{margin:44px 0 0;padding:0 0 6px;}
-        .arr-video{
-          border:1px solid #C9C9C3;background:#fff;aspect-ratio:16/9;
-          display:flex;align-items:center;justify-content:center;text-align:center;
-          font-family:var(--mono);font-size:.75rem;color:#A8A8A2;line-height:1.9;
-          margin:0 0 34px;
-        }
         /* ⭐ A PANEL, NOT A STRIP BETWEEN TWO HAIRLINES. Paul, 2 Aug: "the ai fluency test
            is really important that they do this, and again it feels like it is disappearing
            into the background." It was loose elements under a border-top, which is the same
@@ -118,21 +120,18 @@ export default function ModuleArrival({ n }: { n: number }) {
         }
         .arr-actions button:hover{background:#3A7CA5;}
         .arr-saved{font-family:var(--mono);font-size:.75rem;color:#8A8A85;}
-        .arr-pace{
-          font-family:var(--mono);font-size:.75rem;line-height:1.8;color:#8A8A85;
-          border-top:1px solid #C9C9C3;margin-top:44px;padding-top:22px;
-        }
         @media (max-width:760px){
           .arr-row{flex-direction:column;gap:26px;}
           .arr-out{flex:1 1 auto;border-left:0;border-top:1px solid #C9C9C3;padding-left:0;padding-top:20px;}
         }
       `}</style>
 
-      <div className="arr-video">
-        PLACEHOLDER, NOT SHOT
-        <br />
-        Paul, 60 seconds, why he is glad you are here
-      </div>
+      {/* ⛔ THE VIDEO PLACEHOLDER IS DELETED, 4 Aug 2026, on Paul's instruction. It was a
+          16:9 empty panel reading "PLACEHOLDER, NOT SHOT / Paul, 60 seconds, why he is glad
+          you are here", and it sat above the fluency question on EVERY module. Do not
+          reintroduce an empty frame to hold a place for an unshot film: a blank rectangle at
+          the top of a page costs more than the missing video does. When the film exists it
+          gets built then. */}
 
       {/* ⛔ NO WELCOME PARAGRAPHS HERE. Deleted 2 Aug 2026 on Paul's instruction. His
           opening now lives at the TOP of the page, under the h1, as MODULE_1.opening in
@@ -188,10 +187,10 @@ export default function ModuleArrival({ n }: { n: number }) {
       </div>
       )}
 
-      <p className="arr-pace">
-        No deadline on this. The next module lands whether you finish or not, and nothing
-        here expires.
-      </p>
+      {/* ⛔ THE PACE LINE IS DELETED, 4 Aug 2026, on Paul's instruction. It read "No
+          deadline on this. The next module lands whether you finish or not, and nothing
+          here expires." Like the video placeholder deleted the same morning, it was on
+          EVERY module. Do not reintroduce it. */}
     </section>
   );
 }
