@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { KITE_SESSION, type Block, type Turn } from "../writerSession";
+import type { Block, Ref, Turn } from "../writerSession";
 
 /**
  * ⭐⭐ THE WRITER, WORKING. Module 2, item 04. A depicted chat window holding one recorded
@@ -96,6 +96,15 @@ function buildUnits(session: Turn[]): Unit[] {
             text: [block.subject, ...block.body, ...block.sign].join(" "),
           });
           break;
+        case "post":
+          /* The post is an artefact like the email: it types. */
+          units.push({
+            turn: t,
+            kind: "typed",
+            block,
+            text: block.body.join(" "),
+          });
+          break;
         case "plan":
           units.push({ turn: t, kind: "rows", block, rows: block.lines.length });
           break;
@@ -108,8 +117,16 @@ function buildUnits(session: Turn[]): Unit[] {
   return units;
 }
 
-export default function ChatWindow() {
-  const units = useMemo(() => buildUnits(KITE_SESSION), []);
+export default function ChatWindow({
+  session,
+  start,
+}: {
+  /** The recorded session this window plays. One window, one recording. */
+  session: Turn[];
+  /** The start plate's one line of type, in our own voice, saying what will happen. */
+  start: string;
+}) {
+  const units = useMemo(() => buildUnits(session), [session]);
   const [playing, setPlaying] = useState(false);
   /** How many units are finished. */
   const [done, setDone] = useState(0);
@@ -133,7 +150,7 @@ export default function ChatWindow() {
     setWithin(0);
   }, [units.length]);
 
-  const start = () => {
+  const play = () => {
     clear();
     setDone(0);
     setWithin(0);
@@ -203,8 +220,8 @@ export default function ChatWindow() {
           /* ⛔ NOT A PLAY TRIANGLE ON A BLACK RECTANGLE. That reads as video, and this is not
              video. It is a line of type in our own voice saying what will happen. */
           <div className="cw-start">
-            <p>A real session with Kite&rsquo;s writer, start to finish.</p>
-            <button type="button" onClick={start}>
+            <p>{start}</p>
+            <button type="button" onClick={play}>
               Watch it work
             </button>
           </div>
@@ -247,7 +264,7 @@ export default function ChatWindow() {
               Skip to the end
             </button>
           ) : (
-            <button type="button" onClick={start}>
+            <button type="button" onClick={play}>
               Play it again
             </button>
           )}
@@ -319,7 +336,8 @@ function BlockView({ block, within }: { block: Block; within: number }) {
 
     case "email": {
       const whole = [block.subject, ...block.body, ...block.sign].join(" ");
-      const upto = within === Infinity ? whole.length : within;
+      const complete = within === Infinity;
+      const upto = complete ? whole.length : within;
       let used = 0;
       const take = (s: string) => {
         const start = used;
@@ -334,11 +352,15 @@ function BlockView({ block, within }: { block: Block; within: number }) {
           {subject !== null && (
             <p className="cw-subject">
               <span>Subject</span>
-              {subject}
+              <Sourced text={subject} refx={complete ? block.subjectRef : null} />
             </p>
           )}
           {body.map((line, i) =>
-            line === null ? null : <p key={i}>{line}</p>,
+            line === null ? null : (
+              <p key={i}>
+                <Sourced text={line} refx={complete ? block.refs?.[i] : null} />
+              </p>
+            ),
           )}
           {sign.some((s) => s !== null) && (
             <p className="cw-sign">
@@ -346,6 +368,35 @@ function BlockView({ block, within }: { block: Block; within: number }) {
                 s === null ? null : <span key={i}>{s}</span>,
               )}
             </p>
+          )}
+          {complete && (block.refs?.some(Boolean) || block.subjectRef) && (
+            <p className="cw-refhint">The dotted lines are the source map. Hover one.</p>
+          )}
+        </div>
+      );
+    }
+
+    case "post": {
+      const complete = within === Infinity;
+      const upto = complete ? block.body.join(" ").length : within;
+      let used = 0;
+      const take = (s: string) => {
+        const start = used;
+        used += s.length + 1;
+        return upto <= start ? null : s.slice(0, Math.max(0, upto - start));
+      };
+      const body = block.body.map(take);
+      return (
+        <div className="cw-post">
+          {body.map((line, i) =>
+            line === null ? null : (
+              <p key={i}>
+                <Sourced text={line} refx={complete ? block.refs?.[i] : null} />
+              </p>
+            ),
+          )}
+          {complete && block.refs?.some(Boolean) && (
+            <p className="cw-refhint">The dotted lines are the source map. Hover one.</p>
           )}
         </div>
       );
@@ -395,6 +446,31 @@ function BlockView({ block, within }: { block: Block; within: number }) {
       );
     }
   }
+}
+
+/**
+ * ⭐⭐ A LINE THAT KNOWS WHERE IT CAME FROM. Paul, 4 Aug: highlight lines in the artefact
+ * "so that if you hover over them you could see that's the positioning, that's the messaging
+ * framework... it becomes obvious that everything is being reviewed against those things in a
+ * visual way." The ref data comes from the writer's own source map in the run, never from
+ * annotation after the fact.
+ *
+ * ⭐ MARKERS APPEAR ONLY WHEN THE BLOCK HAS FINISHED TYPING (the ruling: never mid-type), so
+ * playback stays clean and the map arrives as a single moment: the artefact settles, then
+ * shows its sources. Hover raises the card; `tabIndex` makes tap and keyboard raise it too
+ * via :focus-within, so it is not a mouse-only feature.
+ */
+function Sourced({ text, refx }: { text: string; refx?: Ref | null }) {
+  if (!refx) return <>{text}</>;
+  return (
+    <span className="cw-ref" tabIndex={0}>
+      {text}
+      <span className="cw-refcard" role="note">
+        <b>{refx.file}</b>
+        {refx.quote}
+      </span>
+    </span>
+  );
 }
 
 /**
