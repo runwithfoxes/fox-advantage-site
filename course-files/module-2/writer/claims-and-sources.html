@@ -1,25 +1,45 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Claims and sources</title><style>
-  :root { color-scheme: light; }
-  body { margin:0; background:#FAFAF8; color:#1A1A18;
-         font:17px/1.65 Georgia,"Iowan Old Style",serif; }
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Claims and sources</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
   main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
-  h1 { font-size:36px; line-height:1.15; margin:48px 0 20px; letter-spacing:-0.01em; }
-  h1:first-child { margin-top:0; }
-  h2 { font-size:26px; margin:52px 0 12px; }
-  h3 { font-size:20px; margin:36px 0 8px; }
-  p { margin:0 0 16px; }
-  ul { padding-left:22px; } li { margin-bottom:10px; }
-  ol { padding-left:22px; }
-  hr { border:0; border-top:1px solid #E0E0DA; margin:48px 0; }
-  blockquote { margin:24px 0; padding:18px 24px; background:#FFF8F0;
-               border:1px solid #E8DCC8; border-left:3px solid #F47521; font-size:16px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
   blockquote p:last-child { margin-bottom:0; }
+
   table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
-  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid #E0E0DA; }
-  th { font-family:ui-monospace,Menlo,monospace; font-size:13px; letter-spacing:.06em;
-       text-transform:uppercase; color:#3A7CA5; }
-  code { background:#EFEFE9; padding:2px 5px; font-size:15px; }
-  em { color:#44443E; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
 </style></head><body><main><h1>Claims and sources</h1>
 <p>Add this file to your Claude project with the others. It is the same for every brand.</p>
 <p>This is the file that makes your writer argue with itself before it shows you anything. It takes its own draft, pulls out every statement a reader could challenge, and makes it prove each one or admit it cannot. Copy that has been through this is not more cautious. It is just harder to embarrass you with.</p>
