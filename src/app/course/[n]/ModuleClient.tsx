@@ -402,7 +402,7 @@ const BULLET = /^\s*[-•]\s+/;
    node is passed in, so an artifact can sit at the point in the argument that earned it
    rather than being stuck after every paragraph. Paul, 4 Aug: "Let's put the figure after
    the word following things". */
-const SLOT_RE = /^\{\{([A-Z]+)\}\}$/;
+const SLOT_RE = /^\{\{([A-Z_]+)\}\}$/;
 
 function Body({
   text,
