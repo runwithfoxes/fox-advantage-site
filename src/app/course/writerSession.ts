@@ -20,6 +20,16 @@
  * written." The cause was that the plan named an awareness level and a shape and skipped the
  * REGISTER, which `format-email` calls the decision the rest hangs off. `writer-dna.md` has
  * since gained a register row in its scoring grid so the same miss fails the grid next time.
+ *
+ * ⭐ RE-RECORDED 4 Aug 2026 under the amended DNA, same three user turns. Paul's question that
+ * forced it: "is writer usin kite's positioning?" It was, invisibly, and invisible is a gap
+ * when the item's whole job is showing the DNA working. What changed in this run: the plan
+ * carries a Positioning line quoting `positioning-statement` and says out loud that the frame
+ * slot (car and home insurance) is deliberately dropped in a renewal email to an existing
+ * customer; the ledger names `positioning-statement.md`, downgrades €187 from "verified" to
+ * "brand file" (claims-and-sources reserves verified for a pasted outside source); and the
+ * ledger closes with the source map, which the page renders AS the hover highlights rather
+ * than printing it twice. Lines the new instructions do not touch keep the second run's words.
  */
 
 /**
@@ -103,6 +113,10 @@ export const KITE_SESSION: Turn[] = [
             "The Payer, at their renewal date. Pillar two, you stop being punished for staying.",
           ],
           [
+            "Positioning",
+            "Leaning on \"it shops around for you every year and saves €187 on average\", written to the people who dread the renewal letter. One part dropped on purpose: the frame, car and home insurance. An existing customer at renewal knows what we insure.",
+          ],
+          [
             "Length and takeaway",
             "About 125 words. They leave knowing last year's increase was optional and that this year it is handled.",
           ],
@@ -121,6 +135,37 @@ export const KITE_SESSION: Turn[] = [
       {
         kind: "email",
         subject: "Your renewal is due on 14 September",
+        subjectRef: {
+          file: "format-email.md",
+          quote: "Specific beats clever. A date, a number or a name will usually outperform a pun.",
+        },
+        refs: [
+          {
+            file: "format-email.md",
+            quote: "Name the register in the plan, before writing, and say who signs.",
+          },
+          {
+            file: "positioning-statement.md",
+            quote: "because it shops around for you every year",
+          },
+          null,
+          {
+            file: "messaging-framework.md",
+            quote: "The increase you accepted last year was not the price you had to pay.",
+          },
+          {
+            file: "messaging-framework.md",
+            quote: "moves you if there is a better price, and completes the paperwork. You get told what it found and what it chose.",
+          },
+          {
+            file: "proof.md",
+            quote: "Average saving the first time we shop around for you: €187.",
+          },
+          {
+            file: "messaging-framework.md",
+            quote: "You will not have to do anything, and you will not be overpaying.",
+          },
+        ],
         body: [
           "Hi Sarah,",
           "Before it renews, we'll quote the market for you.",
@@ -140,7 +185,7 @@ export const KITE_SESSION: Turn[] = [
       {
         kind: "audit",
         label: "Claims ledger.",
-        text: "€187, verified, proof.md, internal renewal data January 2026. Quoting the market, moving you, the paperwork and the note of what was found, all from messaging-framework.md. The €54 increase you gave me is marked internal and stays out. No unverified claim used.",
+        text: "€187, brand file, proof.md, internal renewal data January 2026. Quoting the market, moving you, the paperwork and the note of what was found, all from messaging-framework.md. The audience and the every-year promise from positioning-statement.md. The €54 increase you gave me is marked internal and stays out. No unverified claim used, nothing marked verified without an outside source. Source map carried on the email, line by line.",
       },
       {
         kind: "grid",
