@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
 import FolderWindow from "./FolderWindow";
+import ChatWindow from "./ChatWindow";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
@@ -22,6 +23,30 @@ import {
  * page exactly as it was.
  */
 const SHOW_COUNTERS = false;
+
+/**
+ * ⭐⭐ THE /files SECTION IS HIDDEN, 4 Aug 2026. Paul: "I don't think any of this stuff
+ * should be on the page, do you?... can you hide them to take them out of my way so I can't
+ * see them?"
+ *
+ * ⛔ NOTHING IS DELETED. Set this to true and the two file sets return exactly as they were.
+ * The same discipline as the prototype's FOCUS flag and SHOW_COUNTERS above: a page being
+ * worked on gets things taken out of the way, not out of the repo.
+ *
+ * ⚠️⚠️ IT IS NOT A CLEAN CUT AND THIS IS WHAT IS CURRENTLY UNREACHABLE BECAUSE OF IT:
+ *   `segment-emails`, `brand-interviewer`, `format-email`, `format-blog`, `format-web-page`.
+ * Items 02 and 03 carry nine of the fourteen between them; those five appear nowhere else,
+ * and the library lists but cannot SERVE them while module 2 is `built: false`. Kite's six
+ * also lose Download and Copy, because item 02's window reads and does not take.
+ *
+ * ⭐ THE SECTION IS A SYMPTOM RATHER THAN A MISTAKE. It holds the files that have no lesson
+ * yet: the interviewer belongs wherever someone is told what to do without positioning work,
+ * the three `format-*` files belong to a lesson about writing an email or a blog, and
+ * `segment-emails` is the output and belongs at the end. When the walkthrough is written
+ * they each go to their own item, this section empties itself, and the flag can be deleted
+ * along with what it hides. ⛔ Do not ship with it hidden and those five still homeless.
+ */
+const SHOW_FILES = false;
 
 /**
  * A MODULE PAGE. Renders whatever is in the module's item array.
@@ -376,26 +401,31 @@ const BULLET = /^\s*[-•]\s+/;
    node is passed in, so an artifact can sit at the point in the argument that earned it
    rather than being stuck after every paragraph. Paul, 4 Aug: "Let's put the figure after
    the word following things". */
-const FOLDER_SLOT = "{{FOLDER}}";
+const SLOT_RE = /^\{\{([A-Z]+)\}\}$/;
 
 function Body({
   text,
   ph,
-  slot,
+  slots,
 }: {
   text: string;
   ph?: boolean;
-  slot?: React.ReactNode;
+  /** ⭐ `{{NAME}}` alone on a line renders slots[NAME]. Generic on purpose: item 02 wanted a
+      folder and item 04 wanted a session, and a second hard-coded marker would have been the
+      third copy of the same idea. */
+  slots?: Record<string, React.ReactNode>;
 }) {
   return (
     <>
       {text.split(/\n{2,}/).map((para, i) => {
-        if (para.trim() === FOLDER_SLOT) {
-          /* ⛔ Renders nothing if the item has no slot, rather than printing the marker. A
-             visible {{FOLDER}} on a live page is worse than a missing artifact. */
-          return slot ? (
+        const m = para.trim().match(SLOT_RE);
+        if (m) {
+          /* ⛔ Renders nothing if the item has no such slot, rather than printing the marker.
+             A visible {{FOLDER}} on a live page is worse than a missing artifact. */
+          const node = slots?.[m[1]];
+          return node ? (
             <div key={i} className="mod-slot">
-              {slot}
+              {node}
             </div>
           ) : null;
         }
@@ -786,18 +816,20 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 <Body
                   text={it.text}
                   ph={it.placeholder}
-                  slot={
-                    it.docs && it.docs.as !== "links" ? (
-                      <FolderWindow
-                        name={it.docs.folder}
-                        dir={it.docs.dir}
-                        files={it.docs.files.map((f) => ({
-                          file: f,
-                          label: `${f}.md`,
-                        }))}
-                      />
-                    ) : undefined
-                  }
+                  slots={{
+                    FOLDER:
+                      it.docs && it.docs.as !== "links" ? (
+                        <FolderWindow
+                          name={it.docs.folder}
+                          dir={it.docs.dir}
+                          files={it.docs.files.map((f) => ({
+                            file: f,
+                            label: `${f}.md`,
+                          }))}
+                        />
+                      ) : undefined,
+                    SESSION: it.session ? <ChatWindow /> : undefined,
+                  }}
                 />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
@@ -911,7 +943,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
             ⚠️ RENDERS ONLY WHEN A MODULE HAS FILES, so modules 1 and 3 to 6 are untouched
             and the pixels Paul signed off on module 1 do not move. */}
-        {mod.files && mod.files.length > 0 && (
+        {SHOW_FILES && mod.files && mod.files.length > 0 && (
           <section className="mod-files" id="files">
             <p className="mod-fkicker">/files</p>
             {mod.files.map((set) => (

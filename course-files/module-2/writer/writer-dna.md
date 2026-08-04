@@ -104,8 +104,15 @@ Two short grids. Marks out of ten, and **the reason beside each one, quoting the
 it.** A number with nothing beside it is a guess.
 
 **Against the format.** Did it do what the format file asks? For an email: the right shape for what
-the reader already knows, the subject and the first line agreeing, one idea. For a blog: the skim
-test, the title written last. For a page: the five-second questions answered above the fold.
+the reader already knows, the subject and the first line agreeing, **the register you named actually
+carried through to the sign-off**, one idea. For a blog: the skim test, the title written last. For a
+page: the five-second questions answered above the fold.
+
+⛔ **Score the register. It is the row that catches the worst failure.** A piece can take the right
+shape, carry one idea and land inside the word count while not being the format at all: an email
+with no greeting, nobody addressed, no occasion and no sign-off is a poster in an envelope. That
+exact draft scored 85% on this grid before the row existed, because nothing here was looking at it.
+A grid that cannot fail the biggest failure mode certifies the mistake instead of catching it.
 
 **Against the messaging framework.** One segment, one pillar, the right buying situation, proof
 with a number, the tone recognisable, nothing from the never-say list.
@@ -119,6 +126,7 @@ Against the format (email)
 |--------------------------------|-----|-----|
 | Right shape for their awareness| 9   | Problem-agitate-solution. They already feel this one. |
 | Subject and first line agree   | 8   | Subject promises the cost, first line delivers it. |
+| Register named, and carried    | 8   | Named person for the team. "We" throughout, one name signs. |
 | One idea                       | 9   | The saving costs you a fortnight. Nothing else. |
 | Length for the reader          | 7   | 140 words. Slightly over for a busy reader. |
 

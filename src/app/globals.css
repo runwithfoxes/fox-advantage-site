@@ -7764,6 +7764,145 @@ a.project-card {
 .mod-list-bullet{list-style:square;}
 
 
+/* ⭐⭐ THE CHAT WINDOW, 4 Aug 2026, rebuilt against a screenshot of Claude itself. Paul: "it
+   needs to be more feeling like a chat. Those boxes and the square edges don't make it feel
+   like a chat... in reality they will be using claude and there are curved edges etc. also
+   the one you did, it is not clear that it is a chat screen."
+
+   ⭐⭐ THREE THINGS IN THE REFERENCE DO ALL THE WORK, and the first build had none of them:
+     1. The person's message is a ROUNDED PILL, RIGHT-ALIGNED, hugging its own text.
+     2. The reply has NO CONTAINER AT ALL. Plain serif on the page.
+     3. THERE IS A COMPOSER AT THE BOTTOM. This is the one that says "chat" before a word is
+        read, and its absence is why the first version read as a transcript in a box.
+
+   ⛔ CURVES ARE CORRECT HERE AND DO NOT BREACH THE NO-ROUNDED-CORNERS RULE. This is depicted
+   software, which is artwork, same as `.mod-isa` and `.fw`. Our own chrome stays square. */
+.cw{container-type:inline-size;border:1px solid #E8E8E4;background:#FAFAF8;border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 1px 1px rgba(26,58,78,.05),0 20px 42px -14px rgba(26,58,78,.16);}
+.cw-bar{display:flex;align-items:center;gap:10px;padding:11px 14px;
+  border-bottom:1px solid #EDEDE9;background:#fff;}
+.cw-bar i{width:11px;height:11px;border-radius:50%;display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.06);}
+.cw-bar .r{background:#ff5f57;}
+.cw-bar .a{background:#febc2e;}
+.cw-bar .g{background:#28c840;}
+/* ⭐ THE SAME WORDS AS THE WINDOW IN fig-11 ON ITEM 01, so the drawing that opens the module
+   and the real thing that closes it are the same object. ⛔ Do not rename it. */
+.cw-title{font-family:var(--mono);font-size:.75rem;color:#8A8A85;margin:0 auto;letter-spacing:.08em;}
+
+/* Airy, like the reference. The old 26px padding made a dense document; a chat breathes. */
+.cw-body{padding:34px 34px 26px;}
+
+/* ⭐ THE PILL. Right-aligned and hugging its text, which is what makes a thread read as two
+   people rather than as a document with grey blocks in it. */
+.cw-you{display:flex;justify-content:flex-end;margin:0 0 30px;}
+.cw-you p{max-width:74%;background:#F0EFEA;border-radius:18px;padding:12px 18px;margin:0;
+  font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.6;color:#1D1B1B;}
+
+/* ⛔ NO CONTAINER ON THE REPLY. The reference has none, and a bubble on both sides turns a
+   teaching artefact into a messaging app. */
+/* ⭐ ONE MARK PER REPLY, then its blocks run under it. The mark carries the top margin and
+   the blocks that follow it sit tight, so a reply reads as one reply rather than as five. */
+.cw-writer{margin:0 0 42px;}
+.cw-writer-head{margin-bottom:0;}
+.cw-writer-cont{margin-bottom:0;}
+.cw-writer-cont:last-child{margin-bottom:22px;}
+
+/* Claude's mark, once, at the head of a reply. It is the other thing in the reference that
+   says whose product this is. */
+.cw-mark-icon{display:block;color:#D97757;margin:0 0 14px;}
+.cw-p{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.7;
+  color:#1D1B1B;margin:0 0 18px;}
+
+.cw-plan{margin:0 0 20px;}
+.cw-plan > div{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:9px 0;
+  border-top:1px solid #EDEDE9;}
+.cw-plan dt{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;
+  text-transform:uppercase;color:#8A8A85;margin:3px 0 0;}
+.cw-plan dd{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.6;
+  color:#1D1B1B;margin:0;}
+
+.cw-flag{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.7;
+  color:#44443E;margin:0 0 18px;padding-left:14px;border-left:2px solid #3A7CA5;}
+
+/* ⛔ THE EMAIL IS A THING, NOT MORE CHAT. Rounded to sit inside a rounded world, but on white
+   against the cream thread so it reads as an artefact handed over. */
+.cw-email{border:1px solid #E8E8E4;background:#fff;border-radius:12px;padding:22px 24px;
+  margin:0 0 22px;}
+.cw-email p{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.7;
+  color:#1D1B1B;margin:0 0 14px;}
+.cw-email p:last-child{margin-bottom:0;}
+.cw-subject{font-family:var(--mono)!important;font-size:.8125rem!important;
+  padding-bottom:14px;border-bottom:1px solid #EDEDE9;}
+.cw-subject span{color:#A8A8A2;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.6875rem;margin-right:10px;}
+/* Grey, and correct rather than an oversight: it is what a mail client does with a signature,
+   and it lets the eye stop on the last real line of writing. Ruled on the AI Writer card. */
+.cw-sign span{display:block;color:#8A8A85;}
+
+.cw-audit{font-family:'Source Serif 4',Georgia,serif;font-size:.875rem;line-height:1.65;
+  color:#44443E;margin:0 0 16px;}
+.cw-audit b{color:#1D1B1B;font-weight:600;}
+
+/* ⚠️ 34px ABOVE A GRID, not the 18px between rows. The two grids ran together as one table
+   because the gap between them was smaller than the gap inside them. */
+.cw-gridwrap{overflow-x:auto;margin:34px 0 18px;}
+.cw-grid{border-collapse:collapse;width:100%;}
+.cw-grid caption{text-align:left;font-family:var(--mono);font-size:.6875rem;
+  letter-spacing:.06em;text-transform:uppercase;color:#8A8A85;padding:0 0 10px;}
+.cw-grid th,.cw-grid td{border-top:1px solid #EDEDE9;padding:9px 12px 9px 0;
+  text-align:left;vertical-align:top;font-weight:400;}
+.cw-grid th{font-family:'Source Serif 4',Georgia,serif;font-size:.875rem;color:#1D1B1B;
+  width:210px;}
+.cw-mark{font-family:var(--mono);font-size:.8125rem;color:#3A7CA5;width:38px;
+  font-variant-numeric:tabular-nums;}
+.cw-why{font-family:'Source Serif 4',Georgia,serif;font-size:.875rem;line-height:1.55;
+  color:#54545C;}
+
+.cw-total{margin:0;}
+.cw-total b{display:block;font-family:var(--mono);font-size:.8125rem;color:#1D1B1B;
+  font-weight:400;margin-bottom:6px;}
+.cw-total span{font-family:'Source Serif 4',Georgia,serif;font-size:.875rem;line-height:1.55;
+  color:#54545C;}
+
+/* ⭐⭐ THE START PLATE. ⛔ NOT A PLAY TRIANGLE ON A BLACK RECTANGLE: that reads as video and
+   this is not video. A line of type saying what is about to happen, and a square button in
+   our own chrome, because the button is OURS even though the window it sits in is artwork. */
+.cw-start{padding:26px 0 30px;}
+.cw-start p{font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;line-height:1.65;
+  color:#54545C;margin:0 0 16px;}
+.cw-start button,.cw-controls button{font-family:var(--mono);font-size:.6875rem;
+  letter-spacing:.08em;text-transform:uppercase;color:#FAFAF8;background:#1A3A4E;border:0;
+  border-radius:0;padding:11px 22px;cursor:pointer;}
+.cw-start button:hover,.cw-controls button:hover{background:#3A7CA5;}
+/* Quiet, under the composer, because by the time anyone wants it they are reading rather than
+   deciding. */
+.cw-controls{padding:0 22px 22px;}
+.cw-controls button{background:none;color:#8A8A85;border:1px solid #E0E0DC;padding:8px 16px;}
+.cw-controls button:hover{background:none;color:#3A7CA5;border-color:#3A7CA5;}
+
+/* ⭐⭐ THE COMPOSER. The single element that says "this is a chat" before anything is read.
+   ⛔ IT IS SCENERY AND MUST NEVER LOOK OTHERWISE. No focus ring, no cursor, nothing that
+   invites a click it will not answer: the whole item is a recording. */
+.cw-composer{margin:0 22px 22px;border:1px solid #E0E0DC;background:#fff;border-radius:24px;
+  padding:16px 20px 12px;}
+.cw-composer .ph{font-family:var(--sans);font-size:.9375rem;color:#A8A8A2;margin:0 0 14px;}
+.cw-crow{display:flex;align-items:center;gap:14px;color:#8A8A85;}
+.cw-crow .plus{font-family:var(--sans);font-size:1.125rem;line-height:1;color:#54545C;}
+.cw-model{margin-left:auto;font-family:var(--sans);font-size:.8125rem;color:#1D1B1B;}
+.cw-model i{font-style:normal;color:#A8A8A2;margin-left:6px;}
+
+/* ⛔⛔ CONTAINER QUERY, NEVER A MEDIA QUERY. Same lesson as the AI Writer card and the folder
+   window: a 748px column inside a 1400px page means the viewport is wide while the component
+   is not, so no viewport breakpoint can see the overflow. */
+@container (max-width: 560px){
+  .cw-body{padding:24px 20px 18px;}
+  .cw-you p{max-width:86%;}
+  .cw-plan > div{grid-template-columns:1fr;gap:4px;}
+  .cw-grid th{width:auto;}
+  .cw-composer{margin:0 14px 14px;}
+}
+
 /* ⭐⭐ THE FOLDER WINDOW, 4 Aug 2026. A depicted directory: file list left, open document
    right. See FolderWindow.tsx for why it is one window and not six.
 

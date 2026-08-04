@@ -91,6 +91,13 @@ export type Item = {
    * what keeps its files OUT of the public library, so a link there today would land on a
    * page that does not list them. The library fills itself the day the module ships.
    */
+  /**
+   * ⭐ THE RECORDED SESSION WITH THE WRITER, rendered wherever `{{SESSION}}` appears in
+   * `text`. Content is `writerSession.ts`, which is a real run rather than a script.
+   * ⛔ There is one session and it belongs to module 2 item 04. If a second module ever wants
+   * one, this becomes a name rather than a boolean, and the component takes the name.
+   */
+  session?: boolean;
   docs?: {
     dir: string;
     folder: string;
@@ -1319,6 +1326,29 @@ export const MODULE_2: ModuleDef = {
       },
       t: "Start a new Claude Project",
       text: "So create a new project in Claude. And drop your documents into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
+    },
+    {
+      /* ⭐⭐ ITEM 04, THE WRITER WORKING. Paul, 4 Aug: "this is where we actually see a
+         question being asked in a chatbot, and we see the user experience based on the DNA on
+         how it should work. This is different to what we had before. What we had before was
+         just showing the output."
+
+         ⭐ SO IT IS THE ONLY ITEM ABOUT BEHAVIOUR RATHER THAN AN ARTEFACT. Items 01 to 03 show
+         finished things: a writer, a folder of documents, a project. This shows what it is
+         like to work with the files they have just installed, which is the payoff of doing the
+         slow part.
+
+         ⛔ RECORDED, NOT LIVE, on his ruling: "I'm not sure there is huge benefit v risk of
+         running it live." One session, the same every time, no API. ⛔ But recorded from a
+         REAL run, never written: we hand people the files, so anyone can run it and compare
+         within minutes.
+
+         ⚠️ PROSE NOT WRITTEN. The window carries the session; Paul's words around it are
+         still to come, which is why this is `placeholder`. */
+      t: "Watch it work",
+      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION}}",
+      session: true,
+      placeholder: true,
     },
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.

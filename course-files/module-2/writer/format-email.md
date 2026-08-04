@@ -58,12 +58,21 @@ Pick this before writing, because the sign-off sets the voice more than anything
 |---|---|---|
 | **Corporate** | The brand, "we" | The team, or the company |
 | **A team** | A defined group, still "we" | The named team |
-| **A named person, speaking for the team** | "We", but somebody carries it | A person and their title |
+| **A named person, speaking for the team** | "We", but somebody carries it | A person. Their title only if the brand actually uses one |
 | **A person, lightly** | Measured "I" | A person, title, sometimes a photo |
 | **A person, fully** | First person throughout | Just their name |
 
 Most outbound sits in the first three. Save the last two for genuine one-to-one moments. A cold
 first email written as a personal note reads as performance, not warmth.
+
+⛔ **Never invent a job title to fill the sign-off.** If the brand signs with a first name, sign with
+the first name. A made-up title is a fabricated fact about a real company, and it is the kind that
+survives into a hundred emails because nobody thinks to check the signature.
+
+⭐ **Name the register in the plan, before writing, and say who signs.** It is the decision the rest
+of the email hangs off. Get it wrong and the piece can be the right shape, one idea and the right
+length while not reading as an email at all: no greeting, nobody addressed, no reason it arrived
+today, nothing to do at the end.
 
 ## Subject lines
 
