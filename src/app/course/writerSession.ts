@@ -238,3 +238,162 @@ export const KITE_SESSION: Turn[] = [
     ],
   },
 ];
+
+/**
+ * ⭐⭐ THE SECOND RECORDING: A SOCIAL POST, AND A GAP IN THE PACK. Recorded 4 Aug 2026,
+ * same pack, same amended DNA.
+ *
+ * ⭐ THE GAP IS THE POINT AND IT IS REAL, NOT STAGED. `tone-of-voice.md` has a specific rule
+ * for written posts (second person, added after four first-person drafts died) and its
+ * addendum points at `segment-posts.md` for worked examples. That file does not exist in the
+ * pack, and neither does a `format-social` craft file. Paul's ruling, 4 Aug: run WITH the gap,
+ * because a writer that names what it does not have and refuses to invent the rulebook is the
+ * strongest proof the files are driving it. `writer-dna`: "If a file is missing, say which
+ * one and what it would have told you. Do not fill the gap yourself."
+ *
+ * ⛔ Same rules as the first recording: a real run, verbatim, never tidied. The specifics in
+ * the spiral (the 61 pages, the Tuesday, the Focus) are Kite's own worked world from
+ * `tone-of-voice.md`, not new inventions. Kite is fictional throughout.
+ */
+export const KITE_POST_SESSION: Turn[] = [
+  { who: "you", text: "Now a social post. The renewal letter, for LinkedIn." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Yes. What am I writing from? An offer, a date, or just the brand and the letter?",
+      },
+    ],
+  },
+  {
+    who: "you",
+    text: "Nothing to announce. Renewal season starts in September and the letter is the whole subject.",
+  },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "flag",
+        text: "Two files are missing before I plan. There is no format-social, the file that would hold this format's craft: shapes, lengths, what has to be true before a post is any good. And tone-of-voice points at segment-posts.md for worked examples of written posts, and it is not in the project. I will write from the tone rules I do have. I will not invent the missing rulebook.",
+      },
+      { kind: "p", text: "Plan, with that said." },
+      {
+        kind: "plan",
+        lines: [
+          [
+            "What it is",
+            "One social post for the feed. No format file exists for it, so no framework is named. The shape is tone-of-voice's five beats, which is a voice spec standing in for a craft file, and I am saying so.",
+          ],
+          [
+            "Register",
+            "Second person, the brand narrating your situation back to you, from the tone addendum. Written posts do not get first person: read cold there is no label, so first person reads as nobody.",
+          ],
+          [
+            "Segment and pillar",
+            "The Payer, ahead of the September letter. Pillar two, you stop being punished for staying.",
+          ],
+          [
+            "Positioning",
+            "All four parts on duty: written to the people who dread the renewal letter, the frame named in the landing, the difference is the whole joke, and €187 carries the proof. Nothing dropped this time, because a feed post is read cold by people who do not know what Kite is.",
+          ],
+          [
+            "Length and takeaway",
+            "About 80 words. They leave knowing the renewal increase is optional, and that it can be someone else's job.",
+          ],
+        ],
+      },
+    ],
+  },
+  { who: "you", text: "Go." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "post",
+        refs: [
+          { file: "tone-of-voice.md", quote: "Same car. Same house. Same me." },
+          { file: "tone-of-voice.md", quote: "But the price goes up." },
+          {
+            file: "tone-of-voice.md",
+            quote: "A 61-page policy document, a Tuesday, a Ford Focus with 140,000 kilometres on it.",
+          },
+          {
+            file: "tone-of-voice.md",
+            quote: "naming the absurd job the category has quietly handed the customer",
+          },
+          {
+            file: "tone-of-voice.md",
+            quote: "That's the arrangement. I stay, and I pay more for it.",
+          },
+          {
+            file: "positioning-statement.md",
+            quote: "the car and home insurance that renews itself",
+          },
+          {
+            file: "proof.md",
+            quote: "Average saving the first time we shop around for you: €187.",
+          },
+          { file: "tone-of-voice.md", quote: "Kite. It shops around. You don't." },
+        ],
+        body: [
+          "Same car. Same house. Same you.",
+          "But the price goes up.",
+          "The letter lands on a Tuesday. Sixty-one pages, one number that matters, and the number got bigger. Same Focus in the driveway, same forty minute commute, same nothing-happened.",
+          "What are you, a procurement department?",
+          "That's the arrangement. You stay put, and it costs you extra.",
+          "Kite shops around for your car and home insurance before every renewal. If someone is cheaper, you move. If nobody is, you stay.",
+          "Either way you get told what it found. The first time it shopped around, people saved €187 on average.",
+          "Kite. It shops around. You don't.",
+        ],
+      },
+      {
+        kind: "audit",
+        label: "Slop audit, both passes. Two fixes.",
+        text: "The spiral's three sentences were landing within five words of each other, so the driveway line now runs long. And searched em dashes again after that rewrite, target zero, it is zero.",
+      },
+      {
+        kind: "audit",
+        label: "Claims ledger.",
+        text: "€187, brand file, proof.md, internal renewal data January 2026, carried with what makes it true. The 61 pages, the Tuesday and the Focus are Kite's worked world from tone-of-voice.md, not customer claims. No named people, no competitor claims, nothing from the never list. Source map carried on the post, line by line.",
+      },
+      {
+        kind: "p",
+        text: "No format grid. I have no format-social file to score against, and a grid against rules I invented would certify nothing. What I checked instead: the addendum's second-person rule carried all the way through, the device used once, the landing flat.",
+      },
+      {
+        kind: "grid",
+        title: "Against the messaging framework",
+        rows: [
+          ["One segment", 9, "The Payer, ahead of the September letter."],
+          [
+            "One pillar",
+            8,
+            "Pillar two. The endline touches pillar one, the difference doing its job.",
+          ],
+          [
+            "Proof, with a number",
+            9,
+            "€187, with what makes it true: shopping around, first time, on average.",
+          ],
+          [
+            "Tone, recognisably",
+            8,
+            "Five beats, the device once, and the landing does not celebrate.",
+          ],
+          [
+            "Nothing from the never list",
+            10,
+            "No cheapest, no entry-fee claims, and the automation is not hidden: the post is about it.",
+          ],
+        ],
+      },
+      {
+        kind: "score",
+        text: "Framework 88%",
+        weakest:
+          "Weakest rows are pillar and tone at eight. The endline is pillar one wearing pillar two's argument, and the spiral gets two lines where the radio version gets five.",
+      },
+    ],
+  },
+];
