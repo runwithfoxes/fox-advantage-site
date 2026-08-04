@@ -52,7 +52,14 @@ export default async function ModulePage({
      ⛔ IT IS STILL NOT A LOCK. Anyone who types an email is in, including an address we have
      never seen, because the point is a NAME on the behaviour rather than keeping people out.
      See CourseDoor. */
-  const identified = (await cookies()).get("rwf_course_id")?.value ?? "";
+  /* ⭐ DEV ONLY, 4 Aug 2026. Paul reviews these pages constantly and the door stood between
+     him and the work every single time. `NODE_ENV` is "production" in every build Vercel
+     ships, so this branch is unreachable in production by construction rather than by a flag
+     somebody has to remember to turn off. ⛔ It does NOT weaken the real gate above it. */
+  const identified =
+    process.env.NODE_ENV === "development"
+      ? "dev@localhost"
+      : (await cookies()).get("rwf_course_id")?.value ?? "";
   if (!identified.includes("@")) {
     return <CourseDoor n={mod.n} title={mod.title} when={mod.when} />;
   }

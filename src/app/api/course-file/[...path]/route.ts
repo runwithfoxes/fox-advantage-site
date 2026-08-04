@@ -67,7 +67,15 @@ export async function GET(
      ⚠️ IT IS A DOOR, NOT A LOCK, and the module page's own note says so: anyone who
      types an email is in. What it stops is the file being readable by someone who never
      came to the course at all. */
-  const identified = (await cookies()).get("rwf_course_id")?.value ?? "";
+  /* ⭐ DEV ONLY, 4 Aug 2026, and it MUST move in step with the same bypass in
+     `course/[n]/page.tsx`. That one let Paul review a module without the door; without this
+     one the module renders but every file it serves 404s, so a folder window on the page
+     would come up empty and look like a broken component rather than a missing cookie.
+     `NODE_ENV` is "production" in every build Vercel ships, so this cannot reach a member. */
+  const identified =
+    process.env.NODE_ENV === "development"
+      ? "dev@localhost"
+      : (await cookies()).get("rwf_course_id")?.value ?? "";
   if (!identified) {
     return new Response("Not found", { status: 404 });
   }
