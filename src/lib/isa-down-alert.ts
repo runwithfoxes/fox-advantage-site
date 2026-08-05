@@ -14,11 +14,18 @@ import { Resend } from "resend";
 const ALERT_TO = process.env.ISA_ALERT_TO || "pdervan@gmail.com";
 const ALERT_FROM = process.env.ISA_ALERT_FROM || "Isa <onboarding@resend.dev>";
 
-// One alert per hour. An outage produces an error on every request, and Paul
-// only needs telling once. The window resets by TTL, so a long outage nudges
-// him again each hour rather than going quiet after the first email.
+// Roughly one alert per hour. An outage produces an error on every request,
+// and Paul only needs telling once. The window resets by TTL, so a long outage
+// nudges him again each hour rather than going quiet after the first email.
+//
+// 50 minutes, not 60, because the health-check cron fires at the top of every
+// hour. A full-hour TTL races it: an alert sent at H:00:05 leaves the key alive
+// until H+1:00:05, and Vercel's per-minute scheduling can fire the next run at
+// H+1:00:02 - which then finds a live key and stays silent for that whole hour.
+// On a quiet night the cron is the only thing calling, so that lost hour is a
+// real blind spot. A window shorter than the interval closes it.
 const THROTTLE_KEY = "isa:down-alert-sent";
-const THROTTLE_SECONDS = 60 * 60;
+const THROTTLE_SECONDS = 50 * 60;
 
 function getRedis(): Redis | null {
   const url =
