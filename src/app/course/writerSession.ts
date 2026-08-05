@@ -500,7 +500,7 @@ export const KITE_DATA_SESSION: Turn[] = [
           },
           {
             file: "data-notes.md",
-            quote: "Ardline wrote to its whole book with an average 9% increase",
+            quote: "wrote to all of its customers with an average 9% price increase",
           },
           {
             file: "campaigns-2025.csv",
@@ -522,10 +522,10 @@ export const KITE_DATA_SESSION: Turn[] = [
         body: [
           "After cleaning, the file shows €308,047 of paid spend for the year, and the platforms say that spend produced 5,468 policies. The cost for each policy, channel by channel: price-comparison €10, brand-search €34, podcast €92, social €123, radio €630. Podcast's true figure is lower than €92, because three of its weeks were never recorded.",
           "The platforms' claims do not match the policy system every month. In November the platforms together claimed 374 policies, and Kite opened 348 in total, counting every source. In December it was 470 claimed against 423 opened. Each platform counts every sale it touched, so the same sale can be claimed twice. The policy system is the number to plan with.",
-          "The rise in March did not come from the channels. Quotes doubled on brand-search and on price-comparison in the same four weeks, and spending on both was flat. The changelog explains it: Ardline put its prices up, the story was in the news for a week, and people went looking for alternatives.",
-          "Price-comparison's €10 for each policy is measured on people who are already shopping around. When its budget went up by 59% in April and May, it produced only 9% more policies. It captures the people who are in the market this week. Nothing in the data suggests it can make more of them.",
+          "The rise in March did not come from the channels. Quotes doubled on brand-search and on price-comparison in the same four weeks, and spending on both was flat. The notes explain it: Ardline, the biggest insurer in the market, put its prices up for all of its customers, the story was in the news for a week, and people went looking for alternatives.",
+          "Price-comparison's €10 for each policy is measured on people who are already shopping around. When its budget went up by 59% in April and May, it produced only 9% more policies. This channel finds the people who are already shopping around. Spending more on it did not make more people shop around.",
           "The radio numbers in this file say €82,541 spent for 131 policies, which works out at €630 each. But during both radio campaigns, brand-search produced about 20% more quotes than usual, and search spending did not change. So some of search's €34 really belongs to radio. This file cannot say how much.",
-          "Social costs €123 for each policy, and it is the only channel aimed at Jugglers, who hold several policies in one household. Whether €123 is expensive depends on what a Juggler customer is worth over several years, and that number is not in this file.",
+          "Social costs €123 for each policy, and it is the only channel aimed at the customers Kite calls Jugglers, people with several policies in one household. Whether €123 is expensive depends on what a Juggler customer is worth over several years, and that number is not in this file.",
           "There is one thing this file cannot answer at all: whether people stay. Kite's own proof file says the company is too young to know. What retention turns out to be will change what every acquisition number above is worth.",
         ],
       },

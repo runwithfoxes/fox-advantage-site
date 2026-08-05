@@ -23,8 +23,11 @@ against.
 - **week_starting.** The Monday of the week the spend ran. All dates are 2025.
 - **channel.** One of brand-search, price-comparison, social, radio, podcast-sponsorship.
   Radio does not run all year: it buys bursts.
-- **segment_focus.** The segment the activity was planned against: payer, switcher, juggler,
-  or all. Planning intent, not measurement. The file does not know who actually saw anything.
+- **segment_focus.** The customer type the activity was planned against. Kite plans against
+  three: Payers, who tend to renew without shopping around; Switchers, who shop around every
+  year; and Jugglers, who hold several policies in one household. "All" means the activity
+  was not aimed at one type. This column records planning intent, not measurement. The file
+  does not know who actually saw anything.
 - **spend_eur.** What the week cost, media only. Production, the podcast contract's fixed
   fee and agency time are not in it.
 - **quotes_started.** People who began a quote that the platform credited to the channel.
@@ -35,8 +38,9 @@ against.
 ## Changelog, 2025
 
 - **6 January.** File starts. Weekly exports from the media dashboard.
-- **3 March.** Ardline wrote to its whole book with an average 9% increase, and the letter
-  got picked up by the papers and morning radio for most of a week.
+- **3 March.** Ardline, the biggest insurer in the market, wrote to all of its customers
+  with an average 9% price increase, and the story was in the papers and on morning radio
+  for most of a week.
 - **7 April.** Budget review moved more money into price-comparison for eight weeks, on the
   strength of its cost per policy.
 - **16 June.** The podcast player changed its links and the quote tracking from it broke.
