@@ -6,6 +6,7 @@ import {
   saveError,
   saveInboundQuestion,
 } from "@/lib/conversation-store";
+import { sendIsaDownAlert } from "@/lib/isa-down-alert";
 import { getRateLimiter } from "@/lib/rate-limit";
 
 export const maxDuration = 30;
@@ -137,9 +138,15 @@ export async function POST(req: Request) {
         // block below, so record them here with the actual question + detail.
         const err = (event as { error?: unknown }).error;
         console.error("[chat] stream error:", err);
-        await saveError({
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        await saveError({ userMessage: userText, errorMessage });
+        // Recording the error isn't enough on its own: the store is only read
+        // when someone goes looking. Email Paul now, throttled to one an hour,
+        // so a broken Isa can't sit unnoticed until the next daily cron.
+        await sendIsaDownAlert({
+          chatId: sanitizedChatId,
           userMessage: userText,
-          errorMessage: err instanceof Error ? err.message : String(err),
+          errorMessage,
         });
       },
     });
