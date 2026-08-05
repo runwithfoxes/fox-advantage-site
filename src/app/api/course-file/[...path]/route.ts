@@ -45,6 +45,9 @@ function servable(): Map<string, number> {
 const TYPES: Record<string, string> = {
   ".html": "text/html; charset=utf-8",
   ".md": "text/markdown; charset=utf-8",
+  /* The dataset, 5 Aug 2026. A csv downloads like the markdown does: it is the thing a
+     learner drops into a project, and its readable page is the .html beside it. */
+  ".csv": "text/csv; charset=utf-8",
 };
 
 export async function GET(
@@ -100,9 +103,9 @@ export async function GET(
       /* ⛔ NEVER CACHED BY A SHARED CACHE. A CDN holding one of these would serve it to
          the next person with no cookie at all, which is the whole hole this route closes. */
       "Cache-Control": "private, no-store",
-      /* The markdown is the thing that goes into a Claude project, so it downloads
-         rather than rendering as text in a tab. The html is for reading in place. */
-      ...(ext === ".md"
+      /* The markdown and the csv are the things that go into a Claude project, so they
+         download rather than rendering as text in a tab. The html is for reading in place. */
+      ...(ext === ".md" || ext === ".csv"
         ? { "Content-Disposition": `attachment; filename="${path.basename(rel)}"` }
         : {}),
     },

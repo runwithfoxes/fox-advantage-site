@@ -120,11 +120,15 @@ function buildUnits(session: Turn[]): Unit[] {
 export default function ChatWindow({
   session,
   start,
+  title = "a writer",
 }: {
   /** The recorded session this window plays. One window, one recording. */
   session: Turn[];
   /** The start plate's one line of type, in our own voice, saying what will happen. */
   start: string;
+  /** The title-bar label. "a writer" unless the recording is of something else:
+   *  the dataset session says "an analyst". Same lowercase register as fig-11's window. */
+  title?: string;
 }) {
   const units = useMemo(() => buildUnits(session), [session]);
   const [playing, setPlaying] = useState(false);
@@ -212,7 +216,7 @@ export default function ChatWindow({
         <i className="r" />
         <i className="a" />
         <i className="g" />
-        <span className="cw-title">a writer</span>
+        <span className="cw-title">{title}</span>
       </div>
 
       <div className="cw-body">

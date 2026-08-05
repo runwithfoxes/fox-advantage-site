@@ -6,7 +6,11 @@ import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
 import FolderWindow from "./FolderWindow";
 import ChatWindow from "./ChatWindow";
-import { KITE_SESSION, KITE_POST_SESSION } from "../writerSession";
+import {
+  KITE_SESSION,
+  KITE_POST_SESSION,
+  KITE_DATA_SESSION,
+} from "../writerSession";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
@@ -839,6 +843,15 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                       <ChatWindow
                         session={KITE_POST_SESSION}
                         start={"A second ask: a social post, and a gap in the pack."}
+                      />
+                    ) : undefined,
+                    /* ⭐ The dataset recording. A different job, so a different title bar:
+                       the window says "an analyst", and the refs quote raw CSV rows. */
+                    SESSION_DATA: it.session ? (
+                      <ChatWindow
+                        session={KITE_DATA_SESSION}
+                        start={"Kite’s own numbers, checked before they are believed."}
+                        title="an analyst"
                       />
                     ) : undefined,
                   }}
