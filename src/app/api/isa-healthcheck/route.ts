@@ -1,14 +1,21 @@
 import { Resend } from "resend";
+import { sendIsaDownAlert } from "@/lib/isa-down-alert";
 
-// Daily health check for Isa, run by a Vercel cron (see vercel.json).
+// Hourly health check for Isa, run by a Vercel cron (see vercel.json).
 //
 // Why this exists: the old check ran as a cloud Claude routine inside a
 // sandbox whose egress proxy blocks runwithfoxes.com, so it returned 403 every
 // day and false-alarmed "Isa is down". This route runs ON the deployment, so it
 // hits the real public endpoint with no proxy in the way - a genuine check.
 //
-// It emails Paul EITHER WAY: a quiet "Isa OK" so he knows the check actually
-// ran, and a loud "Isa is DOWN" with the error if it failed.
+// It runs every hour so an outage that starts on a quiet evening isn't
+// invisible until morning. Failures go through sendIsaDownAlert, the same path
+// a real visitor's failure takes, so the two share one Redis throttle and Paul
+// gets one email an hour during an outage rather than one from each source.
+//
+// The quiet "Isa OK" still goes out once a day, at the 08:00 UTC run only.
+// Without it, silence would be ambiguous: a healthy Isa and a dead cron look
+// identical from the inbox.
 
 export const maxDuration = 30;
 
@@ -78,8 +85,23 @@ async function checkIsa(): Promise<CheckResult> {
   }
 }
 
+// The one run a day that reports good news. Every other hourly run stays silent
+// when Isa is fine.
+const DAILY_OK_HOUR_UTC = 8;
+
 async function notify(result: CheckResult): Promise<void> {
+  if (!result.healthy) {
+    await sendIsaDownAlert({
+      chatId: "healthcheck-cron",
+      userMessage: "(hourly health check, not a real visitor)",
+      errorMessage: `HTTP ${result.status} - ${result.detail}`,
+    });
+    return;
+  }
+
   if (!process.env.RESEND_API_KEY) return;
+  if (new Date().getUTCHours() !== DAILY_OK_HOUR_UTC) return;
+
   const when = new Date().toLocaleString("en-IE", {
     timeZone: "Europe/Dublin",
     dateStyle: "medium",
@@ -87,31 +109,16 @@ async function notify(result: CheckResult): Promise<void> {
   });
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  if (result.healthy) {
-    await resend.emails.send({
-      from: ALERT_FROM,
-      to: ALERT_TO,
-      subject: "🦊 Isa OK",
-      text: `Daily check passed - Isa answered on ${BASE_URL} (HTTP 200).\n${when}`,
-      html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;color:#1A3A4E;">
-        <p>✅ <strong>Isa is healthy.</strong></p>
-        <p style="color:#777;font-size:13px;">Daily check passed on <code>${BASE_URL}</code> (HTTP 200).<br/>${when}</p>
-      </div>`,
-    });
-  } else {
-    await resend.emails.send({
-      from: ALERT_FROM,
-      to: ALERT_TO,
-      subject: "🚨 Isa is DOWN on runwithfoxes.com",
-      text: `Daily check FAILED on ${BASE_URL}.\nHTTP status: ${result.status}\nDetail: ${result.detail}\n${when}`,
-      html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;color:#1A3A4E;">
-        <p>🚨 <strong>Isa failed the daily check.</strong></p>
-        <p>HTTP status: <strong>${result.status}</strong></p>
-        <p>Detail: <code>${result.detail.replace(/</g, "&lt;")}</code></p>
-        <p style="color:#777;font-size:13px;">Checked <code>${BASE_URL}/api/chat</code><br/>${when}</p>
-      </div>`,
-    });
-  }
+  await resend.emails.send({
+    from: ALERT_FROM,
+    to: ALERT_TO,
+    subject: "🦊 Isa OK",
+    text: `Daily check passed - Isa answered on ${BASE_URL} (HTTP 200).\n${when}`,
+    html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;color:#1A3A4E;">
+      <p>✅ <strong>Isa is healthy.</strong></p>
+      <p style="color:#777;font-size:13px;">Checked hourly; this is the daily all-clear on <code>${BASE_URL}</code> (HTTP 200).<br/>${when}</p>
+    </div>`,
+  });
 }
 
 export async function GET(req: Request): Promise<Response> {
