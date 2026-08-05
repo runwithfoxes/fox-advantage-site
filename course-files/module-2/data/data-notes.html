@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kite Insurance: data notes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>Kite Insurance: data notes</h1>
+<blockquote><p>⚠️ <strong>Kite is a fictional brand, invented for this course.</strong> Every number in the campaign file is made up, and the file has the problems real files have. None of it is research about the insurance market, and none of it should be repeated anywhere as fact.</p></blockquote>
+<p>These notes travel with <code>campaigns-2025.csv</code>. Read them before you total anything.</p>
+<h2>What the file is</h2>
+<p>Kite&#x27;s paid acquisition results for 2025, one row per channel per week. It covers paid channels only. Policies that arrive direct, through word of mouth or through renewals moving across from another insurer&#x27;s book are not in this file, so the column totals are not Kite&#x27;s year.</p>
+<h2>Columns</h2>
+<ul>
+<li><strong>week_starting.</strong> The Monday of the week the spend ran. All dates are 2025.</li>
+<li><strong>channel.</strong> One of brand-search, price-comparison, social, radio, podcast-sponsorship. Radio does not run all year: it buys bursts.</li>
+<li><strong>segment_focus.</strong> The segment the activity was planned against: payer, switcher, juggler, or all. Planning intent, not measurement. The file does not know who actually saw anything.</li>
+<li><strong>spend_eur.</strong> What the week cost, media only. Production, the podcast contract&#x27;s fixed fee and agency time are not in it.</li>
+<li><strong>quotes_started.</strong> People who began a quote that the platform credited to the channel. Each platform counts its own credit, so the same person can appear under two channels.</li>
+<li><strong>new_policies.</strong> Policies opened that the platform credited to the channel, same warning as above.</li>
+</ul>
+<h2>Changelog, 2025</h2>
+<ul>
+<li><strong>6 January.</strong> File starts. Weekly exports from the media dashboard.</li>
+<li><strong>3 March.</strong> Ardline wrote to its whole book with an average 9% increase, and the letter got picked up by the papers and morning radio for most of a week.</li>
+<li><strong>7 April.</strong> Budget review moved more money into price-comparison for eight weeks, on the strength of its cost per policy.</li>
+<li><strong>30 June.</strong> The export job was rebuilt when the dashboard changed its login. Exports resumed in July.</li>
+<li><strong>1 September.</strong> Second radio burst booked, same weight as spring.</li>
+</ul>
+<h2>For whoever analyses this file</h2>
+<ol><li>Check the file before you believe it. Exports are made by software and software has bad weeks.</li><li>A cost per policy is an answer to one question, not to every question. Ask what job each channel was bought to do before you rank them on one number.</li><li>If a week looks unusual, look for the reason outside the file before crediting the channel. The changelog above is where Kite&#x27;s year is written down.</li></ol></main></body></html>
