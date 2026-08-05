@@ -1016,6 +1016,89 @@ export const MODULE_1: ModuleDef = {
       figure: "fig-28",
       text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
     },
+    {
+      /* ⭐⭐ ITEM 10, THE DATASET AND THE ANALYST, placed in MODULE 1 on Paul's ruling,
+         5 Aug 2026 ("Maybe it could go in module 1... you can use Kite through it. That
+         makes sense."). Built from his ask for practice material on data analysis.
+
+         ⭐ THE SHAPE IS THE WRITER'S, ONE MODULE EARLY: `analyst-dna.md` is behaviour
+         (help first, check first, end on a next step, dry clinical tone, his ruling),
+         `data-rules.md` is ten marketing-judgement rules in very simple language, both
+         approved by Paul in chat on 5 Aug. The dataset is Kite's 2025 campaign file with
+         SIX planted faults (see course-build/build-kite-data.py) plus the policy
+         system's truth file, so the platforms' over-claiming is catchable, not asserted.
+
+         ⚠️ KITE IS INTRODUCED IN MODULE 2, which opens a fortnight after this page. His
+         prose here needs one line saying Kite is a fictional brand used through the
+         course. The fiction warning already renders with the files.
+
+         ⭐ THE WINDOW IS `KITE_DATA_SESSION`, a real run: every number computed from the
+         file, refs verified by scripts/check-sessions.mjs, charts generated from the csv
+         by scripts/build-chart-data.mjs so no drawn number can be typed.
+
+         ⚠️ THE TITLE IS MINE, NOT HIS, a working label. Prose awaits Paul.
+         ⛔ No figure: none exists for data analysis in the library. */
+      t: "Analyse Kite's numbers",
+      docs: {
+        dir: "module-1/data",
+        folder: "data/",
+        files: [
+          "campaigns-2025.csv",
+          "policies-monthly-2025.csv",
+          "data-notes",
+          "data-rules",
+          "analyst-dna",
+        ],
+        as: "links",
+      },
+      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION_DATA}}",
+      session: true,
+      placeholder: true,
+    },
+  ],
+  files: [
+    {
+      /* ⭐ Listing these is what makes them servable: the api/course-file whitelist is
+         derived from mod.files. Invisible while SHOW_FILES is off; the item rows above
+         are how a learner reaches them.
+         ⚠️ TITLE, BLURB AND `what` LINES ARE WORKING COPY, MINE, awaiting Paul. */
+      title: "Kite's numbers, to practice on",
+      blurb:
+        "A year of campaign data as the ad platforms report it, the policy system's own count, the notes that travel with them, and the two files that make your AI read numbers like a marketer.",
+      warn: "Kite does not exist. Every number in these files was invented for this course, and the campaign file's faults were planted on purpose. Nothing in it is research, and nothing in it is a benchmark.",
+      files: [
+        {
+          name: "campaigns-2025",
+          what: "Paid acquisition for 2025 as the platforms report it: spend, quotes started and new policies, one row per channel per week. The csv is the file to take.",
+          href: "/api/course-file/module-1/data/campaigns-2025.html",
+          take: "/api/course-file/module-1/data/campaigns-2025.csv",
+        },
+        {
+          name: "policies-monthly-2025",
+          what: "The policy system speaking: policies actually opened each month, from every source. The number the campaign file's claims are checked against.",
+          href: "/api/course-file/module-1/data/policies-monthly-2025.html",
+          take: "/api/course-file/module-1/data/policies-monthly-2025.csv",
+        },
+        {
+          name: "data-notes",
+          what: "The column dictionary and the year's changelog. Read it before you total anything.",
+          href: "/api/course-file/module-1/data/data-notes.html",
+          take: "/api/course-file/module-1/data/data-notes.md",
+        },
+        {
+          name: "data-rules",
+          what: "Ten rules for reading campaign numbers. Works for any brand, not just Kite.",
+          href: "/api/course-file/module-1/data/data-rules.html",
+          take: "/api/course-file/module-1/data/data-rules.md",
+        },
+        {
+          name: "analyst-dna",
+          what: "The analyst's instructions: how it behaves and its tone. Goes into your project's instructions, not the files panel.",
+          href: "/api/course-file/module-1/data/analyst-dna.html",
+          take: "/api/course-file/module-1/data/analyst-dna.md",
+        },
+      ],
+    },
   ],
 };
 
@@ -1381,48 +1464,6 @@ export const MODULE_2: ModuleDef = {
       text: "AWAITING PAUL'S WORDS.",
       placeholder: true,
     },
-    {
-      /* ⭐⭐ ITEM 06, THE DATASET, BUILT 5 Aug 2026 from Paul's ask to add practice
-         material on data analysis ("we could create our own dataset for people to
-         practice"). Kite's fiction extended downward into a year of campaign data:
-         `course-files/module-2/data/`, generated by course-build/build-kite-data.py,
-         fixed seed, byte-identical on re-run.
-
-         ⭐ THE FILE'S PROBLEMS ARE PLANTED, and that is the lesson: one duplicated week
-         (social, 14 July), a March demand spike whose cause is in data-notes' changelog
-         (Ardline's letter), a channel whose beautiful cost per policy refuses to scale,
-         and a radio halo sitting in search's column. A clean file would teach that
-         checking is a formality.
-
-         ⭐ THE WINDOW IS THE THIRD RECORDING, `KITE_DATA_SESSION`, a real run: every
-         number in it was computed from the file, and its refs quote raw CSV rows, which
-         `scripts/check-sessions.mjs` verifies like any other quote.
-
-         ⚠️ PLACEMENT IS PAUL'S CALL. Data analysis was never assigned to a module, and
-         the capture doctrine says build the capability and let him place it. It sits
-         here because the dataset lives inside Kite's world and this page already
-         carries the fiction warning.
-
-         ⚠️ THE TITLE IS MINE, NOT HIS, a working label so the rail reads sensibly.
-         Prose awaits Paul. ⛔ No figure: none exists for data analysis in the library
-         and inventing one is a figure-pipeline job, not a data field.
-
-         ⭐ THE CSV CARRIES ITS EXTENSION and that is the signal: DocLinks learned on
-         5 Aug 2026 that a bare name means `.md` and a name with a dot is taken as-is,
-         so "campaigns-2025.csv" downloads the csv and its Open shows the .html table.
-         The module file set below is what makes both servable (the route whitelist
-         reads mod.files), and it stays even while SHOW_FILES is off. */
-      t: "Analyse Kite's numbers",
-      docs: {
-        dir: "module-2/data",
-        folder: "data/",
-        files: ["campaigns-2025.csv", "data-notes"],
-        as: "links",
-      },
-      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION_DATA}}",
-      session: true,
-      placeholder: true,
-    },
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.
      The writer set runs in install order: the DNA goes in first, the interviewer runs once
@@ -1534,32 +1575,6 @@ export const MODULE_2: ModuleDef = {
           what: "One email to each of the three segments, written by Paul.",
           href: "/api/course-file/module-2/kite/segment-emails.html",
           take: "/api/course-file/module-2/kite/segment-emails.md",
-        },
-      ],
-    },
-    {
-      /* ⭐ THE DATASET SET, 5 Aug 2026. Listing these here is also what makes them
-         servable: the api/course-file whitelist is derived from this list.
-         ⚠️ TITLE, BLURB AND `what` LINES ARE WORKING COPY, MINE, awaiting Paul. The
-         other two sets quote READMEs written with him; these files have no README yet.
-         ⛔ The warn is load-bearing, same as Kite's: a learner reading plausible
-         campaign numbers will take them for benchmarks unless the page says otherwise. */
-      title: "Kite's numbers, to practice on",
-      blurb:
-        "A year of paid campaigns, one row per channel per week, and the notes that travel with the file. It has the problems real files have. Find them before you trust it.",
-      warn: "Kite does not exist. Every number in these files was invented for this course, and the file's faults were planted on purpose. Nothing in it is research, and nothing in it is a benchmark.",
-      files: [
-        {
-          name: "campaigns-2025",
-          what: "Paid acquisition for 2025: spend, quotes started and new policies, one row per channel per week. The csv is the file to take.",
-          href: "/api/course-file/module-2/data/campaigns-2025.html",
-          take: "/api/course-file/module-2/data/campaigns-2025.csv",
-        },
-        {
-          name: "data-notes",
-          what: "The column dictionary and the year's changelog. Read it before you total anything.",
-          href: "/api/course-file/module-2/data/data-notes.html",
-          take: "/api/course-file/module-2/data/data-notes.md",
         },
       ],
     },

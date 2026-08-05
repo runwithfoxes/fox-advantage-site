@@ -4,14 +4,19 @@
 > file is made up, and the file has the problems real files have. None of it is research
 > about the insurance market, and none of it should be repeated anywhere as fact.
 
-These notes travel with `campaigns-2025.csv`. Read them before you total anything.
+These notes travel with `campaigns-2025.csv` and `policies-monthly-2025.csv`. Read them
+before you total anything.
 
-## What the file is
+## What the files are
 
-Kite's paid acquisition results for 2025, one row per channel per week. It covers paid
-channels only. Policies that arrive direct, through word of mouth or through renewals moving
-across from another insurer's book are not in this file, so the column totals are not Kite's
-year.
+`campaigns-2025.csv` is Kite's paid acquisition results for 2025, one row per channel per
+week, as the ad platforms report them. It covers paid channels only. Policies that arrive
+direct, through word of mouth or through renewals moving across from another insurer's book
+are not in this file, so its column totals are not Kite's year.
+
+`policies-monthly-2025.csv` is the policy system speaking: policies actually opened each
+month, from every source. It is the number the campaign file's claims can be checked
+against.
 
 ## Columns
 
@@ -34,6 +39,8 @@ year.
   got picked up by the papers and morning radio for most of a week.
 - **7 April.** Budget review moved more money into price-comparison for eight weeks, on the
   strength of its cost per policy.
+- **16 June.** The podcast player changed its links and the quote tracking from it broke.
+  Fixed 4 July.
 - **30 June.** The export job was rebuilt when the dashboard changed its login. Exports
   resumed in July.
 - **1 September.** Second radio burst booked, same weight as spring.

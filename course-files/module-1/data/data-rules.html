@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>data-rules</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>data-rules</h1>
+<blockquote><p>This file is not about Kite. It works for any brand. Put it in your project beside any campaign file.</p></blockquote>
+<p>Ten rules. Each one makes the reading more accurate.</p>
+<h2>1. Check the file before you believe it</h2>
+<p>Files come out of software, and software breaks. Look for duplicate rows, missing weeks, and numbers that drop to zero. A zero often means a broken tag, not a dead channel. Fix what you find, then start.</p>
+<h2>2. Platforms over-count their own results</h2>
+<p>Each ad platform counts every sale it touched as its own. Add up all the claims and you get more than your actual sales, because two platforms often touched the same person. Your own sales system holds the true number. Start there and work backwards.</p>
+<h2>3. Search ads mostly capture customers. Other ads can create them</h2>
+<p>A person who clicks a search ad typed what they wanted before they saw it. In one experiment, a large retailer turned off its search ads and nearly all of that traffic arrived anyway. You may still need search ads, to be there when someone looks. But judge them on capture: were we there, and at what cost. Ads that build your brand in people&#x27;s memory are doing a different job, creating buyers for later, and need to be judged over a longer period.</p>
+<h2>4. The last click gets the credit. Other things contributed</h2>
+<p>Most reports give the sale to the last ad clicked, which is usually a search or retargeting ad, because those appear right before purchase. That credit says nothing about what made the person want to buy. When one channel looks far cheaper than every other, check whether it is simply the closest to the purchase.</p>
+<h2>5. Look outside the file before crediting a good week</h2>
+<p>Things outside your file move your numbers. A competitor raises prices, your category is in the news, the season turns. Check what happened that week before a channel takes the credit. A channel whose volume rose while its spend stayed flat probably caught extra demand rather than creating it.</p>
+<h2>6. Some people buy the moment they see an ad. Most buy later</h2>
+<p>At any time, most of the market is not buying this week. People notice an ad, forget it, and buy months later. Studies that measure this over years find more than half of an ad&#x27;s sales effect arrives after the period it ran in. A weekly report can only see the fast buyers, so it flatters channels that catch people at the end.</p>
+<h2>7. A platform&#x27;s report rows are not a fair test</h2>
+<p>When the platform split your budget, it gave every row different money and a different job. Comparing rows on cost-per-sale and removing the worst usually makes the total worse. To compare two things, set their budgets yourself, equal, then read the result.</p>
+<h2>8. Work out who could have bought before judging a rate</h2>
+<p>20 sales from 1,000 people looks like 2%. If only 50 of the 1,000 were in the market, the campaign converted 20 of 50. Different number, different decision.</p>
+<h2>9. A comparison is only fair if the groups match</h2>
+<p>If the group that got the campaign was warmer, more senior, or hand-picked, and the comparison group was not, the difference is the picking, not the campaign. Check both groups before believing a lift.</p>
+<h2>10. Say what the file cannot answer, and name the test that can</h2>
+<p>Turning a channel off in one region and watching is a real test, and it is cheap. The full discipline is econometrics, and it needs about three years of monthly data. State what the file can answer, what it cannot, and the test that would answer the rest.</p></main></body></html>

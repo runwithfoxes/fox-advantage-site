@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Block, Ref, Turn } from "../writerSession";
+import { CHARTS, type ChartSpec } from "../chartData.generated";
 
 /**
  * ⭐⭐ THE WRITER, WORKING. Module 2, item 04. A depicted chat window holding one recorded
@@ -110,6 +111,11 @@ function buildUnits(session: Turn[]): Unit[] {
           break;
         case "grid":
           units.push({ turn: t, kind: "rows", block, rows: block.rows.length });
+          break;
+        case "chart":
+          /* A chart lands whole, one beat, like a pasted image. Typing a drawing out
+             character by character is not a thing. */
+          units.push({ turn: t, kind: "rows", block, rows: 1 });
           break;
       }
     });
@@ -449,7 +455,129 @@ function BlockView({ block, within }: { block: Block; within: number }) {
         </p>
       );
     }
+
+    case "chart": {
+      if (within !== Infinity && within < 1) return null;
+      const spec = CHARTS[block.chart];
+      /* ⛔ A named chart that is not in the generated file is a build fault, and it must
+         be loud in dev rather than a silently empty block. */
+      if (!spec) return <p className="cw-flag">Unknown chart: {block.chart}</p>;
+      return (
+        <div className="cw-chart">
+          <ChartFig spec={spec} />
+          {block.caption && <p className="cw-chartcap">{block.caption}</p>}
+        </div>
+      );
+    }
   }
+}
+
+/**
+ * ⭐ THE DRAWN CHART. Hand-built SVG in the course's own chrome: mono labels, hairline
+ * rules, the sky blue and the ink as the two series colours, square everything. No chart
+ * library, same reason the rest of the site has none. Points arrive from
+ * `chartData.generated.ts`, so every number here is read from the csv, never typed.
+ */
+function ChartFig({ spec }: { spec: ChartSpec }) {
+  const W = 640;
+  const H = 300;
+  const L = 46;
+  const R = 10;
+  const T = 30;
+  const B = 30;
+  const COLORS = ["#3A7CA5", "#1D1B1B"];
+
+  const weeks = spec.series[0].points.map(([w]) => w);
+  const maxY = Math.max(...spec.series.flatMap((s) => s.points.map(([, v]) => v)));
+  /* A round ceiling so the top gridline is a readable number. */
+  const step = maxY > 200 ? 100 : 50;
+  const top = Math.ceil(maxY / step) * step;
+
+  const x = (i: number) => L + (i / Math.max(1, weeks.length - 1)) * (W - L - R);
+  const y = (v: number) => T + (1 - v / top) * (H - T - B);
+  const xOfWeek = (w: string) => {
+    const i = weeks.indexOf(w);
+    return i === -1 ? null : x(i);
+  };
+
+  /* One tick where each month starts. */
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const ticks: { at: number; label: string }[] = [];
+  let lastMonth = "";
+  weeks.forEach((w, i) => {
+    const m = w.slice(5, 7);
+    if (m !== lastMonth) {
+      ticks.push({ at: x(i), label: MONTHS[+m - 1] });
+      lastMonth = m;
+    }
+  });
+
+  const gridVals = Array.from({ length: top / step }, (_, i) => (i + 1) * step);
+  const mono = "'JetBrains Mono', ui-monospace, Menlo, monospace";
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={spec.title}>
+      <text x={L} y={14} fontFamily={mono} fontSize={11} letterSpacing="0.06em" fill="#8A8A85">
+        {spec.title.toUpperCase()}
+      </text>
+
+      {/* The shaded weeks, under everything else. */}
+      {spec.bands?.map((b, i) => {
+        const x1 = xOfWeek(b.from);
+        const x2 = xOfWeek(b.to);
+        if (x1 === null || x2 === null) return null;
+        return (
+          <g key={i}>
+            <rect x={x1} y={T} width={x2 - x1} height={H - T - B} fill="rgba(58,124,165,0.08)" />
+            <text x={x1 + 4} y={T + 12} fontFamily={mono} fontSize={9} letterSpacing="0.05em" fill="#8A8A85">
+              {b.label}
+            </text>
+          </g>
+        );
+      })}
+
+      {gridVals.map((v) => (
+        <g key={v}>
+          <line x1={L} y1={y(v)} x2={W - R} y2={y(v)} stroke="#E0E0DC" strokeWidth={1} />
+          <text x={L - 6} y={y(v) + 3} textAnchor="end" fontFamily={mono} fontSize={9} fill="#8A8A85">
+            {v}
+          </text>
+        </g>
+      ))}
+      <line x1={L} y1={y(0)} x2={W - R} y2={y(0)} stroke="#1D1B1B" strokeWidth={1} />
+      {ticks.map((t, i) => (
+        <text key={i} x={t.at} y={H - 10} fontFamily={mono} fontSize={9} fill="#8A8A85">
+          {t.label}
+        </text>
+      ))}
+
+      {spec.series.map((s, si) => (
+        <polyline
+          key={s.name}
+          fill="none"
+          stroke={COLORS[si % COLORS.length]}
+          strokeWidth={1.8}
+          points={s.points.map(([w, v], i) => `${x(i)},${y(v)}`).join(" ")}
+        />
+      ))}
+
+      {/* Legend, top right, only when there is something to tell apart. */}
+      {spec.series.length > 1 &&
+        spec.series.map((s, si) => (
+          <text
+            key={s.name}
+            x={W - R}
+            y={14 + si * 13}
+            textAnchor="end"
+            fontFamily={mono}
+            fontSize={10}
+            fill={COLORS[si % COLORS.length]}
+          >
+            {s.name}
+          </text>
+        ))}
+    </svg>
+  );
 }
 
 /**

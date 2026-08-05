@@ -22,9 +22,10 @@ const sessionSrc = readFileSync(
 const packDirs = [
   path.join(root, "course-files/module-2/writer"),
   path.join(root, "course-files/module-2/kite"),
-  /* The dataset, 5 Aug 2026. Its refs quote raw CSV lines, which the substring check
-     handles like any other line: a quoted row must really be in the file. */
-  path.join(root, "course-files/module-2/data"),
+  /* The dataset, 5 Aug 2026, in module 1 on Paul's ruling (Kite runs through the
+     course). Its refs quote raw CSV lines, which the substring check handles like any
+     other line: a quoted row must really be in the file. */
+  path.join(root, "course-files/module-1/data"),
 ];
 
 /* Tolerant extraction rather than a TS runtime: a ref is written as an object literal

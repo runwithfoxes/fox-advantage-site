@@ -63,6 +63,15 @@ export type Block =
       /** Index-aligned with `body`, same contract as the email block. */
       refs?: (Ref | null)[];
     }
+  /**
+   * ⭐ A DRAWN CHART, added 5 Aug 2026 for the analyst recording. `chart` names an entry
+   * in `chartData.generated.ts`, which is GENERATED from the csv by
+   * `scripts/build-chart-data.mjs`, so a chart cannot carry a number that is not in the
+   * data. ⛔ Never inline points here: typed points are the invented-number hole the
+   * generated file exists to close. `caption` is the analyst's words under the chart,
+   * verbatim from the run like every other word.
+   */
+  | { kind: "chart"; chart: string; caption?: string }
   | { kind: "audit"; label: string; text: string }
   | {
       kind: "grid";
@@ -399,24 +408,26 @@ export const KITE_POST_SESSION: Turn[] = [
 ];
 
 /**
- * ⭐⭐ THE THIRD RECORDING: KITE'S OWN NUMBERS, CHECKED BEFORE THEY ARE BELIEVED.
- * Recorded 5 Aug 2026 for the dataset item. The analyst follows the same discipline the
- * writer follows: claims-and-sources' rule that a number without what makes it true is a
- * boast, applied to a data file instead of a piece of copy.
+ * ⭐⭐ THE THIRD RECORDING: KITE'S OWN NUMBERS, AND AN ANALYST WHOSE JOB IS TO HELP.
+ * Recorded 5 Aug 2026, re-recorded the same day after Paul's rulings: the analyst HELPS
+ * rather than lectures (tone: dry, clinical, empirical, never judging the person or the
+ * campaign), it reads from `analyst-dna.md` and `data-rules.md` the way the writer reads
+ * from its DNA, it draws the two charts when asked, and it ends on next steps and an offer,
+ * never a warning.
  *
- * ⛔ A REAL RUN AGAINST THE REAL FILE. `campaigns-2025.csv` was generated first
- * (course-build/build-kite-data.py, fixed seed) and every number in this transcript was then
- * COMPUTED from the file: the duplicate week, the 227/226 row counts, every total, every
- * cost per policy, the March doubling on flat spend, the 59%-spend-9%-volume scale-up, and
- * the 141.6 vs 117.6 halo read. Nothing here was typed from imagination, and re-running the
- * generator reproduces the file byte for byte, so anyone can check the sums.
+ * ⛔ A REAL RUN AGAINST THE REAL FILES. The dataset was generated first
+ * (course-build/build-kite-data.py, fixed seed) and every number here was then COMPUTED
+ * from it: the duplicate week, the three zero weeks and their spend, every total and cost
+ * per policy, the 2.0x March quotes on flat spend, the 59%-spend-9%-volume April test, the
+ * 141.6 vs 117.6 halo read, and the November and December months where platform claims
+ * exceed the policy system's count. Re-running the generator reproduces the files byte for
+ * byte, so anyone can check the sums.
  *
- * ⭐ THE FILE'S PROBLEMS ARE PLANTED AND THE PLANTING IS DISCLOSED, on the page and in the
- * generator: real files have duplicate imports, demand spikes with outside causes, and
- * channels that flatter themselves. A clean file would teach that checking is a formality.
+ * ⭐ THE CHARTS CARRY NO TYPED NUMBERS. A chart block names an entry in
+ * `chartData.generated.ts`, which `scripts/build-chart-data.mjs` reads out of the csv.
  *
- * ⚠️ Kite is fictional throughout. Ardline, the letter, the coverage: all inside the
- * fiction, consistent with proof.md, which already names Ardline as the competitor.
+ * ⚠️ Kite is fictional throughout, and the file's faults are planted on purpose, which the
+ * pack's own pages disclose.
  */
 export const KITE_DATA_SESSION: Turn[] = [
   {
@@ -428,26 +439,36 @@ export const KITE_DATA_SESSION: Turn[] = [
     blocks: [
       {
         kind: "p",
-        text: "Before I rank anything I check the file, then I read the year, and then I'll push back a little on the ranking question. Checks first.",
+        text: "Two questions before I start. What is the answer for? And do you have a count of policies actually opened, from your own system rather than from the ad platforms?",
       },
+    ],
+  },
+  {
+    who: "you",
+    text: "It's for a budget meeting next month. I've added policies-monthly-2025 from the policy system.",
+  },
+  {
+    who: "writer",
+    blocks: [
+      { kind: "p", text: "Good. Checks first, then the year, then the money question." },
       {
         kind: "flag",
-        text: "The file has a fault. The week of 14 July appears twice on social, identical to the cent, 227 rows where the calendar says 226. The notes say the export job was rebuilt at the end of June, and this is what a re-import looks like. Left in, it hands social an extra €1,899 of spend, 89 quotes and 15 policies it never earned. Everything below is totalled on the deduplicated file.",
+        text: "Two faults in the file, both handled before totalling. The week of 14 July appears twice on social, identical rows, which is what a re-import looks like. Counted once, that removes €1,899 of spend, 89 quotes and 15 policies from social's year. And podcast-sponsorship reads zero quotes for three weeks in June while its spend continues. The changelog has the cause: the player changed its links on 16 June, fixed 4 July. Those weeks are missing, not empty, so podcast's totals below are understated.",
       },
       {
         kind: "plan",
         lines: [
           [
             "Checks run",
-            "Row count against the calendar, duplicate rows, and radio's dark weeks against the changelog's burst dates. One failure, flagged above.",
+            "227 rows against the calendar, duplicate rows, zero weeks against the changelog, and the platforms' claims against the policy system.",
           ],
           [
             "Denominators",
-            "Cost per policy by channel, but not one league table. The notes say each platform counts its own credit, so every channel's number flatters it.",
+            "Cost per policy by channel, reported and then qualified, because each platform counts every sale it touched as its own.",
           ],
           [
             "Outside the file",
-            "Anything unusual gets checked against the changelog before a channel takes credit for it. A spike is not a result until its cause is known.",
+            "Anything unusual is checked against the changelog before a channel takes credit for it.",
           ],
         ],
       },
@@ -462,7 +483,11 @@ export const KITE_DATA_SESSION: Turn[] = [
         refs: [
           {
             file: "campaigns-2025.csv",
-            quote: "2025-07-14,social,juggler,1899,89,15",
+            quote: "2025-06-16,podcast-sponsorship,juggler,691,0,0",
+          },
+          {
+            file: "policies-monthly-2025.csv",
+            quote: "2025-11,348",
           },
           {
             file: "data-notes.md",
@@ -486,64 +511,74 @@ export const KITE_DATA_SESSION: Turn[] = [
           },
         ],
         body: [
-          "The file needed cleaning before it could be believed. One duplicated week on social, removed. Cleaned totals: €308,033 of spend, 5,497 policies across paid.",
-          "March was not a marketing result. Quotes doubled on brand-search and on price-comparison in the same four weeks, on flat spend, and the cause is in the changelog: Ardline's increase letter and a week of coverage. The market came to Kite. Neither channel earned the double.",
-          "Price-comparison's €10 a policy is real, and it is not a budget instruction. When its spend went up 59% in April and May, volume moved 9%. It harvests Switchers who are already in market. It does not make more of them.",
-          "Radio's own line reads terribly: €82,541 for 131 policies, €630 each. But brand-search quotes ran about 20% higher through both bursts on unchanged search spend, so part of search's €34 belongs to radio. How much, this file cannot say.",
-          "Social is the dearest working channel at €123 a policy, and the only weight behind Jugglers, who hold several policies per household. Whether €123 is expensive depends on what a Juggler is worth, and their value is not in this file.",
-          "And what the file cannot answer at all: whether anyone stays. The proof file says itself that the book is too young to know. I would not move next year's money on acquisition cost while retention is unmeasured.",
+          "Cleaned totals: €308,047 of paid spend, credited by the platforms with 5,468 policies. Cost per policy by channel: price-comparison €10, brand-search €34, podcast €92, social €123, radio €630. Podcast's true figure is lower than €92, because three of its weeks went unrecorded.",
+          "The claims and the policy system do not agree every month. In November the platforms together claimed 374 policies and Kite opened 348 in total. In December, 470 claimed against 423 opened. Each platform counts every sale it touched, so their claims overlap. The policy system is the number to plan on.",
+          "The March rise did not come from the channels. Quotes doubled on brand-search and on price-comparison in the same four weeks, on flat spend, and the changelog holds the cause: Ardline's increase letter and a week of coverage.",
+          "Price-comparison's €10 is measured on people already shopping. When its budget rose 59% in April and May, volume moved 9%. It captures Switchers who are in the market this week. The data shows no sign it can make more of them.",
+          "Radio's direct line is €82,541 for 131 policies, €630 each. During both bursts, brand-search quotes ran about 20% higher on unchanged search spend, so part of search's €34 belongs to radio. How much, this file cannot say.",
+          "Social is €123 a policy and the only weight behind Jugglers, who hold several policies per household. Its value depends on what a Juggler is worth over years, which is not in this file.",
+          "One thing the file cannot answer: whether people stay. The proof file records that the book is too young to know. Retention changes what every acquisition number above is worth.",
         ],
-      },
-      {
-        kind: "audit",
-        label: "Checks run.",
-        text: "227 rows in the file, 226 after the duplicate came out. Radio absent outside its two bursts, which the changelog says to expect. Cost per policy on the cleaned file: price-comparison €10, brand-search €34, podcast €85, social €123, radio €630.",
       },
       {
         kind: "audit",
         label: "Claims ledger.",
-        text: "Every number above is computed from the deduplicated file. The Ardline letter is Kite's own changelog, not coverage I have seen. Platform-credited quotes and policies are read as each platform flattering itself, per the notes, so no figure here is truth to the euro. The pack's €187 and 61% were not needed and were not used. Source map carried on the memo, line by line.",
-      },
-      {
-        kind: "p",
-        text: "No ranking table. A league on cost per policy puts radio last and price-comparison first, and both placements would spend next year's money wrongly: comparison cannot absorb another euro, and radio's value is partly sitting in search's column.",
-      },
-      {
-        kind: "grid",
-        title: "Against the notes' own rules",
-        rows: [
-          [
-            "Check the file before you believe it",
-            9,
-            "One duplicate found and removed before anything was totalled.",
-          ],
-          [
-            "One number is not every answer",
-            8,
-            "Cost per policy reported, then argued with, channel by channel.",
-          ],
-          [
-            "Look outside the file first",
-            9,
-            "March credited to Ardline's letter, not to the channels that collected it.",
-          ],
-        ],
-      },
-      {
-        kind: "score",
-        text: "File clean after one fix · Six findings, all sourced",
-        weakest:
-          "Weakest claim is the radio halo: fourteen burst weeks against thirty-four quiet ones is a pattern, not proof. The clean test is one burst off, on purpose, with search watched.",
+        text: "Every number above is computed from the cleaned files. The Ardline letter is Kite's own changelog, not coverage I have seen. Platform-credited quotes and policies are treated as claims throughout, per data-rules. Source map carried on the memo, line by line.",
       },
     ],
   },
-  { who: "you", text: "So where does next year's money go?" },
+  { who: "you", text: "Show me March and the radio one as charts." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "chart",
+        chart: "march",
+        caption:
+          "Both lines double inside the shaded weeks and come back to level. Spend was flat through it: brand-search spent €5,548 in the four February weeks and €5,638 in those four March weeks.",
+      },
+      {
+        kind: "chart",
+        chart: "radio-halo",
+        caption:
+          "brand-search quotes by week, with the radio bursts shaded. The line runs about 20% higher inside the bands on unchanged search spend. The tall March peak inside the first band is the Ardline letter, counted separately.",
+      },
+    ],
+  },
+  { who: "you", text: "So where does the money go?" },
   {
     who: "writer",
     blocks: [
       {
         kind: "p",
-        text: "Not far from where it is, yet. Hold price-comparison at its base weight and stop trying to scale it, the April test already paid for that answer. Before touching radio, run one burst dark with search watched: €82,541 a year deserves a real answer instead of a league position. And find out what a Juggler is worth before judging social's €123, because that item decides it. The one move I would refuse is the obvious one, shifting radio's money into price-comparison. The file shows comparison cannot take it, and suggests search's €34 is partly radio wearing different clothes.",
+        text: "Three moves this file supports, and one test. Hold price-comparison at its base weight: the April increase already ran the experiment, 59% more budget for 9% more volume. Keep brand-search and judge it as capture: it was there when people looked, at €34, and its March doubling shows it moves with demand. Before changing radio, run one burst dark in one region with brand-search watched: that turns €82,541 a year into a measured answer. And to judge social, put a value on a Juggler over three years, which finance can build from the policy system. I can draft the one-page summary for the meeting from the policy system's numbers, with these charts. Want it?",
+      },
+      {
+        kind: "grid",
+        title: "Against data-rules",
+        rows: [
+          [
+            "Check the file before you believe it",
+            9,
+            "A duplicate and a broken tag, found and handled before totals.",
+          ],
+          [
+            "Platforms over-count their own results",
+            9,
+            "Claims reconciled monthly. November and December exceed the policy system.",
+          ],
+          [
+            "Say what the file cannot answer",
+            8,
+            "The radio question and retention are named as tests, not answered from the file.",
+          ],
+        ],
+      },
+      {
+        kind: "score",
+        text: "File clean after two fixes · Seven findings, all sourced",
+        weakest:
+          "Weakest claim is the radio read: fourteen burst weeks against thirty-four quiet ones is a pattern, not proof. The dark-burst test is the answer.",
       },
     ],
   },

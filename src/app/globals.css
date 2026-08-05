@@ -7872,6 +7872,13 @@ a.project-card {
 .cw-refcard-raw{font-family:var(--mono);font-style:normal;font-size:.71875rem;
   letter-spacing:.02em;overflow-wrap:anywhere;}
 /* The one line of chrome under a finished artefact saying the map exists. Machine voice. */
+/* A drawn chart inside the window. The svg is the artefact; the caption is the analyst's
+   words under it, reading size. */
+.cw-chart{margin:0 0 16px;}
+.cw-chart svg{display:block;width:100%;height:auto;background:#FFFFFF;
+  border:1px solid #EDEDE9;}
+.cw-chartcap{font-family:'Source Serif 4',Georgia,serif;font-size:.875rem;line-height:1.6;
+  color:#44443E;margin:8px 0 0;}
 .cw-refhint{font-family:var(--mono)!important;font-size:.6875rem!important;
   letter-spacing:.06em;color:#A8A8A2!important;margin:18px 0 0!important;
   padding-top:14px;border-top:1px solid #EDEDE9;}
