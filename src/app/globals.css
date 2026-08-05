@@ -8009,6 +8009,19 @@ a.project-card {
 .fw-doc li{margin-bottom:5px;}
 .fw-doc code{font-family:var(--mono);font-size:.8125rem;color:#3A7CA5;}
 .fw-doc blockquote{margin:0 0 14px;padding-left:14px;border-left:2px solid #E0E0DC;color:#54545C;}
+/* Data tables, added 5 Aug 2026 for the csv reading pages inside the window. Their own
+   stylesheet is stripped with the rest of the document chrome, so the table is styled
+   here, in the same voice as the standalone page: mono, hairlines, numbers right. */
+.fw-doc table{border-collapse:collapse;width:100%;margin:0 0 14px;
+  font-family:var(--mono);font-size:.75rem;
+  /* A six-column data table is wider than the pane, and without this the last columns
+     were simply unreachable: cut off with no scrollbar. The table scrolls sideways
+     inside the window instead. */
+  display:block;overflow-x:auto;}
+.fw-doc th{text-align:left;font-weight:400;letter-spacing:.03em;text-transform:uppercase;
+  font-size:.6875rem;color:#8A8A85;border-bottom:1px solid #1D1B1B;padding:5px 10px 5px 0;}
+.fw-doc td{border-bottom:1px solid #E0E0DC;padding:4px 10px 4px 0;white-space:nowrap;}
+.fw-doc td.n{text-align:right;}
 .fw-doc table{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:.875rem;}
 .fw-doc th,.fw-doc td{border-bottom:1px solid #E8E8E4;padding:6px 8px;text-align:left;vertical-align:top;}
 .fw-doc th{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:#8A8A85;font-weight:400;}

@@ -149,13 +149,13 @@ function DocLinks({
 
   /* ⭐ A FILE MAY CARRY ITS OWN EXTENSION, 5 Aug 2026, for the dataset's csv. A bare name
      still means `.md`, so every existing list reads exactly as before. The shown name stays
-     the bare name either way: the name is a name, the actions are named. */
+     the bare name either way: the name is a name, the actions are named.
+     ⭐ EVERY FILE OPENS IN THE FOLDER WINDOW, Paul's ruling the same evening ("in module 2,
+     it opens a new window i think, which i preferred"). The window fetches the `.html`
+     reading page by bare name, and every file in a pack has one, so the csv needs nothing
+     special: Download hands over the raw file, Open shows its table in the window. */
   const fileOf = (f: string) => (f.includes(".") ? f : `${f}.md`);
   const baseOf = (f: string) => (f.includes(".") ? f.slice(0, f.lastIndexOf(".")) : f);
-  const isMd = (f: string) => fileOf(f).endsWith(".md");
-  /* The folder window reads markdown. Non-md files stay out of it and open their own
-     reading page instead, so the window component needs no new knowledge. */
-  const mdFiles = docs.files.filter(isMd);
 
   /* ⭐ COPY AS WELL AS OPEN, 4 Aug 2026. Paul: "as well of them being links that they can
      click on and open, they should be able to just click and copy in the same way we did
@@ -198,27 +198,14 @@ function DocLinks({
               at what an extension means. A verb cannot be misread. */}
           <span className="mod-filename">{baseOf(f)}</span>
           <span className="mod-fileacts">
-            {isMd(f) ? (
-              <button
-                type="button"
-                className="mod-fileact"
-                aria-expanded={open === f}
-                onClick={() => setOpen(open === f ? null : f)}
-              >
-                {open === f ? "Close" : "Open"}
-              </button>
-            ) : (
-              /* A non-md has no place in the folder window, so Open shows its reading
-                 page: the same .html twin every markdown file has, in a new tab. */
-              <a
-                className="mod-fileact"
-                href={`/api/course-file/${docs.dir}/${baseOf(f)}.html`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open
-              </a>
-            )}
+            <button
+              type="button"
+              className="mod-fileact"
+              aria-expanded={open === f}
+              onClick={() => setOpen(open === f ? null : f)}
+            >
+              {open === f ? "Close" : "Open"}
+            </button>
             <a
               className="mod-fileact"
               href={`/api/course-file/${docs.dir}/${fileOf(f)}`}
@@ -241,8 +228,8 @@ function DocLinks({
           <FolderWindow
             name={docs.folder}
             dir={docs.dir}
-            files={mdFiles.map((x) => ({ file: x, label: `${x}.md` }))}
-            start={mdFiles.indexOf(open)}
+            files={docs.files.map((x) => ({ file: baseOf(x), label: fileOf(x) }))}
+            start={docs.files.indexOf(open)}
           />
         </div>
       )}
