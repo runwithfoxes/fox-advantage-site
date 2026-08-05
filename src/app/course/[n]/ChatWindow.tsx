@@ -466,10 +466,13 @@ function BlockView({ block, within }: { block: Block; within: number }) {
  */
 function Sourced({ text, refx }: { text: string; refx?: Ref | null }) {
   if (!refx) return <>{text}</>;
+  /* ⭐ A quote from a .csv is a raw data row, so it renders in mono: the machine talking,
+     per the type system. Prose quotes keep the italic serif. */
+  const raw = refx.file.endsWith(".csv");
   return (
     <span className="cw-ref" tabIndex={0}>
       {text}
-      <span className="cw-refcard" role="note">
+      <span className={`cw-refcard${raw ? " cw-refcard-raw" : ""}`} role="note">
         <b>{refx.file}</b>
         {refx.quote}
       </span>

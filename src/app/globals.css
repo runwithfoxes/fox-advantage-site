@@ -7867,6 +7867,10 @@ a.project-card {
   font-size:.6875rem;letter-spacing:.06em;color:#9FC2D8;margin-bottom:6px;}
 .cw-ref:hover .cw-refcard,.cw-ref:focus .cw-refcard,.cw-ref:focus-within .cw-refcard{
   opacity:1;visibility:visible;}
+/* A quote from a .csv is a raw data row: mono, upright, slightly smaller. The machine
+   talking, per the type system. Prose quotes keep the italic serif above. */
+.cw-refcard-raw{font-family:var(--mono);font-style:normal;font-size:.71875rem;
+  letter-spacing:.02em;overflow-wrap:anywhere;}
 /* The one line of chrome under a finished artefact saying the map exists. Machine voice. */
 .cw-refhint{font-family:var(--mono)!important;font-size:.6875rem!important;
   letter-spacing:.06em;color:#A8A8A2!important;margin:18px 0 0!important;

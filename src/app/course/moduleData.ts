@@ -1407,11 +1407,18 @@ export const MODULE_2: ModuleDef = {
          Prose awaits Paul. ⛔ No figure: none exists for data analysis in the library
          and inventing one is a figure-pipeline job, not a data field.
 
-         ⚠️ NO ITEM-LEVEL `docs` ON PURPOSE: DocLinks assumes every file is a `.md`
-         (fetches `${f}.md` for its copy control), and one of these files is a csv. The
-         downloads live in the module file list below, in their own set. If Paul wants
-         them at the item too, DocLinks learns extensions first. */
+         ⭐ THE CSV CARRIES ITS EXTENSION and that is the signal: DocLinks learned on
+         5 Aug 2026 that a bare name means `.md` and a name with a dot is taken as-is,
+         so "campaigns-2025.csv" downloads the csv and its Open shows the .html table.
+         The module file set below is what makes both servable (the route whitelist
+         reads mod.files), and it stays even while SHOW_FILES is off. */
       t: "Analyse Kite's numbers",
+      docs: {
+        dir: "module-2/data",
+        folder: "data/",
+        files: ["campaigns-2025.csv", "data-notes"],
+        as: "links",
+      },
       text: "AWAITING PAUL'S WORDS.\n\n{{SESSION_DATA}}",
       session: true,
       placeholder: true,

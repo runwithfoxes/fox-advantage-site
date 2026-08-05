@@ -147,6 +147,16 @@ function DocLinks({
   const [open, setOpen] = useState<string | null>(null);
   if (!docs || docs.as !== "links") return null;
 
+  /* ⭐ A FILE MAY CARRY ITS OWN EXTENSION, 5 Aug 2026, for the dataset's csv. A bare name
+     still means `.md`, so every existing list reads exactly as before. The shown name stays
+     the bare name either way: the name is a name, the actions are named. */
+  const fileOf = (f: string) => (f.includes(".") ? f : `${f}.md`);
+  const baseOf = (f: string) => (f.includes(".") ? f.slice(0, f.lastIndexOf(".")) : f);
+  const isMd = (f: string) => fileOf(f).endsWith(".md");
+  /* The folder window reads markdown. Non-md files stay out of it and open their own
+     reading page instead, so the window component needs no new knowledge. */
+  const mdFiles = docs.files.filter(isMd);
+
   /* ⭐ COPY AS WELL AS OPEN, 4 Aug 2026. Paul: "as well of them being links that they can
      click on and open, they should be able to just click and copy in the same way we did
      for module 1... We had a copy CFO prompt."
@@ -162,10 +172,10 @@ function DocLinks({
      `course-files/` was moved out of `public/` to close. */
   const copy = async (f: string) => {
     try {
-      const r = await fetch(`/api/course-file/${docs.dir}/${f}.md`);
+      const r = await fetch(`/api/course-file/${docs.dir}/${fileOf(f)}`);
       if (!r.ok) throw new Error(String(r.status));
       await navigator.clipboard.writeText(await r.text());
-      onCopy(`${f}.md copied`);
+      onCopy(`${fileOf(f)} copied`);
     } catch {
       /* ⛔ Say so. A silent failure here looks exactly like a successful copy, and the
          person only finds out when they paste nothing into their project. */
@@ -186,19 +196,32 @@ function DocLinks({
               First the filename downloaded, then the filename opened and `.MD` downloaded.
               Either way the reader has to guess what clicking a word will do, and guess again
               at what an extension means. A verb cannot be misread. */}
-          <span className="mod-filename">{f}</span>
+          <span className="mod-filename">{baseOf(f)}</span>
           <span className="mod-fileacts">
-            <button
-              type="button"
-              className="mod-fileact"
-              aria-expanded={open === f}
-              onClick={() => setOpen(open === f ? null : f)}
-            >
-              {open === f ? "Close" : "Open"}
-            </button>
+            {isMd(f) ? (
+              <button
+                type="button"
+                className="mod-fileact"
+                aria-expanded={open === f}
+                onClick={() => setOpen(open === f ? null : f)}
+              >
+                {open === f ? "Close" : "Open"}
+              </button>
+            ) : (
+              /* A non-md has no place in the folder window, so Open shows its reading
+                 page: the same .html twin every markdown file has, in a new tab. */
+              <a
+                className="mod-fileact"
+                href={`/api/course-file/${docs.dir}/${baseOf(f)}.html`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open
+              </a>
+            )}
             <a
               className="mod-fileact"
-              href={`/api/course-file/${docs.dir}/${f}.md`}
+              href={`/api/course-file/${docs.dir}/${fileOf(f)}`}
               download
             >
               Download
@@ -218,13 +241,57 @@ function DocLinks({
           <FolderWindow
             name={docs.folder}
             dir={docs.dir}
-            files={docs.files.map((x) => ({ file: x, label: `${x}.md` }))}
-            start={docs.files.indexOf(open)}
+            files={mdFiles.map((x) => ({ file: x, label: `${x}.md` }))}
+            start={mdFiles.indexOf(open)}
           />
         </div>
       )}
     </div>
   );
+}
+
+/**
+ * ⭐⭐ THE SLOTS AN ITEM'S PROSE CAN STAND OPEN, built in ONE place, 5 Aug 2026. Both
+ * renders call this, for the same reason both call ItemPicture: the opened window used to
+ * render `Body` with no slots at all, so item 04's two recordings and item 02's folder
+ * silently VANISHED on open, and the marker line was swallowed without a trace. That is the
+ * exact drift the 3 Aug unification note warns about, one field later.
+ */
+function slotsFor(it: Item): Record<string, React.ReactNode> {
+  return {
+    FOLDER:
+      it.docs && it.docs.as !== "links" ? (
+        <FolderWindow
+          name={it.docs.folder}
+          dir={it.docs.dir}
+          files={it.docs.files.map((f) => ({
+            file: f,
+            label: `${f}.md`,
+          }))}
+        />
+      ) : undefined,
+    SESSION: it.session ? (
+      <ChatWindow
+        session={KITE_SESSION}
+        start={"A real session with Kite’s writer, start to finish."}
+      />
+    ) : undefined,
+    SESSION_POST: it.session ? (
+      <ChatWindow
+        session={KITE_POST_SESSION}
+        start={"A second ask: a social post, and a gap in the pack."}
+      />
+    ) : undefined,
+    /* ⭐ The dataset recording. A different job, so a different title bar: the window
+       says "an analyst", and the refs quote raw CSV rows. */
+    SESSION_DATA: it.session ? (
+      <ChatWindow
+        session={KITE_DATA_SESSION}
+        start={"Kite’s own numbers, checked before they are believed."}
+        title="an analyst"
+      />
+    ) : undefined,
+  };
 }
 
 /**
@@ -818,44 +885,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
 
                 <ItemPicture item={it} build={build} />
 
-                <Body
-                  text={it.text}
-                  ph={it.placeholder}
-                  slots={{
-                    FOLDER:
-                      it.docs && it.docs.as !== "links" ? (
-                        <FolderWindow
-                          name={it.docs.folder}
-                          dir={it.docs.dir}
-                          files={it.docs.files.map((f) => ({
-                            file: f,
-                            label: `${f}.md`,
-                          }))}
-                        />
-                      ) : undefined,
-                    SESSION: it.session ? (
-                      <ChatWindow
-                        session={KITE_SESSION}
-                        start={"A real session with Kite’s writer, start to finish."}
-                      />
-                    ) : undefined,
-                    SESSION_POST: it.session ? (
-                      <ChatWindow
-                        session={KITE_POST_SESSION}
-                        start={"A second ask: a social post, and a gap in the pack."}
-                      />
-                    ) : undefined,
-                    /* ⭐ The dataset recording. A different job, so a different title bar:
-                       the window says "an analyst", and the refs quote raw CSV rows. */
-                    SESSION_DATA: it.session ? (
-                      <ChatWindow
-                        session={KITE_DATA_SESSION}
-                        start={"Kite’s own numbers, checked before they are believed."}
-                        title="an analyst"
-                      />
-                    ) : undefined,
-                  }}
-                />
+                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it)} />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
@@ -1118,9 +1148,12 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                 <ItemPicture item={mod.items[open]} showGrab={false} />
               )}
 
+              {/* ⭐ SAME SLOTS AS THE INLINE RENDER, via slotsFor. Before 5 Aug this Body
+                  had no slots, so the recordings and the folder vanished on open. */}
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
+                slots={slotsFor(mod.items[open])}
               />
 
               {/* ⭐⭐ THE LONG ARTICLE: a passage, then the picture of what you just read,
