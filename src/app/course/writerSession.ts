@@ -397,3 +397,154 @@ export const KITE_POST_SESSION: Turn[] = [
     ],
   },
 ];
+
+/**
+ * ⭐⭐ THE THIRD RECORDING: KITE'S OWN NUMBERS, CHECKED BEFORE THEY ARE BELIEVED.
+ * Recorded 5 Aug 2026 for the dataset item. The analyst follows the same discipline the
+ * writer follows: claims-and-sources' rule that a number without what makes it true is a
+ * boast, applied to a data file instead of a piece of copy.
+ *
+ * ⛔ A REAL RUN AGAINST THE REAL FILE. `campaigns-2025.csv` was generated first
+ * (course-build/build-kite-data.py, fixed seed) and every number in this transcript was then
+ * COMPUTED from the file: the duplicate week, the 227/226 row counts, every total, every
+ * cost per policy, the March doubling on flat spend, the 59%-spend-9%-volume scale-up, and
+ * the 141.6 vs 117.6 halo read. Nothing here was typed from imagination, and re-running the
+ * generator reproduces the file byte for byte, so anyone can check the sums.
+ *
+ * ⭐ THE FILE'S PROBLEMS ARE PLANTED AND THE PLANTING IS DISCLOSED, on the page and in the
+ * generator: real files have duplicate imports, demand spikes with outside causes, and
+ * channels that flatter themselves. A clean file would teach that checking is a formality.
+ *
+ * ⚠️ Kite is fictional throughout. Ardline, the letter, the coverage: all inside the
+ * fiction, consistent with proof.md, which already names Ardline as the competitor.
+ */
+export const KITE_DATA_SESSION: Turn[] = [
+  {
+    who: "you",
+    text: "Here's our 2025 campaign file and the notes that go with it. Which channels worked, and where should next year's money go?",
+  },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Before I rank anything I check the file, then I read the year, and then I'll push back a little on the ranking question. Checks first.",
+      },
+      {
+        kind: "flag",
+        text: "The file has a fault. The week of 14 July appears twice on social, identical to the cent, 227 rows where the calendar says 226. The notes say the export job was rebuilt at the end of June, and this is what a re-import looks like. Left in, it hands social an extra €1,899 of spend, 89 quotes and 15 policies it never earned. Everything below is totalled on the deduplicated file.",
+      },
+      {
+        kind: "plan",
+        lines: [
+          [
+            "Checks run",
+            "Row count against the calendar, duplicate rows, and radio's dark weeks against the changelog's burst dates. One failure, flagged above.",
+          ],
+          [
+            "Denominators",
+            "Cost per policy by channel, but not one league table. The notes say each platform counts its own credit, so every channel's number flatters it.",
+          ],
+          [
+            "Outside the file",
+            "Anything unusual gets checked against the changelog before a channel takes credit for it. A spike is not a result until its cause is known.",
+          ],
+        ],
+      },
+    ],
+  },
+  { who: "you", text: "Go on." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "post",
+        refs: [
+          {
+            file: "campaigns-2025.csv",
+            quote: "2025-07-14,social,juggler,1899,89,15",
+          },
+          {
+            file: "data-notes.md",
+            quote: "Ardline wrote to its whole book with an average 9% increase",
+          },
+          {
+            file: "campaigns-2025.csv",
+            quote: "2025-04-14,price-comparison,switcher,548,67,39",
+          },
+          {
+            file: "campaigns-2025.csv",
+            quote: "2025-09-08,radio,payer,4762,23,7",
+          },
+          {
+            file: "audience.md",
+            quote: "Car and house, and often a second car or a partner's policy as well.",
+          },
+          {
+            file: "proof.md",
+            quote: "Retention looks strong and the book is too young for that to mean much.",
+          },
+        ],
+        body: [
+          "The file needed cleaning before it could be believed. One duplicated week on social, removed. Cleaned totals: €308,033 of spend, 5,497 policies across paid.",
+          "March was not a marketing result. Quotes doubled on brand-search and on price-comparison in the same four weeks, on flat spend, and the cause is in the changelog: Ardline's increase letter and a week of coverage. The market came to Kite. Neither channel earned the double.",
+          "Price-comparison's €10 a policy is real, and it is not a budget instruction. When its spend went up 59% in April and May, volume moved 9%. It harvests Switchers who are already in market. It does not make more of them.",
+          "Radio's own line reads terribly: €82,541 for 131 policies, €630 each. But brand-search quotes ran about 20% higher through both bursts on unchanged search spend, so part of search's €34 belongs to radio. How much, this file cannot say.",
+          "Social is the dearest working channel at €123 a policy, and the only weight behind Jugglers, who hold several policies per household. Whether €123 is expensive depends on what a Juggler is worth, and their value is not in this file.",
+          "And what the file cannot answer at all: whether anyone stays. The proof file says itself that the book is too young to know. I would not move next year's money on acquisition cost while retention is unmeasured.",
+        ],
+      },
+      {
+        kind: "audit",
+        label: "Checks run.",
+        text: "227 rows in the file, 226 after the duplicate came out. Radio absent outside its two bursts, which the changelog says to expect. Cost per policy on the cleaned file: price-comparison €10, brand-search €34, podcast €85, social €123, radio €630.",
+      },
+      {
+        kind: "audit",
+        label: "Claims ledger.",
+        text: "Every number above is computed from the deduplicated file. The Ardline letter is Kite's own changelog, not coverage I have seen. Platform-credited quotes and policies are read as each platform flattering itself, per the notes, so no figure here is truth to the euro. The pack's €187 and 61% were not needed and were not used. Source map carried on the memo, line by line.",
+      },
+      {
+        kind: "p",
+        text: "No ranking table. A league on cost per policy puts radio last and price-comparison first, and both placements would spend next year's money wrongly: comparison cannot absorb another euro, and radio's value is partly sitting in search's column.",
+      },
+      {
+        kind: "grid",
+        title: "Against the notes' own rules",
+        rows: [
+          [
+            "Check the file before you believe it",
+            9,
+            "One duplicate found and removed before anything was totalled.",
+          ],
+          [
+            "One number is not every answer",
+            8,
+            "Cost per policy reported, then argued with, channel by channel.",
+          ],
+          [
+            "Look outside the file first",
+            9,
+            "March credited to Ardline's letter, not to the channels that collected it.",
+          ],
+        ],
+      },
+      {
+        kind: "score",
+        text: "File clean after one fix · Six findings, all sourced",
+        weakest:
+          "Weakest claim is the radio halo: fourteen burst weeks against thirty-four quiet ones is a pattern, not proof. The clean test is one burst off, on purpose, with search watched.",
+      },
+    ],
+  },
+  { who: "you", text: "So where does next year's money go?" },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Not far from where it is, yet. Hold price-comparison at its base weight and stop trying to scale it, the April test already paid for that answer. Before touching radio, run one burst dark with search watched: €82,541 a year deserves a real answer instead of a league position. And find out what a Juggler is worth before judging social's €123, because that item decides it. The one move I would refuse is the obvious one, shifting radio's money into price-comparison. The file shows comparison cannot take it, and suggests search's €34 is partly radio wearing different clothes.",
+      },
+    ],
+  },
+];
