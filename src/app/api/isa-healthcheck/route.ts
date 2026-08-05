@@ -1,21 +1,30 @@
 import { Resend } from "resend";
 import { sendIsaDownAlert } from "@/lib/isa-down-alert";
 
-// Hourly health check for Isa, run by a Vercel cron (see vercel.json).
+// Daily health check for Isa, run by a Vercel cron (see vercel.json).
 //
 // Why this exists: the old check ran as a cloud Claude routine inside a
 // sandbox whose egress proxy blocks runwithfoxes.com, so it returned 403 every
 // day and false-alarmed "Isa is down". This route runs ON the deployment, so it
 // hits the real public endpoint with no proxy in the way - a genuine check.
 //
-// It runs every hour so an outage that starts on a quiet evening isn't
-// invisible until morning. Failures go through sendIsaDownAlert, the same path
-// a real visitor's failure takes, so the two share one Redis throttle and Paul
-// gets one email an hour during an outage rather than one from each source.
+// This check is DELIBERATELY daily, and it is no longer the main detector.
+// Each run sends Isa's whole system prompt (personality + knowledge base,
+// measured at 24,447 input tokens on 5 Aug 2026) and pays for a real model
+// reply, so it costs about $0.07 a run with no prompt caching on the route.
+// Hourly was tried and reverted the same day: it worked, but at roughly $53 a
+// month it cost more than it was worth, and a monitor that drains the credit
+// balance it exists to watch is the wrong shape.
 //
-// The quiet "Isa OK" still goes out once a day, at the 08:00 UTC run only.
-// Without it, silence would be ambiguous: a healthy Isa and a dead cron look
-// identical from the inbox.
+// What actually catches an outage now is sendIsaDownAlert, fired from the chat
+// route's onError the moment a REAL visitor hits a broken Isa. This cron is the
+// backstop for the case nobody hits: a failure overnight with no traffic.
+// Failures here go through that same function, so the two share one Redis
+// throttle and Paul gets one email rather than one from each source.
+//
+// The quiet "Isa OK" is what makes silence mean something: without it, a
+// healthy Isa and a dead cron look identical from the inbox. The hour gate
+// below also keeps a manual GET of this endpoint from mailing Paul.
 
 export const maxDuration = 30;
 
@@ -85,15 +94,16 @@ async function checkIsa(): Promise<CheckResult> {
   }
 }
 
-// The one run a day that reports good news. Every other hourly run stays silent
-// when Isa is fine.
+// The cron only fires at this hour, so the gate is belt and braces: it stops a
+// manual GET of this endpoint at any other time from mailing Paul a false
+// all-clear, and it keeps the OK to once a day if the schedule is ever changed.
 const DAILY_OK_HOUR_UTC = 8;
 
 async function notify(result: CheckResult): Promise<void> {
   if (!result.healthy) {
     await sendIsaDownAlert({
       chatId: "healthcheck-cron",
-      userMessage: "(hourly health check, not a real visitor)",
+      userMessage: "(daily health check, not a real visitor)",
       errorMessage: `HTTP ${result.status} - ${result.detail}`,
     });
     return;
@@ -116,7 +126,7 @@ async function notify(result: CheckResult): Promise<void> {
     text: `Daily check passed - Isa answered on ${BASE_URL} (HTTP 200).\n${when}`,
     html: `<div style="font-family:-apple-system,Segoe UI,sans-serif;color:#1A3A4E;">
       <p>✅ <strong>Isa is healthy.</strong></p>
-      <p style="color:#777;font-size:13px;">Checked hourly; this is the daily all-clear on <code>${BASE_URL}</code> (HTTP 200).<br/>${when}</p>
+      <p style="color:#777;font-size:13px;">Daily check passed on <code>${BASE_URL}</code> (HTTP 200).<br/>${when}</p>
     </div>`,
   });
 }
