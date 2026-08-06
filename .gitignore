@@ -12,3 +12,8 @@ handover-qa/
 # Generated weekly affiliate newsletter drafts (keep the README)
 docs/affiliate-newsletters/*.md
 !docs/affiliate-newsletters/README.md
+
+# Generated weekly build-in-public drafts (keep README + example)
+docs/build-in-public/*.md
+!docs/build-in-public/README.md
+!docs/build-in-public/example.md
