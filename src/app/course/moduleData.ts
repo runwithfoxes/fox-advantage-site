@@ -1137,13 +1137,8 @@ export const MODULE_1: ModuleDef = {
  * ⛔ `built` STAYS FALSE ON ALL FIVE. Registering a module is not building one, and the
  * doctrine on that field is older than this file.
  */
-const stub = (
-  n: number,
-  title: string,
-  when: string,
-  on: string,
-  blurb: string,
-): ModuleDef => ({ n, title, when, on, built: false, blurb, items: [] });
+/* `stub()` DELETED 6 Aug 2026: modules 3 to 6 now carry skeletons, so nothing was left
+   for it to build. It is in git if a seventh module ever needs an empty shell. */
 
 /* Titles drop the "(N) " prefix from courseModules.ts for the same reason MODULE_1 does:
    the page eyebrow already reads "Module N of 6", so the prefix printed the number twice. */
@@ -1586,34 +1581,216 @@ export const MODULE_2: ModuleDef = {
     },
   ],
 };
-export const MODULE_3 = stub(
-  3,
-  "Create adjacent value",
-  "Mon 19 Oct",
-  "2026-10-19",
-  MODULE_BLURBS[3],
-);
-export const MODULE_4 = stub(
-  4,
-  "System thinking",
-  "Mon 2 Nov",
-  "2026-11-02",
-  MODULE_BLURBS[4],
-);
-export const MODULE_5 = stub(
-  5,
-  "Building marketing agents",
-  "Mon 16 Nov",
-  "2026-11-16",
-  MODULE_BLURBS[5],
-);
-export const MODULE_6 = stub(
-  6,
-  "Tackle difficult problems",
-  "Mon 30 Nov",
-  "2026-11-30",
-  MODULE_BLURBS[6],
-);
+/* ------------------------------------------------------------------ */
+/* MODULES 3 TO 6 - SKELETONS, 6 Aug 2026                              */
+/* ------------------------------------------------------------------ */
+/**
+ * ⭐⭐ SKELETONS FROM THE HOUR-LONG TALK WITH PAUL, 6 Aug 2026. The plan they render is
+ * `course-build/SKELETON-MODULES-3-6-2026-08-06.md`, which carries the sources, the
+ * borders and Paul's rulings. Read it before touching any of the four.
+ *
+ * ⛔ EVERY `text` BELOW IS KIT'S STAND-IN, MARKED `placeholder: true`, AND EVERY TITLE IS
+ * A WORKING LABEL. Nothing here is page copy. Paul asked for these on 6 Aug: "I'd love
+ * for you to put a skeleton on each of these modules too, so that I can open up each one
+ * of these pages and see even a static breakdown on each page."
+ *
+ * ⭐ THE RULES THAT SHAPED THE FOUR, ALL PAUL'S, 6 Aug:
+ *  - Module 2 is depth, module 3 is BREADTH. No module 3 item gets module-2 treatment.
+ *  - Module 3 items are named in proper marketing language and picked by the SURPRISE
+ *    test: deep computing or deep craft behind a real gate. Not about image generation.
+ *  - Marketing effectiveness is a THREAD through the items, never an item: "it just
+ *    cuts across different jobs."
+ *  - The chatbot moved OUT of module 3 into module 4: "a chatbot is part of a system."
+ *  - Module 4 is Paul's REAL setup, shown running. Kite is the practice world
+ *    everywhere else; his setup is the proof. Two registers, both deliberate.
+ *  - Module 5 is ONE build, module-2-deep: the lifecycle agent. Chosen over the
+ *    outbound agent (drags in enrichment territory Paul does not want to teach) and
+ *    over the growth desk (several agents; it is where the module ENDS, not what it
+ *    builds). "Every company has some sort of lifecycle, even if it's a newsletter."
+ *  - Module 6's test: "would it ever have been signed off." Not impossible, never
+ *    profitable. The research caller is "the peak of the peak" and closes the module.
+ */
+export const MODULE_3: ModuleDef = {
+  n: 3,
+  title: "Create adjacent value",
+  when: "Mon 19 Oct",
+  on: "2026-10-19",
+  built: false,
+  blurb: MODULE_BLURBS[3],
+  items: [
+    {
+      /* The essay behind it: "Dear marketers - create adjacent value" (9 Jul 2026).
+         ⚠️ FICTION NOTE from the skeleton doc: what the check FINDS on Kite's segments
+         must agree with the pack, where Switcher / Juggler / Payer are load-bearing.
+         Undecided, Paul's call. */
+      t: "Segmentation",
+      text: "Whether the segments in the deck are genuinely different is a question with a mathematical answer, and getting that answer used to need a specialist. Here we run the checks on Kite's segments and read the result the way a marketer needs to read it.",
+      placeholder: true,
+      grab: "The similarity check running on Kite's segments",
+    },
+    {
+      /* The engine exists and works: ~/.claude/skills/ltv-engine, sample data in
+         ~/projects/brand-measurement-dashboard/ltv-decision-engine/. The Kite
+         transaction dataset does NOT exist yet; build it the build-kite-data.py way. */
+      t: "Customer lifetime value",
+      text: "Which customers matter, what a new customer is actually worth, and whether the channel that looks cheap is buying good customers or bad ones. The models behind those answers used to sit with a data team. Here we run them on Kite's transactions.",
+      placeholder: true,
+      grab: "The lifetime value analysis on Kite's transactions",
+    },
+    {
+      /* Desk research only. The phone interviewer is module 6's closer, deliberately. */
+      t: "Research",
+      text: "Reviews, communities and competitor claims turned into structured evidence, with every finding traceable to its source. Research used to be a brief, a budget and a long wait. Here we run a real study on Kite's category.",
+      placeholder: true,
+      grab: "A research run on Kite's category, findings traced to sources",
+    },
+    {
+      /* From "I built a website tonight using Claude Code" (20 Feb 2026). The
+         how-little-I-had-to-know framing stays central. NO chatbot here. */
+      t: "A website",
+      text: "A working website, built by describing what you want and judging what comes back. The parts that needed a designer and a developer are the parts you no longer have to know. Here we build one for Kite.",
+      placeholder: true,
+      grab: "A Kite page being built by talking",
+    },
+  ],
+};
+
+export const MODULE_4: ModuleDef = {
+  n: 4,
+  title: "System thinking",
+  when: "Mon 2 Nov",
+  on: "2026-11-02",
+  built: false,
+  blurb: MODULE_BLURBS[4],
+  /* ⭐ THE REAL-SETUP MODULE. Paul, 6 Aug: "the best example from module 4 might be just
+     to show my setup... All by just talking to my laptop. I feel like that's what module
+     4 is." Source essay: "Build a system" (5 Jun 2026). Email appears here as a NODE
+     only; module 5 opens it up, and the hook is planted in the last item. */
+  items: [
+    {
+      t: "Design from the 95:5 rule",
+      text: "Most of any category is not buying this quarter. The system starts from that fact, not from a tool list: what each piece is for depends on the state of the person meeting it, and most of them are not ready.",
+      placeholder: true,
+      grab: "The in-market slice of a category, drawn",
+    },
+    {
+      t: "Each bit has a job",
+      text: "The real setup, shown running: the website, the chatbot, the calendar, the analytics, the email. Each piece carries one named job, every connection is real, and all of it was built and wired by talking to a laptop.",
+      placeholder: true,
+      grab: "The system map, every node real",
+    },
+    {
+      t: "The wiring",
+      text: "What passes between the pieces. A visitor books a call, the booking lands in the calendar, and research on the person arrives before the conversation happens. Handoffs that used to be someone forwarding emails.",
+      placeholder: true,
+      grab: "A real booking and the brief that landed before the call",
+    },
+    {
+      t: "Quality first, then automate what repeats",
+      text: "The slow thinking happens once and gets written down where the machine reads it. After that a sentence is an instruction, not a gamble. Speed arrives without the quality leaving.",
+      placeholder: true,
+      grab: "A written-down brief the machine reads before it types",
+    },
+    {
+      t: "Cheap experiments",
+      text: "Every change is a saved version, so trying something is safe and undoing it is one step. Sites stay mediocre when touching them feels dangerous. Remove the danger and the site becomes part of the marketing. One of these pieces has an agent behind it, and building one is the next module.",
+      placeholder: true,
+      grab: "A change tried, then rolled back",
+    },
+  ],
+};
+
+export const MODULE_5: ModuleDef = {
+  n: 5,
+  title: "Building marketing agents",
+  when: "Mon 16 Nov",
+  on: "2026-11-16",
+  built: false,
+  blurb: MODULE_BLURBS[5],
+  /* ⭐ ONE BUILD, MODULE-2-DEEP: the lifecycle agent on Kite, permission-based and
+     trigger-based. The 2/5 border is Paul's own sentence: "Module 2 is about writing
+     and we use email writer. Module 5 is everything to do with lists and enrichment
+     and sending out and analysis" - and the module 2 writer gets WIRED IN here. The
+     4/5 border is the podcast's: a workflow follows a predictable path, an agent
+     decides, and autonomy is earned. ⛔ Jobs, never product names (card rule). */
+  items: [
+    {
+      t: "Start like a marketer",
+      text: "Before any flow exists, Kite's lifecycle is mapped from customer state: a quote abandoned, a renewal approaching, a claim in progress. The marketing decides the triggers, and the triggers decide everything after them.",
+      placeholder: true,
+      grab: "Kite's lifecycle mapped from customer state",
+    },
+    {
+      t: "The agent spec",
+      text: "Seven decisions before anything runs: what wakes it, what it reads, what tools it holds, what it may do alone, where it needs approval, when it escalates, and what success looks like. Written down, they are the difference between an agent and a chat window with a job title.",
+      placeholder: true,
+      grab: "The seven-part spec for Kite's lifecycle agent",
+    },
+    {
+      t: "Earning autonomy",
+      text: "The agent climbs in order: drafting for approval, then sorting the work, then coordinating between systems, then acting alone inside clear rules. Autonomy is earned by evidence, never assumed.",
+      placeholder: true,
+      grab: "The autonomy rungs, climbed in order",
+    },
+    {
+      t: "Where quality lives",
+      text: "The writer built in module 2 is wired in with its craft files, so the agent writes from positioning rather than guesswork. Claims are sorted into fact, benchmark and hypothesis before they are used. If it reads like a machine wrote it, it gets rewritten before anyone sees it.",
+      placeholder: true,
+      grab: "The writer from module 2, wired into the agent",
+    },
+    {
+      t: "Evals",
+      text: "Real examples with known right answers, run again after every change. The gym the agent trains in, and the evidence to show anyone who asks whether it actually works.",
+      placeholder: true,
+      grab: "An eval run: the examples, the marks, the misses",
+    },
+    {
+      t: "Memory",
+      text: "Every campaign adds a file and corrections stick, so the agent gets better because nothing it learns is lost between sessions.",
+      placeholder: true,
+      grab: "The campaign memory growing over time",
+    },
+    {
+      t: "One arm of a desk",
+      text: "The lifecycle agent is one worker. The same discipline builds a research arm, a reply-handling arm, a reporting arm, and together they make a desk. That is where this grows for anyone who wants to keep going.",
+      placeholder: true,
+      grab: "The desk: several agents, one discipline",
+    },
+  ],
+};
+
+export const MODULE_6: ModuleDef = {
+  n: 6,
+  title: "Tackle difficult problems",
+  when: "Mon 30 Nov",
+  on: "2026-11-30",
+  built: false,
+  blurb: MODULE_BLURBS[6],
+  /* ⭐ THE TEST FOR EVERY ITEM, Paul, 6 Aug: "would it ever have been signed off." Not
+     technically impossible - never profitable, so never done, at any budget. Items run
+     in climbing order and the caller is "the peak of the peak". All three are things
+     Paul has actually run or prototyped, so the push is earned, not predicted. */
+  items: [
+    {
+      t: "A chatbot on every product page",
+      text: "A salesperson who knows one product intimately and waits on its page forever. Always technically possible, never worth the cost of building one per page. Now it is an afternoon, and the page you are reading carries one scoped to this module, so the lesson is running while you read it.",
+      placeholder: true,
+      grab: "A product page with its own chatbot, answering",
+    },
+    {
+      t: "An AI project manager for every customer",
+      text: "Concierge service has always existed, rationed to the customers worth the most, because a human managing one customer's back and forth could never pay for itself. An agent doing that job changes what service can be default, for every customer.",
+      placeholder: true,
+      grab: "One customer's project, managed end to end",
+    },
+    {
+      t: "Research interviews at a scale nobody could buy",
+      text: "Hundreds of structured interviews in an afternoon, the same brief every time, transcripts landing structured, and an interviewer who remembers the last conversation. No team and no budget could ever have bought this. It exists now, and it changes what a marketer can know about their customers.",
+      placeholder: true,
+      grab: "A research call playing, transcript landing",
+    },
+  ],
+};
 
 /** Every module, by number. Adding module 2 = one import and one line here. */
 export const MODULES_BY_N: Record<number, ModuleDef> = {
