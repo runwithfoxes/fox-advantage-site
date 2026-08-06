@@ -17,3 +17,8 @@ docs/affiliate-newsletters/*.md
 docs/build-in-public/*.md
 !docs/build-in-public/README.md
 !docs/build-in-public/example.md
+
+# Generated weekly marketing-AI brief drafts (keep README + example)
+docs/marketing-ai-brief/*.md
+!docs/marketing-ai-brief/README.md
+!docs/marketing-ai-brief/example.md
