@@ -8,3 +8,7 @@ tsconfig.tsbuildinfo
 
 # Local cross-terminal Q&A channel (not for git)
 handover-qa/
+
+# Generated weekly affiliate newsletter drafts (keep the README)
+docs/affiliate-newsletters/*.md
+!docs/affiliate-newsletters/README.md
