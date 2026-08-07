@@ -91,9 +91,14 @@ export const MODULE_BLURBS: Record<number, string> = {
      behaviours (made the module look like only those four things). */
   2: "An intentional way of setting about marketing work. Techniques for getting clear on what good looks like, for fast research, for the metrics, for building in defences against hallucination. All of it before the work starts, so what follows is quick and consistently good.",
 
-  /* ✅ Signed off 19 Jul. The only one of the six that answers "why should I do it" -
-     it is about the reader's career rather than the work. */
-  3: "A deep dive into the wide range of marketing capabilities you can now build with AI, and how to get them to a genuinely competent standard. No need to stay specialised as a brand, performance, product or research marketer. You add to what you are already good at.",
+  /* ✅ Rewritten 7 Aug 2026 with Paul in chat, approved verbatim ("perfect. use
+     that."). Replaces the 19 Jul version, which read as labels to a first-time
+     visitor: "deep dive", "capabilities" and the title itself explained nothing.
+     His corrections on the way here: not "check whether a segment is real" (that is
+     one item, not the module), it is "proper serious computing", his phrase; and no
+     line written to sound neat. Still the one blurb of the six that answers "why
+     should I do it". */
+  3: "Marketing work is usually split between specialists: brand, performance, research, analytics. If a job was outside your area, you paid a specialist or an agency to do it. This module shows that with the help of AI you can now do a lot of this work yourself, including proper serious computing: segmentation analysis, market research, building a website. That is what the title means. You create value next to the work you already do.",
 
   /* ✅ Locked 19 Jul, opening line his own wording.
      ⭐ THE DISTINCTION FROM MODULE 2, which is what kept earlier drafts vague: module 2
