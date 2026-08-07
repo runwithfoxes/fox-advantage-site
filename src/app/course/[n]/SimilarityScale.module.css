@@ -1,0 +1,120 @@
+/* ⭐ THE YARDSTICK CHART, module 3 item 01. The form is Paul's own similarity chart
+   from the ops estate (segmentation-rigour/src/01-similarity.html): horizontal bars,
+   label left, value right, a dashed benchmark line with an uppercase tag, the subject
+   bar in a darker colour, bars growing in. Two deliberate departures for this page:
+   labels are mono like the course's other charts, and the benchmark is ink rather
+   than orange (⛔ orange is the logo "Run" and nothing else on this site). */
+
+.wrap {
+  border: 1px solid #e0e0dc;
+  background: #fff;
+  padding: 20px 22px 16px;
+  margin: 18px 0;
+  position: relative;
+}
+
+.title {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 210px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.label {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  color: #1d1b1b;
+  text-align: right;
+}
+
+.track {
+  position: relative;
+  height: 18px;
+  background: #f4f4f1;
+}
+
+.bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: #3a7ca5;
+  animation: ss-grow 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.subject {
+  background: #1d1b1b;
+}
+
+.val {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  color: #1d1b1b;
+  opacity: 0;
+  animation: ss-fade 0.4s ease forwards;
+}
+
+/* The zone and its line sit over the track column only. `--line` is the benchmark
+   as a fraction of the track width, set inline from the generated spec. */
+.zone {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(58, 124, 165, 0.08);
+}
+
+.line {
+  position: absolute;
+  pointer-events: none;
+  border-left: 2px dashed #1d1b1b;
+  opacity: 0;
+  animation: ss-fade 0.5s ease forwards 1.4s;
+}
+
+.tag {
+  position: absolute;
+  top: -20px;
+  right: 6px;
+  white-space: nowrap;
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.axis {
+  display: grid;
+  grid-template-columns: 210px 1fr 44px;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.axisTrack {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 9px;
+  color: #8a8a85;
+}
+
+@keyframes ss-grow {
+  to {
+    width: var(--w);
+  }
+}
+
+@keyframes ss-fade {
+  to {
+    opacity: 1;
+  }
+}

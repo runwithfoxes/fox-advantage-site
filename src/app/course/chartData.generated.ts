@@ -629,3 +629,35 @@ export const CHARTS: Record<string, ChartSpec> = {
     ]
   }
 };
+
+export type YardstickSpec = {
+  title: string;
+  line: number;
+  lineLabel: string;
+  pairs: { name: string; value: number; subject?: boolean }[];
+};
+
+export const YARDSTICK: YardstickSpec = {
+  "title": "How similar are the two groups, %",
+  "line": 90,
+  "lineLabel": "the same people",
+  "pairs": [
+    {
+      "name": "Payer vs Switcher",
+      "value": 60.8
+    },
+    {
+      "name": "Payer vs Juggler",
+      "value": 64.9
+    },
+    {
+      "name": "Switcher vs Juggler",
+      "value": 62.9
+    },
+    {
+      "name": "home workers vs everyone else",
+      "value": 92.1,
+      "subject": true
+    }
+  ]
+};

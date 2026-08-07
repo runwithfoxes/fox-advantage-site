@@ -1633,17 +1633,31 @@ export const MODULE_3: ModuleDef = {
          taught; the rest of the battery appears as passing charts. Three-file kit for
          the learner, module 1 item 10 pattern. Opening paragraph drafted 7 Aug,
          awaiting Paul's prose pass. */
-      t: "Segmentation",
+      /* ⭐⭐ REBUILT 7 Aug 2026 (evening) FROM THE READER'S CHAIR, Paul's correction:
+         "put yourself in the shoes of a user coming here." The flow he dictated: sell
+         the value first (serious analytical computing you used to outsource), then the
+         Kite example, then teach what a different segment looks like WITH THE CHART
+         before anything runs, then the recording, short. The reader arrives knowing
+         nothing but "my CMO asked"; every concept is explained at the moment it is
+         needed.
+
+         ⭐ THE HEADING CARRIES THE PROMISE, Paul's ruling this session, refining the
+         6 Aug "discipline names" rule: the discipline is named, inside a sentence
+         about what YOU can now do.
+
+         ⭐ THE GRAB BOX IS GONE: the yardstick chart ({{CHART_YARDSTICK}},
+         SimilarityScale.tsx, numbers generated and asserted) is the item's picture,
+         sitting where the argument earns it rather than as a banner. */
+      t: "Do serious segmentation analysis yourself",
       docs: {
         dir: "module-3/data",
         folder: "data/",
         files: ["customers.csv", "segmentation-rules"],
         as: "links",
       },
-      text: "Kite's new CMO arrives with a question: should the home worker be our fourth segment? It sounds right, more time at home, the house working harder. It's a fair question, and it's a testable one. This kind of judging used to need a specialist. Now you can run it yourself, and below you can watch it run.\n\nThe analyst is the same one from module 1: Claude on analyst-dna, now with one more file, segmentation-rules, ten rules for judging whether a group of customers is really a segment. Watch it check who is missing from the file before it compares anyone.\n\n{{SESSION_SEGMENT}}\n\nNow run it yourself. The files below are Kite's customer book, 4,000 customers with their renewal behaviour and who works from home, and the segmentation rules. Everything in them is made up. Start a Claude Project, analyst-dna in the instructions, these two in the files, and ask the CMO's question. See whether it lands the same answer. Then bring it a segment claim from your own market.",
+      text: "There is serious analytical computing behind good marketing, and until now you had to outsource it. Segmentation is a good example. Someone claims a group of customers is a segment, your CMO, an agency deck, a planning meeting, and finding out whether it's true is real data analysis. That was an analyst's job. If you can do that analysis yourself, you're adding value your team used to have to buy in.\n\nLet me show you with an example from Kite, the fictional insurance brand we use through this course. Kite's new CMO has asked a fair question: should the home worker be our fourth segment?\n\nBefore we run anything, here is what a different segment looks like in the data.\n\n{{CHART_YARDSTICK}}\n\nEach bar compares two groups of Kite customers on every measure in the customer file. Kite's three real segments land in the 60s against each other. The home workers land on top of the customers Kite already has, past the line where two groups are just the same people. The recording below is how you get to this picture. It takes a few minutes to watch.\n\n{{SESSION_SEGMENT}}\n\nNow run it yourself. The files below are Kite's customer book, 4,000 customers with their renewal behaviour and who works from home, and the segmentation rules the analyst follows. Start a Claude Project, analyst-dna in the instructions, these two in the files, and ask the CMO's question. See whether it lands the same answer. Then bring it a segment claim from your own market.",
       session: true,
       placeholder: true,
-      grab: "The similarity check answering the CMO's question",
     },
     {
       /* Four concrete questions, never "what the market is saying". Ardline is

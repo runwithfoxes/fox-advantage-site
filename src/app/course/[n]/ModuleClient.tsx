@@ -13,6 +13,7 @@ import {
   KITE_SEGMENT_SESSION,
   KITE_RESEARCH_SESSION,
 } from "../writerSession";
+import { SimilarityScale } from "./SimilarityScale";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
 import {
@@ -289,6 +290,10 @@ function slotsFor(it: Item): Record<string, React.ReactNode> {
         title="an analyst"
       />
     ) : undefined,
+    /* ⭐ The yardstick, module 3 item 01: what a different segment looks like, taught
+       before the recording plays so the viewer watches as a judge. Numbers generated,
+       never typed; see SimilarityScale.tsx. */
+    CHART_YARDSTICK: <SimilarityScale />,
     /* ⭐ Module 3's research recording: the CMO's four outward questions answered from
        the generated corpus. Same analyst; the corpus and every count are gated by
        scripts/check-research-corpus.mjs. */

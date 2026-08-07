@@ -620,6 +620,17 @@ export const KITE_DATA_SESSION: Turn[] = [
  * no drawn point can be typed). Refs quote raw customer rows and segmentation-rules
  * lines; scripts/check-sessions.mjs verifies each one against the module-3 pack.
  * ⚠️ Working copy: the beats and numbers are settled, the wording awaits Paul's pass.
+ *
+ * ⭐⭐ CUT HARD, 7 Aug 2026 (evening), Paul: "it's so long and detailed that no one's
+ * going to finish it." The item's promise is that weeks of analyst work became
+ * minutes, so a long recording contradicts the item; short is the proof, not a
+ * compromise. Four beats now: the question, one check of the file, the verdict with
+ * one chart, what to tell the CMO. What moved OUT and where it lives: the yardstick
+ * teaching went to the page ({{CHART_YARDSTICK}}, taught BEFORE the recording so the
+ * viewer watches as a judge); the plan block went entirely; the contents-cover
+ * paragraph (rule 7) lives in segmentation-rules.md; the segment-behaviour chart's
+ * job is done by the yardstick. ⛔ Do not grow this back: depth belongs in the files
+ * the learner downloads, not in the playback.
  */
 export const KITE_SEGMENT_SESSION: Turn[] = [
   {
@@ -635,24 +646,7 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
       },
       {
         kind: "flag",
-        text: "Before comparing anyone, I checked who is in the file. The works_from_home answer is only collected when someone asks for a quote. 635 of the 4,000 customers have no answer on file, and 86% of those are Payers, the customers who renew without ever asking for a new quote. So the comparison below uses the 3,365 customers we have an answer for, and it sees slightly fewer Payers than Kite really has. The differences it found are large, so this does not change the answer, but it should be said before the numbers.",
-      },
-      {
-        kind: "plan",
-        lines: [
-          [
-            "Checks run",
-            "I counted the blank cells and found out why they are blank. Every number below is calculated from the file.",
-          ],
-          [
-            "The test",
-            "I compare home workers with everyone else on each measure in the file, and put one similarity number on the whole comparison. Then I look at the same question from other angles, to see whether the answer holds everywhere.",
-          ],
-          [
-            "What a yes needs",
-            "A real difference in behaviour, big enough to justify a fourth playbook and the budget behind it.",
-          ],
-        ],
+        text: "Before comparing anyone, I checked who is in the file. The works_from_home answer is only collected when someone asks for a quote. 635 of the 4,000 customers have no answer on file, and 86% of those are Payers, the customers who renew without ever asking for a new quote. So the comparison below uses the 3,365 customers we have an answer for. The differences it found are large, so this does not change the answer, but it should be said before the numbers.",
       },
     ],
   },
@@ -668,44 +662,21 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
             quote:
               "K-10012,Switcher,4,1,no,1,3,4,0,1,336,32000,25-34,Connacht,terrace,yes",
           },
-          null,
           {
             file: "segmentation-rules.md",
             quote: "Compare what people do before what they are",
           },
           {
             file: "segmentation-rules.md",
-            quote: "Check whether one difference is really another difference",
-          },
-          {
-            file: "segmentation-rules.md",
             quote: "Above 90, you are looking at the same people.",
-          },
-          {
-            file: "customers.csv",
-            quote: "K-10025,Payer,3,1,yes,0,0,18,0,0,470,28000,35-44,Connacht,terrace,",
           },
         ],
         body: [
-          "Home workers are 40% of the customers we can measure, and they are spread evenly across the three segments. 41% of Payers work from home, 41% of Switchers, the customers who switch most years, and 40% of Jugglers, the households holding several policies at once. If home workers were their own group, they would be concentrated somewhere. They are not.",
-          "Home workers do look different as people, and a presentation could make that look like a segment. 62% of them are aged 25 to 44, against 39% of everyone else. 6% live in apartments, against 18%. More of them live in the counties around Dublin than in Dublin itself.",
-          "The question is decided by what people do at renewal, and there the two groups match. 44% of home workers renew automatically, and so do 44% of everyone else. 62% have switched insurer in the last three years, the same as everyone else. 37% collected three or more quotes at their last renewal, against 38%. 37% hold two or more policies, against 39%. 81% have never made a claim, against 82%.",
-          "One number needs care before anyone presents it. Home workers' contents cover is about 13% higher on average, which could be read as proof that they are more valuable customers. Most of that gap comes from the houses they live in, not from the working at home. Home workers live in more detached houses and fewer apartments, and a bigger house carries a bigger sum insured. Comparing within the same type of house, the gap is about 5%.",
-          "Putting every measure together, home workers come out 92% similar to the rest of Kite's customers. To judge how similar that is: marketing scientists have run this same comparison between the customers of competing brands, and the answer usually comes out in the 80s or low 90s. Groups that similar are treated as the same people. And on renewal behaviour alone, home workers cannot be told apart from everyone else at all.",
-          "So the file's answer to the CMO's question is no. Home workers are real, there are a lot of them, and they are already Kite customers, spread across the three segments in the usual way. They do not behave differently at renewal, so a fourth playbook would have nothing different to do.",
+          "Home workers are 40% of the customers we can measure, and they are spread evenly across the three segments: 41% of Payers work from home, 41% of Switchers, the customers who switch most years, and 40% of Jugglers, the households holding several policies at once. If home workers were their own group, they would be concentrated somewhere. They are not.",
+          "Home workers do look different as people, and a presentation could make that look like a segment. They are younger, and fewer of them live in apartments. But the question is decided by what people do at renewal, and there the two groups match. 44% of home workers renew automatically, and so do 44% of everyone else. 62% have switched insurer in the last three years, the same as everyone else. 37% collected three or more quotes at their last renewal, against 38%. 81% have never made a claim, against 82%.",
+          "Putting every measure together, home workers come out 92% similar to the rest of Kite's customers. On the scale you have already seen, that is past the line: the same people. So the file's answer to the CMO's question is no. Home workers are real, there are a lot of them, and they are already Kite customers, spread across the three segments in the usual way. A fourth playbook would have nothing different to do.",
         ],
       },
-      {
-        kind: "audit",
-        label: "Claims ledger.",
-        text: "Every number above is calculated from customers.csv, using the 3,365 customers whose works_from_home answer is on file. The 92% figure is the average similarity of the two groups' shares across every measure in the file. The differences in age and housing are reported above, not hidden. They are real, and they do not show up in behaviour.",
-      },
-    ],
-  },
-  { who: "you", text: "Show me that as a picture." },
-  {
-    who: "writer",
-    blocks: [
       {
         kind: "chart",
         chart: "home-worker-profile",
@@ -713,10 +684,9 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
           "Each point shows what share of each group matches one measure. On the left, the two lines are apart: home workers are younger, and fewer of them live in apartments. From auto-renew onward, which is the behaviour, the two lines sit on top of each other.",
       },
       {
-        kind: "chart",
-        chart: "segment-behaviour",
-        caption:
-          "For comparison, here are Kite's three existing segments on the same kind of chart. This is what a real difference in behaviour looks like: 90% of Payers renew automatically and 9% of Switchers do. Nothing in the home worker comparison looks like this.",
+        kind: "audit",
+        label: "Claims ledger.",
+        text: "Every number above is calculated from customers.csv, using the 3,365 customers whose works_from_home answer is on file. The 92% figure is the average similarity of the two groups' shares across every measure in the file. The differences in age and housing are reported, not hidden. They are real, and they do not show up in behaviour.",
       },
     ],
   },
@@ -726,11 +696,7 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
     blocks: [
       {
         kind: "p",
-        text: "Tell the CMO it was a good question, and it now has a tested answer. Home workers are 40% of Kite's customers, and the three playbooks that exist already serve them. A fourth playbook would repeat the work of the other three. If Kite wants to talk about working from home, it can do that inside the playbooks it has. The contents examples in any segment's emails can mention the home office. That does not need a new segment.",
-      },
-      {
-        kind: "p",
-        text: "Next step: I can put this on one page for the CMO, with the two charts and the numbers behind them. The page would say what the test found, what home workers are, and where they already sit.",
+        text: "Tell the CMO it was a good question, and it now has a tested answer. Home workers are 40% of Kite's customers, and the three playbooks that exist already serve them. If Kite wants to talk about working from home, it can do that inside the playbooks it has. I can put this on one page for the CMO, with the chart and the numbers behind it.",
       },
     ],
   },
