@@ -1617,40 +1617,48 @@ export const MODULE_3: ModuleDef = {
   on: "2026-10-19",
   built: false,
   blurb: MODULE_BLURBS[3],
+  /* REVISED 7 Aug 2026 from the second talk with Paul. THREE items now (LTV dropped).
+     One new CMO carries the module by asking questions; each item's output feeds the
+     next; the website hands off to module 4. The ruling doc is
+     course-build/SKELETON-MODULES-3-6-2026-08-06.md (module 3 section rewritten 7 Aug).
+     Read it before touching these items. */
   items: [
     {
-      /* The essay behind it: "Dear marketers - create adjacent value" (9 Jul 2026).
-         ⚠️ FICTION NOTE from the skeleton doc: what the check FINDS on Kite's segments
-         must agree with the pack, where Switcher / Juggler / Payer are load-bearing.
-         Undecided, Paul's call. */
+      /* The story: the CMO asks whether THE HOME WORKER should be a fourth segment
+         (a question, not a proposal; nobody is wrong). The similarity check answers:
+         about 89% similar to customers Kite already serves. Kite's three segments are
+         never under the microscope. One analysis taught; the rest of the battery
+         appears as passing charts. Three-file kit for the learner, module 1 item 10
+         pattern. Opening paragraph drafted 7 Aug, awaiting Paul's prose pass. */
       t: "Segmentation",
-      text: "Whether the segments in the deck are genuinely different is a question with a mathematical answer, and getting that answer used to need a specialist. Here we run the checks on Kite's segments and read the result the way a marketer needs to read it.",
+      text: "Kite's new CMO arrives with a question: should the home worker be our fourth segment? It sounds right, more time at home, the house working harder. It's a fair question, and it's a testable one. We run the check that answers it, and the same files are here for you to run it yourself.",
       placeholder: true,
-      grab: "The similarity check running on Kite's segments",
+      grab: "The similarity check answering the CMO's question",
     },
     {
-      /* The engine exists and works: ~/.claude/skills/ltv-engine, sample data in
-         ~/projects/brand-measurement-dashboard/ltv-decision-engine/. The Kite
-         transaction dataset does NOT exist yet; build it the build-kite-data.py way. */
-      t: "Customer lifetime value",
-      text: "Which customers matter, what a new customer is actually worth, and whether the channel that looks cheap is buying good customers or bad ones. The models behind those answers used to sit with a data team. Here we run them on Kite's transactions.",
-      placeholder: true,
-      grab: "The lifetime value analysis on Kite's transactions",
-    },
-    {
-      /* Desk research only. The phone interviewer is module 6's closer, deliberately. */
+      /* Four concrete questions, never "what the market is saying". Ardline is
+         reintroduced at EVERY appearance (learners forget). Ardline mirrors the real
+         category pattern but is assembled from what is generic across seven real
+         insurers; no trait points at any one company. Learners touch only the
+         generated Kite corpus; the real calibration corpus lives in
+         course-build/corpus-real-irish-home-insurance/. Phone interviewer stays in
+         module 6. */
       t: "Research",
-      text: "Reviews, communities and competitor claims turned into structured evidence, with every finding traceable to its source. Research used to be a brief, a budget and a long wait. Here we run a real study on Kite's category.",
+      text: "The CMO's next questions look outward. What do people actually ask when they buy home insurance? What do customers complain about? What does Ardline, Kite's biggest competitor, promise on its own pages? And where is the gap? We mine real sources, grade every finding, and the gap turns out to be the finding.",
       placeholder: true,
-      grab: "A research run on Kite's category, findings traced to sources",
+      grab: "The research run, four questions becoming graded findings",
     },
     {
-      /* From "I built a website tonight using Claude Code" (20 Feb 2026). The
-         how-little-I-had-to-know framing stays central. NO chatbot here. */
+      /* The whole item is one penny-drop: find out what your website needs (from the
+         research and the GEO question layer), then just ask AI to build it. Quality
+         AND speed together. Claude Code and Vercel get named (deliberate register
+         decision). The review gate (approve / edit / skip) is one scene, not the
+         headline. NO chatbot here; it moved to module 4. Hands the built site to
+         module 4. */
       t: "A website",
-      text: "A working website, built by describing what you want and judging what comes back. The parts that needed a designer and a developer are the parts you no longer have to know. Here we build one for Kite.",
+      text: "Everything the research found becomes a working website. The questions people ask become answers on the page, written so the machines quoting answers can lift them. Built in hours by describing and judging, and you approve every word before it ships. Quality and speed, together.",
       placeholder: true,
-      grab: "A Kite page being built by talking",
+      grab: "The Kite site going from research findings to live in hours",
     },
   ],
 };
