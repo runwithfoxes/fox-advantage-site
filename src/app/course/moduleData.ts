@@ -1634,7 +1634,13 @@ export const MODULE_3: ModuleDef = {
          the learner, module 1 item 10 pattern. Opening paragraph drafted 7 Aug,
          awaiting Paul's prose pass. */
       t: "Segmentation",
-      text: "Kite's new CMO arrives with a question: should the home worker be our fourth segment? It sounds right, more time at home, the house working harder. It's a fair question, and it's a testable one. We run the check that answers it, and the same files are here for you to run it yourself.",
+      docs: {
+        dir: "module-3/data",
+        folder: "data/",
+        files: ["customers.csv"],
+        as: "links",
+      },
+      text: "Kite's new CMO arrives with a question: should the home worker be our fourth segment? It sounds right, more time at home, the house working harder. It's a fair question, and it's a testable one. We run the check that answers it, and the same files are here for you to run it yourself.\n\nThe file below is Kite's customer book, 4,000 customers with their renewal behaviour, their policies and who works from home. Everything in it is made up, and the answer to the CMO's question is in there for anyone who checks.",
       placeholder: true,
       grab: "The similarity check answering the CMO's question",
     },
@@ -1662,6 +1668,26 @@ export const MODULE_3: ModuleDef = {
       text: "Everything the research found becomes a working website. The questions people ask become answers on the page, written so the machines quoting answers can lift them. Built in hours by describing and judging, and you approve every word before it ships. Quality and speed, together.",
       placeholder: true,
       grab: "The Kite site going from research findings to live in hours",
+    },
+  ],
+  files: [
+    {
+      /* Listing these is what makes them servable: the api/course-file whitelist is
+         derived from mod.files. TITLE, BLURB AND `what` ARE WORKING COPY, awaiting
+         Paul. The kit grows: segmentation-rules and the ask file join when written
+         (with Paul, line by line, the data-rules precedent). */
+      title: "Kite's customers, to test the CMO's question on",
+      blurb:
+        "Kite's customer book as a marketer would receive it: 4,000 customers, their renewal behaviour, their policies, and who works from home. The file the similarity check runs on.",
+      warn: "Kite does not exist. Every customer in this file was invented for this course, and the finding was planted on purpose. Nothing in it is research about any real market.",
+      files: [
+        {
+          name: "customers",
+          what: "One row per customer: segment, renewal behaviour, policies held, premium, home and household details, works_from_home where known. The csv is the file to take.",
+          href: "/api/course-file/module-3/data/customers.html",
+          take: "/api/course-file/module-3/data/customers.csv",
+        },
+      ],
     },
   ],
 };
