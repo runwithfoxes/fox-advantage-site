@@ -37,6 +37,45 @@ const weekly = (channel, field, from, to) =>
     .filter((r) => r.channel === channel && r.week >= from && r.week <= to)
     .map((r) => [r.week, r[field]]);
 
+/* Module 3: the customer file. Same doctrine: shares computed here, never typed. */
+const csv3 = readFileSync(
+  path.join(root, "course-files/module-3/data/customers.csv"),
+  "utf8",
+).trim();
+const [header3, ...lines3] = csv3.split(/\r?\n/);
+const COLS = header3.split(",");
+if (COLS[0] !== "customer_id" || COLS[1] !== "segment" || COLS[15] !== "works_from_home")
+  throw new Error("customers.csv header changed: " + header3);
+const customers = lines3.map((l) => {
+  const v = l.split(",");
+  return Object.fromEntries(COLS.map((c, i) => [c, v[i]]));
+});
+
+const pct = (group, f) =>
+  Math.round((100 * group.filter(f).length) / group.length);
+
+/* The five behaviours the segments are told apart by. */
+const BEHAVIOURS = [
+  ["auto-renew", (r) => r.auto_renew === "yes"],
+  ["switched in 3y", (r) => +r.switches_last_3_years > 0],
+  ["3+ quotes", (r) => +r.comparison_quotes_last_renewal >= 3],
+  ["2+ policies", (r) => +r.policies_held >= 2],
+  ["acted in 7 days", (r) => +r.days_letter_to_action <= 7],
+];
+
+/* The home-worker comparison runs on customers whose field is filled (collected at
+   quote), the same population the recorded analyst reports on. */
+const known = customers.filter((r) => r.works_from_home !== "");
+const wfhYes = known.filter((r) => r.works_from_home === "yes");
+const wfhNo = known.filter((r) => r.works_from_home === "no");
+const PROFILE = [
+  ["25-44", (r) => r.age_band === "25-34" || r.age_band === "35-44"],
+  ["apartment", (r) => r.home_type === "apartment"],
+  ["Dublin", (r) => r.region === "Dublin"],
+  ...BEHAVIOURS.filter(([n]) => n !== "acted in 7 days"),
+  ["claim-free", (r) => +r.claims_last_5_years === 0],
+];
+
 const charts = {
   /* The March spike: two channels' quotes double in the same weeks on flat spend. */
   march: {
@@ -57,6 +96,26 @@ const charts = {
       { from: "2025-02-03", to: "2025-03-31", label: "radio burst 1" },
       { from: "2025-09-01", to: "2025-10-27", label: "radio burst 2" },
     ],
+  },
+  /* Module 3: the two profiles nearly coincide where money moves. The left of the
+     x-axis is demographics (real, visible tilts), the right is renewal behaviour. */
+  "home-worker-profile": {
+    title: "Share of group on each measure, %",
+    series: [
+      { name: "works from home", points: PROFILE.map(([n, f]) => [n, pct(wfhYes, f)]) },
+      { name: "everyone else", points: PROFILE.map(([n, f]) => [n, pct(wfhNo, f)]) },
+    ],
+  },
+  /* Module 3: what a real behavioural difference looks like, for contrast. */
+  "segment-behaviour": {
+    title: "Share of segment on each behaviour, %",
+    series: ["Payer", "Switcher", "Juggler"].map((seg) => ({
+      name: seg,
+      points: BEHAVIOURS.map(([n, f]) => [
+        n,
+        pct(customers.filter((r) => r.segment === seg), f),
+      ]),
+    })),
   },
 };
 

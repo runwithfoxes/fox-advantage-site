@@ -468,5 +468,164 @@ export const CHARTS: Record<string, ChartSpec> = {
         "label": "radio burst 2"
       }
     ]
+  },
+  "home-worker-profile": {
+    "title": "Share of group on each measure, %",
+    "series": [
+      {
+        "name": "works from home",
+        "points": [
+          [
+            "25-44",
+            62
+          ],
+          [
+            "apartment",
+            6
+          ],
+          [
+            "Dublin",
+            22
+          ],
+          [
+            "auto-renew",
+            44
+          ],
+          [
+            "switched in 3y",
+            62
+          ],
+          [
+            "3+ quotes",
+            37
+          ],
+          [
+            "2+ policies",
+            37
+          ],
+          [
+            "claim-free",
+            81
+          ]
+        ]
+      },
+      {
+        "name": "everyone else",
+        "points": [
+          [
+            "25-44",
+            39
+          ],
+          [
+            "apartment",
+            18
+          ],
+          [
+            "Dublin",
+            36
+          ],
+          [
+            "auto-renew",
+            44
+          ],
+          [
+            "switched in 3y",
+            62
+          ],
+          [
+            "3+ quotes",
+            38
+          ],
+          [
+            "2+ policies",
+            39
+          ],
+          [
+            "claim-free",
+            82
+          ]
+        ]
+      }
+    ]
+  },
+  "segment-behaviour": {
+    "title": "Share of segment on each behaviour, %",
+    "series": [
+      {
+        "name": "Payer",
+        "points": [
+          [
+            "auto-renew",
+            90
+          ],
+          [
+            "switched in 3y",
+            8
+          ],
+          [
+            "3+ quotes",
+            0
+          ],
+          [
+            "2+ policies",
+            16
+          ],
+          [
+            "acted in 7 days",
+            9
+          ]
+        ]
+      },
+      {
+        "name": "Switcher",
+        "points": [
+          [
+            "auto-renew",
+            9
+          ],
+          [
+            "switched in 3y",
+            100
+          ],
+          [
+            "3+ quotes",
+            89
+          ],
+          [
+            "2+ policies",
+            9
+          ],
+          [
+            "acted in 7 days",
+            96
+          ]
+        ]
+      },
+      {
+        "name": "Juggler",
+        "points": [
+          [
+            "auto-renew",
+            42
+          ],
+          [
+            "switched in 3y",
+            71
+          ],
+          [
+            "3+ quotes",
+            11
+          ],
+          [
+            "2+ policies",
+            100
+          ],
+          [
+            "acted in 7 days",
+            33
+          ]
+        ]
+      }
+    ]
   }
 };

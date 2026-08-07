@@ -485,9 +485,12 @@ function ChartFig({ spec }: { spec: ChartSpec }) {
   const R = 10;
   const T = 30;
   const B = 30;
-  const COLORS = ["#3A7CA5", "#1D1B1B"];
+  /* Sky, ink, and the muted grey when a third series exists (module 3's segments). */
+  const COLORS = ["#3A7CA5", "#1D1B1B", "#8A8A85"];
 
   const weeks = spec.series[0].points.map(([w]) => w);
+  /* Module 3's charts carry category labels, not weeks. Detected, not configured. */
+  const isDated = /^\d{4}-\d{2}/.test(String(weeks[0]));
   const maxY = Math.max(...spec.series.flatMap((s) => s.points.map(([, v]) => v)));
   /* A round ceiling so the top gridline is a readable number. */
   const step = maxY > 200 ? 100 : 50;
@@ -500,17 +503,28 @@ function ChartFig({ spec }: { spec: ChartSpec }) {
     return i === -1 ? null : x(i);
   };
 
-  /* One tick where each month starts. */
+  /* Dated series get one tick where each month starts; categorical series get every
+     label, anchored so the first and last stay inside the frame. */
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const ticks: { at: number; label: string }[] = [];
-  let lastMonth = "";
-  weeks.forEach((w, i) => {
-    const m = w.slice(5, 7);
-    if (m !== lastMonth) {
-      ticks.push({ at: x(i), label: MONTHS[+m - 1] });
-      lastMonth = m;
-    }
-  });
+  const ticks: { at: number; label: string; anchor?: "start" | "end" | "middle" }[] = [];
+  if (isDated) {
+    let lastMonth = "";
+    weeks.forEach((w, i) => {
+      const m = w.slice(5, 7);
+      if (m !== lastMonth) {
+        ticks.push({ at: x(i), label: MONTHS[+m - 1] });
+        lastMonth = m;
+      }
+    });
+  } else {
+    weeks.forEach((w, i) => {
+      ticks.push({
+        at: x(i),
+        label: String(w),
+        anchor: i === 0 ? "start" : i === weeks.length - 1 ? "end" : "middle",
+      });
+    });
+  }
 
   const gridVals = Array.from({ length: top / step }, (_, i) => (i + 1) * step);
   const mono = "'JetBrains Mono', ui-monospace, Menlo, monospace";
@@ -546,7 +560,15 @@ function ChartFig({ spec }: { spec: ChartSpec }) {
       ))}
       <line x1={L} y1={y(0)} x2={W - R} y2={y(0)} stroke="#1D1B1B" strokeWidth={1} />
       {ticks.map((t, i) => (
-        <text key={i} x={t.at} y={H - 10} fontFamily={mono} fontSize={9} fill="#8A8A85">
+        <text
+          key={i}
+          x={t.at}
+          y={H - 10}
+          textAnchor={t.anchor ?? "start"}
+          fontFamily={mono}
+          fontSize={isDated ? 9 : 8}
+          fill="#8A8A85"
+        >
           {t.label}
         </text>
       ))}

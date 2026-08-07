@@ -10,6 +10,7 @@ import {
   KITE_SESSION,
   KITE_POST_SESSION,
   KITE_DATA_SESSION,
+  KITE_SEGMENT_SESSION,
 } from "../writerSession";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
@@ -275,6 +276,15 @@ function slotsFor(it: Item): Record<string, React.ReactNode> {
       <ChatWindow
         session={KITE_DATA_SESSION}
         start={"Kite’s own numbers, checked before they are believed."}
+        title="an analyst"
+      />
+    ) : undefined,
+    /* ⭐ Module 3's segmentation recording: the CMO's question answered from the
+       customer file. Same analyst, same title bar. */
+    SESSION_SEGMENT: it.session ? (
+      <ChatWindow
+        session={KITE_SEGMENT_SESSION}
+        start={"The CMO’s question, answered from the file."}
         title="an analyst"
       />
     ) : undefined,

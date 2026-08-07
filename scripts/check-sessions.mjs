@@ -26,6 +26,9 @@ const packDirs = [
      course). Its refs quote raw CSV lines, which the substring check handles like any
      other line: a quoted row must really be in the file. */
   path.join(root, "course-files/module-1/data"),
+  /* Module 3's customer file and segmentation rules, 7 Aug 2026: the segment session
+     quotes raw customer rows and rule lines the same way. */
+  path.join(root, "course-files/module-3/data"),
 ];
 
 /* Tolerant extraction rather than a TS runtime: a ref is written as an object literal

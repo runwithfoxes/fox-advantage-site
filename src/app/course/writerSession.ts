@@ -612,3 +612,126 @@ export const KITE_DATA_SESSION: Turn[] = [
     ],
   },
 ];
+
+/**
+ * ⭐ THE SEGMENTATION RECORDING, module 3 item 01, 7 Aug 2026. The CMO's question
+ * answered from customers.csv. Every number below is computed from that file (the
+ * generator asserts the planted design; the charts come from chartData.generated.ts so
+ * no drawn point can be typed). Refs quote raw customer rows and segmentation-rules
+ * lines; scripts/check-sessions.mjs verifies each one against the module-3 pack.
+ * ⚠️ Working copy: the beats and numbers are settled, the wording awaits Paul's pass.
+ */
+export const KITE_SEGMENT_SESSION: Turn[] = [
+  {
+    who: "you",
+    text: "Our new CMO has asked a good question: should the home worker be our fourth segment, alongside the Payer, the Switcher and the Juggler? Here's our customer file. If the answer is yes, it means a fourth playbook, new campaigns and a budget line.",
+  },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Understood: a playbook and a budget hang on this, so I will hold the evidence to a decision standard, not a curiosity standard. I will check the file first, then answer.",
+      },
+      {
+        kind: "flag",
+        text: "Before comparing anyone, I checked who is in the file. The works_from_home field is only collected when someone gets a quote, so it is blank for 635 of the 4,000 customers, and the blanks are not random: 86% of them are Payers, the customers who never requote. Everything below is measured on the 3,365 customers with an answer on file, which slightly under-weights the quietest segment. The finding would need to be marginal for that to matter, and it is not marginal.",
+      },
+      {
+        kind: "plan",
+        lines: [
+          [
+            "Checks run",
+            "Blank cells counted and traced to their cause, every share computed from the file, and the comparison run behaviour first, then demographics.",
+          ],
+          [
+            "The test",
+            "One similarity number across every measure, then the same verdict looked for in the behaviour shares, the segment mix, and the two profiles drawn as a chart.",
+          ],
+          [
+            "What a yes would need",
+            "A behavioural difference big enough to pay for a fourth playbook, every year.",
+          ],
+        ],
+      },
+    ],
+  },
+  { who: "you", text: "Go on." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "post",
+        refs: [
+          {
+            file: "customers.csv",
+            quote:
+              "K-10012,Switcher,4,1,no,1,3,4,0,1,336,32000,25-34,Connacht,terrace,yes",
+          },
+          null,
+          {
+            file: "segmentation-rules.md",
+            quote: "Compare what people do before what they are",
+          },
+          {
+            file: "segmentation-rules.md",
+            quote: "Check whether one difference is another difference in a costume",
+          },
+          {
+            file: "segmentation-rules.md",
+            quote: "Above 90, you are looking at the same people.",
+          },
+          {
+            file: "customers.csv",
+            quote: "K-10025,Payer,3,1,yes,0,0,18,0,0,470,28000,35-44,Connacht,terrace,",
+          },
+        ],
+        body: [
+          "Home workers are 40% of the customers we can measure, and they sit across the three segments the way everyone else does: 41% of Payers work from home, 41% of Switchers, 40% of Jugglers. A real fourth segment would pool somewhere. This group pools nowhere.",
+          "Demographically, home workers do differ, and a presentation could make that look like a segment. 62% of them are aged 25 to 44, against 39% of everyone else. 6% live in apartments, against 18%. They lean toward the commuter counties over Dublin.",
+          "Renewal behaviour is where the question is decided, and there the two groups are the same people. 44% of home workers auto-renew, exactly the share of everyone else. 62% switched insurer in the last three years, the same. 37% gathered three or more quotes at their last renewal against 38%. 37% hold two or more policies against 39%. 81% are claim-free against 82%.",
+          "One number that would mislead a deck: home workers' contents cover reads about 13% higher, which could be sold as proof of a premium customer group. Most of that is the house, not the desk. Home workers live in more detached houses and fewer apartments, and bigger houses carry bigger sums insured. Within the same house type, the gap is about 5%.",
+          "Taking every measure together, share by share, home workers come out 92% similar to the rest of the book. For scale: when marketing scientists run this comparison on competing brands' customer bases, the answer is usually in the 80s or low 90s, and those are bases nobody would build separate strategies for. On renewal behaviour alone, home workers are indistinguishable from everyone else.",
+          "So the file's answer to the CMO: home workers are real, numerous, and already Kite customers in the usual proportions, most of them Payers and Switchers who happen to have a desk at home. They are not a fourth segment, because they do not behave differently anywhere a playbook could act.",
+        ],
+      },
+      {
+        kind: "audit",
+        label: "Claims ledger.",
+        text: "Every number above is computed from customers.csv, on the 3,365 customers whose works_from_home field is filled. The 92% figure is the average similarity of the two groups' shares across every measure in the file. The demographic gaps are reported, not hidden: they are real, and they are not where money changes hands.",
+      },
+    ],
+  },
+  { who: "you", text: "Show me that as a picture." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "chart",
+        chart: "home-worker-profile",
+        caption:
+          "Each point is the share of a group on one measure. The gap on the left is the age and housing tilt, real and visible. From auto-renew onward, where a playbook would have to act, the two lines sit on top of each other.",
+      },
+      {
+        kind: "chart",
+        chart: "segment-behaviour",
+        caption:
+          "For contrast, Kite's three existing segments on the same kind of chart. This is what a behavioural difference looks like: 90% of Payers auto-renew and 9% of Switchers do. Nothing in the home-worker comparison looks like this.",
+      },
+    ],
+  },
+  { who: "you", text: "So I tell the CMO no?" },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Tell the CMO it was the right question, and it now has a tested answer. Home workers are 40% of the book and they are already served, in the usual proportions, by the three playbooks that exist. A fourth would duplicate them. If Kite wants to speak to home working, it is a line inside the existing playbooks, the home office in the contents examples, not a new segment.",
+      },
+      {
+        kind: "p",
+        text: "Next step: I can put this on one page for the CMO, the two charts and the numbers behind them. It is a stronger answer than a no, because it says what home workers are, not just what they are not.",
+      },
+    ],
+  },
+];

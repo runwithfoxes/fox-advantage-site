@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>segmentation-rules</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>segmentation-rules</h1>
+<blockquote><p>This file is not about Kite. It works for any brand. Put it in your project beside any customer file when someone claims a group of customers is different.</p></blockquote>
+<p>Ten rules. Each one makes the judging more accurate.</p>
+<h2>1. A segment is a claim, and the claim is testable</h2>
+<p>Someone says a group of your customers is different. That is a factual claim about your data: if the group is real, it behaves differently in the file. You can check, and the check beats a meeting full of opinions.</p>
+<h2>2. Check who is missing before you compare</h2>
+<p>Fields get collected at certain moments, so blanks land in patterns, not at random. Count the blanks and see who they belong to before comparing groups. A comparison that quietly drops a chunk of one group answers a different question than the one you were asked.</p>
+<h2>3. Compare what people do before what they are</h2>
+<p>Age, county and house type make groups look different. Money moves on behaviour: whether they renew, switch, gather quotes, hold several policies. Test behaviour first. A group that looks different and acts the same buys like everyone else.</p>
+<h2>4. Put a number on &quot;different&quot;</h2>
+<p>For each measure, work out each group&#x27;s share, and add up the gaps between the two profiles. Marketing scientists have run this comparison across many markets, and buyer groups usually come out 80-to-90-something per cent alike. Above 90, you are looking at the same people. It takes a number well below that to carry a strategy.</p>
+<h2>5. One check is not an answer</h2>
+<p>Run the similarity number, then look for the same verdict in other cuts: the group&#x27;s mix across your existing segments, the behaviour shares side by side, the two profiles drawn as a chart. A real difference shows up everywhere you look. A fluke shows up once.</p>
+<h2>6. A difference that would not change a decision is not a segment</h2>
+<p>Two groups can differ by a real few points on something. Ask what you would do differently because of it. If the campaigns, the products and the budget would all stay the same, file it as a fact, not a segment.</p>
+<h2>7. Check whether one difference is another difference in a costume</h2>
+<p>A group can read as more valuable because it lives in bigger houses, and bigger houses carry bigger sums. Before crediting the group, hold the other thing still and look again. Most impressive differences decompose into an ordinary one.</p>
+<h2>8. Watch the axis before you believe a chart</h2>
+<p>A chart that starts its axis at 60 makes a four-point gap look like a canyon. Redraw it from zero to one hundred and see whether the difference survives. This one habit deflates most segment decks.</p>
+<h2>9. Real segments are expensive to serve, so price that in</h2>
+<p>Every segment you add means another playbook: campaigns, copy, offers, reporting. That cost is certain. The difference funding it has to be big enough to pay for it, every year.</p>
+<h2>10. The answer is allowed to be no, so say what the group is instead</h2>
+<p>&quot;Not a segment&quot; is a useful finding when it is delivered well. The people are still real. Say where they already sit in your existing segments and what, if anything, is worth saying to them there. The person who asked gets a real answer either way, and they asked a good question.</p></main></body></html>
