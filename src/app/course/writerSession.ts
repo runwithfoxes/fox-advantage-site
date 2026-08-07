@@ -735,3 +735,139 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
     ],
   },
 ];
+
+/**
+ * ⭐⭐ MODULE 3, ITEM 02: THE RESEARCH RECORDING. The CMO's four outward questions
+ * answered from the generated Kite corpus (course-files/module-3/research/), 7 Aug 2026.
+ *
+ * ⛔ THE CORPUS IS FICTION AND THE FINDINGS ARE REAL COUNTS OF IT. The corpus was
+ * calibrated on a real pass over Irish home insurance (briefing:
+ * ~/paul-hub/intelligence/research/2026-08-07-irish-home-insurance-category.md; raw
+ * material in course-build/corpus-real-irish-home-insurance/), with the real category's
+ * claims-time white space planted under fictional names. Every count this session
+ * states is recomputed by scripts/check-research-corpus.mjs, and every quote is checked
+ * against the corpus by scripts/check-sessions.mjs. ⛔ No real insurer, forum or review
+ * platform may be named here; the corpus gate greps for the ban list.
+ *
+ * ⭐ Rule 11 (skeleton doc): the analyst speaks module 1's language. Full sentences,
+ * plain words, glosses at first mention, Ardline reintroduced as Kite's biggest
+ * competitor. Evidence grades (supported / asserted / opinion) are the effectiveness
+ * thread of this item, defined in research-rules.md and used out loud.
+ */
+export const KITE_RESEARCH_SESSION: Turn[] = [
+  {
+    who: "you",
+    text: "The CMO took the segmentation answer well, and has four more questions, pointed outward this time. What do people actually ask when they buy home insurance? What do customers complain about, and where in the journey? What does Ardline, Kite's biggest competitor, promise on its own pages? And where is the gap between the complaints and the promises? I have pulled the raw material into four files: threads from a consumer forum, the most recent reviews of our three competitors, Ardline's pages saved as text, and the questions people type into search. The research-rules file is in there too.",
+  },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Understood. Four questions, four kinds of source, and a decision waiting on the answers, so I will count before I characterise anything. First, what this corpus is and is not.",
+      },
+      {
+        kind: "flag",
+        text: "This corpus is one forum and one review platform, with the 18 most recent reviews per company, and threads running from August 2025 to June 2026. Sources like these can say where the pain is. They cannot say how common it is, because the people a thing went fine for do not post about it. So every count below describes these files, not the whole market.",
+      },
+      {
+        kind: "plan",
+        lines: [
+          [
+            "Checks run",
+            "I counted every source before reading it for meaning: ten threads holding 44 posts, 54 reviews, three Ardline pages, 36 search questions. Every number below is counted from these files.",
+          ],
+          [
+            "The method",
+            "Each question gets answered from the sources that can answer it, quoting the line the finding rests on, with a grade on every finding.",
+          ],
+          [
+            "The grades",
+            "Supported means counted here, or found in more than one kind of source. Asserted means one source says it and nothing confirms it. Opinion means it is somebody's view.",
+          ],
+        ],
+      },
+    ],
+  },
+  { who: "you", text: "Go on." },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "post",
+        refs: [
+          {
+            file: "search-questions.md",
+            quote: "how long does a home insurance claim take",
+          },
+          {
+            file: "forum-threads.md",
+            quote:
+              "Genuinely could not find a straight answer written down anywhere",
+          },
+          {
+            file: "forum-threads.md",
+            quote:
+              "Fourteen weeks now with no floor in the kitchen and I cannot get the same person twice on the phone",
+          },
+          {
+            file: "forum-threads.md",
+            quote:
+              "The quote online was €395 for the exact same house, same cover, my own company.",
+          },
+          {
+            file: "reviews.md",
+            quote: "You find out what cheap means when something goes wrong.",
+          },
+          {
+            file: "ardline-pages.md",
+            quote:
+              "Buy online and save 15%. Insure your home and car together and save up to 20%.",
+          },
+          {
+            file: "ardline-pages.md",
+            quote: "Most claims are straightforward.",
+          },
+          {
+            file: "research-rules.md",
+            quote: "that silence is worth more than most of what is said",
+          },
+          {
+            file: "forum-threads.md",
+            quote: "1 in 6 houses in Ireland is underinsured apparently",
+          },
+        ],
+        body: [
+          "First, what people ask. The biggest group of search questions is cost: 12 of the 36 are about price, quotes and switching. Two smaller patterns matter more for Kite. People ask what things are, all the way through buying a home: whether mortgage protection is the same as home insurance, what buildings and contents means, what an excess is. And people ask about claims before they have ever made one. The busiest question in the claims group is how long a claim takes. Supported: the same confusions appear in the search data and in the forum threads.",
+          "The forum shows what happens when those questions meet the market. In the mortgage thread, a first-time buyer got a clearer answer from a stranger than from any company page, and said so. The questions are ordinary. The plain answers are hard to find.",
+          "Second, the complaints, and where they sit in the journey. Four of the ten threads are about claims, three are about renewal prices, two are about buying and one is about renting. Nobody starts a thread about buying being hard. The anger arrives after the purchase. And the claim threads are not about being refused: they are about time, and about nobody owning the claim while it drags. Supported, and the same shape repeats in the reviews.",
+          "The renewal threads all trade the same advice: price your own house on your own insurer's website as a new customer, then ring with the reference number. In the June thread that one phone call took €118 off a renewal. Customers are doing the market's pricing work themselves, and they resent it.",
+          "The review scores need care before anyone repeats them, which is rule five in research-rules. Ardline, Kite's biggest competitor, averages 2.1 from its 18 most recent reviews, and not one of those reviewers was invited by the company: they came angry, mostly mid-claim. Snapcover averages 4.7, and 16 of its 18 reviews are marked invited, written at the moment of buying, before anything can have gone wrong. The two scores measure different moments, not two companies' quality. Snapcover's one uninvited angry review is a claim story.",
+          "Third, what Ardline promises. Its pages sell price and heritage, and the price claims carry numbers: 15% off online, up to 20% for two policies, nine customers in ten renewing. The heritage is forty years and a branch network. Supported: this is their own text.",
+          "The claims page is different. It reads warmly, and it commits to nothing you could count. Claims are looked after, straightforward, kept in touch about. There is no timescale and no number anywhere on the page. The one place customers want a promise is the one place the copy goes soft.",
+          "Fourth, the gap. Put the complaints beside the promises. The thing customers fear, ask about and get angry about is the claim: the busiest claims question is how long one takes, the angriest reviews are written mid-claim, the longest thread is a burst pipe running fourteen weeks. Ardline's pages answer none of it with a number, and nothing else in this corpus does either. Nobody here makes a promise about claims that a customer could hold them to. That silence is the finding. Supported: three kinds of source point at the same hole.",
+          "Two things in the corpus should not travel as facts. A poster says 1 in 6 houses in Ireland is underinsured. That is one person remembering a number, so it stays asserted until a real source carries it. And the forum believes loyalty is punished at renewal, while one poster says a rule change dealt with that some years ago. The belief is supported as a belief, because customers plainly act on it. Whether the pricing still works that way cannot be settled from these files, so that part stays asserted.",
+        ],
+      },
+      {
+        kind: "audit",
+        label: "Claims ledger.",
+        text: "Every count above is counted from the four source files: ten threads holding 44 posts, 54 reviews at 18 per company, three Ardline pages and 36 search questions. Supported: where the complaints cluster, what the pages promise, and the gap between them, each seen in more than one kind of source. Asserted and going no further: the underinsurance number, and whether loyalty still costs money at renewal. What I did not find: any countable claims promise, from anyone, anywhere in the corpus. The corpus is small, one forum and one review platform, so these counts describe it, not the market.",
+      },
+    ],
+  },
+  { who: "you", text: "So what do I tell the CMO?" },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "p",
+        text: "Four answers. People ask ordinary questions about what cover is, and they ask how long claims take before they have ever claimed. The complaints sit at claims time and renewal time, and the claim complaints are about waiting and being passed around. Ardline, Kite's biggest competitor, puts numbers on its discounts and adjectives on its claims. And the gap is that nobody in the category promises anything countable about the moment customers fear most.",
+      },
+      {
+        kind: "p",
+        text: "The research also wrote the brief for the next job. The 36 search questions are a list of plain answers Kite's website could carry, and the claims-time gap is a promise no competitor is currently making. Whether Kite can keep such a promise is an operations question before it is a marketing one, and that belongs in front of the CMO alongside the finding. I can put the findings, the grades and the question list on one page.",
+      },
+    ],
+  },
+];

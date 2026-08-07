@@ -11,6 +11,7 @@ import {
   KITE_POST_SESSION,
   KITE_DATA_SESSION,
   KITE_SEGMENT_SESSION,
+  KITE_RESEARCH_SESSION,
 } from "../writerSession";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
@@ -285,6 +286,16 @@ function slotsFor(it: Item): Record<string, React.ReactNode> {
       <ChatWindow
         session={KITE_SEGMENT_SESSION}
         start={"The CMO’s question, answered from the file."}
+        title="an analyst"
+      />
+    ) : undefined,
+    /* ⭐ Module 3's research recording: the CMO's four outward questions answered from
+       the generated corpus. Same analyst; the corpus and every count are gated by
+       scripts/check-research-corpus.mjs. */
+    SESSION_RESEARCH: it.session ? (
+      <ChatWindow
+        session={KITE_RESEARCH_SESSION}
+        start={"The CMO’s four questions, answered from the sources."}
         title="an analyst"
       />
     ) : undefined,

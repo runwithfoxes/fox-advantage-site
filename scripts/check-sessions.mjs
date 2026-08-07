@@ -29,6 +29,10 @@ const packDirs = [
   /* Module 3's customer file and segmentation rules, 7 Aug 2026: the segment session
      quotes raw customer rows and rule lines the same way. */
   path.join(root, "course-files/module-3/data"),
+  /* Module 3's research corpus, 7 Aug 2026: the research session quotes forum posts,
+     reviews, Ardline page copy and search questions. The corpus's own counts are gated
+     separately by scripts/check-research-corpus.mjs. */
+  path.join(root, "course-files/module-3/research"),
 ];
 
 /* Tolerant extraction rather than a TS runtime: a ref is written as an object literal

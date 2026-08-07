@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>research-rules</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>research-rules</h1>
+<blockquote><p>This file is not about Kite. It works for any market. Put it in your project beside your source files when you need to find out what a market is actually saying.</p></blockquote>
+<p>Ten rules. Each one makes desk research harder to fool.</p>
+<h2>1. Start from a question someone will act on</h2>
+<p>&quot;What is the market saying&quot; is a topic, not a question. &quot;What do customers complain about, and where in the journey&quot; is a question, because the answer changes what you do next. Write the questions down before you open a single source, and check every finding against them at the end.</p>
+<h2>2. Grade every finding, and say the grade out loud</h2>
+<p>Three grades. <strong>Supported</strong> means you counted it, or found it in more than one kind of source. <strong>Asserted</strong> means one source says it and nothing confirms it. <strong>Opinion</strong> means it is somebody&#x27;s view. All three are worth collecting. Only the first one carries a decision on its own.</p>
+<h2>3. Count before you characterise</h2>
+<p>&quot;Most complaints are about claims&quot; is a count you have not done yet. Do the count, then say the number: how many threads, how many reviews, how many of them mention the thing. A characterisation with a count behind it survives being challenged in a meeting. One without a count does not.</p>
+<h2>4. Name the source, and check its date</h2>
+<p>A finding travels with where it came from and when it was said. A number quoted in a forum post is not a source, it is a person remembering a number. And an old post carries old facts: prices, rules and companies change, so check the date before you carry anything forward.</p>
+<h2>5. Review scores measure the moment the company asks</h2>
+<p>Some companies invite a review at the moment of purchase, before anything has gone wrong. Others never ask, and collect only the people angry enough to go looking. Both patterns show up in the scores. Before comparing two scores, look at how many reviews are marked as invited and when they were written.</p>
+<h2>6. Loud is not the same as common</h2>
+<p>Complaints tell you where it hurts. They do not tell you how many people are hurt, because the people a thing went fine for do not post about it. Use complaints to find the sore spots, and be careful saying how widespread they are unless something else backs the count.</p>
+<h2>7. What nobody says is a finding</h2>
+<p>If customers keep asking a question and no company answers it, that silence is worth more than most of what is said. But absence only counts after you have looked everywhere it should appear. Check every page where the promise would live before you call it missing.</p>
+<h2>8. A belief can outlive the fact behind it</h2>
+<p>What people say about a market and what is measured about it can disagree. When they do, you have two findings, not one: the fact, and the belief. Both matter, because customers act on the belief. Label each one as what it is, and do not use one to correct the other.</p>
+<h2>9. The finding is usually a gap</h2>
+<p>Put what customers say next to what companies promise, side by side. Where the complaints are loudest and the promises go quiet, that is the gap, and the gap is usually the thing worth money. Most research reports describe two piles. The work is holding them against each other.</p>
+<h2>10. Report what you did not find</h2>
+<p>Say what you looked for and could not establish, and what stayed at asserted. A report that only carries its confident findings reads better and is worth less. The person acting on your research needs to know where the floor is soft, and telling them is what makes the confident findings believable.</p></main></body></html>

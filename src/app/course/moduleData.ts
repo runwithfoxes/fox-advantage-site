@@ -1652,9 +1652,35 @@ export const MODULE_3: ModuleDef = {
          insurers; no trait points at any one company. Learners touch only the
          generated Kite corpus; the real calibration corpus lives in
          course-build/corpus-real-irish-home-insurance/. Phone interviewer stays in
-         module 6. */
+         module 6.
+
+         ⭐ BUILT 7 Aug 2026 (evening): the corpus is five files in
+         course-files/module-3/research/, counts gated by
+         scripts/check-research-corpus.mjs, quotes gated by check-sessions.mjs. The
+         recording is KITE_RESEARCH_SESSION. The planted finding mirrors the real
+         category's claims-time white space (research briefing 7 Aug): every number
+         Ardline publishes is about price; its claims page carries no number at all,
+         and the corpus gate asserts both halves of that contrast.
+
+         ⚠️ THE PROSE IS SAMPLE COPY awaiting Paul, modelled on items 01 and module 1
+         item 10. The four-doors toolkit (archives, licensed data, official
+         publications, your own browser; nothing grey) is HIS lesson to write; one
+         sentence stands in for it. */
       t: "Research",
-      text: "The CMO's next questions look outward. What do people actually ask when they buy home insurance? What do customers complain about? What does Ardline, Kite's biggest competitor, promise on its own pages? And where is the gap? We mine real sources, grade every finding, and the gap turns out to be the finding.",
+      docs: {
+        dir: "module-3/research",
+        folder: "research/",
+        files: [
+          "forum-threads",
+          "reviews",
+          "ardline-pages",
+          "search-questions",
+          "research-rules",
+        ],
+        as: "links",
+      },
+      text: "The CMO's next questions look outward. What do people actually ask when they buy home insurance? What do customers complain about, and where in the journey? What does Ardline, Kite's biggest competitor, promise on its own pages? And where is the gap between the complaints and the promises?\n\nAnswering these used to be a research agency's job, weeks of work and a bill to match. It is now desk work you can do in an afternoon, because the raw material is public: forum threads, reviews, the competitor's own pages, and the questions people type into search. In a real market you would gather it through legitimate doors, archives, licensed data services, official publications and your own browser. Kite's market is fictional, so we built its internet for you: the source files below were written for this course in the register of the real thing.\n\nThe analyst is the same one from module 1, with one more file: research-rules, ten rules that make desk research harder to fool. Watch it count before it characterises, grade every finding out loud, and say what should not travel as fact.\n\n{{SESSION_RESEARCH}}\n\nNow run it yourself. The files below are the four sources and the rules. Start a Claude Project, analyst-dna in the instructions, these in the files, and ask the CMO's four questions. See whether it finds the same gap. Then point the same method at your own market, with real sources this time.",
+      session: true,
       placeholder: true,
       grab: "The research run, four questions becoming graded findings",
     },
@@ -1693,6 +1719,47 @@ export const MODULE_3: ModuleDef = {
           what: "Ten rules for judging whether a group of customers is really a segment. Works for any brand, not just Kite.",
           href: "/api/course-file/module-3/data/segmentation-rules.html",
           take: "/api/course-file/module-3/data/segmentation-rules.md",
+        },
+      ],
+    },
+    {
+      /* The research corpus, 7 Aug 2026. TITLE, BLURB AND `what` ARE WORKING COPY,
+         awaiting Paul. Counts and the fiction border are gated by
+         scripts/check-research-corpus.mjs. */
+      title: "Kite's market, to research",
+      blurb:
+        "The raw material of desk research, generated for Kite's fictional market: forum threads, competitor reviews, Ardline's own pages, the questions people type into search, and the rules for reading them honestly.",
+      warn: "Kite does not exist, and neither does its internet. Every thread, review, page and search question in these files was written for this course, and the gap in them was planted on purpose. Nothing in them describes a real company or a real market.",
+      files: [
+        {
+          name: "forum-threads",
+          what: "Ten threads from a consumer forum: claims dragging on, renewal jumps, buying confusion, a renter walled out. Where the complaints live.",
+          href: "/api/course-file/module-3/research/forum-threads.html",
+          take: "/api/course-file/module-3/research/forum-threads.md",
+        },
+        {
+          name: "reviews",
+          what: "The 18 most recent reviews of each competitor on a review platform, with the invited flag per review. Read rule five before comparing the scores.",
+          href: "/api/course-file/module-3/research/reviews.html",
+          take: "/api/course-file/module-3/research/reviews.md",
+        },
+        {
+          name: "ardline-pages",
+          what: "Three pages from Ardline's website saved as text: home, home insurance and claims. What the biggest competitor promises, in its own words.",
+          href: "/api/course-file/module-3/research/ardline-pages.html",
+          take: "/api/course-file/module-3/research/ardline-pages.md",
+        },
+        {
+          name: "search-questions",
+          what: "36 questions people type into search about home insurance, grouped, with volume bands. What the market asks when nobody is watching.",
+          href: "/api/course-file/module-3/research/search-questions.html",
+          take: "/api/course-file/module-3/research/search-questions.md",
+        },
+        {
+          name: "research-rules",
+          what: "Ten rules that make desk research harder to fool, including the three evidence grades. Works for any market, not just Kite's.",
+          href: "/api/course-file/module-3/research/research-rules.html",
+          take: "/api/course-file/module-3/research/research-rules.md",
         },
       ],
     },
