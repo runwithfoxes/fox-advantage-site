@@ -42,17 +42,18 @@ Two groups can differ by a real few points on something. Ask what you would do d
 because of it. If the campaigns, the products and the budget would all stay the same, file
 it as a fact, not a segment.
 
-## 7. Check whether one difference is another difference in a costume
+## 7. Check whether one difference is really another difference
 
-A group can read as more valuable because it lives in bigger houses, and bigger houses
-carry bigger sums. Before crediting the group, hold the other thing still and look again.
-Most impressive differences decompose into an ordinary one.
+A group can look more valuable because it lives in bigger houses, and bigger houses carry
+bigger sums. Before giving the group credit for a difference, hold the other thing still
+and look again. Most impressive differences turn out to be an ordinary one wearing a
+different label.
 
 ## 8. Watch the axis before you believe a chart
 
-A chart that starts its axis at 60 makes a four-point gap look like a canyon. Redraw it
-from zero to one hundred and see whether the difference survives. This one habit deflates
-most segment decks.
+A chart that starts its axis at 60 makes a small gap look like a big one. Redraw it from
+zero to one hundred and see whether the difference survives. This one habit deflates most
+segment presentations.
 
 ## 9. Real segments are expensive to serve, so price that in
 
