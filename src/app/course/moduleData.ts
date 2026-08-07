@@ -1626,10 +1626,13 @@ export const MODULE_3: ModuleDef = {
     {
       /* The story: the CMO asks whether THE HOME WORKER should be a fourth segment
          (a question, not a proposal; nobody is wrong). The similarity check answers:
-         about 89% similar to customers Kite already serves. Kite's three segments are
-         never under the microscope. One analysis taught; the rest of the battery
-         appears as passing charts. Three-file kit for the learner, module 1 item 10
-         pattern. Opening paragraph drafted 7 Aug, awaiting Paul's prose pass. */
+         over 92% similar to customers Kite already serves (92.1 computed from
+         course-files/module-3/data/customers.csv, asserted by
+         build-kite-segment-data.py). Kite's three segments are never under the
+         microscope; behaviourally they separate hard (pairwise 28-39). One analysis
+         taught; the rest of the battery appears as passing charts. Three-file kit for
+         the learner, module 1 item 10 pattern. Opening paragraph drafted 7 Aug,
+         awaiting Paul's prose pass. */
       t: "Segmentation",
       text: "Kite's new CMO arrives with a question: should the home worker be our fourth segment? It sounds right, more time at home, the house working harder. It's a fair question, and it's a testable one. We run the check that answers it, and the same files are here for you to run it yourself.",
       placeholder: true,
