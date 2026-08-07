@@ -1,120 +1,69 @@
-/* ⭐ THE YARDSTICK CHART, module 3 item 01. The form is Paul's own similarity chart
-   from the ops estate (segmentation-rigour/src/01-similarity.html): horizontal bars,
-   label left, value right, a dashed benchmark line with an uppercase tag, the subject
-   bar in a darker colour, bars growing in. Two deliberate departures for this page:
-   labels are mono like the course's other charts, and the benchmark is ink rather
-   than orange (⛔ orange is the logo "Run" and nothing else on this site). */
+/* ⭐ THE YARDSTICK CHART, module 3 item 01. One SVG (see SimilarityScale.tsx for the
+   why); this file only stages the entrance. Story order, Paul's ask: the three
+   segment bars land first, a beat, then the home-worker bar runs long and crosses
+   the line as its tag fades in. Bars scale from their left edge (transform-box makes
+   the rect its own origin). Reduced motion renders everything finished. */
 
 .wrap {
   border: 1px solid #e0e0dc;
   background: #fff;
-  padding: 20px 22px 16px;
+  padding: 18px 20px 12px;
   margin: 18px 0;
-  position: relative;
 }
 
-.title {
-  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8a8a85;
-  margin-bottom: 16px;
+.wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 210px 1fr 44px;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
+.bar,
+.barSubject {
+  transform: scaleX(0);
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: ss-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.label {
-  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  font-size: 11px;
-  color: #1d1b1b;
-  text-align: right;
-}
-
-.track {
-  position: relative;
-  height: 18px;
-  background: #f4f4f1;
-}
-
-.bar {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0;
-  background: #3a7ca5;
-  animation: ss-grow 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.subject {
-  background: #1d1b1b;
+.barSubject {
+  animation-duration: 1.1s;
 }
 
 .val {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 15px;
-  color: #1d1b1b;
   opacity: 0;
   animation: ss-fade 0.4s ease forwards;
 }
 
-/* The zone and its line sit over the track column only. `--line` is the benchmark
-   as a fraction of the track width, set inline from the generated spec. */
-.zone {
-  position: absolute;
-  pointer-events: none;
-  background: rgba(58, 124, 165, 0.08);
-}
-
-.line {
-  position: absolute;
-  pointer-events: none;
-  border-left: 2px dashed #1d1b1b;
-  opacity: 0;
-  animation: ss-fade 0.5s ease forwards 1.4s;
-}
-
 .tag {
-  position: absolute;
-  top: -20px;
-  right: 6px;
-  white-space: nowrap;
-  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a85;
+  opacity: 0;
+  animation: ss-fade 0.6s ease forwards 2.2s;
 }
 
-.axis {
-  display: grid;
-  grid-template-columns: 210px 1fr 44px;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.axisTrack {
-  grid-column: 2;
-  display: flex;
-  justify-content: space-between;
-  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  font-size: 9px;
-  color: #8a8a85;
+.rule {
+  opacity: 0;
+  animation: ss-fade 0.6s ease forwards 0.9s;
 }
 
 @keyframes ss-grow {
   to {
-    width: var(--w);
+    transform: scaleX(1);
   }
 }
 
 @keyframes ss-fade {
   to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .barSubject,
+  .val,
+  .tag,
+  .rule {
+    animation: none;
+    transform: none;
     opacity: 1;
   }
 }
