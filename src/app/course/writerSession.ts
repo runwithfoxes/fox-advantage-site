@@ -642,11 +642,11 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
     blocks: [
       {
         kind: "p",
-        text: "Understood. A budget decision depends on this answer, so I will be careful with it. I will check the file first, then answer the question.",
+        text: "Understood. Money depends on this answer, so I will check the file before I answer.",
       },
       {
         kind: "flag",
-        text: "Before comparing anyone, I checked who is in the file. The works_from_home answer is only collected when someone asks for a quote. 635 of the 4,000 customers have no answer on file, and 86% of those are Payers, the customers who renew without ever asking for a new quote. So the comparison below uses the 3,365 customers we have an answer for. The differences it found are large, so this does not change the answer, but it should be said before the numbers.",
+        text: "One thing first. The file only knows who works from home when someone asks for a quote. 635 of the 4,000 customers have no answer, most of them Payers. So I compared the 3,365 we know about. It does not change the answer.",
       },
     ],
   },
@@ -672,21 +672,21 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
           },
         ],
         body: [
-          "Home workers are 40% of the customers we can measure, and they are spread evenly across the three segments: 41% of Payers work from home, 41% of Switchers, the customers who switch most years, and 40% of Jugglers, the households holding several policies at once. If home workers were their own group, they would be concentrated somewhere. They are not.",
-          "Home workers do look different as people, and a presentation could make that look like a segment. They are younger, and fewer of them live in apartments. But the question is decided by what people do at renewal, and there the two groups match. 44% of home workers renew automatically, and so do 44% of everyone else. 62% have switched insurer in the last three years, the same as everyone else. 37% collected three or more quotes at their last renewal, against 38%. 81% have never made a claim, against 82%.",
-          "Putting every measure together, home workers come out 92% similar to the rest of Kite's customers. On the scale you have already seen, that is past the line: the same people. So the file's answer to the CMO's question is no. Home workers are real, there are a lot of them, and they are already Kite customers, spread across the three segments in the usual way. A fourth playbook would have nothing different to do.",
+          "Home workers are 40% of the customers we can measure. They are spread evenly across all three segments, not gathered in any one place.",
+          "They look a bit different: younger, fewer of them in apartments. But they act the same. 44% renew automatically, the same as everyone else. 62% switched in the last three years, the same as everyone else. Nothing they do sets them apart.",
+          "Add it all up and home workers are 92% the same as the rest of Kite's customers. That is the last bar on the chart above. So the answer is no. Home workers are already Kite customers, and the three playbooks already reach them.",
         ],
       },
       {
         kind: "chart",
         chart: "home-worker-profile",
         caption:
-          "Each point shows what share of each group matches one measure. On the left, the two lines are apart: home workers are younger, and fewer of them live in apartments. From auto-renew onward, which is the behaviour, the two lines sit on top of each other.",
+          "The left of the chart is what home workers look like, and the two lines are apart. The right is what they do at renewal, and the lines sit on top of each other. They look different. They act the same.",
       },
       {
         kind: "audit",
         label: "Claims ledger.",
-        text: "Every number above is calculated from customers.csv, using the 3,365 customers whose works_from_home answer is on file. The 92% figure is the average similarity of the two groups' shares across every measure in the file. The differences in age and housing are reported, not hidden. They are real, and they do not show up in behaviour.",
+        text: "Every number here comes from the customer file. The age and housing differences are real. They just do not show up in what people do.",
       },
     ],
   },
@@ -696,7 +696,7 @@ export const KITE_SEGMENT_SESSION: Turn[] = [
     blocks: [
       {
         kind: "p",
-        text: "Tell the CMO it was a good question, and it now has a tested answer. Home workers are 40% of Kite's customers, and the three playbooks that exist already serve them. If Kite wants to talk about working from home, it can do that inside the playbooks it has. I can put this on one page for the CMO, with the chart and the numbers behind it.",
+        text: "Tell the CMO it was a good question and now it has a tested answer. If Kite wants to talk to home workers, it can do that inside the playbooks it has. I can put this on one page for the CMO.",
       },
     ],
   },
