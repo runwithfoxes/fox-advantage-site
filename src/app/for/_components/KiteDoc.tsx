@@ -226,10 +226,11 @@ export default function KiteDoc() {
       </PPSection>
 
       <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
+        <FourThingsFigure />
         {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN REWRITE COMING. His words on 8 Aug:
             "I'll change it, but that's a good placeholder." Ported verbatim
             from the story terminal's 3008 section. Do not polish. */}
-        <p className="pps-standfirst">
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           We do four things, and they run from easiest to hardest: we train
           marketing teams to use AI properly, we build AI capabilities and
           hand them over, we run adoption so the whole team moves rather than
@@ -239,9 +240,6 @@ export default function KiteDoc() {
           only in what we heard, because one call doesn&rsquo;t make us
           experts in how Kite runs, and we won&rsquo;t pretend otherwise.
         </p>
-        <div style={{ marginTop: 26 }}>
-          <FourThingsFigure />
-        </div>
       </PPSection>
 
       <PPSection id="workflows" k="03" title="Redesigning how teams work">
