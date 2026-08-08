@@ -15,7 +15,7 @@
 // we heard". Every demonstration is ours, generic, and labelled as a
 // demonstration. Nothing pretends to know Kite's insides.
 
-import ProspectShell, { PPSection } from "./ProspectShell";
+import ProspectShell, { PPSection, PPPart } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
@@ -290,6 +290,8 @@ export default function KiteDoc() {
           scrolled top to bottom.
         </p>
       </PPSection>
+
+      <PPPart title="building agents" />
 
       <PPSection id="writer" k="05" title="An AI Writer">
         <p className="pps-standfirst">
