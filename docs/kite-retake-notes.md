@@ -44,3 +44,7 @@
 - A credibility strip (client names) in the rail near the bio.
 - The arrival dive as a section transition once client-world photography
   exists.
+- The two-pack flip for the writer (3008's device, 8 Aug late): one brief,
+  two brand packs, flip and the same email rewrites in the other voice,
+  pack files named underneath. A stronger proof that the pack drives the
+  writing than a single sourced email.
