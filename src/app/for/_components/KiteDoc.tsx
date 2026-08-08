@@ -194,31 +194,15 @@ const RAIL_GROUPS = [
   {
     label: "/what we do",
     entries: [
-      {
-        id: "training",
-        title: "Training",
-        desc: "We train marketing teams to use AI properly, on their real work.",
-        num: "01",
-      },
+      { id: "training", title: "Training teams", num: "01" },
       {
         id: "writer",
-        title: "Capabilities",
-        desc: "We build AI machines, writers, ad makers, research and outreach agents, configured to a brand and handed over.",
+        title: "Building agents",
         num: "02",
         ids: ["writer", "admachine", "guardian", "system"],
       },
-      {
-        id: "adoption",
-        title: "Adoption",
-        desc: "We measure where each person is, move the whole team up the scale, and show the return.",
-        num: "03",
-      },
-      {
-        id: "workflows",
-        title: "Workflows",
-        desc: "We redesign how marketing teams get their work done.",
-        num: "04",
-      },
+      { id: "adoption", title: "Designing team AI adoption", num: "03" },
+      { id: "workflows", title: "Redesigning how teams work", num: "04" },
     ],
   },
   {
@@ -245,11 +229,7 @@ export default function KiteDoc() {
       ]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
-      bio={{
-        photo: "/Paul_photo.jpg",
-        name: "/Paul Dervan",
-        line: "Twenty years leading marketing at O2, the National Lottery and Indeed. Now building AI marketing teams, for global software companies and owner-run firms.",
-      }}
+      bio={{ photo: "/Paul_photo.jpg", href: "/#about", label: "/about" }}
       railLinks={[
         { label: "The Fox Advantage, the book", href: "/book", meta: "free" },
         { label: "AI fluency course, module one", href: "/course", meta: "free" },

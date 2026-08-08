@@ -214,31 +214,24 @@
 }
 .pps-bio {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  border-top: 1px solid var(--pps-border);
-  padding-top: 14px;
+  flex-direction: column;
+  gap: 10px;
 }
 .pps-bio-photo {
-  width: 64px;
-  height: 64px;
+  width: 132px;
+  height: 132px;
   object-fit: cover;
   object-position: top;
   display: block;
-  flex: none;
 }
-.pps-bio-name {
+.pps-bio-about {
   font-family: var(--pps-mono);
   font-size: 0.75rem;
-  color: var(--pps-text);
-  margin: 0 0 6px;
+  color: var(--pps-sky);
+  text-decoration: none;
 }
-.pps-bio-line {
-  font-family: var(--pps-mono);
-  font-size: 0.6875rem;
-  line-height: 1.55;
-  color: var(--pps-muted);
-  margin: 0;
+.pps-bio-about:hover {
+  color: var(--pps-deep);
 }
 .pps-raillinks {
   font-family: var(--pps-mono);

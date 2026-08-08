@@ -59,7 +59,9 @@ export default function ProspectShell({
    *  listed there even if the rail shows it inside a group. */
   railGroups?: RailGroup[];
   railNote?: string;
-  bio?: { photo: string; name: string; line: string };
+  /** The photo above the rail with a bare /about link, no bio text in the
+   *  rail (Paul, 8 Aug: "it is getting too busy"). */
+  bio?: { photo: string; href: string; label?: string };
   railLinks?: RailLink[];
   children: React.ReactNode;
 }) {
@@ -131,6 +133,15 @@ export default function ProspectShell({
         <div className="pps-grid">
           <div className="pps-railcol">
             {railNote && <p className="pps-railnote">{railNote}</p>}
+            {bio && (
+              <div className="pps-bio">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={bio.photo} alt="Paul Dervan" className="pps-bio-photo" />
+                <a className="pps-bio-about" href={bio.href}>
+                  {bio.label ?? "/about"}
+                </a>
+              </div>
+            )}
             <nav className="pps-rail">
               {railGroups ? (
                 railGroups.map((g) =>
@@ -190,16 +201,6 @@ export default function ProspectShell({
                 </>
               )}
             </nav>
-            {bio && (
-              <div className="pps-bio">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={bio.photo} alt={bio.name} className="pps-bio-photo" />
-                <div>
-                  <p className="pps-bio-name">{bio.name}</p>
-                  <p className="pps-bio-line">{bio.line}</p>
-                </div>
-              </div>
-            )}
             {railLinks && railLinks.length > 0 && (
               <div className="pps-raillinks">
                 <p>/free to take</p>
