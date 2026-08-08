@@ -20,6 +20,8 @@ import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
+import { Figure } from "./library/Figure";
+import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkflowDays from "./library/WorkflowDays";
 import FluencyMap from "./library/FluencyMap";
@@ -35,34 +37,57 @@ import "./library/four-things.css";
 // have to stay consistent with each other.
 const PACK_DOCS: FolderDoc[] = [
   {
-    file: "positioning.md",
+    file: "positioning-statement.md",
     label: "Positioning",
     body: [
-      "The insurer brokers can reach: the one that answers the phone, quotes the same day, and never surprises a client at renewal.",
-      "Every piece of outbound copy traces to one of the three proof points, or it does not go out.",
+      "For people who dread the renewal letter, Kite is the car and home insurance that renews itself, because it shops around for you every year and saves EUR 187 on average.",
+      "Feeds on the audience, competitors and proof files. Everything downstream traces back to it.",
     ],
   },
   {
     file: "audience.md",
-    label: "Audience",
+    label: "Audience and insights",
     body: [
-      "Three groups, treated differently: the brokers who place business today, the ones who used to, and the ones who never have.",
-      "Lapsed brokers behave closer to cold than to warm, so they get the acquisition treatment, not a loyalty message.",
+      "People who dread the renewal letter and would pay a fair price never to think about it again.",
+      "Not the ones who enjoy the haggle. The ones who leave the envelope on the counter for a fortnight and feel slightly worse every time they walk past it.",
     ],
   },
   {
-    file: "messages.md",
+    file: "proof.md",
+    label: "Proof points",
+    body: [
+      "Average saving the first time we shop around for you: EUR 187, all policies renewed in 2025.",
+      "Each number carries its source, because a number without one is not proof.",
+    ],
+  },
+  {
+    file: "messaging-framework.md",
     label: "Messages",
     body: [
-      "Written once, used by everything: the outbound, the website, the renewal emails. When a message changes here, it changes everywhere.",
-      "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
+      "Insurance that renews itself, and shops around for you before it does.",
+      "Written once, used by everything. Nothing here may contradict the positioning statement.",
     ],
   },
   {
     file: "tone-of-voice.md",
     label: "Tone of voice",
     body: [
-      "Plain, direct, no jargon. If you would not say the sentence on the phone, it does not go in writing.",
+      "First person, always. Dry, weary, disbelieving: the sound of the only sane person in the room.",
+      "The file the writer reaches for most often, so it lives on its own.",
+    ],
+  },
+  {
+    file: "writer-dna.md",
+    label: "Working instructions",
+    body: [
+      "How the writer works with the team: what it reads before writing, how it plans, and the rule that every piece closes with a claims ledger and a source map.",
+    ],
+  },
+  {
+    file: "format-email.md",
+    label: "Email craft",
+    body: [
+      "The email frameworks. The writer names which one it is using before it writes, and scores the finished email against it afterwards.",
     ],
   },
 ];
@@ -107,50 +132,6 @@ const TRAINING_SESSION: Turn[] = [
   },
 ];
 
-// The writer, shown properly: the writing itself, with the source map. Every
-// ref quote below is verbatim from PACK_DOCS above, which is the point: hover
-// a dotted line and see the brand pack producing the sentence.
-const WRITER_SESSION: Turn[] = [
-  {
-    who: "you",
-    text: "Draft the renewal email for brokers whose clients renew in June.",
-  },
-  {
-    who: "writer",
-    blocks: [
-      {
-        kind: "email",
-        subject: "June renewals: quotes back same day",
-        subjectRef: {
-          file: "messages.md",
-          quote: "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
-        },
-        body: [
-          "Your June renewals are listed below, with last year's terms beside each one.",
-          "Send the schedule over and the quotes come back the same day, no re-keying.",
-          "No surprises at renewal: if a premium is moving, you hear it from us first, with the reason.",
-        ],
-        refs: [
-          null,
-          {
-            file: "messages.md",
-            quote: "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
-          },
-          {
-            file: "positioning.md",
-            quote: "The insurer brokers can reach: the one that answers the phone, quotes the same day, and never surprises a client at renewal.",
-          },
-        ],
-        sign: ["The broker desk"],
-      },
-      {
-        kind: "flag",
-        text: "This list mixes current and lapsed brokers. The audience file says lapsed brokers get the acquisition treatment, so I split them out and drafted theirs separately.",
-      },
-    ],
-  },
-];
-
 const FOUR_THINGS: { name: string; line: string; href: string }[] = [
   {
     name: "Training",
@@ -177,7 +158,7 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
   { id: "training", title: "Training, shown" },
-  { id: "writer", title: "The writer, in your voice" },
+  { id: "writer", title: "An AI Writer" },
   { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
   { id: "system", title: "The system, linked" },
@@ -274,27 +255,53 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="writer" k="03" title="The writer, in your voice">
+      <PPSection id="writer" k="03" title="An AI Writer">
         <p className="pps-standfirst">
-          Judge the writer on the writing. It reads the brand pack before it
-          writes a word, and every sentence it produces can show its source:
-          the dotted lines in the draft below map back to the files. This is
-          how the volume goes up without the voice drifting.
+          I read a lot about how AI writes slop. It does. But it doesn&rsquo;t
+          have to. If you spend time up front. Writers need to know your
+          brand&rsquo;s positioning, your target audience, insights or pain
+          points related to your category. They need to know your
+          brand&rsquo;s messaging, and your tone of voice. On top of that, we
+          need to articulate instructions on how we want the writer to
+          interact with us or our colleagues.
         </p>
         <div style={{ marginTop: 26 }}>
-          <FolderWindow name="brand-pack/" files={PACK_DOCS} />
+          <Figure name="fig-12" />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          That knowledge is a small folder of documents. This is the whole
+          thing, worked through here on Kite, a fictional insurance brand.
+          Open the files.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <FolderWindow name="kite/" files={PACK_DOCS} />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Now judge the writer on the writing. Both sessions below are real
+          runs: the writer read those files and followed them, and the dotted
+          lines in the finished pieces map every claim back to its source.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <ChatWindow
+            session={KITE_SESSION}
+            start="Watch the writer draft Kite's renewal email: the plan, the email, then its own audit, claims ledger and sources."
+            title="the writer"
+            preview
+          />
         </div>
         <div style={{ marginTop: 30 }}>
           <ChatWindow
-            session={WRITER_SESSION}
-            start="Watch the writer draft a renewal email from the brand pack, sources shown."
+            session={KITE_POST_SESSION}
+            start="A second brief, a LinkedIn post. Watch it refuse to invent what the pack does not have."
             title="the writer"
+            preview
           />
         </div>
         <p className="ppft-honest">
-          <span className="ppft-slash">/a demonstration pack,</span> not
-          Kite&rsquo;s. Yours gets written with your team in the first two
-          weeks, from documents you already have.
+          <span className="ppft-slash">/Kite is fictional, the runs are real.</span>{" "}
+          The writer read the pack and wrote what you watched. Kite&rsquo;s
+          real version gets built from documents you already have, and these
+          recordings get remade with your brand before this page ships.
         </p>
       </PPSection>
 
