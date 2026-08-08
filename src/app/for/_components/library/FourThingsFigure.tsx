@@ -46,10 +46,10 @@ const CSS = `
 
 // Lower row: 150x46 cards (bp-02 bottom-row anatomy), y=170
 const THINGS = [
-  { x: 16, name: "Training", lbl: "teams", icon: "book" },
-  { x: 196, name: "Building", lbl: "agents", icon: "chev" },
-  { x: 376, name: "Designing", lbl: "AI adoption", icon: "steps" },
-  { x: 556, name: "Redesigning", lbl: "workflows", icon: "loop" },
+  { x: 16, name: "Redesigning", lbl: "workflows", icon: "loop" },
+  { x: 196, name: "Training", lbl: "teams", icon: "book" },
+  { x: 376, name: "Building", lbl: "agents", icon: "chev" },
+  { x: 556, name: "Designing", lbl: "AI adoption", icon: "steps" },
 ];
 
 // Separate ports along the top card's bottom edge (card spans 265..455)
@@ -106,7 +106,7 @@ export default function FourThingsFigure() {
       <svg
         viewBox="0 0 720 240"
         role="img"
-        aria-label="One card on top, Redesigning how teams work, joined by dashed lines to four cards below: Training teams, Building agents, Designing AI adoption, Redesigning workflows"
+        aria-label="One card on top, Redesigning how teams work, joined by dashed lines to four cards below: Redesigning workflows, Training teams, Building agents, Designing AI adoption"
       >
         <defs>
           <filter id="ppfoursh" x="-14%" y="-14%" width="128%" height="140%">

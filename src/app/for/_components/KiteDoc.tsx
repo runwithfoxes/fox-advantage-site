@@ -159,7 +159,7 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
   { id: "whatwedo", title: "What Run with Foxes does" },
-  { id: "workflows", title: "Redesigning how teams work" },
+  { id: "workflows", title: "Redesigning workflows" },
   { id: "training", title: "Training teams" },
   { id: "writer", title: "An AI Writer" },
   { id: "admachine", title: "Creative Director" },
@@ -177,7 +177,7 @@ const RAIL_GROUPS = [
   {
     label: "/what we do",
     entries: [
-      { id: "workflows", title: "Redesigning how teams work", num: "01" },
+      { id: "workflows", title: "Redesigning workflows", num: "01" },
       { id: "training", title: "Training teams", num: "02" },
       {
         id: "writer",
@@ -242,7 +242,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="workflows" k="03" title="Redesigning how teams work">
+      <PPSection id="workflows" k="03" title="Redesigning workflows">
         <ArrivalBlueprint />
         {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN WORDS COMING. He asked for copy of
             about this length under the blueprint; this text holds the slot. */}
