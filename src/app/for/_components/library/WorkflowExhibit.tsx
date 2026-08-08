@@ -46,15 +46,18 @@ export default function WorkflowExhibit({
   after: WorkflowStep[];
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [stage, setStage] = useState(0);
+  // The finished exhibit is the DEFAULT state: with no JS, no scroll, or in a
+  // full-page capture, everything is visible. The staged play only arms when
+  // the element is genuinely below the fold at mount, so animation is an
+  // addition on top, never a condition for seeing the content.
+  const [stage, setStage] = useState(3);
 
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setStage(3);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    setStage(0);
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
