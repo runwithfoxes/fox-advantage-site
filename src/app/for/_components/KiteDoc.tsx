@@ -16,7 +16,6 @@
 // prompts; the masthead stays typographic until then.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
-import ProspectHero from "./ProspectHero";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import {
@@ -29,8 +28,8 @@ import {
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
 import WorkflowExhibit from "./library/WorkflowExhibit";
+import WriterSwitch from "./library/WriterSwitch";
 import RateSlider from "./library/RateSlider";
-import { Figure } from "./library/Figure";
 import type { Turn } from "./library/chatTypes";
 
 // Invented content throughout: Kite is fictional and so is everything below.
@@ -143,14 +142,7 @@ const SECTIONS = [
 
 export default function KiteDoc() {
   return (
-    <>
-      <ProspectHero
-        kicker="Prepared for Sarah Nolan, Kite Insurance"
-        headline="Work on Kite started Wednesday morning"
-        sub="Research, outreach and a running campaign, made for Kite since our call. Drag any window."
-        instruction="you said: every campaign queues behind the same few hands"
-      />
-      <ProspectShell
+    <ProspectShell
       clientName="Kite Insurance"
       eyebrow="Prepared for Sarah Nolan, Kite Insurance"
       title="Bring AI properly into Kite's marketing team"
@@ -213,14 +205,16 @@ export default function KiteDoc() {
           <FolderWindow name="brand-pack/" files={KITE_DOCS} />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 34 }}>
-          Four documents a team already owns become one writer. That&rsquo;s
-          the figure below, and the windows after it are working products: a
-          campaign running end to end, outreach conversations, the research
-          brief before a call, and the one-line instruction that starts it all.
+          Here is what reading them means. One brief, and the same writer with
+          two different packs in front of it. Flip between them.
         </p>
         <div style={{ marginTop: 26 }}>
-          <Figure name="fig-12" />
+          <WriterSwitch />
         </div>
+        <p className="pps-standfirst" style={{ marginTop: 34 }}>
+          The windows below are more of the machines: a campaign running end
+          to end, outreach conversations, and the research brief before a call.
+        </p>
         <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}>
           <CampaignWindow
             title="Campaign Agent"
@@ -463,6 +457,5 @@ export default function KiteDoc() {
         />
       </PPSection>
     </ProspectShell>
-    </>
   );
 }
