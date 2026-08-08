@@ -250,8 +250,7 @@ export default function KiteDoc() {
         <p className="pps-standfirst">
           Usage being uneven is normal: a few people run with the tools, most
           open them once. Training fixes that with a course built for
-          marketers, and with working sessions run on the team&rsquo;s real
-          work. This is the course&rsquo;s first module, the real page,
+          marketers. This is the course&rsquo;s first module, the real page,
           scrolled top to bottom.
         </p>
         <div style={{ marginTop: 26 }}>
@@ -277,17 +276,6 @@ export default function KiteDoc() {
               </div>
             </div>
           </ScaledWindow>
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          And the sessions run on real work, in the shape below: a real
-          question, and the habit of checking the data before answering.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <ChatWindow
-            session={TRAINING_SESSION}
-            start="Watch a working session: an analyst reads a quarter of campaign emails and flags what to change first."
-            title="a working session"
-          />
         </div>
       </PPSection>
 
