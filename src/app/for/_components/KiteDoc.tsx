@@ -1,9 +1,15 @@
 "use client";
 
 // The test page for the prospect-page system. Kite Insurance is fictional by
-// design (it is the course's worked example), so this page can carry every
-// component at full fidelity and nothing on it is a real client's data.
-// Build order: each new component gets proven here first.
+// design (it is the course's worked example), so nothing on it is a real
+// client's data.
+//
+// Since 8 Aug this page carries ONE buyer arc, not every component: it is the
+// large-marketing-organisation arc from ~/paul-hub/methodology/buyer-map.md
+// (what we heard -> what's possible -> what we do -> what we'd do for you ->
+// proof -> price -> library). The full component pile stays on
+// /for-library-test. Every exhibit here must prove a claim in this arc;
+// a component with no claim does not belong on this page.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
@@ -16,8 +22,8 @@ import {
   type OutreachThread,
 } from "./library/AgentWindows";
 import LibraryList from "./LibraryList";
-import WebsiteExhibit from "./WebsiteExhibit";
 import ChatWindow from "./library/ChatWindow";
+import { Figure } from "./library/Figure";
 import type { Turn } from "./library/chatTypes";
 
 // Invented content throughout: Kite is fictional and so is everything below.
@@ -117,11 +123,12 @@ const KITE_SESSION: Turn[] = [
 ];
 
 const SECTIONS = [
-  { id: "recommend", title: "What I'd recommend" },
+  { id: "heard", title: "What we heard" },
+  { id: "possible", title: "What's possible now" },
+  { id: "whatwedo", title: "What Run with Foxes does" },
+  { id: "plan", title: "What we'd do at Kite" },
+  { id: "proof", title: "The machines, working" },
   { id: "pricing", title: "The price" },
-  { id: "agents", title: "The agents, working" },
-  { id: "website", title: "Your website, rebuilt" },
-  { id: "adoption", title: "AI adoption at Kite" },
   { id: "library", title: "Your library" },
 ];
 
@@ -130,73 +137,91 @@ export default function KiteDoc() {
     <ProspectShell
       clientName="Kite Insurance"
       eyebrow="Prepared for Sarah Nolan, Kite Insurance"
-      title="Build the Kite marketing team you never had"
+      title="Bring AI properly into Kite's marketing team"
       titleHl="Kite"
       standfirst={[
-        "This page holds the proposal from our conversation on Tuesday, a working demonstration of each agent configured for Kite, and a small library of material chosen for where Kite is right now. It stays live, and anything we add lands here.",
+        "This page holds the proposal from our conversation on Tuesday, a working demonstration of what we would build for Kite, and a small library of material chosen for where Kite is right now. It stays live, and anything we add lands here.",
       ]}
       sections={SECTIONS}
     >
-      <PPSection id="recommend" k="01" title="What I'd recommend">
+      <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
-          The work starts with the brand pack: the small set of documents that
-          every agent, every email and the website read from. This is the
-          folder as your team would see it. Open the files.
+          Talking to you on Tuesday, three things stood out. Kite&rsquo;s
+          marketing team is fourteen people across three lines of business, and
+          the work is good, but every campaign queues behind the same few hands
+          and the agency roster. The team got AI tools last year and usage is
+          uneven: a few people use them every day, most opened them once. And
+          keeping one voice across everything Kite ships is getting harder as
+          the volume goes up. Your question at the end was the important one:
+          does AI change how the team itself should work, and not just how fast
+          the documents get written.
+        </p>
+      </PPSection>
+
+      <PPSection id="possible" k="02" title="What's possible now">
+        <p className="pps-standfirst">
+          The usual way to bring AI into a marketing team treats it as a faster
+          typist: the same people, the same queues, slightly quicker drafts.
+          What changes things is combining the fundamentals Kite already owns
+          with machines that read them. Your positioning, your messages and
+          your tone of voice stop being documents nobody opens and become the
+          working input to everything the team makes. The figure below shows
+          the claim: four brand assets Kite already has, combined into one
+          writer that produces work in Kite&rsquo;s voice.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <Figure name="fig-12" />
+        </div>
+      </PPSection>
+
+      <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
+        <p className="pps-standfirst">
+          We do four things, and most engagements use two or three of them. We
+          train marketing teams to use AI properly. We build AI capabilities,
+          such as writers, ad machines and research agents, configured to a
+          brand and handed over. We redesign how marketing work gets done,
+          workflow by workflow. And we run adoption: measuring where each
+          person is, moving the whole team up the scale, and showing the
+          return. For a team like Kite&rsquo;s, the sections below show which
+          of the four we would use and what each looks like in practice.
+        </p>
+      </PPSection>
+
+      <PPSection id="plan" k="04" title="What we'd do at Kite">
+        <p className="pps-standfirst">
+          Kite does not need more tools. The work starts with a fluency map of
+          the fourteen people on the team, so training is aimed at where each
+          person actually is rather than run as one workshop for everyone.
+          Alongside it we build the brand pack: the small set of documents that
+          every machine, and every person, reads from. This is what holds three
+          brands consistent while the volume goes up. It is the folder below,
+          as your team would see it. Open the files.
         </p>
         <div style={{ marginTop: 26 }}>
           <FolderWindow name="kite-brand-pack/" files={KITE_DOCS} />
         </div>
+        <p className="pps-standfirst" style={{ marginTop: 34 }}>
+          The training itself runs on Kite&rsquo;s real work, in sessions like
+          the one recorded below: a real question about last quarter&rsquo;s
+          renewal emails, and the habit of checking the data before answering.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <ChatWindow
+            session={KITE_SESSION}
+            start="Watch a working session: an analyst reads a quarter of renewal emails and flags what to change first."
+            title="an analyst"
+          />
+        </div>
       </PPSection>
 
-      <PPSection id="pricing" k="02" title="The price">
-        <PricingCards
-          cards={[
-            {
-              label: "Option A",
-              title: "A first piece that earns its keep",
-              bullets: [
-                "The outbound agent, configured for Kite's broker list",
-                "The writer, calibrated to Kite's voice",
-                "Your team trained to run both",
-              ],
-              price: "EUR 9,500 plus VAT",
-              note: "Three weeks. Tool subscriptions are Kite's own.",
-            },
-            {
-              label: "Option B",
-              title: "The whole system",
-              bullets: [
-                "Everything in Option A",
-                "The website rebuilt and live",
-                "Campaign manager across every channel",
-                "Monthly working sessions with the team",
-              ],
-              price: "EUR 4,500 a month, six months",
-              note: "Plus VAT. Tool subscriptions are Kite's own.",
-              featured: true,
-            },
-          ]}
-        />
-        <CoversGrid
-          covers={[
-            "All build and configuration work",
-            "Training sessions with the marketing team",
-            "A named point of contact, Paul",
-          ]}
-          notCovered={[
-            "Kite's own tool subscriptions (Claude, hosting, email platform)",
-            "Media spend",
-          ]}
-        />
-        <CloseBox clientName="Kite Insurance" />
-      </PPSection>
-
-      <PPSection id="agents" k="03" title="The agents, working">
+      <PPSection id="proof" k="05" title="The machines, working">
         <p className="pps-standfirst">
-          These are not mock-ups of what the software might look like. Each
-          window below is the product working on Kite&rsquo;s business: the
-          campaign running end to end, the outreach conversations, the research
-          brief before a call, and the one-line instruction that starts it all.
+          Each window below is a working product configured for Kite&rsquo;s
+          business: a campaign running end to end, the outreach conversations
+          it produced, the research brief before a call, and the one-line
+          instruction that starts it all. Every message they send reads from
+          the brand pack in section 04, which is how the volume goes up without
+          the voice drifting.
         </p>
         <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}>
           <CampaignWindow
@@ -251,45 +276,50 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="website" k="04" title="Your website, rebuilt">
-        <p className="pps-standfirst">
-          When a proposal includes a website, this frame holds the client&rsquo;s
-          own site rebuilt, scrollable, live. On this test page it shows our own
-          site standing in, because Kite is fictional and has no site to rebuild.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <WebsiteExhibit
-            url="kiteinsurance.ie"
-            src="/distinctive"
-            caption="Sample frame. A real exhibit holds the client's rebuilt homepage, produced in minutes with no brief, and says so plainly: a real project involves a proper brief, the right photography, agreed navigation and written content."
-            issues={{
-              title: "Issues we found while building it",
-              items: [
-                "Sample slot. Only real, verified findings go here, checked with curl before they are written down.",
+      <PPSection id="pricing" k="06" title="The price">
+        <PricingCards
+          cards={[
+            {
+              label: "Option A",
+              title: "The fluency map and a first capability",
+              bullets: [
+                "AI fluency mapping across the marketing team",
+                "The writer, calibrated to Kite's voice and brand pack",
+                "Two training sessions run on Kite's real work",
               ],
-            }}
-            uses={["Claude Code", "Vercel hosting"]}
-            feeds={["The outbound agent's landing pages", "Renewal email links"]}
-          />
-        </div>
+              price: "EUR 12,500 plus VAT",
+              note: "Four weeks. Tool subscriptions are Kite's own.",
+            },
+            {
+              label: "Option B",
+              title: "The adoption programme",
+              bullets: [
+                "Everything in Option A",
+                "Monthly training and working sessions with the team",
+                "Workflows redesigned one at a time, with the people who run them",
+                "Usage, output and quality measured and reported each month",
+              ],
+              price: "EUR 5,500 a month, six months",
+              note: "Plus VAT. Tool subscriptions are Kite's own.",
+              featured: true,
+            },
+          ]}
+        />
+        <CoversGrid
+          covers={[
+            "All build and configuration work",
+            "Training sessions with the marketing team",
+            "A named point of contact, Paul",
+          ]}
+          notCovered={[
+            "Kite's own tool subscriptions (Claude, hosting, email platform)",
+            "Media spend",
+          ]}
+        />
+        <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="adoption" k="05" title="AI adoption at Kite">
-        <p className="pps-standfirst">
-          Adoption is trained, not installed. This is a recorded working
-          session of the kind your team runs in week one: real questions, and
-          the habit of checking the data before answering.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <ChatWindow
-            session={KITE_SESSION}
-            start="Watch a working session: an analyst reads a quarter of renewal emails and flags what to change first."
-            title="an analyst"
-          />
-        </div>
-      </PPSection>
-
-      <PPSection id="library" k="06" title="Your library">
+      <PPSection id="library" k="07" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
@@ -316,8 +346,8 @@ export default function KiteDoc() {
             },
             {
               label: "Kite brand pack, working copy",
-              note: "The folder from section 01, as living documents your team can read.",
-              href: "#recommend",
+              note: "The folder from section 04, as living documents your team can read.",
+              href: "#plan",
               kind: "folder",
               meta: "4 files",
             },
