@@ -20,7 +20,7 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
  * page is that every pixel on it comes from SoftCo's brand system; Isa arrives
  * in Run with Foxes' own chrome and colours, which breaks the demonstration.
  */
-const NO_CHAT_ROUTES = ["/course", "/softco"];
+const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();
