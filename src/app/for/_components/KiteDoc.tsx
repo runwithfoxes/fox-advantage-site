@@ -15,12 +15,14 @@
 // we heard". Every demonstration is ours, generic, and labelled as a
 // demonstration. Nothing pretends to know Kite's insides.
 
-import ProspectShell, { PPSection, PPPart } from "./ProspectShell";
+import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
 import { Figure } from "./library/Figure";
+import FourThingsFigure from "./library/FourThingsFigure";
+import { ScaledWindow } from "./library/AgentWindows";
 import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
@@ -156,8 +158,9 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
 
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
+  { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "workflows", title: "Redesigning how teams work" },
-  { id: "training", title: "Training, shown" },
+  { id: "training", title: "Training teams" },
   { id: "writer", title: "An AI Writer" },
   { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
@@ -222,17 +225,64 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPPart title="what we do" />
+      <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
+        {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN REWRITE COMING. His words on 8 Aug:
+            "I'll change it, but that's a good placeholder." Ported verbatim
+            from the story terminal's 3008 section. Do not polish. */}
+        <p className="pps-standfirst">
+          We do four things, and they run from easiest to hardest: we train
+          marketing teams to use AI properly, we build AI capabilities and
+          hand them over, we run adoption so the whole team moves rather than
+          a keen few, and we redesign how marketing work gets done. Each one
+          is shown below rather than described. Everything you&rsquo;ll see is
+          our own work on general marketing problems: your situation appears
+          only in what we heard, because one call doesn&rsquo;t make us
+          experts in how Kite runs, and we won&rsquo;t pretend otherwise.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <FourThingsFigure />
+        </div>
+      </PPSection>
 
-      <PPSection id="workflows" k="02" title="Redesigning how teams work">
+      <PPSection id="workflows" k="03" title="Redesigning how teams work">
         <ArrivalBlueprint />
       </PPSection>
 
-      <PPSection id="training" k="03" title="Training, shown">
+      <PPSection id="training" k="04" title="Training teams">
         <p className="pps-standfirst">
-          Training runs on the team&rsquo;s real work, not slideware. The
-          session below is the shape of it: a real question, and the habit of
-          checking the data before answering.
+          Usage being uneven is normal: a few people run with the tools, most
+          open them once. Training fixes that with a course built for
+          marketers, and with working sessions run on the team&rsquo;s real
+          work. This is the course&rsquo;s first module, the real page,
+          scrolled top to bottom.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <ScaledWindow width={940}>
+            <div className="ppw-blueprint">
+              <div className="ppw-frame-win">
+                <div className="ppw-tl">
+                  <i />
+                  <i />
+                  <i />
+                  <span className="ppw-t">the course, module one</span>
+                  <span className="ppw-live-pill">free, live now</span>
+                </div>
+                <video
+                  src="/for/training/course-module-1-scroll-web.mp4"
+                  poster="/for/training/course-module-1-scroll-poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ display: "block", width: "100%", height: "auto" }}
+                />
+              </div>
+            </div>
+          </ScaledWindow>
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          And the sessions run on real work, in the shape below: a real
+          question, and the habit of checking the data before answering.
         </p>
         <div style={{ marginTop: 26 }}>
           <ChatWindow
@@ -243,7 +293,7 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="writer" k="04" title="An AI Writer">
+      <PPSection id="writer" k="05" title="An AI Writer">
         <p className="pps-standfirst">
           I read a lot about how AI writes slop. It does. But it doesn&rsquo;t
           have to. If you spend time up front. Writers need to know your
@@ -293,7 +343,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="admachine" k="05" title="Creative Director">
+      <PPSection id="admachine" k="06" title="Creative Director">
         <p className="pps-standfirst">
           The same discipline, pointed at advertising. The team approves one
           master ad; the machine makes every other size, holding the brand
@@ -302,7 +352,7 @@ export default function KiteDoc() {
         <AdMachine />
       </PPSection>
 
-      <PPSection id="guardian" k="06" title="The brand guardian">
+      <PPSection id="guardian" k="07" title="The brand guardian">
         <p className="pps-standfirst">
           Volume without drift needs a guard as well as a pack. This is the
           machine that checks every file against the brand book before it
@@ -311,7 +361,7 @@ export default function KiteDoc() {
         <BrandGuardian />
       </PPSection>
 
-      <PPSection id="system" k="07" title="The system, linked">
+      <PPSection id="system" k="08" title="The system, linked">
         <p className="pps-standfirst">
           The machines are not a drawer of separate tools. For teams whose
           website matters, they run as one system: outbound fills the top,
@@ -320,7 +370,7 @@ export default function KiteDoc() {
         <SystemCards />
       </PPSection>
 
-      <PPSection id="adoption" k="08" title="Adoption, measured">
+      <PPSection id="adoption" k="09" title="Adoption, measured">
         <p className="pps-standfirst">
           Adoption is measured per person, never assumed. The map below is the
           instrument: where each person started, where they are now, reported
@@ -330,7 +380,7 @@ export default function KiteDoc() {
       </PPSection>
 
 
-      <PPSection id="recommend" k="09" title="What we'd recommend">
+      <PPSection id="recommend" k="10" title="What we'd recommend">
         <p className="pps-standfirst">
           Kite does not need more tools. Start with the fluency map: fourteen
           people, measured, so training aims at where each person actually is
@@ -343,7 +393,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="10" title="The price">
+      <PPSection id="pricing" k="11" title="The price">
         <PricingCards
           cards={[
             {
@@ -386,7 +436,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="11" title="Your library">
+      <PPSection id="library" k="12" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
