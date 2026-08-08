@@ -27,6 +27,9 @@ import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
+import CardCascade from "./library/CardCascade";
+import LadderFigure from "./library/LadderFigure";
+import { OutreachWindow } from "./library/AgentWindows";
 import BrandGuardian from "./library/BrandGuardian";
 import SystemCards from "./library/SystemCards";
 import type { Turn } from "./library/chatTypes";
@@ -156,6 +159,25 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
   },
 ];
 
+// Demonstration threads for the Outbound Agent's window. Generic demo
+// content in the fictional Kite world.
+const OUTBOUND_THREADS = [
+  {
+    name: "Ruth Carmody",
+    company: "Director · Carmody & Lyle",
+    message:
+      "Hi Ruth - saw the two new commercial accounts this quarter. Same-day quotes, no re-keying. Worth a look?",
+    reply: "Send me the portal login, I'll look this week.",
+  },
+  {
+    name: "Michael Doran",
+    company: "Broker Principal · Doran Cover",
+    message:
+      "Hi Michael - brokers are chasing quote turnaround right now. Same-day on commercial and fleet. Quick call?",
+    reply: "Yes - Thursday afternoon works.",
+  },
+];
+
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
   { id: "whatwedo", title: "What Run with Foxes does" },
@@ -166,6 +188,11 @@ const SECTIONS = [
   { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
   { id: "system", title: "The system, linked" },
+  { id: "briefcoach", title: "Brief Coach" },
+  { id: "outbound", title: "Outbound Agent" },
+  { id: "lifecycle", title: "Lifecycle Agent" },
+  { id: "ghostwriter", title: "Ghostwriter" },
+  { id: "searchgeo", title: "Search and GEO Agent" },
   { id: "adoption", title: "Designing team AI adoption" },
   { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
@@ -184,12 +211,28 @@ const RAIL_GROUPS = [
         id: "buildingagents",
         title: "Building agents",
         num: "03",
-        ids: ["buildingagents", "writer", "admachine", "guardian", "system"],
+        ids: [
+          "buildingagents",
+          "writer",
+          "admachine",
+          "guardian",
+          "system",
+          "briefcoach",
+          "outbound",
+          "lifecycle",
+          "ghostwriter",
+          "searchgeo",
+        ],
         children: [
           { id: "writer", title: "Writer" },
           { id: "admachine", title: "Creative Director" },
           { id: "guardian", title: "Brand Guardian" },
           { id: "system", title: "The system" },
+          { id: "briefcoach", title: "Brief Coach" },
+          { id: "outbound", title: "Outbound Agent" },
+          { id: "lifecycle", title: "Lifecycle Agent" },
+          { id: "ghostwriter", title: "Ghostwriter" },
+          { id: "searchgeo", title: "Search & GEO" },
         ],
       },
       { id: "adoption", title: "Designing team AI adoption", num: "04" },
@@ -368,6 +411,138 @@ export default function KiteDoc() {
           The machines are not a drawer of separate tools. For teams whose
           website matters, they run as one system: outbound fills the top,
           the site is worth arriving at, and the chatbot meets every visitor.
+        </p>
+      </PPSection>
+
+
+      <PPSection id="briefcoach" sub title="Brief Coach">
+        <LadderFigure />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          A brief is the plan behind a piece of marketing. When the brief is
+          weak, the work that comes out is weak too. Brief Coach reads your
+          brief and does what a good strategist would: it asks the hard
+          questions until the plan is clear and worth doing. Why are we really
+          doing this, and what would success actually look like? What do we
+          want to be known for? What can only we say? And can the team
+          actually make it?
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          It uses your own goals, numbers and brand, so the questions fit your
+          business, not generic advice. Twenty years of marketing experience,
+          built into the questions it asks. It pushes, but it never writes the
+          brief for you and never just hands you a yes or no. The thinking
+          stays yours. We build it around your business and hand it over.
+        </p>
+      </PPSection>
+
+      <PPSection id="outbound" sub title="Outbound Agent">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <OutreachWindow threads={OUTBOUND_THREADS} title="Outbound Agent" sentLabel="96 sent" />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Running outbound is a lot of work before a single message lands. You
+          work out who your best-fit customers are, find the companies, find
+          the right people inside them, screen and qualify, track down a real
+          work email, and read up on what each person cares about. Then you
+          write, send, follow up, scan the replies and go again. The Outbound
+          Agent does the whole job.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          The part that matters is the writing: it sends a genuinely different
+          message to every person, built from what that one individual cares
+          about and grounded in your own positioning and messaging framework,
+          so each message is relevant to them and true to you. Not a template
+          with a name dropped in. A real message, made for one, going out at
+          scale every day. Relevance and scale at once, when you always had to
+          pick one. Three times it stops and waits for you: who goes on the
+          list, every word before it sends, and the Start button itself.
+          Nothing sends or spends until you say go. We build it around your
+          brand and your messaging framework, hand it over, and it runs in
+          your own Claude.
+        </p>
+      </PPSection>
+
+      <PPSection id="lifecycle" sub title="Lifecycle Agent">
+        <CardCascade
+          id="pplc"
+          top={{ name: "Lifecycle", lbl: "every moment covered", icon: "mail" }}
+          kids={[
+            { name: "Onboard", lbl: "new signup", icon: "person" },
+            { name: "Nudge", lbl: "hasn't bought yet", icon: "mail" },
+            { name: "Win back", lbl: "gone quiet", icon: "loop" },
+            { name: "Grow", lbl: "ready for more", icon: "chart" },
+          ]}
+          ariaLabel="The Lifecycle Agent card with four moments falling out of it: onboard, nudge, win back, grow"
+        />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Lifecycle email is the work of keeping and growing the people who
+          already know you. Onboarding a new signup, nudging someone who
+          hasn&rsquo;t bought yet, winning back a customer who has gone quiet,
+          growing the ones ready for more. It is where a lot of revenue comes
+          from, and it usually gets skipped because it never stops. The
+          Lifecycle Agent runs it.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          It reads the contacts already in your email platform, writes each
+          one the right email for their moment, builds the flows, runs the
+          campaigns, and reads the numbers to keep tuning what works. Every
+          email is in your voice, built on your positioning and messaging
+          framework, not one newsletter sent to the whole list. If you
+          don&rsquo;t have a marketer, it does the job; if you do, it lets one
+          person do the work of five. We build it around your brand and your
+          messaging framework, then hand it over to run.
+        </p>
+      </PPSection>
+
+      <PPSection id="ghostwriter" sub title="Ghostwriter">
+        <CardCascade
+          id="ppgw"
+          top={{ name: "Ghostwriter", lbl: "your point of view", icon: "pen" }}
+          kids={[
+            { name: "Long piece", lbl: "worth reading", icon: "book" },
+            { name: "Posts", lbl: "LinkedIn", icon: "pen" },
+            { name: "Chart", lbl: "the evidence", icon: "chart" },
+            { name: "Newsletter", lbl: "email", icon: "mail" },
+          ]}
+          ariaLabel="The Ghostwriter card with four formats falling out of it: long piece, posts, chart, newsletter"
+        />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Your experts know things your customers would pay to learn. Almost
+          none of it leaves the building. Writing something worth reading is
+          slow, and the people who know the most have the least time to do it.
+          It is also hard to write about something you know inside out. The
+          jargon feels normal, and you stop noticing what the reader does not
+          know.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          Ghostwriter is built using your brand positioning, your tone and
+          your target audience. It helps you find ideas relevant to you, then
+          turns your point of view into your words, ready as a long piece,
+          posts, a chart or a newsletter. The thinking stays yours, and you
+          stand behind every word. It does the work you have no time for, not
+          the thinking you are paid for. We build it around your experts and
+          hand it over.
+        </p>
+      </PPSection>
+
+      <PPSection id="searchgeo" sub title="Search and GEO Agent">
+        <CardCascade
+          id="ppsg"
+          top={{ name: "Search Agent", lbl: "found everywhere", icon: "search" }}
+          kids={[
+            { name: "Google", lbl: "search results", icon: "search" },
+            { name: "ChatGPT", lbl: "answers", icon: "flow" },
+            { name: "Perplexity", lbl: "answers", icon: "flow" },
+            { name: "Claude", lbl: "answers", icon: "flow" },
+          ]}
+          ariaLabel="The Search Agent card with four places falling out of it: Google, ChatGPT, Perplexity, Claude"
+        />
+        {/* ⚠️ PLACEHOLDER COPY: no product page exists for the search agent
+            yet, so this line is factual and short. Paul's words to come. */}
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          The Search and GEO Agent gets a brand found where people now ask: in
+          Google&rsquo;s results, and in the answers ChatGPT, Perplexity and
+          Claude give. Built and running for client brands now.
         </p>
       </PPSection>
 
