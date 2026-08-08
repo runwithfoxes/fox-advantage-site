@@ -31,6 +31,7 @@ import WorkflowExhibit from "./library/WorkflowExhibit";
 import WriterSwitch from "./library/WriterSwitch";
 import RateSlider from "./library/RateSlider";
 import AdoptionExhibit from "./library/AdoptionExhibit";
+import FourThingsFigure from "./library/FourThingsFigure";
 import type { Turn } from "./library/chatTypes";
 
 // Invented content throughout: Kite is fictional and so is everything below.
@@ -178,6 +179,9 @@ export default function KiteDoc() {
           what we heard, because one call doesn&rsquo;t make us experts in how
           Kite runs, and we won&rsquo;t pretend otherwise.
         </p>
+        <div style={{ marginTop: 26 }}>
+          <FourThingsFigure />
+        </div>
       </PPSection>
 
       <PPSection id="training" k="03" title="Training, shown">
