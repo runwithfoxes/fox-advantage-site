@@ -1,46 +1,50 @@
 "use client";
 
-// The test page for the prospect-page system. Kite Insurance is fictional by
-// design (it is the course's worked example), so nothing on it is a real
-// client's data.
+// The test page for the prospect-page system, rebuilt 8 Aug (evening) to the
+// experience Paul dictated: arrival that surprises, the call played back, the
+// four things each DEMONSTRATED, room to breathe, recommendation late, price
+// late, the library free to take from the rail.
 //
-// Since 8 Aug this page carries ONE buyer arc, not every component: it is the
-// large-marketing-organisation arc from ~/paul-hub/methodology/buyer-map.md
-// (what we heard -> what's possible -> what we do -> what we'd do for you ->
-// proof -> price -> library). The full component pile stays on
-// /for-library-test. Every exhibit here must prove a claim in this arc;
-// a component with no claim does not belong on this page.
+// Kite Insurance is fictional by design (the course's worked example). This
+// page carries the LARGE MARKETING ORGANISATION arc from
+// ~/paul-hub/methodology/buyer-map.md, so its demonstrations are the change
+// side of the menu: training, the writer in your voice, workflow redesign,
+// adoption measured.
+//
+// Two kinds of truth, per the plan doc: Kite's reality appears ONLY in "What
+// we heard". Every demonstration is ours, generic, and labelled as a
+// demonstration. Nothing pretends to know Kite's insides.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
-import {
-  OutreachWindow,
-  ResearchWindow,
-  TerminalWindow,
-  CampaignWindow,
-  type OutreachThread,
-} from "./library/AgentWindows";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
-import { Figure } from "./library/Figure";
+import TeamAscent from "./library/TeamAscent";
+import BlueprintSlider from "./library/BlueprintSlider";
+import WorkflowDays from "./library/WorkflowDays";
+import FluencyMap from "./library/FluencyMap";
 import type { Turn } from "./library/chatTypes";
+import "./library/four-things.css";
 
-// Invented content throughout: Kite is fictional and so is everything below.
-const KITE_DOCS: FolderDoc[] = [
+// A demonstration brand pack. The folder is the exhibit: small documents that
+// every machine and every person reads from. Generic on purpose. The writer
+// session below QUOTES these files in its source map, so the two exhibits
+// have to stay consistent with each other.
+const PACK_DOCS: FolderDoc[] = [
   {
     file: "positioning.md",
     label: "Positioning",
     body: [
-      "Kite is the broker's insurer: the one that answers the phone, quotes the same day, and never surprises a client at renewal.",
-      "Every piece of outbound copy traces back to one of the three proof points below it, or it does not go out.",
+      "The insurer brokers can reach: the one that answers the phone, quotes the same day, and never surprises a client at renewal.",
+      "Every piece of outbound copy traces to one of the three proof points, or it does not go out.",
     ],
   },
   {
     file: "audience.md",
     label: "Audience",
     body: [
-      "Three groups, treated differently: the brokers who already place business with Kite, the ones who used to, and the ones who never have.",
+      "Three groups, treated differently: the brokers who place business today, the ones who used to, and the ones who never have.",
       "Lapsed brokers behave closer to cold than to warm, so they get the acquisition treatment, not a loyalty message.",
     ],
   },
@@ -48,46 +52,25 @@ const KITE_DOCS: FolderDoc[] = [
     file: "messages.md",
     label: "Messages",
     body: [
-      "Written once, used by everything: the outbound agent, the website, the renewal emails. When a message changes here, it changes everywhere.",
+      "Written once, used by everything: the outbound, the website, the renewal emails. When a message changes here, it changes everywhere.",
+      "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
     ],
   },
   {
     file: "tone-of-voice.md",
     label: "Tone of voice",
     body: [
-      "Plain, direct, no insurance jargon. If a broker would not say the sentence on the phone, it does not go in writing.",
+      "Plain, direct, no jargon. If you would not say the sentence on the phone, it does not go in writing.",
     ],
   },
 ];
 
-const KITE_THREADS: OutreachThread[] = [
-  {
-    name: "Ruth Carmody",
-    company: "Director · Carmody & Lyle Insurance Brokers",
-    message:
-      "Hi Ruth - noticed Carmody & Lyle picked up two new commercial accounts this month. Kite quotes commercial the same day, no re-keying. Worth a look?",
-    reply: "Send me the broker portal login, I'll take a look this week.",
-  },
-  {
-    name: "Michael Doran",
-    company: "Broker Principal · Doran Cover",
-    message:
-      "Hi Michael - a lot of brokers are chasing quote turnaround right now. Kite's same-day on commercial and motor fleet. Open to a quick call?",
-    reply: "Yes - Thursday afternoon works.",
-  },
-  {
-    name: "Aisling Byrne",
-    company: "Commercial Lines Manager · Byrne Foran",
-    message:
-      "Hi Aisling - saw Byrne Foran is growing the commercial book. We renewed three of your clients last year without a single query. Worth ten minutes?",
-    reply: "Sounds good, happy to chat.",
-  },
-];
-
-const KITE_SESSION: Turn[] = [
+// A recorded training session: the habit being taught is checking the data
+// before answering. Generic content, no client's numbers.
+const TRAINING_SESSION: Turn[] = [
   {
     who: "you",
-    text: "Can you look at last quarter's renewal emails and tell me what's actually working?",
+    text: "Can you look at last quarter's campaign emails and tell me what's actually working?",
   },
   {
     who: "writer",
@@ -112,22 +95,91 @@ const KITE_SESSION: Turn[] = [
     blocks: [
       {
         kind: "p",
-        text: "Rewrite the announcement subject line so it leads with what the broker gets. Everything else in that send performed close to plan.",
+        text: "Rewrite the announcement subject line so it leads with what the reader gets. Everything else in that send performed close to plan.",
       },
       {
         kind: "flag",
-        text: "One thing to watch: the renewal reminder's open rate may be list warmth rather than wording. Worth a split test before we credit the subject line.",
+        text: "One thing to watch: the reminder's open rate may be list warmth rather than wording. Worth a split test before we credit the subject line.",
       },
     ],
   },
 ];
 
+// The writer, shown properly: the writing itself, with the source map. Every
+// ref quote below is verbatim from PACK_DOCS above, which is the point: hover
+// a dotted line and see the brand pack producing the sentence.
+const WRITER_SESSION: Turn[] = [
+  {
+    who: "you",
+    text: "Draft the renewal email for brokers whose clients renew in June.",
+  },
+  {
+    who: "writer",
+    blocks: [
+      {
+        kind: "email",
+        subject: "June renewals: quotes back same day",
+        subjectRef: {
+          file: "messages.md",
+          quote: "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
+        },
+        body: [
+          "Your June renewals are listed below, with last year's terms beside each one.",
+          "Send the schedule over and the quotes come back the same day, no re-keying.",
+          "No surprises at renewal: if a premium is moving, you hear it from us first, with the reason.",
+        ],
+        refs: [
+          null,
+          {
+            file: "messages.md",
+            quote: "Lead message for brokers: same-day quotes on commercial lines, no re-keying.",
+          },
+          {
+            file: "positioning.md",
+            quote: "The insurer brokers can reach: the one that answers the phone, quotes the same day, and never surprises a client at renewal.",
+          },
+        ],
+        sign: ["The broker desk"],
+      },
+      {
+        kind: "flag",
+        text: "This list mixes current and lapsed brokers. The audience file says lapsed brokers get the acquisition treatment, so I split them out and drafted theirs separately.",
+      },
+    ],
+  },
+];
+
+const FOUR_THINGS: { name: string; line: string; href: string }[] = [
+  {
+    name: "Training",
+    line: "We train marketing teams to use AI properly, on their real work.",
+    href: "#training",
+  },
+  {
+    name: "Capabilities",
+    line: "We build AI machines, writers, ad makers, research and outreach agents, configured to a brand and handed over.",
+    href: "#writer",
+  },
+  {
+    name: "Workflows",
+    line: "We redesign how marketing teams get their work done.",
+    href: "#workflows",
+  },
+  {
+    name: "Adoption",
+    line: "We measure where each person is, move the whole team up the scale, and show the return.",
+    href: "#adoption",
+  },
+];
+
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
-  { id: "possible", title: "What's possible now" },
-  { id: "whatwedo", title: "What Run with Foxes does" },
-  { id: "plan", title: "What we'd do at Kite" },
-  { id: "proof", title: "The machines, working" },
+  { id: "whatwedo", title: "What we do" },
+  { id: "training", title: "Training, shown" },
+  { id: "writer", title: "The writer, in your voice" },
+  { id: "workflows", title: "Workflows, redesigned" },
+  { id: "adoption", title: "Adoption, measured" },
+  { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
 ];
@@ -137,13 +189,26 @@ export default function KiteDoc() {
     <ProspectShell
       clientName="Kite Insurance"
       eyebrow="Prepared for Sarah Nolan, Kite Insurance"
-      title="Bring AI properly into Kite's marketing team"
+      title="Move Kite's whole marketing team up the AI scale"
       titleHl="Kite"
       standfirst={[
-        "This page holds the proposal from our conversation on Tuesday, a working demonstration of what we would build for Kite, and a small library of material chosen for where Kite is right now. It stays live, and anything we add lands here.",
+        "This page holds what we would do for Kite, shown working rather than described, and a small library chosen for where Kite is now. It stays live. Anything we add lands here.",
       ]}
       sections={SECTIONS}
+      railNote="A short overview of what Run with Foxes does, each part shown working, then a recommendation for Kite and the price. Take anything from the library whether or not we work together."
+      bio={{
+        photo: "/Paul_photo.jpg",
+        name: "/Paul Dervan",
+        line: "Twenty years leading marketing at O2, the National Lottery and Indeed. Now building AI marketing teams, for global software companies and owner-run firms.",
+      }}
+      railLinks={[
+        { label: "The Fox Advantage, the book", href: "/book", meta: "free" },
+        { label: "AI fluency course, module one", href: "/course", meta: "free" },
+        { label: "Distinctive brands and AI", href: "/distinctive", meta: "essay" },
+      ]}
     >
+      <TeamAscent />
+
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
           Talking to you on Tuesday, three things stood out. Kite&rsquo;s
@@ -153,130 +218,101 @@ export default function KiteDoc() {
           uneven: a few people use them every day, most opened them once. And
           keeping one voice across everything Kite ships is getting harder as
           the volume goes up. Your question at the end was the important one:
-          does AI change how the team itself should work, and not just how fast
-          the documents get written.
+          does AI change how the team itself should work, not just how fast the
+          documents get written.
         </p>
       </PPSection>
 
-      <PPSection id="possible" k="02" title="What's possible now">
+      <PPSection id="whatwedo" k="02" title="What we do">
         <p className="pps-standfirst">
-          The usual way to bring AI into a marketing team treats it as a faster
-          typist: the same people, the same queues, slightly quicker drafts.
-          What changes things is combining the fundamentals Kite already owns
-          with machines that read them. Your positioning, your messages and
-          your tone of voice stop being documents nobody opens and become the
-          working input to everything the team makes. The figure below shows
-          the claim: four brand assets Kite already has, combined into one
-          writer that produces work in Kite&rsquo;s voice.
+          Four things. Most engagements use two or three of them; for a team
+          like Kite&rsquo;s we would use all four. Each one is demonstrated on
+          this page, not described: follow the links, or just keep reading.
         </p>
-        <div style={{ marginTop: 26 }}>
-          <Figure name="fig-12" />
+        <div className="ppft">
+          {FOUR_THINGS.map((t, i) => (
+            <a className="ppft-row" key={t.name} href={t.href}>
+              <span className="ppft-k">{String(i + 1).padStart(2, "0")}</span>
+              <span className="ppft-name">{t.name}</span>
+              <span className="ppft-line">{t.line}</span>
+            </a>
+          ))}
         </div>
       </PPSection>
 
-      <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
+      <PPSection id="training" k="03" title="Training, shown">
         <p className="pps-standfirst">
-          We do four things, and most engagements use two or three of them. We
-          train marketing teams to use AI properly. We build AI capabilities,
-          such as writers, ad machines and research agents, configured to a
-          brand and handed over. We redesign how marketing work gets done,
-          workflow by workflow. And we run adoption: measuring where each
-          person is, moving the whole team up the scale, and showing the
-          return. For a team like Kite&rsquo;s, the sections below show which
-          of the four we would use and what each looks like in practice.
-        </p>
-      </PPSection>
-
-      <PPSection id="plan" k="04" title="What we'd do at Kite">
-        <p className="pps-standfirst">
-          Kite does not need more tools. The work starts with a fluency map of
-          the fourteen people on the team, so training is aimed at where each
-          person actually is rather than run as one workshop for everyone.
-          Alongside it we build the brand pack: the small set of documents that
-          every machine, and every person, reads from. This is what holds three
-          brands consistent while the volume goes up. It is the folder below,
-          as your team would see it. Open the files.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <FolderWindow name="kite-brand-pack/" files={KITE_DOCS} />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 34 }}>
-          The training itself runs on Kite&rsquo;s real work, in sessions like
-          the one recorded below: a real question about last quarter&rsquo;s
-          renewal emails, and the habit of checking the data before answering.
+          Training runs on the team&rsquo;s real work, not slideware. The
+          session below is the shape of it: a real question, and the habit of
+          checking the data before answering.
         </p>
         <div style={{ marginTop: 26 }}>
           <ChatWindow
-            session={KITE_SESSION}
-            start="Watch a working session: an analyst reads a quarter of renewal emails and flags what to change first."
-            title="an analyst"
+            session={TRAINING_SESSION}
+            start="Watch a working session: an analyst reads a quarter of campaign emails and flags what to change first."
+            title="a working session"
           />
         </div>
       </PPSection>
 
-      <PPSection id="proof" k="05" title="The machines, working">
+      <PPSection id="writer" k="04" title="The writer, in your voice">
         <p className="pps-standfirst">
-          Each window below is a working product configured for Kite&rsquo;s
-          business: a campaign running end to end, the outreach conversations
-          it produced, the research brief before a call, and the one-line
-          instruction that starts it all. Every message they send reads from
-          the brand pack in section 04, which is how the volume goes up without
-          the voice drifting.
+          Judge the writer on the writing. It reads the brand pack before it
+          writes a word, and every sentence it produces can show its source:
+          the dotted lines in the draft below map back to the files. This is
+          how the volume goes up without the voice drifting.
         </p>
-        <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}>
-          <CampaignWindow
-            title="Kite Campaign Agent"
-            crumbLabel="Broker renewal outbound"
-            runNumber={22}
-            nodes={[
-              { icon: "◆", label: "Quote lapsed", kind: "trigger" },
-              { icon: "◱", label: "Enrich broker", kind: "step" },
-              { icon: "▤", label: "Renewal brief", kind: "agent" },
-              { icon: "✎", label: "Draft outreach", kind: "agent" },
-              { icon: "➤", label: "Send + track", kind: "step" },
-            ]}
-            stats={{ contacted: 96, replied: 18, booked: 4, running: 1 }}
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 24,
-              alignItems: "start",
-            }}
-          >
-            <div style={{ minWidth: 0 }}>
-              <OutreachWindow
-                threads={KITE_THREADS}
-                title="Kite Outreach Agent"
-                sentLabel="96 sent"
-              />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 24, minWidth: 0 }}>
-              <TerminalWindow
-                instruction="launch a campaign to 80 brokers who quoted commercial lines last month"
-                response="4 agents on it - researching, writing, sending, tracking"
-                liveLabel="~ kite insurance"
-              />
-              <ResearchWindow
-                title="Kite Research Agent"
-                subject="Research ahead of your call with Carmody & Lyle"
-                from="Kite Research Agent"
-                lines={[
-                  "Hi Sarah,",
-                  "Here's the research ahead of your call with **Carmody & Lyle** on Friday. Ruth Carmody took over as Director in March.",
-                  "They picked up two new commercial accounts this quarter and are still quoting those on paper.",
-                  "- She owns commercial lines with **no dedicated underwriter contact yet** - lead with same-day quoting.",
-                  "- The **two new accounts** are the wedge - offer to quote both by Friday.",
-                ]}
-                attachment="carmody-lyle-brief.pdf · 2 pages"
-              />
-            </div>
-          </div>
+        <div style={{ marginTop: 26 }}>
+          <FolderWindow name="brand-pack/" files={PACK_DOCS} />
         </div>
+        <div style={{ marginTop: 30 }}>
+          <ChatWindow
+            session={WRITER_SESSION}
+            start="Watch the writer draft a renewal email from the brand pack, sources shown."
+            title="the writer"
+          />
+        </div>
+        <p className="ppft-honest">
+          <span className="ppft-slash">/a demonstration pack,</span> not
+          Kite&rsquo;s. Yours gets written with your team in the first two
+          weeks, from documents you already have.
+        </p>
       </PPSection>
 
-      <PPSection id="pricing" k="06" title="The price">
+      <PPSection id="workflows" k="05" title="Workflows, redesigned">
+        <p className="pps-standfirst">
+          This is the thing we do that changes the shape of the week, not just
+          the speed of the typing. We get into the weeds of how the work runs,
+          the handovers, the queues, the return trips, then rebuild the
+          workflow so the waiting disappears and the approvals stay.
+        </p>
+        <BlueprintSlider />
+        <WorkflowDays />
+      </PPSection>
+
+      <PPSection id="adoption" k="06" title="Adoption, measured">
+        <p className="pps-standfirst">
+          Adoption is measured per person, never assumed. The map below is the
+          instrument: where each person started, where they are now, reported
+          monthly. It is also how you will know whether any of this worked.
+        </p>
+        <FluencyMap />
+      </PPSection>
+
+      <PPSection id="recommend" k="07" title="What we'd recommend">
+        <p className="pps-standfirst">
+          Kite does not need more tools. Start with the fluency map: fourteen
+          people, measured, so training aims at where each person actually is
+          instead of running as one workshop for everyone. Build the brand
+          pack, the small set of documents every machine and every person reads
+          from, which is what holds three lines of business to one voice while
+          the volume goes up. Then redesign one workflow at a time with the
+          people who run it, and measure the change monthly so the return is
+          visible.
+        </p>
+      </PPSection>
+
+      <PPSection id="pricing" k="08" title="The price">
         <PricingCards
           cards={[
             {
@@ -319,7 +355,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="07" title="Your library">
+      <PPSection id="library" k="09" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
@@ -345,9 +381,9 @@ export default function KiteDoc() {
               meta: "book",
             },
             {
-              label: "Kite brand pack, working copy",
+              label: "The brand pack, working copy",
               note: "The folder from section 04, as living documents your team can read.",
-              href: "#plan",
+              href: "#writer",
               kind: "folder",
               meta: "4 files",
             },

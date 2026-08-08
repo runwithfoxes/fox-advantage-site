@@ -1,0 +1,151 @@
+/* Blueprint slider, ppbs- prefix. Two node maps in the page's hairline and
+   mono language, split by a draggable line. Square corners throughout. */
+
+.ppbs {
+  margin: 34px 0 0;
+}
+
+.ppbs-worlds {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ppbs-world {
+  color: var(--pps-muted);
+}
+.ppbs-world-ai {
+  color: var(--pps-sky);
+}
+
+.ppbs-stage {
+  position: relative;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  touch-action: none;
+  cursor: col-resize;
+}
+.ppbs-layer {
+  display: block;
+}
+.ppbs-layer-ai {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  clip-path: inset(0 0 0 var(--x, 58%));
+}
+.ppbs-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ppbs-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x, 58%);
+  width: 0;
+  border-left: 2px solid var(--pps-deep);
+  outline: none;
+}
+.ppbs-handle {
+  position: absolute;
+  top: 50%;
+  left: -21px;
+  width: 42px;
+  height: 26px;
+  margin-top: -13px;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  user-select: none;
+}
+.ppbs-divider:focus-visible .ppbs-handle {
+  background: var(--pps-sky);
+}
+
+/* Node language: white cards, hairline strokes, mono labels. */
+.ppbs-node rect {
+  fill: #fff;
+  stroke: #c9c9c3;
+  stroke-width: 1;
+}
+.ppbs-node text {
+  font-family: var(--pps-mono);
+  font-size: 12.5px;
+  fill: #1d1b1b;
+}
+.ppbs-node-sky rect {
+  stroke: #3a7ca5;
+}
+.ppbs-node-sky text {
+  fill: #3a7ca5;
+}
+.ppbs-gate {
+  font-size: 11px;
+  fill: #1a3a4e;
+}
+
+.ppbs-machines rect {
+  fill: rgba(58, 124, 165, 0.06);
+  stroke: #3a7ca5;
+  stroke-width: 1.2;
+}
+.ppbs-machines-title {
+  font-family: var(--pps-mono);
+  font-size: 13px;
+  fill: #1d1b1b;
+}
+.ppbs-machines-list {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  fill: #3a7ca5;
+}
+
+.ppbs-boundary {
+  fill: none;
+  stroke: #c9c9c3;
+  stroke-width: 1;
+  stroke-dasharray: 5 4;
+}
+.ppbs-boundary-label {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #8a8a85;
+}
+
+.ppbs-arrow {
+  fill: none;
+  stroke: #a8a8a2;
+  stroke-width: 1.2;
+}
+.ppbs-arrow-dashed {
+  stroke-dasharray: 4 4;
+}
+.ppbs-note {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  fill: #8a8a85;
+}
+
+.ppbs-hint {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 14px 0 0;
+}
+.ppbs-slash {
+  color: var(--pps-sky);
+}

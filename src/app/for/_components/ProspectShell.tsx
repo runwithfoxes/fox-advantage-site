@@ -8,9 +8,19 @@ export interface ShellSection {
   title: string;
 }
 
+export interface RailLink {
+  label: string;
+  href: string;
+  meta?: string;
+}
+
 // The page shell: fixed top bar, sticky rail listing the sections, masthead,
 // then the sections themselves as children. Sections must be PPSection
 // elements (or carry matching ids) for the rail links and tracking to work.
+//
+// The rail is more than navigation (Paul, 8 Aug evening): a plain-language
+// line on what's coming, a small bio with the photo, and the free library,
+// so the page reads as a small private site rather than a document.
 export default function ProspectShell({
   clientName,
   eyebrow,
@@ -18,6 +28,9 @@ export default function ProspectShell({
   titleHl,
   standfirst,
   sections,
+  railNote,
+  bio,
+  railLinks,
   children,
 }: {
   clientName: string;
@@ -26,6 +39,9 @@ export default function ProspectShell({
   titleHl?: string;
   standfirst: string | string[];
   sections: ShellSection[];
+  railNote?: string;
+  bio?: { photo: string; name: string; line: string };
+  railLinks?: RailLink[];
   children: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -84,6 +100,7 @@ export default function ProspectShell({
       <div className="pps-shell" id="top">
         <div className="pps-grid">
           <div className="pps-railcol">
+            {railNote && <p className="pps-railnote">{railNote}</p>}
             <nav className="pps-rail">
               <p>/on this page</p>
               {sections.map((s, i) => (
@@ -96,6 +113,27 @@ export default function ProspectShell({
                 </a>
               ))}
             </nav>
+            {bio && (
+              <div className="pps-bio">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={bio.photo} alt={bio.name} className="pps-bio-photo" />
+                <div>
+                  <p className="pps-bio-name">{bio.name}</p>
+                  <p className="pps-bio-line">{bio.line}</p>
+                </div>
+              </div>
+            )}
+            {railLinks && railLinks.length > 0 && (
+              <div className="pps-raillinks">
+                <p>/free to take</p>
+                {railLinks.map((l) => (
+                  <a key={l.href} href={l.href}>
+                    <span>{l.label}</span>
+                    {l.meta && <span className="pps-raillink-meta">{l.meta}</span>}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="pps-maincol">

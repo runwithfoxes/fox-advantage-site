@@ -1,0 +1,167 @@
+/* Workflow days, ppwd- prefix. Days drawn to scale: solid sky = work,
+   hatched neutral = waiting. Square corners throughout. */
+
+.ppwd {
+  margin: 34px 0 0;
+}
+
+.ppwd-block + .ppwd-finding {
+  margin-top: 26px;
+}
+
+.ppwd-blockhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 0 10px;
+}
+.ppwd-blocklabel {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppwd-total {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  color: var(--pps-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.ppwd-bar {
+  display: flex;
+  height: 44px;
+  position: relative;
+}
+.ppwd-seg {
+  position: relative;
+  height: 100%;
+  box-shadow: inset 2px 0 0 var(--pps-bg); /* 2px surface gap between marks */
+}
+.ppwd-seg:first-child {
+  box-shadow: none;
+}
+.ppwd-work {
+  background: #3a7ca5;
+}
+.ppwd-wait {
+  background: repeating-linear-gradient(
+    45deg,
+    #eceae4,
+    #eceae4 5px,
+    #dcdad2 5px,
+    #dcdad2 7px
+  );
+}
+.ppwd-ghost {
+  height: 100%;
+  border: 1px dashed #d5d3cb;
+  border-left: none;
+}
+/* Gate marker sits INSIDE its segment, centred, so it can never collide with
+   the totals or the labels. White on sky, deep on hatch. */
+.ppwd-gatein {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #fafaf8;
+  pointer-events: none;
+}
+.ppwd-wait .ppwd-gatein {
+  color: var(--pps-deep);
+}
+.ppwd-gateword {
+  color: var(--pps-deep);
+  font-size: 0.75em;
+}
+
+/* Per-segment labels under the bar, staggered on two rows so short segments
+   never truncate. Left-anchored at the segment's start, never clipped. */
+.ppwd-labels {
+  position: relative;
+  height: 74px;
+  margin-top: 8px;
+}
+.ppwd-lab {
+  position: absolute;
+  top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid #c9c9c3;
+  padding-left: 7px;
+}
+.ppwd-lab-alt {
+  top: 42px;
+}
+.ppwd-labname {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  color: var(--pps-text);
+  white-space: nowrap;
+}
+.ppwd-labdays {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  color: var(--pps-muted);
+  white-space: nowrap;
+}
+
+/* Caption mode: one line under the bar instead of per-segment labels. */
+.ppwd-caption {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  color: var(--pps-muted);
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+
+.ppwd-finding {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+  border-left: 2px solid #3a7ca5;
+  padding-left: 18px;
+  margin: 0 0 26px;
+}
+
+/* The redesigned bar grows in when visible. Play-state only: the base state
+   is fully drawn, so nothing is hidden without JavaScript. */
+.ppwd-block:last-of-type .ppwd-seg {
+  transform-origin: left center;
+}
+.ppwd-play .ppwd-block:last-of-type .ppwd-seg {
+  animation: ppwd-grow 0.55s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;
+  animation-delay: calc(var(--i) * 0.14s);
+}
+@keyframes ppwd-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ppwd-play .ppwd-block:last-of-type .ppwd-seg {
+    animation: none;
+  }
+}
+
+.ppwd-honest {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 22px 0 0;
+}
+.ppwd-slash {
+  color: var(--pps-sky);
+}

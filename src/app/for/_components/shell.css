@@ -202,3 +202,70 @@
     padding: 14px 20px;
   }
 }
+
+/* Rail extras (8 Aug evening): the coming-up note, the bio, the free
+   library. The rail reads as a small private site, not a table of contents. */
+.pps-railnote {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--pps-text);
+  margin: 0;
+}
+.pps-bio {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border-top: 1px solid var(--pps-border);
+  padding-top: 20px;
+}
+.pps-bio-photo {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  flex: none;
+}
+.pps-bio-name {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  color: var(--pps-text);
+  margin: 0 0 6px;
+}
+.pps-bio-line {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: var(--pps-muted);
+  margin: 0;
+}
+.pps-raillinks {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--pps-border);
+  padding-top: 20px;
+}
+.pps-raillinks p {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--pps-sky);
+  margin: 0 0 12px;
+}
+.pps-raillinks a {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  color: var(--pps-text);
+  text-decoration: none;
+  border-top: 1px solid #eceae4;
+  line-height: 1.4;
+}
+.pps-raillinks a:hover {
+  color: var(--pps-sky);
+}
+.pps-raillink-meta {
+  color: #a8a8a2;
+  flex: none;
+}
