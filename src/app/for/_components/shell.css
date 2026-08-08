@@ -328,3 +328,19 @@
 .pps-railmini-row a[data-active="1"] {
   color: var(--pps-text);
 }
+
+/* Part heading: the umbrella over a run of sections. House register, the
+   slash label, never display type (Paul, 8 Aug: "we never use that size"). */
+.pps-part {
+  padding: 76px 0 0;
+}
+.pps-part-h {
+  font-family: var(--pps-mono);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--pps-border);
+  color: var(--pps-sky);
+}

@@ -15,7 +15,7 @@
 // we heard". Every demonstration is ours, generic, and labelled as a
 // demonstration. Nothing pretends to know Kite's insides.
 
-import ProspectShell, { PPSection } from "./ProspectShell";
+import ProspectShell, { PPSection, PPPart } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
@@ -23,7 +23,6 @@ import ChatWindow from "./library/ChatWindow";
 import { Figure } from "./library/Figure";
 import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
-import WorkflowDays from "./library/WorkflowDays";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
 import BrandGuardian from "./library/BrandGuardian";
@@ -192,16 +191,6 @@ const RAIL_GROUPS = [
       { id: "adoption", title: "Designing team AI adoption", num: "04" },
     ],
   },
-  {
-    label: "/your page",
-    compact: true,
-    entries: [
-      { id: "heard", title: "What we heard" },
-      { id: "recommend", title: "What we'd recommend" },
-      { id: "pricing", title: "The price" },
-      { id: "library", title: "Your library" },
-    ],
-  },
 ];
 
 export default function KiteDoc() {
@@ -217,11 +206,6 @@ export default function KiteDoc() {
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
       bio={{ photo: "/Paul_photo.jpg", href: "/#about", label: "/about" }}
-      railLinks={[
-        { label: "The Fox Advantage, the book", href: "/book", meta: "free" },
-        { label: "AI fluency course, module one", href: "/course", meta: "free" },
-        { label: "Distinctive brands and AI", href: "/distinctive", meta: "essay" },
-      ]}
     >
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
@@ -238,9 +222,10 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
+      <PPPart title="what we do" />
+
       <PPSection id="workflows" k="02" title="Redesigning how teams work">
         <ArrivalBlueprint />
-        <WorkflowDays />
       </PPSection>
 
       <PPSection id="training" k="03" title="Training, shown">

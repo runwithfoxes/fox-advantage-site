@@ -248,6 +248,16 @@ export default function ProspectShell({
   );
 }
 
+// A part heading between sections: an umbrella over the sections that follow
+// it ("What we do" sits over the four demonstrations, Paul, 8 Aug).
+export function PPPart({ title }: { title: string }) {
+  return (
+    <div className="pps-part">
+      <h2 className="pps-part-h">/{title}</h2>
+    </div>
+  );
+}
+
 // One section of the page. The id feeds the rail link, the anchor, and the
 // tracking event, so a reader reaching this section is logged under this id.
 export function PPSection({
