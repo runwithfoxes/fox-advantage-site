@@ -241,14 +241,6 @@ export default function ArrivalBlueprint() {
           </div>
         </div>
       </ScaledWindow>
-      <p className="ppab-hint">
-        <span className="ppab-slash">/drag the line.</span> Left of it, old
-        world marketing: the handovers, the queues, the return trips. Right
-        of it, modern marketing: machines draft from the brand pack, people
-        review and approve, what worked writes back. A metaphor, not a map of
-        Kite: yours gets drawn in the first session, with the people who run
-        it.
-      </p>
     </div>
   );
 }
