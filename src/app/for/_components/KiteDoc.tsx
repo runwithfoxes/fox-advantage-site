@@ -157,13 +157,13 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
 
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
+  { id: "workflows", title: "Redesigning how teams work" },
   { id: "training", title: "Training, shown" },
   { id: "writer", title: "An AI Writer" },
   { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
   { id: "system", title: "The system, linked" },
   { id: "adoption", title: "Adoption, measured" },
-  { id: "workflows", title: "Workflows, redesigned" },
   { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
@@ -175,11 +175,12 @@ const RAIL_GROUPS = [
   {
     label: "/what we do",
     entries: [
-      { id: "training", title: "Training teams", num: "01" },
+      { id: "workflows", title: "Redesigning how teams work", num: "01" },
+      { id: "training", title: "Training teams", num: "02" },
       {
         id: "writer",
         title: "Building agents",
-        num: "02",
+        num: "03",
         ids: ["writer", "admachine", "guardian", "system"],
         children: [
           { id: "writer", title: "Writer" },
@@ -188,8 +189,7 @@ const RAIL_GROUPS = [
           { id: "system", title: "The system" },
         ],
       },
-      { id: "adoption", title: "Designing team AI adoption", num: "03" },
-      { id: "workflows", title: "Redesigning how teams work", num: "04" },
+      { id: "adoption", title: "Designing team AI adoption", num: "04" },
     ],
   },
   {
@@ -223,8 +223,6 @@ export default function KiteDoc() {
         { label: "Distinctive brands and AI", href: "/distinctive", meta: "essay" },
       ]}
     >
-      <ArrivalBlueprint />
-
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
           Talking to you on Tuesday, three things stood out. Kite&rsquo;s
@@ -240,7 +238,12 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="training" k="02" title="Training, shown">
+      <PPSection id="workflows" k="02" title="Redesigning how teams work">
+        <ArrivalBlueprint />
+        <WorkflowDays />
+      </PPSection>
+
+      <PPSection id="training" k="03" title="Training, shown">
         <p className="pps-standfirst">
           Training runs on the team&rsquo;s real work, not slideware. The
           session below is the shape of it: a real question, and the habit of
@@ -255,7 +258,7 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="writer" k="03" title="An AI Writer">
+      <PPSection id="writer" k="04" title="An AI Writer">
         <p className="pps-standfirst">
           I read a lot about how AI writes slop. It does. But it doesn&rsquo;t
           have to. If you spend time up front. Writers need to know your
@@ -305,7 +308,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="admachine" k="04" title="Creative Director">
+      <PPSection id="admachine" k="05" title="Creative Director">
         <p className="pps-standfirst">
           The same discipline, pointed at advertising. The team approves one
           master ad; the machine makes every other size, holding the brand
@@ -314,7 +317,7 @@ export default function KiteDoc() {
         <AdMachine />
       </PPSection>
 
-      <PPSection id="guardian" k="05" title="The brand guardian">
+      <PPSection id="guardian" k="06" title="The brand guardian">
         <p className="pps-standfirst">
           Volume without drift needs a guard as well as a pack. This is the
           machine that checks every file against the brand book before it
@@ -323,7 +326,7 @@ export default function KiteDoc() {
         <BrandGuardian />
       </PPSection>
 
-      <PPSection id="system" k="06" title="The system, linked">
+      <PPSection id="system" k="07" title="The system, linked">
         <p className="pps-standfirst">
           The machines are not a drawer of separate tools. For teams whose
           website matters, they run as one system: outbound fills the top,
@@ -332,7 +335,7 @@ export default function KiteDoc() {
         <SystemCards />
       </PPSection>
 
-      <PPSection id="adoption" k="07" title="Adoption, measured">
+      <PPSection id="adoption" k="08" title="Adoption, measured">
         <p className="pps-standfirst">
           Adoption is measured per person, never assumed. The map below is the
           instrument: where each person started, where they are now, reported
@@ -341,14 +344,6 @@ export default function KiteDoc() {
         <FluencyMap />
       </PPSection>
 
-      <PPSection id="workflows" k="08" title="Workflows, redesigned">
-        <p className="pps-standfirst">
-          This is the thing we do that changes the shape of the week, not just
-          the speed of the typing. The blueprint at the top of this page is
-          the analysis; here is where the days go when it runs.
-        </p>
-        <WorkflowDays />
-      </PPSection>
 
       <PPSection id="recommend" k="09" title="What we'd recommend">
         <p className="pps-standfirst">
