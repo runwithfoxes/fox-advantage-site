@@ -1,0 +1,241 @@
+/* The workflow exhibit: a client's real workflow as it runs today, analysed
+   in front of the reader, then the redesigned flow drawing itself below.
+   All classes ppw- prefixed. Square corners throughout (site rule). */
+
+.ppw-root {
+  border: 1px solid rgba(20, 20, 30, 0.08);
+  background: #fff;
+  padding: 34px 34px 38px;
+}
+
+.ppw-rowhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.ppw-rowlabel {
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #54545c;
+}
+
+.ppw-rowtotal {
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 13px;
+  color: #1d1b1b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ppw-rowtotal em {
+  font-style: normal;
+  color: #3a7ca5;
+}
+
+.ppw-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.ppw-step {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px solid rgba(20, 20, 30, 0.12);
+  background: #fafaf8;
+  padding: 12px 12px 11px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.4s ease,
+    background 0.4s ease;
+}
+
+.ppw-on .ppw-step {
+  opacity: 1;
+  transform: none;
+}
+
+.ppw-step-name {
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1d1b1b;
+  margin: 0 0 3px;
+}
+
+.ppw-step-note {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #54545c;
+  margin: 0;
+}
+
+.ppw-step-days {
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: 8px;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: #54545c;
+}
+
+/* connector between items */
+.ppw-gap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 1px;
+}
+
+.ppw-gap-line {
+  height: 1.5px;
+  background: #8a8a85;
+  width: 18px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s ease;
+}
+
+.ppw-on .ppw-gap-line {
+  transform: scaleX(1);
+}
+
+/* waiting time as its own block in the flow */
+.ppw-wait {
+  flex: 0 1 104px;
+  min-width: 76px;
+  border: 1px dashed #b9b9b3;
+  background: #fafaf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 8px;
+  opacity: 0;
+  transition: opacity 0.45s ease, border-color 0.4s ease, background 0.4s ease;
+}
+
+.ppw-on .ppw-wait {
+  opacity: 1;
+}
+
+.ppw-wait span {
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: #8a8a85;
+}
+
+/* the analysis pass: waiting lights up */
+.ppw-hot.ppw-wait {
+  border-color: #c9822a;
+  background: #fdf6ec;
+}
+
+.ppw-hot.ppw-wait span {
+  color: #c9822a;
+  font-weight: 600;
+}
+
+.ppw-step.ppw-flagged {
+  border-color: #c9822a;
+  background: #fdf6ec;
+}
+
+/* the finding line between the two rows */
+.ppw-finding {
+  margin: 26px 0;
+  padding: 14px 16px;
+  border-left: 3px solid #c9822a;
+  background: #fdf6ec;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #1d1b1b;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.ppw-finding.ppw-on2 {
+  opacity: 1;
+  transform: none;
+}
+
+.ppw-finding strong {
+  font-weight: 600;
+}
+
+/* the redesigned row */
+.ppw-after {
+  margin-top: 4px;
+}
+
+.ppw-after .ppw-step {
+  background: #fff;
+}
+
+.ppw-after .ppw-step.ppw-kept {
+  border-color: #3a7ca5;
+}
+
+.ppw-kept-tag {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #3a7ca5;
+}
+
+.ppw-machine-tag {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #2e7d4f;
+}
+
+@media (max-width: 900px) {
+  .ppw-root {
+    padding: 22px 18px 26px;
+  }
+  .ppw-flow {
+    flex-direction: column;
+    gap: 0;
+  }
+  .ppw-gap {
+    padding: 2px 0;
+  }
+  .ppw-gap-line {
+    width: 1.5px !important;
+    height: 18px;
+    transform: scaleY(0);
+    transform-origin: top center;
+    margin-left: 18px;
+  }
+  .ppw-on .ppw-gap-line {
+    transform: scaleY(1);
+  }
+  .ppw-wait {
+    flex-basis: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ppw-step,
+  .ppw-gap-line,
+  .ppw-wait,
+  .ppw-finding {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -23,6 +23,7 @@ import {
 } from "./library/AgentWindows";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
+import WorkflowExhibit from "./library/WorkflowExhibit";
 import { Figure } from "./library/Figure";
 import type { Turn } from "./library/chatTypes";
 
@@ -127,6 +128,7 @@ const SECTIONS = [
   { id: "possible", title: "What's possible now" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "plan", title: "What we'd do at Kite" },
+  { id: "workflow", title: "The renewal campaign, redesigned" },
   { id: "proof", title: "The machines, working" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
@@ -214,7 +216,89 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="proof" k="05" title="The machines, working">
+      <PPSection id="workflow" k="05" title="The renewal campaign, redesigned">
+        <p className="pps-standfirst">
+          This is what &ldquo;redesigning how the work gets done&rdquo; means,
+          shown on one real piece of Kite&rsquo;s work. The broker renewal
+          campaign as it runs today, what the analysis finds, and the same
+          campaign redesigned. Watch where the days go.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <WorkflowExhibit
+            beforeLabel="The renewal campaign today"
+            beforeTotal="14 working days"
+            before={[
+              {
+                name: "Brief written",
+                note: "Drafted and approved",
+                days: "2 days",
+                waitAfter: "3 days in the agency queue",
+              },
+              {
+                name: "Agency first draft",
+                note: "Copy and design",
+                days: "3 days",
+                waitAfter: "2 days waiting for review slots",
+              },
+              {
+                name: "Revisions",
+                note: "Two return trips to the agency",
+                days: "3 days",
+                flagged: true,
+              },
+              {
+                name: "Compliance check",
+                note: "Sign-off before it ships",
+                days: "1 day",
+              },
+              {
+                name: "Ship",
+                note: "Email, ads and page live",
+              },
+            ]}
+            finding={
+              <>
+                <strong>The finding:</strong> of the 14 days, 5 are work and 9
+                are waiting and return trips. The redesign removes the waiting
+                and the return trips. Both approval gates stay, and the same
+                people hold them.
+              </>
+            }
+            afterLabel="The same campaign, redesigned"
+            afterTotal="2 days"
+            after={[
+              {
+                name: "Brief written",
+                note: "Same brief, same owner",
+                days: "one morning",
+              },
+              {
+                name: "Machines draft everything",
+                note: "Email, ads and page in Kite's voice, reading the brand pack",
+                machine: true,
+              },
+              {
+                name: "Team review",
+                note: "The same eyes, one pass, everything together",
+                days: "1 day",
+                kept: true,
+              },
+              {
+                name: "Compliance check",
+                note: "Same gate, work arrives pre-checked against the pack",
+                days: "half a day",
+                kept: true,
+              },
+              {
+                name: "Ship",
+                note: "Email, ads and landing page live",
+              },
+            ]}
+          />
+        </div>
+      </PPSection>
+
+      <PPSection id="proof" k="06" title="The machines, working">
         <p className="pps-standfirst">
           Each window below is a working product configured for Kite&rsquo;s
           business: a campaign running end to end, the outreach conversations
@@ -276,7 +360,7 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="pricing" k="06" title="The price">
+      <PPSection id="pricing" k="07" title="The price">
         <PricingCards
           cards={[
             {
@@ -319,7 +403,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="07" title="Your library">
+      <PPSection id="library" k="08" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
