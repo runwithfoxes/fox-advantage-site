@@ -8,6 +8,7 @@
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
+import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
 import type { Turn } from "./library/chatTypes";
 
@@ -186,9 +187,39 @@ export default function KiteDoc() {
       </PPSection>
 
       <PPSection id="library" k="06" title="Your library">
-        <p className="pps-standfirst">
-          Placeholder. Three to six resources chosen for Kite, named for them.
-        </p>
+        <LibraryList
+          intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
+          items={[
+            {
+              label: "The 80/20 of AI for a marketing team like Kite's",
+              note: "The first module of the course, free. The fluency argument your team will hear in week one.",
+              href: "/course",
+              kind: "link",
+              meta: "course",
+            },
+            {
+              label: "Distinctive brands have an incredible opportunity with AI",
+              note: "Why holding your brand exactly matters more, not less, when the volume of work goes up.",
+              href: "/distinctive",
+              kind: "file",
+              meta: "essay",
+            },
+            {
+              label: "The Fox Advantage",
+              note: "Paul's book, free to download.",
+              href: "/book",
+              kind: "file",
+              meta: "book",
+            },
+            {
+              label: "Kite brand pack, working copy",
+              note: "The folder from section 01, as living documents your team can read.",
+              href: "#recommend",
+              kind: "folder",
+              meta: "4 files",
+            },
+          ]}
+        />
       </PPSection>
     </ProspectShell>
   );
