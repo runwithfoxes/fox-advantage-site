@@ -144,7 +144,7 @@ export default function ArrivalBlueprint() {
               <i />
               <i />
               <i />
-              <span className="ppw-t">your marketing function</span>
+              <span className="ppw-t">the blueprint</span>
               <span className="ppw-live-pill">drag the line</span>
             </div>
             <div
@@ -161,7 +161,7 @@ export default function ArrivalBlueprint() {
               onPointerCancel={() => (dragging.current = false)}
             >
               <div className="ppab-layer">
-                <span className="ppab-world">The function today</span>
+                <span className="ppab-world">Old world marketing</span>
                 <div className="ppab-agency">
                   <span>the agency</span>
                 </div>
@@ -189,7 +189,7 @@ export default function ArrivalBlueprint() {
 
               <div className="ppab-layer ppab-layer-ai">
                 <span className="ppab-world ppab-world-ai">
-                  The same function, with AI
+                  Modern marketing
                 </span>
                 <svg viewBox="0 0 940 480" preserveAspectRatio="none">
                   {AI_EDGES.map((e, i) => (
@@ -242,13 +242,12 @@ export default function ArrivalBlueprint() {
         </div>
       </ScaledWindow>
       <p className="ppab-hint">
-        <span className="ppab-slash">/drag the line.</span> Left of it, a
-        marketing function as it usually runs: the handovers, the queues, the
-        return trips. Right of it, the same function redesigned: machines
-        draft from the brand pack, people review and approve, what worked
-        writes back. This is a demonstration of the analysis we do, not a
-        claim about Kite&rsquo;s function: yours gets mapped in the first
-        session, with the people who run it.
+        <span className="ppab-slash">/drag the line.</span> Left of it, old
+        world marketing: the handovers, the queues, the return trips. Right
+        of it, modern marketing: machines draft from the brand pack, people
+        review and approve, what worked writes back. A metaphor, not a map of
+        Kite: yours gets drawn in the first session, with the people who run
+        it.
       </p>
     </div>
   );
