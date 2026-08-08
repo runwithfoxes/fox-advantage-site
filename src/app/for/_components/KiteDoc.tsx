@@ -161,14 +161,14 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
     href: "#writer",
   },
   {
-    name: "Workflows",
-    line: "We redesign how marketing teams get their work done.",
-    href: "#workflows",
-  },
-  {
     name: "Adoption",
     line: "We measure where each person is, move the whole team up the scale, and show the return.",
     href: "#adoption",
+  },
+  {
+    name: "Workflows",
+    line: "We redesign how marketing teams get their work done.",
+    href: "#workflows",
   },
 ];
 
@@ -177,8 +177,8 @@ const SECTIONS = [
   { id: "whatwedo", title: "What we do" },
   { id: "training", title: "Training, shown" },
   { id: "writer", title: "The writer, in your voice" },
-  { id: "workflows", title: "Workflows, redesigned" },
   { id: "adoption", title: "Adoption, measured" },
+  { id: "workflows", title: "Workflows, redesigned" },
   { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
@@ -279,7 +279,16 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="workflows" k="05" title="Workflows, redesigned">
+      <PPSection id="adoption" k="05" title="Adoption, measured">
+        <p className="pps-standfirst">
+          Adoption is measured per person, never assumed. The map below is the
+          instrument: where each person started, where they are now, reported
+          monthly. It is also how you will know whether any of this worked.
+        </p>
+        <FluencyMap />
+      </PPSection>
+
+      <PPSection id="workflows" k="06" title="Workflows, redesigned">
         <p className="pps-standfirst">
           This is the thing we do that changes the shape of the week, not just
           the speed of the typing. We get into the weeds of how the work runs,
@@ -288,15 +297,6 @@ export default function KiteDoc() {
         </p>
         <BlueprintSlider />
         <WorkflowDays />
-      </PPSection>
-
-      <PPSection id="adoption" k="06" title="Adoption, measured">
-        <p className="pps-standfirst">
-          Adoption is measured per person, never assumed. The map below is the
-          instrument: where each person started, where they are now, reported
-          monthly. It is also how you will know whether any of this worked.
-        </p>
-        <FluencyMap />
       </PPSection>
 
       <PPSection id="recommend" k="07" title="What we'd recommend">
