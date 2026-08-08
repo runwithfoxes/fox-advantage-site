@@ -14,6 +14,19 @@ export interface RailLink {
   meta?: string;
 }
 
+export interface RailGroup {
+  label: string;
+  /** Compact groups render as a wrapped row of plain links. */
+  compact?: boolean;
+  entries: {
+    id: string; // the section the entry anchors to
+    title: string;
+    desc?: string; // one-liner under the title, locked copy where Paul set it
+    num?: string;
+    ids?: string[]; // extra section ids that light this entry (a group span)
+  }[];
+}
+
 // The page shell: fixed top bar, sticky rail listing the sections, masthead,
 // then the sections themselves as children. Sections must be PPSection
 // elements (or carry matching ids) for the rail links and tracking to work.
@@ -28,6 +41,7 @@ export default function ProspectShell({
   titleHl,
   standfirst,
   sections,
+  railGroups,
   railNote,
   bio,
   railLinks,
@@ -39,6 +53,11 @@ export default function ProspectShell({
   titleHl?: string;
   standfirst: string | string[];
   sections: ShellSection[];
+  /** When present, the rail renders these labelled groups instead of the flat
+   *  section list ("/what we do" moved into the rail, Paul, 8 Aug late). The
+   *  sections prop still drives the observer, so every body section must be
+   *  listed there even if the rail shows it inside a group. */
+  railGroups?: RailGroup[];
   railNote?: string;
   bio?: { photo: string; name: string; line: string };
   railLinks?: RailLink[];
@@ -51,18 +70,29 @@ export default function ProspectShell({
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    const links = new Map<string, HTMLAnchorElement>();
+    // A link can claim several section ids (data-ids), so a Capabilities
+    // entry lights while any of its demonstrations is in view.
+    const links = new Map<string, HTMLAnchorElement[]>();
     root
       .querySelectorAll<HTMLAnchorElement>(".pps-rail a[data-section]")
-      .forEach((a) => links.set(a.dataset.section as string, a));
+      .forEach((a) => {
+        const ids = (a.dataset.ids || a.dataset.section || "").split(",");
+        ids.forEach((id) => {
+          if (!id) return;
+          links.set(id, [...(links.get(id) || []), a]);
+        });
+      });
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          links.forEach((a) => (a.dataset.active = "0"));
-          const link = links.get(entry.target.id);
-          if (link) link.dataset.active = "1";
+          const on = links.get(entry.target.id);
+          if (!on) continue;
+          root
+            .querySelectorAll<HTMLAnchorElement>(".pps-rail a[data-section]")
+            .forEach((a) => (a.dataset.active = "0"));
+          on.forEach((a) => (a.dataset.active = "1"));
         }
       },
       { rootMargin: "-20% 0px -60% 0px" }
@@ -102,16 +132,63 @@ export default function ProspectShell({
           <div className="pps-railcol">
             {railNote && <p className="pps-railnote">{railNote}</p>}
             <nav className="pps-rail">
-              <p>/on this page</p>
-              {sections.map((s, i) => (
-                <a key={s.id} href={`#${s.id}`} data-section={s.id}>
-                  <span className="pps-rail-k">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="pps-rail-dot" />
-                  <span>{s.title}</span>
-                </a>
-              ))}
+              {railGroups ? (
+                railGroups.map((g) =>
+                  g.compact ? (
+                    <div key={g.label} className="pps-railgroup pps-railmini">
+                      <p>{g.label}</p>
+                      <div className="pps-railmini-row">
+                        {g.entries.map((e) => (
+                          <a
+                            key={e.id}
+                            href={`#${e.id}`}
+                            data-section={e.id}
+                            data-ids={(e.ids || [e.id]).join(",")}
+                          >
+                            {e.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                  <div key={g.label} className="pps-railgroup">
+                    <p>{g.label}</p>
+                    {g.entries.map((e, i) => (
+                      <a
+                        key={e.id}
+                        href={`#${e.id}`}
+                        data-section={e.id}
+                        data-ids={(e.ids || [e.id]).join(",")}
+                      >
+                        <span className="pps-rail-k">
+                          {e.num ?? String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="pps-rail-dot" />
+                        <span>
+                          {e.title}
+                          {e.desc && (
+                            <span className="pps-rail-desc">{e.desc}</span>
+                          )}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                  )
+                )
+              ) : (
+                <>
+                  <p>/on this page</p>
+                  {sections.map((s, i) => (
+                    <a key={s.id} href={`#${s.id}`} data-section={s.id}>
+                      <span className="pps-rail-k">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="pps-rail-dot" />
+                      <span>{s.title}</span>
+                    </a>
+                  ))}
+                </>
+              )}
             </nav>
             {bio && (
               <div className="pps-bio">

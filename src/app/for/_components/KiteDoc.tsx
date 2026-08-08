@@ -175,7 +175,6 @@ const FOUR_THINGS: { name: string; line: string; href: string }[] = [
 
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
-  { id: "whatwedo", title: "What we do" },
   { id: "training", title: "Training, shown" },
   { id: "writer", title: "The writer, in your voice" },
   { id: "admachine", title: "The ad machine" },
@@ -185,6 +184,51 @@ const SECTIONS = [
   { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
+];
+
+// The rail's lead group: what we do, in the ladder order, one-liners locked
+// verbatim by Paul. Capabilities spans its three demonstrations.
+const RAIL_GROUPS = [
+  {
+    label: "/what we do",
+    entries: [
+      {
+        id: "training",
+        title: "Training",
+        desc: "We train marketing teams to use AI properly, on their real work.",
+        num: "01",
+      },
+      {
+        id: "writer",
+        title: "Capabilities",
+        desc: "We build AI machines, writers, ad makers, research and outreach agents, configured to a brand and handed over.",
+        num: "02",
+        ids: ["writer", "admachine", "guardian"],
+      },
+      {
+        id: "adoption",
+        title: "Adoption",
+        desc: "We measure where each person is, move the whole team up the scale, and show the return.",
+        num: "03",
+      },
+      {
+        id: "workflows",
+        title: "Workflows",
+        desc: "We redesign how marketing teams get their work done.",
+        num: "04",
+      },
+    ],
+  },
+  {
+    label: "/your page",
+    compact: true,
+    entries: [
+      { id: "heard", title: "What we heard" },
+      { id: "recommend", title: "What we'd recommend" },
+      { id: "pricing", title: "The price" },
+      { id: "library", title: "Your library" },
+    ],
+  },
 ];
 
 export default function KiteDoc() {
@@ -198,7 +242,7 @@ export default function KiteDoc() {
         "This page holds what we would do for Kite, shown working rather than described, and a small library chosen for where Kite is now. It stays live. Anything we add lands here.",
       ]}
       sections={SECTIONS}
-      railNote="A short overview of what Run with Foxes does, each part shown working, then a recommendation for Kite and the price. Take anything from the library whether or not we work together."
+      railGroups={RAIL_GROUPS}
       bio={{
         photo: "/Paul_photo.jpg",
         name: "/Paul Dervan",
@@ -222,28 +266,12 @@ export default function KiteDoc() {
           keeping one voice across everything Kite ships is getting harder as
           the volume goes up. Your question at the end was the important one:
           does AI change how the team itself should work, not just how fast the
-          documents get written.
+          documents get written. Everything below answers something you said,
+          and the list on the left is the map.
         </p>
       </PPSection>
 
-      <PPSection id="whatwedo" k="02" title="What we do">
-        <p className="pps-standfirst">
-          Four things. Most engagements use two or three of them; for a team
-          like Kite&rsquo;s we would use all four. Each one is demonstrated on
-          this page, not described: follow the links, or just keep reading.
-        </p>
-        <div className="ppft">
-          {FOUR_THINGS.map((t, i) => (
-            <a className="ppft-row" key={t.name} href={t.href}>
-              <span className="ppft-k">{String(i + 1).padStart(2, "0")}</span>
-              <span className="ppft-name">{t.name}</span>
-              <span className="ppft-line">{t.line}</span>
-            </a>
-          ))}
-        </div>
-      </PPSection>
-
-      <PPSection id="training" k="03" title="Training, shown">
+      <PPSection id="training" k="02" title="Training, shown">
         <p className="pps-standfirst">
           Training runs on the team&rsquo;s real work, not slideware. The
           session below is the shape of it: a real question, and the habit of
@@ -258,7 +286,7 @@ export default function KiteDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="writer" k="04" title="The writer, in your voice">
+      <PPSection id="writer" k="03" title="The writer, in your voice">
         <p className="pps-standfirst">
           Judge the writer on the writing. It reads the brand pack before it
           writes a word, and every sentence it produces can show its source:
@@ -282,7 +310,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="admachine" k="05" title="The ad machine">
+      <PPSection id="admachine" k="04" title="The ad machine">
         <p className="pps-standfirst">
           The same discipline, pointed at advertising. The team approves one
           master ad; the machine makes every other size, holding the brand
@@ -291,7 +319,7 @@ export default function KiteDoc() {
         <AdMachine />
       </PPSection>
 
-      <PPSection id="guardian" k="06" title="The brand guardian">
+      <PPSection id="guardian" k="05" title="The brand guardian">
         <p className="pps-standfirst">
           Volume without drift needs a guard as well as a pack. This is the
           machine that checks every file against the brand book before it
@@ -300,7 +328,7 @@ export default function KiteDoc() {
         <BrandGuardian />
       </PPSection>
 
-      <PPSection id="adoption" k="07" title="Adoption, measured">
+      <PPSection id="adoption" k="06" title="Adoption, measured">
         <p className="pps-standfirst">
           Adoption is measured per person, never assumed. The map below is the
           instrument: where each person started, where they are now, reported
@@ -309,7 +337,7 @@ export default function KiteDoc() {
         <FluencyMap />
       </PPSection>
 
-      <PPSection id="workflows" k="08" title="Workflows, redesigned">
+      <PPSection id="workflows" k="07" title="Workflows, redesigned">
         <p className="pps-standfirst">
           This is the thing we do that changes the shape of the week, not just
           the speed of the typing. The blueprint at the top of this page is
@@ -318,7 +346,7 @@ export default function KiteDoc() {
         <WorkflowDays />
       </PPSection>
 
-      <PPSection id="recommend" k="09" title="What we'd recommend">
+      <PPSection id="recommend" k="08" title="What we'd recommend">
         <p className="pps-standfirst">
           Kite does not need more tools. Start with the fluency map: fourteen
           people, measured, so training aims at where each person actually is
@@ -331,7 +359,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="10" title="The price">
+      <PPSection id="pricing" k="09" title="The price">
         <PricingCards
           cards={[
             {
@@ -374,7 +402,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="11" title="Your library">
+      <PPSection id="library" k="10" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
