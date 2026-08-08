@@ -220,12 +220,14 @@ export default function KiteDoc() {
               alignItems: "start",
             }}
           >
-            <OutreachWindow
-              threads={KITE_THREADS}
-              title="Kite Outreach Agent"
-              sentLabel="96 sent"
-            />
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            <div style={{ minWidth: 0 }}>
+              <OutreachWindow
+                threads={KITE_THREADS}
+                title="Kite Outreach Agent"
+                sentLabel="96 sent"
+              />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 24, minWidth: 0 }}>
               <TerminalWindow
                 instruction="launch a campaign to 80 brokers who quoted commercial lines last month"
                 response="4 agents on it - researching, writing, sending, tracking"

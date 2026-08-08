@@ -119,6 +119,13 @@
   border-color: var(--pps-sky);
 }
 
+/* min-width 0 is load-bearing: without it the 1fr track refuses to shrink
+   below the widest fixed-width child (the 940px campaign window), forcing the
+   whole reading column past the page edge and cutting the copy off. */
+.pps-maincol {
+  min-width: 0;
+}
+
 .pps-masthead {
   padding: 0 0 30px;
   border-bottom: 2px solid var(--pps-deep);
