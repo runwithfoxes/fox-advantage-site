@@ -23,6 +23,7 @@ import ChatWindow from "./library/ChatWindow";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkflowDays from "./library/WorkflowDays";
 import FluencyMap from "./library/FluencyMap";
+import AdMachine from "./library/AdMachine";
 import type { Turn } from "./library/chatTypes";
 import "./library/four-things.css";
 
@@ -176,6 +177,7 @@ const SECTIONS = [
   { id: "whatwedo", title: "What we do" },
   { id: "training", title: "Training, shown" },
   { id: "writer", title: "The writer, in your voice" },
+  { id: "admachine", title: "The ad machine" },
   { id: "adoption", title: "Adoption, measured" },
   { id: "workflows", title: "Workflows, redesigned" },
   { id: "recommend", title: "What we'd recommend" },
@@ -278,7 +280,16 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="adoption" k="05" title="Adoption, measured">
+      <PPSection id="admachine" k="05" title="The ad machine">
+        <p className="pps-standfirst">
+          The same discipline, pointed at advertising. The team approves one
+          master ad; the machine makes every other size, holding the brand
+          exactly. Press run.
+        </p>
+        <AdMachine />
+      </PPSection>
+
+      <PPSection id="adoption" k="06" title="Adoption, measured">
         <p className="pps-standfirst">
           Adoption is measured per person, never assumed. The map below is the
           instrument: where each person started, where they are now, reported
@@ -287,7 +298,7 @@ export default function KiteDoc() {
         <FluencyMap />
       </PPSection>
 
-      <PPSection id="workflows" k="06" title="Workflows, redesigned">
+      <PPSection id="workflows" k="07" title="Workflows, redesigned">
         <p className="pps-standfirst">
           This is the thing we do that changes the shape of the week, not just
           the speed of the typing. The blueprint at the top of this page is
@@ -296,7 +307,7 @@ export default function KiteDoc() {
         <WorkflowDays />
       </PPSection>
 
-      <PPSection id="recommend" k="07" title="What we'd recommend">
+      <PPSection id="recommend" k="08" title="What we'd recommend">
         <p className="pps-standfirst">
           Kite does not need more tools. Start with the fluency map: fourteen
           people, measured, so training aims at where each person actually is
@@ -309,7 +320,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="08" title="The price">
+      <PPSection id="pricing" k="09" title="The price">
         <PricingCards
           cards={[
             {
@@ -352,7 +363,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="09" title="Your library">
+      <PPSection id="library" k="10" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
