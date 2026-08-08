@@ -37,6 +37,18 @@
 - Tracking events for the new section ids not verified against the
   tracking route.
 
+## Verdict state, 8 Aug late (interim, detail to follow from Paul)
+
+- Approved as saved: the arrival blueprint (slider, fox, old world / modern
+  marketing), the ad machine spawn, the brand guardian x-ray, the simplified
+  rail with the nested agents.
+- Good but more work coming: Creative Director (Paul used the name
+  unprompted; rename everywhere only on his explicit word).
+- Not good, HELD untouched until his detailed feedback lands, no blind
+  polishing: the system exhibit, the writer section. If the writer flip is
+  named, the story terminal fixes its component and sends it complete.
+- Still open, no solution ordered: Training.
+
 ## Candidates taken from the story-first take, not yet built
 
 - The self-rating slider opening the adoption section ("where is your
