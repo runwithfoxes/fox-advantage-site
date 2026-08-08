@@ -299,7 +299,7 @@ export default function KiteDoc() {
         </p>
         <div style={{ marginTop: 26 }}>
           <WorkflowExhibit
-            beforeLabel="A campaign in a typical marketing team"
+            beforeLabel="Old world marketing - one campaign"
             beforeTotal="14 working days"
             before={[
               {
@@ -338,7 +338,7 @@ export default function KiteDoc() {
                 people hold them.
               </>
             }
-            afterLabel="The same campaign, redesigned"
+            afterLabel="Modern marketing - the same campaign"
             afterTotal="2 days"
             after={[
               {
