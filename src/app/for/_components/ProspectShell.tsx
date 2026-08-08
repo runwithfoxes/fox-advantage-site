@@ -24,6 +24,8 @@ export interface RailGroup {
     desc?: string; // one-liner under the title, locked copy where Paul set it
     num?: string;
     ids?: string[]; // extra section ids that light this entry (a group span)
+    /** Nested machines under this entry, indented, titles only. */
+    children?: { id: string; title: string }[];
   }[];
 }
 
@@ -165,23 +167,35 @@ export default function ProspectShell({
                   <div key={g.label} className="pps-railgroup">
                     <p>{g.label}</p>
                     {g.entries.map((e, i) => (
-                      <a
-                        key={e.id}
-                        href={`#${e.id}`}
-                        data-section={e.id}
-                        data-ids={(e.ids || [e.id]).join(",")}
-                      >
-                        <span className="pps-rail-k">
-                          {e.num ?? String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="pps-rail-dot" />
-                        <span>
-                          {e.title}
-                          {e.desc && (
-                            <span className="pps-rail-desc">{e.desc}</span>
-                          )}
-                        </span>
-                      </a>
+                      <span key={e.id}>
+                        <a
+                          href={`#${e.id}`}
+                          data-section={e.id}
+                          data-ids={(e.ids || [e.id]).join(",")}
+                        >
+                          <span className="pps-rail-k">
+                            {e.num ?? String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span className="pps-rail-dot" />
+                          <span>
+                            {e.title}
+                            {e.desc && (
+                              <span className="pps-rail-desc">{e.desc}</span>
+                            )}
+                          </span>
+                        </a>
+                        {e.children?.map((c) => (
+                          <a
+                            key={c.id}
+                            href={`#${c.id}`}
+                            data-section={c.id}
+                            className="pps-rail-sub"
+                          >
+                            <span className="pps-rail-subdot" />
+                            <span>{c.title}</span>
+                          </a>
+                        ))}
+                      </span>
                     ))}
                   </div>
                   )

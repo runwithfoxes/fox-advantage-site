@@ -178,7 +178,7 @@ const SECTIONS = [
   { id: "heard", title: "What we heard" },
   { id: "training", title: "Training, shown" },
   { id: "writer", title: "The writer, in your voice" },
-  { id: "admachine", title: "The ad machine" },
+  { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
   { id: "system", title: "The system, linked" },
   { id: "adoption", title: "Adoption, measured" },
@@ -200,6 +200,12 @@ const RAIL_GROUPS = [
         title: "Building agents",
         num: "02",
         ids: ["writer", "admachine", "guardian", "system"],
+        children: [
+          { id: "writer", title: "Writer" },
+          { id: "admachine", title: "Creative Director" },
+          { id: "guardian", title: "Brand Guardian" },
+          { id: "system", title: "The system" },
+        ],
       },
       { id: "adoption", title: "Designing team AI adoption", num: "03" },
       { id: "workflows", title: "Redesigning how teams work", num: "04" },
@@ -292,7 +298,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="admachine" k="04" title="The ad machine">
+      <PPSection id="admachine" k="04" title="Creative Director">
         <p className="pps-standfirst">
           The same discipline, pointed at advertising. The team approves one
           master ad; the machine makes every other size, holding the brand

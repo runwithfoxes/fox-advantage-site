@@ -279,6 +279,36 @@
   color: var(--pps-muted);
 }
 
+/* Nested machines under a rail entry: indented, smaller, titles only. */
+.pps-rail a.pps-rail-sub {
+  display: grid;
+  grid-template-columns: 9px 1fr;
+  gap: 8px;
+  margin-left: 31px;
+  padding: 4px 0;
+  border-top: none;
+  font-size: 0.6875rem;
+  color: #a8a8a2;
+}
+.pps-rail a.pps-rail-sub:hover {
+  color: var(--pps-sky);
+}
+.pps-rail-subdot {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #c9c9c3;
+  background: #fff;
+  display: block;
+  margin-top: 5px;
+}
+.pps-rail a.pps-rail-sub[data-active="1"] {
+  color: var(--pps-text);
+}
+.pps-rail a.pps-rail-sub[data-active="1"] .pps-rail-subdot {
+  background: var(--pps-sky);
+  border-color: var(--pps-sky);
+}
+
 /* Compact rail group: a wrapped row of quiet links. */
 .pps-railmini-row {
   display: flex;
