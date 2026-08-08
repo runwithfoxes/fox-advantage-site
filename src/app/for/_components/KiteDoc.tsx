@@ -9,6 +9,7 @@ import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
+import WebsiteExhibit from "./WebsiteExhibit";
 import ChatWindow from "./library/ChatWindow";
 import type { Turn } from "./library/chatTypes";
 
@@ -167,8 +168,25 @@ export default function KiteDoc() {
 
       <PPSection id="website" k="04" title="Your website, rebuilt">
         <p className="pps-standfirst">
-          Placeholder. The browser-frame rebuild with generated photography.
+          When a proposal includes a website, this frame holds the client&rsquo;s
+          own site rebuilt, scrollable, live. On this test page it shows our own
+          site standing in, because Kite is fictional and has no site to rebuild.
         </p>
+        <div style={{ marginTop: 26 }}>
+          <WebsiteExhibit
+            url="kiteinsurance.ie"
+            src="/distinctive"
+            caption="Sample frame. A real exhibit holds the client's rebuilt homepage, produced in minutes with no brief, and says so plainly: a real project involves a proper brief, the right photography, agreed navigation and written content."
+            issues={{
+              title: "Issues we found while building it",
+              items: [
+                "Sample slot. Only real, verified findings go here, checked with curl before they are written down.",
+              ],
+            }}
+            uses={["Claude Code", "Vercel hosting"]}
+            feeds={["The outbound agent's landing pages", "Renewal email links"]}
+          />
+        </div>
       </PPSection>
 
       <PPSection id="adoption" k="05" title="AI adoption at Kite">
