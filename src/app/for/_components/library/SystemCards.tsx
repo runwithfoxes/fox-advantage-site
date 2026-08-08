@@ -11,7 +11,7 @@
 // card is the live OutreachWindow; the chatbot card is a small recorded
 // exchange in the site's chat register.
 
-import { OutreachWindow, type OutreachThread } from "./AgentWindows";
+import { OutreachWindow, ScaledWindow, type OutreachThread } from "./AgentWindows";
 import "./system-cards.css";
 
 const THREADS: OutreachThread[] = [
@@ -40,15 +40,8 @@ export default function SystemCards({
 }) {
   return (
     <div className="ppsy">
-      <div className="ppsy-stage">
-        {/* the connectors: two short dashed bridges across the gutter. The
-            card labels carry the words; the wires carry the direction. */}
-        <svg className="ppsy-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
-          <path className="ppsy-wire" d="M63.2,26 C65,26 65,32 66.4,32" />
-          <path className="ppsy-wire" d="M66.4,74 C65,74 65,68 63.2,68" />
-        </svg>
-
-        <div className="ppsy-site">
+      <div className="ppsy-stack">
+        <ScaledWindow width={940}>
           <div className="ppsy-browser">
             <div className="ppsy-browserbar">
               <span className="ppsy-dots">
@@ -63,32 +56,37 @@ export default function SystemCards({
               <iframe src={siteUrl} title="The website, live" />
             </div>
           </div>
-          <p className="ppsy-cardlbl">The website</p>
-        </div>
+        </ScaledWindow>
+        <p className="ppsy-cardlbl">The website</p>
 
-        <div className="ppsy-side">
-          <div className="ppsy-chatcard">
-            <div className="ppw-tl">
-              <i />
-              <i />
-              <i />
-              <span className="ppw-t">the chatbot</span>
-              <span className="ppw-live-pill">always on</span>
+        <div className="ppsy-row2">
+          <div className="ppsy-col">
+            <div className="ppsy-stem" aria-hidden />
+            <div className="ppsy-chatcard">
+              <div className="ppw-tl">
+                <i />
+                <i />
+                <i />
+                <span className="ppw-t">the chatbot</span>
+                <span className="ppw-live-pill">always on</span>
+              </div>
+              <div className="ppsy-chatbody">
+                <p className="ppsy-msg ppsy-them">Do you handle commercial fleet?</p>
+                <p className="ppsy-msg ppsy-us">
+                  We do, same-day quotes. I can book you fifteen minutes with
+                  the broker desk, tomorrow at 10 is free.
+                </p>
+                <p className="ppsy-booked">meeting booked · calendar</p>
+              </div>
+              <p className="ppsy-cardlbl">Answers, books the meeting</p>
             </div>
-            <div className="ppsy-chatbody">
-              <p className="ppsy-msg ppsy-them">Do you handle commercial fleet?</p>
-              <p className="ppsy-msg ppsy-us">
-                We do, same-day quotes. I can book you fifteen minutes with the
-                broker desk, tomorrow at 10 is free.
-              </p>
-              <p className="ppsy-booked">meeting booked · calendar</p>
-            </div>
-            <p className="ppsy-cardlbl">Answers, books the meeting</p>
           </div>
-
-          <div className="ppsy-outbound">
-            <OutreachWindow threads={THREADS} title="outbound" sentLabel="96 sent" />
-            <p className="ppsy-cardlbl">Outbound, filling the top</p>
+          <div className="ppsy-col">
+            <div className="ppsy-stem" aria-hidden />
+            <div className="ppsy-outbound">
+              <OutreachWindow threads={THREADS} title="outbound" sentLabel="96 sent" />
+              <p className="ppsy-cardlbl">Outbound, filling the top</p>
+            </div>
           </div>
         </div>
       </div>

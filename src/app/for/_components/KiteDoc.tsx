@@ -244,16 +244,22 @@ export default function KiteDoc() {
 
       <PPSection id="workflows" k="03" title="Redesigning how teams work">
         <ArrivalBlueprint />
+        {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN WORDS COMING. He asked for copy of
+            about this length under the blueprint; this text holds the slot. */}
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          We do four things, and they run from easiest to hardest: we train
+          marketing teams to use AI properly, we build AI capabilities and
+          hand them over, we run adoption so the whole team moves rather than
+          a keen few, and we redesign how marketing work gets done. Each one
+          is shown below rather than described. Everything you&rsquo;ll see is
+          our own work on general marketing problems: your situation appears
+          only in what we heard, because one call doesn&rsquo;t make us
+          experts in how Kite runs, and we won&rsquo;t pretend otherwise.
+        </p>
       </PPSection>
 
       <PPSection id="training" k="04" title="Training teams">
-        <p className="pps-standfirst">
-          Usage being uneven is normal: a few people run with the tools, most
-          open them once. Training fixes that with a course built for
-          marketers. This is the course&rsquo;s first module, the real page,
-          scrolled top to bottom.
-        </p>
-        <div style={{ marginTop: 26 }}>
+        <div>
           <ScaledWindow width={940}>
             <div className="ppw-blueprint">
               <div className="ppw-frame-win">
@@ -277,6 +283,12 @@ export default function KiteDoc() {
             </div>
           </ScaledWindow>
         </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Usage being uneven is normal: a few people run with the tools, most
+          open them once. Training fixes that with a course built for
+          marketers. This is the course&rsquo;s first module, the real page,
+          scrolled top to bottom.
+        </p>
       </PPSection>
 
       <PPSection id="writer" k="05" title="An AI Writer">
