@@ -16,6 +16,7 @@
 // prompts; the masthead stays typographic until then.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
+import ProspectHero from "./ProspectHero";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import {
@@ -142,7 +143,14 @@ const SECTIONS = [
 
 export default function KiteDoc() {
   return (
-    <ProspectShell
+    <>
+      <ProspectHero
+        kicker="Prepared for Sarah Nolan, Kite Insurance"
+        headline="Work on Kite started Wednesday morning"
+        sub="Research, outreach and a running campaign, made for Kite since our call. Drag any window."
+        instruction="you said: every campaign queues behind the same few hands"
+      />
+      <ProspectShell
       clientName="Kite Insurance"
       eyebrow="Prepared for Sarah Nolan, Kite Insurance"
       title="Bring AI properly into Kite's marketing team"
@@ -455,5 +463,6 @@ export default function KiteDoc() {
         />
       </PPSection>
     </ProspectShell>
+    </>
   );
 }
