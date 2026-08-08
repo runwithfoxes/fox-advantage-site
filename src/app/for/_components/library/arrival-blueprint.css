@@ -1,0 +1,131 @@
+/* Arrival blueprint, ppab- prefix for the stage and divider only. The nodes,
+   edges and window chrome are the house ppw- classes from agent-windows.css,
+   which is the point: this figure speaks the library's language. */
+
+.ppab {
+  margin: 44px 0 0;
+}
+
+.ppab-stage {
+  position: relative;
+  height: 480px;
+  background: #fbfbfa;
+  touch-action: none;
+  cursor: col-resize;
+  overflow: hidden;
+}
+.ppab-layer {
+  position: absolute;
+  inset: 0;
+  isolation: isolate; /* keeps each layer's fox inside its own world */
+}
+.ppab-layer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.ppab-layer-ai {
+  background: #fbfbfa;
+  clip-path: inset(0 0 0 var(--x, 58%));
+}
+
+.ppab-world {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  z-index: 2;
+}
+.ppab-world-ai {
+  left: auto;
+  right: 18px;
+  color: #3a7ca5;
+}
+
+.ppab-agency {
+  position: absolute;
+  left: 48px;
+  top: 278px;
+  width: 500px;
+  height: 186px;
+  border: 1px dashed #c9c9c3;
+}
+.ppab-agency span {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a85;
+}
+
+.ppab-dashed {
+  stroke-dasharray: 4 4;
+}
+
+.ppab-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x, 58%);
+  width: 0;
+  border-left: 2px solid #1a3a4e;
+  outline: none;
+  z-index: 3;
+}
+.ppab-handle {
+  position: absolute;
+  top: 50%;
+  left: -21px;
+  width: 42px;
+  height: 26px;
+  margin-top: -13px;
+  background: #1a3a4e;
+  color: #fafaf8;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  user-select: none;
+}
+.ppab-divider:focus-visible .ppab-handle {
+  background: #3a7ca5;
+}
+
+.ppab-hint {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 14px 0 0;
+}
+.ppab-slash {
+  color: var(--pps-sky);
+}
+
+/* The foxes. Site rule holds: fox on cream only, and the canvas is cream.
+   Facepalm in the tangle, the composed one running the machines. */
+.ppab-fox {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.ppab-fox-today {
+  height: 106px;
+  left: 356px;
+  bottom: 8px;
+}
+.ppab-fox-ai {
+  height: 116px;
+  left: 828px;
+  bottom: 12px;
+}

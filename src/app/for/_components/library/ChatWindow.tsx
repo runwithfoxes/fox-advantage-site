@@ -125,6 +125,7 @@ export default function ChatWindow({
   start,
   title = "a writer",
   charts = {},
+  preview = false,
 }: {
   /** The recorded session this window plays. One window, one recording. */
   session: Turn[];
@@ -135,6 +136,10 @@ export default function ChatWindow({
   /** Chart data for any block of kind "chart", keyed by that block's `chart` name.
    *  Omit if the session has no chart blocks. */
   charts?: Record<string, ChartSpec>;
+  /** Show the opening question as a real chat bubble before play is pressed, so
+   *  the collapsed window reads as a conversation about to happen rather than
+   *  an empty card. (Paul, 8 Aug: the bare start plate made no sense to him.) */
+  preview?: boolean;
 }) {
   const units = useMemo(() => buildUnits(session), [session]);
   const [playing, setPlaying] = useState(false);
@@ -227,6 +232,11 @@ export default function ChatWindow({
       </div>
 
       <div className="ppchat-body">
+        {!started && preview && units[0]?.kind === "you" && (
+          /* The opening question, already asked, so the reader knows what this
+             window is before pressing anything. */
+          <UnitView unit={units[0]} within={Infinity} charts={charts} />
+        )}
         {!started && (
           /* NOT A PLAY TRIANGLE ON A BLACK RECTANGLE. That reads as video, and this is
              not video. It is a line of type in our own voice saying what will happen.

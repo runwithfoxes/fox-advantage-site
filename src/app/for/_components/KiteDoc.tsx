@@ -20,8 +20,7 @@ import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
-import TeamAscent from "./library/TeamAscent";
-import BlueprintSlider from "./library/BlueprintSlider";
+import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkflowDays from "./library/WorkflowDays";
 import FluencyMap from "./library/FluencyMap";
 import type { Turn } from "./library/chatTypes";
@@ -207,7 +206,7 @@ export default function KiteDoc() {
         { label: "Distinctive brands and AI", href: "/distinctive", meta: "essay" },
       ]}
     >
-      <TeamAscent />
+      <ArrivalBlueprint />
 
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
@@ -291,11 +290,9 @@ export default function KiteDoc() {
       <PPSection id="workflows" k="06" title="Workflows, redesigned">
         <p className="pps-standfirst">
           This is the thing we do that changes the shape of the week, not just
-          the speed of the typing. We get into the weeds of how the work runs,
-          the handovers, the queues, the return trips, then rebuild the
-          workflow so the waiting disappears and the approvals stay.
+          the speed of the typing. The blueprint at the top of this page is
+          the analysis; here is where the days go when it runs.
         </p>
-        <BlueprintSlider />
         <WorkflowDays />
       </PPSection>
 
