@@ -1,14 +1,14 @@
 "use client";
 
-// The four things figure, in the course blueprint language (modelled on
-// bp-02's card anatomy, lay-down animation and dashed standing wiring, per
-// Paul's reference). One row of four cards, the four things we do, names
-// verb-led, laid down in sequence. Out of Building agents falls a fan of
-// small cards naming agents we actually build, on separate ports per the
-// blueprint spec. 5s, loops, reduced motion shows the finished state.
-//
-// Order matches the rail: Redesigning first (the most important), then
-// training, building, designing adoption.
+// The what-we-do figure, v2 per Paul: "Redesigning how teams work" is the
+// overarching card on top, and the four things fall out of it on dashed
+// standing wiring. No agent minis. Geometry, card anatomy, shadow, radii,
+// fonts, lead and arrowhead shapes are taken from bp-02's markup in
+// course-figures.html, not re-derived: top card 190x58 rx15 with 8px panel
+// inset rx9, lower cards 150x46, icon 22x22 rx5, f-opt 13px / f-lbl 11px
+// mono, three-layer drop shadow, dashed sky leads with 13x14 arrowheads,
+// falls through clips. 6s, loops, reduced-motion static. No display type,
+// per Paul's font correction on the page.
 
 import styles from "./Figure.module.css";
 
@@ -19,56 +19,41 @@ const CSS = `
 #ppfour .q-wire{fill:none;stroke:#8A8A85;stroke-width:1.5;vector-effect:non-scaling-stroke}
 #ppfour .q-opt{font-family:var(--mono,'JetBrains Mono',monospace);font-size:13px;fill:#1D1B1B}
 #ppfour .q-lbl{font-family:var(--mono,'JetBrains Mono',monospace);font-size:11px;fill:#8A8A85}
-#ppfour .q-mini{font-family:var(--mono,'JetBrains Mono',monospace);font-size:11.5px;fill:#1D1B1B;text-anchor:middle}
 #ppfour .q-lead{stroke:#3A7CA5;stroke-width:2;fill:none;stroke-linecap:round}
 #ppfour .q-dash{stroke-dasharray:6 5}
 #ppfour .q-focus{fill:#3A7CA5}
-@keyframes q4-c0{0%,2%{opacity:0}10%,100%{opacity:1}}
-@keyframes q4-c1{0%,10%{opacity:0}18%,100%{opacity:1}}
-@keyframes q4-c2{0%,18%{opacity:0}26%,100%{opacity:1}}
-@keyframes q4-c3{0%,26%{opacity:0}34%,100%{opacity:1}}
-@keyframes q4-d0{0%,36%{transform:translateY(-96px)}48%,100%{transform:translateY(0)}}
-@keyframes q4-d1{0%,40%{transform:translateY(-96px)}52%,100%{transform:translateY(0)}}
-@keyframes q4-d2{0%,44%{transform:translateY(-96px)}56%,100%{transform:translateY(0)}}
-@keyframes q4-d3{0%,48%{transform:translateY(-96px)}60%,100%{transform:translateY(0)}}
-@keyframes q4-m0{0%,44%{opacity:0}52%,100%{opacity:1}}
-@keyframes q4-m1{0%,48%{opacity:0}56%,100%{opacity:1}}
-@keyframes q4-m2{0%,52%{opacity:0}60%,100%{opacity:1}}
-@keyframes q4-m3{0%,56%{opacity:0}64%,100%{opacity:1}}
-#ppfour .q-a-c0{opacity:0;animation:q4-c0 6s ease-out infinite}
-#ppfour .q-a-c1{opacity:0;animation:q4-c1 6s ease-out infinite}
-#ppfour .q-a-c2{opacity:0;animation:q4-c2 6s ease-out infinite}
-#ppfour .q-a-c3{opacity:0;animation:q4-c3 6s ease-out infinite}
+@keyframes q4-top{0%,2%{opacity:0}10%,100%{opacity:1}}
+@keyframes q4-d0{0%,14%{transform:translateY(-100px)}26%,100%{transform:translateY(0)}}
+@keyframes q4-d1{0%,18%{transform:translateY(-100px)}30%,100%{transform:translateY(0)}}
+@keyframes q4-d2{0%,22%{transform:translateY(-100px)}34%,100%{transform:translateY(0)}}
+@keyframes q4-d3{0%,26%{transform:translateY(-100px)}38%,100%{transform:translateY(0)}}
+@keyframes q4-c0{0%,24%{opacity:0}32%,100%{opacity:1}}
+@keyframes q4-c1{0%,28%{opacity:0}36%,100%{opacity:1}}
+@keyframes q4-c2{0%,32%{opacity:0}40%,100%{opacity:1}}
+@keyframes q4-c3{0%,36%{opacity:0}44%,100%{opacity:1}}
+#ppfour .q-a-top{opacity:0;animation:q4-top 6s ease-out infinite}
 #ppfour .q-a-d0{animation:q4-d0 6s cubic-bezier(.4,0,.2,1) infinite}
 #ppfour .q-a-d1{animation:q4-d1 6s cubic-bezier(.4,0,.2,1) infinite}
 #ppfour .q-a-d2{animation:q4-d2 6s cubic-bezier(.4,0,.2,1) infinite}
 #ppfour .q-a-d3{animation:q4-d3 6s cubic-bezier(.4,0,.2,1) infinite}
-#ppfour .q-a-m0{opacity:0;animation:q4-m0 6s ease-out infinite}
-#ppfour .q-a-m1{opacity:0;animation:q4-m1 6s ease-out infinite}
-#ppfour .q-a-m2{opacity:0;animation:q4-m2 6s ease-out infinite}
-#ppfour .q-a-m3{opacity:0;animation:q4-m3 6s ease-out infinite}
+#ppfour .q-a-c0{opacity:0;animation:q4-c0 6s ease-out infinite}
+#ppfour .q-a-c1{opacity:0;animation:q4-c1 6s ease-out infinite}
+#ppfour .q-a-c2{opacity:0;animation:q4-c2 6s ease-out infinite}
+#ppfour .q-a-c3{opacity:0;animation:q4-c3 6s ease-out infinite}
 @media (prefers-reduced-motion: reduce){
   #ppfour [class^="q-a-"]{animation:none !important;opacity:1 !important;transform:translateY(0) !important}
 }`;
 
-// Row 1 card geometry: four cards, 164 wide, 56 tall, y=36
-const CARDS = [
-  { x: 12, name: "Redesigning", lbl: "how teams work", icon: "flow" },
-  { x: 190, name: "Training", lbl: "teams", icon: "book" },
-  { x: 368, name: "Building", lbl: "agents", icon: "chev" },
-  { x: 546, name: "Designing", lbl: "AI adoption", icon: "steps" },
+// Lower row: 150x46 cards (bp-02 bottom-row anatomy), y=170
+const THINGS = [
+  { x: 16, name: "Training", lbl: "teams", icon: "book" },
+  { x: 196, name: "Building", lbl: "agents", icon: "chev" },
+  { x: 376, name: "Designing", lbl: "AI adoption", icon: "steps" },
+  { x: 556, name: "Redesigning", lbl: "workflows", icon: "loop" },
 ];
 
-// Mini agent cards: 132 wide, 38 tall, y=224, fanned from Building's ports
-const MINIS = [
-  { x: 122, name: "Writer" },
-  { x: 268, name: "Creative Director" },
-  { x: 414, name: "Brand Guardian" },
-  { x: 560, name: "Outreach Agent" },
-];
-
-// Separate ports along Building agents' bottom edge (368..532), per spec
-const PORTS = [396, 432, 468, 504];
+// Separate ports along the top card's bottom edge (card spans 265..455)
+const PORTS = [292, 340, 388, 436];
 
 function Icon({ kind }: { kind: string }) {
   switch (kind) {
@@ -102,6 +87,13 @@ function Icon({ kind }: { kind: string }) {
           <rect className="q-wire" x={15} y={4} width={4} height={14} />
         </>
       );
+    case "loop":
+      return (
+        <>
+          <path className="q-wire" d="M17 11 A6 6 0 1 1 11 5" />
+          <path className="q-wire" d="M17 6 L17 11 L12 11" />
+        </>
+      );
     default:
       return null;
   }
@@ -112,51 +104,52 @@ export default function FourThingsFigure() {
     <div id="ppfour" className={styles.ppfigurePlate}>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
       <svg
-        viewBox="0 0 720 290"
+        viewBox="0 0 720 240"
         role="img"
-        aria-label="Four cards in a row naming the four things Run with Foxes does, and below the Building agents card, four smaller cards naming agents, each joined by a dashed line"
+        aria-label="One card on top, Redesigning how teams work, joined by dashed lines to four cards below: Training teams, Building agents, Designing AI adoption, Redesigning workflows"
       >
         <defs>
           <filter id="ppfoursh" x="-14%" y="-14%" width="128%" height="140%">
             <feDropShadow dx="0" dy="1" stdDeviation="0.5" floodColor="#1A3A4E" floodOpacity="0.06" />
             <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#1A3A4E" floodOpacity="0.11" />
+            <feDropShadow dx="0" dy="14" stdDeviation="13" floodColor="#1A3A4E" floodOpacity="0.08" />
           </filter>
         </defs>
 
-        {CARDS.map((c, i) => (
-          <g key={c.name} className={`q-a-c${i}`}>
-            <rect className="q-frame" x={c.x} y={36} width={164} height={56} rx={15} filter="url(#ppfoursh)" />
-            <rect className="q-panel" x={c.x + 8} y={44} width={148} height={40} rx={9} />
-            <rect className="q-icon" x={c.x + 18} y={53} width={22} height={22} rx={5} />
-            <g transform={`translate(${c.x + 18},${53})`}>
-              <Icon kind={c.icon} />
-            </g>
-            <text className="q-opt" x={c.x + 50} y={64}>{c.name}</text>
-            <text className="q-lbl" x={c.x + 50} y={78}>{c.lbl}</text>
+        <g className="q-a-top">
+          <rect className="q-frame" x={265} y={24} width={190} height={58} rx={15} filter="url(#ppfoursh)" />
+          <rect className="q-panel" x={273} y={32} width={174} height={42} rx={9} />
+          <rect className="q-icon" x={285} y={42} width={22} height={22} rx={5} />
+          <g transform="translate(285,42)">
+            <Icon kind="flow" />
           </g>
-        ))}
+          <text className="q-opt" x={319} y={52}>Redesigning</text>
+          <text className="q-lbl" x={319} y={66}>how teams work</text>
+        </g>
 
-        {MINIS.map((m, i) => {
-          const mid = m.x + 66;
+        {THINGS.map((c, i) => {
+          const mid = c.x + 75;
           const port = PORTS[i];
           return (
-            <g key={m.name}>
+            <g key={c.name}>
               <clipPath id={`ppfourclip${i}`}>
-                <rect x={Math.min(port, mid) - 12} y={92} width={Math.abs(mid - port) + 24} height={132} />
+                <rect x={Math.min(port, mid) - 12} y={82} width={Math.abs(mid - port) + 24} height={88} />
               </clipPath>
               <g clipPath={`url(#ppfourclip${i})`}>
                 <g className={`q-a-d${i}`}>
-                  <path
-                    className="q-lead q-dash"
-                    d={`M${port} 92 C ${port} 158, ${mid} 158, ${mid} 202`}
-                  />
-                  <path className="q-focus" d={`M${mid} 215 L${mid - 7} 202 L${mid + 7} 202 Z`} />
+                  <path className="q-lead q-dash" d={`M${port} 82 C ${port} 122, ${mid} 118, ${mid} 146`} />
+                  <path className="q-focus" d={`M${mid} 159 L${mid - 7} 146 L${mid + 7} 146 Z`} />
                 </g>
               </g>
-              <g className={`q-a-m${i}`}>
-                <rect className="q-frame" x={m.x} y={224} width={132} height={38} rx={12} filter="url(#ppfoursh)" />
-                <rect className="q-panel" x={m.x + 6} y={230} width={120} height={26} rx={7} />
-                <text className="q-mini" x={mid} y={247}>{m.name}</text>
+              <g className={`q-a-c${i}`}>
+                <rect className="q-frame" x={c.x} y={170} width={150} height={46} rx={15} filter="url(#ppfoursh)" />
+                <rect className="q-panel" x={c.x + 8} y={178} width={134} height={30} rx={9} />
+                <rect className="q-icon" x={c.x + 20} y={182} width={22} height={22} rx={5} />
+                <g transform={`translate(${c.x + 20},${182})`}>
+                  <Icon kind={c.icon} />
+                </g>
+                <text className="q-opt" x={c.x + 54} y={192}>{c.name}</text>
+                <text className="q-lbl" x={c.x + 54} y={206}>{c.lbl}</text>
               </g>
             </g>
           );
