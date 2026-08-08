@@ -344,3 +344,11 @@
   border-bottom: 1px solid var(--pps-border);
   color: var(--pps-sky);
 }
+
+/* Sub-exhibits inside a numbered section: one level down. */
+.pps-sub {
+  padding-top: 48px;
+}
+.pps-sub .pps-section-h2 {
+  font-size: 1.125rem;
+}

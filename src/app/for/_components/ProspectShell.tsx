@@ -264,15 +264,22 @@ export function PPSection({
   id,
   k,
   title,
+  sub,
   children,
 }: {
   id: string;
   k?: string;
   title: string;
+  /** A sub-exhibit inside a numbered section: smaller heading, tighter top. */
+  sub?: boolean;
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} data-track-section={id} className="pps-section">
+    <section
+      id={id}
+      data-track-section={id}
+      className={`pps-section${sub ? " pps-sub" : ""}`}
+    >
       <div className="pps-section-head">
         {k && <span className="pps-section-k">{k}</span>}
         <h2 className="pps-section-h2">{title}</h2>

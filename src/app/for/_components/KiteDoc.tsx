@@ -15,7 +15,7 @@
 // we heard". Every demonstration is ours, generic, and labelled as a
 // demonstration. Nothing pretends to know Kite's insides.
 
-import ProspectShell, { PPSection, PPPart } from "./ProspectShell";
+import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
@@ -161,11 +161,12 @@ const SECTIONS = [
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "training", title: "Training teams" },
+  { id: "buildingagents", title: "Building agents" },
   { id: "writer", title: "An AI Writer" },
   { id: "admachine", title: "Creative Director" },
   { id: "guardian", title: "The brand guardian" },
   { id: "system", title: "The system, linked" },
-  { id: "adoption", title: "Adoption, measured" },
+  { id: "adoption", title: "Designing team AI adoption" },
   { id: "recommend", title: "What we'd recommend" },
   { id: "pricing", title: "The price" },
   { id: "library", title: "Your library" },
@@ -180,10 +181,10 @@ const RAIL_GROUPS = [
       { id: "workflows", title: "Redesigning workflows", num: "01" },
       { id: "training", title: "Training teams", num: "02" },
       {
-        id: "writer",
+        id: "buildingagents",
         title: "Building agents",
         num: "03",
-        ids: ["writer", "admachine", "guardian", "system"],
+        ids: ["buildingagents", "writer", "admachine", "guardian", "system"],
         children: [
           { id: "writer", title: "Writer" },
           { id: "admachine", title: "Creative Director" },
@@ -291,10 +292,13 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPPart title="building agents" />
+      <PPSection id="buildingagents" k="05" title="Building agents">
+        <></>
+      </PPSection>
 
-      <PPSection id="writer" k="05" title="An AI Writer">
-        <p className="pps-standfirst">
+      <PPSection id="writer" sub title="An AI Writer">
+        <Figure name="fig-12" />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           I read a lot about how AI writes slop. It does. But it doesn&rsquo;t
           have to. If you spend time up front. Writers need to know your
           brand&rsquo;s positioning, your target audience, insights or pain
@@ -303,9 +307,6 @@ export default function KiteDoc() {
           need to articulate instructions on how we want the writer to
           interact with us or our colleagues.
         </p>
-        <div style={{ marginTop: 26 }}>
-          <Figure name="fig-12" />
-        </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           That knowledge is a small folder of documents. This is the whole
           thing, worked through here on Kite, a fictional insurance brand.
@@ -343,44 +344,44 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="admachine" k="06" title="Creative Director">
-        <p className="pps-standfirst">
+      <PPSection id="admachine" sub title="Creative Director">
+        <AdMachine />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           The same discipline, pointed at advertising. The team approves one
           master ad; the machine makes every other size, holding the brand
           exactly. Press run.
         </p>
-        <AdMachine />
       </PPSection>
 
-      <PPSection id="guardian" k="07" title="The brand guardian">
-        <p className="pps-standfirst">
+      <PPSection id="guardian" sub title="Brand Guardian">
+        <BrandGuardian />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Volume without drift needs a guard as well as a pack. This is the
           machine that checks every file against the brand book before it
           ships, shown on the real thing it guards.
         </p>
-        <BrandGuardian />
       </PPSection>
 
-      <PPSection id="system" k="08" title="The system, linked">
-        <p className="pps-standfirst">
+      <PPSection id="system" sub title="The system, linked">
+        <SystemCards />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           The machines are not a drawer of separate tools. For teams whose
           website matters, they run as one system: outbound fills the top,
           the site is worth arriving at, and the chatbot meets every visitor.
         </p>
-        <SystemCards />
       </PPSection>
 
-      <PPSection id="adoption" k="09" title="Adoption, measured">
-        <p className="pps-standfirst">
+      <PPSection id="adoption" k="06" title="Designing team AI adoption">
+        <FluencyMap />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Adoption is measured per person, never assumed. The map below is the
           instrument: where each person started, where they are now, reported
           monthly. It is also how you will know whether any of this worked.
         </p>
-        <FluencyMap />
       </PPSection>
 
 
-      <PPSection id="recommend" k="10" title="What we'd recommend">
+      <PPSection id="recommend" k="07" title="What we'd recommend">
         <p className="pps-standfirst">
           Kite does not need more tools. Start with the fluency map: fourteen
           people, measured, so training aims at where each person actually is
@@ -393,7 +394,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="11" title="The price">
+      <PPSection id="pricing" k="08" title="The price">
         <PricingCards
           cards={[
             {
@@ -436,7 +437,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="12" title="Your library">
+      <PPSection id="library" k="09" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
