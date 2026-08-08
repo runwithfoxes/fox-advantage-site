@@ -132,7 +132,7 @@ export default function ArrivalBlueprint() {
     const el = stageRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    setX(Math.min(92, Math.max(8, ((clientX - r.left) / r.width) * 100)));
+    setX(Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100)));
   };
 
   return (
@@ -220,26 +220,19 @@ export default function ArrivalBlueprint() {
                     nodeStep < step ? "ppw-done" : nodeStep === step ? "ppw-run" : "";
                   return <NodeCard key={n.label} n={n} state={state} />;
                 })}
-                {/* And the composed fox runs the machines on the other side.
-                    eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/fox/fox-pm-nobg.png"
-                  alt=""
-                  className="ppab-fox ppab-fox-ai"
-                />
               </div>
 
               <div
                 className="ppab-divider"
                 role="slider"
                 aria-label="Reveal the AI-world blueprint"
-                aria-valuemin={8}
-                aria-valuemax={92}
+                aria-valuemin={0}
+                aria-valuemax={100}
                 aria-valuenow={Math.round(x)}
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === "ArrowLeft") setX((v) => Math.max(8, v - 4));
-                  if (e.key === "ArrowRight") setX((v) => Math.min(92, v + 4));
+                  if (e.key === "ArrowLeft") setX((v) => Math.max(0, v - 4));
+                  if (e.key === "ArrowRight") setX((v) => Math.min(100, v + 4));
                 }}
               >
                 <span className="ppab-handle">◂ ▸</span>
