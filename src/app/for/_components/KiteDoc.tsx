@@ -211,11 +211,33 @@ export default function KiteDoc() {
         <div style={{ marginTop: 26 }}>
           <WriterSwitch />
         </div>
-        <p className="pps-standfirst" style={{ marginTop: 34 }}>
-          The windows below are more of the machines: a campaign running end
-          to end, outreach conversations, and the research brief before a call.
+        <p className="pps-standfirst" style={{ marginTop: 90 }}>
+          The outreach agent holds real conversations. These are broker
+          threads: the opener, the typing, the reply arriving.
         </p>
-        <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ marginTop: 32 }}>
+          <OutreachWindow
+            threads={KITE_THREADS}
+            title="Outreach Agent"
+            sentLabel="96 sent"
+          />
+        </div>
+
+        <p className="pps-standfirst" style={{ marginTop: 90 }}>
+          Starting all of it takes one sentence.
+        </p>
+        <div style={{ marginTop: 32, maxWidth: 680 }}>
+          <TerminalWindow
+            instruction="launch a campaign to 80 brokers who quoted commercial lines last month"
+            response="4 agents on it - researching, writing, sending, tracking"
+            liveLabel="~ run with foxes"
+          />
+        </div>
+
+        <p className="pps-standfirst" style={{ marginTop: 90 }}>
+          And the campaign agent runs the whole flow end to end, then reports.
+        </p>
+        <div style={{ marginTop: 32 }}>
           <CampaignWindow
             title="Campaign Agent"
             crumbLabel="Broker renewal outbound"
@@ -229,42 +251,26 @@ export default function KiteDoc() {
             ]}
             stats={{ contacted: 96, replied: 18, booked: 4, running: 1 }}
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 24,
-              alignItems: "start",
-            }}
-          >
-            <div style={{ minWidth: 0 }}>
-              <OutreachWindow
-                threads={KITE_THREADS}
-                title="Outreach Agent"
-                sentLabel="96 sent"
-              />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 24, minWidth: 0 }}>
-              <TerminalWindow
-                instruction="launch a campaign to 80 brokers who quoted commercial lines last month"
-                response="4 agents on it - researching, writing, sending, tracking"
-                liveLabel="~ demonstration"
-              />
-              <ResearchWindow
-                title="Research Agent"
-                subject="Research ahead of your call with Carmody & Lyle"
-                from="Research Agent"
-                lines={[
-                  "Hi Sarah,",
-                  "Here's the research ahead of your call with **Carmody & Lyle** on Friday. Ruth Carmody took over as Director in March.",
-                  "They picked up two new commercial accounts this quarter and are still quoting those on paper.",
-                  "- She owns commercial lines with **no dedicated underwriter contact yet** - lead with same-day quoting.",
-                  "- The **two new accounts** are the wedge - offer to quote both by Friday.",
-                ]}
-                attachment="carmody-lyle-brief.pdf · 2 pages"
-              />
-            </div>
-          </div>
+        </div>
+
+        <p className="pps-standfirst" style={{ marginTop: 90 }}>
+          Before every call, the research agent files a brief. This one is for
+          a call with a broker on Friday.
+        </p>
+        <div style={{ marginTop: 32, maxWidth: 720 }}>
+          <ResearchWindow
+            title="Research Agent"
+            subject="Research ahead of your call with Carmody & Lyle"
+            from="Research Agent"
+            lines={[
+              "Hi Sarah,",
+              "Here's the research ahead of your call with **Carmody & Lyle** on Friday. Ruth Carmody took over as Director in March.",
+              "They picked up two new commercial accounts this quarter and are still quoting those on paper.",
+              "- She owns commercial lines with **no dedicated underwriter contact yet** - lead with same-day quoting.",
+              "- The **two new accounts** are the wedge - offer to quote both by Friday.",
+            ]}
+            attachment="carmody-lyle-brief.pdf · 2 pages"
+          />
         </div>
       </PPSection>
 
