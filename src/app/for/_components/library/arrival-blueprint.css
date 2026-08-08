@@ -121,6 +121,7 @@
 }
 .ppab-fox-today {
   height: 104px;
-  left: 442px;
+  left: auto;
+  right: 18px;
   bottom: 6px;
 }
