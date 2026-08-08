@@ -37,17 +37,26 @@
 - Tracking events for the new section ids not verified against the
   tracking route.
 
-## Verdict state, 8 Aug late (interim, detail to follow from Paul)
+## State at close, 8 Aug night
 
-- Approved as saved: the arrival blueprint (slider, fox, old world / modern
-  marketing), the ad machine spawn, the brand guardian x-ray, the simplified
-  rail with the nested agents.
-- Good but more work coming: Creative Director (Paul used the name
-  unprompted; rename everywhere only on his explicit word).
-- Not good, HELD untouched until his detailed feedback lands, no blind
-  polishing: the system exhibit, the writer section. If the writer flip is
-  named, the story terminal fixes its component and sends it complete.
-- Still open, no solution ordered: Training.
+The page structure Paul built to by direct art direction through the
+evening: heard, What Run with Foxes does (figure then copy), then the four
+same-level sections in his order: Redesigning workflows (blueprint slider,
+his caption owed), Training teams (approved course film at blueprint
+width), Building agents (nine sub-exhibits: Writer with the two real
+module-2 recordings, Creative Director, Brand Guardian x-ray, the system,
+Brief Coach ladder, Outbound window, Lifecycle cascade, Ghostwriter
+cascade, Search & GEO cascade with placeholder copy), Designing team AI
+adoption (fluency map, rebuild owed from the story terminal), then
+recommend, price, library. Rail: photo + /about, /what we do with the
+nested agents. Every section: headline, figure, copy.
+
+Owed by Paul: slider caption words, the what-we-do copy rewrite, search
+agent copy, comprehension pass on the writer recordings, feedback he
+announced at close ("some comments and feedback").
+Owed by the story terminal: adoption component, website agent exhibit,
+system exhibit ideas.
+About ten agents will exist; pages nest the chosen few per buyer.
 
 ## Candidates taken from the story-first take, not yet built
 
