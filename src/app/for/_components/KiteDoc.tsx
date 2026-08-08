@@ -8,6 +8,13 @@
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
+import {
+  OutreachWindow,
+  ResearchWindow,
+  TerminalWindow,
+  CampaignWindow,
+  type OutreachThread,
+} from "./library/AgentWindows";
 import LibraryList from "./LibraryList";
 import WebsiteExhibit from "./WebsiteExhibit";
 import ChatWindow from "./library/ChatWindow";
@@ -44,6 +51,30 @@ const KITE_DOCS: FolderDoc[] = [
     body: [
       "Plain, direct, no insurance jargon. If a broker would not say the sentence on the phone, it does not go in writing.",
     ],
+  },
+];
+
+const KITE_THREADS: OutreachThread[] = [
+  {
+    name: "Ruth Carmody",
+    company: "Director · Carmody & Lyle Insurance Brokers",
+    message:
+      "Hi Ruth - noticed Carmody & Lyle picked up two new commercial accounts this month. Kite quotes commercial the same day, no re-keying. Worth a look?",
+    reply: "Send me the broker portal login, I'll take a look this week.",
+  },
+  {
+    name: "Michael Doran",
+    company: "Broker Principal · Doran Cover",
+    message:
+      "Hi Michael - a lot of brokers are chasing quote turnaround right now. Kite's same-day on commercial and motor fleet. Open to a quick call?",
+    reply: "Yes - Thursday afternoon works.",
+  },
+  {
+    name: "Aisling Byrne",
+    company: "Commercial Lines Manager · Byrne Foran",
+    message:
+      "Hi Aisling - saw Byrne Foran is growing the commercial book. We renewed three of your clients last year without a single query. Worth ten minutes?",
+    reply: "Sounds good, happy to chat.",
   },
 ];
 
@@ -162,8 +193,60 @@ export default function KiteDoc() {
 
       <PPSection id="agents" k="03" title="The agents, working">
         <p className="pps-standfirst">
-          Placeholder. The agent windows and per-agent demos land here.
+          These are not mock-ups of what the software might look like. Each
+          window below is the product working on Kite&rsquo;s business: the
+          campaign running end to end, the outreach conversations, the research
+          brief before a call, and the one-line instruction that starts it all.
         </p>
+        <div style={{ marginTop: 26, display: "flex", flexDirection: "column", gap: 24 }}>
+          <CampaignWindow
+            title="Kite Campaign Agent"
+            crumbLabel="Broker renewal outbound"
+            runNumber={22}
+            nodes={[
+              { icon: "◆", label: "Quote lapsed", kind: "trigger" },
+              { icon: "◱", label: "Enrich broker", kind: "step" },
+              { icon: "▤", label: "Renewal brief", kind: "agent" },
+              { icon: "✎", label: "Draft outreach", kind: "agent" },
+              { icon: "➤", label: "Send + track", kind: "step" },
+            ]}
+            stats={{ contacted: 96, replied: 18, booked: 4, running: 1 }}
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 24,
+              alignItems: "start",
+            }}
+          >
+            <OutreachWindow
+              threads={KITE_THREADS}
+              title="Kite Outreach Agent"
+              sentLabel="96 sent"
+            />
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              <TerminalWindow
+                instruction="launch a campaign to 80 brokers who quoted commercial lines last month"
+                response="4 agents on it - researching, writing, sending, tracking"
+                liveLabel="~ kite insurance"
+              />
+              <ResearchWindow
+                title="Kite Research Agent"
+                subject="Research ahead of your call with Carmody & Lyle"
+                from="Kite Research Agent"
+                lines={[
+                  "Hi Sarah,",
+                  "Here's the research ahead of your call with **Carmody & Lyle** on Friday. Ruth Carmody took over as Director in March.",
+                  "They picked up two new commercial accounts this quarter and are still quoting those on paper.",
+                  "- She owns commercial lines with **no dedicated underwriter contact yet** - lead with same-day quoting.",
+                  "- The **two new accounts** are the wedge - offer to quote both by Friday.",
+                ]}
+                attachment="carmody-lyle-brief.pdf · 2 pages"
+              />
+            </div>
+          </div>
+        </div>
       </PPSection>
 
       <PPSection id="website" k="04" title="Your website, rebuilt">

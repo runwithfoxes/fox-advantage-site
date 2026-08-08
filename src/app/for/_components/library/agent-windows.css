@@ -1,0 +1,215 @@
+/*
+  AGENT WINDOWS - the four animated "app window" cards from the homepage hero
+  (src/components/AgentsHero.tsx), ported as standalone reusable components.
+
+  Every rule here is the ".ah-" rule the four windows need from globals.css
+  (roughly lines 5798-6025), renamed to a "ppw-" prefix so it can never collide
+  with the hero's own copy. globals.css itself is untouched.
+
+  --mono is read from :root (defined once in globals.css) and resolves fine
+  here since this file is imported into the same document, not scoped away
+  from it.
+
+  CONTENT-BEFORE-ANIMATION: the hero's original CSS starts a few elements at
+  opacity:0 and animates them in, which only works there because the hero's
+  JS is what first WRITES that content into the DOM. Here every window's
+  content is real JSX from the first paint, so those opacity:0 starting
+  points would hide real content before any JS runs. They are gated behind an
+  ancestor ".ppw-live" class instead, added by each component's own effect
+  only after mount - without it (no JS, or before hydration) every element
+  below just renders visible and static, no animation, nothing hidden.
+*/
+
+.ppw-scope {
+  --ppw-sky: #3A7CA5; --ppw-sky-light: #6CAAC8; --ppw-deep: #1A3A4E;
+  --ppw-orange: #F47521; --ppw-muted: #8A8A85; --ppw-border: #E0E0DC;
+  --ppw-dot: rgba(208,208,204,.5); --ppw-frame: #edeef1; --ppw-frame-line: rgba(20,20,30,.10);
+  --ppw-line: rgba(20,20,30,.07); --ppw-line-soft: rgba(20,20,30,.045);
+  --ppw-ink: #1b1b1f; --ppw-faint: #b7b7bd; --ppw-green: #2e7d46; --ppw-purple: #6a5acd;
+  --ppw-sel: #f3f6f9; --ppw-bubble: #f4f2ee;
+  /* the card chrome deliberately uses a UI sans, not the site's mono */
+  --ppw-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  color: #1D1B1B;
+}
+
+/* ---- ScaledWindow scaffolding ---- */
+.ppw-holder { position: relative; overflow: hidden; }
+.ppw-win { transform-origin: 0 0; }
+
+/* ---- shared window chrome (the ONE place rounded corners are allowed) ---- */
+.ppw-frame-win {
+  background: var(--ppw-frame); border: 1px solid var(--ppw-frame-line); border-radius: 15px; padding: 0 8px 8px;
+  box-shadow: 0 1px 1px rgba(26,58,78,.05), 0 20px 42px -14px rgba(26,58,78,.26), 0 64px 110px -54px rgba(26,58,78,.42);
+}
+.ppw-tl { display: flex; gap: 6px; align-items: center; padding: 10px 11px 8px; }
+.ppw-tl i { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.06); }
+.ppw-tl i:nth-child(1) { background: #ff5f57; }
+.ppw-tl i:nth-child(2) { background: #febc2e; }
+.ppw-tl i:nth-child(3) { background: #28c840; }
+.ppw-tl .ppw-t { margin-left: 6px; font-size: 11.5px; font-weight: 600; color: #54545c; font-family: var(--mono); }
+.ppw-tl .ppw-live-pill { margin-left: auto; display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ppw-sky); font-weight: 600; font-family: var(--mono); padding-right: 4px; }
+.ppw-tl .ppw-live-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ppw-sky); animation: ppw-pulse 1.7s ease-in-out infinite; }
+@keyframes ppw-pulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+.ppw-panel { background: #fff; border: 1px solid var(--ppw-line); border-radius: 9px; overflow: hidden; }
+
+/* ---- BLUEPRINT (Campaign Agent) ---- */
+.ppw-blueprint { width: 940px; }
+.ppw-bpw { display: flex; flex-direction: column; height: 420px; font-family: var(--ppw-sans); }
+.ppw-bpbar { display: flex; align-items: center; gap: 12px; padding: 11px 15px; border-bottom: 1px solid var(--ppw-line-soft); font-size: 12.5px; }
+.ppw-crumb { color: var(--ppw-muted); }
+.ppw-crumb b { color: var(--ppw-ink); font-weight: 600; }
+.ppw-bptabs { display: flex; gap: 16px; margin-left: 14px; color: var(--ppw-muted); font-size: 12px; }
+.ppw-bptabs .ppw-on { color: var(--ppw-ink); font-weight: 600; position: relative; }
+.ppw-bptabs .ppw-on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 2px; background: var(--ppw-deep); }
+.ppw-bptabs .ppw-cnt { color: var(--ppw-sky); font-weight: 600; }
+.ppw-bpbar .ppw-rt { margin-left: auto; display: flex; align-items: center; gap: 12px; font-size: 11.5px; color: var(--ppw-muted); font-family: var(--mono); }
+.ppw-bpbar .ppw-livepill { display: flex; align-items: center; gap: 6px; color: var(--ppw-green); font-weight: 600; }
+.ppw-bpbar .ppw-livepill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ppw-green); animation: ppw-pulse 1.7s ease-in-out infinite; }
+.ppw-bpbar .ppw-trig { color: var(--ppw-ink); font-weight: 600; }
+.ppw-bpmain { flex: 1; display: flex; min-height: 0; }
+.ppw-bpcanvas {
+  flex: 1; position: relative; overflow: hidden;
+  background: linear-gradient(rgba(20,20,30,.028) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(20,20,30,.028) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+.ppw-bpcanvas svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ppw-edge { fill: none; stroke: #d5dbe0; stroke-width: 2; }
+.ppw-edge.ppw-flow { stroke: var(--ppw-sky); stroke-dasharray: 5 8; animation: ppw-dash 1.1s linear infinite; opacity: 0; transition: opacity .4s; }
+.ppw-edge.ppw-flow.ppw-on { opacity: 1; }
+@keyframes ppw-dash { to { stroke-dashoffset: -26 } }
+.ppw-bpnode { position: absolute; transform: translate(-50%,-50%); width: 132px; background: #fff; border: 1.5px solid var(--ppw-line); border-radius: 9px; box-shadow: 0 1px 2px rgba(26,58,78,.05); transition: border-color .35s, box-shadow .35s; }
+.ppw-bpnode .ppw-nh { display: flex; align-items: center; gap: 7px; padding: 8px 10px 7px; }
+.ppw-bpnode .ppw-ic { width: 20px; height: 20px; border-radius: 5px; background: #eef1f4; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--ppw-muted); transition: background .35s, color .35s; }
+.ppw-bpnode .ppw-bpnm { font-size: 11.5px; font-weight: 600; color: var(--ppw-ink); line-height: 1.15; }
+.ppw-bpnode .ppw-st { border-top: 1px solid var(--ppw-line-soft); padding: 5px 10px; font-size: 9.5px; font-family: var(--mono); color: var(--ppw-muted); display: flex; align-items: center; gap: 5px; }
+.ppw-bpnode .ppw-st::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #cfd3d8; }
+.ppw-bpnode.ppw-done { border-color: #bfe3cd; }
+.ppw-bpnode.ppw-done .ppw-ic { background: #e7f2ec; color: var(--ppw-green); }
+.ppw-bpnode.ppw-done .ppw-st { color: var(--ppw-green); }
+.ppw-bpnode.ppw-done .ppw-st::before { background: var(--ppw-green); }
+.ppw-bpnode.ppw-run { border-color: #c3bdf0; box-shadow: 0 4px 16px -6px rgba(106,90,205,.4); }
+.ppw-bpnode.ppw-run .ppw-ic { background: #eae7f7; color: var(--ppw-purple); }
+.ppw-bpnode.ppw-run .ppw-st { color: var(--ppw-purple); }
+.ppw-bpnode.ppw-run .ppw-st::before { background: var(--ppw-purple); animation: ppw-pulse 1.2s infinite; }
+.ppw-bpnode.ppw-trig.ppw-done .ppw-ic { background: #e3edf6; color: var(--ppw-sky); }
+.ppw-bppanel { width: 288px; border-left: 1px solid var(--ppw-line-soft); display: flex; flex-direction: column; background: #fcfcfb; }
+.ppw-bppanel .ppw-ph { padding: 12px 15px 8px; font-size: 12px; font-weight: 700; color: var(--ppw-ink); }
+.ppw-bprun { display: flex; align-items: center; gap: 9px; padding: 8px 15px; font-size: 11.5px; }
+.ppw-bprun .ppw-rs { width: 16px; height: 16px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-size: 8px; }
+.ppw-bprun .ppw-rs.ppw-on2 { background: #eae7f7; color: var(--ppw-purple); }
+.ppw-bprun .ppw-rs.ppw-ok { background: #e7f2ec; color: var(--ppw-green); }
+.ppw-bprun .ppw-rn { color: var(--ppw-ink); font-weight: 600; }
+.ppw-bprun .ppw-rt2 { margin-left: auto; color: var(--ppw-faint); font-size: 10.5px; }
+.ppw-bprun.ppw-cur { background: #f4f2fb; }
+.ppw-bpov { margin-top: auto; padding: 12px 15px 14px; border-top: 1px solid var(--ppw-line-soft); }
+.ppw-bpov .ppw-lab { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ppw-muted); margin-bottom: 9px; }
+.ppw-bpgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 11px; }
+.ppw-bpstat { border: 1px solid var(--ppw-line-soft); border-radius: 8px; padding: 8px 10px; background: #fff; }
+.ppw-bpstat .ppw-n { font-size: 17px; font-weight: 700; color: var(--ppw-ink); font-variant-numeric: tabular-nums; line-height: 1; }
+.ppw-bpstat .ppw-k { font-size: 10px; color: var(--ppw-muted); margin-top: 3px; }
+.ppw-bpstat.ppw-g .ppw-n { color: var(--ppw-green); }
+.ppw-bpcred { font-size: 10.5px; color: var(--ppw-muted); margin-bottom: 5px; display: flex; justify-content: space-between; }
+.ppw-bpbar2 { height: 5px; border-radius: 3px; background: #ececea; overflow: hidden; }
+.ppw-bpbar2 i { display: block; height: 100%; width: 22%; background: var(--ppw-sky); border-radius: 3px; }
+
+/* ---- OUTREACH inbox ---- */
+.ppw-inbox { width: 470px; }
+.ppw-ibx { display: flex; height: 400px; font-family: var(--ppw-sans); }
+.ppw-ibx .ppw-list { width: 196px; border-right: 1px solid var(--ppw-line-soft); display: flex; flex-direction: column; }
+.ppw-ibx .ppw-tabs { display: flex; gap: 15px; padding: 11px 13px 9px; font-size: 11.5px; color: var(--ppw-muted); border-bottom: 1px solid var(--ppw-line-soft); }
+.ppw-ibx .ppw-tabs .ppw-on { color: var(--ppw-ink); font-weight: 600; position: relative; }
+.ppw-ibx .ppw-tabs .ppw-on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 2px; background: var(--ppw-deep); }
+.ppw-ibx .ppw-tabs .ppw-badge { background: #eef1f4; color: var(--ppw-sky); font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 9px; margin-left: 4px; display: inline-block; }
+.ppw-ibx .ppw-threads { flex: 1; overflow: hidden; }
+.ppw-ibx .ppw-th { display: flex; gap: 9px; padding: 10px 12px; position: relative; border-bottom: 1px solid var(--ppw-line-soft); transition: background .3s; cursor: pointer; text-align: left; width: 100%; background: none; border-left: none; border-right: none; border-top: none; font: inherit; }
+.ppw-ibx .ppw-th.ppw-sel { background: var(--ppw-sel); }
+.ppw-ibx .ppw-th.ppw-sel::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2.5px; background: var(--ppw-deep); }
+.ppw-ibx .ppw-th .ppw-av { width: 28px; height: 28px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+.ppw-ibx .ppw-th .ppw-mid { flex: 1; min-width: 0; }
+.ppw-ibx .ppw-th .ppw-nm { font-size: 11.5px; font-weight: 600; color: var(--ppw-ink); display: flex; align-items: center; gap: 5px; }
+.ppw-ibx .ppw-th .ppw-nm .ppw-u { width: 6px; height: 6px; border-radius: 50%; background: var(--ppw-sky); flex: none; }
+.ppw-ibx .ppw-th .ppw-pv { font-size: 10.5px; color: var(--ppw-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.ppw-ibx .ppw-th .ppw-pv b { color: #6f6f77; font-weight: 500; }
+.ppw-ibx .ppw-th .ppw-t { font-size: 10px; color: var(--ppw-faint); flex: none; font-variant-numeric: tabular-nums; }
+.ppw-ibx .ppw-conv { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.ppw-ibx .ppw-chd { display: flex; align-items: center; gap: 9px; padding: 10px 13px; border-bottom: 1px solid var(--ppw-line-soft); }
+.ppw-ibx .ppw-chd .ppw-av { width: 30px; height: 30px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; transition: background .3s; }
+.ppw-ibx .ppw-chd .ppw-who { font-size: 12px; font-weight: 600; color: var(--ppw-ink); }
+.ppw-ibx .ppw-chd .ppw-who .ppw-sub2 { font-size: 10.5px; font-weight: 400; color: var(--ppw-muted); margin-top: 1px; }
+.ppw-ibx .ppw-chd .ppw-pill { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--ppw-green); background: #e9f3ec; padding: 4px 9px; border-radius: 20px; display: flex; align-items: center; gap: 5px; opacity: 0; transition: opacity .4s; }
+.ppw-ibx .ppw-chd .ppw-pill.ppw-show { opacity: 1; }
+.ppw-ibx .ppw-chd .ppw-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ppw-green); }
+.ppw-ibx .ppw-stream { flex: 1; padding: 14px; overflow: hidden; }
+.ppw-ibx .ppw-day { text-align: center; font-size: 10px; color: var(--ppw-faint); margin-bottom: 11px; }
+.ppw-ibx .ppw-b { max-width: 85%; padding: 9px 12px; font-size: 11.5px; line-height: 1.5; border-radius: 13px; margin-bottom: 9px; }
+.ppw-ibx .ppw-b.ppw-out { background: var(--ppw-bubble); color: #33322f; border-bottom-right-radius: 5px; margin-left: auto; }
+.ppw-ibx .ppw-b.ppw-in { background: #fff; border: 1px solid var(--ppw-line); color: var(--ppw-ink); border-bottom-left-radius: 5px; }
+/* entrance pop only plays once JS has taken over (see file header) */
+.ppw-live .ppw-ibx .ppw-b { opacity: 0; transform: translateY(8px); animation: ppw-pop .4s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes ppw-pop { to { opacity: 1; transform: translateY(0) } }
+.ppw-ibx .ppw-b.ppw-type { display: inline-flex; gap: 5px; align-items: center; background: #fff; border: 1px solid var(--ppw-line); border-bottom-left-radius: 5px; padding: 10px 13px; opacity: 1; transform: none; animation: none; }
+.ppw-ibx .ppw-b.ppw-type span { width: 5px; height: 5px; border-radius: 50%; background: var(--ppw-faint); animation: ppw-td 1.15s ease-in-out infinite; }
+.ppw-ibx .ppw-b.ppw-type span:nth-child(2) { animation-delay: .16s; }
+.ppw-ibx .ppw-b.ppw-type span:nth-child(3) { animation-delay: .32s; }
+@keyframes ppw-td { 0%,100% { opacity: .3; transform: translateY(0) } 40% { opacity: 1; transform: translateY(-3px) } }
+.ppw-a1 { background: #e3edf6; color: #3a6ea5; } .ppw-a2 { background: #eee7f4; color: #7a5ea0; }
+.ppw-a3 { background: #e7f1ea; color: #3a8560; } .ppw-a4 { background: #f5ebe4; color: #b07a3a; }
+.ppw-a5 { background: #f4e7ea; color: #b0506a; } .ppw-a6 { background: #e5eef0; color: #3a7a8a; }
+.ppw-a7 { background: #e7ecf5; color: #4a5aa0; } .ppw-a8 { background: #f0ece4; color: #8a7a4a; }
+
+/* ---- RESEARCH email ---- */
+.ppw-email { width: 430px; }
+.ppw-eml { font-family: var(--ppw-sans); }
+.ppw-eml .ppw-ehd { padding: 13px 17px 11px; border-bottom: 1px solid var(--ppw-line-soft); }
+.ppw-eml .ppw-subj { font-size: 13.5px; font-weight: 700; color: var(--ppw-ink); letter-spacing: -.01em; }
+.ppw-eml .ppw-addr { display: flex; align-items: center; gap: 8px; margin-top: 9px; font-size: 11px; color: var(--ppw-muted); }
+.ppw-eml .ppw-addr .ppw-av { width: 23px; height: 23px; border-radius: 50%; background: var(--ppw-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 700; }
+.ppw-eml .ppw-addr b { color: var(--ppw-ink); font-weight: 600; }
+.ppw-eml .ppw-addr .ppw-tag { margin-left: auto; font-size: 9.5px; color: var(--ppw-sky); font-weight: 600; font-family: var(--mono); }
+.ppw-eml .ppw-ebody {
+  padding: 14px 17px 8px; height: 234px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom,#000 90%,transparent);
+  mask-image: linear-gradient(to bottom,#000 90%,transparent);
+}
+.ppw-eml .ppw-reveal { opacity: 1; transform: none; }
+/* stagger-reveal only plays once JS has taken over (see file header) */
+.ppw-live .ppw-eml .ppw-reveal { opacity: 0; transform: translateY(8px); animation: ppw-rin .5s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes ppw-rin { to { opacity: 1; transform: translateY(0) } }
+.ppw-eml p { margin: 0 0 11px; font-size: 12px; color: #33322f; line-height: 1.6; }
+.ppw-eml p b { color: var(--ppw-ink); font-weight: 600; }
+.ppw-eml .ppw-lead { margin-bottom: 11px; font-size: 12px; color: #33322f; line-height: 1.6; }
+.ppw-eml ul { margin: 0 0 11px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.ppw-eml li { font-size: 11.5px; color: #33322f; line-height: 1.45; padding-left: 16px; position: relative; }
+.ppw-eml li::before { content: "→"; position: absolute; left: 0; color: var(--ppw-sky); font-weight: 700; }
+.ppw-eml li b { color: var(--ppw-ink); font-weight: 600; }
+.ppw-eml .ppw-att { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ppw-ink); border: 1px solid var(--ppw-line); border-radius: 8px; padding: 6px 11px; }
+.ppw-eml .ppw-att .ppw-ic { width: 16px; height: 16px; border-radius: 4px; background: #eef1f4; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--ppw-muted); }
+
+/* ---- TERMINAL : dark instruction card ---- */
+.ppw-terminal { width: 436px; }
+.ppw-term-win {
+  background: #12242f; border: 1px solid #24414f; border-radius: 15px; padding: 0 8px 8px;
+  box-shadow: 0 1px 1px rgba(6,20,30,.2), 0 20px 42px -14px rgba(6,20,30,.5), 0 64px 110px -54px rgba(6,20,30,.6);
+}
+.ppw-term-tl { display: flex; gap: 6px; align-items: center; padding: 10px 11px 8px; }
+.ppw-term-tl i { width: 11px; height: 11px; border-radius: 50%; }
+.ppw-term-tl i:nth-child(1) { background: #ff5f57; }
+.ppw-term-tl i:nth-child(2) { background: #febc2e; }
+.ppw-term-tl i:nth-child(3) { background: #28c840; }
+.ppw-term-tl .ppw-t { margin-left: 6px; font-size: 11.5px; font-weight: 600; color: #8fb0c0; font-family: var(--mono); }
+.ppw-term-tl .ppw-live-pill { margin-left: auto; font-size: 11px; color: #6CAAC8; font-family: var(--mono); padding-right: 4px; }
+.ppw-term-body { background: #0c1a23; border: 1px solid #1e3743; border-radius: 9px; padding: 16px 16px 14px; font-family: var(--mono); min-height: 150px; }
+.ppw-term-body .ppw-ln { font-size: 12.5px; line-height: 1.65; color: #cfe0ea; }
+.ppw-term-body .ppw-pr { color: var(--ppw-sky-light); margin-right: 8px; }
+.ppw-term-body .ppw-cur { display: inline-block; width: 8px; height: 15px; background: var(--ppw-sky-light); vertical-align: -2px; animation: ppw-blink 1s step-end infinite; }
+@keyframes ppw-blink { 50% { opacity: 0 } }
+.ppw-term-body .ppw-resp { margin-top: 14px; font-size: 11.5px; color: #7fa8bd; display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity .5s; }
+.ppw-term-body .ppw-resp.ppw-show { opacity: 1; }
+.ppw-term-body .ppw-resp .ppw-dot { width: 6px; height: 6px; border-radius: 50%; background: #3fae74; animation: ppw-pulse 1.4s infinite; }
+.ppw-term-body .ppw-resp b { color: #a9cadb; font-weight: 600; }
+
+/* ---- responsive: windows are ported at their natural design width and
+   scaled to fit by ScaledWindow, so no per-window breakpoint rules are
+   needed here - the holder + transform scale handles every viewport. ---- */
