@@ -30,6 +30,7 @@ import ChatWindow from "./library/ChatWindow";
 import WorkflowExhibit from "./library/WorkflowExhibit";
 import WriterSwitch from "./library/WriterSwitch";
 import RateSlider from "./library/RateSlider";
+import AdoptionExhibit from "./library/AdoptionExhibit";
 import type { Turn } from "./library/chatTypes";
 
 // Invented content throughout: Kite is fictional and so is everything below.
@@ -284,10 +285,14 @@ export default function KiteDoc() {
         </div>
         <p className="pps-standfirst" style={{ marginTop: 34 }}>
           Wherever you landed, adoption is the work of moving everyone to the
-          right of where they are now: a fluency map of the team, training
-          aimed at where each person actually is, and usage, output and quality
-          measured monthly so the change can be pointed at rather than claimed.
+          right of where they are now. This is what a programme does to a
+          marketing team, a demonstration, not anyone&rsquo;s real map. Drag
+          the months and watch the movement, then read what the return looks
+          like at each stage.
         </p>
+        <div style={{ marginTop: 26 }}>
+          <AdoptionExhibit />
+        </div>
       </PPSection>
 
       <PPSection id="workflow" k="06" title="Workflow redesign">
