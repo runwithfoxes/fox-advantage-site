@@ -1,0 +1,183 @@
+/* Brand guardian x-ray, ppbg- prefix. Ported from the Brand Guardian
+   presentation's slider; window chrome is the house ppw- pieces. */
+
+.ppbg {
+  margin: 34px 0 0;
+}
+
+.ppbg-inner {
+  padding: 18px 22px 22px;
+  background: #fbfbfa;
+}
+
+.ppbg-worlds {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1d1b1b;
+}
+.ppbg-worlds .ppbg-right {
+  color: #8a8a85;
+}
+
+.ppbg-stage {
+  position: relative;
+  width: 100%;
+  user-select: none;
+  border: 1px solid #1d1b1b;
+  background: #fff;
+  touch-action: none;
+  cursor: col-resize;
+}
+.ppbg-plate {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppbg-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  clip-path: inset(0 calc(100% - var(--x, 56%)) 0 0);
+}
+.ppbg-layer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: grayscale(1) contrast(0.72) brightness(1.16);
+}
+.ppbg-layer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ppbg-ann {
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+.ppbg-ann.ppbg-on {
+  opacity: 1;
+}
+.ppbg-box {
+  fill: none;
+  stroke: #1a3a4e;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.ppbg-box.ppbg-ok {
+  stroke: #2e7d4f;
+}
+.ppbg-box.ppbg-skip {
+  stroke: #3a7ca5;
+  stroke-dasharray: 7 5;
+}
+.ppbg-lbl {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  fill: #101214;
+  font-weight: 500;
+}
+.ppbg-lbl.ppbg-sm {
+  font-size: 9.5px;
+  fill: #5b6068;
+  font-weight: 400;
+}
+.ppbg-tick {
+  stroke: #1a3a4e;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ppbg-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x, 56%);
+  width: 0;
+  border-left: 2px solid #1a3a4e;
+  outline: none;
+  z-index: 2;
+}
+.ppbg-handle {
+  position: absolute;
+  top: 50%;
+  left: -21px;
+  width: 42px;
+  height: 26px;
+  margin-top: -13px;
+  background: #1a3a4e;
+  color: #fafaf8;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  user-select: none;
+}
+.ppbg-divider:focus-visible .ppbg-handle {
+  background: #3a7ca5;
+}
+
+.ppbg-verdict {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e0e0dc;
+  border-top: none;
+  background: #fff;
+}
+.ppbg-verdict > div {
+  padding: 12px 14px;
+}
+.ppbg-verdict > div + div {
+  border-left: 1px solid #eceae4;
+}
+.ppbg-k {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  margin: 0 0 6px;
+}
+.ppbg-v {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: #1d1b1b;
+  margin: 0;
+}
+.ppbg-good {
+  color: #2e7d4f;
+}
+
+.ppbg-hint {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 14px 0 0;
+}
+.ppbg-slash {
+  color: var(--pps-sky);
+}
+
+@media (max-width: 720px) {
+  .ppbg-verdict {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ppbg-verdict > div:nth-child(3) {
+    border-left: none;
+  }
+  .ppbg-verdict > div:nth-child(n + 3) {
+    border-top: 1px solid #eceae4;
+  }
+}
