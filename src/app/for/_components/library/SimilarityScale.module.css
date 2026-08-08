@@ -1,0 +1,72 @@
+/* THE YARDSTICK CHART. One SVG, staged in by this file. Story order: the ordinary
+   pairs land first, a beat, then the "subject" bar runs long and crosses the line as
+   its tag fades in. Bars scale from their left edge (transform-box makes the rect its
+   own origin). Reduced motion renders everything finished.
+
+   Ported from ~/projects/.rwf-wt-course-modules/src/app/course/[n]/SimilarityScale.module.css.
+   Class names carry a pp prefix per this repo's rule against generic class names,
+   belt and braces on top of the CSS module scoping. */
+
+.ppscaleWrap {
+  border: 1px solid #e0e0dc;
+  background: #fff;
+  padding: 18px 20px 12px;
+  margin: 18px 0;
+}
+
+.ppscaleWrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ppscaleBar,
+.ppscaleBarSubject {
+  transform: scaleX(0);
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: ppscale-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ppscaleBarSubject {
+  animation-duration: 1.1s;
+}
+
+.ppscaleVal {
+  opacity: 0;
+  animation: ppscale-fade 0.4s ease forwards;
+}
+
+.ppscaleTag {
+  opacity: 0;
+  animation: ppscale-fade 0.6s ease forwards 2.2s;
+}
+
+.ppscaleRule {
+  opacity: 0;
+  animation: ppscale-fade 0.6s ease forwards 0.9s;
+}
+
+@keyframes ppscale-grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ppscale-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ppscaleBar,
+  .ppscaleBarSubject,
+  .ppscaleVal,
+  .ppscaleTag,
+  .ppscaleRule {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
