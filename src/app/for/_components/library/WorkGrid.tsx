@@ -110,38 +110,29 @@ const MEASURES: {
   by: [number, number, number, number, number];
   scale: number;
   grows?: boolean;
-  note: (v: number, base: number) => string;
+  fmt: (v: number) => string;
 }[] = [
   {
     q: "Are we getting it done faster?",
     unit: "days from brief to done",
     by: [12, 12, 10, 8, 7],
     scale: 12,
-    note: (v, base) =>
-      v === base
-        ? `${base} days, the number we took before starting`
-        : `${base} days before, ${v} now`,
+    fmt: (v: number) => `${v} days`,
   },
   {
     q: "Are we doing it more cost-effectively?",
     unit: "cost of a piece of work",
     by: [1850, 1850, 1640, 1420, 1290],
     scale: 1850,
-    note: (v, base) =>
-      v === base
-        ? `EUR ${base.toLocaleString("en-IE")} a piece, agency and freelance in`
-        : `EUR ${base.toLocaleString("en-IE")} before, EUR ${v.toLocaleString("en-IE")} now`,
+    fmt: (v: number) => `EUR ${v.toLocaleString("en-IE")}`,
   },
   {
     q: "Are we doing things we could not get to before?",
     unit: "pieces a quarter that used to not happen",
     by: [0, 0, 3, 7, 11],
-    scale: 12,
+    scale: 11,
     grows: true,
-    note: (v) =>
-      v === 0
-        ? "the work permanently at the bottom of the list"
-        : "work that would not have happened at all",
+    fmt: (v: number) => (v === 0 ? "none" : `${v} pieces`),
   },
 ];
 
@@ -310,18 +301,48 @@ export default function WorkGrid() {
                   {m.q}
                   <span className="ppwg-gain-u">{m.unit}</span>
                 </span>
-                <Spark m={m} step={step} />
+                {/* ⛔ TWO LENGTHS, NOTHING TO LEARN. Bars that shrank to mean
+                    better, then a line leaving a baseline, were both rejected:
+                    each asked the reader to hold a convention before the
+                    picture meant anything. Comparing two lengths is the one
+                    reading everybody already has. Grey is the old way and blue
+                    is the new, exactly as in the grid above, so the bottom half
+                    of this exhibit speaks the top half's language.
+                    A donut was the obvious alternative and it breaks on the
+                    third measure: 42% faster is a share of something, 11 new
+                    pieces of work is a share of nothing. */}
+                <span className="ppwg-pair">
+                  <span className="ppwg-pair-row">
+                    <span className="ppwg-pair-k">before</span>
+                    <span className="ppwg-pair-track">
+                      <span
+                        className="ppwg-pair-bar ppwg-pair-was"
+                        style={{ ["--w" as string]: `${(base / m.scale) * 100}%` }}
+                      />
+                    </span>
+                    <span className="ppwg-pair-v">{m.fmt(base)}</span>
+                  </span>
+                  <span className="ppwg-pair-row">
+                    <span className="ppwg-pair-k">now</span>
+                    <span className="ppwg-pair-track">
+                      <span
+                        className="ppwg-pair-bar ppwg-pair-now"
+                        style={{ ["--w" as string]: `${(v / m.scale) * 100}%` }}
+                      />
+                    </span>
+                    <span className="ppwg-pair-v">{m.fmt(v)}</span>
+                  </span>
+                </span>
+                {/* One verdict, no repeat: the bars already carry both values,
+                    and the rule is never to say the same thing twice. */}
                 <span className="ppwg-gain-n">
-                  <b>
-                    {m.grows
-                      ? v === 0
-                        ? "none yet"
-                        : `${v} a quarter`
-                      : pct === 0
-                        ? "no change yet"
-                        : `${pct}% ${m.by[0] > m.by[4] && m.unit.startsWith("days") ? "faster" : "cheaper"}`}
-                  </b>
-                  <span>{m.note(v, base)}</span>
+                  {m.grows
+                    ? v === 0
+                      ? "none yet"
+                      : `+${v} a quarter`
+                    : pct === 0
+                      ? "no change yet"
+                      : `${pct}% ${m.unit.startsWith("days") ? "faster" : "cheaper"}`}
                 </span>
               </div>
             );
@@ -396,68 +417,5 @@ function Readout({
       <span> of the work done a different way, {n} pieces of {blocks}.</span>
       <span className="ppwg-sub">{line}</span>
     </p>
-  );
-}
-
-/**
- * THE MOVEMENT, over the same four quarters.
- *
- * ⛔ THE BARS THAT WERE HERE WERE UNREADABLE, and Paul said so: "i didn't
- * understand the movement of these blue bars. Wasn't clear what direction they
- * are going or what is going on with them?" Three faults, all mine. A bar that
- * SHRINKS to mean better is backwards, because longer reads as more. The third
- * measure had no baseline outline, so it was not even the same kind of picture.
- * And none of them showed movement at all, they just arrived at a new width.
- *
- * ⭐ SO THE PICTURE IS THE JOURNEY, NOT THE STATE. Five points, one per stop,
- * drawn only as far as the run has got. The line leaves its own baseline and the
- * gap between the two is shaded: THE SHADED AREA IS THE BENEFIT, and it grows.
- * Days and cost start at the top and fall away from it; work that used to not
- * happen starts at the bottom and climbs. One formula, both directions, and no
- * reader has to work out which way is good.
- */
-function Spark({
-  m,
-  step,
-}: {
-  m: (typeof MEASURES)[number];
-  step: number;
-}) {
-  // Taller than it is deep-scaled: the axis honestly runs from zero, so the
-  // only way to make a 42% fall legible is to give it more pixels, never a
-  // truncated baseline.
-  const W = 170;
-  const H = 52;
-  const PAD = 4;
-  const x = (i: number) => (i / (STOPS.length - 1)) * (W - PAD * 2) + PAD;
-  const y = (v: number) => H - PAD - (v / m.scale) * (H - PAD * 2);
-
-  const pts = m.by.slice(0, step + 1).map((v, i) => [x(i), y(v)] as const);
-  const line = pts.map(([px, py]) => `${px},${py}`).join(" ");
-  const baseY = y(m.by[0]);
-  const area = `M${pts[0][0]},${baseY} L${line.replace(/ /g, " L")} L${
-    pts[pts.length - 1][0]
-  },${baseY} Z`;
-  const last = pts[pts.length - 1];
-
-  return (
-    <svg
-      className="ppwg-spark"
-      viewBox={`0 0 ${W} ${H}`}
-      role="img"
-      aria-label={`${m.unit}, ${m.by[0]} at the start and ${m.by[step]} now`}
-    >
-      {/* Where it started, held across the whole width so the gap is legible. */}
-      <line
-        x1={PAD}
-        y1={baseY}
-        x2={W - PAD}
-        y2={baseY}
-        className="ppwg-spark-base"
-      />
-      {pts.length > 1 && <path d={area} className="ppwg-spark-area" />}
-      {pts.length > 1 && <polyline points={line} className="ppwg-spark-line" />}
-      <circle cx={last[0]} cy={last[1]} r="3" className="ppwg-spark-dot" />
-    </svg>
   );
 }

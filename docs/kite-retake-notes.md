@@ -117,18 +117,23 @@ About ten agents will exist; pages nest the chosen few per buyer.
   how much faster... it is not a yes or no answer": 42% faster (12 days brief to
   done, now 7), 30% cheaper (EUR 1,850 a piece, now 1,290), 11 a quarter that
   used to not happen at all.
-  ⛔ **THE FIRST CUT USED BARS AND THEY WERE UNREADABLE.** Paul: "i didn't
-  understand the movement of these blue bars. Wasn't clear what direction they
-  are going or what is going on with them?" Three faults: a bar that SHRINKS to
-  mean better is backwards because longer reads as more; the third measure had no
-  baseline outline so it was not the same kind of picture; and none of them showed
-  movement, they arrived at a new width. Now each row is a five-point line over
-  the same quarters, drawn only as far as the run has got, leaving a dashed
-  baseline with the gap shaded. **The shaded area is the benefit.** Days and cost
-  fall from a baseline at the top, new work climbs from one at the bottom, one
-  formula, and nobody has to work out which way is good. ⭐ The axis runs from
-  ZERO: the only honest way to make a 42% fall legible is more pixels, never a
-  truncated baseline.
+  ⛔⛔ **THE PICTURE FOR THESE THREE TOOK THREE GOES, AND THE FIRST TWO FAILED
+  THE SAME WAY: they asked the reader to hold a convention before the picture
+  meant anything.** (1) Bars that SHRANK to mean better, backwards because longer
+  reads as more, and the third measure had no baseline outline so it was not even
+  the same kind of picture. (2) A line leaving a dashed baseline with the gap
+  shaded, which needed you to know that the shading was the benefit. Paul on
+  each: "Wasn't clear what direction they are going", then "stil not very
+  intuititive. Even a donut chart might be better?"
+  ⭐ **The answer was TWO LENGTHS: a before bar and a now bar, in the grid's own
+  grey and blue.** Comparing two lengths is the one reading everybody already
+  has, and reusing the grid's two colours makes the bottom half of the exhibit
+  speak the top half's language. The bars carry both values, so the right-hand
+  column dropped to a single verdict, per never say the same thing twice.
+  ⭐ **A donut was the obvious alternative and it breaks on the third measure**:
+  42% faster is a share of something, 11 new pieces of work is a share of
+  nothing. **Two of these go down and one goes up, and that asymmetry is what
+  killed every form that encoded direction.**
   ⭐ **Nothing moves in Q1**, because Q1 is champions and setup, and a curve that
   pays in month one is the version nobody believes. **And the grid is the ceiling
   on all three**: only changed work can move them, which is why it is one exhibit
