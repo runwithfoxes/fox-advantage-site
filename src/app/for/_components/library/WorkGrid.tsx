@@ -310,18 +310,7 @@ export default function WorkGrid() {
                   {m.q}
                   <span className="ppwg-gain-u">{m.unit}</span>
                 </span>
-                <span className="ppwg-gain-track">
-                  {/* Where it started, kept in view so the bar is read against
-                      its own baseline rather than against the other two. */}
-                  <span
-                    className="ppwg-gain-ghost"
-                    style={{ ["--w" as string]: `${(base / m.scale) * 100}%` }}
-                  />
-                  <span
-                    className="ppwg-gain-fill"
-                    style={{ ["--w" as string]: `${(v / m.scale) * 100}%` }}
-                  />
-                </span>
+                <Spark m={m} step={step} />
                 <span className="ppwg-gain-n">
                   <b>
                     {m.grows
@@ -407,5 +396,68 @@ function Readout({
       <span> of the work done a different way, {n} pieces of {blocks}.</span>
       <span className="ppwg-sub">{line}</span>
     </p>
+  );
+}
+
+/**
+ * THE MOVEMENT, over the same four quarters.
+ *
+ * ⛔ THE BARS THAT WERE HERE WERE UNREADABLE, and Paul said so: "i didn't
+ * understand the movement of these blue bars. Wasn't clear what direction they
+ * are going or what is going on with them?" Three faults, all mine. A bar that
+ * SHRINKS to mean better is backwards, because longer reads as more. The third
+ * measure had no baseline outline, so it was not even the same kind of picture.
+ * And none of them showed movement at all, they just arrived at a new width.
+ *
+ * ⭐ SO THE PICTURE IS THE JOURNEY, NOT THE STATE. Five points, one per stop,
+ * drawn only as far as the run has got. The line leaves its own baseline and the
+ * gap between the two is shaded: THE SHADED AREA IS THE BENEFIT, and it grows.
+ * Days and cost start at the top and fall away from it; work that used to not
+ * happen starts at the bottom and climbs. One formula, both directions, and no
+ * reader has to work out which way is good.
+ */
+function Spark({
+  m,
+  step,
+}: {
+  m: (typeof MEASURES)[number];
+  step: number;
+}) {
+  // Taller than it is deep-scaled: the axis honestly runs from zero, so the
+  // only way to make a 42% fall legible is to give it more pixels, never a
+  // truncated baseline.
+  const W = 170;
+  const H = 52;
+  const PAD = 4;
+  const x = (i: number) => (i / (STOPS.length - 1)) * (W - PAD * 2) + PAD;
+  const y = (v: number) => H - PAD - (v / m.scale) * (H - PAD * 2);
+
+  const pts = m.by.slice(0, step + 1).map((v, i) => [x(i), y(v)] as const);
+  const line = pts.map(([px, py]) => `${px},${py}`).join(" ");
+  const baseY = y(m.by[0]);
+  const area = `M${pts[0][0]},${baseY} L${line.replace(/ /g, " L")} L${
+    pts[pts.length - 1][0]
+  },${baseY} Z`;
+  const last = pts[pts.length - 1];
+
+  return (
+    <svg
+      className="ppwg-spark"
+      viewBox={`0 0 ${W} ${H}`}
+      role="img"
+      aria-label={`${m.unit}, ${m.by[0]} at the start and ${m.by[step]} now`}
+    >
+      {/* Where it started, held across the whole width so the gap is legible. */}
+      <line
+        x1={PAD}
+        y1={baseY}
+        x2={W - PAD}
+        y2={baseY}
+        className="ppwg-spark-base"
+      />
+      {pts.length > 1 && <path d={area} className="ppwg-spark-area" />}
+      {pts.length > 1 && <polyline points={line} className="ppwg-spark-line" />}
+      <circle cx={last[0]} cy={last[1]} r="3" className="ppwg-spark-dot" />
+    </svg>
   );
 }

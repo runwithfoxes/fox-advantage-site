@@ -117,6 +117,18 @@ About ten agents will exist; pages nest the chosen few per buyer.
   how much faster... it is not a yes or no answer": 42% faster (12 days brief to
   done, now 7), 30% cheaper (EUR 1,850 a piece, now 1,290), 11 a quarter that
   used to not happen at all.
+  ⛔ **THE FIRST CUT USED BARS AND THEY WERE UNREADABLE.** Paul: "i didn't
+  understand the movement of these blue bars. Wasn't clear what direction they
+  are going or what is going on with them?" Three faults: a bar that SHRINKS to
+  mean better is backwards because longer reads as more; the third measure had no
+  baseline outline so it was not the same kind of picture; and none of them showed
+  movement, they arrived at a new width. Now each row is a five-point line over
+  the same quarters, drawn only as far as the run has got, leaving a dashed
+  baseline with the gap shaded. **The shaded area is the benefit.** Days and cost
+  fall from a baseline at the top, new work climbs from one at the bottom, one
+  formula, and nobody has to work out which way is good. ⭐ The axis runs from
+  ZERO: the only honest way to make a 42% fall legible is more pixels, never a
+  truncated baseline.
   ⭐ **Nothing moves in Q1**, because Q1 is champions and setup, and a curve that
   pays in month one is the version nobody believes. **And the grid is the ceiling
   on all three**: only changed work can move them, which is why it is one exhibit
