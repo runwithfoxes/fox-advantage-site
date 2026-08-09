@@ -77,13 +77,21 @@ const AREAS: { area: string; q: (number | null)[] }[] = [
   { area: "Reporting", q: [N, N, N, 2, N, N, 4, N, 0, N] },
 ];
 
-/** Milliseconds. A quarter's blocks arrive as a wave, not a slab. */
-const COL_STEP = 40;
-const ROW_STEP = 14;
+/**
+ * Milliseconds. A quarter's blocks arrive as a wave, not a slab.
+ *
+ * ⭐ THE WAVE HAS TO FINISH WELL BEFORE THE NEXT QUARTER STARTS. The first cut
+ * ran a ~900ms wave on a 1150ms hold, so the grid never came to rest and Paul
+ * read continuous movement as blocks not staying turned. They always did stay,
+ * nothing is ever un-turned mid-run, but a picture that never settles cannot
+ * say so. Now: ~660ms of movement, then ~840ms of stillness before the next.
+ */
+const COL_STEP = 22;
+const ROW_STEP = 8;
 const CELL_MS = 360;
 const WAVE_MS = (COLS - 1) * COL_STEP + (AREAS.length - 1) * ROW_STEP + CELL_MS;
-/** Long enough to watch a quarter land before the next one starts. */
-const HOLD_MS = 1150;
+/** Long enough to watch a quarter land, and then to see it sit there. */
+const HOLD_MS = 1500;
 
 export default function WorkGrid() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -281,10 +289,12 @@ function Readout({
     return stop;
   }, [target, reduced]);
 
+  const pct = Math.round((n / blocks) * 100);
+
   return (
     <p className="ppwg-readout">
-      <span className="ppwg-n">{n}</span>
-      <span> of {blocks} pieces of work done a different way.</span>
+      <span className="ppwg-n">{pct}%</span>
+      <span> of the work done a different way, {n} pieces of {blocks}.</span>
       <span className="ppwg-sub">{line}</span>
     </p>
   );
