@@ -352,3 +352,106 @@
 .pps-sub .pps-section-h2 {
   font-size: 1.125rem;
 }
+
+/* How I work: the one section on the page whose visual is the photograph, the
+   client names and the two quotes rather than a figure. Ported from the
+   Fidelity page's approved treatment (.rwf-wt-prospect-pages
+   FidelityDoc.tsx:286-317) with Paul's rewritten copy, 9 Aug. No chips and no
+   filled boxes: names sit as a plain row in the house register. */
+.pps-hiw-line {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: -8px 0 0;
+  color: var(--pps-text);
+}
+.pps-hiw-by {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  margin: 12px 0 0;
+  color: var(--pps-muted);
+}
+.pps-hiw-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 44px;
+  align-items: start;
+  margin-top: 34px;
+}
+.pps-hiw-photo {
+  border: 1px solid var(--pps-border);
+  max-width: 260px;
+  overflow: hidden;
+}
+.pps-hiw-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pps-hiw-award {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+  margin: 0 0 22px;
+}
+.pps-hiw-cli {
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pps-border);
+}
+.pps-hiw-cli-k {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+  margin: 0 0 14px;
+}
+.pps-hiw-cli-l {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  color: var(--pps-text);
+}
+.pps-hiw-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 44px;
+}
+.pps-hiw-q {
+  border-left: 2px solid var(--pps-sky);
+  padding-left: 20px;
+}
+.pps-hiw-q p {
+  font-family: var(--pps-sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  color: var(--pps-text);
+}
+.pps-hiw-who {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.pps-hiw-who b {
+  color: var(--pps-text);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .pps-hiw-grid,
+  .pps-hiw-quotes {
+    grid-template-columns: 1fr;
+  }
+}

@@ -180,6 +180,7 @@ const OUTBOUND_THREADS = [
 
 const SECTIONS = [
   { id: "heard", title: "What we heard" },
+  { id: "howiwork", title: "How I work" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "training", title: "Training teams" },
@@ -202,6 +203,17 @@ const SECTIONS = [
 // The rail's lead group: what we do, in the ladder order, one-liners locked
 // verbatim by Paul. Capabilities spans its three demonstrations.
 const RAIL_GROUPS = [
+  // Two rows above the four things so the positioning section is reachable
+  // from the rail (Paul, 9 Aug: "otherwise it doesn't position me properly").
+  // Compact on purpose, the rail was cut twice for busyness.
+  {
+    label: "/on this page",
+    compact: true,
+    entries: [
+      { id: "heard", title: "What we heard" },
+      { id: "howiwork", title: "How I work" },
+    ],
+  },
   {
     label: "/what we do",
     entries: [
@@ -269,7 +281,98 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
+      {/* HOW I WORK. Paul's own copy, given verbatim 9 Aug, replacing the
+          version that was lost when the bio came out of the rail. The
+          treatment is the Fidelity page's approved one: photo, the award
+          line, his three paragraphs, the client names, two quotes. This is
+          the one section whose visual is typographic on purpose, it sits
+          directly above two figures and the blueprint slider. */}
+      <PPSection id="howiwork" k="02" title="How I work">
+        <p className="pps-hiw-line">Quality first, then automate</p>
+        <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
+        <div className="pps-hiw-grid">
+          <div className="pps-hiw-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Paul_photo.jpg" alt="Paul Dervan, Run with Foxes" />
+          </div>
+          <div>
+            <p className="pps-hiw-award">
+              Ireland&rsquo;s Marketer of the Year, 2022
+            </p>
+            <p className="pps-standfirst">
+              Before I build anything, I ask one question: what does really
+              good look like here? Not what AI can do, but what the best
+              version of this marketing would be, and the level of quality and
+              effectiveness I would want to stand over.
+            </p>
+            <p className="pps-standfirst">
+              So I start where I always have. If there were no AI at all, what
+              team would I hire to do this properly? A strategist to set the
+              positioning and the plan, someone doing the outreach properly
+              one company at a time, a designer and a developer to build the
+              website and keep it current, and a writer building your
+              authority in public. The capabilities, the craft and the
+              resources it would genuinely take to be good. I map that team
+              first, the one I would build in a world before any of this
+              existed.
+            </p>
+            <p className="pps-standfirst">
+              Then I build exactly that, with agents instead of hires. The
+              quality bar is set by the team I would have wanted, not by
+              whatever a tool happens to make easy. Twenty years in brand is
+              what tells me where that bar sits: Head of Brand at O2 Ireland,
+              then CMO at the National Lottery, Head of Brand at Indeed and
+              Miro, both global roles. Positioning, messaging and tone written
+              first, then built into everything the agents make.
+            </p>
+            <div className="pps-hiw-cli">
+              <p className="pps-hiw-cli-k">Who I work with</p>
+              <div className="pps-hiw-cli-l">
+                {[
+                  "Moloco",
+                  "Heineken",
+                  "Norcros",
+                  "Alltech",
+                  "Smurfit",
+                  "Hostelworld",
+                  "Eaton Square",
+                  "Weatherbys",
+                ].map((c) => (
+                  <span key={c}>{c}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="pps-hiw-quotes">
+          <div className="pps-hiw-q">
+            <p>
+              &ldquo;His command of marketing science as well as his instincts
+              for great thinking and ideas are, in my opinion, superb.&rdquo;
+            </p>
+            <div className="pps-hiw-who">
+              <b>Peter Field</b>
+              <br />
+              The Godfather of Effectiveness, author of The Long and the Short
+              of It
+            </div>
+          </div>
+          <div className="pps-hiw-q">
+            <p>
+              &ldquo;Paul reported into me as Head of Brand when I was at
+              Indeed. I have learned more from him than anyone else in my
+              career.&rdquo;
+            </p>
+            <div className="pps-hiw-who">
+              <b>Paul D&rsquo;Arcy</b>
+              <br />
+              CMO, Moloco. Former CMO at Miro and Indeed
+            </div>
+          </div>
+        </div>
+      </PPSection>
+
+      <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
         <FourThingsFigure />
         {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN REWRITE COMING. His words on 8 Aug:
             "I'll change it, but that's a good placeholder." Ported verbatim
@@ -286,7 +389,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="workflows" k="03" title="Redesigning workflows">
+      <PPSection id="workflows" k="04" title="Redesigning workflows">
         <ArrivalBlueprint />
         {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN WORDS COMING. He asked for copy of
             about this length under the blueprint; this text holds the slot. */}
@@ -302,7 +405,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="training" k="04" title="Training teams">
+      <PPSection id="training" k="05" title="Training teams">
         <div>
           <ScaledWindow width={940}>
             <div className="ppw-blueprint">
@@ -335,7 +438,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="buildingagents" k="05" title="Building agents">
+      <PPSection id="buildingagents" k="06" title="Building agents">
         <></>
       </PPSection>
 
@@ -546,7 +649,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="adoption" k="06" title="Designing team AI adoption">
+      <PPSection id="adoption" k="07" title="Designing team AI adoption">
         <FluencyMap />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Adoption is measured per person, never assumed. The map below is the
@@ -556,7 +659,7 @@ export default function KiteDoc() {
       </PPSection>
 
 
-      <PPSection id="recommend" k="07" title="What we'd recommend">
+      <PPSection id="recommend" k="08" title="What we'd recommend">
         <p className="pps-standfirst">
           Kite does not need more tools. Start with the fluency map: fourteen
           people, measured, so training aims at where each person actually is
@@ -569,7 +672,7 @@ export default function KiteDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="08" title="The price">
+      <PPSection id="pricing" k="09" title="The price">
         <PricingCards
           cards={[
             {
@@ -612,7 +715,7 @@ export default function KiteDoc() {
         <CloseBox clientName="Kite Insurance" />
       </PPSection>
 
-      <PPSection id="library" k="09" title="Your library">
+      <PPSection id="library" k="10" title="Your library">
         <LibraryList
           intro="A few things worth keeping, chosen for where Kite is right now. This list grows as we talk; anything we add lands here and you'll know because I'll tell you."
           items={[
@@ -639,7 +742,10 @@ export default function KiteDoc() {
             },
             {
               label: "The brand pack, working copy",
-              note: "The folder from section 04, as living documents your team can read.",
+              // Named, not numbered: the folder lives in the Writer exhibit under
+              // Building agents, and a hardcoded section number goes stale the
+              // moment a section is added (it already had, before 9 Aug).
+              note: "The folder from the Writer, as living documents your team can read.",
               href: "#writer",
               kind: "folder",
               meta: "4 files",
