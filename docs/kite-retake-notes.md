@@ -89,6 +89,23 @@ About ten agents will exist; pages nest the chosen few per buyer.
   page" pair (What we heard, How I work) came off as "too messy", after the bio
   text on 8 Aug and the photo earlier on 9 Aug. Three cuts, same reason.
 
+- Adoption rebuilt as **WeekGrid**, the exhibit the story terminal owed. One
+  scene that changes state, which is the property that makes the blueprint
+  slider work and the property `FluencyMap` lacked: fourteen separate readings
+  made the reader do the aggregating. A marketing week, 14 people x 10 blocks =
+  140 units of work; a year in, 20 turn. The wave sweeps left across the week
+  and drifts down the team, the count climbs with it.
+  ⭐ **Blocks, not people, is what makes it work at n=14.** A five-bucket fluency
+  distribution needs a population to have a shape; Kite is fourteen, which is
+  three a bucket and nothing visibly moves. 140 blocks has a shape at fourteen
+  people and still has one at a hundred and twenty.
+  ⭐ **The numbers are modest on purpose.** 20 of 140, twelve of fourteen moving,
+  two moving nothing. Everyone turning blue is the adoption-theatre picture and
+  no marketer would believe it. Copy underneath carries the four levers from the
+  Sabre research. ⛔ The unverified fear statistics stay OFF the page (see the
+  24 Jul Sabre session: four survey figures, no resolvable sources).
+  `FluencyMap` parked in the library.
+
 ## Candidates taken from the story-first take, not yet built
 
 - The self-rating slider opening the adoption section ("where is your

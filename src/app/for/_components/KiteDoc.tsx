@@ -28,7 +28,10 @@ import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
 // next piece that earns a screen.
 import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
-import FluencyMap from "./library/FluencyMap";
+// FluencyMap is parked, not gone (9 Aug): it did before-and-after as fourteen
+// separate readings, and the reader had to do the aggregating. WeekGrid is one
+// scene that changes state, which is what makes the blueprint slider work.
+import WeekGrid from "./library/WeekGrid";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
 import { OutreachWindow } from "./library/AgentWindows";
@@ -607,11 +610,21 @@ export default function KiteDoc() {
       </PPSection>
 
       <PPSection id="adoption" k="07" title="Designing team AI adoption">
-        <FluencyMap />
+        <WeekGrid />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Adoption is measured per person, never assumed. The map below is the
-          instrument: where each person started, where they are now, reported
-          monthly. It is also how you will know whether any of this worked.
+          Not everybody is going to be a builder. For most of a team a good
+          result is that one part of their week is different from how it was
+          before, and that is what we measure: blocks of work that changed, not
+          logins or prompt counts. A tool nobody opened and a tool everybody
+          opened once look identical on a usage report.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          Getting blocks to turn is the work. Champions with hours genuinely set
+          aside. One job of work taken end to end, with a number taken before
+          you start and a date the old route closes, because if both stay open
+          the old habit wins. Leaders doing it themselves in public rather than
+          talking about it. And the behaviours written down, so people know
+          where they stand. We run that, and report the grid every month.
         </p>
       </PPSection>
 
