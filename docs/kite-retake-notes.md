@@ -79,8 +79,15 @@ About ten agents will exist; pages nest the chosen few per buyer.
   ⛔ **The hover names no files.** `positioning-statement.md` read as our filing
   system, not their brand. Four notes only, in `WriterPiece.tsx`: your brand
   positioning, your messaging framework, your approved proof point, your
-  approved voice. Parked, whole and re-addable: `library/kite-pack.ts` (the
-  seven pack files), `FolderWindow.tsx`, `writer-sessions.ts` (both recordings).
+  approved voice. The email carries voice twice on purpose: the subject, and
+  the flat close "Nothing for you to do", which IS the voice.
+  Parked, whole and re-addable: `library/kite-pack.ts` (the seven pack files),
+  `FolderWindow.tsx`, `writer-sessions.ts` (both recordings), and `WriterPost`
+  in `WriterPiece.tsx`. The LinkedIn post came off the same day, Paul: "not
+  great writing and don't need it yet."
+- Rail is the four things and nothing else. The /about link and the "/on this
+  page" pair (What we heard, How I work) came off as "too messy", after the bio
+  text on 8 Aug and the photo earlier on 9 Aug. Three cuts, same reason.
 
 ## Candidates taken from the story-first take, not yet built
 

@@ -23,7 +23,10 @@ import { Figure } from "./library/Figure";
 import FourThingsFigure from "./library/FourThingsFigure";
 import { ScaledWindow } from "./library/AgentWindows";
 import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
-import { WriterEmail, WriterPost } from "./library/WriterPiece";
+// WriterPost is parked, not gone: Paul killed the LinkedIn post on 9 Aug
+// ("not great writing and don't need it yet"), the component stays for the
+// next piece that earns a screen.
+import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
@@ -140,18 +143,11 @@ const SECTIONS = [
 
 // The rail's lead group: what we do, in the ladder order, one-liners locked
 // verbatim by Paul. Capabilities spans its three demonstrations.
+// ⛔ THE RAIL IS THE FOUR THINGS AND NOTHING ELSE. Cut three times now for
+// busyness: the bio text (8 Aug), the photo (9 Aug), and the /about link plus
+// the "/on this page" pair of What we heard and How I work (9 Aug, "too
+// messy"). Those two sections are the first things a reader meets anyway.
 const RAIL_GROUPS = [
-  // Two rows above the four things so the positioning section is reachable
-  // from the rail (Paul, 9 Aug: "otherwise it doesn't position me properly").
-  // Compact on purpose, the rail was cut twice for busyness.
-  {
-    label: "/on this page",
-    compact: true,
-    entries: [
-      { id: "heard", title: "What we heard" },
-      { id: "howiwork", title: "How I work" },
-    ],
-  },
   {
     label: "/what we do",
     entries: [
@@ -202,7 +198,6 @@ export default function KiteDoc() {
       ]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
-      bio={{ href: "/#about", label: "/about" }}
     >
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
@@ -424,41 +419,19 @@ export default function KiteDoc() {
                 text: "The first time we did this, customers saved €187 on average.",
                 note: "proof",
               },
-              { text: "Nothing for you to do.", note: "messaging" },
+              // The dry, flat close IS the voice, so it carries the voice note
+              // rather than a third messaging one (Paul, 9 Aug: he wanted the
+              // brand's voice marked in the body, not only on the subject).
+              { text: "Nothing for you to do.", note: "voice" },
             ]}
             sign={["Aoife", "Kite"]}
           />
         </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          A second brief, a LinkedIn post. Same documents, a different job.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <WriterPost
-            body={[
-              { text: "Same car. Same house. Same you.", note: "voice" },
-              { text: "But the price goes up." },
-              {
-                text: "The letter lands on a Tuesday. Sixty-one pages, one number that matters, and the number got bigger. Same Focus in the driveway, same forty minute commute, same nothing-happened.",
-              },
-              { text: "What are you, a procurement department?", note: "voice" },
-              { text: "That's the arrangement. You stay put, and it costs you extra." },
-              {
-                text: "Kite shops around for your car and home insurance before every renewal. If someone is cheaper, you move. If nobody is, you stay.",
-                note: "positioning",
-              },
-              {
-                text: "Either way you get told what it found. The first time it shopped around, people saved €187 on average.",
-                note: "proof",
-              },
-              { text: "Kite. It shops around. You don't.", note: "voice" },
-            ]}
-          />
-        </div>
         <p className="ppft-honest">
           <span className="ppft-slash">/Kite is fictional, the writing is real.</span>{" "}
-          The writer read Kite&rsquo;s documents and wrote both pieces. Your
-          version gets built from documents you already have, and both of these
-          get remade in your brand before this page ships.
+          The writer read Kite&rsquo;s documents and wrote this. Your version
+          gets built from documents you already have, and this gets remade in
+          your brand before this page ships.
         </p>
       </PPSection>
 
