@@ -29,7 +29,6 @@ import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
-import LadderFigure from "./library/LadderFigure";
 import { OutreachWindow } from "./library/AgentWindows";
 import BrandGuardian from "./library/BrandGuardian";
 import SystemCards from "./library/SystemCards";
@@ -517,11 +516,12 @@ export default function KiteDoc() {
 
 
       <PPSection id="briefcoach" sub title="Brief Coach">
-        <LadderFigure />
         {/* The live demo from the product page, in the house chat window
-            (Paul, 9 Aug). The ladder above is the ladder the coaching walks
-            up, so the figure and the session are one exhibit. */}
-        <div style={{ marginTop: 26 }}>
+            (Paul, 9 Aug). The ladder figure came out the same day: the
+            coaching names every rung as it walks up them, so drawing the
+            ladder above said it twice. LadderFigure stays in the library,
+            unused here. */}
+        <div>
           <ChatWindow
             session={BRIEF_COACH_SESSION}
             start="Watch the coach pressure-test a launch brief: where its KPIs sit on the ladder, which of them is a commercial outcome, and what is missing."

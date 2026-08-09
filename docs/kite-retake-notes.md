@@ -58,6 +58,18 @@ Owed by the story terminal: adoption component, website agent exhibit,
 system exhibit ideas.
 About ten agents will exist; pages nest the chosen few per buyer.
 
+## 9 Aug
+
+- "How I work" added at 02, between what we heard and what we do. Paul's copy
+  verbatim, on the Fidelity page's approved treatment. Photo floats and the copy
+  wraps around it; the rail photo came out as a duplicate, and `bio.photo` is now
+  optional in ProspectShell.
+- Brief Coach swapped its ladder figure for the product page's coaching session,
+  played in the house ChatWindow (`library/brief-coach-session.ts`). One click
+  plays the lot, same as the two Writer sessions, rather than the product page's
+  step-per-press. `LadderFigure` is now UNUSED and parked in the library: the
+  coaching names every rung as it climbs, so drawing it as well said it twice.
+
 ## Candidates taken from the story-first take, not yet built
 
 - The self-rating slider opening the adoption section ("where is your
