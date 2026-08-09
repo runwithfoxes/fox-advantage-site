@@ -86,6 +86,66 @@ const AREAS: { area: string; by: [number, number, number, number, number] }[] = 
 ];
 
 /**
+ * WHAT THE CHANGED WORK BOUGHT. Three measures, moved by the same four quarters.
+ *
+ * ⭐ THEY ARE NUMBERS, NOT DIRECTIONS (Paul, 9 Aug): "if we're faster, we need
+ * to measure by how much faster, same with cost. it is not a yes or no answer.
+ * These are measurable things." A chart that only says "faster" is the version
+ * a client cannot hold anyone to.
+ *
+ * ⭐ NOTHING MOVES IN Q1, and that is the honest part. Q1 is champions, protected
+ * hours and picking the first jobs. A curve that starts paying in month one is
+ * the version nobody believes.
+ *
+ * ⭐ AND THE GRID ABOVE IS THE CEILING ON ALL THREE. Only work that changed can
+ * move these numbers, so 26% of the work changing is what caps the gain. That is
+ * why the two halves are one exhibit and one run rather than two charts.
+ *
+ * `ghost` is where the measure started, so the bar is read against its own
+ * baseline. Two of them shrink and one grows, which is the picture.
+ */
+const MEASURES: {
+  q: string;
+  unit: string;
+  by: [number, number, number, number, number];
+  scale: number;
+  grows?: boolean;
+  note: (v: number, base: number) => string;
+}[] = [
+  {
+    q: "Are we getting it done faster?",
+    unit: "days from brief to done",
+    by: [12, 12, 10, 8, 7],
+    scale: 12,
+    note: (v, base) =>
+      v === base
+        ? `${base} days, the number we took before starting`
+        : `${base} days before, ${v} now`,
+  },
+  {
+    q: "Are we doing it more cost-effectively?",
+    unit: "cost of a piece of work",
+    by: [1850, 1850, 1640, 1420, 1290],
+    scale: 1850,
+    note: (v, base) =>
+      v === base
+        ? `EUR ${base.toLocaleString("en-IE")} a piece, agency and freelance in`
+        : `EUR ${base.toLocaleString("en-IE")} before, EUR ${v.toLocaleString("en-IE")} now`,
+  },
+  {
+    q: "Are we doing things we could not get to before?",
+    unit: "pieces a quarter that used to not happen",
+    by: [0, 0, 3, 7, 11],
+    scale: 12,
+    grows: true,
+    note: (v) =>
+      v === 0
+        ? "the work permanently at the bottom of the list"
+        : "work that would not have happened at all",
+  },
+];
+
+/**
  * Milliseconds. A quarter's blocks arrive as a wave, not a slab.
  *
  * ⭐ THE WAVE HAS TO FINISH WELL BEFORE THE NEXT QUARTER STARTS. The first cut
@@ -233,10 +293,50 @@ export default function WorkGrid() {
             reduced={reduced}
           />
           {/* The fox marks this as OUR demonstration rather than knowledge of
-              anyone's insides, per the metaphor-marker rule. On cream, beside
-              the score, now the timeline has taken the top strip. */}
+              anyone's insides, per the metaphor-marker rule. On cream. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/fox/fox-pm-nobg.png" alt="" className="ppwg-fox" />
+        </div>
+
+        <div className="ppwg-gains">
+          <p className="ppwg-gains-h">and what that bought</p>
+          {MEASURES.map((m) => {
+            const v = m.by[step];
+            const base = m.by[0];
+            const pct = base === 0 ? 0 : Math.round(((base - v) / base) * 100);
+            return (
+              <div className="ppwg-gain" key={m.q}>
+                <span className="ppwg-gain-q">
+                  {m.q}
+                  <span className="ppwg-gain-u">{m.unit}</span>
+                </span>
+                <span className="ppwg-gain-track">
+                  {/* Where it started, kept in view so the bar is read against
+                      its own baseline rather than against the other two. */}
+                  <span
+                    className="ppwg-gain-ghost"
+                    style={{ ["--w" as string]: `${(base / m.scale) * 100}%` }}
+                  />
+                  <span
+                    className="ppwg-gain-fill"
+                    style={{ ["--w" as string]: `${(v / m.scale) * 100}%` }}
+                  />
+                </span>
+                <span className="ppwg-gain-n">
+                  <b>
+                    {m.grows
+                      ? v === 0
+                        ? "none yet"
+                        : `${v} a quarter`
+                      : pct === 0
+                        ? "no change yet"
+                        : `${pct}% ${m.by[0] > m.by[4] && m.unit.startsWith("days") ? "faster" : "cheaper"}`}
+                  </b>
+                  <span>{m.note(v, base)}</span>
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -246,7 +346,10 @@ export default function WorkGrid() {
         much of that area is done a different way. It is by area rather than by
         person because roles change and the work does not. Nothing ever goes
         back: we drive a job end to end and then switch the old way off. After a
-        full year most of the work is still done the way it always was.
+        full year most of the work is still done the way it always was, which is
+        also the ceiling on the three numbers underneath: only work that changed
+        can move them. Every one is measured against a baseline taken before
+        anything starts, and nothing moves in the first quarter.
       </p>
     </div>
   );

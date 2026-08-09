@@ -110,6 +110,17 @@ About ten agents will exist; pages nest the chosen few per buyer.
   distribution needs a population to have a shape; Kite is fourteen, three a
   bucket, nothing visibly moves. 140 blocks reads at fourteen people and at a
   hundred and twenty.
+  ⭐ **AND WHAT THAT BOUGHT, under the grid, on the same run.** The grid measures
+  a BEHAVIOUR (did the work change); speed, cost and scale are the rung above it
+  on the metric ladder and they are what the buyer buys. Three questions in
+  Paul's own words, with numbers because "if we're faster, we need to measure by
+  how much faster... it is not a yes or no answer": 42% faster (12 days brief to
+  done, now 7), 30% cheaper (EUR 1,850 a piece, now 1,290), 11 a quarter that
+  used to not happen at all.
+  ⭐ **Nothing moves in Q1**, because Q1 is champions and setup, and a curve that
+  pays in month one is the version nobody believes. **And the grid is the ceiling
+  on all three**: only changed work can move them, which is why it is one exhibit
+  and one run rather than two charts.
   ⛔ The unverified fear statistics stay OFF the page (24 Jul Sabre session: four
   survey figures, no resolvable sources).
   ⚠️ Trap that cost a render: the on-colour was gated on a `-after` root class
