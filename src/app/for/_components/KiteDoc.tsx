@@ -17,14 +17,13 @@
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
-import FolderWindow, { type FolderDoc } from "./library/FolderWindow";
 import LibraryList from "./LibraryList";
 import ChatWindow from "./library/ChatWindow";
 import { Figure } from "./library/Figure";
 import FourThingsFigure from "./library/FourThingsFigure";
 import { ScaledWindow } from "./library/AgentWindows";
-import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
 import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
+import { WriterEmail, WriterPost } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
@@ -34,67 +33,6 @@ import BrandGuardian from "./library/BrandGuardian";
 import SystemCards from "./library/SystemCards";
 import type { Turn } from "./library/chatTypes";
 import "./library/four-things.css";
-
-// A demonstration brand pack. The folder is the exhibit: small documents that
-// every machine and every person reads from. Generic on purpose. The writer
-// session below QUOTES these files in its source map, so the two exhibits
-// have to stay consistent with each other.
-const PACK_DOCS: FolderDoc[] = [
-  {
-    file: "positioning-statement.md",
-    label: "Positioning",
-    body: [
-      "For people who dread the renewal letter, Kite is the car and home insurance that renews itself, because it shops around for you every year and saves EUR 187 on average.",
-      "Feeds on the audience, competitors and proof files. Everything downstream traces back to it.",
-    ],
-  },
-  {
-    file: "audience.md",
-    label: "Audience and insights",
-    body: [
-      "People who dread the renewal letter and would pay a fair price never to think about it again.",
-      "Not the ones who enjoy the haggle. The ones who leave the envelope on the counter for a fortnight and feel slightly worse every time they walk past it.",
-    ],
-  },
-  {
-    file: "proof.md",
-    label: "Proof points",
-    body: [
-      "Average saving the first time we shop around for you: EUR 187, all policies renewed in 2025.",
-      "Each number carries its source, because a number without one is not proof.",
-    ],
-  },
-  {
-    file: "messaging-framework.md",
-    label: "Messages",
-    body: [
-      "Insurance that renews itself, and shops around for you before it does.",
-      "Written once, used by everything. Nothing here may contradict the positioning statement.",
-    ],
-  },
-  {
-    file: "tone-of-voice.md",
-    label: "Tone of voice",
-    body: [
-      "First person, always. Dry, weary, disbelieving: the sound of the only sane person in the room.",
-      "The file the writer reaches for most often, so it lives on its own.",
-    ],
-  },
-  {
-    file: "writer-dna.md",
-    label: "Working instructions",
-    body: [
-      "How the writer works with the team: what it reads before writing, how it plans, and the rule that every piece closes with a claims ledger and a source map.",
-    ],
-  },
-  {
-    file: "format-email.md",
-    label: "Email craft",
-    body: [
-      "The email frameworks. The writer names which one it is using before it writes, and scores the finished email against it afterwards.",
-    ],
-  },
-];
 
 // A recorded training session: the habit being taught is checking the data
 // before answering. Generic content, no client's numbers.
@@ -451,39 +389,76 @@ export default function KiteDoc() {
           interact with us or our colleagues.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          That knowledge is a small folder of documents. This is the whole
-          thing, worked through here on Kite, a fictional insurance brand.
-          Open the files.
+          That knowledge is a small folder of documents. Here is what comes out
+          of it, worked through on Kite, a fictional insurance brand. Hover a
+          dotted line to see what it is made of.
         </p>
+        {/* ⛔ THE FINISHED WRITING ONLY (Paul, 9 Aug). The two recorded sessions
+            showed the plan, the slop audit, the score and the claims ledger,
+            which is too much to hold when you are reading cold. What proves the
+            point is the writing plus the hover, so that is all that is left. */}
         <div style={{ marginTop: 26 }}>
-          <FolderWindow name="kite/" files={PACK_DOCS} />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Now judge the writer on the writing. Both sessions below are real
-          runs: the writer read those files and followed them, and the dotted
-          lines in the finished pieces map every claim back to its source.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <ChatWindow
-            session={KITE_SESSION}
-            start="Watch the writer draft Kite's renewal email: the plan, the email, then its own audit, claims ledger and sources."
-            title="the writer"
-            preview
+          <WriterEmail
+            subject={{
+              text: "Your renewal is due on 14 September",
+              note: "voice",
+            }}
+            body={[
+              { text: "Hi Sarah," },
+              {
+                text: "Before it renews, we'll quote the market for you.",
+                note: "positioning",
+              },
+              {
+                text: "Last year most people in your position paid the price they were sent. It was a bit higher than the year before, and paying it beat a fortnight of forms and four websites asking the same eleven questions.",
+              },
+              {
+                text: "That increase was never compulsory. It was the cost of staying put.",
+                note: "messaging",
+              },
+              {
+                text: "So about three weeks before your date we'll check what everyone else would charge for the same cover. If someone is cheaper, we move you and do the paperwork. If nobody is, you stay where you are. Either way you'll get a note saying what we found and what we chose.",
+                note: "messaging",
+              },
+              {
+                text: "The first time we did this, customers saved €187 on average.",
+                note: "proof",
+              },
+              { text: "Nothing for you to do.", note: "messaging" },
+            ]}
+            sign={["Aoife", "Kite"]}
           />
         </div>
-        <div style={{ marginTop: 30 }}>
-          <ChatWindow
-            session={KITE_POST_SESSION}
-            start="A second brief, a LinkedIn post. Watch it refuse to invent what the pack does not have."
-            title="the writer"
-            preview
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          A second brief, a LinkedIn post. Same documents, a different job.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <WriterPost
+            body={[
+              { text: "Same car. Same house. Same you.", note: "voice" },
+              { text: "But the price goes up." },
+              {
+                text: "The letter lands on a Tuesday. Sixty-one pages, one number that matters, and the number got bigger. Same Focus in the driveway, same forty minute commute, same nothing-happened.",
+              },
+              { text: "What are you, a procurement department?", note: "voice" },
+              { text: "That's the arrangement. You stay put, and it costs you extra." },
+              {
+                text: "Kite shops around for your car and home insurance before every renewal. If someone is cheaper, you move. If nobody is, you stay.",
+                note: "positioning",
+              },
+              {
+                text: "Either way you get told what it found. The first time it shopped around, people saved €187 on average.",
+                note: "proof",
+              },
+              { text: "Kite. It shops around. You don't.", note: "voice" },
+            ]}
           />
         </div>
         <p className="ppft-honest">
-          <span className="ppft-slash">/Kite is fictional, the runs are real.</span>{" "}
-          The writer read the pack and wrote what you watched. Kite&rsquo;s
-          real version gets built from documents you already have, and these
-          recordings get remade with your brand before this page ships.
+          <span className="ppft-slash">/Kite is fictional, the writing is real.</span>{" "}
+          The writer read Kite&rsquo;s documents and wrote both pieces. Your
+          version gets built from documents you already have, and both of these
+          get remade in your brand before this page ships.
         </p>
       </PPSection>
 
@@ -754,7 +729,7 @@ export default function KiteDoc() {
               // Named, not numbered: the folder lives in the Writer exhibit under
               // Building agents, and a hardcoded section number goes stale the
               // moment a section is added (it already had, before 9 Aug).
-              note: "The folder from the Writer, as living documents your team can read.",
+              note: "The positioning, messages, proof and voice the writer works from, as living documents your team can read.",
               href: "#writer",
               kind: "folder",
               meta: "4 files",

@@ -70,6 +70,18 @@ About ten agents will exist; pages nest the chosen few per buyer.
   step-per-press. `LadderFigure` is now UNUSED and parked in the library: the
   coaching names every rung as it climbs, so drawing it as well said it twice.
 
+- Writer cut down to the writing. The folder window, the two recorded sessions
+  and everything around them (plan, slop audit, score, claims ledger, composer)
+  came off. What is left is the finished email, the finished post, and a dotted
+  line on the lines that carry brand. Paul: "we are taking away lots of stuff
+  that is too complex when reading cold, and they are seeing a writer and
+  seeing it is using brand docs because of the hover."
+  ⛔ **The hover names no files.** `positioning-statement.md` read as our filing
+  system, not their brand. Four notes only, in `WriterPiece.tsx`: your brand
+  positioning, your messaging framework, your approved proof point, your
+  approved voice. Parked, whole and re-addable: `library/kite-pack.ts` (the
+  seven pack files), `FolderWindow.tsx`, `writer-sessions.ts` (both recordings).
+
 ## Candidates taken from the story-first take, not yet built
 
 - The self-rating slider opening the adoption section ("where is your

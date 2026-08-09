@@ -147,6 +147,16 @@
   margin-right: 10px;
 }
 .ppchat-sign span { display: block; color: #8a8a85; }
+/* `.ppchat-subject span` above outranks `.ppchat-refcard`, so the subject's hover
+   card inherited the uppercase and the grey and shouted. Beat it on specificity
+   rather than weakening the subject rule. */
+.ppchat-subject .ppchat-refcard {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.8125rem;
+  color: #f5f4f0;
+  margin-right: 0;
+}
 
 .ppchat-post {
   border: 1px solid #e8e8e4;
@@ -200,6 +210,10 @@
   font-style: italic;
   font-weight: 400;
   text-decoration: none;
+  /* The subject line sets its spans uppercase, and the card is a span inside it,
+     so without this the subject's note shouts. Bit the source-map card too. */
+  text-transform: none;
+  letter-spacing: normal;
 }
 .ppchat-refcard b {
   display: block;
@@ -216,6 +230,16 @@
 .ppchat-ref:focus-within .ppchat-refcard {
   opacity: 1;
   visibility: visible;
+}
+/* A note, not a quotation. The source-map card set quoted file text in italic;
+   these say what the line is made of, so they set upright (Paul, 9 Aug). */
+.ppchat-refcard-note {
+  font-style: normal;
+}
+/* A finished piece shown on its own, outside a played session: no reply above it
+   to sit under, so it carries no bottom margin of its own. */
+.ppchat-piece {
+  margin-bottom: 0;
 }
 .ppchat-refcard-raw {
   font-family: var(--mono);
