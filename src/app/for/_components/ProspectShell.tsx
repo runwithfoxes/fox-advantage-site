@@ -61,9 +61,11 @@ export default function ProspectShell({
    *  listed there even if the rail shows it inside a group. */
   railGroups?: RailGroup[];
   railNote?: string;
-  /** The photo above the rail with a bare /about link, no bio text in the
-   *  rail (Paul, 8 Aug: "it is getting too busy"). */
-  bio?: { photo: string; href: string; label?: string };
+  /** A bare /about link at the top of the rail, no bio text (Paul, 8 Aug:
+   *  "it is getting too busy"). The photo is OPTIONAL and off by default
+   *  since the How I work section carries it (Paul, 9 Aug: "don't need photo
+   *  in rail as duplicate"). */
+  bio?: { photo?: string; href: string; label?: string };
   railLinks?: RailLink[];
   children: React.ReactNode;
 }) {
@@ -137,8 +139,10 @@ export default function ProspectShell({
             {railNote && <p className="pps-railnote">{railNote}</p>}
             {bio && (
               <div className="pps-bio">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={bio.photo} alt="Paul Dervan" className="pps-bio-photo" />
+                {bio.photo && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={bio.photo} alt="Paul Dervan" className="pps-bio-photo" />
+                )}
                 <a className="pps-bio-about" href={bio.href}>
                   {bio.label ?? "/about"}
                 </a>

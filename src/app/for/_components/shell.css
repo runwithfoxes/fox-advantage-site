@@ -374,16 +374,22 @@
   margin: 12px 0 0;
   color: var(--pps-muted);
 }
+/* Magazine wrap, the homepage bio's device: the photo floats and the copy
+   runs beside it, then full width once it clears. A two-column grid left a
+   dead half-column under the photo (Paul, 9 Aug). */
 .pps-hiw-grid {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 44px;
-  align-items: start;
   margin-top: 34px;
 }
+.pps-hiw-grid::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 .pps-hiw-photo {
+  float: left;
+  width: 260px;
+  margin: 0 44px 26px 0;
   border: 1px solid var(--pps-border);
-  max-width: 260px;
   overflow: hidden;
 }
 .pps-hiw-photo img {
@@ -399,7 +405,9 @@
   color: var(--pps-sky);
   margin: 0 0 22px;
 }
+/* Clears the float so the rule runs the full column, never beside the photo. */
 .pps-hiw-cli {
+  clear: both;
   margin-top: 34px;
   padding-top: 20px;
   border-top: 1px solid var(--pps-border);
@@ -450,8 +458,11 @@
 }
 
 @media (max-width: 900px) {
-  .pps-hiw-grid,
   .pps-hiw-quotes {
     grid-template-columns: 1fr;
+  }
+  .pps-hiw-photo {
+    float: none;
+    margin: 0 0 26px;
   }
 }

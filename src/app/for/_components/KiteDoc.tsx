@@ -264,7 +264,7 @@ export default function KiteDoc() {
       ]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
-      bio={{ photo: "/Paul_photo.jpg", href: "/#about", label: "/about" }}
+      bio={{ href: "/#about", label: "/about" }}
     >
       <PPSection id="heard" k="01" title="What we heard">
         <p className="pps-standfirst">
@@ -295,52 +295,49 @@ export default function KiteDoc() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/Paul_photo.jpg" alt="Paul Dervan, Run with Foxes" />
           </div>
-          <div>
-            <p className="pps-hiw-award">
-              Ireland&rsquo;s Marketer of the Year, 2022
-            </p>
-            <p className="pps-standfirst">
-              Before I build anything, I ask one question: what does really
-              good look like here? Not what AI can do, but what the best
-              version of this marketing would be, and the level of quality and
-              effectiveness I would want to stand over.
-            </p>
-            <p className="pps-standfirst">
-              So I start where I always have. If there were no AI at all, what
-              team would I hire to do this properly? A strategist to set the
-              positioning and the plan, someone doing the outreach properly
-              one company at a time, a designer and a developer to build the
-              website and keep it current, and a writer building your
-              authority in public. The capabilities, the craft and the
-              resources it would genuinely take to be good. I map that team
-              first, the one I would build in a world before any of this
-              existed.
-            </p>
-            <p className="pps-standfirst">
-              Then I build exactly that, with agents instead of hires. The
-              quality bar is set by the team I would have wanted, not by
-              whatever a tool happens to make easy. Twenty years in brand is
-              what tells me where that bar sits: Head of Brand at O2 Ireland,
-              then CMO at the National Lottery, Head of Brand at Indeed and
-              Miro, both global roles. Positioning, messaging and tone written
-              first, then built into everything the agents make.
-            </p>
-            <div className="pps-hiw-cli">
-              <p className="pps-hiw-cli-k">Who I work with</p>
-              <div className="pps-hiw-cli-l">
-                {[
-                  "Moloco",
-                  "Heineken",
-                  "Norcros",
-                  "Alltech",
-                  "Smurfit",
-                  "Hostelworld",
-                  "Eaton Square",
-                  "Weatherbys",
-                ].map((c) => (
-                  <span key={c}>{c}</span>
-                ))}
-              </div>
+          <p className="pps-hiw-award">
+            Ireland&rsquo;s Marketer of the Year, 2022
+          </p>
+          <p className="pps-standfirst">
+            Before I build anything, I ask one question: what does really good
+            look like here? Not what AI can do, but what the best version of
+            this marketing would be, and the level of quality and
+            effectiveness I would want to stand over.
+          </p>
+          <p className="pps-standfirst">
+            So I start where I always have. If there were no AI at all, what
+            team would I hire to do this properly? A strategist to set the
+            positioning and the plan, someone doing the outreach properly one
+            company at a time, a designer and a developer to build the website
+            and keep it current, and a writer building your authority in
+            public. The capabilities, the craft and the resources it would
+            genuinely take to be good. I map that team first, the one I would
+            build in a world before any of this existed.
+          </p>
+          <p className="pps-standfirst">
+            Then I build exactly that, with agents instead of hires. The
+            quality bar is set by the team I would have wanted, not by
+            whatever a tool happens to make easy. Twenty years in brand is
+            what tells me where that bar sits: Head of Brand at O2 Ireland,
+            then CMO at the National Lottery, Head of Brand at Indeed and
+            Miro, both global roles. Positioning, messaging and tone written
+            first, then built into everything the agents make.
+          </p>
+          <div className="pps-hiw-cli">
+            <p className="pps-hiw-cli-k">Who I work with</p>
+            <div className="pps-hiw-cli-l">
+              {[
+                "Moloco",
+                "Heineken",
+                "Norcros",
+                "Alltech",
+                "Smurfit",
+                "Hostelworld",
+                "Eaton Square",
+                "Weatherbys",
+              ].map((c) => (
+                <span key={c}>{c}</span>
+              ))}
             </div>
           </div>
         </div>
