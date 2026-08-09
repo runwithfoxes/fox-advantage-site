@@ -24,6 +24,7 @@ import { Figure } from "./library/Figure";
 import FourThingsFigure from "./library/FourThingsFigure";
 import { ScaledWindow } from "./library/AgentWindows";
 import { KITE_SESSION, KITE_POST_SESSION } from "./library/writer-sessions";
+import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import FluencyMap from "./library/FluencyMap";
 import AdMachine from "./library/AdMachine";
@@ -517,6 +518,17 @@ export default function KiteDoc() {
 
       <PPSection id="briefcoach" sub title="Brief Coach">
         <LadderFigure />
+        {/* The live demo from the product page, in the house chat window
+            (Paul, 9 Aug). The ladder above is the ladder the coaching walks
+            up, so the figure and the session are one exhibit. */}
+        <div style={{ marginTop: 26 }}>
+          <ChatWindow
+            session={BRIEF_COACH_SESSION}
+            start="Watch the coach pressure-test a launch brief: where its KPIs sit on the ladder, which of them is a commercial outcome, and what is missing."
+            title="brief coach"
+            preview
+          />
+        </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           A brief is the plan behind a piece of marketing. When the brief is
           weak, the work that comes out is weak too. Brief Coach reads your
