@@ -29,9 +29,9 @@ import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
 import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 // FluencyMap is parked, not gone (9 Aug): it did before-and-after as fourteen
-// separate readings, and the reader had to do the aggregating. WeekGrid is one
+// separate readings, and the reader had to do the aggregating. WorkGrid is one
 // scene that changes state, which is what makes the blueprint slider work.
-import WeekGrid from "./library/WeekGrid";
+import WorkGrid from "./library/WorkGrid";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
 import { OutreachWindow } from "./library/AgentWindows";
@@ -610,21 +610,18 @@ export default function KiteDoc() {
       </PPSection>
 
       <PPSection id="adoption" k="07" title="Designing team AI adoption">
-        <WeekGrid />
+        <WorkGrid />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Not everybody is going to be a builder. For most of a team a good
-          result is that one part of their week is different from how it was
-          before, and that is what we measure: blocks of work that changed, not
-          logins or prompt counts. A tool nobody opened and a tool everybody
-          opened once look identical on a usage report.
+          Not everybody is going to be a builder. A good year is that some of
+          the work is done a different way and the rest is not, and that is what
+          we measure: pieces of work that changed, not logins or prompt counts.
+          A tool nobody opened and a tool everybody opened once look identical
+          on a usage report.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Getting blocks to turn is the work. Champions with hours genuinely set
-          aside. One job of work taken end to end, with a number taken before
-          you start and a date the old route closes, because if both stay open
-          the old habit wins. Leaders doing it themselves in public rather than
-          talking about it. And the behaviours written down, so people know
-          where they stand. We run that, and report the grid every month.
+          We report it by area of work rather than by person, because roles move
+          and the work stays. It also keeps the conversation off who is behind
+          and on which jobs are worth changing next.
         </p>
       </PPSection>
 

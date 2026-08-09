@@ -1,0 +1,249 @@
+/* THE WORK, QUARTER BY QUARTER. ppwg- prefix. The adoption exhibit: one scene,
+   140 pieces of work by AREA (roles change, the work does not), and four
+   quarters of change sweeping across them.
+
+   House window chrome, same as the blueprint and the writer: rounded frame,
+   three dots, one control top right. Curves are correct here for the same
+   reason they are correct there, this is a depicted thing inside a window, and
+   the site's own chrome stays square. */
+
+.ppwg {
+  --ppwg-off: #e4e3dd;
+  --ppwg-on: #3a7ca5;
+  --ppwg-frame: #f2f1ec;
+  --ppwg-line: #e0e0dc;
+  --ppwg-label: 152px;
+  --ppwg-gutter: 16px;
+  background: var(--ppwg-frame);
+  border: 1px solid var(--ppwg-line);
+  border-radius: 15px;
+  padding: 0 8px 8px;
+}
+
+.ppwg-bar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 10px 11px 9px;
+}
+.ppwg-bar > i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+}
+.ppwg-bar > i:nth-child(1) { background: #ff5f57; }
+.ppwg-bar > i:nth-child(2) { background: #febc2e; }
+.ppwg-bar > i:nth-child(3) { background: #28c840; }
+.ppwg-title {
+  margin-left: 6px;
+  font-family: var(--pps-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #54545c;
+}
+
+/* One control, no drag handle: the workflows slider owns that device. */
+.ppwg-replay {
+  margin-left: auto;
+  font-family: var(--pps-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: #54545c;
+  background: #fff;
+  border: 1px solid #e2e1db;
+  border-radius: 7px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.ppwg-replay:hover:not(:disabled) {
+  border-color: var(--ppwg-on);
+  color: var(--ppwg-on);
+}
+.ppwg-replay:disabled {
+  color: #b6b5ae;
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+}
+
+.ppwg-panel {
+  background: #fafaf8;
+  border: 1px solid #e8e8e4;
+  border-radius: 9px;
+  padding: 18px 22px 18px;
+}
+
+/* The head shares the rows' track system, so the timeline sits over the blocks
+   and the fox takes the label column, which is otherwise dead space. */
+.ppwg-head {
+  display: grid;
+  grid-template-columns: var(--ppwg-label) 1fr;
+  gap: var(--ppwg-gutter);
+  align-items: end;
+  margin-bottom: 18px;
+}
+.ppwg-corner {
+  display: flex;
+  align-items: flex-end;
+}
+/* The fox marks this as OUR demonstration rather than knowledge of anyone's
+   insides, per the metaphor-marker rule. On cream, as the brand rule requires. */
+.ppwg-fox {
+  display: block;
+  height: 50px;
+  width: auto;
+}
+
+/* THE TIMELINE, where a chart would put its axis. The quarters ARE the argument,
+   so they get the top of the picture rather than a corner control. */
+.ppwg-time {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: 13px;
+}
+.ppwg-time::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #e4e3dd;
+}
+/* The filled length grows with the run, so the picture says how far in you are
+   without anybody reading a label. */
+.ppwg-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: var(--p);
+  background: var(--ppwg-on);
+  transition: width 900ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+.ppwg-stop {
+  position: relative;
+  font-family: var(--pps-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b6b5ae;
+  background: none;
+  border: 0;
+  padding: 0 0 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.ppwg-stop::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3.5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e4e3dd;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.ppwg-stop[data-on="true"] { color: #8a8a85; }
+.ppwg-stop[data-on="true"]::after { background: var(--ppwg-on); }
+.ppwg-stop[data-now="true"] { color: var(--ppwg-on); }
+.ppwg-stop[data-now="true"]::after { transform: scale(1.5); }
+.ppwg-stop:hover { color: #3d3d38; }
+
+.ppwg-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ppwg-row {
+  display: grid;
+  grid-template-columns: var(--ppwg-label) 1fr;
+  gap: var(--ppwg-gutter);
+  align-items: center;
+}
+.ppwg-area {
+  font-family: var(--pps-mono);
+  font-size: 10.5px;
+  color: #8a8a85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ppwg-cells {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+}
+
+/* THE BLOCK. Every one starts as the old way. A block carries its own delay, so
+   a quarter's change sweeps left across the work and drifts down the areas
+   rather than flipping as one slab. */
+.ppwg-cell {
+  height: 17px;
+  border-radius: 3px;
+  background: var(--ppwg-off);
+  transition: background var(--ppwg-cell) ease, transform var(--ppwg-cell) ease;
+  transition-delay: var(--d);
+}
+/* ⛔ NO STATE CLASS ON THE ROOT. An earlier cut gated this on a `-after` class
+   that no longer exists, so every cell stayed grey while the count read 36. */
+.ppwg-cell.ppwg-on {
+  background: var(--ppwg-on);
+  /* Lifts a fraction as it turns. Small on purpose: a hard pop across thirty
+     cells reads as a glitch rather than a change. */
+  transform: translateY(-1px);
+}
+
+.ppwg-readout {
+  display: block;
+  margin: 20px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #eceae4;
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  color: #44443e;
+}
+.ppwg-n {
+  font-size: 1.375rem;
+  color: var(--ppwg-on);
+  font-variant-numeric: tabular-nums;
+  margin-right: 7px;
+}
+.ppwg-sub {
+  display: block;
+  margin-top: 7px;
+  color: #a8a8a2;
+}
+
+.ppwg-honest {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  color: #8a8a85;
+  margin: 14px 4px 4px;
+}
+.ppwg-slash { color: var(--ppwg-on); }
+
+/* Reduced motion: the change still happens, it just arrives whole. */
+.ppwg-still .ppwg-cell {
+  transition: none;
+  transition-delay: 0ms;
+  transform: none;
+}
+.ppwg-still .ppwg-progress {
+  transition: none;
+}
+
+@media (max-width: 760px) {
+  .ppwg {
+    --ppwg-label: 108px;
+    --ppwg-gutter: 12px;
+  }
+  .ppwg-cell { height: 14px; }
+  .ppwg-fox { height: 38px; }
+}

@@ -89,22 +89,32 @@ About ten agents will exist; pages nest the chosen few per buyer.
   page" pair (What we heard, How I work) came off as "too messy", after the bio
   text on 8 Aug and the photo earlier on 9 Aug. Three cuts, same reason.
 
-- Adoption rebuilt as **WeekGrid**, the exhibit the story terminal owed. One
+- Adoption rebuilt as **WorkGrid**, the exhibit the story terminal owed. One
   scene that changes state, which is the property that makes the blueprint
-  slider work and the property `FluencyMap` lacked: fourteen separate readings
-  made the reader do the aggregating. A marketing week, 14 people x 10 blocks =
-  140 units of work; a year in, 20 turn. The wave sweeps left across the week
-  and drifts down the team, the count climbs with it.
+  slider work and the one `FluencyMap` lacked: fourteen separate readings made
+  the reader do the aggregating. `FluencyMap` parked in the library.
+  ⭐ **Rows are AREAS OF WORK, never people or roles.** Paul: "roles are going to
+  change, so it has to be by task or use case... in reality some of those roles
+  are going to change and disappear." A grid of job titles dates itself and
+  invites an argument with the org chart. Go-to-market, studio, events and
+  research are still there in three years.
+  ⭐ **Today is not zero.** Seven of the 140 blocks are already done a different
+  way before anyone is hired, because every team has a few people quietly doing
+  it, and they are SCATTERED across the columns: a tidy first-column stripe
+  reads as a designed chart rather than a team.
+  ⭐ **Four quarters, animated, and the quarters ARE the mechanism.** Each stop's
+  line names what was done that quarter, so the run teaches the four levers from
+  the Sabre research instead of a paragraph listing them. 7 → 13 → 21 → 29 → 36.
+  Plays itself once on scroll-in, every stop clickable, replay in the bar.
   ⭐ **Blocks, not people, is what makes it work at n=14.** A five-bucket fluency
-  distribution needs a population to have a shape; Kite is fourteen, which is
-  three a bucket and nothing visibly moves. 140 blocks has a shape at fourteen
-  people and still has one at a hundred and twenty.
-  ⭐ **The numbers are modest on purpose.** 20 of 140, twelve of fourteen moving,
-  two moving nothing. Everyone turning blue is the adoption-theatre picture and
-  no marketer would believe it. Copy underneath carries the four levers from the
-  Sabre research. ⛔ The unverified fear statistics stay OFF the page (see the
-  24 Jul Sabre session: four survey figures, no resolvable sources).
-  `FluencyMap` parked in the library.
+  distribution needs a population to have a shape; Kite is fourteen, three a
+  bucket, nothing visibly moves. 140 blocks reads at fourteen people and at a
+  hundred and twenty.
+  ⛔ The unverified fear statistics stay OFF the page (24 Jul Sabre session: four
+  survey figures, no resolvable sources).
+  ⚠️ Trap that cost a render: the on-colour was gated on a `-after` root class
+  carried over from the two-state cut. Every cell stayed grey while the count
+  read 36, and `tsc` and the DOM class count both passed.
 
 ## Candidates taken from the story-first take, not yet built
 
