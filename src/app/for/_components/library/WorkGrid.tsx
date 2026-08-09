@@ -37,8 +37,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./work-grid.css";
 
-/** Ten pieces of work per area. Deliberately not days: an area of work does not
- *  run Monday to Friday, and a false week would be precision we do not have. */
+/** Ten pieces of work per area. The blocks have no order and are not time: what
+ *  carries meaning is how many of the ten are filled. */
 const COLS = 10;
 
 const STOPS = [
@@ -50,31 +50,39 @@ const STOPS = [
 ];
 
 /**
- * One row per area of work. Each of the ten blocks carries the quarter it starts
- * being done a different way: 0 is already true today, 1 to 4 is the quarter it
- * turns, null is never.
+ * One row per area of work, and how many of its ten pieces are done a different
+ * way at each stop: today, Q1, Q2, Q3, Q4.
  *
- * Hand-set, never random. The file has to render identically on the server, in
- * the browser and in a screenshot, and the SHAPE is the argument: it lands first
- * and hardest where the work is repetitive and written, barely touches events,
- * and never gets near everything. 36 blocks of 140 after a full year.
+ * ⛔ A ROW FILLS FROM THE LEFT AND ONLY EVER GROWS. The first cut scattered the
+ * turned blocks along the row, which put blue, grey, blue next to each other.
+ * Paul read it exactly as it looks: "it is blue but then not blue. then blue
+ * again. i'd have thought once we crack it, we don't go back to old way?" He is
+ * right, and the cause was mine: a quarter timeline sitting directly above ten
+ * columns teaches the eye that across means time, so any gap reads as a relapse.
+ * The columns are ten unrelated pieces of work and have no order, so ordering
+ * them by state costs nothing true and makes the one thing that matters legible
+ * at a glance: the filled length of a row never shortens.
+ *
+ * Hand-set, never random: the file has to render identically on the server, in
+ * the browser and in a screenshot, and the SHAPE is the argument. It lands first
+ * and hardest where the work is repetitive and written, never touches events,
+ * and gets nowhere near everything. 36 pieces of 140 after a full year.
  */
-const N = null;
-const AREAS: { area: string; q: (number | null)[] }[] = [
-  { area: "Go-to-market launches", q: [N, N, 1, N, N, 3, N, N, N, N] },
-  { area: "Campaign planning", q: [N, 2, N, N, N, N, 4, N, N, N] },
-  { area: "Brand and messaging", q: [N, N, N, 2, N, N, 0, 3, N, N] },
-  { area: "Content and articles", q: [0, N, 1, N, 2, N, N, 3, N, 4] },
-  { area: "Studio and design", q: [N, N, 1, N, 0, 2, N, 3, 4, N] },
-  { area: "Website", q: [N, N, N, 2, N, N, N, N, 4, N] },
-  { area: "Email and CRM", q: [N, 1, N, N, 3, N, N, N, N, N] },
-  { area: "Paid media", q: [N, N, 0, N, N, 2, N, N, N, 4] },
-  { area: "Social", q: [N, N, 2, N, N, N, 3, 0, N, N] },
-  { area: "Events", q: [N, N, N, N, N, N, N, N, N, N] },
-  { area: "Research and insight", q: [N, N, N, 1, N, 0, N, 3, N, N] },
-  { area: "Sales enablement", q: [N, N, 1, N, N, N, N, N, 4, N] },
-  { area: "PR and comms", q: [N, N, N, N, 3, N, N, N, N, N] },
-  { area: "Reporting", q: [N, N, N, 2, N, N, 4, N, 0, N] },
+const AREAS: { area: string; by: [number, number, number, number, number] }[] = [
+  { area: "Go-to-market launches", by: [0, 1, 1, 2, 2] },
+  { area: "Campaign planning", by: [0, 0, 1, 1, 2] },
+  { area: "Brand and messaging", by: [1, 1, 2, 3, 3] },
+  { area: "Content and articles", by: [1, 2, 3, 4, 5] },
+  { area: "Studio and design", by: [1, 2, 3, 4, 5] },
+  { area: "Website", by: [0, 0, 1, 1, 2] },
+  { area: "Email and CRM", by: [0, 1, 1, 2, 2] },
+  { area: "Paid media", by: [1, 1, 2, 2, 3] },
+  { area: "Social", by: [1, 1, 2, 3, 3] },
+  { area: "Events", by: [0, 0, 0, 0, 0] },
+  { area: "Research and insight", by: [1, 2, 2, 3, 3] },
+  { area: "Sales enablement", by: [0, 1, 1, 1, 2] },
+  { area: "PR and comms", by: [0, 0, 0, 1, 1] },
+  { area: "Reporting", by: [1, 1, 2, 2, 3] },
 ];
 
 /**
@@ -101,12 +109,7 @@ export default function WorkGrid() {
 
   /** Running total of blocks turned at each stop, computed rather than typed. */
   const totals = useMemo(() => {
-    const perStop = STOPS.map((_, s) =>
-      AREAS.reduce(
-        (n, a) => n + a.q.filter((q) => q !== null && q <= s).length,
-        0
-      )
-    );
+    const perStop = STOPS.map((_, s) => AREAS.reduce((n, a) => n + a.by[s], 0));
     return { perStop, blocks: AREAS.length * COLS };
   }, []);
 
@@ -177,15 +180,12 @@ export default function WorkGrid() {
       </div>
 
       <div className="ppwg-panel">
-        {/* The timeline sits where a chart would put its axis, because the
-            quarters ARE the argument: the change is paced, not switched on.
-            The fox takes the label column beside it, which is dead space. */}
-        <div className="ppwg-head">
-          <span className="ppwg-corner">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/fox/fox-pm-nobg.png" alt="" className="ppwg-fox" />
-          </span>
-          <div className="ppwg-time" role="group" aria-label="Quarter">
+        {/* ⛔ THE TIMELINE SPANS THE WHOLE WINDOW, NOT THE CELL COLUMNS. Sat
+            over the cells it reads as their axis, and now that rows fill from
+            the left a five-block row looks like it "reached Q2". Starting it
+            left of the area names breaks that mapping: it is the run's clock,
+            not the grid's scale. */}
+        <div className="ppwg-time" role="group" aria-label="Quarter">
           <span
             className="ppwg-progress"
             style={{ ["--p" as string]: `${(step / (STOPS.length - 1)) * 100}%` }}
@@ -203,10 +203,9 @@ export default function WorkGrid() {
                 setStep(i);
               }}
             >
-                {s.label}
-              </button>
-            ))}
-          </div>
+              {s.label}
+            </button>
+          ))}
         </div>
 
         <div className="ppwg-rows">
@@ -214,10 +213,10 @@ export default function WorkGrid() {
             <div className="ppwg-row" key={a.area}>
               <span className="ppwg-area">{a.area}</span>
               <span className="ppwg-cells">
-                {a.q.map((q, c) => (
+                {Array.from({ length: COLS }, (_, c) => (
                   <span
                     key={c}
-                    className={`ppwg-cell${q !== null && q <= step ? " ppwg-on" : ""}`}
+                    className={`ppwg-cell${c < a.by[step] ? " ppwg-on" : ""}`}
                     style={{ ["--d" as string]: `${c * COL_STEP + r * ROW_STEP}ms` }}
                   />
                 ))}
@@ -226,19 +225,27 @@ export default function WorkGrid() {
           ))}
         </div>
 
-        <Readout
-          target={totals.perStop[step]}
-          blocks={totals.blocks}
-          line={STOPS[step].line}
-          reduced={reduced}
-        />
+        <div className="ppwg-foot">
+          <Readout
+            target={totals.perStop[step]}
+            blocks={totals.blocks}
+            line={STOPS[step].line}
+            reduced={reduced}
+          />
+          {/* The fox marks this as OUR demonstration rather than knowledge of
+              anyone's insides, per the metaphor-marker rule. On cream, beside
+              the score, now the timeline has taken the top strip. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/fox/fox-pm-nobg.png" alt="" className="ppwg-fox" />
+        </div>
       </div>
 
       <p className="ppwg-honest">
         <span className="ppwg-slash">/illustrative.</span> Every block is a piece
-        of work a marketing team does. It is by area rather than by person
-        because roles change and the work does not. The ones that turn are the
-        jobs we drove end to end and then switched the old way off, and after a
+        of work a marketing team does, ten to an area, and the blue length is how
+        much of that area is done a different way. It is by area rather than by
+        person because roles change and the work does not. Nothing ever goes
+        back: we drive a job end to end and then switch the old way off. After a
         full year most of the work is still done the way it always was.
       </p>
     </div>
