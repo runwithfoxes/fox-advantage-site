@@ -1,0 +1,477 @@
+/* Growth Manager exhibits: the pipeline board and Jo's morning note.
+   Every class pgm- prefixed. Curves are allowed here because everything
+   sits INSIDE a depicted window; the site's own chrome stays square. */
+
+/* ---- the pipeline board ---- */
+
+.pgm-board {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  background: #f7f7f4;
+  min-height: 380px;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.pgm-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pgm-colhead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 4px 6px;
+}
+
+.pgm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.pgm-c0 .pgm-dot { background: #e2574c; }
+.pgm-c1 .pgm-dot { background: #46a06a; }
+.pgm-c2 .pgm-dot { background: #d78a2e; }
+.pgm-c3 .pgm-dot { background: #7b5ea7; }
+
+.pgm-colname {
+  font-size: 12px;
+  font-weight: 600;
+  color: #33322f;
+}
+
+.pgm-count {
+  font-size: 10.5px;
+  color: #8a8a84;
+  background: #ecece7;
+  padding: 1px 7px;
+  border-radius: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pgm-card {
+  background: #fff;
+  border: 1px solid #e3e3de;
+  border-radius: 8px;
+  padding: 11px 12px;
+  box-shadow: 0 1px 2px rgba(20, 30, 40, 0.05);
+}
+
+.pgm-firm {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2d38;
+  line-height: 1.35;
+}
+
+.pgm-person {
+  font-size: 11px;
+  color: #6f6f77;
+  margin-top: 3px;
+}
+
+.pgm-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #8a8a84;
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #f0f0ec;
+}
+
+.pgm-note::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3a7ca5;
+  flex: none;
+}
+
+/* A card that has just landed in its new column. */
+.pgm-card.pgm-arrive {
+  animation: pgm-land 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  border-color: #3a7ca5;
+  transition: border-color 1.4s ease 0.8s;
+}
+
+@keyframes pgm-land {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pgm-card.pgm-arrive {
+    animation: none;
+  }
+}
+
+/* ---- the campaign window ----
+   Rebuilt in the house language (Paul, 10 Aug: the ah- port "does not look
+   like it used our branding exactly"). White node cards, mono labels, the
+   house dot grid, blue dashed edges like the cascades, and a run that
+   plays through the nodes. */
+
+.pgm-cw {
+  font-family: var(--mono, ui-monospace, monospace);
+}
+
+.pgm-cw-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e3e3de;
+  background: #fff;
+  font-size: 11.5px;
+  color: #8a8a84;
+}
+
+.pgm-cw-crumb b {
+  color: #1a3a4e;
+  font-weight: 700;
+}
+
+.pgm-cw-tabs {
+  display: flex;
+  gap: 14px;
+  margin-left: 8px;
+}
+
+.pgm-cw-tabs .pgm-on {
+  color: #1a3a4e;
+  font-weight: 700;
+  border-bottom: 2px solid #1a3a4e;
+  padding-bottom: 2px;
+}
+
+.pgm-cw-rt {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pgm-cw-livepill {
+  color: #2e7d4f;
+  font-weight: 700;
+}
+
+.pgm-cw-livepill::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2e7d4f;
+  margin-right: 5px;
+  vertical-align: 1px;
+}
+
+.pgm-cw-main {
+  display: flex;
+  background: #fff;
+}
+
+.pgm-cw-canvas {
+  position: relative;
+  flex: 1;
+  height: 360px;
+  background-image: radial-gradient(
+    circle,
+    rgba(208, 208, 204, 0.5) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 28px 28px;
+}
+
+.pgm-cw-canvas svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pgm-cw-edge {
+  fill: none;
+  stroke: #b9cfdd;
+  stroke-width: 1.6;
+  stroke-dasharray: 5 5;
+}
+
+.pgm-cw-play .pgm-cw-edge {
+  animation: pgm-cw-march 1.2s linear infinite;
+}
+
+@keyframes pgm-cw-march {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+.pgm-cw-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #e3e3de;
+  border-radius: 9px;
+  box-shadow: 0 2px 6px rgba(26, 58, 78, 0.07);
+  padding: 10px 13px 8px;
+  min-width: 128px;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.pgm-cw-node.pgm-active {
+  border-color: #3a7ca5;
+  box-shadow: 0 4px 14px rgba(58, 124, 165, 0.22);
+}
+
+.pgm-cw-nh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pgm-cw-ic {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #eef3f7;
+  color: #3a7ca5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex: none;
+}
+
+.pgm-cw-nm {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a3a4e;
+  line-height: 1.3;
+}
+
+.pgm-cw-st {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #8a8a84;
+  margin-top: 7px;
+  padding-top: 6px;
+  border-top: 1px solid #f0f0ec;
+}
+
+.pgm-cw-st::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c9c9c2;
+}
+
+.pgm-cw-node.pgm-active .pgm-cw-st::before {
+  background: #3a7ca5;
+  animation: pgm-cw-pulse 0.9s ease-in-out infinite;
+}
+
+.pgm-cw-node.pgm-done .pgm-cw-st::before {
+  background: #2e7d4f;
+}
+
+@keyframes pgm-cw-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.pgm-cw-panel {
+  width: 240px;
+  flex: none;
+  border-left: 1px solid #e3e3de;
+  padding: 14px 16px;
+  background: #fafaf8;
+}
+
+.pgm-cw-ph {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 9px;
+}
+
+.pgm-cw-run {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: #33322f;
+  padding: 7px 8px;
+  margin: 0 -8px;
+}
+
+.pgm-cw-run.pgm-cur {
+  background: #eef3f7;
+  border-left: 2.5px solid #1a3a4e;
+  padding-left: 5.5px;
+}
+
+.pgm-cw-run .pgm-rs {
+  font-size: 10px;
+  color: #2e7d4f;
+}
+
+.pgm-cw-run .pgm-rs.pgm-spin {
+  color: #3a7ca5;
+  display: inline-block;
+  animation: pgm-cw-spin 1.1s linear infinite;
+}
+
+@keyframes pgm-cw-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pgm-cw-run .pgm-rt {
+  margin-left: auto;
+  font-size: 10px;
+  color: #8a8a84;
+}
+
+.pgm-cw-lab {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin: 16px 0 8px;
+}
+
+.pgm-cw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.pgm-cw-stat {
+  background: #fff;
+  border: 1px solid #e3e3de;
+  border-radius: 7px;
+  padding: 9px 10px;
+}
+
+.pgm-cw-stat .pgm-n {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a3a4e;
+}
+
+.pgm-cw-stat.pgm-g .pgm-n {
+  color: #2e7d4f;
+}
+
+.pgm-cw-stat .pgm-k {
+  font-size: 10px;
+  color: #8a8a84;
+  margin-top: 2px;
+}
+
+.pgm-cw-cred {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: #8a8a84;
+  margin-top: 14px;
+}
+
+.pgm-cw-credbar {
+  height: 4px;
+  background: #ecece7;
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.pgm-cw-credbar i {
+  display: block;
+  height: 100%;
+  width: 2.4%;
+  min-width: 8px;
+  background: #3a7ca5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pgm-cw-play .pgm-cw-edge,
+  .pgm-cw-node.pgm-active .pgm-cw-st::before,
+  .pgm-cw-run .pgm-rs.pgm-spin {
+    animation: none;
+  }
+}
+
+/* ---- Jo's morning note ---- */
+
+.pgm-note-body {
+  padding: 18px 20px 20px;
+  background: #fff;
+  min-height: 172px;
+}
+
+.pgm-note-day {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10px;
+  color: #b9b9b2;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.pgm-note-msg {
+  background: #f4f6f8;
+  border-radius: 12px;
+  border-bottom-left-radius: 5px;
+  padding: 13px 16px;
+  max-width: 92%;
+}
+
+.pgm-note-msg p {
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #33322f;
+  margin: 0 0 9px;
+}
+
+.pgm-note-msg p:last-child {
+  margin-bottom: 0;
+}
+
+.pgm-caret {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: #3a7ca5;
+  vertical-align: -2px;
+  margin-left: 1px;
+  animation: pgm-blink 0.9s steps(1) infinite;
+}
+
+@keyframes pgm-blink {
+  50% {
+    opacity: 0;
+  }
+}

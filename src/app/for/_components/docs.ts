@@ -7,7 +7,7 @@ import type { ComponentType } from "react";
 
 export const PROSPECT_DOCS: Record<string, ComponentType> = {
   kite: dynamic(() => import("./KiteDoc"), { ssr: false }),
-  fidelity: dynamic(() => import("../../proposals/fidelity/FidelityDoc"), {
-    ssr: false,
-  }),
+  // The v2 capabilities page, built 9 Aug from the Kite shell. The original
+  // React take stays at /proposals/fidelity as the copy record.
+  fidelity: dynamic(() => import("./FidelityDoc"), { ssr: false }),
 };

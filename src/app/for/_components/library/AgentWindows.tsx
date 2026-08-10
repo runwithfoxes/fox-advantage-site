@@ -185,10 +185,14 @@ export function OutreachWindow({
   threads = DEFAULT_THREADS,
   title = "Outreach Agent",
   sentLabel = "128 sent",
+  width = 470,
 }: {
   threads?: OutreachThread[];
   title?: string;
   sentLabel?: string;
+  /** Natural window width. At 640+ the roomy layout gives the list and the
+      conversation space to breathe (Paul, 9 Aug: "a rectangle, not a box"). */
+  width?: number;
 }) {
   const [active, setActive] = useState(0);
   // starts fully resolved (message + reply + pill all visible) so the
@@ -229,10 +233,14 @@ export function OutreachWindow({
   }, [threads]);
 
   const current = threads[active] ?? DEFAULT_THREADS[0];
-  const visibleThreads = threads.slice(0, 4);
+  const visibleThreads = threads.slice(0, 5);
 
+  const roomy = width >= 640;
+  const holderClass = [live ? "ppw-live" : "", roomy ? "ppw-roomy" : ""]
+    .filter(Boolean)
+    .join(" ");
   return (
-    <ScaledWindow width={470} className={live ? "ppw-live" : undefined}>
+    <ScaledWindow width={width} className={holderClass || undefined}>
       <div className="ppw-inbox">
         <div className="ppw-frame-win">
           <div className="ppw-tl">

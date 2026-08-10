@@ -213,3 +213,16 @@
 /* ---- responsive: windows are ported at their natural design width and
    scaled to fit by ScaledWindow, so no per-window breakpoint rules are
    needed here - the holder + transform scale handles every viewport. ---- */
+
+/* Roomy inbox: the wider rectangle (Paul, 9 Aug). Three conversations, each
+   with space to breathe. Applies only when OutreachWindow is given 640px+. */
+.ppw-roomy .ppw-ibx { height: 430px; }
+.ppw-roomy .ppw-ibx .ppw-list { width: 250px; }
+.ppw-roomy .ppw-ibx .ppw-th { padding: 14px 16px; gap: 11px; }
+.ppw-roomy .ppw-ibx .ppw-th .ppw-nm { font-size: 12.5px; }
+.ppw-roomy .ppw-ibx .ppw-th .ppw-pv { font-size: 11px; margin-top: 3px; }
+.ppw-roomy .ppw-ibx .ppw-tabs { padding: 13px 16px 11px; }
+.ppw-roomy .ppw-ibx .ppw-chd { padding: 13px 18px; }
+.ppw-roomy .ppw-ibx .ppw-stream { padding: 20px; }
+.ppw-roomy .ppw-ibx .ppw-b { max-width: 72%; font-size: 12px; padding: 11px 14px; margin-bottom: 12px; }
+.ppw-roomy .ppw-inbox { width: 100%; }

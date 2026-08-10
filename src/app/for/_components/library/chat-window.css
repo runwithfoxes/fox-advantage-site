@@ -404,3 +404,18 @@
   .ppchat-grid th { width: auto; }
   .ppchat-composer { margin: 0 14px 14px; }
 }
+
+/* The typing caret for a piece writing itself out (WriterPiece). */
+.ppchat-caret {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background: #3a7ca5;
+  vertical-align: -2px;
+  margin-left: 1px;
+  animation: ppchat-blink 0.9s steps(1) infinite;
+}
+
+@keyframes ppchat-blink {
+  50% { opacity: 0; }
+}
