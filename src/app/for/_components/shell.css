@@ -1,0 +1,506 @@
+/* Prospect page shell, pps- prefix throughout. The layout is the course module
+   page's two-column structure: sticky rail on the left, reading column right.
+   Values are taken from the course build (rail 320px, gap 56px, shell 1180px,
+   128px top clearing the fixed bar) so the two surfaces read as one system. */
+
+.pps-root {
+  --pps-bg: #fafaf8;
+  --pps-text: #1d1b1b;
+  --pps-muted: #8a8a85;
+  --pps-sky: #3a7ca5;
+  --pps-deep: #1a3a4e;
+  --pps-border: #e0e0dc;
+  --pps-orange: #f47521;
+  --pps-sans: "Space Grotesk", sans-serif;
+  --pps-mono: "JetBrains Mono", ui-monospace, monospace;
+  background: var(--pps-bg);
+  color: var(--pps-text);
+  min-height: 100vh;
+}
+
+/* Fixed top bar, same register as the course chapter nav. */
+.pps-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(250, 250, 248, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--pps-border);
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--pps-mono);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+.pps-nav-logo {
+  color: var(--pps-muted);
+  text-decoration: none;
+}
+.pps-nav-logo span {
+  color: var(--pps-orange);
+}
+.pps-nav-private {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+}
+
+.pps-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 128px 28px 120px;
+}
+
+.pps-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* One sticky column. Starts level with the standfirst, not the headline. */
+.pps-railcol {
+  position: sticky;
+  top: 96px;
+  max-height: calc(100vh - 124px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 100px;
+}
+.pps-rail {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  overflow: auto;
+  min-height: 0;
+}
+/* Slash-prefix labels are always blue mono, the whole label. */
+.pps-rail p {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--pps-sky);
+  margin: 0 0 16px;
+}
+.pps-rail a {
+  display: grid;
+  grid-template-columns: 22px 9px 1fr;
+  gap: 8px;
+  padding: 6px 0;
+  color: var(--pps-muted);
+  text-decoration: none;
+  border-top: 1px solid var(--pps-border);
+  line-height: 1.35;
+}
+.pps-rail a:hover {
+  color: var(--pps-sky);
+}
+.pps-rail-k {
+  color: #a8a8a2;
+  font-variant-numeric: tabular-nums;
+}
+.pps-rail-dot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid #c9c9c3;
+  background: #fff;
+  display: block;
+  margin-top: 6px;
+}
+.pps-rail a[data-active="1"] {
+  color: var(--pps-text);
+}
+.pps-rail a[data-active="1"] .pps-rail-dot {
+  background: var(--pps-sky);
+  border-color: var(--pps-sky);
+}
+
+/* min-width 0 is load-bearing: without it the 1fr track refuses to shrink
+   below the widest fixed-width child (the 940px campaign window), forcing the
+   whole reading column past the page edge and cutting the copy off. */
+.pps-maincol {
+  min-width: 0;
+}
+
+.pps-masthead {
+  padding: 0 0 30px;
+  border-bottom: 2px solid var(--pps-deep);
+}
+.pps-eyebrow {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+  margin: 0 0 18px;
+}
+.pps-h1 {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0 0 22px;
+  color: var(--pps-text);
+}
+.pps-hl {
+  color: var(--pps-sky);
+}
+/* One prose size on the page, matching the course ruling of 2 Aug. */
+.pps-standfirst {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--pps-text);
+}
+.pps-standfirst + .pps-standfirst {
+  margin-top: 30px;
+}
+
+.pps-section {
+  padding: 64px 0 0;
+}
+.pps-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 26px;
+}
+.pps-section-k {
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  color: #a8a8a2;
+  font-variant-numeric: tabular-nums;
+}
+.pps-section-h2 {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--pps-text);
+}
+
+/* Below 1024 the rail folds away and the page reads top to bottom. Content is
+   never hidden behind the fold mechanism, the rail is navigation only. */
+@media (max-width: 1024px) {
+  .pps-grid {
+    display: block;
+  }
+  .pps-railcol {
+    position: static;
+    max-height: none;
+    margin-top: 48px;
+  }
+  .pps-nav {
+    padding: 14px 20px;
+  }
+}
+
+/* Rail extras (8 Aug evening): the coming-up note, the bio, the free
+   library. The rail reads as a small private site, not a table of contents. */
+.pps-railnote {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--pps-text);
+  margin: 0;
+}
+.pps-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pps-bio-photo {
+  width: 132px;
+  height: 132px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+.pps-bio-about {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  color: var(--pps-sky);
+  text-decoration: none;
+}
+.pps-bio-about:hover {
+  color: var(--pps-deep);
+}
+.pps-raillinks {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--pps-border);
+  padding-top: 14px;
+}
+.pps-raillinks p {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--pps-sky);
+  margin: 0 0 12px;
+}
+.pps-raillinks a {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  color: var(--pps-text);
+  text-decoration: none;
+  border-top: 1px solid #eceae4;
+  line-height: 1.4;
+}
+.pps-raillinks a:hover {
+  color: var(--pps-sky);
+}
+.pps-raillink-meta {
+  color: #a8a8a2;
+  flex: none;
+}
+
+/* Rail groups: "/what we do" leads with the four things and their locked
+   one-liners; the page's own sections sit in a quieter group below. */
+.pps-railgroup + .pps-railgroup {
+  margin-top: 22px;
+}
+.pps-rail-desc {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: #a8a8a2;
+}
+.pps-rail a[data-active="1"] .pps-rail-desc {
+  color: var(--pps-muted);
+}
+
+/* Nested machines under a rail entry: indented, smaller, titles only. */
+.pps-rail a.pps-rail-sub {
+  display: grid;
+  grid-template-columns: 9px 1fr;
+  gap: 8px;
+  margin-left: 31px;
+  padding: 4px 0;
+  border-top: none;
+  font-size: 0.6875rem;
+  color: #a8a8a2;
+}
+.pps-rail a.pps-rail-sub:hover {
+  color: var(--pps-sky);
+}
+.pps-rail-subdot {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #c9c9c3;
+  background: #fff;
+  display: block;
+  margin-top: 5px;
+}
+.pps-rail a.pps-rail-sub[data-active="1"] {
+  color: var(--pps-text);
+}
+.pps-rail a.pps-rail-sub[data-active="1"] .pps-rail-subdot {
+  background: var(--pps-sky);
+  border-color: var(--pps-sky);
+}
+
+/* Compact rail group: a wrapped row of quiet links. */
+.pps-railmini-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+.pps-railmini-row a {
+  display: inline;
+  border: none;
+  padding: 2px 0;
+  color: var(--pps-muted);
+  text-decoration: none;
+}
+.pps-railmini-row a:hover {
+  color: var(--pps-sky);
+}
+.pps-railmini-row a[data-active="1"] {
+  color: var(--pps-text);
+}
+
+/* Part heading: the umbrella over a run of sections. House register, the
+   slash label, never display type (Paul, 8 Aug: "we never use that size"). */
+.pps-part {
+  padding: 76px 0 0;
+}
+.pps-part-h {
+  font-family: var(--pps-mono);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--pps-border);
+  color: var(--pps-sky);
+}
+
+/* Sub-exhibits inside a numbered section: one level down. */
+.pps-sub {
+  padding-top: 48px;
+}
+.pps-sub .pps-section-h2 {
+  font-size: 1.125rem;
+}
+
+/* How I work: the one section on the page whose visual is the photograph, the
+   client names and the two quotes rather than a figure. Ported from the
+   Fidelity page's approved treatment (.rwf-wt-prospect-pages
+   FidelityDoc.tsx:286-317) with Paul's rewritten copy, 9 Aug. No chips and no
+   filled boxes: names sit as a plain row in the house register. */
+.pps-hiw-line {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: -8px 0 0;
+  color: var(--pps-text);
+}
+.pps-hiw-by {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  margin: 12px 0 0;
+  color: var(--pps-muted);
+}
+/* Magazine wrap, the homepage bio's device: the photo floats and the copy
+   runs beside it, then full width once it clears. A two-column grid left a
+   dead half-column under the photo (Paul, 9 Aug). */
+.pps-hiw-grid {
+  margin-top: 34px;
+}
+.pps-hiw-grid::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.pps-hiw-photo {
+  float: left;
+  width: 260px;
+  margin: 0 44px 26px 0;
+  border: 1px solid var(--pps-border);
+  overflow: hidden;
+}
+.pps-hiw-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pps-hiw-award {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+  margin: 0 0 22px;
+}
+/* Clears the float so the rule runs the full column, never beside the photo. */
+.pps-hiw-cli {
+  clear: both;
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pps-border);
+}
+.pps-hiw-cli-k {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+  margin: 0 0 14px;
+}
+.pps-hiw-cli-l {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  color: var(--pps-text);
+}
+.pps-hiw-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 44px;
+}
+.pps-hiw-q {
+  border-left: 2px solid var(--pps-sky);
+  padding-left: 20px;
+}
+.pps-hiw-q p {
+  font-family: var(--pps-sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  color: var(--pps-text);
+}
+.pps-hiw-who {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.pps-hiw-who b {
+  color: var(--pps-text);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .pps-hiw-quotes {
+    grid-template-columns: 1fr;
+  }
+  .pps-hiw-photo {
+    float: none;
+    margin: 0 0 26px;
+  }
+}
+
+/* Essays, course and book links under the bio (Fidelity, 10 Aug). */
+.pps-hiw-links {
+  clear: both;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pps-border);
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 28px;
+}
+.pps-hiw-ll {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 2.1;
+}
+.pps-hiw-ll a {
+  color: var(--pps-sky);
+  text-decoration: none;
+}
+.pps-hiw-ll a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .pps-hiw-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inline link inside body copy (training section, 10 Aug). */
+.pps-copy-link {
+  color: var(--pps-sky);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

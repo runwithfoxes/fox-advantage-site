@@ -1,0 +1,57 @@
+/* THE PLATE. The surface a figure sits on, and it belongs to the figure, not to the
+   page. Scoped as a CSS module so this component can be dropped into an item, beside
+   prose, or into a different page entirely and still look right.
+
+   Ported from ~/projects/.rwf-wt-course-modules/src/app/course/figures/Figure.module.css
+   for the prospect-pages library. Class names carry a pp prefix per this repo's rule
+   that generic names collide with globals.css and fail silently; a CSS module already
+   scopes these at build time, so the prefix here is belt and braces.
+
+   SQUARE. Our own surface never rounds. Only a window depicted inside the drawing
+   rounds. */
+
+.ppfigurePlate {
+  margin: 18px 0 0;
+  padding: 16px;
+  background: #ffffff;
+  border: 1.5px solid #e0e0dc;
+  background-image: radial-gradient(
+    circle,
+    rgba(208, 208, 204, 0.4) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 28px 28px;
+}
+
+/* Every figure is drawn on a 720x320 canvas. It scales to whatever width it is
+   given, which is the point: the layout can change under it. */
+.ppfigurePlate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ppfigurePlate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 320;
+}
+
+/* BANNER. A figure that sits above the prose rather than under it. The plate itself
+   is unchanged: same surface, same dot grid. */
+.ppfigureBanner {
+  margin: 4px 0 20px;
+}
+
+/* The fallback when a figure is asked for by a name that does not exist. */
+.ppfigureMissing {
+  margin: 18px 0 0;
+  padding: 28px 16px;
+  border: 1.5px dashed #f47521;
+  background: #fafaf8;
+  font-family: var(--mono, ui-monospace, Menlo, monospace);
+  font-size: 12px;
+  color: #8a8a85;
+  text-align: center;
+}

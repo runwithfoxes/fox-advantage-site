@@ -1,0 +1,145 @@
+/* Creative director exhibit, ppcd- prefix. Real Sabre assets from the
+   Brand Guardian presentation; window chrome is the house ppw- pieces. */
+
+.ppcd {
+  margin: 34px 0 0;
+}
+
+.ppcd-win {
+  width: 940px;
+}
+
+.ppcd-gap {
+  margin-top: 26px;
+}
+
+.ppcd-inner {
+  padding: 18px 22px 22px;
+  background: #fbfbfa;
+}
+
+/* theirs vs ours: two 970-wide GIFs stacked, each at full inner width */
+.ppcd-vs {
+  display: grid;
+  gap: 18px;
+}
+.ppcd-vs figure {
+  margin: 0;
+}
+.ppcd-vs img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e3e3df;
+}
+
+.ppcd-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 8px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #54545c;
+}
+.ppcd-tag::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8a8a85;
+}
+.ppcd-tag.ppcd-good {
+  color: #2e7d4f;
+}
+.ppcd-tag.ppcd-good::before {
+  background: #2e7d4f;
+}
+.ppcd-tag.ppcd-mid {
+  color: #3a7ca5;
+}
+.ppcd-tag.ppcd-mid::before {
+  background: #3a7ca5;
+}
+
+.ppcd-note {
+  margin: 7px 0 0;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11px;
+  color: #8a8a85;
+}
+
+/* photo to video: three equal columns */
+.ppcd-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ppcd-three figure {
+  margin: 0;
+  min-width: 0;
+}
+.ppcd-three img,
+.ppcd-three video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e3e3df;
+}
+
+/* the photographic world: twelve images, badges on reveal */
+.ppcd-mix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.ppcd-mix figure {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+}
+.ppcd-mix img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #e3e3df;
+}
+.ppcd-badge {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  padding: 3px 8px;
+  background: #1a3a4e;
+  color: #fafaf8;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.ppcd-revealed .ppcd-badge {
+  opacity: 1;
+}
+.ppcd-revealed figure:not(:has(.ppcd-badge)) img {
+  opacity: 0.45;
+}
+
+.ppcd-reveal {
+  margin-top: 14px;
+  padding: 9px 16px;
+  border: 1px solid #1a3a4e;
+  background: #fff;
+  color: #1a3a4e;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.ppcd-reveal:hover {
+  background: #1a3a4e;
+  color: #fafaf8;
+}
