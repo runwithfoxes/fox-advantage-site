@@ -1,5 +1,11 @@
 # Handover, 10 Aug 2026, the Fidelity capabilities page
 
+> ⭐ SHIPPED, late 10 Aug. Live at runwithfoxes.com/for/fidelity (fidelity26),
+> merged to main at 04e4b06 with the kite-retake base (Kite page live, gated).
+> Paul wrote and sent the email to Peter himself. The state that outranks this
+> file now: ~/paul-hub/clients/fidelity-canada/CONTEXT.md and
+> docs/kite-retake-notes.md (10 Aug section). Next build: BRIEF-affirm-2026-08-11.md.
+
 For the fresh terminal taking over the Peter Berry / Fidelity work. Read
 these in order before touching anything, they carry the decisions with the
 reasons:
