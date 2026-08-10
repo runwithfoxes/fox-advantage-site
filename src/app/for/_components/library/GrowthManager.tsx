@@ -266,7 +266,7 @@ export function JoNote() {
             <i />
             <i />
             <i />
-            <span className="ppw-t">growth manager</span>
+            <span className="ppw-t">growth agent</span>
             <span className="ppw-live-pill">every morning</span>
           </div>
           <div className="pgm-note-body">
@@ -307,11 +307,11 @@ const CW_NODES: {
   top: string;
   step: number;
 }[] = [
-  { name: "New-practice signal", sub: "trigger", ic: "◆", left: "10%", top: "50%", step: 0 },
+  { name: "New-practice", sub: "trigger", ic: "◆", left: "15%", top: "50%", step: 0 },
   { name: "Enrich the firm", sub: "step", ic: "◱", left: "39%", top: "50%", step: 1 },
   { name: "Research brief", sub: "agent", ic: "▤", left: "63%", top: "26%", step: 2 },
   { name: "Draft outreach", sub: "agent", ic: "✎", left: "63%", top: "74%", step: 2 },
-  { name: "Send + track", sub: "step", ic: "➤", left: "88%", top: "50%", step: 3 },
+  { name: "Send + track", sub: "step", ic: "➤", left: "86%", top: "50%", step: 3 },
 ];
 
 const CW_STEP_MS = [1100, 1500, 2400, 1500];

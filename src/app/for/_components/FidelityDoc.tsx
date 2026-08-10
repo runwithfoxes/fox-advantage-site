@@ -27,6 +27,8 @@ import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkGrid from "./library/WorkGrid";
 import BrandGuardian from "./library/BrandGuardian";
+import CreativeDirector from "./library/CreativeDirector";
+import GeoAudit from "./library/GeoAudit";
 import {
   PipelineBoard,
   JoNote,
@@ -78,18 +80,20 @@ const OUTREACH_THREADS = [
 ];
 
 const SECTIONS = [
-  { id: "heard", title: "What we heard" },
-  { id: "howiwork", title: "How I work" },
+  { id: "heard", title: "What this is" },
+  { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "roles", title: "Rethinking the roles" },
   { id: "adoption", title: "Designing team AI adoption" },
   { id: "training", title: "Training teams" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "buildingagents", title: "Building agents" },
-  { id: "growth", title: "Growth Manager" },
+  { id: "growth", title: "Growth Agent" },
   { id: "writer", title: "AI Writers" },
   { id: "guardian", title: "Brand Guardian" },
+  { id: "creative", title: "Creative Director" },
   { id: "work", title: "The work" },
+  { id: "geo", title: "What AI assistants say about Fidelity" },
 ];
 
 // ⛔ THE RAIL IS THE FOUR THINGS AND NOTHING ELSE (three cuts on Kite, all
@@ -105,11 +109,12 @@ const RAIL_GROUPS = [
         id: "buildingagents",
         title: "Building agents",
         num: "03",
-        ids: ["buildingagents", "growth", "writer", "guardian"],
+        ids: ["buildingagents", "growth", "writer", "guardian", "creative"],
         children: [
-          { id: "growth", title: "Growth Manager" },
+          { id: "growth", title: "Growth Agent" },
           { id: "writer", title: "Writers" },
           { id: "guardian", title: "Brand Guardian" },
+          { id: "creative", title: "Creative Director" },
         ],
       },
       { id: "adoption", title: "Designing team AI adoption", num: "04" },
@@ -126,38 +131,28 @@ export default function FidelityDoc() {
          Fidelity build: "the hero headline is still mine"). */
       title="Move Fidelity's whole marketing team up the AI scale"
       titleHl="Fidelity"
-      standfirst={[
-        "This page holds the stuff I do, shown working rather than described. It stays live. Anything we add after we talk lands here.",
-      ]}
+      /* Standfirst deleted on Paul's pass, 10 Aug: "I don't know what it
+         means." The opening section below does the introducing. */
+      standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
     >
-      {/* Ported from the original /proposals/fidelity page, where Paul agreed
-          this copy line by line. Their truth, in their words, and the only
-          place on the page that carries it. */}
-      <PPSection id="heard" k="01" title="What we heard">
+      {/* Rewritten on Paul's pass, 10 Aug: the old "what we heard" recap
+          was "just theatre". Peter asked for a document explaining what we
+          do, so the opening says that plainly. ⚠️ DRAFT, his review owed. */}
+      <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">
-          You have around a hundred and twenty people and you are adding about
-          twenty next year, into the roles you would normally use when you
-          need capacity. You said listening to this made you wonder whether
-          you should be rethinking those roles entirely.{" "}
-          <b>I said you should, and I meant it.</b> It is worth doing before
-          you hire rather than after.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          You also said where you are with the tools. Adobe Express, Jasper,
-          Figma and Figma Weave, picked up over the last few years. The two
-          things you named as the struggle were adoption, getting people to
-          use any of it, and measurement, knowing whether they are using them
-          at all and what value they are delivering. Asher put it somewhere
-          specific, which was the layers an email goes through before it gets
-          approved. Everything below answers something one of you said, and
-          the list on the left is the map.
+          You asked for something that explains what we do. This page is
+          that: a snapshot of the work and how we do it. I have focused on
+          the areas I think matter most for a marketing team like yours, at
+          a hundred and twenty people and hiring: how roles and structures
+          are going to change, how a whole team adopts AI, how you measure
+          whether it is working, and the agents we build.
         </p>
       </PPSection>
 
       {/* HOW I WORK. Paul's own copy, verbatim, the approved treatment. */}
-      <PPSection id="howiwork" k="02" title="How I work">
+      <PPSection id="howiwork" k="02" title="What we do">
         <p className="pps-hiw-line">Quality first, then automate</p>
         <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
         <div className="pps-hiw-grid">
@@ -176,13 +171,8 @@ export default function FidelityDoc() {
           </p>
           <p className="pps-standfirst">
             So I start where I always have. If there were no AI at all, what
-            team would I hire to do this properly? A strategist to set the
-            positioning and the plan, someone doing the outreach properly one
-            company at a time, a designer and a developer to build the website
-            and keep it current, and a writer building your authority in
-            public. The capabilities, the craft and the resources it would
-            genuinely take to be good. I map that team first, the one I would
-            build in a world before any of this existed.
+            team would I hire to do this properly? I map that team first,
+            the one I would build in a world before any of this existed.
           </p>
           <p className="pps-standfirst">
             Then I build exactly that, with agents instead of hires. The
@@ -208,6 +198,61 @@ export default function FidelityDoc() {
               ].map((c) => (
                 <span key={c}>{c}</span>
               ))}
+            </div>
+          </div>
+          {/* Essays, the course and the book, Paul's ask 10 Aug: "they go
+              all as links under my bio". Five essays picked for Peter. */}
+          <div className="pps-hiw-links">
+            <div>
+              <p className="pps-hiw-cli-k">Essays</p>
+              <ul className="pps-hiw-ll">
+                {[
+                  [
+                    "the-future-marketer-is-a-swiss-army-knife",
+                    "The future marketer is a Swiss Army knife",
+                  ],
+                  ["a-robot-called-jo", "A robot called Jo"],
+                  ["how-i-build-an-ai-writer", "How I build an AI writer"],
+                  [
+                    "getting-cited-by-ai-is-a-brand-problem-not-an-seo-one",
+                    "Getting cited by AI is a brand problem, not an SEO one",
+                  ],
+                  [
+                    "distinctive-brand-assets-in-an-ai-world",
+                    "Distinctive Brand Assets in an AI world",
+                  ],
+                ].map(([slug, title]) => (
+                  <li key={slug}>
+                    <a
+                      href={`/essays/${slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="pps-hiw-cli-k">Free course</p>
+              <ul className="pps-hiw-ll">
+                <li>
+                  <a href="/course" target="_blank" rel="noopener noreferrer">
+                    AI Fluency for Ambitious Marketers
+                  </a>
+                </li>
+              </ul>
+              <p className="pps-hiw-cli-k" style={{ marginTop: 18 }}>
+                The book
+              </p>
+              <ul className="pps-hiw-ll">
+                <li>
+                  <a href="/book" target="_blank" rel="noopener noreferrer">
+                    The Fox Advantage
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -241,18 +286,16 @@ export default function FidelityDoc() {
 
       <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
         <FourThingsFigure />
-        {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN REWRITE COMING (same placeholder
-            as Kite, his words on 8 Aug: "I'll change it, but that's a good
-            placeholder"). Do not polish. */}
+        {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
+            dictation. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          We do four things, and they run from easiest to hardest: we train
-          marketing teams to use AI properly, we build AI capabilities and
-          hand them over, we run adoption so the whole team moves rather than
-          a keen few, and we redesign how marketing work gets done. Each one
-          is shown below rather than described. Everything you&rsquo;ll see is
-          our own work on general marketing problems: your situation appears
-          only in what we heard, because one call doesn&rsquo;t make us
-          experts in how Fidelity runs, and we won&rsquo;t pretend otherwise.
+          I firmly believe that marketing structures, marketing teams and
+          marketing roles are going to change dramatically in the next few
+          years, and the work we do is all around that. Specifically, there
+          are four buckets to what we currently do. We train teams. We build
+          AI agents and capabilities for them, or with them. We work with
+          marketing leaders to re-imagine what future workflows could look
+          like, and we design AI adoption programmes for them.
         </p>
       </PPSection>
 
@@ -275,33 +318,23 @@ export default function FidelityDoc() {
           people and the policies have to change together, and that starts
           with what each role actually is.
         </p>
+        {/* Cut back hard on Paul's pass, 10 Aug: the passing-work line was
+            patronising and the roles-come-out-of-that run went with it. */}
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          So the move is to start with the work, not the team. Lay out the
-          work to be done, redesign how it gets done, and take out the
-          handovers, because a lot of what a role used to be was moving work
-          to the next person. Then the roles fall out of the redesigned
-          work: which parts need human judgment, which parts are a machine
-          somebody runs, and which stop being anyone&rsquo;s job at all. Not
-          everybody is going to be a builder, but every marketing function
-          is going to have at least one, embedded with the teams to find
-          their pain points. It is far easier to hire into that design than
-          to retrofit it after.
+          We start by laying out the work to be done, not the team chart.
+          Then we redesign how that work gets done and remove the
+          handovers.
         </p>
       </PPSection>
 
       <PPSection id="adoption" k="05" title="Designing team AI adoption">
         <WorkGrid />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Not everybody is going to be a builder. A good year is that some of
-          the work is done a different way and the rest is not, and that is
-          what we measure: pieces of work that changed, not logins or prompt
-          counts. A tool nobody opened and a tool everybody opened once look
-          identical on a usage report.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          We report it by area of work rather than by person, because roles
-          move and the work stays. It also keeps the conversation off who is
-          behind and on which jobs are worth changing next.
+          Not everybody is going to be a builder, and that is fine. I
+          suspect every marketing team will soon have at least one person
+          who builds, and who helps the other teams with their work. What
+          we measure is simple: pieces of work that are now done a
+          different way, not logins or prompt counts.
         </p>
       </PPSection>
 
@@ -330,31 +363,51 @@ export default function FidelityDoc() {
             </div>
           </ScaledWindow>
         </div>
+        {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
+            dictation. The course link resolves to runwithfoxes.com/course
+            in production. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Usage being uneven is normal: a few people run with the tools, most
-          open them once. Training fixes that with a course built for
-          marketers. This is the course&rsquo;s first module, the real page,
-          scrolled top to bottom.
+          Firstly, there is a free course,{" "}
+          <a
+            href="/course"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pps-copy-link"
+          >
+            AI Fluency for Ambitious Marketers
+          </a>
+          , for anybody on your team. We also run training sessions for
+          marketing, sales and go-to-market teams. These range from half a
+          day to full-week sessions. We cover a range of topics, from pure
+          productivity hacks to building agents and systems. System
+          thinking is a core skill for marketing in an AI world.
         </p>
       </PPSection>
 
       <PPSection id="workflows" k="07" title="Redesigning workflows">
         <ArrivalBlueprint />
-        {/* ⚠️ PLACEHOLDER COPY, PAUL'S OWN WORDS COMING. He asked for copy of
-            about this length under the blueprint; this text holds the slot.
-            The claim this exhibit proves for this reader: an approval chain
-            is a process, and a process can be reduced to code. The picture
-            stays generic on purpose: old world marketing, modern marketing,
-            never Fidelity's own chain. */}
+        {/* Paul's own copy, given in chat 10 Aug, typos and grammar fixed
+            as asked. Replaces the draft one-liner that held the slot; the
+            window chrome already says "drag the line". */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          We do four things, and they run from easiest to hardest: we train
-          marketing teams to use AI properly, we build AI capabilities and
-          hand them over, we run adoption so the whole team moves rather than
-          a keen few, and we redesign how marketing work gets done. Each one
-          is shown below rather than described. Everything you&rsquo;ll see is
-          our own work on general marketing problems: your situation appears
-          only in what we heard, because one call doesn&rsquo;t make us
-          experts in how Fidelity runs, and we won&rsquo;t pretend otherwise.
+          Redesigning workflows is the harder work, and it is what{" "}
+          <a
+            href="/book"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pps-copy-link"
+          >
+            my new book
+          </a>{" "}
+          is about. It is harder not because of the tech or the tools, but
+          because it is about people: their roles, their responsibilities,
+          and sometimes their identities. We map out the activities and how
+          they flow, from a brief through to campaigns and analysis,
+          including the handovers, the time each step takes, the documents
+          and artefacts created, the tools used, and the sign-offs. Then we
+          re-imagine what is possible, both now and in the very near
+          future, starting from a blank page. This is my core skill, as it
+          is what I did building teams client-side for most of my career.
         </p>
       </PPSection>
 
@@ -368,28 +421,24 @@ export default function FidelityDoc() {
           outreach inbox, the campaign blueprint, Jo's morning note typing
           itself out. Board, blueprint and note land next; the inbox is live.
           ⚠️ DRAFT COPY below, Paul's pass owed. */}
-      <PPSection id="growth" sub title="Growth Manager">
+      <PPSection id="growth" sub title="Growth Agent">
         <PipelineBoard />
+        {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
+            dictation. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Running growth is a full desk: the pipeline, the outreach, the
-          numbers. The Growth Manager runs it. Ours is called Jo. Jo keeps
-          the pipeline honest: every deal current,
-          every next step chased, so nobody on the team types into a CRM
-          again. Jo works with the finance side so the pipeline, the spend
-          and the forecast always agree. And each morning Jo opens the day
-          the way a good head of growth would: here is what moved overnight,
-          here are the things that need you, here is what I have already
-          handled.
+          We build Growth Agents for teams. The growth agent does a few
+          things. It is the single point of contact for updating and
+          tracking the pipeline. For example, it opens the dashboard daily
+          for it and the marketer to review together. It does analysis to
+          help uncover blockers.
         </p>
         <div style={{ marginTop: 26 }}>
           <JoNote />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Jo does the work, not just the reporting. It knows the outbound
-          tools and runs the campaigns through them, email and LinkedIn, and
-          optimises as it goes. Three times it stops and waits for a person:
-          who goes on a list, every word before it sends, and the start
-          button itself. Nothing sends or spends until someone says go.
+          And most importantly, it runs the outbound campaigns, be that
+          email or LinkedIn, running all the steps from list building to
+          writing the messages, sending and analysis.
         </p>
         <div style={{ marginTop: 26 }}>
           <OutreachWindow
@@ -458,23 +507,31 @@ export default function FidelityDoc() {
             sign={["Aoife", "Kite"]}
           />
         </div>
-        <p className="ppft-honest">
-          <span className="ppft-slash">
-            /Kite is fictional, the writing is real.
-          </span>{" "}
-          The writer read Kite&rsquo;s documents and wrote this.
-          Fidelity&rsquo;s version gets built from documents you already
-          have.
-        </p>
+        {/* The Kite-is-fictional caption came off on Paul's pass, 10 Aug. */}
       </PPSection>
 
       <PPSection id="guardian" sub title="Brand Guardian">
         <BrandGuardian />
+        {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
+            dictation. ⚠️ He says NINE checks here; the window's verdict
+            strip says "4 of 4 applicable" and the old caption said ten
+            gates. Flagged to him. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Volume without drift needs a guard as well as a pack. This is the
-          machine that checks every file against the brand book before it
-          ships, shown on the real thing it guards.
+          One of our most recent products is a Brand Guardian. In seconds,
+          it runs nine different checks to see if the new work is on or
+          off-brand, checking hex colours, pixels, copy and photography.
+          It&rsquo;s probably our most complex agent, and still in beta,
+          but I&rsquo;m very proud of it.
         </p>
+      </PPSection>
+
+      {/* CREATIVE DIRECTOR. Paul's brief, 10 Aug: Sabre examples from the
+          Expleo presentation, what they did and what we did by machine,
+          the photo-to-video, and the mix of photographs. Direct frame
+          comparison kept on his yes. Copy drafts marked in the component,
+          his pass owed. */}
+      <PPSection id="creative" sub title="Creative Director">
+        <CreativeDirector />
       </PPSection>
 
       {/* THE WORK. Miro, Moloco, Sabre (Paul's pick, 9 Aug). Copy verbatim
@@ -618,6 +675,17 @@ export default function FidelityDoc() {
             </div>
           </div>
         </div>
+      </PPSection>
+
+      {/* THE GEO AUDIT. Paul's ask, 10 Aug: "I'm running a geo audit for
+          fidelity so want them to see this and be able to download as
+          pdf." Real Fidelity findings, the one deliberate exception to
+          the demonstrations-are-generic rule, on his direction. Data from
+          the search agent's audit of 10 Aug; internal material (cost
+          ledger, tooling notes, other-client caveats) excluded by rule.
+          ⚠️ DRAFT COPY in the component, his pass owed. */}
+      <PPSection id="geo" k="10" title="What AI assistants say about Fidelity">
+        <GeoAudit />
       </PPSection>
 
       {/* NO PRICE AND NO CLOSE SECTION by design: nothing was scoped,

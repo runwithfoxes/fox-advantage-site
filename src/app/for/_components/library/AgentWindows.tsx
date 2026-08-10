@@ -538,12 +538,14 @@ const DEFAULT_NODES: [CampaignNode, CampaignNode, CampaignNode, CampaignNode, Ca
   { icon: "➤", label: "Send + track", kind: "step" },
 ];
 
+// First and last pulled in from the edges: a 132px card at 10% clipped
+// through the window border (Paul's screenshot, 10 Aug).
 const NODE_POS = [
-  { left: "10%", top: "50%" },
-  { left: "36%", top: "50%" },
+  { left: "13%", top: "50%" },
+  { left: "37%", top: "50%" },
   { left: "64%", top: "28%" },
   { left: "64%", top: "72%" },
-  { left: "88%", top: "50%" },
+  { left: "86.5%", top: "50%" },
 ];
 const NODE_STEP = [0, 1, 2, 2, 3];
 
@@ -627,12 +629,12 @@ export function CampaignWindow({
               <div className="ppw-bpmain">
                 <div className="ppw-bpcanvas">
                   <svg viewBox="0 0 600 360" preserveAspectRatio="none">
-                    <path className="ppw-edge" d="M121,180 L155,180" />
+                    <path className="ppw-edge" d="M135,180 L165,180" />
                     <path className="ppw-edge" d="M277,180 C355,180 300,101 323,101" />
                     <path className="ppw-edge" d="M277,180 C355,180 300,259 323,259" />
                     <path className="ppw-edge" d="M445,101 C500,101 500,180 467,180" />
                     <path className="ppw-edge" d="M445,259 C500,259 500,180 467,180" />
-                    <path className={`ppw-edge ppw-flow${step + 1 === 1 ? " ppw-on" : ""}`} d="M121,180 L155,180" />
+                    <path className={`ppw-edge ppw-flow${step + 1 === 1 ? " ppw-on" : ""}`} d="M135,180 L165,180" />
                     <path className={`ppw-edge ppw-flow${step + 1 === 2 ? " ppw-on" : ""}`} d="M277,180 C355,180 300,101 323,101" />
                     <path className={`ppw-edge ppw-flow${step + 1 === 2 ? " ppw-on" : ""}`} d="M277,180 C355,180 300,259 323,259" />
                     <path className={`ppw-edge ppw-flow${step + 1 === 3 ? " ppw-on" : ""}`} d="M445,101 C500,101 500,180 467,180" />

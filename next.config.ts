@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* The gated audit PDFs live in content/for/, NOT public/, so they cannot
+     be fetched without the page password. fs.readFile is invisible to
+     Next's dependency tracing, so without this line the file is missing
+     from the serverless bundle on Vercel and the route 404s in production
+     while working locally. */
+  outputFileTracingIncludes: {
+    "/for/[slug]/audit": ["./content/for/**"],
+  },
   async rewrites() {
     return [
       /* Campaign entry paths for /course. A rewrite, not a redirect, so the

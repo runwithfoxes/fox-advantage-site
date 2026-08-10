@@ -84,10 +84,13 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
 export default function BrandGuardian() {
   const stageRef = useRef<HTMLDivElement>(null);
   const [x, setX] = useState(56);
+  const [touched, setTouched] = useState(false);
   const dragging = useRef(false);
   const hinted = useRef(false);
 
-  // The house hint: dip toward the machine's view, come back, hand over.
+  // On first sight the exhibit plays itself: a full sweep each way so the
+  // reader sees both worlds without knowing the line drags (same device
+  // as the workflows blueprint, Paul's ask 10 Aug). A drag cancels it.
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -96,12 +99,30 @@ export default function BrandGuardian() {
         es.forEach((e) => {
           if (!e.isIntersecting || hinted.current) return;
           hinted.current = true;
-          const t0 = performance.now();
+          const legs: [number, number, number, number][] = [
+            [56, 96, 1800, 700],
+            [96, 4, 2200, 700],
+            [4, 56, 1400, 0],
+          ];
+          let leg = 0;
+          let t0 = performance.now();
+          const ease = (p: number) => 0.5 - 0.5 * Math.cos(p * Math.PI);
           const tick = (t: number) => {
             if (dragging.current) return;
-            const p = Math.min(1, (t - t0) / 1800);
-            setX(56 + 26 * Math.sin(p * Math.PI));
-            if (p < 1) requestAnimationFrame(tick);
+            const [from, to, dur, hold] = legs[leg];
+            const p = Math.min(1, (t - t0) / dur);
+            setX(from + (to - from) * ease(p));
+            if (p < 1) {
+              requestAnimationFrame(tick);
+            } else if (t - t0 >= dur + hold) {
+              leg += 1;
+              if (leg < legs.length) {
+                t0 = t;
+                requestAnimationFrame(tick);
+              }
+            } else {
+              requestAnimationFrame(tick);
+            }
           };
           requestAnimationFrame(tick);
         });
@@ -142,6 +163,7 @@ export default function BrandGuardian() {
                 style={{ ["--x" as string]: `${x}%` }}
                 onPointerDown={(e) => {
                   dragging.current = true;
+                  setTouched(true);
                   (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
                   setFromPointer(e.clientX);
                 }}
@@ -175,7 +197,11 @@ export default function BrandGuardian() {
                     if (e.key === "ArrowRight") setX((v) => Math.min(100, v + 4));
                   }}
                 >
-                  <span className="ppbg-handle">◂ ▸</span>
+                  <span
+                    className={`ppbg-handle${touched ? "" : " ppbg-pulse"}`}
+                  >
+                    ◂ ▸
+                  </span>
                 </div>
               </div>
               <div className="ppbg-verdict">
@@ -202,12 +228,11 @@ export default function BrandGuardian() {
       </ScaledWindow>
       <p className="ppbg-hint">
         <span className="ppbg-slash">/one of Sabre&rsquo;s real ads,</span>{" "}
-        guarded by the machine we run for them. To you it is a picture; to the
-        guardian it is measurements: symbol size against the brand book,
-        background against the palette, headline ink, photograph share. Ten
-        gates, one verdict, seconds per file. A guardian gets calibrated to
-        one brand&rsquo;s book, which is why this one is Sabre&rsquo;s and
-        Kite&rsquo;s would be Kite&rsquo;s.
+        guarded by the machine we run for them. The guardian measures the
+        file against the brand book: symbol size, background colour,
+        headline size, how much of the frame the photograph takes. Ten
+        checks, one verdict, a few seconds per file. A guardian is built
+        for one brand&rsquo;s book at a time.
       </p>
     </div>
   );

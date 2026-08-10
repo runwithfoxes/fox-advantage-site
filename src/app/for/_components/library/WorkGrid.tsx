@@ -350,17 +350,9 @@ export default function WorkGrid() {
         </div>
       </div>
 
-      <p className="ppwg-honest">
-        <span className="ppwg-slash">/illustrative.</span> Every block is a piece
-        of work a marketing team does, ten to an area, and the blue length is how
-        much of that area is done a different way. It is by area rather than by
-        person because roles change and the work does not. Nothing ever goes
-        back: we drive a job end to end and then switch the old way off. After a
-        full year most of the work is still done the way it always was, which is
-        also the ceiling on the three numbers underneath: only work that changed
-        can move them. Every one is measured against a baseline taken before
-        anything starts, and nothing moves in the first quarter.
-      </p>
+      {/* The /illustrative caption came off on Paul's pass, 10 Aug
+          ("delete this"). The window title and the grid itself carry the
+          meaning. */}
     </div>
   );
 }

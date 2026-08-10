@@ -475,3 +475,32 @@
     opacity: 0;
   }
 }
+
+/* The active node breathes and its icon fills, and the marching edges
+   thicken while a run plays: the old border-only change read as a static
+   picture (Paul, 10 Aug). First card also pulled in from the frame edge,
+   which clipped it. */
+.pgm-cw-node.pgm-active {
+  animation: pgm-cw-pulse 1s ease-in-out infinite;
+}
+.pgm-cw-node.pgm-active .pgm-cw-ic {
+  background: #3a7ca5;
+  color: #fff;
+}
+@keyframes pgm-cw-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(58, 124, 165, 0.38); }
+  50% { box-shadow: 0 0 0 9px rgba(58, 124, 165, 0); }
+}
+.pgm-cw-play .pgm-cw-edge {
+  stroke: #3a7ca5;
+  stroke-width: 2.4;
+  animation: pgm-cw-march 0.6s linear infinite;
+}
+
+/* Cap the node card width so a long label wraps instead of widening the
+   card past the canvas edge. The "New-practice signal" card measured
+   155px real against a card row designed for ~130, which is what pushed
+   it through the window border (Paul's screenshot, 10 Aug). */
+.pgm-cw-node {
+  max-width: 138px;
+}

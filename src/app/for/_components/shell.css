@@ -466,3 +466,41 @@
     margin: 0 0 26px;
   }
 }
+
+/* Essays, course and book links under the bio (Fidelity, 10 Aug). */
+.pps-hiw-links {
+  clear: both;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pps-border);
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 28px;
+}
+.pps-hiw-ll {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 2.1;
+}
+.pps-hiw-ll a {
+  color: var(--pps-sky);
+  text-decoration: none;
+}
+.pps-hiw-ll a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .pps-hiw-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inline link inside body copy (training section, 10 Aug). */
+.pps-copy-link {
+  color: var(--pps-sky);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

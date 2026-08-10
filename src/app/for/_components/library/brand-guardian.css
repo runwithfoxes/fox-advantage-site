@@ -181,3 +181,18 @@
     border-top: 1px solid #eceae4;
   }
 }
+
+/* Until the first drag the handle is bigger and breathes, same device as
+   the workflows blueprint (Paul, 10 Aug). First touch stops it for good. */
+.ppbg-handle.ppbg-pulse {
+  width: 52px;
+  height: 32px;
+  left: -26px;
+  margin-top: -16px;
+  font-size: 13px;
+  animation: ppbg-breathe 1.6s ease-in-out infinite;
+}
+@keyframes ppbg-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(26, 58, 78, 0.35); }
+  50% { box-shadow: 0 0 0 9px rgba(26, 58, 78, 0); }
+}

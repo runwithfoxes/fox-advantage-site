@@ -89,6 +89,8 @@ function NodeCard({ n, state }: { n: BpNode; state?: string }) {
 export default function ArrivalBlueprint() {
   const stageRef = useRef<HTMLDivElement>(null);
   const [x, setX] = useState(58);
+  // Pulses the handle until the reader's first drag, then never again.
+  const [touched, setTouched] = useState(false);
   const [step, setStep] = useState(3);
   const dragging = useRef(false);
   const hinted = useRef(false);
@@ -99,8 +101,11 @@ export default function ArrivalBlueprint() {
     return () => clearInterval(t);
   }, []);
 
-  // One gentle hint on first sight: the line eases left to show the AI
-  // world, then the reader drives. Play-state only, nothing hidden.
+  // On first sight the exhibit plays itself: one slow full sweep so the
+  // whole AI world shows, a beat, back across so the whole old world
+  // shows, then park in the middle. Paul's concern, 10 Aug: a reader may
+  // never realise the line drags, so the comparison must not depend on
+  // the drag being discovered. The reader's own drag cancels it instantly.
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -109,20 +114,36 @@ export default function ArrivalBlueprint() {
         es.forEach((e) => {
           if (!e.isIntersecting || hinted.current) return;
           hinted.current = true;
-          const t0 = performance.now();
-          // There and back: dip toward the AI world, then settle where both
-          // worlds read. The reader takes the handle from there.
+          // Waypoints: (from, to, duration ms, then hold ms).
+          const legs: [number, number, number, number][] = [
+            [58, 4, 1600, 700],
+            [4, 96, 2200, 700],
+            [96, 58, 1400, 0],
+          ];
+          let leg = 0;
+          let t0 = performance.now();
+          const ease = (p: number) => 0.5 - 0.5 * Math.cos(p * Math.PI);
           const tick = (t: number) => {
-            if (dragging.current) return;
-            const p = Math.min(1, (t - t0) / 1800);
-            const dip = Math.sin(p * Math.PI);
-            setX(58 - 20 * dip);
-            if (p < 1) requestAnimationFrame(tick);
+            if (dragging.current) return; // the reader took over
+            const [from, to, dur, hold] = legs[leg];
+            const p = Math.min(1, (t - t0) / dur);
+            setX(from + (to - from) * ease(p));
+            if (p < 1) {
+              requestAnimationFrame(tick);
+            } else if (t - t0 >= dur + hold) {
+              leg += 1;
+              if (leg < legs.length) {
+                t0 = t;
+                requestAnimationFrame(tick);
+              }
+            } else {
+              requestAnimationFrame(tick);
+            }
           };
           requestAnimationFrame(tick);
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.5 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -153,6 +174,7 @@ export default function ArrivalBlueprint() {
               style={{ ["--x" as string]: `${x}%` }}
               onPointerDown={(e) => {
                 dragging.current = true;
+                setTouched(true);
                 (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
                 setFromPointer(e.clientX);
               }}
@@ -235,7 +257,11 @@ export default function ArrivalBlueprint() {
                   if (e.key === "ArrowRight") setX((v) => Math.min(100, v + 4));
                 }}
               >
-                <span className="ppab-handle">◂ ▸</span>
+                <span
+                  className={`ppab-handle${touched ? "" : " ppab-pulse"}`}
+                >
+                  ◂ ▸
+                </span>
               </div>
             </div>
           </div>

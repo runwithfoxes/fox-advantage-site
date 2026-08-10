@@ -155,3 +155,30 @@ About ten agents will exist; pages nest the chosen few per buyer.
   two brand packs, flip and the same email rewrites in the other voice,
   pack files named underneath. A stronger proof that the pack drives the
   writing than a single sourced email.
+
+## 10 Aug, Paul's copy pass on the Fidelity page
+
+⛔⛔ **NO CLEVER TALK ANYWHERE ON A PROSPECT PAGE.** Paul's pass deleted or
+rewrote eight pieces of copy in one sitting, all for the same reason: "take
+out anything that sounds clever... talk in plain, simple English", "stop
+with the clever talk", "I feel like you're just making some things up."
+Lines that died, kept as examples of the failure mode:
+- "So the move is to start with the work, not the team." ("just crazy talk")
+- "A good year is that some of the work is done a different way."
+- "A tool nobody opened and a tool everybody opened once look identical on
+  a usage report."
+- "Usage being uneven is normal: a few people run with the tools, most open
+  them once."
+- The whole "what we heard" recap ("this is just theatre") - the opening
+  now says plainly what the page is: he asked for a document explaining
+  what we do, here is a snapshot.
+- "I said you should, and I meant it."
+The test before writing any line on these pages: is this a fact stated
+plainly, or a sentence shaped to be admired? If admired, cut it. This is
+the site voice rule (CLAUDE.md "How to write") applied with teeth; the
+aphorism-shaped summary line is the specific repeat offender.
+
+The what-we-do copy is now PAUL'S OWN WORDS (10 Aug chat): four buckets,
+train teams / build agents and capabilities / re-imagine workflows /
+design adoption programmes. The duplicated placeholder under the workflows
+blueprint came out; a plain one-line description holds that slot.
