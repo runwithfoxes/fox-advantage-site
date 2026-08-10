@@ -10,4 +10,5 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   fidelity: dynamic(() => import("../../proposals/fidelity/FidelityDoc"), {
     ssr: false,
   }),
+  front: dynamic(() => import("./FrontDoc"), { ssr: false }),
 };

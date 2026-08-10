@@ -32,6 +32,18 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "FIDELITY_PASSWORD",
     passwordFallback: "fidelity26",
   },
+  // Front is the TECH DESIGN LANGUAGE calibration subject: a demonstration
+  // marketing page built from Front's public material only, to the Attio and
+  // Mercury bar (research/reference-measure/CALIBRATION.md in fox-meeting-pages).
+  // Not affiliated with Front; the page carries its demonstration disclosure.
+  front: {
+    slug: "front",
+    client: "Front",
+    shortName: "Front",
+    tabTitle: "How Front's website could look",
+    passwordEnv: "FRONT_PAGE_PASSWORD",
+    passwordFallback: "front26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
