@@ -34,7 +34,7 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
   },
   affirm: {
     slug: "affirm",
-    client: "Affirm Healthcare",
+    client: "Affirm Health",
     shortName: "Affirm",
     tabTitle: "Run with Foxes for Affirm",
     passwordEnv: "AFFIRM_PASSWORD",

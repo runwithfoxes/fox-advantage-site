@@ -32,20 +32,70 @@ import { Figure } from "./library/Figure";
 import FourThingsFigure from "./library/FourThingsFigure";
 import ChatWindow from "./library/ChatWindow";
 import { BRIEF_COACH_SESSION } from "./library/brief-coach-session";
-import { ScaledWindow } from "./library/AgentWindows";
+import { ScaledWindow, OutreachWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkGrid from "./library/WorkGrid";
+import BrandGuardian from "./library/BrandGuardian";
+import CreativeDirector from "./library/CreativeDirector";
+import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
+
+// Outreach demonstration threads. Fidelity's set is a fictional ADVISOR
+// world, because that is how their B2B business runs. Affirm sells trade as
+// well as direct, through retail, pharmacy and distribution, so the world
+// here is buyers and stockists. Every company and person is invented, and
+// the sender is a fictional member of the marketing team, never Suzanne.
+const OUTREACH_THREADS = [
+  {
+    name: "Niamh Gallagher",
+    company: "Buyer · Corrib Pharmacy Group",
+    message:
+      "Hi Niamh - we have a new format landing for the autumn immunity season, with the shelf-ready display and sampling support. Worth ten minutes before you set the planogram?",
+    reply: "Yes - send it over before our range review.",
+  },
+  {
+    name: "Tom Hendricks",
+    company: "Category Manager · Northgate Health Stores",
+    message:
+      "Hi Tom - saw you have widened the sleep and stress bay. We have two lines in that space with the clinical copy already approved. Happy to send the trade pack?",
+    reply: "Please do. We are reviewing that bay in September.",
+  },
+  {
+    name: "Priya Raman",
+    company: "Head of Own Brand · Meridian Distribution",
+    message:
+      "Hi Priya - you asked last year about multilingual packaging for the Gulf listings. That is now something we can turn around quickly. Ten minutes?",
+    reply: "Interested - Thursday morning suits.",
+  },
+  {
+    name: "Colm Whelan",
+    company: "Owner · Whelan's Health, three stores",
+    message:
+      "Hi Colm - a small-format version of the counter unit is now available, sized for independents rather than the multiples. Want one for the Naas store to try?",
+    reply: "Go on then, send me the details.",
+  },
+  {
+    name: "Sofia Lindqvist",
+    company: "Buying Director · Vantage Retail Nordics",
+    message:
+      "Hi Sofia - our export range now ships with Swedish and Finnish label variants as standard, which was the blocker last time we spoke. Worth picking this back up?",
+    reply: "That does change things. Let's talk.",
+  },
+];
 
 const SECTIONS = [
   { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
+  { id: "roles", title: "Rethinking the roles" },
   { id: "buildingagents", title: "Building agents" },
   { id: "briefcoach", title: "Brief Coach" },
   { id: "writer", title: "AI Writers" },
+  { id: "guardian", title: "Brand Guardian" },
+  { id: "creative", title: "Creative Director" },
+  { id: "growth", title: "Growth Agent" },
   { id: "training", title: "Training teams" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "adoption", title: "Designing team AI adoption" },
@@ -63,10 +113,20 @@ const RAIL_GROUPS = [
         id: "buildingagents",
         title: "Building agents",
         num: "01",
-        ids: ["buildingagents", "briefcoach", "writer"],
+        ids: [
+          "buildingagents",
+          "briefcoach",
+          "writer",
+          "guardian",
+          "creative",
+          "growth",
+        ],
         children: [
           { id: "briefcoach", title: "Brief Coach" },
           { id: "writer", title: "Writers" },
+          { id: "guardian", title: "Brand Guardian" },
+          { id: "creative", title: "Creative Director" },
+          { id: "growth", title: "Growth Agent" },
         ],
       },
       { id: "training", title: "Training teams", num: "02" },
@@ -79,8 +139,8 @@ const RAIL_GROUPS = [
 export default function AffirmDoc() {
   return (
     <ProspectShell
-      clientName="Affirm Healthcare"
-      eyebrow="Prepared for Suzanne Acton and the marketing team, Affirm Healthcare"
+      clientName="Affirm Health"
+      eyebrow="Prepared for Suzanne Acton and the marketing team, Affirm Health"
       /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line, same as on Fidelity. */
       title="Move Affirm's marketing team up the AI scale"
       titleHl="Affirm"
@@ -254,10 +314,33 @@ export default function AffirmDoc() {
         </p>
       </PPSection>
 
-      {/* AGENTS COME FIRST ON THIS PAGE, ahead of training, workflows and
-          adoption. On Fidelity they sit fourth. Both of Suzanne's agenda
-          items are agents, so this is the section she came for. */}
-      <PPSection id="buildingagents" k="04" title="Building agents">
+      {/* RETHINKING THE ROLES. Copy verbatim from the Fidelity page,
+          including Paul's 10 Aug correction: start with the work, not the
+          team, because part of the point is removing handovers. No exhibit
+          exists for this yet; the argument is carried in copy. */}
+      <PPSection id="roles" k="04" title="Rethinking the roles">
+        <p className="pps-standfirst">
+          Individual productivity only gets you so far. Make everyone on a
+          team a little faster and the work still queues in the same places,
+          because the bottleneck just moves down the line. The process, the
+          people and the policies have to change together, and that starts
+          with what each role actually is.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          We start by laying out the work to be done, not the team chart.
+          Then we redesign how that work gets done and remove the
+          handovers.
+        </p>
+      </PPSection>
+
+      {/* AGENTS COME EARLY ON THIS PAGE, ahead of training, workflows and
+          adoption. On Fidelity they sit later. Both of Suzanne's agenda
+          items are agents, so this is the section she came for. Within the
+          group the order is hers too: Brief Coach and Writers are the two
+          things she asked about, the Guardian speaks to the packaging and
+          artwork load, and the Growth Agent is last because outbound is the
+          least relevant of the five to her. */}
+      <PPSection id="buildingagents" k="05" title="Building agents">
         <></>
       </PPSection>
 
@@ -351,8 +434,72 @@ export default function AffirmDoc() {
         </div>
       </PPSection>
 
+      {/* BRAND GUARDIAN. On the page at Paul's instruction, 11 Aug ("put all
+          of Peter's"), which overrules the default-off I had carried from
+          the build brief. The exhibit shows Sabre's real work.
+          ⚠️ Paul's copy from the Fidelity page says NINE checks; the
+          window's verdict strip says "4 of 4 applicable". Already flagged to
+          him on Fidelity, unresolved, and it carries here. */}
+      <PPSection id="guardian" sub title="Brand Guardian">
+        <BrandGuardian />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          One of our most recent products is a Brand Guardian. In seconds,
+          it runs nine different checks to see if the new work is on or
+          off-brand, checking hex colours, pixels, copy and photography.
+          It&rsquo;s probably our most complex agent, and still in beta,
+          but I&rsquo;m very proud of it.
+        </p>
+      </PPSection>
+
+      {/* CREATIVE DIRECTOR. On the page at Paul's instruction, 11 Aug. One
+          approved master ad spawns the size set. Also Sabre's real work. */}
+      <PPSection id="creative" sub title="Creative Director">
+        <CreativeDirector />
+      </PPSection>
+
+      {/* GROWTH AGENT. Last of the five: Affirm's stated pain is content,
+          copy and the brief-to-artwork loop, not outbound. It is here
+          because Paul asked for everything on Peter's page.
+          The outreach world is rebuilt for her: trade buyers and stockists,
+          not Fidelity's independent advisors. Every name invented. */}
+      <PPSection id="growth" sub title="Growth Agent">
+        <PipelineBoard />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          We build Growth Agents for teams. The growth agent does a few
+          things. It is the single point of contact for updating and
+          tracking the pipeline. For example, it opens the dashboard daily
+          for it and the marketer to review together. It does analysis to
+          help uncover blockers.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <JoNote />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          And most importantly, it runs the outbound campaigns, be that
+          email or LinkedIn, running all the steps from list building to
+          writing the messages, sending and analysis.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <OutreachWindow
+            threads={OUTREACH_THREADS}
+            title="Outreach"
+            sentLabel="84 sent"
+            width={720}
+          />
+        </div>
+        <div style={{ marginTop: 26 }}>
+          <CampaignWindow />
+        </div>
+        <p className="ppft-honest">
+          <span className="ppft-slash">/illustrative.</span> Every firm and
+          person in these windows is invented. The machinery is real and
+          running; an Affirm version would be built to your world and your
+          rules, and nothing in it sends until someone on your team says go.
+        </p>
+      </PPSection>
+
       {/* Paul's own copy, verbatim from the Fidelity page. */}
-      <PPSection id="training" k="05" title="Training teams">
+      <PPSection id="training" k="06" title="Training teams">
         <div>
           <ScaledWindow width={940}>
             <div className="ppw-blueprint">
@@ -399,7 +546,7 @@ export default function AffirmDoc() {
           the one that speaks to the throughput problem underneath her
           briefing question: the back and forth between marketing and design
           is a workflow, and the agent is her proposed fix for it. */}
-      <PPSection id="workflows" k="06" title="Redesigning workflows">
+      <PPSection id="workflows" k="07" title="Redesigning workflows">
         <ArrivalBlueprint />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Redesigning workflows is the harder work, and it is what{" "}
@@ -424,7 +571,7 @@ export default function AffirmDoc() {
       </PPSection>
 
       {/* Paul's own copy, verbatim from the Fidelity page. */}
-      <PPSection id="adoption" k="07" title="Designing team AI adoption">
+      <PPSection id="adoption" k="08" title="Designing team AI adoption">
         <WorkGrid />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Not everybody is going to be a builder, and that is fine. I
@@ -439,7 +586,7 @@ export default function AffirmDoc() {
           line by line. Moloco is the lead case here rather than Miro:
           "they wanted to hire a copywriter, I built copywriters instead" is
           the exact decision in front of Suzanne. */}
-      <PPSection id="work" k="08" title="The work">
+      <PPSection id="work" k="09" title="The work">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
