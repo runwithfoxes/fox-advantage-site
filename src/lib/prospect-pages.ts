@@ -32,6 +32,14 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "FIDELITY_PASSWORD",
     passwordFallback: "fidelity26",
   },
+  affirm: {
+    slug: "affirm",
+    client: "Affirm Health",
+    shortName: "Affirm",
+    tabTitle: "Run with Foxes for Affirm",
+    passwordEnv: "AFFIRM_PASSWORD",
+    passwordFallback: "affirm26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
