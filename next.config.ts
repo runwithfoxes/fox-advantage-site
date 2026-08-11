@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
      while working locally. */
   outputFileTracingIncludes: {
     "/for/[slug]/audit": ["./content/for/**"],
+    "/for/[slug]/pdf": ["./content/for/**"],
   },
   async rewrites() {
     return [

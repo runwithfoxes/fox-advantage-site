@@ -44,10 +44,36 @@
 .pps-nav-logo span {
   color: var(--pps-orange);
 }
+.pps-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 .pps-nav-private {
   font-size: 11px;
   text-transform: uppercase;
   color: var(--pps-sky);
+}
+/* The PDF link, only on pages that pass pdfHref. Same mono register as the
+   rest of the bar, ink rather than sky so "Private · {client}" stays the
+   loudest thing up there. */
+.pps-nav-pdf {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pps-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--pps-line);
+  padding-bottom: 2px;
+}
+.pps-nav-pdf:hover {
+  border-bottom-color: var(--pps-sky);
+  color: var(--pps-sky);
+}
+@media (max-width: 780px) {
+  .pps-nav-pdf {
+    display: none;
+  }
 }
 
 .pps-shell {

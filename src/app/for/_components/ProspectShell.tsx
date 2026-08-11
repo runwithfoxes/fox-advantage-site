@@ -47,6 +47,7 @@ export default function ProspectShell({
   railNote,
   bio,
   railLinks,
+  pdfHref,
   children,
 }: {
   clientName: string;
@@ -67,6 +68,11 @@ export default function ProspectShell({
    *  in rail as duplicate"). */
   bio?: { photo?: string; href: string; label?: string };
   railLinks?: RailLink[];
+  /** A "download as PDF" link in the top bar. OPTIONAL and off by default:
+   *  a proposal has one, the Fidelity and Affirm capabilities pages do not.
+   *  It goes in the nav rather than the rail because the rail is the four
+   *  things and has been cut three times for busyness. */
+  pdfHref?: string;
   children: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -130,7 +136,26 @@ export default function ProspectShell({
         <a className="pps-nav-logo" href="#top">
           /<span>Run</span>withfoxes
         </a>
-        <span className="pps-nav-private">Private · {clientName}</span>
+        <span className="pps-nav-right">
+          {pdfHref && (
+            <a
+              className="pps-nav-pdf"
+              href={pdfHref}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent("prospect-track", {
+                    detail: { type: "open", name: "download-pdf" },
+                  })
+                )
+              }
+            >
+              Download as PDF
+            </a>
+          )}
+          <span className="pps-nav-private">Private · {clientName}</span>
+        </span>
       </header>
 
       <div className="pps-shell" id="top">

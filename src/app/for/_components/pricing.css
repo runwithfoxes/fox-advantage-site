@@ -10,6 +10,31 @@
 .ppp-cards[data-count="1"] {
   grid-template-columns: 1fr;
 }
+/* Three options is the standard shape now: the third is deliberately the
+   expensive one and exists to anchor, so all three have to sit on one row.
+   Without this the grid keeps two columns and renders 2 + 1, which reads as
+   two real options and an afterthought. */
+.ppp-cards[data-count="3"] {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ppp-cards[data-count="3"] .ppp-card {
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+/* Three options are read by comparing them, so the prices have to sit on one
+   line. Left to top-align, a short option's price floats up and the reader
+   compares three different things at three different heights. */
+.ppp-cards[data-count="3"] .ppp-card-list {
+  flex: 1 1 auto;
+}
+/* The main column is 748px, so a third of it is about 220px of card. At the
+   two-card size a price runs to three lines and the cards go ragged. Keep the
+   price string short as well (the term belongs in the note under it). */
+.ppp-cards[data-count="3"] .ppp-card-price {
+  font-size: 1.25rem;
+}
 .ppp-card {
   border: 1px solid #e0e0dc;
   background: #fff;
