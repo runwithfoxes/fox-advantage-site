@@ -38,6 +38,11 @@ import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import WorkGrid from "./library/WorkGrid";
 import BrandGuardian from "./library/BrandGuardian";
 import CreativeDirector from "./library/CreativeDirector";
+import AdMachine from "./library/AdMachine";
+import CardCascade from "./library/CardCascade";
+import SystemCards from "./library/SystemCards";
+import LibraryList from "./LibraryList";
+import AffirmGeoAudit from "./library/AffirmGeoAudit";
 import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
@@ -85,21 +90,32 @@ const OUTREACH_THREADS = [
   },
 ];
 
+// ⭐ SAME STRUCTURE AS PETER'S PAGE, Paul's instruction 11 Aug: "I can skip
+// over when presenting." So the order is Fidelity's exactly, and the extra
+// agents are appended inside Building agents after Peter's four rather than
+// resorted by what suits Affirm.
 const SECTIONS = [
   { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "roles", title: "Rethinking the roles" },
+  { id: "adoption", title: "Designing team AI adoption" },
+  { id: "training", title: "Training teams" },
+  { id: "workflows", title: "Redesigning workflows" },
   { id: "buildingagents", title: "Building agents" },
-  { id: "briefcoach", title: "Brief Coach" },
+  { id: "growth", title: "Growth Agent" },
   { id: "writer", title: "AI Writers" },
   { id: "guardian", title: "Brand Guardian" },
   { id: "creative", title: "Creative Director" },
-  { id: "growth", title: "Growth Agent" },
-  { id: "training", title: "Training teams" },
-  { id: "workflows", title: "Redesigning workflows" },
-  { id: "adoption", title: "Designing team AI adoption" },
+  { id: "briefcoach", title: "Brief Coach" },
+  { id: "ghostwriter", title: "Ghostwriter" },
+  { id: "lifecycle", title: "Lifecycle Agent" },
+  { id: "searchgeo", title: "Search and GEO Agent" },
+  { id: "outbound", title: "Outbound Agent" },
+  { id: "system", title: "The system, linked" },
   { id: "work", title: "The work" },
+  { id: "geo", title: "What AI assistants say about Proceive" },
+  { id: "library", title: "Your library" },
 ];
 
 // ⛔ THE RAIL IS THE FOUR THINGS AND NOTHING ELSE (three cuts on Kite, all
@@ -109,28 +125,38 @@ const RAIL_GROUPS = [
   {
     label: "/what we do",
     entries: [
+      { id: "workflows", title: "Redesigning workflows", num: "01" },
+      { id: "training", title: "Training teams", num: "02" },
       {
         id: "buildingagents",
         title: "Building agents",
-        num: "01",
+        num: "03",
         ids: [
           "buildingagents",
-          "briefcoach",
+          "growth",
           "writer",
           "guardian",
           "creative",
-          "growth",
+          "briefcoach",
+          "ghostwriter",
+          "lifecycle",
+          "searchgeo",
+          "outbound",
+          "system",
         ],
         children: [
-          { id: "briefcoach", title: "Brief Coach" },
+          { id: "growth", title: "Growth Agent" },
           { id: "writer", title: "Writers" },
           { id: "guardian", title: "Brand Guardian" },
           { id: "creative", title: "Creative Director" },
-          { id: "growth", title: "Growth Agent" },
+          { id: "briefcoach", title: "Brief Coach" },
+          { id: "ghostwriter", title: "Ghostwriter" },
+          { id: "lifecycle", title: "Lifecycle Agent" },
+          { id: "searchgeo", title: "Search & GEO" },
+          { id: "outbound", title: "Outbound Agent" },
+          { id: "system", title: "The system" },
         ],
       },
-      { id: "training", title: "Training teams", num: "02" },
-      { id: "workflows", title: "Redesigning workflows", num: "03" },
       { id: "adoption", title: "Designing team AI adoption", num: "04" },
     ],
   },
@@ -165,6 +191,8 @@ export default function AffirmDoc() {
           for.
         </p>
       </PPSection>
+
+
 
       {/* WHAT WE DO. Paul's own copy, verbatim from the Fidelity page. */}
       <PPSection id="howiwork" k="02" title="What we do">
@@ -300,6 +328,8 @@ export default function AffirmDoc() {
         </div>
       </PPSection>
 
+
+
       {/* Paul's own copy, verbatim from the Fidelity page. */}
       <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
         <FourThingsFigure />
@@ -313,6 +343,8 @@ export default function AffirmDoc() {
           like, and we design AI adoption programmes for them.
         </p>
       </PPSection>
+
+
 
       {/* RETHINKING THE ROLES. Copy verbatim from the Fidelity page,
           including Paul's 10 Aug correction: start with the work, not the
@@ -333,6 +365,98 @@ export default function AffirmDoc() {
         </p>
       </PPSection>
 
+
+
+      {/* Paul's own copy, verbatim from the Fidelity page. */}
+      <PPSection id="adoption" k="05" title="Designing team AI adoption">
+        <WorkGrid />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Not everybody is going to be a builder, and that is fine. I
+          suspect every marketing team will soon have at least one person
+          who builds, and who helps the other teams with their work. What
+          we measure is simple: pieces of work that are now done a
+          different way, not logins or prompt counts.
+        </p>
+      </PPSection>
+
+
+
+      {/* Paul's own copy, verbatim from the Fidelity page. */}
+      <PPSection id="training" k="06" title="Training teams">
+        <div>
+          <ScaledWindow width={940}>
+            <div className="ppw-blueprint">
+              <div className="ppw-frame-win">
+                <div className="ppw-tl">
+                  <i />
+                  <i />
+                  <i />
+                  <span className="ppw-t">the course, module one</span>
+                  <span className="ppw-live-pill">free, live now</span>
+                </div>
+                <video
+                  src="/for/training/course-module-1-scroll-web.mp4"
+                  poster="/for/training/course-module-1-scroll-poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ display: "block", width: "100%", height: "auto" }}
+                />
+              </div>
+            </div>
+          </ScaledWindow>
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Firstly, there is a free course,{" "}
+          <a
+            href="/course"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pps-copy-link"
+          >
+            AI Fluency for Ambitious Marketers
+          </a>
+          , for anybody on your team. We also run training sessions for
+          marketing, sales and go-to-market teams. These range from half a
+          day to full-week sessions. We cover a range of topics, from pure
+          productivity hacks to building agents and systems. System
+          thinking is a core skill for marketing in an AI world.
+        </p>
+      </PPSection>
+
+
+
+      {/* Paul's own copy, verbatim from the Fidelity page. This section is
+          the one that speaks to the throughput problem underneath her
+          briefing question: the back and forth between marketing and design
+          is a workflow, and the agent is her proposed fix for it. */}
+      <PPSection id="workflows" k="07" title="Redesigning workflows">
+        <ArrivalBlueprint />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Redesigning workflows is the harder work, and it is what{" "}
+          <a
+            href="/book"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pps-copy-link"
+          >
+            my new book
+          </a>{" "}
+          is about. It is harder not because of the tech or the tools, but
+          because it is about people: their roles, their responsibilities,
+          and sometimes their identities. We map out the activities and how
+          they flow, from a brief through to campaigns and analysis,
+          including the handovers, the time each step takes, the documents
+          and artefacts created, the tools used, and the sign-offs. Then we
+          re-imagine what is possible, both now and in the very near
+          future, starting from a blank page. This is my core skill, as it
+          is what I did building teams client-side for most of my career.
+        </p>
+      </PPSection>
+
+
+
       {/* AGENTS COME EARLY ON THIS PAGE, ahead of training, workflows and
           adoption. On Fidelity they sit later. Both of Suzanne's agenda
           items are agents, so this is the section she came for. Within the
@@ -340,44 +464,48 @@ export default function AffirmDoc() {
           things she asked about, the Guardian speaks to the packaging and
           artwork load, and the Growth Agent is last because outbound is the
           least relevant of the five to her. */}
-      <PPSection id="buildingagents" k="05" title="Building agents">
+      <PPSection id="buildingagents" k="08" title="Building agents">
         <></>
       </PPSection>
 
-      {/* BRIEF COACH. Leads because her designer independently proposed
-          exactly this: an agent whose instructions are refined centrally,
-          that asks for missing information and challenges unclear
-          requirements. Suzanne's own words for the problem: "too much back
-          and forth between marketing and design and the outputs were taking
-          too long".
-          ⚠️ THIS IS THE ONE PIECE TAKEN FROM THE KITE PAGE. Copy below is
-          the Kite version, which Paul has NOT passed. His review owed. */}
-      <PPSection id="briefcoach" sub title="Brief Coach">
-        <div>
-          <ChatWindow
-            session={BRIEF_COACH_SESSION}
-            start="Watch the coach pressure-test a launch brief: where its KPIs sit on the ladder, which of them is a commercial outcome, and what is missing."
-            title="brief coach"
-            preview
-          />
+
+
+      {/* GROWTH AGENT. Last of the five: Affirm's stated pain is content,
+          copy and the brief-to-artwork loop, not outbound. It is here
+          because Paul asked for everything on Peter's page.
+          The outreach world is rebuilt for her: trade buyers and stockists,
+          not Fidelity's independent advisors. Every name invented. */}
+      <PPSection id="growth" sub title="Growth Agent">
+        <PipelineBoard />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          We build Growth Agents for teams. The growth agent does a few
+          things. It is the single point of contact for updating and
+          tracking the pipeline. For example, it opens the dashboard daily
+          for it and the marketer to review together. It does analysis to
+          help uncover blockers.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <JoNote />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          A brief is the plan behind a piece of marketing. When the brief is
-          weak, the work that comes out is weak too. Brief Coach reads your
-          brief and does what a good strategist would: it asks the hard
-          questions until the plan is clear and worth doing. Why are we really
-          doing this, and what would success actually look like? What do we
-          want to be known for? What can only we say? And can the team
-          actually make it?
+          And most importantly, it runs the outbound campaigns, be that
+          email or LinkedIn, running all the steps from list building to
+          writing the messages, sending and analysis.
         </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          It uses your own goals, numbers and brand, so the questions fit your
-          business, not generic advice. Twenty years of marketing experience,
-          built into the questions it asks. It pushes, but it never writes the
-          brief for you and never just hands you a yes or no. The thinking
-          stays yours. We build it around your business and hand it over.
+        {/* The outreach inbox moved down to the Outbound Agent section, so
+            the same window is not shown twice on one page. */}
+        <div style={{ marginTop: 26 }}>
+          <CampaignWindow />
+        </div>
+        <p className="ppft-honest">
+          <span className="ppft-slash">/illustrative.</span> Every firm and
+          person in these windows is invented. The machinery is real and
+          running; an Affirm version would be built to your world and your
+          rules, and nothing in it sends until someone on your team says go.
         </p>
       </PPSection>
+
+
 
       {/* AI WRITERS. Verbatim from the Fidelity page, including Paul's own
           slop copy. The demonstration stays Kite's renewal email: it is the
@@ -434,6 +562,8 @@ export default function AffirmDoc() {
         </div>
       </PPSection>
 
+
+
       {/* BRAND GUARDIAN. On the page at Paul's instruction, 11 Aug ("put all
           of Peter's"), which overrules the default-off I had carried from
           the build brief. The exhibit shows Sabre's real work.
@@ -444,141 +574,213 @@ export default function AffirmDoc() {
         <BrandGuardian />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           One of our most recent products is a Brand Guardian. In seconds,
-          it runs nine different checks to see if the new work is on or
+          it runs ten different checks to see if the new work is on or
           off-brand, checking hex colours, pixels, copy and photography.
           It&rsquo;s probably our most complex agent, and still in beta,
           but I&rsquo;m very proud of it.
         </p>
       </PPSection>
 
+
+
       {/* CREATIVE DIRECTOR. On the page at Paul's instruction, 11 Aug. One
           approved master ad spawns the size set. Also Sabre's real work. */}
       <PPSection id="creative" sub title="Creative Director">
         <CreativeDirector />
-      </PPSection>
-
-      {/* GROWTH AGENT. Last of the five: Affirm's stated pain is content,
-          copy and the brief-to-artwork loop, not outbound. It is here
-          because Paul asked for everything on Peter's page.
-          The outreach world is rebuilt for her: trade buyers and stockists,
-          not Fidelity's independent advisors. Every name invented. */}
-      <PPSection id="growth" sub title="Growth Agent">
-        <PipelineBoard />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          We build Growth Agents for teams. The growth agent does a few
-          things. It is the single point of contact for updating and
-          tracking the pipeline. For example, it opens the dashboard daily
-          for it and the marketer to review together. It does analysis to
-          help uncover blockers.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <JoNote />
+        {/* The Kite page's version of the same agent, kept because it shows
+            a different half of the job: Peter's exhibit is the work Sabre
+            made, this one is one approved master ad spawning the whole size
+            set. That is the half that speaks to sixty artworks per change.
+            Copy from the Kite page, Paul has NOT passed it. */}
+        <div style={{ marginTop: 34 }}>
+          <AdMachine />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          And most importantly, it runs the outbound campaigns, be that
-          email or LinkedIn, running all the steps from list building to
-          writing the messages, sending and analysis.
+          The same discipline, pointed at advertising. The team approves one
+          master ad; the machine makes every other size, holding the brand
+          exactly. Press run.
         </p>
-        <div style={{ marginTop: 26 }}>
+      </PPSection>
+
+
+
+      {/* BRIEF COACH. Leads because her designer independently proposed
+          exactly this: an agent whose instructions are refined centrally,
+          that asks for missing information and challenges unclear
+          requirements. Suzanne's own words for the problem: "too much back
+          and forth between marketing and design and the outputs were taking
+          too long".
+          ⚠️ THIS IS THE ONE PIECE TAKEN FROM THE KITE PAGE. Copy below is
+          the Kite version, which Paul has NOT passed. His review owed. */}
+      <PPSection id="briefcoach" sub title="Brief Coach">
+        <div>
+          <ChatWindow
+            session={BRIEF_COACH_SESSION}
+            start="Watch the coach pressure-test a launch brief: where its KPIs sit on the ladder, which of them is a commercial outcome, and what is missing."
+            title="brief coach"
+            preview
+          />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          A brief is the plan behind a piece of marketing. When the brief is
+          weak, the work that comes out is weak too. Brief Coach reads your
+          brief and does what a good strategist would: it asks the hard
+          questions until the plan is clear and worth doing. Why are we really
+          doing this, and what would success actually look like? What do we
+          want to be known for? What can only we say? And can the team
+          actually make it?
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          It uses your own goals, numbers and brand, so the questions fit your
+          business, not generic advice. Twenty years of marketing experience,
+          built into the questions it asks. It pushes, but it never writes the
+          brief for you and never just hands you a yes or no. The thinking
+          stays yours. We build it around your business and hand it over.
+        </p>
+      </PPSection>
+
+      {/* GHOSTWRITER. Copy from the Kite page, Paul has NOT passed it. On
+          because her team owns the organic, social and blog copy with nobody
+          writing full time. */}
+      <PPSection id="ghostwriter" sub title="Ghostwriter">
+        <CardCascade
+          id="ppgw"
+          top={{ name: "Ghostwriter", lbl: "your point of view", icon: "pen" }}
+          kids={[
+            { name: "Long piece", lbl: "worth reading", icon: "book" },
+            { name: "Posts", lbl: "LinkedIn", icon: "pen" },
+            { name: "Chart", lbl: "the evidence", icon: "chart" },
+            { name: "Newsletter", lbl: "email", icon: "mail" },
+          ]}
+          ariaLabel="The Ghostwriter card with four formats falling out of it: long piece, posts, chart, newsletter"
+        />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Your experts know things your customers would pay to learn. Almost
+          none of it leaves the building. Writing something worth reading is
+          slow, and the people who know the most have the least time to do it.
+          It is also hard to write about something you know inside out. The
+          jargon feels normal, and you stop noticing what the reader does not
+          know.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          Ghostwriter is built using your brand positioning, your tone and
+          your target audience. It helps you find ideas relevant to you, then
+          turns your point of view into your words, ready as a long piece,
+          posts, a chart or a newsletter. The thinking stays yours, and you
+          stand behind every word. It does the work you have no time for, not
+          the thinking you are paid for. We build it around your experts and
+          hand it over.
+        </p>
+      </PPSection>
+
+      {/* LIFECYCLE AGENT. Copy from the Kite page, Paul has NOT passed it.
+          The most on-point of the extras for her: a 10k list, two sends a
+          week, and customer service running through Gorgias. */}
+      <PPSection id="lifecycle" sub title="Lifecycle Agent">
+        <CardCascade
+          id="pplc"
+          top={{ name: "Lifecycle", lbl: "every moment covered", icon: "mail" }}
+          kids={[
+            { name: "Onboard", lbl: "new signup", icon: "person" },
+            { name: "Nudge", lbl: "hasn't bought yet", icon: "mail" },
+            { name: "Win back", lbl: "gone quiet", icon: "loop" },
+            { name: "Grow", lbl: "ready for more", icon: "chart" },
+          ]}
+          ariaLabel="The Lifecycle Agent card with four moments falling out of it: onboard, nudge, win back, grow"
+        />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Lifecycle email is the work of keeping and growing the people who
+          already know you. Onboarding a new signup, nudging someone who
+          hasn&rsquo;t bought yet, winning back a customer who has gone quiet,
+          growing the ones ready for more. It is where a lot of revenue comes
+          from, and it usually gets skipped because it never stops. The
+          Lifecycle Agent runs it.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          It reads the contacts already in your email platform, writes each
+          one the right email for their moment, builds the flows, runs the
+          campaigns, and reads the numbers to keep tuning what works. Every
+          email is in your voice, built on your positioning and messaging
+          framework, not one newsletter sent to the whole list. If you
+          don&rsquo;t have a marketer, it does the job; if you do, it lets one
+          person do the work of five. We build it around your brand and your
+          messaging framework, then hand it over to run.
+        </p>
+      </PPSection>
+
+      {/* SEARCH AND GEO AGENT. Copy from the Kite page, and it was marked
+          PLACEHOLDER there because no product page exists yet. It sits
+          directly above the audit this same agent ran on Affirm. */}
+      <PPSection id="searchgeo" sub title="Search and GEO Agent">
+        <CardCascade
+          id="ppsg"
+          top={{ name: "Search Agent", lbl: "found everywhere", icon: "search" }}
+          kids={[
+            { name: "Google", lbl: "search results", icon: "search" },
+            { name: "ChatGPT", lbl: "answers", icon: "flow" },
+            { name: "Perplexity", lbl: "answers", icon: "flow" },
+            { name: "Claude", lbl: "answers", icon: "flow" },
+          ]}
+          ariaLabel="The Search Agent card with four places falling out of it: Google, ChatGPT, Perplexity, Claude"
+        />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          The Search and GEO Agent gets a brand found where people now ask: in
+          Google&rsquo;s results, and in the answers ChatGPT, Perplexity and
+          Claude give. Built and running for client brands now. It is the
+          agent that produced the audit at the end of this page.
+        </p>
+      </PPSection>
+
+      {/* OUTBOUND AGENT. Copy from the Kite page, Paul has NOT passed it.
+          The outreach inbox lives here rather than in the Growth Agent above,
+          so the same window is not shown twice. */}
+      <PPSection id="outbound" sub title="Outbound Agent">
+        <div style={{ marginTop: 4 }}>
           <OutreachWindow
             threads={OUTREACH_THREADS}
-            title="Outreach"
-            sentLabel="84 sent"
+            title="Outbound Agent"
+            sentLabel="96 sent"
             width={720}
           />
         </div>
-        <div style={{ marginTop: 26 }}>
-          <CampaignWindow />
-        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Running outbound is a lot of work before a single message lands. You
+          work out who your best-fit customers are, find the companies, find
+          the right people inside them, screen and qualify, track down a real
+          work email, and read up on what each person cares about. Then you
+          write, send, follow up, scan the replies and go again. The Outbound
+          Agent does the whole job.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          The part that matters is the writing: it sends a genuinely different
+          message to every person, built from what that one individual cares
+          about and grounded in your own positioning and messaging framework,
+          so each message is relevant to them and true to you. Not a template
+          with a name dropped in. A real message, made for one, going out at
+          scale every day. Relevance and scale at once, when you always had to
+          pick one. Three times it stops and waits for you: who goes on the
+          list, every word before it sends, and the Start button itself.
+          Nothing sends or spends until you say go. We build it around your
+          brand and your messaging framework, hand it over, and it runs in
+          your own Claude.
+        </p>
         <p className="ppft-honest">
           <span className="ppft-slash">/illustrative.</span> Every firm and
-          person in these windows is invented. The machinery is real and
+          person in this window is invented. The machinery is real and
           running; an Affirm version would be built to your world and your
           rules, and nothing in it sends until someone on your team says go.
         </p>
       </PPSection>
 
-      {/* Paul's own copy, verbatim from the Fidelity page. */}
-      <PPSection id="training" k="06" title="Training teams">
-        <div>
-          <ScaledWindow width={940}>
-            <div className="ppw-blueprint">
-              <div className="ppw-frame-win">
-                <div className="ppw-tl">
-                  <i />
-                  <i />
-                  <i />
-                  <span className="ppw-t">the course, module one</span>
-                  <span className="ppw-live-pill">free, live now</span>
-                </div>
-                <video
-                  src="/for/training/course-module-1-scroll-web.mp4"
-                  poster="/for/training/course-module-1-scroll-poster.jpg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  style={{ display: "block", width: "100%", height: "auto" }}
-                />
-              </div>
-            </div>
-          </ScaledWindow>
-        </div>
+      {/* THE SYSTEM, LINKED. Copy from the Kite page, Paul has NOT passed
+          it. Last of the agents because it is the argument that they join
+          up, which only means anything once the individual ones are seen. */}
+      <PPSection id="system" sub title="The system, linked">
+        <SystemCards />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Firstly, there is a free course,{" "}
-          <a
-            href="/course"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pps-copy-link"
-          >
-            AI Fluency for Ambitious Marketers
-          </a>
-          , for anybody on your team. We also run training sessions for
-          marketing, sales and go-to-market teams. These range from half a
-          day to full-week sessions. We cover a range of topics, from pure
-          productivity hacks to building agents and systems. System
-          thinking is a core skill for marketing in an AI world.
-        </p>
-      </PPSection>
-
-      {/* Paul's own copy, verbatim from the Fidelity page. This section is
-          the one that speaks to the throughput problem underneath her
-          briefing question: the back and forth between marketing and design
-          is a workflow, and the agent is her proposed fix for it. */}
-      <PPSection id="workflows" k="07" title="Redesigning workflows">
-        <ArrivalBlueprint />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Redesigning workflows is the harder work, and it is what{" "}
-          <a
-            href="/book"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pps-copy-link"
-          >
-            my new book
-          </a>{" "}
-          is about. It is harder not because of the tech or the tools, but
-          because it is about people: their roles, their responsibilities,
-          and sometimes their identities. We map out the activities and how
-          they flow, from a brief through to campaigns and analysis,
-          including the handovers, the time each step takes, the documents
-          and artefacts created, the tools used, and the sign-offs. Then we
-          re-imagine what is possible, both now and in the very near
-          future, starting from a blank page. This is my core skill, as it
-          is what I did building teams client-side for most of my career.
-        </p>
-      </PPSection>
-
-      {/* Paul's own copy, verbatim from the Fidelity page. */}
-      <PPSection id="adoption" k="08" title="Designing team AI adoption">
-        <WorkGrid />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Not everybody is going to be a builder, and that is fine. I
-          suspect every marketing team will soon have at least one person
-          who builds, and who helps the other teams with their work. What
-          we measure is simple: pieces of work that are now done a
-          different way, not logins or prompt counts.
+          The machines are not a drawer of separate tools. For teams whose
+          website matters, they run as one system: outbound fills the top,
+          the site is worth arriving at, and the chatbot meets every visitor.
         </p>
       </PPSection>
 
@@ -725,27 +927,71 @@ export default function AffirmDoc() {
           </div>
         </div>
       </PPSection>
+      {/* THE GEO AUDIT. Real Affirm findings, the one deliberate exception
+          to the demonstrations-are-generic rule, same as on Fidelity's page.
+          Run 11 Aug on proceive.com and affirm-healthcare.com, forty answers.
+          Titled for Proceive rather than Affirm because that is the brand
+          the assistants were actually answering about; the corporate site
+          was read for none of the ten trade questions, which is itself one
+          of the findings. PDF served behind the same gate at
+          /for/affirm/audit from content/for/affirm-geo-audit.pdf. */}
+      <PPSection
+        id="geo"
+        k="10"
+        title="What AI assistants say about Proceive"
+      >
+        <AffirmGeoAudit />
+      </PPSection>
 
-      {/* ⏳ THE GEO AUDIT SLOT. A search agent run on affirm-healthcare.com is
-          in flight on another terminal as of 07:50, 11 Aug, same process as
-          the Fidelity run of 10 Aug. When it lands, add:
-            import GeoAudit from "./library/GeoAudit";
-            { id: "geo", title: "What AI assistants say about Affirm" }  -> SECTIONS
-            <PPSection id="geo" k="09" title="..."><GeoAudit /></PPSection>
-          plus the PDF at content/for/affirm-geo-audit.pdf. If it is not good
-          by 09:00 the page ships without it and it follows by email.
+      {/* YOUR LIBRARY. From the Kite page's pattern, chosen for her.
+          ⚠️ DRAFT COPY, Paul's pass owed. */}
+      <PPSection id="library" k="11" title="Your library">
+        <LibraryList
+          intro="A few things worth keeping, picked for where you are now. Anything we add later lands here."
+          items={[
+            {
+              label: "What AI assistants say about Proceive",
+              note: "The full report behind the section above, all forty answers and the checks on both sites.",
+              href: "/for/affirm/audit",
+              kind: "file",
+              meta: "5 pages",
+            },
+            {
+              label: "How I build an AI writer",
+              note: "The long version of the writer section, and what actually goes into one.",
+              href: "/essays/how-i-build-an-ai-writer",
+              kind: "file",
+              meta: "essay",
+            },
+            {
+              label: "AI Fluency for Ambitious Marketers",
+              note: "The course, free, for anyone on your team. Module one is live now.",
+              href: "/course",
+              kind: "link",
+              meta: "course",
+            },
+            {
+              label: "Distinctive brands have an incredible opportunity with AI",
+              note: "Why holding a brand exactly matters more, not less, once the volume of work goes up.",
+              href: "/distinctive",
+              kind: "file",
+              meta: "essay",
+            },
+            {
+              label: "The Fox Advantage",
+              note: "The book, free to download.",
+              href: "/book",
+              kind: "file",
+              meta: "book",
+            },
+          ]}
+        />
+      </PPSection>
 
-          ⛔ BRAND GUARDIAN AND CREATIVE DIRECTOR ARE DELIBERATELY OFF THIS
-          PAGE. Both exhibits show Sabre's real work, which went on Fidelity's
-          page under Paul's explicit ruling FOR THAT PAGE. That ruling does
-          not carry to Affirm and the permission question has not been asked.
-          The Guardian may be the most relevant thing we have for a business
-          doing about sixty artworks per ingredient change, so it is worth
-          asking, but it is Paul's call, not this build's.
-
-          NO PRICE AND NO CLOSE SECTION by design: she already holds the
+      {/* NO PRICE AND NO CLOSE SECTION by design: she already holds the
           11 Jun proposal at EUR 6,000, the scope has broadened since, and
-          nobody has asked for a new quote. */}
+          nobody has asked for a new quote. Kite's pricing block is the one
+          thing from that page deliberately left off. */}
     </ProspectShell>
   );
 }
