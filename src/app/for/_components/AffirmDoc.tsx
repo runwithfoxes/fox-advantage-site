@@ -40,7 +40,6 @@ import BrandGuardian from "./library/BrandGuardian";
 import CreativeDirector from "./library/CreativeDirector";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
-import SystemCards from "./library/SystemCards";
 import LibraryList from "./LibraryList";
 import AffirmGeoAudit from "./library/AffirmGeoAudit";
 import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
@@ -111,8 +110,6 @@ const SECTIONS = [
   { id: "ghostwriter", title: "Ghostwriter" },
   { id: "lifecycle", title: "Lifecycle Agent" },
   { id: "searchgeo", title: "Search and GEO Agent" },
-  { id: "outbound", title: "Outbound Agent" },
-  { id: "system", title: "The system, linked" },
   { id: "work", title: "The work" },
   { id: "geo", title: "What AI assistants say about Proceive" },
   { id: "library", title: "Your library" },
@@ -141,8 +138,6 @@ const RAIL_GROUPS = [
           "ghostwriter",
           "lifecycle",
           "searchgeo",
-          "outbound",
-          "system",
         ],
         children: [
           { id: "growth", title: "Growth Agent" },
@@ -153,8 +148,6 @@ const RAIL_GROUPS = [
           { id: "ghostwriter", title: "Ghostwriter" },
           { id: "lifecycle", title: "Lifecycle Agent" },
           { id: "searchgeo", title: "Search & GEO" },
-          { id: "outbound", title: "Outbound Agent" },
-          { id: "system", title: "The system" },
         ],
       },
       { id: "adoption", title: "Designing team AI adoption", num: "04" },
@@ -492,8 +485,14 @@ export default function AffirmDoc() {
           email or LinkedIn, running all the steps from list building to
           writing the messages, sending and analysis.
         </p>
-        {/* The outreach inbox moved down to the Outbound Agent section, so
-            the same window is not shown twice on one page. */}
+        <div style={{ marginTop: 26 }}>
+          <OutreachWindow
+            threads={OUTREACH_THREADS}
+            title="Outreach"
+            sentLabel="84 sent"
+            width={720}
+          />
+        </div>
         <div style={{ marginTop: 26 }}>
           <CampaignWindow />
         </div>
@@ -679,12 +678,12 @@ export default function AffirmDoc() {
       <PPSection id="lifecycle" sub title="Lifecycle Agent">
         <CardCascade
           id="pplc"
-          top={{ name: "Lifecycle", lbl: "every moment covered", icon: "mail" }}
+          top={{ name: "Lifecycle", lbl: "every moment", icon: "mail" }}
           kids={[
             { name: "Onboard", lbl: "new signup", icon: "person" },
-            { name: "Nudge", lbl: "hasn't bought yet", icon: "mail" },
+            { name: "Nudge", lbl: "no order yet", icon: "mail" },
             { name: "Win back", lbl: "gone quiet", icon: "loop" },
-            { name: "Grow", lbl: "ready for more", icon: "chart" },
+            { name: "Grow", lbl: "ready to buy", icon: "chart" },
           ]}
           ariaLabel="The Lifecycle Agent card with four moments falling out of it: onboard, nudge, win back, grow"
         />
@@ -716,7 +715,7 @@ export default function AffirmDoc() {
           id="ppsg"
           top={{ name: "Search Agent", lbl: "found everywhere", icon: "search" }}
           kids={[
-            { name: "Google", lbl: "search results", icon: "search" },
+            { name: "Google", lbl: "the results", icon: "search" },
             { name: "ChatGPT", lbl: "answers", icon: "flow" },
             { name: "Perplexity", lbl: "answers", icon: "flow" },
             { name: "Claude", lbl: "answers", icon: "flow" },
@@ -728,59 +727,6 @@ export default function AffirmDoc() {
           Google&rsquo;s results, and in the answers ChatGPT, Perplexity and
           Claude give. Built and running for client brands now. It is the
           agent that produced the audit at the end of this page.
-        </p>
-      </PPSection>
-
-      {/* OUTBOUND AGENT. Copy from the Kite page, Paul has NOT passed it.
-          The outreach inbox lives here rather than in the Growth Agent above,
-          so the same window is not shown twice. */}
-      <PPSection id="outbound" sub title="Outbound Agent">
-        <div style={{ marginTop: 4 }}>
-          <OutreachWindow
-            threads={OUTREACH_THREADS}
-            title="Outbound Agent"
-            sentLabel="96 sent"
-            width={720}
-          />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Running outbound is a lot of work before a single message lands. You
-          work out who your best-fit customers are, find the companies, find
-          the right people inside them, screen and qualify, track down a real
-          work email, and read up on what each person cares about. Then you
-          write, send, follow up, scan the replies and go again. The Outbound
-          Agent does the whole job.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The part that matters is the writing: it sends a genuinely different
-          message to every person, built from what that one individual cares
-          about and grounded in your own positioning and messaging framework,
-          so each message is relevant to them and true to you. Not a template
-          with a name dropped in. A real message, made for one, going out at
-          scale every day. Relevance and scale at once, when you always had to
-          pick one. Three times it stops and waits for you: who goes on the
-          list, every word before it sends, and the Start button itself.
-          Nothing sends or spends until you say go. We build it around your
-          brand and your messaging framework, hand it over, and it runs in
-          your own Claude.
-        </p>
-        <p className="ppft-honest">
-          <span className="ppft-slash">/illustrative.</span> Every firm and
-          person in this window is invented. The machinery is real and
-          running; an Affirm version would be built to your world and your
-          rules, and nothing in it sends until someone on your team says go.
-        </p>
-      </PPSection>
-
-      {/* THE SYSTEM, LINKED. Copy from the Kite page, Paul has NOT passed
-          it. Last of the agents because it is the argument that they join
-          up, which only means anything once the individual ones are seen. */}
-      <PPSection id="system" sub title="The system, linked">
-        <SystemCards />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The machines are not a drawer of separate tools. For teams whose
-          website matters, they run as one system: outbound fills the top,
-          the site is worth arriving at, and the chatbot meets every visitor.
         </p>
       </PPSection>
 
