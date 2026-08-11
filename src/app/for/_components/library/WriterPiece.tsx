@@ -72,6 +72,14 @@ function useTyping(lineTexts: string[]) {
   const [shown, setShown] = useState<number>(lineTexts.length);
   const [chars, setChars] = useState(0);
   const [playing, setPlaying] = useState(false);
+  /** ⛔ RESERVE THE FULL HEIGHT BEFORE THE TYPING RESETS IT TO EMPTY.
+   *  The piece renders whole on first paint so it reads with JavaScript off,
+   *  then the scroll-in sets `shown` to 0 and types it back. Without a floor
+   *  that collapse takes about 600px out of the middle of the page, and every
+   *  anchor BELOW the writer overshoots by that much: clicking Brand Guardian
+   *  in the rail landed 599px past it (Paul, 11 Aug). Measured, not guessed,
+   *  because the height depends on the copy and the column width. */
+  const [minH, setMinH] = useState<number>();
 
   useEffect(() => {
     const el = rootRef.current;
@@ -83,6 +91,9 @@ function useTyping(lineTexts: string[]) {
         es.forEach((e) => {
           if (!e.isIntersecting || started) return;
           started = true;
+          // Measured while the piece is still whole, which is the only moment
+          // the real finished height is on the page.
+          setMinH(el.getBoundingClientRect().height);
           setShown(0);
           setChars(0);
           setPlaying(true);
@@ -110,7 +121,7 @@ function useTyping(lineTexts: string[]) {
     return () => clearTimeout(t);
   }, [playing, shown, chars, lineTexts]);
 
-  return { rootRef, shown, chars, playing };
+  return { rootRef, shown, chars, playing, minH };
 }
 
 export function WriterEmail({
@@ -125,7 +136,7 @@ export function WriterEmail({
   sign: string[];
 }) {
   const lines = [subject, ...body];
-  const { rootRef, shown, chars, playing } = useTyping(
+  const { rootRef, shown, chars, playing, minH } = useTyping(
     lines.map((l) => l.text)
   );
   const done = shown >= lines.length;
@@ -143,7 +154,7 @@ export function WriterEmail({
   };
 
   return (
-    <div className="ppchat" ref={rootRef}>
+    <div className="ppchat" ref={rootRef} style={minH ? { minHeight: minH } : undefined}>
       <div className="ppchat-bar">
         <i className="ppchat-dot ppchat-dot-r" />
         <i className="ppchat-dot ppchat-dot-a" />

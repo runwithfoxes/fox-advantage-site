@@ -345,7 +345,7 @@ export default function AffirmDoc() {
           exists for this yet; the argument is carried in copy. */}
       <PPSection id="roles" k="04" title="Rethinking the roles">
         <p className="pps-standfirst">
-          Individual productivity only gets you so far. Make everyone on a
+          Individual productivity gets you started. Make everyone on a
           team a little faster and the work still queues in the same places,
           because the bottleneck just moves down the line. The process, the
           people and the policies have to change together, and that starts
@@ -566,17 +566,20 @@ export default function AffirmDoc() {
       {/* BRAND GUARDIAN. On the page at Paul's instruction, 11 Aug ("put all
           of Peter's"), which overrules the default-off I had carried from
           the build brief. The exhibit shows Sabre's real work.
-          ⚠️ Paul's copy from the Fidelity page says NINE checks; the
-          window's verdict strip says "4 of 4 applicable". Already flagged to
-          him on Fidelity, unresolved, and it carries here. */}
+          ⛔ THE CHECK COUNT CAME OUT, 11 Aug, and does not go back. This
+          page said ten, Fidelity said nine, and the verdict strip says
+          "4 of 4 applicable". The count depends on the asset type, per
+          docs/brand-guardian-methodology.md. No named source for either
+          number. */}
       <PPSection id="guardian" sub title="Brand Guardian">
         <BrandGuardian />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           One of our most recent products is a Brand Guardian. In seconds,
-          it runs ten different checks to see if the new work is on or
-          off-brand, checking hex colours, pixels, copy and photography.
-          It&rsquo;s probably our most complex agent, and still in beta,
-          but I&rsquo;m very proud of it.
+          it checks whether new work is on or off-brand, looking at hex
+          colours, pixels, copy and photography, and measuring against your
+          brand book rather than judging by eye. It&rsquo;s probably our
+          most complex agent, and still in beta, but I&rsquo;m very proud
+          of it.
         </p>
       </PPSection>
 

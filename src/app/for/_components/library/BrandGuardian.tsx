@@ -230,9 +230,10 @@ export default function BrandGuardian() {
         <span className="ppbg-slash">/one of Sabre&rsquo;s real ads,</span>{" "}
         guarded by the machine we run for them. The guardian measures the
         file against the brand book: symbol size, background colour,
-        headline size, how much of the frame the photograph takes. Ten
-        checks, one verdict, a few seconds per file. A guardian is built
-        for one brand&rsquo;s book at a time.
+        headline size, how much of the frame the photograph takes. It works
+        out what kind of asset it is looking at, runs the checks that apply
+        to that kind, and says which ones ran. One verdict, a few seconds
+        per file. A guardian is built for one brand&rsquo;s book at a time.
       </p>
     </div>
   );
