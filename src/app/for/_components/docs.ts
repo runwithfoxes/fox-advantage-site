@@ -13,4 +13,7 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Suzanne Acton and the marketing team, Affirm Healthcare. Built 11 Aug
   // from the Fidelity page, with Brief Coach brought over from Kite.
   affirm: dynamic(() => import("./AffirmDoc"), { ssr: false }),
+  // Nova HCM website mockup, screen one. NOT a proposal: "here is how your
+  // brand could look", the tech design language's first calibration page.
+  nova: dynamic(() => import("./NovaDoc"), { ssr: false }),
 };

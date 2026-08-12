@@ -1,0 +1,413 @@
+/* Nova HCM - the website mockup, screen one (the hero).
+   Design doc: ~/projects/fox-meeting-pages/research/tech-language-design.md
+   The persistent world (Giga approach): the made Sligo world carries the
+   page, the UI floats calm and straight inside it. One accent family: the
+   blues measured off Nova's own logo (#274060 / #335C81 / #5899E2). The
+   template green on their current site is dead (not in their identity).
+   All classes prefixed nv-. */
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap");
+
+.nv-root {
+  --nv-ink: #16283f;        /* deep of the logo navy, for text on pale sky */
+  --nv-navy: #274060;       /* their own primary button colour, measured */
+  --nv-steel: #335c81;
+  --nv-sky: #5899e2;
+  --nv-paper: #f7f8f9;
+  --nv-serif: "Instrument Serif", Georgia, serif;
+  --nv-sans: "Inter Tight", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--nv-sans);
+  color: var(--nv-ink);
+  background: #0d1626;
+  min-height: 100vh;
+}
+
+/* ---------- the world ---------- */
+
+.nv-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+}
+
+.nv-hero-world {
+  position: absolute;
+  inset: 0;
+  /* The calm frame: Benbulben backlit, huge pale sky. The copy lives
+     entirely in the sky band; the mountain stays below the midline. */
+  background-image: url("/for/nova/world/hero-benbulben-calm.jpg");
+  background-size: cover;
+  background-position: center bottom;
+  /* The drift is JS-driven (rAF in NovaDoc) - CSS keyframe animation froze
+     in real Chrome twice while headless ran it; direct style.transform is
+     the proven idiom (AgentsHero). */
+  transform-origin: 62% 38%;
+  will-change: transform;
+}
+
+/* Two structural veils; contrast is structural, never sampled from the
+   picture (hotel rule, carried over).
+   ::before - the nav band: white at 0 fading out by 160px.
+   ::after  - morning haze from the left: the copy column's ground, paper
+   fading out by mid-frame, so every line of the hero block clears whatever
+   the world does behind it. Reads as weather, not as a box. */
+.nv-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 160px;
+  background: linear-gradient(rgba(247, 248, 249, 0.82), rgba(247, 248, 249, 0));
+  z-index: 1;
+}
+
+.nv-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(247, 248, 249, 0.82) 0%,
+    rgba(247, 248, 249, 0.55) 34%,
+    rgba(247, 248, 249, 0) 60%
+  );
+  z-index: 1;
+}
+
+/* ---------- nav ---------- */
+
+.nv-nav {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  width: min(1240px, calc(100% - 64px));
+  padding: 10px 12px 10px 22px;
+  border-radius: 16px;
+  background: rgba(247, 248, 249, 0.6);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+  backdrop-filter: blur(12px) saturate(1.05);
+  border: 1px solid rgba(22, 40, 63, 0.12);
+  box-shadow: 0 10px 30px rgba(10, 18, 32, 0.12);
+}
+
+.nv-nav-logo {
+  display: block;
+  width: 84px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.nv-nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+}
+
+.nv-nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--nv-ink);
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.nv-nav-links a:hover { opacity: 1; }
+
+.nv-nav-item { position: relative; }
+
+.nv-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  /* bridge is the ::before below */
+  left: -18px;
+  width: 330px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(247, 248, 249, 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
+  border: 1px solid rgba(22, 40, 63, 0.12);
+  box-shadow: 0 16px 40px rgba(10, 18, 32, 0.18);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.nv-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+
+.nv-nav-item:hover .nv-dropdown,
+.nv-nav-item:focus-within .nv-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nv-dropdown a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.nv-dropdown a:hover { background: rgba(255, 255, 255, 0.55); }
+
+.nv-dropdown b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--nv-ink);
+}
+
+.nv-dropdown span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(22, 40, 63, 0.65);
+  margin-top: 2px;
+}
+
+.nv-nav-cta {
+  margin-left: auto;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--nv-navy);
+  border-radius: 999px;
+  padding: 11px 22px;
+  text-decoration: none;
+}
+
+.nv-nav-cta:hover { background: var(--nv-steel); }
+
+/* ---------- hero type ---------- */
+
+/* Asymmetric hero: the copy lives left, where this frame's sky is deepest,
+   the panel floats right over the fields. Type never crosses the ridge. */
+.nv-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin-left: 7vw;
+  padding-top: 14vh;
+  text-align: left;
+}
+
+.nv-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nv-steel);
+  margin: 0 0 26px;
+}
+
+.nv-h1 {
+  font-family: var(--nv-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 620px;
+}
+
+.nv-h1 em {
+  font-style: italic;
+}
+
+.nv-sub {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--nv-ink);
+  opacity: 0.9;
+  max-width: 480px;
+  margin: 20px 0 0;
+}
+
+.nv-hero-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.nv-btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 13px 28px;
+  text-decoration: none;
+}
+
+.nv-btn-primary {
+  color: #fff;
+  background: var(--nv-navy);
+}
+
+.nv-btn-primary:hover { background: var(--nv-steel); }
+
+.nv-btn-ghost {
+  color: var(--nv-ink);
+  border: 1px solid rgba(22, 40, 63, 0.35);
+  background: rgba(247, 248, 249, 0.55);
+}
+
+/* ---------- the living panel ---------- */
+
+.nv-panel {
+  position: absolute;
+  z-index: 2;
+  right: 7%;
+  bottom: 9%;
+  width: 380px;
+  border-radius: 14px;
+  background: rgba(247, 248, 249, 0.66);
+  -webkit-backdrop-filter: blur(9px) saturate(1.05);
+  backdrop-filter: blur(9px) saturate(1.05);
+  border: 1px solid rgba(22, 40, 63, 0.14);
+  color: var(--nv-ink);
+  box-shadow: 0 18px 44px rgba(10, 18, 32, 0.22);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.nv-panel.nv-grabbed { cursor: grabbing; }
+
+.nv-panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(22, 40, 63, 0.12);
+}
+
+.nv-panel-dots { display: flex; gap: 5px; }
+
+.nv-panel-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(22, 40, 63, 0.22);
+}
+
+.nv-panel-title {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+
+.nv-panel-tag {
+  margin-left: auto;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(22, 40, 63, 0.55);
+  border: 1px solid rgba(22, 40, 63, 0.25);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.nv-panel-body { padding: 16px; }
+
+.nv-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.nv-metric {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(22, 40, 63, 0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.nv-metric b {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nv-metric span {
+  display: block;
+  font-size: 11px;
+  color: rgba(22, 40, 63, 0.6);
+  margin-top: 2px;
+}
+
+.nv-systems { display: grid; gap: 8px; }
+
+.nv-system {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 8px;
+  padding: 9px 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: nv-rise 0.6s ease forwards;
+}
+
+.nv-system:nth-child(1) { animation-delay: 0.7s; }
+.nv-system:nth-child(2) { animation-delay: 1.5s; }
+.nv-system:nth-child(3) { animation-delay: 2.3s; }
+
+@keyframes nv-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nv-system-mark {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nv-sky);
+  flex: 0 0 auto;
+}
+
+.nv-system-state {
+  margin-left: auto;
+  font-size: 11.5px;
+  color: rgba(22, 40, 63, 0.6);
+}
+
+/* Reduced motion: everything arrives composed. */
+@media (prefers-reduced-motion: reduce) {
+  .nv-system { animation: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .nv-h1 { font-size: 42px; }
+  .nv-nav { padding: 20px 22px; }
+  .nv-nav-links { display: none; }
+  .nv-panel {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(380px, calc(100% - 44px));
+    margin: 40px auto 0;
+  }
+  .nv-hero { height: auto; padding-bottom: 60px; }
+}

@@ -40,6 +40,14 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "AFFIRM_PASSWORD",
     passwordFallback: "affirm26",
   },
+  nova: {
+    slug: "nova",
+    client: "Nova HCM",
+    shortName: "Nova",
+    tabTitle: "Run with Foxes for Nova",
+    passwordEnv: "NOVA_PAGE_PASSWORD",
+    passwordFallback: "nova26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
