@@ -13,4 +13,8 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Suzanne Acton and the marketing team, Affirm Healthcare. Built 11 Aug
   // from the Fidelity page, with Brief Coach brought over from Kite.
   affirm: dynamic(() => import("./AffirmDoc"), { ssr: false }),
+  // Donald Douglas, Return2Sender. Built 19 Aug from the Affirm page.
+  // Capabilities only, no price - Paul: "not a hard sell one, more like a
+  // peter berry one."
+  return2sender: dynamic(() => import("./ReturnToSenderDoc"), { ssr: false }),
 };

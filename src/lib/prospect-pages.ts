@@ -40,6 +40,16 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "AFFIRM_PASSWORD",
     passwordFallback: "affirm26",
   },
+  // Donald Douglas, Return2Sender. Capabilities page, no price, built 19 Aug
+  // from the Affirm build. The links he asked for on the 11 Aug call.
+  return2sender: {
+    slug: "return2sender",
+    client: "Return2Sender",
+    shortName: "Return2Sender",
+    tabTitle: "Run with Foxes for Return2Sender",
+    passwordEnv: "RETURN2SENDER_PASSWORD",
+    passwordFallback: "r2s26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
