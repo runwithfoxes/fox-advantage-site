@@ -368,26 +368,111 @@ export const MODULE_1: ModuleDef = {
   built: false,
   blurb:
     "A small number of habits get you most of the way with AI in marketing work. Talking to it instead of typing. Keeping a campaign in one project instead of scattered chats, showing it the content you liked rather than describing it.",
-  /* ⭐ PAUL'S WORDS, VERBATIM. Do not reword, do not tidy, do not merge the paragraphs.
+  /* ⭐ THE OPENING. Paul's words except where marked. Do not reword, do not tidy, do not merge
+     the paragraphs.
 
-     20 Aug 2026: Paul replaced the first three paragraphs. The old opening said hello,
-     said what the module is NOT, and pointed at Isa. The new one makes an argument
-     instead: he is possibly an outlier, he bets he is not, and the course is a look at
-     how he actually works rather than a guide to AI. The fourth paragraph, the request to
-     answer the fluency question, is untouched and is still his from 2 Aug.
+     ⭐⭐ 21 AUG 2026 (evening), AND IT IS THE THIRD VERSION IN 24 HOURS. The opening is actively
+     in flux and Paul is cutting more than he is adding. Read this before touching anything.
 
-     Mis-transcription repaired and nothing else touched: "how I work use AI" to "how I
-     work and use AI". Flagged to Paul the same turn; his to overrule.
+     WHAT HAPPENED, in order.
+     20 Aug: Paul replaced the first three paragraphs with an argument (he is possibly an outlier,
+     he bets he is not, and the course is a look at how he actually works).
+     21 Aug morning: he read Anthropic's own "AI Fluency: Framework & Foundations" course, captured
+     verbatim at ~/paul-hub/intelligence/course-build/anthropic-ai-fluency-course-2026-08-21.md,
+     and ruled that the opening's stance on fluency had to change: "I think you are correct we need
+     to change my opening on fluency." He then asked for a first pass to write over: "I'd like you
+     to take a pass at writing this, and I'll then write my version based on this thinking."
+     21 Aug evening: he EDITED that pass line by line, and the cuts are the important part.
 
-     ⚠️ ONE LINE MAKES A CLAIM ABOUT THE PAGE ITSELF and breaks if the layout moves: "an AI
-     fluency question below" depends on the fluency panel staying below this. Verified true
-     on 20 Aug. If it moves, this copy is wrong and only Paul can rewrite it.
+     ⛔⛔ WHAT HE CUT ON 21 AUG, AND NOBODY PUTS ANY OF IT BACK WITHOUT HIM:
+       - the WHOLE outlier paragraph, his own from 20 Aug ("It's possible I might be an outlier...
+         It is my workspace for everything else"). One day old and gone. ⭐ A side effect worth
+         knowing: "Claude Code" sat in the second sentence of the module, unexplained, in front of
+         a reader who had just rated themselves on a fluency slider. That vocabulary problem is now
+         gone by deletion rather than by decision.
+       - "How I work has changed."
+       - Dray's guess at what changed for him ("I stopped thinking about the AI. I used to think
+         about how to ask it..."). It was flagged as the line most likely to be wrong about him and
+         he cut it rather than replacing it. ⛔ Do not offer him another guess at this.
+       - "This module won't make you fluent on its own. What it does is get the machine out of your
+         way."
+       - ", and once you're doing them without thinking you stop noticing the tool and start
+         noticing the work"
+       - ⛔⛔ THE WHOLE REQUEST PARAGRAPH ("One request. You'll see an AI fluency question below...").
+         His words: "delete for now". FOR NOW. See the consequence below.
 
-     ⚠️ THE PAGE NO LONGER INTRODUCES ISA. "Isa, my assistant chatbot on your left" went out
-     with the old paragraph 3, so the rail is now unexplained on a reader's first visit.
-     That is a consequence of the change, not a decision Paul made. His call. */
+     ⭐ WHAT HE REWROTE:
+       - "It turned out to be the smallest part of how I work." -> "But it is not the interesting
+         part."
+       - "Everything after this module is about marketing, not about AI." -> "Everything in this
+         course is marketing making the most out of AI, not just about AI."
+
+     ⭐ WHAT IS HIS, VERBATIM, AND MUST SURVIVE ANY EDIT:
+       - paragraph 1, whole, from 2 Aug, minus its cut opening line
+       - paragraph 2, both sentences, from 2 Aug
+       - "If you stick with the course and practice, I'd be confident that you are pretty fluent."
+         ⚠️ MOVED, not rewritten. It used to close the fluency paragraph and now closes the last
+         one, so it answers "am I fluent after module 1" where a reader asks it.
+     ⚠️ WHAT IS DRAY'S, WRITTEN ON HIS INVITATION AND STILL HIS TO REPLACE: the whole of paragraph
+     3 (the "look at the ten things below" argument) and "Ten habits, most of them small." There is
+     no `placeholder` field on `opening`, so nothing marks this on the page. This comment is the
+     only record. Do not let it harden by being left alone.
+
+     ⭐ WHY PARAGRAPH 3 EXISTS, so the reasoning survives his rewrite. The gap was never a missing
+     definition of fluent. It was that nothing on the page argued why THESE items are the 20%: no
+     sentence between the opening and item 01, no logic to the order, no close. Reading his own ten
+     items back, only ONE (item 02) is about prompting, six are about the SETUP before the ask, and
+     three are about the CHECK after the answer. He had already stated that position in paragraph 2
+     ("At one stage, this may have been about how to write good prompts. Not so now") and the items
+     were never joined to it. Paragraph 3 does the joining, out of his own content.
+
+     ⛔⛔ PARAGRAPH 3 MAKES TWO COUNTABLE CLAIMS ABOUT THE ITEMS BELOW IT AND BOTH GO STALE IF THE
+     LIST MOVES: "Look at the ten things below" (ten today) and "only one of them is about
+     prompting" (item 02, true today). Add, cut or retitle an item and this paragraph is wrong on
+     the page with nothing failing. Re-count before shipping.
+
+     ⛔⛔ THE MODULE 1 CARD STILL PROMISES TWENTY. The artefact beside module 1 on the course index
+     carries his own headline "20 things that get you 80% of the way" (ModuleArtefact.tsx:42) over
+     a module with TEN items, and the blurb above says "a small number of habits get you most of
+     the way". Put to Paul on 21 Aug in these terms: 80% of the way to WHAT. If it means 80% of the
+     way to fluent, module 1 cannot deliver that and modules 2 to 6 have nothing left to do; if it
+     means a small number of habits give you most of the value, that is a claim about habits and
+     says nothing about fluency. ⛔ UNRULED. Nothing was changed on the card.
+
+     ⛔⛔ THE FLUENCY SLIDER IS NOW UNANNOUNCED. Deleting the request paragraph removed the only
+     sentence that asked anyone to answer it, and the panel still renders directly below this copy.
+     Paul's own words on why it matters, 2 Aug: "the ai fluency test is really important that they
+     do this". He said "delete for now", so this is a known state and not an accident, but the
+     module ships 21 Sep and a slider nobody is asked to move collects nothing.
+     ✅ RETIRED WITH IT: the old warning that "an AI fluency question below" depended on the panel
+     staying below this copy. That sentence no longer exists, so the dependency is gone.
+
+     ⭐ AND THE MEASUREMENT PLAN CHANGED, 21 Aug, Paul: "I plan to plant questions throughout the
+     course to help me with surveys. so maybe we pause on figuring this out for a week or two."
+     ⛔ SO THE SLIDER'S LABELS STAY EXACTLY AS THEY ARE until he comes back to it. They currently
+     measure how OFTEN someone uses AI ("Tried it once or twice", "Use it most days") rather than
+     how they work, which no longer matches what the opening argues. He has seen that and parked it.
+
+     ⚠️ THE PAGE NO LONGER INTRODUCES ISA. "Isa, my assistant chatbot on your left" went out with
+     the 20 Aug rewrite, so the rail is unexplained on a reader's first visit. Still true, still
+     his call.
+
+     ⭐ THE ARGUMENT PARAGRAPH WAS SPLIT AND THEN PAUL RESHAPED IT, same evening, and the end
+     state is his. After his cuts it was ONE paragraph running SIX rendered lines, the only slab on
+     the page, measured in the browser rather than counted in the source. Dray split it three ways
+     (claim / the two lists / the landing line alone). Paul then ruled on the pieces: delete "Ten
+     habits, most of them small." and move "Prompting is where everyone starts. But it is not the
+     interesting part." to the FRONT of the claim. ⭐⭐ THAT MOVE IS THE WHOLE POINT AND IT IS HIS:
+     the argument now opens on the thing being dismissed and then says where the work is, instead
+     of listing first and landing after. Do not move it back to the end.
+
+     ⚠️ TWO THINGS PUT TO HIM ABOUT HOW IT READS NOW, neither of them changed here. The module now
+     opens on a negative, "My goal for this course is not to try and explain all things AI", which
+     used to be the second line and is now the first thing a reader meets. And "Everything in this
+     course is marketing making the most out of AI" runs "is marketing making" together when read
+     aloud; a comma after "marketing" would fix it without changing a word. */
   opening:
-    "It's possible I might be an outlier. But I'm betting that how I work and use AI may become the norm for all marketers. I use AI in some shape or form for all my work. I do my work through AI - in the sense that when I start my day, I open Claude Code and get it to look at my priorities, my projects, my campaigns. It is my workspace for everything else.\n\nHow I work has changed. My goal for this course is not to try and explain all things AI. But to help show how I work. There is a certain fluency that comes from using AI all day long for the past few years. Some of these are tiny but useful things I've learned that I do without thinking. Others later in the course are more ambitious, ones that I've sweated days and weeks trying to figure out.\n\nHow we might define 'fluent' is less of a concern for me, and it will change. At one stage, this may have been about how to write good prompts. Not so now. If you stick with the course and practice, I'd be confident that you are pretty fluent.\n\nOne request. You'll see an AI fluency question below. I'd love if you can answer it now. And there's another one at the end of Module 6. That way, I can assess how useful this course is, and find ways to improve it.",
+    "My goal for this course is not to try and explain all things AI. But to help show how I work. There is a certain fluency that comes from using AI all day long for the past few years. Some of these are tiny but useful things I've learned that I do without thinking. Others later in the course are more ambitious, ones that I've sweated days and weeks trying to figure out.\n\nHow we might define 'fluent' is less of a concern for me, and it will change. At one stage, this may have been about how to write good prompts. Not so now.\n\nPrompting is where everyone starts. But it is not the interesting part. Look at the ten things below and you'll see where the work actually is. Only one of them is about prompting, and even that one is about telling it what the output is for, not about the words you use.\n\nMost of the rest are things I do before I ask: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research. The others are things I do after it answers: I never believe it, I always ask for sources, I make it prove it read the whole document.\n\nEverything in this course is marketing making the most out of AI, not just about AI. If you stick with the course and practice, I'd be confident that you are pretty fluent.",
   items: [
     {
       t: "Check which model you're on",
