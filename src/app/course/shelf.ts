@@ -22,10 +22,12 @@
  * has no `why` field: a one-line reason written for him reads exactly like one written by him.
  * A section can ship with names and sources and no commentary at all.
  *
- * ⚠️ THE TITLES BELOW ARE CLOSE TO HIS WORDS BUT ARE MOSTLY NOT YET HIS. He described the
- * four lists; he has not named them. Treat every `title` and `blurb` here as a first draft
- * awaiting his wording. THE ONE EXCEPTION is "Articles, videos and Gits", which he named
- * himself on 22 Aug 2026 and which is not to be tidied.
+ * ⚠️ MOST TITLES BELOW ARE CLOSE TO HIS WORDS BUT ARE NOT YET HIS. He described the first
+ * four lists on 3 Aug 2026 and never named them, so treat every `title` and `blurb` here as
+ * a first draft awaiting his wording. Two are further along: "Articles, videos and Gits" he
+ * typed himself on 22 Aug 2026 and it is not to be tidied, and "Free tools Claude uses for
+ * me" is his own phrasing from the same day, trimmed by us and not yet read back to him.
+ * ⚠️ THERE ARE SIX SECTIONS NOW, NOT FOUR. This line said four until 22 Aug 2026.
  */
 
 export type ShelfEntry = {
@@ -382,6 +384,26 @@ export const SHELF: ShelfSection[] = [
         url: "https://x.com/trq212/status/2090884854590382515",
         note: "/eli5 <what you want explained> - \"explain like I'm someone who knows nothing about this topic, using a HTML artifact with big pictures and few words\"",
       },
+      /* ⭐ PAUL, 22 Aug 2026: "article", with the link and nothing else, so NO `note`. His to
+         write, and the row is complete without one.
+
+         ⭐ THE UTM CAME OFF, same call as GTM Atlas. He clicked it out of a beehiiv
+         newsletter, so the link carried `?utm_source=...beehiiv.com&utm_medium=newsletter&
+         utm_campaign=something-bigger-is-happening`, which is that newsletter's own tracking
+         and nothing to do with a reading list. The bare address returns 200 and does not
+         redirect.
+
+         ⭐ TITLE READ OFF THE PAGE'S OWN <title>: "Something Big Is Happening". The byline
+         on the page is Matt Shumer, 9 Feb 2026, 20 min read, and somethingbig.ai is his own
+         site rather than a publication, which is why `by` names both.
+
+         ⚠️ HIS THIRD SHUMER ROW and none of them is a duplicate: the game repo, the tweet
+         about the game, and now an essay. The person is not on the People list. */
+      {
+        name: "Something Big Is Happening",
+        by: "Matt Shumer, somethingbig.ai",
+        url: "https://somethingbig.ai/something-big-is-happening",
+      },
     ],
   },
   {
@@ -445,6 +467,116 @@ export const SHELF: ShelfSection[] = [
          The row carries the product name only, same as every tool above it: the strapline
          is the vendor's copy, not a `note` from Paul. */
       { name: "Monologue", by: "monologue.to", url: "https://www.monologue.to" },
+    ],
+  },
+  {
+    /* ⭐⭐ PAUL, 22 Aug 2026, asked for a list of "all the tools that I use myself... such as
+       ffmpeg etc and free tools that claude uses for me when working on things", then said
+       "can you add those free 9 ones to library". So this section exists because he asked for
+       it by name, and the nine below are HIS OWN, read out of his live config. Source:
+       `reference_tool_stack.md`, audited 3 Aug 2026 from `.claude/skills` and
+       `paul-hub/scripts` rather than from memory.
+
+       ⭐⭐ THEY GOT THEIR OWN SECTION RATHER THAN GOING INTO TOOLS, and the reason is
+       editorial, not tidiness. Tools is products a marketer signs up for: Clay, Attio,
+       Klaviyo, Claude, each with a website and a login. These are libraries Claude drives on
+       his behalf. A student cannot go and use ffmpeg the way they go and use Klaviyo, and
+       filing them together would quietly say they can. The question was first raised in the
+       3 Aug audit and deliberately left for him.
+
+       ⭐ THE TITLE IS HIS OWN PHRASING FROM THAT MESSAGE, trimmed: "free tools that claude
+       uses for me when working on things". It does the framing on its own, which is why there
+       is no `blurb`.
+
+       ⛔⛔ THE `note`s HERE ARE THE ONLY ONES ON THE SHELF NOT QUOTED FROM SOMEONE, and the
+       reason they are allowed is a distinction, not a permission. What `ShelfEntry.note` bans
+       is "a reason something is worth a marketer's time" - an endorsement in Paul's voice.
+       "Builds PowerPoint decks" is a DEFINITION of a thing nobody outside engineering has
+       heard of, and without it the row says "python-pptx" and nothing else. Every other
+       section names things a marketer already recognises, which is why none of them needs
+       this and none of them gets it.
+       ⛔ SO THE TEST IS THE SENTENCE, NOT WHO APPROVED IT. Defining an unfamiliar tool is
+       allowed here; saying it is good, or worth their time, or what Paul thinks of it, is
+       not, and stays banned everywhere in this file. He was shown these nine and told plainly
+       they were not his words: "read them as drafts and change any you don't like".
+       ⛔ The no-seeding rule at the top is untouched. Nothing here was invented to show the
+       shape, every row is a tool he already runs every day.
+
+       ⚠️ EACH NOTE IS ONE LINE THAT TRUNCATES WITH AN ELLIPSIS, and it shrinks the NAME
+       beside it as it grows. Two of these were rewritten shorter after measuring the rendered
+       row: at their first length the page showed "Play..." and "whisper....". Keep them under
+       about 65 characters, and measure rather than eyeball it.
+       ⛔⛔ AND `.rwdesc` IS `display: none` UNDER 860px (Everything.module.css:456), so NONE
+       of these notes reaches a phone. On every other section that is harmless flavour. Here
+       it is the whole content, and a phone shows nine bare names like "jq" and "gifsicle".
+       Raised with Paul 22 Aug, his call, because lifting it changes every section on the
+       page and not just this one.
+
+       ⭐ THE ORDER IS USAGE, NOT ALPHABET. The number after each is how many of his own skill
+       and script files call it, word-boundary matched. Playwright at 163 is the most-used
+       tool he owns and nothing had ever named it before that audit.
+
+       ⭐ EVERY ADDRESS WAS REQUESTED AND RETURNED 200. Two of them redirect and the canonical
+       is written here instead of the one that was typed: jqlang.github.io/jq/ lands on
+       jqlang.org, and python-pillow.github.io lands on python-pillow.org. Same read-through
+       as the Substack wrappers in Articles. */
+    slug: "free-tools",
+    title: "Free tools Claude uses for me",
+    entries: [
+      {
+        name: "Playwright",
+        by: "playwright.dev",
+        url: "https://playwright.dev",
+        note: "Lets Claude open a web page, click things and screenshot it.",
+      },
+      {
+        name: "ffmpeg",
+        by: "ffmpeg.org",
+        url: "https://ffmpeg.org",
+        note: "Cuts, converts and stitches video and audio from the command line.",
+      },
+      {
+        name: "jq",
+        by: "jqlang.org",
+        url: "https://jqlang.org",
+        note: "Pulls the one bit you want out of a wall of JSON.",
+      },
+      {
+        name: "python-docx",
+        by: "python-docx.readthedocs.io",
+        url: "https://python-docx.readthedocs.io",
+        note: "Writes Word documents.",
+      },
+      {
+        name: "python-pptx",
+        by: "python-pptx.readthedocs.io",
+        url: "https://python-pptx.readthedocs.io",
+        note: "Builds PowerPoint decks.",
+      },
+      {
+        name: "gifsicle",
+        by: "lcdf.org",
+        url: "https://www.lcdf.org/gifsicle/",
+        note: "Shrinks animated GIFs so they are small enough to send.",
+      },
+      {
+        name: "Pillow",
+        by: "python-pillow.org",
+        url: "https://python-pillow.org",
+        note: "Resizes, crops and stacks images.",
+      },
+      {
+        name: "yt-dlp",
+        by: "github.com/yt-dlp",
+        url: "https://github.com/yt-dlp/yt-dlp",
+        note: "Downloads a video off YouTube and most other video sites.",
+      },
+      {
+        name: "whisper.cpp",
+        by: "github.com/ggml-org",
+        url: "https://github.com/ggml-org/whisper.cpp",
+        note: "Turns audio into text on your laptop. Nothing is uploaded.",
+      },
     ],
   },
 ];
