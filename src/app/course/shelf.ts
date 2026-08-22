@@ -472,6 +472,39 @@ export const SHELF: ShelfSection[] = [
          row, same as Monologue above it: the strapline is the vendor's copy, not a `note`
          from Paul. Domain returned 200 and does not redirect off www. */
       { name: "Granola", by: "granola.ai", url: "https://www.granola.ai" },
+      /* ⭐⭐ PAUL, 22 Aug 2026, in his order: "Descript, Figma, Cal.com, HubSpot, Firecrawl,
+         Serper, Replicate, Kling, Minimax, FAL." These are the paid and keyed tools that were
+         already in his stack and missing from this list. Source: `reference_tool_stack.md`
+         plus the key names in `~/.secrets/keys.env`, so every one is a tool he actually runs
+         rather than a name off a list. He was offered thirteen and picked these ten, leaving
+         HeyReach, Smartsheet and DataForSEO out.
+
+         ⭐ THREE ADDRESSES ARE NOT THE ONE THE NAME SUGGESTS, and each was resolved rather
+         than typed. klingai.com 301s to kling.ai, so the website is kling.ai even though his
+         scripts call api.klingai.com. MiniMax has two live homes, minimax.io and minimaxi.com,
+         both titled "MiniMax"; minimax.io wins because his own scripts call api.minimax.io,
+         eleven times across fox-ads. And fal styles itself lowercase, which is the brand
+         rather than a typo.
+
+         ⚠️ CASING IS THE BRAND'S, NOT HIS TYPING, same as GetImg above: he wrote "Minimax"
+         and the company writes "MiniMax", he wrote "FAL" and the company writes "fal".
+
+         ⚠️ KLING IS WORTH KNOWING ABOUT BEFORE ANYONE RECOMMENDS IT. `reference_api_keys_video`
+         records that the direct Kling API has a zero balance and enterprise pricing, and that
+         Paul reaches Kling THROUGH fal.ai instead. The row is still correct, he asked for it,
+         but it points at a front door he does not personally use.
+
+         ⛔ NO `note` ON ANY OF THEM. His to write, same as every other row in this section. */
+      { name: "Descript", by: "descript.com", url: "https://www.descript.com" },
+      { name: "Figma", by: "figma.com", url: "https://www.figma.com" },
+      { name: "Cal.com", by: "cal.com", url: "https://cal.com" },
+      { name: "HubSpot", by: "hubspot.com", url: "https://www.hubspot.com" },
+      { name: "Firecrawl", by: "firecrawl.dev", url: "https://www.firecrawl.dev" },
+      { name: "Serper", by: "serper.dev", url: "https://serper.dev" },
+      { name: "Replicate", by: "replicate.com", url: "https://replicate.com" },
+      { name: "Kling AI", by: "kling.ai", url: "https://kling.ai" },
+      { name: "MiniMax", by: "minimax.io", url: "https://www.minimax.io" },
+      { name: "fal", by: "fal.ai", url: "https://fal.ai" },
     ],
   },
   {
