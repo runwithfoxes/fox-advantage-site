@@ -467,6 +467,11 @@ export const SHELF: ShelfSection[] = [
          The row carries the product name only, same as every tool above it: the strapline
          is the vendor's copy, not a `note` from Paul. */
       { name: "Monologue", by: "monologue.to", url: "https://www.monologue.to" },
+      /* ⭐ PAUL, 22 Aug 2026: "can you add https://www.granola.ai/ to tools." Its own title
+         reads "Granola - The AI Notepad for back-to-back meetings". Product name only on the
+         row, same as Monologue above it: the strapline is the vendor's copy, not a `note`
+         from Paul. Domain returned 200 and does not redirect off www. */
+      { name: "Granola", by: "granola.ai", url: "https://www.granola.ai" },
     ],
   },
   {
