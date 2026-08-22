@@ -22,9 +22,10 @@
  * has no `why` field: a one-line reason written for him reads exactly like one written by him.
  * A section can ship with names and sources and no commentary at all.
  *
- * ⚠️ THE TITLES BELOW ARE CLOSE TO HIS WORDS BUT ARE NOT YET HIS. He described the four
- * lists; he has not named them. Treat every `title` and `blurb` here as a first draft
- * awaiting his wording.
+ * ⚠️ THE TITLES BELOW ARE CLOSE TO HIS WORDS BUT ARE MOSTLY NOT YET HIS. He described the
+ * four lists; he has not named them. Treat every `title` and `blurb` here as a first draft
+ * awaiting his wording. THE ONE EXCEPTION is "Articles, videos and Gits", which he named
+ * himself on 22 Aug 2026 and which is not to be tidied.
  */
 
 export type ShelfEntry = {
@@ -184,6 +185,13 @@ export const SHELF: ShelfSection[] = [
       { name: "Mercury", by: "mercury.com", url: "https://mercury.com" },
       { name: "Anthropic", by: "anthropic.com", url: "https://anthropic.com" },
       { name: "Vercel", by: "vercel.com", url: "https://vercel.com" },
+      /* ⭐ PAUL, 22 Aug 2026: "supabase is a company i follow", with the link. His sixth,
+         added at the end so his 3 Aug order stays as he gave it.
+         ⚠️ ALREADY IN TOOLS AND THAT IS NOT A DUPLICATE, by his own filing rule: the tool is
+         a tool, the company is a company. Same shape as Vercel and Anthropic, which sit in
+         both for the same reason. Domain returned 200, <title> "Supabase | The Postgres
+         Development Platform". */
+      { name: "Supabase", by: "supabase.com", url: "https://supabase.com" },
     ],
   },
   {
@@ -198,7 +206,10 @@ export const SHELF: ShelfSection[] = [
        under People and their articles have rows here, and neither is a duplicate of the
        other. */
     slug: "articles",
-    title: "Articles and videos",
+    /* ⭐ HIS OWN WORDS, 22 Aug 2026, when asked whether a GitHub repo needed its own section:
+       "Put in Articles, videos and Gits". So this title is now Paul's rather than a first
+       draft, and "Gits" is his word for a repo, typed by him, not tidied to "Repos". */
+    title: "Articles, videos and Gits",
     /* ⭐ PAUL'S OWN LIST, 3 Aug 2026, verbatim: "articles for library:
        https://runwithfoxes.com/chapter/ch12-critical-thinking-has-never-been-more-critical
        https://runwithfoxes.com/chapter/ch16-fox-behaviours
@@ -304,6 +315,72 @@ export const SHELF: ShelfSection[] = [
         name: "Using Claude Code: The Unreasonable Effectiveness of HTML",
         by: "Thariq, x.com",
         url: "https://x.com/trq212/status/2052809885763747935",
+      },
+      /* ⭐ PAUL, 22 Aug 2026: "This is a series of articles from Go to Market (GTM)
+         specialists", with the link. ONE ROW FOR THE WHOLE SERIES, not fifteen: it is a
+         collection with its own front door, and fifteen rows would swamp a section that
+         holds six.
+
+         ⭐ THE URL HE SENT CARRIED AN UNFILLED AD TEMPLATE -
+         `?utm_source=twitter_ads&...&utm_campaign={{campaign_name}}&utm_content={{ad_name}}`.
+         Those braces are Twitter's macros, never substituted because he copied the link out
+         of the ad itself, so they would ship to students as literal `{{campaign_name}}`.
+         Stripped to the bare address, which is where it lands anyway.
+
+         ⭐ THE TITLE WAS READ OFF THE PAGE: <title> is "GTM Atlas by Attio", so the
+         publisher goes in `by` and the name is the atlas. It is Attio's own, fifteen
+         chapters, one operator each, from Elena Verna to Travis Bryant.
+
+         ⚠️ ATTIO IS ALREADY IN TOOLS AND THAT IS NOT A DUPLICATE, by the same filing rule as
+         Thariq and Dan Shipper: the tool is a tool, the piece is a piece. */
+      {
+        name: "GTM Atlas",
+        by: "Attio",
+        url: "https://atlas.attio.com/",
+      },
+      /* ⭐ PAUL, 22 Aug 2026: "This is not an article or video but a git", with the link and
+         the repo's About line. He was offered its own section and chose to widen this one
+         instead, which is what renamed the title above.
+
+         ⭐⭐ THE PAIR IS DELIBERATE, NOT A DUPLICATE. "Claude Opus 5 one-shotted this game."
+         higher up this section is Matt Shumer's tweet ABOUT this repo. The tweet is the
+         claim, this is the thing itself, and by his own filing rule both are pieces.
+
+         ⭐ THE `note` IS THE REPO'S OWN About LINE, VERBATIM, and Paul pasted it himself in
+         the same message. Same call as the tweet row above: quoting the author is what a
+         link list does, and nothing here was written on Paul's behalf. ⚠️ It is Shumer's
+         claim, not a finding, and Paul has not endorsed it.
+
+         ⭐ Read off the repo page: mshumer/Claude-of-Duty, MIT, 3.2k stars, Three.js r180,
+         runs locally with npm install then npm run dev. Every asset is generated at runtime,
+         so there is nothing to download but code. */
+      {
+        name: "Claude of Duty",
+        by: "Matt Shumer, github.com",
+        url: "https://github.com/mshumer/Claude-of-Duty",
+        note: "A Call of Duty-quality FPS in Three.js, built from a single prompt.",
+      },
+      /* ⭐ PAUL, 22 Aug 2026: "a new one for articles", with the link and nothing else.
+
+         ⭐ THIS IS A POST, NOT AN X ARTICLE, so it is named the same way as the Matt Shumer
+         row rather than the other Thariq row: no headline exists, so the NAME is his own
+         opening line, verbatim. ⛔ Not a summary written for Paul.
+
+         ⭐ THE PROMPT ITSELF IS THE NOTE, quoted from the post word for word, because it is
+         the whole point of the link and it is short enough to read on the row. Thariq's
+         words, not ours. ⚠️ "people at Anthropic have been using it" is HIS claim and Paul
+         has not endorsed it; if he wants distance, the fix is his own `note`.
+
+         ⭐ VERIFIED THE SAME WAY AS THE OTHER X ROWS: read off Twitter's syndication
+         endpoint (`cdn.syndication.twimg.com/tweet-result?id=...`), which returned 200 for
+         this id while a made-up id under the same handle returned 404. Posted 21 Aug 2026,
+         Thariq @trq212, a video post. ⛔ Never read x.com directly, it serves a JavaScript
+         shell that tells you nothing. */
+      {
+        name: "a skill people at Anthropic have been using a lot recently: ELI5",
+        by: "Thariq, x.com",
+        url: "https://x.com/trq212/status/2090884854590382515",
+        note: "/eli5 <what you want explained> - \"explain like I'm someone who knows nothing about this topic, using a HTML artifact with big pictures and few words\"",
       },
     ],
   },
