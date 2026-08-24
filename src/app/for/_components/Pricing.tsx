@@ -10,8 +10,13 @@ export interface PriceCard {
   label: string; // "Option A", "Part one"
   title: string;
   bullets: string[];
-  price: string; // "EUR 9,500 plus VAT"
+  price: string; // "€9,500 plus VAT"
   note?: string; // timeline / phase line under the price
+  // Optional footed total. Paul's ask, 24 Aug 2026, on the Expleo build: a
+  // buyer reading a setup fee and a monthly should not have to add them up
+  // herself. Pass the first-period total in plain words. Older pages omit it
+  // and render exactly as before.
+  total?: { label: string; value: string };
   featured?: boolean;
 }
 
@@ -29,6 +34,12 @@ export function PricingCards({ cards }: { cards: PriceCard[] }) {
           </ul>
           <p className="ppp-card-price">{c.price}</p>
           {c.note && <p className="ppp-card-note">{c.note}</p>}
+          {c.total && (
+            <div className="ppp-card-total">
+              <span className="ppp-card-total-k">{c.total.label}</span>
+              <span className="ppp-card-total-v">{c.total.value}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

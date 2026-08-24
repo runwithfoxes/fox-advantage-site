@@ -96,6 +96,31 @@
   margin: 8px 0 0;
 }
 
+/* Footed total. Added 24 Aug 2026 for the Expleo build: a setup fee plus a
+   monthly is two numbers, and Paul asked that the reader be shown the sum
+   rather than made to do it. Square corners, house rule. */
+.ppp-card-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e0e0dc;
+}
+.ppp-card-total-k {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  color: #8a8a85;
+}
+.ppp-card-total-v {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #1a3a4e;
+  text-align: right;
+}
+
 .ppp-covers {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -174,7 +199,32 @@
 
 @media (max-width: 780px) {
   .ppp-cards,
-  .ppp-covers {
+  /* Footed total. Added 24 Aug 2026 for the Expleo build: a setup fee plus a
+   monthly is two numbers, and Paul asked that the reader be shown the sum
+   rather than made to do it. Square corners, house rule. */
+.ppp-card-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e0e0dc;
+}
+.ppp-card-total-k {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  color: #8a8a85;
+}
+.ppp-card-total-v {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: #1a3a4e;
+  text-align: right;
+}
+
+.ppp-covers {
     grid-template-columns: 1fr;
   }
 }

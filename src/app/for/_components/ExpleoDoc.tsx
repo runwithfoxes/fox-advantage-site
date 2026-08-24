@@ -21,9 +21,11 @@
 // advertising, social and the website. Runs on Claude Managed Agents so nobody
 // at Expleo needs a Claude licence.
 //
-// ⚠️ PRICES. Option A is Paul's own number (EUR 3,500 plus EUR 99 a month).
-// Options B and C are DELIBERATELY UNPRICED - he sets every number and had not
-// named those two when this was built. They must not ship as a guess.
+// ⚠️ PRICES. A and B are Paul's own numbers, named 24 Aug 2026: A is €3,500
+// plus €99 a month, B is €15,000 plus €199 a month. C IS DELIBERATELY UNPRICED
+// - he has not named it and it must not ship as a guess.
+// ⭐ Each card foots a total to the three-month review, because Paul asked that
+// she not have to add a setup fee and a monthly together herself.
 //
 // ⛔ Gates: no unsourced numbers, nothing of Expleo's, no security claim beyond
 // what Sam confirmed against Anthropic primary sources on 24 Aug (draft at
@@ -554,11 +556,13 @@ export default function ExpleoDoc() {
           it from a document.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Options B and C are the same idea at team size, and they are
-          costed here so you can take a number to a budget conversation
-          without waiting for us. We would still suggest starting with one
-          and seeing how your colleagues use it before committing to the
-          rest.
+          Options B and C are costed here so you can take a number to a
+          budget conversation without waiting for us. The difference between
+          them is not only how many agents you get. Under B we build the
+          agents and keep them running for you. Under C we also train your
+          designer to change what each one does and hand the whole team over,
+          so it keeps working whether or not we are involved. That is worth
+          buying once you know you want the team, and not before.
         </p>
       </PPSection>
 
@@ -574,36 +578,40 @@ export default function ExpleoDoc() {
                 "A dedicated section of our site for your colleagues to work in",
                 "Three weeks of building and testing, with you and your designer",
               ],
-              price: "EUR 3,500 plus VAT",
-              note: "Then EUR 99 a month, reviewed together after three months. Normally EUR 8,000.",
+              price: "€3,500 plus VAT",
+              note: "Then €99 a month, reviewed together after three months. Normally €8,000.",
+              total: {
+                label: "First three months, to the review",
+                value: "€3,797 plus VAT",
+              },
               featured: true,
             },
-            // ⛔⛔ PLACEHOLDER. Paul had not named these numbers when this page
-            // was built and they must NOT ship as a guess. The arithmetic he
-            // was offered on 24 Aug was three roles at the EUR 8,000 list rate
-            // less the EUR 3,500 already paid, and the same for five. He has
-            // not agreed it. Replace both, and the monthly for each, before
-            // this goes anywhere near Siobhan.
             {
               label: "Option B",
-              title: "A small creative team",
+              title: "Three agents",
               bullets: [
-                "The junior designer, plus two more agents of your choosing",
+                "The junior designer, plus two more of your choosing",
                 "Email, advertising, social or the website",
-                "All calibrated to the same guidelines and assets",
-                "Your designer manages the team, we build and hand over",
+                "All calibrated to the same guidelines and the same assets",
+                "We build them, run them and keep them working",
               ],
-              price: "Price to confirm",
-              note: "PLACEHOLDER - Paul sets this number.",
+              price: "€15,000 plus VAT",
+              note: "Then €199 a month, reviewed together after three months.",
+              total: {
+                label: "First three months, to the review",
+                value: "€15,597 plus VAT",
+              },
             },
+            // ⛔ PLACEHOLDER PRICE, and the only one left. Paul named A and B
+            // on 24 Aug and has not named C. Do not guess it.
             {
               label: "Option C",
-              title: "The full creative team",
+              title: "The team, and you own it",
               bullets: [
-                "The junior designer, plus email, advertising, social and website agents",
-                "One shared brand layer behind all of them",
-                "Training so your designer can run and extend the team",
-                "Handover, so it keeps working without us",
+                "All five agents: the designer, email, advertising, social and the website",
+                "One shared brand layer behind them, so they cannot drift apart",
+                "Training, so your designer can change what each one does",
+                "Handover, so the team keeps working whether or not we are involved",
               ],
               price: "Price to confirm",
               note: "PLACEHOLDER - Paul sets this number.",
