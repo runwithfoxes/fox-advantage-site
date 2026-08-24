@@ -35,9 +35,14 @@
 // scope; stating the negative only plants the doubt. Same for any future
 // agent on any page.
 // narrow to infographics and one-page PDFs for sales colleagues. First hire in
-// an AI creative team their own designer manages. Later hires cover email,
+// an AI creative team their own designer manages. Later ones cover email,
 // advertising, social and the website. Runs on Claude Managed Agents so nobody
 // at Expleo needs a Claude licence.
+// ⭐ NEVER "HIRE" AS THE VERB. Paul, 24 Aug: "hire isn't the right word. We're
+// building this." His own bio copy two sections up already says it - "I build
+// exactly that, with agents instead of hires" - and so does the Moloco case
+// study. The team metaphor is fine for what it BECOMES; the transaction is a
+// build.
 //
 // ⚠️ PRICES. A and B are Paul's own numbers, named 24 Aug 2026: A is €3,500
 // plus €99 a month, B is €15,000 plus €199 a month. C IS DELIBERATELY UNPRICED
@@ -148,7 +153,7 @@ export default function ExpleoDoc() {
       eyebrow="Prepared for Siobhán Smith, Expleo"
       /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line, same as on every other
          real build. */
-      title="Hire Expleo’s first AI designer"
+      title="Build Expleo’s first AI designer"
       titleHl="AI designer"
       /* ⛔ NO STANDFIRST. The opening section does the introducing. */
       standfirst={[]}
@@ -522,9 +527,10 @@ export default function ExpleoDoc() {
           so she can see the shape and cost it now. */}
       <PPSection id="recommend" k="09" title="What we’d recommend">
         <p className="pps-standfirst">
-          Option A. Hire the one designer, work it through the three weeks
-          with us, and put it in front of a small group of sales colleagues
-          before deciding anything else. Within a month you will know
+          Option A. Start with the one designer. We build it, the three
+          weeks are you and your designer testing it, and you put it in
+          front of a small group of sales colleagues before deciding
+          anything else. Within a month you will know
           whether the work it produces is good enough to stand over. That is
           the question worth answering first, and neither of us can answer
           it from a document.
