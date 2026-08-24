@@ -66,7 +66,7 @@ const SECTIONS = [
   { id: "creative", title: "Creative Director" },
   { id: "guardian", title: "Brand Guardian" },
   { id: "writer", title: "AI Writers" },
-  { id: "designer", title: "The AI designer" },
+  { id: "designer", title: "My recommendation: The AI designer" },
   { id: "designer-use", title: "How your colleagues would use it" },
   { id: "designer-weeks", title: "The first three weeks" },
   { id: "designer-infra", title: "Nobody needs a Claude licence" },
@@ -437,7 +437,7 @@ export default function ExpleoDoc() {
       {/* ⭐ THE OFFER. Per client. This is the section Siobhan actually asked
           for, and the only place the AI designer's scope is defined.
           Written from Paul's brief on 24 Aug 2026. */}
-      <PPSection id="designer" k="08" title="The AI designer">
+      <PPSection id="designer" k="08" title="My recommendation: The AI designer">
         <p className="pps-standfirst">
           We would build one agent, and we would keep it narrow on purpose.
           It makes infographics and one-page PDFs for sales colleagues. If
