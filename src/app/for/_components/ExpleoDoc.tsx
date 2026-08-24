@@ -440,11 +440,7 @@ export default function ExpleoDoc() {
       <PPSection id="designer" k="08" title="My recommendation: The AI designer">
         <p className="pps-standfirst">
           We would build one agent, and we would keep it narrow on purpose.
-          It makes infographics and one-page PDFs for sales colleagues. If
-          it is asked for something outside that, it stops and asks a person
-          rather than improvising. We build them that way deliberately, so
-          that a request nobody anticipated produces a question instead of
-          poor work that goes out at volume.
+          It makes infographics and one-page PDFs for sales colleagues.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           It holds your brand guidelines and your real assets: the logo
@@ -454,7 +450,6 @@ export default function ExpleoDoc() {
           applies your copy guidelines, though as above it is not a
           copywriter and will not write your messaging.
         </p>
-
       </PPSection>
 
       <PPSection id="designer-use" sub title="How your colleagues would use it">
