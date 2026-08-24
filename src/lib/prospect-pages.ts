@@ -50,6 +50,19 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "RETURN2SENDER_PASSWORD",
     passwordFallback: "r2s26",
   },
+  // Siobhan Smith, Expleo. Built 24 Aug 2026 from the Kite template. A real
+  // proposal with a price, because she asked for "an approach ... with the
+  // associated costs" on 18 Aug.
+  // ⛔ Nothing of Expleo's is on the page - she asked that their material not
+  // be shared, so the proof built from their guidelines is screen-share only.
+  expleo: {
+    slug: "expleo",
+    client: "Expleo",
+    shortName: "Expleo",
+    tabTitle: "Run with Foxes for Expleo",
+    passwordEnv: "EXPLEO_PASSWORD",
+    passwordFallback: "expleo26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

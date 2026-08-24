@@ -17,4 +17,7 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Capabilities only, no price - Paul: "not a hard sell one, more like a
   // peter berry one."
   return2sender: dynamic(() => import("./ReturnToSenderDoc"), { ssr: false }),
+  // Siobhan Smith, Expleo. Built 24 Aug from the Kite template: the first
+  // real page to carry a recommendation and a price.
+  expleo: dynamic(() => import("./ExpleoDoc"), { ssr: false }),
 };
