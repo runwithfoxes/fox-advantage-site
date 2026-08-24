@@ -43,6 +43,11 @@
 // exactly that, with agents instead of hires" - and so does the Moloco case
 // study. The team metaphor is fine for what it BECOMES; the transaction is a
 // build.
+// ⛔ AND NEVER PUT DOUBT IN HER MOUTH. Paul, 24 Aug, cutting a line about her
+// knowing within a month whether the output was good enough: "Basically what
+// you're saying is I don't know whether this is going to work or not." Start
+// small because it is the sensible order, never because we are unsure it
+// works.
 //
 // ⚠️ PRICES. A and B are Paul's own numbers, named 24 Aug 2026: A is €3,500
 // plus €99 a month, B is €15,000 plus €199 a month. C IS DELIBERATELY UNPRICED
@@ -530,10 +535,7 @@ export default function ExpleoDoc() {
           Option A. Start with the one designer. We build it, the three
           weeks are you and your designer testing it, and you put it in
           front of a small group of sales colleagues before deciding
-          anything else. Within a month you will know
-          whether the work it produces is good enough to stand over. That is
-          the question worth answering first, and neither of us can answer
-          it from a document.
+          anything else.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Option B is costed here so you can see what a small team looks
