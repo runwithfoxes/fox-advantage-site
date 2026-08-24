@@ -411,12 +411,6 @@ export default function ExpleoDoc() {
           most complex agent, and still in beta, but I&rsquo;m very proud
           of it.
         </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          You are not buying this as a product. It matters here because a
-          version of it is what runs over the designer&rsquo;s work before a
-          colleague sees it, which is the quality loop you described on our
-          call.
-        </p>
       </PPSection>
 
       <PPSection id="writer" sub title="AI Writers">
