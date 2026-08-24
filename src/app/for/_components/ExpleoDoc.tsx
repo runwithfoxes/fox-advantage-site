@@ -18,6 +18,11 @@
 // WHAT PAUL IS SELLING (his brief, 24 Aug): one AI designer agent,
 // ⭐ NOT "junior". Paul cut the word on 24 Aug: "it probably just devalues
 // everything." Do not reintroduce it anywhere.
+// ⭐⭐ AND NEVER WRITE WHAT IT IS NOT. Paul, 24 Aug: "It's an AI designer. We
+// never say it's a copywriter." Three separate caveats saying the agent would
+// not write their messaging were deleted from this page. The name carries the
+// scope; stating the negative only plants the doubt. Same for any future
+// agent on any page.
 // narrow to infographics and one-page PDFs for sales colleagues. First hire in
 // an AI creative team their own designer manages. Later hires cover email,
 // advertising, social and the website. Runs on Claude Managed Agents so nobody
@@ -423,14 +428,6 @@ export default function ExpleoDoc() {
           brand&rsquo;s messaging, and your tone of voice. On top of that, we
           need to articulate instructions on how we want the writer to
           interact with us or our colleagues.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          That knowledge is a small folder of documents, and we do not have
-          Expleo&rsquo;s yet. A writer is one of the later hires described
-          below rather than part of what we are proposing now, and it is
-          worth saying plainly that the designer we would build first is not
-          a writer. It knows your copy rules and applies them to the words a
-          colleague gives it. It does not write your messaging.
         </p>
       </PPSection>
 
