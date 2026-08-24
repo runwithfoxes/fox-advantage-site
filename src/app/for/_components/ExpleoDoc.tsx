@@ -149,17 +149,6 @@ export default function ExpleoDoc() {
           what it costs.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The starting point is the one thing your examples all have in
-          common. When someone asks a general AI tool to make an
-          infographic, the software draws a picture of a design. It draws
-          something that looks like your logo, and it draws something that
-          looks like text, which is why words come back misspelled and the
-          logo comes back redrawn rather than used. Everything on this page
-          works the other way around. The machine never draws. It places
-          your real files, your real typeface and your real colours into a
-          layout, then checks the result before anyone sees it.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Nothing you sent us appears on this page or anywhere else. The
           work we have already done on your guidelines we will show you
           live, on a call, rather than put it on a page.
