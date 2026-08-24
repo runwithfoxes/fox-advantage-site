@@ -494,18 +494,7 @@ export default function ExpleoDoc() {
           through its commercial API to train its models, and that is a
           contractual commitment rather than a setting we switch on.
           Anthropic holds SOC 2 Type I and Type II, ISO 27001:2022 and ISO
-          42001:2023, and each session runs in an isolated container. Nick
-          can pull the certifications and the current sub-processor list
-          himself at{" "}
-          <a
-            href="https://trust.anthropic.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pps-copy-link"
-          >
-            trust.anthropic.com
-          </a>
-          , and we are happy to answer anything else his team asks.
+          42001:2023, and each session runs in an isolated container.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           If Expleo later buys Claude licences of its own, we can move the
