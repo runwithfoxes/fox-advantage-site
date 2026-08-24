@@ -539,10 +539,12 @@ export default function ExpleoDoc() {
           from there.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Option B is costed here so you can see what a small team looks
-          like and take a number to a budget conversation without waiting for
-          us. We would still suggest starting with the one and seeing how
-          your colleagues actually use it.
+          Option B is what we would suggest you consider as the next step,
+          once you can show internally what the first one has done, in the
+          quality of the work coming out and the time it saves. That is the
+          point to be more ambitious and build more of the team. It is
+          costed here so you can take a number to a budget conversation
+          whenever you are ready, without having to come back to us first.
         </p>
       </PPSection>
 
