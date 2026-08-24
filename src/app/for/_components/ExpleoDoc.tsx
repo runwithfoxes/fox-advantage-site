@@ -446,9 +446,7 @@ export default function ExpleoDoc() {
           It holds your brand guidelines and your real assets: the logo
           files, the typeface, the colour values, the graphic devices, the
           icon set and your image bank. It places those files into a layout
-          rather than generating anything that resembles them. It also
-          applies your copy guidelines, though as above it is not a
-          copywriter and will not write your messaging.
+          rather than generating anything that resembles them.
         </p>
       </PPSection>
 
