@@ -16,6 +16,17 @@
 // other clients, which is what golden rule two requires anyway.
 //
 // WHAT PAUL IS SELLING (his brief, 24 Aug): one AI designer agent,
+// ⭐ SCOPE WIDENED 24 Aug, Paul: "so we can add more value." It was
+// infographics and one-pagers. It is now five shapes, all of which appear in
+// their own nine bad examples and all of which are one job underneath - a page
+// of their content laid out with their real assets: infographics and process
+// diagrams, one and two page PDFs, LinkedIn carousels, posters and internal
+// announcements, quote and values cards. ⚠️ Each shape is its own calibration
+// (23 Aug: on brand and good are different tests), so five shapes is more of
+// the three weeks spent testing than two.
+// ⛔ SLIDES ARE DELIBERATELY NOT ON THE LIST. A slide is the one thing someone
+// wants to edit afterwards, and the edit-versus-right question has never been
+// answered by Siobhan.
 // ⭐ NOT "junior". Paul cut the word on 24 Aug: "it probably just devalues
 // everything." Do not reintroduce it anywhere.
 // ⭐⭐ AND NEVER WRITE WHAT IT IS NOT. Paul, 24 Aug: "It's an AI designer. We
@@ -436,8 +447,11 @@ export default function ExpleoDoc() {
           Written from Paul's brief on 24 Aug 2026. */}
       <PPSection id="designer" k="08" title="My recommendation: The AI designer">
         <p className="pps-standfirst">
-          We would build one agent, and we would keep it narrow on purpose.
-          It makes infographics and one-page PDFs for sales colleagues.
+          We would build one agent for sales colleagues. It makes
+          infographics and process diagrams, one and two page PDFs,
+          LinkedIn carousels, posters and internal announcements, and quote
+          and values cards. All of those are the same job underneath: a page
+          of your own content, laid out using your real assets.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           It holds your brand guidelines and your real assets: the logo
@@ -542,7 +556,7 @@ export default function ExpleoDoc() {
               title: "The AI designer",
               bullets: [
                 "One agent, calibrated to your brand guidelines and your real assets",
-                "Infographics and one-page PDFs for sales colleagues",
+                "Infographics, PDFs, carousels, posters and quote cards",
                 "A dedicated section of our site for your colleagues to work in",
                 "Three weeks of building and testing, with you and your designer",
               ],
