@@ -489,8 +489,8 @@ export default function ExpleoDoc() {
           briefs through it, we fix what comes back wrong, and we repeat
           until you are happy to put it in front of colleagues. You sign it
           off before anyone else sees it. That back and forth is most of
-          the three weeks, and it is the part that decides whether the
-          output is good enough to stand over.
+          the three weeks, and it is what makes the output consistent enough
+          to hand to colleagues.
         </p>
       </PPSection>
 
@@ -532,10 +532,11 @@ export default function ExpleoDoc() {
           so she can see the shape and cost it now. */}
       <PPSection id="recommend" k="09" title="What we’d recommend">
         <p className="pps-standfirst">
-          Option A. Start with the one designer. We build it, the three
-          weeks are you and your designer testing it, and you put it in
-          front of a small group of sales colleagues before deciding
-          anything else.
+          Option A. It is the narrowest way to start using quality AI on
+          your brand and creative work, before investing in it in any
+          significant way. We build the one designer, you and your designer
+          work it through over three weeks, and your sales colleagues use it
+          from there.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Option B is costed here so you can see what a small team looks
