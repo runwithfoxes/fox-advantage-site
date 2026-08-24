@@ -15,7 +15,9 @@
 // never be linked from here. Every demonstration below is our own work for
 // other clients, which is what golden rule two requires anyway.
 //
-// WHAT PAUL IS SELLING (his brief, 24 Aug): one junior AI designer agent,
+// WHAT PAUL IS SELLING (his brief, 24 Aug): one AI designer agent,
+// ⭐ NOT "junior". Paul cut the word on 24 Aug: "it probably just devalues
+// everything." Do not reintroduce it anywhere.
 // narrow to infographics and one-page PDFs for sales colleagues. First hire in
 // an AI creative team their own designer manages. Later hires cover email,
 // advertising, social and the website. Runs on Claude Managed Agents so nobody
@@ -46,7 +48,7 @@ import "./library/four-things.css";
 import "./fidelity-cases.css";
 
 // ⭐ Fidelity's order, minus the adoption grid and the Growth Agent, plus one
-// new per-client section (08, the junior designer) and the three that make it a
+// new per-client section (08, the AI designer) and the three that make it a
 // proposal.
 //
 // Why the adoption grid is out: it draws a 140-block programme across four
@@ -64,7 +66,7 @@ const SECTIONS = [
   { id: "creative", title: "Creative Director" },
   { id: "guardian", title: "Brand Guardian" },
   { id: "writer", title: "AI Writers" },
-  { id: "designer", title: "The junior AI designer" },
+  { id: "designer", title: "The AI designer" },
   { id: "designer-use", title: "How your colleagues would use it" },
   { id: "designer-weeks", title: "The first three weeks" },
   { id: "designer-infra", title: "Nobody needs a Claude licence" },
@@ -95,7 +97,7 @@ const RAIL_GROUPS = [
       },
       {
         id: "designer",
-        title: "The junior AI designer",
+        title: "The AI designer",
         num: "04",
         ids: [
           "designer",
@@ -455,9 +457,9 @@ export default function ExpleoDoc() {
       </PPSection>
 
       {/* ⭐ THE OFFER. Per client. This is the section Siobhan actually asked
-          for, and the only place the junior designer's scope is defined.
+          for, and the only place the AI designer's scope is defined.
           Written from Paul's brief on 24 Aug 2026. */}
-      <PPSection id="designer" k="08" title="The junior AI designer">
+      <PPSection id="designer" k="08" title="The AI designer">
         <p className="pps-standfirst">
           We would build one agent, and we would keep it narrow on purpose.
           It makes infographics and one-page PDFs for sales colleagues. If
@@ -533,7 +535,8 @@ export default function ExpleoDoc() {
       <PPSection id="designer-team" sub title="The team it becomes">
         <p className="pps-standfirst">
           The designer would be the first of several. Later ones would
-          cover email, advertising, social and the website, and your
+          cover advertising, which is the Creative Director shown above,
+          and email, social and the website, and your
           designer manages them the way she would manage people: setting the
           standard, reviewing the work, deciding what each one is allowed to
           do. That is why the second option below is sized as a team rather
@@ -544,7 +547,7 @@ export default function ExpleoDoc() {
       {/* ⭐ THE THREE SECTIONS A PROPOSAL ADDS.
           ⚠️ The recommendation is Option A, deliberately, and `featured` sits
           on A rather than B. Paul's instruction, 24 Aug: she should test the
-          junior designer before buying more, and the team options are there
+          designer before buying more, and the team options are there
           so she can see the shape and cost it now. */}
       <PPSection id="recommend" k="09" title="What we’d recommend">
         <p className="pps-standfirst">
@@ -568,7 +571,7 @@ export default function ExpleoDoc() {
           cards={[
             {
               label: "Option A",
-              title: "The junior AI designer",
+              title: "The AI designer",
               bullets: [
                 "One agent, calibrated to your brand guidelines and your real assets",
                 "Infographics and one-page PDFs for sales colleagues",
@@ -587,8 +590,8 @@ export default function ExpleoDoc() {
               label: "Option B",
               title: "Three agents",
               bullets: [
-                "The junior designer, plus two more of your choosing",
-                "Email, advertising, social or the website",
+                "The AI designer, plus two more of your choosing",
+                "Creative Director for advertising, shown above, or agents for email, social or the website",
                 "All calibrated to the same guidelines and the same assets",
                 "We build them, run them and keep them working",
               ],
