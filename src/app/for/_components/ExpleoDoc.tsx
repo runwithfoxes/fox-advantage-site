@@ -148,11 +148,6 @@ export default function ExpleoDoc() {
           colleagues would use it, what the first three weeks involve, and
           what it costs.
         </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Nothing you sent us appears on this page or anywhere else. The
-          work we have already done on your guidelines we will show you
-          live, on a call, rather than put it on a page.
-        </p>
       </PPSection>
 
       {/* WHAT WE DO. Paul's own copy, verbatim from the Fidelity page. */}
