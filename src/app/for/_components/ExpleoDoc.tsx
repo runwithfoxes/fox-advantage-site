@@ -449,7 +449,7 @@ export default function ExpleoDoc() {
 
       <PPSection id="designer-use" sub title="How your colleagues would use it">
         <p className="pps-standfirst">
-          Through a dedicated section of our website that we build for
+          Through a dedicated section of runwithfoxes.com that we build for
           Expleo. A colleague describes what they need in ordinary language.
           We turn that into a proper brief behind the scenes, so nobody has
           to learn how to prompt. The agent makes the piece, a check runs
