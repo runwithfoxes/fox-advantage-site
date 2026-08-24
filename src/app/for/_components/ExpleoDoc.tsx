@@ -67,9 +67,9 @@ const SECTIONS = [
   { id: "designer-weeks", title: "The first three weeks" },
   { id: "designer-infra", title: "Nobody needs a Claude licence" },
   { id: "designer-team", title: "The team it becomes" },
-  { id: "work", title: "Clients" },
   { id: "recommend", title: "What we’d recommend" },
   { id: "pricing", title: "The price" },
+  { id: "work", title: "Case studies" },
   { id: "library", title: "Your library" },
 ];
 
@@ -115,8 +115,8 @@ const RAIL_GROUPS = [
     label: "/also",
     compact: true,
     entries: [
-      { id: "work", title: "Clients" },
       { id: "pricing", title: "Pricing" },
+      { id: "work", title: "Case studies" },
     ],
   },
 ];
@@ -539,9 +539,99 @@ export default function ExpleoDoc() {
         </p>
       </PPSection>
 
-      {/* THE WORK. Miro, Moloco, Sabre. Copy verbatim from the Fidelity
-          page, where Paul agreed it line by line. Every number is real. */}
-      <PPSection id="work" k="09" title="Clients">
+      {/* ⭐ THE THREE SECTIONS A PROPOSAL ADDS.
+          ⚠️ The recommendation is Option A, deliberately, and `featured` sits
+          on A rather than B. Paul's instruction, 24 Aug: she should test the
+          junior designer before buying more, and the team options are there
+          so she can see the shape and cost it now. */}
+      <PPSection id="recommend" k="09" title="What we’d recommend">
+        <p className="pps-standfirst">
+          Option A. Hire the one designer, work it through the three weeks
+          with us, and put it in front of a small group of sales colleagues
+          before deciding anything else. Within a month you will know
+          whether the work it produces is good enough to stand over. That is
+          the question worth answering first, and neither of us can answer
+          it from a document.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          Options B and C are the same idea at team size, and they are
+          costed here so you can take a number to a budget conversation
+          without waiting for us. We would still suggest starting with one
+          and seeing how your colleagues use it before committing to the
+          rest.
+        </p>
+      </PPSection>
+
+      <PPSection id="pricing" k="10" title="The price">
+        <PricingCards
+          cards={[
+            {
+              label: "Option A",
+              title: "The junior AI designer",
+              bullets: [
+                "One agent, calibrated to your brand guidelines and your real assets",
+                "Infographics and one-page PDFs for sales colleagues",
+                "A dedicated section of our site for your colleagues to work in",
+                "Three weeks of building and testing, with you and your designer",
+              ],
+              price: "EUR 3,500 plus VAT",
+              note: "Then EUR 99 a month, reviewed together after three months. Normally EUR 8,000.",
+              featured: true,
+            },
+            // ⛔⛔ PLACEHOLDER. Paul had not named these numbers when this page
+            // was built and they must NOT ship as a guess. The arithmetic he
+            // was offered on 24 Aug was three roles at the EUR 8,000 list rate
+            // less the EUR 3,500 already paid, and the same for five. He has
+            // not agreed it. Replace both, and the monthly for each, before
+            // this goes anywhere near Siobhan.
+            {
+              label: "Option B",
+              title: "A small creative team",
+              bullets: [
+                "The junior designer, plus two more agents of your choosing",
+                "Email, advertising, social or the website",
+                "All calibrated to the same guidelines and assets",
+                "Your designer manages the team, we build and hand over",
+              ],
+              price: "Price to confirm",
+              note: "PLACEHOLDER - Paul sets this number.",
+            },
+            {
+              label: "Option C",
+              title: "The full creative team",
+              bullets: [
+                "The junior designer, plus email, advertising, social and website agents",
+                "One shared brand layer behind all of them",
+                "Training so your designer can run and extend the team",
+                "Handover, so it keeps working without us",
+              ],
+              price: "Price to confirm",
+              note: "PLACEHOLDER - Paul sets this number.",
+            },
+          ]}
+        />
+        <CoversGrid
+          covers={[
+            "All build and calibration work",
+            "The testing weeks with you and your designer",
+            "The hosted infrastructure the agents run on",
+            "A named point of contact, Paul",
+          ]}
+          notCovered={[
+            "Claude licences, which are not needed for this",
+            "Stock imagery or photography",
+            "Media spend",
+          ]}
+        />
+        <CloseBox clientName="Expleo" />
+      </PPSection>
+
+      {/* CASE STUDIES. Miro, Moloco, Sabre. Copy verbatim from the Fidelity
+          page, where Paul agreed it line by line. Every number is real.
+          ⭐ SITS AFTER THE PRICE on this page, not before it. Paul, 24 Aug:
+          the price comes first, then the proof. Every other build has it the
+          other way round, so do not "correct" it back. */}
+      <PPSection id="work" k="11" title="Case studies">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
@@ -679,93 +769,6 @@ export default function ExpleoDoc() {
             </div>
           </div>
         </div>
-      </PPSection>
-
-      {/* ⭐ THE THREE SECTIONS A PROPOSAL ADDS.
-          ⚠️ The recommendation is Option A, deliberately, and `featured` sits
-          on A rather than B. Paul's instruction, 24 Aug: she should test the
-          junior designer before buying more, and the team options are there
-          so she can see the shape and cost it now. */}
-      <PPSection id="recommend" k="10" title="What we’d recommend">
-        <p className="pps-standfirst">
-          Option A. Hire the one designer, work it through the three weeks
-          with us, and put it in front of a small group of sales colleagues
-          before deciding anything else. Within a month you will know
-          whether the work it produces is good enough to stand over. That is
-          the question worth answering first, and neither of us can answer
-          it from a document.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Options B and C are the same idea at team size, and they are
-          costed here so you can take a number to a budget conversation
-          without waiting for us. We would still suggest starting with one
-          and seeing how your colleagues use it before committing to the
-          rest.
-        </p>
-      </PPSection>
-
-      <PPSection id="pricing" k="11" title="The price">
-        <PricingCards
-          cards={[
-            {
-              label: "Option A",
-              title: "The junior AI designer",
-              bullets: [
-                "One agent, calibrated to your brand guidelines and your real assets",
-                "Infographics and one-page PDFs for sales colleagues",
-                "A dedicated section of our site for your colleagues to work in",
-                "Three weeks of building and testing, with you and your designer",
-              ],
-              price: "EUR 3,500 plus VAT",
-              note: "Then EUR 99 a month, reviewed together after three months. Normally EUR 8,000.",
-              featured: true,
-            },
-            // ⛔⛔ PLACEHOLDER. Paul had not named these numbers when this page
-            // was built and they must NOT ship as a guess. The arithmetic he
-            // was offered on 24 Aug was three roles at the EUR 8,000 list rate
-            // less the EUR 3,500 already paid, and the same for five. He has
-            // not agreed it. Replace both, and the monthly for each, before
-            // this goes anywhere near Siobhan.
-            {
-              label: "Option B",
-              title: "A small creative team",
-              bullets: [
-                "The junior designer, plus two more agents of your choosing",
-                "Email, advertising, social or the website",
-                "All calibrated to the same guidelines and assets",
-                "Your designer manages the team, we build and hand over",
-              ],
-              price: "Price to confirm",
-              note: "PLACEHOLDER - Paul sets this number.",
-            },
-            {
-              label: "Option C",
-              title: "The full creative team",
-              bullets: [
-                "The junior designer, plus email, advertising, social and website agents",
-                "One shared brand layer behind all of them",
-                "Training so your designer can run and extend the team",
-                "Handover, so it keeps working without us",
-              ],
-              price: "Price to confirm",
-              note: "PLACEHOLDER - Paul sets this number.",
-            },
-          ]}
-        />
-        <CoversGrid
-          covers={[
-            "All build and calibration work",
-            "The testing weeks with you and your designer",
-            "The hosted infrastructure the agents run on",
-            "A named point of contact, Paul",
-          ]}
-          notCovered={[
-            "Claude licences, which are not needed for this",
-            "Stock imagery or photography",
-            "Media spend",
-          ]}
-        />
-        <CloseBox clientName="Expleo" />
       </PPSection>
 
       <PPSection id="library" k="12" title="Your library">
