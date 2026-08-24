@@ -536,8 +536,8 @@ export default function ExpleoDoc() {
           cover email, advertising, social and the website, and your
           designer manages them the way she would manage people: setting the
           standard, reviewing the work, deciding what each one is allowed to
-          do. That is why the options below are sized as a team rather than
-          as a bigger tool.
+          do. That is why the second option below is sized as a team rather
+          than as a bigger tool.
         </p>
       </PPSection>
 
@@ -556,13 +556,10 @@ export default function ExpleoDoc() {
           it from a document.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Options B and C are costed here so you can take a number to a
-          budget conversation without waiting for us. The difference between
-          them is not only how many agents you get. Under B we build the
-          agents and keep them running for you. Under C we also train your
-          designer to change what each one does and hand the whole team over,
-          so it keeps working whether or not we are involved. That is worth
-          buying once you know you want the team, and not before.
+          Option B is costed here so you can see what a small team looks
+          like and take a number to a budget conversation without waiting for
+          us. We would still suggest starting with the one and seeing how
+          your colleagues actually use it.
         </p>
       </PPSection>
 
@@ -602,20 +599,27 @@ export default function ExpleoDoc() {
                 value: "€15,597 plus VAT",
               },
             },
-            // ⛔ PLACEHOLDER PRICE, and the only one left. Paul named A and B
-            // on 24 Aug and has not named C. Do not guess it.
-            {
-              label: "Option C",
-              title: "The team, and you own it",
-              bullets: [
-                "All five agents: the designer, email, advertising, social and the website",
-                "One shared brand layer behind them, so they cannot drift apart",
-                "Training, so your designer can change what each one does",
-                "Handover, so the team keeps working whether or not we are involved",
-              ],
-              price: "Price to confirm",
-              note: "PLACEHOLDER - Paul sets this number.",
-            },
+            // ⭐ OPTION C IS PARKED, NOT DELETED. Paul, 24 Aug: "let's leave it
+            // just for option A and B for the moment." It was the whole team
+            // with training and handover so their own designer owns it, and it
+            // was the one card still carrying no price. Restore it here when he
+            // names a number. Two open notes travel with it: the "shared brand
+            // layer" bullet needs rewriting in his words ("one set of brand
+            // documents and assets that all five read from, so a change lands
+            // everywhere at once"), and the recommendation copy below has to
+            // mention it again.
+            //
+            // {
+            //   label: "Option C",
+            //   title: "The team, and you own it",
+            //   bullets: [
+            //     "All five agents: the designer, email, advertising, social and the website",
+            //     "One set of brand documents and assets that all five read from, so a change lands everywhere at once",
+            //     "Training, so your designer can change what each one does",
+            //     "Handover, so the team keeps working whether or not we are involved",
+            //   ],
+            //   price: "Price to confirm",
+            // },
           ]}
         />
         <CoversGrid
