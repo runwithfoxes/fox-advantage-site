@@ -20,4 +20,7 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Siobhan Smith, Expleo. Built 24 Aug from the Kite template: the first
   // real page to carry a recommendation and a price.
   expleo: dynamic(() => import("./ExpleoDoc"), { ssr: false }),
+  // Tony McGuinness and Eamon Galavan, Ace Express Freight. Built 25 Aug from
+  // the Expleo page. One priced option, the AI writer for LinkedIn.
+  "ace-express": dynamic(() => import("./AceExpressDoc"), { ssr: false }),
 };

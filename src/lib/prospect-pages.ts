@@ -63,6 +63,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "EXPLEO_PASSWORD",
     passwordFallback: "expleo26",
   },
+  // Tony McGuinness and Eamon Galavan, Ace Express Freight. Built 25 Aug 2026
+  // from the Expleo page, off the 25 Aug discovery call. They came in from the
+  // Newstalk radio ads. One priced option only, at Paul's instruction.
+  "ace-express": {
+    slug: "ace-express",
+    client: "Ace Express Freight",
+    shortName: "Ace Express",
+    tabTitle: "Run with Foxes for Ace Express",
+    passwordEnv: "ACE_EXPRESS_PASSWORD",
+    passwordFallback: "aceexpress26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
