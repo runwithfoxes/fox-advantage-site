@@ -208,6 +208,11 @@ export default function AceExpressDoc() {
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
+      /* Puts the PDF link in the top bar. Source:
+         wireframes/ace-express-proposal-pdf-source.html. ⚠️ REGENERATE THE PDF
+         WHENEVER THIS PAGE'S COPY CHANGES - they are two files holding the same
+         words and nothing enforces that. */
+      pdfHref="/for/ace-express/pdf"
     >
       {/* WHAT THIS IS. Per client, and the ONLY place Ace Express's own
           situation appears anywhere on this page. Paul's own words for the
