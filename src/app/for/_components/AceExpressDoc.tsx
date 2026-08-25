@@ -535,9 +535,7 @@ export default function AceExpressDoc() {
       <PPSection id="writeragent-use" sub title="How you would use it">
         <p className="pps-standfirst">
           Once a month you would get a month&rsquo;s worth of posts in one
-          go. You read through them, keep the ones you want, and tell us
-          what you would rather see instead. That is the only work on your
-          side. The posts go up from your own profiles, in your own words.
+          go. You pick the ones you like and post them.
         </p>
       </PPSection>
 
@@ -546,9 +544,9 @@ export default function AceExpressDoc() {
           There are two sessions with you and then two weeks of building. We
           are building a writer that sounds like you, so the sessions are
           where we get what is in your heads. We would ask what you sell,
-          who buys it, why customers pick you over the forwarder who rang
-          them last week, and what a good post sounds like coming from a
-          director. We write that up as your positioning and messaging.
+          who buys it, why customers pick you over another forwarder, and
+          what a good post sounds like coming from a director. We write that
+          up as your positioning and messaging.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The two weeks are where we build the agent and test it against
