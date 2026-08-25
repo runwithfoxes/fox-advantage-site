@@ -133,7 +133,7 @@ const SECTIONS = [
   { id: "lifecycle", title: "Lifecycle Agent" },
   { id: "writer", title: "AI Writers" },
   { id: "writeragent", title: "My recommendation: The AI writer" },
-  { id: "writeragent-use", title: "How your team would use it" },
+  { id: "writeragent-use", title: "How you would use it" },
   { id: "writeragent-weeks", title: "The first two weeks" },
   { id: "writeragent-infra", title: "Nobody needs a Claude licence" },
   { id: "writeragent-after", title: "What we would build after it" },
@@ -177,7 +177,7 @@ const RAIL_GROUPS = [
           "writeragent-after",
         ],
         children: [
-          { id: "writeragent-use", title: "How your team uses it" },
+          { id: "writeragent-use", title: "How you would use it" },
           { id: "writeragent-weeks", title: "The first two weeks" },
           { id: "writeragent-infra", title: "No Claude licence needed" },
           { id: "writeragent-after", title: "What comes after it" },
@@ -526,13 +526,13 @@ export default function AceExpressDoc() {
         <p className="pps-standfirst">
           We would build one agent that writes LinkedIn posts for Tony,
           Eamon and Philip. It researches topics, comes up with the ideas,
-          and writes the posts. Your people read what it has written, choose
-          the ones they want to use, and paste them into LinkedIn from their
-          own profiles.
+          and writes the posts. You read what it has written, choose the
+          ones you want to use, and paste them into LinkedIn from your own
+          profiles.
         </p>
       </PPSection>
 
-      <PPSection id="writeragent-use" sub title="How your team would use it">
+      <PPSection id="writeragent-use" sub title="How you would use it">
         <p className="pps-standfirst">
           Once a month you would get a month&rsquo;s worth of posts in one
           go. You read through them, keep the ones you want, and tell us
@@ -560,8 +560,8 @@ export default function AceExpressDoc() {
       <PPSection id="writeragent-infra" sub title="Nobody needs a Claude licence">
         <p className="pps-standfirst">
           The agent runs on Claude Managed Agents, which is Anthropic&rsquo;s
-          own hosted service. Your team reaches it through our page, so
-          there is no software to install and no per-person licence to buy.
+          own hosted service. You reach it through our page, so there is no
+          software to install and no per-person licence to buy.
           Anthropic does not use data sent through its commercial API to
           train its models, and that is a contractual commitment rather than
           a setting we switch on. Anthropic holds SOC 2 Type I and Type II,
@@ -570,8 +570,8 @@ export default function AceExpressDoc() {
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           If you would rather run it in your own Claude account, we can move
-          the whole thing across and show your people how to run and extend
-          it themselves.
+          the whole thing across and show you how to run and extend it
+          yourselves.
         </p>
       </PPSection>
 
