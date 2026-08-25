@@ -549,9 +549,10 @@ export default function AceExpressDoc() {
           up as your positioning and messaging.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The two weeks are where we build the agent and test it against
-          your own subject matter, until the writing is good enough to go
-          out under your name. You sign it off before anything is published.
+          The two weeks are where we build the agent and test it. We run
+          real topics through it, fix what comes back wrong, and repeat
+          until you are happy with the writing. You sign it off before
+          anything is published.
         </p>
       </PPSection>
 
