@@ -541,17 +541,17 @@ export default function AceExpressDoc() {
 
       <PPSection id="writeragent-weeks" sub title="The first two weeks">
         <p className="pps-standfirst">
-          There are two sessions with you and then two weeks of building. We
-          are building a writer that sounds like you, so the sessions are
-          where we get what is in your heads. We would ask what you sell,
-          who buys it, why customers pick you over another forwarder, and
-          what a good post sounds like coming from a director. We write that
-          up as your positioning and messaging.
+          There are two sessions with you, then two weeks of building. The
+          agent has to sound like you, so the sessions are where we get that
+          from you. We would ask what you sell, who buys it, why customers
+          pick you over another forwarder, and what a good post sounds like
+          coming from a director. We write that up as your positioning and
+          messaging.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The two weeks are where we build the agent and test it. We run
-          real topics through it, fix what comes back wrong, and repeat
-          until you are happy with the writing. You sign it off before
+          The two weeks are the build and the testing. We build the agent on
+          top of that positioning and messaging, then run real topics through
+          it and review the output with you. You sign off the writing before
           anything is published.
         </p>
       </PPSection>
