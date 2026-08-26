@@ -74,6 +74,19 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "ACE_EXPRESS_PASSWORD",
     passwordFallback: "aceexpress26",
   },
+  // James Sullivan and Chris Kenny, Great National Hotels & Resorts. Built
+  // 26 Aug 2026 from the Return2Sender capabilities shape. No price on the
+  // page at Paul's instruction: the close is an hour with Chris on their
+  // content and creative workflow. The old priced page (6 Aug, EUR 7,500,
+  // never sent) stays in paul-hub as the copy record.
+  "great-national": {
+    slug: "great-national",
+    client: "Great National Hotels & Resorts",
+    shortName: "Great National",
+    tabTitle: "Run with Foxes for Great National",
+    passwordEnv: "GREAT_NATIONAL_PASSWORD",
+    passwordFallback: "greatnational26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

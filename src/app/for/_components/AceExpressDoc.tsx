@@ -803,7 +803,7 @@ export default function AceExpressDoc() {
           items={[
             {
               label: "Distinctive brands have an incredible opportunity with AI",
-              note: "Why holding a brand exactly matters more, not less, once the volume of work goes up.",
+              note: "Why holding a brand exactly gets more important as the volume of work goes up.",
               href: "/distinctive",
               kind: "file",
               meta: "essay",

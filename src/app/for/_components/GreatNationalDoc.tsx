@@ -1,111 +1,60 @@
 "use client";
 
-// The page for Donald Douglas, Return2Sender.
-// Call 09:00, Tue 11 Aug 2026, video. An hour in Sandymount to follow.
+// The page for James Sullivan and Chris Kenny, Great National Hotels & Resorts.
+// Met 6 Aug 2026, 09:45. Built 26 Aug on Paul's instruction, replacing the
+// priced 6 Aug page (EUR 7,500 Creative and Content Agent) which was never
+// sent and stays in paul-hub as the copy record.
 //
-// NOT a proposal. No price, no scope, no close. He asked for one thing,
-// verbatim at 41:01 on the call: "be great if you could send me a few links
-// just so I'm not a dummy for the meeting, and just so I could get started,
-// because I'm committed to it and interested." This page is those links.
+// NOT a proposal. No price anywhere. Paul, 26 Aug: show the range of things
+// we can do in the new format, and offer an hour with Chris on the content
+// and creative workflow in more detail, to see if we can help. The close
+// section carries that offer and nothing else.
 //
-// ⭐ ASSEMBLY: the Fidelity page is the base, taken via the Affirm build.
-// Where a section
-// exists on both, the FIDELITY copy is used verbatim, because that is the
-// one Paul passed line by line on 10 Aug.
+// ⭐ ASSEMBLY: the Return2Sender page is the base, which carries the Fidelity
+// copy Paul passed line by line on 10 Aug. Fixed sections are verbatim.
 //
-// ⭐ WHY THESE MODULES. He is launching the computer vision module in the
-// Return2Sender platform (12:13 on the call) and has no marketing function:
-// "I have a search agency, I have designers, but it's a little bit
-// embarrassing in some ways, I don't actually do any marketing. I don't do
-// LinkedIn." He will not hire - "I'm not bringing in junior staff with a
-// leaky bucket" - and wants the system built once, then a project manager
-// to run it. So the page is the production line for a launch:
-//   Redesigning workflows -> his "full 360 plan, input, output"
-//   AI Writers            -> positioning first; he said the product is
-//                            "not that differentiated", so the gate is
-//                            the whole point
-//   Brand Guardian        -> he read the brand guidelines material the
-//                            morning of the call and said so
-//   Creative Director     -> the answer to "five grand to produce a
-//                            beautiful looking PDF and I don't have the
-//                            money for that"
-//   Growth Agent          -> holds the outreach window, for "reaching all
-//                            the people I know"
-//   Lifecycle Agent       -> "get people onto my platform"
+// ⭐ WHY THESE MODULES. James asked for a road map and said twice they will
+// not add headcount ("they're all centrally charged out"). Chris asked for a
+// brand folder per property driving content, written and images both, and
+// his word for the problem was inconsistency. So:
+//   Redesigning workflows -> the spine, how the production line changes
+//   AI Writers            -> the writing half of Chris's ask
+//   Creative Director     -> the artwork half: master ad to size set
+//   Brand Guardian        -> the machine pointed at "inconsistency"
+//   Lifecycle Agent       -> guest email, the direct route around OTA
+//                            commission, on their own road map
+//   GEO audit             -> real research on greatnationalhotels.com,
+//                            run 6 Aug, with the Revanista finding
 //
-// ⛔ OUT, deliberately: Designing team AI adoption and Training teams (both
-// answer a large organisation deciding role shapes, which was Peter Berry's
-// situation, not his). Brief Coach and Ghostwriter (he does not brief
-// agencies and does not use LinkedIn). Search and GEO (no audit has been
-// run on return2sender.ie, and the menu rule is never to offer that module
-// without the real research behind it).
+// ⛔ OUT, deliberately: Growth Agent and outbound (B2C hotel group, no
+// outbound lane). Adoption and Training (a large organisation deciding role
+// shapes was Peter Berry's situation, not theirs). The website: Paul raised
+// it 26 Aug and they are talking to their own digital agency, so it appears
+// nowhere, not even on a road map line. The reporting view stays unpriced
+// and unpromised because data access is unscoped (booking engine is SHR's).
 //
-// ⛔ Gates this build carries: no invented facts about Return2Sender, no
+// ⛔ Gates this build carries: no invented facts about Great National, no
 // unsourced numbers, fictional names only inside demonstrations, every
-// class prefixed, nothing hidden behind a scroll reveal. His own reality
-// appears nowhere on this page except the opening section.
+// class prefixed, nothing hidden behind a scroll reveal. Their own reality
+// appears nowhere on this page except the opening section and the audit,
+// which is real measured research.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { Figure } from "./library/Figure";
 import FourThingsFigure from "./library/FourThingsFigure";
-import { OutreachWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
 import BrandGuardian from "./library/BrandGuardian";
 import CreativeDirector from "./library/CreativeDirector";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
+import GreatNationalGeoAudit from "./library/GreatNationalGeoAudit";
 import LibraryList from "./LibraryList";
-import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
 
-// Outreach demonstration threads. Fidelity's set is a fictional ADVISOR
-// world, because that is how their B2B business runs. Return2Sender sells
-// promotions to consumer brands and to the agencies that run activations,
-// so the world here is shopper, brand and trade marketers. Every company and
-// person is invented, and the sender is never Donald.
-const OUTREACH_THREADS = [
-  {
-    name: "Aoife Brennan",
-    company: "Shopper Marketing Manager · Ardmore Foods",
-    message:
-      "Hi Aoife - you have the autumn on-pack running across the cereal range. There is now a way to validate the purchase from a photo of the pack rather than a code, which cuts the drop-off at entry. Worth ten minutes?",
-    reply: "Yes - we lose people at the code every time. Send it on.",
-  },
-  {
-    name: "Mark Delaney",
-    company: "Brand Manager · Kilbride Beverages",
-    message:
-      "Hi Mark - saw the summer promotion is back for a third year. If it is the same mechanic again, there is a version that keeps people coming back through the season rather than entering once. Happy to show you?",
-    reply: "Third year and the entries are flat. Go on.",
-  },
-  {
-    name: "Sinead Kavanagh",
-    company: "Head of Trade Marketing · Corrigan Group",
-    message:
-      "Hi Sinead - you asked last year whether the entry data could come back in a shape your CRM would take. That is now standard rather than a project. Ten minutes?",
-    reply: "That was the blocker last time. Let's talk.",
-  },
-  {
-    name: "Peter Nolan",
-    company: "Account Director · Lansdowne Activation",
-    message:
-      "Hi Peter - for the retail activations you run, the pack recognition and the gamified layer can now be set up in days rather than weeks. Useful for the pitches with short lead times?",
-    reply: "The lead times are exactly the problem. Send details.",
-  },
-  {
-    name: "Rachel Moore",
-    company: "Category Marketing Lead · Thornbury Retail",
-    message:
-      "Hi Rachel - a version of the on-pack mechanic sized for own brand rather than the big FMCG budgets is now available. Worth a look before the spring range review?",
-    reply: "Own brand is where we need it. Yes please.",
-  },
-];
-
-// ⭐ PETER'S ORDER, minus the sections that do not apply. Paul's instruction
-// 11 Aug was to keep Fidelity's order so he can skip over when presenting,
-// so nothing here is resorted; the cut sections are simply absent.
+// Fidelity's order, minus the sections that do not apply, plus the audit and
+// the next-step close. Nothing resorted.
 const SECTIONS = [
   { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
@@ -113,18 +62,19 @@ const SECTIONS = [
   { id: "roles", title: "Rethinking the roles" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "buildingagents", title: "Building agents" },
-  { id: "growth", title: "Growth Agent" },
   { id: "writer", title: "AI Writers" },
-  { id: "guardian", title: "Brand Guardian" },
   { id: "creative", title: "Creative Director" },
+  { id: "guardian", title: "Brand Guardian" },
   { id: "lifecycle", title: "Lifecycle Agent" },
   { id: "work", title: "The work" },
+  { id: "geo", title: "What AI assistants say" },
   { id: "library", title: "Your library" },
+  { id: "next", title: "The next step" },
 ];
 
-// ⛔ THE RAIL IS THE FOUR THINGS AND NOTHING ELSE (three cuts on Kite, all
-// for busyness). Children under Building agents are only the agents this
-// page actually demonstrates.
+// ⛔ THE RAIL IS SHORT AND STAYS SHORT (three cuts on Kite, all for
+// busyness). Children under Building agents are only the agents this page
+// actually demonstrates.
 const RAIL_GROUPS = [
   {
     label: "/what we do",
@@ -134,60 +84,44 @@ const RAIL_GROUPS = [
         id: "buildingagents",
         title: "Building agents",
         num: "02",
-        ids: [
-          "buildingagents",
-          "growth",
-          "writer",
-          "guardian",
-          "creative",
-          "lifecycle",
-        ],
+        ids: ["buildingagents", "writer", "creative", "guardian", "lifecycle"],
         children: [
-          { id: "growth", title: "Growth Agent" },
           { id: "writer", title: "Writers" },
-          { id: "guardian", title: "Brand Guardian" },
           { id: "creative", title: "Creative Director" },
+          { id: "guardian", title: "Brand Guardian" },
           { id: "lifecycle", title: "Lifecycle Agent" },
         ],
       },
+      { id: "geo", title: "What AI assistants say", num: "03" },
     ],
   },
 ];
 
-export default function ReturnToSenderDoc() {
+export default function GreatNationalDoc() {
   return (
     <ProspectShell
-      clientName="Return2Sender"
-      eyebrow="Prepared for Donald Douglas, Return2Sender"
-      /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line, same as on Fidelity. */
-      title="Set up the marketing system for the launch"
-      titleHl="the launch"
+      clientName="Great National Hotels & Resorts"
+      eyebrow="Prepared for James Sullivan and Chris Kenny, Great National Hotels & Resorts"
+      /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line. Carried over from the
+         6 Aug page, which he read. */
+      title="Build the Great National marketing team you never had"
+      titleHl="never had"
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
     >
-      {/* ⚠️ DRAFT COPY, Paul's pass owed. Written from the 11 Aug call
-          only. His own situation appears here and nowhere else on the page. */}
+      {/* ⚠️ DRAFT COPY, Paul's pass owed. Written from the 6 Aug call record
+          only. Their own situation appears here and nowhere else on the page
+          except the measured audit. */}
       <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">
-          You asked me to send you a few links before we meet, so you could
-          get started. This is them, in one place.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          You have the computer vision side of the platform coming, you want
-          the marketing system for it set up rather than staffed, and you
-          said you would put a project manager on it once it exists. This
-          page shows the kinds of things we build, working, so you can see
-          them rather than read about them.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Everything here is our own work or a demonstration we made. None of
-          it is about Return2Sender, and none of it assumes anything about
-          how you run. That is what the hour in Sandymount is for.
+          Everything here is our own work or a demonstration we made, and
+          none of it assumes anything about how Great National runs. The one
+          exception is the audit near the bottom, which is real research on
+          greatnationalhotels.com. The next step we would suggest is at the
+          end of the page.
         </p>
       </PPSection>
-
-
 
       {/* WHAT WE DO. Paul's own copy, verbatim from the Fidelity page. */}
       <PPSection id="howiwork" k="02" title="What we do">
@@ -238,21 +172,15 @@ export default function ReturnToSenderDoc() {
               ))}
             </div>
           </div>
-          {/* Essays picked for Donald: the Swiss Army knife post is how he
-              found Paul in the first place ("I was intrigued, one of the
-              reasons I got onto you was your post about Swiss Army knives"),
-              and the writer piece answers the positioning gate. */}
+          {/* Essays picked for Great National: the writer piece is the
+              content half of Chris's ask, the DBA essay is the consistency
+              argument, and the GEO essay pairs with the audit section. */}
           <div className="pps-hiw-links">
             <div>
               <p className="pps-hiw-cli-k">Essays</p>
               <ul className="pps-hiw-ll">
                 {[
                   ["how-i-build-an-ai-writer", "How I build an AI writer"],
-                  [
-                    "the-future-marketer-is-a-swiss-army-knife",
-                    "The future marketer is a Swiss Army knife",
-                  ],
-                  ["a-robot-called-jo", "A robot called Jo"],
                   [
                     "distinctive-brand-assets-in-an-ai-world",
                     "Distinctive Brand Assets in an AI world",
@@ -324,8 +252,6 @@ export default function ReturnToSenderDoc() {
         </div>
       </PPSection>
 
-
-
       {/* Paul's own copy, verbatim from the Fidelity page. */}
       <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
         <FourThingsFigure />
@@ -340,12 +266,9 @@ export default function ReturnToSenderDoc() {
         </p>
       </PPSection>
 
-
-
       {/* RETHINKING THE ROLES. Copy verbatim from the Fidelity page,
           including Paul's 10 Aug correction: start with the work, not the
-          team, because part of the point is removing handovers. No exhibit
-          exists for this yet; the argument is carried in copy. */}
+          team. No exhibit exists for this yet. */}
       <PPSection id="roles" k="04" title="Rethinking the roles">
         <p className="pps-standfirst">
           Individual productivity gets you started. Make everyone on a
@@ -361,18 +284,8 @@ export default function ReturnToSenderDoc() {
         </p>
       </PPSection>
 
-
-
-
-
-
-
-
-
-      {/* Paul's own copy, verbatim from the Fidelity page. This is the
-          spine of the page for Donald: it is the nearest thing we have to
-          his own words, "can you write almost a full 360 plan, input,
-          output, brand guidelines, and set up an agent-driven system". */}
+      {/* Paul's own copy, verbatim from the Fidelity page. For this reader
+          it is the campaign production line across many properties. */}
       <PPSection id="workflows" k="05" title="Redesigning workflows">
         <ArrivalBlueprint />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
@@ -397,68 +310,17 @@ export default function ReturnToSenderDoc() {
         </p>
       </PPSection>
 
-
-
-      {/* AGENTS COME EARLY ON THIS PAGE. On Fidelity they sit later. What
-          he asked for is a system he does not have to staff, so this is the
-          section he came for. Within the group, the Growth Agent leads
-          because it carries the outreach window, then Writers, because the
-          positioning gate is the answer to a product he himself called "not
-          that differentiated". */}
+      {/* AGENTS. Writers first because content is the ask, then the artwork
+          half, then the consistency machine, then guest email. */}
       <PPSection id="buildingagents" k="06" title="Building agents">
         <></>
       </PPSection>
 
-
-
-      {/* GROWTH AGENT. Here because it holds the outreach window, which is
-          the answer to "reaching all the people I know". The outreach world
-          is rebuilt for him: shopper and trade marketers at consumer brands
-          and activation agencies, the people who buy promotions. Every firm
-          and person invented. */}
-      <PPSection id="growth" sub title="Growth Agent">
-        <PipelineBoard />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          We build Growth Agents for teams. The growth agent does a few
-          things. It is the single point of contact for updating and
-          tracking the pipeline. For example, it opens the dashboard daily
-          for it and the marketer to review together. It does analysis to
-          help uncover blockers.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <JoNote />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          And most importantly, it runs the outbound campaigns, be that
-          email or LinkedIn, running all the steps from list building to
-          writing the messages, sending and analysis.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <OutreachWindow
-            threads={OUTREACH_THREADS}
-            title="Outreach"
-            sentLabel="84 sent"
-            width={720}
-          />
-        </div>
-        <div style={{ marginTop: 26 }}>
-          <CampaignWindow />
-        </div>
-        <p className="ppft-honest">
-          <span className="ppft-slash">/illustrative.</span> Every firm and
-          person in these windows is invented. The machinery is real and
-          running; a Return2Sender version would be built to your world and your
-          rules, and nothing in it sends until someone on your team says go.
-        </p>
-      </PPSection>
-
-
-
-      {/* AI WRITERS. Verbatim from the Fidelity page, including Paul's own
-          slop copy. The demonstration stays Kite's renewal email: it is the
-          worked example the writer piece was built on, and swapping it for a
-          promotions email would mean inventing Return2Sender's voice, which is
-          exactly what the no-invented-facts gate forbids. */}
+      {/* AI WRITERS. Verbatim from the Fidelity page. The demonstration
+          stays Kite's renewal email: it is the worked example the writer
+          piece was built on, and swapping it for a hotel email would mean
+          inventing Great National's voice, which the no-invented-facts gate
+          forbids. */}
       <PPSection id="writer" sub title="AI Writers">
         <Figure name="fig-12" />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
@@ -509,16 +371,27 @@ export default function ReturnToSenderDoc() {
         </div>
       </PPSection>
 
+      {/* CREATIVE DIRECTOR. The artwork half of Chris's ask: one approved
+          master ad spawning the size set is the answer to campaign pieces
+          made again per property. Sabre's real work. */}
+      <PPSection id="creative" sub title="Creative Director">
+        <CreativeDirector />
+        {/* The Kite page's version of the same agent, kept because it shows
+            a different half of the job: one approved master ad spawning the
+            whole size set. Copy from the Kite page, Paul has NOT passed it. */}
+        <div style={{ marginTop: 34 }}>
+          <AdMachine />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          The same discipline, pointed at advertising. The team approves one
+          master ad; the machine makes every other size, holding the brand
+          exactly. Press run.
+        </p>
+      </PPSection>
 
-
-      {/* BRAND GUARDIAN. On the page at Paul's instruction, 11 Aug ("put all
-          of Peter's"), which overrules the default-off I had carried from
-          the build brief. The exhibit shows Sabre's real work.
-          ⛔ THE CHECK COUNT CAME OUT, 11 Aug, and does not go back. This
-          page said ten, Fidelity said nine, and the verdict strip says
-          "4 of 4 applicable". The count depends on the asset type, per
-          docs/brand-guardian-methodology.md. No named source for either
-          number. */}
+      {/* BRAND GUARDIAN. Chris's own word for the problem was inconsistency,
+          and this is the machine that measures it. The exhibit shows Sabre's
+          real work. ⛔ NO CHECK COUNT, see module-menu.md. */}
       <PPSection id="guardian" sub title="Brand Guardian">
         <BrandGuardian />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
@@ -531,35 +404,10 @@ export default function ReturnToSenderDoc() {
         </p>
       </PPSection>
 
-
-
-      {/* CREATIVE DIRECTOR. On the page at Paul's instruction, 11 Aug. One
-          approved master ad spawns the size set. Also Sabre's real work. */}
-      <PPSection id="creative" sub title="Creative Director">
-        <CreativeDirector />
-        {/* The Kite page's version of the same agent, kept because it shows
-            a different half of the job: Peter's exhibit is the work Sabre
-            made, this one is one approved master ad spawning the whole size
-            set. That is the half that speaks to sixty artworks per change.
-            Copy from the Kite page, Paul has NOT passed it. */}
-        <div style={{ marginTop: 34 }}>
-          <AdMachine />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The same discipline, pointed at advertising. The team approves one
-          master ad; the machine makes every other size, holding the brand
-          exactly. Press run.
-        </p>
-      </PPSection>
-
-
-
-
-
       {/* LIFECYCLE AGENT. Copy from the Kite page, Paul has NOT passed it.
-          In for one reason: "I need to automate my workflows to get people
-          onto my platform ultimately", which is onboarding and activation,
-          and he named the outputs himself, "nudges and emails and prompts". */}
+          On the page because guest email was on their own road map: the
+          direct route that brings a guest back without a third party in the
+          middle. */}
       <PPSection id="lifecycle" sub title="Lifecycle Agent">
         <CardCascade
           id="pplc"
@@ -592,11 +440,8 @@ export default function ReturnToSenderDoc() {
         </p>
       </PPSection>
 
-
       {/* THE WORK. Verbatim from the Fidelity page, where Paul agreed it
-          line by line. Moloco is the lead case here rather than Miro:
-          "they wanted to hire a copywriter, I built copywriters instead" is
-          the exact decision in front of him. */}
+          line by line. */}
       <PPSection id="work" k="07" title="The work">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
@@ -737,10 +582,32 @@ export default function ReturnToSenderDoc() {
         </div>
       </PPSection>
 
-      {/* YOUR LIBRARY. From the Kite page's pattern, picked for him. This
-          section IS the "few links" he asked for, so it carries the weight.
+      {/* THE AUDIT. Real measured research on greatnationalhotels.com, run
+          6 Aug 2026 by the search desk. ⚠️ DRAFT COPY, Paul's pass owed. */}
+      <PPSection id="geo" k="08" title="What AI assistants say about Great National">
+        <p className="pps-standfirst">
+          More people are asking AI assistants questions they used to type
+          into Google, and being present in those answers is its own
+          discipline. Before we met, we measured where Great National stands
+          in those answers today. Everything in this section was measured on
+          your own domain on 6 August.
+        </p>
+        <div style={{ marginTop: 26 }}>
+          <GreatNationalGeoAudit />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          The short reading: the hotelier side, which is the answer space
+          that sells memberships, is strong. The guest side is weaker, and
+          that is roughly what you would expect when member hotels trade
+          under their own names. The finding worth acting on is Revanista.
+          The full report is yours whenever you want it.
+        </p>
+      </PPSection>
+
+      {/* YOUR LIBRARY. Picked for James and Chris. The course note doubles
+          as the invitation: nobody from Great National is on it yet.
           ⚠️ DRAFT COPY, Paul's pass owed. */}
-      <PPSection id="library" k="08" title="Your library">
+      <PPSection id="library" k="09" title="Your library">
         <LibraryList
           intro="A few things worth keeping, picked for where you are now. Anything we add later lands here."
           items={[
@@ -752,18 +619,25 @@ export default function ReturnToSenderDoc() {
               meta: "essay",
             },
             {
-              label: "AI Fluency for Ambitious Marketers",
-              note: "The course, free, for anyone on your team. Module one is live now.",
-              href: "/course",
-              kind: "link",
-              meta: "course",
-            },
-            {
               label: "Distinctive brands have an incredible opportunity with AI",
               note: "Why holding a brand exactly gets more important as the volume of work goes up.",
               href: "/distinctive",
               kind: "file",
               meta: "essay",
+            },
+            {
+              label: "Getting cited by AI is a brand problem, not an SEO one",
+              note: "The thinking behind the audit above.",
+              href: "/essays/getting-cited-by-ai-is-a-brand-problem-not-an-seo-one",
+              kind: "file",
+              meta: "essay",
+            },
+            {
+              label: "AI Fluency for Ambitious Marketers",
+              note: "The course, free, for anyone on your team. Module one lands 21 September.",
+              href: "/course",
+              kind: "link",
+              meta: "course",
             },
             {
               label: "The Fox Advantage",
@@ -776,12 +650,22 @@ export default function ReturnToSenderDoc() {
         />
       </PPSection>
 
-      {/* NO PRICE AND NO CLOSE SECTION by design. Paul, 19 Aug: "not a hard
-          sell one, more like a peter berry one." No number was discussed on
-          the call, and the only money signal was negative - "they're just
-          going to charge me five grand to produce a beautiful looking PDF
-          and I really don't have the money for that." Kite's pricing block
-          is deliberately left off. */}
+      {/* THE NEXT STEP. The whole close, and the only ask on the page.
+          No price by design, Paul's instruction 26 Aug.
+          ⚠️ DRAFT COPY, Paul's pass owed. */}
+      <PPSection id="next" k="10" title="The next step">
+        <p className="pps-standfirst">
+          The useful next step is an hour with Chris on how content and
+          creative currently gets made across the properties: the formats
+          that come up again and again, how a campaign moves from brief to
+          finished pieces, and where the time goes. That tells me whether I
+          can genuinely help, and what I would build first.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          After that hour I would come back to you with a recommendation and
+          a price. If I don&rsquo;t think I can help, I will say so.
+        </p>
+      </PPSection>
     </ProspectShell>
   );
 }
