@@ -100,9 +100,9 @@ const MOVES: { from: number; to: number; note: string }[] = [
 const MOVE_MS = 2600;
 const RESET_MS = 4200;
 
-export function PipelineBoard() {
+export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [cols, setCols] = useState<Deal[][]>(START);
+  const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
   const [play, setPlay] = useState(false);
 
@@ -136,7 +136,7 @@ export function PipelineBoard() {
               next[m.to].unshift({ ...card, note: m.note });
               return next;
             });
-            setArrived(START[m.from][0].firm);
+            setArrived(deals[m.from][0].firm);
           }, t)
         );
         t += MOVE_MS;
@@ -145,7 +145,7 @@ export function PipelineBoard() {
         setTimeout(() => {
           if (cancelled) return;
           setArrived(null);
-          setCols(START.map((c) => [...c]));
+          setCols(deals.map((c) => [...c]));
           run();
         }, t + RESET_MS)
       );
@@ -212,10 +212,10 @@ const JO_NOTE = [
 const CHARS_PER_SECOND = 45;
 const PARA_PAUSE_MS = 420;
 
-export function JoNote() {
+export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   // done = paragraphs fully shown; typing = index being written out.
-  const [shown, setShown] = useState<number>(JO_NOTE.length);
+  const [shown, setShown] = useState<number>(note.length);
   const [chars, setChars] = useState<number>(0);
   const [playing, setPlaying] = useState(false);
 
@@ -240,8 +240,8 @@ export function JoNote() {
   }, []);
 
   useEffect(() => {
-    if (!playing || shown >= JO_NOTE.length) return;
-    const text = JO_NOTE[shown];
+    if (!playing || shown >= note.length) return;
+    const text = note[shown];
     if (chars < text.length) {
       const t = setTimeout(
         () => setChars((c) => Math.min(text.length, c + 3)),
@@ -256,7 +256,7 @@ export function JoNote() {
     return () => clearTimeout(t);
   }, [playing, shown, chars]);
 
-  const typingDone = shown >= JO_NOTE.length;
+  const typingDone = shown >= note.length;
 
   return (
     <div ref={rootRef}>
@@ -272,12 +272,12 @@ export function JoNote() {
           <div className="pgm-note-body">
             <div className="pgm-note-day">Monday 07:42</div>
             <div className="pgm-note-msg">
-              {JO_NOTE.slice(0, shown).map((p) => (
+              {note.slice(0, shown).map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>
               ))}
               {!typingDone && playing && (
                 <p>
-                  {JO_NOTE[shown].slice(0, chars)}
+                  {note[shown].slice(0, chars)}
                   <span className="pgm-caret" />
                 </p>
               )}

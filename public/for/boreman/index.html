@@ -30,10 +30,13 @@ a{color:inherit;text-decoration:none}
 /* floating pill nav (01) */
 .nav{position:fixed;top:22px;left:0;right:0;z-index:50;pointer-events:none;padding:0 28px}
 .navrow{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:24px}
-.brand{pointer-events:auto;flex:none;display:block;line-height:0;
-  filter:drop-shadow(0 6px 22px rgba(0,0,0,.6));transition:transform .3s cubic-bezier(.2,.7,.3,1)}
-.brand:hover{transform:translateY(-2px)}
+/* the logo sits ON the page and scrolls away with the hero, it is not pinned */
+.brand{position:absolute;top:22px;left:50%;transform:translateX(-620px);z-index:40;
+  display:block;line-height:0;filter:drop-shadow(0 6px 22px rgba(0,0,0,.6));
+  transition:opacity .3s}
+.brand:hover{opacity:.85}
 .brand img{height:72px;width:auto}
+@media (max-width:1300px){.brand{left:28px;transform:none}}
 .pill{pointer-events:auto;margin-left:auto;display:flex;align-items:center;gap:30px;
   padding:12px 14px 12px 30px;background:rgba(14,20,27,.72);
   backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.09);border-radius:100px}
@@ -184,8 +187,9 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 </head>
 <body>
 
+<a class="brand" href="#top"><img src="logo.png" alt="Boreman"></a>
+
 <div class="nav"><div class="navrow">
-  <a class="brand" href="#top"><img src="logo.png" alt="Boreman"></a>
   <div class="pill">
   <nav>
     <a href="#range">The range</a>

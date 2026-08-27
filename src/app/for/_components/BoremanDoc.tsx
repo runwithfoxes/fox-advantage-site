@@ -44,6 +44,8 @@
 import ProspectShell, { PPSection } from "./ProspectShell";
 import WebsiteHero from "./WebsiteHero";
 import CreativeDirector from "./library/CreativeDirector";
+import { OutreachWindow } from "./library/AgentWindows";
+import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
 import AdMachine from "./library/AdMachine";
 import FourThingsFigure from "./library/FourThingsFigure";
 import LibraryList from "./LibraryList";
@@ -51,6 +53,66 @@ import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
 import "./pricing.css";
+
+// Outreach demonstration threads. ⛔ EVERY firm and person here is invented,
+// and the honesty line under the window says so. The world is Boreman's own:
+// truck dealers, fitters and mainland wholesalers, which is who they actually
+// sell to. Nothing here is a real Boreman customer.
+const OUTREACH_THREADS = [
+  {
+    name: "Niall Foy",
+    company: "Parts Manager · Corrib Commercials",
+    message:
+      "Hi Niall - you fit a lot of extra lighting for the hauliers around Galway. There is a spot lamp with an amber position ring that the drivers are asking for by name at the shows. Worth ten minutes to show you the range?",
+    reply: "Go on. The lads keep asking for the ring ones and we have none.",
+  },
+  {
+    name: "Petra Lindqvist",
+    company: "Inköp · Nordvik Fordonsdelar",
+    message:
+      "Hi Petra - you carry a good bit of auxiliary lighting already. We develop bespoke lamps with the wholesaler rather than selling you the same thing everyone else has, and the territory is agreed up front. Happy to send the catalogue?",
+    reply: "Bespoke is interesting. Send it and I will look this week.",
+  },
+  {
+    name: "Dermot Kane",
+    company: "Workshop Foreman · Slaney Truck Centre",
+    message:
+      "Hi Dermot - when a driver comes in wanting his truck to look right, what are you fitting at the moment? We do the full range and we sell only through workshops like yours, never direct.",
+    reply: "Never direct is the bit I care about. Who do I talk to?",
+  },
+];
+
+// ⭐ 28 Aug: the pipeline board and Jo's note ship with Fidelity's advisor world
+// baked in, so on this page they were showing wealth-management firms to a truck
+// lighting company. Both now take their world as a prop, and this is Boreman's:
+// dealers, fitters and mainland wholesalers, which is who they actually sell to.
+// ⛔ Every firm and person below is invented. The honesty line under the windows
+// says so, and nothing here is a real Boreman customer.
+const PIPELINE = [
+  [
+    { firm: "Corrib Commercials", person: "Niall Foy · Parts Manager", note: "sample sent, awaiting reply" },
+    { firm: "Slaney Truck Centre", person: "Dermot Kane · Workshop Foreman", note: "intro sent this morning" },
+    { firm: "Kilbeggan Trailer Services", person: "Aoife Rynne · Buyer", note: "follow-up scheduled" },
+  ],
+  [
+    { firm: "Nordvik Fordonsdelar", person: "Petra Lindqvist · Inköp", note: "Tuesday 10am, catalogue sent" },
+    { firm: "Ostmann Nutzfahrzeugteile", person: "Jonas Ostmann · Einkauf", note: "Thursday 2pm, range walked through" },
+  ],
+  [
+    { firm: "Bandon Truck & Trailer", person: "Cathal Deasy · Owner", note: "waiting on your yes" },
+    { firm: "Vestland Lastebildeler", person: "Marit Hovden · Innkjøp", note: "bespoke lamp quoted" },
+  ],
+  [
+    { firm: "Slaney Truck Centre", person: "Stocking the range", note: "first order placed" },
+    { firm: "Corrib Commercials", person: "Live", note: "reordering monthly" },
+  ],
+];
+
+const MORNING_NOTE = [
+  "Morning. Overnight: two replies came in and one meeting landed, Tuesday at ten with Nordvik in Sweden.",
+  "Three things need you today. Bandon is waiting on your yes for the bespoke lamp. The list for the Donegal truck show is built and ready for you to prune. And one reply asks for trade pricing, which I will not answer for you.",
+  "Everything else is handled. Follow-ups sent, the board is current, nothing has gone quiet.",
+];
 
 const SECTIONS = [
   { id: "heard", title: "What this is" },
@@ -144,36 +206,136 @@ export default function BoremanDoc() {
           </p>
         </PPSection>
 
-        {/* WHAT WE DO. Paul's own copy, verbatim from the Fidelity page where he
-            agreed it line by line. Do not rewrite. */}
+        {/* WHAT WE DO. ⛔ COPIED WHOLE from the Great National build, which
+            took it from Fidelity where Paul agreed it line by line. Hand-rolling
+            this section is what dropped the photo and put the prose in the wrong
+            face on the first pass. Do not rewrite it, and do not retype it. */}
         <PPSection id="howiwork" k="02" title="What we do">
           <p className="pps-hiw-line">Quality first, then automate</p>
           <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
           <div className="pps-hiw-grid">
-            <div>
-              <p className="pps-hiw-cli-k">IRELAND’S MARKETER OF THE YEAR, 2022</p>
+            <div className="pps-hiw-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Paul_photo.jpg" alt="Paul Dervan, Run with Foxes" />
+            </div>
+            <p className="pps-hiw-award">
+              Ireland&rsquo;s Marketer of the Year, 2022
+            </p>
+            <p className="pps-standfirst">
+              Before I build anything, I ask one question: what does really good
+              look like here? Not what AI can do, but what the best version of
+              this marketing would be, and the level of quality and
+              effectiveness I would want to stand over.
+            </p>
+            <p className="pps-standfirst">
+              So I start where I always have. If there were no AI at all, what
+              team would I hire to do this properly? I map that team first,
+              the one I would build in a world before any of this existed.
+            </p>
+            <p className="pps-standfirst">
+              Then I build exactly that, with agents instead of hires. The
+              quality bar is set by the team I would have wanted, not by
+              whatever a tool happens to make easy. Twenty years in brand is
+              what tells me where that bar sits: Head of Brand at O2 Ireland,
+              then CMO at the National Lottery, Head of Brand at Indeed and
+              Miro, both global roles. Positioning, messaging and tone written
+              first, then built into everything the agents make.
+            </p>
+            <div className="pps-hiw-cli">
+              <p className="pps-hiw-cli-k">Who I work with</p>
+              <div className="pps-hiw-cli-l">
+                {[
+                  "Moloco",
+                  "Heineken",
+                  "Norcros",
+                  "Alltech",
+                  "Smurfit",
+                  "Hostelworld",
+                  "Eaton Square",
+                  "Weatherbys",
+                ].map((c) => (
+                  <span key={c}>{c}</span>
+                ))}
+              </div>
+            </div>
+            {/* Essays picked for Boreman: the writer piece is what goes into an
+                agent, and the DBA piece is why holding a brand exactly matters
+                more as the volume of work goes up. The citation essay is about AI
+                search and is not this pitch. */}
+            <div className="pps-hiw-links">
+              <div>
+                <p className="pps-hiw-cli-k">Essays</p>
+                <ul className="pps-hiw-ll">
+                  {[
+                    ["how-i-build-an-ai-writer", "How I build an AI writer"],
+                    [
+                      "distinctive-brand-assets-in-an-ai-world",
+                      "Distinctive Brand Assets in an AI world",
+                    ],
+                  ].map(([slug, title]) => (
+                    <li key={slug}>
+                      <a
+                        href={`/essays/${slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="pps-hiw-cli-k">Free course</p>
+                <ul className="pps-hiw-ll">
+                  <li>
+                    <a href="/course" target="_blank" rel="noopener noreferrer">
+                      AI Fluency for Ambitious Marketers
+                    </a>
+                  </li>
+                </ul>
+                <p className="pps-hiw-cli-k" style={{ marginTop: 18 }}>
+                  The book
+                </p>
+                <ul className="pps-hiw-ll">
+                  <li>
+                    <a href="/book" target="_blank" rel="noopener noreferrer">
+                      The Fox Advantage
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="pps-hiw-quotes">
+            <div className="pps-hiw-q">
               <p>
-                Before I build anything, I ask one question: what does really
-                good look like here? Not what AI can do, but what the best
-                version of this marketing would be, and the level of quality and
-                effectiveness I would want to stand over.
+                &ldquo;His command of marketing science as well as his instincts
+                for great thinking and ideas are, in my opinion, superb.&rdquo;
               </p>
+              <div className="pps-hiw-who">
+                <b>Peter Field</b>
+                <br />
+                The Godfather of Effectiveness, author of The Long and the Short
+                of It
+              </div>
+            </div>
+            <div className="pps-hiw-q">
               <p>
-                So I start where I always have. If there were no AI at all, what
-                team would I hire to do this properly? I map that team first, the
-                one I would build in a world before any of this existed.
+                &ldquo;Paul reported into me as Head of Brand when I was at
+                Indeed. I have learned more from him than anyone else in my
+                career.&rdquo;
               </p>
-              <p>
-                Then I build exactly that, with agents instead of hires. The
-                quality bar is set by the team I would have wanted, not by
-                whatever a tool happens to make easy. Twenty years in brand is
-                what tells me where that bar sits: Head of Brand at O2 Ireland,
-                then CMO at the National Lottery, Head of Brand at Indeed and
-                Miro, both global roles.
-              </p>
+              <div className="pps-hiw-who">
+                <b>Paul D&rsquo;Arcy</b>
+                <br />
+                CMO, Moloco. Former CMO at Miro and Indeed
+              </div>
             </div>
           </div>
         </PPSection>
+
+        {/* Paul's own copy, verbatim from the Fidelity page. */}
 
         <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
           <FourThingsFigure />
@@ -189,8 +351,15 @@ export default function BoremanDoc() {
 
         <PPSection id="buildingagents" k="04" title="Building agents">
           <p className="pps-standfirst">
-            Three of them are worth talking about for Boreman. Two we would
-            recommend building now, and one worth knowing exists.
+            Three of them, and we would build all three for Boreman. They are
+            priced the same and they can be taken in any order, or together.
+          </p>
+          <p className="pps-standfirst" style={{ marginTop: 22 }}>
+            If you asked us where to start, we would say the Advertising Agent
+            and the website first, because the pictures and the page are what a
+            driver and a dealer actually see, and there is no point sending
+            people somewhere that cannot take them anywhere. The Growth Agent is
+            the one that then brings them.
           </p>
         </PPSection>
 
@@ -270,28 +439,58 @@ export default function BoremanDoc() {
           </p>
         </PPSection>
 
-        {/* GROWTH AGENT. Shown, not priced. Paul, 27 Aug: "Include the growth
-            agent." */}
+        {/* GROWTH AGENT. ⭐ Paul, 27 Aug: "You skipped the work on the growth
+            agent. You didn't put any images or anything. You don't even explain
+            what it is." Correct, it was three paragraphs and nothing else. Now
+            built from the same exhibits Return2Sender and Fidelity use.
+            ⛔ Every name in the outreach window is invented. */}
         <PPSection id="growth" sub title="Growth Agent">
           <p className="pps-standfirst">
-            Worth knowing this exists, though it is not what we would build
-            first. You said you find truck drivers by hand, off the Facebook
-            pages of the big truck shows and off LinkedIn, and you called it
-            stupid and time consuming. A Growth Agent does that part: it finds
-            the people, works out who is worth talking to, writes the messages
+            You told us you find truck drivers by hand, off the Facebook pages of
+            the big truck shows and off LinkedIn, and you called it stupid and
+            time consuming. A Growth Agent is the thing that does that part. It
+            finds the people, works out who is worth talking to, writes to them,
             and tells you what came back.
           </p>
-          <p className="pps-standfirst" style={{ marginTop: 22 }}>
-            We would leave it until the pictures and the site are working,
-            because there is no point sending people to a page that cannot take
-            them anywhere.
+          <div style={{ marginTop: 30 }}>
+            <PipelineBoard deals={PIPELINE} />
+          </div>
+          <p className="pps-standfirst" style={{ marginTop: 30 }}>
+            It is the single point of contact for the pipeline. It opens the
+            board every morning for you to look at together, it keeps it up to
+            date without anyone typing into a spreadsheet, and it does the
+            analysis to work out where things are getting stuck.
+          </p>
+          <div style={{ marginTop: 26 }}>
+            <JoNote note={MORNING_NOTE} />
+          </div>
+          <p className="pps-standfirst" style={{ marginTop: 30 }}>
+            The main job is the outreach. It builds the list, finds the right
+            person at each dealer, wholesaler or workshop, writes each message
+            to that company rather than sending the same one to everybody, sends
+            it, and reads the replies. Your rep in Ireland and Jeff in the UK
+            stop Googling and start the week with people who have already put
+            their hand up.
+          </p>
+          <div style={{ marginTop: 26 }}>
+            <OutreachWindow
+              threads={OUTREACH_THREADS}
+              title="Outreach"
+              sentLabel="84 sent"
+              width={720}
+            />
+          </div>
+          <div style={{ marginTop: 26 }}>
+            <CampaignWindow />
+          </div>
+          <p className="ppft-honest">
+            <span className="ppft-slash">/illustrative.</span> Every firm and
+            person in these windows is invented. The machinery is real and
+            running, a Boreman version would be built to your world and your
+            rules, and nothing in it sends until someone at Boreman says go.
           </p>
         </PPSection>
 
-        {/* HOW IT WOULD WORK. Four beats, the same shape Ace Express uses, and
-            they are sub-sections rather than a component: CardCascade is a
-            diagram of one card with children falling out of it, which is the
-            wrong tool for four paragraphs of prose. */}
         <PPSection id="howitworks" k="05" title="How it would work">
           <p className="pps-standfirst">
             The same four things are true of both, so they are worth saying once.
@@ -370,13 +569,25 @@ export default function BoremanDoc() {
                 price: "€3,000 plus VAT",
                 note: "No monthly on the website.",
               },
+              {
+                label: "Part three",
+                title: "Growth Agent",
+                bullets: [
+                  "Builds the list of dealers, fitters and wholesalers worth talking to",
+                  "Writes to each one about their own business, not a mailshot",
+                  "Runs the campaigns and reads what comes back",
+                  "One board you and it look at together every morning",
+                ],
+                price: "€3,000 plus VAT",
+                note: "Nothing sends until someone at Boreman says go.",
+              },
             ]}
           />
           <CoversGrid
             covers={[
               "All build and calibration work",
               "Sessions with you to get what is in your head",
-              "Running the advertising agent for three months",
+              "Running the agents for three months",
               "A named point of contact, Paul",
             ]}
             notCovered={[
