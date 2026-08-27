@@ -23,10 +23,12 @@
 //   Brand Guardian        -> the machine pointed at "inconsistency"
 //   Lifecycle Agent       -> guest email, the direct route around OTA
 //                            commission, on their own road map
-//   GEO audit             -> real research on greatnationalhotels.com,
-//                            run 6 Aug, with the Revanista finding
 //
-// ⛔ OUT, deliberately: Growth Agent and outbound (B2C hotel group, no
+// ⛔ OUT, deliberately: the GEO audit. It was on the page as section 08,
+// real measured research on greatnationalhotels.com run 6 Aug with the
+// Revanista finding, and Paul cut it 27 Aug: "I think it is confusing."
+// The component is still at library/GreatNationalGeoAudit.tsx and the
+// full report still exists if they ever ask. Growth Agent and outbound (B2C hotel group, no
 // outbound lane). Adoption and Training (a large organisation deciding role
 // shapes was Peter Berry's situation, not theirs). The website: Paul raised
 // it 26 Aug and they are talking to their own digital agency, so it appears
@@ -36,8 +38,7 @@
 // ⛔ Gates this build carries: no invented facts about Great National, no
 // unsourced numbers, fictional names only inside demonstrations, every
 // class prefixed, nothing hidden behind a scroll reveal. Their own reality
-// appears nowhere on this page except the opening section and the audit,
-// which is real measured research.
+// appears nowhere on this page except the opening section.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { Figure } from "./library/Figure";
@@ -48,13 +49,12 @@ import BrandGuardian from "./library/BrandGuardian";
 import CreativeDirector from "./library/CreativeDirector";
 import AdMachine from "./library/AdMachine";
 import CardCascade from "./library/CardCascade";
-import GreatNationalGeoAudit from "./library/GreatNationalGeoAudit";
 import LibraryList from "./LibraryList";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
 
-// Fidelity's order, minus the sections that do not apply, plus the audit and
-// the next-step close. Nothing resorted.
+// Fidelity's order, minus the sections that do not apply, plus the
+// next-step close. Nothing resorted.
 const SECTIONS = [
   { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
@@ -67,7 +67,6 @@ const SECTIONS = [
   { id: "guardian", title: "Brand Guardian" },
   { id: "lifecycle", title: "Lifecycle Agent" },
   { id: "work", title: "The work" },
-  { id: "geo", title: "What AI assistants say" },
   { id: "library", title: "Your library" },
   { id: "next", title: "The next step" },
 ];
@@ -92,7 +91,6 @@ const RAIL_GROUPS = [
           { id: "lifecycle", title: "Lifecycle Agent" },
         ],
       },
-      { id: "geo", title: "What AI assistants say", num: "03" },
     ],
   },
 ];
@@ -102,24 +100,24 @@ export default function GreatNationalDoc() {
     <ProspectShell
       clientName="Great National Hotels & Resorts"
       eyebrow="Prepared for James Sullivan and Chris Kenny, Great National Hotels & Resorts"
-      /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line. Carried over from the
-         6 Aug page, which he read. */
-      title="Build the Great National marketing team you never had"
-      titleHl="never had"
+      /* ⭐ PAUL'S LINE, 27 Aug. It is the homepage h1 verbatim
+         (src/components/AgentsHero.tsx:395), so it is not highlighted here
+         either. It replaced "Build the Great National marketing team you
+         never had", which came off the priced 6 Aug page and promised a build
+         this page no longer offers. */
+      title="Marketing Agents for your business"
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
     >
       {/* ⚠️ DRAFT COPY, Paul's pass owed. Written from the 6 Aug call record
-          only. Their own situation appears here and nowhere else on the page
-          except the measured audit. */}
+          only. Their own situation appears here and nowhere else on the
+          page. */}
       <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">
           Everything here is our own work or a demonstration we made, and
-          none of it assumes anything about how Great National runs. The one
-          exception is the audit near the bottom, which is real research on
-          greatnationalhotels.com. The next step we would suggest is at the
-          end of the page.
+          none of it assumes anything about how Great National runs. The
+          next step we would suggest is at the end of the page.
         </p>
       </PPSection>
 
@@ -174,7 +172,8 @@ export default function GreatNationalDoc() {
           </div>
           {/* Essays picked for Great National: the writer piece is the
               content half of Chris's ask, the DBA essay is the consistency
-              argument, and the GEO essay pairs with the audit section. */}
+              argument, and the citation essay carries the AI-answers
+              thinking now that the audit section is gone. */}
           <div className="pps-hiw-links">
             <div>
               <p className="pps-hiw-cli-k">Essays</p>
@@ -582,32 +581,10 @@ export default function GreatNationalDoc() {
         </div>
       </PPSection>
 
-      {/* THE AUDIT. Real measured research on greatnationalhotels.com, run
-          6 Aug 2026 by the search desk. ⚠️ DRAFT COPY, Paul's pass owed. */}
-      <PPSection id="geo" k="08" title="What AI assistants say about Great National">
-        <p className="pps-standfirst">
-          More people are asking AI assistants questions they used to type
-          into Google, and being present in those answers is its own
-          discipline. Before we met, we measured where Great National stands
-          in those answers today. Everything in this section was measured on
-          your own domain on 6 August.
-        </p>
-        <div style={{ marginTop: 26 }}>
-          <GreatNationalGeoAudit />
-        </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The short reading: the hotelier side, which is the answer space
-          that sells memberships, is strong. The guest side is weaker, and
-          that is roughly what you would expect when member hotels trade
-          under their own names. The finding worth acting on is Revanista.
-          The full report is yours whenever you want it.
-        </p>
-      </PPSection>
-
       {/* YOUR LIBRARY. Picked for James and Chris. The course note doubles
           as the invitation: nobody from Great National is on it yet.
           ⚠️ DRAFT COPY, Paul's pass owed. */}
-      <PPSection id="library" k="09" title="Your library">
+      <PPSection id="library" k="08" title="Your library">
         <LibraryList
           intro="A few things worth keeping, picked for where you are now. Anything we add later lands here."
           items={[
@@ -627,7 +604,7 @@ export default function GreatNationalDoc() {
             },
             {
               label: "Getting cited by AI is a brand problem, not an SEO one",
-              note: "The thinking behind the audit above.",
+              note: "Why showing up in AI answers is a brand job before it is a search one.",
               href: "/essays/getting-cited-by-ai-is-a-brand-problem-not-an-seo-one",
               kind: "file",
               meta: "essay",
@@ -653,7 +630,7 @@ export default function GreatNationalDoc() {
       {/* THE NEXT STEP. The whole close, and the only ask on the page.
           No price by design, Paul's instruction 26 Aug.
           ⚠️ DRAFT COPY, Paul's pass owed. */}
-      <PPSection id="next" k="10" title="The next step">
+      <PPSection id="next" k="09" title="The next step">
         <p className="pps-standfirst">
           The useful next step is an hour with Chris on how content and
           creative currently gets made across the properties: the formats
@@ -662,8 +639,7 @@ export default function GreatNationalDoc() {
           can genuinely help, and what I would build first.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          After that hour I would come back to you with a recommendation and
-          a price. If I don&rsquo;t think I can help, I will say so.
+          After that hour I would come back to you with a recommendation.
         </p>
       </PPSection>
     </ProspectShell>
