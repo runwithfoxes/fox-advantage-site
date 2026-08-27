@@ -3,243 +3,369 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Boreman Limited &middot; LED lamps for trucks</title>
-<meta name="description" content="Spot lamps, work lamps and marker lamps for trucks. Made to look right on the truck and built for the road. Find your nearest Boreman stockist.">
+<title>Boreman &middot; Lamps for trucks</title>
+<meta name="description" content="Spot lamps, work lamps and marker lamps for trucks. Built to be seen. Pick your lamps and we put you on to your nearest Boreman stockist.">
 <style>
-  :root{
-    --blue:#005695; --blue-dark:#00406f; --amber:#ffc424;
-    --ink:#14181c; --mid:#5b666f; --line:#dfe4e8; --bg:#ffffff; --wash:#f4f6f8;
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  }
-  img{max-width:100%; display:block}
-  a{color:inherit}
+/* ============================================================
+   BRAND SKIN - the single retint point (web-design-language, phase 1)
+   Boreman blue #005695 and amber #ffc424, read off their live site.
+   ============================================================ */
+:root{
+  --bg:#070a0e; --panel:#0e141b; --panel-2:#131b24;
+  --fg:#f4f7fa; --muted:#8d9bab; --border:#1e2833;
+  --accent:#ffc424; --accent-2:#005695; --radius:2px;
+  --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;
+  font:16px/1.65 var(--display);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.eyebrow{font:11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 18px}
 
-  .demo{
-    background:#1A3A4E;color:#cfd6dc;font-size:12px;letter-spacing:.06em;padding:9px 20px;
-    text-align:center;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  }
-  .demo b{color:#fff;font-weight:500}
-  .demo i{color:#F47521;font-style:normal}
+.frame{background:#1A3A4E;color:#cfd6dc;font:12px/1 var(--mono);letter-spacing:.06em;
+  padding:10px 20px;text-align:center;position:relative;z-index:60}
+.frame b{color:#fff;font-weight:500}.frame i{color:#F47521;font-style:normal}
 
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+/* floating pill nav (01) */
+.nav{position:fixed;top:52px;left:0;right:0;z-index:50;pointer-events:none;padding:0 28px}
+.pill{pointer-events:auto;display:flex;align-items:center;gap:30px;max-width:1240px;
+  margin:0 auto;padding:12px 14px 12px 22px;background:rgba(14,20,27,.72);
+  backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.09);border-radius:100px}
+.pill .lg{height:26px;width:auto}
+.pill nav{display:flex;gap:26px;margin-left:auto;font-size:13.5px;color:var(--muted)}
+.pill nav a:hover{color:var(--fg)}
+.btn{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  background:var(--accent);color:#0b0f14;padding:12px 20px;border-radius:100px;border:0;
+  cursor:pointer;white-space:nowrap;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(255,196,36,.32)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,.22)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent);box-shadow:none}
+.count{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;
+  background:#0b0f14;color:var(--accent);border-radius:100px;font-size:11px;margin-left:8px;padding:0 5px}
 
-  header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;gap:24px;padding:14px 0}
-  .bar img{width:150px;height:auto}
-  nav{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:600}
-  nav a{text-decoration:none;color:var(--mid)}
-  nav a:hover{color:var(--blue)}
-  .cta{
-    background:var(--amber);color:#14181c;text-decoration:none;font-weight:800;
-    font-size:13px;letter-spacing:.05em;text-transform:uppercase;
-    padding:11px 18px;border-radius:3px;white-space:nowrap;border:0;cursor:pointer;
-  }
-  .cta:hover{background:#ffd352}
+/* hero: full-bleed cinematic + pointer spotlight (08 + 09) */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.beam{position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(620px circle at var(--mx,50%) var(--my,42%),
+  rgba(255,196,36,.20),rgba(0,86,149,.16) 42%,transparent 68%)}
+.road{position:absolute;inset:0;z-index:0;opacity:.55;
+  background:repeating-linear-gradient(115deg,transparent 0 78px,rgba(255,196,36,.05) 78px 80px),
+  radial-gradient(120% 80% at 50% 110%,rgba(0,86,149,.42),transparent 60%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;
+  gap:50px;align-items:center;padding-top:150px;padding-bottom:90px}
+h1{font-size:clamp(44px,6.6vw,92px);line-height:.94;letter-spacing:-.035em;margin:0 0 22px;
+  font-weight:800;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:19px;color:#b9c6d3;margin:0 0 34px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.lamp{position:relative}
+.lamp .glow{position:absolute;inset:-14%;border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(255,196,36,.42),rgba(255,140,0,.14) 42%,transparent 66%);
+  filter:blur(28px);animation:pulse 5.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.72;transform:scale(1)}50%{opacity:1;transform:scale(1.045)}}
+.lamp img{position:relative;z-index:1;width:100%;
+  filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+  font:10px/1 var(--mono);letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
 
-  .hero{background:var(--blue);color:#fff;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:56px}
-  .hero h1{font-size:44px;line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
-  .hero p{font-size:19px;line-height:1.5;margin:0 0 26px;color:#cfe0ee}
-  .hero .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff;text-decoration:none;font-weight:700;
-         font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:10px 18px;border-radius:3px}
-  .ghost:hover{border-color:#fff}
-  .hero figure{margin:0}
+/* marquee band (01) */
+.band{border-block:1px solid var(--border);background:var(--panel);overflow:hidden;padding:16px 0}
+.track{display:flex;gap:56px;width:max-content;animation:slide 34s linear infinite;
+  font:12px/1 var(--mono);letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.track span{white-space:nowrap}
+.track b{color:var(--accent);font-weight:400}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.lamp .glow{animation:none}}
 
-  section{padding:60px 0}
-  h2{font-size:28px;letter-spacing:-.01em;margin:0 0 8px}
-  .lede{color:var(--mid);font-size:17px;margin:0 0 32px}
+section{padding:120px 0;position:relative;scroll-margin-top:130px}
+h2{font-size:clamp(30px,3.7vw,50px);line-height:1.02;letter-spacing:-.03em;margin:0 0 16px;font-weight:800}
+.lede{font-size:18px;color:var(--muted);margin:0 0 44px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
 
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-  .card{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-  .card .ph{background:var(--wash);height:200px;display:flex;align-items:center;justify-content:center;padding:14px}
-  .card .ph img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain}
-  .card .body{padding:14px 16px 18px;display:flex;flex-direction:column;flex:1}
-  .card h3{margin:0;font-size:16px;letter-spacing:.02em}
-  .card .pn{color:var(--mid);font-size:12.5px;margin:3px 0 12px;font-variant-numeric:tabular-nums}
-  .card .ask{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue);text-decoration:none}
-  .card .ask:hover{text-decoration:underline}
+/* storefront + quote list (e-commerce, no checkout) */
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 34px}
+.chip{font:11px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  background:transparent;border:1px solid var(--border);border-radius:100px;padding:10px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:#0b0f14;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.08);border-radius:4px;overflow:hidden;
+  display:flex;flex-direction:column;position:relative;
+  backdrop-filter:blur(14px) saturate(1.2);
+  transition:transform .45s cubic-bezier(.2,.7,.3,1),border-color .45s,box-shadow .45s;
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,196,36,.5);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.9)}
+/* the studio plate: a lit floor and a fall-off, the way Strands shoot theirs */
+.card .shot{
+  position:relative;height:240px;display:flex;align-items:flex-end;justify-content:center;
+  padding:26px 26px 0;overflow:hidden;
+  background:
+    radial-gradient(120% 74% at 50% 6%,rgba(255,255,255,.07),transparent 62%),
+    radial-gradient(78% 44% at 50% 96%,rgba(255,196,36,.10),transparent 70%),
+    linear-gradient(180deg,#151d26,#0b1118);
+}
+.card .shot::after{ /* the lamp's own bloom, behind the product */
+  content:"";position:absolute;left:50%;top:44%;width:60%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,170,20,.34),transparent 66%);
+  filter:blur(26px);opacity:.75;transition:opacity .45s,transform .45s;
+}
+.card:hover .shot::after{opacity:1;transform:translate(-50%,-50%) scale(1.12)}
+.card .shot figure{position:relative;z-index:1;margin:0;width:100%;
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.card:hover .shot figure{transform:translateY(-6px)}
+.card .shot img{max-height:150px;width:auto;object-fit:contain}
+.card .shot .refl{ /* the floor reflection */
+  max-height:56px;width:auto;object-fit:contain;transform:scaleY(-1);opacity:.24;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 78%);
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 78%);
+}
+.card .meta{padding:20px;display:flex;flex-direction:column;flex:1;
+  border-top:1px solid rgba(255,255,255,.07)}
+.card h3{margin:0;font-size:16px;letter-spacing:.03em;font-weight:700}
+.card .sku{font:11px/1.5 var(--mono);color:var(--muted);margin:7px 0 10px}
+.card .spec{font-size:13px;color:#a9b6c4;margin:0 0 18px;flex:1}
+.add{margin-top:auto;background:transparent;border:1px solid rgba(255,255,255,.16);color:var(--fg);
+  font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:13px;
+  border-radius:2px;cursor:pointer;transition:.25s}
+.add:hover{border-color:var(--accent);color:var(--accent)}
+.add[data-on="1"]{background:var(--accent);color:#0b0f14;border-color:var(--accent)}
 
-  .stock{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .stock .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  form{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px}
-  label{display:block;font-size:13px;font-weight:700;margin:0 0 5px}
-  input,select{
-    width:100%;padding:11px 12px;margin:0 0 15px;border:1px solid var(--line);
-    border-radius:4px;font:inherit;font-size:15px;background:#fff;color:var(--ink)
-  }
-  input:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
-  .note{font-size:13px;color:var(--mid);margin:12px 0 0}
-  .ok{display:none;background:#eef7ee;border:1px solid #bcdcbc;color:#1c5c28;padding:14px;border-radius:4px;font-size:15px}
+.stop{background:var(--panel);border-block:1px solid var(--border)}
+.stop .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.pull{font-size:clamp(24px,2.6vw,34px);line-height:1.24;letter-spacing:-.02em;margin:0 0 22px;font-weight:700}
+.pull span{color:var(--accent)}
+.attr{font:11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.stat{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:38px}
+.stat b{display:block;font-size:38px;line-height:1;letter-spacing:-.03em;color:var(--accent)}
+.stat p{margin:8px 0 0;font-size:14px;color:var(--muted)}
 
-  .trade{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .trade div{border-top:3px solid var(--amber);padding-top:14px}
-  .trade h3{margin:0 0 6px;font-size:17px}
-  .trade p{margin:0;color:var(--mid);font-size:15px}
+.find .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+form{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:30px}
+label{display:block;font:600 11px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 8px}
+input,select,textarea{width:100%;padding:14px;margin:0 0 20px;background:var(--panel-2);
+  color:var(--fg);border:1px solid var(--border);border-radius:var(--radius);font:inherit;font-size:15px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent)}
+textarea{min-height:74px;resize:vertical;font-family:var(--mono);font-size:13px}
+.fine{font-size:13px;color:var(--muted);margin:14px 0 0}
+.done{display:none;background:rgba(255,196,36,.09);border:1px solid var(--accent);
+  padding:16px;border-radius:var(--radius);margin-top:16px;font-size:15px}
 
-  footer{background:#14181c;color:#9aa5ad;font-size:14px;padding:34px 0}
-  footer .wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
-  footer a{color:#cfd6dc}
+footer{border-top:1px solid var(--border);padding:90px 0 40px}
+.big{font-size:clamp(52px,11vw,168px);line-height:.82;letter-spacing:-.05em;font-weight:800;
+  color:transparent;-webkit-text-stroke:1px var(--border);margin:0 0 50px}
+.fbar{display:flex;gap:34px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
+.fbar a:hover{color:var(--accent)}
 
-  @media (max-width:860px){
-    .hero .wrap{grid-template-columns:1fr;padding-top:38px;padding-bottom:38px}
-    .hero h1{font-size:32px}
-    .grid{grid-template-columns:repeat(2,1fr)}
-    .stock .wrap{grid-template-columns:1fr;gap:28px}
-    .trade{grid-template-columns:1fr}
-    nav{display:none}
-  }
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .hero .wrap,.stop .wrap,.find .wrap{grid-template-columns:1fr;gap:40px}
+  .hero .wrap{padding-top:130px}
+  .pill nav{display:none}
+  section{padding:80px 0}
+}
 </style>
 </head>
 <body>
 
-<p class="demo">/<i>Run</i>withfoxes &nbsp;&middot;&nbsp; <b>concept rebuild</b>, not the live boremanltd.com</p>
+<p class="frame">/<i>Run</i>withfoxes &nbsp;&middot;&nbsp; <b>concept rebuild</b>, not the live boremanltd.com</p>
 
-<header>
-  <div class="wrap bar">
-    <img src="logo.png" alt="Boreman Limited" width="450" height="187">
-    <nav>
-      <a href="#range">Lamps</a>
-      <a href="#range">Truck specific</a>
-      <a href="#trade">For the trade</a>
-      <a href="#stockist">Downloads</a>
-    </nav>
-    <a class="cta" href="#stockist">Find your stockist</a>
-  </div>
-</header>
+<div class="nav"><div class="pill">
+  <img class="lg" src="logo.png" alt="Boreman">
+  <nav>
+    <a href="#range">The range</a>
+    <a href="#stop">Why it matters</a>
+    <a href="#trade">For the trade</a>
+  </nav>
+  <button class="btn" onclick="document.getElementById('find').scrollIntoView()">
+    Your list <span class="count" id="cnt">0</span>
+  </button>
+</div></div>
 
-<div class="hero">
+<header class="hero" id="top">
+  <div class="road"></div>
+  <div class="beam" id="beam"></div>
   <div class="wrap">
     <div>
-      <h1>Lamps that look right on the truck.</h1>
-      <p>Spot lamps, work lamps and markers, designed for the way a truck actually gets
-         driven and the way a driver wants it to look. Fitted by your dealer, backed by us.</p>
+      <p class="eyebrow">Spot &middot; work &middot; marker &middot; truck specific</p>
+      <h1>Built to be <em>seen</em>.</h1>
+      <p class="sub">Forty trucks in a lay-by at midnight, and yours is the one they walk over
+        to look at. That is what a Boreman lamp is for.</p>
       <div class="row">
-        <a class="cta" href="#stockist">Find your stockist</a>
-        <a class="ghost" href="#range">See the range</a>
+        <button class="btn" onclick="document.getElementById('range').scrollIntoView()">See the range</button>
+        <a class="btn ghost" href="#find">Find your stockist</a>
       </div>
     </div>
-    <figure><img src="halo.jpg" alt="Boreman Halo full LED spot lamp" width="900" height="900"></figure>
+    <div class="lamp">
+      <div class="glow"></div>
+      <img src="halo-cut.png" alt="Boreman Halo full LED spot lamp with the amber position ring lit" width="900" height="900">
+    </div>
   </div>
-</div>
+  <p class="scrollcue">Move your cursor, the light follows</p>
+</header>
 
-<section id="range" class="wrap">
-  <h2>The range</h2>
-  <p class="lede">Every lamp is sold through a Boreman stockist. Pick the one you want and
-     we will put you on to the dealer nearest you.</p>
-  <div class="grid">
-    <article class="card">
-      <div class="ph"><img src="phantom.jpg" alt="Phantom LED spot lamp" loading="lazy"></div>
-      <div class="body"><h3>PHANTOM</h3><p class="pn">Part no. 1001-2670</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="halo.jpg" alt="Halo full LED spot lamp" loading="lazy"></div>
-      <div class="body"><h3>HALO</h3><p class="pn">Part no. 1001-2500</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="polaris.jpg" alt="Polaris full LED spot lamp" loading="lazy"></div>
-      <div class="body"><h3>POLARIS</h3><p class="pn">Part no. 1001-1630</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="hybrid.jpg" alt="Hybrid 6200 light bar" loading="lazy"></div>
-      <div class="body"><h3>HYBRID 6200</h3><p class="pn">Part no. 1001-6200</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="accelerator.jpg" alt="Accelerator four function LED lamp" loading="lazy"></div>
-      <div class="body"><h3>ACCELERATOR</h3><p class="pn">Part no. 1001-2040</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="sentry.jpg" alt="Sentry work lamp" loading="lazy"></div>
-      <div class="body"><h3>SENTRY</h3><p class="pn">Part no. 1001-1580</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="scania.jpg" alt="Side marker lamp to suit Scania" loading="lazy"></div>
-      <div class="body"><h3>SIDE MARKER</h3><p class="pn">To suit Scania &middot; 1001-3065</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-    <article class="card">
-      <div class="ph"><img src="truck.jpg" alt="Hybrid 6200 fitted on a truck front" loading="lazy"></div>
-      <div class="body"><h3>ON THE TRUCK</h3><p class="pn">Hybrid 6200, fitted</p>
-        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
-    </article>
-  </div>
+<div class="band"><div class="track" id="track"></div></div>
+
+<section id="range" class="wrap rv">
+  <p class="eyebrow">The range</p>
+  <h2>Every lamp, and who to ask for it.</h2>
+  <p class="lede">Add what you want to your list. We do not sell direct, so the list goes to
+    your nearest Boreman stockist rather than to a checkout.</p>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
 </section>
 
-<section id="stockist" class="stock">
+<section class="stop rv" id="stop">
   <div class="wrap">
     <div>
-      <h2>Find your stockist</h2>
-      <p class="lede">We do not sell direct. Tell us the lamp and roughly where you are, and
-        we will put you on to the Boreman dealer nearest you, with the part number and
-        whether they have it on the shelf.</p>
-      <p class="note">This is the piece the live site is missing. Today the homepage says
-        &ldquo;available from your Boreman stockists&rdquo; and the button goes nowhere, so a driver
-        who wants a Phantom has no way to ask for one.</p>
+      <p class="eyebrow">Why it matters</p>
+      <p class="pull">A driver on the European run is parked up every night beside
+        <span>forty or fifty other trucks</span>. They are out, they are chatting, and they are
+        looking at each other's lights.</p>
+      <p class="attr">That is where the next order starts</p>
+      <div class="stat">
+        <div><b>3 weeks</b><p>A single European run, in a different yard every night.</p></div>
+        <div><b>Every night</b><p>Your lamp on show beside everyone else's.</p></div>
+      </div>
     </div>
-    <form id="f">
-      <label for="lamp">Which lamp</label>
-      <select id="lamp">
-        <option>PHANTOM &middot; 1001-2670</option>
-        <option>HALO &middot; 1001-2500</option>
-        <option>POLARIS &middot; 1001-1630</option>
-        <option>HYBRID 6200 &middot; 1001-6200</option>
-        <option>ACCELERATOR &middot; 1001-2040</option>
-        <option>SENTRY &middot; 1001-1580</option>
-        <option>Something else</option>
-      </select>
-      <label for="where">Where are you</label>
-      <input id="where" placeholder="Town or county, and country">
-      <label for="name">Your name</label>
-      <input id="name" placeholder="Name">
-      <label for="email">Email or mobile</label>
-      <input id="email" placeholder="How the dealer gets back to you">
-      <button class="cta" type="submit" style="width:100%">Put me on to a stockist</button>
-      <p class="note">Goes to Boreman, who pass it to the dealer. No prices here, and nothing
-        is sold on this page.</p>
-      <div class="ok" id="ok">Thanks. Boreman will pass this to your nearest stockist.</div>
-    </form>
+    <div class="lamp">
+      <div class="glow"></div>
+      <img src="polaris-cut.png" alt="Boreman Polaris full LED spot lamp" loading="lazy">
+    </div>
   </div>
 </section>
 
-<section id="trade" class="wrap">
-  <h2>For the trade</h2>
-  <p class="lede">Wholesalers, Scania and Volvo main dealers, and anyone fitting extra lamps
-     for their own customers.</p>
-  <div class="trade">
-    <div><h3>Stock the range</h3><p>Trade pricing, territory agreed, and the full catalogue
-      on the shelf rather than on order.</p></div>
-    <div><h3>Own product</h3><p>Bespoke lamps developed with your input, so you are selling
-      something nobody else in your market has.</p></div>
-    <div><h3>We send you the driver</h3><p>Every enquiry from this site goes to the nearest
-      stockist. We do not take the order.</p></div>
+<section id="find" class="find wrap rv">
+  <div>
+    <p class="eyebrow">Find your stockist</p>
+    <h2>We do not take the order.</h2>
+    <p class="lede">Tell us what you want and roughly where you are. We put you on to the
+      Boreman dealer nearest you with the part numbers, and they quote you and fit it.</p>
+    <p class="fine">Your dealer keeps the customer, which is the whole point of doing it this way.</p>
+  </div>
+  <form id="f">
+    <label for="list">Your list</label>
+    <textarea id="list" readonly placeholder="Add lamps from the range above and they appear here."></textarea>
+    <label for="where">Where are you</label>
+    <input id="where" placeholder="Town or county, and country">
+    <label for="name">Your name</label>
+    <input id="name" placeholder="Name">
+    <label for="contact">Email or mobile</label>
+    <input id="contact" placeholder="How the dealer gets back to you">
+    <button class="btn" type="submit" style="width:100%">Put me on to a stockist</button>
+    <p class="fine">No prices here and nothing is sold on this page.</p>
+    <div class="done" id="done">Thanks. Boreman will pass this to your nearest stockist.</div>
+  </form>
+</section>
+
+<section id="trade" class="stop rv">
+  <div class="wrap" style="display:block">
+    <p class="eyebrow">For the trade</p>
+    <h2>Wholesalers, main dealers, fitters.</h2>
+    <p class="lede">Every enquiry on this site goes to the stockist nearest the driver. We never
+      compete with you on price, because we never sell to them.</p>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card" style="padding:26px"><h3>Stock the range</h3>
+        <p class="pn" style="margin-bottom:0">Trade pricing, territory agreed, the catalogue on the shelf rather than on order.</p></div>
+      <div class="card" style="padding:26px"><h3>Own product</h3>
+        <p class="pn" style="margin-bottom:0">Bespoke lamps developed with your input, so you sell something nobody else has.</p></div>
+      <div class="card" style="padding:26px"><h3>We send you the driver</h3>
+        <p class="pn" style="margin-bottom:0">Demand built here, handed to you. No cart, no checkout, no price on the page.</p></div>
+    </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
+<footer><div class="wrap">
+  <p class="big">BOREMAN</p>
+  <div class="fbar">
     <span>Boreman Limited</span>
-    <span>+353 49 4367049</span>
-    <a href="#stockist">Find your stockist</a>
+    <a href="tel:+353494367049">+353 49 4367049</a>
+    <a href="#find">Find your stockist</a>
     <a href="#range">2026 parts catalogue</a>
   </div>
-</footer>
+</div></footer>
 
 <script>
-  document.getElementById('f').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.getElementById('ok').style.display = 'block';
+const LAMPS=[
+ {n:"HALO",p:"1001-2500",img:"halo-cut.png",c:"spot",s:"Full LED spot lamp, amber position ring"},
+ {n:"POLARIS",p:"1001-1630",img:"polaris-cut.png",c:"spot",s:"Full LED spot lamp, amber position light"},
+ {n:"ACCELERATOR",p:"1001-2040",img:"accelerator-cut.png",c:"work",s:"Four function full LED, amber and clear position light"},
+ {n:"SENTRY",p:"1001-1580",img:"sentry-cut.png",c:"work",s:"Work lamp with red and amber position light"},
+ {n:"SIDE MARKER",p:"1001-3065",img:"scania-cut.png",c:"scania",s:"Side marker lamp, to suit Scania"}
+];
+const CATS=[["all","Everything"],["spot","Spot lamps"],["work","Work lamps"],["scania","Truck specific"]];
+const picked=new Set();
+let filter="all";
+const grid=document.getElementById('grid'), chips=document.getElementById('chips');
+
+CATS.forEach(function(c){
+  var b=document.createElement('button');
+  b.className='chip'; b.textContent=c[1]; b.setAttribute('aria-pressed',c[0]===filter);
+  b.onclick=function(){filter=c[0];
+    Array.prototype.forEach.call(chips.children,function(el,i){el.setAttribute('aria-pressed',CATS[i][0]===filter)});
+    draw()};
+  chips.appendChild(b);
+});
+
+function draw(){
+  grid.innerHTML='';
+  LAMPS.filter(function(l){return filter==='all'||l.c===filter}).forEach(function(l){
+    var on=picked.has(l.n);
+    var el=document.createElement('article');
+    el.className='card';
+    el.innerHTML='<div class="shot"><figure>'+
+      '<img src="'+l.img+'" alt="Boreman '+l.n+'" loading="lazy">'+
+      '<img class="refl" src="'+l.img+'" alt="" aria-hidden="true" loading="lazy"></figure></div>'+
+      '<div class="meta"><h3>'+l.n+'</h3><p class="sku">Part no. '+l.p+'</p>'+
+      '<p class="spec">'+l.s+'</p>'+
+      '<button class="add" data-on="'+(on?1:0)+'">'+(on?'On your list':'Add to list')+'</button></div>';
+    el.querySelector('.add').onclick=function(){
+      if(picked.has(l.n)){picked.delete(l.n)}else{picked.add(l.n)}
+      sync(); draw();
+    };
+    grid.appendChild(el);
   });
+}
+function sync(){
+  document.getElementById('cnt').textContent=picked.size;
+  var lines=[];
+  picked.forEach(function(n){
+    var l=LAMPS.filter(function(x){return x.n===n})[0];
+    lines.push(n+'  .  '+l.p);
+  });
+  document.getElementById('list').value=lines.join('\n');
+}
+draw(); sync();
+
+var t=document.getElementById('track');
+var line=LAMPS.map(function(l){return '<span><b>'+l.n+'</b> '+l.p+'</span>'}).join('');
+t.innerHTML=line+line;
+
+var beam=document.getElementById('beam');
+addEventListener('pointermove',function(e){
+  var h=document.querySelector('.hero').getBoundingClientRect();
+  beam.style.setProperty('--mx',((e.clientX-h.left)/h.width*100)+'%');
+  beam.style.setProperty('--my',((e.clientY-h.top)/h.height*100)+'%');
+},{passive:true});
+
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(x){if(x.isIntersecting)x.target.classList.add('in')})
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(n){io.observe(n)});
+
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault(); document.getElementById('done').style.display='block';
+});
 </script>
 </body>
 </html>
