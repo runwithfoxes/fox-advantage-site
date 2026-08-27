@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boreman Limited &middot; LED lamps for trucks</title>
+<meta name="description" content="Spot lamps, work lamps and marker lamps for trucks. Made to look right on the truck and built for the road. Find your nearest Boreman stockist.">
+<style>
+  :root{
+    --blue:#005695; --blue-dark:#00406f; --amber:#ffc424;
+    --ink:#14181c; --mid:#5b666f; --line:#dfe4e8; --bg:#ffffff; --wash:#f4f6f8;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  img{max-width:100%; display:block}
+  a{color:inherit}
+
+  .demo{
+    background:#1A3A4E;color:#cfd6dc;font-size:12px;letter-spacing:.06em;padding:9px 20px;
+    text-align:center;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  .demo b{color:#fff;font-weight:500}
+  .demo i{color:#F47521;font-style:normal}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:24px;padding:14px 0}
+  .bar img{width:150px;height:auto}
+  nav{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:600}
+  nav a{text-decoration:none;color:var(--mid)}
+  nav a:hover{color:var(--blue)}
+  .cta{
+    background:var(--amber);color:#14181c;text-decoration:none;font-weight:800;
+    font-size:13px;letter-spacing:.05em;text-transform:uppercase;
+    padding:11px 18px;border-radius:3px;white-space:nowrap;border:0;cursor:pointer;
+  }
+  .cta:hover{background:#ffd352}
+
+  .hero{background:var(--blue);color:#fff;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:56px}
+  .hero h1{font-size:44px;line-height:1.1;margin:0 0 16px;letter-spacing:-.02em}
+  .hero p{font-size:19px;line-height:1.5;margin:0 0 26px;color:#cfe0ee}
+  .hero .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff;text-decoration:none;font-weight:700;
+         font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:10px 18px;border-radius:3px}
+  .ghost:hover{border-color:#fff}
+  .hero figure{margin:0}
+
+  section{padding:60px 0}
+  h2{font-size:28px;letter-spacing:-.01em;margin:0 0 8px}
+  .lede{color:var(--mid);font-size:17px;margin:0 0 32px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .card .ph{background:var(--wash);height:200px;display:flex;align-items:center;justify-content:center;padding:14px}
+  .card .ph img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain}
+  .card .body{padding:14px 16px 18px;display:flex;flex-direction:column;flex:1}
+  .card h3{margin:0;font-size:16px;letter-spacing:.02em}
+  .card .pn{color:var(--mid);font-size:12.5px;margin:3px 0 12px;font-variant-numeric:tabular-nums}
+  .card .ask{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue);text-decoration:none}
+  .card .ask:hover{text-decoration:underline}
+
+  .stock{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stock .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  form{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px}
+  label{display:block;font-size:13px;font-weight:700;margin:0 0 5px}
+  input,select{
+    width:100%;padding:11px 12px;margin:0 0 15px;border:1px solid var(--line);
+    border-radius:4px;font:inherit;font-size:15px;background:#fff;color:var(--ink)
+  }
+  input:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+  .note{font-size:13px;color:var(--mid);margin:12px 0 0}
+  .ok{display:none;background:#eef7ee;border:1px solid #bcdcbc;color:#1c5c28;padding:14px;border-radius:4px;font-size:15px}
+
+  .trade{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .trade div{border-top:3px solid var(--amber);padding-top:14px}
+  .trade h3{margin:0 0 6px;font-size:17px}
+  .trade p{margin:0;color:var(--mid);font-size:15px}
+
+  footer{background:#14181c;color:#9aa5ad;font-size:14px;padding:34px 0}
+  footer .wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+  footer a{color:#cfd6dc}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:38px;padding-bottom:38px}
+    .hero h1{font-size:32px}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .stock .wrap{grid-template-columns:1fr;gap:28px}
+    .trade{grid-template-columns:1fr}
+    nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<p class="demo">/<i>Run</i>withfoxes &nbsp;&middot;&nbsp; <b>concept rebuild</b>, not the live boremanltd.com</p>
+
+<header>
+  <div class="wrap bar">
+    <img src="logo.png" alt="Boreman Limited" width="450" height="187">
+    <nav>
+      <a href="#range">Lamps</a>
+      <a href="#range">Truck specific</a>
+      <a href="#trade">For the trade</a>
+      <a href="#stockist">Downloads</a>
+    </nav>
+    <a class="cta" href="#stockist">Find your stockist</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Lamps that look right on the truck.</h1>
+      <p>Spot lamps, work lamps and markers, designed for the way a truck actually gets
+         driven and the way a driver wants it to look. Fitted by your dealer, backed by us.</p>
+      <div class="row">
+        <a class="cta" href="#stockist">Find your stockist</a>
+        <a class="ghost" href="#range">See the range</a>
+      </div>
+    </div>
+    <figure><img src="halo.jpg" alt="Boreman Halo full LED spot lamp" width="900" height="900"></figure>
+  </div>
+</div>
+
+<section id="range" class="wrap">
+  <h2>The range</h2>
+  <p class="lede">Every lamp is sold through a Boreman stockist. Pick the one you want and
+     we will put you on to the dealer nearest you.</p>
+  <div class="grid">
+    <article class="card">
+      <div class="ph"><img src="phantom.jpg" alt="Phantom LED spot lamp" loading="lazy"></div>
+      <div class="body"><h3>PHANTOM</h3><p class="pn">Part no. 1001-2670</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="halo.jpg" alt="Halo full LED spot lamp" loading="lazy"></div>
+      <div class="body"><h3>HALO</h3><p class="pn">Part no. 1001-2500</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="polaris.jpg" alt="Polaris full LED spot lamp" loading="lazy"></div>
+      <div class="body"><h3>POLARIS</h3><p class="pn">Part no. 1001-1630</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="hybrid.jpg" alt="Hybrid 6200 light bar" loading="lazy"></div>
+      <div class="body"><h3>HYBRID 6200</h3><p class="pn">Part no. 1001-6200</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="accelerator.jpg" alt="Accelerator four function LED lamp" loading="lazy"></div>
+      <div class="body"><h3>ACCELERATOR</h3><p class="pn">Part no. 1001-2040</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="sentry.jpg" alt="Sentry work lamp" loading="lazy"></div>
+      <div class="body"><h3>SENTRY</h3><p class="pn">Part no. 1001-1580</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="scania.jpg" alt="Side marker lamp to suit Scania" loading="lazy"></div>
+      <div class="body"><h3>SIDE MARKER</h3><p class="pn">To suit Scania &middot; 1001-3065</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+    <article class="card">
+      <div class="ph"><img src="truck.jpg" alt="Hybrid 6200 fitted on a truck front" loading="lazy"></div>
+      <div class="body"><h3>ON THE TRUCK</h3><p class="pn">Hybrid 6200, fitted</p>
+        <a class="ask" href="#stockist">Ask your stockist &rarr;</a></div>
+    </article>
+  </div>
+</section>
+
+<section id="stockist" class="stock">
+  <div class="wrap">
+    <div>
+      <h2>Find your stockist</h2>
+      <p class="lede">We do not sell direct. Tell us the lamp and roughly where you are, and
+        we will put you on to the Boreman dealer nearest you, with the part number and
+        whether they have it on the shelf.</p>
+      <p class="note">This is the piece the live site is missing. Today the homepage says
+        &ldquo;available from your Boreman stockists&rdquo; and the button goes nowhere, so a driver
+        who wants a Phantom has no way to ask for one.</p>
+    </div>
+    <form id="f">
+      <label for="lamp">Which lamp</label>
+      <select id="lamp">
+        <option>PHANTOM &middot; 1001-2670</option>
+        <option>HALO &middot; 1001-2500</option>
+        <option>POLARIS &middot; 1001-1630</option>
+        <option>HYBRID 6200 &middot; 1001-6200</option>
+        <option>ACCELERATOR &middot; 1001-2040</option>
+        <option>SENTRY &middot; 1001-1580</option>
+        <option>Something else</option>
+      </select>
+      <label for="where">Where are you</label>
+      <input id="where" placeholder="Town or county, and country">
+      <label for="name">Your name</label>
+      <input id="name" placeholder="Name">
+      <label for="email">Email or mobile</label>
+      <input id="email" placeholder="How the dealer gets back to you">
+      <button class="cta" type="submit" style="width:100%">Put me on to a stockist</button>
+      <p class="note">Goes to Boreman, who pass it to the dealer. No prices here, and nothing
+        is sold on this page.</p>
+      <div class="ok" id="ok">Thanks. Boreman will pass this to your nearest stockist.</div>
+    </form>
+  </div>
+</section>
+
+<section id="trade" class="wrap">
+  <h2>For the trade</h2>
+  <p class="lede">Wholesalers, Scania and Volvo main dealers, and anyone fitting extra lamps
+     for their own customers.</p>
+  <div class="trade">
+    <div><h3>Stock the range</h3><p>Trade pricing, territory agreed, and the full catalogue
+      on the shelf rather than on order.</p></div>
+    <div><h3>Own product</h3><p>Bespoke lamps developed with your input, so you are selling
+      something nobody else in your market has.</p></div>
+    <div><h3>We send you the driver</h3><p>Every enquiry from this site goes to the nearest
+      stockist. We do not take the order.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Boreman Limited</span>
+    <span>+353 49 4367049</span>
+    <a href="#stockist">Find your stockist</a>
+    <a href="#range">2026 parts catalogue</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('f').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('ok').style.display = 'block';
+  });
+</script>
+</body>
+</html>
