@@ -27,18 +27,18 @@ a{color:inherit;text-decoration:none}
 .eyebrow{font:11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;
   color:var(--accent);margin:0 0 18px}
 
-.frame{background:#1A3A4E;color:#cfd6dc;font:12px/1 var(--mono);letter-spacing:.06em;
-  padding:10px 20px;text-align:center;position:relative;z-index:60}
-.frame b{color:#fff;font-weight:500}.frame i{color:#F47521;font-style:normal}
-
 /* floating pill nav (01) */
-.nav{position:fixed;top:52px;left:0;right:0;z-index:50;pointer-events:none;padding:0 28px}
-.pill{pointer-events:auto;display:flex;align-items:center;gap:30px;max-width:1240px;
-  margin:0 auto;padding:12px 14px 12px 22px;background:rgba(14,20,27,.72);
+.nav{position:fixed;top:22px;left:0;right:0;z-index:50;pointer-events:none;padding:0 28px}
+.navrow{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:24px}
+.brand{pointer-events:auto;flex:none;display:block;line-height:0;
+  filter:drop-shadow(0 6px 22px rgba(0,0,0,.6));transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.brand:hover{transform:translateY(-2px)}
+.brand img{height:72px;width:auto}
+.pill{pointer-events:auto;margin-left:auto;display:flex;align-items:center;gap:30px;
+  padding:12px 14px 12px 30px;background:rgba(14,20,27,.72);
   backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.09);border-radius:100px}
-.pill .lg{height:26px;width:auto}
-.pill nav{display:flex;gap:26px;margin-left:auto;font-size:13.5px;color:var(--muted)}
-.pill nav a:hover{color:var(--fg)}
+.pill nav{display:flex;gap:26px;font-size:13.5px;color:var(--muted)}
+.pill nav a:hover{color:#fff}
 .btn{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
   background:var(--accent);color:#0b0f14;padding:12px 20px;border-radius:100px;border:0;
   cursor:pointer;white-space:nowrap;transition:transform .18s,box-shadow .18s}
@@ -62,7 +62,7 @@ a{color:inherit;text-decoration:none}
   background:repeating-linear-gradient(115deg,transparent 0 78px,rgba(255,196,36,.05) 78px 80px),
   radial-gradient(120% 80% at 50% 110%,rgba(0,86,149,.42),transparent 60%)}
 .hero .wrap{position:relative;z-index:3;display:block;max-width:1240px;
-  padding-top:150px;padding-bottom:120px}
+  padding-top:190px;padding-bottom:120px}
 h1{font-size:clamp(46px,7.2vw,104px);line-height:.92;letter-spacing:-.04em;margin:0 0 22px;
   font-weight:800;text-wrap:balance;text-shadow:0 4px 40px rgba(0,0,0,.55)}
 h1 em{font-style:normal;color:var(--accent)}
@@ -174,6 +174,7 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:860px){
+  .brand img{height:48px}
   .hero .wrap,.stop .wrap,.find .wrap{grid-template-columns:1fr;gap:40px}
   .hero .wrap{padding-top:130px}
   .pill nav{display:none}
@@ -183,10 +184,9 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 </head>
 <body>
 
-<p class="frame">/<i>Run</i>withfoxes &nbsp;&middot;&nbsp; <b>concept rebuild</b>, not the live boremanltd.com</p>
-
-<div class="nav"><div class="pill">
-  <img class="lg" src="logo.png" alt="Boreman">
+<div class="nav"><div class="navrow">
+  <a class="brand" href="#top"><img src="logo.png" alt="Boreman"></a>
+  <div class="pill">
   <nav>
     <a href="#range">The range</a>
     <a href="#stop">Why it matters</a>
@@ -195,6 +195,7 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
   <button class="btn" onclick="document.getElementById('find').scrollIntoView()">
     Your list <span class="count" id="cnt">0</span>
   </button>
+  </div>
 </div></div>
 
 <header class="hero" id="top">
@@ -251,10 +252,7 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 
 <section id="find" class="find wrap rv">
   <div>
-    <p class="eyebrow">Find your stockist</p>
-    <h2>We do not take the order.</h2>
-    <p class="lede">Tell us what you want and roughly where you are. We put you on to the
-      Boreman dealer nearest you with the part numbers, and they quote you and fit it.</p>
+    <h2>Find your stockist.</h2>
     <p class="fine">Your dealer keeps the customer, which is the whole point of doing it this way.</p>
   </div>
   <form id="f">
@@ -300,6 +298,19 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 </div></footer>
 
 <script>
+if (window.self !== window.top) {
+  document.documentElement.setAttribute('data-framed','1');
+  addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.navrow a, .navrow button, .hero .row a, .hero .row button')
+      .forEach(function (el) {
+        el.onclick = function (e) {
+          e.preventDefault();
+          window.open(location.pathname, '_blank');
+        };
+        el.style.cursor = 'pointer';
+      });
+  });
+}
 const LAMPS=[
  {n:"HALO",p:"1001-2500",img:"halo-cut.png",c:"spot",s:"Full LED spot lamp, amber position ring"},
  {n:"POLARIS",p:"1001-1630",img:"polaris-cut.png",c:"spot",s:"Full LED spot lamp, amber position light"},

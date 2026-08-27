@@ -38,14 +38,44 @@
   border: 0;
   transform: scale(var(--ppwh-scale, 0.75));
   transform-origin: top left;
-  pointer-events: none;
 }
 
 .ppwh-veil {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+  pointer-events: none; /* the veil must never eat a click meant for the site */
   background: linear-gradient(to bottom, transparent 62%, rgba(7, 10, 14, 0.92));
+}
+
+/* ⭐ Paul, 27 Aug, after two goes at this: "Open the site button is nice, but
+   instead of having it on the far right, have it on the left of the screen and
+   don't have it disappear, just have it there. But it's not as intrusive because
+   it's transparent." So: bottom left, always there, and the transparency is what
+   keeps it quiet rather than the hiding. */
+.ppwh-cta {
+  position: absolute;
+  left: 28px;
+  bottom: 26px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: rgba(10, 14, 20, 0.66);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e8eef4;
+  font: 500 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.ppwh-cta:hover {
+  border-color: #ffc424;
+  color: #ffc424;
 }
 
 .ppwh-cap {
@@ -82,8 +112,64 @@
     height: 56vh;
     min-height: 340px;
   }
-  .ppwh-cap {
+  /* ⭐ Paul, 27 Aug, after two goes at this: "Open the site button is nice, but
+   instead of having it on the far right, have it on the left of the screen and
+   don't have it disappear, just have it there. But it's not as intrusive because
+   it's transparent." So: bottom left, always there, and the transparency is what
+   keeps it quiet rather than the hiding. */
+.ppwh-cta {
+  position: absolute;
+  left: 28px;
+  bottom: 26px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: rgba(10, 14, 20, 0.66);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e8eef4;
+  font: 500 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.ppwh-cta:hover {
+  border-color: #ffc424;
+  color: #ffc424;
+}
+
+.ppwh-cap {
     padding: 18px 20px 26px;
     font-size: 13px;
   }
+}
+
+/* The same action inside a section. There is no general link or button class in
+   the prospect shell, so this is it. Paul, 27 Aug: "have that very clearly
+   marked in the website section" - a button, not a text link. */
+.ppwh-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 15px 28px;
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  color: inherit;
+  font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.ppwh-inline:hover {
+  border-color: #005695;
+  color: #005695;
 }

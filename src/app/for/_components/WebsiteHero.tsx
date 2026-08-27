@@ -22,8 +22,12 @@ export default function WebsiteHero({
   href,
 }: {
   src: string; // the rebuilt page
-  url: string; // the real domain it rebuilds
-  caption: string; // the honest line about what it is
+  url: string; // the real domain it rebuilds, for the iframe title
+  // ⛔ Paul cut the caption strip on the Boreman build, 27 Aug: "delete this
+  // line". The rebuild speaks for itself and a line under it explaining what it
+  // is reads as a caption on a picture. Optional, so a later page can bring it
+  // back, and OFF unless someone passes copy.
+  caption?: string;
   href?: string; // where "open it" goes, if anywhere
 }) {
   const wrap = useRef<HTMLDivElement>(null);
@@ -50,19 +54,25 @@ export default function WebsiteHero({
           src={src}
           title={`${url} rebuilt`}
           scrolling="no"
-          tabIndex={-1}
         />
         <div className="ppwh-veil" />
-      </div>
-      <p className="ppwh-cap">
-        <b>{url}</b>
-        <span>{caption}</span>
         {href && (
-          <a href={href} target="_blank" rel="noreferrer">
-            Open it full size
+          <a className="ppwh-cta" href={href} target="_blank" rel="noreferrer">
+            Open the site
           </a>
         )}
-      </p>
+      </div>
+      {caption && (
+        <p className="ppwh-cap">
+          <b>{url}</b>
+          <span>{caption}</span>
+          {href && (
+            <a href={href} target="_blank" rel="noreferrer">
+              Open it full size
+            </a>
+          )}
+        </p>
+      )}
     </div>
   );
 }

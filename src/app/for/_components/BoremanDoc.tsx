@@ -21,6 +21,14 @@
 //                        LinkedIn: "it's stupid really time consuming snooping"
 //                        (SHOWN, not priced - Paul, 27 Aug)
 //
+// ⛔ THE AUDIT SECTION IS OUT. Paul cut it 27 Aug, right after cutting the
+// caption under the hero. It held four verified findings on boremanltd.com -
+// the stockist button linking to nothing, the half-standing shop, the missing
+// meta description, and three of eight images not being product photography.
+// The research still exists in clients/boreman/memory/boreman-brand-spec-for-ads.md
+// and the rebuild at the top ANSWERS those findings without listing them, which
+// is the likely reason it went: the page shows rather than tells.
+//
 // ⛔ OUT, deliberately: Redesigning workflows (five employees, no workflow to
 // redesign). Training teams - he ruled it out himself, "train people in-house
 // and do all that, it just won't work for me". Brand Guardian and Brief Coach
@@ -46,7 +54,6 @@ import "./pricing.css";
 
 const SECTIONS = [
   { id: "heard", title: "What this is" },
-  { id: "site", title: "What we found on your site" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "buildingagents", title: "Building agents" },
@@ -68,11 +75,10 @@ const RAIL_GROUPS = [
   {
     label: "/what we do",
     entries: [
-      { id: "site", title: "What we found on your site", num: "01" },
       {
         id: "buildingagents",
         title: "Building agents",
-        num: "02",
+        num: "01",
         ids: ["buildingagents", "advertising", "website", "growth"],
         children: [
           { id: "advertising", title: "Advertising Agent" },
@@ -83,7 +89,7 @@ const RAIL_GROUPS = [
       {
         id: "howitworks",
         title: "How it would work",
-        num: "03",
+        num: "02",
         ids: ["howitworks", "use", "weeks", "infra", "after"],
         children: [
           { id: "use", title: "How your team would use it" },
@@ -114,7 +120,6 @@ export default function BoremanDoc() {
       <WebsiteHero
         src="/for/boreman/index.html"
         url="boremanltd.com"
-        caption="rebuilt in a day, with your own lamps and your own part numbers. Nothing on it takes an order."
         href="/for/boreman/index.html"
       />
 
@@ -135,64 +140,13 @@ export default function BoremanDoc() {
             the competitors are promoting theirs heavily and in cool ways, and
             that the manpower is there but the know-how is not. Everything below
             is our own work or a demonstration we made. The one exception is the
-            next section, which is real research on your own site, and the page
-            at the top, which is that site rebuilt.
+            page at the top, which is your own site rebuilt.
           </p>
-        </PPSection>
-
-        {/* THE AUDIT. Real, measured on boremanltd.com on 27 Aug 2026. This is
-            the only part of the page that is about Boreman rather than a
-            demonstration. Every line here was verified live. */}
-        <PPSection id="site" k="02" title="What we found on your site">
-          <p className="pps-standfirst">
-            Before we met we went through boremanltd.com properly. Four things,
-            all checked on the day.
-          </p>
-          <div className="pfd-cases" style={{ marginTop: 26 }}>
-            <div className="pfd-case">
-              <h3>The stockist button goes nowhere</h3>
-              <p>
-                Your homepage says AVAILABLE FROM YOUR BOREMAN STOCKISTS, and the
-                button links to nothing. There is no stockists page, no dealers
-                page and no where-to-buy page. So a driver who wants a Phantom is
-                told to go to his stockist and never told who that is. The site
-                already says the right sentence and there is nothing behind it.
-              </p>
-            </div>
-            <div className="pfd-case">
-              <h3>The shop is still half standing</h3>
-              <p>
-                The prices and the add-to-cart buttons are gone, but the shop
-                itself is still there. Your shop page still lists thirty
-                products, and the cart and account pages still load. So a product
-                page is a dead end: no price, no cart, and no way to ask about
-                the lamp.
-              </p>
-            </div>
-            <div className="pfd-case">
-              <h3>Google is writing your search result for you</h3>
-              <p>
-                The homepage has no description tag at all, so Google picks its
-                own words for what people see in the results. Your product pages
-                have one. The homepage, which is the page most people land on,
-                does not.
-              </p>
-            </div>
-            <div className="pfd-case">
-              <h3>Three of your eight product images are not product photography</h3>
-              <p>
-                Phantom, Hybrid 6200 and the fitted shot are marketing cards with
-                text and borders baked into them. They cannot be used as product
-                pictures anywhere, which is why the rebuild above shows five
-                lamps rather than eight.
-              </p>
-            </div>
-          </div>
         </PPSection>
 
         {/* WHAT WE DO. Paul's own copy, verbatim from the Fidelity page where he
             agreed it line by line. Do not rewrite. */}
-        <PPSection id="howiwork" k="03" title="What we do">
+        <PPSection id="howiwork" k="02" title="What we do">
           <p className="pps-hiw-line">Quality first, then automate</p>
           <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
           <div className="pps-hiw-grid">
@@ -221,7 +175,7 @@ export default function BoremanDoc() {
           </div>
         </PPSection>
 
-        <PPSection id="whatwedo" k="04" title="What Run with Foxes does">
+        <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
           <FourThingsFigure />
           <p className="pps-standfirst" style={{ marginTop: 24 }}>
             I firmly believe that marketing structures, marketing teams and
@@ -233,7 +187,7 @@ export default function BoremanDoc() {
           </p>
         </PPSection>
 
-        <PPSection id="buildingagents" k="05" title="Building agents">
+        <PPSection id="buildingagents" k="04" title="Building agents">
           <p className="pps-standfirst">
             Three of them are worth talking about for Boreman. Two we would
             recommend building now, and one worth knowing exists.
@@ -292,6 +246,28 @@ export default function BoremanDoc() {
             on a product page, a new lamp added to the range, a banner for a
             show next month. You ask, and it makes the change.
           </p>
+          {/* ⭐ Paul, 27 Aug: say plainly that this was built on spec and that a
+              real brief makes it considerably better. Two reasons. It is true,
+              and it stops a rebuild made from a public website being read as our
+              best work. */}
+          <p className="pps-standfirst" style={{ marginTop: 22 }}>
+            One thing worth saying plainly. We built that on spec, in a day, from
+            your public website and nothing else. Nobody briefed us, so we made
+            our own guesses about what matters to you, who you are really talking
+            to, and what a dealer needs from a page. With a proper brief and an
+            hour of your time on those questions, we would do a considerably
+            better job than this.
+          </p>
+          <p className="pps-standfirst" style={{ marginTop: 22 }}>
+            <a
+              className="ppwh-inline"
+              href="/for/boreman/index.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See the full website
+            </a>
+          </p>
         </PPSection>
 
         {/* GROWTH AGENT. Shown, not priced. Paul, 27 Aug: "Include the growth
@@ -316,7 +292,7 @@ export default function BoremanDoc() {
             they are sub-sections rather than a component: CardCascade is a
             diagram of one card with children falling out of it, which is the
             wrong tool for four paragraphs of prose. */}
-        <PPSection id="howitworks" k="06" title="How it would work">
+        <PPSection id="howitworks" k="05" title="How it would work">
           <p className="pps-standfirst">
             The same four things are true of both, so they are worth saying once.
           </p>
@@ -362,7 +338,7 @@ export default function BoremanDoc() {
         {/* THE PRICE. Paul's numbers, 27 Aug: three thousand plus VAT each,
             ninety-nine a month on the advertising agent only, no monthly on the
             website, reviewed after three months. ⛔ NEVER invent a number here. */}
-        <PPSection id="pricing" k="07" title="The price">
+        <PPSection id="pricing" k="06" title="The price">
           <PricingCards
             cards={[
               {
@@ -420,7 +396,7 @@ export default function BoremanDoc() {
         {/* CASE STUDIES. Paul, 27 Aug: after the price on this page. Copy
             verbatim from the Fidelity build where he agreed it line by line.
             Every number is real. */}
-        <PPSection id="work" k="08" title="Case studies">
+        <PPSection id="work" k="07" title="Case studies">
           <p className="pps-standfirst">
             Starting with the big companies, and with the one I did from the
             inside, running the teams rather than advising them.
@@ -459,7 +435,7 @@ export default function BoremanDoc() {
           </div>
         </PPSection>
 
-        <PPSection id="library" k="09" title="Essays">
+        <PPSection id="library" k="08" title="Essays">
           <LibraryList
             intro="A few things worth keeping, picked for where you are now."
             items={[
@@ -495,7 +471,7 @@ export default function BoremanDoc() {
           />
         </PPSection>
 
-        <PPSection id="next" k="10" title="The next step">
+        <PPSection id="next" k="09" title="The next step">
           <p className="pps-standfirst">
             If the two above look right, the next step is a call to agree what
             gets built first and to get your brand material over to us. The
