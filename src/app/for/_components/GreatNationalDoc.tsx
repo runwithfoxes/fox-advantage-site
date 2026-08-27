@@ -66,14 +66,19 @@ const SECTIONS = [
   { id: "creative", title: "Creative Director" },
   { id: "guardian", title: "Brand Guardian" },
   { id: "lifecycle", title: "Lifecycle Agent" },
-  { id: "work", title: "The work" },
-  { id: "library", title: "Your library" },
+  { id: "work", title: "Case studies" },
+  { id: "library", title: "Essays" },
   { id: "next", title: "The next step" },
 ];
 
 // ⛔ THE RAIL IS SHORT AND STAYS SHORT (three cuts on Kite, all for
 // busyness). Children under Building agents are only the agents this page
 // actually demonstrates.
+//
+// ⭐ The /also group is Paul's, 27 Aug: cutting the audit left the rail with
+// two entries and he could not reach the bottom three sections from it. Same
+// shape as Expleo and Ace Express - compact, unnumbered, so the numbered
+// list above still reads as the argument and these read as where to jump.
 const RAIL_GROUPS = [
   {
     label: "/what we do",
@@ -91,6 +96,15 @@ const RAIL_GROUPS = [
           { id: "lifecycle", title: "Lifecycle Agent" },
         ],
       },
+    ],
+  },
+  {
+    label: "/also",
+    compact: true,
+    entries: [
+      { id: "work", title: "Case studies" },
+      { id: "library", title: "Essays" },
+      { id: "next", title: "The next step" },
     ],
   },
 ];
@@ -441,7 +455,7 @@ export default function GreatNationalDoc() {
 
       {/* THE WORK. Verbatim from the Fidelity page, where Paul agreed it
           line by line. */}
-      <PPSection id="work" k="07" title="The work">
+      <PPSection id="work" k="07" title="Case studies">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
@@ -584,7 +598,7 @@ export default function GreatNationalDoc() {
       {/* YOUR LIBRARY. Picked for James and Chris. The course note doubles
           as the invitation: nobody from Great National is on it yet.
           ⚠️ DRAFT COPY, Paul's pass owed. */}
-      <PPSection id="library" k="08" title="Your library">
+      <PPSection id="library" k="08" title="Essays">
         <LibraryList
           intro="A few things worth keeping, picked for where you are now. Anything we add later lands here."
           items={[
