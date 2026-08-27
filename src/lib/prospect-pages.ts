@@ -79,6 +79,14 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
   // page at Paul's instruction: the close is an hour with Chris on their
   // content and creative workflow. The old priced page (6 Aug, EUR 7,500,
   // never sent) stays in paul-hub as the copy record.
+  boreman: {
+    slug: "boreman",
+    client: "Boreman Limited",
+    shortName: "Boreman",
+    tabTitle: "Run with Foxes for Boreman",
+    passwordEnv: "BOREMAN_PASSWORD",
+    passwordFallback: "boreman26",
+  },
   "great-national": {
     slug: "great-national",
     client: "Great National Hotels & Resorts",

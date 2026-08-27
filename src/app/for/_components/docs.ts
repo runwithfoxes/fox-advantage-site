@@ -27,4 +27,9 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // 26 Aug from the Return2Sender page. Capabilities, no price; the close is
   // an hour with Chris on the content and creative workflow.
   "great-national": dynamic(() => import("./GreatNationalDoc"), { ssr: false }),
+  // Daragh Boylan, Boreman Ltd. Truck lighting, five people, seven to ten key
+  // accounts. Built 27 Aug. The first page to open on the client's own site
+  // rebuilt, full bleed, above the masthead - Paul's call, pointing at the GEO
+  // Ireland page. Two priced agents, Advertising and Website, plus Growth shown.
+  boreman: dynamic(() => import("./BoremanDoc"), { ssr: false }),
 };

@@ -1,0 +1,89 @@
+/* Full-bleed website hero. Paul, 27 Aug: "I think this website looks really
+   good, so I don't want this to be hidden away. Maybe we have this website as
+   the hero of our proposal. and it takes over the entire top of the page in
+   the same way this is done for my geo ireland page."
+
+   The existing WebsiteExhibit puts a rebuild in a small browser frame partway
+   down a page. This is the other treatment: the rebuild IS the top of the
+   page, live and playing, before the masthead. */
+
+.ppwh {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #070a0e;
+}
+
+/* The shell's own fixed bar (.pps-nav, measured at 54px) floats over the top of
+   the page, so the rebuild starts below it. Without this the proposal's bar sits
+   on top of the client's own logo and nav, which is exactly what it looked like
+   the first time. */
+.ppwh-stage {
+  position: relative;
+  height: 74vh;
+  min-height: 480px;
+  margin-top: 54px;
+  overflow: hidden;
+}
+
+/* The rebuild renders at desktop width and is scaled down to fit, so a laptop
+   sees the real desktop layout rather than the mobile breakpoint. */
+.ppwh-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1600px;
+  height: calc(74vh / var(--ppwh-scale, 0.75));
+  min-height: calc(480px / var(--ppwh-scale, 0.75));
+  border: 0;
+  transform: scale(var(--ppwh-scale, 0.75));
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.ppwh-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 62%, rgba(7, 10, 14, 0.92));
+}
+
+.ppwh-cap {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 28px 30px;
+  color: #8d9bab;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ppwh-cap b {
+  color: #f4f7fa;
+  font-weight: 600;
+}
+
+.ppwh-cap a {
+  color: #ffc424;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 196, 36, 0.4);
+}
+
+.ppwh-cap a:hover {
+  border-bottom-color: #ffc424;
+}
+
+@media (max-width: 860px) {
+  .ppwh-stage {
+    height: 56vh;
+    min-height: 340px;
+  }
+  .ppwh-cap {
+    padding: 18px 20px 26px;
+    font-size: 13px;
+  }
+}
