@@ -49,19 +49,24 @@ a{color:inherit;text-decoration:none}
   background:#0b0f14;color:var(--accent);border-radius:100px;font-size:11px;margin-left:8px;padding:0 5px}
 
 /* hero: full-bleed cinematic + pointer spotlight (08 + 09) */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
-.beam{position:absolute;inset:0;pointer-events:none;z-index:1;
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#050a10}
+.film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(100deg,rgba(5,10,16,.94) 0%,rgba(5,10,16,.72) 34%,
+    rgba(5,10,16,.18) 58%,transparent 78%),
+  linear-gradient(to top,rgba(5,10,16,.72),transparent 42%)}
+.beam{position:absolute;inset:0;pointer-events:none;z-index:2;mix-blend-mode:screen;
   background:radial-gradient(620px circle at var(--mx,50%) var(--my,42%),
   rgba(255,196,36,.20),rgba(0,86,149,.16) 42%,transparent 68%)}
-.road{position:absolute;inset:0;z-index:0;opacity:.55;
+.road{display:none;position:absolute;inset:0;z-index:0;opacity:.55;
   background:repeating-linear-gradient(115deg,transparent 0 78px,rgba(255,196,36,.05) 78px 80px),
   radial-gradient(120% 80% at 50% 110%,rgba(0,86,149,.42),transparent 60%)}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;
-  gap:50px;align-items:center;padding-top:150px;padding-bottom:90px}
-h1{font-size:clamp(44px,6.6vw,92px);line-height:.94;letter-spacing:-.035em;margin:0 0 22px;
-  font-weight:800;text-wrap:balance}
+.hero .wrap{position:relative;z-index:3;display:block;max-width:1240px;
+  padding-top:150px;padding-bottom:120px}
+h1{font-size:clamp(46px,7.2vw,104px);line-height:.92;letter-spacing:-.04em;margin:0 0 22px;
+  font-weight:800;text-wrap:balance;text-shadow:0 4px 40px rgba(0,0,0,.55)}
 h1 em{font-style:normal;color:var(--accent)}
-.sub{font-size:19px;color:#b9c6d3;margin:0 0 34px}
+.sub{font-size:19px;color:#cfdae6;margin:0 0 34px;max-width:34ch;text-shadow:0 2px 18px rgba(0,0,0,.6)}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .lamp{position:relative}
 .lamp .glow{position:absolute;inset:-14%;border-radius:50%;z-index:0;
@@ -193,7 +198,10 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
 </div></div>
 
 <header class="hero" id="top">
-  <div class="road"></div>
+  <video class="film" autoplay muted loop playsinline poster="hero-poster.jpg">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="scrim"></div>
   <div class="beam" id="beam"></div>
   <div class="wrap">
     <div>
@@ -205,10 +213,6 @@ footer{border-top:1px solid var(--border);padding:90px 0 40px}
         <button class="btn" onclick="document.getElementById('range').scrollIntoView()">See the range</button>
         <a class="btn ghost" href="#find">Find your stockist</a>
       </div>
-    </div>
-    <div class="lamp">
-      <div class="glow"></div>
-      <img src="halo-cut.png" alt="Boreman Halo full LED spot lamp with the amber position ring lit" width="900" height="900">
     </div>
   </div>
   <p class="scrollcue">Move your cursor, the light follows</p>
