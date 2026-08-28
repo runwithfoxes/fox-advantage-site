@@ -1,19 +1,32 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
-import { getAllDispatches, formatDispatchDate } from "@/lib/diary";
+import {
+  getAllDispatches,
+  getDispatchContent,
+  formatDispatchDate,
+  type Dispatch,
+} from "@/lib/diary";
 
 /**
- * /diary - THE INDEX. The diary of the AI team, written by Lena.
+ * /diary - ONE LONG READING PAGE. The diary of the AI team, written by Lena.
  *
- * A clone of the /essays index register: same classes, same measure, same list.
- * Everything on this page comes from the markdown files in src/content/diary.
- * There is no list to maintain here: a dispatch published through
- * publish_dispatch.py appears at the top.
+ * ⭐ EVERY DISPATCH IS RENDERED IN FULL, newest first. Paul's call, 28 Aug 2026:
+ * "One long page might be better as is more like a blog than essays... My
+ * motivation is that we don't add lots of extra clicks to get to read this."
+ * So: land and read. No read-more links, nothing collapsed.
  *
- * Dispatches carry no images, so the list rows drop the thumbnail the essays
- * index shows; an empty .essay-list-thumb renders as a grey square.
+ * The per-dispatch pages at /diary/[slug] stay alive and in the sitemap; they
+ * are the citable, shareable addresses. On this page each entry's date line is
+ * its permalink, and each entry carries an id matching its slug so /diary#slug
+ * lands on it.
+ *
+ * Future-proofing, light: the latest FULL_COUNT render in full, anything older
+ * becomes a dated line linking to its own page. With one dispatch today this
+ * changes nothing visible.
  */
+
+const FULL_COUNT = 15;
 
 export const metadata: Metadata = {
   title: "Diary of an AI marketing team \\ Run with Foxes",
@@ -22,8 +35,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://runwithfoxes.com/diary" },
 };
 
-export default function DiaryPage() {
-  const dispatches = getAllDispatches();
+export default async function DiaryPage() {
+  const all = getAllDispatches();
+  const recent = await Promise.all(
+    all.slice(0, FULL_COUNT).map((d) => getDispatchContent(d.slug))
+  );
+  const full = recent.filter((d): d is Dispatch => d !== null);
+  const older = all.slice(FULL_COUNT);
 
   return (
     <div className="essay-page">
@@ -32,7 +50,7 @@ export default function DiaryPage() {
           /<span>Run</span>withfoxes
         </Link>
         <div className="essay-nav-count">
-          {dispatches.length} {dispatches.length === 1 ? "dispatch" : "dispatches"}
+          {all.length} {all.length === 1 ? "dispatch" : "dispatches"}
         </div>
       </header>
 
@@ -50,17 +68,42 @@ export default function DiaryPage() {
             </p>
           </div>
 
-          <div className="essay-list">
-            {dispatches.map((d) => (
-              <Link key={d.slug} href={`/diary/${d.slug}`} className="essay-list-item">
-                <div>
-                  <div className="essay-list-title">{d.title}</div>
-                  {d.dek ? <div className="essay-list-dek">{d.dek}</div> : null}
-                  <div className="essay-list-date">{formatDispatchDate(d.date)}</div>
+          {full.map((d) => (
+            <article key={d.slug} id={d.slug} className="diary-entry">
+              <div className="essay-header">
+                <div className="essay-meta">
+                  <Link href={`/diary/${d.slug}`} className="diary-permalink">
+                    {formatDispatchDate(d.date)}
+                  </Link>{" "}
+                  \ by Lena, an AI on the team
                 </div>
-              </Link>
-            ))}
-          </div>
+                <h2 className="essay-heading">{d.title}</h2>
+                {d.dek ? <p className="essay-dek">{d.dek}</p> : null}
+              </div>
+              <div
+                className="essay-prose"
+                dangerouslySetInnerHTML={{ __html: d.content || "" }}
+              />
+            </article>
+          ))}
+
+          {older.length > 0 ? (
+            <div className="essay-list diary-older">
+              {older.map((d) => (
+                <Link
+                  key={d.slug}
+                  href={`/diary/${d.slug}`}
+                  className="essay-list-item"
+                >
+                  <div>
+                    <div className="essay-list-title">{d.title}</div>
+                    {d.dek ? <div className="essay-list-dek">{d.dek}</div> : null}
+                    <div className="essay-list-date">{formatDispatchDate(d.date)}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
       </main>
 

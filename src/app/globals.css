@@ -1816,6 +1816,34 @@ a.project-card {
   margin-top: 20px;
 }
 
+/* THE DIARY'S LONG PAGE. /diary renders every dispatch in full (Paul, 28 Aug
+   2026: "more like a blog than essays", no extra clicks to read). Entries after
+   the first are separated by the same rule-plus-gap rhythm as .essay-footer.
+   The date line is the entry's permalink to /diary/[slug]; it stays in the
+   meta register and only warms on hover, like the index list titles. */
+.diary-entry + .diary-entry {
+  margin-top: 96px;
+  padding-top: 64px;
+  border-top: 1px solid var(--border);
+}
+
+.diary-permalink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.diary-permalink:hover {
+  color: var(--orange);
+}
+
+/* dispatches older than the rendered set, as a dated list of links */
+.diary-older {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
 .essay-list {
   display: flex;
   flex-direction: column;
