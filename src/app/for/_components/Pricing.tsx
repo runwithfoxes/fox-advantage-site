@@ -21,6 +21,16 @@ export interface PriceCard {
   // herself. Pass the first-period total in plain words. Older pages omit it
   // and render exactly as before.
   total?: { label: string; value: string };
+  // Optional itemised build-up and a struck-through list price. Paul, 28 Aug
+  // 2026, on Bright, where Seamus had already named his budget: "One price,
+  // show it coming to 28k and with a discount to get to 20k, but show the
+  // discount with line through 28k so it feel useful. This is not a menu."
+  // `lines` is what the number is made of, `was` is the total of those lines,
+  // struck, sitting directly above what he actually pays. A struck number needs
+  // a stated reason underneath it or it reads as a price that was never real.
+  // Older pages pass neither and render exactly as before.
+  lines?: { label: string; value: string }[];
+  was?: string; // "€24,000"
   featured?: boolean;
 }
 
@@ -36,6 +46,17 @@ export function PricingCards({ cards }: { cards: PriceCard[] }) {
               <li key={i}>{b}</li>
             ))}
           </ul>
+          {c.lines && (
+            <div className="ppp-card-lines">
+              {c.lines.map((l, i) => (
+                <div key={i} className="ppp-card-line">
+                  <span className="ppp-card-line-k">{l.label}</span>
+                  <span className="ppp-card-line-v">{l.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {c.was && <p className="ppp-card-was">{c.was}</p>}
           <p className="ppp-card-price">{c.price}</p>
           {c.note && <p className="ppp-card-note">{c.note}</p>}
           {c.total && (

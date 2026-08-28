@@ -228,3 +228,40 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* The itemised build-up and the struck list price. Added 28 Aug 2026 for
+   Bright, where the four rows are Paul's own method stages rather than a list
+   of deliverables, so the same four lines explain the work and price it. */
+.ppp-card-lines {
+  margin: 0 0 22px;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #1d1b1b;
+}
+.ppp-card-line {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 9px 0;
+  border-top: 1px solid #eeeee9;
+}
+.ppp-card-line-k {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ppp-card-line-v {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  color: #55534f;
+}
+.ppp-card-was {
+  margin: 0 0 2px;
+  font-family: var(--pps-mono);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: #8b8781;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}

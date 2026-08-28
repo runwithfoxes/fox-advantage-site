@@ -51,6 +51,7 @@ import CreativeDirector from "./library/CreativeDirector";
 import AdMachine from "./library/AdMachine";
 import GeoAudit from "./library/GeoAudit";
 import { PipelineBoard, JoNote, CampaignWindow } from "./library/GrowthManager";
+import ReportingSuite from "./library/ReportingSuite";
 import MODULES from "./template-modules.json";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
@@ -110,6 +111,7 @@ const ALL_SECTIONS = [
   { id: "m-lifecycle-agent", title: "13. Lifecycle Agent" },
   { id: "m-search-agent", title: "14. Search Agent" },
   { id: "m-website-agent", title: "15. Website Agent" },
+  { id: "m-reporting-suite", title: "16. Reporting Suite" },
   { id: "howitworks", title: "How it would work" },
   { id: "use", title: "How your team would use it" },
   { id: "weeks", title: "The first weeks" },
@@ -134,6 +136,7 @@ const AGENT_IDS = [
   "lifecycle-agent",
   "search-agent",
   "website-agent",
+  "reporting-suite",
 ];
 
 const CHANGE_IDS = [
@@ -810,6 +813,33 @@ export default function TemplateDoc() {
             website and nothing else, and that a proper brief and an hour of their
             time would make it considerably better. It is true, and it stops a
             rebuild made from the outside being read as our best work.
+          </p>
+        </PPSection>
+
+        <PPSection id="m-reporting-suite" sub title="16. Reporting Suite">
+          <ModuleStrip slug="reporting-suite" />
+          <p className="pps-standfirst">
+            One place the whole funnel can be read, when it is currently spread
+            across a CRM, an analytics tool and a folder of spreadsheets. The
+            stages across the top are named the way the client names them on the
+            call, because a marketing director who says traffic, leads, MQL and
+            closed won should see those four words and not a vendor&rsquo;s.
+          </p>
+          <div style={{ marginTop: 26 }}>
+            <ReportingSuite />
+          </div>
+          <p className="pps-standfirst" style={{ marginTop: 30 }}>
+            The second agent on the bottom row is the part that earns this module
+            its place. One agent assembles the numbers and another checks them
+            against the sources before the report goes out, which is what makes a
+            number a buyer or a board will accept.
+          </p>
+          <p className="pps-standfirst" style={{ marginTop: 22 }}>
+            Every figure inside the frame is invented and the exhibit says so on
+            its face. Keep the client&rsquo;s own real totals out of the frame and
+            put them in the prose around it. Illustrative numbers sitting beside
+            real ones read as measured too, and then the page has claimed we
+            looked at a funnel we have never seen.
           </p>
         </PPSection>
 
