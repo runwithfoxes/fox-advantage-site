@@ -130,7 +130,6 @@ const SECTIONS = [
   { id: "pricing", title: "The price" },
   { id: "work", title: "Case studies" },
   { id: "library", title: "Essays" },
-  { id: "next", title: "The next step" },
 ];
 
 const RAIL_GROUPS = [
@@ -169,7 +168,6 @@ const RAIL_GROUPS = [
       { id: "pricing", title: "The price" },
       { id: "work", title: "Case studies" },
       { id: "library", title: "Essays" },
-      { id: "next", title: "The next step" },
     ],
   },
 ];
@@ -540,7 +538,6 @@ export default function BoremanDoc() {
           <PricingCards
             cards={[
               {
-                label: "Part one",
                 title: "Advertising Agent",
                 bullets: [
                   "One agent, calibrated to your brand, your blue and amber, and the way your lamps are shot",
@@ -557,7 +554,6 @@ export default function BoremanDoc() {
                 featured: true,
               },
               {
-                label: "Part two",
                 title: "Website Agent",
                 bullets: [
                   "boremanltd.com rebuilt, the page at the top of this document",
@@ -569,7 +565,6 @@ export default function BoremanDoc() {
                 note: "No monthly on the website.",
               },
               {
-                label: "Part three",
                 title: "Growth Agent",
                 bullets: [
                   "Builds the list of dealers, fitters and wholesalers worth talking to",
@@ -679,18 +674,6 @@ export default function BoremanDoc() {
               },
             ]}
           />
-        </PPSection>
-
-        <PPSection id="next" k="09" title="The next step">
-          <p className="pps-standfirst">
-            If the three above look right, the next step is a call to agree what
-            gets built first and to get your brand material over to us. The
-            advertising agent needs your existing ads and lamp photography, and
-            the website needs whatever you have on the range.
-          </p>
-          <p className="pps-standfirst" style={{ marginTop: 22 }}>
-            We would come back to you three months in and look at it together.
-          </p>
         </PPSection>
       </ProspectShell>
     </>

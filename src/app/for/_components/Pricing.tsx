@@ -7,7 +7,11 @@
 import "./pricing.css";
 
 export interface PriceCard {
-  label: string; // "Option A", "Part one"
+  // Optional. Paul, 28 Aug 2026, on Boreman: "they are not part 1, 2 and 3.
+  // They are simply 3 agents." Where the cards are a menu rather than a ladder,
+  // a "Part one" label invents an order the buyer is not being asked to follow.
+  // Every existing page passes one and renders exactly as before.
+  label?: string; // "Option A", "Part one"
   title: string;
   bullets: string[];
   price: string; // "€9,500 plus VAT"
@@ -24,8 +28,8 @@ export function PricingCards({ cards }: { cards: PriceCard[] }) {
   return (
     <div className="ppp-cards" data-count={cards.length}>
       {cards.map((c) => (
-        <div key={c.label} className="ppp-card" data-featured={c.featured ? "1" : "0"}>
-          <p className="ppp-card-label">{c.label}</p>
+        <div key={c.title} className="ppp-card" data-featured={c.featured ? "1" : "0"}>
+          {c.label ? <p className="ppp-card-label">{c.label}</p> : null}
           <h3 className="ppp-card-title">{c.title}</h3>
           <ul className="ppp-card-list">
             {c.bullets.map((b, i) => (
