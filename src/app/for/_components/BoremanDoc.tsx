@@ -187,6 +187,7 @@ export default function BoremanDoc() {
       <ProspectShell
         clientName="Boreman"
         eyebrow="Prepared for Daragh Boylan, Boreman Limited"
+        pdfHref="/for/boreman/pdf"
         /* Paul's line, chosen 28 Aug over two alternatives offered. */
         title="Marketing agents for your business"
         standfirst={[]}

@@ -112,12 +112,20 @@ export default function AdMachine() {
           </div>
         </div>
       </ScaledWindow>
+      {/* ⛔ 28 AUG 2026: THIS LINE NAMED KITE, AND KITE IS FICTIONAL. It read
+          "Kite's machine gets calibrated to Kite's brand" and shipped that way
+          on FIVE pages: Boreman, Affirm, Great National, Return2Sender and the
+          template. Affirm, Great National and Return2Sender are live and have
+          been sent. Caught capturing a still for the Boreman PDF. Same class of
+          bug as PipelineBoard and JoNote carrying Fidelity's advisor world, but
+          this one is a copy default rather than a prop, so it needs no name at
+          all. Say "your", never a client's name. */}
       <p className="ppam-hint">
         <span className="ppam-slash">/real files, our own campaign.</span> The
         master was approved once; the machine laid out every other size, on
-        brand, no designer re-drawing each one. Kite&rsquo;s machine gets
-        calibrated to Kite&rsquo;s brand, and the full set comes back in
-        minutes whenever the team needs it.
+        brand, no designer re-drawing each one. Your machine gets calibrated to
+        your brand, and the full set comes back in minutes whenever the team
+        needs it.
       </p>
     </div>
   );
