@@ -93,6 +93,7 @@ export default function HomeStoreDoc() {
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
+      pdfHref="/for/home-store/pdf"
     >
       <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Run with Foxes for Home Store + More</title>
+<style>
+  /* Print source for the Home Store + More proposal PDF. Built 28 Aug 2026
+     from wireframes/ace-express-proposal-pdf-source.html.
+
+     &#9760; THIS IS A SEPARATE DOCUMENT, NEVER A PRINT OF THE WEB PAGE. The
+     page's exhibits are interactive React. The writer types itself out and
+     loops, the guardian is a slider you drag. They print as a frozen first
+     frame or as nothing. So the PDF says in words what the reader would have
+     watched and carries a still captured from the live page beside it.
+
+     Copy is VERBATIM from src/app/for/_components/HomeStoreDoc.tsx. Do not
+     edit it here without editing there, or the two drift.
+
+     &#9760; ONE PRICE CARD. One thing is being offered, so there is one price.
+     Do not restore the three-card block.
+
+     &#9760; THINGS PAUL CUT ON THE DAY AND MUST NOT COME BACK: any prose about
+     what the price covers, store signage and price tickets as a next project,
+     the customer-data line, counting beds or images, and any comparison to the
+     3D modelling supplier Matthias is already testing with.
+
+     Stills in home-store-proposal-pdf-assets/ were captured off localhost with
+     the nav set to visibility:hidden. The writer still needed the typing loop
+     frozen mid-page first, by swapping the live node for a static clone once
+     the last line had typed.
+
+     Regenerate:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+       --headless=new --disable-gpu --no-pdf-header-footer \
+       --virtual-time-budget=15000 \
+       --print-to-pdf=content/for/home-store-proposal.pdf \
+       wireframes/home-store-proposal-pdf-source.html
+  */
+  @page { size: A4 portrait; margin: 16mm 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --sky: #3A7CA5;
+    --deep: #1A3A4E;
+    --ink: #1d1b1b;
+    --mid: #54545c;
+    --line: #e3e3df;
+  }
+  html { background: #fff; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--ink);
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+  .brand {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--mid);
+    margin: 6mm 0 22mm;
+  }
+  .brand b { color: #F47521; font-weight: 600; }
+  h1 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin-bottom: 7mm;
+  }
+  h1 .hl { color: var(--sky); }
+  .meta {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10mm;
+  }
+  h2 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.3;
+    margin: 8mm 0 3.5mm;
+    break-after: avoid;
+  }
+  h2 .k {
+    display: block;
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: var(--sky);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  h3 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 6mm 0 2.5mm;
+    break-after: avoid;
+  }
+  p { margin-bottom: 3.5mm; max-width: 158mm; }
+  section { margin-bottom: 6mm; }
+  .page-break { break-before: page; }
+  .shot {
+    margin: 4mm 0 2mm;
+    border: 1px solid var(--line);
+    break-inside: avoid;
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot-cap {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9px;
+    color: var(--mid);
+    padding: 2mm 3mm;
+    border-top: 1px solid var(--line);
+    background: #FAFAF8;
+    margin: 0;
+  }
+  .quote {
+    border-left: 2px solid var(--sky);
+    padding-left: 4mm;
+    margin: 4mm 0;
+    break-inside: avoid;
+  }
+  .quote p { font-style: italic; margin-bottom: 1.5mm; }
+  .quote .who {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9px;
+    color: var(--mid);
+    font-style: normal;
+  }
+  .clients {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9.5px;
+    color: var(--mid);
+    letter-spacing: .04em;
+    margin: 3mm 0 5mm;
+  }
+  .case { border-top: 1px solid var(--line); padding-top: 3mm; margin-bottom: 5mm; break-inside: avoid; }
+  .case .who {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; font-size: 13px;
+  }
+  .case .sub {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9px; color: var(--mid); margin-bottom: 2.5mm;
+  }
+  .bignum {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 10px; color: var(--deep);
+    background: #FAFAF8; padding: 2.5mm 3mm; margin-top: 2mm;
+  }
+  .bignum b { font-size: 15px; font-family: -apple-system, Arial, sans-serif; }
+  /* Three options across the page, the anchor on the right. The featured
+     card carries the one heavy border, exactly as on the web page, and it is
+     Option B. Never move it to C. */
+  .cards { display: flex; gap: 4mm; margin: 4mm 0 5mm; break-inside: avoid; }
+  /* min-width:0 is load-bearing. Without it a flex item will not shrink below
+     its content width, and Option C ran off the right margin. */
+  .card { flex: 1 1 0; min-width: 0; border: 1px solid var(--line); padding: 3.5mm; }
+  .card.featured { border: 2px solid var(--deep); }
+  .card .lbl {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 2mm;
+  }
+  .card .ttl {
+    font-family: -apple-system, Arial, sans-serif;
+    font-weight: 600; font-size: 11.5px; margin-bottom: 2.5mm;
+  }
+  .card ul { list-style: none; margin-bottom: 3mm; }
+  .card li {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 8.5px; line-height: 1.5;
+    padding: 1.5mm 0 1.5mm 3mm; border-top: 1px solid #eeeee9; position: relative;
+  }
+  .card li::before {
+    content: ""; position: absolute; left: 0; top: 3mm;
+    width: 1.2mm; height: 1.2mm; background: var(--sky);
+  }
+  .card .price {
+    font-family: -apple-system, Arial, sans-serif;
+    font-weight: 600; font-size: 13px; color: var(--deep);
+  }
+  .card .total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--line); margin-top: 3mm; padding-top: 2.5mm;
+    font-family: ui-monospace, Menlo, monospace; font-size: 9px;
+    color: var(--mid);
+  }
+  .card .total b {
+    font-family: -apple-system, Arial, sans-serif;
+    font-size: 11.5px; color: var(--deep);
+  }
+  .card .note {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 8px; color: var(--mid); margin-top: 1.5mm;
+  }
+  .covers { display: flex; gap: 6mm; margin-top: 4mm; break-inside: avoid; }
+  .covers > div { flex: 1; }
+  .covers .k {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 2mm;
+  }
+  .covers ul { list-style: none; }
+  .covers li {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 9px; padding: 1.5mm 0; border-top: 1px solid var(--line);
+  }
+  .close {
+    background: var(--deep); color: #f7ead9; padding: 5mm; margin-top: 6mm;
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    break-inside: avoid;
+  }
+  .close a { color: #9fc0d4; }
+  .foot {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 8.5px; color: var(--mid);
+    border-top: 1px solid var(--line); padding-top: 3mm; margin-top: 8mm;
+  }
+
+  /* One card, so it does not stretch the full measure the way three do. */
+  .cards.one { max-width: 92mm; }
+</style>
+</head>
+
+<body>
+
+<p class="brand">/<b>Run</b>withfoxes</p>
+
+<h1>A <span class="hl">3D modelling agent</span> for your bedding</h1>
+<p class="meta">Prepared for Matthias Wenk, Home Store + More &middot; Private</p>
+
+<section>
+  <h2><span class="k">01</span>What this is</h2>
+  <p>You asked how we work with brands and teams, and how the business model works. This page
+  answers that.</p>
+  <p>Most of what follows is our own work on general marketing problems, shown running rather than
+  described, so you can judge the standard for yourself. None of it uses your data or your products,
+  because one call is not enough for us to tell you how Home Store + More should run. At the end
+  there is one recommendation and one price, for the bedding photography we talked about.</p>
+</section>
+
+<section>
+  <h2><span class="k">02</span>What we do</h2>
+  <h3>Quality first, then automate</h3>
+  <p>Before I build anything, I ask one question: what does really good look like here? Not what AI
+  can do, but what the best version of this marketing would be, and the level of quality and
+  effectiveness I would want to stand over.</p>
+  <p>So I start where I always have. If there were no AI at all, what team would I hire to do this
+  properly? I map that team first, the one I would build in a world before any of this existed.</p>
+  <p>Then I build exactly that, with agents instead of hires. The quality bar is set by the team I
+  would have wanted, not by whatever a tool happens to make easy. Twenty years in brand is what tells
+  me where that bar sits: Head of Brand at O2 Ireland, then CMO at the National Lottery, Head of
+  Brand at Indeed and Miro, both global roles. Positioning, messaging and tone written first, then
+  built into everything the agents make.</p>
+  <p class="clients">Ireland&rsquo;s Marketer of the Year, 2022 &nbsp;&middot;&nbsp; Who I work with:
+  Moloco, Heineken, Norcros, Alltech, Smurfit, Hostelworld, Eaton Square, Weatherbys</p>
+  <div class="quote">
+    <p>&ldquo;His command of marketing science as well as his instincts for great thinking and ideas
+    are, in my opinion, superb.&rdquo;</p>
+    <p class="who">Peter Field, The Godfather of Effectiveness, author of The Long and the Short of It</p>
+  </div>
+  <div class="quote">
+    <p>&ldquo;Paul reported into me as Head of Brand when I was at Indeed. I have learned more from
+    him than anyone else in my career.&rdquo;</p>
+    <p class="who">Paul D&rsquo;Arcy, CMO, Moloco. Former CMO at Miro and Indeed</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">03</span>What Run with Foxes does</h2>
+  <p>I firmly believe that marketing structures, marketing teams and marketing roles are going to
+  change dramatically in the next few years, and the work we do is all around that. We train teams.
+  We build AI agents and capabilities for them, or with them. We work with marketing leaders to
+  re-imagine what future workflows could look like, and we design AI adoption programmes for them.</p>
+  <p>Three of the agents we build and run are below. They are here so you can see the standard of
+  what comes out rather than read a description of it.</p>
+</section>
+
+<section>
+  <h2><span class="k">04</span>AI Writer</h2>
+  <p>I read a lot about how AI writes slop. It does. But it does not have to, if you spend the time
+  up front. Writers need to know the brand&rsquo;s positioning, the target audience, the insights and
+  pain points in that category, the messaging and the tone of voice.</p>
+  <p>On the live page the writer types the email out in front of you, and hovering any dotted line
+  shows which brand document that line came from. The still below is the finished email.</p>
+  <div class="shot">
+    <img src="home-store-proposal-pdf-assets/writer.png" alt="A finished email produced by the AI writer">
+    <p class="shot-cap">/illustrative. Written by us to show what the writer produces. The range, the
+    patterns and the sender are invented and none of it is your product.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">05</span>Brand Guardian</h2>
+  <p>Any asset goes in, gets checked against the brand&rsquo;s own rules, and comes back either
+  passed or with the specific fixes. It works out what type of asset it is first and then checks it
+  against that type&rsquo;s pattern, so the gates that run depend on the file.</p>
+  <p>On the live page you drag a line across the ad to see what the machine measures. The still
+  below has that line held halfway, so the left is what the guardian sees and the right is what you
+  see.</p>
+  <div class="shot">
+    <img src="home-store-proposal-pdf-assets/guardian.png" alt="The brand guardian measuring one of Sabre's real ads">
+    <p class="shot-cap">/one of Sabre&rsquo;s real ads, guarded by the machine we run for them. One
+    verdict, a few seconds per file. A guardian is built for one brand&rsquo;s book at a time.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">06</span>Creative Director</h2>
+  <p>The design system converted into code, so anyone on the team can ask for work and get something
+  on brand back. It turns a vague request into a proper brief before it makes anything, following the
+  rules you would teach an art director.</p>
+  <div class="shot">
+    <img src="home-store-proposal-pdf-assets/creative-video.png" alt="A Sabre library photograph turned into a finished moving ad">
+    <p class="shot-cap">/one of their library photographs, moved. Five seconds generated from that
+    exact frame, then a finished 8.2 second ad built on their spec.</p>
+  </div>
+  <p>Creating artwork, photography and images, and now videos, that are on-brand is a great use case
+  for AI. I built a library with hundreds of on-brand images when I was at Miro, which gave us
+  consistency, quality and speed.</p>
+  <div class="shot">
+    <img src="home-store-proposal-pdf-assets/creative-photography.png" alt="Twelve travel photographs, six Sabre's own and six generated">
+    <p class="shot-cap">/twelve travel photographs. Six are Sabre&rsquo;s and six we generated to
+    match the four subjects their own brand book sets out. None is a stock picture chosen to look
+    similar.</p>
+  </div>
+  <p>The work shown here is Sabre&rsquo;s, with their name on it, because we build and run these
+  machines for them. A creative director is built for one brand at a time. Yours would be built to
+  your brand book.</p>
+</section>
+
+<section class="page-break">
+  <h2><span class="k">07</span>What we&rsquo;d recommend</h2>
+  <p>We would build you an agent that does 3D modelling. It runs on Claude Code and Blender. It
+  builds the bed in 3D and then makes the images from it, with whatever pattern and colour you give
+  it. We need three weeks, working from the high res photography you send us.</p>
+  <p>When it is finished we hand it over so your own team use it themselves. They do not need to be
+  skilled at 3D to run it, and we train them on it.</p>
+</section>
+
+<section>
+  <h2><span class="k">08</span>The price</h2>
+  <div class="cards one">
+    <div class="card">
+      <p class="lbl">The 3D modelling agent</p>
+      <p class="ttl">Built, handed over and your team trained</p>
+      <ul>
+        <li>An agent that does 3D modelling, running on Claude Code</li>
+        <li>Three weeks to build it, from your own high res photography</li>
+        <li>Handed over to you when it is finished</li>
+        <li>Your team trained to run it without us</li>
+      </ul>
+      <p class="price">&euro;7,500 plus VAT</p>
+      <p class="note">One off.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">09</span>Case studies</h2>
+  <p>Starting with the big companies, and with the one I did from the inside, running the teams
+  rather than advising them.</p>
+  <div class="case">
+    <p class="who">Moloco</p>
+    <p class="sub">50 to 60 marketers</p>
+    <p>They wanted to hire a copywriter. I persuaded them to let me build copywriters in AI instead,
+    and they use them all the time. I am also building them a brand guardian, and an AI identity
+    generator, which takes all the elements of their brand identity and reproduces them at speed.</p>
+  </div>
+  <div class="case">
+    <p class="who">Miro</p>
+    <p class="sub">150 marketers</p>
+    <p>We were spending about $1.2 million on design and studio work. When I realised what was
+    possible I set a target to reduce it by 20%, and we took $240,000 out inside a year.</p>
+  </div>
+  <div class="case">
+    <p class="who">Sabre</p>
+    <p class="sub">AI adoption programme, marketing first</p>
+    <p>I have built them writers, brand guardians, a search agent, a brief coach, and an advertising
+    creative role. We build and run those machines for them, and they are named here because they are
+    happy to be.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="k">10</span>The next step</h2>
+  <p>Send us the high res bedding photography and say yes, and we start. We would come back to you
+  inside the three weeks with the first beds through the agent so you can see them while the work is
+  still going on.</p>
+  <div class="close">
+    Paul Dervan &middot; Run with Foxes &middot; paul@runwithfoxes.com<br>
+    The live version of this document, with everything above running rather than shown, is at
+    runwithfoxes.com/for/home-store
+  </div>
+</section>
+
+<p class="foot">Prepared for Matthias Wenk, Home Store + More, 28 August 2026. Private.</p>
+
+</body>
+</html>
