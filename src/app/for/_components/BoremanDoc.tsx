@@ -410,8 +410,8 @@ export default function BoremanDoc() {
               and it stops a rebuild made from a public website being read as our
               best work. */}
           <p className="pps-standfirst" style={{ marginTop: 22 }}>
-            One thing worth saying plainly. We built that on spec, in a day, from
-            your public website and nothing else. Nobody briefed us, so we made
+            One thing worth saying plainly. We built that on spec, from your
+            public website and nothing else. Nobody briefed us, so we made
             our own guesses about what matters to you, who you are really talking
             to, and what a dealer needs from a page. With a proper brief and an
             hour of your time on those questions, we would do a considerably
@@ -532,8 +532,9 @@ export default function BoremanDoc() {
             thousand that was six hundred a day against his own fifteen hundred.
             The two live builds on the board back him up, data intelligence at
             twenty-nine sessions and Nova not started after four meetings.
-            Ninety-nine a month on the advertising agent only, reviewed after
-            three months. ⛔ NEVER invent a number here. */}
+            Ninety-nine a month on the advertising AND growth agents, added
+            28 Aug, reviewed after three months. No monthly on the website.
+            ⛔ NEVER invent a number here. */}
         <PPSection id="pricing" k="06" title="The price">
           <PricingCards
             cards={[
@@ -573,7 +574,11 @@ export default function BoremanDoc() {
                   "One board you and it look at together every morning",
                 ],
                 price: "€3,000 plus VAT",
-                note: "Nothing sends until someone at Boreman says go.",
+                note: "Then €99 a month, reviewed together after three months. Nothing sends until someone at Boreman says go.",
+                total: {
+                  label: "First three months",
+                  value: "€3,297",
+                },
               },
             ]}
           />
