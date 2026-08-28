@@ -403,14 +403,6 @@ export default function BoremanDoc() {
             seventeen times lighter than the site you have now.
           </p>
           <p className="pps-standfirst" style={{ marginTop: 22 }}>
-            The important part is not that it looks better. It is that the
-            stockist route actually exists. Every lamp on it ends at ask your
-            stockist, the list a driver builds goes to you and you pass it to the
-            dealer nearest him, and nothing on the page takes an order or shows a
-            price. That is the thing that killed your own shop the first time,
-            and this is the way round it.
-          </p>
-          <p className="pps-standfirst" style={{ marginTop: 22 }}>
             After it is built you change it by talking to it. Ten new photographs
             on a product page, a new lamp added to the range, a banner for a
             show next month. You ask, and it makes the change.
