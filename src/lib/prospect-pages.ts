@@ -87,6 +87,22 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "BOREMAN_PASSWORD",
     passwordFallback: "boreman26",
   },
+  // THE TEMPLATE, built 28 Aug 2026 on Paul's call: "one very long template for
+  // proposal... it has every module in there. and we name each module... And then
+  // everybody knows to look at this and pick the modules from it."
+  // It takes over Kite's job as the page every proposal is copied from. Kite
+  // carried nine of the fifteen modules, which is why people copied Boreman or
+  // Affirm instead and the section names drifted to 43 across eight pages.
+  // ⛔ Not a client and never sent. It is gated because it carries real Sabre
+  // creative and real client numbers.
+  template: {
+    slug: "template",
+    client: "Run with Foxes",
+    shortName: "the template",
+    tabTitle: "Run with Foxes proposal template",
+    passwordEnv: "TEMPLATE_PAGE_PASSWORD",
+    passwordFallback: "template26",
+  },
   "great-national": {
     slug: "great-national",
     client: "Great National Hotels & Resorts",
@@ -94,6 +110,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     tabTitle: "Run with Foxes for Great National",
     passwordEnv: "GREAT_NATIONAL_PASSWORD",
     passwordFallback: "greatnational26",
+  },
+  // Matthias Wenk, Marketing Director, Home Store + More. Built 28 Aug 2026
+  // from the template, off the 28 Aug discovery call. One priced card at Paul's
+  // instruction: one thing is offered, so one price.
+  "home-store": {
+    slug: "home-store",
+    client: "Home Store + More",
+    shortName: "Home Store + More",
+    tabTitle: "Run with Foxes for Home Store + More",
+    passwordEnv: "HOME_STORE_PASSWORD",
+    passwordFallback: "homestore26",
   },
 };
 

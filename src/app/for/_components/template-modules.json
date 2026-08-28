@@ -1,0 +1,196 @@
+{
+  "_note": "The fifteen modules a proposal is assembled from. Agreed with Paul 28 Aug 2026 after an audit of all eight built pages found the names had drifted. This file is the source of truth for both the template page at /for/template and for any agent picking modules. Pick by slug, never by number: the number is display order on the template and will change when a module is added.",
+  "_naming_changes": {
+    "outbound-agent": "Was called Outreach on most pages. Outreach is the exhibit inside it, not the product.",
+    "search-agent": "Replaces both the placeholder card cascade called Search and GEO Agent and the section title What AI assistants say about X. One product, the audit is its exhibit.",
+    "ai-writer": "Kept over Copywriter. Seven pages and Paul's own essay already say AI writer, so products.md is the file that changes."
+  },
+  "_not_a_module": "The sections in \"furniture\" below are on every page and nobody picks them, so they have no number. Anything reading a built page has to tell them from modules, and the template marks them on their own strip rather than leaving it to a convention written nowhere.",
+  "furniture": [
+    { "id": "heard", "title": "What this is", "note": "The only place the client's own situation appears. Everything below it is our work or a demonstration, and the section says so." },
+    { "id": "howiwork", "title": "What we do", "note": "Paul's bio block. Lifted verbatim on every page. Never rewritten, never retyped." },
+    { "id": "whatwedo", "title": "What Run with Foxes does", "note": "The four things figure and Paul's paragraph. This is the full range, shown before the page narrows to the picked modules." },
+    { "id": "howitworks", "title": "How it would work", "note": "Parent of four subs: how your team would use it, the first weeks, no Claude licence needed, what comes after." },
+    { "id": "recommend", "title": "What we'd recommend", "note": "Names which option Paul would take. Off the page entirely on the information-only shape." },
+    { "id": "pricing", "title": "The price", "note": "Three cards, or one, or absent. Every number is Paul's." },
+    { "id": "work", "title": "Case studies", "note": "Agreed name. Called The work on three older pages, Case studies on four. Same section." },
+    { "id": "library", "title": "Essays", "note": "Agreed name. Called Your library on five older pages, Essays on the two newest. Same section. Holds essays, the course and the book." },
+    { "id": "next", "title": "The next step", "note": "What happens next. On a priced page it follows the price; on an information-only page it is the close and there is no price above it." }
+  ],
+  "shapes": [
+    { "id": "priced", "name": "Priced proposal", "note": "Recommendation, then three price cards with the third deliberately expensive so the middle reads as sensible. Featured goes on the middle card and nowhere else. Kite and Expleo.", "variant": "One card instead of three where only one thing is being bought. Ace Express." },
+    { "id": "capabilities", "name": "Capabilities, no price", "note": "The modules, no recommendation and no price. Ends on the case studies and the reading list. Fidelity, Affirm, Return2Sender." },
+    { "id": "information", "name": "Information only", "note": "No price and no recommendation, and the close is a conversation rather than a decision. Great National, and the shape Paul wants for Imagine." }
+  ],
+  "openings": [
+    { "id": "rebuild", "name": "Their own site rebuilt", "note": "Full bleed above the masthead, a real page in an iframe rather than a screenshot, no caption. Boreman. Needs the rebuild built first, and it is a demonstration of what we can make rather than a criticism of what they have." },
+    { "id": "plain", "name": "Plain masthead", "note": "The page opens on the title. Every page except Boreman." }
+  ],
+  "modules": [
+    {
+      "slug": "rethinking-the-roles",
+      "number": 1,
+      "name": "Rethinking the roles",
+      "kind": "figure",
+      "component": "Figure",
+      "shows": "The figure that opens the argument: the things that used to be whole roles become tasks inside someone's job.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "expleo", "ace-express", "great-national"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "redesigning-workflows",
+      "number": 2,
+      "name": "Redesigning workflows",
+      "kind": "demonstration",
+      "component": "ArrivalBlueprint",
+      "shows": "One window, two worlds. A draggable line wipes between a marketing function as it runs today, handovers and all, and the same function with AI.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "expleo", "ace-express", "great-national"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "team-ai-adoption",
+      "number": 3,
+      "name": "Designing team AI adoption",
+      "kind": "demonstration",
+      "component": "WorkGrid",
+      "shows": "140 blocks of work changing across four quarters, animated, every stop clickable, with speed, cost and volume measured underneath. Rows are areas of work, never people.",
+      "on_pages": ["kite", "fidelity", "affirm"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "training-teams",
+      "number": 4,
+      "name": "Training teams",
+      "kind": "demonstration",
+      "component": "ScaledWindow video",
+      "shows": "The course's first module, the real page, scrolled top to bottom.",
+      "on_pages": ["kite", "fidelity", "affirm", "expleo", "ace-express"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "growth-agent",
+      "number": 5,
+      "name": "Growth Agent",
+      "kind": "demonstration",
+      "component": "PipelineBoard, JoNote, CampaignWindow",
+      "shows": "A pipeline board whose cards move stage to stage, the morning note typing itself out, and a campaign running through.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "boreman"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "outbound-agent",
+      "number": 6,
+      "name": "Outbound Agent",
+      "kind": "demonstration",
+      "component": "OutreachWindow",
+      "shows": "An outreach inbox with real-looking threads and the replies they got. Every person and firm in it is invented and the page says so.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "ace-express", "boreman"],
+      "works_without_price": true,
+      "requires": "Threads written in the client's own world. Never a real contact of theirs."
+    },
+    {
+      "slug": "ai-writer",
+      "number": 7,
+      "name": "AI Writer",
+      "kind": "demonstration",
+      "component": "WriterEmail",
+      "shows": "A finished email the writer produced. Hovering a dotted line shows which brand document that line came from.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "expleo", "ace-express", "great-national"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "brand-guardian",
+      "number": 8,
+      "name": "Brand Guardian",
+      "kind": "demonstration",
+      "component": "BrandGuardian",
+      "shows": "An x-ray slider over one of Sabre's real ads. Drag the line to see what the machine measures, with the numbers drawn on.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "expleo", "great-national"],
+      "works_without_price": true,
+      "requires": "No check count in the copy. The gates that run depend on the asset type, so the exhibit reports what actually ran."
+    },
+    {
+      "slug": "creative-director",
+      "number": 9,
+      "name": "Creative Director",
+      "kind": "demonstration",
+      "component": "CreativeDirector",
+      "shows": "Real Sabre work. Their agency's live ad beside our machine's rebuild, the photograph turned to video, and the range of stills.",
+      "on_pages": ["kite", "fidelity", "affirm", "return2sender", "expleo", "great-national", "boreman"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "advertising-agent",
+      "number": 10,
+      "name": "Advertising Agent",
+      "kind": "demonstration",
+      "component": "AdMachine",
+      "shows": "One approved master ad spawns the whole size set on screen. Real files from our own dayone campaign.",
+      "on_pages": ["affirm", "return2sender", "great-national", "boreman"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "brief-coach",
+      "number": 11,
+      "name": "Brief Coach",
+      "kind": "demonstration",
+      "component": "ChatWindow with BRIEF_COACH_SESSION",
+      "shows": "The coach pressure-tests a launch brief. One click plays the whole session.",
+      "on_pages": ["kite", "affirm"],
+      "works_without_price": true,
+      "requires": "A team with a brief and an approval chain. Pointless for a company of five."
+    },
+    {
+      "slug": "ghostwriter",
+      "number": 12,
+      "name": "Ghostwriter",
+      "kind": "figure",
+      "component": "CardCascade",
+      "shows": "A card with four formats falling out of it: long piece, posts, chart, newsletter.",
+      "on_pages": ["affirm"],
+      "works_without_price": true,
+      "requires": null
+    },
+    {
+      "slug": "lifecycle-agent",
+      "number": 13,
+      "name": "Lifecycle Agent",
+      "kind": "figure",
+      "component": "CardCascade",
+      "shows": "A card with four moments falling out of it: onboard, nudge, win back, grow.",
+      "on_pages": ["affirm", "return2sender", "ace-express", "great-national"],
+      "works_without_price": true,
+      "requires": "A real list to send to. Pointless where the client's list is info@ addresses."
+    },
+    {
+      "slug": "search-agent",
+      "number": 14,
+      "name": "Search Agent",
+      "kind": "demonstration",
+      "component": "GeoAudit",
+      "shows": "A measured sample of what AI assistants say about the client's brand today, run for them before the page is built.",
+      "on_pages": ["fidelity", "affirm", "great-national"],
+      "works_without_price": true,
+      "requires": "The audit has to be run first by the search desk. Never offer this module before it exists for that client."
+    },
+    {
+      "slug": "website-agent",
+      "number": 15,
+      "name": "Website Agent",
+      "kind": "demonstration",
+      "component": "WebsiteHero",
+      "shows": "The client's own site rebuilt, live in the page, full bleed above the masthead before any Run with Foxes words appear.",
+      "on_pages": ["boreman"],
+      "works_without_price": true,
+      "requires": "The rebuild has to be built first. It is a demonstration of what we can make and never a criticism of the site they have."
+    }
+  ]
+}

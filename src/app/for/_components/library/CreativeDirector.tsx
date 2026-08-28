@@ -210,8 +210,8 @@ export default function CreativeDirector() {
       <p className="ppft-honest">
         <span className="ppft-slash">/Sabre&rsquo;s real work,</span> shown
         with their name because we build and run these machines for them. A
-        creative director is built for one brand at a time.
-        Fidelity&rsquo;s would be built to your brand book.
+        creative director is built for one brand at a time. Yours would be
+        built to your brand book.
       </p>
     </div>
   );

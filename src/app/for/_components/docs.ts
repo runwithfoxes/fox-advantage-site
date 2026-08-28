@@ -32,4 +32,13 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // rebuilt, full bleed, above the masthead - Paul's call, pointing at the GEO
   // Ireland page. Two priced agents, Advertising and Website, plus Growth shown.
   boreman: dynamic(() => import("./BoremanDoc"), { ssr: false }),
+  // THE TEMPLATE. Built 28 Aug on Paul's call, and it takes over Kite's job as
+  // the thing every proposal is copied from. All fifteen modules on one page,
+  // named and numbered, with the opening and the shape switchable. The module
+  // list is template-modules.json, which is also what an agent picks from.
+  // Never sent to anyone: it carries real Sabre creative and real client numbers.
+  template: dynamic(() => import("./TemplateDoc"), { ssr: false }),
+  // Matthias Wenk, Home Store + More. Built 28 Aug from the template. One
+  // priced card: a 3D modelling agent for their bedding photography.
+  "home-store": dynamic(() => import("./HomeStoreDoc"), { ssr: false }),
 };
