@@ -177,11 +177,22 @@ export default function BoremanDoc() {
     <>
       {/* ⭐ THE REBUILD IS THE TOP OF THE PAGE. It is a real page in an iframe,
           never a screenshot pretending to be one, and the truck film plays as
-          Daragh lands. */}
+          Daragh lands.
+
+          ⛔⛔ 28 AUG 2026: IT LIVES AT public/for/boreman-SITE/, NOT
+          public/for/boreman/. A folder at public/for/{slug}/ SHADOWS THE GATED
+          ROUTE OF THE SAME NAME. Vercel checks the filesystem before the app
+          routes, so runwithfoxes.com/for/boreman served the raw rebuilt site,
+          byte for byte, with NO PASSWORD, and the proposal was unreachable at
+          its own URL. Proven by bytes: /for/boreman and
+          /for/boreman/index.html both returned 19,682, the size of the static
+          file, while /for/ace-express correctly returned the proposal. It
+          survived local dev because dev resolves the route first. Never name a
+          public/for/ folder after a prospect slug. */}
       <WebsiteHero
-        src="/for/boreman/index.html"
+        src="/for/boreman-site/index.html"
         url="boremanltd.com"
-        href="/for/boreman/index.html"
+        href="/for/boreman-site/index.html"
       />
 
       <ProspectShell
@@ -421,7 +432,7 @@ export default function BoremanDoc() {
           <p className="pps-standfirst" style={{ marginTop: 22 }}>
             <a
               className="ppwh-inline"
-              href="/for/boreman/index.html"
+              href="/for/boreman-site/index.html"
               target="_blank"
               rel="noreferrer"
             >
