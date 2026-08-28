@@ -19,7 +19,7 @@
 //                        sell online again
 //   Growth Agent      -> he finds truck drivers by hand off Facebook pages and
 //                        LinkedIn: "it's stupid really time consuming snooping"
-//                        (SHOWN, not priced - Paul, 27 Aug)
+//                        (priced at three thousand from 28 Aug)
 //
 // ⛔ THE AUDIT SECTION IS OUT. Paul cut it 27 Aug, right after cutting the
 // caption under the hero. It held four verified findings on boremanltd.com -
@@ -168,6 +168,7 @@ const RAIL_GROUPS = [
     entries: [
       { id: "pricing", title: "The price" },
       { id: "work", title: "Case studies" },
+      { id: "library", title: "Essays" },
       { id: "next", title: "The next step" },
     ],
   },
@@ -188,8 +189,8 @@ export default function BoremanDoc() {
       <ProspectShell
         clientName="Boreman"
         eyebrow="Prepared for Daragh Boylan, Boreman Limited"
-        /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line on every real build. */
-        title="Marketing Agents for your business"
+        /* Paul's line, chosen 28 Aug over two alternatives offered. */
+        title="Marketing agents for your business"
         standfirst={[]}
         sections={SECTIONS}
         railGroups={RAIL_GROUPS}
@@ -351,8 +352,8 @@ export default function BoremanDoc() {
 
         <PPSection id="buildingagents" k="04" title="Building agents">
           <p className="pps-standfirst">
-            Three of them, and we would build all three for Boreman. They are
-            priced the same and they can be taken in any order, or together.
+            Three of them, and we would build all three for Boreman. They can
+            be taken in any order, or together.
           </p>
           <p className="pps-standfirst" style={{ marginTop: 22 }}>
             If you asked us where to start, we would say the Advertising Agent
@@ -398,9 +399,8 @@ export default function BoremanDoc() {
         <PPSection id="website" sub title="Website Agent">
           <p className="pps-standfirst">
             The page at the top of this document is boremanltd.com, rebuilt. It
-            is a real page, not a picture of one, and it took a day. It is
-            thirty-one times lighter than the site you have now, which loads
-            ninety-seven separate scripts on the homepage alone.
+            is a real page, not a picture of one. The page itself is
+            seventeen times lighter than the site you have now.
           </p>
           <p className="pps-standfirst" style={{ marginTop: 22 }}>
             The important part is not that it looks better. It is that the
@@ -493,7 +493,7 @@ export default function BoremanDoc() {
 
         <PPSection id="howitworks" k="05" title="How it would work">
           <p className="pps-standfirst">
-            The same four things are true of both, so they are worth saying once.
+            The same four things are true of all three, so they are worth saying once.
           </p>
         </PPSection>
 
@@ -534,9 +534,16 @@ export default function BoremanDoc() {
           </p>
         </PPSection>
 
-        {/* THE PRICE. Paul's numbers, 27 Aug: three thousand plus VAT each,
-            ninety-nine a month on the advertising agent only, no monthly on the
-            website, reviewed after three months. ⛔ NEVER invent a number here. */}
+        {/* THE PRICE. Paul's numbers, revised 28 Aug: the WEBSITE is six
+            thousand plus VAT, the advertising and growth agents are three
+            thousand each. He reset it after doing the cost-to-serve sum out
+            loud: a website is at least five days once you count the calls with
+            Daragh, his changes, finding images and hosting, and at three
+            thousand that was six hundred a day against his own fifteen hundred.
+            The two live builds on the board back him up, data intelligence at
+            twenty-nine sessions and Nova not started after four meetings.
+            Ninety-nine a month on the advertising agent only, reviewed after
+            three months. ⛔ NEVER invent a number here. */}
         <PPSection id="pricing" k="06" title="The price">
           <PricingCards
             cards={[
@@ -552,8 +559,8 @@ export default function BoremanDoc() {
                 price: "€3,000 plus VAT",
                 note: "Then €99 a month, reviewed together after three months.",
                 total: {
-                  label: "First three months, to the review",
-                  value: "€3,297 plus VAT",
+                  label: "First three months",
+                  value: "€3,297",
                 },
                 featured: true,
               },
@@ -566,7 +573,7 @@ export default function BoremanDoc() {
                   "Your range, your part numbers, your own photography",
                   "You change it by talking to it, no agency and no waiting",
                 ],
-                price: "€3,000 plus VAT",
+                price: "€6,000 plus VAT",
                 note: "No monthly on the website.",
               },
               {
@@ -684,7 +691,7 @@ export default function BoremanDoc() {
 
         <PPSection id="next" k="09" title="The next step">
           <p className="pps-standfirst">
-            If the two above look right, the next step is a call to agree what
+            If the three above look right, the next step is a call to agree what
             gets built first and to get your brand material over to us. The
             advertising agent needs your existing ads and lamp photography, and
             the website needs whatever you have on the range.
