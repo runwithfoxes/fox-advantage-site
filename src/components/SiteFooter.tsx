@@ -20,6 +20,7 @@ const links: { href: string; label: string }[] = [
   { href: "/answers", label: "Marketing questions, answered" },
   { href: "/about", label: "About Run with Foxes" },
   { href: "/essays", label: "Essays" },
+  { href: "/diary", label: "Diary of an AI marketing team" },
   { href: "/book", label: "The Fox Advantage (free book)" },
 ];
 

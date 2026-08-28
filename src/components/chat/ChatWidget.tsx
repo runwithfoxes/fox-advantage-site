@@ -102,6 +102,10 @@ export default function ChatWidget() {
     // No auto-open on mobile: at <=768px the panel is full-screen, so opening
     // uninvited replaces the whole page. The bubble stays; the visitor taps it.
     if (window.matchMedia("(max-width: 768px)").matches) return;
+    // No auto-open on the diary either (Paul's say-so, 28 Aug 2026, with the
+    // /diary build): it is a reading page, and Isa opening over a dispatch
+    // interrupts the one thing the visitor came to do. The bubble stays.
+    if (pathname === "/diary" || pathname?.startsWith("/diary/")) return;
     // Contact page tracks its own dismissal so closing Isa on the homepage
     // doesn't stop her opening when someone reaches the contact page.
     const dismissKey = isContact ? "isa-dismissed-contact" : "isa-dismissed";

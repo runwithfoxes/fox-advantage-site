@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllChapters, isChapterGated } from "@/lib/chapters";
 import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
 import { toolBuckets } from "./students/toolData";
 
 const BASE = "https://runwithfoxes.com";
@@ -39,6 +40,7 @@ const PUBLIC_ROUTES = [
   "/contact",
   "/cookies",
   "/course",
+  "/diary",
   "/essays",
   "/distinctive",
   "/experts",
@@ -69,7 +71,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
      exist without being in the sitemap or linger in it after being removed */
   const essays = getAllEssays().map((e) => `/essays/${e.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays];
+  /* same again for the diary: the loader is the list */
+  const dispatches = getAllDispatches().map((d) => `/diary/${d.slug}`);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }
