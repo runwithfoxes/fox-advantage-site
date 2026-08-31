@@ -255,22 +255,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="areas" k="04" title="What we&rsquo;d tackle">
-        <p className="pps-standfirst">
-          The four areas you named. Reporting goes first, which is what you said
-          yourself. It is the least exciting thing on your list and it is the one
-          with a date attached to it, because due diligence starts inside six
-          months and the answer to &ldquo;show me your funnel&rdquo; cannot be a
-          spreadsheet. Your new demand generation director came out of data and
-          analytics, so he is the natural owner of it.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Most of what follows is our own work on general marketing problems,
-          shown running rather than described, so you can judge the standard for
-          yourself. None of it uses Bright&rsquo;s data or Bright&rsquo;s
-          numbers.
-        </p>
-      </PPSection>
+      <PPSection id="areas" k="04" title="What we&rsquo;d tackle" />
 
       <PPSection id="a-reporting" sub title="Reporting">
         <p className="pps-standfirst">
