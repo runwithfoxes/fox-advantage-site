@@ -345,20 +345,16 @@ export default function IcsMedicalDoc() {
 
       <PPSection id="workflows" k="03" title="Redesigning workflows">
         <ArrivalBlueprint />
-        {/* Paul's own copy, given in chat 10 Aug. */}
+        {/* Paul's own copy, 10 Aug, reopened by him for ICS on 31 Aug. The
+            book link and the "harder work" opening came out and he dictated a
+            new first sentence. His second sentence used the inversion shape the
+            plain gate blocks, so it is phrased the long way round here on his
+            call: "we'll change the writing slightly". Meaning unchanged. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Redesigning workflows is the harder work, and it is what{" "}
-          <a
-            href="/book"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pps-copy-link"
-          >
-            my new book
-          </a>{" "}
-          is about. It is harder not because of the tech or the tools, but
-          because it is about people: their roles, their responsibilities,
-          and sometimes their identities. We map out the activities and how
+          For some clients, we re-design how teams do marketing. That work is
+          only partly about the tech and the tools. Most of it is about
+          people, their roles, their responsibilities, and sometimes their
+          identities. We map out the activities and how
           they flow, from a brief through to campaigns and analysis,
           including the handovers, the time each step takes, the documents
           and artefacts created, the tools used, and the sign-offs. Then we
