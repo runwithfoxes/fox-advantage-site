@@ -387,11 +387,7 @@ export default function BrightDoc() {
             "Training your team on what they will run",
             "A named point of contact, Paul",
           ]}
-          notCovered={[
-            "Any tool or platform subscriptions on your side",
-            "Advertising or any media spend",
-            "A fifth area. Four is what is costed and four is what gets built",
-          ]}
+          notCovered={["Any tool or platform subscriptions on your side"]}
         />
         <CloseBox clientName="Bright" />
       </PPSection>
