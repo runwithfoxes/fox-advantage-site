@@ -326,9 +326,10 @@ export default function BrightDoc() {
 
       <PPSection id="a-design" sub title="Design and production">
         <p className="pps-standfirst">
-          Design and production stops being a queue. Anyone on the team can ask
-          for work and get something on brand back the same day, and the
-          creative judgement stays where it is.
+          The opportunity here is to hand the low value, mundane but necessary
+          work to AI, so the design team spends its time on the harder and more
+          creative jobs instead. Resizes, versions, checks and turnarounds get
+          done without them, and what they are actually good at gets the week.
         </p>
         <div style={{ marginTop: 30 }}>
           <BrandGuardian />
