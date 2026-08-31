@@ -150,10 +150,8 @@ const MORNING_NOTE = [
 ];
 
 const SECTIONS = [
-  { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
-  { id: "roles", title: "Rethinking the roles" },
   { id: "workflows", title: "Redesigning workflows" },
   { id: "training", title: "Training teams" },
   { id: "buildingagents", title: "Building agents" },
@@ -201,21 +199,9 @@ export default function IcsMedicalDoc() {
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
     >
-      <PPSection id="heard" k="01" title="What this is">
-        <p className="pps-standfirst">
-          This page is what we build and how we work. There is no price in
-          it, because I have not seen how your marketing actually gets done
-          yet, and any number I put down today would be a guess. I have
-          picked the parts that matter most for a company selling to a small
-          and nameable set of customers over long development cycles: how
-          marketing roles are changing, the training, redesigning how the
-          work gets done, and the agents we build.
-        </p>
-      </PPSection>
-
       {/* WHAT WE DO. Paul's own copy, verbatim, the approved treatment from
           the Fidelity page. Essays swapped for the five that suit ICS. */}
-      <PPSection id="howiwork" k="02" title="What we do">
+      <PPSection id="howiwork" k="01" title="What we do">
         <p className="pps-hiw-line">Quality first, then automate</p>
         <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
         <div className="pps-hiw-grid">
@@ -342,7 +328,7 @@ export default function IcsMedicalDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
+      <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
         <FourThingsFigure />
         {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
             dictation. */}
@@ -357,24 +343,7 @@ export default function IcsMedicalDoc() {
         </p>
       </PPSection>
 
-      {/* RETHINKING THE ROLES. Paul's copy from the Fidelity page, verbatim.
-          ⛔ Corrected by Paul 10 Aug: START WITH THE WORK, NOT THE TEAM. */}
-      <PPSection id="roles" k="04" title="Rethinking the roles">
-        <p className="pps-standfirst">
-          Individual productivity gets you started. Make everyone on a
-          team a little faster and the work still queues in the same places,
-          because the bottleneck just moves down the line. The process, the
-          people and the policies have to change together, and that starts
-          with what each role actually is.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          We start by laying out the work to be done, not the team chart.
-          Then we redesign how that work gets done and remove the
-          handovers.
-        </p>
-      </PPSection>
-
-      <PPSection id="workflows" k="05" title="Redesigning workflows">
+      <PPSection id="workflows" k="03" title="Redesigning workflows">
         <ArrivalBlueprint />
         {/* Paul's own copy, given in chat 10 Aug. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
@@ -399,7 +368,7 @@ export default function IcsMedicalDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="training" k="06" title="Training teams">
+      <PPSection id="training" k="04" title="Training teams">
         <div>
           <ScaledWindow width={940}>
             <div className="ppw-blueprint">
@@ -444,7 +413,7 @@ export default function IcsMedicalDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="buildingagents" k="07" title="Building agents">
+      <PPSection id="buildingagents" k="05" title="Building agents">
         <></>
       </PPSection>
 
@@ -581,7 +550,7 @@ export default function IcsMedicalDoc() {
 
       {/* THE WORK. Miro, Moloco, Sabre. Copy verbatim from the Fidelity page,
           where Paul agreed it line by line. */}
-      <PPSection id="work" k="08" title="The work">
+      <PPSection id="work" k="06" title="The work">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
@@ -725,7 +694,7 @@ export default function IcsMedicalDoc() {
           call he would come down for a couple of hours and only then write a
           proposal, and Brendan said September was tight but they would find
           the time. The email names the dates; this section names the session. */}
-      <PPSection id="next" k="09" title="The next step">
+      <PPSection id="next" k="07" title="The next step">
         <p className="pps-standfirst">
           The useful next step is a couple of hours with you and Laura, and
           anyone else who touches this work. I want to see how it gets done
