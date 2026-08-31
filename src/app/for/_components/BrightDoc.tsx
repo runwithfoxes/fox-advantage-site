@@ -246,14 +246,6 @@ export default function BrightDoc() {
 
       <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
         <FourThingsFigure />
-        <p className="pps-standfirst" style={{ marginTop: 24 }}>
-          I firmly believe that marketing structures, marketing teams and
-          marketing roles are going to change dramatically in the next few years,
-          and the work we do is all around that. We train teams. We build AI
-          agents and capabilities for them, or with them. We work with marketing
-          leaders to re-imagine what future workflows could look like, and we
-          design AI adoption programmes for them.
-        </p>
       </PPSection>
 
       <PPSection id="changing" k="03" title="Changing how the team works" />
@@ -261,21 +253,12 @@ export default function BrightDoc() {
       <PPSection id="m-redesigning-workflows" sub title="Redesigning workflows">
         <ArrivalBlueprint />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Teams who get fluent with this now build a real advantage. The people
-          using it every day keep getting better at it, and that compounds in a
-          way that buying a tool never does.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The gain is speed, and what speed opens up. Work that took three weeks
-          comes out in a day, so the team can try five versions where they used
-          to get one. Reporting is there every morning without anyone building
-          it, so people ask questions they would never have raised a ticket for.
-          And some of it is work a team of twenty could not take on at all,
-          which is the part that changes what the team is for.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          That comes from redesigning the work itself rather than adding tools
-          around the edges of it.
+          I firmly believe that marketing structures, marketing teams and
+          marketing roles are going to change dramatically in the next few years,
+          and the work we do is all around that. We train teams. We build AI
+          agents and capabilities for them, or with them. We work with marketing
+          leaders to re-imagine what future workflows could look like, and we
+          design AI adoption programmes for them.
         </p>
       </PPSection>
 
