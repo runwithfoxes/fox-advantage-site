@@ -317,12 +317,6 @@ export default function BrightDoc() {
             sign={["Aoife", "Bright"]}
           />
         </div>
-        <p className="ppft-honest">
-          <span className="ppft-slash">/illustrative.</span> The email above is
-          written by us to show what the writer produces. The sender, the
-          recipient and the claim in it are invented, and none of it is
-          Bright&rsquo;s copy or Bright&rsquo;s data.
-        </p>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           Email, brand, ghostwriting and ad copy all run off one machine,
           calibrated once on your positioning and tone. That calibration is the
