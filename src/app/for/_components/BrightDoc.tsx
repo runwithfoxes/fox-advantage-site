@@ -256,13 +256,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="changing" k="03" title="Changing how the team works">
-        <p className="pps-standfirst">
-          This part is about how the work gets done rather than about a thing we
-          hand over. It is the half of your brief that asks for twenty people to
-          operate like sixty, and it is what the two days in September are for.
-        </p>
-      </PPSection>
+      <PPSection id="changing" k="03" title="Changing how the team works" />
 
       <PPSection id="m-redesigning-workflows" sub title="Redesigning workflows">
         <ArrivalBlueprint />

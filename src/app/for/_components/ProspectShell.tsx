@@ -301,7 +301,9 @@ export function PPSection({
   title: string;
   /** A sub-exhibit inside a numbered section: smaller heading, tighter top. */
   sub?: boolean;
-  children: React.ReactNode;
+  /** Optional: a section can be a heading with its sub-sections underneath and
+      no standfirst of its own. */
+  children?: React.ReactNode;
 }) {
   return (
     <section
