@@ -341,7 +341,7 @@ export default function BrightDoc() {
           one brand, and this holds that together as the volume goes up.
         </p>
         <div style={{ marginTop: 34 }}>
-          <CreativeDirector />
+          <CreativeDirector notes={false} />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           The design system converted into code, so anyone can ask for work and

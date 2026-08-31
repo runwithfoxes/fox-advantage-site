@@ -22,7 +22,7 @@ const A = "/for/creative-director";
 // The six generated images, per the presentation's own markup.
 const OURS = new Set([2, 4, 5, 7, 10, 12]);
 
-export default function CreativeDirector() {
+export default function CreativeDirector({ notes = true }: { notes?: boolean } = {}) {
   const [revealed, setRevealed] = useState(false);
 
   return (
@@ -72,7 +72,8 @@ export default function CreativeDirector() {
       </ScaledWindow>
 
       {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
-          dictation. */}
+          dictation. Off on Bright, 31 Aug, on Paul's call. */}
+      {notes && (
       <p className="pps-standfirst" style={{ marginTop: 30 }}>
         We may be stretching it a little to call this agent a Creative
         Director, as it is more like an Art Director, but it has been
@@ -82,6 +83,7 @@ export default function CreativeDirector() {
         The value here is for brands that do lots of advertising and need
         both craft and consistency.
       </p>
+      )}
 
       <div className="ppcd-gap">
         <ScaledWindow width={940}>
@@ -207,12 +209,14 @@ export default function CreativeDirector() {
         None is a stock picture chosen to look similar.
       </p>
 
+      {notes && (
       <p className="ppft-honest">
         <span className="ppft-slash">/Sabre&rsquo;s real work,</span> shown
         with their name because we build and run these machines for them. A
         creative director is built for one brand at a time. Yours would be
         built to your brand book.
       </p>
+      )}
     </div>
   );
 }
