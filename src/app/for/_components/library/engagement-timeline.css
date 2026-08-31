@@ -1,0 +1,253 @@
+/* Engagement timeline, ppet- prefix. Seamus's own twelve weeks drawn to scale:
+   three phases at their real width, with the two days marked where they
+   actually fall. Square corners, house palette, no rounded anything.
+
+   Base state is FULLY DRAWN. Everything under .ppet-play is animation only, so
+   the picture is complete and readable with JavaScript off. */
+
+.ppet {
+  margin: 34px 0 0;
+}
+
+/* ---- head ---- */
+.ppet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  margin: 0 0 14px;
+}
+.ppet-label {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppet-total {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  color: var(--pps-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---- week scale ---- */
+.ppet-scale {
+  display: flex;
+  height: 18px;
+  align-items: flex-end;
+  /* room above for the two-days flag, which sits over the scale */
+  margin: 30px 0 6px;
+}
+.ppet-tick {
+  flex: 1 1 0;
+  position: relative;
+  height: 100%;
+  border-left: 1px solid var(--pps-border);
+}
+.ppet-tick:last-child {
+  border-right: 1px solid var(--pps-border);
+}
+.ppet-tickn {
+  position: absolute;
+  bottom: 3px;
+  left: 4px;
+  font-family: var(--pps-mono);
+  font-size: 0.625rem;
+  line-height: 1;
+  color: var(--pps-muted);
+}
+
+/* ---- the bar ---- */
+.ppet-bar {
+  display: flex;
+  height: 52px;
+  position: relative;
+}
+.ppet-seg {
+  position: relative;
+  height: 100%;
+  transform-origin: left center;
+  box-shadow: inset 2px 0 0 var(--pps-bg); /* 2px surface gap between phases */
+}
+.ppet-seg:first-child {
+  box-shadow: none;
+}
+.ppet-p1 {
+  background: #7ba3bf;
+}
+.ppet-p2 {
+  background: var(--pps-sky);
+}
+.ppet-p3 {
+  background: var(--pps-deep);
+}
+.ppet-segweeks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: #fafaf8;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---- the two days, the one orange thing on the figure ---- */
+.ppet-days {
+  position: absolute;
+  top: -46px;
+  bottom: -10px;
+  width: 0;
+  border-left: 2px solid var(--pps-orange);
+  pointer-events: none;
+}
+.ppet-daysflag {
+  position: absolute;
+  top: -62px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.ppet-daysdot {
+  width: 6px;
+  height: 6px;
+  background: var(--pps-orange);
+  margin-left: -3px;
+}
+.ppet-daystext {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--pps-text);
+}
+
+/* ---- phase captions under the bar ---- */
+.ppet-phases {
+  display: flex;
+  margin-top: 14px;
+}
+.ppet-phase {
+  box-sizing: border-box;
+  /* width is set inline from the week count so the columns line up with the
+     bar, but a two-week column is too narrow to read a sentence in, so it is
+     a floor-and-grow rather than a hard proportion. */
+  flex: 1 1 auto;
+  min-width: 200px;
+  padding-right: 26px;
+  border-left: 1px solid #c9c9c3;
+  padding-left: 10px;
+}
+.ppet-phase:first-child {
+  border-left-color: #7ba3bf;
+}
+.ppet-phasek {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+  margin: 0;
+}
+.ppet-phasen {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  color: var(--pps-text);
+  margin: 5px 0 0;
+}
+.ppet-phasel {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--pps-text);
+  margin: 6px 0 0;
+}
+
+.ppet-honest {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 22px 0 0;
+}
+.ppet-slash {
+  color: var(--pps-sky);
+}
+
+/* ---- animation, play-state only ---- */
+.ppet-play .ppet-seg {
+  animation: ppet-grow 0.6s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;
+  animation-delay: calc(var(--i) * 0.16s);
+}
+@keyframes ppet-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.ppet-play .ppet-tick {
+  animation: ppet-fade 0.4s ease backwards;
+  animation-delay: calc(var(--i) * 0.03s);
+}
+.ppet-play .ppet-days,
+.ppet-play .ppet-daysflag {
+  animation: ppet-rise 0.5s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;
+  animation-delay: 0.85s;
+}
+.ppet-play .ppet-phase {
+  animation: ppet-rise 0.5s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;
+  animation-delay: calc(0.5s + var(--i) * 0.12s);
+}
+@keyframes ppet-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ppet-rise {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ppet-play .ppet-seg,
+  .ppet-play .ppet-tick,
+  .ppet-play .ppet-days,
+  .ppet-play .ppet-daysflag,
+  .ppet-play .ppet-phase {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .ppet-phases {
+    display: block;
+  }
+  .ppet-phase {
+    padding: 0 0 0 10px;
+    margin-bottom: 16px;
+  }
+  .ppet-segweeks {
+    font-size: 0.625rem;
+    padding-left: 6px;
+  }
+}

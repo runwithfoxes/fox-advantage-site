@@ -61,6 +61,7 @@ import WorkGrid from "./library/WorkGrid";
 import BrandGuardian from "./library/BrandGuardian";
 import CreativeDirector from "./library/CreativeDirector";
 import ReportingSuite from "./library/ReportingSuite";
+import EngagementTimeline from "./library/EngagementTimeline";
 import "./library/four-things.css";
 import "./fidelity-cases.css";
 import "./pricing.css";
@@ -469,6 +470,7 @@ export default function BrightDoc() {
           either side of them. The fourth is the months after, when the three
           things the room picked actually get built.
         </p>
+        <EngagementTimeline />
       </PPSection>
 
       <PPSection id="s-chase" sub title="Chase and Run">
