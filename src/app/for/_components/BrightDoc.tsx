@@ -64,7 +64,7 @@ const SECTIONS = [
   { id: "whypaul", title: "Why Paul" },
   { id: "process", title: "The process" },
   { id: "s-training", title: "Training the team" },
-  { id: "areas", title: "What we'd tackle" },
+  { id: "areas", title: "AI Opportunities" },
   { id: "a-reporting", title: "Reporting" },
   { id: "a-lifecycle", title: "Lifecycle" },
   { id: "a-content", title: "Content" },
@@ -89,7 +89,7 @@ const RAIL_GROUPS = [
       },
       {
         id: "areas",
-        title: "What we'd tackle",
+        title: "AI Opportunities",
         num: "02",
         ids: ["areas", "a-reporting", "a-lifecycle", "a-content", "a-design"],
         children: [
@@ -255,7 +255,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="areas" k="04" title="What we&rsquo;d tackle" />
+      <PPSection id="areas" k="04" title="AI Opportunities" />
 
       <PPSection id="a-reporting" sub title="Reporting">
         <p className="pps-standfirst">
