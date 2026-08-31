@@ -63,8 +63,6 @@ const SECTIONS = [
   { id: "why", title: "Why we're doing it" },
   { id: "whypaul", title: "Why Paul" },
   { id: "process", title: "The process" },
-  { id: "s-days", title: "The two days" },
-  { id: "s-champions", title: "Your five champions" },
   { id: "s-training", title: "Training the team" },
   { id: "areas", title: "What we'd tackle" },
   { id: "a-reporting", title: "Reporting" },
@@ -86,12 +84,8 @@ const RAIL_GROUPS = [
         id: "process",
         title: "The process",
         num: "01",
-        ids: ["process", "s-days", "s-champions", "s-training"],
-        children: [
-          { id: "s-days", title: "The two days" },
-          { id: "s-champions", title: "Your five champions" },
-          { id: "s-training", title: "Training the team" },
-        ],
+        ids: ["process", "s-training"],
+        children: [{ id: "s-training", title: "Training the team" }],
       },
       {
         id: "areas",
@@ -224,39 +218,9 @@ export default function BrightDoc() {
       <PPSection id="process" k="03" title="The process">
         <p className="pps-standfirst">
           Your own three phases, drawn to scale. Most of the work sits in the
-          middle, and the two days on the 8th and 9th are the opening of it.
+          middle.
         </p>
         <EngagementTimeline />
-      </PPSection>
-
-      <PPSection id="s-days" sub title="The two days">
-        <p className="pps-standfirst">
-          We start on the morning of the 8th by agreeing four or five specific
-          jobs to look at rather than marketing as a whole. How a monthly report
-          gets made. How an email gets out to the database. How a keyword
-          decision gets made.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          On the day, the person who actually does each job takes me through it
-          step by step, including the parts that are not written down anywhere.
-          The extra approval that crept in, the workaround everybody uses. That
-          is usually where the time is going.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Then for each job we ask where the time goes, where things go wrong,
-          and which of the stages is worth changing at all. Plenty of slow things
-          are not worth fixing, and saying so is part of the work. It is what
-          keeps two days like this from turning into a wish list.
-        </p>
-      </PPSection>
-
-      <PPSection id="s-champions" sub title="Your five champions">
-        <p className="pps-standfirst">
-          Joe, Connor, Sam, Jade and Alex learn on the things they are going to
-          own. They are in it from week three rather than being handed something
-          finished at the end, which is why weeks nine to twelve are them running
-          it with us there rather than a handover meeting.
-        </p>
       </PPSection>
 
       <PPSection id="s-training" sub title="Training the team">
@@ -449,14 +413,7 @@ export default function BrightDoc() {
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The same jobs get timed again at week twelve. Same jobs, same people,
-          same measure. It is the only version of this that stands up in a board
-          pack, and it is the reason we do the timing early rather than trying to
-          reconstruct it at the end.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The other half of your metric is whether your five can build without
-          me, and that one is easy to test. In weeks nine to twelve they build
-          something new on their own while I watch.
+          same measure. That is the version that stands up in a board pack.
         </p>
       </PPSection>
 
@@ -466,9 +423,9 @@ export default function BrightDoc() {
             {
               title: "The engagement",
               bullets: [
-                "Twelve weeks from 8 September, both days in the room included",
+                "Twelve weeks from 8 September",
                 "The four areas built and tested against the real work",
-                "Joe, Connor, Sam, Jade and Alex trained on what they will run",
+                "Your team trained on what they will run",
                 "Your team running it by weeks nine to twelve",
               ],
               lines: [
@@ -494,9 +451,8 @@ export default function BrightDoc() {
         <CoversGrid
           covers={[
             "Twelve weeks from 8 September, with no preparation asked of your team",
-            "Both days in the room on the 8th and 9th",
             "The four areas built, tested and handed over",
-            "Training your five champions on what they will run",
+            "Training your team on what they will run",
             "A named point of contact, Paul",
           ]}
           notCovered={[
@@ -585,10 +541,8 @@ export default function BrightDoc() {
 
       <PPSection id="next" k="09" title="The next step">
         <p className="pps-standfirst">
-          Say yes and the two days are confirmed for the 8th and 9th. Nobody has
-          to prepare anything. We settle which jobs we look at and who I spend
-          the most time with on the morning, and the team can turn up as they
-          are.
+          Say yes and we start on 8 September. Nobody has to prepare anything
+          in advance.
         </p>
       </PPSection>
     </ProspectShell>
