@@ -241,11 +241,6 @@ export default function BrightDoc() {
             </div>
           </ScaledWindow>
         </div>
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The course is free and open to your whole team, whether or not we
-          work together. It is the starting floor rather than the training
-          itself.
-        </p>
       </PPSection>
 
       <PPSection id="areas" k="04" title="AI Opportunities" />
