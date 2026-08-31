@@ -326,9 +326,9 @@ export default function BrightDoc() {
 
       <PPSection id="a-design" sub title="Design and production">
         <p className="pps-standfirst">
-          Your brief keeps Dineo as Creative Director and moves the day to day
-          execution across. That is the right way round. These two do the making,
-          and the judgement about what is worth making stays with her.
+          Design and production stops being a queue. Anyone on the team can ask
+          for work and get something on brand back the same day, and the
+          creative judgement stays where it is.
         </p>
         <div style={{ marginTop: 30 }}>
           <BrandGuardian />
