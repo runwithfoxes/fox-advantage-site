@@ -161,9 +161,11 @@ export default function BrightDoc() {
       eyebrow="Prepared for Seamus Moore, Bright Software Group"
       /* ⛔ NOT THE TWO DAYS. Paul, 31 Aug: "You're hanging onto the two days,
          which has nothing to do with anything." The two days are the opening of
-         a twelve week engagement, never the product. Four is his own four
-         areas: reporting, lifecycle, content, design and production. */
-      title="Twelve weeks with your team"
+         a twelve week engagement, never the product. And the line has to be the
+         BENEFIT, not the duration: Paul, 31 Aug, after three goes at it. The
+         numbers are Seamus's own ambition from his brief, "we are a team of 20,
+         but we want to operate like 60". */
+      title="A team of 20 that works like 60"
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
