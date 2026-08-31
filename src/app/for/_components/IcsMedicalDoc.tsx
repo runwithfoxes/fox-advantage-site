@@ -707,23 +707,20 @@ export default function IcsMedicalDoc() {
           proposal, and Brendan said September was tight but they would find
           the time. The email names the dates; this section names the session. */}
       <PPSection id="next" k="07" title="The next step">
+        {/* Rewritten 31 Aug on Paul's call. Three things he cut: "anyone else
+            who touches this work", the "genuinely help" hedging, and the whole
+            no-commitment paragraph ("Of course it's not. That's ridiculous.").
+            His instruction: "Just write normal, simple English." */}
         <p className="pps-standfirst">
-          The useful next step is a couple of hours with you and Laura, and
-          anyone else who touches this work. I want to see how it gets done
-          today: what the week actually looks like, how long each thing
-          takes, what goes out to agencies, and where the time goes. That is
-          what tells me whether I can genuinely help you, and what I would
-          build first.
+          The next step is a couple of hours with you and Laura. I want to see
+          how the work gets done today: what a week looks like, how long
+          things take, and what goes out to agencies. That tells me whether I
+          can help, and what I would build first.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          It can be in Galway or online. Online works well, because I capture
-          the whole session as we go. After it I would come back to you with
-          a recommendation and a price, and both would be based on something
-          I had seen rather than something I had guessed.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Nothing on this page is a commitment on your side, and there is no
-          cost until you have seen a proposal you want to say yes to.
+          It can be in Galway or online, whichever suits. Online works well
+          because I capture the whole session as we go. After it I would come
+          back to you with a recommendation and a price.
         </p>
       </PPSection>
     </ProspectShell>
