@@ -127,9 +127,9 @@ export default function BrightDoc() {
     >
       <PPSection id="why" k="01" title="Why we&rsquo;d do it">
         <p className="pps-standfirst">
-          You have a team of twenty and you want it working like a team of sixty.
-          That comes from building AI and agents into the work the team already
-          does. The teams who get fluent now build a real advantage, because the
+          You have a team of twenty and want to compete like you have a team of
+          forty. That comes from building AI and agents into the work the team
+          already does. The teams who get fluent now build a real advantage, because the
           people using it every day keep getting better at it.
         </p>
       </PPSection>
