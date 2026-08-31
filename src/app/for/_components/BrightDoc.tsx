@@ -264,17 +264,6 @@ export default function BrightDoc() {
 
       <PPSection id="m-team-ai-adoption" sub title="Designing team AI adoption">
         <WorkGrid />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Not everybody is going to be a builder, and that is fine. Every
-          marketing team will soon have at least one person who builds and who
-          helps the other teams with their work. What we measure is simple:
-          pieces of work now done a different way, not logins or prompt counts.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          This is where your five champions come in. Joe, Connor, Sam, Jade and
-          Alex learn on the things they will own afterwards, so the capability
-          stays in the building when the engagement ends.
-        </p>
       </PPSection>
 
       <PPSection id="m-training-teams" sub title="Training teams">
