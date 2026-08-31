@@ -231,9 +231,10 @@ export default function BrightDoc() {
 
       <PPSection id="s-days" sub title="The two days">
         <p className="pps-standfirst">
-          Before the 8th you and I agree four or five specific jobs to look at
-          rather than marketing as a whole. How a monthly report gets made. How
-          an email gets out to the database. How a keyword decision gets made.
+          We start on the morning of the 8th by agreeing four or five specific
+          jobs to look at rather than marketing as a whole. How a monthly report
+          gets made. How an email gets out to the database. How a keyword
+          decision gets made.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           On the day, the person who actually does each job takes me through it
@@ -492,7 +493,7 @@ export default function BrightDoc() {
         </p>
         <CoversGrid
           covers={[
-            "Twelve weeks from 8 September, and the pre-work brief to your team",
+            "Twelve weeks from 8 September, with no preparation asked of your team",
             "Both days in the room on the 8th and 9th",
             "The four areas built, tested and handed over",
             "Training your five champions on what they will run",
@@ -584,15 +585,10 @@ export default function BrightDoc() {
 
       <PPSection id="next" k="09" title="The next step">
         <p className="pps-standfirst">
-          Say yes and the two days are confirmed. Before the 8th I need two
-          things from you. Which four or five people you want me to spend the
-          most time with, and one line from Martin on what the new website is
-          being built on, because it changes what is worth doing on the email and
-          page side.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          I will send your team the pre-work brief a week before, so nobody
-          arrives cold on the morning.
+          Say yes and the two days are confirmed for the 8th and 9th. Nobody has
+          to prepare anything. We settle which jobs we look at and who I spend
+          the most time with on the morning, and the team can turn up as they
+          are.
         </p>
       </PPSection>
     </ProspectShell>
