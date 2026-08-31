@@ -19,10 +19,13 @@
 // has already written the approach, so carrying both made the page argue with
 // itself.
 //
-// ⭐ HIS FOUR AREAS ARE THE SPINE AND ALSO THE PRICE: reporting, lifecycle,
-// content, and design and production. Four at €6,000 is €24,000, discounted to
-// €20,000 committed together. That keeps the shape Paul costed on 28 Aug and
-// puts the four labels on the page rather than only inside the price box.
+// ⭐ HIS FOUR AREAS ARE THE SPINE: reporting, lifecycle, content, and design and
+// production. €20,000 plus VAT for the twelve weeks and all four together.
+//
+// ⛔ ONE PRICE, NO BREAKDOWN. It was itemised at four times €6,000 against a
+// €24,000 anchor and Paul cut all of it on 31 Aug: itemising "gives them the
+// opportunity to say, actually, I won't take that piece." Do not restore the
+// lines or the anchor.
 //
 // ⛔ THE DEMOS BELONG TO A NAMED AREA NOW. They used to sit in a catalogue
 // called "Building agents" with nobody's name on them. Reporting Suite under
