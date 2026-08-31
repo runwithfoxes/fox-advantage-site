@@ -41,9 +41,10 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Matthias Wenk, Home Store + More. Built 28 Aug from the template. One
   // priced card: a 3D modelling agent for their bedding photography.
   "home-store": dynamic(() => import("./HomeStoreDoc"), { ssr: false }),
-  // Seamus Moore, CMO, Bright Software Group. Built 28 Aug from the template,
-  // off his own engagement brief. One price, itemised by Paul's four-stage
-  // method. Carries the Reporting Suite, the first new module since the
-  // template landed, because reporting is what Seamus led with himself.
+  // Seamus Moore, CMO, Bright Software Group. Built 28 Aug, rebuilt 31 Aug onto
+  // Seamus's own document because he wrote the brief himself. Twelve weeks from
+  // 8 September across his four areas: reporting, lifecycle, content, and
+  // design and production. One price of 20,000 plus VAT, no breakdown. Sent 31
+  // Aug.
   bright: dynamic(() => import("./BrightDoc"), { ssr: false }),
 };
