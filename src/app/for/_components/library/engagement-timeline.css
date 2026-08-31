@@ -173,17 +173,6 @@
   margin: 6px 0 0;
 }
 
-.ppet-honest {
-  font-family: var(--pps-mono);
-  font-size: 0.75rem;
-  line-height: 1.6;
-  color: var(--pps-muted);
-  margin: 22px 0 0;
-}
-.ppet-slash {
-  color: var(--pps-sky);
-}
-
 /* ---- animation, play-state only ---- */
 .ppet-play .ppet-seg {
   animation: ppet-grow 0.6s cubic-bezier(0.22, 0.61, 0.2, 1) backwards;

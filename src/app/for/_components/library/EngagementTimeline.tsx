@@ -134,11 +134,6 @@ export default function EngagementTimeline() {
         ))}
       </div>
 
-      <p className="ppet-honest">
-        <span className="ppet-slash">/</span> The three phases, the twelve weeks
-        and the two days are from your own brief. The widths are the week counts
-        drawn to scale, so most of the work sits in weeks 3 to 8.
-      </p>
     </div>
   );
 }
