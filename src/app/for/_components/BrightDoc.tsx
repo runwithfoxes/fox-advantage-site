@@ -269,15 +269,11 @@ export default function BrightDoc() {
 
       <PPSection id="a-lifecycle" sub title="Lifecycle">
         <p className="pps-standfirst">
-          You have 460,000 contacts and you are sending them broadcasts. The
-          work is turning that into email that fires off what someone actually
-          did: the pages they read, the webinar they sat through, the trial they
-          started and stopped.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          This is the one area where I have nothing of ours running to show
-          you. The first job is a look at what HubSpot is already doing with the
-          database.
+          Lifecycle stops being a role and a task. The segments, the triggers and
+          the copy get built once in Claude Code and then run, so your 460,000
+          contacts move from broadcasts to email that fires off what someone
+          actually did, and the person who owned the sending is free to cover a
+          lot more ground.
         </p>
       </PPSection>
 
