@@ -261,19 +261,21 @@ export default function BrightDoc() {
       <PPSection id="m-redesigning-workflows" sub title="Redesigning workflows">
         <ArrivalBlueprint />
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Redesigning the work itself is where the gain is. Most companies add
-          tools on top of how the team already works, which speeds up one step
-          and leaves the queue sitting somewhere else. Change the shape of the
-          work and the whole thing moves.
+          Teams who get fluent with this now build a real advantage. The people
+          using it every day keep getting better at it, and that compounds in a
+          way that buying a tool never does.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The bigger part is speed, and what speed opens up. Work that took
-          three weeks comes out in a day, so the team can try five versions
-          where they used to get one. Reporting is there every morning without
-          anyone building it, so people ask questions they would never have
-          raised a ticket for. And some of it is work a team of twenty could not
-          take on at all before, which is the part that changes what the team is
-          for.
+          The gain is speed, and what speed opens up. Work that took three weeks
+          comes out in a day, so the team can try five versions where they used
+          to get one. Reporting is there every morning without anyone building
+          it, so people ask questions they would never have raised a ticket for.
+          And some of it is work a team of twenty could not take on at all,
+          which is the part that changes what the team is for.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          That comes from redesigning the work itself rather than adding tools
+          around the edges of it.
         </p>
       </PPSection>
 
