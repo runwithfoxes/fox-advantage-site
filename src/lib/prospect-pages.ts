@@ -122,12 +122,12 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "HOME_STORE_PASSWORD",
     passwordFallback: "homestore26",
   },
-  // Seamus Moore, CMO, Bright Software Group. Built 28 Aug 2026 from the
-  // template, off the 28 Aug call and off the engagement brief Seamus wrote
-  // and sent the same evening. ONE price, not a menu: he named his own budget
-  // before he saw a number, so a menu would read as if nobody listened. The
-  // price is itemised by Paul's own four-stage method rather than by a list of
-  // deliverables, 6,000 a stage, 24,000 struck through to 20,000.
+  // Seamus Moore, CMO, Bright Software Group. Built 28 Aug 2026, then rebuilt
+  // 31 Aug onto Seamus's own document, because he wrote the brief himself and
+  // following our format on top of his read as confusing. Twelve weeks from 8
+  // September across his four areas: reporting, lifecycle, content, and design
+  // and production. ONE price of 20,000 plus VAT with no breakdown, because
+  // itemising it hands him the chance to drop a piece. Sent 31 Aug.
   bright: {
     slug: "bright",
     client: "Bright Software Group",
