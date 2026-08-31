@@ -375,24 +375,11 @@ export default function BrightDoc() {
                 "Your team trained on what they will run",
                 "Your team running it by weeks nine to twelve",
               ],
-              lines: [
-                { label: "Reporting", value: "€6,000" },
-                { label: "Lifecycle", value: "€6,000" },
-                { label: "Content", value: "€6,000" },
-                { label: "Design and production", value: "€6,000" },
-              ],
-              was: "€24,000",
               price: "€20,000 plus VAT",
-              note: "All four areas, committed together.",
+              note: "The twelve weeks and all four areas, together.",
             },
           ]}
         />
-        <p className="pps-standfirst" style={{ marginTop: 26 }}>
-          Each area is €6,000 on its own, so €24,000 commissioned one at a
-          time. €20,000 is the price for all four together, and it means the
-          building starts in week three rather than after another round of
-          scoping.
-        </p>
         <CoversGrid
           covers={[
             "Twelve weeks from 8 September, with no preparation asked of your team",
