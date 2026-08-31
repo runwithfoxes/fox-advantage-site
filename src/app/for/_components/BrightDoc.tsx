@@ -163,7 +163,7 @@ export default function BrightDoc() {
          which has nothing to do with anything." The two days are the opening of
          a twelve week engagement, never the product. Four is his own four
          areas: reporting, lifecycle, content, design and production. */
-      title="Twelve weeks with your team, and four things running at the end of it"
+      title="Twelve weeks with your team"
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
