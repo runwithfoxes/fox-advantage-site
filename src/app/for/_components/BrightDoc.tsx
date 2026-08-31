@@ -234,9 +234,6 @@ export default function BrightDoc() {
           Before the 8th you and I agree four or five specific jobs to look at
           rather than marketing as a whole. How a monthly report gets made. How
           an email gets out to the database. How a keyword decision gets made.
-          You already said you would rather I spent my time with four or five
-          people than spread it evenly across twenty, and this is where that gets
-          settled.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           On the day, the person who actually does each job takes me through it
