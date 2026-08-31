@@ -73,7 +73,6 @@ const SECTIONS = [
   { id: "pricing", title: "The price" },
   { id: "work", title: "Case studies" },
   { id: "library", title: "Essays" },
-  { id: "next", title: "The next step" },
 ];
 
 const RAIL_GROUPS = [
@@ -108,8 +107,7 @@ const RAIL_GROUPS = [
       { id: "metrics", title: "Metrics for success" },
       { id: "pricing", title: "The price" },
       { id: "work", title: "Case studies" },
-      { id: "next", title: "The next step" },
-    ],
+        ],
   },
 ];
 
@@ -466,12 +464,6 @@ export default function BrightDoc() {
         />
       </PPSection>
 
-      <PPSection id="next" k="09" title="The next step">
-        <p className="pps-standfirst">
-          Say yes and we start on 8 September. Nobody has to prepare anything
-          in advance.
-        </p>
-      </PPSection>
     </ProspectShell>
   );
 }
