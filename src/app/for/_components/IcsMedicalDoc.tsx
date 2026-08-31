@@ -536,22 +536,27 @@ export default function IcsMedicalDoc() {
           ]}
           ariaLabel="The Ghostwriter card with four formats falling out of it: long piece, posts, chart, newsletter"
         />
+        {/* ⛔ REWRITTEN 31 Aug on Paul's call. The Affirm copy that was here
+            opened "Your experts know things your customers would pay to learn.
+            Almost none of it leaves the building", which he called too poetic
+            and clever: "This isn't a movie." What he wants said is what the
+            thing actually does, which is what he described to Brendan on the
+            28 Aug call: once a week a research agent pulls raw material from
+            GitHub and elsewhere into a spreadsheet, then a copywriter agent
+            writes it up, and the person picks two or three to publish. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Your experts know things your customers would pay to learn. Almost
-          none of it leaves the building. Writing something worth reading is
-          slow, and the people who know the most have the least time to do it.
-          It is also hard to write about something you know inside out. The
-          jargon feels normal, and you stop noticing what the reader does not
-          know.
+          The people who know your subject best usually have the least time
+          to write about it. Once a week a research agent goes and finds the
+          raw material, from GitHub, Reddit and wherever else your subject is
+          being discussed, and pulls what it finds into a spreadsheet. A
+          copywriter agent then writes that up using your positioning, your
+          messaging and your tone of voice, as a long piece, posts, a chart or
+          a newsletter.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Ghostwriter is built using your brand positioning, your tone and
-          your target audience. It helps you find ideas relevant to you, then
-          turns your point of view into your words, ready as a long piece,
-          posts, a chart or a newsletter. The thinking stays yours, and you
-          stand behind every word. It does the work you have no time for, and
-          leaves you the thinking you are paid for. We build it around your
-          experts and hand it over.
+          You pick the two or three worth publishing. That takes about ten
+          minutes of your time, the thinking stays yours, and you stand behind
+          every word. We build it around a named person and hand it over.
         </p>
       </PPSection>
 
