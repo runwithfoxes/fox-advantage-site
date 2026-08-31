@@ -61,6 +61,7 @@ import "./pricing.css";
 
 const SECTIONS = [
   { id: "why", title: "Why we're doing it" },
+  { id: "whypaul", title: "Why Paul" },
   { id: "process", title: "The process" },
   { id: "s-days", title: "The two days" },
   { id: "s-champions", title: "Your five champions" },
@@ -72,7 +73,6 @@ const SECTIONS = [
   { id: "a-design", title: "Design and production" },
   { id: "metrics", title: "Metrics for success" },
   { id: "pricing", title: "The price" },
-  { id: "whypaul", title: "Why Paul" },
   { id: "work", title: "Case studies" },
   { id: "library", title: "Essays" },
   { id: "next", title: "The next step" },
@@ -113,7 +113,6 @@ const RAIL_GROUPS = [
     entries: [
       { id: "metrics", title: "Metrics for success" },
       { id: "pricing", title: "The price" },
-      { id: "whypaul", title: "Why Paul" },
       { id: "work", title: "Case studies" },
       { id: "next", title: "The next step" },
     ],
@@ -148,7 +147,81 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="process" k="02" title="The process">
+      <PPSection id="whypaul" k="02" title="Why Paul">
+        <p className="pps-hiw-line">Quality first, then automate</p>
+        <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
+        <div className="pps-hiw-grid">
+          <div className="pps-hiw-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Paul_photo.jpg" alt="Paul Dervan, Run with Foxes" />
+          </div>
+          <p className="pps-hiw-award">Ireland&rsquo;s Marketer of the Year, 2022</p>
+          <p className="pps-standfirst">
+            Before I build anything, I ask one question: what does really good
+            look like here? Not what AI can do, but what the best version of this
+            marketing would be, and the level of quality and effectiveness I
+            would want to stand over.
+          </p>
+          <p className="pps-standfirst">
+            So I start where I always have. If there were no AI at all, what team
+            would I hire to do this properly? I map that team first, the one I
+            would build in a world before any of this existed.
+          </p>
+          <p className="pps-standfirst">
+            Then I build exactly that, with agents instead of hires. The quality
+            bar is set by the team I would have wanted, not by whatever a tool
+            happens to make easy. Twenty years in brand is what tells me where
+            that bar sits: Head of Brand at O2 Ireland, then CMO at the National
+            Lottery, Head of Brand at Indeed and Miro, both global roles.
+            Positioning, messaging and tone written first, then built into
+            everything the agents make.
+          </p>
+          <div className="pps-hiw-cli">
+            <p className="pps-hiw-cli-k">Who I work with</p>
+            <div className="pps-hiw-cli-l">
+              {[
+                "Moloco",
+                "Heineken",
+                "Norcros",
+                "Alltech",
+                "Smurfit",
+                "Hostelworld",
+                "Eaton Square",
+                "Weatherbys",
+              ].map((c) => (
+                <span key={c}>{c}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="pps-hiw-quotes">
+          <div className="pps-hiw-q">
+            <p>
+              &ldquo;His command of marketing science as well as his instincts
+              for great thinking and ideas are, in my opinion, superb.&rdquo;
+            </p>
+            <div className="pps-hiw-who">
+              <b>Peter Field</b>
+              <br />
+              The Godfather of Effectiveness, author of The Long and the Short of
+              It
+            </div>
+          </div>
+          <div className="pps-hiw-q">
+            <p>
+              &ldquo;Paul reported into me as Head of Brand when I was at Indeed.
+              I have learned more from him than anyone else in my career.&rdquo;
+            </p>
+            <div className="pps-hiw-who">
+              <b>Paul D&rsquo;Arcy</b>
+              <br />
+              CMO, Moloco. Former CMO at Miro and Indeed
+            </div>
+          </div>
+        </div>
+      </PPSection>
+
+      <PPSection id="process" k="03" title="The process">
         <p className="pps-standfirst">
           Your own three phases, drawn to scale. Most of the work sits in the
           middle, and the two days on the 8th and 9th are the opening of it.
@@ -220,7 +293,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="areas" k="03" title="What we&rsquo;d tackle">
+      <PPSection id="areas" k="04" title="What we&rsquo;d tackle">
         <p className="pps-standfirst">
           The four areas you named. Reporting goes first, which is what you said
           yourself. It is the least exciting thing on your list and it is the one
@@ -366,7 +439,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="metrics" k="04" title="Metrics for success">
+      <PPSection id="metrics" k="05" title="Metrics for success">
         <p className="pps-standfirst">
           You set the number at forty percent on reporting, content and campaign
           management. The way to know is to measure the work rather than the
@@ -389,7 +462,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="05" title="The price">
+      <PPSection id="pricing" k="06" title="The price">
         <PricingCards
           cards={[
             {
@@ -435,80 +508,6 @@ export default function BrightDoc() {
           ]}
         />
         <CloseBox clientName="Bright" />
-      </PPSection>
-
-      <PPSection id="whypaul" k="06" title="Why Paul">
-        <p className="pps-hiw-line">Quality first, then automate</p>
-        <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
-        <div className="pps-hiw-grid">
-          <div className="pps-hiw-photo">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Paul_photo.jpg" alt="Paul Dervan, Run with Foxes" />
-          </div>
-          <p className="pps-hiw-award">Ireland&rsquo;s Marketer of the Year, 2022</p>
-          <p className="pps-standfirst">
-            Before I build anything, I ask one question: what does really good
-            look like here? Not what AI can do, but what the best version of this
-            marketing would be, and the level of quality and effectiveness I
-            would want to stand over.
-          </p>
-          <p className="pps-standfirst">
-            So I start where I always have. If there were no AI at all, what team
-            would I hire to do this properly? I map that team first, the one I
-            would build in a world before any of this existed.
-          </p>
-          <p className="pps-standfirst">
-            Then I build exactly that, with agents instead of hires. The quality
-            bar is set by the team I would have wanted, not by whatever a tool
-            happens to make easy. Twenty years in brand is what tells me where
-            that bar sits: Head of Brand at O2 Ireland, then CMO at the National
-            Lottery, Head of Brand at Indeed and Miro, both global roles.
-            Positioning, messaging and tone written first, then built into
-            everything the agents make.
-          </p>
-          <div className="pps-hiw-cli">
-            <p className="pps-hiw-cli-k">Who I work with</p>
-            <div className="pps-hiw-cli-l">
-              {[
-                "Moloco",
-                "Heineken",
-                "Norcros",
-                "Alltech",
-                "Smurfit",
-                "Hostelworld",
-                "Eaton Square",
-                "Weatherbys",
-              ].map((c) => (
-                <span key={c}>{c}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="pps-hiw-quotes">
-          <div className="pps-hiw-q">
-            <p>
-              &ldquo;His command of marketing science as well as his instincts
-              for great thinking and ideas are, in my opinion, superb.&rdquo;
-            </p>
-            <div className="pps-hiw-who">
-              <b>Peter Field</b>
-              <br />
-              The Godfather of Effectiveness, author of The Long and the Short of
-              It
-            </div>
-          </div>
-          <div className="pps-hiw-q">
-            <p>
-              &ldquo;Paul reported into me as Head of Brand when I was at Indeed.
-              I have learned more from him than anyone else in my career.&rdquo;
-            </p>
-            <div className="pps-hiw-who">
-              <b>Paul D&rsquo;Arcy</b>
-              <br />
-              CMO, Moloco. Former CMO at Miro and Indeed
-            </div>
-          </div>
-        </div>
       </PPSection>
 
       <PPSection id="work" k="07" title="Case studies">
