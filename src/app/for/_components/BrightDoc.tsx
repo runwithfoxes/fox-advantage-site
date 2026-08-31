@@ -433,7 +433,6 @@ export default function BrightDoc() {
 
       <PPSection id="library" k="08" title="Essays">
         <LibraryList
-          intro="A few things worth keeping."
           items={[
             {
               label: "AI Fluency for Ambitious Marketers",
