@@ -473,8 +473,17 @@ export default function IcsMedicalDoc() {
         </p>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           That knowledge is a small folder of documents. Here is what comes
-          out of it, worked through on Kite, a fictional insurance brand we
-          use to demonstrate. Hover a dotted line to see what it is made of.
+          out of it, worked through on Kite, the fictional insurance brand we
+          use in our{" "}
+          <a
+            href="/course"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pps-copy-link"
+          >
+            AI fluency course
+          </a>
+          . Hover a dotted line to see what it is made of.
         </p>
         <div style={{ marginTop: 26 }}>
           <WriterEmail
