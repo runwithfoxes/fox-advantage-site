@@ -130,14 +130,9 @@ export default function BrightDoc() {
       <PPSection id="why" k="01" title="Why we&rsquo;d do it">
         <p className="pps-standfirst">
           You have a team of twenty and you want it working like a team of sixty.
-          The way there is building AI and agents into the work the team already
-          does, so the output goes up and the people doing it get better at it as
-          we go.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Teams who get fluent with this now build a real advantage. The people
-          using it every day keep getting better at it, and that compounds in a
-          way that buying a tool never does.
+          That comes from building AI and agents into the work the team already
+          does. The teams who get fluent now build a real advantage, because the
+          people using it every day keep getting better at it.
         </p>
       </PPSection>
 
@@ -249,9 +244,9 @@ export default function BrightDoc() {
           </ScaledWindow>
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The course is free and real, and anyone on your team of twenty can do
-          it whether or not we work together. It is the floor your champions
-          start from rather than the training itself.
+          The course is free and open to your whole team, whether or not we
+          work together. It is the starting floor rather than the training
+          itself.
         </p>
       </PPSection>
 
@@ -259,46 +254,30 @@ export default function BrightDoc() {
 
       <PPSection id="a-reporting" sub title="Reporting">
         <p className="pps-standfirst">
-          You said you cannot go from traffic to leads to MQL to closed won,
-          because it sits in HubSpot, in Google Analytics and in Excel, and that
-          HubSpot on its own is not it. This is what one suite looks like: your
-          own funnel stages across the top, the channels underneath, and a second
-          agent whose only job is checking the first one got the numbers right
-          before the report goes out.
+          Traffic to leads to MQL to closed won, in one place. Today it sits
+          across HubSpot, Google Analytics and Excel. A second agent checks the
+          numbers against the source before the report goes out.
         </p>
         <div style={{ marginTop: 26 }}>
           <ReportingSuite />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The panels are the three places your money and your attention already
-          go: the search spend you have been asking your digital manager to prove
-          the efficiency of for months, the contacts sitting behind eleven
-          acquisitions, and the seven webinars a week with a hundred to two
-          hundred people at each. Reporting them in one place is also what turns
-          the last of those from an event into a channel, because you can finally
-          see what it produced.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The checking agent matters more than it looks. A number a buyer will
-          accept is one that something verified against the source, and due
-          diligence is the reason you want this first.
+          The checking step is the point. A number that survives due diligence is
+          one that something verified against the source.
         </p>
       </PPSection>
 
       <PPSection id="a-lifecycle" sub title="Lifecycle">
         <p className="pps-standfirst">
-          You have 460,000 contacts and you are sending them broadcasts. The work
-          here is turning that into email that fires off what someone actually
+          You have 460,000 contacts and you are sending them broadcasts. The
+          work is turning that into email that fires off what someone actually
           did: the pages they read, the webinar they sat through, the trial they
           started and stopped.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          This is the one area on the list where I have nothing of our own to
-          show you running, and I would rather say that than dress up a
-          screenshot. What I would want in the first two weeks is a look at what
-          HubSpot is already doing with the database, because the size of the
-          list is only worth something if the sending gets more careful as it
-          gets more frequent.
+          This is the one area where I have nothing of ours running to show
+          you. The first job is a look at what HubSpot is already doing with the
+          database.
         </p>
       </PPSection>
 
@@ -349,11 +328,9 @@ export default function BrightDoc() {
           Bright&rsquo;s copy or Bright&rsquo;s data.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Your brief asks for copywriters across email, brand, ghostwriting for
-          the CEO and ad copy. This is one machine underneath all of them,
-          calibrated once on your positioning and your tone, then pointed at each
-          job. That calibration is the work, and it is what stops twelve products
-          under one brand drifting back into twelve voices.
+          Email, brand, ghostwriting and ad copy all run off one machine,
+          calibrated once on your positioning and tone. That calibration is the
+          work, and it is what keeps twelve products sounding like one brand.
         </p>
       </PPSection>
 
@@ -367,34 +344,28 @@ export default function BrightDoc() {
           <BrandGuardian />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Any asset goes in, gets checked against the brand&rsquo;s own rules,
-          and comes back either passed or with the specific fixes. It works out
-          what type of asset it is first and then checks it against that
-          type&rsquo;s pattern, so the gates that run depend on the file. You
-          spent last year unifying twelve products into one brand, and this is
-          what holds that together once the volume goes up.
+          Any asset goes in and comes back passed or with the specific fixes.
+          It works out what type of asset it is first, so the checks that run
+          depend on the file. You spent last year unifying twelve products into
+          one brand, and this holds that together as the volume goes up.
         </p>
         <div style={{ marginTop: 34 }}>
           <CreativeDirector />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The design system converted into code, so anyone on the team can ask
-          for work and get something on brand back. It turns a vague request into
-          a proper brief before it makes anything, following the rules you would
-          teach an art director. The work shown is Sabre&rsquo;s, with their name
-          on it, because we build and run these machines for them.
+          The design system converted into code, so anyone can ask for work and
+          get something on brand back. It turns a vague request into a proper
+          brief before it makes anything. The work shown is Sabre&rsquo;s, with
+          their name on it.
         </p>
       </PPSection>
 
       <PPSection id="metrics" k="05" title="Metrics for success">
         <p className="pps-standfirst">
-          You set the number at forty percent on reporting, content and campaign
-          management. The way to know is to measure the work rather than the
-          tools, so in the first two weeks we time the jobs we picked. How many
-          working days a monthly report takes end to end. How long a campaign
-          takes from brief to live. How long a piece of content takes to get out.
-          Those are the before numbers and they come from the people doing the
-          jobs.
+          You set the number at forty percent. We measure the work rather than
+          the tools. In the first two weeks we time the jobs: working days for a
+          monthly report, brief to live for a campaign, brief to published for a
+          piece of content.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The same jobs get timed again at week twelve. Same jobs, same people,
@@ -426,12 +397,10 @@ export default function BrightDoc() {
           ]}
         />
         <p className="pps-standfirst" style={{ marginTop: 26 }}>
-          Each area is €6,000 taken on its own, which is €24,000 if they are
-          commissioned one at a time as each one finishes. €20,000 is the price
-          for all four committed together, and it is worth doing it that way for
-          a reason beyond the money. The building starts in week three rather
-          than after another round of scoping, and the clock on this is due
-          diligence rather than a budget year.
+          Each area is €6,000 on its own, so €24,000 commissioned one at a
+          time. €20,000 is the price for all four together, and it means the
+          building starts in week three rather than after another round of
+          scoping.
         </p>
         <CoversGrid
           covers={[
