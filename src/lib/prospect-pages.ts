@@ -136,6 +136,22 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "BRIGHT_PASSWORD",
     passwordFallback: "bright26",
   },
+  // Brendan Marrinan and Laura, ICS Medical Devices, Galway. A catheter and
+  // delivery system CDMO, 170 people, selling to medtech startups and OEMs.
+  // Came in off the Newstalk radio ads, self-booked 16 Aug, call 28 Aug.
+  // Built 31 Aug from the Fidelity page on Paul's instruction: "We could do a
+  // Fidelity one, but just targeted to them."
+  // ⛔ NO PRICE, deliberately. Paul told Brendan on the call he would not put a
+  // number on anything until he had spent a couple of hours seeing how the
+  // work gets done, so the close is that session.
+  "ics-medical": {
+    slug: "ics-medical",
+    client: "ICS Medical Devices",
+    shortName: "ICS Medical Devices",
+    tabTitle: "Run with Foxes for ICS Medical Devices",
+    passwordEnv: "ICS_MEDICAL_PASSWORD",
+    passwordFallback: "icsmedical26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

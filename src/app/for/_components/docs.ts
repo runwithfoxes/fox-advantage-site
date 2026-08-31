@@ -47,4 +47,8 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // design and production. One price of 20,000 plus VAT, no breakdown. Sent 31
   // Aug.
   bright: dynamic(() => import("./BrightDoc"), { ssr: false }),
+  // Brendan Marrinan and Laura, ICS Medical Devices. Built 31 Aug from the
+  // Fidelity page. Capabilities, no price; the close is a couple of hours with
+  // Brendan and Laura on how the marketing work gets done today.
+  "ics-medical": dynamic(() => import("./IcsMedicalDoc"), { ssr: false }),
 };

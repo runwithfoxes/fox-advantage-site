@@ -317,7 +317,15 @@ const CW_NODES: {
 const CW_STEP_MS = [1100, 1500, 2400, 1500];
 const CW_DONE_MS = 2600;
 
-export function CampaignWindow() {
+// Both props default to the advisor-world values every existing page already
+// renders, so nothing changes anywhere unless a page passes its own. Added
+// 31 Aug for ICS Medical, whose trigger is a funding round rather than a new
+// advisory practice: Brendan asked for signal-based marketing by name, so the
+// signal on the canvas has to be one of his.
+export function CampaignWindow({
+  triggerName = "New-practice",
+  workflowName = "New-practice outbound",
+}: { triggerName?: string; workflowName?: string } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   // 4 = run complete (the base state); 0-3 = the pulse walking the nodes.
   const [step, setStep] = useState(4);
@@ -357,6 +365,11 @@ export function CampaignWindow() {
   }, [play]);
 
   const running = play && step < 4;
+  // Only the first node (the trigger) is per client; the rest of the run is
+  // the same work whatever fired it.
+  const nodes = CW_NODES.map((n, i) =>
+    i === 0 ? { ...n, name: triggerName } : n
+  );
 
   return (
     <div ref={rootRef}>
@@ -372,7 +385,7 @@ export function CampaignWindow() {
           <div className={`pgm-cw${running ? " pgm-cw-play" : ""}`}>
             <div className="pgm-cw-bar">
               <span className="pgm-cw-crumb">
-                Workflows › <b>New-practice outbound</b>
+                Workflows › <b>{workflowName}</b>
               </span>
               <span className="pgm-cw-tabs">
                 <span>Editor</span>
@@ -405,7 +418,7 @@ export function CampaignWindow() {
                     d="M436,266 C500,266 480,180 492,180"
                   />
                 </svg>
-                {CW_NODES.map((n) => (
+                {nodes.map((n) => (
                   <div
                     key={n.name}
                     className={`pgm-cw-node${
