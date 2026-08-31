@@ -346,7 +346,7 @@ export default function BrightDoc() {
 
       <PPSection id="metrics" k="05" title="Metrics for success">
         <p className="pps-standfirst">
-          You set the number at forty percent. We measure the work rather than
+          You set the number at 40%. We measure the work rather than
           the tools. In the first two weeks we time the jobs: working days for a
           monthly report, brief to live for a campaign, brief to published for a
           piece of content.
