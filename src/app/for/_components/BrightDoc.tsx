@@ -67,7 +67,6 @@ import "./fidelity-cases.css";
 import "./pricing.css";
 
 const SECTIONS = [
-  { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "changing", title: "Changing how the team works" },
@@ -167,29 +166,7 @@ export default function BrightDoc() {
       railGroups={RAIL_GROUPS}
       pdfHref="/for/bright/pdf"
     >
-      <PPSection id="heard" k="01" title="What this is">
-        <p className="pps-standfirst">
-          You wrote the brief on Friday evening. This page is that brief with the
-          work shown rather than described, and with a price on it.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          You asked for three to four months across reporting, lifecycle email
-          against the database, content, and design and production, with five
-          people on your side trained to carry it on themselves. You said
-          reporting comes first. Due diligence starts inside six months, the
-          funnel and the reporting are the first things a buyer asks to see, and
-          right now that answer is a set of spreadsheets.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Most of what follows is our own work on general marketing problems,
-          shown running rather than described, so you can judge the standard for
-          yourself. None of it uses Bright&rsquo;s data or Bright&rsquo;s
-          numbers, because one call is not enough for us to tell you how Bright
-          should run. At the end there is one recommendation and one price.
-        </p>
-      </PPSection>
-
-      <PPSection id="howiwork" k="02" title="What we do">
+      <PPSection id="howiwork" k="01" title="What we do">
         <p className="pps-hiw-line">Quality first, then automate</p>
         <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
         <div className="pps-hiw-grid">
@@ -263,7 +240,7 @@ export default function BrightDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="whatwedo" k="03" title="What Run with Foxes does">
+      <PPSection id="whatwedo" k="02" title="What Run with Foxes does">
         <FourThingsFigure />
         <p className="pps-standfirst" style={{ marginTop: 24 }}>
           I firmly believe that marketing structures, marketing teams and
@@ -275,7 +252,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="changing" k="04" title="Changing how the team works">
+      <PPSection id="changing" k="03" title="Changing how the team works">
         <p className="pps-standfirst">
           This part is about how the work gets done rather than about a thing we
           hand over. It is the half of your brief that asks for twenty people to
@@ -342,7 +319,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="buildingagents" k="05" title="Building agents">
+      <PPSection id="buildingagents" k="04" title="Building agents">
         <p className="pps-standfirst">
           These are the things we build and hand over. Two or three done properly
           beats six half done, which is why the room picks three on the second
@@ -464,7 +441,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="howitworks" k="06" title="How it would work">
+      <PPSection id="howitworks" k="05" title="How it would work">
         <p className="pps-standfirst">
           Four stages. The first three are the two days in September and the work
           either side of them. The fourth is the months after, when the three
@@ -537,7 +514,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="recommend" k="07" title="What we&rsquo;d recommend">
+      <PPSection id="recommend" k="06" title="What we&rsquo;d recommend">
         <p className="pps-standfirst">
           Start with reporting, which is what you said yourself. It is the least
           exciting thing on your list and it is the one with a date attached to
@@ -556,7 +533,7 @@ export default function BrightDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="pricing" k="08" title="The price">
+      <PPSection id="pricing" k="07" title="The price">
         <PricingCards
           cards={[
             {
@@ -604,7 +581,7 @@ export default function BrightDoc() {
         <CloseBox clientName="Bright" />
       </PPSection>
 
-      <PPSection id="work" k="09" title="Case studies">
+      <PPSection id="work" k="08" title="Case studies">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
@@ -643,7 +620,7 @@ export default function BrightDoc() {
         </div>
       </PPSection>
 
-      <PPSection id="library" k="10" title="Essays">
+      <PPSection id="library" k="09" title="Essays">
         <LibraryList
           intro="A few things worth keeping."
           items={[
@@ -679,7 +656,7 @@ export default function BrightDoc() {
         />
       </PPSection>
 
-      <PPSection id="next" k="11" title="The next step">
+      <PPSection id="next" k="10" title="The next step">
         <p className="pps-standfirst">
           Say yes and the two days are confirmed. Before the 8th I need two
           things from you. Which four or five people you want me to spend the
