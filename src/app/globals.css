@@ -1393,6 +1393,13 @@ a.project-card {
   line-height: 1.15;
 }
 
+/* On the diary index the page title is the main headline, so each
+   dispatch heading steps down a size rather than competing with it. */
+.diary-entry .essay-heading {
+  font-size: clamp(24px, 3.2vw, 32px);
+  letter-spacing: -0.5px;
+}
+
 .chapter-footer,
 .essay-footer {
   margin-top: 96px;
