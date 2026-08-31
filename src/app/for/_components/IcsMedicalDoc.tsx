@@ -422,7 +422,9 @@ export default function IcsMedicalDoc() {
           management. Outbound lives inside this section, the way it does on
           every page Paul has passed. Threads are an invented medtech world. */}
       <PPSection id="growth" sub title="Growth Agent">
-        <PipelineBoard deals={PIPELINE} />
+        {/* Paul's call, 31 Aug: the morning note leads the section and the
+            pipeline board sits below it. */}
+        <JoNote note={MORNING_NOTE} />
         {/* Paul's own copy, given in chat 10 Aug, lightly cleaned from
             dictation. */}
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
@@ -433,7 +435,7 @@ export default function IcsMedicalDoc() {
           help uncover blockers.
         </p>
         <div style={{ marginTop: 26 }}>
-          <JoNote note={MORNING_NOTE} />
+          <PipelineBoard deals={PIPELINE} />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
           And most importantly, it runs the outbound campaigns, be that
