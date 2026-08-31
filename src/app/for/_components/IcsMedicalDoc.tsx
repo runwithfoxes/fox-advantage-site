@@ -24,7 +24,6 @@
 // worries him is that his customers get acquired, the acquirer runs due
 // diligence, and ICS is a risk to them if nobody there has heard of it.
 //
-// ⚠️ HEADLINE IS A PLACEHOLDER. Paul owns that line.
 // ⚠️ Ghostwriter copy is carried from the Affirm page and has not had his pass.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
@@ -195,8 +194,8 @@ export default function IcsMedicalDoc() {
     <ProspectShell
       clientName="ICS Medical Devices"
       eyebrow="Prepared for Brendan Marrinan and Laura, ICS Medical Devices"
-      /* ⚠️ PLACEHOLDER HEADLINE. Paul owns this line. */
-      title="What we could build for ICS Medical Devices"
+      /* Paul's line, given 31 Aug 2026. */
+      title="Marketing AI Agents for ICS Medical Devices"
       titleHl="ICS Medical Devices"
       standfirst={[]}
       sections={SECTIONS}
