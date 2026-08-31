@@ -712,7 +712,7 @@ export default function IcsMedicalDoc() {
             no-commitment paragraph ("Of course it's not. That's ridiculous.").
             His instruction: "Just write normal, simple English." */}
         <p className="pps-standfirst">
-          The next step is a couple of hours with you and Laura. I want to see
+          The next step is a 90 minute session with you and Laura. I want to see
           how the work gets done today: what a week looks like, how long
           things take, and what goes out to agencies. That tells me whether I
           can help, and what I would build first.
