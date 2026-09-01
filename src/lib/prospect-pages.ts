@@ -152,6 +152,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "ICS_MEDICAL_PASSWORD",
     passwordFallback: "icsmedical26",
   },
+  // Eoin Lynam and Fiona Heffernan, AXA Life Europe. Promised on the 28 Aug
+  // call: "I'll send you on some stuff for the things I can do." Capabilities,
+  // no price.
+  axa: {
+    slug: "axa",
+    client: "AXA Life Europe",
+    shortName: "AXA Life Europe",
+    tabTitle: "Run with Foxes for AXA Life Europe",
+    passwordEnv: "AXA_PASSWORD",
+    passwordFallback: "axa26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
