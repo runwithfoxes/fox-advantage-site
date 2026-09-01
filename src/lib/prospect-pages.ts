@@ -74,6 +74,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "ACE_EXPRESS_PASSWORD",
     passwordFallback: "aceexpress26",
   },
+  // The second Ace Express page, 1 Sep 2026, answering Tony's reply asking for
+  // examples from other companies and for how success gets measured. Shares
+  // ace-express's password on purpose so he does not need a second credential.
+  "ace-express-examples": {
+    slug: "ace-express-examples",
+    client: "Ace Express Freight",
+    shortName: "Ace Express",
+    tabTitle: "Run with Foxes for Ace Express",
+    passwordEnv: "ACE_EXPRESS_PASSWORD",
+    passwordFallback: "aceexpress26",
+  },
   // James Sullivan and Chris Kenny, Great National Hotels & Resorts. Built
   // 26 Aug 2026 from the Return2Sender capabilities shape. No price on the
   // page at Paul's instruction: the close is an hour with Chris on their

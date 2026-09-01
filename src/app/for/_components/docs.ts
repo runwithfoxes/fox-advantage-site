@@ -23,6 +23,13 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Tony McGuinness and Eamon Galavan, Ace Express Freight. Built 25 Aug from
   // the Expleo page. One priced option, the AI writer for LinkedIn.
   "ace-express": dynamic(() => import("./AceExpressDoc"), { ssr: false }),
+  // The examples and measurement page, built 1 Sep from Tony's reply. Four real
+  // named clients, each ending in something that was published, then the
+  // measurement table. Never an invented example: Paul killed a freight version
+  // because an invented example is not an example.
+  "ace-express-examples": dynamic(() => import("./AceExpressExamplesDoc"), {
+    ssr: false,
+  }),
   // James Sullivan and Chris Kenny, Great National Hotels & Resorts. Built
   // 26 Aug from the Return2Sender page. Capabilities, no price; the close is
   // an hour with Chris on the content and creative workflow.
