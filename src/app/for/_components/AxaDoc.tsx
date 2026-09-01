@@ -33,7 +33,13 @@
 //                           creative side. No need."
 //   The work              - Eoin 13:19: "do we hire a guy like you or what do
 //                           we do?"
-//   The next step         - Paul 14:31 on how he starts with larger teams.
+//
+// ⛔ THERE IS NO "NEXT STEP" SECTION. Paul cut it whole on 1 Sep, after the
+// page was otherwise finished. The ask lives in the email he sends with the
+// link, which offers the 90 minute session and names two dates. So the page
+// ends on the work and asks for nothing, and the rail is the four things and
+// nothing else, which is how the Fidelity page ships. If a later page needs a
+// close, put it back deliberately; do not copy this omission by accident.
 //
 // What came off the ICS build and why:
 //   Ghostwriter - expert knowledge into published posts is a B2B motion.
@@ -91,10 +97,10 @@ const OUTREACH_THREADS = [
     reply: "Yes - the waiting is the part clients hate.",
   },
   {
-    name: "Aine Ronan",
+    name: "Áine Ronan",
     company: "Head of Member Services · Barrow Credit Union",
     message:
-      "Hi Aine - we work with credit unions who want to offer members life cover without building the operation for it. Ten minutes on how that looks?",
+      "Hi Áine - we work with credit unions who want to offer members life cover without building the operation for it. Ten minutes on how that looks?",
     reply: "Interested. Send me some detail first.",
   },
   {
@@ -105,17 +111,17 @@ const OUTREACH_THREADS = [
     reply: "Good timing, we're reviewing in October.",
   },
   {
-    name: "Sinead Gallagher",
+    name: "Sinéad Gallagher",
     company: "Partnerships Lead · Foyle Comparison",
     message:
-      "Hi Sinead - we are one of the few life products in Ireland that a customer can buy start to finish online. That makes us straightforward to list. Can we talk about the panel?",
+      "Hi Sinéad - we have one of the few life products in Ireland a customer can buy start to finish online. That makes us straightforward to list. Can we talk about the panel?",
     reply: "Yes - send times for next week.",
   },
   {
-    name: "Ruairi Behan",
+    name: "Ruairí Behan",
     company: "Director · Behan Financial Planning",
     message:
-      "Hi Ruairi - you wrote about clients dropping cover at renewal. We can show you what our own retention looks like and why. Half an hour?",
+      "Hi Ruairí - you wrote about clients dropping cover at renewal. We can show you what our own retention looks like and why. Half an hour?",
     reply: "Happy to chat. Thursday suits.",
   },
 ];
@@ -137,19 +143,19 @@ const PIPELINE = [
     },
     {
       firm: "Barrow Credit Union",
-      person: "Aine Ronan · Head of Member Services",
+      person: "Áine Ronan · Head of Member Services",
       note: "detail sent, follow-up due",
     },
   ],
   [
     {
       firm: "Foyle Comparison",
-      person: "Sinead Gallagher · Partnerships Lead",
+      person: "Sinéad Gallagher · Partnerships Lead",
       note: "Tuesday 11am, panel terms",
     },
     {
       firm: "Behan Financial Planning",
-      person: "Ruairi Behan · Director",
+      person: "Ruairí Behan · Director",
       note: "Thursday 2pm, retention data prepared",
     },
   ],
@@ -201,7 +207,6 @@ const SECTIONS = [
   { id: "guardian", title: "Brand Guardian" },
   { id: "creative", title: "Creative Director" },
   { id: "work", title: "The work" },
-  { id: "next", title: "The next step" },
 ];
 
 // ⛔ THE RAIL IS THE FOUR THINGS AND NOTHING ELSE (three cuts on Kite, all for
@@ -226,7 +231,6 @@ const RAIL_GROUPS = [
           { id: "creative", title: "Creative Director" },
         ],
       },
-      { id: "next", title: "The next step", num: "05" },
     ],
   },
 ];
@@ -768,26 +772,6 @@ export default function AxaDoc() {
         </div>
       </PPSection>
 
-      {/* THE NEXT STEP. Paul at 14:31 on how he starts with larger teams: "I
-          spend time with their marketing teams, literally redesigning their
-          workloads. So I come in and I go, OK, like just explain everything to
-          me and I do kind of interviews." Eoin's own close, 25:05: "if you
-          could do something and you could propose something that would be
-          interesting." Simple English, per his ICS rewrite. */}
-      <PPSection id="next" k="08" title="The next step">
-        <p className="pps-standfirst">
-          The next step is a 90 minute session with you and Fiona, and whoever
-          runs the marketing day to day on the Laya side. I want to see how
-          the work gets done today: what a week looks like, how long things
-          take, and what goes out to agencies. That tells me whether I can
-          help, and what I would build first.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          It can be in your office or online, whichever suits. Online works
-          well because I capture the whole session as we go. After it I would
-          come back to you with a recommendation and a price.
-        </p>
-      </PPSection>
     </ProspectShell>
   );
 }
