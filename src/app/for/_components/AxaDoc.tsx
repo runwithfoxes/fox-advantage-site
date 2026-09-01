@@ -65,6 +65,10 @@ import FourThingsFigure from "./library/FourThingsFigure";
 import { ScaledWindow, OutreachWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import ArrivalBlueprint from "./library/ArrivalBlueprint";
+import WorkGrid from "./library/WorkGrid";
+import BrandGuardian from "./library/BrandGuardian";
+import CreativeDirector from "./library/CreativeDirector";
+import AdMachine from "./library/AdMachine";
 import {
   PipelineBoard,
   JoNote,
@@ -189,10 +193,13 @@ const SECTIONS = [
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "workflows", title: "Redesigning workflows" },
+  { id: "adoption", title: "Designing team AI adoption" },
   { id: "training", title: "Training teams" },
   { id: "buildingagents", title: "Building agents" },
   { id: "growth", title: "Growth Agent" },
   { id: "writer", title: "AI Writers" },
+  { id: "guardian", title: "Brand Guardian" },
+  { id: "creative", title: "Creative Director" },
   { id: "work", title: "The work" },
   { id: "next", title: "The next step" },
 ];
@@ -205,18 +212,21 @@ const RAIL_GROUPS = [
     label: "/what we do",
     entries: [
       { id: "workflows", title: "Redesigning workflows", num: "01" },
-      { id: "training", title: "Training teams", num: "02" },
+      { id: "adoption", title: "Designing team AI adoption", num: "02" },
+      { id: "training", title: "Training teams", num: "03" },
       {
         id: "buildingagents",
         title: "Building agents",
-        num: "03",
-        ids: ["buildingagents", "growth", "writer"],
+        num: "04",
+        ids: ["buildingagents", "growth", "writer", "guardian", "creative"],
         children: [
           { id: "growth", title: "Growth Agent" },
           { id: "writer", title: "Writers" },
+          { id: "guardian", title: "Brand Guardian" },
+          { id: "creative", title: "Creative Director" },
         ],
       },
-      { id: "next", title: "The next step", num: "04" },
+      { id: "next", title: "The next step", num: "05" },
     ],
   },
 ];
@@ -396,7 +406,27 @@ export default function AxaDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="training" k="04" title="Training teams">
+      {/* DESIGNING TEAM AI ADOPTION. Added 1 Sep on Paul's ask: "let's include
+          the other bits that show AI fluency. That grid that shows every
+          quarter they're getting more." It came off the ICS build because ICS
+          marketing is two people and the grid is drawn for a marketing
+          function; AXA has Fiona plus a fully loaded team on the Laya side, so
+          it fits here. It is also the section that answers Eoin most directly,
+          23:23: "everyone excited and they got their copilot... but it's not
+          actually being considered as a replacement for some of the tasks that
+          they do day-to-day." Paul's own copy, verbatim from Fidelity. */}
+      <PPSection id="adoption" k="04" title="Designing team AI adoption">
+        <WorkGrid />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          Not everybody is going to be a builder, and that is fine. I
+          suspect every marketing team will soon have at least one person
+          who builds, and who helps the other teams with their work. What
+          we measure is simple: pieces of work that are now done a
+          different way, not logins or prompt counts.
+        </p>
+      </PPSection>
+
+      <PPSection id="training" k="05" title="Training teams">
         <div>
           <ScaledWindow width={940}>
             <div className="ppw-blueprint">
@@ -441,7 +471,7 @@ export default function AxaDoc() {
         </p>
       </PPSection>
 
-      <PPSection id="buildingagents" k="05" title="Building agents">
+      <PPSection id="buildingagents" k="06" title="Building agents">
         <></>
       </PPSection>
 
@@ -553,9 +583,52 @@ export default function AxaDoc() {
         </div>
       </PPSection>
 
+      {/* BRAND GUARDIAN and CREATIVE DIRECTOR. Both added 1 Sep on Paul's ask:
+          "let's show a lot of the work on Brand Guardian. So all the work we do
+          for Sabre on the ads, the images, the Brand Guardian." Both came off
+          the ICS build because ICS sell catheter delivery systems to engineers
+          and these are built on Sabre's consumer advertising. AXA is a consumer
+          brand going to market through Laya, so the work reads across.
+          Copy verbatim from Fidelity, where Paul agreed it.
+          ⛔ THE CHECK COUNT STAYS OUT, decided 11 Aug. The guardian works out
+          which type an asset is and checks it against that type's pattern, so
+          the number depends on the file. There is no named source for nine or
+          ten. */}
+      <PPSection id="guardian" sub title="Brand Guardian">
+        <BrandGuardian />
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          One of our most recent products is a Brand Guardian. In seconds,
+          it checks whether new work is on or off-brand, looking at hex
+          colours, pixels, copy and photography, and measuring against your
+          brand book rather than judging by eye. It&rsquo;s probably our
+          most complex agent, and still in beta, but I&rsquo;m very proud
+          of it.
+        </p>
+      </PPSection>
+
+      {/* CREATIVE DIRECTOR. Real Sabre work: their agency's live ad next to our
+          machine rebuild, the photo turned into video, and twelve images of
+          which six are theirs and six are ours. Paul's brief, 10 Aug: "use
+          sabre examples... what they did, and what we did by machine."
+          ⚠️ AdMachine below is the Ad Resizer half, one approved master ad
+          spawning the whole size set. It is OUR OWN campaign, not Sabre's, and
+          its copy came off the Kite page and has never had Paul's pass. It is
+          the first thing to cut if this section runs long. */}
+      <PPSection id="creative" sub title="Creative Director">
+        <CreativeDirector />
+        <div style={{ marginTop: 34 }}>
+          <AdMachine />
+        </div>
+        <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          The same discipline, pointed at advertising. The team approves one
+          master ad; the machine makes every other size, holding the brand
+          exactly. Press run.
+        </p>
+      </PPSection>
+
       {/* THE WORK. Miro, Moloco, Sabre. Copy verbatim from the Fidelity page,
           where Paul agreed it line by line. */}
-      <PPSection id="work" k="06" title="The work">
+      <PPSection id="work" k="07" title="The work">
         <p className="pps-standfirst">
           Starting with the big companies, and with the one I did from the
           inside, running the teams rather than advising them.
@@ -701,7 +774,7 @@ export default function AxaDoc() {
           me and I do kind of interviews." Eoin's own close, 25:05: "if you
           could do something and you could propose something that would be
           interesting." Simple English, per his ICS rewrite. */}
-      <PPSection id="next" k="07" title="The next step">
+      <PPSection id="next" k="08" title="The next step">
         <p className="pps-standfirst">
           The next step is a 90 minute session with you and Fiona, and whoever
           runs the marketing day to day on the Laya side. I want to see how
