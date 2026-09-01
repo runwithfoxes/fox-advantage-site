@@ -51,9 +51,10 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // Fidelity page. Capabilities, no price; the close is a couple of hours with
   // Brendan and Laura on how the marketing work gets done today.
   "ics-medical": dynamic(() => import("./IcsMedicalDoc"), { ssr: false }),
-  // Eoin Lynam (CEO) and Fiona Heffernan (marketing), AXA Life Europe. Built
-  // 1 Sep from the ICS Medical page, which is the Fidelity page after Paul's
-  // own cuts. Capabilities, no price; the close is a 90 minute session on how
-  // the marketing work gets done today.
+  // Eoin Lynam and Fiona Heffernan, AXA Life Europe. Eoin is the CEO, Fiona
+  // leads marketing. Built 1 Sep from the ICS Medical page, which is the
+  // Fidelity page after Paul's own cuts. Capabilities, no price; the close is a
+  // 90 minute session on how the marketing work gets done today, and it lives
+  // in the email rather than on the page. Sent by Paul 1 Sep.
   axa: dynamic(() => import("./AxaDoc"), { ssr: false }),
 };
