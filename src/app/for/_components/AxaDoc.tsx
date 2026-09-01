@@ -175,10 +175,12 @@ const PIPELINE = [
   ],
 ];
 
-// The morning note leads the section, on Paul's call for ICS. Reporting is the
-// gap Fiona named first, so this one opens on numbers rather than on tasks.
+// The morning note leads the section, on Paul's call for ICS.
+// ⛔ TASK-SHAPED, NO NUMBERS. The illustrative caption covers invented names,
+// not invented statistics, and a performance figure on an insurer's page reads
+// as a benchmark. Never put a made-up metric in here.
 const MORNING_NOTE = [
-  "Morning. Yesterday: 312 quotes started, 84 finished. That finish rate is up four points on last week and it is the mobile change that did it.",
+  "Morning. Overnight: two replies came in and one meeting landed, Thursday at two with Behan Financial Planning.",
   "Three things need you today. The Kilbrannan terms are waiting on your yes. This week's partner list is built and ready for you to prune. And one broker has asked a pricing question I will not answer for you.",
   "Everything else is handled. Follow-ups sent, the board is current, the forecast is unchanged.",
 ];
@@ -484,9 +486,9 @@ export default function AxaDoc() {
           />
         </div>
         <p className="ppft-honest">
-          <span className="ppft-slash">/illustrative.</span> Every company and
-          person in these windows is invented, and the outreach shown is to
-          businesses rather than consumers. The machinery is real and running;
+          <span className="ppft-slash">/illustrative.</span> Every company,
+          person and number in these windows is invented, and the outreach shown
+          is to businesses rather than consumers. The machinery is real and running;
           an AXA version would be built to your world and your rules, and
           nothing in it sends until someone on your team says go.
         </p>
