@@ -6,7 +6,7 @@ import SiteWindow from "./SiteWindow";
 import GuardianWindow from "./GuardianWindow";
 import SearchAgentWindow from "./SearchAgentWindow";
 import { OutreachWindow, CampaignWindow } from "@/app/for/_components/library/AgentWindows";
-import { WriterEmail, WriterPost } from "@/app/for/_components/library/WriterPiece";
+import { WriterEmail } from "@/app/for/_components/library/WriterPiece";
 import AdMachine from "@/app/for/_components/library/AdMachine";
 import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
 import { PipelineBoard, JoNote } from "@/app/for/_components/library/GrowthManager";
@@ -88,6 +88,13 @@ const GROWTH_PIPELINE = [
   ],
 ];
 
+const GHOST_POST: NoteItem[] = [
+  { kind: "p", text: "I spent last week going through what our customers did at renewal time last year, and I want to share what I found, because I think it says something about how this industry works." },
+  { kind: "p", text: "About seven in ten of the people we insure paid the renewal price we sent them without shopping around. When I first saw that number I assumed it meant they were happy with us. I don't think it does. I think it means the alternative was a fortnight of filling in forms on four different websites, answering the same eleven questions each time, and most people have better things to do with their evenings." },
+  { kind: "p", text: "So we've started doing the shopping around for them. About three weeks before a renewal is due, we check what everyone else would charge for the same cover. If someone is cheaper, we tell the customer and move them, and we do the paperwork. If nobody is, they stay where they are. Either way they get a note saying what we found." },
+  { kind: "p", text: "I know how that sounds coming from an insurer, and it will cost us customers some years. I'd rather that than a business that depends on people not getting around to checking. If you're with an insurer that won't do this for you, it's worth asking them why." },
+];
+
 const OUTBOUND_THREADS = [
   { name: "Ciara Walsh", company: "Head of Marketing · Kite Insurance", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
@@ -154,7 +161,7 @@ const AGENTS: Agent[] = [
           And most importantly, it runs the outbound campaigns, be that email or LinkedIn,
           running all the steps from list building to writing the messages, sending and analysis.
         </p>
-        <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={1104} />
+        <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={806} />
       </div>
     ),
   },
@@ -182,19 +189,20 @@ const AGENTS: Agent[] = [
   },
   {
     key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriter", short: "posts and articles in your voice",
-    does: "Turns what you know into posts and articles that sound like you. It works from your own words, a call, a voice note, a rant, and every line can show you which one it came from.",
+    does: "Turns what you know into posts and articles that sound like you. It works from your own words, a call, a voice note, a rant, and it writes the way you talk, not the way the internet does.",
     gets: "Posts and articles go out in your name each week, written from things you actually said.",
     hands: "Brand Guardian",
     cap: ILL(<>A post written for the founder of Kite Insurance, the made-up insurer from our course.</>),
     render: () => (
-      <WriterPost
-        title="Ghostwriter · a LinkedIn post"
-        body={[
-          { text: "I spent last week going through what our customers did at renewal time last year, and I want to share what I found, because I think it says something about how this industry works." },
-          { text: "About seven in ten of the people we insure paid the renewal price we sent them without shopping around. When I first saw that number I assumed it meant they were happy with us. I don't think it does. I think it means the alternative was a fortnight of filling in forms on four different websites, answering the same eleven questions each time, and most people have better things to do with their evenings.", note: "proof" },
-          { text: "So we've started doing the shopping around for them. About three weeks before a renewal is due, we check what everyone else would charge for the same cover. If someone is cheaper, we tell the customer and move them, and we do the paperwork. If nobody is, they stay where they are. Either way they get a note saying what we found.", note: "positioning" },
-          { text: "I know how that sounds coming from an insurer, and it will cost us customers some years. I'd rather that than a business that depends on people not getting around to checking. If you're with an insurer that won't do this for you, it's worth asking them why.", note: "voice" },
-        ]}
+      <TypedNote
+        variant="post"
+        title="Ghostwriter"
+        pill="drafted"
+        from="Aoife Byrne"
+        role="Founder, Kite Insurance · 2h"
+        avatar="AB"
+        subject=""
+        items={GHOST_POST}
       />
     ),
   },

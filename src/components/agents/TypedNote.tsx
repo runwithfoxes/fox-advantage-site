@@ -55,6 +55,8 @@ export default function TypedNote({
   to = "Paul",
   avatar,
   items,
+  variant = "note",
+  role,
 }: {
   title: string;
   pill?: string;
@@ -63,6 +65,10 @@ export default function TypedNote({
   to?: string;
   avatar: string;
   items: NoteItem[];
+  /** "note" is the email card from the hero; "post" is a LinkedIn post with the author on top. */
+  variant?: "note" | "post";
+  /** the post variant's second line under the author */
+  role?: string;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const lengths = useMemo(() => items.map((it) => plain(it.text).length), [items]);
@@ -170,16 +176,27 @@ export default function TypedNote({
       </div>
       <div className="agw-panel">
         <div className="agw-eml">
-          <div className="agw-ehd">
-            <div className="agw-subj">{subject}</div>
-            <div className="agw-addr">
-              <span className="agw-av">{avatar}</span>
-              <span>
-                from <b>{from}</b> &middot; to <b>{to}</b>
+          {variant === "post" ? (
+            <div className="agw-post-head">
+              <span className="agw-post-av">{avatar}</span>
+              <span className="agw-post-who">
+                <b>{from}</b>
+                <span>{role}</span>
               </span>
-              <span className="agw-tag">&#10022; by AI</span>
+              <span className="agw-tag" style={{ marginLeft: "auto" }}>&#10022; by AI</span>
             </div>
-          </div>
+          ) : (
+            <div className="agw-ehd">
+              <div className="agw-subj">{subject}</div>
+              <div className="agw-addr">
+                <span className="agw-av">{avatar}</span>
+                <span>
+                  from <b>{from}</b> &middot; to <b>{to}</b>
+                </span>
+                <span className="agw-tag">&#10022; by AI</span>
+              </div>
+            </div>
+          )}
           <div className="agw-ebody">{rendered}</div>
         </div>
       </div>

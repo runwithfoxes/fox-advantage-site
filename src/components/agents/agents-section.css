@@ -462,7 +462,8 @@
    the HTML windows keep their size and wrap; the drawn windows scale down. */
 .ag-plate > * { max-width: 600px; }
 .ag-row.close .ag-plate .agw, .ag-row.close .agw { max-width: 600px; }
-.ag-plate .ppw-holder, .ag-plate .ppchat, .ag-plate .ppbg, .ag-plate .ppgeo { max-width: 600px; }
+.ag-plate .ppchat { max-width: 600px; }
+.ag-plate > .ppw-holder, .ag-plate > .ppbg, .ag-plate > .ppgeo, .ag-plate > .ppad, .ag-plate > .ag-stack, .ag-plate .ag-stack > .ppw-holder { max-width: none; }
 
 /* the website window keeps the full column: at 600px it flipped to the
    site's phone layout, which is not the point of it (Paul, 5 Sep) */
@@ -487,3 +488,9 @@
 .ag-plate .ppchat-piece p:nth-child(5) { animation-delay: 3.8s; }
 .ag-plate .ppchat-piece p:nth-child(6) { animation-delay: 4.5s; }
 @media (prefers-reduced-motion: reduce) { .ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live, .ag-plate .ppchat-piece p { animation: none; opacity: 1; } }
+
+/* a LinkedIn post, typed: the ghostwriter's window */
+.agw-post-head { display: flex; align-items: center; gap: 12px; padding: 18px 26px 14px; border-bottom: 1px solid var(--agw-line-soft); font-family: var(--agw-sans); }
+.agw-post-av { width: 44px; height: 44px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; flex: none; }
+.agw-post-who b { display: block; font-size: 14.5px; font-weight: 600; color: var(--agw-ink); }
+.agw-post-who span { font-size: 12.5px; color: var(--agw-muted); }
