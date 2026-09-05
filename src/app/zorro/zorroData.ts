@@ -18,9 +18,11 @@ export const ITEMS: ZItem[] = [
 
 Marta knows that a member who stops coming for a few weeks tends not to renew. She has watched it for nine years. What she does not have is the hours to go through 900 members every Monday, work out who is drifting, and write each of them a proper note. So the thing the gym is for, being the gym that notices, is the thing the gym cannot do.
 
-You are building the agent that does it. Every Monday it reads the door log and the member records, finds the members who are drifting away from their own pattern, writes each one a short personal note in Marta's voice off what they said they wanted when they joined, and puts the flag and the draft on the member's record in Attio for Marta to approve. Two weeks later it looks again and tells her how many came back. It never sends anything itself. It never chases someone whose record says injured or away. When a reply needs a human, it says so.
+You are building the agent that does it. Her name is Lola, and her job title is Marta's member-care assistant. Every Monday she reads the door log and the member records, finds the members who are drifting away from their own pattern, writes each one a short personal note in Marta's voice off what they said they wanted when they joined, and puts the flag and the draft on the member's record in Attio for Marta to approve. Two weeks later it looks again and tells her how many came back. It never sends anything itself. It never chases someone whose record says injured or away. When a reply needs a human, it says so.
 
 That is the whole loop, and the loop is the point. The agent is a role, not a tool. Its job does not end when the email is written. It ends when Marta knows whether the member came back.
+
+The lesson of the week, said on Monday and shown every day after: building an agent is easy, you can do it from your phone. Building one that does what you want every Monday without anyone watching is a skill, and it comes from practice, curiosity and discipline. Every agent has to answer four questions plainly: what it produces, where it lands, how it knows it is done, and what it does not do. Lola's answers are on this page. You will write your own on Monday afternoon, in under 300 words.
 
 On Friday your team shows the agent running, tells us the number it scored on fifty marked members, the return rate from its second run, and your two worst mistakes. Anyone on the team can be asked about any part of it.`,
   },
@@ -43,7 +45,7 @@ If something will not install, tell Julie before Monday, not on Monday. If Claud
 
 11:15 to 12:15. Catching it wrong. Open Claude in the browser and your team's five-member pack. Ask the model whether each of the five is lapsing. Mark each answer right or wrong against the visits and the notes in the pack. Count. Then we write the judgment on the board together: compare a member to their own pattern, not the gym's; a gap with a reason in the notes is not a lapse; read what they said they wanted before you write a word.
 
-13:15 to 15:00. Building the brain. Open Claude Code in your gym folder with your team's ten-member pack, the three pages about the gym, and your Attio workspace. In order: write instructions that take one member and return the same shape every time, flag or no flag, the reason in one line, the note or nothing. Run it on ten. Swap packs with another team and run again; where two teams disagree on the same member, the instruction is loose, so tighten the instruction and not the answer. Connect Attio and write the flag and the draft onto ten records. Write the note in Marta's voice. Run the ten again and check Attio.
+13:15 to 15:00. Building the brain. Open Claude Code in your gym folder with your team's ten-member pack, the three pages about the gym, Lola's role page, and your Attio workspace. In order: write your agent's role in the four-question shape, under 300 words. Then write the instructions that take one member and return the same shape every time, flag or no flag, the reason in one line, the note or nothing. A script we give you does the arithmetic on the door log and hands your agent one file; your agent judges and writes off that file and nothing else, because in real agent teams the mistakes are almost never in the fetching, they are in the sentence written next to what was fetched. Run it on ten. Swap packs with another team and run again; where two teams disagree on the same member, the instruction is loose, so tighten the instruction and not the answer. Connect Attio and write the flag and the draft onto ten records. Write the note in Marta's voice. Run the ten again and check Attio.
 
 Homework: run it on fifty members and bring the count in the morning.`,
   },
@@ -55,19 +57,19 @@ A standing agent has four things a prompt does not. A trigger: every Monday at s
 
 Then the check. Two weeks on, the agent reads the door log for the two weeks after the notes went, marks each member returned or not on their record, and tells Marta the number. The email log with the replies is released here, and the class decides which replies should stop the agent.
 
-Wednesday Paul is not in. You have the evening and the morning before the Accenture visit to finish the standing version and run it for the following week. Bring Marta's number on Thursday.`,
+Wednesday Paul is not in. Two things to do in the evening and the morning before the Accenture visit. Finish the standing version, run it for the following week, and bring Marta's number on Thursday. And build Cato from his one-page brief, which is on this page. Cato is a second agent with a fresh start whose job is to assume your first agent is wrong and prove it from the door log and the records, never from her reasons, and to log what he attacked as well as what he found. One separate check against the job is the biggest measured gain in the research on agent teams, and a checker that only logs what broke cannot be trusted when it is quiet.`,
   },
   {
     t: "Thursday. The owner's screen, then the count",
     text: `11:15 to 12:15. Working first, surface second. Marta needs five things on a Monday and nothing else: who is flagged, why in one line, the draft, approve or skip, and what happened to the last lot. You build that screen off your agent's real output in thirty-five minutes, and each team shows it with its own data.
 
-13:15 to 15:00. The fifty marked cases are handed out here and not before. You score your agent on all fifty: was the flag right, was the note to the right person about the right goal, did it read the return right. Then you sort the misses into instruction problems and data problems, fix the instructions, run again, and put the number before and the number after on the board.
+13:15 to 15:00. The fifty marked cases are handed out here and not before. You score your agent on all fifty: was the flag right, was the note to the right person about the right goal, did it read the return right. You score Cato beside her: of her misses, how many did he catch, and of his disagreements, how many were right. Then you sort the misses into instruction problems and data problems, fix the instructions on both agents, run again, and put the numbers before and after on the board.
 
 15:00 to 16:30 is your own time. Rerun, tidy, rehearse. Your Friday slot is ten minutes.`,
   },
   {
     t: "Friday. Your number",
-    text: `Ten minutes a team, with Paul and Julie. The owner's screen live. The number your agent scored on the fifty. The return rate from its second run. Your two worst mistakes and what you would change. Then questions, to any member of the team, about any part.
+    text: `Ten minutes a team, with Paul and Julie. The owner's screen live. The number your agent scored on the fifty, and Cato's number beside it. The return rate from the second run. Your two worst mistakes, which agent caught them, and what you would change. Then questions, to any member of the team, about any part.
 
 The two worst mistakes are worth more than the number. A team that hides its misses has not learned the week.`,
   },
@@ -83,6 +85,8 @@ Every name and every swipe is made up. Nobody in these files exists.`,
       { name: "gimnasio-zorro.md", what: "The gym, the owner, and what it is for. One page.", href: "/zorro/gimnasio-zorro.md" },
       { name: "email-voice-and-rules.md", what: "How Marta writes, the rules the agent follows, a bad note and a good one.", href: "/zorro/email-voice-and-rules.md" },
       { name: "messages-by-goal.md", what: "What the note says for each kind of member.", href: "/zorro/messages-by-goal.md" },
+      { name: "lola-role.md", what: "Lola's job in the four-question shape. The model for your own agent's role.", href: "/zorro/lola-role.md" },
+      { name: "cato-brief.md", what: "The red team, one page. Build him on Wednesday.", href: "/zorro/cato-brief.md" },
     ],
   },
   {
