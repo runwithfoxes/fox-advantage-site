@@ -5290,8 +5290,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  /* the gap above the bio and the gap below it are the same 48px (Paul, 5 Sep) */
-  padding: 48px 0 48px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -5848,6 +5849,12 @@ a.project-card {
 /* the global section rule gives the hero root 120px underneath; the bio sets
    its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
 .hp-root .ah-root { padding-bottom: 0; }
+/* The assembled windows stop well above the foot of the sticky stage, and
+   that empty band grows with the viewport height. Measured at 900, 982 and
+   1080 tall it is half the viewport minus 338px, to the pixel. The bio is pulled up by exactly that band, so
+   the gap the eye sees under the last window is the same 48px as the gap
+   under the bio. Below 1024px the hero is a static stack and this is off. */
+@media (min-width: 1024px) { .hp-root .hpx-about { margin-top: clamp(-260px, calc(338px - 50vh), 0px); } }
 .ah-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   background-image: radial-gradient(circle, var(--ah-dot) .9px, transparent .9px);
@@ -6258,8 +6265,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  /* the gap above the bio and the gap below it are the same 48px (Paul, 5 Sep) */
-  padding: 48px 0 48px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
