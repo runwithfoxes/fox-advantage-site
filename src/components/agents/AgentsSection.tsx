@@ -8,6 +8,10 @@ import SearchAgentWindow from "./SearchAgentWindow";
 import { OutreachWindow, CampaignWindow } from "@/app/for/_components/library/AgentWindows";
 import { WriterEmail, WriterPost } from "@/app/for/_components/library/WriterPiece";
 import AdMachine from "@/app/for/_components/library/AdMachine";
+import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
+import { PipelineBoard, JoNote } from "@/app/for/_components/library/GrowthManager";
+import WorkGrid from "@/app/for/_components/library/WorkGrid";
+import type { Door } from "../AgentsHero";
 import "./agents-section.css";
 
 /*
@@ -33,7 +37,7 @@ const RESEARCH: NoteItem[] = [
   { kind: "li", text: "Two of her team registered for the course in August, so there is a **warm way in**." },
   { kind: "li", text: "“Kite insurance renewal” gets **2,400 searches a month** and they rank fourth. “Car insurance quote” gets 33,100 and they are not in the top 20." },
   { kind: "li", text: "**Three ads live**, all the same offer since March." },
-  { kind: "p", text: "The other four are on their cards, every fact with its source beside it. I've handed all five to the **Outbound Agent**." },
+  { kind: "p", text: "The other four are on their cards, every fact with its source beside it. I've handed all five to the **Growth Agent**." },
   { kind: "att", text: "kite-insurance-card.pdf · 2 pages" },
 ];
 
@@ -54,6 +58,36 @@ const PM: NoteItem[] = [
   { kind: "p", text: "The board is current. If you do one thing today, pick the photograph." },
 ];
 
+/* THE GROWTH AGENT'S WORLD. Paul, 5 Sep: "Growth Agent, I want to show Growth
+   Agent", pasting the section from the AXA page. The morning note, the board
+   and the copy come across as they are there. Every firm and person is
+   invented; the note is task-shaped and carries no numbers on purpose. */
+const GROWTH_NOTE = [
+  "Morning. Overnight: two replies came in and one meeting landed, Thursday at two with Behan Financial Planning.",
+  "Three things need you today. The Kilbrannan terms are waiting on your yes. This week's partner list is built and ready for you to prune. And one broker has asked a pricing question I will not answer for you.",
+  "Everything else is handled. Follow-ups sent, the board is current, the forecast is unchanged.",
+];
+
+const GROWTH_PIPELINE = [
+  [
+    { firm: "Hyland Mortgage Advisers", person: "Cormac Hyland · Principal", note: "intro sent, two new advisers" },
+    { firm: "Ardmore Group", person: "Declan Moore · Reward Manager", note: "benefits review in October" },
+    { firm: "Barrow Credit Union", person: "Áine Ronan · Head of Member Services", note: "detail sent, follow-up due" },
+  ],
+  [
+    { firm: "Foyle Comparison", person: "Sinéad Gallagher · Partnerships Lead", note: "Tuesday 11am, panel terms" },
+    { firm: "Behan Financial Planning", person: "Ruairí Behan · Director", note: "Thursday 2pm, retention data prepared" },
+  ],
+  [
+    { firm: "Kilbrannan Brokers", person: "Maeve Tobin · Managing Director", note: "waiting on your yes" },
+    { firm: "Slaney Union", person: "Peter Rafferty · CEO", note: "follow-up Friday" },
+  ],
+  [
+    { firm: "Tolka Employee Benefits", person: "Onboarding", note: "terms agreed, launch date set" },
+    { firm: "Ashfield Brokers", person: "Live", note: "first month, 41 policies written" },
+  ],
+];
+
 const OUTBOUND_THREADS = [
   { name: "Ciara Walsh", company: "Head of Marketing · Kite Insurance", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
@@ -70,7 +104,7 @@ const NODES: [
 ] = [
   { icon: "◆", label: "07:00, every morning", kind: "trigger" },
   { icon: "▤", label: "Research Agent", kind: "agent" },
-  { icon: "➤", label: "Outbound Agent", kind: "agent" },
+  { icon: "➤", label: "Growth Agent", kind: "agent" },
   { icon: "✎", label: "Email Agent", kind: "agent" },
   { icon: "✓", label: "Guardian + Red Team", kind: "step" },
 ];
@@ -99,17 +133,30 @@ const AGENTS: Agent[] = [
     key: "research", num: "01", when: "every morning", name: "Research Agent", short: "the morning research note",
     does: "Every morning it researches the companies you want to win, files a card on each one to the CRM, and writes you a note on what it found.",
     gets: "Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact.",
-    hands: "Outbound Agent",
+    hands: "Growth Agent",
     cap: ILL(<>Kite Insurance is the made-up insurer from our course, and the people are made up too. The note is the shape of the real one.</>),
     render: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />,
   },
   {
-    key: "outbound", num: "02", when: "every day", name: "Outbound Agent", short: "the messages, the replies, the meetings",
-    does: "Takes the research, finds the right person at each company, writes to them for real, and keeps the conversation going until there is a meeting in your diary.",
-    gets: "The list, the messages, the follow-ups and the replies are handled. Meetings go into your diary.",
+    /* Paul, 1 Sep: "there is no difference between an outbound agent and a
+       growth agent. So leave the growth agent in." The row is his own copy
+       from the AXA page, verbatim. */
+    key: "growth", num: "02", when: "every morning", name: "Growth Agent", short: "the pipeline, the outbound, the meetings",
+    does: "We build Growth Agents for teams. The growth agent does a few things. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers.",
+    gets: "The pipeline is current every morning, the outbound runs without you, and the meetings land in your diary.",
     hands: "Email Marketing Agent",
-    cap: ILL(<>Every name and company in the inbox is invented. The messages are the shape of the ones it sends.</>),
-    render: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Outbound Agent" sentLabel="84 sent" width={1104} />,
+    cap: ILL(<>Every firm and person on the board and in the inbox is invented. The note, the board and the messages are the shape of the real ones.</>),
+    render: () => (
+      <div className="ag-stack">
+        <JoNote note={GROWTH_NOTE} />
+        <PipelineBoard deals={GROWTH_PIPELINE} />
+        <p className="ag-stack-copy">
+          And most importantly, it runs the outbound campaigns, be that email or LinkedIn,
+          running all the steps from list building to writing the messages, sending and analysis.
+        </p>
+        <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={1104} />
+      </div>
+    ),
   },
   {
     key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agent", short: "the emails that keep customers",
@@ -203,6 +250,9 @@ export default function AgentsSection() {
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  // which door the surface is showing: the ten agents, the adoption grid,
+  // or the course scroller. The hero's three buttons pick it.
+  const [mode, setMode] = useState<Door>("agents");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [pill, setPill] = useState({ left: 0, width: 0 });
   const rowRef = useRef<HTMLDivElement>(null);
@@ -226,6 +276,16 @@ export default function AgentsSection() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, [active]);
+
+  // the hero announces a door; this section owns the surface and opens it
+  useEffect(() => {
+    const onDoor = (e: Event) => {
+      setMode((e as CustomEvent<Door>).detail);
+      setOpen(true);
+    };
+    window.addEventListener("rwf:door", onDoor);
+    return () => window.removeEventListener("rwf:door", onDoor);
+  }, []);
 
   // the menu locks the page behind it while it is open
   useEffect(() => {
@@ -278,7 +338,7 @@ export default function AgentsSection() {
             </button>
           ))}
         </div>
-        <button className="ag-menu-btn" type="button" onClick={() => setOpen(true)}>
+        <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
           the team +
         </button>
       </div>
@@ -336,15 +396,79 @@ export default function AgentsSection() {
         </p>
       </div>
 
-      {/* THE FULL-SCREEN MENU: a surface drops, the ten agents rise in staggered */}
-      <div className={`ag-overlay${open ? " open" : ""}`} aria-hidden={!open}>
+      {/* THE FULL-SCREEN SURFACE: it drops, and what rises in depends on the
+          door. AI Agents: the ten names, staggered. Consulting: the adoption
+          grid from the AXA page, section 04, with Paul's line under it.
+          Training: the course scroller from the same page, with his copy.
+          The two reading doors sit on cream because the grid and the window
+          were drawn for cream; the agents list stays on deep. */}
+      <div className={`ag-overlay${open ? " open" : ""}${mode === "agents" ? "" : " paper"}`} aria-hidden={!open}>
         <div className="ag-overlay-top">
-          <span className="ag-overlay-kick">/the team</span>
+          <span className="ag-overlay-kick">
+            {mode === "agents" ? "/the team" : mode === "consulting" ? "/consulting" : "/training"}
+          </span>
           <button type="button" className="ag-overlay-close" onClick={() => setOpen(false)}>
             close &#10005;
           </button>
         </div>
-        <nav className="ag-overlay-list">
+        {mode === "consulting" ? (
+          <div className="ag-overlay-panel">
+            <div className="ag-num">04</div>
+            <h3 className="ag-name">Designing team AI adoption</h3>
+            <div className="ag-overlay-plate">
+              <WorkGrid />
+            </div>
+            {/* Paul's own copy, verbatim from the AXA page. */}
+            <p className="ag-overlay-copy">
+              Not everybody is going to be a builder, and that is fine. I suspect every marketing
+              team will soon have at least one person who builds, and who helps the other teams
+              with their work. What we measure is simple: pieces of work that are now done a
+              different way, not logins or prompt counts.
+            </p>
+          </div>
+        ) : null}
+
+        {mode === "training" ? (
+          <div className="ag-overlay-panel">
+            <div className="ag-num">05</div>
+            <h3 className="ag-name">Training teams</h3>
+            <div className="ag-overlay-plate">
+              <ScaledWindow width={940}>
+                <div className="ppw-blueprint">
+                  <div className="ppw-frame-win">
+                    <div className="ppw-tl">
+                      <i />
+                      <i />
+                      <i />
+                      <span className="ppw-t">the course, module one</span>
+                      <span className="ppw-live-pill">free, live now</span>
+                    </div>
+                    <video
+                      src="/for/training/course-module-1-scroll-web.mp4"
+                      poster="/for/training/course-module-1-scroll-poster.jpg"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ display: "block", width: "100%", height: "auto" }}
+                    />
+                  </div>
+                </div>
+              </ScaledWindow>
+            </div>
+            {/* Paul's own copy, verbatim from the AXA page. */}
+            <p className="ag-overlay-copy">
+              Firstly, there is a free course,{" "}
+              <a href="/course" className="ag-overlay-link">AI Fluency for Ambitious Marketers</a>,
+              for anybody on your team. We also run training sessions for marketing, sales and
+              go-to-market teams. These range from half a day to full-week sessions. We cover a
+              range of topics, from pure productivity hacks to building agents and systems.
+              System thinking is a core skill for marketing in an AI world.
+            </p>
+          </div>
+        ) : null}
+
+        <nav className="ag-overlay-list" hidden={mode !== "agents"}>
           {AGENTS.map((ag, i) => (
             <div className="ag-overlay-clip" key={ag.key}>
               <button

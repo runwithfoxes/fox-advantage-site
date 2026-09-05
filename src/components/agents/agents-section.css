@@ -357,3 +357,28 @@
   .ag-overlay-name { font-size: 24px; }
   .ag-menu-btn { padding: 10px 12px; }
 }
+
+/* the growth agent: note, board, a line of copy, the inbox, stacked */
+.ag-stack { display: grid; gap: 26px; }
+.ag-stack-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 0; max-width: 62ch; }
+
+/* the two reading doors sit on cream; the grid and the window were drawn for it */
+.ag-overlay.paper {
+  background: var(--ag-cream); color: var(--ag-text);
+  --pps-mono: var(--mono); --pps-sans: var(--ag-sans); --pps-text: var(--ag-text);
+  --pps-muted: var(--ag-muted); --pps-sky: var(--ag-sky); --pps-border: var(--ag-border);
+}
+.ag-overlay.paper .ag-overlay-kick { color: var(--ag-sky); }
+.ag-overlay.paper .ag-overlay-close { color: var(--ag-text); border-color: var(--ag-border); }
+.ag-overlay.paper .ag-overlay-close:hover { border-color: var(--ag-sky); color: var(--ag-sky); }
+.ag-overlay-panel {
+  margin: 26px auto 0; max-width: 1104px;
+  transform: translateY(40px); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1) .15s, opacity .4s .15s;
+}
+.ag-overlay.open .ag-overlay-panel { transform: translateY(0); opacity: 1; }
+.ag-overlay-panel .ag-name { margin-top: 6px; }
+.ag-overlay-plate { margin-top: 28px; }
+.ag-overlay-plate .ppw-holder { margin: 0; }
+.ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 30px 0 0; max-width: 62ch; }
+.ag-overlay-link { color: inherit; border-bottom: 1px solid var(--ag-sky); text-decoration: none; }
+.ag-overlay-link:hover { color: var(--ag-sky); }

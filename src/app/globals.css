@@ -5872,7 +5872,7 @@ a.project-card {
   color: #565452; max-width: 44ch;
 }
 .ah-ctas { display: flex; gap: 11px; margin-top: 30px; font-size: 14px; }
-.ah-ctas a { text-decoration: none; padding: 10px 19px; }
+.ah-ctas a, .ah-ctas button { text-decoration: none; padding: 10px 19px; font: inherit; cursor: pointer; border: none; }
 .ah-ctas .ah-ghost { color: #1D1B1B; border: 1px solid var(--ah-border); background: #fff; }
 .ah-ctas .ah-primary { background: var(--ah-deep); color: #fff; font-weight: 500; }
 
