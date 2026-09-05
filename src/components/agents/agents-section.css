@@ -436,3 +436,23 @@
   .ag-switch { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .ag-switch button { padding: 14px 8px; font-size: 13px; }
 }
+
+/* the switch at the hero's button size, not a billboard (Paul, 5 Sep) */
+.ag-switch { gap: 11px; font-size: 14px; }
+.ag-switch button { font-family: inherit; font-size: 14px; letter-spacing: 0; padding: 10px 19px; }
+.ag-switch button.on { font-weight: 500; }
+@media (max-width: 960px) { .ag-switch { display: flex; gap: 8px; } .ag-switch button { padding: 10px 14px; font-size: 13px; flex: 0 1 auto; } }
+
+/* the rail is a plain list of ten, no headings, no menu button */
+.ag-rail-group, .ag-rail-foot { display: none; }
+.ag-rail button { padding: 6px 0; }
+
+/* the shadows under every window were tinted deep sky and read as blue on
+   the cream (Paul, 5 Sep: "I see blue tints under figures"): neutral now */
+.ag .agw, .ag .ppw-frame-win, .ag .ppchat {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04), 0 18px 40px -16px rgba(0, 0, 0, 0.16), 0 60px 100px -60px rgba(0, 0, 0, 0.2);
+}
+
+/* the phone's current-agent bar is itself the way to pick another */
+.ag-mobile-pick { width: 100%; background: #fff; cursor: pointer; text-align: left; color: var(--ag-text); }
+.ag-mobile-pick-arr { font-family: var(--mono); font-size: 12px; color: var(--ag-sky); }

@@ -311,11 +311,6 @@ function TrainingPanel() {
   );
 }
 
-const RAIL: { label: string; idx: number[] }[] = [
-  { label: "find and win the work", idx: ["research", "growth", "outbound", "search"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
-  { label: "make the work", idx: ["email", "ghostwriter", "advertising", "website"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
-  { label: "check it, and report to you", idx: ["guardian", "pm", "redteam"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
-];
 
 export default function AgentsSection() {
   const [active, setActive] = useState(0);
@@ -365,8 +360,6 @@ export default function AgentsSection() {
 
   return (
     <section className="ag" id="agents">
-      <div className="ag-kick">/agents</div>
-
       {/* THE ONE SELECTOR ON THE PAGE (Paul, 5 Sep). Three boxed buttons in the
           hero's own style pick what the section shows. The hero's three doors
           open the surface; these swap the panel in place. */}
@@ -383,32 +376,20 @@ export default function AgentsSection() {
           {/* the reading rail: all ten, grouped in the order the work moves,
               the dot on the one you are reading (toolkit nav 02) */}
           <aside className="ag-rail" aria-label="The team">
-            {RAIL.map((g) => (
-              <div key={g.label}>
-                <div className="ag-rail-group">{g.label}</div>
-                {g.idx.map((i) => (
-                  <button key={AGENTS[i].key} type="button" className={active === i ? "on" : ""} onClick={() => pick(i)}>
-                    <span className="ag-rail-dot" />
-                    <span className="ag-rail-n">{AGENTS[i].num}</span>
-                    <span>{AGENTS[i].name}</span>
-                  </button>
-                ))}
-              </div>
-            ))}
-            <div className="ag-rail-foot">
-              <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
-                the team +
+            {AGENTS.map((ag, i) => (
+              <button key={ag.key} type="button" className={active === i ? "on" : ""} onClick={() => pick(i)}>
+                <span className="ag-rail-dot" />
+                <span className="ag-rail-n">{ag.num}</span>
+                <span>{ag.name}</span>
               </button>
-            </div>
+            ))}
           </aside>
 
           <div className="ag-list">
-            <div className="ag-mobile-pick">
+            <button type="button" className="ag-mobile-pick" onClick={() => { setMode("agents"); setOpen(true); }}>
               <span><span className="ag-rail-n">{a.num}</span> <b>{a.name}</b></span>
-              <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
-                the team +
-              </button>
-            </div>
+              <span className="ag-mobile-pick-arr">pick another &#8964;</span>
+            </button>
             <div className="ag-row close" id={`agent-${a.num}`} ref={rowRef} key={a.key}>
               <div className="ag-body">
                 <div className="ag-num">
