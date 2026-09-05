@@ -59,7 +59,7 @@ export default function ZorroPage() {
                 <span>{it.t}</span>
               </a>
             ))}
-            <a className="mod-rail-lib" href="#i7">
+            <a className="mod-rail-lib" href="#i8">
               /the gym files
             </a>
           </nav>

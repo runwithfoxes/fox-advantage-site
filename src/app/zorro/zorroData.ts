@@ -22,9 +22,34 @@ You are building the team that does it. Three agents, each with one job. Carlos 
 
 That is the whole loop, and the loop is the point. The agent is a role, not a tool. Its job does not end when the email is written. It ends when Marta knows whether the member came back.
 
-The lesson of the week, said on Monday and shown every day after: building an agent is easy, you can do it from your phone. Building one that does what you want every Monday without anyone watching is a skill, and it comes from practice, curiosity and discipline. Every agent has to answer four questions plainly: what it produces, where it lands, how it knows it is done, and what it does not do. Carlos's, Enrique's and Cato's answers are on this page. You will write your own on Monday afternoon, each under 300 words, and the handovers between them are where the discipline shows: Carlos hands Enrique one file, Enrique hands Marta the record, Cato puts his line beside every decision.
+The lesson of the week, said on Monday and shown every day after: building an agent is easy, you can do it from your phone. Building one that does what you want every Monday without anyone watching is a skill, and it comes from practice, curiosity and discipline. Every agent has to answer four questions plainly: what it produces, where it lands, how it knows it is done, and what it does not do. Carlos's, Enrique's and Cato's answers are on this page, and so is how to get to a page like them. You will write your own on Monday afternoon, each on one page, and the handovers between them are where the discipline shows: Carlos hands Enrique one file, Enrique hands Marta the record, Cato puts his line beside every decision.
 
 On Friday your team shows the agent running, tells us the number it scored on fifty marked members, the return rate from its second run, and your two worst mistakes. Anyone on the team can be asked about any part of it.`,
+  },
+  {
+    t: "How to write a job an agent can do",
+    text: `Enrique's page is the finished thing. This is how you get to a page like it. Seven steps, in order, and you will do all seven for each of your agents this week.
+
+1. Decide what it produces before anything else. Name the thing, and fix its shape. Not "reviews the members" but "one row per member: id, decision, reason, note or nothing". If two runs could give different shapes, it is not a thing yet, it is an activity, and an activity cannot be checked. Enrique's shape is four fields and never changes.
+
+2. Name where it lands, and make sure someone reads there. A surface the owner already looks at, named exactly. Enrique lands on the member's record in Attio because Marta reads Attio. Work that lands in a folder nobody opens has not happened, and the log will still say success.
+
+3. Write the done condition so it can fail. "Every member in the door log has a row, the rows are on the records, and a second run on the same Monday adds nothing." Each part of that can be checked and each part can be false. "When the members have been reviewed" cannot fail, so it is not a condition.
+
+4. Write what it does not do, and split the work at the line where mistakes happen. In real agent teams the mistakes are almost never in the fetching. They are in the sentence written next to the number. So the one who computes cannot write, and the one who writes cannot compute. Carlos does the arithmetic with code and copies the result. Enrique never opens the door log. Put the boundary in the job in plain words, because an agent will drift across it otherwise and every step after will look fine.
+
+5. Name the handoffs, both sides. For every file, field or record that carries work in or out, say what it is and check that the other agent's page tells it to read that thing. A handoff where one side names a destination and the other side was never told to look breaks silently, and it looks identical to a working one from either side. Enrique's page names Carlos's file coming in and Marta's record going out, and Carlos's page names the same file.
+
+6. Keep it on one page, and take a line out for every line you add. A list of instructions is obeyed less the longer it gets, and the drop starts early. A job that needs a page of steps to run is not written yet. Everything about how the run happens, which script, which file, which order, lives in a separate runbook, not in the job.
+
+7. Run it, count it, attack it, change one line, run it again. Run the job on a Monday you have an answer key for and count the decisions that match. Then let Cato attack the decisions from the data, and attack the job itself with the four questions above, assuming the agent is literal, lazy and honest. Every finding is one line to change in the job. Change it, run the same Monday again, and see the number move. Stop when the number holds and Cato's attack list comes back with nothing that breaks. That is what "it works" means: not that it ran, but that you counted.`,
+    filesTitle: "The three jobs",
+    files: [
+      { name: "carlos-role.md", what: "Carlos pulls the numbers and cannot write.", href: "/zorro/carlos-role.md" },
+      { name: "enrique-role.md", what: "Enrique judges and writes. This page is the spec he runs on.", href: "/zorro/enrique-role.md" },
+      { name: "cato-brief.md", what: "Cato doubts both.", href: "/zorro/cato-brief.md" },
+      { name: "how-to-write-a-job-an-agent-can-do.md", what: "This item, as a file.", href: "/zorro/how-to-write-a-job-an-agent-can-do.md" },
+    ],
   },
   {
     t: "Before Monday",
@@ -85,9 +110,6 @@ Every name and every swipe is made up. Nobody in these files exists.`,
       { name: "gimnasio-zorro.md", what: "The gym, the owner, and what it is for. One page.", href: "/zorro/gimnasio-zorro.md" },
       { name: "email-voice-and-rules.md", what: "How Marta writes, the rules the agent follows, a bad note and a good one.", href: "/zorro/email-voice-and-rules.md" },
       { name: "messages-by-goal.md", what: "What the note says for each kind of member.", href: "/zorro/messages-by-goal.md" },
-      { name: "carlos-role.md", what: "Carlos pulls the numbers and cannot write. The first of the three.", href: "/zorro/carlos-role.md" },
-      { name: "enrique-role.md", what: "Enrique judges and writes the notes. The second of the three.", href: "/zorro/enrique-role.md" },
-      { name: "cato-brief.md", what: "Cato doubts both. The third of the three, built on Wednesday.", href: "/zorro/cato-brief.md" },
     ],
   },
   {

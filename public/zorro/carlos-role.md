@@ -11,8 +11,8 @@ fetched.
 
 One file per Monday, one row per member, always the same columns: member id, name, goal, notes,
 joined, weeks since joined, visits per week for the last twelve weeks, their usual rate over the
-nine weeks before the last three, visits in the last three weeks, weeks since last visit, and
-what the team did for them before. Nothing else. No opinion, no flag, no prose.
+nine weeks before the last three, visits in the last three weeks, weeks since last visit, what the team did for them before
+(the previously column), and the member's last reply and its date if there is one. Nothing else. No opinion, no flag, no prose.
 
 ## Where it lands
 
