@@ -411,7 +411,7 @@
 .ag-rail-foot { margin-top: 22px; }
 .ag-split .ag-list { margin-top: 0; border-top: none; }
 .ag-split .ag-row.close { padding-top: 0; }
-.ag-split .ag-row.close .ag-plate .agw { max-width: none; }
+.ag-split .ag-row.close .ag-plate .agw { max-width: 600px; }
 .ag-mobile-pick { display: none; }
 .ag-panel-solo { margin-top: 44px; border-top: 1px solid var(--ag-border); }
 
@@ -456,3 +456,10 @@
 /* the phone's current-agent bar is itself the way to pick another */
 .ag-mobile-pick { width: 100%; background: #fff; cursor: pointer; text-align: left; color: var(--ag-text); }
 .ag-mobile-pick-arr { font-family: var(--mono); font-size: 12px; color: var(--ag-sky); }
+
+/* the figures sit at 600px wide, left aligned, so they feel neater (Paul,
+   5 Sep, cutting the research note at the width he wanted). The words in
+   the HTML windows keep their size and wrap; the drawn windows scale down. */
+.ag-plate > * { max-width: 600px; }
+.ag-row.close .ag-plate .agw, .ag-row.close .agw { max-width: 600px; }
+.ag-plate .ppw-holder, .ag-plate .ppchat, .ag-plate .ppbg, .ag-plate .ppgeo { max-width: 600px; }
