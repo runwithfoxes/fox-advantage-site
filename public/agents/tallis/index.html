@@ -40,9 +40,9 @@ a{color:inherit;text-decoration:none}
 
 /* frosted nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px 32px;display:flex;align-items:center;gap:28px;
-  background:rgba(244,241,234,.55);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);
-  border-bottom:1px solid rgba(20,17,15,.08);transition:background .3s,color .3s}
-.nav.onfilm{background:rgba(11,27,43,.35);border-bottom-color:rgba(255,255,255,.12);color:#fff}
+  background:rgba(244,241,234,.62);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);
+  border-bottom:1px solid rgba(20,17,15,.08);box-shadow:0 1px 0 rgba(255,255,255,.5) inset;transition:background .3s,color .3s}
+.nav.onfilm{background:rgba(255,255,255,.14);border-bottom-color:rgba(255,255,255,.22);box-shadow:0 1px 0 rgba(255,255,255,.18) inset;color:#fff}
 .logo{display:flex;align-items:center;gap:9px;font:500 18px/1 var(--display);letter-spacing:-.02em}
 .logo i{width:14px;height:14px;background:var(--sig);display:inline-block;transform:rotate(45deg)}
 .nav nav{display:flex;gap:24px;font-size:14px;margin-left:12px;opacity:.85}
@@ -349,7 +349,7 @@ a{color:inherit;text-decoration:none}
     resize(); addEventListener('resize', resize);
     for (var i = 0; i < 180; i++) dots.push({ s: Math.floor(Math.random()*N), p: Math.random(), v: 0.0012 + Math.random()*0.0016, r: (0.8 + Math.random()*1.4) });
     var path = function(s, p){
-      var y0 = H * (0.12 + 0.76 * (s / (N - 1)));
+      var y0 = H * (0.02 + 0.86 * (s / (N - 1)));
       var yEnd = H * 0.42, xEnd = W * 0.86;
       var x = p * xEnd;
       var e = p < 0.55 ? 0 : (p - 0.55) / 0.45; e = e*e*(3-2*e);

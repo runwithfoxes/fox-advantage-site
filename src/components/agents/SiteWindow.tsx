@@ -71,15 +71,20 @@ export default function SiteWindow({
             const doc = frame.contentDocument;
             if (win && doc) {
               const max = Math.max(0, doc.documentElement.scrollHeight - win.innerHeight);
-              // 2s hold, 18s down, 3s hold, 6s back, then again
-              const cycle = 29000;
+              // starts moving straight away: 26s down with a soft start,
+              // 3s hold at the foot, 5s back up, then again. The page inside
+              // sets scroll-behavior: smooth, which turned every scrollTo
+              // into its own animation and made the window jolt; instant
+              // is the only behaviour that lets this loop own the motion.
+              const cycle = 34000;
               const p = ((t - t0) % cycle) / 1000;
               let y = 0;
-              if (p < 2) y = 0;
-              else if (p < 20) y = max * ((p - 2) / 18);
-              else if (p < 23) y = max;
-              else y = max * (1 - (p - 23) / 6);
-              win.scrollTo(0, y);
+              if (p < 26) {
+                const u = p / 26;
+                y = max * (u < 0.12 ? (u / 0.12) * (u / 0.12) * 0.12 : u);
+              } else if (p < 29) y = max;
+              else y = max * (1 - (p - 29) / 5);
+              win.scrollTo({ top: y, left: 0, behavior: "instant" as ScrollBehavior });
             }
             raf = requestAnimationFrame(tick);
           };
