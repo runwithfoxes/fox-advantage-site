@@ -21,12 +21,9 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     el: (
       <g key="symbol">
         <rect className="ppbg-box ppbg-ok" x={18} y={18} width={30} height={30} />
-        <line className="ppbg-tick" x1={33} y1={48} x2={33} y2={62} />
-        <text className="ppbg-lbl" x={40} y={70}>
-          mark, 30px
-        </text>
-        <text className="ppbg-lbl ppbg-sm" x={40} y={83}>
-          book floor: 26px
+        <line className="ppbg-tick" x1={33} y1={48} x2={33} y2={56} />
+        <text className="ppbg-lbl ppbg-sm" x={40} y={62}>
+          mark 30px, book floor 26px
         </text>
       </g>
     ),
@@ -49,13 +46,13 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     atPct: (430 / 970) * 100,
     el: (
       <g key="headline">
-        <rect className="ppbg-box" x={20} y={66} width={318} height={134} />
-        <line className="ppbg-tick" x1={338} y1={132} x2={351} y2={132} />
-        <text className="ppbg-lbl" x={357} y={128}>
+        <rect className="ppbg-box" x={20} y={74} width={318} height={128} />
+        <line className="ppbg-tick" x1={338} y1={138} x2={351} y2={138} />
+        <text className="ppbg-lbl" x={357} y={134}>
           headline, measured
         </text>
-        <text className="ppbg-lbl ppbg-sm" x={357} y={143}>
-          318 x 134px of ink
+        <text className="ppbg-lbl ppbg-sm" x={357} y={149}>
+          318 x 128px of ink
         </text>
       </g>
     ),
@@ -65,12 +62,12 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     el: (
       <g key="photo">
         <rect className="ppbg-box ppbg-skip" x={502} y={2} width={466} height={246} />
-        <rect x={516} y={12} width={300} height={44} fill="#FAFAF8" opacity={0.94} />
+        <rect x={516} y={12} width={318} height={44} fill="#FAFAF8" opacity={0.94} />
         <text className="ppbg-lbl" x={528} y={32}>
-          photograph, 48% of the frame, black and white
+          photograph, 48% of the frame
         </text>
         <text className="ppbg-lbl ppbg-sm" x={528} y={47}>
-          book: always black and white, floor 45%
+          black and white, per the book; floor 45%
         </text>
       </g>
     ),
