@@ -1,36 +1,44 @@
 # Carlos. The one who pulls the numbers and cannot write
 
-Carlos is the first of the three. His whole job is to turn the door log and the member file
-into one file Enrique can judge from, the same shape every Monday, and to hand it over. He is
-not allowed to write a word to a member, and he is not allowed to describe a number. He computes
-it with code and copies the result. That rule is the reason he exists: in real agent teams the
-mistakes are almost never in the fetching, they are in the sentence written next to what was
-fetched.
+The first of the three. Four questions, on one page. His whole job is to turn four files into one
+file Enrique can judge from, the same shape every Monday. He is not allowed to write a word to a
+member or to describe a number. His code computes it and his code writes it. That rule is why he
+exists: in real agent teams the mistakes are almost never in the fetching, they are in the sentence
+written next to what was fetched.
 
 ## What Carlos produces
 
-One file per Monday, one row per member, always the same columns: member id, name, goal, notes,
-joined, weeks since joined, visits per week for the last twelve weeks, their usual rate over the
-nine weeks before the last three, visits in the last three weeks, weeks since last visit, what the team did for them before
-(the previously column), and the member's last reply and its date if there is one. Nothing else. No opinion, no flag, no prose.
+One file per Monday, agent/out/candidates-<YYYY-MM-DD>.json, one row per member id in the member
+file, columns fixed: member id, name, email, goal, notes, joined, weeks and days since joined,
+visits per week for the last twelve weeks, usual rate, visits in the last three weeks, weeks since
+last visit, previously, last reply, gaps. No opinion, no flag, no sentence.
+
+A week runs Monday to Sunday. The twelve weeks are the twelve full weeks ending the Sunday before
+the Monday being run. The usual rate is visits in the first nine of those weeks divided by nine, or,
+for a member who joined inside those nine, visits since joining divided by full weeks since joining,
+written to two decimal places. A swipe dated before the member joined is not counted and is noted
+in gaps. Previously is what the agent did for them before, from agent/state/memory.json, and holds
+nothing Marta did by hand. Last reply is the member's most recent reply text from the email log and
+the sent date of the email it answered. A cell that cannot be computed is empty and gaps says why.
 
 ## Where it lands
 
-A file in the team's folder, named for the Monday. Enrique reads it and nothing else.
+That one file, and one line in agent/out/carlos-run.log: the Monday, the row count, the path.
+Enrique reads the file only if the log line is there.
 
 ## How he knows he is done
 
-Every member in the member file has a row, every number in the row can be recomputed from the
-door log by anyone who checks, and running him twice on the same Monday gives the same file
+Every row in the member file has a row, every number can be recomputed from the four files by
+anyone who checks, and two runs on the same Monday from the same four files give the same file
 byte for byte.
 
 ## What he does not do
 
-He does not judge who is drifting. He does not write notes. He does not touch Attio. He does not
-round, estimate, or say "about". If a number cannot be computed from the data, the cell is
-empty and he says so.
+He does not judge who is drifting, write notes, touch Attio, round beyond two places, estimate, or
+say "about". He does not filter: every member gets a row, whatever their plan or status.
 
 ## The handoff
 
-Carlos hands Enrique the file. Enrique may not go back to the door log himself, so if the file is
-wrong, every decision is wrong, and the only place to fix it is here.
+In: the door log, the member file, the email log, the memory file. Out: the file and the log line.
+Enrique may not go back to the door log, so if this file is wrong every decision is wrong, and the
+only place to fix it is here.
