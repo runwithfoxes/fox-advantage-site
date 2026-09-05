@@ -100,7 +100,7 @@ export default function SiteWindow({
   }, []);
 
   return (
-    <div className="agw">
+    <div className="agw agw-sitewin">
       <div className="agw-tl">
         <i />
         <i />

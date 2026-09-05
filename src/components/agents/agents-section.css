@@ -463,3 +463,7 @@
 .ag-plate > * { max-width: 600px; }
 .ag-row.close .ag-plate .agw, .ag-row.close .agw { max-width: 600px; }
 .ag-plate .ppw-holder, .ag-plate .ppchat, .ag-plate .ppbg, .ag-plate .ppgeo { max-width: 600px; }
+
+/* the website window keeps the full column: at 600px it flipped to the
+   site's phone layout, which is not the point of it (Paul, 5 Sep) */
+.ag-split .ag-row.close .ag-plate > .agw.agw-sitewin, .ag-plate > .agw-sitewin { max-width: none; }
