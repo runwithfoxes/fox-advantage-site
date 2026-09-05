@@ -266,3 +266,27 @@
 
 /* the proposal-library windows sit on the page here: no plate, full width */
 .ag-plate .ppw-holder { margin: 0; }
+
+/* the search agent: terms found, the ad written, the live line */
+.agw-sa { display: grid; grid-template-columns: 1fr 360px; }
+.agw-sa-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-sa-side { padding: 18px 20px 20px; background: #fcfcfb; border-left: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-terms { width: 100%; border-collapse: collapse; font-family: var(--agw-sans); font-size: 13px; }
+.agw-terms th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--agw-muted); font-weight: 500; padding: 0 10px 8px 0; border-bottom: 1px solid var(--agw-line-soft); }
+.agw-terms td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--agw-line-soft); vertical-align: top; color: var(--agw-ink); }
+.agw-terms td.agw-term { font-family: var(--mono); font-size: 12.5px; }
+.agw-terms td.agw-why { color: var(--agw-muted); }
+.agw-sa-note { margin: 14px 0 0; font-family: var(--agw-sans); font-size: 14px; line-height: 1.55; color: var(--agw-ink); }
+.agw-ad { border: 1px solid var(--agw-line); border-radius: 8px; padding: 14px 16px; background: #fff; font-family: var(--agw-sans); }
+.agw-ad-tag { font-size: 12px; font-weight: 600; color: var(--agw-ink); margin-bottom: 8px; }
+.agw-ad-url { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--agw-ink); }
+.agw-ad-url em { display: block; font-style: normal; color: var(--agw-muted); font-size: 12px; }
+.agw-ad-fav { width: 26px; height: 26px; border-radius: 50%; background: #eef1f4; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; color: var(--ag-deep); flex: none; }
+.agw-ad-h { margin-top: 10px; font-size: 17px; line-height: 1.3; color: #1a0dab; }
+.agw-ad-d { margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: #4d5156; }
+.agw-sa-live { margin-top: 14px; font-family: var(--mono); font-size: 11.5px; color: var(--agw-muted); display: flex; gap: 8px; align-items: baseline; }
+@media (max-width: 860px) {
+  .agw-sa { grid-template-columns: 1fr; }
+  .agw-sa-side { border-left: none; border-top: 1px solid var(--agw-line-soft); }
+  .agw-terms th:nth-child(3), .agw-terms td:nth-child(3) { display: none; }
+}

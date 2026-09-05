@@ -3,7 +3,7 @@ import SiteWindow from "./SiteWindow";
 import { OutreachWindow, CampaignWindow } from "@/app/for/_components/library/AgentWindows";
 import { WriterEmail, WriterPost } from "@/app/for/_components/library/WriterPiece";
 import GuardianWindow from "./GuardianWindow";
-import SearchWindow from "./SearchWindow";
+import SearchAgentWindow from "./SearchAgentWindow";
 import AdMachine from "@/app/for/_components/library/AdMachine";
 import "./agents-section.css";
 
@@ -270,30 +270,40 @@ export default function AgentsSection() {
           <WriterPost
             title="Ghostwriter · a LinkedIn post"
             body={[
-              { text: "Most people pay their renewal without reading it. I know, because I ran the numbers on our own customers last year.", note: "proof" },
-              { text: "Seven in ten paid the price they were sent. Not because it was fair. Because checking took a fortnight of forms.", note: "proof" },
-              { text: "So we changed what a renewal is. Three weeks before your date, we quote the market for you. If someone is cheaper, we move you.", note: "positioning" },
-              { text: "It costs us customers some years. It is still the right way to sell insurance.", note: "messaging" },
-              { text: "If your insurer will not do that for you, ask them why.", note: "voice" },
+              {
+                text: "I spent last week going through what our customers did at renewal time last year, and I want to share what I found, because I think it says something about how this industry works.",
+              },
+              {
+                text: "About seven in ten of the people we insure paid the renewal price we sent them without shopping around. When I first saw that number I assumed it meant they were happy with us. I don't think it does. I think it means the alternative was a fortnight of filling in forms on four different websites, answering the same eleven questions each time, and most people have better things to do with their evenings.",
+                note: "proof",
+              },
+              {
+                text: "So we've started doing the shopping around for them. About three weeks before a renewal is due, we check what everyone else would charge for the same cover. If someone is cheaper, we tell the customer and move them, and we do the paperwork. If nobody is, they stay where they are. Either way they get a note saying what we found.",
+                note: "positioning",
+              },
+              {
+                text: "I know how that sounds coming from an insurer, and it will cost us customers some years. I'd rather that than a business that depends on people not getting around to checking. If you're with an insurer that won't do this for you, it's worth asking them why.",
+                note: "voice",
+              },
             ]}
           />
         </Row>
 
         <Row
           num="05"
-          when="every week, twenty questions"
+          when="every day, on the search account"
           name="Search Agent"
-          does="Asks the AI assistants the questions your customers ask them, reads every answer, and tells you whether you are in them. Then it fixes the pages that would change the answer."
-          gets="You know where you stand in the AI assistants' answers, and which pages to change to move it."
+          does="Does your search marketing. Every night it reads what people searched for, finds the long-tail terms worth bidding on, writes the ads for them, and puts them live in the morning with a budget cap."
+          gets="New terms, new ads and the bids kept in order every day, with a report to you on Friday."
           hands="Website Agent"
           cap={
             <>
               <span className="slash">/illustrative.</span> Run for Kite Insurance, the made-up
-              insurer from our course. Every number is invented. The method is the real one.
+              insurer from our course. Every term, number and ad is invented. The job is the real one.
             </>
           }
         >
-          <SearchWindow />
+          <SearchAgentWindow />
         </Row>
 
         <Row
