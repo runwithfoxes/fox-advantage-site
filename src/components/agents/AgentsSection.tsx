@@ -1,8 +1,9 @@
 import TypedNote, { type NoteItem } from "./TypedNote";
 import SiteWindow from "./SiteWindow";
 import { OutreachWindow, CampaignWindow } from "@/app/for/_components/library/AgentWindows";
-import { WriterEmail } from "@/app/for/_components/library/WriterPiece";
-import BrandGuardian from "@/app/for/_components/library/BrandGuardian";
+import { WriterEmail, WriterPost } from "@/app/for/_components/library/WriterPiece";
+import GuardianWindow from "./GuardianWindow";
+import SearchWindow from "./SearchWindow";
 import AdMachine from "@/app/for/_components/library/AdMachine";
 import "./agents-section.css";
 
@@ -64,6 +65,27 @@ const REDTEAM: NoteItem[] = [
   { kind: "p", text: "Everything else passed: 84 messages, 12 ad sizes, the course page change. **Nothing went out with a mistake in it.**" },
 ];
 
+const PM: NoteItem[] = [
+  { kind: "lead", text: "Hi Paul," },
+  {
+    kind: "p",
+    text: "Where everything stands this morning. Three projects moved, one is waiting on you, nothing is late.",
+  },
+  {
+    kind: "li",
+    text: "**Kite renewal campaign.** The emails passed the guardian yesterday and go out Thursday. Nothing needed from you.",
+  },
+  {
+    kind: "li",
+    text: "**The website.** Two pages changed overnight from what you said on Tuesday. The third needs a photograph only you can pick. That is the one waiting on you.",
+  },
+  {
+    kind: "li",
+    text: "**Harbour Cover proposal.** Drafted from Friday's call, priced, and in your drafts folder to read. It does not go anywhere until you press send.",
+  },
+  { kind: "p", text: "The board is current. If you do one thing today, pick the photograph." },
+];
+
 const OUTBOUND_THREADS = [
   {
     name: "Ciara Walsh",
@@ -102,7 +124,7 @@ const NODES: [
   { icon: string; label: string; kind: "trigger" | "step" | "agent" },
   { icon: string; label: string; kind: "trigger" | "step" | "agent" },
 ] = [
-  { icon: "◆", label: "Lid opens, 07:00", kind: "trigger" },
+  { icon: "◆", label: "07:00, every morning", kind: "trigger" },
   { icon: "▤", label: "Research Agent", kind: "agent" },
   { icon: "➤", label: "Outbound Agent", kind: "agent" },
   { icon: "✎", label: "Email Agent", kind: "agent" },
@@ -177,13 +199,7 @@ export default function AgentsSection() {
             </>
           }
         >
-          <TypedNote
-            title="Research Agent"
-            subject="Your research for Monday"
-            from="Research Agent"
-            avatar="R"
-            items={RESEARCH}
-          />
+          <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />
         </Row>
 
         <Row
@@ -239,6 +255,49 @@ export default function AgentsSection() {
 
         <Row
           num="04"
+          when="three posts a week, in your voice"
+          name="Ghostwriter"
+          does="Turns what you know into posts and articles that sound like you. It works from your own words, a call, a voice note, a rant, and every line can show you which one it came from."
+          gets="You stay visible without sitting down to write. Nothing goes out that you would not have said."
+          hands="Brand Guardian"
+          cap={
+            <>
+              <span className="slash">/illustrative.</span> A post written for the founder of Kite
+              Insurance, the made-up insurer from our course.
+            </>
+          }
+        >
+          <WriterPost
+            title="Ghostwriter · a LinkedIn post"
+            body={[
+              { text: "Most people pay their renewal without reading it. I know, because I ran the numbers on our own customers last year.", note: "proof" },
+              { text: "Seven in ten paid the price they were sent. Not because it was fair. Because checking took a fortnight of forms.", note: "proof" },
+              { text: "So we changed what a renewal is. Three weeks before your date, we quote the market for you. If someone is cheaper, we move you.", note: "positioning" },
+              { text: "It costs us customers some years. It is still the right way to sell insurance.", note: "messaging" },
+              { text: "If your insurer will not do that for you, ask them why.", note: "voice" },
+            ]}
+          />
+        </Row>
+
+        <Row
+          num="05"
+          when="every week, twenty questions"
+          name="Search Agent"
+          does="Asks the AI assistants the questions your customers ask them, reads every answer, and tells you whether you are in them. Then it fixes the pages that would change the answer."
+          gets="You know what ChatGPT says about you before a customer does, and what to change so it says something better."
+          hands="Website Agent"
+          cap={
+            <>
+              <span className="slash">/illustrative.</span> Run for Kite Insurance, the made-up
+              insurer from our course. Every number is invented. The method is the real one.
+            </>
+          }
+        >
+          <SearchWindow />
+        </Row>
+
+        <Row
+          num="06"
           when="one sign-off, every size"
           name="Advertising Agent"
           does="You approve one ad. It makes every other size, holding the brand exactly, then runs them and reads the numbers."
@@ -249,34 +308,52 @@ export default function AgentsSection() {
         </Row>
 
         <Row
-          num="05"
-          when="before anything ships"
-          name="Brand Guardian"
-          does="Checks every piece against your brand book before it goes out: the logo size, the colours, the headline, how much of the frame the photograph takes. Passed, or sent back with the fixes named."
-          gets="Nothing goes out off brand, and nobody on the team has to be the police."
-          hands="Red Team"
-        >
-          <BrandGuardian />
-        </Row>
-
-        <Row
-          num="06"
+          num="07"
           when="when you ask, in plain words"
           name="Website Agent"
-          does="Builds pages and changes them when you tell it what you want, in a sentence. This is our course page, which it built and keeps changing."
-          gets="A change to the website is a sentence you say, not a ticket you raise."
+          does="Builds a site from your brand and your messaging, then changes it when you tell it what you want, in a sentence. This one is for Tallis, a made-up finance technology company, built to show what it can do."
+          gets="A site that looks like it cost a studio six weeks, and a change to it is a sentence you say, not a ticket you raise."
           hands="Brand Guardian"
           cap={
             <>
-              <span className="slash">/live.</span> The real page, running inside the window.
+              <span className="slash">/illustrative.</span> Tallis is made up. The page is real and
+              running inside the window; nothing in it is a real company, customer or number.
             </>
           }
         >
-          <SiteWindow src="/course" label="Website Agent · runwithfoxes.com/course" />
+          <SiteWindow src="/agents/tallis/index.html" label="Website Agent · tallis.finance" />
         </Row>
 
         <Row
-          num="07"
+          num="08"
+          when="before anything ships"
+          name="Brand Guardian"
+          does="Checks every piece against your brand book before it goes out: the logo size, the colours, the headline, how much of the frame the artwork takes. Passed, or sent back with the fixes named."
+          gets="Nothing goes out off brand, and nobody on the team has to be the police."
+          hands="Red Team"
+        >
+          <GuardianWindow />
+        </Row>
+
+        <Row
+          num="09"
+          when="every morning, before you are up"
+          name="Project Manager"
+          does="Keeps the board. Knows what every other agent did overnight, what is late, and what is waiting on you, and tells you in one note."
+          gets="You never ask where something is. The answer is in your inbox before you think to ask."
+          hands="You"
+          cap={
+            <>
+              <span className="slash">/illustrative.</span> The projects are invented. The note is
+              the shape of the real one.
+            </>
+          }
+        >
+          <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} />
+        </Row>
+
+        <Row
+          num="10"
           when="last, every day"
           name="Red Team"
           does="Its only job is to find the mistakes in the other agents' work before you see it. It doubts everything, checks the sources, and sends work back."
@@ -289,13 +366,7 @@ export default function AgentsSection() {
             </>
           }
         >
-          <TypedNote
-            title="Red Team"
-            subject="Two things did not pass today"
-            from="Red Team"
-            avatar="RT"
-            items={REDTEAM}
-          />
+          <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} />
         </Row>
       </div>
 
