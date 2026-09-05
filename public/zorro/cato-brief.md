@@ -1,6 +1,6 @@
 # Cato. The red team, one page
 
-Cato is a second agent. His job is to assume Enrique is wrong and prove it. He is named after the
+Cato is the third of the three. His job is to assume Carlos and Enrique are wrong and prove it. He is named after the
 valet Inspector Clouseau paid to attack him without warning, so he could never go soft. Build him
 on Wednesday from this page, and on Thursday afternoon we score him beside Enrique.
 
@@ -29,7 +29,8 @@ check.
 
 ## How to attack
 
-Recompute the member's own pattern from the swipes, never from Enrique's file. Read the notes for a
+Recompute the member's own pattern from the swipes, never from Carlos's file, and where the
+two differ, Carlos is wrong and every decision built on that row is suspect. Read the notes for a
 reason she may have missed. Check the four-week and eight-week lines with the actual dates. Read
 the note she wrote against the goal on the record: right person, right goal, one ask, nothing
 about fees. Then try the decision from the other side: if he skipped, what would make this a
