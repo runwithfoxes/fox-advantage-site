@@ -6,395 +6,524 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Tallis · Treasury for finance teams</title>
 <!--
-  TALLIS. A made-up finance technology company, built 5 Sep 2026 as the
-  Website Agent's exhibit on runwithfoxes.com. Nothing here is a real
-  company, product, customer or number.
+  TALLIS. A made-up finance technology company, the Website Agent's exhibit
+  on runwithfoxes.com. Nothing here is a real company, customer, person or
+  number.
 
-  Second pass, same day. Paul on the first: "very generic AI. Even the color
-  scheme is all Claude." So: the palette is paper, ink and one signal colour
-  (a hot red-orange), no sage green, no italic serif. One weight of display
-  type. The hero is built the way the Nova hero is built: a film behind,
-  a wash over it, a scrim, and the headline straight on the picture, full
-  width. The film is not made yet; the prompt for it is with Paul. Until it
-  lands, a canvas drawn for the page runs behind the headline: the company's
-  many money streams converging into one line, which is the product's idea.
-  When the film arrives it goes in as <video class="film"> and the canvas
-  can stay under it or go.
+  Third pass, 5 Sep 2026. Paul: "take the laptop on desk that you scroll into
+  that we originally did for dataintelligence and use that idea, as they are
+  not going to use that. But you need to change brand name, identity and
+  category." So this is the dataintelligence redesign preview
+  (~/projects/data-intelligence/index.html, 16 Jul) with the fly-into-the-
+  laptop hero and its scroll maths kept exactly, and everything else changed:
+  Tallis, treasury for finance teams, a new identity (Onest, cream and night,
+  one oxblood accent), new copy, a new screen on the laptop, and every real
+  name, logo and person removed. The office photograph was generated for the
+  DI preview and was never used by them.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#F4F1EA; --paper-2:#ECE8DF; --ink:#14110F; --muted:#6F6A62; --line:rgba(20,17,15,.12);
-  --sig:#E8562A; --sig-2:#FFD9CC; --navy:#0B1B2B; --navy-2:#122A40;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --sans:"Inter",ui-sans-serif,system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
-.eyebrow{font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--sig);margin:0 0 18px}
+  :root{
+    --ink:#15130f;
+    --ink-2:#5f5a52;
+    --line:rgba(21,19,15,.11);
+    --cream:#f1efe8;
+    --paper:#faf9f5;
+    --night:#0c0b0a;
+    --night-2:#131210;
+    --on-night:#f4f2ec;
+    --on-night-2:rgba(244,242,236,.62);
+    --line-night:rgba(255,255,255,.12);
+    --accent:#7a1f2b;            /* oxblood, the one colour on the page */
+    --accent-ink:#5e1620;
+    --accent-soft:#f3e3e4;
+    --radius:14px;
+    --maxw:1200px;
+    --pad:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{margin:0;font-family:"Onest",system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:16px;line-height:1.55;letter-spacing:-.006em}
+  h1,h2,h3,p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+  .col{max-width:1120px;margin:0 auto}
 
-/* frosted nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px 32px;display:flex;align-items:center;gap:28px;
-  background:rgba(244,241,234,.62);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);
-  border-bottom:1px solid rgba(20,17,15,.08);box-shadow:0 1px 0 rgba(255,255,255,.5) inset;transition:background .3s,color .3s}
-.nav.onfilm{background:rgba(255,255,255,.14);border-bottom-color:rgba(255,255,255,.22);box-shadow:0 1px 0 rgba(255,255,255,.18) inset;color:#fff}
-.logo{display:flex;align-items:center;gap:9px;font:500 18px/1 var(--display);letter-spacing:-.02em}
-.logo i{width:14px;height:14px;background:var(--sig);display:inline-block;transform:rotate(45deg)}
-.nav nav{display:flex;gap:24px;font-size:14px;margin-left:12px;opacity:.85}
-.nav .btn{margin-left:auto}
-.btn{font:500 14px/1 var(--sans);background:var(--ink);color:#fff;padding:12px 18px;border-radius:6px;white-space:nowrap;display:inline-block}
-.btn.sig{background:var(--sig);color:#fff}
-.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor}
-.nav.onfilm .btn{background:#fff;color:var(--ink)}
+  .display{font-weight:500;font-size:clamp(2.4rem,4.8vw,3.7rem);line-height:1.04;letter-spacing:-.03em}
+  .h2{font-weight:500;font-size:clamp(1.6rem,2.7vw,2.15rem);line-height:1.12;letter-spacing:-.025em}
+  .h2-lg{font-weight:500;font-size:clamp(1.9rem,3.1vw,2.6rem);line-height:1.08;letter-spacing:-.03em}
+  .h-card{font-weight:500;font-size:1.0625rem;line-height:1.3;letter-spacing:-.01em}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.18rem);line-height:1.5;color:var(--ink-2);font-weight:400}
+  .body{font-size:1rem;color:var(--ink-2);font-weight:400}
+  .eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
 
-/* hero: film behind, wash, scrim, headline on the picture */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy);color:#fff}
-.film,.streams{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.streams{display:block}
-.wash{position:absolute;inset:0;background:var(--navy);mix-blend-mode:multiply;opacity:.55;pointer-events:none}
-.scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(11,27,43,.92) 0%,rgba(11,27,43,.55) 38%,rgba(11,27,43,.1) 70%,transparent 100%)}
-.hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:56px;padding-top:140px}
-.hero h1{font:500 clamp(46px,7.2vw,96px)/.96 var(--display);letter-spacing:-.03em;margin:0}
-.hero h1 span{color:var(--sig-2)}
-.hero p{font-size:19px;line-height:1.5;color:rgba(255,255,255,.78);margin:24px 0 0}
-.hero .cta{display:flex;gap:12px;margin-top:28px;align-items:center;flex-wrap:wrap}
-.hero .tiny{font:400 12px/1.5 var(--mono);color:rgba(255,255,255,.6);margin-left:6px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:44px;padding:0 22px;border-radius:999px;font-size:.9375rem;font-weight:500;letter-spacing:-.01em;cursor:pointer;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s,transform .1s}
+  .btn:active{transform:translateY(.5px)}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-ink)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{background:rgba(21,19,15,.04)}
+  .on-night .btn-ghost{color:var(--on-night);border-color:var(--line-night)}
+  .on-night .btn-ghost:hover{background:rgba(255,255,255,.06)}
+  .btn .ar{font-size:1rem;line-height:0}
 
-/* the strip: the one number, standing on the film's edge */
-.strip{position:relative;z-index:3;background:var(--paper);border-bottom:1px solid var(--line)}
-.strip .wrap{display:flex;align-items:baseline;gap:26px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
-.strip .k{font:400 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.strip .big{font:500 44px/1 var(--display);letter-spacing:-.03em}
-.strip .delta{font:500 13px/1 var(--mono);color:var(--sig);background:var(--sig-2);padding:7px 10px;border-radius:4px}
-.strip .live{margin-left:auto;font:400 12px/1 var(--mono);color:var(--muted);display:flex;align-items:center;gap:8px}
-.strip .live::before{content:"";width:7px;height:7px;background:var(--sig);border-radius:50%;animation:pulse 1.6s infinite}
-@keyframes pulse{50%{opacity:.25}}
+  /* nav: frosted glass from the first pixel, darker once you scroll */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.14);backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);border-bottom:1px solid rgba(255,255,255,.18);transition:background .28s ease,border-color .28s ease}
+  .nav.scrolled{background:rgba(12,11,10,.62);border-color:rgba(255,255,255,.08)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:500;letter-spacing:-.02em;font-size:1.15rem;color:#1e1d1a;transition:color .25s}
+  .nav.scrolled .brand,.on-night .brand{color:#fff}
+  .brand .mark{width:12px;height:12px;background:var(--accent);transform:rotate(45deg);flex:none}
+  .nav-links{display:flex;align-items:center;gap:6px}
+  .nav-links a{font-size:.9375rem;font-weight:500;color:rgba(30,29,26,.85);padding:8px 12px;border-radius:8px;transition:color .25s,background .2s}
+  .nav-links a:hover{background:rgba(0,0,0,.06)}
+  .nav.scrolled .nav-links a{color:rgba(255,255,255,.82)}
+  .nav.scrolled .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+  .nav-right{display:flex;align-items:center;gap:8px}
+  .nav-right .login{font-size:.9375rem;font-weight:500;padding:8px 12px;color:rgba(30,29,26,.85);border-radius:8px;transition:color .25s}
+  .nav.scrolled .nav-right .login{color:rgba(255,255,255,.82)}
 
-/* product surface 1: the cash line, drawn for the page */
-.section{padding:96px 0 0}
-.section h2{font:500 clamp(34px,4.4vw,56px)/1.02 var(--display);letter-spacing:-.03em;margin:0}
-.section h2 span{color:var(--sig)}
-.lede{font-size:18px;color:var(--muted);margin:18px 0 0}
-.surface{margin:40px 0 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px 26px 20px;position:relative;overflow:hidden}
-.surface .top{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
-.surface .k{font:400 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.surface .right{margin-left:auto;display:flex;gap:6px}
-.chip{font:400 12px/1 var(--mono);padding:7px 10px;border:1px solid var(--line);border-radius:4px;color:var(--muted)}
-.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.chart{margin-top:22px;height:240px;position:relative}
-.chart svg{width:100%;height:100%;display:block;overflow:visible}
-.line{fill:none;stroke:var(--sig);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:1600;stroke-dashoffset:1600}
-.fill{fill:url(#fade);opacity:0}
-.inview .line{animation:draw 2.2s cubic-bezier(.4,0,.2,1) forwards}
-.inview .fill{animation:fadein 1s .9s forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fadein{to{opacity:1}}
-.mark{opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s}
-.inview .mark.a{opacity:1;transform:none;transition-delay:1.3s}
-.inview .mark.b{opacity:1;transform:none;transition-delay:2s}
-.mark rect{fill:#fff;stroke:var(--line)}
-.mark text{font:500 11.5px var(--mono);fill:var(--ink)}
-.mark .sub{font:400 10.5px var(--mono);fill:var(--muted)}
-.grid line{stroke:rgba(20,17,15,.07)}
-.axis text{font:400 10.5px var(--mono);fill:var(--muted)}
+  section{position:relative;scroll-margin-top:72px}
+  .sec-pad{padding-block:clamp(64px,9vw,112px)}
+  .on-night{background:var(--night);color:var(--on-night)}
+  .on-night .body,.on-night .lead{color:var(--on-night-2)}
+  .on-cream{background:var(--cream)}
+  .divider-top{border-top:1px solid var(--line);padding-top:clamp(40px,5vw,56px)}
 
-/* logos */
-.marquee{margin:70px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.track{display:flex;gap:64px;width:max-content;animation:slide 30s linear infinite}
-.track span{font:500 15px/1 var(--display);color:var(--muted);white-space:nowrap}
-.track span b{color:var(--ink);font-weight:500}
-@keyframes slide{to{transform:translateX(-50%)}}
+  /* hero: scroll-driven fly into the laptop. The maths below is the DI
+     preview's, unchanged, because it was measured against this photograph. */
+  .hero{position:relative;height:300vh;background:var(--night);color:var(--on-night)}
+  .hero-stage{position:sticky;top:0;height:100vh;overflow:hidden;perspective:1600px;display:flex;align-items:center;justify-content:center}
+  .hero-photo{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 58%;display:block;transform-origin:51% 69%;will-change:transform,filter}
+  .hero-dark{position:absolute;inset:0;z-index:2;background:var(--night);opacity:0;pointer-events:none}
+  .hero .btn-ghost{color:#26251f;border-color:rgba(38,37,31,.25);background:rgba(255,255,255,.38);backdrop-filter:blur(8px)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.58)}
+  .hero-copy{position:absolute;top:14vh;left:0;right:0;z-index:6;text-align:center;will-change:transform,opacity}
+  .hero-copy h1{margin:0 auto;color:#26251f}
+  .hero-copy .lead{margin:18px auto 0;color:rgba(38,37,31,.78)}
+  .hero-cta{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+  .stage-laptop{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center}
+  .laptop{width:780px;transform-origin:50% 50%;will-change:transform,filter;transform:scale(.45)}
+  .laptop-screen{position:relative;aspect-ratio:1.66;border-radius:10px;background:#08090d;border:0;padding:3.2% 3.8%;overflow:hidden;box-shadow:0 30px 90px -30px rgba(0,0,0,.7)}
+  .laptop-screen::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--glass,1);background:linear-gradient(115deg,rgba(255,255,255,.085),rgba(255,255,255,0) 42%),radial-gradient(130% 130% at 50% 45%,transparent 55%,rgba(0,0,0,.32))}
+  .screen-ui{width:100%;height:100%;border-radius:9px;overflow:hidden;background:#0d0c0b}
+  .stage-copy2{position:absolute;left:6vw;top:50%;transform:translateY(-50%);z-index:6;width:30vw;opacity:0;will-change:opacity,transform}
+  .stage-copy2 .h2{color:#fff}
+  .stage-copy2 .body{color:rgba(244,242,236,.65);margin-top:14px;font-size:1.02rem}
+  .scroll-hint{position:absolute;bottom:26px;left:0;right:0;z-index:6;text-align:center;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(38,37,31,.55)}
+  .scroll-hint::after{content:"";display:block;width:1px;height:22px;margin:8px auto 0;background:linear-gradient(rgba(38,37,31,.55),transparent)}
 
-/* bento */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:40px}
-.cell{background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px;min-height:250px;position:relative;overflow:hidden;
-  opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
-.cell.inview{opacity:1;transform:none}
-.cell h3{font:500 21px/1.2 var(--display);letter-spacing:-.02em;margin:0 0 8px}
-.cell p{margin:0;color:var(--muted);font-size:14.5px}
-.c1{grid-column:span 4;padding-bottom:110px}.c2{grid-column:span 2;padding-bottom:120px}.c3{grid-column:span 2}.c4{grid-column:span 2;padding-bottom:150px}.c5{grid-column:span 2;padding-bottom:110px}
-.cell.dark{background:var(--navy);color:#fff;border-color:transparent}
-.cell.dark p{color:rgba(255,255,255,.62)}
-.cell.warm{background:var(--sig-2);border-color:transparent}
+  /* the screen: the cash position, drawn for the page */
+  .scr{height:100%;display:flex;flex-direction:column;padding:16px 18px;color:var(--on-night);font-size:12px}
+  .scr-top{display:flex;align-items:center;gap:10px;color:rgba(244,242,236,.55);font-size:11px}
+  .scr-top .pill{margin-left:auto;background:rgba(255,255,255,.08);padding:4px 9px;border-radius:999px;color:#fff}
+  .scr-num{margin-top:10px;display:flex;align-items:baseline;gap:12px}
+  .scr-num .v{font-size:30px;font-weight:500;letter-spacing:-.02em}
+  .scr-num .d{color:#e7b9be;font-size:12px}
+  .scr-chart{flex:1;margin-top:10px;position:relative;min-height:0}
+  .scr-chart svg{width:100%;height:100%;display:block}
+  .scr-rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+  .scr-row{background:rgba(255,255,255,.04);border:1px solid var(--line-night);border-radius:8px;padding:8px 10px}
+  .scr-row .k{font-size:10px;color:rgba(244,242,236,.5);letter-spacing:.06em;text-transform:uppercase}
+  .scr-row .n{font-size:14px;margin-top:3px;font-variant-numeric:tabular-nums}
 
-.flow{position:absolute;right:24px;bottom:22px;left:24px;display:flex;align-items:center;gap:10px}
-.step{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font:400 12px/1.3 var(--mono)}
-.step b{display:block;font-weight:500;font-family:var(--sans);font-size:13px;letter-spacing:-.01em;margin-bottom:3px}
-.step.ok{border-color:var(--sig);background:#fff}
-.step .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sig);margin-right:6px;animation:pulse 1.6s infinite}
-.arrow{color:var(--muted);font-size:14px}
+  .cred{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--on-night-2);font-size:.95rem}
+  .cred .b{color:#fff;font-weight:500}
 
-.cards{position:absolute;right:-30px;bottom:-30px;width:250px;height:170px}
-.card{position:absolute;inset:0;border-radius:10px;padding:16px;color:#fff;background:var(--navy);box-shadow:0 20px 40px -24px rgba(0,0,0,.6);
-  font:500 12px/1 var(--mono);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.card.two{background:var(--sig);transform:translate(-14px,-14px) rotate(-4deg)}
-.card.three{background:var(--ink);transform:translate(-28px,-28px) rotate(-8deg)}
-.cell:hover .card.two{transform:translate(-22px,-24px) rotate(-6deg)}
-.cell:hover .card.three{transform:translate(-44px,-48px) rotate(-12deg)}
-.card .n{position:absolute;left:16px;bottom:16px;letter-spacing:.12em}
-.card .l{position:absolute;right:16px;top:16px;opacity:.7}
+  .head .h2{margin-top:14px}
+  .head .lead{margin-top:14px}
+  .grid{display:grid;gap:22px;grid-template-columns:repeat(2,1fr);margin-top:52px}
+  .card .media{aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden;background:#e9e6de;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .card .h-card{margin-top:18px}
+  .card .body{margin-top:6px;font-size:.96rem}
+  .m-bars{display:flex;align-items:flex-end;gap:10px;height:60%;width:70%}
+  .m-bars i{flex:1;background:#cbc7bd;border-radius:3px 3px 0 0}
+  .m-bars i.hi{background:var(--accent)}
+  .m-scan{width:74%;display:flex;flex-direction:column;gap:10px}
+  .m-scan .l{height:10px;border-radius:6px;background:#d5d1c8}
+  .m-scan .l.a{width:100%}.m-scan .l.b{width:78%}.m-scan .l.c{width:88%;background:#e7c7cb}.m-scan .l.d{width:62%}
+  .m-guard{display:flex;gap:14px;align-items:center}
+  .m-guard .ring{width:78px;height:78px;border-radius:50%;border:8px solid #d5d1c8;border-top-color:var(--accent);transform:rotate(35deg)}
+  .m-guard .toggles{display:flex;flex-direction:column;gap:9px}
+  .m-guard .tg{width:44px;height:24px;border-radius:999px;background:#d5d1c8;position:relative}
+  .m-guard .tg.on{background:var(--accent)}
+  .m-guard .tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+  .m-guard .tg.on::after{left:23px}
+  .m-line{width:74%;height:64%;display:flex;align-items:flex-end}
+  .m-line svg{width:100%;height:100%}
 
-.ticks{margin-top:18px;display:grid;gap:8px}
-.tick{display:flex;align-items:center;gap:10px;font:400 12.5px/1 var(--mono);color:var(--muted)}
-.tick i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line);display:inline-block;position:relative;flex:none}
-.tick.done{color:var(--ink)}
-.tick.done i{background:var(--sig);border-color:var(--sig)}
-.tick.done i::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.tick .amt{margin-left:auto}
+  /* social proof: a marquee of made-up customers and one quote card */
+  .proof .kicker{text-align:center;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,242,236,.45);margin-bottom:26px}
+  .logos{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .logos-track{display:flex;align-items:center;gap:clamp(44px,6vw,84px);width:max-content;animation:marq 42s linear infinite;padding-block:6px}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.logos-track{animation:none}}
+  .lg{flex:none;color:rgba(255,255,255,.60);font-size:1.15rem;white-space:nowrap;font-weight:500}
+  .lg.sp{letter-spacing:.22em;font-size:1rem}
+  .quote{margin-top:clamp(40px,6vw,60px);border:1px solid var(--line-night);border-radius:20px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.5fr 1fr;gap:32px;align-items:end;background:var(--night-2)}
+  .quote .q{color:#fff;font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.3;letter-spacing:-.015em}
+  .quote .who .nm{color:#fff;font-weight:500}
+  .quote .who .rl{color:rgba(255,255,255,.62);font-size:.95rem;margin-top:2px}
 
-.bars{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:flex-end;gap:6px;height:90px}
-.bars i{flex:1;background:rgba(255,255,255,.16);border-radius:3px 3px 0 0;transform-origin:bottom;transform:scaleY(0);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.cell.inview .bars i{transform:none}
-.bars i.hi{background:var(--sig)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;margin-top:8px}
+  .acc{margin-top:26px;border-top:1px solid var(--line)}
+  .acc details{border-bottom:1px solid var(--line)}
+  .acc summary{list-style:none;cursor:pointer;padding:20px 2px;display:flex;gap:14px;align-items:flex-start}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc .idx{width:8px;height:8px;border-radius:3px;background:var(--line);margin-top:8px;flex:none;transition:background .2s}
+  .acc details[open] .idx{background:var(--accent)}
+  .acc .s-title{font-weight:500;font-size:1.0625rem;letter-spacing:-.01em;color:var(--ink-2);transition:color .2s}
+  .acc details[open] .s-title{color:var(--ink)}
+  .acc .s-body{padding:0 2px 22px 22px;color:var(--ink-2);font-size:.98rem}
+  .split-media{aspect-ratio:4/5;border-radius:var(--radius);background:radial-gradient(120% 90% at 20% 0%,#f3e6e7,#f1efe8 55%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:28px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;width:100%}
+  .tile .k{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+  .tile .v{font-size:1.5rem;font-weight:500;letter-spacing:-.02em;margin-top:6px}
+  .rows{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+  .row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--ink-2)}
+  .row .amt{font-variant-numeric:tabular-nums}
+  .meter{height:6px;border-radius:999px;background:rgba(21,19,15,.08);overflow:hidden;margin-top:7px}
+  .meter i{display:block;height:100%;background:var(--accent)}
 
-.fc{position:absolute;left:24px;right:24px;bottom:18px;height:90px;width:calc(100% - 48px)}
-.fc path{fill:none;stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.fc-was{stroke:rgba(20,17,15,.18);stroke-dasharray:4 4}
-.fc-now{stroke:var(--sig)}
-.fc text{font:500 10px var(--mono);fill:var(--ink)}
+  .band{text-align:center}
+  .band .big{font-weight:500;font-size:clamp(2rem,3.8vw,3rem);letter-spacing:-.03em;line-height:1.06;color:#fff;margin:16px auto 0}
+  .band .lead{margin:20px auto 0}
+  .band .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-night);border:1px solid var(--line-night);border-radius:16px;overflow:hidden;margin-top:48px}
+  .band .cell{background:var(--night);padding:26px 22px}
+  .band .cell .n{color:#e7b9be;font-weight:500;font-size:.85rem;letter-spacing:.06em}
+  .band .cell .t{margin-top:8px;font-weight:500;letter-spacing:-.01em}
+  .band .cell .d{margin-top:6px;font-size:.9rem;color:var(--on-night-2)}
 
-/* numbers, quote */
-.numbers{margin-top:96px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;border-top:1px solid var(--line);padding-top:36px}
-.num .v{font:500 60px/1 var(--display);letter-spacing:-.04em}
-.num .v small{font-size:24px;color:var(--sig);margin-left:4px}
-.num .k{margin-top:10px;color:var(--muted);font-size:14px}
-.quote{margin-top:96px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end}
-.quote blockquote{margin:0;font:500 clamp(26px,3.2vw,40px)/1.12 var(--display);letter-spacing:-.02em}
-.quote blockquote span{color:var(--sig)}
-.quote .who{font:400 13px/1.5 var(--mono);color:var(--muted)}
-.quote .who b{display:block;color:var(--ink);font-family:var(--sans);font-weight:500;font-size:15px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .feat .ic{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);border:1px solid #e7c7cb;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .feat .h-card{margin-top:16px}
+  .feat .body{margin-top:6px;font-size:.96rem}
 
-/* dark close + footer */
-.dark-sec{margin-top:110px;background:var(--ink);color:#fff;padding:110px 0 0;position:relative;overflow:hidden}
-.dark-sec h2{font:500 clamp(40px,5.8vw,78px)/.98 var(--display);letter-spacing:-.03em;margin:0}
-.dark-sec h2 span{color:var(--sig)}
-.dark-sec p{color:rgba(255,255,255,.62);font-size:18px;margin:22px 0 0}
-.dark-sec .cta{margin-top:30px;display:flex;gap:12px}
-.dark-sec .btn{background:#fff;color:var(--ink)}
-.dark-sec .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
-.foot{margin-top:90px;border-top:1px solid rgba(255,255,255,.1);padding:34px 0 0}
-.foot .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;font-size:13.5px;color:rgba(255,255,255,.62)}
-.foot .cols b{display:block;color:#fff;font-weight:500;margin-bottom:10px}
-.foot .cols a{display:block;margin:6px 0}
-.word{font:500 clamp(120px,23vw,320px)/.85 var(--display);letter-spacing:-.05em;color:#fff;margin:50px 0 6px;white-space:nowrap}
-.word i{display:inline-block;width:.18em;height:.18em;background:var(--sig);transform:rotate(45deg);margin-left:.08em;vertical-align:.05em}
-.legal{font:400 11.5px/1.6 var(--mono);color:rgba(255,255,255,.4);padding:16px 0 26px;display:flex;justify-content:space-between}
+  .close-in{text-align:center}
+  .close-in .h2-lg{color:#fff}
+  .close-in .cta{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}
 
-@media (max-width:900px){
-  .nav nav{display:none}
-  .bento{grid-template-columns:1fr 1fr}.c1,.c2,.c3,.c4,.c5{grid-column:span 2}
-  .numbers{grid-template-columns:1fr 1fr}
-  .quote{grid-template-columns:1fr}
-  .foot .cols{grid-template-columns:1fr 1fr}
-  .strip .live{margin-left:0}
-}
-@media (prefers-reduced-motion:reduce){
-  .line{stroke-dashoffset:0;animation:none}.fill{opacity:1}.mark{opacity:1;transform:none}
-  .cell{opacity:1;transform:none}.track{animation:none}.bars i{transform:none}
-}
+  footer{background:var(--night-2);color:var(--on-night-2);border-top:1px solid var(--line-night)}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-block:64px}
+  .foot h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,242,236,.45);font-weight:500;margin:0 0 14px}
+  .foot a{display:block;font-size:.94rem;color:rgba(244,242,236,.66);padding:5px 0}
+  .foot a:hover{color:#fff}
+  .foot .tag{margin-top:14px;font-size:.9rem;color:rgba(244,242,236,.5)}
+  .foot-btm{border-top:1px solid var(--line-night);padding-block:22px;display:flex;justify-content:space-between;font-size:.85rem;color:rgba(244,242,236,.45);flex-wrap:wrap;gap:10px}
+
+  @media (max-width:820px){
+    .nav-links{display:none}
+    .grid{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr}
+    .split-media{aspect-ratio:16/10;order:-1}
+    .band .row3{grid-template-columns:1fr}
+    .three{grid-template-columns:1fr}
+    .quote{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr;gap:28px}
+    .scr-rows{grid-template-columns:1fr 1fr}
+  }
 </style>
 </head>
 <body>
 
-<div class="nav onfilm" id="nav">
-  <a class="logo" href="#"><i></i>Tallis</a>
-  <nav><a href="#product">Product</a><a href="#why">Why Tallis</a><a href="#numbers">Customers</a><a href="#">Pricing</a></nav>
-  <a class="btn" href="#">Book a walkthrough</a>
-</div>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#"><span class="mark"></span>Tallis</a>
+    <nav class="nav-links">
+      <a href="#platform">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-right">
+      <a class="login" href="#">Log in</a>
+      <a class="btn btn-primary" href="#">Book a walkthrough</a>
+    </div>
+  </div>
+</header>
 
-<section class="hero" id="top">
-  <!-- The film goes here when it lands:
-       <video class="film" src="film/tallis-hero.mp4" poster="film/tallis-hero.jpg" autoplay muted loop playsinline></video>
-       Until then the canvas below runs: the company's money streams converging into one line. -->
-  <canvas class="streams" id="streams"></canvas>
-  <div class="wash"></div>
-  <div class="scrim"></div>
-  <div class="wrap">
-    <p class="eyebrow">Treasury for finance teams</p>
-    <h1>Every euro, accounted for <span>before lunch.</span></h1>
-    <p>Tallis pulls your bank accounts, cards and invoices into one cash position that updates itself, and gets the approvals done while you drink your coffee.</p>
-    <div class="cta"><a class="btn sig" href="#">Book a walkthrough</a><a class="btn ghost" href="#product">See the product</a><span class="tiny">No card. Live in a week.</span></div>
+<section class="hero" id="hero">
+  <div class="hero-stage">
+    <div class="hero-photo"><img src="assets/office.png" alt="A laptop on a desk in a bright open-plan office"></div>
+    <div class="hero-dark" id="heroDark"></div>
+
+    <div class="hero-copy" id="heroCopy">
+      <div class="wrap">
+        <h1 class="display">Every euro, accounted for before lunch.</h1>
+        <p class="lead">Tallis pulls your bank accounts, cards and invoices into one cash position that updates itself, and gets the approvals done while you drink your coffee.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#">Book a walkthrough <span class="ar">→</span></a>
+          <a class="btn btn-ghost" href="#platform">See the product</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-laptop">
+      <div class="laptop" id="laptop">
+        <div class="laptop-screen">
+          <div class="screen-ui">
+            <div class="scr">
+              <div class="scr-top"><span>Tallis</span><span>·</span><span>Cash position</span><span class="pill">updated 07:12</span></div>
+              <div class="scr-num"><span class="v">€4,218,640</span><span class="d">+ €212k this week</span></div>
+              <div class="scr-chart">
+                <svg viewBox="0 0 600 160" preserveAspectRatio="none">
+                  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a1f2b" stop-opacity=".45"/><stop offset="1" stop-color="#7a1f2b" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M0 120 C 60 112, 90 104, 130 98 S 200 108, 240 84 S 300 40, 340 56 S 400 104, 440 78 S 520 28, 600 34 L600 160 L0 160 Z" fill="url(#g)"/>
+                  <path d="M0 120 C 60 112, 90 104, 130 98 S 200 108, 240 84 S 300 40, 340 56 S 400 104, 440 78 S 520 28, 600 34" fill="none" stroke="#e7b9be" stroke-width="2"/>
+                  <circle cx="340" cy="56" r="4" fill="#fff"/><circle cx="600" cy="34" r="4" fill="#fff"/>
+                </svg>
+              </div>
+              <div class="scr-rows">
+                <div class="scr-row"><div class="k">Payroll</div><div class="n">cleared, 2 Sep</div></div>
+                <div class="scr-row"><div class="k">Approvals</div><div class="n">11 done · 1 waiting</div></div>
+                <div class="scr-row"><div class="k">Unmatched</div><div class="n">3 lines · €212</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-copy2" id="stageCopy2">
+      <h2 class="h2">One line. Every account. Updated before you ask.</h2>
+      <p class="body">Twelve bank accounts, three card programmes and the invoice ledger, drawn as one position, with payroll and the big invoices marked on it as they land.</p>
+    </div>
+
+    <div class="scroll-hint" id="scrollHint">Scroll</div>
   </div>
 </section>
 
-<div class="strip" data-watch>
-  <div class="wrap">
-    <span class="k">Cash position, today</span>
-    <span class="big" data-count="4218640" data-prefix="€">€4,218,640</span>
-    <span class="delta">+ €212k this week</span>
-    <span class="live">updated 07:12, twelve accounts</span>
-  </div>
-</div>
-
-<section class="section" id="product"><div class="wrap">
-  <p class="eyebrow">The cash position</p>
-  <h2>One line, every account, <span>updated before you ask.</span></h2>
-  <p class="lede">Twelve bank accounts, three card programmes and the invoice ledger, drawn as one position. Payroll, tax and the big invoices are marked on it as they land.</p>
-  <div class="surface" data-watch>
-    <div class="top">
-      <span class="k">Last thirty days</span>
-      <span class="right"><span class="chip on">30 days</span><span class="chip">Quarter</span><span class="chip">Year</span></span>
-    </div>
-    <div class="chart">
-      <svg viewBox="0 0 1100 240" preserveAspectRatio="none">
-        <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8562A" stop-opacity=".16"/><stop offset="1" stop-color="#E8562A" stop-opacity="0"/></linearGradient></defs>
-        <g class="grid"><line x1="0" y1="60" x2="1100" y2="60"/><line x1="0" y1="120" x2="1100" y2="120"/><line x1="0" y1="180" x2="1100" y2="180"/></g>
-        <path class="fill" d="M0 170 C 90 160, 140 150, 220 140 S 340 150, 420 120 S 520 60, 600 84 S 720 150, 800 110 S 940 40, 1100 52 L1100 240 L0 240 Z"/>
-        <path class="line" d="M0 170 C 90 160, 140 150, 220 140 S 340 150, 420 120 S 520 60, 600 84 S 720 150, 800 110 S 940 40, 1100 52"/>
-        <g transform="translate(600,84)"><g class="mark a"><circle r="5" fill="#E8562A"/><rect x="12" y="-40" width="172" height="34" rx="4"/><text x="22" y="-25">Payroll cleared, 2 Sep</text><text class="sub" x="22" y="-11">€386,200 · matched in 4s</text></g></g>
-        <g transform="translate(1100,52)"><g class="mark b"><circle r="5" fill="#E8562A"/><rect x="-190" y="-44" width="178" height="34" rx="4"/><text x="-180" y="-29">Q3 invoices landed</text><text class="sub" x="-180" y="-15">€1.9m · 11 approved by you</text></g></g>
-        <g class="axis"><text x="0" y="232">1 Aug</text><text x="540" y="232">16 Aug</text><text x="1050" y="232">Today</text></g>
-      </svg>
-    </div>
-  </div>
-</div></section>
-
-<div class="marquee"><div class="track">
-  <span>Finance teams at <b>Marlow Foods</b></span><span><b>Ashgrove Clinics</b></span><span><b>Corrib Logistics</b></span><span><b>Fennel &amp; Co</b></span><span><b>Lough Energy</b></span><span><b>Harbour Cover</b></span><span><b>Ridgeline Studios</b></span>
-  <span>Finance teams at <b>Marlow Foods</b></span><span><b>Ashgrove Clinics</b></span><span><b>Corrib Logistics</b></span><span><b>Fennel &amp; Co</b></span><span><b>Lough Energy</b></span><span><b>Harbour Cover</b></span><span><b>Ridgeline Studios</b></span>
-</div></div>
-
-<section class="section" id="why"><div class="wrap">
-  <p class="eyebrow">What it does</p>
-  <h2>The month-end that <span>closes itself.</span></h2>
-  <p class="lede">Five jobs a finance team does by hand every week, done by Tallis before anyone opens a spreadsheet.</p>
-  <div class="bento">
-    <div class="cell c1" data-watch>
-      <h3>Approvals, in the flow of work</h3>
-      <p>An invoice arrives, Tallis reads it, checks it against the PO, and puts one question in front of the right person.</p>
-      <div class="flow">
-        <div class="step ok"><b>Invoice read</b>€12,400 · Corrib Logistics</div><span class="arrow">→</span>
-        <div class="step ok"><b>Matched to PO</b>PO-2291 · exact</div><span class="arrow">→</span>
-        <div class="step"><b><span class="dot"></span>Waiting on Niamh</b>one tap, in Slack</div>
-      </div>
-    </div>
-    <div class="cell c2 dark" data-watch>
-      <h3>Spend, by team, live</h3>
-      <p>Every card, every subscription, every claim, as it happens.</p>
-      <div class="bars"><i style="height:40%"></i><i style="height:55%"></i><i style="height:38%"></i><i class="hi" style="height:88%"></i><i style="height:60%"></i><i style="height:47%"></i><i style="height:70%"></i><i style="height:52%"></i></div>
-    </div>
-    <div class="cell c3" data-watch>
-      <h3>Reconciled overnight</h3>
-      <p>Bank lines matched to invoices while you sleep. You see the three it could not.</p>
-      <div class="ticks">
-        <div class="tick done"><i></i>Stripe payout<span class="amt">€48,210</span></div>
-        <div class="tick done"><i></i>Payroll, September<span class="amt">€386,200</span></div>
-        <div class="tick done"><i></i>Lough Energy, inv 1180<span class="amt">€9,940</span></div>
-        <div class="tick"><i></i>Unmatched: card 4471<span class="amt">€212</span></div>
-      </div>
-    </div>
-    <div class="cell c4 warm" data-watch>
-      <h3>Cards that follow the policy</h3>
-      <p>Limits, merchants and receipts set by rule, so nobody has to ask.</p>
-      <div class="cards"><div class="card three"><span class="l">TEAM</span><span class="n">•••• 2290</span></div><div class="card two"><span class="l">TRAVEL</span><span class="n">•••• 8814</span></div><div class="card"><span class="l">MARKETING</span><span class="n">•••• 4471</span></div></div>
-    </div>
-    <div class="cell c5" data-watch>
-      <h3>A forecast you can argue with</h3>
-      <p>Thirteen weeks out, rebuilt every morning from what actually happened. Change one line and watch the rest move.</p>
-      <svg class="fc" viewBox="0 0 300 90" preserveAspectRatio="none"><path class="fc-was" d="M0 60 L40 58 L80 62 L120 50 L160 54 L200 40 L240 44 L300 30"/><path class="fc-now" d="M0 60 L40 58 L80 62 L120 50 L160 46 L200 26 L240 30 L300 12"/><circle cx="160" cy="46" r="4" fill="#E8562A"/><text x="168" y="40">one line changed</text></svg>
-    </div>
-  </div>
-</div></section>
-
-<section class="wrap" id="numbers">
-  <div class="numbers">
-    <div class="num" data-watch><div class="v"><span data-count="11">11</span><small>days</small></div><div class="k">from signing to a live cash position, on average</div></div>
-    <div class="num" data-watch><div class="v"><span data-count="94">94</span><small>%</small></div><div class="k">of bank lines matched without a person touching them</div></div>
-    <div class="num" data-watch><div class="v"><span data-count="6">6</span><small>hrs</small></div><div class="k">a week given back to a finance team of three</div></div>
-    <div class="num" data-watch><div class="v"><span data-count="2">2</span><small>days</small></div><div class="k">to close the month, down from nine</div></div>
-  </div>
-  <div class="quote">
-    <blockquote>&ldquo;I used to find out where we stood on the 9th. Now I know <span>before the coffee is cold.</span>&rdquo;</blockquote>
-    <div class="who"><b>Head of Finance</b>Ashgrove Clinics, 240 staff, four sites</div>
+<section class="on-night" style="padding-block:56px">
+  <div class="wrap col">
+    <div class="cred">Built by <span class="b">finance people</span> who closed the month by hand for fifteen years.</div>
   </div>
 </section>
 
-<section class="dark-sec"><div class="wrap">
-  <p class="eyebrow">Get started</p>
-  <h2>See your cash position <span>this week.</span></h2>
-  <p>Connect the bank, connect the ledger, and Tallis does the rest. Forty minutes with our team and you are live.</p>
-  <div class="cta"><a class="btn" href="#">Book a walkthrough</a><a class="btn ghost" href="#">Talk to sales</a></div>
-  <div class="foot">
-    <div class="cols">
-      <div><b>Product</b><a href="#">Cash position</a><a href="#">Approvals</a><a href="#">Cards</a><a href="#">Forecast</a></div>
-      <div><b>Company</b><a href="#">About</a><a href="#">Careers</a><a href="#">Press</a></div>
-      <div><b>Resources</b><a href="#">Guides</a><a href="#">Changelog</a><a href="#">Status</a></div>
-      <div><b>Legal</b><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a></div>
+<section id="platform" class="on-cream sec-pad" style="padding-top:clamp(28px,4vw,52px)">
+  <div class="wrap col">
+    <div class="head divider-top">
+      <div class="eyebrow">The product</div>
+      <h2 class="h2">The month-end that closes itself.</h2>
+      <p class="lead">Most finance teams find out where they stand a week after the month ends. Tallis puts it in front of you every morning, and does the matching and the chasing while you sleep.</p>
     </div>
-    <div class="word">Tallis<i></i></div>
-    <div class="legal"><span>© 2026 Tallis. A made-up company, drawn for runwithfoxes.com.</span><span>Dublin · London</span></div>
+    <div class="grid">
+      <article class="card">
+        <div class="media"><div class="m-line"><svg viewBox="0 0 200 90" preserveAspectRatio="none"><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16" fill="none" stroke="#7a1f2b" stroke-width="3" stroke-linecap="round"/><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16 L200,90 L0,90 Z" fill="rgba(122,31,43,.08)"/></svg></div></div>
+        <h3 class="h-card">One cash position</h3>
+        <p class="body">Every bank account, card programme and the invoice ledger, drawn as one line that updates itself. Payroll, tax and the big invoices are marked on it as they land.</p>
+      </article>
+      <article class="card">
+        <div class="media"><div class="m-scan"><span class="l a"></span><span class="l b"></span><span class="l c"></span><span class="l d"></span></div></div>
+        <h3 class="h-card">Reconciled overnight</h3>
+        <p class="body">Bank lines matched to invoices while you sleep. In the morning you see the three it could not match, and nothing else.</p>
+      </article>
+      <article class="card">
+        <div class="media"><div class="m-guard"><span class="ring"></span><span class="toggles"><span class="tg on"></span><span class="tg"></span><span class="tg on"></span></span></div></div>
+        <h3 class="h-card">Approvals in the flow of work</h3>
+        <p class="body">An invoice arrives, Tallis reads it, checks it against the order, and puts one question in front of the right person, in the tool they already use.</p>
+      </article>
+      <article class="card">
+        <div class="media"><div class="m-bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:52%"></i><i class="hi" style="height:88%"></i><i style="height:60%"></i></div></div>
+        <h3 class="h-card">A forecast you can argue with</h3>
+        <p class="body">Thirteen weeks out, rebuilt every morning from what actually happened. Change one line and watch the rest move.</p>
+      </article>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="on-night sec-pad proof" id="customers">
+  <div class="wrap col">
+    <div class="kicker">Finance teams at</div>
+    <div class="logos">
+      <div class="logos-track">
+        <span class="lg sp">MARLOW FOODS</span><span class="lg">Ashgrove Clinics</span><span class="lg">Corrib Logistics</span><span class="lg sp">FENNEL &amp; CO</span><span class="lg">Lough Energy</span><span class="lg">Harbour Cover</span><span class="lg sp">RIDGELINE</span>
+        <span class="lg sp">MARLOW FOODS</span><span class="lg">Ashgrove Clinics</span><span class="lg">Corrib Logistics</span><span class="lg sp">FENNEL &amp; CO</span><span class="lg">Lough Energy</span><span class="lg">Harbour Cover</span><span class="lg sp">RIDGELINE</span>
+      </div>
+    </div>
+    <div class="quote">
+      <p class="q">&ldquo;I used to find out where we stood on the 9th of the month. Now I know before the coffee is cold, and the three things that need me are the only three things on the screen.&rdquo;</p>
+      <div class="who"><div class="nm">Head of Finance</div><div class="rl">Ashgrove Clinics, 240 staff, four sites</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="on-cream sec-pad" style="padding-top:0">
+  <div class="wrap col">
+    <div class="split">
+      <div>
+        <div class="eyebrow">How it works</div>
+        <h2 class="h2" style="margin-top:14px">From a spreadsheet to a position, in a week.</h2>
+        <div class="acc">
+          <details open>
+            <summary><span class="idx"></span><span class="s-title">Connect the bank, read-only</span></summary>
+            <div class="s-body">Link your accounts, cards and ledger with read-only access. Nothing changes in your systems. Tallis starts reading the same day.</div>
+          </details>
+          <details>
+            <summary><span class="idx"></span><span class="s-title">Let it match for a week</span></summary>
+            <div class="s-body">Tallis learns your suppliers, your payroll pattern and your card habits from the last ninety days, and starts matching lines overnight. You check its work for the first week.</div>
+          </details>
+          <details>
+            <summary><span class="idx"></span><span class="s-title">Read one screen every morning</span></summary>
+            <div class="s-body">The cash position, what landed overnight, the lines it could not match, and the approvals waiting on a person. That is the whole morning.</div>
+          </details>
+        </div>
+      </div>
+      <div class="split-media">
+        <div class="panel">
+          <div class="tile">
+            <div class="k">Matched overnight</div>
+            <div class="v">1,184 of 1,187 lines</div>
+            <div class="rows">
+              <div class="row"><span>Bank lines</span><span class="amt">1,187</span></div>
+              <div class="meter"><i style="width:100%"></i></div>
+              <div class="row"><span>Matched without a person</span><span class="amt">1,184</span></div>
+              <div class="meter"><i style="width:99.7%"></i></div>
+              <div class="row"><span>Waiting on you</span><span class="amt">3</span></div>
+              <div class="meter"><i style="width:2%"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="on-night sec-pad">
+  <div class="wrap col band">
+    <div class="eyebrow" style="color:#e7b9be">The price</div>
+    <p class="big">One price a month. No setup fee, no seats, no surprises.</p>
+    <p class="lead">Priced on the number of accounts we connect, not on how many people look at the screen. A finance team of three pays the same as a finance team of thirty.</p>
+    <div class="row3">
+      <div class="cell"><div class="n">01</div><div class="t">Up to five accounts</div><div class="d">For a company with one bank and a card programme.</div></div>
+      <div class="cell"><div class="n">02</div><div class="t">Up to twenty accounts</div><div class="d">Several entities, several banks, one position.</div></div>
+      <div class="cell"><div class="n">03</div><div class="t">More than twenty</div><div class="d">Talk to us. We have connected a hundred and forty.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="on-cream sec-pad">
+  <div class="wrap col">
+    <div class="head divider-top">
+      <div class="eyebrow">Why Tallis</div>
+      <h2 class="h2">Built for the finance desk, in the language of the finance desk.</h2>
+    </div>
+    <div class="three">
+      <div class="feat">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6z"/></svg></div>
+        <h3 class="h-card">Read-only and safe</h3>
+        <p class="body">We connect with least-privilege, read-only access. Nothing moves money. Your systems stay exactly as they are.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3 class="h-card">Every figure has a source</h3>
+        <p class="body">Click any number on the screen and see the bank line, the invoice or the card transaction it came from.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 4-6"/></svg></div>
+        <h3 class="h-card">Euros, not metrics</h3>
+        <p class="body">Every screen is written for the person who signs off the month, not the person who built the integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-night sec-pad">
+  <div class="wrap col close-in">
+    <div class="eyebrow" style="color:#e7b9be">Get started</div>
+    <h2 class="h2-lg" style="margin-top:14px">See your cash position this week.</h2>
+    <p class="lead" style="margin:16px auto 0">Connect the bank, connect the ledger, and Tallis does the rest. Forty minutes with our team and you are live.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#">Book a walkthrough <span class="ar">→</span></a>
+      <a class="btn btn-ghost" href="#">Talk to sales</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap col foot">
+    <div>
+      <a class="brand" href="#"><span class="mark"></span>Tallis</a>
+      <p class="tag">Treasury for finance teams. One cash position, reconciled overnight, approvals in the flow of work.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="#">Cash position</a><a href="#">Reconciliation</a><a href="#">Approvals</a><a href="#">Forecast</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#">About</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a>
+    </div>
+  </div>
+  <div class="wrap col foot-btm">
+    <span>© 2026 Tallis. A made-up company, drawn for runwithfoxes.com.</span>
+    <span>Dublin · London</span>
+  </div>
+</footer>
 
 <script>
-(function(){
-  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* the nav goes frosted-dark over the film and frosted-paper below it */
-  var nav = document.getElementById('nav'), hero = document.getElementById('top');
-  var navio = new IntersectionObserver(function(es){ es.forEach(function(e){ nav.classList.toggle('onfilm', e.isIntersecting && e.intersectionRatio > 0.05); }); }, { threshold: [0, 0.05, 0.2] });
-  navio.observe(hero);
-
-  /* the streams: many money lines converging into one, drawn for the page */
-  var cv = document.getElementById('streams');
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d'), W, H, dots = [], N = 9;
-    var resize = function(){ W = cv.width = cv.clientWidth * devicePixelRatio; H = cv.height = cv.clientHeight * devicePixelRatio; };
-    resize(); addEventListener('resize', resize);
-    for (var i = 0; i < 180; i++) dots.push({ s: Math.floor(Math.random()*N), p: Math.random(), v: 0.0012 + Math.random()*0.0016, r: (0.8 + Math.random()*1.4) });
-    var path = function(s, p){
-      var y0 = H * (0.02 + 0.86 * (s / (N - 1)));
-      var yEnd = H * 0.42, xEnd = W * 0.86;
-      var x = p * xEnd;
-      var e = p < 0.55 ? 0 : (p - 0.55) / 0.45; e = e*e*(3-2*e);
-      var y = y0 + (yEnd - y0) * e + Math.sin(p * 9 + s) * H * 0.012 * (1 - e);
-      return [x, y];
-    };
-    var draw = function(){
-      ctx.clearRect(0,0,W,H);
-      ctx.lineWidth = 1 * devicePixelRatio;
-      for (var s = 0; s < N; s++) {
-        ctx.beginPath();
-        for (var p = 0; p <= 1.0001; p += 0.02) { var q = path(s, p); if (p === 0) ctx.moveTo(q[0], q[1]); else ctx.lineTo(q[0], q[1]); }
-        ctx.strokeStyle = 'rgba(255,255,255,0.13)'; ctx.stroke();
-      }
-      ctx.beginPath(); ctx.moveTo(W*0.86, H*0.42); ctx.lineTo(W*1.02, H*0.42);
-      ctx.lineWidth = 3 * devicePixelRatio; ctx.strokeStyle = 'rgba(232,86,42,0.9)'; ctx.stroke();
-      dots.forEach(function(d){
-        d.p += reduced ? 0 : d.v; if (d.p > 1.05) { d.p = -0.02; d.s = Math.floor(Math.random()*N); }
-        var q = d.p <= 1 ? path(d.s, Math.max(0, d.p)) : [W*0.86 + (d.p-1)*W*3.2, H*0.42];
-        ctx.beginPath(); ctx.arc(q[0], q[1], d.r * devicePixelRatio, 0, 6.283);
-        ctx.fillStyle = d.p > 0.9 ? 'rgba(255,217,204,0.95)' : 'rgba(255,255,255,0.7)'; ctx.fill();
-      });
-      if (!reduced) requestAnimationFrame(draw);
-    };
-    draw();
+  const nav=document.getElementById('nav');
+  const hero=document.getElementById('hero');
+  const copy=document.getElementById('heroCopy');
+  const lap=document.getElementById('laptop');
+  const hint=document.getElementById('scrollHint');
+  const scr=lap?lap.querySelector('.laptop-screen'):null;
+  const photo=document.querySelector('.hero-photo img');
+  const dark=document.getElementById('heroDark');
+  const copy2=document.getElementById('stageCopy2');
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  let ticking=false;
+  function update(){
+    ticking=false;
+    nav.classList.toggle('scrolled',window.scrollY>24);
+    if(!hero||!lap) return;
+    const total=hero.offsetHeight-window.innerHeight;
+    const p=clamp(-hero.getBoundingClientRect().top/total,0,1);
+    const cp=clamp(p/0.32,0,1);
+    copy.style.opacity=String(1-cp);
+    copy.style.transform='translateY('+(-cp*72)+'px)';
+    copy.style.pointerEvents=cp>0.85?'none':'';
+    if(hint) hint.style.opacity=String(clamp(1-p/0.14,0,1));
+    const vh=window.innerHeight,vw=window.innerWidth;
+    const smooth=x=>x*x*(3-2*x);
+    // where the pictured laptop screen sits at rest, for any viewport (image 3024x1296, cover, pos 50% 58%)
+    const IMGW=3024,IMGH=1296,SCX=0.5111,SCY=0.7106,SWF=0.1637;
+    const s0=Math.max(vw/IMGW,vh/IMGH);
+    const rx=SCX*IMGW*s0-(IMGW*s0-vw)*0.5;
+    const ry=SCY*IMGH*s0-(IMGH*s0-vh)*0.58;
+    const rw=SWF*IMGW*s0;
+    const ps=1+Math.pow(clamp(p/0.6,0,1),1.5)*3.4;
+    const kk=clamp(p/0.5,0,1);
+    const tyP=-(ry-vh/2)*kk;
+    if(photo){photo.style.transformOrigin=rx+'px '+ry+'px';
+      photo.style.transform='translateY('+tyP+'px) scale('+ps+')';
+      const bl=clamp((p-0.5)/0.2,0,1)*8;
+      photo.style.filter=bl>0.05?'blur('+bl+'px)':'none';}
+    if(dark) dark.style.opacity=String(clamp((p-0.52)/0.2,0,1));
+    const tX=rx,tY=ry+tyP,tS=(rw*ps*1.05)/780;
+    const sMax=Math.min(vw*0.92,1250)/780;
+    const bF=smooth(clamp((p-0.45)/0.2,0,1));
+    let cx=tX+(vw/2-tX)*bF, cy=tY+(vh/2-tY)*bF, s=Math.min(tS+(sMax-tS)*bF,sMax);
+    const e=smooth(clamp((p-0.66)/0.20,0,1));
+    cx+= (vw*0.70-cx)*e; cy+=(vh/2-cy)*e; s+=(sMax*0.62-s)*e;
+    lap.style.transform='translate('+(cx-vw/2)+'px,'+(cy-vh/2)+'px) scale('+s+')';
+    const g=1-smooth(clamp(p/0.5,0,1));
+    lap.style.filter='brightness('+(1-0.22*g-0.28*e)+') contrast('+(1-0.10*g)+') saturate('+(1-0.12*g)+') blur('+(0.7*g).toFixed(2)+'px)';
+    if(scr) scr.style.setProperty('--glass',String(g));
+    if(copy2){const c2=clamp((p-0.72)/0.14,0,1);
+      copy2.style.opacity=String(c2);
+      copy2.style.transform='translateY(-50%) translateX('+((1-smooth(c2))*-26)+'px)';}
   }
-
-  var fmt = function(n){ return n.toLocaleString('en-IE'); };
-  var count = function(el){
-    if (el.getAttribute('data-done')) return;
-    el.setAttribute('data-done', '1');
-    var to = +el.getAttribute('data-count'), pre = el.getAttribute('data-prefix') || '';
-    if (reduced) { el.textContent = pre + fmt(to); return; }
-    var t0 = null, dur = 1600;
-    var tick = function(t){ if (t0 === null) t0 = t;
-      var p = Math.max(0, Math.min(1, (t - t0) / dur)); p = 1 - Math.pow(1 - p, 3);
-      el.textContent = pre + fmt(Math.round(to * p)); if (p < 1) requestAnimationFrame(tick); else el.textContent = pre + fmt(to); };
-    requestAnimationFrame(tick);
-  };
-  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (!e.isIntersecting) return;
-    e.target.classList.add('inview');
-    e.target.querySelectorAll('[data-count]').forEach(count);
-    io.unobserve(e.target); }); }, { threshold: 0.35 });
-  document.querySelectorAll('[data-watch]').forEach(function(el){ io.observe(el); });
-})();
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+  update();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',update);
 </script>
 </body>
 </html>

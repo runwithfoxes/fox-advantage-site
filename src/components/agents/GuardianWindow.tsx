@@ -13,31 +13,31 @@ import { useEffect, useRef, useState } from "react";
 import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
 import "@/app/for/_components/library/brand-guardian.css";
 
-const AD = "/agents/guardian/tessera-970x250.png";
+const AD = "/agents/guardian/tallis-970x250.png";
 
 const ANNS: { atPct: number; el: React.ReactNode }[] = [
   {
-    atPct: (190 / 970) * 100,
+    atPct: (200 / 970) * 100,
     el: (
       <g key="symbol">
-        <rect className="ppbg-box ppbg-ok" x={16} y={16} width={48} height={48} />
-        <line className="ppbg-tick" x1={40} y1={64} x2={40} y2={72} />
-        <text className="ppbg-lbl" x={48} y={80}>
-          symbol, 48px
+        <rect className="ppbg-box ppbg-ok" x={18} y={18} width={30} height={30} />
+        <line className="ppbg-tick" x1={33} y1={48} x2={33} y2={62} />
+        <text className="ppbg-lbl" x={40} y={70}>
+          mark, 30px
         </text>
-        <text className="ppbg-lbl ppbg-sm" x={48} y={93}>
-          book floor: 44px
+        <text className="ppbg-lbl ppbg-sm" x={40} y={83}>
+          book floor: 26px
         </text>
       </g>
     ),
   },
   {
-    atPct: (420 / 970) * 100,
+    atPct: (470 / 970) * 100,
     el: (
       <g key="bg">
-        <rect className="ppbg-box" x={250} y={22} width={28} height={28} fill="#F1EEE6" />
+        <rect className="ppbg-box" x={250} y={22} width={28} height={28} fill="#F1EFE8" />
         <text className="ppbg-lbl" x={288} y={36}>
-          background #F1EEE6
+          background #F1EFE8
         </text>
         <text className="ppbg-lbl ppbg-sm" x={288} y={51}>
           on palette, exact
@@ -49,13 +49,13 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     atPct: (430 / 970) * 100,
     el: (
       <g key="headline">
-        <rect className="ppbg-box" x={16} y={98} width={262} height={112} />
-        <line className="ppbg-tick" x1={278} y1={150} x2={291} y2={150} />
-        <text className="ppbg-lbl" x={297} y={146}>
+        <rect className="ppbg-box" x={20} y={66} width={318} height={134} />
+        <line className="ppbg-tick" x1={338} y1={132} x2={351} y2={132} />
+        <text className="ppbg-lbl" x={357} y={128}>
           headline, measured
         </text>
-        <text className="ppbg-lbl ppbg-sm" x={297} y={161}>
-          262 x 112px of ink
+        <text className="ppbg-lbl ppbg-sm" x={357} y={143}>
+          318 x 134px of ink
         </text>
       </g>
     ),
@@ -64,13 +64,13 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     atPct: (820 / 970) * 100,
     el: (
       <g key="photo">
-        <rect className="ppbg-box ppbg-skip" x={478} y={2} width={490} height={246} />
-        <rect x={492} y={12} width={286} height={44} fill="#FAFAF8" opacity={0.94} />
-        <text className="ppbg-lbl" x={504} y={32}>
-          artwork, 51% of the frame
+        <rect className="ppbg-box ppbg-skip" x={502} y={2} width={466} height={246} />
+        <rect x={516} y={12} width={300} height={44} fill="#FAFAF8" opacity={0.94} />
+        <text className="ppbg-lbl" x={528} y={32}>
+          photograph, 48% of the frame, black and white
         </text>
-        <text className="ppbg-lbl ppbg-sm" x={504} y={47}>
-          book floor: 45%
+        <text className="ppbg-lbl ppbg-sm" x={528} y={47}>
+          book: always black and white, floor 45%
         </text>
       </g>
     ),
@@ -168,7 +168,7 @@ export default function GuardianWindow() {
                 onPointerCancel={() => (dragging.current = false)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="ppbg-plate" src={AD} alt="A Tessera display ad, 970 by 250. Tessera is a made-up company." />
+                <img className="ppbg-plate" src={AD} alt="A Tallis display ad, 970 by 250. Tallis is a made-up company." />
                 <div className="ppbg-layer">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={AD} alt="" />
@@ -196,7 +196,7 @@ export default function GuardianWindow() {
                   <span
                     className={`ppbg-handle${touched ? "" : " ppbg-pulse"}`}
                   >
-                    ◂ ▸
+                    &lsaquo; &rsaquo;
                   </span>
                 </div>
               </div>
@@ -223,11 +223,11 @@ export default function GuardianWindow() {
         </div>
       </ScaledWindow>
       <p className="ppbg-hint">
-        <span className="ppbg-slash">/illustrative.</span> Tessera is a made-up
-        travel technology company and this ad was drawn for this page. The
+        <span className="ppbg-slash">/illustrative.</span> Tallis is the made-up
+        finance company from the website above, and this ad is its ad. The
         guardian measures the file against the brand book: symbol size,
-        background colour, headline size, how much of the frame the artwork
-        takes. It works out what kind of asset it is looking at, runs the
+        background colour, headline size, how much of the frame the photograph
+        takes, and that it is black and white, which is a rule in Tallis&rsquo;s book. It works out what kind of asset it is looking at, runs the
         checks that apply to that kind, and says which ones ran. One verdict, a
         few seconds per file. A guardian is built for one brand&rsquo;s book at
         a time.
