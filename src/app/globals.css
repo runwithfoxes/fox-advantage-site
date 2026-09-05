@@ -5845,7 +5845,9 @@ a.project-card {
   color: #1D1B1B;
 }
 
-.ah-hero { height: 280vh; position: relative; }
+/* 280vh felt slow: "if you didn't know, you'd think it is not moving" (Paul, 5 Sep).
+   190vh gets the windows assembled in two thirds of the scroll it used to take. */
+.ah-hero { height: 190vh; position: relative; }
 /* the global section rule gives the hero root 120px underneath; the bio sets
    its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
 .hp-root .ah-root { padding-bottom: 0; }
