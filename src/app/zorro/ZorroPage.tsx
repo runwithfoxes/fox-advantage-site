@@ -75,8 +75,8 @@ export default function ZorroPage() {
               <img className="chapter-fox-hero-img" src="/fox/fox-spain-team-nobg.png" alt="" />
             </div>
             <p className="mod-standfirst">
-              One gym, 900 members, an owner with no time. This week you build the agent that
-              notices who is drifting away, writes to them in her voice, and two weeks later
+              One gym, 900 members, an owner with no time. This week you build the three-agent team
+              that notices who is drifting away, writes to them in her voice, and two weeks later
               tells her how many came back. Everything you need is on this page.
             </p>
             <p className="mod-standfirst">
@@ -87,7 +87,7 @@ export default function ZorroPage() {
                 Week<b>14 to 18 September</b>
               </span>
               <span>
-                Teams<b>Three people, one Attio</b>
+                Teams<b>Three people, three agents, one Attio</b>
               </span>
               <span>
                 Friday<b>A number, and two mistakes</b>
