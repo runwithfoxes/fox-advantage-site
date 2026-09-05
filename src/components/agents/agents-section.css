@@ -359,8 +359,12 @@
 }
 
 /* the growth agent: note, board, a line of copy, the inbox, stacked */
-.ag-stack { display: grid; gap: 26px; }
-.ag-stack-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 0; max-width: 62ch; }
+/* minmax(0,1fr): a grid track sizes to its content's min width by default, so
+   a 940px window inside made the column 940px and the board ran past the
+   edge of the page. Zero lets the holder be the column and the window scale. */
+.ag-stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.ag-stack > * { min-width: 0; }
+.ag-stack-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 0; }
 
 /* the two reading doors sit on cream; the grid and the window were drawn for it */
 .ag-overlay.paper {
