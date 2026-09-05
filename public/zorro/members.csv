@@ -1,0 +1,901 @@
+member_id,first_name,last_name,email,joined,plan,goal,notes
+Z0196,Martín,Romero,martin.romero@example.com,2025-03-18,Monthly,stress and sleep,
+Z0732,Álvaro,Medina,alvaro.medina@example.com,2026-08-13,Off-peak mornings,build muscle,Did the induction on day one.
+Z0815,Andrea,Romero,andrea.romero@example.com,2024-08-07,Student,strength as I get older,
+Z0352,Javier,Fernández,javier.fernandez@example.com,2024-11-28,Off-peak mornings,strength as I get older,
+Z0062,Iván,Iglesias,ivan.iglesias@example.com,2026-04-02,Student,lose weight,
+Z0089,Hugo,Delgado,hugo.delgado@example.com,2026-02-05,Monthly,strength as I get older,Asked about personal training in June.
+Z0209,Claudia,Castro,claudia.castro@example.com,2024-06-20,Annual,lose weight,
+Z0287,Sara,Martínez,sara.martinez@example.com,2024-12-26,Monthly,lose weight,Does the Thursday spin class.
+Z0617,Martín,Blanco,martin.blanco@example.com,2025-03-23,Annual,build muscle,Saturday mornings only.
+Z0490,Leo,Santos,leo.santos@example.com,2025-12-29,Annual,build muscle,
+Z0311,Marta,Fernández,marta.fernandez@example.com,2024-01-04,Annual,get fit for a ski week in January,
+Z0492,Sara,López,sara.lopez@example.com,2026-02-03,Monthly,strength as I get older,
+Z0672,Alejandro,Medina,alejandro.medina@example.com,2025-06-17,Annual,general fitness,Told us once a fortnight is all he can manage and that is fine.
+Z0378,Irene,Peña,irene.pena@example.com,2024-03-24,Monthly,lose weight,
+Z0831,Raquel,Herrera,raquel.herrera@example.com,2024-11-29,Monthly,lose weight,
+Z0167,Valeria,Romero,valeria.romero@example.com,2025-12-17,Monthly,general fitness,
+Z0336,Miguel,Torres,miguel.torres@example.com,2024-09-30,Annual,build muscle,
+Z0170,Javier,Cortés,javier.cortes@example.com,2025-06-01,Annual,lose weight,
+Z0313,Laura,Méndez,laura.mendez@example.com,2024-06-16,Monthly,lose weight,Prefers early mornings.
+Z0304,David,Caballero,david.caballero@example.com,2025-11-15,Annual,general fitness,
+Z0623,Cristina,Romero,cristina.romero@example.com,2024-03-16,Monthly,get fit for a ski week in January,
+Z0819,Sara,Flores,sara.flores@example.com,2025-02-15,Student,strength as I get older,
+Z0267,Pablo,Sanz,pablo.sanz@example.com,2025-08-09,Monthly,general fitness,
+Z0885,Lucas,Sánchez,lucas.sanchez@example.com,2025-10-07,Monthly,get fit for a wedding in November,
+Z0698,Adrián,Garrido,adrian.garrido@example.com,2026-08-11,Student,lose weight,Joined on the summer offer.
+Z0851,Alejandro,Serrano,alejandro.serrano@example.com,2026-02-14,Student,lose weight,
+Z0871,Antonio,Caballero,antonio.caballero@example.com,2026-04-20,Annual,build muscle,
+Z0634,Pilar,Sanz,pilar.sanz@example.com,2024-04-09,Annual,lose weight,
+Z0524,Mario,Lozano,mario.lozano@example.com,2025-09-26,Annual,build muscle,
+Z0532,David,Garrido,david.garrido@example.com,2025-05-12,Monthly,strength as I get older,
+Z0219,Sofía,Gil,sofia.gil@example.com,2025-02-13,Monthly,stress and sleep,Does the Thursday spin class.
+Z0865,Cristina,Lozano,cristina.lozano@example.com,2026-01-31,Annual,lose weight,
+Z0445,Martina,Molina,martina.molina@example.com,2025-05-08,Off-peak mornings,rehab after injury,
+Z0629,Miguel,Molina,miguel.molina@example.com,2025-08-27,Monthly,get fit for the Madrid half marathon in October,
+Z0671,Ana,Lozano,ana.lozano@example.com,2024-08-06,Monthly,build muscle,Told us once a fortnight is all he can manage and that is fine.
+Z0113,Ana,López,ana.lopez@example.com,2026-03-25,Off-peak mornings,build muscle,Asked about personal training in June.
+Z0823,Laura,Ortega,laura.ortega@example.com,2026-04-18,Student,stress and sleep,
+Z0817,Antonio,Romero,antonio.romero@example.com,2024-04-22,Off-peak mornings,lose weight,
+Z0003,Cristina,Cano,cristina.cano@example.com,2024-06-28,Annual,general fitness,Does the Thursday spin class.
+Z0791,Lucas,Pérez,lucas.perez@example.com,2025-09-12,Monthly,strength as I get older,"Away in August, back in September."
+Z0541,Raquel,Pérez,raquel.perez@example.com,2025-11-17,Student,stress and sleep,"Works shifts, comes when she can."
+Z0510,Sofía,Fuentes,sofia.fuentes@example.com,2025-01-15,Student,lose weight,
+Z0142,Irene,Moreno,irene.moreno@example.com,2025-12-27,Monthly,general fitness,
+Z0332,Teresa,Delgado,teresa.delgado@example.com,2025-10-13,Monthly,lose weight,
+Z0652,Alba,Ortiz,alba.ortiz@example.com,2025-09-02,Annual,rehab after injury,"Comes every other week, that is her pattern."
+Z0357,Hugo,Prieto,hugo.prieto@example.com,2025-07-31,Annual,lose weight,
+Z0511,Elena,Ortiz,elena.ortiz@example.com,2024-01-23,Student,strength as I get older,
+Z0189,Diego,Ramírez,diego.ramirez@example.com,2025-03-16,Monthly,stress and sleep,
+Z0134,Sara,Fernández,sara.fernandez@example.com,2025-11-27,Monthly,strength as I get older,
+Z0017,Sergio,Carrasco,sergio.carrasco@example.com,2026-04-19,Annual,lose weight,
+Z0562,Pilar,Serrano,pilar.serrano@example.com,2024-08-15,Monthly,general fitness,Saturday mornings only.
+Z0735,Hugo,Lozano,hugo.lozano@example.com,2026-08-18,Monthly,stress and sleep,Moved to Chamberí in August.
+Z0337,Laura,Herrera,laura.herrera@example.com,2025-01-30,Monthly,get fit for a ski week in January,
+Z0738,Raquel,Serrano,raquel.serrano@example.com,2026-08-25,Monthly,stress and sleep,Moved to Chamberí in August.
+Z0387,Antonio,Lozano,antonio.lozano@example.com,2024-12-20,Monthly,get fit for a wedding in November,Tuesday and Thursday evenings.
+Z0695,Teresa,Herrera,teresa.herrera@example.com,2024-09-27,Monthly,get fit for the Madrid half marathon in October,"Comes every other week, that is her pattern."
+Z0720,David,Blanco,david.blanco@example.com,2026-08-11,Annual,lose weight,Did the induction on day one.
+Z0033,Daniel,Martínez,daniel.martinez@example.com,2024-09-07,Annual,lose weight,
+Z0860,Antonio,Sanz,antonio.sanz@example.com,2025-11-06,Annual,rehab after injury,
+Z0811,Sergio,Rubio,sergio.rubio@example.com,2024-07-18,Student,build muscle,
+Z0335,Adrián,Caballero,adrian.caballero@example.com,2024-07-30,Monthly,stress and sleep,
+Z0150,Valeria,Fernández,valeria.fernandez@example.com,2025-09-06,Annual,get fit for a hiking trip in the Pyrenees,Does the Thursday spin class.
+Z0648,Raquel,Santos,raquel.santos@example.com,2025-02-20,Student,lose weight,"Lives outside Madrid, in the city every second week for work."
+Z0525,Diego,Moreno,diego.moreno@example.com,2024-06-04,Off-peak mornings,strength as I get older,Tuesday and Thursday evenings.
+Z0020,Leo,Sánchez,leo.sanchez@example.com,2026-01-12,Annual,lose weight,
+Z0547,Lucas,Díaz,lucas.diaz@example.com,2026-03-02,Annual,build muscle,Saturday mornings only.
+Z0555,Marta,Herrera,marta.herrera@example.com,2025-08-13,Student,general fitness,
+Z0636,Rubén,Gil,ruben.gil@example.com,2026-03-03,Monthly,stress and sleep,
+Z0460,Miguel,Romero,miguel.romero@example.com,2024-01-06,Annual,build muscle,Tuesday and Thursday evenings.
+Z0165,Paula,Marín,paula.marin@example.com,2024-04-09,Off-peak mornings,get fit for the Behobia race in November,
+Z0216,Valeria,Moreno,valeria.moreno@example.com,2025-06-19,Student,lose weight,Asked about personal training in June.
+Z0554,Lucas,Santos,lucas.santos@example.com,2025-05-07,Annual,general fitness,
+Z0480,Ana,Gil,ana.gil@example.com,2025-07-14,Monthly,build muscle,
+Z0161,Cristina,Moreno,cristina.moreno@example.com,2025-01-21,Monthly,strength as I get older,
+Z0222,Rosa,Medina,rosa.medina@example.com,2025-02-14,Annual,get fit for a hiking trip in the Pyrenees,
+Z0019,Alba,Méndez,alba.mendez@example.com,2024-04-10,Monthly,strength as I get older,
+Z0315,Miguel,Martínez,miguel.martinez@example.com,2023-12-31,Monthly,general fitness,Asked about personal training in June.
+Z0435,Martín,Álvarez,martin.alvarez@example.com,2024-04-09,Annual,lose weight,
+Z0354,Rosa,Santos,rosa.santos@example.com,2024-06-01,Annual,build muscle,"Came with a friend, both joined."
+Z0210,Leo,Méndez,leo.mendez@example.com,2025-09-05,Off-peak mornings,strength as I get older,Prefers early mornings.
+Z0269,Álvaro,Herrera,alvaro.herrera@example.com,2024-06-09,Monthly,build muscle,Prefers early mornings.
+Z0509,Javier,Fuentes,javier.fuentes@example.com,2025-06-07,Off-peak mornings,lose weight,
+Z0758,Claudia,Álvarez,claudia.alvarez@example.com,2024-06-03,Off-peak mornings,build muscle,Travelling for work most of August.
+Z0585,Pilar,Gómez,pilar.gomez@example.com,2026-04-20,Off-peak mornings,build muscle,
+Z0398,Hugo,Díaz,hugo.diaz@example.com,2024-12-07,Monthly,lose weight,"Came with a friend, both joined."
+Z0310,Marta,Díaz,marta.diaz@example.com,2024-05-10,Off-peak mornings,general fitness,
+Z0379,David,Guerrero,david.guerrero@example.com,2024-06-17,Annual,general fitness,Tuesday and Thursday evenings.
+Z0094,Javier,Santos,javier.santos@example.com,2025-01-08,Monthly,build muscle,
+Z0553,Cristina,García,cristina.garcia@example.com,2025-07-24,Annual,get fit for a ski week in January,
+Z0850,Andrea,Martínez,andrea.martinez@example.com,2024-08-01,Monthly,stress and sleep,
+Z0441,Manuel,Marín,manuel.marin@example.com,2025-02-13,Monthly,stress and sleep,
+Z0273,Rubén,Ramírez,ruben.ramirez@example.com,2024-06-05,Annual,strength as I get older,
+Z0747,Andrea,Méndez,andrea.mendez@example.com,2026-08-25,Annual,build muscle,Joined on the summer offer.
+Z0458,Leo,Castro,leo.castro@example.com,2024-03-31,Annual,general fitness,
+Z0664,Cristina,Prieto,cristina.prieto@example.com,2024-08-09,Off-peak mornings,general fitness,"Comes every other week, that is her pattern."
+Z0569,Sergio,Cano,sergio.cano@example.com,2024-03-22,Annual,stress and sleep,"Works shifts, comes when she can."
+Z0411,Leo,Ramírez,leo.ramirez@example.com,2025-06-05,Student,general fitness,
+Z0413,Marta,Carrasco,marta.carrasco@example.com,2025-03-23,Monthly,strength as I get older,"Came with a friend, both joined."
+Z0225,Mateo,Molina,mateo.molina@example.com,2025-03-11,Monthly,stress and sleep,Does the Thursday spin class.
+Z0687,Nuria,Moreno,nuria.moreno@example.com,2026-03-27,Annual,general fitness,"Comes every other week, that is her pattern."
+Z0582,Sofía,Blanco,sofia.blanco@example.com,2026-04-07,Off-peak mornings,general fitness,
+Z0298,Valeria,Torres,valeria.torres@example.com,2024-12-02,Off-peak mornings,rehab after injury,
+Z0374,Ana,Blanco,ana.blanco@example.com,2024-12-08,Student,build muscle,Tuesday and Thursday evenings.
+Z0702,Nuria,Sanz,nuria.sanz@example.com,2026-08-15,Annual,lose weight,Moved to Chamberí in August.
+Z0614,Teresa,Ortega,teresa.ortega@example.com,2025-01-25,Monthly,general fitness,
+Z0474,Martín,López,martin.lopez@example.com,2025-10-16,Annual,strength as I get older,
+Z0330,Valeria,Flores,valeria.flores@example.com,2025-04-24,Off-peak mornings,stress and sleep,Prefers early mornings.
+Z0552,Teresa,Prieto,teresa.prieto@example.com,2025-10-19,Monthly,general fitness,Saturday mornings only.
+Z0900,Andrea,Navarro,andrea.navarro@example.com,2026-02-07,Student,general fitness,"Back problem, told us to hold off for a while."
+Z0756,Ana,Carrasco,ana.carrasco@example.com,2025-01-25,Monthly,build muscle,In Galicia with family for August.
+Z0487,Pilar,Méndez,pilar.mendez@example.com,2024-10-30,Monthly,lose weight,
+Z0403,Francisco,Cruz,francisco.cruz@example.com,2025-10-11,Annual,build muscle,Tuesday and Thursday evenings.
+Z0557,Daniel,Navarro,daniel.navarro@example.com,2024-04-04,Off-peak mornings,general fitness,Saturday mornings only.
+Z0231,Carmen,Sánchez,carmen.sanchez@example.com,2026-02-23,Annual,build muscle,
+Z0846,Pablo,García,pablo.garcia@example.com,2025-02-03,Annual,build muscle,
+Z0179,Martín,Lozano,martin.lozano@example.com,2025-10-07,Monthly,general fitness,
+Z0424,Raquel,Ortega,raquel.ortega@example.com,2024-01-13,Monthly,rehab after injury,Tuesday and Thursday evenings.
+Z0560,Diego,Flores,diego.flores@example.com,2026-05-09,Annual,lose weight,
+Z0717,Claudia,Guerrero,claudia.guerrero@example.com,2026-08-19,Off-peak mornings,stress and sleep,Joined on the summer offer.
+Z0236,Mateo,Lozano,mateo.lozano@example.com,2024-03-17,Annual,strength as I get older,Prefers early mornings.
+Z0736,Andrea,Torres,andrea.torres@example.com,2026-08-19,Annual,general fitness,Joined on the summer offer.
+Z0824,Hugo,Cano,hugo.cano@example.com,2026-04-25,Annual,lose weight,
+Z0598,Miguel,Rodríguez,miguel.rodriguez@example.com,2024-02-24,Off-peak mornings,build muscle,
+Z0097,Claudia,García,claudia.garcia@example.com,2025-02-17,Student,lose weight,
+Z0833,Manuel,Vega,manuel.vega@example.com,2024-01-13,Annual,lose weight,Mentioned work was getting busy.
+Z0783,Lucas,Ramírez,lucas.ramirez@example.com,2026-04-23,Off-peak mornings,lose weight,In Galicia with family for August.
+Z0809,Pablo,Carrasco,pablo.carrasco@example.com,2025-07-21,Monthly,lose weight,
+Z0127,Hugo,Navarro,hugo.navarro@example.com,2024-04-17,Annual,build muscle,
+Z0775,Pilar,Prieto,pilar.prieto@example.com,2026-03-11,Monthly,build muscle,Travelling for work most of August.
+Z0892,Paula,Navarro,paula.navarro@example.com,2025-04-27,Annual,stress and sleep,"Surgery in July, recovering."
+Z0750,Noa,Cano,noa.cano@example.com,2026-08-30,Annual,lose weight,Moved to Chamberí in August.
+Z0072,Valeria,Álvarez,valeria.alvarez@example.com,2025-03-20,Monthly,build muscle,
+Z0401,Marta,Cortés,marta.cortes@example.com,2025-01-29,Annual,build muscle,
+Z0786,Carlos,Ramírez,carlos.ramirez@example.com,2024-04-09,Monthly,stress and sleep,"Away in August, back in September."
+Z0764,Raquel,Ramírez,raquel.ramirez@example.com,2024-03-26,Annual,strength as I get older,In Galicia with family for August.
+Z0008,Jorge,Rubio,jorge.rubio@example.com,2026-02-21,Monthly,general fitness,Prefers early mornings.
+Z0801,Pilar,Fernández,pilar.fernandez@example.com,2025-08-26,Off-peak mornings,lose weight,
+Z0584,Adrián,Torres,adrian.torres@example.com,2024-06-16,Monthly,lose weight,Saturday mornings only.
+Z0446,Rosa,Cortés,rosa.cortes@example.com,2025-02-20,Monthly,stress and sleep,
+Z0103,Hugo,Blanco,hugo.blanco@example.com,2024-02-12,Monthly,lose weight,Does the Thursday spin class.
+Z0844,Cristina,Rodríguez,cristina.rodriguez@example.com,2024-03-11,Off-peak mornings,general fitness,
+Z0117,Antonio,Navarro,antonio.navarro@example.com,2025-09-05,Off-peak mornings,lose weight,Does the Thursday spin class.
+Z0070,Nuria,Gómez,nuria.gomez@example.com,2024-04-20,Off-peak mornings,get fit for a ski week in January,
+Z0427,Mateo,Fernández,mateo.fernandez@example.com,2024-02-27,Monthly,build muscle,
+Z0136,Rosa,Flores,rosa.flores@example.com,2025-08-31,Monthly,general fitness,Asked about personal training in June.
+Z0137,Lucas,Guerrero,lucas.guerrero@example.com,2026-03-10,Monthly,get fit for the Madrid half marathon in October,Asked about personal training in June.
+Z0285,Alba,Castro,alba.castro@example.com,2025-10-07,Monthly,build muscle,Asked about personal training in June.
+Z0518,Raquel,Peña,raquel.pena@example.com,2024-08-25,Monthly,build muscle,
+Z0713,Daniel,Ramírez,daniel.ramirez@example.com,2026-08-13,Annual,build muscle,Joined on the summer offer.
+Z0220,Carlos,Marín,carlos.marin@example.com,2025-10-05,Student,lose weight,
+Z0776,Mateo,Blanco,mateo.blanco@example.com,2026-03-04,Annual,lose weight,In Galicia with family for August.
+Z0640,Diego,Rubio,diego.rubio@example.com,2025-04-17,Annual,build muscle,Saturday mornings only.
+Z0477,Sara,Blanco,sara.blanco@example.com,2026-04-02,Monthly,rehab after injury,
+Z0185,Andrea,Díaz,andrea.diaz@example.com,2026-03-06,Annual,rehab after injury,Prefers early mornings.
+Z0286,Martina,Caballero,martina.caballero@example.com,2025-12-15,Monthly,build muscle,
+Z0795,Sergio,García,sergio.garcia@example.com,2026-03-28,Annual,lose weight,In Galicia with family for August.
+Z0825,Carlos,Cortés,carlos.cortes@example.com,2026-01-09,Monthly,general fitness,
+Z0837,David,Cruz,david.cruz@example.com,2025-08-30,Annual,build muscle,
+Z0450,Antonio,Cano,antonio.cano@example.com,2024-06-24,Student,general fitness,
+Z0558,Paula,Delgado,paula.delgado@example.com,2024-02-18,Monthly,general fitness,
+Z0586,Pilar,López,pilar.lopez@example.com,2026-02-28,Monthly,general fitness,"Works shifts, comes when she can."
+Z0641,Carlos,Rodríguez,carlos.rodriguez@example.com,2025-03-25,Annual,build muscle,"Works shifts, comes when she can."
+Z0866,Nuria,Sánchez,nuria.sanchez@example.com,2026-04-01,Annual,general fitness,Never replied to the June newsletter.
+Z0392,Francisco,Santos,francisco.santos@example.com,2024-02-05,Monthly,lose weight,
+Z0670,Rubén,Flores,ruben.flores@example.com,2024-10-20,Annual,general fitness,"Comes every other week, that is her pattern."
+Z0513,Nuria,Guerrero,nuria.guerrero@example.com,2025-10-18,Monthly,general fitness,"Came with a friend, both joined."
+Z0396,Sara,Iglesias,sara.iglesias@example.com,2024-08-18,Off-peak mornings,general fitness,
+Z0140,David,Cano,david.cano@example.com,2024-10-17,Student,lose weight,
+Z0129,Sara,Rubio,sara.rubio@example.com,2025-11-12,Monthly,strength as I get older,
+Z0415,Rubén,Delgado,ruben.delgado@example.com,2024-06-18,Monthly,stress and sleep,
+Z0217,Rosa,Molina,rosa.molina@example.com,2025-09-17,Annual,general fitness,
+Z0096,Pilar,Torres,pilar.torres@example.com,2025-03-26,Monthly,lose weight,
+Z0575,José,Sanz,jose.sanz@example.com,2024-06-27,Student,lose weight,
+Z0535,Martín,Marín,martin.marin@example.com,2024-01-12,Monthly,lose weight,Saturday mornings only.
+Z0579,José,Ortiz,jose.ortiz@example.com,2026-01-30,Annual,lose weight,Saturday mornings only.
+Z0018,David,Fuentes,david.fuentes@example.com,2025-02-28,Annual,build muscle,
+Z0852,Mario,Vega,mario.vega@example.com,2025-07-23,Monthly,rehab after injury,
+Z0889,Carmen,Fernández,carmen.fernandez@example.com,2024-03-17,Annual,build muscle,Never replied to the June newsletter.
+Z0485,Ana,Garrido,ana.garrido@example.com,2024-12-14,Student,stress and sleep,
+Z0147,Cristina,Delgado,cristina.delgado@example.com,2025-11-05,Monthly,build muscle,
+Z0887,Andrea,García,andrea.garcia@example.com,2026-01-18,Monthly,get fit for a wedding in November,Never replied to the June newsletter.
+Z0721,Martina,Moreno,martina.moreno@example.com,2026-08-21,Off-peak mornings,stress and sleep,Joined on the summer offer.
+Z0177,Diego,Romero,diego.romero@example.com,2025-01-20,Student,lose weight,
+Z0329,Lucas,Peña,lucas.pena@example.com,2024-12-06,Annual,lose weight,
+Z0805,Marta,Prieto,marta.prieto@example.com,2024-06-13,Monthly,rehab after injury,
+Z0122,Manuel,Navarro,manuel.navarro@example.com,2026-05-06,Monthly,general fitness,
+Z0746,Alejandro,Marín,alejandro.marin@example.com,2026-08-22,Monthly,strength as I get older,Joined on the summer offer.
+Z0804,Sara,Delgado,sara.delgado@example.com,2026-03-18,Student,build muscle,
+Z0015,Alba,Cano,alba.cano@example.com,2024-03-06,Annual,lose weight,Asked about personal training in June.
+Z0749,David,Serrano,david.serrano@example.com,2026-08-13,Student,lose weight,First gym membership.
+Z0083,Raquel,Vega,raquel.vega@example.com,2025-06-25,Monthly,general fitness,
+Z0447,Lucas,Delgado,lucas.delgado@example.com,2024-04-28,Monthly,stress and sleep,Tuesday and Thursday evenings.
+Z0199,Carlos,Romero,carlos.romero@example.com,2024-10-18,Monthly,general fitness,
+Z0291,Javier,Castro,javier.castro@example.com,2025-12-27,Off-peak mornings,lose weight,Prefers early mornings.
+Z0187,Manuel,Pérez,manuel.perez@example.com,2025-03-15,Monthly,strength as I get older,Prefers early mornings.
+Z0855,Diego,Sánchez,diego.sanchez@example.com,2025-05-18,Monthly,rehab after injury,Said the 7am class was getting hard to make.
+Z0029,Nuria,Rubio,nuria.rubio@example.com,2025-09-07,Annual,strength as I get older,
+Z0328,Martín,Fuentes,martin.fuentes@example.com,2024-11-17,Student,general fitness,Asked about personal training in June.
+Z0080,Noa,Álvarez,noa.alvarez@example.com,2024-05-16,Off-peak mornings,get fit for the Behobia race in November,Prefers early mornings.
+Z0174,Carmen,Cruz,carmen.cruz@example.com,2026-05-06,Monthly,build muscle,Prefers early mornings.
+Z0440,Lucas,Vega,lucas.vega@example.com,2026-02-12,Monthly,lose weight,"Came with a friend, both joined."
+Z0381,Lucas,Álvarez,lucas.alvarez@example.com,2024-05-13,Off-peak mornings,general fitness,
+Z0164,Noa,Méndez,noa.mendez@example.com,2024-01-31,Monthly,stress and sleep,
+Z0751,Sergio,Díaz,sergio.diaz@example.com,2026-08-26,Monthly,lose weight,First gym membership.
+Z0595,Iván,Díaz,ivan.diaz@example.com,2025-08-10,Student,general fitness,Saturday mornings only.
+Z0098,Adrián,Ortiz,adrian.ortiz@example.com,2024-05-17,Monthly,lose weight,
+Z0868,Lucía,Peña,lucia.pena@example.com,2026-04-25,Off-peak mornings,lose weight,
+Z0108,Álvaro,Cano,alvaro.cano@example.com,2026-04-02,Annual,build muscle,Does the Thursday spin class.
+Z0690,Paula,Rubio,paula.rubio@example.com,2025-12-07,Monthly,build muscle,"Comes every other week, that is her pattern."
+Z0478,Nuria,Fernández,nuria.fernandez@example.com,2026-01-17,Monthly,lose weight,
+Z0869,Elena,Rubio,elena.rubio@example.com,2024-05-09,Monthly,get fit for the Madrid half marathon in October,Never replied to the June newsletter.
+Z0417,Laura,Fernández,laura.fernandez@example.com,2025-11-21,Off-peak mornings,build muscle,
+Z0663,Cristina,Vega,cristina.vega@example.com,2024-06-28,Annual,lose weight,Told us once a fortnight is all he can manage and that is fine.
+Z0326,David,Fernández,david.fernandez@example.com,2025-08-22,Off-peak mornings,strength as I get older,
+Z0391,Hugo,Serrano,hugo.serrano@example.com,2025-04-26,Annual,get fit for a wedding in November,
+Z0530,Raquel,Medina,raquel.medina@example.com,2024-09-17,Annual,strength as I get older,
+Z0639,Irene,Cruz,irene.cruz@example.com,2024-06-07,Monthly,stress and sleep,
+Z0361,Javier,Cruz,javier.cruz@example.com,2024-02-07,Annual,strength as I get older,
+Z0455,Antonio,Fuentes,antonio.fuentes@example.com,2024-09-15,Monthly,build muscle,
+Z0796,Alejandro,Peña,alejandro.pena@example.com,2025-06-12,Annual,get fit for a ski week in January,In Galicia with family for August.
+Z0701,Sofía,Iglesias,sofia.iglesias@example.com,2026-08-20,Annual,general fitness,First gym membership.
+Z0744,Sara,Gil,sara.gil@example.com,2026-08-18,Annual,build muscle,Joined on the summer offer.
+Z0516,Noa,Carrasco,noa.carrasco@example.com,2025-04-02,Annual,stress and sleep,
+Z0666,Valeria,Serrano,valeria.serrano@example.com,2024-07-09,Monthly,rehab after injury,Told us once a fortnight is all he can manage and that is fine.
+Z0588,Leo,Sanz,leo.sanz@example.com,2026-04-07,Student,general fitness,
+Z0743,Pilar,Cortés,pilar.cortes@example.com,2026-08-23,Monthly,general fitness,First gym membership.
+Z0321,Javier,Rubio,javier.rubio@example.com,2024-06-03,Monthly,lose weight,Asked about personal training in June.
+Z0556,Carlos,Lozano,carlos.lozano@example.com,2024-07-04,Annual,get fit for a wedding in November,
+Z0522,Rosa,Iglesias,rosa.iglesias@example.com,2025-01-22,Annual,stress and sleep,
+Z0766,Iván,Navarro,ivan.navarro@example.com,2025-02-26,Monthly,lose weight,Travelling for work most of August.
+Z0375,Hugo,Guerrero,hugo.guerrero@example.com,2024-12-16,Annual,get fit for the Madrid half marathon in October,Tuesday and Thursday evenings.
+Z0768,Iván,Ortiz,ivan.ortiz@example.com,2024-09-12,Annual,build muscle,Travelling for work most of August.
+Z0731,Claudia,Serrano,claudia.serrano@example.com,2026-08-19,Annual,build muscle,Moved to Chamberí in August.
+Z0737,David,Romero,david.romero@example.com,2026-08-10,Monthly,strength as I get older,First gym membership.
+Z0393,Iván,Guerrero,ivan.guerrero@example.com,2025-03-17,Annual,strength as I get older,
+Z0099,Manuel,Moreno,manuel.moreno@example.com,2026-04-15,Annual,strength as I get older,
+Z0655,Ana,Rubio,ana.rubio@example.com,2024-07-26,Annual,stress and sleep,"Lives outside Madrid, in the city every second week for work."
+Z0457,Ana,Cortés,ana.cortes@example.com,2025-10-12,Student,general fitness,
+Z0729,Elena,Ramírez,elena.ramirez@example.com,2026-08-16,Monthly,strength as I get older,Moved to Chamberí in August.
+Z0155,Daniel,Blanco,daniel.blanco@example.com,2025-02-01,Annual,general fitness,Asked about personal training in June.
+Z0867,Álvaro,Cortés,alvaro.cortes@example.com,2025-10-11,Annual,general fitness,
+Z0453,Javier,Carrasco,javier.carrasco@example.com,2024-02-19,Off-peak mornings,build muscle,Tuesday and Thursday evenings.
+Z0215,Daniel,Caballero,daniel.caballero@example.com,2024-05-01,Monthly,lose weight,
+Z0834,Elena,Gómez,elena.gomez@example.com,2024-02-05,Monthly,lose weight,
+Z0028,Martín,Medina,martin.medina@example.com,2024-12-19,Off-peak mornings,general fitness,
+Z0631,Noa,García,noa.garcia@example.com,2024-01-24,Monthly,strength as I get older,Saturday mornings only.
+Z0206,Alba,Marín,alba.marin@example.com,2026-03-05,Monthly,stress and sleep,
+Z0861,Alba,Delgado,alba.delgado@example.com,2025-01-07,Annual,build muscle,Said the 7am class was getting hard to make.
+Z0828,Pablo,Gil,pablo.gil@example.com,2024-11-26,Annual,lose weight,
+Z0678,Alba,Martínez,alba.martinez@example.com,2025-12-03,Off-peak mornings,build muscle,"Comes every other week, that is her pattern."
+Z0745,Carmen,Moreno,carmen.moreno@example.com,2026-08-12,Student,get fit for the Madrid half marathon in October,First gym membership.
+Z0602,Jorge,Álvarez,jorge.alvarez@example.com,2025-11-30,Monthly,get fit for the Madrid half marathon in October,
+Z0270,Iván,Cano,ivan.cano@example.com,2024-02-18,Student,lose weight,Asked about personal training in June.
+Z0847,Claudia,Delgado,claudia.delgado@example.com,2025-02-16,Monthly,lose weight,
+Z0296,Carlos,Guerrero,carlos.guerrero@example.com,2024-10-05,Annual,lose weight,
+Z0111,Diego,Sanz,diego.sanz@example.com,2024-03-04,Student,build muscle,
+Z0382,Miguel,Gil,miguel.gil@example.com,2025-02-03,Off-peak mornings,lose weight,"Came with a friend, both joined."
+Z0548,Lucía,Moreno,lucia.moreno@example.com,2026-05-08,Student,general fitness,
+Z0772,Laura,Díaz,laura.diaz@example.com,2026-01-07,Monthly,lose weight,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0803,Leo,Caballero,leo.caballero@example.com,2024-04-02,Annual,get fit for a wedding in November,
+Z0443,Adrián,Gómez,adrian.gomez@example.com,2024-06-20,Off-peak mornings,build muscle,Tuesday and Thursday evenings.
+Z0046,Claudia,Medina,claudia.medina@example.com,2025-11-05,Monthly,lose weight,
+Z0198,Pablo,Navarro,pablo.navarro@example.com,2024-10-13,Monthly,lose weight,Does the Thursday spin class.
+Z0255,Hugo,Cortés,hugo.cortes@example.com,2025-01-26,Off-peak mornings,general fitness,Asked about personal training in June.
+Z0218,Manuel,Cruz,manuel.cruz@example.com,2024-06-23,Monthly,strength as I get older,
+Z0462,Raquel,Rubio,raquel.rubio@example.com,2024-05-06,Annual,build muscle,
+Z0369,Alejandro,Vega,alejandro.vega@example.com,2025-05-01,Annual,lose weight,Tuesday and Thursday evenings.
+Z0682,Nuria,Navarro,nuria.navarro@example.com,2026-03-05,Monthly,stress and sleep,"Comes every other week, that is her pattern."
+Z0792,Daniel,Fernández,daniel.fernandez@example.com,2025-11-01,Student,build muscle,Travelling for work most of August.
+Z0500,Sergio,Cruz,sergio.cruz@example.com,2025-02-17,Student,general fitness,"Came with a friend, both joined."
+Z0816,Mateo,Peña,mateo.pena@example.com,2024-07-23,Monthly,strength as I get older,
+Z0006,Sofía,Torres,sofia.torres@example.com,2025-06-18,Monthly,lose weight,
+Z0422,Álvaro,Rubio,alvaro.rubio@example.com,2024-10-18,Annual,strength as I get older,"Came with a friend, both joined."
+Z0542,Hugo,Fernández,hugo.fernandez@example.com,2025-09-26,Annual,general fitness,
+Z0340,Martina,Cruz,martina.cruz@example.com,2025-07-29,Monthly,lose weight,
+Z0897,Mario,Blanco,mario.blanco@example.com,2025-03-23,Monthly,strength as I get older,"Pregnant, taking a break on doctor's advice."
+Z0193,Laura,Serrano,laura.serrano@example.com,2025-02-04,Monthly,stress and sleep,
+Z0234,Álvaro,Marín,alvaro.marin@example.com,2024-01-02,Monthly,stress and sleep,Prefers early mornings.
+Z0519,Carmen,Flores,carmen.flores@example.com,2025-03-18,Off-peak mornings,build muscle,
+Z0363,Lucía,Cruz,lucia.cruz@example.com,2025-09-11,Monthly,general fitness,"Came with a friend, both joined."
+Z0297,Iván,Méndez,ivan.mendez@example.com,2025-08-05,Monthly,general fitness,Prefers early mornings.
+Z0359,Valeria,Blanco,valeria.blanco@example.com,2025-03-15,Monthly,general fitness,
+Z0845,Mateo,Pérez,mateo.perez@example.com,2025-02-26,Annual,strength as I get older,
+Z0723,Álvaro,Delgado,alvaro.delgado@example.com,2026-08-24,Off-peak mornings,strength as I get older,Moved to Chamberí in August.
+Z0228,Alba,Pérez,alba.perez@example.com,2026-01-26,Annual,build muscle,
+Z0570,Sara,Herrera,sara.herrera@example.com,2024-10-14,Annual,general fitness,"Works shifts, comes when she can."
+Z0624,Elena,Torres,elena.torres@example.com,2025-08-10,Monthly,general fitness,"Works shifts, comes when she can."
+Z0176,Mario,Castro,mario.castro@example.com,2025-02-08,Monthly,stress and sleep,
+Z0428,Pablo,Álvarez,pablo.alvarez@example.com,2025-07-15,Monthly,lose weight,
+Z0126,Claudia,Fuentes,claudia.fuentes@example.com,2024-02-02,Monthly,strength as I get older,Asked about personal training in June.
+Z0238,Sergio,López,sergio.lopez@example.com,2025-09-14,Monthly,stress and sleep,Does the Thursday spin class.
+Z0800,Daniel,Garrido,daniel.garrido@example.com,2025-12-12,Monthly,stress and sleep,Travelling for work most of August.
+Z0858,Irene,Álvarez,irene.alvarez@example.com,2025-02-10,Monthly,strength as I get older,
+Z0733,Lucas,Cortés,lucas.cortes@example.com,2026-08-27,Off-peak mornings,general fitness,Joined on the summer offer.
+Z0078,Teresa,Rodríguez,teresa.rodriguez@example.com,2026-02-21,Monthly,general fitness,
+Z0517,Pablo,Gómez,pablo.gomez@example.com,2024-11-27,Annual,lose weight,"Came with a friend, both joined."
+Z0642,José,Sánchez,jose.sanchez@example.com,2024-05-23,Annual,build muscle,
+Z0152,Teresa,Rubio,teresa.rubio@example.com,2026-04-23,Monthly,build muscle,
+Z0665,Andrea,Medina,andrea.medina@example.com,2025-05-17,Monthly,rehab after injury,
+Z0116,Rosa,Rodríguez,rosa.rodriguez@example.com,2025-01-04,Monthly,lose weight,Prefers early mornings.
+Z0095,Carlos,Iglesias,carlos.iglesias@example.com,2025-06-18,Student,stress and sleep,
+Z0230,Elena,Medina,elena.medina@example.com,2026-01-30,Annual,stress and sleep,Asked about personal training in June.
+Z0508,Laura,Ortiz,laura.ortiz@example.com,2026-01-10,Annual,general fitness,
+Z0451,Ana,Fernández,ana.fernandez@example.com,2024-12-10,Annual,rehab after injury,
+Z0066,Lucas,García,lucas.garcia@example.com,2025-08-09,Monthly,lose weight,Asked about personal training in June.
+Z0105,Javier,Ortiz,javier.ortiz@example.com,2025-01-14,Annual,build muscle,Does the Thursday spin class.
+Z0386,Francisco,Cano,francisco.cano@example.com,2025-04-10,Monthly,general fitness,
+Z0076,Teresa,Carrasco,teresa.carrasco@example.com,2024-08-09,Off-peak mornings,build muscle,
+Z0074,Marta,Caballero,marta.caballero@example.com,2025-12-09,Monthly,stress and sleep,Prefers early mornings.
+Z0710,Iván,Fuentes,ivan.fuentes@example.com,2026-08-21,Off-peak mornings,lose weight,Moved to Chamberí in August.
+Z0173,Andrea,Fernández,andrea.fernandez@example.com,2026-01-31,Annual,general fitness,
+Z0638,David,Ramírez,david.ramirez@example.com,2026-02-06,Annual,get fit for a wedding in November,
+Z0418,Valeria,Sanz,valeria.sanz@example.com,2025-12-16,Monthly,general fitness,"Came with a friend, both joined."
+Z0895,Francisco,Lozano,francisco.lozano@example.com,2025-10-21,Monthly,lose weight,"Surgery in July, recovering."
+Z0465,Raquel,Prieto,raquel.prieto@example.com,2025-11-30,Monthly,general fitness,Tuesday and Thursday evenings.
+Z0125,Irene,Ortiz,irene.ortiz@example.com,2024-06-23,Monthly,lose weight,
+Z0402,Paula,Moreno,paula.moreno@example.com,2025-04-11,Annual,lose weight,
+Z0241,Carlos,López,carlos.lopez@example.com,2025-09-09,Off-peak mornings,build muscle,
+Z0533,Laura,Marín,laura.marin@example.com,2025-07-18,Monthly,strength as I get older,
+Z0565,Rubén,Álvarez,ruben.alvarez@example.com,2024-10-22,Annual,strength as I get older,"Works shifts, comes when she can."
+Z0808,Hugo,Rodríguez,hugo.rodriguez@example.com,2025-05-19,Monthly,stress and sleep,
+Z0469,Alba,Cortés,alba.cortes@example.com,2024-03-06,Monthly,stress and sleep,
+Z0372,Andrea,Vega,andrea.vega@example.com,2025-03-23,Monthly,build muscle,
+Z0195,Diego,Marín,diego.marin@example.com,2025-08-25,Student,general fitness,
+Z0840,Marta,Ortega,marta.ortega@example.com,2026-05-07,Annual,general fitness,
+Z0545,Álvaro,Rodríguez,alvaro.rodriguez@example.com,2025-08-07,Annual,lose weight,
+Z0468,Martina,Navarro,martina.navarro@example.com,2025-03-02,Off-peak mornings,build muscle,"Came with a friend, both joined."
+Z0232,Daniel,Gómez,daniel.gomez@example.com,2024-02-25,Monthly,lose weight,
+Z0256,Rosa,Lozano,rosa.lozano@example.com,2026-04-02,Off-peak mornings,lose weight,Does the Thursday spin class.
+Z0054,Diego,Torres,diego.torres@example.com,2026-04-26,Annual,rehab after injury,
+Z0246,Claudia,Flores,claudia.flores@example.com,2024-02-14,Monthly,rehab after injury,Asked about personal training in June.
+Z0258,José,Cruz,jose.cruz@example.com,2024-12-26,Monthly,lose weight,Does the Thursday spin class.
+Z0163,Hugo,Marín,hugo.marin@example.com,2026-02-18,Annual,general fitness,Does the Thursday spin class.
+Z0716,Andrea,Lozano,andrea.lozano@example.com,2026-08-12,Annual,build muscle,First gym membership.
+Z0464,Lucía,Castro,lucia.castro@example.com,2025-01-15,Monthly,build muscle,
+Z0625,Nuria,Martínez,nuria.martinez@example.com,2024-11-24,Student,build muscle,Saturday mornings only.
+Z0082,Paula,Fuentes,paula.fuentes@example.com,2024-12-27,Monthly,lose weight,
+Z0605,Claudia,Molina,claudia.molina@example.com,2025-12-23,Student,lose weight,
+Z0370,Diego,López,diego.lopez@example.com,2025-11-03,Annual,rehab after injury,"Came with a friend, both joined."
+Z0047,Andrea,Santos,andrea.santos@example.com,2026-04-30,Annual,strength as I get older,
+Z0761,Daniel,Prieto,daniel.prieto@example.com,2025-02-02,Annual,general fitness,In Galicia with family for August.
+Z0835,Alejandro,Gómez,alejandro.gomez@example.com,2024-09-24,Monthly,stress and sleep,
+Z0857,Sergio,Romero,sergio.romero@example.com,2025-12-20,Off-peak mornings,stress and sleep,
+Z0303,Irene,López,irene.lopez@example.com,2026-04-18,Monthly,general fitness,
+Z0055,Leo,Gil,leo.gil@example.com,2025-05-14,Monthly,lose weight,Does the Thursday spin class.
+Z0790,Mateo,Caballero,mateo.caballero@example.com,2024-05-25,Monthly,strength as I get older,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0211,Valeria,Ortega,valeria.ortega@example.com,2025-10-10,Monthly,lose weight,
+Z0644,Alba,Herrera,alba.herrera@example.com,2025-07-22,Monthly,general fitness,
+Z0704,David,Marín,david.marin@example.com,2026-08-19,Monthly,build muscle,First gym membership.
+Z0036,Álvaro,Castro,alvaro.castro@example.com,2024-06-21,Monthly,build muscle,
+Z0005,Carlos,Delgado,carlos.delgado@example.com,2025-10-29,Off-peak mornings,get fit for a hiking trip in the Pyrenees,
+Z0249,José,López,jose.lopez@example.com,2024-03-25,Monthly,build muscle,Asked about personal training in June.
+Z0172,Mateo,Medina,mateo.medina@example.com,2026-03-31,Monthly,strength as I get older,
+Z0763,Iván,Blanco,ivan.blanco@example.com,2024-10-05,Annual,strength as I get older,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0038,Miguel,Carrasco,miguel.carrasco@example.com,2025-08-18,Monthly,general fitness,
+Z0239,Lucas,Iglesias,lucas.iglesias@example.com,2025-09-07,Monthly,lose weight,Does the Thursday spin class.
+Z0810,Iván,Torres,ivan.torres@example.com,2025-08-08,Student,lose weight,
+Z0120,Lucas,Moreno,lucas.moreno@example.com,2025-08-13,Annual,get fit for a hiking trip in the Pyrenees,Does the Thursday spin class.
+Z0512,Elena,Cruz,elena.cruz@example.com,2025-10-26,Student,strength as I get older,
+Z0065,Elena,Castro,elena.castro@example.com,2024-02-13,Annual,lose weight,Does the Thursday spin class.
+Z0394,Paula,Méndez,paula.mendez@example.com,2025-10-06,Off-peak mornings,lose weight,Tuesday and Thursday evenings.
+Z0305,Manuel,Torres,manuel.torres@example.com,2025-05-21,Monthly,lose weight,Prefers early mornings.
+Z0360,Iván,Carrasco,ivan.carrasco@example.com,2025-08-02,Off-peak mornings,lose weight,
+Z0473,Adrián,Peña,adrian.pena@example.com,2025-06-29,Student,lose weight,
+Z0632,Nuria,Álvarez,nuria.alvarez@example.com,2024-08-19,Annual,get fit for a wedding in November,"Works shifts, comes when she can."
+Z0240,Rubén,Cruz,ruben.cruz@example.com,2025-02-02,Student,stress and sleep,
+Z0431,José,Medina,jose.medina@example.com,2024-10-23,Off-peak mornings,lose weight,
+Z0229,Cristina,Sánchez,cristina.sanchez@example.com,2024-07-17,Annual,general fitness,
+Z0752,Sergio,Ortiz,sergio.ortiz@example.com,2026-08-24,Off-peak mornings,stress and sleep,First gym membership.
+Z0044,Carmen,Rodríguez,carmen.rodriguez@example.com,2024-01-28,Annual,lose weight,
+Z0356,Manuel,Carrasco,manuel.carrasco@example.com,2025-12-16,Annual,general fitness,Tuesday and Thursday evenings.
+Z0385,Claudia,Ortega,claudia.ortega@example.com,2024-02-26,Annual,build muscle,Tuesday and Thursday evenings.
+Z0088,Francisco,Sanz,francisco.sanz@example.com,2024-04-23,Annual,rehab after injury,Does the Thursday spin class.
+Z0149,Martina,Carrasco,martina.carrasco@example.com,2024-10-18,Annual,lose weight,Does the Thursday spin class.
+Z0646,Teresa,Medina,teresa.medina@example.com,2024-06-20,Monthly,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0145,Sara,Pérez,sara.perez@example.com,2024-10-25,Monthly,build muscle,Asked about personal training in June.
+Z0650,Noa,Prieto,noa.prieto@example.com,2025-04-11,Monthly,build muscle,Told us once a fortnight is all he can manage and that is fine.
+Z0754,Rosa,Fernández,rosa.fernandez@example.com,2026-08-17,Annual,lose weight,First gym membership.
+Z0461,David,López,david.lopez@example.com,2025-05-04,Annual,build muscle,
+Z0496,Raquel,Molina,raquel.molina@example.com,2024-05-03,Annual,lose weight,
+Z0470,Mateo,Vega,mateo.vega@example.com,2025-07-08,Annual,lose weight,"Came with a friend, both joined."
+Z0292,Cristina,Pérez,cristina.perez@example.com,2024-08-18,Annual,rehab after injury,
+Z0484,Pablo,Guerrero,pablo.guerrero@example.com,2025-10-17,Monthly,general fitness,
+Z0880,David,Santos,david.santos@example.com,2024-04-21,Monthly,lose weight,
+Z0853,Hugo,Molina,hugo.molina@example.com,2025-01-10,Monthly,stress and sleep,
+Z0353,Martina,Lozano,martina.lozano@example.com,2024-02-06,Monthly,lose weight,
+Z0568,Rubén,García,ruben.garcia@example.com,2024-10-15,Annual,general fitness,
+Z0580,Javier,Díaz,javier.diaz@example.com,2025-03-05,Annual,build muscle,
+Z0475,Martín,Carrasco,martin.carrasco@example.com,2024-07-16,Monthly,build muscle,"Came with a friend, both joined."
+Z0261,Teresa,García,teresa.garcia@example.com,2024-09-02,Monthly,lose weight,
+Z0250,Ana,Romero,ana.romero@example.com,2024-02-10,Monthly,get fit for a ski week in January,
+Z0071,Iván,Pérez,ivan.perez@example.com,2024-02-06,Annual,lose weight,Prefers early mornings.
+Z0494,Miguel,Moreno,miguel.moreno@example.com,2025-03-14,Monthly,lose weight,
+Z0213,David,Álvarez,david.alvarez@example.com,2026-02-13,Annual,general fitness,
+Z0299,Antonio,Guerrero,antonio.guerrero@example.com,2024-10-06,Monthly,general fitness,
+Z0793,Leo,Ortiz,leo.ortiz@example.com,2024-08-15,Monthly,get fit for the Behobia race in November,"Away in August, back in September."
+Z0778,Alejandro,Carrasco,alejandro.carrasco@example.com,2025-06-18,Student,general fitness,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0856,Sergio,Castro,sergio.castro@example.com,2025-02-19,Annual,general fitness,
+Z0014,Pilar,Garrido,pilar.garrido@example.com,2024-03-02,Annual,build muscle,Does the Thursday spin class.
+Z0362,Sofía,Cano,sofia.cano@example.com,2026-03-20,Off-peak mornings,build muscle,
+Z0057,Pilar,Vega,pilar.vega@example.com,2024-01-28,Monthly,rehab after injury,
+Z0798,Teresa,Fuentes,teresa.fuentes@example.com,2025-07-11,Monthly,lose weight,Travelling for work most of August.
+Z0757,Miguel,Gómez,miguel.gomez@example.com,2025-04-14,Monthly,get fit for a ski week in January,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0260,Hugo,Vega,hugo.vega@example.com,2025-09-30,Off-peak mornings,lose weight,Does the Thursday spin class.
+Z0364,Sofía,Álvarez,sofia.alvarez@example.com,2026-02-24,Monthly,get fit for a wedding in November,
+Z0563,Rosa,Sánchez,rosa.sanchez@example.com,2024-08-16,Annual,general fitness,"Works shifts, comes when she can."
+Z0197,Francisco,Torres,francisco.torres@example.com,2024-12-03,Annual,build muscle,
+Z0186,Mario,Gómez,mario.gomez@example.com,2025-10-21,Annual,build muscle,
+Z0677,Elena,Flores,elena.flores@example.com,2025-04-13,Monthly,general fitness,Told us once a fortnight is all he can manage and that is fine.
+Z0265,Claudia,Gil,claudia.gil@example.com,2025-10-03,Monthly,get fit for a ski week in January,
+Z0322,Lucas,Gómez,lucas.gomez@example.com,2025-03-22,Annual,lose weight,Asked about personal training in June.
+Z0521,Jorge,Medina,jorge.medina@example.com,2026-03-01,Monthly,get fit for the Behobia race in November,"Came with a friend, both joined."
+Z0539,David,Navarro,david.navarro@example.com,2025-02-14,Monthly,general fitness,Saturday mornings only.
+Z0252,Alejandro,Martínez,alejandro.martinez@example.com,2025-08-10,Monthly,lose weight,
+Z0341,Francisco,Prieto,francisco.prieto@example.com,2024-11-20,Monthly,lose weight,"Came with a friend, both joined."
+Z0567,Marta,Molina,marta.molina@example.com,2026-04-04,Annual,lose weight,Saturday mornings only.
+Z0771,Lucía,López,lucia.lopez@example.com,2024-08-31,Monthly,lose weight,Travelling for work most of August.
+Z0130,Antonio,Ramírez,antonio.ramirez@example.com,2024-04-05,Annual,general fitness,
+Z0419,Raquel,Sánchez,raquel.sanchez@example.com,2025-05-11,Monthly,build muscle,
+Z0183,Elena,Pérez,elena.perez@example.com,2024-08-06,Monthly,build muscle,
+Z0611,Álvaro,Fernández,alvaro.fernandez@example.com,2024-03-02,Off-peak mornings,lose weight,"Works shifts, comes when she can."
+Z0248,Rosa,Cano,rosa.cano@example.com,2024-02-03,Annual,build muscle,
+Z0377,Sofía,Pérez,sofia.perez@example.com,2025-02-23,Monthly,get fit for a hiking trip in the Pyrenees,Tuesday and Thursday evenings.
+Z0184,Alejandro,Pérez,alejandro.perez@example.com,2025-03-02,Off-peak mornings,stress and sleep,
+Z0102,Nuria,Ortiz,nuria.ortiz@example.com,2025-04-26,Annual,general fitness,Asked about personal training in June.
+Z0493,Antonio,Peña,antonio.pena@example.com,2025-08-15,Monthly,lose weight,
+Z0839,Sara,Lozano,sara.lozano@example.com,2024-03-09,Annual,build muscle,
+Z0488,Nuria,Carrasco,nuria.carrasco@example.com,2026-03-17,Monthly,rehab after injury,
+Z0654,Hugo,Castro,hugo.castro@example.com,2026-03-30,Annual,build muscle,
+Z0178,Rosa,Ortega,rosa.ortega@example.com,2024-07-21,Annual,rehab after injury,Asked about personal training in June.
+Z0849,Diego,Lozano,diego.lozano@example.com,2025-10-28,Annual,general fitness,
+Z0841,Irene,Marín,irene.marin@example.com,2025-01-31,Monthly,stress and sleep,Mentioned work was getting busy.
+Z0564,Antonio,Santos,antonio.santos@example.com,2024-02-26,Monthly,lose weight,
+Z0894,Carmen,Blanco,carmen.blanco@example.com,2024-05-16,Monthly,strength as I get older,"Back problem, told us to hold off for a while."
+Z0722,Teresa,Torres,teresa.torres@example.com,2026-08-25,Monthly,build muscle,Joined on the summer offer.
+Z0139,Elena,Fuentes,elena.fuentes@example.com,2024-07-09,Monthly,lose weight,
+Z0264,Mateo,Cruz,mateo.cruz@example.com,2025-12-06,Annual,build muscle,
+Z0471,Alba,Fernández,alba.fernandez@example.com,2025-07-12,Monthly,general fitness,
+Z0836,Miguel,Pérez,miguel.perez@example.com,2025-08-24,Monthly,get fit for the Madrid half marathon in October,
+Z0449,Antonio,Fernández,antonio.fernandez@example.com,2026-01-04,Monthly,stress and sleep,
+Z0432,Hugo,Santos,hugo.santos@example.com,2026-05-01,Student,stress and sleep,
+Z0242,David,Vega,david.vega@example.com,2025-09-09,Student,lose weight,Prefers early mornings.
+Z0466,Martina,López,martina.lopez@example.com,2024-04-30,Annual,build muscle,Tuesday and Thursday evenings.
+Z0314,Martín,Molina,martin.molina@example.com,2024-11-24,Monthly,lose weight,
+Z0052,Daniel,Méndez,daniel.mendez@example.com,2024-01-16,Annual,stress and sleep,
+Z0694,David,Castro,david.castro@example.com,2024-03-06,Off-peak mornings,get fit for a wedding in November,"Lives outside Madrid, in the city every second week for work."
+Z0497,Francisco,Gil,francisco.gil@example.com,2024-08-09,Annual,lose weight,
+Z0109,Carmen,Ramírez,carmen.ramirez@example.com,2025-09-20,Monthly,stress and sleep,
+Z0277,Elena,Martínez,elena.martinez@example.com,2025-11-01,Monthly,lose weight,
+Z0881,Martina,Pérez,martina.perez@example.com,2025-01-29,Annual,build muscle,
+Z0042,Elena,Delgado,elena.delgado@example.com,2025-08-05,Off-peak mornings,build muscle,Does the Thursday spin class.
+Z0643,Irene,Gómez,irene.gomez@example.com,2025-04-29,Annual,general fitness,
+Z0011,David,Ortega,david.ortega@example.com,2024-07-09,Student,lose weight,
+Z0367,Leo,Peña,leo.pena@example.com,2025-05-22,Monthly,lose weight,
+Z0053,Alba,Lozano,alba.lozano@example.com,2024-06-07,Annual,lose weight,
+Z0182,Miguel,Castro,miguel.castro@example.com,2025-10-04,Monthly,general fitness,
+Z0063,Raquel,Cano,raquel.cano@example.com,2024-12-04,Off-peak mornings,build muscle,
+Z0243,Raquel,Fernández,raquel.fernandez@example.com,2024-04-14,Annual,lose weight,Asked about personal training in June.
+Z0438,Miguel,Peña,miguel.pena@example.com,2025-01-15,Annual,build muscle,
+Z0645,Rubén,Lozano,ruben.lozano@example.com,2024-07-18,Annual,build muscle,
+Z0893,Hugo,Carrasco,hugo.carrasco@example.com,2025-09-05,Off-peak mornings,rehab after injury,"Knee injury, physio says back in October."
+Z0128,Rosa,Garrido,rosa.garrido@example.com,2025-12-09,Monthly,lose weight,Does the Thursday spin class.
+Z0495,David,Flores,david.flores@example.com,2024-07-20,Off-peak mornings,general fitness,
+Z0233,Elena,Ortega,elena.ortega@example.com,2026-02-27,Annual,lose weight,Prefers early mornings.
+Z0549,Jorge,Marín,jorge.marin@example.com,2025-04-25,Annual,lose weight,
+Z0739,Irene,Flores,irene.flores@example.com,2026-08-30,Annual,lose weight,Moved to Chamberí in August.
+Z0021,Irene,Delgado,irene.delgado@example.com,2026-02-21,Monthly,lose weight,
+Z0859,Diego,Díaz,diego.diaz@example.com,2026-05-08,Student,strength as I get older,
+Z0048,Valeria,Martínez,valeria.martinez@example.com,2024-11-22,Annual,rehab after injury,
+Z0180,Hugo,Herrera,hugo.herrera@example.com,2023-12-28,Annual,build muscle,Asked about personal training in June.
+Z0626,Sergio,Prieto,sergio.prieto@example.com,2025-02-10,Annual,general fitness,
+Z0767,Sergio,Moreno,sergio.moreno@example.com,2024-10-20,Off-peak mornings,strength as I get older,"Away in August, back in September."
+Z0797,Sofía,Medina,sofia.medina@example.com,2025-11-15,Monthly,lose weight,In Galicia with family for August.
+Z0143,Nuria,Garrido,nuria.garrido@example.com,2025-10-04,Monthly,lose weight,
+Z0656,Sergio,Guerrero,sergio.guerrero@example.com,2025-08-31,Annual,get fit for a ski week in January,"Comes every other week, that is her pattern."
+Z0515,Iván,López,ivan.lopez@example.com,2025-06-05,Annual,build muscle,
+Z0699,Irene,Iglesias,irene.iglesias@example.com,2026-08-17,Monthly,lose weight,Did the induction on day one.
+Z0476,Marta,Méndez,marta.mendez@example.com,2025-06-04,Off-peak mornings,rehab after injury,"Came with a friend, both joined."
+Z0506,Carmen,Romero,carmen.romero@example.com,2024-02-16,Off-peak mornings,lose weight,
+Z0442,Irene,Sanz,irene.sanz@example.com,2024-06-13,Annual,build muscle,
+Z0307,Nuria,Pérez,nuria.perez@example.com,2025-07-02,Off-peak mornings,get fit for a hiking trip in the Pyrenees,
+Z0110,Leo,Herrera,leo.herrera@example.com,2024-06-26,Off-peak mornings,build muscle,
+Z0574,Mateo,Moreno,mateo.moreno@example.com,2025-03-16,Annual,build muscle,Saturday mornings only.
+Z0864,Carlos,Díaz,carlos.diaz@example.com,2024-06-16,Annual,build muscle,
+Z0559,Antonio,Gómez,antonio.gomez@example.com,2024-09-03,Annual,lose weight,"Works shifts, comes when she can."
+Z0416,Valeria,Lozano,valeria.lozano@example.com,2026-01-21,Monthly,lose weight,
+Z0027,Jorge,Blanco,jorge.blanco@example.com,2024-05-08,Monthly,general fitness,Prefers early mornings.
+Z0784,Jorge,Ramírez,jorge.ramirez@example.com,2025-10-22,Annual,lose weight,Travelling for work most of August.
+Z0251,Andrea,Cortés,andrea.cortes@example.com,2024-09-29,Off-peak mornings,strength as I get older,
+Z0577,Ana,Díaz,ana.diaz@example.com,2025-11-11,Annual,stress and sleep,
+Z0514,Claudia,Gómez,claudia.gomez@example.com,2024-09-16,Off-peak mornings,build muscle,
+Z0325,José,Serrano,jose.serrano@example.com,2025-10-06,Annual,build muscle,
+Z0347,Cristina,Herrera,cristina.herrera@example.com,2024-10-10,Monthly,rehab after injury,Tuesday and Thursday evenings.
+Z0114,José,Castro,jose.castro@example.com,2024-06-12,Off-peak mornings,build muscle,Prefers early mornings.
+Z0705,Sara,Vega,sara.vega@example.com,2026-08-11,Off-peak mornings,build muscle,First gym membership.
+Z0188,Diego,Medina,diego.medina@example.com,2024-06-03,Annual,build muscle,
+Z0194,Noa,Marín,noa.marin@example.com,2024-09-20,Monthly,rehab after injury,
+Z0338,Francisco,Vega,francisco.vega@example.com,2025-05-20,Annual,build muscle,Tuesday and Thursday evenings.
+Z0049,Antonio,Martínez,antonio.martinez@example.com,2025-07-19,Monthly,strength as I get older,Prefers early mornings.
+Z0439,Teresa,Díaz,teresa.diaz@example.com,2024-06-16,Student,stress and sleep,"Came with a friend, both joined."
+Z0257,Carlos,Carrasco,carlos.carrasco@example.com,2025-02-05,Student,lose weight,
+Z0395,Carlos,Torres,carlos.torres@example.com,2026-03-04,Annual,lose weight,
+Z0762,Mario,Molina,mario.molina@example.com,2025-03-08,Annual,lose weight,"Away in August, back in September."
+Z0812,Jorge,Cano,jorge.cano@example.com,2025-06-28,Monthly,stress and sleep,
+Z0583,Andrea,Caballero,andrea.caballero@example.com,2026-02-23,Monthly,build muscle,
+Z0429,Valeria,Ortiz,valeria.ortiz@example.com,2025-09-11,Annual,general fitness,
+Z0830,Cristina,Ramírez,cristina.ramirez@example.com,2025-08-11,Annual,lose weight,
+Z0001,Miguel,Flores,miguel.flores@example.com,2024-01-09,Monthly,build muscle,Asked about personal training in June.
+Z0459,Leo,Lozano,leo.lozano@example.com,2024-01-27,Annual,lose weight,
+Z0785,Paula,Rodríguez,paula.rodriguez@example.com,2026-04-21,Annual,general fitness,In Galicia with family for August.
+Z0035,Francisco,Molina,francisco.molina@example.com,2024-10-22,Monthly,strength as I get older,Does the Thursday spin class.
+Z0544,Hugo,Méndez,hugo.mendez@example.com,2025-03-22,Monthly,lose weight,
+Z0622,David,Pérez,david.perez@example.com,2025-12-09,Off-peak mornings,general fitness,Saturday mornings only.
+Z0226,Daniel,Flores,daniel.flores@example.com,2024-10-30,Annual,build muscle,Prefers early mornings.
+Z0637,Laura,Martínez,laura.martinez@example.com,2024-08-01,Monthly,lose weight,Saturday mornings only.
+Z0132,Noa,Blanco,noa.blanco@example.com,2024-10-01,Off-peak mornings,lose weight,Asked about personal training in June.
+Z0263,Elena,Carrasco,elena.carrasco@example.com,2025-08-14,Monthly,build muscle,
+Z0499,Lucas,Blanco,lucas.blanco@example.com,2024-03-01,Monthly,general fitness,Tuesday and Thursday evenings.
+Z0608,Laura,Ramírez,laura.ramirez@example.com,2024-06-22,Monthly,general fitness,"Works shifts, comes when she can."
+Z0531,Marta,Ramírez,marta.ramirez@example.com,2024-12-11,Off-peak mornings,build muscle,
+Z0448,Alba,Flores,alba.flores@example.com,2025-11-21,Annual,build muscle,
+Z0056,Alba,Peña,alba.pena@example.com,2025-10-21,Off-peak mornings,general fitness,
+Z0529,Nuria,Lozano,nuria.lozano@example.com,2024-08-13,Annual,get fit for the Madrid half marathon in October,Saturday mornings only.
+Z0331,Cristina,Fernández,cristina.fernandez@example.com,2025-04-13,Off-peak mornings,lose weight,Tuesday and Thursday evenings.
+Z0002,Sara,Méndez,sara.mendez@example.com,2026-02-15,Annual,lose weight,
+Z0616,Adrián,Rodríguez,adrian.rodriguez@example.com,2024-06-25,Monthly,build muscle,
+Z0502,Laura,García,laura.garcia@example.com,2026-01-10,Monthly,general fitness,Tuesday and Thursday evenings.
+Z0025,Daniel,Álvarez,daniel.alvarez@example.com,2024-05-25,Monthly,stress and sleep,
+Z0203,Diego,Pérez,diego.perez@example.com,2025-04-12,Annual,lose weight,
+Z0301,Lucas,Castro,lucas.castro@example.com,2024-05-23,Monthly,build muscle,
+Z0456,Iván,Cruz,ivan.cruz@example.com,2025-06-15,Annual,lose weight,
+Z0827,Manuel,Caballero,manuel.caballero@example.com,2024-04-02,Monthly,lose weight,Mentioned work was getting busy.
+Z0820,Lucía,Blanco,lucia.blanco@example.com,2024-10-20,Monthly,build muscle,
+Z0061,Elena,Herrera,elena.herrera@example.com,2024-05-12,Monthly,build muscle,
+Z0024,Martina,Serrano,martina.serrano@example.com,2024-06-27,Off-peak mornings,strength as I get older,
+Z0781,Rosa,Serrano,rosa.serrano@example.com,2026-04-07,Off-peak mornings,lose weight,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0412,Pilar,Blanco,pilar.blanco@example.com,2024-10-18,Monthly,lose weight,
+Z0501,Hugo,García,hugo.garcia@example.com,2025-10-28,Off-peak mornings,general fitness,"Came with a friend, both joined."
+Z0592,Carlos,Ortiz,carlos.ortiz@example.com,2024-09-07,Annual,rehab after injury,
+Z0668,Daniel,Cortés,daniel.cortes@example.com,2025-05-03,Off-peak mornings,build muscle,
+Z0343,Noa,Sánchez,noa.sanchez@example.com,2026-04-18,Monthly,build muscle,
+Z0235,Laura,López,laura.lopez@example.com,2025-03-04,Off-peak mornings,lose weight,
+Z0697,Martina,Peña,martina.pena@example.com,2026-08-15,Student,general fitness,First gym membership.
+Z0601,Francisco,García,francisco.garcia@example.com,2024-05-19,Annual,build muscle,
+Z0410,Paula,Iglesias,paula.iglesias@example.com,2026-01-23,Off-peak mornings,lose weight,
+Z0157,Manuel,Blanco,manuel.blanco@example.com,2025-01-10,Off-peak mornings,get fit for the Behobia race in November,
+Z0191,Nuria,Fuentes,nuria.fuentes@example.com,2024-04-12,Monthly,general fitness,Prefers early mornings.
+Z0289,Manuel,Díaz,manuel.diaz@example.com,2025-05-13,Monthly,lose weight,Does the Thursday spin class.
+Z0169,Cristina,Cruz,cristina.cruz@example.com,2025-10-11,Monthly,stress and sleep,
+Z0084,Raquel,Marín,raquel.marin@example.com,2024-05-27,Annual,strength as I get older,
+Z0691,José,Gómez,jose.gomez@example.com,2024-07-04,Monthly,lose weight,"Comes every other week, that is her pattern."
+Z0282,Raquel,Romero,raquel.romero@example.com,2025-02-10,Annual,build muscle,Asked about personal training in June.
+Z0106,Lucía,Carrasco,lucia.carrasco@example.com,2026-04-16,Monthly,lose weight,Asked about personal training in June.
+Z0463,Noa,Moreno,noa.moreno@example.com,2024-07-16,Monthly,stress and sleep,
+Z0712,Teresa,Navarro,teresa.navarro@example.com,2026-08-30,Off-peak mornings,get fit for a wedding in November,Did the induction on day one.
+Z0481,Sergio,Vega,sergio.vega@example.com,2025-12-09,Monthly,get fit for a wedding in November,
+Z0600,Teresa,Gómez,teresa.gomez@example.com,2026-04-20,Annual,stress and sleep,
+Z0154,Diego,Iglesias,diego.iglesias@example.com,2025-08-28,Off-peak mornings,general fitness,
+Z0192,Teresa,Álvarez,teresa.alvarez@example.com,2025-07-01,Annual,lose weight,
+Z0420,Álvaro,Serrano,alvaro.serrano@example.com,2024-08-01,Annual,strength as I get older,
+Z0101,David,Iglesias,david.iglesias@example.com,2025-07-21,Student,get fit for a hiking trip in the Pyrenees,
+Z0059,Martina,Gil,martina.gil@example.com,2026-04-01,Annual,general fitness,Does the Thursday spin class.
+Z0086,Carlos,Molina,carlos.molina@example.com,2024-03-31,Annual,build muscle,
+Z0399,Pablo,Fuentes,pablo.fuentes@example.com,2025-05-06,Off-peak mornings,build muscle,
+Z0863,Iván,Lozano,ivan.lozano@example.com,2024-06-23,Monthly,rehab after injury,
+Z0886,Diego,Prieto,diego.prieto@example.com,2024-02-18,Monthly,lose weight,
+Z0115,Elena,Navarro,elena.navarro@example.com,2025-06-11,Monthly,lose weight,Prefers early mornings.
+Z0527,Lucía,Santos,lucia.santos@example.com,2025-05-05,Monthly,lose weight,"Works shifts, comes when she can."
+Z0647,Rosa,Herrera,rosa.herrera@example.com,2025-05-06,Off-peak mornings,build muscle,
+Z0753,Martina,Martínez,martina.martinez@example.com,2026-08-21,Student,lose weight,Moved to Chamberí in August.
+Z0683,Carmen,Pérez,carmen.perez@example.com,2025-12-15,Monthly,build muscle,
+Z0294,Claudia,Ramírez,claudia.ramirez@example.com,2024-02-02,Off-peak mornings,lose weight,
+Z0245,Ana,Torres,ana.torres@example.com,2023-12-22,Monthly,get fit for a hiking trip in the Pyrenees,Does the Thursday spin class.
+Z0266,Mateo,Flores,mateo.flores@example.com,2024-04-25,Off-peak mornings,stress and sleep,Prefers early mornings.
+Z0538,Noa,Fernández,noa.fernandez@example.com,2024-12-29,Annual,lose weight,
+Z0693,Lucía,Rodríguez,lucia.rodriguez@example.com,2024-06-18,Monthly,build muscle,"Comes every other week, that is her pattern."
+Z0344,Sara,Torres,sara.torres@example.com,2026-05-02,Monthly,stress and sleep,
+Z0799,Pablo,Méndez,pablo.mendez@example.com,2025-03-05,Monthly,rehab after injury,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0467,Leo,Rubio,leo.rubio@example.com,2024-10-05,Monthly,lose weight,
+Z0898,Antonio,Castro,antonio.castro@example.com,2024-01-31,Annual,build muscle,"Back problem, told us to hold off for a while."
+Z0244,Francisco,Pérez,francisco.perez@example.com,2024-10-27,Off-peak mornings,build muscle,Prefers early mornings.
+Z0317,Andrea,Ortiz,andrea.ortiz@example.com,2025-12-12,Monthly,lose weight,
+Z0728,Sofía,Rodríguez,sofia.rodriguez@example.com,2026-08-10,Annual,build muscle,Moved to Chamberí in August.
+Z0284,Álvaro,Romero,alvaro.romero@example.com,2025-08-24,Annual,build muscle,
+Z0627,Jorge,Torres,jorge.torres@example.com,2025-01-20,Student,build muscle,
+Z0454,Martín,Cruz,martin.cruz@example.com,2024-03-25,Monthly,lose weight,
+Z0802,Sara,Ramírez,sara.ramirez@example.com,2025-01-14,Annual,strength as I get older,
+Z0483,Teresa,Sánchez,teresa.sanchez@example.com,2026-03-24,Monthly,build muscle,
+Z0707,Laura,Garrido,laura.garrido@example.com,2026-08-12,Off-peak mornings,lose weight,Moved to Chamberí in August.
+Z0389,Alba,Díaz,alba.diaz@example.com,2024-12-19,Annual,stress and sleep,
+Z0026,Lucía,Lozano,lucia.lozano@example.com,2024-05-19,Annual,lose weight,Prefers early mornings.
+Z0380,Noa,Vega,noa.vega@example.com,2025-11-05,Monthly,general fitness,
+Z0573,Raquel,Martínez,raquel.martinez@example.com,2025-04-10,Annual,build muscle,"Works shifts, comes when she can."
+Z0159,Lucas,Fernández,lucas.fernandez@example.com,2026-04-25,Monthly,lose weight,
+Z0051,Paula,Cortés,paula.cortes@example.com,2024-08-09,Monthly,rehab after injury,
+Z0010,Ana,Serrano,ana.serrano@example.com,2026-04-14,Monthly,rehab after injury,
+Z0589,Marta,Serrano,marta.serrano@example.com,2026-03-10,Monthly,stress and sleep,Saturday mornings only.
+Z0561,Raquel,Sanz,raquel.sanz@example.com,2024-11-09,Monthly,general fitness,Saturday mornings only.
+Z0715,Miguel,Delgado,miguel.delgado@example.com,2026-08-20,Annual,get fit for the Behobia race in November,First gym membership.
+Z0610,Laura,Gil,laura.gil@example.com,2024-09-01,Off-peak mornings,build muscle,
+Z0205,Mario,Fernández,mario.fernandez@example.com,2024-07-23,Off-peak mornings,get fit for a hiking trip in the Pyrenees,
+Z0212,Teresa,Cruz,teresa.cruz@example.com,2026-04-26,Monthly,strength as I get older,
+Z0543,Marta,Ortiz,marta.ortiz@example.com,2025-11-08,Off-peak mornings,general fitness,"Works shifts, comes when she can."
+Z0081,Raquel,Guerrero,raquel.guerrero@example.com,2026-05-09,Annual,lose weight,
+Z0842,Noa,Martínez,noa.martinez@example.com,2025-06-16,Off-peak mornings,general fitness,
+Z0171,Francisco,Blanco,francisco.blanco@example.com,2024-12-06,Student,lose weight,
+Z0873,Carlos,Álvarez,carlos.alvarez@example.com,2026-04-29,Annual,stress and sleep,
+Z0593,Martín,Rubio,martin.rubio@example.com,2025-02-27,Monthly,get fit for a hiking trip in the Pyrenees,
+Z0324,Álvaro,Caballero,alvaro.caballero@example.com,2026-01-26,Monthly,build muscle,Prefers early mornings.
+Z0166,Pablo,Cano,pablo.cano@example.com,2025-06-20,Off-peak mornings,stress and sleep,
+Z0832,Pablo,Moreno,pablo.moreno@example.com,2024-03-23,Annual,lose weight,
+Z0327,Sergio,Méndez,sergio.mendez@example.com,2024-09-02,Monthly,lose weight,
+Z0388,José,Garrido,jose.garrido@example.com,2025-01-05,Student,general fitness,"Came with a friend, both joined."
+Z0135,Alba,Navarro,alba.navarro@example.com,2024-07-24,Monthly,rehab after injury,
+Z0609,Pilar,Caballero,pilar.caballero@example.com,2024-04-01,Annual,rehab after injury,
+Z0348,Iván,Ramírez,ivan.ramirez@example.com,2024-03-10,Monthly,stress and sleep,"Came with a friend, both joined."
+Z0879,Noa,Delgado,noa.delgado@example.com,2025-04-20,Student,general fitness,Never replied to the June newsletter.
+Z0041,Mateo,Cortés,mateo.cortes@example.com,2024-03-02,Off-peak mornings,stress and sleep,
+Z0590,Martín,Herrera,martin.herrera@example.com,2025-09-01,Monthly,lose weight,
+Z0406,Pilar,Cruz,pilar.cruz@example.com,2024-12-16,Monthly,lose weight,Tuesday and Thursday evenings.
+Z0686,Lucía,Rubio,lucia.rubio@example.com,2024-07-20,Annual,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0067,Miguel,Guerrero,miguel.guerrero@example.com,2024-05-08,Annual,rehab after injury,
+Z0426,Lucas,Romero,lucas.romero@example.com,2024-10-23,Monthly,build muscle,"Came with a friend, both joined."
+Z0368,David,Herrera,david.herrera@example.com,2024-05-17,Off-peak mornings,build muscle,
+Z0316,José,Navarro,jose.navarro@example.com,2025-04-24,Monthly,rehab after injury,
+Z0759,Sara,Moreno,sara.moreno@example.com,2024-01-13,Off-peak mornings,stress and sleep,In Galicia with family for August.
+Z0085,Ana,Navarro,ana.navarro@example.com,2024-06-09,Monthly,build muscle,
+Z0092,Martín,Méndez,martin.mendez@example.com,2025-08-09,Annual,strength as I get older,Asked about personal training in June.
+Z0843,Sofía,Garrido,sofia.garrido@example.com,2025-09-06,Monthly,get fit for the Madrid half marathon in October,
+Z0227,Andrea,Sánchez,andrea.sanchez@example.com,2024-09-23,Monthly,get fit for a hiking trip in the Pyrenees,
+Z0741,Rosa,Moreno,rosa.moreno@example.com,2026-08-23,Annual,strength as I get older,Joined on the summer offer.
+Z0782,Francisco,Navarro,francisco.navarro@example.com,2025-10-18,Off-peak mornings,build muscle,Travelling for work most of August.
+Z0342,David,Rubio,david.rubio@example.com,2024-07-24,Off-peak mornings,get fit for the Behobia race in November,"Came with a friend, both joined."
+Z0787,Andrea,Garrido,andrea.garrido@example.com,2025-08-24,Annual,lose weight,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0620,Valeria,Guerrero,valeria.guerrero@example.com,2024-09-19,Annual,general fitness,
+Z0223,Ana,Molina,ana.molina@example.com,2024-07-02,Monthly,lose weight,Prefers early mornings.
+Z0714,Manuel,Sánchez,manuel.sanchez@example.com,2026-08-27,Annual,lose weight,Joined on the summer offer.
+Z0730,Lucas,Ortega,lucas.ortega@example.com,2026-08-30,Student,get fit for a hiking trip in the Pyrenees,Joined on the summer offer.
+Z0482,Javier,López,javier.lopez@example.com,2025-05-09,Off-peak mornings,get fit for the Behobia race in November,
+Z0742,Sofía,Ortiz,sofia.ortiz@example.com,2026-08-28,Monthly,build muscle,Moved to Chamberí in August.
+Z0146,Irene,Castro,irene.castro@example.com,2025-08-15,Monthly,stress and sleep,
+Z0818,Sara,Ortega,sara.ortega@example.com,2026-05-05,Annual,lose weight,
+Z0208,Ana,Delgado,ana.delgado@example.com,2025-05-31,Monthly,lose weight,
+Z0489,Carlos,Ortega,carlos.ortega@example.com,2024-01-24,Annual,rehab after injury,"Came with a friend, both joined."
+Z0425,Adrián,Gil,adrian.gil@example.com,2024-10-16,Annual,stress and sleep,"Came with a friend, both joined."
+Z0633,Francisco,Flores,francisco.flores@example.com,2025-02-26,Monthly,build muscle,Saturday mornings only.
+Z0312,Nuria,Torres,nuria.torres@example.com,2025-11-18,Monthly,general fitness,Prefers early mornings.
+Z0158,Laura,Lozano,laura.lozano@example.com,2025-04-14,Annual,build muscle,Does the Thursday spin class.
+Z0773,Daniel,Rodríguez,daniel.rodriguez@example.com,2026-01-23,Annual,general fitness,In Galicia with family for August.
+Z0669,Mateo,Carrasco,mateo.carrasco@example.com,2025-10-22,Monthly,general fitness,"Lives outside Madrid, in the city every second week for work."
+Z0007,Antonio,Rodríguez,antonio.rodriguez@example.com,2024-01-06,Student,lose weight,
+Z0628,Sara,Cortés,sara.cortes@example.com,2026-02-10,Monthly,build muscle,Saturday mornings only.
+Z0528,José,Pérez,jose.perez@example.com,2025-08-29,Annual,lose weight,
+Z0034,Alejandro,Delgado,alejandro.delgado@example.com,2024-01-09,Student,build muscle,
+Z0658,Pablo,Rubio,pablo.rubio@example.com,2024-07-13,Monthly,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0293,Sergio,Molina,sergio.molina@example.com,2024-01-27,Monthly,build muscle,Asked about personal training in June.
+Z0295,Mateo,Santos,mateo.santos@example.com,2025-11-25,Off-peak mornings,lose weight,
+Z0587,Lucía,García,lucia.garcia@example.com,2026-02-03,Annual,rehab after injury,Saturday mornings only.
+Z0037,Miguel,Blanco,miguel.blanco@example.com,2025-07-28,Annual,build muscle,
+Z0498,Adrián,Martínez,adrian.martinez@example.com,2025-05-27,Off-peak mornings,get fit for a hiking trip in the Pyrenees,
+Z0621,Carmen,Sanz,carmen.sanz@example.com,2024-10-10,Annual,stress and sleep,
+Z0345,Daniel,García,daniel.garcia@example.com,2025-08-23,Annual,build muscle,
+Z0202,Alejandro,Fuentes,alejandro.fuentes@example.com,2026-04-14,Off-peak mornings,build muscle,
+Z0619,Claudia,Cortés,claudia.cortes@example.com,2024-11-26,Off-peak mornings,lose weight,
+Z0040,Irene,Molina,irene.molina@example.com,2025-06-20,Off-peak mornings,general fitness,
+Z0091,Daniel,Romero,daniel.romero@example.com,2024-07-04,Annual,lose weight,
+Z0618,José,Cano,jose.cano@example.com,2024-09-13,Monthly,stress and sleep,
+Z0681,Javier,Molina,javier.molina@example.com,2025-07-25,Annual,lose weight,
+Z0437,Noa,Herrera,noa.herrera@example.com,2024-07-10,Monthly,build muscle,Tuesday and Thursday evenings.
+Z0365,Martín,Vega,martin.vega@example.com,2024-05-08,Annual,build muscle,Tuesday and Thursday evenings.
+Z0599,Rosa,García,rosa.garcia@example.com,2025-08-03,Off-peak mornings,general fitness,
+Z0355,Javier,Blanco,javier.blanco@example.com,2025-10-27,Off-peak mornings,strength as I get older,
+Z0077,Lucía,Molina,lucia.molina@example.com,2024-03-10,Off-peak mornings,lose weight,Asked about personal training in June.
+Z0807,Álvaro,Molina,alvaro.molina@example.com,2025-09-07,Off-peak mornings,strength as I get older,
+Z0534,Jorge,Herrera,jorge.herrera@example.com,2024-03-06,Monthly,get fit for a ski week in January,
+Z0649,Marta,Sanz,marta.sanz@example.com,2025-09-17,Monthly,build muscle,"Comes every other week, that is her pattern."
+Z0383,Laura,Fuentes,laura.fuentes@example.com,2025-05-30,Annual,build muscle,
+Z0504,Pablo,Lozano,pablo.lozano@example.com,2026-03-09,Annual,build muscle,Tuesday and Thursday evenings.
+Z0423,Cristina,Iglesias,cristina.iglesias@example.com,2025-09-04,Monthly,general fitness,
+Z0404,Irene,Caballero,irene.caballero@example.com,2025-05-17,Monthly,rehab after injury,Tuesday and Thursday evenings.
+Z0597,Sara,Castro,sara.castro@example.com,2024-04-26,Monthly,general fitness,
+Z0520,José,Álvarez,jose.alvarez@example.com,2025-05-27,Student,rehab after injury,
+Z0148,José,Blanco,jose.blanco@example.com,2025-12-08,Monthly,strength as I get older,
+Z0890,Marta,Blanco,marta.blanco@example.com,2024-06-03,Student,lose weight,Never replied to the June newsletter.
+Z0870,Claudia,Marín,claudia.marin@example.com,2025-06-11,Monthly,build muscle,
+Z0333,Teresa,Iglesias,teresa.iglesias@example.com,2024-02-01,Off-peak mornings,lose weight,
+Z0371,Teresa,Molina,teresa.molina@example.com,2025-04-08,Monthly,general fitness,
+Z0711,Ana,Marín,ana.marin@example.com,2026-08-25,Student,general fitness,Moved to Chamberí in August.
+Z0281,Pablo,Herrera,pablo.herrera@example.com,2024-08-15,Monthly,lose weight,Asked about personal training in June.
+Z0884,Rubén,Blanco,ruben.blanco@example.com,2024-03-03,Student,general fitness,Never replied to the June newsletter.
+Z0247,Noa,Fuentes,noa.fuentes@example.com,2026-04-01,Monthly,build muscle,
+Z0373,Elena,Vega,elena.vega@example.com,2024-01-31,Off-peak mornings,stress and sleep,
+Z0675,Sergio,Fuentes,sergio.fuentes@example.com,2023-12-23,Annual,strength as I get older,Told us once a fortnight is all he can manage and that is fine.
+Z0073,Manuel,Serrano,manuel.serrano@example.com,2024-08-16,Monthly,build muscle,Prefers early mornings.
+Z0769,Iván,Flores,ivan.flores@example.com,2024-04-05,Monthly,get fit for the Madrid half marathon in October,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0613,Valeria,Santos,valeria.santos@example.com,2025-07-22,Monthly,get fit for a ski week in January,
+Z0043,Manuel,Ortiz,manuel.ortiz@example.com,2024-10-18,Off-peak mornings,lose weight,Does the Thursday spin class.
+Z0351,Sofía,Prieto,sofia.prieto@example.com,2025-12-30,Monthly,build muscle,
+Z0306,Nuria,Delgado,nuria.delgado@example.com,2025-11-11,Annual,rehab after injury,Does the Thursday spin class.
+Z0400,Sofía,Castro,sofia.castro@example.com,2024-07-26,Student,stress and sleep,
+Z0302,Cristina,Ortiz,cristina.ortiz@example.com,2024-11-05,Monthly,lose weight,Does the Thursday spin class.
+Z0144,Sergio,Sánchez,sergio.sanchez@example.com,2025-09-17,Off-peak mornings,build muscle,
+Z0376,Pablo,Ramírez,pablo.ramirez@example.com,2025-12-15,Annual,get fit for the Behobia race in November,
+Z0436,Alejandro,Cruz,alejandro.cruz@example.com,2024-11-30,Annual,general fitness,
+Z0141,Javier,Flores,javier.flores@example.com,2025-03-25,Monthly,rehab after injury,
+Z0854,Leo,Garrido,leo.garrido@example.com,2024-11-24,Monthly,strength as I get older,
+Z0079,Pablo,Fernández,pablo.fernandez@example.com,2025-04-05,Monthly,lose weight,Does the Thursday spin class.
+Z0107,Pablo,Castro,pablo.castro@example.com,2024-11-24,Annual,get fit for the Madrid half marathon in October,Asked about personal training in June.
+Z0581,Lucía,Sanz,lucia.sanz@example.com,2025-05-09,Monthly,lose weight,
+Z0276,Carmen,Méndez,carmen.mendez@example.com,2024-02-21,Monthly,lose weight,Prefers early mornings.
+Z0657,Daniel,Marín,daniel.marin@example.com,2025-07-05,Monthly,build muscle,Told us once a fortnight is all he can manage and that is fine.
+Z0309,Daniel,Moreno,daniel.moreno@example.com,2026-05-05,Off-peak mornings,get fit for a wedding in November,
+Z0606,Sara,Álvarez,sara.alvarez@example.com,2024-10-27,Monthly,stress and sleep,"Works shifts, comes when she can."
+Z0430,Martina,Delgado,martina.delgado@example.com,2024-11-25,Annual,general fitness,"Came with a friend, both joined."
+Z0703,Claudia,Cano,claudia.cano@example.com,2026-08-17,Monthly,get fit for the Behobia race in November,Joined on the summer offer.
+Z0283,Marta,Navarro,marta.navarro@example.com,2025-02-15,Student,lose weight,Asked about personal training in June.
+Z0032,Laura,Molina,laura.molina@example.com,2024-07-15,Off-peak mornings,lose weight,
+Z0119,Teresa,Castro,teresa.castro@example.com,2025-02-24,Annual,lose weight,
+Z0384,Irene,García,irene.garcia@example.com,2025-01-02,Monthly,lose weight,
+Z0262,Mateo,Sanz,mateo.sanz@example.com,2025-11-26,Off-peak mornings,lose weight,Prefers early mornings.
+Z0822,Rubén,Díaz,ruben.diaz@example.com,2024-07-07,Student,general fitness,
+Z0350,Miguel,Marín,miguel.marin@example.com,2024-12-06,Monthly,rehab after injury,
+Z0891,Javier,Sanz,javier.sanz@example.com,2024-08-02,Off-peak mornings,get fit for a wedding in November,"Pregnant, taking a break on doctor's advice."
+Z0572,Javier,Martínez,javier.martinez@example.com,2025-09-26,Monthly,build muscle,Saturday mornings only.
+Z0320,Francisco,Romero,francisco.romero@example.com,2025-02-25,Off-peak mornings,stress and sleep,Does the Thursday spin class.
+Z0408,Paula,Ortega,paula.ortega@example.com,2026-04-01,Monthly,rehab after injury,
+Z0124,José,Flores,jose.flores@example.com,2024-01-04,Annual,general fitness,
+Z0112,Francisco,Gómez,francisco.gomez@example.com,2024-04-03,Off-peak mornings,general fitness,
+Z0268,Alba,Ramírez,alba.ramirez@example.com,2025-08-24,Annual,build muscle,Does the Thursday spin class.
+Z0862,Antonio,García,antonio.garcia@example.com,2024-03-13,Student,get fit for the Behobia race in November,
+Z0591,Lucía,Martínez,lucia.martinez@example.com,2025-02-14,Monthly,lose weight,Saturday mornings only.
+Z0308,Diego,Carrasco,diego.carrasco@example.com,2024-12-21,Off-peak mornings,get fit for a wedding in November,Asked about personal training in June.
+Z0696,Elena,Sanz,elena.sanz@example.com,2026-08-22,Annual,general fitness,Moved to Chamberí in August.
+Z0848,Laura,Delgado,laura.delgado@example.com,2025-11-02,Monthly,build muscle,Said the 7am class was getting hard to make.
+Z0009,Elena,Molina,elena.molina@example.com,2024-12-10,Annual,build muscle,Does the Thursday spin class.
+Z0093,Raquel,Caballero,raquel.caballero@example.com,2025-03-17,Annual,stress and sleep,Does the Thursday spin class.
+Z0888,Hugo,Cruz,hugo.cruz@example.com,2025-03-16,Annual,stress and sleep,
+Z0156,Diego,García,diego.garcia@example.com,2025-06-15,Off-peak mornings,lose weight,Asked about personal training in June.
+Z0578,Jorge,Díaz,jorge.diaz@example.com,2025-06-24,Annual,strength as I get older,
+Z0576,Raquel,Cruz,raquel.cruz@example.com,2025-11-20,Annual,strength as I get older,
+Z0679,Andrea,Fuentes,andrea.fuentes@example.com,2025-10-14,Annual,rehab after injury,
+Z0279,Mateo,Díaz,mateo.diaz@example.com,2024-07-07,Off-peak mornings,strength as I get older,
+Z0339,Daniel,Torres,daniel.torres@example.com,2025-12-18,Monthly,stress and sleep,
+Z0168,Lucas,Herrera,lucas.herrera@example.com,2026-02-24,Monthly,get fit for a ski week in January,
+Z0200,Miguel,Rubio,miguel.rubio@example.com,2025-04-01,Monthly,general fitness,
+Z0274,Francisco,Rodríguez,francisco.rodriguez@example.com,2024-03-03,Off-peak mornings,strength as I get older,Asked about personal training in June.
+Z0280,Carmen,Serrano,carmen.serrano@example.com,2024-02-22,Annual,lose weight,
+Z0058,Miguel,Ortega,miguel.ortega@example.com,2025-09-29,Monthly,stress and sleep,
+Z0789,Lucía,Fuentes,lucia.fuentes@example.com,2024-08-01,Student,lose weight,"Away in August, back in September."
+Z0689,Francisco,Méndez,francisco.mendez@example.com,2024-09-30,Monthly,stress and sleep,"Comes every other week, that is her pattern."
+Z0770,Claudia,Cruz,claudia.cruz@example.com,2023-12-26,Monthly,build muscle,In Galicia with family for August.
+Z0680,Manuel,Iglesias,manuel.iglesias@example.com,2024-09-26,Monthly,build muscle,"Comes every other week, that is her pattern."
+Z0725,Paula,Herrera,paula.herrera@example.com,2026-08-21,Monthly,build muscle,Moved to Chamberí in August.
+Z0779,Paula,Romero,paula.romero@example.com,2025-11-15,Annual,build muscle,"Holidays 3 weeks in August, froze nothing, said not to worry."
+Z0774,Daniel,Pérez,daniel.perez@example.com,2025-02-22,Monthly,lose weight,"Away in August, back in September."
+Z0523,Jorge,Delgado,jorge.delgado@example.com,2024-02-15,Student,lose weight,"Came with a friend, both joined."
+Z0349,Claudia,Blanco,claudia.blanco@example.com,2024-11-14,Monthly,lose weight,
+Z0872,Rosa,Vega,rosa.vega@example.com,2026-03-07,Annual,build muscle,
+Z0433,Alejandro,Caballero,alejandro.caballero@example.com,2025-05-17,Monthly,rehab after injury,Tuesday and Thursday evenings.
+Z0760,Rubén,Castro,ruben.castro@example.com,2025-01-01,Monthly,get fit for a wedding in November,Travelling for work most of August.
+Z0896,Rubén,Ortega,ruben.ortega@example.com,2025-07-12,Monthly,stress and sleep,"Back problem, told us to hold off for a while."
+Z0479,Rosa,Álvarez,rosa.alvarez@example.com,2026-04-08,Annual,build muscle,
+Z0131,Mateo,Delgado,mateo.delgado@example.com,2026-03-09,Monthly,get fit for the Behobia race in November,Prefers early mornings.
+Z0013,Sofía,Herrera,sofia.herrera@example.com,2025-11-17,Monthly,build muscle,Prefers early mornings.
+Z0604,José,Ortega,jose.ortega@example.com,2025-09-03,Monthly,strength as I get older,
+Z0162,Rubén,Peña,ruben.pena@example.com,2025-09-04,Annual,get fit for the Madrid half marathon in October,
+Z0486,Martina,Iglesias,martina.iglesias@example.com,2025-09-29,Student,lose weight,
+Z0706,Álvaro,Sanz,alvaro.sanz@example.com,2026-08-28,Off-peak mornings,get fit for the Behobia race in November,First gym membership.
+Z0253,Lucía,Álvarez,lucia.alvarez@example.com,2026-02-06,Monthly,get fit for the Behobia race in November,
+Z0546,Paula,Ortiz,paula.ortiz@example.com,2026-05-03,Monthly,lose weight,
+Z0594,Alejandro,Ortega,alejandro.ortega@example.com,2024-08-28,Annual,lose weight,Saturday mornings only.
+Z0692,Martín,Pérez,martin.perez@example.com,2025-04-23,Monthly,strength as I get older,
+Z0138,David,Gil,david.gil@example.com,2024-11-21,Monthly,get fit for a ski week in January,
+Z0050,Alba,Sanz,alba.sanz@example.com,2025-09-16,Monthly,build muscle,Asked about personal training in June.
+Z0254,Elena,Gil,elena.gil@example.com,2024-12-26,Monthly,general fitness,Does the Thursday spin class.
+Z0755,José,Peña,jose.pena@example.com,2026-08-13,Student,lose weight,Joined on the summer offer.
+Z0709,Lucas,Lozano,lucas.lozano@example.com,2026-08-22,Annual,build muscle,Joined on the summer offer.
+Z0673,Lucía,Iglesias,lucia.iglesias@example.com,2024-10-29,Monthly,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0151,Lucía,Méndez,lucia.mendez@example.com,2025-02-26,Annual,build muscle,Prefers early mornings.
+Z0452,Carmen,Carrasco,carmen.carrasco@example.com,2026-02-10,Monthly,rehab after injury,
+Z0318,Manuel,Lozano,manuel.lozano@example.com,2025-07-05,Monthly,get fit for a hiking trip in the Pyrenees,
+Z0526,Elena,Blanco,elena.blanco@example.com,2025-01-16,Student,build muscle,Saturday mornings only.
+Z0874,Andrea,Molina,andrea.molina@example.com,2025-07-21,Off-peak mornings,build muscle,
+Z0290,Carlos,Serrano,carlos.serrano@example.com,2025-03-19,Annual,lose weight,
+Z0899,Mario,Cruz,mario.cruz@example.com,2026-04-16,Monthly,rehab after injury,"Back problem, told us to hold off for a while."
+Z0708,Jorge,Rodríguez,jorge.rodriguez@example.com,2026-08-20,Monthly,lose weight,Did the induction on day one.
+Z0271,Sofía,Peña,sofia.pena@example.com,2025-03-24,Annual,lose weight,
+Z0603,Martín,Santos,martin.santos@example.com,2024-10-13,Off-peak mornings,general fitness,Saturday mornings only.
+Z0660,Manuel,Gil,manuel.gil@example.com,2025-06-16,Annual,build muscle,"Comes every other week, that is her pattern."
+Z0685,Martín,Gómez,martin.gomez@example.com,2024-07-06,Monthly,build muscle,"Comes every other week, that is her pattern."
+Z0064,Lucía,Pérez,lucia.perez@example.com,2025-01-02,Monthly,general fitness,
+Z0090,Lucas,Rubio,lucas.rubio@example.com,2024-02-15,Annual,rehab after injury,Does the Thursday spin class.
+Z0700,Rosa,Martínez,rosa.martinez@example.com,2026-08-16,Off-peak mornings,strength as I get older,First gym membership.
+Z0806,Lucas,Medina,lucas.medina@example.com,2025-10-11,Off-peak mornings,get fit for a wedding in November,
+Z0724,Miguel,Iglesias,miguel.iglesias@example.com,2026-08-30,Monthly,lose weight,Joined on the summer offer.
+Z0676,Claudia,Vega,claudia.vega@example.com,2025-02-03,Annual,build muscle,
+Z0272,Hugo,Fuentes,hugo.fuentes@example.com,2025-02-26,Annual,rehab after injury,Asked about personal training in June.
+Z0022,Lucía,Herrera,lucia.herrera@example.com,2025-12-18,Student,build muscle,Does the Thursday spin class.
+Z0012,Carlos,Sánchez,carlos.sanchez@example.com,2026-04-01,Annual,build muscle,Prefers early mornings.
+Z0765,Mateo,Marín,mateo.marin@example.com,2025-07-05,Monthly,strength as I get older,In Galicia with family for August.
+Z0414,Diego,Gil,diego.gil@example.com,2024-12-25,Monthly,build muscle,"Came with a friend, both joined."
+Z0068,Carlos,Pérez,carlos.perez@example.com,2025-11-26,Monthly,strength as I get older,Does the Thursday spin class.
+Z0397,Martina,Rodríguez,martina.rodriguez@example.com,2024-10-06,Monthly,strength as I get older,
+Z0407,Nuria,García,nuria.garcia@example.com,2023-12-29,Monthly,stress and sleep,
+Z0571,Pilar,Guerrero,pilar.guerrero@example.com,2025-07-01,Monthly,rehab after injury,
+Z0334,Daniel,Santos,daniel.santos@example.com,2024-08-12,Student,build muscle,
+Z0390,Marta,Moreno,marta.moreno@example.com,2025-05-14,Monthly,build muscle,
+Z0684,Teresa,Flores,teresa.flores@example.com,2025-10-22,Off-peak mornings,general fitness,
+Z0100,Sergio,Álvarez,sergio.alvarez@example.com,2024-03-09,Monthly,get fit for the Madrid half marathon in October,
+Z0133,Andrea,Delgado,andrea.delgado@example.com,2024-01-12,Annual,lose weight,
+Z0877,Pilar,Pérez,pilar.perez@example.com,2025-09-13,Monthly,general fitness,
+Z0259,Raquel,Rodríguez,raquel.rodriguez@example.com,2026-01-28,Off-peak mornings,build muscle,
+Z0794,Iván,García,ivan.garcia@example.com,2025-03-23,Annual,lose weight,Travelling for work most of August.
+Z0661,Lucía,Garrido,lucia.garrido@example.com,2024-01-01,Monthly,strength as I get older,"Comes every other week, that is her pattern."
+Z0635,Pilar,Navarro,pilar.navarro@example.com,2025-06-10,Monthly,lose weight,
+Z0214,Paula,Ramírez,paula.ramirez@example.com,2024-12-01,Annual,strength as I get older,
+Z0104,Alejandro,Castro,alejandro.castro@example.com,2024-08-31,Monthly,get fit for the Behobia race in November,
+Z0221,Valeria,Castro,valeria.castro@example.com,2024-10-13,Monthly,rehab after injury,
+Z0039,Francisco,Cortés,francisco.cortes@example.com,2024-04-06,Monthly,build muscle,Asked about personal training in June.
+Z0615,Diego,Navarro,diego.navarro@example.com,2026-04-25,Annual,get fit for a wedding in November,
+Z0719,Daniel,Ortega,daniel.ortega@example.com,2026-08-21,Annual,lose weight,Joined on the summer offer.
+Z0550,Alba,Rubio,alba.rubio@example.com,2025-08-16,Off-peak mornings,build muscle,Saturday mornings only.
+Z0201,David,Sánchez,david.sanchez@example.com,2025-01-01,Monthly,general fitness,
+Z0674,Sara,Romero,sara.romero@example.com,2025-05-06,Monthly,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0659,Rubén,Sánchez,ruben.sanchez@example.com,2024-01-28,Student,lose weight,"Comes every other week, that is her pattern."
+Z0748,Javier,Marín,javier.marin@example.com,2026-08-25,Annual,general fitness,First gym membership.
+Z0323,Marta,Guerrero,marta.guerrero@example.com,2026-05-06,Monthly,build muscle,Prefers early mornings.
+Z0882,Carlos,Garrido,carlos.garrido@example.com,2025-03-10,Student,build muscle,
+Z0319,Iván,Peña,ivan.pena@example.com,2024-10-12,Off-peak mornings,build muscle,Does the Thursday spin class.
+Z0883,Mario,Rubio,mario.rubio@example.com,2024-09-22,Monthly,strength as I get older,
+Z0207,Claudia,López,claudia.lopez@example.com,2024-05-12,Student,lose weight,Does the Thursday spin class.
+Z0421,Laura,Vega,laura.vega@example.com,2025-03-15,Annual,get fit for the Behobia race in November,
+Z0275,Nuria,Santos,nuria.santos@example.com,2024-02-24,Monthly,get fit for a ski week in January,
+Z0087,Mateo,Iglesias,mateo.iglesias@example.com,2025-11-09,Monthly,build muscle,
+Z0190,Jorge,Santos,jorge.santos@example.com,2024-05-01,Monthly,stress and sleep,
+Z0667,Jorge,López,jorge.lopez@example.com,2025-06-19,Monthly,general fitness,Told us once a fortnight is all he can manage and that is fine.
+Z0777,Carmen,Vega,carmen.vega@example.com,2024-06-30,Monthly,general fitness,In Galicia with family for August.
+Z0121,Manuel,López,manuel.lopez@example.com,2025-06-20,Monthly,rehab after injury,
+Z0566,Martina,Blanco,martina.blanco@example.com,2025-06-28,Student,build muscle,
+Z0016,Pablo,Martínez,pablo.martinez@example.com,2024-01-17,Monthly,strength as I get older,
+Z0507,Antonio,Medina,antonio.medina@example.com,2025-01-01,Monthly,strength as I get older,"Came with a friend, both joined."
+Z0444,Pilar,Flores,pilar.flores@example.com,2025-06-29,Monthly,lose weight,
+Z0160,Carmen,Santos,carmen.santos@example.com,2025-10-28,Off-peak mornings,strength as I get older,Does the Thursday spin class.
+Z0630,Teresa,Romero,teresa.romero@example.com,2025-09-12,Monthly,lose weight,
+Z0491,Irene,Romero,irene.romero@example.com,2024-07-29,Annual,strength as I get older,
+Z0875,Antonio,Moreno,antonio.moreno@example.com,2024-12-23,Off-peak mornings,build muscle,
+Z0651,Ana,Medina,ana.medina@example.com,2025-06-07,Off-peak mornings,build muscle,
+Z0878,Irene,Carrasco,irene.carrasco@example.com,2025-12-05,Annual,lose weight,
+Z0788,Daniel,Gil,daniel.gil@example.com,2025-09-15,Annual,general fitness,Travelling for work most of August.
+Z0069,Carmen,Martínez,carmen.martinez@example.com,2025-06-13,Off-peak mornings,general fitness,
+Z0505,Adrián,García,adrian.garcia@example.com,2026-03-02,Monthly,lose weight,Tuesday and Thursday evenings.
+Z0688,Mario,Navarro,mario.navarro@example.com,2024-11-26,Off-peak mornings,get fit for a wedding in November,Told us once a fortnight is all he can manage and that is fine.
+Z0726,José,Santos,jose.santos@example.com,2026-08-14,Off-peak mornings,rehab after injury,Moved to Chamberí in August.
+Z0434,Miguel,Cruz,miguel.cruz@example.com,2026-02-19,Monthly,build muscle,Tuesday and Thursday evenings.
+Z0004,Noa,Pérez,noa.perez@example.com,2025-09-07,Off-peak mornings,general fitness,Prefers early mornings.
+Z0734,Lucía,Cortés,lucia.cortes@example.com,2026-08-19,Student,lose weight,Joined on the summer offer.
+Z0300,Sergio,Peña,sergio.pena@example.com,2024-06-02,Annual,build muscle,
+Z0838,Noa,Castro,noa.castro@example.com,2026-02-12,Off-peak mornings,lose weight,
+Z0472,Adrián,Fuentes,adrian.fuentes@example.com,2025-03-31,Monthly,general fitness,"Came with a friend, both joined."
+Z0075,Laura,Carrasco,laura.carrasco@example.com,2025-06-09,Off-peak mornings,strength as I get older,Prefers early mornings.
+Z0876,Adrián,Iglesias,adrian.iglesias@example.com,2025-01-20,Annual,lose weight,
+Z0288,Rubén,Martínez,ruben.martinez@example.com,2025-07-27,Monthly,general fitness,Asked about personal training in June.
+Z0405,Adrián,Fernández,adrian.fernandez@example.com,2024-01-08,Monthly,rehab after injury,
+Z0540,Mario,Álvarez,mario.alvarez@example.com,2025-03-15,Student,lose weight,
+Z0813,Mateo,López,mateo.lopez@example.com,2024-09-08,Student,general fitness,
+Z0023,Pilar,Moreno,pilar.moreno@example.com,2024-11-14,Annual,get fit for a hiking trip in the Pyrenees,Prefers early mornings.
+Z0596,Ana,Rodríguez,ana.rodriguez@example.com,2025-07-28,Student,general fitness,
+Z0358,Valeria,Delgado,valeria.delgado@example.com,2025-07-29,Student,get fit for a ski week in January,
+Z0346,Pilar,Molina,pilar.molina@example.com,2025-04-15,Student,lose weight,
+Z0224,Nuria,Herrera,nuria.herrera@example.com,2023-12-27,Monthly,lose weight,Prefers early mornings.
+Z0204,Hugo,Garrido,hugo.garrido@example.com,2025-11-19,Annual,rehab after injury,
+Z0278,Andrea,Ortega,andrea.ortega@example.com,2025-06-15,Student,lose weight,
+Z0829,Francisco,Rubio,francisco.rubio@example.com,2024-10-28,Annual,lose weight,
+Z0237,Alejandro,Herrera,alejandro.herrera@example.com,2024-10-30,Off-peak mornings,general fitness,Asked about personal training in June.
+Z0031,Hugo,Ortiz,hugo.ortiz@example.com,2025-01-03,Annual,build muscle,Prefers early mornings.
+Z0503,Cristina,Serrano,cristina.serrano@example.com,2026-02-10,Off-peak mornings,lose weight,
+Z0536,Álvaro,Fuentes,alvaro.fuentes@example.com,2024-12-18,Annual,strength as I get older,
+Z0612,David,Prieto,david.prieto@example.com,2025-09-28,Monthly,get fit for a hiking trip in the Pyrenees,
+Z0366,Raquel,Méndez,raquel.mendez@example.com,2024-02-19,Annual,build muscle,
+Z0607,Jorge,Carrasco,jorge.carrasco@example.com,2024-08-05,Annual,get fit for a hiking trip in the Pyrenees,
+Z0826,Lucía,Fernández,lucia.fernandez@example.com,2025-04-14,Monthly,rehab after injury,Mentioned work was getting busy.
+Z0718,Paula,Álvarez,paula.alvarez@example.com,2026-08-11,Annual,build muscle,Did the induction on day one.
+Z0814,Carmen,López,carmen.lopez@example.com,2024-06-03,Off-peak mornings,build muscle,
+Z0821,Sofía,Fernández,sofia.fernandez@example.com,2024-07-24,Off-peak mornings,stress and sleep,
+Z0653,Carlos,Cruz,carlos.cruz@example.com,2025-05-08,Student,strength as I get older,
+Z0537,Francisco,Ortiz,francisco.ortiz@example.com,2025-07-11,Monthly,get fit for a ski week in January,
+Z0123,Ana,Cruz,ana.cruz@example.com,2025-08-30,Annual,rehab after injury,
+Z0551,Antonio,Prieto,antonio.prieto@example.com,2025-09-16,Monthly,build muscle,
+Z0060,Carlos,Rubio,carlos.rubio@example.com,2025-11-17,Off-peak mornings,build muscle,Asked about personal training in June.
+Z0740,Mario,Pérez,mario.perez@example.com,2026-08-28,Monthly,rehab after injury,Joined on the summer offer.
+Z0030,Adrián,Serrano,adrian.serrano@example.com,2025-09-16,Off-peak mornings,rehab after injury,
+Z0780,Adrián,Delgado,adrian.delgado@example.com,2025-12-22,Off-peak mornings,general fitness,In Galicia with family for August.
+Z0175,Sergio,Caballero,sergio.caballero@example.com,2024-06-09,Annual,lose weight,
+Z0181,Sofía,Carrasco,sofia.carrasco@example.com,2025-03-12,Annual,lose weight,
+Z0727,Claudia,Sánchez,claudia.sanchez@example.com,2026-08-30,Student,stress and sleep,Did the induction on day one.
+Z0045,Lucía,Serrano,lucia.serrano@example.com,2024-12-16,Annual,strength as I get older,Prefers early mornings.
+Z0662,Carlos,Herrera,carlos.herrera@example.com,2026-01-07,Monthly,build muscle,"Lives outside Madrid, in the city every second week for work."
+Z0153,Lucía,Sánchez,lucia.sanchez@example.com,2024-04-11,Annual,lose weight,
+Z0409,Pilar,Castro,pilar.castro@example.com,2025-01-03,Monthly,strength as I get older,
+Z0118,Lucas,Molina,lucas.molina@example.com,2025-12-09,Annual,rehab after injury,Does the Thursday spin class.
