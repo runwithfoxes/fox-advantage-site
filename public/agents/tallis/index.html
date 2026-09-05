@@ -16,8 +16,8 @@
   category." So this is the dataintelligence redesign preview
   (~/projects/data-intelligence/index.html, 16 Jul) with the fly-into-the-
   laptop hero and its scroll maths kept exactly, and everything else changed:
-  Tallis, treasury for finance teams, a new identity (Onest, cream and night,
-  one oxblood accent), new copy, a new screen on the laptop, and every real
+  Tallis, treasury for finance teams, a new identity (Onest, white and night,
+  one yellow accent), new copy, a new screen on the laptop, and every real
   name, logo and person removed. The office photograph was generated for the
   DI preview and was never used by them.
 -->
@@ -26,19 +26,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#15130f;
-    --ink-2:#5f5a52;
-    --line:rgba(21,19,15,.11);
-    --cream:#f1efe8;
-    --paper:#faf9f5;
-    --night:#0c0b0a;
-    --night-2:#131210;
-    --on-night:#f4f2ec;
-    --on-night-2:rgba(244,242,236,.62);
+    --ink:#0e0f12;
+    --ink-2:#5c606b;
+    --line:rgba(14,15,18,.10);
+    --cream:#ffffff;
+    --paper:#f4f5f7;
+    --night:#0b0e14;
+    --night-2:#11151d;
+    --on-night:#f5f6f8;
+    --on-night-2:rgba(245,246,248,.62);
     --line-night:rgba(255,255,255,.12);
-    --accent:#7a1f2b;            /* oxblood, the one colour on the page */
-    --accent-ink:#5e1620;
-    --accent-soft:#f3e3e4;
+    --accent:#f2e33a;            /* the one colour on the page: an acid yellow, ink on top of it */
+    --accent-ink:#e0d12a;
+    --accent-soft:#fbf7c9;
     --radius:14px;
     --maxw:1200px;
     --pad:clamp(20px,5vw,40px);
@@ -57,25 +57,26 @@
   .h-card{font-weight:500;font-size:1.0625rem;line-height:1.3;letter-spacing:-.01em}
   .lead{font-size:clamp(1.05rem,1.5vw,1.18rem);line-height:1.5;color:var(--ink-2);font-weight:400}
   .body{font-size:1rem;color:var(--ink-2);font-weight:400}
-  .eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+  .eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2)}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;height:44px;padding:0 22px;border-radius:999px;font-size:.9375rem;font-weight:500;letter-spacing:-.01em;cursor:pointer;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s,transform .1s}
   .btn:active{transform:translateY(.5px)}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:var(--accent-ink)}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:#24262c}
   .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{background:rgba(21,19,15,.04)}
+  .on-night .btn-primary{background:#fff;color:var(--ink)}
   .on-night .btn-ghost{color:var(--on-night);border-color:var(--line-night)}
   .on-night .btn-ghost:hover{background:rgba(255,255,255,.06)}
   .btn .ar{font-size:1rem;line-height:0}
 
   /* nav: frosted glass from the first pixel, darker once you scroll */
-  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.14);backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);border-bottom:1px solid rgba(255,255,255,.18);transition:background .28s ease,border-color .28s ease}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.22);backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);border-bottom:1px solid rgba(255,255,255,.18);transition:background .28s ease,border-color .28s ease}
   .nav.scrolled{background:rgba(12,11,10,.62);border-color:rgba(255,255,255,.08)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:500;letter-spacing:-.02em;font-size:1.15rem;color:#1e1d1a;transition:color .25s}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:500;letter-spacing:-.02em;font-size:1.15rem;color:#1c1e24;transition:color .25s}
   .nav.scrolled .brand,.on-night .brand{color:#fff}
-  .brand .mark{width:12px;height:12px;background:var(--accent);transform:rotate(45deg);flex:none}
+  .brand .mark{width:12px;height:12px;background:var(--accent);transform:rotate(45deg);flex:none;outline:1px solid rgba(0,0,0,.18)}
   .nav-links{display:flex;align-items:center;gap:6px}
   .nav-links a{font-size:.9375rem;font-weight:500;color:rgba(30,29,26,.85);padding:8px 12px;border-radius:8px;transition:color .25s,background .2s}
   .nav-links a:hover{background:rgba(0,0,0,.06)}
@@ -99,11 +100,11 @@
   .hero-photo{position:absolute;inset:0;z-index:0;overflow:hidden}
   .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 58%;display:block;transform-origin:51% 69%;will-change:transform,filter}
   .hero-dark{position:absolute;inset:0;z-index:2;background:var(--night);opacity:0;pointer-events:none}
-  .hero .btn-ghost{color:#26251f;border-color:rgba(38,37,31,.25);background:rgba(255,255,255,.38);backdrop-filter:blur(8px)}
+  .hero .btn-ghost{color:#1c1e24;border-color:rgba(28,30,36,.25);background:rgba(255,255,255,.38);backdrop-filter:blur(8px)}
   .hero .btn-ghost:hover{background:rgba(255,255,255,.58)}
   .hero-copy{position:absolute;top:14vh;left:0;right:0;z-index:6;text-align:center;will-change:transform,opacity}
-  .hero-copy h1{margin:0 auto;color:#26251f}
-  .hero-copy .lead{margin:18px auto 0;color:rgba(38,37,31,.78)}
+  .hero-copy h1{margin:0 auto;color:#1c1e24}
+  .hero-copy .lead{margin:18px auto 0;color:rgba(28,30,36,.78)}
   .hero-cta{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}
   .stage-laptop{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center}
   .laptop{width:780px;transform-origin:50% 50%;will-change:transform,filter;transform:scale(.45)}
@@ -113,8 +114,8 @@
   .stage-copy2{position:absolute;left:6vw;top:50%;transform:translateY(-50%);z-index:6;width:30vw;opacity:0;will-change:opacity,transform}
   .stage-copy2 .h2{color:#fff}
   .stage-copy2 .body{color:rgba(244,242,236,.65);margin-top:14px;font-size:1.02rem}
-  .scroll-hint{position:absolute;bottom:26px;left:0;right:0;z-index:6;text-align:center;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(38,37,31,.55)}
-  .scroll-hint::after{content:"";display:block;width:1px;height:22px;margin:8px auto 0;background:linear-gradient(rgba(38,37,31,.55),transparent)}
+  .scroll-hint{position:absolute;bottom:26px;left:0;right:0;z-index:6;text-align:center;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(28,30,36,.55)}
+  .scroll-hint::after{content:"";display:block;width:1px;height:22px;margin:8px auto 0;background:linear-gradient(rgba(28,30,36,.55),transparent)}
 
   /* the screen: the cash position, drawn for the page */
   .scr{height:100%;display:flex;flex-direction:column;padding:16px 18px;color:var(--on-night);font-size:12px}
@@ -122,7 +123,7 @@
   .scr-top .pill{margin-left:auto;background:rgba(255,255,255,.08);padding:4px 9px;border-radius:999px;color:#fff}
   .scr-num{margin-top:10px;display:flex;align-items:baseline;gap:12px}
   .scr-num .v{font-size:30px;font-weight:500;letter-spacing:-.02em}
-  .scr-num .d{color:#e7b9be;font-size:12px}
+  .scr-num .d{color:var(--accent);font-size:12px}
   .scr-chart{flex:1;margin-top:10px;position:relative;min-height:0}
   .scr-chart svg{width:100%;height:100%;display:block}
   .scr-rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
@@ -136,20 +137,20 @@
   .head .h2{margin-top:14px}
   .head .lead{margin-top:14px}
   .grid{display:grid;gap:22px;grid-template-columns:repeat(2,1fr);margin-top:52px}
-  .card .media{aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden;background:#e9e6de;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .card .media{aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
   .card .h-card{margin-top:18px}
   .card .body{margin-top:6px;font-size:.96rem}
   .m-bars{display:flex;align-items:flex-end;gap:10px;height:60%;width:70%}
-  .m-bars i{flex:1;background:#cbc7bd;border-radius:3px 3px 0 0}
-  .m-bars i.hi{background:var(--accent)}
+  .m-bars i{flex:1;background:#d9dbe0;border-radius:3px 3px 0 0}
+  .m-bars i.hi{background:var(--ink)}
   .m-scan{width:74%;display:flex;flex-direction:column;gap:10px}
-  .m-scan .l{height:10px;border-radius:6px;background:#d5d1c8}
-  .m-scan .l.a{width:100%}.m-scan .l.b{width:78%}.m-scan .l.c{width:88%;background:#e7c7cb}.m-scan .l.d{width:62%}
+  .m-scan .l{height:10px;border-radius:6px;background:#d9dbe0}
+  .m-scan .l.a{width:100%}.m-scan .l.b{width:78%}.m-scan .l.c{width:88%;background:#efe58a}.m-scan .l.d{width:62%}
   .m-guard{display:flex;gap:14px;align-items:center}
-  .m-guard .ring{width:78px;height:78px;border-radius:50%;border:8px solid #d5d1c8;border-top-color:var(--accent);transform:rotate(35deg)}
+  .m-guard .ring{width:78px;height:78px;border-radius:50%;border:8px solid #d9dbe0;border-top-color:var(--ink);transform:rotate(35deg)}
   .m-guard .toggles{display:flex;flex-direction:column;gap:9px}
-  .m-guard .tg{width:44px;height:24px;border-radius:999px;background:#d5d1c8;position:relative}
-  .m-guard .tg.on{background:var(--accent)}
+  .m-guard .tg{width:44px;height:24px;border-radius:999px;background:#d9dbe0;position:relative}
+  .m-guard .tg.on{background:var(--ink)}
   .m-guard .tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff}
   .m-guard .tg.on::after{left:23px}
   .m-line{width:74%;height:64%;display:flex;align-items:flex-end}
@@ -174,11 +175,11 @@
   .acc summary{list-style:none;cursor:pointer;padding:20px 2px;display:flex;gap:14px;align-items:flex-start}
   .acc summary::-webkit-details-marker{display:none}
   .acc .idx{width:8px;height:8px;border-radius:3px;background:var(--line);margin-top:8px;flex:none;transition:background .2s}
-  .acc details[open] .idx{background:var(--accent)}
+  .acc details[open] .idx{background:var(--ink)}
   .acc .s-title{font-weight:500;font-size:1.0625rem;letter-spacing:-.01em;color:var(--ink-2);transition:color .2s}
   .acc details[open] .s-title{color:var(--ink)}
   .acc .s-body{padding:0 2px 22px 22px;color:var(--ink-2);font-size:.98rem}
-  .split-media{aspect-ratio:4/5;border-radius:var(--radius);background:radial-gradient(120% 90% at 20% 0%,#f3e6e7,#f1efe8 55%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:28px}
+  .split-media{aspect-ratio:4/5;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:28px}
   .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;width:100%}
   .tile .k{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
   .tile .v{font-size:1.5rem;font-weight:500;letter-spacing:-.02em;margin-top:6px}
@@ -186,19 +187,19 @@
   .row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--ink-2)}
   .row .amt{font-variant-numeric:tabular-nums}
   .meter{height:6px;border-radius:999px;background:rgba(21,19,15,.08);overflow:hidden;margin-top:7px}
-  .meter i{display:block;height:100%;background:var(--accent)}
+  .meter i{display:block;height:100%;background:var(--ink)}
 
   .band{text-align:center}
   .band .big{font-weight:500;font-size:clamp(2rem,3.8vw,3rem);letter-spacing:-.03em;line-height:1.06;color:#fff;margin:16px auto 0}
   .band .lead{margin:20px auto 0}
   .band .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-night);border:1px solid var(--line-night);border-radius:16px;overflow:hidden;margin-top:48px}
   .band .cell{background:var(--night);padding:26px 22px}
-  .band .cell .n{color:#e7b9be;font-weight:500;font-size:.85rem;letter-spacing:.06em}
+  .band .cell .n{color:var(--accent);font-weight:500;font-size:.85rem;letter-spacing:.06em}
   .band .cell .t{margin-top:8px;font-weight:500;letter-spacing:-.01em}
   .band .cell .d{margin-top:6px;font-size:.9rem;color:var(--on-night-2)}
 
   .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
-  .feat .ic{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);border:1px solid #e7c7cb;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .feat .ic{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);border:1px solid #ece38a;display:flex;align-items:center;justify-content:center;color:var(--ink)}
   .feat .h-card{margin-top:16px}
   .feat .body{margin-top:6px;font-size:.96rem}
 
@@ -270,9 +271,9 @@
               <div class="scr-num"><span class="v">€4,218,640</span><span class="d">+ €212k this week</span></div>
               <div class="scr-chart">
                 <svg viewBox="0 0 600 160" preserveAspectRatio="none">
-                  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a1f2b" stop-opacity=".45"/><stop offset="1" stop-color="#7a1f2b" stop-opacity="0"/></linearGradient></defs>
+                  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e33a" stop-opacity=".28"/><stop offset="1" stop-color="#f2e33a" stop-opacity="0"/></linearGradient></defs>
                   <path d="M0 120 C 60 112, 90 104, 130 98 S 200 108, 240 84 S 300 40, 340 56 S 400 104, 440 78 S 520 28, 600 34 L600 160 L0 160 Z" fill="url(#g)"/>
-                  <path d="M0 120 C 60 112, 90 104, 130 98 S 200 108, 240 84 S 300 40, 340 56 S 400 104, 440 78 S 520 28, 600 34" fill="none" stroke="#e7b9be" stroke-width="2"/>
+                  <path d="M0 120 C 60 112, 90 104, 130 98 S 200 108, 240 84 S 300 40, 340 56 S 400 104, 440 78 S 520 28, 600 34" fill="none" stroke="#f2e33a" stroke-width="2"/>
                   <circle cx="340" cy="56" r="4" fill="#fff"/><circle cx="600" cy="34" r="4" fill="#fff"/>
                 </svg>
               </div>
@@ -311,7 +312,7 @@
     </div>
     <div class="grid">
       <article class="card">
-        <div class="media"><div class="m-line"><svg viewBox="0 0 200 90" preserveAspectRatio="none"><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16" fill="none" stroke="#7a1f2b" stroke-width="3" stroke-linecap="round"/><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16 L200,90 L0,90 Z" fill="rgba(122,31,43,.08)"/></svg></div></div>
+        <div class="media"><div class="m-line"><svg viewBox="0 0 200 90" preserveAspectRatio="none"><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16" fill="none" stroke="#0e0f12" stroke-width="3" stroke-linecap="round"/><path d="M0,70 L40,60 L80,64 L120,42 L160,30 L200,16 L200,90 L0,90 Z" fill="rgba(242,227,58,.35)"/></svg></div></div>
         <h3 class="h-card">One cash position</h3>
         <p class="body">Every bank account, card programme and the invoice ledger, drawn as one line that updates itself. Payroll, tax and the big invoices are marked on it as they land.</p>
       </article>
@@ -393,7 +394,7 @@
 
 <section id="pricing" class="on-night sec-pad">
   <div class="wrap col band">
-    <div class="eyebrow" style="color:#e7b9be">The price</div>
+    <div class="eyebrow" style="color:var(--on-night-2)">The price</div>
     <p class="big">One price a month. No setup fee, no seats, no surprises.</p>
     <p class="lead">Priced on the number of accounts we connect, not on how many people look at the screen. A finance team of three pays the same as a finance team of thirty.</p>
     <div class="row3">
@@ -432,7 +433,7 @@
 
 <section class="on-night sec-pad">
   <div class="wrap col close-in">
-    <div class="eyebrow" style="color:#e7b9be">Get started</div>
+    <div class="eyebrow" style="color:var(--on-night-2)">Get started</div>
     <h2 class="h2-lg" style="margin-top:14px">See your cash position this week.</h2>
     <p class="lead" style="margin:16px auto 0">Connect the bank, connect the ledger, and Tallis does the rest. Forty minutes with our team and you are live.</p>
     <div class="cta">

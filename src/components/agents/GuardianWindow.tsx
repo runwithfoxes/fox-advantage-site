@@ -32,9 +32,9 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
     atPct: (470 / 970) * 100,
     el: (
       <g key="bg">
-        <rect className="ppbg-box" x={250} y={22} width={28} height={28} fill="#F1EFE8" />
+        <rect className="ppbg-box" x={250} y={22} width={28} height={28} fill="#FFFFFF" />
         <text className="ppbg-lbl" x={288} y={36}>
-          background #F1EFE8
+          background #FFFFFF
         </text>
         <text className="ppbg-lbl ppbg-sm" x={288} y={51}>
           on palette, exact
@@ -64,10 +64,10 @@ const ANNS: { atPct: number; el: React.ReactNode }[] = [
         <rect className="ppbg-box ppbg-skip" x={502} y={2} width={466} height={246} />
         <rect x={516} y={12} width={318} height={44} fill="#FAFAF8" opacity={0.94} />
         <text className="ppbg-lbl" x={528} y={32}>
-          photograph, 48% of the frame
+          product screen, 48% of the frame
         </text>
         <text className="ppbg-lbl ppbg-sm" x={528} y={47}>
-          black and white, per the book; floor 45%
+          from the live product; book floor 45%
         </text>
       </g>
     ),
@@ -223,8 +223,8 @@ export default function GuardianWindow() {
         <span className="ppbg-slash">/illustrative.</span> Tallis is the made-up
         finance company from the website above, and this ad is its ad. The
         guardian measures the file against the brand book: symbol size,
-        background colour, headline size, how much of the frame the photograph
-        takes, and that it is black and white, which is a rule in Tallis&rsquo;s book. It works out what kind of asset it is looking at, runs the
+        background colour, headline size, how much of the frame the product
+        screen takes, and that the screen is the real one, not a mock-up, which is a rule in Tallis&rsquo;s book. It works out what kind of asset it is looking at, runs the
         checks that apply to that kind, and says which ones ran. One verdict, a
         few seconds per file. A guardian is built for one brand&rsquo;s book at
         a time.
