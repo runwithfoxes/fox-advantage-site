@@ -5290,7 +5290,8 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* the gap above the bio and the gap below it are the same 48px (Paul, 5 Sep) */
+  padding: 48px 0 48px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -5844,6 +5845,9 @@ a.project-card {
 }
 
 .ah-hero { height: 280vh; position: relative; }
+/* the global section rule gives the hero root 120px underneath; the bio sets
+   its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
+.hp-root .ah-root { padding-bottom: 0; }
 .ah-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   background-image: radial-gradient(circle, var(--ah-dot) .9px, transparent .9px);
@@ -6254,7 +6258,8 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* the gap above the bio and the gap below it are the same 48px (Paul, 5 Sep) */
+  padding: 48px 0 48px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {

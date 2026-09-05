@@ -18,7 +18,7 @@
   /* the homepage forces --sans to mono (.hp-root); this section keeps the
      proposal and course headline register on purpose */
   --ag-sans: 'Space Grotesk', ui-sans-serif, sans-serif;
-  padding: 20px 0 48px;
+  padding: 0 0 48px;
   color: var(--ag-text);
 }
 
