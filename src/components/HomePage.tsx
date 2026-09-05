@@ -159,19 +159,7 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
           /<span>Run</span>withfoxes
         </a>
         <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  {SF_MODS.map((m) => (
-                    <a key={m.key} href={SF_PAGES[m.key] || "#"}>{m.name}</a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="#agents">/agents</a>
 
           <div className="hp-dropdown-wrap">
             <span className="hp-dropdown-trigger">/previous &#9662;</span>
@@ -228,12 +216,6 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
                 ))}
               </div>
             </aside>
-          </div>
-          <div className="hpx-metastrip">
-            <span className="hpx-ctas-label">Contact us to</span>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\build it for you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\work alongside you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\train your team</Link>
           </div>
         </div>
       </section>

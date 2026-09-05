@@ -246,36 +246,86 @@ const AGENTS: Agent[] = [
   },
 ];
 
+/* The consulting and training panels. Paul's own copy, verbatim from the AXA
+   page. They appear in two places: inline when the mid-page switch picks
+   them, and on the full-screen surface when the hero's door opens. One
+   source for each so the two can never drift. */
+function ConsultingPanel() {
+  return (
+          <div className="ag-overlay-panel">
+            <div className="ag-num">04</div>
+            <h3 className="ag-name">Designing team AI adoption</h3>
+            <div className="ag-overlay-plate">
+              <WorkGrid />
+            </div>
+            {/* Paul's own copy, verbatim from the AXA page. */}
+            <p className="ag-overlay-copy">
+              Not everybody is going to be a builder, and that is fine. I suspect every marketing
+              team will soon have at least one person who builds, and who helps the other teams
+              with their work. What we measure is simple: pieces of work that are now done a
+              different way, not logins or prompt counts.
+            </p>
+          </div>
+  );
+}
+
+function TrainingPanel() {
+  return (
+          <div className="ag-overlay-panel">
+            <div className="ag-num">05</div>
+            <h3 className="ag-name">Training teams</h3>
+            <div className="ag-overlay-plate">
+              <ScaledWindow width={940}>
+                <div className="ppw-blueprint">
+                  <div className="ppw-frame-win">
+                    <div className="ppw-tl">
+                      <i />
+                      <i />
+                      <i />
+                      <span className="ppw-t">the course, module one</span>
+                      <span className="ppw-live-pill">free, live now</span>
+                    </div>
+                    <video
+                      src="/for/training/course-module-1-scroll-web.mp4"
+                      poster="/for/training/course-module-1-scroll-poster.jpg"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ display: "block", width: "100%", height: "auto" }}
+                    />
+                  </div>
+                </div>
+              </ScaledWindow>
+            </div>
+            {/* Paul's own copy, verbatim from the AXA page. */}
+            <p className="ag-overlay-copy">
+              Firstly, there is a free course,{" "}
+              <a href="/course" className="ag-overlay-link">AI Fluency for Ambitious Marketers</a>,
+              for anybody on your team. We also run training sessions for marketing, sales and
+              go-to-market teams. These range from half a day to full-week sessions. We cover a
+              range of topics, from pure productivity hacks to building agents and systems.
+              System thinking is a core skill for marketing in an AI world.
+            </p>
+          </div>
+  );
+}
+
+const RAIL: { label: string; idx: number[] }[] = [
+  { label: "find and win the work", idx: ["research", "growth", "outbound", "search"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
+  { label: "make the work", idx: ["email", "ghostwriter", "advertising", "website"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
+  { label: "check it, and report to you", idx: ["guardian", "pm", "redteam"].map((k) => AGENTS.findIndex((x) => x.key === k)).filter((i) => i >= 0) },
+];
+
 export default function AgentsSection() {
   const [active, setActive] = useState(0);
-  const [hover, setHover] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
   // which door the surface is showing: the ten agents, the adoption grid,
   // or the course scroller. The hero's three buttons pick it.
   const [mode, setMode] = useState<Door>("agents");
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [pill, setPill] = useState({ left: 0, width: 0 });
+  // the mid-page switch: which of the three the section shows inline
+  const [view, setView] = useState<Door>("agents");
   const rowRef = useRef<HTMLDivElement>(null);
-  const idx = hover ?? active;
-
-  // the sliding indicator follows the hovered tab, then the chosen one
-  useEffect(() => {
-    const el = tabRefs.current[idx];
-    if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
-  }, [idx]);
-  // the strip scrolls so the chosen tab is always in view
-  useEffect(() => {
-    const el = tabRefs.current[active];
-    if (el) el.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
-  }, [active]);
-  useEffect(() => {
-    const onResize = () => {
-      const el = tabRefs.current[active];
-      if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [active]);
 
   // the hero announces a door; this section owns the surface and opens it
   useEffect(() => {
@@ -299,6 +349,7 @@ export default function AgentsSection() {
 
   const pick = (i: number) => {
     setActive(i);
+    setView("agents");
     setOpen(false);
     // bring the chosen agent's row to the top of the screen
     requestAnimationFrame(() => {
@@ -315,61 +366,81 @@ export default function AgentsSection() {
   return (
     <section className="ag" id="agents">
       <div className="ag-kick">/agents</div>
-      <h2 className="ag-head">A team of agents that do the work each day, on their own</h2>
-      <p className="ag-stand">
-        Each agent has one job. It does that job every morning without being asked, and when it
-        finishes it hands the work to the next agent. Pick one to see what it hands you.
-      </p>
 
-      <div className="ag-tabs-row">
-        <div className="ag-tabs" onMouseLeave={() => setHover(null)}>
-          <div className="ag-pill" style={{ left: pill.left, width: pill.width }} />
-          {AGENTS.map((ag, i) => (
-            <button
-              key={ag.key}
-              ref={(el) => { tabRefs.current[i] = el; }}
-              className={`ag-tab${idx === i ? " on" : ""}`}
-              onMouseEnter={() => setHover(i)}
-              onClick={() => pick(i)}
-              type="button"
-            >
-              <span className="ag-tab-n">{ag.num}</span>
-              {ag.name}
-            </button>
-          ))}
-        </div>
-        <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
-          the team +
-        </button>
+      {/* THE ONE SELECTOR ON THE PAGE (Paul, 5 Sep). Three boxed buttons in the
+          hero's own style pick what the section shows. The hero's three doors
+          open the surface; these swap the panel in place. */}
+      <div className="ag-switch" role="tablist">
+        {(["agents", "consulting", "training"] as Door[]).map((v) => (
+          <button key={v} type="button" role="tab" aria-selected={view === v} className={view === v ? "on" : ""} onClick={() => setView(v)}>
+            {v === "agents" ? "AI Agents" : v === "consulting" ? "Consulting" : "Training"}
+          </button>
+        ))}
       </div>
 
-      <div className="ag-list">
-        <div className="ag-row close" id={`agent-${a.num}`} ref={rowRef} key={a.key}>
-          <div className="ag-body">
-            <div className="ag-num">
-              {a.num} &middot; {a.when}
+      {view === "agents" ? (
+        <div className="ag-split">
+          {/* the reading rail: all ten, grouped in the order the work moves,
+              the dot on the one you are reading (toolkit nav 02) */}
+          <aside className="ag-rail" aria-label="The team">
+            {RAIL.map((g) => (
+              <div key={g.label}>
+                <div className="ag-rail-group">{g.label}</div>
+                {g.idx.map((i) => (
+                  <button key={AGENTS[i].key} type="button" className={active === i ? "on" : ""} onClick={() => pick(i)}>
+                    <span className="ag-rail-dot" />
+                    <span className="ag-rail-n">{AGENTS[i].num}</span>
+                    <span>{AGENTS[i].name}</span>
+                  </button>
+                ))}
+              </div>
+            ))}
+            <div className="ag-rail-foot">
+              <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
+                the team +
+              </button>
             </div>
-            <h3 className="ag-name">{a.name}</h3>
-            <p>{a.does}</p>
-          </div>
-          <div className="ag-plate">{a.render()}</div>
-          {a.cap ? <p className="ag-cap">{a.cap}</p> : null}
-          <div className="ag-body ag-after">
-            <p>{a.gets}</p>
-            <div className="ag-hand">
-              <span>hands over to</span>
-              <span className="arr">&rarr;</span>
-              {nextIndex >= 0 ? (
-                <button type="button" className="ag-hand-link" onClick={() => pick(nextIndex)}>
-                  {a.hands}
-                </button>
-              ) : (
-                <b>{a.hands}</b>
-              )}
+          </aside>
+
+          <div className="ag-list">
+            <div className="ag-mobile-pick">
+              <span><span className="ag-rail-n">{a.num}</span> <b>{a.name}</b></span>
+              <button className="ag-menu-btn" type="button" onClick={() => { setMode("agents"); setOpen(true); }}>
+                the team +
+              </button>
+            </div>
+            <div className="ag-row close" id={`agent-${a.num}`} ref={rowRef} key={a.key}>
+              <div className="ag-body">
+                <div className="ag-num">
+                  {a.num} &middot; {a.when}
+                </div>
+                <h3 className="ag-name">{a.name}</h3>
+                <p>{a.does}</p>
+              </div>
+              <div className="ag-plate">{a.render()}</div>
+              {a.cap ? <p className="ag-cap">{a.cap}</p> : null}
+              <div className="ag-body ag-after">
+                <p>{a.gets}</p>
+                <div className="ag-hand">
+                  <span>hands over to</span>
+                  <span className="arr">&rarr;</span>
+                  {nextIndex >= 0 ? (
+                    <button type="button" className="ag-hand-link" onClick={() => pick(nextIndex)}>
+                      {a.hands}
+                    </button>
+                  ) : (
+                    <b>{a.hands}</b>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="ag-panel-solo ag-inline">
+          {view === "consulting" ? <ConsultingPanel /> : <TrainingPanel />}
+        </div>
+      )}
 
       <div className="ag-close">
         <div className="ag-num">the day, end to end</div>
@@ -411,62 +482,9 @@ export default function AgentsSection() {
             close &#10005;
           </button>
         </div>
-        {mode === "consulting" ? (
-          <div className="ag-overlay-panel">
-            <div className="ag-num">04</div>
-            <h3 className="ag-name">Designing team AI adoption</h3>
-            <div className="ag-overlay-plate">
-              <WorkGrid />
-            </div>
-            {/* Paul's own copy, verbatim from the AXA page. */}
-            <p className="ag-overlay-copy">
-              Not everybody is going to be a builder, and that is fine. I suspect every marketing
-              team will soon have at least one person who builds, and who helps the other teams
-              with their work. What we measure is simple: pieces of work that are now done a
-              different way, not logins or prompt counts.
-            </p>
-          </div>
-        ) : null}
+        {mode === "consulting" ? <ConsultingPanel /> : null}
 
-        {mode === "training" ? (
-          <div className="ag-overlay-panel">
-            <div className="ag-num">05</div>
-            <h3 className="ag-name">Training teams</h3>
-            <div className="ag-overlay-plate">
-              <ScaledWindow width={940}>
-                <div className="ppw-blueprint">
-                  <div className="ppw-frame-win">
-                    <div className="ppw-tl">
-                      <i />
-                      <i />
-                      <i />
-                      <span className="ppw-t">the course, module one</span>
-                      <span className="ppw-live-pill">free, live now</span>
-                    </div>
-                    <video
-                      src="/for/training/course-module-1-scroll-web.mp4"
-                      poster="/for/training/course-module-1-scroll-poster.jpg"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ display: "block", width: "100%", height: "auto" }}
-                    />
-                  </div>
-                </div>
-              </ScaledWindow>
-            </div>
-            {/* Paul's own copy, verbatim from the AXA page. */}
-            <p className="ag-overlay-copy">
-              Firstly, there is a free course,{" "}
-              <a href="/course" className="ag-overlay-link">AI Fluency for Ambitious Marketers</a>,
-              for anybody on your team. We also run training sessions for marketing, sales and
-              go-to-market teams. These range from half a day to full-week sessions. We cover a
-              range of topics, from pure productivity hacks to building agents and systems.
-              System thinking is a core skill for marketing in an AI world.
-            </p>
-          </div>
-        ) : null}
+        {mode === "training" ? <TrainingPanel /> : null}
 
         <nav className="ag-overlay-list" hidden={mode !== "agents"}>
           {AGENTS.map((ag, i) => (

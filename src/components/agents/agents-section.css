@@ -379,6 +379,60 @@
 .ag-overlay-panel .ag-name { margin-top: 6px; }
 .ag-overlay-plate { margin-top: 28px; }
 .ag-overlay-plate .ppw-holder { margin: 0; }
-.ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 30px 0 0; max-width: 62ch; }
+.ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 30px 0 0; }
 .ag-overlay-link { color: inherit; border-bottom: 1px solid var(--ag-sky); text-decoration: none; }
 .ag-overlay-link:hover { color: var(--ag-sky); }
+
+/* ---- the one selector on the page: three boxed buttons, then a reading
+   rail on the left and the chosen agent on the right (Ramp's shape) ---- */
+.ag-switch { display: flex; gap: 22px; flex-wrap: wrap; }
+.ag-switch button {
+  font-family: var(--mono); font-size: 18px; letter-spacing: .2px; padding: 22px 48px;
+  border: 1px solid var(--ag-border); background: #fff; color: var(--ag-text); cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.ag-switch button:hover { border-color: var(--ag-deep); }
+.ag-switch button.on { background: var(--ag-deep); color: #fff; border-color: var(--ag-deep); }
+
+.ag-split { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 48px; margin-top: 44px; align-items: start; }
+.ag-rail { position: sticky; top: 96px; }
+.ag-rail-group { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ag-muted); margin: 22px 0 8px; }
+.ag-rail-group:first-child { margin-top: 0; }
+.ag-rail button {
+  display: grid; grid-template-columns: 14px 26px 1fr; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  background: none; border: none; padding: 7px 0; cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--ag-muted);
+  transition: color .2s;
+}
+.ag-rail button:hover { color: var(--ag-text); }
+.ag-rail button.on { color: var(--ag-text); }
+.ag-rail-dot { width: 8px; height: 8px; border-radius: 50%; background: transparent; border: 1px solid var(--ag-border); transition: background .25s, border-color .25s, transform .25s; align-self: center; }
+.ag-rail button.on .ag-rail-dot { background: var(--ag-sky); border-color: var(--ag-sky); transform: scale(1.15); }
+.ag-rail-n { color: var(--ag-sky); font-size: 11px; }
+.ag-rail-foot { margin-top: 22px; }
+.ag-split .ag-list { margin-top: 0; border-top: none; }
+.ag-split .ag-row.close { padding-top: 0; }
+.ag-split .ag-row.close .ag-plate .agw { max-width: none; }
+.ag-mobile-pick { display: none; }
+.ag-panel-solo { margin-top: 44px; border-top: 1px solid var(--ag-border); }
+
+@media (max-width: 960px) {
+  .ag-switch { gap: 10px; }
+  .ag-switch button { font-size: 14px; padding: 14px 20px; flex: 1 1 auto; }
+  .ag-split { grid-template-columns: 1fr; gap: 0; margin-top: 24px; }
+  .ag-rail { display: none; }
+  .ag-mobile-pick { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--ag-border); padding: 12px 14px; margin-bottom: 26px; font-family: var(--mono); font-size: 13px; }
+  .ag-mobile-pick b { font-weight: 500; }
+  .ag-mobile-pick .ag-menu-btn { margin: 0; }
+}
+
+/* the consulting and training panels when they sit inline under the switch
+   rather than on the surface: same panel, on the page */
+.ag-inline .ag-overlay-panel { transform: none; opacity: 1; padding-top: 36px; }
+.ag-inline .ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 26px 0 0; color: var(--ag-text); }
+
+/* the rail's own item rule must not reach the menu button under it */
+.ag-rail .ag-rail-foot .ag-menu-btn { display: inline-block; width: auto; grid-template-columns: none; padding: 10px 14px; font-size: 12px; color: var(--ag-text); }
+@media (max-width: 960px) {
+  .ag-switch { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .ag-switch button { padding: 14px 8px; font-size: 13px; }
+}
