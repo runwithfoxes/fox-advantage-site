@@ -187,10 +187,10 @@ export default function AgentsSection() {
       <div className="ag-list">
         <Row
           num="01"
-          when="every morning, on its own"
+          when="every morning"
           name="Research Agent"
           does="Every morning it researches the companies you want to win, files a card on each one to the CRM, and writes you a note on what it found."
-          gets="You read one note with your coffee. The research is done, checked and sourced, and it is already with the next agent."
+          gets="Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact."
           hands="Outbound Agent"
           cap={
             <>
@@ -204,10 +204,10 @@ export default function AgentsSection() {
 
         <Row
           num="02"
-          when="every day, on its own"
+          when="every day"
           name="Outbound Agent"
           does="Takes the research, finds the right person at each company, writes to them for real, and keeps the conversation going until there is a meeting in your diary."
-          gets="You turn up to the meetings. You never build a list or chase a reply."
+          gets="The list, the messages, the follow-ups and the replies are handled. Meetings go into your diary."
           hands="Email Marketing Agent"
           cap={
             <>
@@ -221,10 +221,10 @@ export default function AgentsSection() {
 
         <Row
           num="03"
-          when="whenever a customer needs a word"
+          when="when an email is due"
           name="Email Marketing Agent"
           does="Writes the emails that keep customers: the renewal note, the welcome, the win-back. Every line comes from your positioning, your messaging and your voice. Hover a dotted line and it tells you which."
-          gets="Emails that sound like you, every time, with nothing to rewrite."
+          gets="The emails are written from your own positioning and messaging, so they read like your company and need no rewriting."
           hands="Brand Guardian"
           cap={
             <>
@@ -255,10 +255,10 @@ export default function AgentsSection() {
 
         <Row
           num="04"
-          when="three posts a week, in your voice"
+          when="three posts a week"
           name="Ghostwriter"
           does="Turns what you know into posts and articles that sound like you. It works from your own words, a call, a voice note, a rant, and every line can show you which one it came from."
-          gets="You stay visible without sitting down to write. Nothing goes out that you would not have said."
+          gets="Posts and articles go out in your name each week, written from things you actually said."
           hands="Brand Guardian"
           cap={
             <>
@@ -284,7 +284,7 @@ export default function AgentsSection() {
           when="every week, twenty questions"
           name="Search Agent"
           does="Asks the AI assistants the questions your customers ask them, reads every answer, and tells you whether you are in them. Then it fixes the pages that would change the answer."
-          gets="You know what ChatGPT says about you before a customer does, and what to change so it says something better."
+          gets="You know where you stand in the AI assistants' answers, and which pages to change to move it."
           hands="Website Agent"
           cap={
             <>
@@ -298,10 +298,10 @@ export default function AgentsSection() {
 
         <Row
           num="06"
-          when="one sign-off, every size"
+          when="one approved ad, every size"
           name="Advertising Agent"
           does="You approve one ad. It makes every other size, holding the brand exactly, then runs them and reads the numbers."
-          gets="One decision from you becomes a whole campaign's worth of formats, the same afternoon."
+          gets="One approved ad becomes the full set of sizes, on brand, without a designer redrawing each one."
           hands="Brand Guardian"
         >
           <AdMachine />
@@ -309,10 +309,10 @@ export default function AgentsSection() {
 
         <Row
           num="07"
-          when="when you ask, in plain words"
+          when="a site, then changes on request"
           name="Website Agent"
           does="Builds a site from your brand and your messaging, then changes it when you tell it what you want, in a sentence. This one is for Tallis, a made-up finance technology company, built to show what it can do."
-          gets="A site that looks like it cost a studio six weeks, and a change to it is a sentence you say, not a ticket you raise."
+          gets="A site built from your brand and your messaging, and changes made by asking for them in plain words."
           hands="Brand Guardian"
           cap={
             <>
@@ -329,7 +329,7 @@ export default function AgentsSection() {
           when="before anything ships"
           name="Brand Guardian"
           does="Checks every piece against your brand book before it goes out: the logo size, the colours, the headline, how much of the frame the artwork takes. Passed, or sent back with the fixes named."
-          gets="Nothing goes out off brand, and nobody on the team has to be the police."
+          gets="Nothing goes out off brand. Every file is measured against the brand book before it ships."
           hands="Red Team"
         >
           <GuardianWindow />
@@ -337,10 +337,10 @@ export default function AgentsSection() {
 
         <Row
           num="09"
-          when="every morning, before you are up"
+          when="every morning"
           name="Project Manager"
           does="Keeps the board. Knows what every other agent did overnight, what is late, and what is waiting on you, and tells you in one note."
-          gets="You never ask where something is. The answer is in your inbox before you think to ask."
+          gets="One note each morning with what moved, what is late and what is waiting on you."
           hands="You"
           cap={
             <>
@@ -357,7 +357,7 @@ export default function AgentsSection() {
           when="last, every day"
           name="Red Team"
           does="Its only job is to find the mistakes in the other agents' work before you see it. It doubts everything, checks the sources, and sends work back."
-          gets="You never have to wonder whether an agent got it wrong. One of them is paid to assume they did."
+          gets="Mistakes are found and sent back before the work reaches you."
           hands="You"
           cap={
             <>

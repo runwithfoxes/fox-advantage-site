@@ -203,6 +203,7 @@ Every module section follows:
 - No generalisations ("most teams", "nobody thinks about")
 - No judgement or criticism of teams/marketers
 - No salesy closers ("that's where it gets interesting", "that's the bit")
+- No frivolous benefit lines. State the outcome plainly. Paul, 5 Sep 2026, on "You read one note with your coffee. The research is done, checked and sourced, and it is already with the next agent": "Don't say things like this because it makes the sense frivolous." The fix was "Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact."
 - No "replace" language - frame as opportunity, not replacement
 - Quality and speed are the two themes running through everything
 - "We" not "you" - peer-to-peer, optimistic
