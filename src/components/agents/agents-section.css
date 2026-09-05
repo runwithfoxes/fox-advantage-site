@@ -1,0 +1,268 @@
+/*
+  /agents - the homepage section below the bio. ag- prefix.
+
+  Same skin as the hero, the proposal pages and the course: cream page, a
+  square white plate with a dot grid for every figure, mono labels in sky,
+  Space Grotesk headlines, the serif for reading. Our own surfaces never
+  round; only a window depicted inside a figure rounds.
+*/
+
+.ag {
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  /* the homepage forces --sans to mono (.hp-root); this section keeps the
+     proposal and course headline register on purpose */
+  --ag-sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  padding: 20px 0 48px;
+  color: var(--ag-text);
+}
+
+.ag-kick {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--ag-sky);
+}
+
+.ag-head {
+  font-family: var(--ag-sans);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 16px 0 0;
+}
+
+.ag-stand {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 18px 0 0;
+}
+
+/* ---- the team: one row per agent ---- */
+.ag-list {
+  margin-top: 44px;
+  border-top: 1px solid var(--ag-border);
+}
+
+.ag-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+  padding: 36px 0 40px;
+  border-bottom: 1px solid var(--ag-border);
+}
+
+/* the figure sits on the page itself, no plate behind it (Paul, 5 Sep:
+   "why is there a white background on the figure? can the figure be
+   sitting on its own?"). The page already carries the dot grid. */
+.ag-plate {
+  padding: 0;
+}
+.ag-plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ag-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ag-sky);
+}
+
+.ag-name {
+  font-family: var(--ag-sans);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 10px 0 0;
+}
+
+.ag-body p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.ag-hand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ag-border);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ag-muted);
+}
+.ag-hand b {
+  font-weight: 500;
+  color: var(--ag-text);
+}
+.ag-hand .arr {
+  color: var(--ag-sky);
+}
+
+@media (max-width: 860px) {
+  .ag-head { font-size: 32px; }
+  .ag-row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 28px 0 32px;
+  }
+}
+
+/* ---- the close-up window (agw-) ----
+   The hero's window chrome, as HTML so the words wrap on a phone. */
+.agw {
+  --agw-frame: #edeef1;
+  --agw-frame-line: rgba(20, 20, 30, 0.1);
+  --agw-line: rgba(20, 20, 30, 0.07);
+  --agw-line-soft: rgba(20, 20, 30, 0.045);
+  --agw-ink: #1b1b1f;
+  --agw-muted: #8a8a85;
+  --agw-faint: #b7b7bd;
+  --agw-green: #2e7d46;
+  --agw-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--agw-frame);
+  border: 1px solid var(--agw-frame-line);
+  border-radius: 15px;
+  padding: 0 8px 8px;
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05), 0 20px 42px -14px rgba(26, 58, 78, 0.26),
+    0 64px 110px -54px rgba(26, 58, 78, 0.42);
+  color: var(--agw-ink);
+}
+.agw-tl { display: flex; gap: 6px; align-items: center; padding: 10px 11px 8px; }
+.agw-tl i { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06); }
+.agw-tl i:nth-child(1) { background: #ff5f57; }
+.agw-tl i:nth-child(2) { background: #febc2e; }
+.agw-tl i:nth-child(3) { background: #28c840; }
+.agw-t { margin-left: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #54545c; }
+.agw-pill {
+  margin-left: auto; display: flex; align-items: center; gap: 5px; padding-right: 4px;
+  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--ag-sky);
+}
+.agw-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ag-sky); animation: agw-pulse 1.7s ease-in-out infinite; }
+@keyframes agw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.agw-panel {
+  background: #fff;
+  border: 1px solid var(--agw-line);
+  border-radius: 9px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-family: var(--agw-sans);
+}
+.agw-k {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--agw-muted); margin-bottom: 10px;
+}
+.agw-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-side { padding: 18px 18px 20px; background: #fcfcfb; border-left: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-head h4 { font-family: var(--ag-sans); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--agw-ink); }
+.agw-sec { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--agw-line-soft); }
+.agw-side .agw-sec:first-child, .agw-main .agw-head + .agw-sec { border-top: none; padding-top: 0; }
+.agw-side .agw-sec:first-child { margin-top: 0; }
+.agw-sec p { margin: 0 0 6px; font-size: 14.5px; line-height: 1.5; }
+.agw-sec p:last-child { margin-bottom: 0; }
+.agw-sec b { font-weight: 600; }
+.agw-num { display: grid; grid-template-columns: 1fr; gap: 1px; padding: 6px 0; border-top: 1px solid var(--agw-line-soft); }
+.agw-num:first-of-type { border-top: none; padding-top: 0; }
+.agw-term { font-family: var(--mono); font-size: 11.5px; color: var(--agw-ink); }
+.agw-val { font-family: var(--mono); font-size: 11px; color: var(--agw-muted); }
+.agw-src { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.agw-src span { font-family: var(--mono); font-size: 11px; color: var(--agw-ink); display: inline-flex; gap: 4px; align-items: baseline; }
+.agw-src i { font-style: normal; color: var(--agw-green); font-size: 10px; }
+.agw-time { color: var(--agw-faint); font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 11px; }
+
+/* the email, ported from the hero's .ah-eml rules and stepped up for a
+   full-width plate. Same anatomy: subject, from/to with the R and the tag,
+   Hi Paul, paragraphs, arrow bullets, an attachment chip. */
+.agw-eml { font-family: var(--agw-sans); }
+.agw-ehd { padding: 18px 26px 14px; border-bottom: 1px solid var(--agw-line-soft); }
+.agw-subj { font-size: 17px; font-weight: 700; color: var(--agw-ink); letter-spacing: -0.01em; }
+.agw-addr { display: flex; align-items: center; gap: 9px; margin-top: 11px; font-size: 12.5px; color: var(--agw-muted); }
+.agw-addr b { color: var(--agw-ink); font-weight: 600; }
+.agw-av { width: 26px; height: 26px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; flex: none; }
+.agw-tag { margin-left: auto; font-size: 10.5px; color: var(--ag-sky); font-weight: 600; font-family: var(--mono); }
+.agw-ebody { padding: 18px 26px 22px; max-width: 66ch; }
+.agw-lead, .agw-ebody p { margin: 0 0 13px; font-size: 15px; color: #33322f; line-height: 1.6; }
+.agw-ebody p b, .agw-ebody li b { color: var(--agw-ink); font-weight: 600; }
+.agw-ebody ul { margin: 0 0 13px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.agw-ebody li { font-size: 14.5px; color: #33322f; line-height: 1.5; padding-left: 20px; position: relative; }
+.agw-ebody li::before { content: "\2192"; position: absolute; left: 0; color: var(--ag-sky); font-weight: 700; }
+.agw-att { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--agw-ink); border: 1px solid var(--agw-line); border-radius: 8px; padding: 7px 12px; margin-top: 2px; }
+.agw-ic { width: 17px; height: 17px; border-radius: 4px; background: #eef1f4; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--agw-muted); }
+
+.agw-foot {
+  grid-column: 1 / -1;
+  display: block; line-height: 1.6;
+  padding: 10px 16px 11px; border-top: 1px solid var(--agw-line-soft);
+  font-family: var(--mono); font-size: 11.5px; color: var(--agw-muted);
+}
+.agw-foot > * { margin-right: 6px; }
+.agw-foot b { font-weight: 600; color: var(--agw-ink); }
+.agw-arr { color: var(--ag-sky); }
+
+/* the loop: children stagger in, the whole panel fades and goes again */
+.agw-loop { animation: agw-cycle 16s linear infinite; }
+.agw-a { opacity: 0; animation: agw-in 16s cubic-bezier(.22,1,.36,1) infinite; animation-delay: var(--d, 0s); }
+@keyframes agw-in { 0% { opacity: 0; transform: translateY(8px); } 3% { opacity: 1; transform: translateY(0); } 100% { opacity: 1; } }
+@keyframes agw-cycle { 0%, 92% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .agw-loop, .agw-a, .agw-pill::before { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* the caption under a plate: the honest line, in mono */
+.ag-cap {
+  font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ag-muted);
+  margin: 14px 0 0;
+}
+.ag-cap .slash { color: var(--ag-sky); }
+
+/* a close-up row is one column: name, the sentence, the plate, then the rest */
+.ag-row.close { display: block; }
+.ag-row.close .ag-plate { margin: 28px 0 0; }
+.ag-row.close .agw { margin: 0; max-width: none; }
+
+@media (max-width: 860px) {
+  .agw-panel { grid-template-columns: 1fr; }
+  .agw-side { border-left: none; border-top: 1px solid var(--agw-line-soft); }
+  .agw-main, .agw-side { padding: 14px 14px 16px; }
+  .agw-ehd { padding: 14px 16px 12px; }
+  .agw-ebody { padding: 14px 16px 18px; }
+  .agw-lead, .agw-ebody p { font-size: 14.5px; }
+  .agw-ebody li { font-size: 14px; }
+  .agw { padding: 0 6px 6px; }
+}
+
+/* the caret while a note is being typed */
+.agw-caret { display: inline-block; width: 2px; height: 1em; background: var(--ag-sky); margin-left: 2px; vertical-align: -0.15em; animation: agw-blink 1s steps(2, start) infinite; }
+@keyframes agw-blink { to { visibility: hidden; } }
+
+/* the website agent: a real page, scaled to fit */
+.agw-site { position: relative; overflow: hidden; }
+.agw-site iframe { position: absolute; left: 0; top: 0; border: 0; pointer-events: none; display: block; }
+
+/* the closing block: the day end to end */
+.ag-close { padding: 40px 0 8px; }
+.ag-close .ag-body { margin-top: 12px; }
+.ag-close .ag-plate { margin-top: 28px; }
+
+/* the proposal-library windows sit on the page here: no plate, full width */
+.ag-plate .ppw-holder { margin: 0; }
