@@ -6642,7 +6642,7 @@ a.project-card {
   font-size: 16px;
   line-height: 1.65;
   letter-spacing: -.2px;
-  color: var(--deep, #1A3A4E);
+  color: var(--orange, #3A7CA5); /* sky blue, Paul 6 Sep; this later rule is the one that wins */
 }
 .hpx-qattr { font-size: 12px; letter-spacing: .4px; color: var(--text-muted); margin-top: 14px; }
 .hpx-qattr strong { color: var(--text); font-weight: 500; }
