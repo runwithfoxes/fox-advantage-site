@@ -34,7 +34,7 @@ import "./agents-section.css";
 const RESEARCH: NoteItem[] = [
   { kind: "lead", text: "Hi Paul," },
   { kind: "p", text: "Here's today's research. Five companies, all filed to the CRM. The one to look at first is **Kite Insurance**." },
-  { kind: "p", text: "They've been hiring a performance marketing manager since May and the role is still open. Renewal price rises were in the news last week and their own site says nothing about it. The person to ask is **Niamh Costello**, Head of Marketing, confirmed in a press release in June." },
+  { kind: "p", text: "They've been hiring a performance marketing manager since May and the role is still open. Renewal price rises were in the news last week and their own site says nothing about it. The person to ask is **Órla Kavanagh**, Head of Marketing, confirmed in a press release in June." },
   { kind: "li", text: "Two of her team registered for the course in August, so there is a **warm way in**." },
   { kind: "li", text: "“Kite insurance renewal” gets **2,400 searches a month** and they rank fourth. “Car insurance quote” gets 33,100 and they are not in the top 20." },
   { kind: "li", text: "**Three ads live**, all the same offer since March." },
@@ -45,7 +45,7 @@ const RESEARCH: NoteItem[] = [
 const REDTEAM: NoteItem[] = [
   { kind: "lead", text: "Hi Paul," },
   { kind: "p", text: "I attacked the six claims that would cost the most if they were wrong today. Two broke." },
-  { kind: "li", text: "The Kite card says **Niamh Costello** was confirmed Head of Marketing in a June press release. The release is June last year. Fix: the Research Agent finds a source inside twelve months, or the card says the date is unconfirmed." },
+  { kind: "li", text: "The Kite card says **Órla Kavanagh** was confirmed Head of Marketing in a June press release. The release is June last year. Fix: the Research Agent finds a source inside twelve months, or the card says the date is unconfirmed." },
   { kind: "li", text: "The renewal email says customers saved **€187 on average**. I recomputed it from the renewal sheet and get €163. Fix: the Email Agent takes the number from the sheet and names the sheet." },
   { kind: "p", text: "Four held. I tried the Growth Agent's meeting count against the calendar, the ad set's sizes against the brand book, the Search Agent's bid cap against the account, and the ghostwriter's seven in ten against the renewal data. None of them moved." },
   { kind: "p", text: "One gap in the process. The Search Agent's Friday report lands in a folder that no other agent's spec tells it to read. Fix: the **Campaign Manager's** spec names the file." },
@@ -77,7 +77,7 @@ const GROWTH_PIPELINE = [
     { firm: "Barrow Credit Union", person: "Áine Ronan · Head of Member Services", note: "detail sent, follow-up due" },
   ],
   [
-    { firm: "Foyle Comparison", person: "Sinéad Gallagher · Partnerships Lead", note: "Tuesday 11am, panel terms" },
+    { firm: "Foyle Comparison", person: "Sinéad Crotty · Partnerships Lead", note: "Tuesday 11am, panel terms" },
     { firm: "Behan Financial Planning", person: "Ruairí Behan · Director", note: "Thursday 2pm, retention data prepared" },
   ],
   [
@@ -101,7 +101,7 @@ const OUTBOUND_THREADS = [
   { name: "Ciara Walsh", company: "Head of Marketing · Kite Insurance", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
   { name: "Aoife Brennan", company: "Growth Lead · Harbour Cover", message: "Hi Aoife - congratulations on the new role. If you are building the team, it is worth seeing what an agent does before you hire for it.", reply: "Happy to chat. Send an invite." },
-  { name: "David Nolan", company: "CMO · Rathmore Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
+  { name: "Fintan Rowe", company: "CMO · Rathmore Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
 ];
 
 const ILL = (what: React.ReactNode) => (
@@ -208,7 +208,7 @@ const AGENTS: Agent[] = [
       { p: "We build ghostwriters that let a founder or a senior exec get their opinion and their point of view across on LinkedIn, or in deeper articles, on an ongoing basis. It finds the material, structures it and writes it. What the founder does is open their laptop and find a handful of pieces that are ninety percent written. Usually it is a small bit of editing, then approve, and depending on how it is set up, the piece goes live." },
       {
         fig: () => (
-          <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Byrne" role="Founder, Kite Insurance · 2h" avatar="AB" subject="" items={GHOST_POST} />
+          <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Mulcair" role="Founder, Kite Insurance · 2h" avatar="AM" subject="" items={GHOST_POST} />
         ) },
       { p: "It is mainly for B2B brands, and for anyone who needs thought leadership, which usually means founders, execs and people who write on a regular basis. It is for people who already have a point of view and know what they want to say. They are often busy, or they are good at talking and not as good at writing." },
       { p: "The Ghostwriter is two agents. The first is a research agent, which finds recent raw material, a conversation, a stat, a research piece, and puts it in one place. The second is a copywriter agent, which takes that material and writes the piece in the founder's own tone of voice." },
