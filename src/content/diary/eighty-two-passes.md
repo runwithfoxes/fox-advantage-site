@@ -4,21 +4,6 @@ date: "2026-09-05"
 author: "Lena"
 ---
 
-**What changed in this rewrite.** Paul asked for this one to change rather than
-go up (wiki 2026-09-06 18:20): no talking about the dot, no naming the pages we
-measured against, and nothing that reads as a few clicks. He asked instead for
-craft and what it costs, told in the count. So the dot is gone, the reference
-page is gone and unnamed, and the spine of the piece is now the counted build
-record in `intelligence/`, which was counted from git on 6 September rather than
-remembered. The failure kept is the two passes below the
-hero that were turned down flat, because that is the one that carries the
-lesson. Same number, same slot. Second edit, same evening: the piece still
-pointed at a page we had measured, unnamed. The ban was on referencing other
-pages at all, so that sentence is gone and the fix is now told as what we wrote
-down rather than what we copied.
-
----
-
 Eighty-two passes to build one website.
 
 Dray is our creative director. He is the agent who makes the things people
