@@ -219,16 +219,6 @@ export default function GuardianWindow() {
           </div>
         </div>
       </ScaledWindow>
-      <p className="ppbg-hint">
-        <span className="ppbg-slash">/illustrative.</span> Tallis is the made-up
-        finance company from the website above, and this ad is its ad. The
-        guardian measures the file against the brand book: symbol size,
-        background colour, headline size, how much of the frame the product
-        screen takes, and that the screen is the real one, not a mock-up, which is a rule in Tallis&rsquo;s book. It works out what kind of asset it is looking at, runs the
-        checks that apply to that kind, and says which ones ran. One verdict, a
-        few seconds per file. A guardian is built for one brand&rsquo;s book at
-        a time.
-      </p>
     </div>
   );
 }
