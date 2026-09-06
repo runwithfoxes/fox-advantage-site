@@ -308,8 +308,8 @@ function ConsultingPanel() {
       <p className="ag-piece-dek">We map the work a team does, redesign it from a blank page, and build agents in place of hires, one role at a time.</p>
       <div className="ag-piece-prose">
         {/* The spine of the Fox Methodology (Chase, Run, Diagnose, Reimagine),
-            rewritten plainly on Paul's word, 6 Sep 2026. The last paragraph
-            is his own copy, verbatim from the AXA page. */}
+            rewritten plainly on Paul's word, 6 Sep 2026. The measurement
+            paragraph is written from the work grid's own three questions. */}
         <p>
           Our method is quality first, then automate. We map the team you would have hired
           before any AI existed, and the work that team would do. Then we redesign that work
@@ -345,10 +345,12 @@ function ConsultingPanel() {
           steps before it.
         </p>
         <p>
-          Not everybody is going to be a builder, and that is fine. I suspect every marketing
-          team will soon have at least one person who builds, and who helps the other teams
-          with their work. What we measure is simple: pieces of work that are now done a
-          different way, not logins or prompt counts.
+          We measure success three ways, and the figure below shows the three. Are we getting
+          the work done faster, in days from brief to done. Are we doing it more
+          cost-effectively, in the cost of a piece of work. And are we doing things we could
+          not get to before, in pieces a quarter that used to not happen. Every quarter the
+          numbers get read again, and the grid shows how much of the team's work is now done a
+          different way. Not logins, not prompt counts. Pieces of work.
         </p>
         <figure className="ag-fig">
           <WorkGrid />
