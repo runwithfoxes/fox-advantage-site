@@ -235,7 +235,7 @@ const AGENTS: Agent[] = [
     dek: "We build advertising agents that write, make, put live, read and remake ads, inside Meta or whichever tool you use, without you.",
     body: [
       { p: "We build advertising agents that do the work inside Meta, or another advertising tool, that used to be a full-time role or an agency. Once we have set it up properly, it works away every day without you being the bottleneck." },
-      { fig: () => <AdDeskWindow />, cap: (<><span className="slash">/real.</span> Our own Meta campaign for the free course, 30 July to 19 August 2026, numbers from Meta. Signups are not shown because the tracking was never connected, so nobody can say how many came from the ads.</>) },
+      { fig: () => <AdDeskWindow /> },
       { p: "It writes the ads and creates the artwork. It sets each ad up properly in Ads Manager and puts it live. It runs them, tracks them, reports on them and improves them. Then it makes new ads from what it learned and puts those live, and goes round again." },
       { p: "What you end up with is an expert that is working around the clock, continually putting new ads live, finding out which ones work, improving them, and going again." },
       { p: "That is a very different way of thinking from putting a campaign live. You go from a campaign to always on, and that is where volume wins, because you keep finding out what works. We always knew this was how it works. It just took a lot of people's time to do, and that meant full-time roles or agencies." },
