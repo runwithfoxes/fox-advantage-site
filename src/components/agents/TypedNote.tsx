@@ -32,7 +32,6 @@ export type NoteItem = { kind: "lead" | "p" | "li" | "att"; text: string; note?:
 const CPS = 45;
 const STEP = 3;
 const PARA_PAUSE_MS = 420;
-const HOLD_MS = 7000;
 
 function plain(text: string) {
   return text.replace(/\*\*/g, "");
@@ -93,6 +92,7 @@ export default function TypedNote({
   // finished by default, so the note is whole without JavaScript
   const [count, setCount] = useState<number>(total);
   const [playing, setPlaying] = useState(false);
+  const [minH, setMinH] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -104,6 +104,10 @@ export default function TypedNote({
         es.forEach((e) => {
           if (!e.isIntersecting || started) return;
           started = true;
+          // the note is rendered whole at this point: hold that height so the
+          // card does not grow as it types and push the page down
+          const body = el.querySelector<HTMLElement>(".agw-eml");
+          if (body) setMinH(body.offsetHeight);
           setCount(0);
           setPlaying(true);
         }),
@@ -116,8 +120,10 @@ export default function TypedNote({
   useEffect(() => {
     if (!playing) return;
     if (count >= total) {
-      const t = setTimeout(() => setCount(0), HOLD_MS);
-      return () => clearTimeout(t);
+      // Paul, 6 Sep, on his phone: "it keeps re-writing the figure over and
+      // over as I scroll down so the page jumps." It types once and stays.
+      setPlaying(false);
+      return;
     }
     // pause a beat at the end of each item
     const atBoundary = starts.some((s, i) => i > 0 && s === count);
@@ -193,7 +199,7 @@ export default function TypedNote({
         <span className="agw-pill">{playing && count < total ? "writing" : pill}</span>
       </div>
       <div className="agw-panel">
-        <div className="agw-eml">
+        <div className="agw-eml" style={minH ? { minHeight: minH } : undefined}>
           {variant === "post" ? (
             <div className="agw-post-head">
               <span className="agw-post-av">{avatar}</span>
