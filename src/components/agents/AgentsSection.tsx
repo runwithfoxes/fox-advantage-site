@@ -159,7 +159,7 @@ const AGENTS: Agent[] = [
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
        dashboard sentences are his from the AXA page. */
     key: "growth", num: "02", when: "every morning", name: "Growth Agent Team", short: "the pipeline, the outbound, the meetings",
-    dek: "We build growth agent teams whose job is a meeting with a prospect in your calendar.",
+    dek: "We build growth agent teams whose job is to get meetings with prospects in your calendar.",
     body: [
       { p: "We build the Growth Agent Team to get meetings with prospects booked in your calendar. That is the end game, and every task the team does is in service of it. Once we have built it, and built it carefully, the team works away every day without you being the bottleneck." },
       { fig: () => <JoNote note={GROWTH_NOTE} title="Growth Agent Team" /> },
@@ -195,7 +195,7 @@ const AGENTS: Agent[] = [
         ) },
       { p: "The welcome, the renewal, the note to someone who has not been back for a while. The hard work in lifecycle marketing is continuously looking at where people are falling out, and finding ways to improve it. Today a large part of that work is getting in and writing the emails, and the manual work between the sequences." },
       { p: "The agent works inside a tool like Klaviyo. It looks at the numbers, finds where people are dropping off, writes the emails, and proposes the fixes." },
-      { p: "The word that matters here is trigger. Our own fluency course runs on trigger emails, sent on what someone did, or did not do, and in what order. Set up properly, with the data in place, that lets you send genuinely personal emails to people at the moment you think they might need them. That kind of precision was possible before, but only with a team of people doing it, and it was very labour intensive. Talk to any lifecycle marketer and it is a full-time role." },
+      { p: "The word that matters here is trigger. Set up properly, with the data in place, that lets you send genuinely personal emails to people at the moment you think they might need them. That kind of precision was possible before, but only with a team of people doing it, and it was very labour intensive. Talk to any lifecycle marketer and it is a full-time role." },
       { p: "Like the others, there are separate tasks in it. Writing the emails. Getting the artwork. Connecting to the tool and sending. Tracking. Making changes and improving every day. We give the agent a goal, set it up properly and put it on a loop, and it does these well." },
       { p: "Our time goes into setting it up and building it properly. Once that is done, what used to be a full-time role becomes a few tasks a week for a generalist on your team." },
     ],
@@ -246,7 +246,7 @@ const AGENTS: Agent[] = [
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
     key: "website", num: "07", when: "a site, then changes on request", name: "Website Agent Team", short: "a site built with craft, changed by asking",
-    dek: "We build websites with craft, at the right speed, and set them up so anyone on your team can change them by asking.",
+    dek: "We build well crafted websites and set them up so you can make on-brand changes in a moment, without any design, UX or development knowledge.",
     body: [
       { p: "There was a time when building and maintaining a website took a team of people, and it took time. Someone had to coordinate the copywriting, the UX, the design, the imagery, the artwork, the motion, the building and the deploying. You still need all of those things. You no longer need all of those people to do them." },
       { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent Team · tallis.finance" /> },
@@ -303,7 +303,6 @@ const AGENTS: Agent[] = [
 function ConsultingPanel() {
   return (
     <article className="ag-piece">
-      <div className="ag-piece-meta">consulting</div>
       <h3 className="ag-piece-title">Designing team AI adoption</h3>
       <p className="ag-piece-dek">We map the work a team does, redesign it from a blank page, and build agents in place of hires, one role at a time.</p>
       <div className="ag-piece-prose">
@@ -363,9 +362,8 @@ function ConsultingPanel() {
 function TrainingPanel() {
   return (
     <article className="ag-piece">
-      <div className="ag-piece-meta">training</div>
       <h3 className="ag-piece-title">Training teams</h3>
-      <p className="ag-piece-dek">A free course for anyone on your team, and training sessions from half a day to a full week.</p>
+      <p className="ag-piece-dek">We also run training sessions for marketing, sales and go-to-market teams.</p>
       <div className="ag-piece-prose">
         {/* Paul's own copy, verbatim from the AXA page. */}
         <p>

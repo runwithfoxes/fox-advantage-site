@@ -610,3 +610,17 @@
 .ag-overlay .ag-piece .ag-piece-title { color: inherit; }
 .ag-fig > .ppwg { max-width: none; }
 .ag-fig > .ppab { max-width: none; }
+
+/* the consulting and training pages on the full-screen surface: the piece
+   sits centred at the agents' column width, so the words do not stop
+   halfway across a wide screen (Paul, 6 Sep). The close is a proper blue
+   button; the thin-bordered one was too easy to miss (Paul, 6 Sep). */
+.ag-overlay > .ag-piece {
+  max-width: 806px; margin: 26px auto 0;
+  transform: translateY(40px); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1) .15s, opacity .4s .15s;
+}
+.ag-overlay.open > .ag-piece { transform: translateY(0); opacity: 1; }
+.ag-overlay-close, .ag-overlay.paper .ag-overlay-close {
+  background: var(--ag-sky); color: #fff; border: 1px solid var(--ag-sky); padding: 10px 18px;
+}
+.ag-overlay-close:hover, .ag-overlay.paper .ag-overlay-close:hover { background: var(--ag-deep); border-color: var(--ag-deep); color: #fff; }
