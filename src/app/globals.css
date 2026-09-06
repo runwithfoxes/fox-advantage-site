@@ -5290,7 +5290,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -5843,7 +5845,18 @@ a.project-card {
   color: #1D1B1B;
 }
 
-.ah-hero { height: 280vh; position: relative; }
+/* 280vh felt slow: "if you didn't know, you'd think it is not moving" (Paul, 5 Sep).
+   190vh gets the windows assembled in two thirds of the scroll it used to take. */
+.ah-hero { height: 190vh; position: relative; }
+/* the global section rule gives the hero root 120px underneath; the bio sets
+   its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
+.hp-root .ah-root { padding-bottom: 0; }
+/* The assembled windows stop well above the foot of the sticky stage, and
+   that empty band grows with the viewport height. Measured at 900, 982 and
+   1080 tall it is half the viewport minus 338px, to the pixel. The bio is pulled up by exactly that band, so
+   the gap the eye sees under the last window is the same 48px as the gap
+   under the bio. Below 1024px the hero is a static stack and this is off. */
+@media (min-width: 1024px) { .hp-root .hpx-about { margin-top: clamp(-260px, calc(338px - 50vh), 0px); } }
 .ah-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   background-image: radial-gradient(circle, var(--ah-dot) .9px, transparent .9px);
@@ -5872,7 +5885,7 @@ a.project-card {
   color: #565452; max-width: 44ch;
 }
 .ah-ctas { display: flex; gap: 11px; margin-top: 30px; font-size: 14px; }
-.ah-ctas a { text-decoration: none; padding: 10px 19px; }
+.ah-ctas a, .ah-ctas button { text-decoration: none; padding: 10px 19px; font: inherit; cursor: pointer; border: none; }
 .ah-ctas .ah-ghost { color: #1D1B1B; border: 1px solid var(--ah-border); background: #fff; }
 .ah-ctas .ah-primary { background: var(--ah-deep); color: #fff; font-weight: 500; }
 
@@ -6254,7 +6267,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -7470,3 +7485,24 @@ a.project-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== the testimonial band on navy (Paul, 6 Sep 2026: "the background in navy,
+   like the book band, but not big words, copy in white"). Full bleed, the dot
+   grid in light dots, the words at the same size as before. ===== */
+.hpx-quotes {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 44px max(24px, calc(50vw - 50%)) 40px;
+  background-color: #1A3A4E;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  border-top: none;
+  border-bottom: none;
+}
+.hpx-quotes .hpx-qquote { color: #fff; }
+.hpx-quotes .hpx-qattr { color: rgba(255, 255, 255, 0.62); }
+.hpx-quotes .hpx-qattr strong { color: #fff; }
+.hpx-quotes .hpx-qarrow { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
+.hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
+.hpx-quotes .hpx-qdot.on { background: #fff; }

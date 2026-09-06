@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import AgentsHero from "./AgentsHero";
+import AgentsSection from "./agents/AgentsSection";
 import SiteFooter from "./SiteFooter";
 
 /* The four most recent essays, read off local markdown by app/page.tsx. Was the live
@@ -158,19 +159,7 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
           /<span>Run</span>withfoxes
         </a>
         <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  {SF_MODS.map((m) => (
-                    <a key={m.key} href={SF_PAGES[m.key] || "#"}>{m.name}</a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="#agents">/agents</a>
 
           <div className="hp-dropdown-wrap">
             <span className="hp-dropdown-trigger">/previous &#9662;</span>
@@ -228,64 +217,14 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
               </div>
             </aside>
           </div>
-          <div className="hpx-metastrip">
-            <span className="hpx-ctas-label">Contact us to</span>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\build it for you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\work alongside you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\train your team</Link>
-          </div>
         </div>
       </section>
 
       <div className="cl-modules-wrap">
 
-        {/* ===== PRODUCTS STOREFRONT (replaces the old module accordion) ===== */}
+        {/* ===== /AGENTS (replaces the products storefront, 5 Sep 2026) ===== */}
         <div className="hpx-wrap">
-          <section className="sf-store" id="products">
-            <div className="sf-shop">
-              <div className="sf-shop-kick">/products</div>
-              <div className="sf-fbar">
-                {SF_CATS.map((c) => (
-                  <button
-                    key={c[0]}
-                    className={`sf-fbtn${filter === c[0] ? " active" : ""}`}
-                    onClick={() => setFilter(c[0])}
-                  >
-                    {c[1]}
-                  </button>
-                ))}
-              </div>
-              <div className="sf-grid">
-                {SF_MODS.filter((m) => filter === "all" || sfCatsOf(m).includes(filter)).map((m) => {
-                  const href = SF_PAGES[m.key] || "#";
-                  const live = href !== "#";
-                  return (
-                    <a key={m.key} className={`sf-card${live ? "" : " soon"}`} href={href}>
-                      <div className="sf-card-vis">
-                        {m.badges && m.badges.length > 0 && (
-                          <div className="sf-card-badges">
-                            {m.badges.map((b) => (
-                              <span key={b} className={`sf-card-badge ${b.toLowerCase()}`}>{b}</span>
-                            ))}
-                          </div>
-                        )}
-                        <span className="sf-vis" dangerouslySetInnerHTML={{ __html: SF_VIS[m.icon] }} />
-                      </div>
-                      <div className="sf-card-bd">
-                        {m.tag && <span className="sf-tagb">{m.tag}</span>}
-                        <div className="sf-card-nm">
-                          <span className="sf-ci" dangerouslySetInnerHTML={{ __html: SF_IC[m.icon] }} />
-                          <h3>{m.name}</h3>
-                        </div>
-                        <div className="sf-card-ben">{m.ben}</div>
-                        <div className="sf-card-cta">{live ? "See how it works" : "Page coming"} <span className="arr">&rarr;</span></div>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
+          <AgentsSection />
 
           {/* TESTIMONIALS - rotating band, manual, fixed height */}
           <Testimonials />

@@ -1,0 +1,612 @@
+/*
+  /agents - the homepage section below the bio. ag- prefix.
+
+  Same skin as the hero, the proposal pages and the course: cream page, a
+  square white plate with a dot grid for every figure, mono labels in sky,
+  Space Grotesk headlines, the serif for reading. Our own surfaces never
+  round; only a window depicted inside a figure rounds.
+*/
+
+.ag {
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  /* the homepage forces --sans to mono (.hp-root); this section keeps the
+     proposal and course headline register on purpose */
+  --ag-sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  padding: 40px 0 48px;
+  color: var(--ag-text);
+}
+
+.ag-kick {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--ag-sky);
+}
+
+.ag-head {
+  font-family: var(--ag-sans);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 16px 0 0;
+}
+
+.ag-stand {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 18px 0 0;
+}
+
+/* ---- the team: one row per agent ---- */
+.ag-list {
+  margin-top: 44px;
+  border-top: 1px solid var(--ag-border);
+}
+
+.ag-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+  padding: 36px 0 40px;
+  border-bottom: 1px solid var(--ag-border);
+}
+
+/* the figure sits on the page itself, no plate behind it (Paul, 5 Sep:
+   "why is there a white background on the figure? can the figure be
+   sitting on its own?"). The page already carries the dot grid. */
+.ag-plate {
+  padding: 0;
+}
+.ag-plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ag-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ag-sky);
+}
+
+.ag-name {
+  font-family: var(--ag-sans);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 10px 0 0;
+}
+
+.ag-body p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+
+.ag-hand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ag-border);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ag-muted);
+}
+.ag-hand b {
+  font-weight: 500;
+  color: var(--ag-text);
+}
+.ag-hand .arr {
+  color: var(--ag-sky);
+}
+
+@media (max-width: 860px) {
+  .ag-head { font-size: 32px; }
+  .ag-row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 28px 0 32px;
+  }
+}
+
+/* ---- the close-up window (agw-) ----
+   The hero's window chrome, as HTML so the words wrap on a phone. */
+.agw {
+  --agw-frame: #edeef1;
+  --agw-frame-line: rgba(20, 20, 30, 0.1);
+  --agw-line: rgba(20, 20, 30, 0.07);
+  --agw-line-soft: rgba(20, 20, 30, 0.045);
+  --agw-ink: #1b1b1f;
+  --agw-muted: #8a8a85;
+  --agw-faint: #b7b7bd;
+  --agw-green: #2e7d46;
+  --agw-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--agw-frame);
+  border: 1px solid var(--agw-frame-line);
+  border-radius: 15px;
+  padding: 0 8px 8px;
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05), 0 20px 42px -14px rgba(26, 58, 78, 0.26),
+    0 64px 110px -54px rgba(26, 58, 78, 0.42);
+  color: var(--agw-ink);
+}
+.agw-tl { display: flex; gap: 6px; align-items: center; padding: 10px 11px 8px; }
+.agw-tl i { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06); }
+.agw-tl i:nth-child(1) { background: #ff5f57; }
+.agw-tl i:nth-child(2) { background: #febc2e; }
+.agw-tl i:nth-child(3) { background: #28c840; }
+.agw-t { margin-left: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #54545c; }
+.agw-pill {
+  margin-left: auto; display: flex; align-items: center; gap: 5px; padding-right: 4px;
+  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--ag-sky);
+}
+.agw-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ag-sky); animation: agw-pulse 1.7s ease-in-out infinite; }
+@keyframes agw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.agw-panel {
+  background: #fff;
+  border: 1px solid var(--agw-line);
+  border-radius: 9px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-family: var(--agw-sans);
+}
+.agw-k {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--agw-muted); margin-bottom: 10px;
+}
+.agw-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-side { padding: 18px 18px 20px; background: #fcfcfb; border-left: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-head h4 { font-family: var(--ag-sans); font-weight: 500; font-size: 22px; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--agw-ink); }
+.agw-sec { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--agw-line-soft); }
+.agw-side .agw-sec:first-child, .agw-main .agw-head + .agw-sec { border-top: none; padding-top: 0; }
+.agw-side .agw-sec:first-child { margin-top: 0; }
+.agw-sec p { margin: 0 0 6px; font-size: 14.5px; line-height: 1.5; }
+.agw-sec p:last-child { margin-bottom: 0; }
+.agw-sec b { font-weight: 600; }
+.agw-num { display: grid; grid-template-columns: 1fr; gap: 1px; padding: 6px 0; border-top: 1px solid var(--agw-line-soft); }
+.agw-num:first-of-type { border-top: none; padding-top: 0; }
+.agw-term { font-family: var(--mono); font-size: 11.5px; color: var(--agw-ink); }
+.agw-val { font-family: var(--mono); font-size: 11px; color: var(--agw-muted); }
+.agw-src { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.agw-src span { font-family: var(--mono); font-size: 11px; color: var(--agw-ink); display: inline-flex; gap: 4px; align-items: baseline; }
+.agw-src i { font-style: normal; color: var(--agw-green); font-size: 10px; }
+.agw-time { color: var(--agw-faint); font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 11px; }
+
+/* the email, ported from the hero's .ah-eml rules and stepped up for a
+   full-width plate. Same anatomy: subject, from/to with the R and the tag,
+   Hi Paul, paragraphs, arrow bullets, an attachment chip. */
+.agw-eml { font-family: var(--agw-sans); }
+.agw-ehd { padding: 18px 26px 14px; border-bottom: 1px solid var(--agw-line-soft); }
+.agw-subj { font-size: 17px; font-weight: 700; color: var(--agw-ink); letter-spacing: -0.01em; }
+.agw-addr { display: flex; align-items: center; gap: 9px; margin-top: 11px; font-size: 12.5px; color: var(--agw-muted); }
+.agw-addr b { color: var(--agw-ink); font-weight: 600; }
+.agw-av { width: 26px; height: 26px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; flex: none; }
+.agw-tag { margin-left: auto; font-size: 10.5px; color: var(--ag-sky); font-weight: 600; font-family: var(--mono); }
+.agw-ebody { padding: 18px 26px 22px; max-width: 66ch; }
+.agw-lead, .agw-ebody p { margin: 0 0 13px; font-size: 15px; color: #33322f; line-height: 1.6; }
+.agw-ebody p b, .agw-ebody li b { color: var(--agw-ink); font-weight: 600; }
+.agw-ebody ul { margin: 0 0 13px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.agw-ebody li { font-size: 14.5px; color: #33322f; line-height: 1.5; padding-left: 20px; position: relative; }
+.agw-ebody li::before { content: "\2192"; position: absolute; left: 0; color: var(--ag-sky); font-weight: 700; }
+.agw-att { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--agw-ink); border: 1px solid var(--agw-line); border-radius: 8px; padding: 7px 12px; margin-top: 2px; }
+.agw-ic { width: 17px; height: 17px; border-radius: 4px; background: #eef1f4; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--agw-muted); }
+
+.agw-foot {
+  grid-column: 1 / -1;
+  display: block; line-height: 1.6;
+  padding: 10px 16px 11px; border-top: 1px solid var(--agw-line-soft);
+  font-family: var(--mono); font-size: 11.5px; color: var(--agw-muted);
+}
+.agw-foot > * { margin-right: 6px; }
+.agw-foot b { font-weight: 600; color: var(--agw-ink); }
+.agw-arr { color: var(--ag-sky); }
+
+/* the loop: children stagger in, the whole panel fades and goes again */
+.agw-loop { animation: agw-cycle 16s linear infinite; }
+.agw-a { opacity: 0; animation: agw-in 16s cubic-bezier(.22,1,.36,1) infinite; animation-delay: var(--d, 0s); }
+@keyframes agw-in { 0% { opacity: 0; transform: translateY(8px); } 3% { opacity: 1; transform: translateY(0); } 100% { opacity: 1; } }
+@keyframes agw-cycle { 0%, 92% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .agw-loop, .agw-a, .agw-pill::before { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* the caption under a plate: the honest line, in mono */
+.ag-cap {
+  font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ag-muted);
+  margin: 14px 0 0;
+}
+.ag-cap .slash { color: var(--ag-sky); }
+
+/* a close-up row is one column: name, the sentence, the plate, then the rest */
+.ag-row.close { display: block; }
+.ag-row.close .ag-plate { margin: 28px 0 0; }
+.ag-row.close .agw { margin: 0; max-width: none; }
+
+@media (max-width: 860px) {
+  .agw-panel { grid-template-columns: 1fr; }
+  .agw-side { border-left: none; border-top: 1px solid var(--agw-line-soft); }
+  .agw-main, .agw-side { padding: 14px 14px 16px; }
+  .agw-ehd { padding: 14px 16px 12px; }
+  .agw-ebody { padding: 14px 16px 18px; }
+  .agw-lead, .agw-ebody p { font-size: 14.5px; }
+  .agw-ebody li { font-size: 14px; }
+  .agw { padding: 0 6px 6px; }
+}
+
+/* the caret while a note is being typed */
+.agw-caret { display: inline-block; width: 2px; height: 1em; background: var(--ag-sky); margin-left: 2px; vertical-align: -0.15em; animation: agw-blink 1s steps(2, start) infinite; }
+@keyframes agw-blink { to { visibility: hidden; } }
+
+/* the website agent: a real page, scaled to fit */
+.agw-site { position: relative; overflow: hidden; }
+.agw-site iframe { position: absolute; left: 0; top: 0; border: 0; pointer-events: none; display: block; }
+
+/* the closing block: the day end to end */
+.ag-close { padding: 40px 0 8px; }
+.ag-close .ag-body { margin-top: 12px; }
+.ag-close .ag-plate { margin-top: 28px; }
+
+/* the proposal-library windows sit on the page here: no plate, full width */
+.ag-plate .ppw-holder { margin: 0; }
+
+/* the search agent: terms found, the ad written, the live line */
+.agw-sa { display: grid; grid-template-columns: 1fr 360px; }
+.agw-sa-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-sa-side { padding: 18px 20px 20px; background: #fcfcfb; border-left: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-terms { width: 100%; border-collapse: collapse; font-family: var(--agw-sans); font-size: 13px; }
+.agw-terms th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--agw-muted); font-weight: 500; padding: 0 10px 8px 0; border-bottom: 1px solid var(--agw-line-soft); }
+.agw-terms td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--agw-line-soft); vertical-align: top; color: var(--agw-ink); }
+.agw-terms td.agw-term { font-family: var(--mono); font-size: 12.5px; }
+.agw-terms td.agw-why { color: var(--agw-muted); }
+.agw-sa-note { margin: 14px 0 0; font-family: var(--agw-sans); font-size: 14px; line-height: 1.55; color: var(--agw-ink); }
+.agw-ad { border: 1px solid var(--agw-line); border-radius: 8px; padding: 14px 16px; background: #fff; font-family: var(--agw-sans); }
+.agw-ad-tag { font-size: 12px; font-weight: 600; color: var(--agw-ink); margin-bottom: 8px; }
+.agw-ad-url { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--agw-ink); }
+.agw-ad-url em { display: block; font-style: normal; color: var(--agw-muted); font-size: 12px; }
+.agw-ad-fav { width: 26px; height: 26px; border-radius: 50%; background: #eef1f4; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px; color: var(--ag-deep); flex: none; }
+.agw-ad-h { margin-top: 10px; font-size: 17px; line-height: 1.3; color: #1a0dab; }
+.agw-ad-d { margin-top: 6px; font-size: 13.5px; line-height: 1.5; color: #4d5156; }
+.agw-sa-live { margin-top: 14px; font-family: var(--mono); font-size: 11.5px; color: var(--agw-muted); display: flex; gap: 8px; align-items: baseline; }
+@media (max-width: 860px) {
+  .agw-sa { grid-template-columns: 1fr; }
+  .agw-sa-side { border-left: none; border-top: 1px solid var(--agw-line-soft); }
+  .agw-terms th:nth-child(3), .agw-terms td:nth-child(3) { display: none; }
+}
+
+/* the guardian's slider, restyled to the one on the module pages: a round
+   knob on a hairline, the whole picture drags, and the cursor says so
+   (Paul, 5 Sep: "use the one from our modules, it is easier to move, it
+   just slides") */
+.ag .ppbg-stage { cursor: ew-resize; touch-action: none; }
+.ag .ppbg-divider { border-left: 2px solid #1a3a4e; }
+.ag .ppbg-handle {
+  left: -17px; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%;
+  background: #3a7ca5; color: #fff; font-family: var(--agw-sans); font-size: 16px; font-weight: 700;
+  letter-spacing: -1px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- picking an agent: the tab strip with the sliding pill, and the
+   full-screen menu, both from the box of tricks (toolkit nav 01 and 03) ---- */
+.ag-tabs-row { display: flex; align-items: center; gap: 14px; margin-top: 30px; }
+.ag-tabs {
+  position: relative; display: inline-flex; gap: 2px; border: 1px solid var(--ag-border); padding: 4px;
+  overflow-x: auto; max-width: 100%; scrollbar-width: none; flex: 1 1 auto;
+}
+.ag-tabs::-webkit-scrollbar { display: none; }
+.ag-pill { position: absolute; top: 4px; bottom: 4px; background: var(--ag-deep); transition: left .28s cubic-bezier(.2,.8,.2,1), width .28s cubic-bezier(.2,.8,.2,1); }
+.ag-tab {
+  position: relative; z-index: 1; flex: none; font-family: var(--mono); font-size: 11.5px; letter-spacing: .2px;
+  padding: 9px 11px; background: none; border: none; color: var(--ag-text); cursor: pointer; transition: color .28s; white-space: nowrap;
+}
+.ag-tab.on { color: #fff; }
+.ag-tab-n { color: var(--ag-sky); margin-right: 6px; }
+.ag-tab.on .ag-tab-n { color: rgba(255,255,255,.6); }
+.ag-menu-btn {
+  flex: none; font-family: var(--mono); font-size: 12px; letter-spacing: .3px; padding: 10px 14px;
+  border: 1px solid var(--ag-border); background: #fff; color: var(--ag-text); cursor: pointer;
+}
+.ag-menu-btn:hover { border-color: var(--ag-sky); color: var(--ag-sky); }
+
+.ag-hand-link { font: inherit; font-weight: 500; color: var(--ag-text); background: none; border: none; padding: 0; cursor: pointer; border-bottom: 1px solid var(--ag-sky); }
+.ag-hand-link:hover { color: var(--ag-sky); }
+
+.ag-overlay {
+  position: fixed; inset: 0; z-index: 200; background: var(--ag-deep); color: #fff; padding: 26px 48px 40px;
+  transform: translateY(-100%); visibility: hidden; pointer-events: none;
+  transition: transform .5s cubic-bezier(.7,0,.2,1), visibility 0s .5s; overflow-y: auto;
+}
+.ag-overlay.open { transform: translateY(0); visibility: visible; pointer-events: auto; transition: transform .5s cubic-bezier(.7,0,.2,1), visibility 0s; }
+.ag-overlay-top { display: flex; justify-content: space-between; align-items: center; }
+.ag-overlay-kick { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: rgba(255,255,255,.6); }
+.ag-overlay-close { font-family: var(--mono); font-size: 13px; color: #fff; background: none; border: 1px solid rgba(255,255,255,.3); padding: 8px 14px; cursor: pointer; }
+.ag-overlay-list { margin-top: 26px; max-width: 1104px; }
+.ag-overlay-clip { overflow: hidden; }
+.ag-overlay-item {
+  display: grid; grid-template-columns: 44px auto 1fr; align-items: baseline; gap: 18px; width: 100%; text-align: left;
+  background: none; border: none; border-bottom: 1px solid rgba(255,255,255,.12); padding: 12px 0; cursor: pointer; color: #fff;
+  transform: translateY(110%); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s;
+}
+.ag-overlay.open .ag-overlay-item { transform: translateY(0); opacity: 1; }
+.ag-overlay-item:hover .ag-overlay-name, .ag-overlay-item.on .ag-overlay-name { color: #9cc7e2; }
+.ag-overlay-n { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.5); }
+.ag-overlay-name { font-family: var(--ag-sans); font-weight: 500; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.02em; line-height: 1.1; transition: color .2s; }
+.ag-overlay-short { font-family: var(--serif); font-size: 16px; color: rgba(255,255,255,.62); }
+
+@media (max-width: 860px) {
+  .ag-overlay { padding: 20px 20px 40px; }
+  .ag-overlay-item { grid-template-columns: 34px 1fr; }
+  .ag-overlay-short { grid-column: 2; }
+  .ag-overlay-name { font-size: 24px; }
+  .ag-menu-btn { padding: 10px 12px; }
+}
+
+/* the growth agent: note, board, a line of copy, the inbox, stacked */
+/* minmax(0,1fr): a grid track sizes to its content's min width by default, so
+   a 940px window inside made the column 940px and the board ran past the
+   edge of the page. Zero lets the holder be the column and the window scale. */
+.ag-stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.ag-stack > * { min-width: 0; }
+.ag-stack-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 0; }
+
+/* the two reading doors sit on cream; the grid and the window were drawn for it */
+.ag-overlay.paper {
+  background: var(--ag-cream); color: var(--ag-text);
+  --pps-mono: var(--mono); --pps-sans: var(--ag-sans); --pps-text: var(--ag-text);
+  --pps-muted: var(--ag-muted); --pps-sky: var(--ag-sky); --pps-border: var(--ag-border);
+}
+.ag-overlay.paper .ag-overlay-kick { color: var(--ag-sky); }
+.ag-overlay.paper .ag-overlay-close { color: var(--ag-text); border-color: var(--ag-border); }
+.ag-overlay.paper .ag-overlay-close:hover { border-color: var(--ag-sky); color: var(--ag-sky); }
+.ag-overlay-panel {
+  margin: 26px auto 0; max-width: 1104px;
+  transform: translateY(40px); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1) .15s, opacity .4s .15s;
+}
+.ag-overlay.open .ag-overlay-panel { transform: translateY(0); opacity: 1; }
+.ag-overlay-panel .ag-name { margin-top: 6px; }
+.ag-overlay-plate { margin-top: 28px; }
+.ag-overlay-plate .ppw-holder { margin: 0; }
+.ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 30px 0 0; }
+.ag-overlay-link { color: inherit; border-bottom: 1px solid var(--ag-sky); text-decoration: none; }
+.ag-overlay-link:hover { color: var(--ag-sky); }
+
+/* ---- the one selector on the page: three boxed buttons, then a reading
+   rail on the left and the chosen agent on the right (Ramp's shape) ---- */
+.ag-switch { display: flex; gap: 22px; flex-wrap: wrap; }
+.ag-switch button {
+  font-family: var(--mono); font-size: 18px; letter-spacing: .2px; padding: 22px 48px;
+  border: 1px solid var(--ag-border); background: #fff; color: var(--ag-text); cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.ag-switch button:hover { border-color: var(--ag-deep); }
+.ag-switch button.on { background: var(--ag-deep); color: #fff; border-color: var(--ag-deep); }
+
+.ag-split { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 48px; margin-top: 44px; align-items: start; }
+.ag-rail { position: sticky; top: 96px; }
+.ag-rail-group { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ag-muted); margin: 22px 0 8px; }
+.ag-rail-group:first-child { margin-top: 0; }
+.ag-rail button {
+  display: grid; grid-template-columns: 14px 26px 1fr; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  background: none; border: none; padding: 7px 0; cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--ag-muted);
+  transition: color .2s;
+}
+.ag-rail button:hover { color: var(--ag-text); }
+.ag-rail button.on { color: var(--ag-text); }
+.ag-rail-dot { width: 8px; height: 8px; border-radius: 50%; background: transparent; border: 1px solid var(--ag-border); transition: background .25s, border-color .25s, transform .25s; align-self: center; }
+.ag-rail button.on .ag-rail-dot { background: var(--ag-sky); border-color: var(--ag-sky); transform: scale(1.15); }
+.ag-rail-n { color: var(--ag-sky); font-size: 11px; }
+.ag-rail-foot { margin-top: 22px; }
+.ag-split .ag-list { margin-top: 0; border-top: none; }
+.ag-split .ag-row.close { padding-top: 0; }
+.ag-split .ag-row.close .ag-plate .agw { max-width: 600px; }
+.ag-mobile-pick { display: none; }
+.ag-panel-solo { margin-top: 44px; border-top: 1px solid var(--ag-border); }
+
+@media (max-width: 960px) {
+  .ag-switch { gap: 10px; }
+  .ag-switch button { font-size: 14px; padding: 14px 20px; flex: 1 1 auto; }
+  .ag-split { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 24px; }
+  .ag-rail { display: none; }
+  .ag-mobile-pick { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--ag-border); padding: 12px 14px; margin-bottom: 26px; font-family: var(--mono); font-size: 13px; }
+  .ag-mobile-pick b { font-weight: 500; }
+  .ag-mobile-pick .ag-menu-btn { margin: 0; }
+}
+
+/* the consulting and training panels when they sit inline under the switch
+   rather than on the surface: same panel, on the page */
+.ag-inline .ag-overlay-panel { transform: none; opacity: 1; padding-top: 36px; }
+.ag-inline .ag-overlay-copy { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 26px 0 0; color: var(--ag-text); }
+
+/* the rail's own item rule must not reach the menu button under it */
+.ag-rail .ag-rail-foot .ag-menu-btn { display: inline-block; width: auto; grid-template-columns: none; padding: 10px 14px; font-size: 12px; color: var(--ag-text); }
+@media (max-width: 960px) {
+  .ag-switch { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .ag-switch button { padding: 14px 8px; font-size: 13px; }
+}
+
+/* the switch at the hero's button size, not a billboard (Paul, 5 Sep) */
+.ag-switch { gap: 11px; font-size: 14px; }
+.ag-switch button { font-family: inherit; font-size: 14px; letter-spacing: 0; padding: 10px 19px; }
+.ag-switch button.on { font-weight: 500; }
+@media (max-width: 960px) { .ag-switch { display: flex; gap: 8px; } .ag-switch button { padding: 10px 14px; font-size: 13px; flex: 0 1 auto; } }
+
+/* the rail is a plain list of ten, no headings, no menu button */
+.ag-rail-group, .ag-rail-foot { display: none; }
+.ag-rail button { padding: 6px 0; }
+
+/* the shadows under every window were tinted deep sky and read as blue on
+   the cream (Paul, 5 Sep: "I see blue tints under figures"): neutral now */
+.ag .agw, .ag .ppw-frame-win, .ag .ppchat {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04), 0 18px 40px -16px rgba(0, 0, 0, 0.16), 0 60px 100px -60px rgba(0, 0, 0, 0.2);
+}
+
+/* the phone's current-agent bar is itself the way to pick another */
+.ag-mobile-pick { width: 100%; background: #fff; cursor: pointer; text-align: left; color: var(--ag-text); }
+.ag-mobile-pick-arr { font-family: var(--mono); font-size: 12px; color: var(--ag-sky); }
+
+/* the figures sit at 600px wide, left aligned, so they feel neater (Paul,
+   5 Sep, cutting the research note at the width he wanted). The words in
+   the HTML windows keep their size and wrap; the drawn windows scale down. */
+.ag-plate > * { max-width: 600px; }
+.ag-row.close .ag-plate .agw, .ag-row.close .agw { max-width: 600px; }
+.ag-plate .ppchat { max-width: 600px; }
+.ag-plate > .ppw-holder, .ag-plate > .ppbg, .ag-plate > .ppgeo, .ag-plate > .ppad, .ag-plate > .ag-stack, .ag-plate .ag-stack > .ppw-holder { max-width: none; }
+
+/* the website window keeps the full column: at 600px it flipped to the
+   site's phone layout, which is not the point of it (Paul, 5 Sep) */
+.ag-split .ag-row.close .ag-plate > .agw.agw-sitewin, .ag-plate > .agw-sitewin { max-width: none; }
+
+/* the search desk and the ghostwriter post were the only two figures that
+   sat still. They arrive line by line now, once, when their row is shown. */
+@keyframes agw-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live,
+.ag-plate .ppchat-piece p { opacity: 0; animation: agw-rise .5s cubic-bezier(.22,1,.36,1) forwards; }
+.ag-plate .agw-terms tbody tr:nth-child(1), .ag-fig .agw-terms tbody tr:nth-child(1) { animation-delay: .3s; }
+.ag-plate .agw-terms tbody tr:nth-child(2), .ag-fig .agw-terms tbody tr:nth-child(2) { animation-delay: .9s; }
+.ag-plate .agw-terms tbody tr:nth-child(3), .ag-fig .agw-terms tbody tr:nth-child(3) { animation-delay: 1.5s; }
+.ag-plate .agw-terms tbody tr:nth-child(4), .ag-fig .agw-terms tbody tr:nth-child(4) { animation-delay: 2.1s; }
+.ag-plate .agw-sa-note, .ag-fig .agw-sa-note { animation-delay: 2.8s; }
+.ag-plate .agw-ad, .ag-fig .agw-ad { animation-delay: 3.4s; }
+.ag-plate .agw-sa-live, .ag-fig .agw-sa-live { animation-delay: 4.2s; }
+.ag-plate .ppchat-piece p:nth-child(1), .ag-fig .ppchat-piece p:nth-child(1) { animation-delay: .3s; }
+.ag-plate .ppchat-piece p:nth-child(2), .ag-fig .ppchat-piece p:nth-child(2) { animation-delay: 1.1s; }
+.ag-plate .ppchat-piece p:nth-child(3), .ag-fig .ppchat-piece p:nth-child(3) { animation-delay: 2.0s; }
+.ag-plate .ppchat-piece p:nth-child(4), .ag-fig .ppchat-piece p:nth-child(4) { animation-delay: 2.9s; }
+.ag-plate .ppchat-piece p:nth-child(5), .ag-fig .ppchat-piece p:nth-child(5) { animation-delay: 3.8s; }
+.ag-plate .ppchat-piece p:nth-child(6), .ag-fig .ppchat-piece p:nth-child(6) { animation-delay: 4.5s; }
+@media (prefers-reduced-motion: reduce) { .ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live, .ag-plate .ppchat-piece p, .ag-fig .agw-terms tbody tr, .ag-fig .agw-sa-note, .ag-fig .agw-ad, .ag-fig .agw-sa-live, .ag-fig .ppchat-piece p { animation: none; opacity: 1; } }
+
+/* a LinkedIn post, typed: the ghostwriter's window */
+.agw-post-head { display: flex; align-items: center; gap: 12px; padding: 18px 26px 14px; border-bottom: 1px solid var(--agw-line-soft); font-family: var(--agw-sans); }
+.agw-post-av { width: 44px; height: 44px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; flex: none; }
+.agw-post-who b { display: block; font-size: 14.5px; font-weight: 600; color: var(--agw-ink); }
+.agw-post-who span { font-size: 12.5px; color: var(--agw-muted); }
+
+/* ---- an agent as a short piece (Paul, 6 Sep): the essay page's shape.
+   Meta line, light heading, dek, then prose at the essay's measure with the
+   figures set into it where the copy reaches them. Notes stay 600px wide and
+   drawn windows take the column (Paul, 5 Sep). ---- */
+.ag-piece { display: block; padding: 0; }
+.ag-piece-meta {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ag-muted); margin-bottom: 20px;
+}
+.ag-piece-title {
+  font-family: var(--sans); font-weight: 300; font-size: clamp(30px, 3.4vw, 40px);
+  letter-spacing: -0.5px; line-height: 1.15; margin: 0;
+}
+.ag-piece-dek {
+  font-family: var(--mono); font-size: 15px; font-weight: 300; line-height: 1.7;
+  color: var(--ag-muted); margin: 16px 0 0; max-width: 680px;
+}
+.ag-piece-prose { margin-top: 48px; }
+.ag-piece-prose > p {
+  font-family: var(--mono); font-size: 15px; font-weight: 300; line-height: 2;
+  color: var(--ag-text); max-width: 680px; margin: 0 0 24px;
+}
+.ag-fig { margin: 32px 0 40px; padding: 0; }
+.ag-fig .agw { margin: 0; max-width: 600px; }
+.ag-fig .ppw-holder { margin: 0; }
+.ag-fig .ag-cap { margin-top: 12px; }
+.ag-piece-foot {
+  margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--ag-border);
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+}
+.ag-piece-foot-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ag-muted); }
+.ag-piece-next {
+  font-family: var(--sans); font-weight: 300; font-size: 24px; letter-spacing: -0.3px; color: var(--ag-text);
+  background: none; border: none; padding: 0; cursor: pointer; text-align: left;
+}
+.ag-piece-next .arr { color: var(--ag-sky); transition: transform .2s; display: inline-block; }
+.ag-piece-next:hover { color: var(--ag-sky); }
+.ag-piece-next:hover .arr { transform: translateX(4px); }
+.ag-piece-next.end { cursor: default; }
+@media (max-width: 960px) {
+  .ag-piece-prose { margin-top: 32px; }
+  .ag-fig { margin: 24px 0 32px; }
+}
+/* the same width rules the plate had, now on the figure inside the piece */
+.ag-fig > * { max-width: 600px; }
+.ag-fig .ppchat { max-width: 600px; }
+.ag-fig > .ppw-holder, .ag-fig > .ppbg, .ag-fig > .ppgeo, .ag-fig > .ppad { max-width: none; }
+.ag-fig > .agw.agw-sitewin { max-width: none; }
+.ag-fig > .ag-cap { max-width: 680px; }
+.ag-fig .agw-terms tbody tr, .ag-fig .agw-sa-note, .ag-fig .agw-ad, .ag-fig .agw-sa-live,
+.ag-fig .ppchat-piece p { opacity: 0; animation: agw-rise .5s cubic-bezier(.22,1,.36,1) forwards; }
+.ag-piece, .ag-fig, .ag-piece-prose { min-width: 0; max-width: 100%; }
+/* the search desk is a two-panel window drawn for the full column: at 600px
+   the terms table squashes to one word a line and the ad panel sits on the
+   third column (seen 6 Sep). Same rule as the website window. */
+.ag-fig > .agw.agw-searchwin { max-width: none; }
+
+/* ---- the advertising desk: the real course ad on the left, the real
+   numbers on the right. Single series, one hue (the sky), counters and bars
+   run when the window is in view. ---- */
+.ag-fig > .agw.agw-addesk { max-width: none; }
+.agw-ad2 { display: grid; grid-template-columns: 300px 1fr; }
+.agw-ad2-side { padding: 18px 20px 20px; background: #fcfcfb; border-right: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-ad2-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-fbad { border: 1px solid var(--agw-line); border-radius: 8px; background: #fff; font-family: var(--agw-sans); overflow: hidden; }
+.agw-fbad-top { display: flex; gap: 10px; align-items: center; padding: 12px 14px 8px; font-size: 13px; font-weight: 600; color: var(--agw-ink); }
+.agw-fbad-top em { display: block; font-style: normal; font-weight: 400; font-size: 11.5px; color: var(--agw-muted); }
+.agw-fbad-av { width: 30px; height: 30px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: none; }
+.agw-fbad-body { margin: 0; padding: 0 14px 10px; font-size: 13px; line-height: 1.45; color: var(--agw-ink); }
+.agw-fbad-video { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #fff; }
+.agw-fbad-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px 12px; background: #f3f4f6; font-size: 13px; color: var(--agw-ink); }
+.agw-fbad-foot b { display: block; font-weight: 600; }
+.agw-fbad-foot em { font-style: normal; font-size: 11.5px; color: var(--agw-muted); }
+.agw-fbad-cta { flex: none; border: 1px solid var(--agw-line); border-radius: 6px; background: #fff; padding: 6px 12px; font-size: 12.5px; font-weight: 600; }
+
+.agw-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 4px 0 18px; }
+.agw-stat { border: 1px solid var(--agw-line-soft); border-radius: 8px; padding: 12px 14px 11px; background: #fff; min-width: 0; }
+.agw-stat-n { font-family: var(--ag-sans); font-weight: 500; font-size: 24px; letter-spacing: -0.01em; color: var(--agw-ink); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.agw-stat-l { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--agw-muted); margin-top: 6px; }
+.agw-stat-s { font-family: var(--agw-sans); font-size: 12px; color: var(--agw-muted); margin-top: 2px; }
+
+.agw-chart-k { margin-top: 4px; }
+.agw-bars { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; align-items: end; height: 120px; border-bottom: 1px solid var(--agw-line); position: relative; }
+.agw-bar-slot { position: relative; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.agw-bar { width: 100%; background: var(--ag-sky); border-radius: 4px 4px 0 0; transform-origin: bottom; transform: scaleY(0); }
+.agw-addesk.go .agw-bar { animation: agw-bar-up .7s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(.25s + var(--i) * 45ms); }
+@keyframes agw-bar-up { to { transform: scaleY(1); } }
+.agw-bar-slot:hover .agw-bar { filter: brightness(.85); }
+.agw-bar-tip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: #1b1b1f; color: #fff; font-family: var(--agw-sans); font-size: 12px; padding: 6px 9px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 2; }
+.agw-bar-tip b { font-weight: 600; margin-right: 4px; }
+.agw-bar-slot:hover .agw-bar-tip { opacity: 1; }
+.agw-bar-slot:first-child .agw-bar-tip { left: 0; transform: none; }
+.agw-bar-slot:last-child .agw-bar-tip { left: auto; right: 0; transform: none; }
+.agw-bar-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; color: var(--agw-muted); margin-top: 6px; }
+.agw-ad2-note { margin: 16px 0 0; font-family: var(--agw-sans); font-size: 14px; line-height: 1.55; color: var(--agw-ink); }
+@media (prefers-reduced-motion: reduce) { .agw-bar { transform: none; } .agw-addesk.go .agw-bar { animation: none; } }
+@media (max-width: 860px) {
+  .agw-ad2 { grid-template-columns: 1fr; }
+  .agw-ad2-side { border-right: none; border-bottom: 1px solid var(--agw-line-soft); }
+  .agw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agw-bars { height: 90px; }
+}
+/* the consulting and training pages take the agents' shape; on the inline
+   switch they sit at the agents' column width, on the overlay they keep the
+   overlay's own width */
+.ag-panel-solo.ag-inline { border-top: none; margin-top: 44px; }
+.ag-panel-solo.ag-inline .ag-piece { max-width: 806px; margin-left: 298px; }
+@media (max-width: 960px) { .ag-panel-solo.ag-inline .ag-piece { margin-left: 0; max-width: none; } }
+.ag-overlay .ag-piece .ag-piece-title { color: inherit; }
+.ag-fig > .ppwg { max-width: none; }
+.ag-fig > .ppab { max-width: none; }

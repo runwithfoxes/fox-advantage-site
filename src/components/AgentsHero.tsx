@@ -15,6 +15,14 @@ type CardEl = HTMLDivElement & {
   _dx: number; _dy: number; _vx: number; _vy: number;
 };
 
+export type Door = "agents" | "consulting" | "training";
+
+/** The hero and the agents section are siblings, so the door is a window
+    event rather than lifted state: the hero announces, AgentsSection opens. */
+export function openDoor(door: Door) {
+  window.dispatchEvent(new CustomEvent<Door>("rwf:door", { detail: door }));
+}
+
 export default function AgentsHero() {
   const rootRef = useRef<HTMLElement>(null);
 
@@ -264,7 +272,7 @@ export default function AgentsHero() {
       ["Liam Byrne", "ah-a3", "You: noticed you’re scaling the team…"],
       ["Hannah Frost", "ah-a5", "Hannah: what did you have in mind?", true],
       ["Marcus Lund", "ah-a6", "You: quick thought on your ICP…"],
-      ["Ruth Whelan", "ah-a1", "Ruth: interested, send more", true],
+      ["Ruth Mangan", "ah-a1", "Ruth: interested, send more", true],
       ["Owen Clarke", "ah-a4", "You: congrats on the promotion…"],
     ];
     const threads = q<HTMLDivElement>(".ah-threads");
@@ -394,9 +402,15 @@ export default function AgentsHero() {
             <a className="ah-kicker" href="/course">New: Free AI training course for marketers →</a>
             <h1>Marketing Agents for your business</h1>
             <p className="ah-sub">They make the ads, write the outreach, and run the campaigns, around the clock.</p>
+            {/* THREE DOORS (Paul, 5 Sep): "AI Agents, Consulting, Training".
+                Each one drops the full-screen surface that AgentsSection owns
+                and fills it: the ten agents, the adoption grid, the course
+                scroller. The hero only announces which door; the section
+                listens for the event and opens. */}
             <div className="ah-ctas">
-              <a href="#products" className="ah-ghost">Products</a>
-              <a href="/contact" className="ah-primary">Get in touch</a>
+              <button type="button" className="ah-primary" onClick={() => openDoor("agents")}>AI Agents</button>
+              <button type="button" className="ah-ghost" onClick={() => openDoor("consulting")}>Consulting</button>
+              <button type="button" className="ah-ghost" onClick={() => openDoor("training")}>Training</button>
             </div>
           </div>
 

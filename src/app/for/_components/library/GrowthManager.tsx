@@ -43,7 +43,7 @@ const START: Deal[][] = [
     },
     {
       firm: "Harbourview Advisory",
-      person: "Tom Whelan · Managing Partner",
+      person: "Tom Cregan · Managing Partner",
       note: "Jo · intro sent this morning",
     },
     {
@@ -67,7 +67,7 @@ const START: Deal[][] = [
   [
     {
       firm: "Cedar Point Wealth",
-      person: "James Doyle · Principal",
+      person: "James Tiernan · Principal",
       note: "waiting on your yes",
     },
     {
@@ -100,7 +100,7 @@ const MOVES: { from: number; to: number; note: string }[] = [
 const MOVE_MS = 2600;
 const RESET_MS = 4200;
 
-export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
+export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current" }: { deals?: Deal[][]; width?: number; pill?: string } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
@@ -159,14 +159,14 @@ export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
 
   return (
     <div ref={rootRef}>
-      <ScaledWindow width={940}>
+      <ScaledWindow width={width}>
         <div className="ppw-frame-win">
           <div className="ppw-tl">
             <i />
             <i />
             <i />
             <span className="ppw-t">the pipeline</span>
-            <span className="ppw-live-pill">Jo keeps this current</span>
+            <span className="ppw-live-pill">{pill}</span>
           </div>
           <div className="pgm-board">
             {cols.map((col, ci) => (
@@ -212,7 +212,7 @@ const JO_NOTE = [
 const CHARS_PER_SECOND = 45;
 const PARA_PAUSE_MS = 420;
 
-export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
+export function JoNote({ note = JO_NOTE, title = "growth agent" }: { note?: string[]; title?: string } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   // done = paragraphs fully shown; typing = index being written out.
   const [shown, setShown] = useState<number>(note.length);
@@ -266,7 +266,7 @@ export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
             <i />
             <i />
             <i />
-            <span className="ppw-t">growth agent</span>
+            <span className="ppw-t">{title}</span>
             <span className="ppw-live-pill">every morning</span>
           </div>
           <div className="pgm-note-body">

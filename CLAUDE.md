@@ -202,10 +202,15 @@ Every module section follows:
 ## Voice rules (hard rules for all copy on this site)
 - No generalisations ("most teams", "nobody thinks about")
 - No judgement or criticism of teams/marketers
+  Both broken again on 6 Sep 2026 by a Research Agent draft that opened "Most research in a marketing team either doesn't get done, or takes a large part of somebody's time... it keeps slipping". Paul: "you're being too negative when you talk about things slipping, and I never say most anything. I don't mind you comparing it to what happens with it, but I don't want this to sound anyway judgmental or look at those, aren't we amazing?" So a comparison to how the work is done today is allowed, a verdict on the reader's team is not, and neither is a line that admires us.
 - No salesy closers ("that's where it gets interesting", "that's the bit")
+- No salesy openers either, and nothing that talks down to the reader. Paul, 6 Sep 2026, on "the reason people want one is simple": "That just sounds patronizing. Less salesy talk and more pragmatic." And on a first draft that read as a pitch: "I want it written in a plain way so people understand, okay, I understand what this is, and I also feel like there's no real hype. Seems very practical."
+- Any written piece shown on the site (a post, an email, a note) reads like a person wrote it: paragraphs of different lengths, one thought carried through, never a run of one-line soundbites. Paul, 5 Sep 2026, on a ghostwriter post of five single lines: "It doesn't feel like the way writing is done. It's too AI. It needs to feel more natural, less one-line soundbite-ish."
+- No frivolous benefit lines. State the outcome plainly. Paul, 5 Sep 2026, on "You read one note with your coffee. The research is done, checked and sourced, and it is already with the next agent": "Don't say things like this because it makes the sense frivolous." The fix was "Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact."
 - No "replace" language - frame as opportunity, not replacement
 - Quality and speed are the two themes running through everything
 - "We" not "you" - peer-to-peer, optimistic
+- Say that WE BUILD these. Paul, 6 Sep 2026, on the agent pages: "some of my writing is a bit passive and needs to be more clear that we build these for clients." His own fix: "A team of research agents for marketing and sales, working every day, and you are not the bottleneck" became "We build research agents for marketing and sales, working every day, so you're not the bottleneck." An agent is never the only subject on a page; "it is possible to have", "is done", "once it is built" all read as if nobody did the work.
 - No corporate words, no AI hype words
 - No em dashes anywhere
 - No rounded corners
