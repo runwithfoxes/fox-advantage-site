@@ -280,15 +280,19 @@ const AGENTS: Agent[] = [
     ],
   },
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line, with
+       the details from Cato's spec (paul-hub/team/cato.md). */
     key: "redteam", num: "10", when: "last, every day", name: "Red Team", short: "the mistakes, caught before you see them",
-    dek: "The mistakes, caught before you see them.",
+    dek: "We build a red team into every team of agents, with one job, to find the mistakes before you do.",
     body: [
-      { p: "Agents make mistakes. A source that turns out to be a year old. A number in an email that nobody can trace. The cost of a mistake is not the mistake. It is that you stop trusting the work." },
+      { p: "Nobody asks for a red team, so we build one into every team of agents we make. Its only job is to find the holes, the gaps and the mistakes in everything the other agents do. In their role specs, in the quality of what they produce, and in the processes themselves." },
       { fig: () => <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} /> },
-      { p: "So one agent has a single job, which is to doubt everything the others made. It checks the sources, it reads the numbers, and it sends work back." },
-      { p: "Two things did not pass that day, and neither reached you. The rest did, and you can trust it because something tried to break it first." },
+      { p: "A checker confirms that work matches its spec. A red team assumes the work is wrong and tries to prove it. It starts from the primary source rather than from the agent's output, recomputes every number it attacks, and reaches the claim by a different route than the agent did. It is scored on the defects it finds, never on the work it passed. A day with no findings is a list of the attacks it ran that failed to break anything, and if it cannot name them, it did not run." },
+      { p: "It goes after the roles as well as the work. For each agent it asks four questions. What does it produce, and is that a thing rather than an activity. Where does it land, and does anyone read it there. How does it know it is done, with a condition that can fail rather than a feeling. And the handoff, which is the one nobody asks. When one agent hands work to the next, does the next agent's own spec tell it to look. A handoff that nobody reads looks the same as a working one from both sides, and that is where work dies with every log green." },
+      { p: "It ranks what it attacks by what it would cost if wrong. Anything you would repeat to a customer first, anything that moves money second, anything another agent builds on third. It never repairs. It reports the defect with the fix named, and the agent that owns the work makes the change." },
     ],
   },
+];
 ];
 
 /* The consulting and training panels. Paul's own copy, verbatim from the AXA
