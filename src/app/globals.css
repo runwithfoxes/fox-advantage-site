@@ -5665,7 +5665,7 @@ a.project-card {
   font-size: 16px;
   line-height: 1.65;
   letter-spacing: -.2px;
-  color: var(--orange, #3A7CA5); /* the sky blue, Paul 6 Sep: "can we try this in blue?" */
+  color: var(--deep, #1A3A4E);
 }
 .hpx-qattr { font-size: 12px; letter-spacing: .4px; color: var(--text-muted); margin-top: 14px; }
 .hpx-qattr strong { color: var(--text); font-weight: 500; }
@@ -6642,7 +6642,7 @@ a.project-card {
   font-size: 16px;
   line-height: 1.65;
   letter-spacing: -.2px;
-  color: var(--orange, #3A7CA5); /* sky blue, Paul 6 Sep; this later rule is the one that wins */
+  color: var(--deep, #1A3A4E);
 }
 .hpx-qattr { font-size: 12px; letter-spacing: .4px; color: var(--text-muted); margin-top: 14px; }
 .hpx-qattr strong { color: var(--text); font-weight: 500; }
@@ -7485,3 +7485,24 @@ a.project-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== the testimonial band on navy (Paul, 6 Sep 2026: "the background in navy,
+   like the book band, but not big words, copy in white"). Full bleed, the dot
+   grid in light dots, the words at the same size as before. ===== */
+.hpx-quotes {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 44px max(24px, calc(50vw - 50%)) 40px;
+  background-color: #1A3A4E;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  border-top: none;
+  border-bottom: none;
+}
+.hpx-quotes .hpx-qquote { color: #fff; }
+.hpx-quotes .hpx-qattr { color: rgba(255, 255, 255, 0.62); }
+.hpx-quotes .hpx-qattr strong { color: #fff; }
+.hpx-quotes .hpx-qarrow { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
+.hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
+.hpx-quotes .hpx-qdot.on { background: #fff; }
