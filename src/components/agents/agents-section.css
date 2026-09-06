@@ -601,3 +601,11 @@
   .agw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .agw-bars { height: 90px; }
 }
+/* the consulting and training pages take the agents' shape; on the inline
+   switch they sit at the agents' column width, on the overlay they keep the
+   overlay's own width */
+.ag-panel-solo.ag-inline { border-top: none; margin-top: 44px; }
+.ag-panel-solo.ag-inline .ag-piece { max-width: 806px; margin-left: 298px; }
+@media (max-width: 960px) { .ag-panel-solo.ag-inline .ag-piece { margin-left: 0; max-width: none; } }
+.ag-overlay .ag-piece .ag-piece-title { color: inherit; }
+.ag-fig > .ppwg { max-width: none; }

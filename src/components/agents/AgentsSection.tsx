@@ -301,62 +301,68 @@ const AGENTS: Agent[] = [
    source for each so the two can never drift. */
 function ConsultingPanel() {
   return (
-          <div className="ag-overlay-panel">
-            <div className="ag-num">04</div>
-            <h3 className="ag-name">Designing team AI adoption</h3>
-            <div className="ag-overlay-plate">
-              <WorkGrid />
-            </div>
-            {/* Paul's own copy, verbatim from the AXA page. */}
-            <p className="ag-overlay-copy">
-              Not everybody is going to be a builder, and that is fine. I suspect every marketing
-              team will soon have at least one person who builds, and who helps the other teams
-              with their work. What we measure is simple: pieces of work that are now done a
-              different way, not logins or prompt counts.
-            </p>
-          </div>
+    <article className="ag-piece">
+      <div className="ag-piece-meta">consulting</div>
+      <h3 className="ag-piece-title">Designing team AI adoption</h3>
+      <p className="ag-piece-dek">We design how a marketing team takes on AI, and we measure it by the pieces of work now done a different way.</p>
+      <div className="ag-piece-prose">
+        {/* Paul's own copy, verbatim from the AXA page. */}
+        <p>
+          Not everybody is going to be a builder, and that is fine. I suspect every marketing
+          team will soon have at least one person who builds, and who helps the other teams
+          with their work. What we measure is simple: pieces of work that are now done a
+          different way, not logins or prompt counts.
+        </p>
+        <figure className="ag-fig">
+          <WorkGrid />
+        </figure>
+      </div>
+    </article>
   );
 }
 
 function TrainingPanel() {
   return (
-          <div className="ag-overlay-panel">
-            <div className="ag-num">05</div>
-            <h3 className="ag-name">Training teams</h3>
-            <div className="ag-overlay-plate">
-              <ScaledWindow width={940}>
-                <div className="ppw-blueprint">
-                  <div className="ppw-frame-win">
-                    <div className="ppw-tl">
-                      <i />
-                      <i />
-                      <i />
-                      <span className="ppw-t">the course, module one</span>
-                      <span className="ppw-live-pill">free, live now</span>
-                    </div>
-                    <video
-                      src="/for/training/course-module-1-scroll-web.mp4"
-                      poster="/for/training/course-module-1-scroll-poster.jpg"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ display: "block", width: "100%", height: "auto" }}
-                    />
-                  </div>
+    <article className="ag-piece">
+      <div className="ag-piece-meta">training</div>
+      <h3 className="ag-piece-title">Training teams</h3>
+      <p className="ag-piece-dek">A free course for anyone on your team, and training sessions from half a day to a full week.</p>
+      <div className="ag-piece-prose">
+        {/* Paul's own copy, verbatim from the AXA page. */}
+        <p>
+          Firstly, there is a free course,{" "}
+          <a href="/course" className="ag-overlay-link">AI Fluency for Ambitious Marketers</a>,
+          for anybody on your team. We also run training sessions for marketing, sales and
+          go-to-market teams. These range from half a day to full-week sessions. We cover a
+          range of topics, from pure productivity hacks to building agents and systems.
+          System thinking is a core skill for marketing in an AI world.
+        </p>
+        <figure className="ag-fig">
+          <ScaledWindow width={940}>
+            <div className="ppw-blueprint">
+              <div className="ppw-frame-win">
+                <div className="ppw-tl">
+                  <i />
+                  <i />
+                  <i />
+                  <span className="ppw-t">the course, module one</span>
+                  <span className="ppw-live-pill">free, live now</span>
                 </div>
-              </ScaledWindow>
+                <video
+                  src="/for/training/course-module-1-scroll-web.mp4"
+                  poster="/for/training/course-module-1-scroll-poster.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ display: "block", width: "100%", height: "auto" }}
+                />
+              </div>
             </div>
-            {/* Paul's own copy, verbatim from the AXA page. */}
-            <p className="ag-overlay-copy">
-              Firstly, there is a free course,{" "}
-              <a href="/course" className="ag-overlay-link">AI Fluency for Ambitious Marketers</a>,
-              for anybody on your team. We also run training sessions for marketing, sales and
-              go-to-market teams. These range from half a day to full-week sessions. We cover a
-              range of topics, from pure productivity hacks to building agents and systems.
-              System thinking is a core skill for marketing in an AI world.
-            </p>
-          </div>
+          </ScaledWindow>
+        </figure>
+      </div>
+    </article>
   );
 }
 
