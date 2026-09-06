@@ -218,6 +218,7 @@ export function JoNote({ note = JO_NOTE, title = "growth agent" }: { note?: stri
   const [shown, setShown] = useState<number>(note.length);
   const [chars, setChars] = useState<number>(0);
   const [playing, setPlaying] = useState(false);
+  const [minH, setMinH] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -229,6 +230,10 @@ export function JoNote({ note = JO_NOTE, title = "growth agent" }: { note?: stri
         es.forEach((e) => {
           if (!e.isIntersecting || started) return;
           started = true;
+          // hold the finished height so the note does not grow as it types
+          // and push the page down (Paul, 6 Sep, on his phone)
+          const body = el.querySelector<HTMLElement>(".pgm-note-body");
+          if (body) setMinH(body.offsetHeight);
           setShown(0);
           setChars(0);
           setPlaying(true);
@@ -269,7 +274,7 @@ export function JoNote({ note = JO_NOTE, title = "growth agent" }: { note?: stri
             <span className="ppw-t">{title}</span>
             <span className="ppw-live-pill">every morning</span>
           </div>
-          <div className="pgm-note-body">
+          <div className="pgm-note-body" style={minH ? { minHeight: minH } : undefined}>
             <div className="pgm-note-day">Monday 07:42</div>
             <div className="pgm-note-msg">
               {note.slice(0, shown).map((p) => (
