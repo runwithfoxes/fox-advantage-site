@@ -171,11 +171,13 @@ const AGENTS: Agent[] = [
     ],
   },
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
     key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agent", short: "the emails that keep customers",
-    dek: "The emails that keep customers, written in your company's voice.",
+    dek: "The whole of lifecycle email, from writing to improving the journeys, done every day.",
     body: [
-      { p: "The renewal note, the welcome, the win-back. These are the emails that decide whether a customer stays, and they are usually the last thing anyone gets to. So they get written in a hurry, from last year's version, and they read like it." },
-      { p: "The Email Marketing Agent writes them from your positioning, your messaging and your voice. Every line in the email below comes from one of those three, and if you hover over a dotted line it tells you which." },
+      { p: "The Email Marketing Agent does everything in lifecycle email. The writing, the scheduling, the sequencing, the tracking, the reporting, and improving the journeys as it goes. Once it is built, it is working away every day without you being the bottleneck." },
+      { p: "The welcome, the renewal, the note to someone who has not been back for a while. The hard work in lifecycle marketing is continuously looking at where people are falling out, and finding ways to improve it. Today a large part of that work is getting in and writing the emails, and the manual work between the sequences." },
+      { p: "The agent works inside a tool like Klaviyo. It looks at the numbers, finds where people are dropping off, writes the emails, and proposes the fixes." },
       {
         fig: () => (
           <WriterEmail
@@ -192,10 +194,11 @@ const AGENTS: Agent[] = [
             sign={["Aoife", "Kite"]}
           />
         ),
-        cap: ILL(<>Written for Kite Insurance, the made-up insurer from our course.</>),
+        cap: ILL(<>Written for Kite Insurance, the made-up insurer from our course. Hover a dotted line and it says where it came from.</>),
       },
-      { p: "That matters because the email does not need rewriting. It already sounds like your company, and it says the thing your messaging says you stand for, in the sentence where a customer will read it." },
-      { p: "Nothing goes out from here on its own. Every email passes to the Brand Guardian first." },
+      { p: "The word that matters here is trigger. Our own fluency course runs on trigger emails, sent on what someone did, or did not do, and in what order. Set up properly, with the data in place, that lets you send genuinely personal emails to people at the moment you think they might need them. That kind of precision was possible before, but only with a team of people doing it, and it was very labour intensive. Talk to any lifecycle marketer and it is a full-time role." },
+      { p: "Like the others, there are separate tasks in it. Writing the emails. Getting the artwork. Connecting to the tool and sending. Tracking. Making changes and improving every day. Given a goal, set up properly and put on a loop, agents do these well." },
+      { p: "The time goes into setting it up and building it properly. Once that is done, what used to be a full-time role becomes a few tasks a week for a generalist on your team." },
     ],
   },
   {
