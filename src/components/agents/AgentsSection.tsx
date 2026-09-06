@@ -122,135 +122,183 @@ const ILL = (what: React.ReactNode) => (
   </>
 );
 
+/*
+  Paul, 6 Sep: "for each agent page, it's going to feel more like one of
+  these pages https://runwithfoxes.com/essays/the-95-5-rule-the-day-one-list
+  in structure. So a page of copy with figures inserted into it. Not as long
+  as this page, but to feel like something you'd read. Keeping the rail as
+  we currently have."
+
+  So an agent is a short piece in the essay's shape: a meta line, a light
+  heading, a dek, then prose at the essay's measure with the figures set into
+  it where the copy reaches them. The rail on the left is the way in, and the
+  foot of each piece is the way to the next one.
+
+  Copy is Dray's draft for Paul to steer, except where marked as his.
+*/
+
+type Block =
+  | { p: string }
+  | { fig: () => React.ReactNode; cap?: React.ReactNode };
+
 type Agent = {
   key: string;
   num: string;
   when: string;
   name: string;
   short: string;
-  does: string;
-  gets: string;
+  dek: string;
+  body: Block[];
   hands: string;
-  cap?: React.ReactNode;
-  render: () => React.ReactNode;
 };
+
+const KITE = ILL(<>Kite Insurance is the made-up insurer from our course, and the people are made up too. The note is the shape of the real one.</>);
 
 const AGENTS: Agent[] = [
   {
     key: "research", num: "01", when: "every morning", name: "Research Agent", short: "the morning research note",
-    does: "Every morning it researches the companies you want to win, files a card on each one to the CRM, and writes you a note on what it found.",
-    gets: "Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact.",
+    dek: "Every company you want to win, researched before you sit down.",
     hands: "Growth Agent",
-    cap: ILL(<>Kite Insurance is the made-up insurer from our course, and the people are made up too. The note is the shape of the real one.</>),
-    render: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />,
+    body: [
+      { p: "Most mornings in a marketing team start with someone opening a browser. Who is this company, what have they said lately, who runs marketing there, have we talked to them before. It takes an hour, and it never gets written down." },
+      { p: "The Research Agent does that hour before you arrive. It works from the list of companies you want to win, reads what each one has said and done, finds the person to talk to, and checks whether anyone on your side already knows them. Every fact carries its source." },
+      { fig: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />, cap: KITE },
+      { p: "Then it writes you a note. Not a report you have to dig through. A note addressed to you, with the one company to look at first and why." },
+      { p: "The five cards go into the CRM, one per company, so nothing it found lives in a chat window. And it hands the list to the Growth Agent, who takes it from there." },
+    ],
   },
   {
     /* Paul, 1 Sep: "there is no difference between an outbound agent and a
-       growth agent. So leave the growth agent in." The row is his own copy
-       from the AXA page, verbatim. */
+       growth agent. So leave the growth agent in." The first and third
+       paragraphs are his own copy from the AXA page, verbatim. */
     key: "growth", num: "02", when: "every morning", name: "Growth Agent", short: "the pipeline, the outbound, the meetings",
-    does: "We build Growth Agents for teams. The growth agent does a few things. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers.",
-    gets: "The pipeline is current every morning, the outbound runs without you, and the meetings land in your diary.",
+    dek: "The pipeline, the outbound and the meetings, run for you.",
     hands: "Email Marketing Agent",
-    cap: ILL(<>Every firm and person on the board and in the inbox is invented. The note, the board and the messages are the shape of the real ones.</>),
-    render: () => (
-      <div className="ag-stack">
-        <JoNote note={GROWTH_NOTE} />
-        <PipelineBoard deals={GROWTH_PIPELINE} />
-        <p className="ag-stack-copy">
-          And most importantly, it runs the outbound campaigns, be that email or LinkedIn,
-          running all the steps from list building to writing the messages, sending and analysis.
-        </p>
-        <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={806} />
-      </div>
-    ),
+    body: [
+      { p: "We build Growth Agents for teams. The growth agent does a few things. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
+      { fig: () => <JoNote note={GROWTH_NOTE} />, cap: ILL(<>Every firm and person here is invented. The note is the shape of the real one.</>) },
+      { p: "Each morning it tells you what happened overnight and what needs you today, in a note like that one. Nothing in it asks you to open a dashboard to find out." },
+      { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} /> },
+      { p: "And most importantly, it runs the outbound campaigns, be that email or LinkedIn, running all the steps from list building to writing the messages, sending and analysis." },
+      { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={806} />, cap: ILL(<>The people and the replies are invented. The messages are the shape of the real ones.</>) },
+      { p: "The replies come back into the same window, and a meeting that lands goes straight into your diary. When a customer is ready for their first email, it hands over to the Email Marketing Agent." },
+    ],
   },
   {
     key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agent", short: "the emails that keep customers",
-    does: "Writes the emails that keep customers: the renewal note, the welcome, the win-back. Every line comes from your positioning, your messaging and your voice. Hover a dotted line and it tells you which.",
-    gets: "The emails are written from your own positioning and messaging, so they read like your company and need no rewriting.",
+    dek: "The emails that keep customers, written in your company's voice.",
     hands: "Brand Guardian",
-    cap: ILL(<>Written for Kite Insurance, the made-up insurer from our course.</>),
-    render: () => (
-      <WriterEmail
-        subject={{ text: "Your renewal is due on 14 September", note: "voice" }}
-        body={[
-          { text: "Hi Sarah," },
-          { text: "Before it renews, we'll quote the market for you.", note: "positioning" },
-          { text: "Last year most people in your position paid the price they were sent. It was a bit higher than the year before, and paying it beat a fortnight of forms and four websites asking the same eleven questions." },
-          { text: "That increase was never compulsory. It was the cost of staying put.", note: "messaging" },
-          { text: "So about three weeks before your date we'll check what everyone else would charge for the same cover. If someone is cheaper, we move you and do the paperwork. If nobody is, you stay where you are. Either way you'll get a note saying what we found and what we chose.", note: "messaging" },
-          { text: "The first time we did this, customers saved €187 on average.", note: "proof" },
-          { text: "Nothing for you to do.", note: "voice" },
-        ]}
-        sign={["Aoife", "Kite"]}
-      />
-    ),
+    body: [
+      { p: "The renewal note, the welcome, the win-back. These are the emails that decide whether a customer stays, and they are usually the last thing anyone gets to. So they get written in a hurry, from last year's version, and they read like it." },
+      { p: "The Email Marketing Agent writes them from your positioning, your messaging and your voice. Every line in the email below comes from one of those three, and if you hover over a dotted line it tells you which." },
+      {
+        fig: () => (
+          <WriterEmail
+            subject={{ text: "Your renewal is due on 14 September", note: "voice" }}
+            body={[
+              { text: "Hi Sarah," },
+              { text: "Before it renews, we'll quote the market for you.", note: "positioning" },
+              { text: "Last year most people in your position paid the price they were sent. It was a bit higher than the year before, and paying it beat a fortnight of forms and four websites asking the same eleven questions." },
+              { text: "That increase was never compulsory. It was the cost of staying put.", note: "messaging" },
+              { text: "So about three weeks before your date we'll check what everyone else would charge for the same cover. If someone is cheaper, we move you and do the paperwork. If nobody is, you stay where you are. Either way you'll get a note saying what we found and what we chose.", note: "messaging" },
+              { text: "The first time we did this, customers saved €187 on average.", note: "proof" },
+              { text: "Nothing for you to do.", note: "voice" },
+            ]}
+            sign={["Aoife", "Kite"]}
+          />
+        ),
+        cap: ILL(<>Written for Kite Insurance, the made-up insurer from our course.</>),
+      },
+      { p: "That matters because the email does not need rewriting. It already sounds like your company, and it says the thing your messaging says you stand for, in the sentence where a customer will read it." },
+      { p: "Nothing goes out from here on its own. Every email passes to the Brand Guardian first." },
+    ],
   },
   {
     key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriter", short: "posts and articles in your voice",
-    does: "Turns what you know into posts and articles that sound like you. It works from your own words, a call, a voice note, a rant, and it writes the way you talk, not the way the internet does.",
-    gets: "Posts and articles go out in your name each week, written from things you actually said.",
+    dek: "Posts and articles in your name, from things you actually said.",
     hands: "Brand Guardian",
-    cap: ILL(<>A post written for the founder of Kite Insurance, the made-up insurer from our course.</>),
-    render: () => (
-      <TypedNote
-        variant="post"
-        title="Ghostwriter"
-        pill="drafted"
-        from="Aoife Byrne"
-        role="Founder, Kite Insurance · 2h"
-        avatar="AB"
-        subject=""
-        items={GHOST_POST}
-      />
-    ),
+    body: [
+      { p: "Most founders have plenty to say and no time to write it down. What they have instead is a call last Tuesday where they explained the whole thing in four minutes, and a voice note on the way home." },
+      { p: "The Ghostwriter works from that. A call, a voice note, a rant on the drive home. It writes the way you talk, in paragraphs, the way a person writes, and not the way the internet does." },
+      {
+        fig: () => (
+          <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Byrne" role="Founder, Kite Insurance · 2h" avatar="AB" subject="" items={GHOST_POST} />
+        ),
+        cap: ILL(<>A post written for the founder of Kite Insurance, the made-up insurer from our course.</>),
+      },
+      { p: "Nothing in that post was invented by the agent. The seven in ten, the fortnight of forms, the decision to shop around for customers, all of it came from what she said on the call. The agent's job was the writing." },
+      { p: "Three a week, in your name, and each one passes the Brand Guardian before it goes anywhere." },
+    ],
   },
   {
     key: "search", num: "05", when: "every day, on the search account", name: "Search Agent", short: "new terms, new ads, live by morning",
-    does: "Does your search marketing. Every night it reads what people searched for, finds the long-tail terms worth bidding on, writes the ads for them, and puts them live in the morning with a budget cap.",
-    gets: "New terms, new ads and the bids kept in order every day, with a report to you on Friday.",
+    dek: "New terms, new ads, live by morning.",
     hands: "Website Agent",
-    cap: ILL(<>Run for Kite Insurance, the made-up insurer from our course. Every term, number and ad is invented. The job is the real one.</>),
-    render: () => <SearchAgentWindow />,
+    body: [
+      { p: "Paid search is a job of small decisions made every day. Which terms people actually used, which of them are worth a bid, what the ad for each should say, what cap to put on it. In most teams those decisions get made once a month, when someone finds the time." },
+      { p: "The Search Agent makes them every night. It reads what people searched for, finds the long-tail terms worth bidding on, writes the ad for each one, and puts them live in the morning with a budget cap." },
+      { fig: () => <SearchAgentWindow />, cap: ILL(<>Run for Kite Insurance, the made-up insurer from our course. Every term, number and ad is invented. The job is the real one.</>) },
+      { p: "That is one night's work. The terms it found, why each one is worth a bid, the ad it wrote, and the cap it set. On Friday it sends you a report on the week." },
+      { p: "When a term needs a page to land on that does not exist yet, it asks the Website Agent for one." },
+    ],
   },
   {
     key: "advertising", num: "06", when: "one approved ad, every size", name: "Advertising Agent", short: "one ad in, every size out",
-    does: "You approve one ad. It makes every other size, holding the brand exactly, then runs them and reads the numbers.",
-    gets: "One approved ad becomes the full set of sizes, on brand, without a designer redrawing each one.",
+    dek: "One approved ad in, every size out.",
     hands: "Brand Guardian",
-    render: () => <AdMachine />,
+    body: [
+      { p: "An ad campaign needs one good idea and then thirty versions of it. The banner, the square, the story, the skyscraper, each with the logo at the right size and the headline still readable. The thirty versions are where a designer's week goes." },
+      { p: "The Advertising Agent takes the one ad you approved and makes every other size, holding the brand exactly. Then it runs them and reads the numbers." },
+      { fig: () => <AdMachine /> },
+      { p: "Every size in that set came from the one you approved. The designer's week goes into the next idea instead." },
+      { p: "Every set passes the Brand Guardian before it runs." },
+    ],
   },
   {
     key: "website", num: "07", when: "a site, then changes on request", name: "Website Agent", short: "a site built from your brand",
-    does: "Builds a site from your brand and your messaging, then changes it when you tell it what you want, in a sentence. This one is for Tallis, a made-up finance technology company, built to show what it can do.",
-    gets: "A site built from your brand and your messaging, and changes made by asking for them in plain words.",
+    dek: "A site built from your brand, changed by asking for it.",
     hands: "Brand Guardian",
-    cap: ILL(<>Tallis is made up. The page is real and running inside the window; nothing in it is a real company, customer or number.</>),
-    render: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent · tallis.finance" />,
+    body: [
+      { p: "This is Tallis, a made-up finance technology company we built to show what the agent does. The page is real and running inside the window, so scroll it." },
+      { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent · tallis.finance" />, cap: ILL(<>Tallis is made up. Nothing in it is a real company, customer or number.</>) },
+      { p: "The Website Agent built it from the brand and the messaging, the same two documents everything else on this page works from. That is why it looks like one company rather than a template." },
+      { p: "Then it changes the site when you tell it what you want, in a sentence. Move the pricing up. Make the hero calmer. Add a page for the new product. No ticket, and no waiting for Thursday." },
+      { p: "Every change goes through the Brand Guardian before it is live." },
+    ],
   },
   {
     key: "guardian", num: "08", when: "before anything ships", name: "Brand Guardian", short: "every file measured against the book",
-    does: "Checks every piece against your brand book before it goes out: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named.",
-    gets: "Nothing goes out off brand. Every file is measured against the brand book before it ships.",
+    dek: "Every piece measured against the brand book before it ships.",
     hands: "Red Team",
-    render: () => <GuardianWindow />,
+    body: [
+      { p: "Every brand has a book, and every brand has work going out that does not quite match it. The logo a little small, the colour a shade off, the headline a word too long for the box. Nobody meant it. Nobody checked." },
+      { p: "The Brand Guardian checks. Every piece the other agents make passes through it before it goes anywhere: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named." },
+      { fig: () => <GuardianWindow /> },
+      { p: "That is a Tallis ad going through it. Drag the slider and watch the checks run. Everything it measures is written in the brand book, so a fail is never an opinion." },
+      { p: "After the Guardian, the Red Team." },
+    ],
   },
   {
     key: "pm", num: "09", when: "every morning", name: "Project Manager", short: "where everything stands",
-    does: "Keeps the board. Knows what every other agent did overnight, what is late, and what is waiting on you, and tells you in one note.",
-    gets: "One note each morning with what moved, what is late and what is waiting on you.",
+    dek: "Where everything stands, in one note each morning.",
     hands: "You",
-    cap: ILL(<>The projects are invented. The note is the shape of the real one.</>),
-    render: () => <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} />,
+    body: [
+      { p: "Nine agents working overnight makes a lot of things move. Someone has to know what moved, what is late, and what is stuck waiting on a person." },
+      { p: "The Project Manager keeps the board. It reads what every other agent did, and each morning it writes you one note." },
+      { fig: () => <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} />, cap: ILL(<>The projects are invented. The note is the shape of the real one.</>) },
+      { p: "The note tells you what needs you and what does not, and if you do one thing today, which one. That is the point of it. You read one note rather than nine." },
+    ],
   },
   {
     key: "redteam", num: "10", when: "last, every day", name: "Red Team", short: "the mistakes, caught before you see them",
-    does: "Its only job is to find the mistakes in the other agents' work before you see it. It doubts everything, checks the sources, and sends work back.",
-    gets: "Mistakes are found and sent back before the work reaches you.",
+    dek: "The mistakes, caught before you see them.",
     hands: "You",
-    cap: ILL(<>The note is the shape of the real one. The mistakes are made up, and they are the kind it catches.</>),
-    render: () => <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} />,
+    body: [
+      { p: "Agents make mistakes. A source that turns out to be a year old. A number in an email that nobody can trace. The cost of a mistake is not the mistake. It is that you stop trusting the work." },
+      { p: "So one agent has a single job, which is to doubt everything the others made. It checks the sources, it reads the numbers, and it sends work back." },
+      { fig: () => <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} />, cap: ILL(<>The note is the shape of the real one. The mistakes are made up, and they are the kind it catches.</>) },
+      { p: "Two things did not pass that day, and neither reached you. The rest did, and you can trust it because something tried to break it first." },
+    ],
   },
 ];
 
@@ -328,7 +376,7 @@ export default function AgentsSection() {
   const [mode, setMode] = useState<Door>("agents");
   // the mid-page switch: which of the three the section shows inline
   const [view, setView] = useState<Door>("agents");
-  const rowRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLElement>(null);
 
   // the hero announces a door; this section owns the surface and opens it
   useEffect(() => {
@@ -398,31 +446,33 @@ export default function AgentsSection() {
               <span><span className="ag-rail-n">{a.num}</span> <b>{a.name}</b></span>
               <span className="ag-mobile-pick-arr">pick another &#8964;</span>
             </button>
-            <div className="ag-row close" id={`agent-${a.num}`} ref={rowRef} key={a.key}>
-              <div className="ag-body">
-                <div className="ag-num">
-                  {a.num} &middot; {a.when}
-                </div>
-                <h3 className="ag-name">{a.name}</h3>
-                <p>{a.does}</p>
-              </div>
-              <div className="ag-plate">{a.render()}</div>
-              {a.cap ? <p className="ag-cap">{a.cap}</p> : null}
-              <div className="ag-body ag-after">
-                <p>{a.gets}</p>
-                <div className="ag-hand">
-                  <span>hands over to</span>
-                  <span className="arr">&rarr;</span>
-                  {nextIndex >= 0 ? (
-                    <button type="button" className="ag-hand-link" onClick={() => pick(nextIndex)}>
-                      {a.hands}
-                    </button>
+            <article className="ag-piece" id={`agent-${a.num}`} ref={rowRef} key={a.key}>
+              <div className="ag-piece-meta">{a.num} &middot; {a.when}</div>
+              <h3 className="ag-piece-title">{a.name}</h3>
+              <p className="ag-piece-dek">{a.dek}</p>
+              <div className="ag-piece-prose">
+                {a.body.map((b, i) =>
+                  "p" in b ? (
+                    <p key={i}>{b.p}</p>
                   ) : (
-                    <b>{a.hands}</b>
-                  )}
-                </div>
+                    <figure className="ag-fig" key={i}>
+                      {b.fig()}
+                      {b.cap ? <figcaption className="ag-cap">{b.cap}</figcaption> : null}
+                    </figure>
+                  ),
+                )}
               </div>
-            </div>
+              <div className="ag-piece-foot">
+                <span className="ag-piece-foot-label">hands over to</span>
+                {nextIndex >= 0 ? (
+                  <button type="button" className="ag-piece-next" onClick={() => pick(nextIndex)}>
+                    {a.hands} <span className="arr">&rarr;</span>
+                  </button>
+                ) : (
+                  <span className="ag-piece-next end">{a.hands}</span>
+                )}
+              </div>
+            </article>
           </div>
         </div>
       ) : (

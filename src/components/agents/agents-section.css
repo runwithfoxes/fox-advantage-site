@@ -422,7 +422,7 @@
 @media (max-width: 960px) {
   .ag-switch { gap: 10px; }
   .ag-switch button { font-size: 14px; padding: 14px 20px; flex: 1 1 auto; }
-  .ag-split { grid-template-columns: 1fr; gap: 0; margin-top: 24px; }
+  .ag-split { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 24px; }
   .ag-rail { display: none; }
   .ag-mobile-pick { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--ag-border); padding: 12px 14px; margin-bottom: 26px; font-family: var(--mono); font-size: 13px; }
   .ag-mobile-pick b { font-weight: 500; }
@@ -478,23 +478,76 @@
 @keyframes agw-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live,
 .ag-plate .ppchat-piece p { opacity: 0; animation: agw-rise .5s cubic-bezier(.22,1,.36,1) forwards; }
-.ag-plate .agw-terms tbody tr:nth-child(1) { animation-delay: .3s; }
-.ag-plate .agw-terms tbody tr:nth-child(2) { animation-delay: .9s; }
-.ag-plate .agw-terms tbody tr:nth-child(3) { animation-delay: 1.5s; }
-.ag-plate .agw-terms tbody tr:nth-child(4) { animation-delay: 2.1s; }
-.ag-plate .agw-sa-note { animation-delay: 2.8s; }
-.ag-plate .agw-ad { animation-delay: 3.4s; }
-.ag-plate .agw-sa-live { animation-delay: 4.2s; }
-.ag-plate .ppchat-piece p:nth-child(1) { animation-delay: .3s; }
-.ag-plate .ppchat-piece p:nth-child(2) { animation-delay: 1.1s; }
-.ag-plate .ppchat-piece p:nth-child(3) { animation-delay: 2.0s; }
-.ag-plate .ppchat-piece p:nth-child(4) { animation-delay: 2.9s; }
-.ag-plate .ppchat-piece p:nth-child(5) { animation-delay: 3.8s; }
-.ag-plate .ppchat-piece p:nth-child(6) { animation-delay: 4.5s; }
-@media (prefers-reduced-motion: reduce) { .ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live, .ag-plate .ppchat-piece p { animation: none; opacity: 1; } }
+.ag-plate .agw-terms tbody tr:nth-child(1), .ag-fig .agw-terms tbody tr:nth-child(1) { animation-delay: .3s; }
+.ag-plate .agw-terms tbody tr:nth-child(2), .ag-fig .agw-terms tbody tr:nth-child(2) { animation-delay: .9s; }
+.ag-plate .agw-terms tbody tr:nth-child(3), .ag-fig .agw-terms tbody tr:nth-child(3) { animation-delay: 1.5s; }
+.ag-plate .agw-terms tbody tr:nth-child(4), .ag-fig .agw-terms tbody tr:nth-child(4) { animation-delay: 2.1s; }
+.ag-plate .agw-sa-note, .ag-fig .agw-sa-note { animation-delay: 2.8s; }
+.ag-plate .agw-ad, .ag-fig .agw-ad { animation-delay: 3.4s; }
+.ag-plate .agw-sa-live, .ag-fig .agw-sa-live { animation-delay: 4.2s; }
+.ag-plate .ppchat-piece p:nth-child(1), .ag-fig .ppchat-piece p:nth-child(1) { animation-delay: .3s; }
+.ag-plate .ppchat-piece p:nth-child(2), .ag-fig .ppchat-piece p:nth-child(2) { animation-delay: 1.1s; }
+.ag-plate .ppchat-piece p:nth-child(3), .ag-fig .ppchat-piece p:nth-child(3) { animation-delay: 2.0s; }
+.ag-plate .ppchat-piece p:nth-child(4), .ag-fig .ppchat-piece p:nth-child(4) { animation-delay: 2.9s; }
+.ag-plate .ppchat-piece p:nth-child(5), .ag-fig .ppchat-piece p:nth-child(5) { animation-delay: 3.8s; }
+.ag-plate .ppchat-piece p:nth-child(6), .ag-fig .ppchat-piece p:nth-child(6) { animation-delay: 4.5s; }
+@media (prefers-reduced-motion: reduce) { .ag-plate .agw-terms tbody tr, .ag-plate .agw-sa-note, .ag-plate .agw-ad, .ag-plate .agw-sa-live, .ag-plate .ppchat-piece p, .ag-fig .agw-terms tbody tr, .ag-fig .agw-sa-note, .ag-fig .agw-ad, .ag-fig .agw-sa-live, .ag-fig .ppchat-piece p { animation: none; opacity: 1; } }
 
 /* a LinkedIn post, typed: the ghostwriter's window */
 .agw-post-head { display: flex; align-items: center; gap: 12px; padding: 18px 26px 14px; border-bottom: 1px solid var(--agw-line-soft); font-family: var(--agw-sans); }
 .agw-post-av { width: 44px; height: 44px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; flex: none; }
 .agw-post-who b { display: block; font-size: 14.5px; font-weight: 600; color: var(--agw-ink); }
 .agw-post-who span { font-size: 12.5px; color: var(--agw-muted); }
+
+/* ---- an agent as a short piece (Paul, 6 Sep): the essay page's shape.
+   Meta line, light heading, dek, then prose at the essay's measure with the
+   figures set into it where the copy reaches them. Notes stay 600px wide and
+   drawn windows take the column (Paul, 5 Sep). ---- */
+.ag-piece { display: block; padding: 0; }
+.ag-piece-meta {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ag-muted); margin-bottom: 20px;
+}
+.ag-piece-title {
+  font-family: var(--sans); font-weight: 300; font-size: clamp(30px, 3.4vw, 40px);
+  letter-spacing: -0.5px; line-height: 1.15; margin: 0;
+}
+.ag-piece-dek {
+  font-family: var(--mono); font-size: 15px; font-weight: 300; line-height: 1.7;
+  color: var(--ag-muted); margin: 16px 0 0; max-width: 680px;
+}
+.ag-piece-prose { margin-top: 48px; }
+.ag-piece-prose > p {
+  font-family: var(--mono); font-size: 15px; font-weight: 300; line-height: 2;
+  color: var(--ag-text); max-width: 680px; margin: 0 0 24px;
+}
+.ag-fig { margin: 32px 0 40px; padding: 0; }
+.ag-fig .agw { margin: 0; max-width: 600px; }
+.ag-fig .ppw-holder { margin: 0; }
+.ag-fig .ag-cap { margin-top: 12px; }
+.ag-piece-foot {
+  margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--ag-border);
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+}
+.ag-piece-foot-label { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ag-muted); }
+.ag-piece-next {
+  font-family: var(--sans); font-weight: 300; font-size: 24px; letter-spacing: -0.3px; color: var(--ag-text);
+  background: none; border: none; padding: 0; cursor: pointer; text-align: left;
+}
+.ag-piece-next .arr { color: var(--ag-sky); transition: transform .2s; display: inline-block; }
+.ag-piece-next:hover { color: var(--ag-sky); }
+.ag-piece-next:hover .arr { transform: translateX(4px); }
+.ag-piece-next.end { cursor: default; }
+@media (max-width: 960px) {
+  .ag-piece-prose { margin-top: 32px; }
+  .ag-fig { margin: 24px 0 32px; }
+}
+/* the same width rules the plate had, now on the figure inside the piece */
+.ag-fig > * { max-width: 600px; }
+.ag-fig .ppchat { max-width: 600px; }
+.ag-fig > .ppw-holder, .ag-fig > .ppbg, .ag-fig > .ppgeo, .ag-fig > .ppad { max-width: none; }
+.ag-fig > .agw.agw-sitewin { max-width: none; }
+.ag-fig > .ag-cap { max-width: 680px; }
+.ag-fig .agw-terms tbody tr, .ag-fig .agw-sa-note, .ag-fig .agw-ad, .ag-fig .agw-sa-live,
+.ag-fig .ppchat-piece p { opacity: 0; animation: agw-rise .5s cubic-bezier(.22,1,.36,1) forwards; }
+.ag-piece, .ag-fig, .ag-piece-prose { min-width: 0; max-width: 100%; }
