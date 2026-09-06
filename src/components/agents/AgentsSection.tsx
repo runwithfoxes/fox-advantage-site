@@ -233,14 +233,17 @@ const AGENTS: Agent[] = [
     ],
   },
   {
-    key: "advertising", num: "06", when: "one approved ad, every size", name: "Advertising Agent", short: "one ad in, every size out",
-    dek: "One approved ad in, every size out.",
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
+       figure is a placeholder: Paul wants the real Run with Foxes course ads
+       on Meta and their real numbers as an animated dashboard. */
+    key: "advertising", num: "06", when: "always on", name: "Advertising Agent", short: "ads written, made, live and remade",
+    dek: "Ads written, made, put live, read and remade, inside Meta or whichever tool you use, without you.",
     body: [
-      { p: "An ad campaign needs one good idea and then thirty versions of it. The banner, the square, the story, the skyscraper, each with the logo at the right size and the headline still readable. The thirty versions are where a designer's week goes." },
-      { p: "The Advertising Agent takes the one ad you approved and makes every other size, holding the brand exactly. Then it runs them and reads the numbers." },
+      { p: "The Advertising Agent does the work inside Meta, or another advertising tool, that used to be a full-time role or an agency. Once it is set up properly, it is working away every day without you being the bottleneck." },
+      { p: "It writes the ads and creates the artwork. It sets each ad up properly in Ads Manager and puts it live. It runs them, tracks them, reports on them and improves them. Then it makes new ads from what it learned and puts those live, and goes round again." },
       { fig: () => <AdMachine /> },
-      { p: "Every size in that set came from the one you approved. The designer's week goes into the next idea instead." },
-      { p: "Every set passes the Brand Guardian before it runs." },
+      { p: "What you end up with is an expert that is working around the clock, continually putting new ads live, finding out which ones work, improving them, and going again." },
+      { p: "That is a very different way of thinking from putting a campaign live. You go from a campaign to always on, and that is where volume wins, because you keep finding out what works. We always knew this was how it works. It just took a lot of people's time to do, and that meant full-time roles or agencies." },
     ],
   },
   {
