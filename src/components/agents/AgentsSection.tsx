@@ -11,6 +11,7 @@ import { WriterEmail } from "@/app/for/_components/library/WriterPiece";
 import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
 import { PipelineBoard, JoNote } from "@/app/for/_components/library/GrowthManager";
 import WorkGrid from "@/app/for/_components/library/WorkGrid";
+import ArrivalBlueprint from "@/app/for/_components/library/ArrivalBlueprint";
 import type { Door } from "../AgentsHero";
 import "./agents-section.css";
 
@@ -304,9 +305,45 @@ function ConsultingPanel() {
     <article className="ag-piece">
       <div className="ag-piece-meta">consulting</div>
       <h3 className="ag-piece-title">Designing team AI adoption</h3>
-      <p className="ag-piece-dek">We design how a marketing team takes on AI, and we measure it by the pieces of work now done a different way.</p>
+      <p className="ag-piece-dek">We map the work a team does, redesign it from a blank page, and build agents in place of hires, one role at a time.</p>
       <div className="ag-piece-prose">
-        {/* Paul's own copy, verbatim from the AXA page. */}
+        {/* The spine of the Fox Methodology (Chase, Run, Diagnose, Reimagine),
+            rewritten plainly on Paul's word, 6 Sep 2026. The last paragraph
+            is his own copy, verbatim from the AXA page. */}
+        <p>
+          Our method is quality first, then automate. We map the team you would have hired
+          before any AI existed, and the work that team would do. Then we redesign that work
+          from a blank page, and build agents instead of hires, calibrated to real briefs and
+          signed off before anyone else sees them. The team grows one role at a time.
+        </p>
+        <figure className="ag-fig">
+          <ArrivalBlueprint />
+        </figure>
+        <p>
+          There are four steps, and they run in this order. First, chase. We go after one job,
+          never the whole company. One workflow, one product family, one piece of work. You
+          cannot map a company. You map a job, and the width of what we agree to chase decides
+          whether the rest turns into a decision or into an audit of everything at once.
+        </p>
+        <p>
+          Second, run. We build the map alongside the people doing the job today, at their
+          pace, rather than from the process document that says how it is supposed to go. The
+          two are rarely the same, and the distance between them, the workaround nobody wrote
+          down, the extra approval that crept in, is usually where the cost is.
+        </p>
+        <p>
+          Third, diagnose. Every stage on the map gets asked two questions. Where is the time
+          actually being lost, and where are the errors actually happening. Only then a third,
+          which of these stages is a candidate for change at all. Not everything slow is worth
+          fixing, and not everything worth fixing is a job for an agent. This is the step that
+          stops a map turning into a wish list.
+        </p>
+        <p>
+          Fourth, reimagine. How the work could happen tomorrow. It is deliberately the last
+          step, asked only once the job is chased down, the work has been run alongside, and
+          the diagnosis says which parts are candidates. The blank page is earned by the three
+          steps before it.
+        </p>
         <p>
           Not everybody is going to be a builder, and that is fine. I suspect every marketing
           team will soon have at least one person who builds, and who helps the other teams

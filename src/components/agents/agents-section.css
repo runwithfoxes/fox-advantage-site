@@ -609,3 +609,4 @@
 @media (max-width: 960px) { .ag-panel-solo.ag-inline .ag-piece { margin-left: 0; max-width: none; } }
 .ag-overlay .ag-piece .ag-piece-title { color: inherit; }
 .ag-fig > .ppwg { max-width: none; }
+.ag-fig > .ppab { max-width: none; }
