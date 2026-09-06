@@ -179,9 +179,8 @@ export default function AdDeskWindow() {
             <span>19 Aug</span>
           </div>
           <p className="agw-ad2-note">
-            Of the four ads I put live on 30 July, the winner was the &ldquo;AI fluency for
-            ambitious marketers&rdquo; headline, at 35c a visit. I paused the other three and
-            gave it the budget.
+            I put four headlines live on 30 July and kept one. It held at 35c a visit for all
+            21 days.
           </p>
         </div>
       </div>
