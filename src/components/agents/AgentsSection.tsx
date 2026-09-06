@@ -155,19 +155,19 @@ const AGENTS: Agent[] = [
     ],
   },
   {
-    /* Paul, 1 Sep: "there is no difference between an outbound agent and a
-       growth agent. So leave the growth agent in." The first and third
-       paragraphs are his own copy from the AXA page, verbatim. */
-    key: "growth", num: "02", when: "every morning", name: "Growth Agent", short: "the pipeline, the outbound, the meetings",
-    dek: "The pipeline, the outbound and the meetings, run for you.",
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
+       dashboard sentences are his from the AXA page. */
+    key: "growth", num: "02", when: "every morning", name: "Growth Agent Team", short: "the pipeline, the outbound, the meetings",
+    dek: "A team of agents whose job is a meeting with a prospect in your calendar.",
     body: [
-      { p: "We build Growth Agents for teams. The growth agent does a few things. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
+      { p: "The Growth Agent Team gets meetings with prospects booked in your calendar. That is the end game, and every task the team does is in service of it. Once it is built, and built carefully, the team is working away every day without you being the bottleneck." },
       { fig: () => <JoNote note={GROWTH_NOTE} />, cap: ILL(<>Every firm and person here is invented. The note is the shape of the real one.</>) },
-      { p: "Each morning it tells you what happened overnight and what needs you today, in a note like that one. Nothing in it asks you to open a dashboard to find out." },
+      { p: "Like any growth team, there are a number of tasks involved. Finding your ideal customer profile, and the right companies within it. Finding the right role or roles inside each company, and their contact details. Then building up what you know about the person and the company. Has anything changed there that might be relevant, a restructure, a new hire, something someone said on LinkedIn or in the media. The point of all of it is a good understanding of whether these people would want what you are selling." },
+      { p: "Then there is the outreach itself. The channel depends on your market and your circumstances. It means writing the emails or the LinkedIn messages, scheduling and sequencing them, and tracking every one." },
+      { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent Team" sentLabel="84 sent" width={806} />, cap: ILL(<>The people and the replies are invented. The messages are the shape of the real ones.</>) },
+      { p: "The team moves a prospect the whole way from a first message to a meeting in your calendar, and does the prep research for your salesperson before that meeting starts. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
       { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} /> },
-      { p: "And most importantly, it runs the outbound campaigns, be that email or LinkedIn, running all the steps from list building to writing the messages, sending and analysis." },
-      { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent" sentLabel="84 sent" width={806} />, cap: ILL(<>The people and the replies are invented. The messages are the shape of the real ones.</>) },
-      { p: "The replies come back into the same window, and a meeting that lands goes straight into your diary. When a customer is ready for their first email, it hands over to the Email Marketing Agent." },
+      { p: "We connect the team to your CRM and your calendar, so a booked meeting goes into your diary and every prospect's record is kept up to date. A large part of what we do is focused on quality. The quality of the targeting, of the information, of the writing and the outreach, and of the journey from first message to meeting." },
     ],
   },
   {
