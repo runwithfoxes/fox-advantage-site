@@ -293,7 +293,6 @@ const AGENTS: Agent[] = [
     ],
   },
 ];
-];
 
 /* The consulting and training panels. Paul's own copy, verbatim from the AXA
    page. They appear in two places: inline when the mid-page switch picks
