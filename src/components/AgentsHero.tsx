@@ -272,7 +272,7 @@ export default function AgentsHero() {
       ["Liam Byrne", "ah-a3", "You: noticed you’re scaling the team…"],
       ["Hannah Frost", "ah-a5", "Hannah: what did you have in mind?", true],
       ["Marcus Lund", "ah-a6", "You: quick thought on your ICP…"],
-      ["Ruth Whelan", "ah-a1", "Ruth: interested, send more", true],
+      ["Ruth Mangan", "ah-a1", "Ruth: interested, send more", true],
       ["Owen Clarke", "ah-a4", "You: congrats on the promotion…"],
     ];
     const threads = q<HTMLDivElement>(".ah-threads");

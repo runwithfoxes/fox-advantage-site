@@ -43,7 +43,7 @@ const START: Deal[][] = [
     },
     {
       firm: "Harbourview Advisory",
-      person: "Tom Whelan · Managing Partner",
+      person: "Tom Cregan · Managing Partner",
       note: "Jo · intro sent this morning",
     },
     {
@@ -67,7 +67,7 @@ const START: Deal[][] = [
   [
     {
       firm: "Cedar Point Wealth",
-      person: "James Doyle · Principal",
+      person: "James Tiernan · Principal",
       note: "waiting on your yes",
     },
     {
