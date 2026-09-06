@@ -141,14 +141,16 @@ const KITE = ILL(<>Kite Insurance is the made-up insurer from our course, and th
 
 const AGENTS: Agent[] = [
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
     key: "research", num: "01", when: "every morning", name: "Research Agent", short: "the morning research note",
-    dek: "Every company you want to win, researched before you sit down.",
+    dek: "A team of research agents for marketing and sales, working every day, and you are not the bottleneck.",
     body: [
-      { p: "Most mornings in a marketing team start with someone opening a browser. Who is this company, what have they said lately, who runs marketing there, have we talked to them before. It takes an hour, and it never gets written down." },
-      { p: "The Research Agent does that hour before you arrive. It works from the list of companies you want to win, reads what each one has said and done, finds the person to talk to, and checks whether anyone on your side already knows them. Every fact carries its source." },
+      { p: "Almost all marketing involves research of some sort. Researching products, propositions, the competition, the market. It is a fundamental part of the job. Sometimes that research is deep, a proper piece of work on one question. Sometimes it is ongoing, where we need to keep an eye on what is happening all the time. And sometimes it is triggered by something happening, like a meeting going into the diary." },
+      { p: "It is possible to have a team of research agents who find that information for you on their own, every day. They work as a team, and you are not the bottleneck in it. They can research competitors. They can research prices. They can watch the things that change on a regular basis and tell you when they do." },
+      { p: "You might set up a research agent to research a prospect in advance, so that a salesperson walks into the meeting with good knowledge of the company and the person, and a few insights they would not have had time to find themselves." },
       { fig: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />, cap: KITE },
-      { p: "Then it writes you a note. Not a report you have to dig through. A note addressed to you, with the one company to look at first and why." },
-      { p: "The five cards go into the CRM, one per company, so nothing it found lives in a chat window. And it hands the list to the Growth Agent, who takes it from there." },
+      { p: "How you structure your research agents depends on what your goals are. Deep research on a few questions, a standing watch on many, research that fires when something happens, or all three." },
+      { p: "A big part of this is that it is an opportunity to get work done that you probably weren't able to get done before." },
     ],
   },
   {
