@@ -5,7 +5,7 @@ import TypedNote, { type NoteItem } from "./TypedNote";
 import SiteWindow from "./SiteWindow";
 import GuardianWindow from "./GuardianWindow";
 import SearchAgentWindow from "./SearchAgentWindow";
-import { OutreachWindow, CampaignWindow } from "@/app/for/_components/library/AgentWindows";
+import { OutreachWindow } from "@/app/for/_components/library/AgentWindows";
 import { WriterEmail } from "@/app/for/_components/library/WriterPiece";
 import AdMachine from "@/app/for/_components/library/AdMachine";
 import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
@@ -102,20 +102,6 @@ const OUTBOUND_THREADS = [
   { name: "David Nolan", company: "CMO · Rathmore Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
 ];
 
-const NODES: [
-  { icon: string; label: string; kind: "trigger" | "step" | "agent" },
-  { icon: string; label: string; kind: "trigger" | "step" | "agent" },
-  { icon: string; label: string; kind: "trigger" | "step" | "agent" },
-  { icon: string; label: string; kind: "trigger" | "step" | "agent" },
-  { icon: string; label: string; kind: "trigger" | "step" | "agent" },
-] = [
-  { icon: "◆", label: "07:00, every morning", kind: "trigger" },
-  { icon: "▤", label: "Research Agent", kind: "agent" },
-  { icon: "➤", label: "Growth Agent", kind: "agent" },
-  { icon: "✎", label: "Email Agent", kind: "agent" },
-  { icon: "✓", label: "Guardian + Red Team", kind: "step" },
-];
-
 const ILL = (what: React.ReactNode) => (
   <>
     <span className="slash">/illustrative.</span> {what}
@@ -149,7 +135,6 @@ type Agent = {
   short: string;
   dek: string;
   body: Block[];
-  hands: string;
 };
 
 const KITE = ILL(<>Kite Insurance is the made-up insurer from our course, and the people are made up too. The note is the shape of the real one.</>);
@@ -158,7 +143,6 @@ const AGENTS: Agent[] = [
   {
     key: "research", num: "01", when: "every morning", name: "Research Agent", short: "the morning research note",
     dek: "Every company you want to win, researched before you sit down.",
-    hands: "Growth Agent",
     body: [
       { p: "Most mornings in a marketing team start with someone opening a browser. Who is this company, what have they said lately, who runs marketing there, have we talked to them before. It takes an hour, and it never gets written down." },
       { p: "The Research Agent does that hour before you arrive. It works from the list of companies you want to win, reads what each one has said and done, finds the person to talk to, and checks whether anyone on your side already knows them. Every fact carries its source." },
@@ -173,7 +157,6 @@ const AGENTS: Agent[] = [
        paragraphs are his own copy from the AXA page, verbatim. */
     key: "growth", num: "02", when: "every morning", name: "Growth Agent", short: "the pipeline, the outbound, the meetings",
     dek: "The pipeline, the outbound and the meetings, run for you.",
-    hands: "Email Marketing Agent",
     body: [
       { p: "We build Growth Agents for teams. The growth agent does a few things. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
       { fig: () => <JoNote note={GROWTH_NOTE} />, cap: ILL(<>Every firm and person here is invented. The note is the shape of the real one.</>) },
@@ -187,7 +170,6 @@ const AGENTS: Agent[] = [
   {
     key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agent", short: "the emails that keep customers",
     dek: "The emails that keep customers, written in your company's voice.",
-    hands: "Brand Guardian",
     body: [
       { p: "The renewal note, the welcome, the win-back. These are the emails that decide whether a customer stays, and they are usually the last thing anyone gets to. So they get written in a hurry, from last year's version, and they read like it." },
       { p: "The Email Marketing Agent writes them from your positioning, your messaging and your voice. Every line in the email below comes from one of those three, and if you hover over a dotted line it tells you which." },
@@ -216,7 +198,6 @@ const AGENTS: Agent[] = [
   {
     key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriter", short: "posts and articles in your voice",
     dek: "Posts and articles in your name, from things you actually said.",
-    hands: "Brand Guardian",
     body: [
       { p: "Most founders have plenty to say and no time to write it down. What they have instead is a call last Tuesday where they explained the whole thing in four minutes, and a voice note on the way home." },
       { p: "The Ghostwriter works from that. A call, a voice note, a rant on the drive home. It writes the way you talk, in paragraphs, the way a person writes, and not the way the internet does." },
@@ -233,7 +214,6 @@ const AGENTS: Agent[] = [
   {
     key: "search", num: "05", when: "every day, on the search account", name: "Search Agent", short: "new terms, new ads, live by morning",
     dek: "New terms, new ads, live by morning.",
-    hands: "Website Agent",
     body: [
       { p: "Paid search is a job of small decisions made every day. Which terms people actually used, which of them are worth a bid, what the ad for each should say, what cap to put on it. In most teams those decisions get made once a month, when someone finds the time." },
       { p: "The Search Agent makes them every night. It reads what people searched for, finds the long-tail terms worth bidding on, writes the ad for each one, and puts them live in the morning with a budget cap." },
@@ -245,7 +225,6 @@ const AGENTS: Agent[] = [
   {
     key: "advertising", num: "06", when: "one approved ad, every size", name: "Advertising Agent", short: "one ad in, every size out",
     dek: "One approved ad in, every size out.",
-    hands: "Brand Guardian",
     body: [
       { p: "An ad campaign needs one good idea and then thirty versions of it. The banner, the square, the story, the skyscraper, each with the logo at the right size and the headline still readable. The thirty versions are where a designer's week goes." },
       { p: "The Advertising Agent takes the one ad you approved and makes every other size, holding the brand exactly. Then it runs them and reads the numbers." },
@@ -257,7 +236,6 @@ const AGENTS: Agent[] = [
   {
     key: "website", num: "07", when: "a site, then changes on request", name: "Website Agent", short: "a site built from your brand",
     dek: "A site built from your brand, changed by asking for it.",
-    hands: "Brand Guardian",
     body: [
       { p: "This is Tallis, a made-up finance technology company we built to show what the agent does. The page is real and running inside the window, so scroll it." },
       { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent · tallis.finance" />, cap: ILL(<>Tallis is made up. Nothing in it is a real company, customer or number.</>) },
@@ -269,7 +247,6 @@ const AGENTS: Agent[] = [
   {
     key: "guardian", num: "08", when: "before anything ships", name: "Brand Guardian", short: "every file measured against the book",
     dek: "Every piece measured against the brand book before it ships.",
-    hands: "Red Team",
     body: [
       { p: "Every brand has a book, and every brand has work going out that does not quite match it. The logo a little small, the colour a shade off, the headline a word too long for the box. Nobody meant it. Nobody checked." },
       { p: "The Brand Guardian checks. Every piece the other agents make passes through it before it goes anywhere: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named." },
@@ -281,7 +258,6 @@ const AGENTS: Agent[] = [
   {
     key: "pm", num: "09", when: "every morning", name: "Project Manager", short: "where everything stands",
     dek: "Where everything stands, in one note each morning.",
-    hands: "You",
     body: [
       { p: "Nine agents working overnight makes a lot of things move. Someone has to know what moved, what is late, and what is stuck waiting on a person." },
       { p: "The Project Manager keeps the board. It reads what every other agent did, and each morning it writes you one note." },
@@ -292,7 +268,6 @@ const AGENTS: Agent[] = [
   {
     key: "redteam", num: "10", when: "last, every day", name: "Red Team", short: "the mistakes, caught before you see them",
     dek: "The mistakes, caught before you see them.",
-    hands: "You",
     body: [
       { p: "Agents make mistakes. A source that turns out to be a year old. A number in an email that nobody can trace. The cost of a mistake is not the mistake. It is that you stop trusting the work." },
       { p: "So one agent has a single job, which is to doubt everything the others made. It checks the sources, it reads the numbers, and it sends work back." },
@@ -412,7 +387,6 @@ export default function AgentsSection() {
   };
 
   const a = AGENTS[active];
-  const nextIndex = AGENTS.findIndex((x) => x.name === a.hands);
 
   return (
     <section className="ag" id="agents">
@@ -462,16 +436,6 @@ export default function AgentsSection() {
                   ),
                 )}
               </div>
-              <div className="ag-piece-foot">
-                <span className="ag-piece-foot-label">hands over to</span>
-                {nextIndex >= 0 ? (
-                  <button type="button" className="ag-piece-next" onClick={() => pick(nextIndex)}>
-                    {a.hands} <span className="arr">&rarr;</span>
-                  </button>
-                ) : (
-                  <span className="ag-piece-next end">{a.hands}</span>
-                )}
-              </div>
             </article>
           </div>
         </div>
@@ -481,30 +445,8 @@ export default function AgentsSection() {
         </div>
       )}
 
-      <div className="ag-close">
-        <div className="ag-num">the day, end to end</div>
-        <h3 className="ag-name">How the work moves between them</h3>
-        <div className="ag-body">
-          <p>
-            One agent does its job and hands the result to the next. Nothing waits on a person
-            until the end, when you read what they made.
-          </p>
-        </div>
-        <div className="ag-plate">
-          <CampaignWindow
-            title="the team"
-            crumbLabel="Monday"
-            runNumber={41}
-            nodes={NODES}
-            stats={{ contacted: 84, replied: 12, booked: 3, running: 1 }}
-            creditsUsed={41}
-            creditsTotal={250}
-          />
-        </div>
-        <p className="ag-cap">
-          <span className="slash">/illustrative.</span> The numbers are made up. The order is real.
-        </p>
-      </div>
+      {/* The workflow figure (how the work moves between them) came out on
+          Paul's word, 6 Sep: it will be used elsewhere when he routes it out. */}
 
       {/* THE FULL-SCREEN SURFACE: it drops, and what rises in depends on the
           door. AI Agents: the ten names, staggered. Consulting: the adoption
