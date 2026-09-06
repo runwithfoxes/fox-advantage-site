@@ -20,7 +20,14 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export type NoteItem = { kind: "lead" | "p" | "li" | "att"; text: string };
+import { NOTE, type NoteKey } from "@/app/for/_components/library/WriterPiece";
+import "@/app/for/_components/library/chat-window.css";
+
+/** `note` is what the line is made of (positioning, messaging, proof, voice).
+    It draws the writer's dotted underline once the line has finished typing,
+    and the hover names it. Paul, 6 Sep: "if I hover over it, can I see
+    positioning, messaging, kind of those hovers?" */
+export type NoteItem = { kind: "lead" | "p" | "li" | "att"; text: string; note?: NoteKey };
 
 const CPS = 45;
 const STEP = 3;
@@ -155,9 +162,20 @@ export default function TypedNote({
         </div>
       );
     } else {
+      const body = <Partial text={it.text} n={shown} />;
+      const finished = shown >= lengths[i];
       rendered.push(
         <p key={i} className={it.kind === "lead" ? "agw-lead" : undefined}>
-          <Partial text={it.text} n={shown} />
+          {it.note && finished ? (
+            <span className="ppchat-ref" tabIndex={0}>
+              {body}
+              <span className="ppchat-refcard ppchat-refcard-note" role="note">
+                {NOTE[it.note]}
+              </span>
+            </span>
+          ) : (
+            body
+          )}
           {caret}
         </p>
       );
