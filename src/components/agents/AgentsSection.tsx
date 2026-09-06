@@ -254,14 +254,18 @@ const AGENTS: Agent[] = [
     ],
   },
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
+       checks named are the eleven gates of the brand guardian build
+       (clients/rwf/builds/brand-guardian/CONTEXT.md) and the Moloco
+       machine's receipts (moloco/brand-machine/MACHINE-SPEC.md). */
     key: "guardian", num: "08", when: "before anything ships", name: "Brand Guardians", short: "every file measured against the book",
-    dek: "Every piece measured against the brand book before it ships.",
+    dek: "We build brand guardians for brand teams whose stakeholders want speed, so the work stays on brand as it gets faster.",
     body: [
-      { p: "Every brand has a book, and every brand has work going out that does not quite match it. The logo a little small, the colour a shade off, the headline a word too long for the box. Nobody meant it. Nobody checked." },
+      { p: "We build brand guardians, often for larger brands whose stakeholders want speed. The goal is speed and quality together. Without the quality, stakeholders start creating their own marketing materials, and things begin to look generic." },
       { fig: () => <GuardianWindow /> },
-      { p: "The Brand Guardian checks. Every piece the other agents make passes through it before it goes anywhere: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named." },
-      { p: "That is a Tallis ad going through it. Drag the slider and watch the checks run. Everything it measures is written in the brand book, so a fail is never an opinion." },
-      { p: "After the Guardian, the Red Team." },
+      { p: "A brand guardian checks a piece of work against the brand book before it goes anywhere. It measures rather than judges. Are the colours the exact ones, or a shade off. Is the logo whole, unstretched, and the right size for the format. Is the typeface the brand's, at the right weight. Is the headline the right size. Does the photograph match the brand's style and grade. Is the copy the right length, and is it written in the brand's tone of voice. Passed, or sent back with the fixes named." },
+      { p: "Brand teams use this for more than catching what is off brand. The same rules that check a piece can help a stakeholder make one. Someone in sales or in a regional office can start from the brand's colours, fonts and voice, and end up with something on brand, without waiting on the brand team." },
+      { p: "That is what the brand team gets back. The speed their stakeholders wanted, and the brand held." },
     ],
   },
   {
