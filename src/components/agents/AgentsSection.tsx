@@ -269,13 +269,14 @@ const AGENTS: Agent[] = [
     ],
   },
   {
-    key: "pm", num: "09", when: "every morning", name: "Project Managers", short: "where everything stands",
-    dek: "Where everything stands, in one note each morning.",
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
+    key: "pm", num: "09", when: "every morning", name: "Campaign Managers", short: "where everything stands",
+    dek: "We build campaign managers that keep the marketing on track, either beside you every day or running a team of agents.",
     body: [
-      { p: "Nine agents working overnight makes a lot of things move. Someone has to know what moved, what is late, and what is stuck waiting on a person." },
-      { fig: () => <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} /> },
-      { p: "The Project Manager keeps the board. It reads what every other agent did, and each morning it writes you one note." },
-      { p: "The note tells you what needs you and what does not, and if you do one thing today, which one. That is the point of it. You read one note rather than nine." },
+      { p: "We build campaign managers in two ways. The first is an AI you work with day to day. It tracks the delivery of the marketing tasks and keeps you on track each day. It captures your call transcripts, reads your emails and looks at your documents, so it knows what was agreed and what is due. It writes emails and puts them in your drafts. It creates invoices and sends status updates. Each morning it tells you what moved, what is late, and what is waiting on you." },
+      { fig: () => <TypedNote title="Campaign Manager" subject="Where everything stands, Monday" from="Campaign Manager" avatar="CM" items={PM} /> },
+      { p: "The second is for when you have a team of AI agents. Its role then is closer to a chief of staff. It coordinates the other agents, writes their role specs, and keeps them focused on the goals. When one agent's work is waiting on another, or drifting from what it was set up to do, this is the one that notices and sorts it." },
+      { p: "Either way, the point is the same. The work keeps moving, nothing waits on you that does not need you, and you read one note rather than chasing ten." },
     ],
   },
   {
