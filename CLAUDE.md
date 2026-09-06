@@ -210,6 +210,7 @@ Every module section follows:
 - No "replace" language - frame as opportunity, not replacement
 - Quality and speed are the two themes running through everything
 - "We" not "you" - peer-to-peer, optimistic
+- Say that WE BUILD these. Paul, 6 Sep 2026, on the agent pages: "some of my writing is a bit passive and needs to be more clear that we build these for clients." His own fix: "A team of research agents for marketing and sales, working every day, and you are not the bottleneck" became "We build research agents for marketing and sales, working every day, so you're not the bottleneck." An agent is never the only subject on a page; "it is possible to have", "is done", "once it is built" all read as if nobody did the work.
 - No corporate words, no AI hype words
 - No em dashes anywhere
 - No rounded corners
