@@ -23,7 +23,7 @@ const TERMS: [string, string, string, string][] = [
 
 export default function SearchAgentWindow() {
   return (
-    <div className="agw">
+    <div className="agw agw-searchwin">
       <div className="agw-tl">
         <i />
         <i />

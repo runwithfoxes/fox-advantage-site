@@ -551,3 +551,7 @@
 .ag-fig .agw-terms tbody tr, .ag-fig .agw-sa-note, .ag-fig .agw-ad, .ag-fig .agw-sa-live,
 .ag-fig .ppchat-piece p { opacity: 0; animation: agw-rise .5s cubic-bezier(.22,1,.36,1) forwards; }
 .ag-piece, .ag-fig, .ag-piece-prose { min-width: 0; max-width: 100%; }
+/* the search desk is a two-panel window drawn for the full column: at 600px
+   the terms table squashes to one word a line and the ad panel sits on the
+   third column (seen 6 Sep). Same rule as the website window. */
+.ag-fig > .agw.agw-searchwin { max-width: none; }
