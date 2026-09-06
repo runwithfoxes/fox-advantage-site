@@ -202,19 +202,21 @@ const AGENTS: Agent[] = [
     ],
   },
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
     key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriter", short: "posts and articles in your voice",
-    dek: "Posts and articles in your name, from things you actually said.",
+    dek: "A founder's point of view on LinkedIn and in longer articles, every week, in their own words.",
     body: [
-      { p: "Most founders have plenty to say and no time to write it down. What they have instead is a call last Tuesday where they explained the whole thing in four minutes, and a voice note on the way home." },
-      { p: "The Ghostwriter works from that. A call, a voice note, a rant on the drive home. It writes the way you talk, in paragraphs, the way a person writes, and not the way the internet does." },
+      { p: "The Ghostwriter lets a founder or a senior exec get their opinion and their point of view across on LinkedIn, or in deeper articles, on an ongoing basis. It finds the material, structures it and writes it. What the founder does is open their laptop and find a handful of pieces that are ninety percent written. Usually it is a small bit of editing, then approve, and depending on how it is set up, the piece goes live." },
+      { p: "It is mainly for B2B brands, and for anyone who needs thought leadership, which usually means founders, execs and people who write on a regular basis. It is for people who already have a point of view and know what they want to say. They are often busy, or they are good at talking and not as good at writing." },
+      { p: "The Ghostwriter is two agents. The first is a research agent, which finds recent raw material, a conversation, a stat, a research piece, and puts it in one place. The second is a copywriter agent, which takes that material and writes the piece in the founder's own tone of voice." },
       {
         fig: () => (
           <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Byrne" role="Founder, Kite Insurance · 2h" avatar="AB" subject="" items={GHOST_POST} />
         ),
         cap: ILL(<>A post written for the founder of Kite Insurance, the made-up insurer from our course.</>),
       },
-      { p: "Nothing in that post was invented by the agent. The seven in ten, the fortnight of forms, the decision to shop around for customers, all of it came from what she said on the call. The agent's job was the writing." },
-      { p: "Three a week, in your name, and each one passes the Brand Guardian before it goes anywhere." },
+      { p: "The important part is done at the very beginning. The brand's positioning, the founder's point of view and the way he or she writes are all worked out and written down before the first piece. That is what stops it reading like AI slop." },
+      { p: "The founder's job stays the same as it always was, which is having the opinion and saying yes to the piece." },
     ],
   },
   {
