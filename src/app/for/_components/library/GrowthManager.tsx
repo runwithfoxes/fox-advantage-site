@@ -100,7 +100,7 @@ const MOVES: { from: number; to: number; note: string }[] = [
 const MOVE_MS = 2600;
 const RESET_MS = 4200;
 
-export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
+export function PipelineBoard({ deals = START, width = 940 }: { deals?: Deal[][]; width?: number } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
@@ -159,7 +159,7 @@ export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
 
   return (
     <div ref={rootRef}>
-      <ScaledWindow width={940}>
+      <ScaledWindow width={width}>
         <div className="ppw-frame-win">
           <div className="ppw-tl">
             <i />

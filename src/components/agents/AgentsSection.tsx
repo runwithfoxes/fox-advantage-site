@@ -137,19 +137,18 @@ type Agent = {
   body: Block[];
 };
 
-const KITE = ILL(<>Kite Insurance is the made-up insurer from our course, and the people are made up too. The note is the shape of the real one.</>);
 
 const AGENTS: Agent[] = [
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
-    key: "research", num: "01", when: "every morning", name: "Research Agent", short: "the morning research note",
+    key: "research", num: "01", when: "every morning", name: "Research Agents", short: "the morning research note",
     dek: "A team of research agents for marketing and sales, working every day, and you are not the bottleneck.",
     body: [
       { p: "Almost all marketing involves research of some sort. Researching products, propositions, the competition, the market. It is a fundamental part of the job. Sometimes that research is deep, a proper piece of work on one question. Sometimes it is ongoing, where we need to keep an eye on what is happening all the time. And sometimes it is triggered by something happening, like a meeting going into the diary." },
+      { fig: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} /> },
       { p: "It is possible to have a team of research agents who find that information for you on their own, every day. They work as a team, and you are not the bottleneck in it. They can research competitors. They can research prices. They can watch the things that change on a regular basis and tell you when they do." },
       { p: "Whatever they find goes somewhere you already work. Into a Google Sheet, into a file you read in the morning, or straight to another agent who takes it on from there. You don't go looking for the research. It is there when you sit down." },
       { p: "You might set up a research agent to research a prospect in advance, so that a salesperson walks into the meeting with good knowledge of the company and the person, and a few insights they would not have had time to find themselves." },
-      { fig: () => <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />, cap: KITE },
       { p: "How you structure your research agents depends on what your goals are. Deep research on a few questions, a standing watch on many, research that fires when something happens, or all three." },
       { p: "A big part of this is that it is an opportunity to get work done that you probably weren't able to get done before." },
     ],
@@ -161,23 +160,21 @@ const AGENTS: Agent[] = [
     dek: "A team of agents whose job is a meeting with a prospect in your calendar.",
     body: [
       { p: "The Growth Agent Team gets meetings with prospects booked in your calendar. That is the end game, and every task the team does is in service of it. Once it is built, and built carefully, the team is working away every day without you being the bottleneck." },
-      { fig: () => <JoNote note={GROWTH_NOTE} />, cap: ILL(<>Every firm and person here is invented. The note is the shape of the real one.</>) },
+      { fig: () => <JoNote note={GROWTH_NOTE} /> },
       { p: "Like any growth team, there are a number of tasks involved. Finding your ideal customer profile, and the right companies within it. Finding the right role or roles inside each company, and their contact details. Then building up what you know about the person and the company. Has anything changed there that might be relevant, a restructure, a new hire, something someone said on LinkedIn or in the media. The point of all of it is a good understanding of whether these people would want what you are selling." },
       { p: "Then there is the outreach itself. The channel depends on your market and your circumstances. It means writing the emails or the LinkedIn messages, scheduling and sequencing them, and tracking every one." },
-      { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent Team" sentLabel="84 sent" width={806} />, cap: ILL(<>The people and the replies are invented. The messages are the shape of the real ones.</>) },
+      { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent Team" sentLabel="84 sent" width={806} /> },
       { p: "The team moves a prospect the whole way from a first message to a meeting in your calendar, and does the prep research for your salesperson before that meeting starts. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
-      { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} /> },
+      { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} width={806} /> },
       { p: "We connect the team to your CRM and your calendar, so a booked meeting goes into your diary and every prospect's record is kept up to date. A large part of what we do is focused on quality. The quality of the targeting, of the information, of the writing and the outreach, and of the journey from first message to meeting." },
     ],
   },
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
-    key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agent", short: "the emails that keep customers",
+    key: "email", num: "03", when: "when an email is due", name: "Email Marketing Agents", short: "the emails that keep customers",
     dek: "The whole of lifecycle email, from writing to improving the journeys, done every day.",
     body: [
       { p: "The Email Marketing Agent does everything in lifecycle email. The writing, the scheduling, the sequencing, the tracking, the reporting, and improving the journeys as it goes. Once it is built, it is working away every day without you being the bottleneck." },
-      { p: "The welcome, the renewal, the note to someone who has not been back for a while. The hard work in lifecycle marketing is continuously looking at where people are falling out, and finding ways to improve it. Today a large part of that work is getting in and writing the emails, and the manual work between the sequences." },
-      { p: "The agent works inside a tool like Klaviyo. It looks at the numbers, finds where people are dropping off, writes the emails, and proposes the fixes." },
       {
         fig: () => (
           <WriterEmail
@@ -193,9 +190,9 @@ const AGENTS: Agent[] = [
             ]}
             sign={["Aoife", "Kite"]}
           />
-        ),
-        cap: ILL(<>Written for Kite Insurance, the made-up insurer from our course. Hover a dotted line and it says where it came from.</>),
-      },
+        ) },
+      { p: "The welcome, the renewal, the note to someone who has not been back for a while. The hard work in lifecycle marketing is continuously looking at where people are falling out, and finding ways to improve it. Today a large part of that work is getting in and writing the emails, and the manual work between the sequences." },
+      { p: "The agent works inside a tool like Klaviyo. It looks at the numbers, finds where people are dropping off, writes the emails, and proposes the fixes." },
       { p: "The word that matters here is trigger. Our own fluency course runs on trigger emails, sent on what someone did, or did not do, and in what order. Set up properly, with the data in place, that lets you send genuinely personal emails to people at the moment you think they might need them. That kind of precision was possible before, but only with a team of people doing it, and it was very labour intensive. Talk to any lifecycle marketer and it is a full-time role." },
       { p: "Like the others, there are separate tasks in it. Writing the emails. Getting the artwork. Connecting to the tool and sending. Tracking. Making changes and improving every day. Given a goal, set up properly and put on a loop, agents do these well." },
       { p: "The time goes into setting it up and building it properly. Once that is done, what used to be a full-time role becomes a few tasks a week for a generalist on your team." },
@@ -203,30 +200,28 @@ const AGENTS: Agent[] = [
   },
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
-    key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriter", short: "posts and articles in your voice",
+    key: "ghostwriter", num: "04", when: "three posts a week", name: "Ghostwriters", short: "posts and articles in your voice",
     dek: "A founder's point of view on LinkedIn and in longer articles, every week, in their own words.",
     body: [
       { p: "The Ghostwriter lets a founder or a senior exec get their opinion and their point of view across on LinkedIn, or in deeper articles, on an ongoing basis. It finds the material, structures it and writes it. What the founder does is open their laptop and find a handful of pieces that are ninety percent written. Usually it is a small bit of editing, then approve, and depending on how it is set up, the piece goes live." },
-      { p: "It is mainly for B2B brands, and for anyone who needs thought leadership, which usually means founders, execs and people who write on a regular basis. It is for people who already have a point of view and know what they want to say. They are often busy, or they are good at talking and not as good at writing." },
-      { p: "The Ghostwriter is two agents. The first is a research agent, which finds recent raw material, a conversation, a stat, a research piece, and puts it in one place. The second is a copywriter agent, which takes that material and writes the piece in the founder's own tone of voice." },
       {
         fig: () => (
           <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Byrne" role="Founder, Kite Insurance · 2h" avatar="AB" subject="" items={GHOST_POST} />
-        ),
-        cap: ILL(<>A post written for the founder of Kite Insurance, the made-up insurer from our course.</>),
-      },
+        ) },
+      { p: "It is mainly for B2B brands, and for anyone who needs thought leadership, which usually means founders, execs and people who write on a regular basis. It is for people who already have a point of view and know what they want to say. They are often busy, or they are good at talking and not as good at writing." },
+      { p: "The Ghostwriter is two agents. The first is a research agent, which finds recent raw material, a conversation, a stat, a research piece, and puts it in one place. The second is a copywriter agent, which takes that material and writes the piece in the founder's own tone of voice." },
       { p: "The important part is done at the very beginning. The brand's positioning, the founder's point of view and the way he or she writes are all worked out and written down before the first piece. That is what stops it reading like AI slop." },
       { p: "The founder's job stays the same as it always was, which is having the opinion and saying yes to the piece." },
     ],
   },
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
-    key: "search", num: "05", when: "every day, on the search account", name: "Search Agent", short: "new terms, new ads, live by morning",
+    key: "search", num: "05", when: "every day, on the search account", name: "Search Agents", short: "new terms, new ads, live by morning",
     dek: "Paid search run every day, the terms, the ads and the bids, without you.",
     body: [
       { p: "The Search Agent takes the daily work of paid search off you. Finding the terms, writing the ads, putting them live, reading the numbers and improving the account. Once it is built, it is working away every day without you being the bottleneck." },
+      { fig: () => <SearchAgentWindow /> },
       { p: "Part of the job is search terms. It finds the terms your brand should be found for, or you give it the ones you want, and it looks at the long tail, the hundreds of specific searches that a person does not have time to go through. It finds what each one costs. It can do this every day." },
-      { fig: () => <SearchAgentWindow />, cap: ILL(<>Run for Kite Insurance, the made-up insurer from our course. Every term, number and ad is invented. The job is the real one.</>) },
       { p: "Part of the job is tracking. If you have good conversion data, it tells you which keywords are working better and which ads are working better, and it changes the account accordingly. It writes and rewrites individual ads. And if your website is structured for it, it can do some of the work that the GEO agent does as well." },
       { p: "Agents are very good at this because search changes all the time. The terms, the prices and what your competitors are doing move every day, so you can keep watching and keep competing. And there is a lot of good data to work from." },
       { p: "A lot of this is work marketers used to do themselves, and it took up their time. Analysing, writing, putting new ads live, improving them. All of it is a combination of automation and intelligence." },
@@ -236,12 +231,12 @@ const AGENTS: Agent[] = [
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
        figure is our own course campaign on Meta: the real ad, the real
        numbers (AdDeskWindow.tsx says where they came from). */
-    key: "advertising", num: "06", when: "always on", name: "Advertising Agent", short: "ads written, made, live and remade",
+    key: "advertising", num: "06", when: "always on", name: "Advertising Agents", short: "ads written, made, live and remade",
     dek: "Ads written, made, put live, read and remade, inside Meta or whichever tool you use, without you.",
     body: [
       { p: "The Advertising Agent does the work inside Meta, or another advertising tool, that used to be a full-time role or an agency. Once it is set up properly, it is working away every day without you being the bottleneck." },
-      { p: "It writes the ads and creates the artwork. It sets each ad up properly in Ads Manager and puts it live. It runs them, tracks them, reports on them and improves them. Then it makes new ads from what it learned and puts those live, and goes round again." },
       { fig: () => <AdDeskWindow />, cap: (<><span className="slash">/real.</span> Our own Meta campaign for the free course, 30 July to 19 August 2026, numbers from Meta. Signups are not shown because the tracking was never connected, so nobody can say how many came from the ads.</>) },
+      { p: "It writes the ads and creates the artwork. It sets each ad up properly in Ads Manager and puts it live. It runs them, tracks them, reports on them and improves them. Then it makes new ads from what it learned and puts those live, and goes round again." },
       { p: "What you end up with is an expert that is working around the clock, continually putting new ads live, finding out which ones work, improving them, and going again." },
       { p: "That is a very different way of thinking from putting a campaign live. You go from a campaign to always on, and that is where volume wins, because you keep finding out what works. We always knew this was how it works. It just took a lot of people's time to do, and that meant full-time roles or agencies." },
     ],
@@ -252,30 +247,30 @@ const AGENTS: Agent[] = [
     dek: "A website built with craft, at the right speed, that anyone on your team can change by asking.",
     body: [
       { p: "There was a time when building and maintaining a website took a team of people, and it took time. Someone had to coordinate the copywriting, the UX, the design, the imagery, the artwork, the motion, the building and the deploying. You still need all of those things. You no longer need all of those people to do them." },
+      { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent Team · tallis.finance" /> },
       { p: "The Website Agent Team is not five agents. It is the five parts of the work, which are the positioning and messaging framework, the UX and the navigation, the copywriting, the artwork, and then the design, the building and the deploying." },
       { p: "Our website agents work with us to build websites for clients at speed, or at what we call appropriate speed. But the most important thing we do comes after the build. We set the site up so that anyone on your team, with no expertise, can make changes. Those changes are fast, they are on brand, and they look good." },
-      { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent Team · tallis.finance" />, cap: ILL(<>Tallis is made up. The page is real and running inside the window, so scroll it. Nothing in it is a real company, customer or number.</>) },
       { p: "It is true that you can build a website in a few minutes now. Those websites can all feel very generic, and they lack craft. What we focus on is building agents that understand craft, and can build craft into a website." },
     ],
   },
   {
-    key: "guardian", num: "08", when: "before anything ships", name: "Brand Guardian", short: "every file measured against the book",
+    key: "guardian", num: "08", when: "before anything ships", name: "Brand Guardians", short: "every file measured against the book",
     dek: "Every piece measured against the brand book before it ships.",
     body: [
       { p: "Every brand has a book, and every brand has work going out that does not quite match it. The logo a little small, the colour a shade off, the headline a word too long for the box. Nobody meant it. Nobody checked." },
-      { p: "The Brand Guardian checks. Every piece the other agents make passes through it before it goes anywhere: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named." },
       { fig: () => <GuardianWindow /> },
+      { p: "The Brand Guardian checks. Every piece the other agents make passes through it before it goes anywhere: the logo size, the colours, the headline, how much of the frame the product takes. Passed, or sent back with the fixes named." },
       { p: "That is a Tallis ad going through it. Drag the slider and watch the checks run. Everything it measures is written in the brand book, so a fail is never an opinion." },
       { p: "After the Guardian, the Red Team." },
     ],
   },
   {
-    key: "pm", num: "09", when: "every morning", name: "Project Manager", short: "where everything stands",
+    key: "pm", num: "09", when: "every morning", name: "Project Managers", short: "where everything stands",
     dek: "Where everything stands, in one note each morning.",
     body: [
       { p: "Nine agents working overnight makes a lot of things move. Someone has to know what moved, what is late, and what is stuck waiting on a person." },
+      { fig: () => <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} /> },
       { p: "The Project Manager keeps the board. It reads what every other agent did, and each morning it writes you one note." },
-      { fig: () => <TypedNote title="Project Manager" subject="Where everything stands, Monday" from="Project Manager" avatar="PM" items={PM} />, cap: ILL(<>The projects are invented. The note is the shape of the real one.</>) },
       { p: "The note tells you what needs you and what does not, and if you do one thing today, which one. That is the point of it. You read one note rather than nine." },
     ],
   },
@@ -284,8 +279,8 @@ const AGENTS: Agent[] = [
     dek: "The mistakes, caught before you see them.",
     body: [
       { p: "Agents make mistakes. A source that turns out to be a year old. A number in an email that nobody can trace. The cost of a mistake is not the mistake. It is that you stop trusting the work." },
+      { fig: () => <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} /> },
       { p: "So one agent has a single job, which is to doubt everything the others made. It checks the sources, it reads the numbers, and it sends work back." },
-      { fig: () => <TypedNote title="Red Team" subject="Two things did not pass today" from="Red Team" avatar="RT" items={REDTEAM} />, cap: ILL(<>The note is the shape of the real one. The mistakes are made up, and they are the kind it catches.</>) },
       { p: "Two things did not pass that day, and neither reached you. The rest did, and you can trust it because something tried to break it first." },
     ],
   },
