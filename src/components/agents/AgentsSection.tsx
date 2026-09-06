@@ -220,14 +220,16 @@ const AGENTS: Agent[] = [
     ],
   },
   {
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
     key: "search", num: "05", when: "every day, on the search account", name: "Search Agent", short: "new terms, new ads, live by morning",
-    dek: "New terms, new ads, live by morning.",
+    dek: "Paid search run every day, the terms, the ads and the bids, without you.",
     body: [
-      { p: "Paid search is a job of small decisions made every day. Which terms people actually used, which of them are worth a bid, what the ad for each should say, what cap to put on it. In most teams those decisions get made once a month, when someone finds the time." },
-      { p: "The Search Agent makes them every night. It reads what people searched for, finds the long-tail terms worth bidding on, writes the ad for each one, and puts them live in the morning with a budget cap." },
+      { p: "The Search Agent takes the daily work of paid search off you. Finding the terms, writing the ads, putting them live, reading the numbers and improving the account. Once it is built, it is working away every day without you being the bottleneck." },
+      { p: "Part of the job is search terms. It finds the terms your brand should be found for, or you give it the ones you want, and it looks at the long tail, the hundreds of specific searches that a person does not have time to go through. It finds what each one costs. It can do this every day." },
       { fig: () => <SearchAgentWindow />, cap: ILL(<>Run for Kite Insurance, the made-up insurer from our course. Every term, number and ad is invented. The job is the real one.</>) },
-      { p: "That is one night's work. The terms it found, why each one is worth a bid, the ad it wrote, and the cap it set. On Friday it sends you a report on the week." },
-      { p: "When a term needs a page to land on that does not exist yet, it asks the Website Agent for one." },
+      { p: "Part of the job is tracking. If you have good conversion data, it tells you which keywords are working better and which ads are working better, and it changes the account accordingly. It writes and rewrites individual ads. And if your website is structured for it, it can do some of the work that the GEO agent does as well." },
+      { p: "Agents are very good at this because search changes all the time. The terms, the prices and what your competitors are doing move every day, so you can keep watching and keep competing. And there is a lot of good data to work from." },
+      { p: "A lot of this is work marketers used to do themselves, and it took up their time. Analysing, writing, putting new ads live, improving them. All of it is a combination of automation and intelligence." },
     ],
   },
   {
