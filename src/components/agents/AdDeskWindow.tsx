@@ -156,7 +156,7 @@ export default function AdDeskWindow() {
           </div>
         </div>
         <div className="agw-ad2-main">
-          <div className="agw-k">30 july to 19 august 2026 &middot; ireland &middot; &euro;5 a day</div>
+          <div className="agw-k">30 july to 19 august 2026 &middot; ireland &middot; &euro;5 a day &middot; read from meta 6 sep</div>
           <div className="agw-stats">
             <Stat label="spent" value={euro(spend)} />
             <Stat label="people reached" value={int(reach)} />
@@ -164,7 +164,7 @@ export default function AdDeskWindow() {
             <Stat label="course page" value={int(views)} sub={`€${TOTALS.costPerView.toFixed(2)} a visit`} />
           </div>
           <div className="agw-k agw-chart-k">people on the course page, each day</div>
-          <div className="agw-bars" role="img" aria-label="A bar a day for 21 days, people landing on the course page, between 7 and 26 a day">
+          <div className="agw-bars" role="img" aria-label="A bar a day for 21 days, people landing on the course page, between 0 and 26 a day">
             {DAILY.map(([d, s, , c, v], i) => (
               <div className="agw-bar-slot" key={d} style={{ ["--i" as string]: i }}>
                 <div className="agw-bar" style={{ height: `${(v / max) * 100}%` }} />

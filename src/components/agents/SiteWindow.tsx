@@ -69,7 +69,7 @@ export default function SiteWindow({
           const tick = (t: number) => {
             const win = frame.contentWindow;
             const doc = frame.contentDocument;
-            if (win && doc) {
+            if (win && doc && doc.documentElement) {
               const max = Math.max(0, doc.documentElement.scrollHeight - win.innerHeight);
               // starts moving straight away: 26s down with a soft start,
               // 3s hold at the foot, 5s back up, then again. The page inside

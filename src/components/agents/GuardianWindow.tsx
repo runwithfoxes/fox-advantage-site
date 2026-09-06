@@ -3,7 +3,7 @@
 // The brand guardian, for the homepage /agents section. The same exhibit the
 // proposal pages carry (drag the line to see what the machine sees), on a
 // MADE-UP brand. Paul, 5 Sep: "we can't use Sabre, so we're going to have to
-// create a fake brand ... one that feels like a Sabre type brand." Tessera is
+// create a fake brand ... one that feels like a Sabre type brand." Tallis is
 // an invented travel-technology company; the ad was drawn for this page and
 // nothing about it belongs to any real client. The annotation geometry is
 // measured off the drawn file (symbol 48px at 16,16; headline ink box;
@@ -204,7 +204,7 @@ export default function GuardianWindow() {
                 </div>
                 <div>
                   <p className="ppbg-k">gates that ran</p>
-                  <p className="ppbg-v">4 of 4 applicable</p>
+                  <p className="ppbg-v">4 shown of 9</p>
                 </div>
                 <div>
                   <p className="ppbg-k">measured, not judged</p>

@@ -67,7 +67,7 @@ export default function SearchAgentWindow() {
               <span className="agw-ad-fav">K</span>
               <span>
                 Kite Insurance
-                <em>kite.ie/first-home</em>
+                <em>kiteinsurance.ie/first-home</em>
               </span>
             </div>
             <div className="agw-ad-h">Home insurance for your first home | Quoted in four minutes</div>

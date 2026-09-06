@@ -73,7 +73,7 @@ const GROWTH_NOTE = [
 const GROWTH_PIPELINE = [
   [
     { firm: "Hyland Mortgage Advisers", person: "Cormac Hyland · Principal", note: "intro sent, two new advisers" },
-    { firm: "Ardmore Group", person: "Declan Moore · Reward Manager", note: "benefits review in October" },
+    { firm: "Ballagh Group", person: "Declan Moore · Reward Manager", note: "benefits review in October" },
     { firm: "Barrow Credit Union", person: "Áine Ronan · Head of Member Services", note: "detail sent, follow-up due" },
   ],
   [
@@ -98,10 +98,10 @@ const GHOST_POST: NoteItem[] = [
 ];
 
 const OUTBOUND_THREADS = [
-  { name: "Ciara Walsh", company: "Head of Marketing · Kite Insurance", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
+  { name: "Ciara Lonergan", company: "Marketing Director · Lough Cover", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
-  { name: "Aoife Brennan", company: "Growth Lead · Harbour Cover", message: "Hi Aoife - congratulations on the new role. If you are building the team, it is worth seeing what an agent does before you hire for it.", reply: "Happy to chat. Send an invite." },
-  { name: "Fintan Rowe", company: "CMO · Rathmore Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
+  { name: "Aoife Brennan", company: "Growth Lead · Fenit Cover", message: "Hi Aoife - congratulations on the new role. If you are building the team, it is worth seeing what an agent does before you hire for it.", reply: "Happy to chat. Send an invite." },
+  { name: "Fintan Rowe", company: "CMO · Carrig Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
 ];
 
 const ILL = (what: React.ReactNode) => (
@@ -162,12 +162,12 @@ const AGENTS: Agent[] = [
     dek: "We build growth agent teams whose job is a meeting with a prospect in your calendar.",
     body: [
       { p: "We build the Growth Agent Team to get meetings with prospects booked in your calendar. That is the end game, and every task the team does is in service of it. Once we have built it, and built it carefully, the team works away every day without you being the bottleneck." },
-      { fig: () => <JoNote note={GROWTH_NOTE} /> },
+      { fig: () => <JoNote note={GROWTH_NOTE} title="Growth Agent Team" /> },
       { p: "Like any growth team, there are a number of tasks involved. Finding your ideal customer profile, and the right companies within it. Finding the right role or roles inside each company, and their contact details. Then building up what you know about the person and the company. Has anything changed there that might be relevant, a restructure, a new hire, something someone said on LinkedIn or in the media. The point of all of it is a good understanding of whether these people would want what you are selling." },
       { p: "Then there is the outreach itself. The channel depends on your market and your circumstances. It means writing the emails or the LinkedIn messages, scheduling and sequencing them, and tracking every one." },
       { fig: () => <OutreachWindow threads={OUTBOUND_THREADS} title="Growth Agent Team" sentLabel="84 sent" width={806} /> },
       { p: "The team moves a prospect the whole way from a first message to a meeting in your calendar, and does the prep research for your salesperson before that meeting starts. It is the single point of contact for updating and tracking the pipeline. For example, it opens the dashboard daily for it and the marketer to review together. It does analysis to help uncover blockers." },
-      { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} width={806} /> },
+      { fig: () => <PipelineBoard deals={GROWTH_PIPELINE} width={806} pill="kept current every morning" /> },
       { p: "We connect the team to your CRM and your calendar, so a booked meeting goes into your diary and every prospect's record is kept up to date. A large part of what we do is focused on quality. The quality of the targeting, of the information, of the writing and the outreach, and of the journey from first message to meeting." },
     ],
   },
@@ -208,7 +208,7 @@ const AGENTS: Agent[] = [
       { p: "We build ghostwriters that let a founder or a senior exec get their opinion and their point of view across on LinkedIn, or in deeper articles, on an ongoing basis. It finds the material, structures it and writes it. What the founder does is open their laptop and find a handful of pieces that are ninety percent written. Usually it is a small bit of editing, then approve, and depending on how it is set up, the piece goes live." },
       {
         fig: () => (
-          <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Mulcair" role="Founder, Kite Insurance · 2h" avatar="AM" subject="" items={GHOST_POST} />
+          <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Mulcair" role="Founder, Kite Insurance" avatar="AM" subject="" items={GHOST_POST} />
         ) },
       { p: "It is mainly for B2B brands, and for anyone who needs thought leadership, which usually means founders, execs and people who write on a regular basis. It is for people who already have a point of view and know what they want to say. They are often busy, or they are good at talking and not as good at writing." },
       { p: "The Ghostwriter is two agents. The first is a research agent, which finds recent raw material, a conversation, a stat, a research piece, and puts it in one place. The second is a copywriter agent, which takes that material and writes the piece in the founder's own tone of voice." },
@@ -224,7 +224,7 @@ const AGENTS: Agent[] = [
       { p: "We build search agents that take the daily work of paid search off you. Finding the terms, writing the ads, putting them live, reading the numbers and improving the account. Once we have built it, it works away every day without you being the bottleneck." },
       { fig: () => <SearchAgentWindow /> },
       { p: "Part of the job is search terms. It finds the terms your brand should be found for, or you give it the ones you want, and it looks at the long tail, the hundreds of specific searches that a person does not have time to go through. It finds what each one costs. It can do this every day." },
-      { p: "Part of the job is tracking. If you have good conversion data, it tells you which keywords are working better and which ads are working better, and it changes the account accordingly. It writes and rewrites individual ads. And if your website is structured for it, it can do some of the work that the GEO agent does as well." },
+      { p: "Part of the job is tracking. If you have good conversion data, it tells you which keywords are working better and which ads are working better, and it changes the account accordingly. It writes and rewrites individual ads. And if your website is structured for it, it can do some of the work of getting you found in AI search as well." },
       { p: "Agents are very good at this because search changes all the time. The terms, the prices and what your competitors are doing move every day, so you can keep watching and keep competing. And there is a lot of good data to work from." },
       { p: "A lot of this is work marketers used to do themselves, and it took up their time. Analysing, writing, putting new ads live, improving them. All of it is a combination of automation and intelligence." },
     ],
@@ -385,7 +385,7 @@ function TrainingPanel() {
                   <i />
                   <i />
                   <span className="ppw-t">the course, module one</span>
-                  <span className="ppw-live-pill">free, live now</span>
+                  <span className="ppw-live-pill">free, opens 21 Sep</span>
                 </div>
                 <video
                   src="/for/training/course-module-1-scroll-web.mp4"
