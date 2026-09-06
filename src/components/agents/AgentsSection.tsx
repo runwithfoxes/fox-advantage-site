@@ -247,14 +247,15 @@ const AGENTS: Agent[] = [
     ],
   },
   {
-    key: "website", num: "07", when: "a site, then changes on request", name: "Website Agent", short: "a site built from your brand",
-    dek: "A site built from your brand, changed by asking for it.",
+    /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. */
+    key: "website", num: "07", when: "a site, then changes on request", name: "Website Agent Team", short: "a site built with craft, changed by asking",
+    dek: "A website built with craft, at the right speed, that anyone on your team can change by asking.",
     body: [
-      { p: "This is Tallis, a made-up finance technology company we built to show what the agent does. The page is real and running inside the window, so scroll it." },
-      { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent · tallis.finance" />, cap: ILL(<>Tallis is made up. Nothing in it is a real company, customer or number.</>) },
-      { p: "The Website Agent built it from the brand and the messaging, the same two documents everything else on this page works from. That is why it looks like one company rather than a template." },
-      { p: "Then it changes the site when you tell it what you want, in a sentence. Move the pricing up. Make the hero calmer. Add a page for the new product. No ticket, and no waiting for Thursday." },
-      { p: "Every change goes through the Brand Guardian before it is live." },
+      { p: "There was a time when building and maintaining a website took a team of people, and it took time. Someone had to coordinate the copywriting, the UX, the design, the imagery, the artwork, the motion, the building and the deploying. You still need all of those things. You no longer need all of those people to do them." },
+      { p: "The Website Agent Team is not five agents. It is the five parts of the work, which are the positioning and messaging framework, the UX and the navigation, the copywriting, the artwork, and then the design, the building and the deploying." },
+      { p: "Our website agents work with us to build websites for clients at speed, or at what we call appropriate speed. But the most important thing we do comes after the build. We set the site up so that anyone on your team, with no expertise, can make changes. Those changes are fast, they are on brand, and they look good." },
+      { fig: () => <SiteWindow src="/agents/tallis/index.html" label="Website Agent Team · tallis.finance" />, cap: ILL(<>Tallis is made up. The page is real and running inside the window, so scroll it. Nothing in it is a real company, customer or number.</>) },
+      { p: "It is true that you can build a website in a few minutes now. Those websites can all feel very generic, and they lack craft. What we focus on is building agents that understand craft, and can build craft into a website." },
     ],
   },
   {
