@@ -5,9 +5,9 @@ import TypedNote, { type NoteItem } from "./TypedNote";
 import SiteWindow from "./SiteWindow";
 import GuardianWindow from "./GuardianWindow";
 import SearchAgentWindow from "./SearchAgentWindow";
+import AdDeskWindow from "./AdDeskWindow";
 import { OutreachWindow } from "@/app/for/_components/library/AgentWindows";
 import { WriterEmail } from "@/app/for/_components/library/WriterPiece";
-import AdMachine from "@/app/for/_components/library/AdMachine";
 import { ScaledWindow } from "@/app/for/_components/library/AgentWindows";
 import { PipelineBoard, JoNote } from "@/app/for/_components/library/GrowthManager";
 import WorkGrid from "@/app/for/_components/library/WorkGrid";
@@ -234,14 +234,14 @@ const AGENTS: Agent[] = [
   },
   {
     /* Paul's own copy, dictated 6 Sep 2026 and agreed line by line. The
-       figure is a placeholder: Paul wants the real Run with Foxes course ads
-       on Meta and their real numbers as an animated dashboard. */
+       figure is our own course campaign on Meta: the real ad, the real
+       numbers (AdDeskWindow.tsx says where they came from). */
     key: "advertising", num: "06", when: "always on", name: "Advertising Agent", short: "ads written, made, live and remade",
     dek: "Ads written, made, put live, read and remade, inside Meta or whichever tool you use, without you.",
     body: [
       { p: "The Advertising Agent does the work inside Meta, or another advertising tool, that used to be a full-time role or an agency. Once it is set up properly, it is working away every day without you being the bottleneck." },
       { p: "It writes the ads and creates the artwork. It sets each ad up properly in Ads Manager and puts it live. It runs them, tracks them, reports on them and improves them. Then it makes new ads from what it learned and puts those live, and goes round again." },
-      { fig: () => <AdMachine /> },
+      { fig: () => <AdDeskWindow />, cap: (<><span className="slash">/real.</span> Our own Meta campaign for the free course, 30 July to 19 August 2026, numbers from Meta. Signups are not shown because the tracking was never connected, so nobody can say how many came from the ads.</>) },
       { p: "What you end up with is an expert that is working around the clock, continually putting new ads live, finding out which ones work, improving them, and going again." },
       { p: "That is a very different way of thinking from putting a campaign live. You go from a campaign to always on, and that is where volume wins, because you keep finding out what works. We always knew this was how it works. It just took a lot of people's time to do, and that meant full-time roles or agencies." },
     ],

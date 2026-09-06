@@ -555,3 +555,49 @@
    the terms table squashes to one word a line and the ad panel sits on the
    third column (seen 6 Sep). Same rule as the website window. */
 .ag-fig > .agw.agw-searchwin { max-width: none; }
+
+/* ---- the advertising desk: the real course ad on the left, the real
+   numbers on the right. Single series, one hue (the sky), counters and bars
+   run when the window is in view. ---- */
+.ag-fig > .agw.agw-addesk { max-width: none; }
+.agw-ad2 { display: grid; grid-template-columns: 300px 1fr; }
+.agw-ad2-side { padding: 18px 20px 20px; background: #fcfcfb; border-right: 1px solid var(--agw-line-soft); min-width: 0; }
+.agw-ad2-main { padding: 18px 22px 20px; min-width: 0; }
+.agw-fbad { border: 1px solid var(--agw-line); border-radius: 8px; background: #fff; font-family: var(--agw-sans); overflow: hidden; }
+.agw-fbad-top { display: flex; gap: 10px; align-items: center; padding: 12px 14px 8px; font-size: 13px; font-weight: 600; color: var(--agw-ink); }
+.agw-fbad-top em { display: block; font-style: normal; font-weight: 400; font-size: 11.5px; color: var(--agw-muted); }
+.agw-fbad-av { width: 30px; height: 30px; border-radius: 50%; background: var(--ag-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex: none; }
+.agw-fbad-body { margin: 0; padding: 0 14px 10px; font-size: 13px; line-height: 1.45; color: var(--agw-ink); }
+.agw-fbad-video { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #fff; }
+.agw-fbad-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px 12px; background: #f3f4f6; font-size: 13px; color: var(--agw-ink); }
+.agw-fbad-foot b { display: block; font-weight: 600; }
+.agw-fbad-foot em { font-style: normal; font-size: 11.5px; color: var(--agw-muted); }
+.agw-fbad-cta { flex: none; border: 1px solid var(--agw-line); border-radius: 6px; background: #fff; padding: 6px 12px; font-size: 12.5px; font-weight: 600; }
+
+.agw-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 4px 0 18px; }
+.agw-stat { border: 1px solid var(--agw-line-soft); border-radius: 8px; padding: 12px 14px 11px; background: #fff; min-width: 0; }
+.agw-stat-n { font-family: var(--ag-sans); font-weight: 500; font-size: 24px; letter-spacing: -0.01em; color: var(--agw-ink); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.agw-stat-l { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--agw-muted); margin-top: 6px; }
+.agw-stat-s { font-family: var(--agw-sans); font-size: 12px; color: var(--agw-muted); margin-top: 2px; }
+
+.agw-chart-k { margin-top: 4px; }
+.agw-bars { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; align-items: end; height: 120px; border-bottom: 1px solid var(--agw-line); position: relative; }
+.agw-bar-slot { position: relative; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.agw-bar { width: 100%; background: var(--ag-sky); border-radius: 4px 4px 0 0; transform-origin: bottom; transform: scaleY(0); }
+.agw-addesk.go .agw-bar { animation: agw-bar-up .7s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(.25s + var(--i) * 45ms); }
+@keyframes agw-bar-up { to { transform: scaleY(1); } }
+.agw-bar-slot:hover .agw-bar { filter: brightness(.85); }
+.agw-bar-tip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: #1b1b1f; color: #fff; font-family: var(--agw-sans); font-size: 12px; padding: 6px 9px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 2; }
+.agw-bar-tip b { font-weight: 600; margin-right: 4px; }
+.agw-bar-slot:hover .agw-bar-tip { opacity: 1; }
+.agw-bar-slot:first-child .agw-bar-tip { left: 0; transform: none; }
+.agw-bar-slot:last-child .agw-bar-tip { left: auto; right: 0; transform: none; }
+.agw-bar-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; color: var(--agw-muted); margin-top: 6px; }
+.agw-ad2-note { margin: 16px 0 0; font-family: var(--agw-sans); font-size: 14px; line-height: 1.55; color: var(--agw-ink); }
+@media (prefers-reduced-motion: reduce) { .agw-bar { transform: none; } .agw-addesk.go .agw-bar { animation: none; } }
+@media (max-width: 860px) {
+  .agw-ad2 { grid-template-columns: 1fr; }
+  .agw-ad2-side { border-right: none; border-bottom: 1px solid var(--agw-line-soft); }
+  .agw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .agw-bars { height: 90px; }
+}
