@@ -411,6 +411,10 @@ export default function AgentsHero() {
               <button type="button" className="ah-primary" onClick={() => openDoor("agents")}>AI Agents</button>
               <button type="button" className="ah-ghost" onClick={() => openDoor("consulting")}>Consulting</button>
               <button type="button" className="ah-ghost" onClick={() => openDoor("training")}>Training</button>
+              {/* CONTACT (Paul, 7 Sep): on a phone the top nav links are hidden, so
+                  this was the only page on the site with no way to reach him above
+                  the fold. A fourth door, a plain link to /contact. */}
+              <a className="ah-ghost" href="/contact">Contact</a>
             </div>
           </div>
 
