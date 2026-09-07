@@ -62,6 +62,23 @@ through from markdown untouched. First used by `distinctive-brand-assets-in-an-a
   until the first frame decodes, so without one it is a blank rectangle mid-essay for as long
   as the network takes. Generate with `ffmpeg -ss <t> -i in.mp4 -frames:v 1 -q:v 3 out.jpg`.
 
+### ⭐ Sizing a lead image, and the thumbnail it silently breaks
+A markdown image has no way to carry a width, so an essay that needs its image at anything
+other than full column width has to be written as a raw `<img src="..." width="476" ... />`.
+Two things bite when you do that, and both did on `diary-of-an-ai-agent-team` (7 Sep 2026).
+
+1. ⚠️ **`firstImage()` in `src/lib/essays.ts` used to match `![]()` only.** The homepage
+   essays block and the `/essays` index both take their thumbnail from it, so the raw tag
+   was invisible and the piece would have shipped with a blank card and nothing saying why.
+   It now tries markdown first and falls back to a raw `<img src>`. Check the card, not just
+   the essay page: `curl -s localhost:3000/ | grep -o '<your-slug>[^"]*'`.
+2. ⚠️ **Do NOT put `class="essay-embed"` on the image to do the sizing.** That primitive is
+   `width: 100%`, which is the opposite of what you want and undoes the width attribute. It
+   is for `<video>` and `<iframe>`, nothing else.
+
+A transparent `-nobg` fox PNG is fine as a lead image, the page ground is cream. Keep it a
+PNG, and keep the file at full size with the width set on the tag, so it stays sharp at 2x.
+
 ### Importing from Substack - the three traps, all of which have bitten
 The ten essays of 24 Jul (`16197cd`) and the four of 2 Aug (`130945f`) both came from the
 Substack API: `/api/v1/archive?sort=new&limit=50` lists every post, `/api/v1/posts/{slug}`
