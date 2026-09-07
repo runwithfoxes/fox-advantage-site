@@ -17,6 +17,7 @@ import {
   SHARE,
   STRIP,
 } from "./courseCopy";
+import MobileMenu from "@/components/MobileMenu";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -289,6 +290,7 @@ export default function CourseClient() {
             /contact
           </Link>
         </div>
+      <MobileMenu />
       </nav>
 
       <div className="co-root">

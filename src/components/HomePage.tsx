@@ -5,6 +5,7 @@ import Link from "next/link";
 import AgentsHero from "./AgentsHero";
 import AgentsSection from "./agents/AgentsSection";
 import SiteFooter from "./SiteFooter";
+import MobileMenu from "@/components/MobileMenu";
 
 /* The four most recent essays, read off local markdown by app/page.tsx. Was the live
    Substack feed until 24 Jul 2026; see the note there. */
@@ -178,6 +179,7 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
           <Link href="/book">/book</Link>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
+      <MobileMenu />
       </nav>
 
       <div ref={heroRef} id="heroWrapper">

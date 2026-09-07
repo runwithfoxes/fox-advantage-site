@@ -6,6 +6,7 @@ import Link from "next/link";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
+import MobileMenu from "@/components/MobileMenu";
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -158,6 +159,7 @@ function BookLandingContent({ parts }: Props) {
           <Link href="/book">/book</Link>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
+      <MobileMenu />
       </nav>
 
       {/* HERO */}

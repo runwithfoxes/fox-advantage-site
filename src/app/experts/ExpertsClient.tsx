@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useId } from "react";
 import Link from "next/link";
+import MobileMenu from "@/components/MobileMenu";
 
 interface Persona {
   id: string;
@@ -260,6 +261,7 @@ export default function ExpertsPage() {
           <Link href="/book">/book</Link>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
+      <MobileMenu />
       </nav>
 
       {/* Content */}
