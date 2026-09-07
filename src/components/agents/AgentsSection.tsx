@@ -424,6 +424,33 @@ export default function AgentsSection() {
     return () => window.removeEventListener("rwf:door", onDoor);
   }, []);
 
+  // /#consulting and /#training (the mobile menu, 7 Sep 2026): neither is a
+  // page, they are panels of this section, so a link arriving with that hash
+  // switches the panel and brings the section up. Deferred a frame so the
+  // section has laid out before it is measured.
+  useEffect(() => {
+    const show = (h: string) => {
+      if (h !== "consulting" && h !== "training" && h !== "agents") return;
+      setView(h as Door);
+      const el = document.getElementById("agents");
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    };
+    const fromHash = () => show(window.location.hash.replace("#", ""));
+    // a same-page hash link through next/link raises no hashchange, so the
+    // mobile menu also says which panel it meant
+    const fromMenu = (e: Event) => show((e as CustomEvent<string>).detail);
+    const id = requestAnimationFrame(fromHash);
+    window.addEventListener("hashchange", fromHash);
+    window.addEventListener("rwf:view", fromMenu);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("hashchange", fromHash);
+      window.removeEventListener("rwf:view", fromMenu);
+    };
+  }, []);
+
   // the menu locks the page behind it while it is open
   useEffect(() => {
     if (!open) return;

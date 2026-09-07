@@ -30,12 +30,20 @@ export default function MobileMenu() {
   }, [open]);
 
   const close = () => setOpen(false);
+  // the homepage panels: close, and tell the agents section which one, since a
+  // same-page hash change through next/link fires no hashchange event
+  const go = (view: "agents" | "consulting" | "training") => () => {
+    close();
+    window.dispatchEvent(new CustomEvent("rwf:view", { detail: view }));
+  };
 
   const drawer = (
     <div id="mobileMenu" className={`mm-drawer${open ? " open" : ""}`} aria-hidden={!open}>
       <button type="button" className="mm-btn mm-close" onClick={close}>/close</button>
       <nav className="mm-list">
-        <Link href="/#agents" onClick={close}>/agents</Link>
+        <Link href="/#agents" scroll={false} onClick={go("agents")}>/agents</Link>
+        <Link href="/#consulting" scroll={false} onClick={go("consulting")}>/consulting</Link>
+        <Link href="/#training" scroll={false} onClick={go("training")}>/training</Link>
         <div className="mm-group">
           <span className="mm-label">/previous</span>
           <Link href="/millionaire-raffle" onClick={close}>Millionaire Raffle</Link>
