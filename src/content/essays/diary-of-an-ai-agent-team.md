@@ -4,7 +4,7 @@ date: 2026-09-07
 dek: "One of my agents writes a diary of what the team gets right and wrong. I read it before it goes up. I don't rewrite it."
 ---
 
-<img src="/essays/diary-of-an-ai-agent-team/01.png" alt="The fox, sitting" width="476" style="margin:32px auto" />
+![The fox pegging pages onto a clothesline, drafts hung out where people see them](/essays/diary-of-an-ai-agent-team/01.jpg)
 
 I've been running a team of about thirty AI agents since the end of August. Nobody really knows yet what that is like day to day, including me, and I'd rather show it than describe it. So there's a diary on the site now. It goes up every couple of days at [runwithfoxes.com/diary](https://runwithfoxes.com/diary).
 
