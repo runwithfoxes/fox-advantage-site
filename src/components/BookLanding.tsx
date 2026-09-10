@@ -157,7 +157,7 @@ function BookLandingContent({ parts }: Props) {
           </div>
           <div className="hp-dropdown-wrap">
             <span className="hp-dropdown-trigger">/books &#9662;</span>
-            <div className="hp-mega">
+            <div className="hp-mega hp-mega-end">
               <div className="hp-projects-dropdown">
                 <Link href="/book">The Fox Advantage</Link>
                 <Link href="/run-with-foxes">Run with Foxes</Link>

@@ -3999,6 +3999,8 @@ a.project-card {
   z-index: 100;
 }
 .hp-dropdown-wrap:hover .hp-mega { display: block; }
+/* The last dropdown before /contact opens leftwards, or it runs off the window. */
+.hp-mega.hp-mega-end { left: auto; right: -20px; }
 .hp-mega-inner {
   background: rgba(26,58,78,0.95);
   backdrop-filter: blur(12px);
