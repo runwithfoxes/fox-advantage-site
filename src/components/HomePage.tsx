@@ -175,7 +175,15 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
             </div>
           </div>
 
-          <Link href="/essays">/essays</Link>
+          <div className="hp-dropdown-wrap">
+            <Link href="/essays" className="hp-dropdown-trigger">/essays &#9662;</Link>
+            <div className="hp-mega">
+              <div className="hp-projects-dropdown">
+                <Link href="/essays">Paul&apos;s essays</Link>
+                <Link href="/diary">Diary of our agent team</Link>
+              </div>
+            </div>
+          </div>
           <Link href="/book">/book</Link>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
