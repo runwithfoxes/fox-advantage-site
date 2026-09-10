@@ -174,6 +174,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "AXA_PASSWORD",
     passwordFallback: "axa26",
   },
+  // Rob Pryce, Chief Revenue Officer, Xtremepush. Paul has known him twenty
+  // years; coffee 4 Aug, "take a stab and then we can refine" 8 Sep. A chief of
+  // staff agent for Rob himself, one price, EUR 6,000 plus VAT. Built 10 Sep.
+  xtremepush: {
+    slug: "xtremepush",
+    client: "Xtremepush",
+    shortName: "Xtremepush",
+    tabTitle: "Run with Foxes for Xtremepush",
+    passwordEnv: "XTREMEPUSH_PASSWORD",
+    passwordFallback: "xtremepush26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

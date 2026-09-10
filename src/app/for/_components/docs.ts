@@ -64,4 +64,8 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // 90 minute session on how the marketing work gets done today, and it lives
   // in the email rather than on the page. Sent by Paul 1 Sep.
   axa: dynamic(() => import("./AxaDoc"), { ssr: false }),
+  // Rob Pryce, CRO, Xtremepush. A chief of staff agent for Rob himself, built
+  // 10 Sep off Paul's brief in /jo (no call record exists). Single price, the
+  // Growth Agent figures reworded as his Monday morning.
+  xtremepush: dynamic(() => import("./XtremepushDoc"), { ssr: false }),
 };
