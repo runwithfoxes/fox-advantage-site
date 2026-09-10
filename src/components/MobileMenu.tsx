@@ -49,14 +49,17 @@ export default function MobileMenu() {
           <Link href="/millionaire-raffle" onClick={close}>Millionaire Raffle</Link>
           <Link href="/marketer-of-the-year" onClick={close}>Marketer of the Year</Link>
           <Link href="/48" onClick={close}>48</Link>
-          <Link href="/run-with-foxes" onClick={close}>Run with Foxes (book 1)</Link>
         </div>
         <div className="mm-group">
           <span className="mm-label">/essays</span>
           <Link href="/essays" onClick={close}>Paul&apos;s essays</Link>
           <Link href="/diary" onClick={close}>Diary of our agent team</Link>
         </div>
-        <Link href="/book" onClick={close}>/book</Link>
+        <div className="mm-group">
+          <span className="mm-label">/books</span>
+          <Link href="/book" onClick={close}>The Fox Advantage</Link>
+          <Link href="/run-with-foxes" onClick={close}>Run with Foxes</Link>
+        </div>
         <Link href="/contact" className="mm-cta" onClick={close}>/contact</Link>
       </nav>
     </div>
