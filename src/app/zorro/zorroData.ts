@@ -42,7 +42,7 @@ On Friday your team shows the agent running, tells us how many of fifty marked m
 The two decks from Monday morning are here too, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
     filesTitle: "Open",
     files: [
-      { name: "The build guide", what: "Step by step, with what you type and what you should see. Start here on Monday evening.", href: "/zorro/the-build-guide.html", external: true },
+      { name: "The build guide", what: "Step by step, with what you type and what you should see. Start here on Monday evening.", href: "/zorro/decks/the-build-guide.html", external: true },
       { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four parts of the agent on film, and how it works in a real gym.", href: "/zorro/decks/monday-0945.html", external: true },
       { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, and the Attio connection.", href: "/zorro/decks/monday-1115.html", external: true },
     ],
