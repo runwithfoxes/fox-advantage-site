@@ -36,10 +36,13 @@ Your team builds all three agents, in this order. Carlos first, because everythi
 On Friday your team shows the agent running, tells us how many of fifty marked members it got right, how many members came back after the emails, and your two worst mistakes. Anyone on the team can be asked about any part of it.`,
   },
   {
-    t: "The presentations",
-    text: `The two decks from Monday morning, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
+    t: "The build guide, and the presentations",
+    text: `The build guide is the thing to have open while you work. One step at a time: what to press, what to type, and what you should see when it worked. Twenty-five steps in five parts, from downloading the folder to Cato. Every step number is something Isa knows, so if you are stuck, tell her the step.
+
+The two decks from Monday morning are here too, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
     filesTitle: "Open",
     files: [
+      { name: "The build guide", what: "Step by step, with what you type and what you should see. Start here on Monday evening.", href: "/zorro/the-build-guide.html", external: true },
       { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four parts of the agent on film, and how it works in a real gym.", href: "/zorro/decks/monday-0945.html", external: true },
       { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, and the Attio connection.", href: "/zorro/decks/monday-1115.html", external: true },
     ],
@@ -50,7 +53,7 @@ On Friday your team shows the agent running, tells us how many of fifty marked m
 
 - Claude Code, installed on your laptop and opened once. First make sure you can log in at claude.ai and know your password. Then go to claude.ai/code and follow the install steps for your machine, Mac or Windows. Open a terminal, type claude, and log in with the same account. If it opens and says hello, you are done.
 - A free Attio workspace for your team, with the 900 members loaded. One person on the team makes the workspace at attio.com, names it Zorro and your team number, and invites the others. Do not pay for anything. Then make an API token in Attio's settings, put it in a file called .env in the gym folder, and run the loader. It makes the member fields and puts all 900 members in as cards. Never put the token in a page or in a chat.
-- The gym folder on your laptop. Download the zip below, unzip it, and put the gimnasio-zorro folder on your Desktop. That is the folder you open Claude Code inside: open a terminal, type cd Desktop/gimnasio-zorro, then claude.
+- The gym folder on your laptop. Download the zip below, unzip it, and put the gimnasio-zorro folder on your Desktop. That is the folder you open Claude Code inside. Steps 1 to 7 of the build guide walk you through it, one press at a time.
 
 If Claude Code will not install on your machine, tell Julie on Monday evening, not on Tuesday morning. If it will not go on at all, you can build in the browser on Tuesday, but you will want it working by Wednesday.`,
   },
@@ -102,7 +105,7 @@ Every name and every swipe is made up. Nobody in these files exists.
 The same members, check-ins and the agent's Monday are in Google Sheets if you want to look before you download, and the Monday sheet shows every email the agent wrote on 31 August in a cell beside the member.`,
     filesTitle: "Download",
     files: [
-      { name: "gimnasio-zorro.zip", what: "The whole folder: the three data files, the three pages, the three role pages, the runbook and the set-up sheet.", href: "/zorro/gimnasio-zorro.zip" },
+      { name: "gimnasio-zorro.zip", what: "The whole folder: the three data files, the three pages, the three role pages, the runbook, the set-up sheet, and the Attio loader in tools.", href: "/zorro/gimnasio-zorro.zip" },
       { name: "members.csv", what: "900 members. Id, name, email, joined, plan, goal, notes from the desk.", href: "/zorro/members.csv" },
       { name: "checkins.csv", what: "27,871 door swipes, 8 June to 13 September 2026.", href: "/zorro/checkins.csv" },
       { name: "email_log.csv", what: "What happened to the 65 emails sent on 31 August.", href: "/zorro/email_log.csv" },
@@ -163,6 +166,6 @@ One person to one person. It reminds him he had a goal without naming his privat
   },
   {
     t: "Stuck? Ask Isa",
-    text: `Isa is the chat in the corner of this page. She has read every page here, the runbook, the three role pages, the set-up sheet and the three pages about the gym. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
+    text: `Isa is the chat in the corner of this page. She has read every page here, the runbook, the three role pages, the set-up sheet and the three pages about the gym. She knows the build guide by step number. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
   },
 ];
