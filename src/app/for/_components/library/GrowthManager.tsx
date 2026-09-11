@@ -104,7 +104,10 @@ const RESET_MS = 4200;
 // for Xtremepush, where the board belongs to Rob's own chief of staff and a
 // "Jo ·" note on it would name our agent on his board. Omitted, every page
 // renders exactly as before.
-export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current", moveNotes }: { deals?: Deal[][]; width?: number; pill?: string; moveNotes?: string[] } = {}) {
+// stages: the four column names, added 11 Sep for IHCE, a refrigeration firm
+// whose pipeline runs Contacted, Site visit, Quote sent, Won. Omitted, every
+// page keeps the default four.
+export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current", moveNotes, stages = STAGES }: { deals?: Deal[][]; width?: number; pill?: string; moveNotes?: string[]; stages?: string[] } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
@@ -175,10 +178,10 @@ export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps thi
           </div>
           <div className="pgm-board">
             {cols.map((col, ci) => (
-              <div className={`pgm-col pgm-c${ci}`} key={STAGES[ci]}>
+              <div className={`pgm-col pgm-c${ci}`} key={stages[ci]}>
                 <div className="pgm-colhead">
                   <span className="pgm-dot" />
-                  <span className="pgm-colname">{STAGES[ci]}</span>
+                  <span className="pgm-colname">{stages[ci]}</span>
                   <span className="pgm-count">{col.length}</span>
                 </div>
                 {col.map((d) => (

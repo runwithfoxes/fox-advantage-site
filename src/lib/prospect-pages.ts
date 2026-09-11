@@ -185,6 +185,18 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "XTREMEPUSH_PASSWORD",
     passwordFallback: "xtremepush26",
   },
+  // Patrick (Paddy) Nagle, IHCE Ltd, commercial and catering refrigeration,
+  // four staff. Radio inbound, discovery call 11 Sep. A business development
+  // agent that finds food businesses before they open, one price, EUR 5,000
+  // plus VAT. Built 11 Sep.
+  ihce: {
+    slug: "ihce",
+    client: "IHCE",
+    shortName: "IHCE",
+    tabTitle: "Run with Foxes for IHCE",
+    passwordEnv: "IHCE_PASSWORD",
+    passwordFallback: "ihce26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

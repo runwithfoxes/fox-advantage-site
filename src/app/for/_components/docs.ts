@@ -68,4 +68,9 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // 10 Sep off Paul's brief in /jo (no call record exists). Single price, the
   // Growth Agent figures reworded as his Monday morning.
   xtremepush: dynamic(() => import("./XtremepushDoc"), { ssr: false }),
+  // Patrick Nagle, IHCE. A business development agent that finds food
+  // businesses before they open, built 11 Sep off the discovery call and the
+  // copy Paul passed in /jo. It follows the Xtremepush page and uses the Growth
+  // Agent figures in his world, with one price.
+  ihce: dynamic(() => import("./IhceDoc"), { ssr: false }),
 };
