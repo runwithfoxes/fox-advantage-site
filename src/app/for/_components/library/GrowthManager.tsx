@@ -43,7 +43,7 @@ const START: Deal[][] = [
     },
     {
       firm: "Harbourview Advisory",
-      person: "Tom Whelan · Managing Partner",
+      person: "Tom Cregan · Managing Partner",
       note: "Jo · intro sent this morning",
     },
     {
@@ -67,7 +67,7 @@ const START: Deal[][] = [
   [
     {
       firm: "Cedar Point Wealth",
-      person: "James Doyle · Principal",
+      person: "James Tiernan · Principal",
       note: "waiting on your yes",
     },
     {
@@ -100,7 +100,11 @@ const MOVES: { from: number; to: number; note: string }[] = [
 const MOVE_MS = 2600;
 const RESET_MS = 4200;
 
-export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
+// moveNotes: the note a card carries after it moves, one per move. Added 10 Sep
+// for Xtremepush, where the board belongs to Rob's own chief of staff and a
+// "Jo ·" note on it would name our agent on his board. Omitted, every page
+// renders exactly as before.
+export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current", moveNotes }: { deals?: Deal[][]; width?: number; pill?: string; moveNotes?: string[] } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
@@ -125,7 +129,8 @@ export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
     const run = () => {
       if (cancelled) return;
       let t = MOVE_MS;
-      MOVES.forEach((m) => {
+      MOVES.forEach((m, mi) => {
+        const note = moveNotes?.[mi] ?? m.note;
         timers.push(
           setTimeout(() => {
             if (cancelled) return;
@@ -133,7 +138,7 @@ export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
               const next = prev.map((c) => [...c]);
               const card = next[m.from].shift();
               if (!card) return prev;
-              next[m.to].unshift({ ...card, note: m.note });
+              next[m.to].unshift({ ...card, note });
               return next;
             });
             setArrived(deals[m.from][0].firm);
@@ -159,14 +164,14 @@ export function PipelineBoard({ deals = START }: { deals?: Deal[][] } = {}) {
 
   return (
     <div ref={rootRef}>
-      <ScaledWindow width={940}>
+      <ScaledWindow width={width}>
         <div className="ppw-frame-win">
           <div className="ppw-tl">
             <i />
             <i />
             <i />
             <span className="ppw-t">the pipeline</span>
-            <span className="ppw-live-pill">Jo keeps this current</span>
+            <span className="ppw-live-pill">{pill}</span>
           </div>
           <div className="pgm-board">
             {cols.map((col, ci) => (
@@ -212,12 +217,13 @@ const JO_NOTE = [
 const CHARS_PER_SECOND = 45;
 const PARA_PAUSE_MS = 420;
 
-export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
+export function JoNote({ note = JO_NOTE, title = "growth agent" }: { note?: string[]; title?: string } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   // done = paragraphs fully shown; typing = index being written out.
   const [shown, setShown] = useState<number>(note.length);
   const [chars, setChars] = useState<number>(0);
   const [playing, setPlaying] = useState(false);
+  const [minH, setMinH] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -229,6 +235,10 @@ export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
         es.forEach((e) => {
           if (!e.isIntersecting || started) return;
           started = true;
+          // hold the finished height so the note does not grow as it types
+          // and push the page down (Paul, 6 Sep, on his phone)
+          const body = el.querySelector<HTMLElement>(".pgm-note-body");
+          if (body) setMinH(body.offsetHeight);
           setShown(0);
           setChars(0);
           setPlaying(true);
@@ -266,10 +276,10 @@ export function JoNote({ note = JO_NOTE }: { note?: string[] } = {}) {
             <i />
             <i />
             <i />
-            <span className="ppw-t">growth agent</span>
+            <span className="ppw-t">{title}</span>
             <span className="ppw-live-pill">every morning</span>
           </div>
-          <div className="pgm-note-body">
+          <div className="pgm-note-body" style={minH ? { minHeight: minH } : undefined}>
             <div className="pgm-note-day">Monday 07:42</div>
             <div className="pgm-note-msg">
               {note.slice(0, shown).map((p) => (
@@ -322,10 +332,33 @@ const CW_DONE_MS = 2600;
 // 31 Aug for ICS Medical, whose trigger is a funding round rather than a new
 // advisory practice: Brendan asked for signal-based marketing by name, so the
 // signal on the canvas has to be one of his.
+// title, steps, stats and showCredits added 10 Sep for Xtremepush, where the
+// run on the canvas is a chief of staff's morning (read the sources, write the
+// note, check it) rather than an outreach campaign. steps renames the four
+// nodes after the trigger, in order; stats replaces the four "This week"
+// tiles. Omit them and every page renders exactly as before.
+const CW_STATS = [
+  { n: "120", k: "Contacted", good: false },
+  { n: "18", k: "Replied", good: true },
+  { n: "5", k: "Calls booked", good: true },
+  { n: "1", k: "Running", good: false },
+];
+
 export function CampaignWindow({
   triggerName = "New-practice",
   workflowName = "New-practice outbound",
-}: { triggerName?: string; workflowName?: string } = {}) {
+  title = "Campaign Agent",
+  steps,
+  stats = CW_STATS,
+  showCredits = true,
+}: {
+  triggerName?: string;
+  workflowName?: string;
+  title?: string;
+  steps?: { name: string; sub: string }[];
+  stats?: { n: string; k: string; good?: boolean }[];
+  showCredits?: boolean;
+} = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   // 4 = run complete (the base state); 0-3 = the pulse walking the nodes.
   const [step, setStep] = useState(4);
@@ -368,7 +401,11 @@ export function CampaignWindow({
   // Only the first node (the trigger) is per client; the rest of the run is
   // the same work whatever fired it.
   const nodes = CW_NODES.map((n, i) =>
-    i === 0 ? { ...n, name: triggerName } : n
+    i === 0
+      ? { ...n, name: triggerName }
+      : steps?.[i - 1]
+        ? { ...n, name: steps[i - 1].name, sub: steps[i - 1].sub }
+        : n
   );
 
   return (
@@ -379,7 +416,7 @@ export function CampaignWindow({
             <i />
             <i />
             <i />
-            <span className="ppw-t">Campaign Agent</span>
+            <span className="ppw-t">{title}</span>
             <span className="ppw-live-pill">running</span>
           </div>
           <div className={`pgm-cw${running ? " pgm-cw-play" : ""}`}>
@@ -455,30 +492,27 @@ export function CampaignWindow({
                 </div>
                 <div className="pgm-cw-lab">This week</div>
                 <div className="pgm-cw-grid">
-                  <div className="pgm-cw-stat">
-                    <div className="pgm-n">120</div>
-                    <div className="pgm-k">Contacted</div>
-                  </div>
-                  <div className="pgm-cw-stat pgm-g">
-                    <div className="pgm-n">18</div>
-                    <div className="pgm-k">Replied</div>
-                  </div>
-                  <div className="pgm-cw-stat pgm-g">
-                    <div className="pgm-n">5</div>
-                    <div className="pgm-k">Calls booked</div>
-                  </div>
-                  <div className="pgm-cw-stat">
-                    <div className="pgm-n">1</div>
-                    <div className="pgm-k">Running</div>
-                  </div>
+                  {stats.map((s) => (
+                    <div
+                      key={s.k}
+                      className={`pgm-cw-stat${s.good ? " pgm-g" : ""}`}
+                    >
+                      <div className="pgm-n">{s.n}</div>
+                      <div className="pgm-k">{s.k}</div>
+                    </div>
+                  ))}
                 </div>
-                <div className="pgm-cw-cred">
-                  <span>credits used</span>
-                  <span>120 / 5,000</span>
-                </div>
-                <div className="pgm-cw-credbar">
-                  <i />
-                </div>
+                {showCredits && (
+                  <>
+                    <div className="pgm-cw-cred">
+                      <span>credits used</span>
+                      <span>120 / 5,000</span>
+                    </div>
+                    <div className="pgm-cw-credbar">
+                      <i />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

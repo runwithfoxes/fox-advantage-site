@@ -17,6 +17,7 @@ import {
   SHARE,
   STRIP,
 } from "./courseCopy";
+import MobileMenu from "@/components/MobileMenu";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -280,15 +281,23 @@ export default function CourseClient() {
                 <Link href="/millionaire-raffle">Millionaire Raffle</Link>
                 <Link href="/marketer-of-the-year">Marketer of the Year</Link>
                 <Link href="/48">48</Link>
-                <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
               </div>
             </div>
           </div>
-          <Link href="/book">/book</Link>
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">/books &#9662;</span>
+            <div className="hp-mega hp-mega-end">
+              <div className="hp-projects-dropdown">
+                <Link href="/book">The Fox Advantage</Link>
+                <Link href="/run-with-foxes">Run with Foxes</Link>
+              </div>
+            </div>
+          </div>
           <Link href="/contact" className="hp-nav-cta">
             /contact
           </Link>
         </div>
+      <MobileMenu />
       </nav>
 
       <div className="co-root">

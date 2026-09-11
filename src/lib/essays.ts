@@ -85,9 +85,17 @@ export function formatEssayDateShort(iso: string): string {
   return `${d} ${MONTHS[m - 1].slice(0, 3)}`;
 }
 
+/* ⭐ MATCH A RAW <img> TOO, NOT JUST MARKDOWN. An essay that needs its lead image at
+   anything other than full column width has to be written as a raw <img width="...">,
+   because remark gives markdown images no way to carry a size. That tag is invisible to
+   a `![]()` regex, so the piece would appear on the homepage and the index with a blank
+   thumbnail and nothing would say why. Markdown is still tried first, so no existing
+   essay changes. First needed by diary-of-an-ai-agent-team. */
 function firstImage(body: string): string | null {
-  const m = body.match(/!\[[^\]]*\]\(([^)]+)\)/);
-  return m ? m[1] : null;
+  const md = body.match(/!\[[^\]]*\]\(([^)]+)\)/);
+  if (md) return md[1];
+  const tag = body.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return tag ? tag[1] : null;
 }
 
 function readEssayFile(file: string): Essay | null {

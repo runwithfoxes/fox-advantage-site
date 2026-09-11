@@ -3999,6 +3999,8 @@ a.project-card {
   z-index: 100;
 }
 .hp-dropdown-wrap:hover .hp-mega { display: block; }
+/* The last dropdown before /contact opens leftwards, or it runs off the window. */
+.hp-mega.hp-mega-end { left: auto; right: -20px; }
 .hp-mega-inner {
   background: rgba(26,58,78,0.95);
   backdrop-filter: blur(12px);
@@ -4707,9 +4709,42 @@ a.project-card {
 .hp-cta-bar:hover { background: #2F6688; }
 
 /* ---- HP RESPONSIVE ---- */
+/* ---- MOBILE MENU (7 Sep 2026) ---- the drawer behind /menu on phones.
+   Hidden above 900px, where the full link row is on the bar. */
+.mm-btn {
+  display: none;
+  font: inherit; letter-spacing: 1px; color: var(--text-muted);
+  background: none; border: none; padding: 6px 0; cursor: pointer;
+}
+.mm-drawer {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--bg);
+  background-image: radial-gradient(circle, rgba(208,208,204,.55) .9px, transparent .9px);
+  background-size: 28px 28px;
+  padding: 92px 24px 32px;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity .22s ease-out, transform .22s ease-out, visibility 0s linear .22s;
+  overflow-y: auto;
+}
+.mm-drawer.open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.mm-close { position: absolute; top: 14px; right: 24px; font-size: 13px; }
+.mm-list { display: flex; flex-direction: column; font-family: var(--mono); letter-spacing: 0; }
+.mm-list > a, .mm-label {
+  font-size: 24px; line-height: 1; padding: 18px 0; color: #1D1B1B; text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.mm-group { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+.mm-label { display: block; color: var(--text-muted); border-bottom: none; padding-bottom: 8px; }
+.mm-group > a { font-size: 15px; padding: 9px 0 9px 18px; color: #1D1B1B; text-decoration: none; }
+.mm-group > a:last-child { padding-bottom: 20px; }
+.mm-list > a.mm-cta {
+  margin-top: 28px; padding: 16px 20px; text-align: center; font-size: 16px;
+  background: #3A7CA5; color: #fff; border: none;
+}
 @media (max-width: 900px) {
   .hp-nav { padding: 14px 24px; }
   .hp-nav-links { display: none; }
+  .mm-btn { display: inline-block; }
   .hp-about { padding: 80px 24px 0; }
   .hp-about-grid { grid-template-columns: 1fr; gap: 32px; }
   .hp-about-photo { max-width: 280px; }
@@ -5290,7 +5325,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -5843,7 +5880,18 @@ a.project-card {
   color: #1D1B1B;
 }
 
-.ah-hero { height: 280vh; position: relative; }
+/* 280vh felt slow: "if you didn't know, you'd think it is not moving" (Paul, 5 Sep).
+   190vh gets the windows assembled in two thirds of the scroll it used to take. */
+.ah-hero { height: 190vh; position: relative; }
+/* the global section rule gives the hero root 120px underneath; the bio sets
+   its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
+.hp-root .ah-root { padding-bottom: 0; }
+/* The assembled windows stop well above the foot of the sticky stage, and
+   that empty band grows with the viewport height. Measured at 900, 982 and
+   1080 tall it is half the viewport minus 338px, to the pixel. The bio is pulled up by exactly that band, so
+   the gap the eye sees under the last window is the same 48px as the gap
+   under the bio. Below 1024px the hero is a static stack and this is off. */
+@media (min-width: 1024px) { .hp-root .hpx-about { margin-top: clamp(-260px, calc(338px - 50vh), 0px); } }
 .ah-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   background-image: radial-gradient(circle, var(--ah-dot) .9px, transparent .9px);
@@ -5872,9 +5920,20 @@ a.project-card {
   color: #565452; max-width: 44ch;
 }
 .ah-ctas { display: flex; gap: 11px; margin-top: 30px; font-size: 14px; }
-.ah-ctas a { text-decoration: none; padding: 10px 19px; }
+.ah-ctas a, .ah-ctas button { text-decoration: none; padding: 10px 19px; font: inherit; cursor: pointer; border: none; }
 .ah-ctas .ah-ghost { color: #1D1B1B; border: 1px solid var(--ah-border); background: #fff; }
 .ah-ctas .ah-primary { background: var(--ah-deep); color: #fff; font-weight: 500; }
+/* four doors on a phone (Paul, 7 Sep: "a little smaller so not too clunky").
+   At 390px the three used to fill the width and "AI Agents" wrapped to two
+   lines; with Contact added they only fit one row if they ease down. */
+@media (max-width: 640px) {
+  .ah-ctas { gap: 8px; font-size: 12.5px; }
+  .ah-ctas a, .ah-ctas button { padding: 8px 11px; white-space: nowrap; }
+}
+@media (max-width: 400px) {
+  .ah-ctas { gap: 6px; font-size: 12px; }
+  .ah-ctas a, .ah-ctas button { padding: 8px 9px; }
+}
 
 .ah-stage { position: absolute; left: 50%; top: 50%; width: 0; height: 0; z-index: 2; }
 .ah-win { position: absolute; will-change: transform, opacity; user-select: none; -webkit-user-select: none; touch-action: none; }
@@ -6254,7 +6313,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -7470,3 +7531,24 @@ a.project-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== the testimonial band on navy (Paul, 6 Sep 2026: "the background in navy,
+   like the book band, but not big words, copy in white"). Full bleed, the dot
+   grid in light dots, the words at the same size as before. ===== */
+.hpx-quotes {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 44px max(24px, calc(50vw - 50%)) 40px;
+  background-color: #1A3A4E;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  border-top: none;
+  border-bottom: none;
+}
+.hpx-quotes .hpx-qquote { color: #fff; }
+.hpx-quotes .hpx-qattr { color: rgba(255, 255, 255, 0.62); }
+.hpx-quotes .hpx-qattr strong { color: #fff; }
+.hpx-quotes .hpx-qarrow { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
+.hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
+.hpx-quotes .hpx-qdot.on { background: #fff; }

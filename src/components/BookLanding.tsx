@@ -6,6 +6,7 @@ import Link from "next/link";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
+import MobileMenu from "@/components/MobileMenu";
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -151,13 +152,21 @@ function BookLandingContent({ parts }: Props) {
                 <Link href="/millionaire-raffle">Millionaire Raffle</Link>
                 <Link href="/marketer-of-the-year">Marketer of the Year</Link>
                 <Link href="/48">48</Link>
-                <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
               </div>
             </div>
           </div>
-          <Link href="/book">/book</Link>
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">/books &#9662;</span>
+            <div className="hp-mega hp-mega-end">
+              <div className="hp-projects-dropdown">
+                <Link href="/book">The Fox Advantage</Link>
+                <Link href="/run-with-foxes">Run with Foxes</Link>
+              </div>
+            </div>
+          </div>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
+      <MobileMenu />
       </nav>
 
       {/* HERO */}
@@ -244,7 +253,7 @@ function BookLandingContent({ parts }: Props) {
       <div className="hp-bottom-bar hp-bb-visible">
         <a href="#">#top</a>
         <Link href="/#about">#about</Link>
-        <Link href="/#projects">/projects</Link>
+        <Link href="/#agents">/agents</Link>
         <Link href="/book">/book</Link>
         <Link href="/contact" className="hp-cta-bar">get in touch</Link>
       </div>
