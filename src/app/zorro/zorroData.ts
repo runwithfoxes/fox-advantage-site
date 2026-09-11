@@ -50,7 +50,7 @@ On Friday your team shows the agent running, tells us how many of fifty marked m
 
 - Claude Code, installed on your laptop and opened once. First make sure you can log in at claude.ai and know your password. Then go to claude.ai/code and follow the install steps for your machine, Mac or Windows. Open a terminal, type claude, and log in with the same account. If it opens and says hello, you are done.
 - A free Attio workspace for your team, with the 900 members loaded. One person on the team makes the workspace at attio.com, names it Zorro and your team number, and invites the others. Do not pay for anything. Then make an API token in Attio's settings, put it in a file called .env in the gym folder, and run the loader. It makes the member fields and puts all 900 members in as cards. Never put the token in a page or in a chat.
-- The gym folder on your laptop. Download it below, unzip it, and remember where it is. That is the folder you open Claude Code inside.
+- The gym folder on your laptop. Download the zip below, unzip it, and put the gimnasio-zorro folder on your Desktop. That is the folder you open Claude Code inside: open a terminal, type cd Desktop/gimnasio-zorro, then claude.
 
 If Claude Code will not install on your machine, tell Julie on Monday evening, not on Tuesday morning. If it will not go on at all, you can build in the browser on Tuesday, but you will want it working by Wednesday.`,
   },
