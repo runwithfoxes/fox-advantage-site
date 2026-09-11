@@ -26,8 +26,8 @@ An off-peak member who came every morning and has stopped is a bigger loss than 
 who always came once a fortnight.
 
 What the agent does for Marta. Every Monday it reads the door log and the member records, finds the
-members who are drifting from their own pattern, writes each one a short personal note in Marta's
-voice off what they said they wanted, and puts the flag and the draft on the member's record for
-Marta to approve. Two weeks later it looks again and tells her how many came back. It never sends
-anything itself. It never chases someone whose record says injured or away. When a reply says
+members who are drifting from their own pattern, writes each one a short personal email in Marta's
+voice off what they said they wanted, sends it, and puts the reason and the email on the member's
+record. Two weeks later it looks again and tells her how many came back. Nobody approves the emails
+first. It never chases someone whose record says injured or away. When a reply says
 something the agent cannot judge, it asks Marta.

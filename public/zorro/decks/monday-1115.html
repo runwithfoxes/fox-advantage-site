@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Monday 11:15. How you build it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#FAFAF8;--text:#1D1B1B;--muted:#8A8A85;--sky:#3A7CA5;--deep:#1A3A4E;--border:#E0E0DC;--frame:#EDEEF1;--panel:#FFFFFF;--fill:#D9D9D4;--orange:#F47521;--green:#2E7D5B;
+--sans:'Space Grotesk',ui-sans-serif,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--mono);font-weight:300;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:0 0;background:var(--bg)}
+#stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);background-size:28px 28px;opacity:.4;pointer-events:none}
+.slide{position:absolute;inset:0;padding:72px 96px 60px;display:none;flex-direction:column;justify-content:flex-start}
+.slide.on{display:flex}
+.kicker{position:absolute;left:96px;top:64px}
+.kicker{font:400 13px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+h1{font:300 54px/1.12 var(--sans);letter-spacing:-1px;margin-top:0;max-width:none}
+h1.huge{font-size:96px;letter-spacing:-3px}
+.dek{font:300 21px/1.6 var(--mono);margin-top:16px;max-width:none}
+.dek.after{margin-top:34px}
+.small{font-size:14px;margin-top:26px}
+.muted{color:var(--muted)}
+.fill{color:var(--orange)}
+.split{display:flex;justify-content:space-between;align-items:center}
+.split .left{flex:0 0 640px}.split .right{flex:0 0 auto;display:flex;justify-content:flex-end}
+.s-title .split{align-items:center;flex:1}
+.bio{flex:1;align-items:center}
+.film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.title-over{position:absolute;left:96px;bottom:56px;z-index:1;color:var(--bg);max-width:470px}
+.title-over h1.huge{font-size:62px;letter-spacing:-2px}
+.title-over .dek{font-size:17px;margin-top:10px}
+.title-over .small{font-size:11.5px;margin-top:14px;line-height:1.5}
+.title-over .dek,.title-over .small{color:var(--bg)}
+.title-over .small{opacity:.8}
+.s-video .kicker,.s-video .notes{display:none}
+.s-video{padding:0}
+.fox{width:560px;height:560px;object-fit:contain}
+.lines{list-style:none;margin-top:30px}
+.lines li{font:300 22px/1.6 var(--mono);padding:14px 0;border-top:1px solid var(--border)}
+.lines li:last-child{border-bottom:1px solid var(--border)}
+.shot{width:100%;height:100%;object-fit:cover;object-position:top left}
+
+.bio{display:flex;gap:64px}
+.bio-photo{width:400px;height:520px;object-fit:cover;flex:0 0 400px}
+.bio-text{flex:1;max-width:860px}
+.bio-p{font:300 22px/1.7 var(--mono);margin-top:22px}
+.bio-text h1{margin-bottom:8px}
+
+/* windows */
+.win{background:var(--frame);border:1px solid rgba(20,20,30,.10);border-radius:15px;padding:0 8px 8px;box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.08),0 28px 64px rgba(26,58,78,.10);display:flex;flex-direction:column}
+.win-bar{height:30px;display:flex;align-items:center;gap:10px;font:600 11.5px/1 var(--mono);color:var(--text);padding:0 4px}
+.lights{display:inline-flex;gap:6px}.lights i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.lights i:nth-child(1){background:#ff5f57}.lights i:nth-child(2){background:#febc2e}.lights i:nth-child(3){background:#28c840}
+.win-right{margin-left:auto;font-weight:400;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-size:10.5px}
+.win-panel{background:var(--panel);border:1px solid rgba(20,20,30,.07);border-radius:9px;flex:1;overflow:hidden;position:relative}
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slide.on .rise{opacity:0;animation:rise .7s ease-out forwards}
+.slide.on .bar{transform-origin:bottom;transform:scaleY(0);animation:bar .6s ease-out forwards}
+@keyframes bar{to{transform:none}}
+.slide.on .dot{opacity:0;animation:pop .35s ease-out forwards}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+@keyframes blink{50%{opacity:0}}
+.caret{color:var(--sky);animation:blink 1s step-end infinite}
+.ring{animation:ringpulse 2.4s ease-in-out infinite}
+@keyframes ringpulse{50%{stroke-width:6;opacity:.5}}
+@media(prefers-reduced-motion:reduce){.slide.on .rise,.slide.on .bar,.slide.on .dot,.slide.on .bcard{animation:none!important;opacity:1;transform:none}}
+
+/* 3 map */
+.maprow{display:flex;gap:40px;margin-top:20px;align-items:center}
+.mapwrap{width:1000px;height:600px}
+.maplegend{list-style:none;flex:1}
+.maplegend li{font:300 20px/1.3 var(--mono);padding:11px 0;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center}
+.maplegend li:last-child{border-bottom:1px solid var(--border)}
+.maplegend span{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sky);color:var(--bg);font:400 12px/1 var(--mono);align-items:center;justify-content:center}
+.mapnum{font:400 11px var(--mono);fill:#FAFAF8}
+.map{width:100%;height:100%}
+.maplabel{font:400 16px var(--mono);fill:var(--text)}.maplabel.muted{fill:var(--muted);font-size:14px}
+
+/* 4 four words */
+.fourwords{display:flex;gap:0;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.word{flex:1;padding:56px 0;font:300 72px/1 var(--sans);letter-spacing:-2px;border-left:1px solid var(--border);padding-left:32px}
+.word:first-child{border-left:0;padding-left:0}
+
+/* 5 phones */
+.phones{display:flex;gap:200px;margin-top:56px;justify-content:center}
+.phone{width:420px}
+.screen{width:340px;height:380px;margin:0 auto;background:var(--frame);border:1px solid rgba(20,20,30,.12);border-radius:34px;padding:22px 16px 16px;position:relative}
+.screen.chat{display:flex;flex-direction:column;gap:14px}
+.bubble{max-width:82%;padding:12px 14px;border-radius:14px;font:300 15px/1.5 var(--mono);background:var(--panel);border:1px solid rgba(20,20,30,.07)}
+.bubble.me{align-self:flex-end;background:var(--sky);color:var(--bg)}
+.bubble.ai{display:flex;flex-direction:column;gap:8px}
+.pill{display:inline-block;height:10px;border-radius:5px;background:var(--fill)}
+.w40{width:40%}.w55{width:55%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}
+.composer{margin-top:auto;height:44px;border-radius:22px;background:var(--panel);border:1px solid rgba(20,20,30,.08);display:flex;align-items:center;padding:0 8px 0 16px;gap:10px}
+.composer .pill{flex:0 0 55%}.send{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--sky)}
+.screen.log{padding:30px 22px;display:flex;flex-direction:column;gap:16px}
+.logline{font:300 17px/1.4 var(--mono);color:var(--text);padding-left:18px;position:relative}
+.logline::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--sky)}
+.phone-cap{margin-top:22px;text-align:center;font:300 18px/1.5 var(--mono);color:var(--text);white-space:nowrap}
+.pnum{font:300 40px/1 var(--sans);color:var(--sky);text-align:center}
+.ptitle{font:300 28px/1.2 var(--sans);text-align:center;margin:8px 0 22px}
+
+/* 6, 19 big numbers */
+.bigrow{display:flex;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.big{flex:1;padding:44px 0 40px 32px;border-left:1px solid var(--border)}.big:first-child{border-left:0;padding-left:0}
+.num{font:300 120px/1 var(--sans);letter-spacing:-4px}.num .plus{font-size:56px;color:var(--sky);margin-left:8px;letter-spacing:-1px}
+.cap{margin-top:14px;font:300 20px/1.4 var(--mono);color:var(--muted)}
+.quote{font:300 34px/1.4 var(--sans);letter-spacing:-.5px;margin-top:56px;max-width:1250px}
+.quote.big{font-size:46px;margin-top:70px;max-width:1350px}
+.attrib{margin-top:34px;font:300 18px/1 var(--mono);color:var(--muted)}
+
+/* 7 door */
+.row{display:flex;align-items:center}.row.top{align-items:flex-start}.gap48{gap:48px}.gap40{gap:40px}
+.row{margin-top:36px}
+.reader{width:320px;height:440px}
+.log{border-collapse:collapse;width:100%;font:300 16px/1.5 var(--mono)}
+.log th{text-align:left;font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:14px 18px 8px;border-bottom:1px solid var(--border)}
+.log td{padding:9px 18px;border-bottom:1px solid var(--border)}
+.log-more{padding:14px 18px;font-size:14px;color:var(--muted)}
+
+/* 9, 10 chart */
+.chartwrap{margin-top:30px;width:1100px}
+.chart{width:1100px;height:420px}
+.axis{font:400 13px var(--mono);fill:var(--muted)}.axis.dark{fill:var(--text)}
+
+/* 11, 12 handoff */
+.handoff{position:relative;margin-top:40px;display:flex;gap:80px;align-items:flex-start;height:420px}
+.hcard-in{padding:22px 22px}.hname{font:300 34px/1.1 var(--sans);letter-spacing:-.5px}.hjob{margin-top:10px;font:300 16px/1.6 var(--mono)}
+.handoff.moving .hjob{color:var(--text)}
+.recordwrap{position:absolute;left:1000px;top:300px}
+.record{width:300px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:16px 18px;display:flex;flex-direction:column;gap:9px;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.rname{font:400 11px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.rline{margin-top:4px}
+.pillx{display:inline-block;font:400 11px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:10px;background:var(--sky);color:var(--bg)}
+.pillx.was{background:var(--fill);color:var(--text)}
+.mover{position:absolute;opacity:0;will-change:transform}
+.mover.sheet{width:84px;height:104px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;padding:16px 12px;display:flex;flex-direction:column;gap:11px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.sheet i{display:block;height:7px;border-radius:4px;background:var(--fill)}.mover.sheet i:nth-child(2){width:70%}.mover.sheet i:nth-child(3){width:85%}
+.mover.table{width:110px;height:72px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.table i{display:block;background:var(--fill);border-radius:3px}.mover.table i:nth-child(1){background:var(--sky);opacity:.55}
+.mover.mail{width:104px;height:70px;background:var(--panel);border:1.5px solid var(--sky);border-radius:8px;position:absolute;overflow:hidden;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.mail span{position:absolute;left:-2px;right:-2px;top:-30px;height:70px;border:1.5px solid var(--sky);transform:rotate(45deg) scale(.6);transform-origin:center}
+.mover.tick{font:400 44px/1 var(--mono);color:var(--green)}
+/* the three cards sit 420px apart (340 wide, 80 gap). Each object is born inside one card and carried to the next. */
+.slide.on .m1{left:130px;top:100px;animation:m1 9s linear infinite}
+.slide.on .m2{left:550px;top:110px;animation:m2 9s linear infinite}
+.slide.on .m3{left:975px;top:110px;animation:m3 9s linear infinite}
+.slide.on .m4{left:1100px;top:118px;animation:m4 9s linear infinite}
+@keyframes m1{0%{opacity:0;transform:translate(0,20px)}5%{opacity:1;transform:none}10%{opacity:1;transform:none}26%{opacity:1;transform:translate(420px,0) scale(.85)}29%{opacity:0;transform:translate(420px,0) scale(.6)}100%{opacity:0}}
+@keyframes m2{0%,29%{opacity:0;transform:translate(0,20px)}34%{opacity:1;transform:none}39%{opacity:1;transform:none}55%{opacity:1;transform:translate(420px,0) scale(.85)}58%{opacity:0;transform:translate(420px,0) scale(.6)}100%{opacity:0}}
+@keyframes m3{0%,58%{opacity:0;transform:translate(0,20px)}63%{opacity:1;transform:none}76%{opacity:1;transform:none}92%{opacity:1;transform:translate(50px,196px) scale(.7)}95%{opacity:0;transform:translate(50px,196px) scale(.5)}100%{opacity:0}}
+@keyframes m4{0%,66%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.15)}74%{opacity:1;transform:none}78%{opacity:0}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.mover{display:none}}
+
+/* 13 film 1 */
+.term{padding:20px 22px;font:300 15px/1.9 var(--mono);color:var(--text)}
+.tl{white-space:pre-wrap}
+.filmcap{margin-top:18px;font:400 12px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.scatter{width:100%;height:100%}
+
+/* 14, 16, 17 board */
+.board{display:flex;height:100%;padding:8px 6px 6px}
+.bcol{flex:1;border-left:1px solid var(--border);padding:8px 8px 0;position:relative;min-width:0}
+.bcol:first-child{border-left:0}
+.bhead{font:400 11px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:6px 4px 12px;min-height:38px}
+.bbody{display:flex;flex-wrap:wrap;gap:4px 6px;align-content:flex-start}
+.bcard{width:calc(25% - 5px);height:27px;background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:5px;padding:2px 8px;font:400 10.5px/1.2 var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.bsub{display:block;font-weight:300;font-size:9px;color:var(--muted)}
+.bcard.ghost{width:100%;height:30px;display:flex;align-items:center}
+.bmore{font:300 11px/1 var(--mono);color:var(--muted);padding:8px 4px}
+.slide.on .bcard.slide-in{opacity:0;animation:slidein .45s ease-out forwards}
+@keyframes slidein{from{opacity:0;transform:translateX(-120%)}to{opacity:1;transform:none}}
+.slide.on .bcard.move{animation:moveout .5s ease-in forwards}
+@keyframes moveout{to{opacity:0;transform:translateX(110%)}}
+.slide.on .bcard.dim{animation:dimout .5s ease-in forwards}
+@keyframes dimout{to{opacity:0;transform:translateX(230%)}}
+.slide.on .arrive{opacity:0;animation:rise .4s ease-out forwards}
+
+.bcol:nth-child(4) .bcard,.bcol:nth-child(5) .bcard{width:calc(33.33% - 4px)}
+.bcol:nth-child(2) .bcard{width:calc(20% - 5px)}
+
+/* 15 the open card */
+.open{display:flex;gap:22px;padding:22px;height:100%}
+.ocard{width:380px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px;box-shadow:0 8px 24px rgba(26,58,78,.08);align-self:flex-start}
+.oname{font:300 32px/1.1 var(--sans);letter-spacing:-.5px;margin-bottom:18px}
+.ok{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.ov{font:300 16px/1.5 var(--mono);margin-top:4px}
+.ostatus{margin-top:22px;display:flex;gap:8px}
+.email{flex:1;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px 28px;align-self:flex-start;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.ehead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.el{font:300 17px/1.7 var(--mono);margin-bottom:12px}
+.drew{width:300px;border:1px solid var(--sky);border-radius:9px;padding:18px 20px;align-self:flex-start}
+.dhead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.ditem{font:400 14px/1.5 var(--mono);padding:10px 0;border-top:1px solid var(--border)}
+.ditem span{display:block;font-weight:300;font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* 16 loop */
+.loopwrap{width:340px;height:440px;margin-top:20px}
+.loop{width:100%;height:100%}
+.ringline{stroke-dashoffset:2000;stroke-dasharray:2000}
+.slide.on .ringline{animation:draw 2.4s ease-out 6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.looplabel{font:400 24px var(--mono);fill:var(--text)}
+.loopmid{font:300 38px var(--sans);fill:var(--sky)}
+
+/* 17 the real world process */
+.process{display:flex;align-items:flex-start;gap:0;margin-top:44px}
+.st{flex:1;min-width:0}
+.st-arrow{flex:0 0 40px;padding-top:120px}.st-arrow svg{width:40px;height:20px}
+.st-title{font:300 26px/1.1 var(--sans);letter-spacing:-.3px;margin-bottom:14px}
+.st .win{width:250px!important;height:190px!important}
+.st-body{padding:14px}
+.st-plain{width:250px;height:190px}
+.st-door{width:250px;height:190px}
+.st-rows{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-cols{display:flex;gap:8px;height:140px}.st-cols i{flex:1;border-left:1px solid var(--border)}.st-cols i:first-child{border-left:0}
+.st-mail{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-agents{display:flex;flex-direction:column;gap:8px;height:190px;justify-content:center}
+.st-agent{background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:7px;padding:7px 10px;font:300 11.5px/1.35 var(--mono);box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.st-name{display:block;font:300 16px/1.1 var(--sans);margin-bottom:2px}
+.st-text{margin-top:16px;font:300 15px/1.55 var(--mono);padding-right:18px}
+.st-loop{margin-top:18px}.st-loop svg{width:100%;height:40px;display:block}.st-loop p{font:300 15px/1.5 var(--mono);color:var(--sky);margin-top:6px}
+.st-note{margin-top:22px;font-size:17px}
+
+/* 18 week */
+.week{display:flex;margin-top:60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.day{flex:1;padding:36px 28px 40px;border-left:1px solid var(--border);min-height:420px}.day:first-child{border-left:0;padding-left:0}
+.dname{font:300 30px/1 var(--sans);letter-spacing:-.5px}
+.dtext{font:300 17px/1.6 var(--mono);margin-top:22px}
+.mini{width:150px;height:110px;margin-top:28px;border:1px solid rgba(20,20,30,.12);border-radius:9px;background:var(--panel);position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px}
+.mini.term{flex-direction:column;align-items:flex-start;justify-content:flex-start}
+.mini.term i{display:block;height:6px;border-radius:3px;background:var(--fill);width:70%}.mini.term i:nth-child(2){width:45%}.mini.term i:nth-child(3){width:30%;background:var(--sky)}
+.mini.two b{display:block;width:44px;height:58px;border:1px solid rgba(20,20,30,.15);border-radius:5px;background:var(--bg)}
+.mini.blank{border-style:dashed}
+.mini em,.mini.number em{font:300 46px/1 var(--sans);font-style:normal;color:var(--sky)}
+
+/* 21 */
+.tonight{list-style:none;margin-top:44px;counter-reset:t}
+.tonight li{counter-increment:t;position:relative;padding:22px 0 22px 70px;border-top:1px solid var(--border);font:300 26px/1.4 var(--mono)}
+.tonight li:last-child{border-bottom:1px solid var(--border)}
+.tonight li::before{content:counter(t);position:absolute;left:0;top:26px;font:300 22px/1 var(--mono);color:var(--sky)}
+
+/* notes and chrome */
+.notes{display:none}
+#stage.notes-on .slide.on .notes{display:block;position:absolute;left:96px;right:96px;bottom:18px;padding:14px 18px;background:var(--deep);color:var(--bg);font:300 15px/1.6 var(--mono);border-radius:0}
+#counter{position:fixed;right:18px;bottom:12px;font:400 11px/1 var(--mono);letter-spacing:1.5px;color:var(--muted);opacity:.7}
+
+.s-title h1.huge{font-size:78px;letter-spacing:-2.5px}
+.three{display:flex;gap:48px;margin-top:44px}
+.tool{flex:1}.tool .win{width:400px!important}
+.tool-t{font:300 28px/1.1 var(--sans);margin-top:22px}.tool-p{font:300 16px/1.6 var(--mono);margin-top:10px;padding-right:20px}
+.st-cols.tall{display:flex;gap:8px;height:170px;padding:14px}.st-cols.tall i{flex:1;border-left:1px solid var(--border)}.st-cols.tall i:first-child{border-left:0}
+.files{display:flex;flex-direction:column;gap:10px;padding:18px 20px;font:300 15px/1.4 var(--mono)}
+.files span::before{content:"";display:inline-block;width:12px;height:14px;border:1px solid var(--muted);border-radius:2px;margin-right:12px;vertical-align:-2px}
+.tree{padding:14px 20px}
+.tr{display:flex;gap:30px;padding:13px 0;border-top:1px solid var(--border);font:300 17px/1.4 var(--mono)}.tr:first-child{border-top:0}
+.fn{flex:0 0 430px;font-weight:400}.fc{color:var(--muted)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 80px;margin-top:40px;border-top:1px solid var(--border)}
+.fld{display:flex;gap:24px;padding:16px 0;border-bottom:1px solid var(--border);font:300 20px/1.4 var(--mono)}
+.fk{flex:0 0 260px;color:var(--muted)}.fv{font-weight:400}
+.side{flex:1;padding-top:10px}.side p{font:300 19px/1.7 var(--mono);margin-bottom:22px}
+.pagecard{margin-top:36px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:20px 40px;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.q{display:flex;gap:40px;padding:22px 0;border-top:1px solid var(--border)}.q:first-child{border-top:0}
+.qh{flex:0 0 340px;font:300 26px/1.2 var(--sans)}.qa{font:300 17px/1.6 var(--mono)}
+.tonight.compact li{font-size:23px;padding:16px 0 16px 70px}.tonight.compact li::before{top:20px}
+.orderrow{display:flex;gap:40px;margin-top:44px}
+.ocard2{flex:1;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:28px 30px 26px;box-shadow:0 8px 24px rgba(26,58,78,.08);position:relative}
+.onum{position:absolute;right:26px;top:22px;font:300 40px/1 var(--sans);color:var(--sky)}
+.oname2{font:300 38px/1.1 var(--sans)}.ojob{font:400 12px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.odesc{font:300 16px/1.6 var(--mono);margin-top:18px;min-height:78px}.owhen{margin-top:16px;font:400 12px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--sky)}
+.cases{display:flex;gap:32px;margin-top:36px}
+.case{flex:1;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:22px 24px;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.cname{font:300 28px/1.1 var(--sans);margin-bottom:8px}
+.ck{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:12px}.cv{font:300 15px/1.5 var(--mono);margin-top:3px}.cv.mono{letter-spacing:2px}
+.ctext{font:300 15px/1.6 var(--mono);margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+</style></head>
+<body><div id="stage"><section class="slide s-title" data-n="1">
+<div class="split">
+  <div class="left">
+    <h1 class="huge">How you build it</h1>
+    <p class="dek">The tools, where the data is, and how you make an agent. One part at a time, slowly.</p>
+  </div>
+  <div class="right"><img class="fox rise" src="assets/fox-desk.png" alt="a fox at the front desk with a coffee" /></div>
+</div><div class="notes">This hour is about how. The tools, where the data is, what an agent is in this course, and how you make one. We go slowly and one part at a time.</div></section><section class="slide " data-n="2">
+<h1>Three tools, and what each one is for</h1>
+<div class="three">
+  <div class="tool rise" style="animation-delay:.2s"><div class="win " style="width:400px;height:220px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl">$ claude</div><div class="tl muted">Hello. What would you like to do?</div><div class="tl">&#9608;</div></div></div></div><p class="tool-t">Claude Code</p><p class="tool-p">Runs on your laptop. You type instructions in plain English and it does the work. This is where you build and run the agents.</p></div>
+  <div class="tool rise" style="animation-delay:.5s"><div class="win " style="width:400px;height:220px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">attio</span><span class="win-right"></span></div><div class="win-panel"><div class="st-cols tall"><i></i><i></i><i></i><i></i><i></i></div></div></div><p class="tool-t">Attio</p><p class="tool-p">The CRM. One card per member. Your team gets a free workspace and the agents write to the cards.</p></div>
+  <div class="tool rise" style="animation-delay:.8s"><div class="win " style="width:400px;height:220px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">gimnasio-zorro</span><span class="win-right"></span></div><div class="win-panel"><div class="files"><span>members.csv</span><span>checkins.csv</span><span>email_log.csv</span><span>messaging/</span></div></div></div><p class="tool-t">The gym&rsquo;s files</p><p class="tool-p">The members, the check-ins, the email log, and three pages about the gym. I give you these. They stand in for Glofox this week.</p></div>
+</div><div class="notes">Three tools. Claude Code on your laptop, where you build and run the agents by typing plain English. Attio, the CRM, where the members live as cards. And the gym&amp;rsquo;s files, which I give you, and which stand in for the membership software this week.</div></section><section class="slide " data-n="3">
+<h1>Everything the agents read is in one folder</h1>
+<p class="dek">Six files. Three of data, three of words. Nothing else. You put this folder on your laptop and open Claude Code inside it.</p>
+<div class="row top"><div class="rise"><div class="win " style="width:1380px;height:380px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">gimnasio-zorro</span><span class="win-right"></span></div><div class="win-panel"><div class="tree">
+  <div class="tr"><span class="fn">data/members.csv</span><span class="fc">900 rows, one per member</span></div>
+  <div class="tr"><span class="fn">data/checkins.csv</span><span class="fc">27,871 rows, one per swipe at the door</span></div>
+  <div class="tr"><span class="fn">data/email_log.csv</span><span class="fc">65 rows, one per email that went out</span></div>
+  <div class="tr"><span class="fn">messaging/gimnasio-zorro.md</span><span class="fc">one page: the gym, Marta, what the gym stands for</span></div>
+  <div class="tr"><span class="fn">messaging/email-voice-and-rules.md</span><span class="fc">one page: how Marta writes, and the rules for every email</span></div>
+  <div class="tr"><span class="fn">messaging/messages-by-goal.md</span><span class="fc">one page: what to say to a member with each goal</span></div>
+</div></div></div></div></div><div class="notes">Everything the agents read is in one folder. Three files of data: the members, the check-ins, the email log. Three pages of words: the gym, how Marta writes, and what to say for each goal. I will open the members and the check-ins in Google Sheets so you can see them.</div></section><section class="slide " data-n="4">
+<h1>One row of the members file</h1>
+<p class="dek">This is Sergio Rubio, the member from this morning. Eight things about him. 900 rows like this.</p>
+<div class="fields"><div class="fld rise" style="animation-delay:0.20s"><span class="fk">member id</span><span class="fv">Z0811</span></div><div class="fld rise" style="animation-delay:0.32s"><span class="fk">first name</span><span class="fv">Sergio</span></div><div class="fld rise" style="animation-delay:0.44s"><span class="fk">last name</span><span class="fv">Rubio</span></div><div class="fld rise" style="animation-delay:0.56s"><span class="fk">email</span><span class="fv">sergio.rubio@example.com</span></div><div class="fld rise" style="animation-delay:0.68s"><span class="fk">joined</span><span class="fv">2024-07-18</span></div><div class="fld rise" style="animation-delay:0.80s"><span class="fk">plan</span><span class="fv">Student</span></div><div class="fld rise" style="animation-delay:0.92s"><span class="fk">goal</span><span class="fv">build muscle</span></div><div class="fld rise" style="animation-delay:1.04s"><span class="fk">notes from the desk</span><span class="fv">(empty)</span></div></div>
+<p class="dek after">The goal and the desk notes are the words the agent writes the email from. Most members have no desk note.</p><div class="notes">This is one row of the members file. Sergio, the member from this morning. Eight things about him. The goal and the desk note are what the email is written from. Most members have no desk note at all.</div></section><section class="slide " data-n="5">
+<h1>One row of the check-ins file</h1>
+<p class="dek">One row every time a member swipes in. Just the member id and the time. 27,871 rows over 14 weeks.</p>
+<div class="row top gap48"><div class="rise"><div class="win " style="width:620px;height:520px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">checkins.csv</span><span class="win-right"></span></div><div class="win-panel"><table class="log"><thead><tr><th>member id</th><th>swiped in at</th></tr></thead><tbody><tr class="rise" style="animation-delay:0.30s"><td>Z0185</td><td>2026-06-08 06:02</td></tr><tr class="rise" style="animation-delay:0.45s"><td>Z0378</td><td>2026-06-08 06:07</td></tr><tr class="rise" style="animation-delay:0.60s"><td>Z0308</td><td>2026-06-08 06:09</td></tr><tr class="rise" style="animation-delay:0.75s"><td>Z0301</td><td>2026-06-08 06:14</td></tr><tr class="rise" style="animation-delay:0.90s"><td>Z0213</td><td>2026-06-08 06:16</td></tr><tr class="rise" style="animation-delay:1.05s"><td>Z0457</td><td>2026-06-08 06:19</td></tr><tr class="rise" style="animation-delay:1.20s"><td>Z0767</td><td>2026-06-08 06:19</td></tr><tr class="rise" style="animation-delay:1.35s"><td>Z0227</td><td>2026-06-08 06:20</td></tr><tr class="rise" style="animation-delay:1.50s"><td>Z0297</td><td>2026-06-08 06:25</td></tr><tr class="rise" style="animation-delay:1.65s"><td>Z0062</td><td>2026-06-08 06:26</td></tr></tbody></table></div></div></div>
+<div class="side rise" style="animation-delay:.6s"><p>There are no names in this file. The member id is what joins a swipe to a member.</p><p>Every number in the agent comes from counting these rows. How often a member usually comes is these rows, counted per week. The last three weeks is these rows, counted per week.</p></div></div><div class="notes">This is the check-ins file. One row per swipe, the member id and the time, 27,871 of them. No names. The member id joins a swipe to a member. Every number the agent uses is a count of these rows.</div></section><section class="slide " data-n="6">
+<h1>An agent here is a page of instructions in plain English</h1>
+<p class="dek">Claude Code reads the page and does what it says. This is Carlos, the first agent, the one that counts. One page, four questions.</p>
+<div class="pagecard"><div class="q rise" style="animation-delay:0.30s"><div class="qh">What it produces</div><div class="qa">One file every Monday, one row per member, with the same fields every time: how often they usually come, their last three weeks, their notes.</div></div><div class="q rise" style="animation-delay:0.55s"><div class="qh">Where it lands</div><div class="qa">A file in the folder, and one line in a log saying it ran. Enrique reads that file and nothing else.</div></div><div class="q rise" style="animation-delay:0.80s"><div class="qh">How it knows it is done</div><div class="qa">Every member has a row. Run it twice on the same Monday and you get the same file.</div></div><div class="q rise" style="animation-delay:1.05s"><div class="qh">What it does not do</div><div class="qa">It does not decide who is slipping. It does not write to anyone. It does not touch Attio.</div></div></div><div class="notes">An agent in this course is a page of instructions in plain English, and Claude Code follows it. This is Carlos, the one that counts. One page, four questions: what it produces, where it lands, how it knows it is done, what it does not do. Every agent you build is a page like this.</div></section><section class="slide " data-n="7">
+<h1>How you make one</h1>
+<ol class="tonight compact"><li class="rise" style="animation-delay:0.2s">Open Claude Code inside the gym folder.</li><li class="rise" style="animation-delay:0.4s">Write the page. Answer the four questions in plain English.</li><li class="rise" style="animation-delay:0.6s">Run it on one member. Look at what comes out.</li><li class="rise" style="animation-delay:0.8s">Run it on ten members. Look again. Fix the page where it went wrong.</li><li class="rise" style="animation-delay:1.0s">Run it on all 900.</li><li class="rise" style="animation-delay:1.2s">Run it a second time on the same Monday. It must give the same answer. If it does not, the page is not finished.</li></ol><div class="notes">How you make one. Open Claude Code in the folder. Write the page. Run it on one member and look. Run it on ten and look again. Run it on all 900. Then run it a second time, and it must give the same answer. That last one is the test we run in the room on Tuesday.</div></section><section class="slide " data-n="8">
+<h1>Build them in this order, slowly</h1>
+<p class="dek">Your team builds all three. Carlos first, because everything else reads his file. Enrique second. Cato last, once there is something to attack.</p>
+<div class="orderrow"><div class="ocard2 rise" style="animation-delay:0.2s"><div class="onum">1</div><div class="oname2">Carlos</div><div class="ojob">counts</div><div class="odesc">Reads the check-ins and finds the members who have dropped off.</div><div class="owhen">Tuesday</div></div><div class="ocard2 rise" style="animation-delay:0.5s"><div class="onum">2</div><div class="oname2">Enrique</div><div class="ojob">writes and sends</div><div class="odesc">Reads Carlos&rsquo;s file and the three pages. Writes each email and sends it.</div><div class="owhen">Tuesday</div></div><div class="ocard2 rise" style="animation-delay:0.8s"><div class="onum">3</div><div class="oname2">Cato</div><div class="ojob">checks</div><div class="odesc">Assumes the other two are wrong and tries to prove it, before anything is sent.</div><div class="owhen">Thursday</div></div></div><div class="notes">Your team builds all three, in this order. Carlos first, because everything else reads his file. Enrique second. Cato last, once there is something for him to attack. Slowly. Get one working before you start the next.</div></section><section class="slide " data-n="9">
+<h1>AI gets things wrong. Cato&rsquo;s job is to catch it.</h1>
+<p class="dek">Three real members from the gym. A quick answer gets every one of them wrong. Without the desk notes, the count alone gets 38 members wrong.</p>
+<div class="cases"><div class="case rise" style="animation-delay:0.3s">
+  <div class="cname">Lucía Rodríguez</div>
+  <div class="ck">goal</div><div class="cv">build muscle</div>
+  <div class="ck">desk note</div><div class="cv">Comes every other week, that is her pattern.</div>
+  <div class="ck">visits a week, the last twelve weeks</div><div class="cv mono">1 0 1 0 1 0 1 0 1 0 1 0</div>
+  <p class="ctext">The count says she is slipping. Her desk note says she comes every other week, and that is her pattern. No email.</p>
+</div><div class="case rise" style="animation-delay:0.6s">
+  <div class="cname">Mateo Blanco</div>
+  <div class="ck">goal</div><div class="cv">lose weight</div>
+  <div class="ck">desk note</div><div class="cv">In Galicia with family for August.</div>
+  <div class="ck">visits a week, the last twelve weeks</div><div class="cv mono">2 3 3 3 2 1 3 3 2 0 0 0</div>
+  <p class="ctext">Three empty weeks in August. His desk note says he is in Galicia with family for August. He is away, not leaving. No email.</p>
+</div><div class="case rise" style="animation-delay:0.9s">
+  <div class="cname">Cristina Ramírez</div>
+  <div class="ck">goal</div><div class="cv">lose weight</div>
+  <div class="ck">desk note</div><div class="cv">(none)</div>
+  <div class="ck">visits a week, the last twelve weeks</div><div class="cv mono">4 4 3 2 3 5 4 3 3 0 0 0</div>
+  <p class="ctext">She is slipping and there is no note, so she gets an email. A careless email talks about her bench and building muscle. She told the gym she wanted to lose weight. Same shape, wrong person.</p>
+</div></div><div class="notes">AI gets things wrong, and Cato&amp;rsquo;s job is to catch it before an email goes out. Three real members. Lucía comes every other week and always has, but the count says she is slipping. Mateo is in Galicia for August, not leaving. Cristina wants to lose weight, and a careless email talks to her about building muscle. Without the desk notes the count alone gets 38 members wrong. This is the vet and stress test, and it is the third agent.</div></section><section class="slide " data-n="10">
+<h1>How the agents talk to Attio</h1>
+<ol class="tonight compact"><li class="rise" style="animation-delay:0.2s">One person on your team makes a free Attio workspace and invites the others.</li><li class="rise" style="animation-delay:0.4s">In Attio, make an API token. It is a long password that lets a program write to your workspace.</li><li class="rise" style="animation-delay:0.6s">Put the token in the gym folder, in a file called .env. Never in the page, never in a chat.</li><li class="rise" style="animation-delay:0.8s">Run the loader. It makes the member fields and puts all 900 members in as cards.</li><li class="rise" style="animation-delay:1.0s">From then on, Enrique writes the reason and the email onto a card and moves it to a column.</li></ol>
+<p class="dek after">I will show this on my own workspace now. The columns are steady, slipping, emailed, ask Marta, came back, didn&rsquo;t come back.</p><div class="notes">How the agents talk to Attio. One person makes a free workspace and invites the team. You make an API token in Attio, which is a long password that lets a program write to your workspace. It goes in a file called .env in the folder, never in the page and never in a chat. The loader puts the 900 members in as cards. From then on Enrique writes to the cards. I will show you mine now.</div></section><section class="slide " data-n="11">
+<h1>Before Tuesday morning</h1>
+<ol class="tonight"><li class="rise" style="animation-delay:0.2s">Claude Code installed on your laptop, and opened once.</li><li class="rise" style="animation-delay:0.5s">A free Attio workspace for your team, with the 900 members loaded.</li><li class="rise" style="animation-delay:0.8s">The gym folder on your laptop.</li></ol>
+<p class="dek after rise" style="animation-delay:1.2s">If Claude Code will not install on your laptop, tell Julie tonight, not tomorrow morning.</p><div class="notes">Three things before Tuesday morning. Claude Code installed and opened once. A free Attio workspace for your team with the members loaded. The gym folder on your laptop. If Claude Code will not install, tell Julie tonight.</div></section></div><div id="counter"></div><script>
+const stage=document.getElementById('stage'),slides=[...document.querySelectorAll('.slide')],N=slides.length;
+let i=0;
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`;stage.style.transformOrigin='center';}
+function show(k,replay){i=Math.max(0,Math.min(N-1,k));slides.forEach((s,j)=>{s.classList.toggle('on',j===i)});history.replaceState(null,'',`?s=${i+1}`);document.getElementById('counter').textContent=`${i+1} / ${N}`;if(replay){const s=slides[i];s.classList.remove('on');void s.offsetWidth;s.classList.add('on');}const v=slides[i].querySelector('video');if(v){v.currentTime=0;v.play().catch(()=>{});}}
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}else if(e.key==='Home'){show(0)}else if(e.key==='End'){show(N-1)}else if(e.key==='n'||e.key==='N'){stage.classList.toggle('notes-on')}else if(e.key==='r'||e.key==='R'){show(i,true)}else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+addEventListener('click',e=>{if(e.clientX>innerWidth*.8)show(i+1);else if(e.clientX<innerWidth*.2)show(i-1)});
+addEventListener('resize',fit);fit();
+const q=parseInt(new URLSearchParams(location.search).get('s')||'1',10);show(q-1);
+// a slide that plays itself waits to be looked at
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')show(i,true)});
+addEventListener('pageshow',e=>{if(e.persisted)show(i,true)});
+</script></body></html>

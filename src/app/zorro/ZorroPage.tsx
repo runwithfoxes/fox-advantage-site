@@ -59,7 +59,7 @@ export default function ZorroPage() {
                 <span>{it.t}</span>
               </a>
             ))}
-            <a className="mod-rail-lib" href="#i8">
+            <a className="mod-rail-lib" href="#i6">
               /the gym files
             </a>
           </nav>
@@ -75,22 +75,23 @@ export default function ZorroPage() {
               <img className="chapter-fox-hero-img" src="/fox/fox-spain-team-nobg.png" alt="" />
             </div>
             <p className="mod-standfirst">
-              One gym, 900 members, an owner with no time. This week you build the three-agent team
-              that notices who is drifting away, writes to them in her voice, and two weeks later
-              tells her how many came back. Everything you need is on this page.
+              One gym, 900 members, an owner with no time. This week your team builds the AI agent
+              that finds the members who have stopped coming, writes each of them a personal email
+              and sends it, and two weeks later checks who came back. Everything you need is on this
+              page.
             </p>
             <p className="mod-standfirst">
-              Read the first two items today. The rest are for the day they name.
+              Read the first three items on Monday. The rest are for the day they name.
             </p>
             <div className="mod-meta">
               <span>
                 Week<b>14 to 18 September</b>
               </span>
               <span>
-                Teams<b>Three people, three agents, one Attio</b>
+                Teams<b>Your team builds all three agents</b>
               </span>
               <span>
-                Friday<b>A number, and two mistakes</b>
+                Friday<b>Your numbers, and two mistakes</b>
               </span>
               <span>
                 Files<b>Nobody in them is real</b>
@@ -112,12 +113,12 @@ export default function ZorroPage() {
                     <ul className="mod-frows">
                       {it.files.map((f) => (
                         <li className="mod-frow" key={f.name}>
-                          <a className="mod-fname" href={f.href} download>
+                          <a className="mod-fname" href={f.href} {...(f.external ? { target: "_blank", rel: "noopener" } : { download: true })}>
                             {f.name}
                           </a>
                           <span className="mod-fwhat">{f.what}</span>
-                          <a className="mod-readinglink" href={f.href} download>
-                            Download
+                          <a className="mod-readinglink" href={f.href} {...(f.external ? { target: "_blank", rel: "noopener" } : { download: true })}>
+                            {f.external ? "Open" : "Download"}
                           </a>
                         </li>
                       ))}

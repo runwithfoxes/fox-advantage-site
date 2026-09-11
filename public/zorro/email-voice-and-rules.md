@@ -21,6 +21,11 @@ It never says "we miss you". It never mentions the membership fee, the contract,
 never asks why they stopped. It never offers a discount. It never lists three things they could do.
 It never uses the word journey. It never guesses at a reason the record does not give.
 
+It never names the member's private life. No wedding, no holiday, no family member, no health
+matter, no date. A gym writing about someone's sister's wedding is intrusive, however well meant.
+The email refers to the goal the member gave when they joined in general words only: "what you
+were working towards", "the goal you set when you joined". Warm, but professional. Paul, 11 Sep 2026.
+
 ## When the agent does not write
 
 The record says away, on holiday, travelling. The record says injured, physio, surgery, doctor,
@@ -47,10 +52,10 @@ discount. It mentions the renewal, which is the one thing that makes a drifting 
 Hi Rubén,
 
 Marta here. I noticed you have not been in since the middle of August. You told me when you joined
-that you wanted to get your knee strong again before the winter. Tuesday at 7 there is a small
-mobility class, and I will be on the desk if you want a word first. Come in this week?
+what you were working towards, and a few weeks off makes that harder. Tuesday at 7 there is a small
+class that would suit, and I will be on the desk if you want a word first. Come in this week?
 
 Marta
 
-Why it is good. One person to one person. It names what he said he wanted. One ask with a day and
-a time. No fee, no guilt, no offer. He can say yes in two words.
+Why it is good. One person to one person. It reminds him he had a goal without naming his private
+life. One ask with a day and a time. No fee, no guilt, no offer. He can say yes in two words.

@@ -1,6 +1,7 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
+import { getZorroSystemPrompt } from "@/lib/zorro-system-prompt";
 import {
   saveConversationExchange,
   saveError,
@@ -51,10 +52,14 @@ export async function POST(req: Request) {
     return new Response("Invalid request body", { status: 400 });
   }
 
-  const { messages, id: chatId } = body as {
+  const { messages, id: chatId, mode } = body as {
     messages?: unknown;
     id?: unknown;
+    mode?: unknown;
   };
+  // /zorro, the UCD x IE student page: Isa with the gym course loaded, and room to
+  // troubleshoot. Everything else is the site Isa, short and in her lane.
+  const zorro = mode === "zorro";
 
   if (!Array.isArray(messages) || messages.length === 0) {
     return new Response("Messages must be a non-empty array", { status: 400 });
@@ -122,9 +127,9 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: provider("claude-sonnet-4-6"),
-      system: getSystemPrompt(sanitizedChatId),
+      system: zorro ? getZorroSystemPrompt() : getSystemPrompt(sanitizedChatId),
       messages: modelMessages,
-      maxOutputTokens: 200,
+      maxOutputTokens: zorro ? 450 : 200,
       onFinish: async ({ text }) => {
         await saveConversationExchange({
           chatId: sanitizedChatId,

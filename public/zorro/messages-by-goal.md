@@ -1,7 +1,9 @@
 # What Marta says to each kind of member
 
 The goal is on the member's record. The agent uses the line for that goal as the middle of the
-email, in Marta's words, and adds the one ask. Nothing in this file is a script to paste; it is what
+email, in Marta's words, and adds the one ask. The email never names the member's private life (the
+rule is in email-voice-and-rules.md): the goal is referred to in general words, never the event, the
+person or the health matter behind it. Nothing in this file is a script to paste; it is what
 the note has to be about.
 
 Lose weight. Do not mention weight. Talk about the routine they had built and the mornings or
@@ -17,8 +19,10 @@ Stress and sleep. They joined because life was heavy. If they have stopped, life
 heavier. Keep it gentle, no push. The ask is a quiet morning or a stretch class, and it is fine to
 say no.
 
-Get fit for an event. The event is on the record with a date. Count the weeks to it and say so.
-The ask is a plan for the weeks left, and Marta offering ten minutes at the desk to write it.
+Get fit for an event. The event is on the record with a date, and the email never names it, never
+names who it is for, and never counts the weeks to it. Say they set themselves a goal with a date
+on it when they joined, and that there is still time to make a difference. The ask is a plan for the
+weeks left, and Marta offering ten minutes at the desk to write it.
 
 Strength as I get older. Usually a member over sixty who was coming steadily. Say plainly that a
 few weeks off costs more at their age and comes back slower, because that is true and they know

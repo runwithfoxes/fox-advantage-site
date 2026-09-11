@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, FormEvent } from "react";
 import { useDraggable } from "@/lib/useDraggable";
 import { usePathname } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import type { UIMessage } from "ai";
 import { renderChatMarkdown } from "@/lib/chat-markdown";
 
@@ -38,9 +39,23 @@ const CONTACT_WELCOME: UIMessage = {
   ],
 };
 
+// Shown on /zorro, the UCD x IE student page. She has the gym course loaded there.
+const ZORRO_WELCOME: UIMessage = {
+  id: "welcome-zorro",
+  role: "assistant",
+  parts: [
+    {
+      type: "text",
+      text: "Isa here. I know this week's gym, the three agents and the set-up, and I've read every page on this site. Stuck on Claude Code, Attio, or a page that will not give the same answer twice? Tell me what you tried.",
+    },
+  ],
+};
+
 export default function ChatWidget() {
   const pathname = usePathname();
   const isContact = pathname === "/contact";
+  const isZorro = pathname === "/zorro" || pathname?.startsWith("/zorro/");
+  const welcome = isZorro ? ZORRO_WELCOME : isContact ? CONTACT_WELCOME : WELCOME;
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
@@ -71,7 +86,8 @@ export default function ChatWidget() {
   };
 
   const { messages, sendMessage, status, error, setMessages } = useChat({
-    messages: [isContact ? CONTACT_WELCOME : WELCOME],
+    messages: [welcome],
+    transport: new DefaultChatTransport({ api: "/api/chat", body: isZorro ? { mode: "zorro" } : {} }),
     onError: (e) => console.error("[isa] chat error:", e),
   });
 
@@ -81,9 +97,9 @@ export default function ChatWidget() {
   useEffect(() => {
     setMessages((prev) => {
       if (prev.some((m) => m.role === "user")) return prev;
-      return [isContact ? CONTACT_WELCOME : WELCOME];
+      return [welcome];
     });
-  }, [isContact, setMessages]);
+  }, [welcome, setMessages]);
 
   const isBusy = status === "streaming" || status === "submitted";
 
@@ -106,6 +122,9 @@ export default function ChatWidget() {
     // /diary build): it is a reading page, and Isa opening over a dispatch
     // interrupts the one thing the visitor came to do. The bubble stays.
     if (pathname === "/diary" || pathname?.startsWith("/diary/")) return;
+    // No auto-open on /zorro either: a student reads it for the files and the
+    // steps, and the page tells them where the bubble is.
+    if (isZorro) return;
     // Contact page tracks its own dismissal so closing Isa on the homepage
     // doesn't stop her opening when someone reaches the contact page.
     const dismissKey = isContact ? "isa-dismissed-contact" : "isa-dismissed";
