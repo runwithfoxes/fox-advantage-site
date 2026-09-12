@@ -213,6 +213,7 @@
 
 @media (max-width:860px){
   .mod-grid{grid-template-columns:1fr;gap:28px;}
+  .mod-railcol{position:static;max-height:none;}  /* the sticky is on the column; on a phone the list must scroll with the page (found 12 Sep on a phone: the list sat on top of the text) */
   .mod-rail{position:static;max-height:none;}
   .mod-rail a{display:inline-grid;border-top:0;padding:4px 14px 4px 0;}
   .mod-comp{grid-template-columns:repeat(2,1fr);}
@@ -288,3 +289,8 @@
 .mod-copybox p:first-child{padding-top:16px;}
 .mod-copybox p:last-child{margin-bottom:0;padding-bottom:16px;}
 .mod-copybox + .mod-body{margin-top:28px;}
+
+/* Isa, named on the page. 12 Sep 2026. */
+.zorro-askisa{font-family:var(--mono);font-size:.8125rem;letter-spacing:.5px;color:#FAFAF8;background:#3A7CA5;border:1px solid #3A7CA5;border-radius:0;padding:8px 16px;cursor:pointer;margin:0 6px;vertical-align:baseline;}
+.zorro-askisa:hover{background:#1A3A4E;border-color:#1A3A4E;}
+.zorro-isa-item{margin-top:22px;}

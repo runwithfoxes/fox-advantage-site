@@ -46,7 +46,7 @@ const ZORRO_WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Isa here. I know this week's gym, the three agents and the set-up, and I've read every page on this site. Stuck on Claude Code, Attio, or a page that will not give the same answer twice? Tell me what you tried.",
+      text: "Isa here. I know this week's gym, the four agents, the clock and the set-up, and I've read every page on this site. Stuck on Claude Code, Attio, or a page that will not give the same answer twice? Tell me the step number, what you typed and what you saw.",
     },
   ],
 };
@@ -57,6 +57,12 @@ export default function ChatWidget() {
   const isZorro = pathname === "/zorro" || pathname?.startsWith("/zorro/");
   const welcome = isZorro ? ZORRO_WELCOME : isContact ? CONTACT_WELCOME : WELCOME;
   const [isOpen, setIsOpen] = useState(false);
+  // /zorro has its own Ask Isa buttons in the page copy; they fire this event.
+  useEffect(() => {
+    const open = () => setIsOpen(true);
+    window.addEventListener("isa:open", open);
+    return () => window.removeEventListener("isa:open", open);
+  }, []);
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -168,8 +174,8 @@ export default function ChatWidget() {
 
   if (!isOpen) {
     return (
-      <div className="chat-bubble-wrap">
-        <span className="chat-bubble-label">Can I help?</span>
+      <div className={isZorro ? "chat-bubble-wrap zorro" : "chat-bubble-wrap"}>
+        <span className="chat-bubble-label">{isZorro ? "Ask Isa" : "Can I help?"}</span>
         <button
           className="chat-bubble"
           onClick={() => setIsOpen(true)}

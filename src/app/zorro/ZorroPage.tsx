@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ITEMS } from "./zorroData";
+import AskIsa from "./AskIsa";
 
 /* The page behind the door. Same bones as a course module: the rail on the left with the
    contents, the masthead and the numbered items on the right. Server-rendered, no state. */
@@ -83,6 +84,10 @@ export default function ZorroPage() {
             <p className="mod-standfirst">
               Read the first three items on Monday. The rest are for the day they name.
             </p>
+            <p className="mod-standfirst zorro-isa-line">
+              Stuck at any point, at any hour? Isa has read every page here and knows the build
+              guide by step number. <AskIsa /> She is also the fox in the bottom right corner.
+            </p>
             <div className="mod-meta">
               <span>
                 Week<b>14 to 18 September</b>
@@ -107,6 +112,11 @@ export default function ZorroPage() {
                   <h2 className="mod-h3">{it.t}</h2>
                 </div>
                 <Body text={it.text} />
+                {it.t.startsWith("Stuck?") && (
+                  <p className="zorro-isa-item">
+                    <AskIsa label="Open Isa now" />
+                  </p>
+                )}
                 {it.files && (
                   <div className="mod-reading">
                     <span className="mod-readinglbl">{it.filesTitle ?? "Files"}</span>
