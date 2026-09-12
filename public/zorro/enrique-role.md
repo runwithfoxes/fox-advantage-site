@@ -1,6 +1,6 @@
 # Enrique. Marta's member-care assistant
 
-The second of the three. Four questions, on one page. Yours will be the same length.
+The second of the four. Four questions, on one page. Yours will be the same length.
 
 ## What Enrique produces
 

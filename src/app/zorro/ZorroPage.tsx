@@ -88,7 +88,7 @@ export default function ZorroPage() {
                 Week<b>14 to 18 September</b>
               </span>
               <span>
-                Teams<b>Your team builds all three agents</b>
+                Teams<b>Your team builds all four agents</b>
               </span>
               <span>
                 Friday<b>Your numbers, and two mistakes</b>

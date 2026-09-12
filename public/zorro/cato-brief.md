@@ -1,6 +1,6 @@
 # Cato. The red team, one page
 
-The third of the three. His job is to assume Carlos and Enrique are wrong and prove it. He is named
+The third of the four. His job is to assume Carlos and Enrique are wrong and prove it. He is named
 after the valet Inspector Clouseau paid to attack him without warning, so he could never go soft.
 Build him on Wednesday from this page, and on Thursday afternoon we score him beside the other two.
 

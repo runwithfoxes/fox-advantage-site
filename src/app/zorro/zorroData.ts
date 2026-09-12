@@ -1,6 +1,7 @@
 /* The week, as items. First written 5 Sep 2026 with Paul from the working sheet, rewritten 11 Sep
-   after his read of the Monday decks: the agent sends, the team builds all three agents, the
-   timetable is the calendar's, plain English throughout. Paragraphs are split on blank lines; a
+   after his read of the Monday decks: the agent sends, the team builds all the agents, the
+   timetable is the calendar's, plain English throughout. 12 Sep: four agents, not three, and a
+   clock starts them (Paul: "agents that run on their own, not commands"). Paragraphs are split on blank lines; a
    line starting with "- " is a list row, a line starting with "> " is a quoted email. Nothing here
    is generated. */
 
@@ -27,24 +28,26 @@ export const ITEMS: ZItem[] = [
 
 Marta knows that a member who stops coming for a few weeks usually does not renew. She has watched it happen for nine years. What she does not have is the time to go through 900 members every Monday, work out who is drifting, and write each of them a personal email. So the thing the gym is for, being the gym that notices, is the thing the gym cannot do.
 
-You are building the AI agent that does it for her. It reads the gym's visit data, finds the members who have stopped coming, writes each of them a personal email, and sends it. Two weeks later it checks who came back. It is made of three parts, and each part does one job and passes its work to the next. Carlos reads the check-ins and finds the members who have dropped off. Enrique reads Carlos's list and the three pages about the gym, writes each email in Marta's voice, sends it, and puts the reason and the email on the member's card in the CRM. Cato assumes the other two are wrong and tries to prove it, before anything goes out. Nobody approves the emails first. Marta is only asked about the odd case, a member whose note says injured, or a reply that needs a person.
+You are building the AI agent that does it for her. It reads the gym's visit data, finds the members who have stopped coming, writes each of them a personal email, and sends it. Two weeks later it checks who came back. It is four agents, and each one does one job and passes its work to the next. Carlos reads the check-ins and finds the members who have dropped off. Enrique reads Carlos's list and the three pages about the gym, writes each email in Marta's voice, sends it, and puts the reason and the email on the member's card in the CRM. Cato assumes the other two are wrong and tries to prove it, before anything goes out. Rosa comes back two weeks later, reads the check-ins again, and tells Marta how many of the people we wrote to came back.
+
+Nobody starts them. A clock on the laptop wakes a small runner every half hour. On a Monday the runner starts Carlos, and each agent after that starts when the one before has left its file. Every step writes a line to a file called heartbeat.log, and that file is the proof it ran. This week the clock is on your laptop. In a company the same four pages would run in the cloud, on Anthropic's Managed Agents or the like, on their own timetable, with no laptop open. Nobody approves the emails first. Marta is only asked about the odd case, a member whose note says injured, or a reply that needs a person.
 
 This week the gym is made up. Every member and every swipe in the files is invented. So the send is pretend: an email goes out by being written to the email log, and the card moves to emailed. Everything else is the real process, the same one a real gym would run off Glofox, its CRM and its email.
 
-Your team builds all three agents, in this order. Carlos first, because everything else reads his file. Enrique second. Cato last, once there is something for him to attack. Slowly. Get one working before you start the next.
+Your team builds all four agents. Carlos first, because everything else reads his file. Enrique second. Rosa third, because she only needs Carlos's file and the memory of who was written to. Cato last, once there is something for him to attack. Then you set the clock. Slowly. Get one working before you start the next.
 
 On Friday your team shows the agent running, tells us how many of fifty marked members it got right, how many members came back after the emails, and your two worst mistakes. Anyone on the team can be asked about any part of it.`,
   },
   {
     t: "The build guide, and the presentations",
-    text: `The build guide is the thing to have open while you work. One step at a time: what to press, what to type, and what you should see when it worked. Twenty-five steps in five parts, from downloading the folder to Cato. Every step number is something Isa knows, so if you are stuck, tell her the step.
+    text: `The build guide is the thing to have open while you work. One step at a time: what to press, what to type, and what you should see when it worked. Thirty-one steps in seven parts, from downloading the folder to the clock that starts the agents on a Monday with nobody at the keyboard. Every step number is something Isa knows, so if you are stuck, tell her the step.
 
 The two decks from Monday morning are here too, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
     filesTitle: "Open",
     files: [
       { name: "The build guide", what: "Step by step, with what you type and what you should see. Start here on Monday evening.", href: "/zorro/decks/the-build-guide.html", external: true },
-      { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four parts of the agent on film, and how it works in a real gym.", href: "/zorro/decks/monday-0945.html", external: true },
-      { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, and the Attio connection.", href: "/zorro/decks/monday-1115.html", external: true },
+      { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four agents on film, how it works in a real gym, and what starts them.", href: "/zorro/decks/monday-0945.html", external: true },
+      { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, the Attio connection, and the clock.", href: "/zorro/decks/monday-1115.html", external: true },
     ],
   },
   {
@@ -59,7 +62,7 @@ If Claude Code will not install on your machine, tell Julie on Monday evening, n
   },
   {
     t: "How to write a job an agent can do",
-    text: `An agent in this course is a page of instructions in plain English, and Claude Code follows it. Enrique's page is the finished thing. This is how you get to a page like it. Seven steps, in order, and you will do all seven for each of your three agents.
+    text: `An agent in this course is a page of instructions in plain English, and Claude Code follows it. Enrique's page is the finished thing. This is how you get to a page like it. Seven steps, in order, and you will do all seven for each of your four agents.
 
 1. Decide what it produces before anything else. Name the thing, and fix its shape. Not "reviews the members" but "one row per member: id, decision, reason, email or nothing". If two runs could give different shapes, it is not a thing yet, it is an activity, and an activity cannot be checked. Enrique's shape is four fields and never changes.
 
@@ -74,11 +77,12 @@ If Claude Code will not install on your machine, tell Julie on Monday evening, n
 6. Keep it on one page, and take a line out for every line you add. A list of instructions is obeyed less the longer it gets, and the drop starts early. A job that needs a page of steps to run is not written yet. Everything about how the run happens, which script, which file, which order, lives in a separate runbook, not in the job.
 
 7. Run it, count it, attack it, change one line, run it again. Run the job on a Monday you have an answer key for and count the decisions that match. Then let Cato attack the decisions from the data, and attack the job itself with the four questions above, assuming the agent is literal, lazy and honest. Every finding is one line to change in the job. Change it, run the same Monday again, and see the number move. Stop when the number holds and Cato's attack list comes back with nothing that breaks. That is what "it works" means: not that it ran, but that you counted.`,
-    filesTitle: "The three jobs, and the runbook",
+    filesTitle: "The four jobs, and the runbook",
     files: [
       { name: "carlos-role.md", what: "Carlos counts. He reads the check-ins and cannot write.", href: "/zorro/carlos-role.md" },
       { name: "enrique-role.md", what: "Enrique writes and sends. This page is the spec he runs on.", href: "/zorro/enrique-role.md" },
       { name: "cato-brief.md", what: "Cato assumes the other two are wrong and tries to prove it.", href: "/zorro/cato-brief.md" },
+      { name: "rosa-role.md", what: "Rosa counts who came back, two weeks after the emails.", href: "/zorro/rosa-role.md" },
       { name: "how-to-write-a-job-an-agent-can-do.md", what: "This item, as a file.", href: "/zorro/how-to-write-a-job-an-agent-can-do.md" },
     ],
   },
@@ -88,13 +92,13 @@ If Claude Code will not install on your machine, tell Julie on Monday evening, n
 
 Monday. 9:45, what you are building, with Paul. 11:15, how you build it: the tools, the data, what an agent is, how you make one, and Cato as the vet and stress test, with Paul. 13:15, a data workshop with David DeFranza. The evening is for the three things above.
 
-Tuesday. 9:45 and 11:15 with Paul. You build Carlos, then Enrique. Carlos reads the check-ins and writes one file, the same shape every time. Enrique reads that file and the three pages, decides for each member, writes the email, and puts it on the card in Attio. Run each on one member, then ten, then all 900, then a second time on the same Monday. The second run must give the same answer. 13:15, the bus leaves for the company visit to Deloitte.
+Tuesday. 9:45 and 11:15 with Paul. You build Carlos, then Enrique, then Rosa. Carlos reads the check-ins and writes one file, the same shape every time. Enrique reads that file and the three pages, decides for each member, writes the email, and puts it on the card in Attio. Rosa reads who was written to on 31 August and the check-ins since, and counts who came back. Run each on one member, then ten, then all 900, then a second time on the same Monday. The second run must give the same answer. Then you set the clock, watch it fire with nobody at the keyboard, and from then on nobody types anything on a Monday. 13:15, the bus leaves for the company visit to Deloitte.
 
 Wednesday. Paul is not in. Julie's day.
 
 Thursday. 9:45, Suhas Vijayakumar on text analysis. 11:15 and 13:15 with Paul: build a screen for Marta off your agent's real output, then the fifty marked members are handed out and you score your agent on all fifty. Was the flag right, was the email to the right person about the right goal, did it read the return right. Build Cato and score him beside Enrique: of Enrique's misses, how many did Cato catch. Sort the misses into instruction problems and data problems, fix the pages, run again, and put the numbers before and after on the board. 15:00 to 16:30 is your own time to rerun, tidy and rehearse.
 
-Friday. 9:45, Marius Claudy on AI in market research. 11:15 and 13:15, the presentations, with Paul and Julie. Twelve minutes a team, then three minutes of questions. Marta's screen live, the number your agent scored on the fifty, Cato's number beside it, how many members came back, and your two worst mistakes. The two worst mistakes are worth more than the number. A team that hides its misses has not learned the week.`,
+Friday. 9:45, Marius Claudy on AI in market research. 11:15 and 13:15, the presentations, with Paul and Julie. Twelve minutes a team, then three minutes of questions. Marta's screen live, your heartbeat.log showing a Monday that ran with nobody at the keyboard, the number your agent scored on the fifty, Cato's number beside it, how many members came back, and your two worst mistakes. The two worst mistakes are worth more than the number. A team that hides its misses has not learned the week.`,
   },
   {
     t: "The gym files",
@@ -105,7 +109,7 @@ Every name and every swipe is made up. Nobody in these files exists.
 The same members, check-ins and the agent's Monday are in Google Sheets if you want to look before you download, and the Monday sheet shows every email the agent wrote on 31 August in a cell beside the member.`,
     filesTitle: "Download",
     files: [
-      { name: "gimnasio-zorro.zip", what: "The whole folder: the three data files, the three pages, the three role pages, the runbook, the set-up sheet, and the Attio loader in tools.", href: "/zorro/gimnasio-zorro.zip" },
+      { name: "gimnasio-zorro.zip", what: "The whole folder: the three data files, the three pages, the four role pages, the runbook, the set-up sheet, and in tools the Attio loader, the runner and the clock.", href: "/zorro/gimnasio-zorro.zip" },
       { name: "members.csv", what: "900 members. Id, name, email, joined, plan, goal, notes from the desk.", href: "/zorro/members.csv" },
       { name: "checkins.csv", what: "27,871 door swipes, 8 June to 13 September 2026.", href: "/zorro/checkins.csv" },
       { name: "email_log.csv", what: "What happened to the 65 emails sent on 31 August.", href: "/zorro/email_log.csv" },
@@ -166,6 +170,6 @@ One person to one person. It reminds him he had a goal without naming his privat
   },
   {
     t: "Stuck? Ask Isa",
-    text: `Isa is the chat in the corner of this page. She has read every page here, the runbook, the three role pages, the set-up sheet and the three pages about the gym. She knows the build guide by step number. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
+    text: `Isa is the chat in the corner of this page. She has read every page here, the runbook, the four role pages, the set-up sheet and the three pages about the gym. She knows the build guide by step number. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
   },
 ];

@@ -1,6 +1,6 @@
 # Carlos. The one who pulls the numbers and cannot write
 
-The first of the three. Four questions, on one page. His code turns four files into one file Enrique
+The first of the four. Four questions, on one page. His code turns four files into one file Enrique
 can judge from, the same shape every Monday. He is not allowed to write a word to a member or to
 describe a number. In real agent teams the mistakes are almost never in the fetching, they are in the
 sentence written next to what was fetched.
