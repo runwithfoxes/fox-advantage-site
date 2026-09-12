@@ -7552,8 +7552,3 @@ a.project-card {
 .hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
 .hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
 .hpx-quotes .hpx-qdot.on { background: #fff; }
-
-/* /zorro: the bubble keeps its name on a phone too, because the page tells students to look for Isa. */
-@media (max-width: 768px) {
-  .chat-bubble-wrap.zorro .chat-bubble-label { display: inline-block; }
-}

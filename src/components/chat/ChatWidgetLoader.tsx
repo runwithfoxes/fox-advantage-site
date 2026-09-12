@@ -20,7 +20,9 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
  * page is that every pixel on it comes from SoftCo's brand system; Isa arrives
  * in Run with Foxes' own chrome and colours, which breaks the demonstration.
  */
-const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals"];
+/* /zorro - the UCD x IE student page, 12 Sep 2026. Isa sits in the rail there, the same
+ * slot as the course modules (ZorroIsa.tsx), so the floating one would be a second Isa. */
+const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();

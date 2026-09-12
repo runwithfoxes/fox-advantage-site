@@ -57,12 +57,6 @@ export default function ChatWidget() {
   const isZorro = pathname === "/zorro" || pathname?.startsWith("/zorro/");
   const welcome = isZorro ? ZORRO_WELCOME : isContact ? CONTACT_WELCOME : WELCOME;
   const [isOpen, setIsOpen] = useState(false);
-  // /zorro has its own Ask Isa buttons in the page copy; they fire this event.
-  useEffect(() => {
-    const open = () => setIsOpen(true);
-    window.addEventListener("isa:open", open);
-    return () => window.removeEventListener("isa:open", open);
-  }, []);
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -174,8 +168,8 @@ export default function ChatWidget() {
 
   if (!isOpen) {
     return (
-      <div className={isZorro ? "chat-bubble-wrap zorro" : "chat-bubble-wrap"}>
-        <span className="chat-bubble-label">{isZorro ? "Ask Isa" : "Can I help?"}</span>
+      <div className="chat-bubble-wrap">
+        <span className="chat-bubble-label">Can I help?</span>
         <button
           className="chat-bubble"
           onClick={() => setIsOpen(true)}

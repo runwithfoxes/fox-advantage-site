@@ -170,6 +170,6 @@ One person to one person. It reminds him he had a goal without naming his privat
   },
   {
     t: "Stuck? Ask Isa",
-    text: `Isa is the fox in the bottom right corner of this page, and the Ask Isa button at the top. She has read every page here, the runbook, the four role pages, the set-up sheet and the three pages about the gym. She knows the build guide by step number. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
+    text: `Isa is the chat in the column on the left of this page, at the top on a phone. She has read every page here, the runbook, the four role pages, the set-up sheet and the three pages about the gym. She knows the build guide by step number. She will not write your agent for you, and she will not tell you the answer to the three practice members, but she will tell you what you have missed and where on this page the answer is. If Claude Code will not install, if the Attio token will not work, if Carlos gives a different answer the second time, ask her first. If she cannot help, ask Julie or Paul in the room.`,
   },
 ];
