@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tuesday 9:45. Carlos and Enrique get built</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#FAFAF8;--text:#1D1B1B;--muted:#8A8A85;--sky:#3A7CA5;--deep:#1A3A4E;--border:#E0E0DC;--frame:#EDEEF1;--panel:#FFFFFF;--fill:#D9D9D4;--orange:#F47521;--green:#2E7D5B;
+--sans:'Space Grotesk',ui-sans-serif,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--mono);font-weight:300;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:0 0;background:var(--bg)}
+#stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);background-size:28px 28px;opacity:.4;pointer-events:none}
+.slide{position:absolute;inset:0;padding:72px 96px 60px;display:none;flex-direction:column;justify-content:flex-start}
+.slide.on{display:flex}
+.kicker{position:absolute;left:96px;top:64px}
+.kicker{font:400 13px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+h1{font:300 54px/1.12 var(--sans);letter-spacing:-1px;margin-top:0;max-width:none}
+h1.huge{font-size:96px;letter-spacing:-3px}
+.dek{font:300 21px/1.6 var(--mono);margin-top:16px;max-width:none}
+.dek.after{margin-top:34px}
+.small{font-size:14px;margin-top:26px}
+.muted{color:var(--muted)}
+.fill{color:var(--orange)}
+.split{display:flex;justify-content:space-between;align-items:center}
+.split .left{flex:0 0 640px}.split .right{flex:0 0 auto;display:flex;justify-content:flex-end}
+.s-title .split{align-items:center;flex:1}
+.bio{flex:1;align-items:center}
+.film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.title-over{position:absolute;left:96px;bottom:56px;z-index:1;color:var(--bg);max-width:470px}
+.title-over h1.huge{font-size:62px;letter-spacing:-2px}
+.title-over .dek{font-size:17px;margin-top:10px}
+.title-over .small{font-size:11.5px;margin-top:14px;line-height:1.5}
+.title-over .dek,.title-over .small{color:var(--bg)}
+.title-over .small{opacity:.8}
+.s-video .kicker,.s-video .notes{display:none}
+.s-video{padding:0}
+.fox{width:560px;height:560px;object-fit:contain}
+.lines{list-style:none;margin-top:30px}
+.lines li{font:300 22px/1.6 var(--mono);padding:14px 0;border-top:1px solid var(--border)}
+.lines li:last-child{border-bottom:1px solid var(--border)}
+.shot{width:100%;height:100%;object-fit:cover;object-position:top left}
+
+.bio{display:flex;gap:64px}
+.bio-photo{width:400px;height:520px;object-fit:cover;flex:0 0 400px}
+.bio-text{flex:1;max-width:860px}
+.bio-p{font:300 22px/1.7 var(--mono);margin-top:22px}
+.bio-text h1{margin-bottom:8px}
+
+/* windows */
+.win{background:var(--frame);border:1px solid rgba(20,20,30,.10);border-radius:15px;padding:0 8px 8px;box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.08),0 28px 64px rgba(26,58,78,.10);display:flex;flex-direction:column}
+.win-bar{height:30px;display:flex;align-items:center;gap:10px;font:600 11.5px/1 var(--mono);color:var(--text);padding:0 4px}
+.lights{display:inline-flex;gap:6px}.lights i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.lights i:nth-child(1){background:#ff5f57}.lights i:nth-child(2){background:#febc2e}.lights i:nth-child(3){background:#28c840}
+.win-right{margin-left:auto;font-weight:400;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-size:10.5px}
+.win-panel{background:var(--panel);border:1px solid rgba(20,20,30,.07);border-radius:9px;flex:1;overflow:hidden;position:relative}
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slide.on .rise{opacity:0;animation:rise .7s ease-out forwards}
+.slide.on .bar{transform-origin:bottom;transform:scaleY(0);animation:bar .6s ease-out forwards}
+@keyframes bar{to{transform:none}}
+.slide.on .dot{opacity:0;animation:pop .35s ease-out forwards}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+@keyframes blink{50%{opacity:0}}
+.caret{color:var(--sky);animation:blink 1s step-end infinite}
+.ring{animation:ringpulse 2.4s ease-in-out infinite}
+@keyframes ringpulse{50%{stroke-width:6;opacity:.5}}
+@media(prefers-reduced-motion:reduce){.slide.on .rise,.slide.on .bar,.slide.on .dot,.slide.on .bcard{animation:none!important;opacity:1;transform:none}}
+
+/* 3 map */
+.maprow{display:flex;gap:40px;margin-top:20px;align-items:center}
+.mapwrap{width:1000px;height:600px}
+.maplegend{list-style:none;flex:1}
+.maplegend li{font:300 20px/1.3 var(--mono);padding:11px 0;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center}
+.maplegend li:last-child{border-bottom:1px solid var(--border)}
+.maplegend span{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sky);color:var(--bg);font:400 12px/1 var(--mono);align-items:center;justify-content:center}
+.mapnum{font:400 11px var(--mono);fill:#FAFAF8}
+.map{width:100%;height:100%}
+.maplabel{font:400 16px var(--mono);fill:var(--text)}.maplabel.muted{fill:var(--muted);font-size:14px}
+
+/* 4 four words */
+.fourwords{display:flex;gap:0;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.word{flex:1;padding:56px 0;font:300 72px/1 var(--sans);letter-spacing:-2px;border-left:1px solid var(--border);padding-left:32px}
+.word:first-child{border-left:0;padding-left:0}
+
+/* 5 phones */
+.phones{display:flex;gap:200px;margin-top:56px;justify-content:center}
+.phone{width:420px}
+.screen{width:340px;height:380px;margin:0 auto;background:var(--frame);border:1px solid rgba(20,20,30,.12);border-radius:34px;padding:22px 16px 16px;position:relative}
+.screen.chat{display:flex;flex-direction:column;gap:14px}
+.bubble{max-width:82%;padding:12px 14px;border-radius:14px;font:300 15px/1.5 var(--mono);background:var(--panel);border:1px solid rgba(20,20,30,.07)}
+.bubble.me{align-self:flex-end;background:var(--sky);color:var(--bg)}
+.bubble.ai{display:flex;flex-direction:column;gap:8px}
+.pill{display:inline-block;height:10px;border-radius:5px;background:var(--fill)}
+.w40{width:40%}.w55{width:55%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}
+.composer{margin-top:auto;height:44px;border-radius:22px;background:var(--panel);border:1px solid rgba(20,20,30,.08);display:flex;align-items:center;padding:0 8px 0 16px;gap:10px}
+.composer .pill{flex:0 0 55%}.send{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--sky)}
+.screen.log{padding:30px 22px;display:flex;flex-direction:column;gap:16px}
+.logline{font:300 17px/1.4 var(--mono);color:var(--text);padding-left:18px;position:relative}
+.logline::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--sky)}
+.phone-cap{margin-top:22px;text-align:center;font:300 18px/1.5 var(--mono);color:var(--text);white-space:nowrap}
+.pnum{font:300 40px/1 var(--sans);color:var(--sky);text-align:center}
+.ptitle{font:300 28px/1.2 var(--sans);text-align:center;margin:8px 0 22px}
+
+/* 6, 19 big numbers */
+.bigrow{display:flex;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.big{flex:1;padding:44px 0 40px 32px;border-left:1px solid var(--border)}.big:first-child{border-left:0;padding-left:0}
+.num{font:300 120px/1 var(--sans);letter-spacing:-4px}.num .plus{font-size:56px;color:var(--sky);margin-left:8px;letter-spacing:-1px}
+.cap{margin-top:14px;font:300 20px/1.4 var(--mono);color:var(--muted)}
+.quote{font:300 34px/1.4 var(--sans);letter-spacing:-.5px;margin-top:56px;max-width:1250px}
+.quote.big{font-size:46px;margin-top:70px;max-width:1350px}
+.attrib{margin-top:34px;font:300 18px/1 var(--mono);color:var(--muted)}
+
+/* 7 door */
+.row{display:flex;align-items:center}.row.top{align-items:flex-start}.gap48{gap:48px}.gap40{gap:40px}
+.row{margin-top:36px}
+.reader{width:320px;height:440px}
+.log{border-collapse:collapse;width:100%;font:300 16px/1.5 var(--mono)}
+.log th{text-align:left;font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:14px 18px 8px;border-bottom:1px solid var(--border)}
+.log td{padding:9px 18px;border-bottom:1px solid var(--border)}
+.log-more{padding:14px 18px;font-size:14px;color:var(--muted)}
+
+/* 9, 10 chart */
+.chartwrap{margin-top:30px;width:1100px}
+.chart{width:1100px;height:420px}
+.axis{font:400 13px var(--mono);fill:var(--muted)}.axis.dark{fill:var(--text)}
+
+/* 11, 12 handoff */
+.handoff{position:relative;margin-top:40px;display:flex;gap:56px;align-items:flex-start;height:420px}
+.hcard-in{padding:22px 22px}.hname{font:300 34px/1.1 var(--sans);letter-spacing:-.5px}.hjob{margin-top:10px;font:300 16px/1.6 var(--mono)}
+.handoff.moving .hjob{color:var(--text)}
+.recordwrap{position:absolute;left:1068px;top:300px}
+.record{width:300px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:16px 18px;display:flex;flex-direction:column;gap:9px;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.rname{font:400 11px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.rline{margin-top:4px}
+.pillx{display:inline-block;font:400 11px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:10px;background:var(--sky);color:var(--bg)}
+.pillx.was{background:var(--fill);color:var(--text)}
+.mover{position:absolute;opacity:0;will-change:transform}
+.mover.sheet{width:84px;height:104px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;padding:16px 12px;display:flex;flex-direction:column;gap:11px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.sheet i{display:block;height:7px;border-radius:4px;background:var(--fill)}.mover.sheet i:nth-child(2){width:70%}.mover.sheet i:nth-child(3){width:85%}
+.mover.table{width:110px;height:72px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.table i{display:block;background:var(--fill);border-radius:3px}.mover.table i:nth-child(1){background:var(--sky);opacity:.55}
+.mover.mail{width:104px;height:70px;background:var(--panel);border:1.5px solid var(--sky);border-radius:8px;position:absolute;overflow:hidden;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.mail span{position:absolute;left:-2px;right:-2px;top:-30px;height:70px;border:1.5px solid var(--sky);transform:rotate(45deg) scale(.6);transform-origin:center}
+.mover.tick{font:400 44px/1 var(--mono);color:var(--green)}
+/* the four cards sit 356px apart (300 wide, 56 gap). Each object is born inside one card and carried to the next; the email drops into the record under Rosa's card. */
+.slide.on .m1{left:110px;top:100px;animation:m1 9s linear infinite}
+.slide.on .m2{left:466px;top:110px;animation:m2 9s linear infinite}
+.slide.on .m3{left:822px;top:110px;animation:m3 9s linear infinite}
+.slide.on .m4{left:942px;top:118px;animation:m4 9s linear infinite}
+@keyframes m1{0%{opacity:0;transform:translate(0,20px)}5%{opacity:1;transform:none}10%{opacity:1;transform:none}26%{opacity:1;transform:translate(356px,0) scale(.85)}29%{opacity:0;transform:translate(356px,0) scale(.6)}100%{opacity:0}}
+@keyframes m2{0%,29%{opacity:0;transform:translate(0,20px)}34%{opacity:1;transform:none}39%{opacity:1;transform:none}55%{opacity:1;transform:translate(356px,0) scale(.85)}58%{opacity:0;transform:translate(356px,0) scale(.6)}100%{opacity:0}}
+@keyframes m3{0%,58%{opacity:0;transform:translate(0,20px)}63%{opacity:1;transform:none}76%{opacity:1;transform:none}92%{opacity:1;transform:translate(271px,196px) scale(.7)}95%{opacity:0;transform:translate(271px,196px) scale(.5)}100%{opacity:0}}
+@keyframes m4{0%,66%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.15)}74%{opacity:1;transform:none}78%{opacity:0}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.mover{display:none}}
+
+/* 13 film 1 */
+.term{padding:20px 22px;font:300 15px/1.9 var(--mono);color:var(--text)}
+.tl{white-space:pre-wrap}
+.filmcap{margin-top:18px;font:400 12px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.scatter{width:100%;height:100%}
+
+/* 14, 16, 17 board */
+.board{display:flex;height:100%;padding:8px 6px 6px}
+.bcol{flex:1;border-left:1px solid var(--border);padding:8px 8px 0;position:relative;min-width:0}
+.bcol:first-child{border-left:0}
+.bhead{font:400 11px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:6px 4px 12px;min-height:38px}
+.bbody{display:flex;flex-wrap:wrap;gap:4px 6px;align-content:flex-start}
+.bcard{width:calc(25% - 5px);height:27px;background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:5px;padding:2px 8px;font:400 10.5px/1.2 var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.bsub{display:block;font-weight:300;font-size:9px;color:var(--muted)}
+.bcard.ghost{width:100%;height:30px;display:flex;align-items:center}
+.bmore{font:300 11px/1 var(--mono);color:var(--muted);padding:8px 4px}
+.slide.on .bcard.slide-in{opacity:0;animation:slidein .45s ease-out forwards}
+@keyframes slidein{from{opacity:0;transform:translateX(-120%)}to{opacity:1;transform:none}}
+.slide.on .bcard.move{animation:moveout .5s ease-in forwards}
+@keyframes moveout{to{opacity:0;transform:translateX(110%)}}
+.slide.on .bcard.dim{animation:dimout .5s ease-in forwards}
+@keyframes dimout{to{opacity:0;transform:translateX(230%)}}
+.slide.on .arrive{opacity:0;animation:rise .4s ease-out forwards}
+
+.bcol:nth-child(4) .bcard,.bcol:nth-child(5) .bcard{width:calc(33.33% - 4px)}
+.bcol:nth-child(2) .bcard{width:calc(20% - 5px)}
+
+/* 15 the open card */
+.open{display:flex;gap:22px;padding:22px;height:100%}
+.ocard{width:380px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px;box-shadow:0 8px 24px rgba(26,58,78,.08);align-self:flex-start}
+.oname{font:300 32px/1.1 var(--sans);letter-spacing:-.5px;margin-bottom:18px}
+.ok{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.ov{font:300 16px/1.5 var(--mono);margin-top:4px}
+.ostatus{margin-top:22px;display:flex;gap:8px}
+.email{flex:1;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px 28px;align-self:flex-start;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.ehead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.el{font:300 17px/1.7 var(--mono);margin-bottom:12px}
+.drew{width:300px;border:1px solid var(--sky);border-radius:9px;padding:18px 20px;align-self:flex-start}
+.dhead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.ditem{font:400 14px/1.5 var(--mono);padding:10px 0;border-top:1px solid var(--border)}
+.ditem span{display:block;font-weight:300;font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* 16 loop */
+.loopwrap{width:340px;height:440px;margin-top:20px}
+.loop{width:100%;height:100%}
+.ringline{stroke-dashoffset:2000;stroke-dasharray:2000}
+.slide.on .ringline{animation:draw 2.4s ease-out 6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.looplabel{font:400 24px var(--mono);fill:var(--text)}
+.loopmid{font:300 38px var(--sans);fill:var(--sky)}
+
+/* 17 the real world process */
+.process{display:flex;align-items:flex-start;gap:0;margin-top:44px}
+.st{flex:1;min-width:0}
+.st-arrow{flex:0 0 40px;padding-top:120px}.st-arrow svg{width:40px;height:20px}
+.st-title{font:300 26px/1.1 var(--sans);letter-spacing:-.3px;margin-bottom:14px}
+.st .win{width:250px!important;height:190px!important}
+.st-body{padding:14px}
+.st-plain{width:250px;height:190px}
+.st-door{width:250px;height:190px}
+.st-rows{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-cols{display:flex;gap:8px;height:140px}.st-cols i{flex:1;border-left:1px solid var(--border)}.st-cols i:first-child{border-left:0}
+.st-mail{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-agents{display:flex;flex-direction:column;gap:5px;height:190px;justify-content:center;overflow:hidden}
+.st-agent{background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:7px;padding:4px 9px;font:300 10.5px/1.3 var(--mono);white-space:nowrap;box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.st-name{display:block;font:300 14px/1.1 var(--sans);margin-bottom:1px}
+.st-text{margin-top:16px;font:300 15px/1.55 var(--mono);padding-right:18px}
+.st-loop{margin-top:18px}.st-loop svg{width:100%;height:40px;display:block}.st-loop p{font:300 15px/1.5 var(--mono);color:var(--sky);margin-top:6px}
+.st-note{margin-top:22px;font-size:17px}
+
+/* 18 the clock */
+.clockface{width:250px;height:190px}
+.st-term{padding:12px 14px;font:300 11px/1.55 var(--mono);color:var(--text);display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.st-term .you{color:var(--sky);font-style:normal}.st-term .dim{color:var(--muted)}
+.st-term.beat{font-size:10px;line-height:1.5;white-space:nowrap}
+.clocknote{display:flex;gap:64px;margin-top:34px;border-top:1px solid var(--border)}
+.clocknote div{flex:1;padding-top:20px}
+.clocknote b{display:block;font:300 24px/1.2 var(--sans);letter-spacing:-.3px;margin-bottom:8px}
+.clocknote p{font:300 16px/1.6 var(--mono)}
+/* 18 week */
+.week{display:flex;margin-top:60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.day{flex:1;padding:36px 28px 40px;border-left:1px solid var(--border);min-height:420px}.day:first-child{border-left:0;padding-left:0}
+.dname{font:300 30px/1 var(--sans);letter-spacing:-.5px}
+.dtext{font:300 17px/1.6 var(--mono);margin-top:22px}
+.mini{width:150px;height:110px;margin-top:28px;border:1px solid rgba(20,20,30,.12);border-radius:9px;background:var(--panel);position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px}
+.mini.term{flex-direction:column;align-items:flex-start;justify-content:flex-start}
+.mini.term i{display:block;height:6px;border-radius:3px;background:var(--fill);width:70%}.mini.term i:nth-child(2){width:45%}.mini.term i:nth-child(3){width:30%;background:var(--sky)}
+.mini.two b{display:block;width:44px;height:58px;border:1px solid rgba(20,20,30,.15);border-radius:5px;background:var(--bg)}
+.mini.blank{border-style:dashed}
+.mini em,.mini.number em{font:300 46px/1 var(--sans);font-style:normal;color:var(--sky)}
+
+/* 21 */
+.tonight{list-style:none;margin-top:44px;counter-reset:t}
+.tonight li{counter-increment:t;position:relative;padding:22px 0 22px 70px;border-top:1px solid var(--border);font:300 26px/1.4 var(--mono)}
+.tonight li:last-child{border-bottom:1px solid var(--border)}
+.tonight li::before{content:counter(t);position:absolute;left:0;top:26px;font:300 22px/1 var(--mono);color:var(--sky)}
+
+/* notes and chrome */
+.notes{display:none}
+#stage.notes-on .slide.on .notes{display:block;position:absolute;left:96px;right:96px;bottom:18px;padding:14px 18px;background:var(--deep);color:var(--bg);font:300 15px/1.6 var(--mono);border-radius:0}
+#counter{position:fixed;right:18px;bottom:12px;font:400 11px/1 var(--mono);letter-spacing:1.5px;color:var(--muted);opacity:.7}
+
+.s-title h1.huge{font-size:78px;letter-spacing:-2.5px}
+.term{padding:16px 18px;font:300 14px/1.55 var(--mono);display:flex;flex-direction:column;gap:6px;height:100%;overflow:hidden}
+.tl{white-space:pre-wrap;word-break:break-word}.tl.you{color:var(--sky)}.tl.it{color:var(--text)}.tl.muted{color:var(--muted)}
+.under{margin-top:14px;font:300 15px/1.5 var(--mono);color:var(--muted)}
+.tonight.compact li{font-size:22px;padding:16px 0 16px 70px}.tonight.compact li::before{top:20px}
+.tonight.narrow{flex:1;margin-top:10px}.tonight.narrow li{font-size:19px;padding:14px 0 14px 60px}.tonight.narrow li::before{top:17px;font-size:18px}
+.isawrap{flex:0 0 300px}.isashot{height:590px;width:auto;display:block;border-radius:15px;box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.08),0 28px 64px rgba(26,58,78,.10)}
+.pagetxt{padding:20px 28px;font:300 15px/1.6 var(--mono);display:flex;flex-direction:column;gap:6px;height:100%;overflow:hidden}
+.pl.h{font:300 22px/1.2 var(--sans);margin-top:10px}.pl.h:first-child{margin-top:0}
+.json{padding:18px 22px;font:300 14px/1.6 var(--mono);white-space:pre-wrap;margin:0}
+mark{background:rgba(58,124,165,.16);color:var(--text);padding:1px 3px;border-radius:3px}
+mark.bad{background:rgba(244,117,33,.18)}
+.pack{border-collapse:collapse;width:100%;margin-top:22px;font:300 14px/1.35 var(--mono)}
+.pack th{text-align:left;font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:10px 14px 8px;border-bottom:1px solid var(--border)}
+.pack td{padding:6px 14px;border-bottom:1px solid var(--border);vertical-align:middle}.pack td.note{max-width:520px;color:var(--text)}
+.wk{display:inline-flex;align-items:flex-end;gap:3px;height:32px}.wk i{display:block;width:9px;background:var(--fill);border-radius:2px 2px 0 0}.wk i.last{background:var(--sky)}
+.decis{padding:22px 30px;display:grid;grid-template-columns:120px 1fr;gap:10px 24px;font:300 16px/1.6 var(--mono);height:100%;overflow:hidden}
+.dk{font:400 11px/1.6 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding-top:4px}.dv{white-space:pre-wrap}.dv.mail{border-left:2px solid var(--sky);padding-left:16px}
+.mailbox{padding:20px 24px;font:300 15px/1.65 var(--mono);white-space:pre-wrap;height:100%;overflow:hidden}
+.shotwrap{width:100%;height:100%;overflow:hidden}.shot{width:100%;height:100%;object-fit:cover;object-position:left top}
+.dek.small{font-size:15px;margin-top:22px;color:var(--muted)}
+.mt{margin-top:30px}
+.attiofields{width:364px;height:580px;display:block}.attiotop{width:710px;height:580px;display:block}
+</style></head>
+<body><div id="stage"><section class="slide s-title" data-n="1">
+<div class="split">
+  <div class="left">
+    <h1 class="huge">Carlos and Enrique get built</h1>
+    <p class="dek">Tuesday. By lunch, Carlos runs on all 900 members and gives the same file twice, and Enrique has decided and written for one member, then ten.</p>
+  </div>
+  <div class="right"><img class="fox rise" src="assets/fox-desk.png" alt="a fox at the front desk with a coffee" /></div>
+</div><div class="notes">Tuesday. Two agents get built this morning. Carlos first, because everything else reads his file. Then Enrique. Everything else today is the build guide on the zorro page, one step at a time.</div></section><section class="slide " data-n="2">
+<h1>This is what your screen should look like right now</h1>
+<p class="dek">A terminal, opened inside the gimnasio-zorro folder on your Desktop, with Claude Code saying hello. If yours does not, steps 1 to 7 of the build guide, now.</p>
+<div class="row top gap48"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:640px;height:200px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">Terminal</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl ">$ cd Desktop/gimnasio-zorro</div><div class="tl ">$ claude</div><div class="tl muted">Hello. What would you like to do?</div><div class="tl ">█</div></div></div></div><p class="under">On a Mac</p></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:640px;height:200px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">PowerShell</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl ">PS C:\Users\you&gt; cd Desktop\gimnasio-zorro</div><div class="tl ">PS C:\Users\you\Desktop\gimnasio-zorro&gt; claude</div><div class="tl muted">Hello. What would you like to do?</div><div class="tl ">█</div></div></div></div><p class="under">On Windows</p></div></div><div class="notes">Before anything else, this is the screen. A terminal, inside the gym folder, Claude Code open. Look at your laptop. If it is not this, open the build guide on the zorro page and do steps 1 to 7 now, and Isa is there if a step does not work. Nobody builds anything until this is their screen.</div></section><section class="slide " data-n="3">
+<h1>Stuck? Isa is on the zorro page</h1>
+<p class="dek">She has read every page there, the runbook, the four role pages and the build guide by step number. Tell her three things: the step number, what you typed, and what you saw.</p>
+<div class="row top gap48">
+  <ol class="tonight compact narrow">
+    <li class="rise" style="animation-delay:.3s">The step number. She knows what step 15 asks for and what it should show.</li>
+    <li class="rise" style="animation-delay:.6s">What you typed. Paste the line, not a description of it.</li>
+    <li class="rise" style="animation-delay:.9s">What you saw. The rows, the error, the number. She works from that, not from a guess.</li>
+  </ol>
+  <div class="isawrap rise" style="animation-delay:.4s"><img class="isashot" src="assets/tuesday/isa-step15.png" alt="Isa in the rail of the zorro page, answering a question about step 15" /><p class="under">Asked on the page on Saturday, and this is what she said.</p></div>
+</div><div class="notes">Isa. She is in the column on the left of the zorro page, at the top on a phone. She has read every page there and knows the build guide by step number. She will not write your agent for you. She will tell you what you missed. Tell her three things: the step number, what you typed, what you saw. This is a real answer: I asked her about step 15 on Saturday, two runs giving different rows, and she asked which rows and pointed at the usual-per-week wording. Use her before you put your hand up.</div></section><section class="slide " data-n="4">
+<h1>Ask it loosely and you get a different answer each time</h1>
+<p class="dek">The same question, the same files, asked twice one minute apart on Saturday. Read the two verdicts. Neither one says which Monday it is looking from.</p>
+<div class="row top gap40"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:660px;height:470px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl you">&gt; Is Sergio Rubio (member Z0811) slipping? Use the files in the data folder.</div><div class="tl it">He was slipping, and he's back, but not all the way back. Sergio came three times a week like clockwork from June through 8 August, then stopped dead for four weeks with no check-ins at all between 9 August and 4 September. He reappeared on 5 and 6 September and again on 10 September, so three visits in the last eight days against his usual six.</div><div class="tl it">The August gap isn't just the Madrid summer. The whole gym only dropped about 12 percent in mid-August, from around 2,040 check-ins a week down to 1,776, while he went to zero. So something of his own was going on.</div><div class="tl it">One thing worth knowing. The email the gym sent him on 31 August was never opened and never replied to, and he walked back in five days later anyway. So treat him as a member easing back in rather than one who needs chasing. If he's still at one or two visits a week by the end of next week, that's the point to say something.</div></div></div></div></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:660px;height:470px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl you">&gt; Is Sergio Rubio (member Z0811) slipping? Use the files in the data folder.</div><div class="tl it">Sergio slipped, and he's already coming back.</div><div class="tl it">He was a steady three to four visits a week from June through 8 August. Then he stopped for four weeks, nothing at all between 8 August and 5 September. He's back since, three visits in the last week, on 5, 6 and 10 September. His last check-in was two days ago.</div><div class="tl it">A win-back email went to him on 31 August, in the middle of the gap. He didn't open it and didn't reply, so his return isn't down to that email as far as the log shows.</div><div class="tl it">One thing worth knowing. He's on a Student plan, joined July 2024, goal is build muscle. An August gap in a student is more likely a summer break than someone drifting off. I'd leave him alone for now and only flag him again if he drops back under two visits a week for a couple of weeks.</div></div></div></div></div></div><div class="notes">This is why the page exists. I asked the loose question twice, one minute apart, same files. Two different answers. One says he was slipping and is back but not all the way. The other says leave him alone, a student in August is on a summer break. Both read the data up to today, because I never said which Monday. Neither one is wrong exactly, and neither one is the same shape, and a gym cannot run on that. So we do not ask questions. We write a page that pins the shape and the date.</div></section><section class="slide " data-n="5">
+<h1>Carlos is a page with four headings on it</h1>
+<p class="dek">This is the whole agent. Every number in it can be checked, and the last heading is a list of things it must not do. Steps 8 to 10 of the build guide.</p>
+<div class="rise mt" style="animation-delay:.2s"><div class="win " style="width:1100px;height:560px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">carlos.md</span><span class="win-right"></span></div><div class="win-panel"><div class="pagetxt"><div class="pl h">## What it produces</div><div class="pl ">One row per member, with these fields: member_id, first_name, last_name, goal, notes, visits_per_week_last12 (twelve whole numbers, oldest week first), usual_per_week (the average of the first nine of those twelve weeks, to two decimal places), visits_last3 (the last three weeks added up). A week runs Monday to Sunday. The twelve weeks are the twelve full weeks before the Monday being run. Only swipes dated before that Monday count.</div><div class="pl h">## Where it lands</div><div class="pl ">A file called carlos-out.json in this folder, one row per member. And one line printed to say how many rows were written.</div><div class="pl h">## How it knows it is done</div><div class="pl ">Every member in data/members.csv has a row. Running it twice on the same Monday gives the same file.</div><div class="pl h">## What it does not do</div><div class="pl ">It does not decide who is slipping. It does not write to any member. It does not touch Attio. It does not read the messaging pages.</div></div></div></div></div><div class="notes">This is Carlos, finished. A text file called carlos.md with four headings. What it produces, in a fixed shape with every field named. Where it lands, a file with a name. How it knows it is done, and notice that every part of that can be false. And what it does not do. Put it in your own words if you like, but keep every number. This is what you build first, steps 8 to 10.</div></section><section class="slide " data-n="6">
+<h1>Run it for one member, and check three numbers</h1>
+<p class="dek">Sergio Rubio, Z0811, as of Monday 31 August. The twelve weeks, the usual, and the last three. Then open the check-ins and count them yourself. Steps 11 and 12.</p>
+<div class="row top gap48"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:760px;height:330px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">carlos-out.json, one row</span><span class="win-right"></span></div><div class="win-panel"><pre class="json">{
+ "member_id": "Z0811",
+ "first_name": "Sergio",
+ "last_name": "Rubio",
+ "goal": "build muscle",
+ "notes": "",
+ <mark>"visits_per_week_last12": [</mark>2, 4, 3, 3, 3, 3, 4, 3, 3, 0, 0, 0],
+ <mark>"usual_per_week": 3.11</mark>,
+ <mark>"visits_last3": 0</mark>
+}</pre></div></div></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:520px;height:300px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">checkins.csv, member Z0811</span><span class="win-right"></span></div><div class="win-panel"><table class="log"><tr><th>member id</th><th>date</th><th>time</th></tr><tr><td>Z0811</td><td>2026-08-01</td><td>07:00</td></tr><tr><td>Z0811</td><td>2026-08-04</td><td>13:01</td></tr><tr><td>Z0811</td><td>2026-08-05</td><td>17:55</td></tr><tr><td>Z0811</td><td>2026-08-08</td><td>18:36</td></tr><tr><td colspan="3" class="log-more">nothing between 2026-08-08 and 30 August</td></tr></table></div></div><p class="under">His last swipes before 31 August. About three a week, then nothing.</p></div></div><div class="notes">Run Carlos for one member first. Sergio. This is the row, and these are the three numbers to check: the twelve weeks, 2 4 3 3 3 3 4 3 3 0 0 0; the usual, 3.11; the last three weeks, 0. Then do not take its word for it. Open the check-ins sheet, filter to Z0811, and count. His last swipe was 2026-08-08. Nothing after. If your numbers differ, your page said something different. Read it again.</div></section><section class="slide " data-n="7">
+<h1>Then your team&rsquo;s ten, and look at every row</h1>
+<p class="dek">Team 1&rsquo;s pack. Twelve weeks of visits per member, and the desk notes. The count alone gets some of these wrong; the notes say why. Step 13.</p>
+<table class="pack"><tr><th>id</th><th>member</th><th>goal</th><th>notes from the desk</th><th>weeks 1 to 12</th></tr><tr class="rise" style="animation-delay:0.15s"><td>Z0652</td><td>Alba Ortiz</td><td>rehab after injury</td><td class="note">Comes every other week, that is her pattern.</td><td><span class="wk"><i style="height:3px" class=""></i><i style="height:7px" class=""></i><i style="height:3px" class=""></i><i style="height:7px" class=""></i><i style="height:3px" class=""></i><i style="height:7px" class=""></i><i style="height:3px" class=""></i><i style="height:7px" class=""></i><i style="height:3px" class=""></i><i style="height:7px" class="last"></i><i style="height:3px" class="last"></i><i style="height:7px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.23s"><td>Z0867</td><td>Álvaro Cortés</td><td>general fitness</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:14px" class=""></i><i style="height:3px" class=""></i><i style="height:21px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.31s"><td>Z0854</td><td>Leo Garrido</td><td>strength as I get older</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:28px" class=""></i><i style="height:14px" class=""></i><i style="height:14px" class=""></i><i style="height:7px" class="last"></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.39s"><td>Z0383</td><td>Laura Fuentes</td><td>build muscle</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:7px" class=""></i><i style="height:14px" class=""></i><i style="height:7px" class=""></i><i style="height:14px" class=""></i><i style="height:14px" class=""></i><i style="height:7px" class=""></i><i style="height:7px" class=""></i><i style="height:21px" class=""></i><i style="height:14px" class=""></i><i style="height:21px" class="last"></i><i style="height:14px" class="last"></i><i style="height:7px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.47s"><td>Z0767</td><td>Sergio Moreno</td><td>strength as I get older</td><td class="note">Away in August, back in September.</td><td><span class="wk"><i style="height:21px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:21px" class=""></i><i style="height:21px" class=""></i><i style="height:7px" class=""></i><i style="height:14px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i><i style="height:14px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.55s"><td>Z0310</td><td>Marta Díaz</td><td>general fitness</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:28px" class=""></i><i style="height:35px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:35px" class=""></i><i style="height:28px" class=""></i><i style="height:28px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:21px" class="last"></i><i style="height:28px" class="last"></i><i style="height:35px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.63s"><td>Z0842</td><td>Noa Martínez</td><td>general fitness</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:35px" class=""></i><i style="height:14px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:14px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.71s"><td>Z0836</td><td>Miguel Pérez</td><td>get fit for the Madrid half marathon in October</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:28px" class=""></i><i style="height:28px" class=""></i><i style="height:28px" class=""></i><i style="height:14px" class=""></i><i style="height:21px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:21px" class=""></i><i style="height:35px" class=""></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.79s"><td>Z0807</td><td>Álvaro Molina</td><td>strength as I get older</td><td class="note"><span class=muted>none</span></td><td><span class="wk"><i style="height:21px" class=""></i><i style="height:14px" class=""></i><i style="height:21px" class=""></i><i style="height:14px" class=""></i><i style="height:21px" class=""></i><i style="height:14px" class=""></i><i style="height:28px" class=""></i><i style="height:21px" class=""></i><i style="height:7px" class=""></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i><i style="height:3px" class="last"></i></span></td></tr><tr class="rise" style="animation-delay:0.87s"><td>Z0728</td><td>Sofía Rodríguez</td><td>build muscle</td><td class="note">Moved to Chamberí in August.</td><td><span class="wk"><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:3px" class=""></i><i style="height:7px" class="last"></i><i style="height:14px" class="last"></i><i style="height:7px" class="last"></i></span></td></tr></table><div class="notes">Then your team's ten. This is team one's pack; yours is on the zorro page. Twelve weeks of visits per member, and the desk notes. Look at every row against Carlos's output. The bars on the right are the twelve weeks; the last three are dark. Some of these look like they are slipping and are not, and the note says why. Carlos does not decide that. Enrique does, and he needs Carlos's numbers to be right.</div></section><section class="slide " data-n="8">
+<h1>Run it a second time. It must give the same file.</h1>
+<p class="dek">The same line, typed twice, then ask it to compare. This was done on Saturday on a clean copy of the folder with only carlos.md in it. Steps 14 and 15.</p>
+<div class="row top gap48"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:640px;height:240px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl you">&gt; Read carlos.md and do what it says for every member in data/members.csv, as of Monday 31 August 2026. Write the file carlos.md says to write.</div><div class="tl it">Wrote carlos-out.json with 900 rows.</div><div class="tl muted">took about 3 minutes</div></div></div></div></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:640px;height:240px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl you">&gt; Read carlos.md and do what it says for every member in data/members.csv, as of Monday 31 August 2026. Write the file carlos.md says to write.</div><div class="tl it">Wrote carlos-out.json with 900 rows.</div><div class="tl muted">took about 4 minutes</div></div></div></div></div></div>
+<div class="rise" style="animation-delay:.9s; margin-top:24px"><div class="win " style="width:1328px;height:150px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">claude code</span><span class="win-right"></span></div><div class="win-panel"><div class="term"><div class="tl you">&gt; Compare the file you just wrote with the one you wrote before. Are they identical, row for row?</div><div class="tl it">Yes. All 900 rows are identical.</div></div></div></div></div><div class="notes">This is the test that matters. Type the same line twice. Then ask it to compare. On Saturday I did exactly this on a clean copy of the folder: identical, all 900 rows. If yours says no, the page is not finished: something in carlos.md leaves room for a different answer. Ask which rows differ and why, and tighten the page. That is the whole skill.</div></section><section class="slide " data-n="9">
+<h1>Enrique is the same four headings, and he cannot count</h1>
+<p class="dek">He reads Carlos&rsquo;s file and the three pages in messaging. He never opens the check-ins. The rules for the email are on the page about how Marta writes. Step 17.</p>
+<div class="rise mt" style="animation-delay:.2s"><div class="win " style="width:1100px;height:560px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">enrique.md</span><span class="win-right"></span></div><div class="win-panel"><div class="pagetxt"><div class="pl h">## What it produces</div><div class="pl ">One decision per row of carlos-out.json: member_id, decision (draft, skip or ask), reason (one line quoting the numbers or the note), email (the email, or nothing).</div><div class="pl h">## Where it lands</div><div class="pl ">A file called enrique-out.json in this folder. For every draft, the email goes in data/email_log.csv with the date. Later: the reason and the email on the member's card in Attio, and the status set to emailed.</div><div class="pl h">## How it knows it is done</div><div class="pl ">Every row in carlos-out.json has a decision. Every draft has an email under eighty words with one ask. Running it twice gives the same decisions.</div><div class="pl h">## What it does not do</div><div class="pl ">It does not open the check-ins. It does not count anything; it reads Carlos's numbers. It never writes to a member whose note says away, injured, physio, surgery, doctor or pregnant; those are ask. It never mentions the fee, a discount, or the member's private life.</div></div></div></div></div><div class="notes">Enrique. Same four headings. He reads Carlos's file and the three pages about the gym, and he never opens the check-ins. That split is on purpose: the one who counts cannot write, and the one who writes cannot count, because the mistakes happen in the sentence next to the number. Draft, skip or ask. The words that make it an ask are on the page: away, injured, physio, surgery, doctor, pregnant.</div></section><section class="slide " data-n="10">
+<h1>What Enrique produces for Sergio</h1>
+<p class="dek">A decision, a reason quoting Carlos&rsquo;s numbers, and the email. Read it as Marta. Would she send it? Step 18.</p>
+<div class="rise mt" style="animation-delay:.2s"><div class="win " style="width:1100px;height:470px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">enrique-out.json, one row</span><span class="win-right"></span></div><div class="win-panel"><div class="decis"><div class="dk">decision</div><div class="dv">draft</div><div class="dk">reason</div><div class="dv">visits_last3 0 vs usual_per_week 3.11; joined 774 days ago; last visit 3 weeks ago; notes empty; previously null</div><div class="dk">email</div><div class="dv mail">Hi Sergio,
+
+Marta here, and I noticed you have not been in for a few weeks. You put real work into what you built here, and it is worth keeping. The floor has been quiet in the evenings and your bench is free. Could you come in for one session this week?
+
+Marta</div></div></div></div></div><div class="notes">This is Enrique's real output for Sergio. Draft. The reason quotes the numbers: zero in the last three weeks against three a week, joined two years ago, no note. And the email. Read it as Marta. Who it is from in the first line, that she noticed, what he was working towards in general words, one ask, and it ends. Under eighty words. Nothing about fees, nothing about his private life.</div></section><section class="slide " data-n="11">
+<h1>A bad email beside a good one</h1>
+<p class="dek">Nobody wrote the left one. It does not know who Rubén is. Three asks, a discount, and the renewal, which is the one thing that makes a drifting member cancel. The right one is one person writing to one person.</p>
+<div class="row top gap48"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:640px;height:330px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">a bad one</span><span class="win-right"></span></div><div class="win-panel"><div class="mailbox">Hi Rubén,
+
+<mark class="bad">We have missed you</mark> at Gimnasio Zorro! It has been a while since your last visit and we wanted to check in. Remember, consistency is key on your <mark class="bad">fitness journey</mark>. We have lots of great classes this month, plus a <mark class="bad">special offer</mark> on personal training. Don't forget your <mark class="bad">membership renews</mark> on the 30th. Hope to see you soon!
+
+The Zorro team</div></div></div></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:640px;height:330px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">a good one</span><span class="win-right"></span></div><div class="win-panel"><div class="mailbox">Hi Rubén,
+
+Marta here. I noticed you have not been in since the middle of August. You told me when you joined what you were working towards, and a few weeks off makes that harder. Tuesday at 7 there is a small class that would suit, and I will be on the desk if you want a word first. Come in this week?
+
+Marta</div></div></div></div></div>
+<p class="dek small">Four things marked on the left. Every rule behind them is on the zorro page under how Marta writes.</p><div class="notes">Two emails to the same member. The left one: we have missed you, your fitness journey, a special offer, and the renewal date. Nobody wrote it and it does not know who Rubén is. The right one: Marta here, I noticed, what you were working towards, one class at one time, come in this week. Every email your Enrique writes gets held against the right one. The rules are on the zorro page.</div></section><section class="slide " data-n="12">
+<h1>Where it lands: the member&rsquo;s card in Attio</h1>
+<p class="dek">Sergio&rsquo;s real card in the Zorro workspace. Enrique wrote the reason and the email on it on 31 August and set it to emailed. Two weeks later Rosa moved it to came back. Steps 20 to 24.</p>
+<div class="row top gap48 mt"><div class="rise" style="animation-delay:.2s"><div class="win " style="width:380px;height:618px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">the record</span><span class="win-right"></span></div><div class="win-panel"><img class="attiofields" src="assets/tuesday/attio-sergio-fields.png" alt="the record column of Sergio Rubio&rsquo;s card: member id, plan, goal, joined, status came back, last flagged, reason, email, outcome" /></div></div></div><div class="rise" style="animation-delay:.5s"><div class="win " style="width:726px;height:618px"><div class="win-bar"><span class="lights"><i></i><i></i><i></i></span><span class="win-title">attio, the Zorro workspace</span><span class="win-right"></span></div><div class="win-panel"><img class="attiotop" src="assets/tuesday/attio-sergio-top.png" alt="the top of Sergio Rubio&rsquo;s card, and the activity: Enrique changed 3 attributes, Enrique created Person" /></div></div></div></div><div class="notes">This is where it lands. Sergio's card in the CRM, the real one. Member id, plan, goal, joined. Then the fields the agents write: status, last flagged, the reason, the email, and the outcome. Enrique put the reason and the email here on 31 August and set the status to emailed. Rosa moved it to came back two weeks later. The activity on the right is the agents writing: Enrique created the card and changed it twice. Marta opens Attio, not a folder. Steps 20 to 24 connect your workspace.</div></section><section class="slide " data-n="13">
+<h1>Tonight, one number</h1>
+<p class="dek">Run Enrique on all 900 as of Monday 31 August, and bring how many members he wrote to. Ours wrote to 65.</p>
+<div class="bigrow">
+  <div class="big rise" style="animation-delay:.2s"><div class="num">65</div><div class="cap">members our Enrique wrote to on 31 August</div></div>
+  <div class="big rise" style="animation-delay:.5s"><div class="num">28</div><div class="cap">of them back within two weeks, which Rosa counts on Tuesday</div></div>
+  <div class="big rise" style="animation-delay:.8s"><div class="num">?</div><div class="cap">yours. Bring the number.</div></div>
+</div><div class="notes">Tonight. Run Enrique on all 900 as of 31 August and bring one number: how many members he wrote to. Ours wrote to 65, and 28 of them came back within two weeks, which is what Rosa counts at 11:15. Your number will not be 65 and that is fine. What we do tomorrow is find out why it is different.</div></section></div><div id="counter"></div><script>
+const stage=document.getElementById('stage'),slides=[...document.querySelectorAll('.slide')],N=slides.length;
+let i=0;
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`;stage.style.transformOrigin='center';}
+function show(k,replay){i=Math.max(0,Math.min(N-1,k));slides.forEach((s,j)=>{s.classList.toggle('on',j===i)});history.replaceState(null,'',`?s=${i+1}`);document.getElementById('counter').textContent=`${i+1} / ${N}`;if(replay){const s=slides[i];s.classList.remove('on');void s.offsetWidth;s.classList.add('on');}const v=slides[i].querySelector('video');if(v){v.currentTime=0;v.play().catch(()=>{});}}
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}else if(e.key==='Home'){show(0)}else if(e.key==='End'){show(N-1)}else if(e.key==='n'||e.key==='N'){stage.classList.toggle('notes-on')}else if(e.key==='r'||e.key==='R'){show(i,true)}else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+addEventListener('click',e=>{if(e.clientX>innerWidth*.8)show(i+1);else if(e.clientX<innerWidth*.2)show(i-1)});
+addEventListener('resize',fit);fit();
+const q=parseInt(new URLSearchParams(location.search).get('s')||'1',10);show(q-1);
+// a slide that plays itself waits to be looked at
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')show(i,true)});
+addEventListener('pageshow',e=>{if(e.persisted)show(i,true)});
+</script></body></html>

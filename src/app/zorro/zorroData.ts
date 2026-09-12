@@ -42,12 +42,13 @@ On Friday your team shows the agent running, tells us how many of fifty marked m
     t: "The build guide, and the presentations",
     text: `The build guide is the thing to have open while you work. One step at a time: what to press, what to type, and what you should see when it worked. Thirty-one steps in seven parts, from downloading the folder to the clock that starts the agents on a Monday with nobody at the keyboard. Every step number is something Isa knows, so if you are stuck, tell her the step.
 
-The two decks from Monday morning are here too, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
+The decks are here too, so you can go back through them. They open in the browser. The arrow keys move, N shows the speaking notes, R plays a slide's motion again, F is full screen.`,
     filesTitle: "Open",
     files: [
       { name: "The build guide", what: "Step by step, with what you type and what you should see. Start here on Monday evening.", href: "/zorro/decks/the-build-guide.html", external: true },
       { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four agents on film, how it works in a real gym, and what starts them.", href: "/zorro/decks/monday-0945.html", external: true },
       { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, the Attio connection, and the clock.", href: "/zorro/decks/monday-1115.html", external: true },
+      { name: "Tuesday 9:45. Carlos and Enrique get built", what: "The screen you should have, Isa, the loose question asked twice, Carlos's page, Sergio's row, your ten, run it twice, Enrique's page and his email, the card in Attio, and tonight's number.", href: "/zorro/decks/tuesday-0945.html", external: true },
     ],
   },
   {
