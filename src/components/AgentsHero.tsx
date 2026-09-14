@@ -400,7 +400,7 @@ export default function AgentsHero() {
                 the 21 Sep launch. It has held its own space since the hero
                 shipped, so revealing it shifts nothing else on the page. */}
             <a className="ah-kicker" href="/course">New: Free AI training course for marketers →</a>
-            <h1>Marketing <span className="ah-h1-navy">Agents</span> for your business</h1>
+            <h1>Marketing <span className="ah-h1-accent">Agents</span> for your business</h1>
             <p className="ah-sub">They make the ads, write the outreach, and run the campaigns, around the clock.</p>
             {/* THREE DOORS (Paul, 5 Sep): "AI Agents, Consulting, Training".
                 Each one drops the full-screen surface that AgentsSection owns

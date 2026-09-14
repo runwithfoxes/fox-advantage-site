@@ -5915,8 +5915,8 @@ a.project-card {
   font-size: clamp(28px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -.03em;
   word-spacing: -.16em; margin: 0; font-weight: 700; white-space: nowrap;
 }
-/* Paul, 14 Sep 2026, an experiment: the word "Agents" in navy, the same navy as the testimonial band. */
-.ah-head h1 .ah-h1-navy { color: #1A3A4E; }
+/* Paul, 14 Sep 2026, an experiment: the word "Agents" in the logo orange. Navy first, which he found not noticeable enough. */
+.ah-head h1 .ah-h1-accent { color: #F47521; }
 .ah-sub {
   margin: 22px 0 0; font-family: var(--ah-sans); font-size: 17px; line-height: 1.5;
   color: #565452; max-width: 44ch;
