@@ -342,7 +342,7 @@ export default function BrosnanDoc() {
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Building it takes about a week, and then we need two weeks of
-          testing. The first thing to do is ask Joblogic for API access.
+          testing. We&rsquo;ll need Joblogic&rsquo;s API.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Once it is running, the same setup can take on the other things you
