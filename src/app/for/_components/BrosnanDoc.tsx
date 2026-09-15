@@ -279,11 +279,10 @@ export default function BrosnanDoc() {
           <JoNote note={MORNING_NOTE} title="helpdesk" />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          The board below shows where each email went. Each one starts in the
-          helpdesk inbox and moves to the person who looks after that
-          customer, with the customer and the job attached. Emails from
-          companies that are not customers yet go to new business, so you can
-          see how many new inquiries came in.
+          The board below is a picture of what happens in Gmail. Each email
+          goes into the folder of the person who looks after that customer.
+          Emails from companies that are not customers yet go into a New
+          business folder.
         </p>
         <div style={{ marginTop: 26 }}>
           <PipelineBoard
