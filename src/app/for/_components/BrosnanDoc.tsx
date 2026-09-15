@@ -347,13 +347,8 @@ export default function BrosnanDoc() {
           folder for a person to check and says why.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Building it takes us a few days. Most of the time after that goes on
-          three things. Someone in your office spends a couple of hours going
-          through two hundred past emails and noting what each one was and who
-          should have dealt with it, so we can check the agent against those
-          answers. Joblogic sets up API access for your account. Then the agent
-          runs alongside your team for a week or two while we check what it
-          does and fix what it gets wrong, before we hand it over to you.
+          Building it takes about a week, and then we need two weeks of
+          testing.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The first thing to do is ask Joblogic for API access. On some
