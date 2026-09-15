@@ -98,7 +98,7 @@ const MOVE_NOTES = [
 ];
 
 const SECTIONS = [
-  { id: "heard", title: "What this is" },
+  { id: "heard", title: "What we propose" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
   { id: "morning", title: "What it does each day" },
@@ -128,13 +128,15 @@ export default function BrosnanDoc() {
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
     >
-      <PPSection id="heard" k="01" title="What this is">
+      {/* Paul, 15 Sep: "What this is" reads strangely. Say what we propose to
+          build. */}
+      <PPSection id="heard" k="01" title="What we propose">
         <p className="pps-standfirst">
-          This page sets out a helpdesk agent for Brosnan Property Solutions.
-          It reads every email that comes into helpdesk@brosnans.ie, checks it
-          against Job Logic, and puts it in front of the right person with a
-          reply drafted where it can. Every morning it tells you what came in
-          and what needs you.
+          We propose to build a helpdesk agent for Brosnan Property Solutions.
+          It would read every email that comes into helpdesk@brosnans.ie, check
+          it against Job Logic, and put it in front of the right person with a
+          reply drafted where it can. Each morning it would send you a short
+          note on what came in and what needs you.
         </p>
         <p className="pps-standfirst">
           The examples further down show how it would work. The customers,
@@ -293,11 +295,6 @@ export default function BrosnanDoc() {
           />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          If something is urgent, like a complaint or a large quote request,
-          it tells you straight away. It does not send anything to a customer
-          itself. A person reads each draft reply and sends it.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The window below shows the steps the agent follows. Every few
           minutes it checks for new emails, finds the customer in Job Logic,
           works out what each email is and who should deal with it, drafts a
@@ -338,24 +335,14 @@ export default function BrosnanDoc() {
           so nobody has to learn a new system.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          It is built as three agents with separate jobs. The first reads the
-          email and looks up the customer and the job in Job Logic, and it is
-          not allowed to write to anyone. The second decides what the email is
-          and who should deal with it, and drafts the reply, using only the
-          facts the first one found. The third checks the work of the other
-          two. When the agent is not sure about an email, it puts it in a
-          folder for a person to check and says why.
+          It is built as three agents with separate jobs. The first finds the
+          customer and the job in Job Logic. The second works out what the
+          email is and who should deal with it, and drafts the reply. The third
+          checks the work of the other two.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Building it takes about a week, and then we need two weeks of
           testing. The first thing to do is ask Joblogic for API access.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Joblogic has its own feature that turns an email into a job, but it
-          only works when the customer uses a fixed template and sends it to a
-          set address. Your customers write ordinary emails, and this agent is
-          built to read those. Your customers and jobs stay in Job Logic as
-          they are now.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Once it is running, the same setup can take on the other things you
