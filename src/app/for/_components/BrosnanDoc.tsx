@@ -29,7 +29,7 @@ import "./pricing.css";
 // The morning note, as passed in /jo on 15 Sep.
 const MORNING_NOTE = [
   "Morning Eoin. Twenty three emails came into the helpdesk since yesterday evening. Twenty are already under the right person's name, with the customer and the job attached.",
-  "Three need you. A customer is chasing a job that was closed on Friday, and it reads like a complaint. A quote request came in at around twenty two thousand, which is bigger than I route without you seeing it first. And a supplier invoice doesn't match any open job I can find.",
+  "Three need you. A customer is chasing a job that was closed on Friday, and it reads like a complaint. A quote request came in at around twenty two thousand, which is big enough that you should see it first. And a supplier invoice doesn't match any open job I can find.",
   "Everything else is done. Eleven status chases have replies drafted and waiting for whoever owns the account, and two new job requests are logged. Two emails came from companies that aren't customers yet, both asking for a price, so they're under New business with a short note on each. That makes six new inquiries this week.",
 ];
 
@@ -101,7 +101,7 @@ const SECTIONS = [
   { id: "heard", title: "What this is" },
   { id: "howiwork", title: "What we do" },
   { id: "whatwedo", title: "What Run with Foxes does" },
-  { id: "morning", title: "A morning with it" },
+  { id: "morning", title: "What it does each day" },
   { id: "howitworks", title: "How it would work" },
   { id: "pricing", title: "The price" },
 ];
@@ -110,7 +110,7 @@ const RAIL_GROUPS = [
   {
     label: "/the agent",
     entries: [
-      { id: "morning", title: "A morning with it", num: "01" },
+      { id: "morning", title: "What it does each day", num: "01" },
       { id: "howitworks", title: "How it would work", num: "02" },
       { id: "pricing", title: "The price", num: "03" },
     ],
@@ -137,8 +137,8 @@ export default function BrosnanDoc() {
           and what needs you.
         </p>
         <p className="pps-standfirst">
-          The windows further down are demonstrations. Every customer, email
-          and number in them is invented.
+          The examples further down show how it would work. The customers,
+          emails and numbers in them are made up.
         </p>
       </PPSection>
 
@@ -265,25 +265,23 @@ export default function BrosnanDoc() {
         <FourThingsFigure />
       </PPSection>
 
-      {/* THE EXPERIENCE. The note leads, the board is the picture behind it,
-          and the run is the machinery. */}
-      <PPSection id="morning" k="04" title="A morning with it">
+      {/* WHAT IT DOES EACH DAY. The note, the board of where each email went,
+          and the steps it follows. Rewritten plainly on 15 Sep after Paul
+          flagged "Behind the note is the picture it was written from". */}
+      <PPSection id="morning" k="04" title="What it does each day">
         <p className="pps-standfirst">
-          The first thing you see each morning is a note from the agent. It has
-          read every email that came into the helpdesk, checked each sender
-          against Job Logic and put each one under the right person&rsquo;s
-          name. It tells you what came in, what needs you and what it has
-          already done.
+          Each morning the agent sends you a short note about the emails that
+          came into the helpdesk and which ones need you. This is an example.
         </p>
         <div style={{ marginTop: 26 }}>
           <JoNote note={MORNING_NOTE} title="helpdesk" />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Behind the note is the picture it was written from. Every email
-          starts in the helpdesk inbox and moves to the person who owns it,
-          with the customer and the job attached. Emails from companies that
-          are not customers yet go to new business, so every new inquiry is
-          seen and counted.
+          The board below shows where each email went. Each one starts in the
+          helpdesk inbox and moves to the person who looks after that
+          customer, with the customer and the job attached. Emails from
+          companies that are not customers yet go to new business, so you can
+          see how many new inquiries came in.
         </p>
         <div style={{ marginTop: 26 }}>
           <PipelineBoard
@@ -295,14 +293,15 @@ export default function BrosnanDoc() {
           />
         </div>
         <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          Anything that cannot wait until the morning, like a complaint or a
-          large quote request, it flags as it arrives. Nothing goes to a
-          customer until a person has read it and pressed send.
+          If something is urgent, like a complaint or a large quote request,
+          it tells you straight away. It does not send anything to a customer
+          itself. A person reads each draft reply and sends it.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          This is the run behind it. Every few minutes it reads the new mail,
-          finds the customer in Job Logic, decides what each email is and whose
-          it is, drafts a reply where it can and applies the labels in Gmail.
+          The window below shows the steps the agent follows. Every few
+          minutes it checks for new emails, finds the customer in Job Logic,
+          works out what each email is and who should deal with it, drafts a
+          reply where it can and labels the email in Gmail.
         </p>
         <div style={{ marginTop: 26 }}>
           <CampaignWindow
@@ -325,10 +324,9 @@ export default function BrosnanDoc() {
           />
         </div>
         <p className="ppft-honest">
-          <span className="ppft-slash">/illustrative.</span> Every customer,
-          email and number in these windows is invented. The same kind of agent
-          runs our own work every morning. Yours would be built on your
-          customers, your team and your rules.
+          <span className="ppft-slash">/illustrative.</span> The customers,
+          emails and numbers in these examples are made up. Yours would be
+          built around your own customers and your own team.
         </p>
       </PPSection>
 
@@ -343,30 +341,31 @@ export default function BrosnanDoc() {
           It is built as three agents with separate jobs. The first reads the
           email and looks up the customer and the job in Job Logic, and it is
           not allowed to write to anyone. The second decides what the email is
-          and whose it is, and drafts the reply, using only facts the first one
-          found. The third checks the work of both and flags anything it
-          disagrees with. When the agent is not sure, it puts the email in a
-          folder for a person, with the reason, and does not guess.
+          and who should deal with it, and drafts the reply, using only the
+          facts the first one found. The third checks the work of the other
+          two. When the agent is not sure about an email, it puts it in a
+          folder for a person to check and says why.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Our side of the build takes days. Three things take calendar time.
-          Someone in your office spends a couple of hours marking two hundred
-          past emails with what each one was and whose it was, so we can
-          measure the agent against real answers. Joblogic sets up API access
-          for your account. And the agent runs beside your team for a week or
-          two while we read every decision and correct it, before it is handed
-          over to you.
+          Building it takes us a few days. Most of the time after that goes on
+          three things. Someone in your office spends a couple of hours going
+          through two hundred past emails and noting what each one was and who
+          should have dealt with it, so we can check the agent against those
+          answers. Joblogic sets up API access for your account. Then the agent
+          runs alongside your team for a week or two while we check what it
+          does and fix what it gets wrong, before we hand it over to you.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The one thing to start now is the Job Logic access. On some Joblogic
-          plans API access is a paid add-on, and they set it up on request. We
-          would give you the exact wording to send them.
+          The first thing to do is ask Joblogic for API access. On some
+          Joblogic plans this is a paid add-on, and they set it up on request.
+          We would give you the wording to send them.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Joblogic has a feature that turns an email into a job, but it only
-          works when the sender uses an exact template sent to a set address.
-          Your customers write ordinary emails, which is what this agent
-          handles. Job Logic stays the record of your customers and jobs.
+          Joblogic has its own feature that turns an email into a job, but it
+          only works when the customer uses a fixed template and sends it to a
+          set address. Your customers write ordinary emails, and this agent is
+          built to read those. Your customers and jobs stay in Job Logic as
+          they are now.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Once it is running, the same setup can take on the other things you
