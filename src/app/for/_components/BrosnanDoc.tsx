@@ -377,8 +377,7 @@ export default function BrosnanDoc() {
           ]}
           notCovered={[
             "A Claude subscription for you, to read the morning note and ask it questions",
-            "Claude usage for the agent itself, billed by Anthropic on how much it does",
-            "A small cloud server for it to run on",
+            "Running costs: Claude usage and a small server",
             "Joblogic's API access add-on, if your plan does not include it",
           ]}
         />
