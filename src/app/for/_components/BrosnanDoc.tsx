@@ -348,12 +348,7 @@ export default function BrosnanDoc() {
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Building it takes about a week, and then we need two weeks of
-          testing.
-        </p>
-        <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          The first thing to do is ask Joblogic for API access. On some
-          Joblogic plans this is a paid add-on, and they set it up on request.
-          We would give you the wording to send them.
+          testing. The first thing to do is ask Joblogic for API access.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           Joblogic has its own feature that turns an email into a job, but it
