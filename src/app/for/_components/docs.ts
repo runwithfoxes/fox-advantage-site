@@ -73,4 +73,9 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // copy Paul passed in /jo. It follows the Xtremepush page and uses the Growth
   // Agent figures in his world, with one price.
   ihce: dynamic(() => import("./IhceDoc"), { ssr: false }),
+  // Eoin O'Sullivan, Brosnan Property Solutions. A helpdesk agent for their
+  // shared Gmail inbox, checked against Job Logic, built 15 Sep off the 7 Sep
+  // call and the build worked out in /jo that day. It follows the IHCE page,
+  // with the Growth Agent figures turned to the helpdesk, and one price.
+  brosnan: dynamic(() => import("./BrosnanDoc"), { ssr: false }),
 };

@@ -197,6 +197,18 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "IHCE_PASSWORD",
     passwordFallback: "ihce26",
   },
+  // Eoin O'Sullivan, General Manager, Brosnan Property Solutions, Carrigtwohill,
+  // Cork. Facility management and trade services. Radio inbound, discovery call
+  // 7 Sep. A helpdesk agent for their shared Gmail inbox, checked against Job
+  // Logic, one price, EUR 5,000 plus VAT. Built 15 Sep.
+  brosnan: {
+    slug: "brosnan",
+    client: "Brosnan Property Solutions",
+    shortName: "Brosnan",
+    tabTitle: "Run with Foxes for Brosnan",
+    passwordEnv: "BROSNAN_PASSWORD",
+    passwordFallback: "brosnan26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
