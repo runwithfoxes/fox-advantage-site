@@ -131,21 +131,14 @@ export default function BrosnanDoc() {
       <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">
           This page sets out a helpdesk agent for Brosnan Property Solutions.
-          It reads every email that comes into helpdesk@brosnans.ie as it
-          arrives. It checks the sender against your customers in Job Logic and
-          works out what the email is: a new job, a status chase, a quote
-          request, a supplier invoice or a complaint. Then it puts the email
-          under the right person&rsquo;s name in Gmail, with the customer and
-          the job attached. Where the reply is simple it drafts it, and a
-          person reads it and presses send. Emails from companies that are not
-          customers yet go to new business and are counted. Every morning it
-          tells you what came in and what needs you.
+          It reads every email that comes into helpdesk@brosnans.ie, checks it
+          against Job Logic, and puts it in front of the right person with a
+          reply drafted where it can. Every morning it tells you what came in
+          and what needs you.
         </p>
         <p className="pps-standfirst">
-          The windows further down are demonstrations we built to show how it
-          would work. Every customer, email and number in them is invented.
-          The real version is built with you, around your customers, your team
-          and the way your office already works.
+          The windows further down are demonstrations. Every customer, email
+          and number in them is invented.
         </p>
       </PPSection>
 
