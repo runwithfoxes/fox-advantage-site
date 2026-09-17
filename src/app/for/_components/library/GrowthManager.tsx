@@ -107,7 +107,10 @@ const RESET_MS = 4200;
 // stages: the four column names, added 11 Sep for IHCE, a refrigeration firm
 // whose pipeline runs Contacted, Site visit, Quote sent, Won. Omitted, every
 // page keeps the default four.
-export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current", moveNotes, stages = STAGES }: { deals?: Deal[][]; width?: number; pill?: string; moveNotes?: string[]; stages?: string[] } = {}) {
+// moves: which column each card travels from and to, added 15 Sep for Brosnan,
+// where every email starts in the helpdesk inbox and goes to a different
+// person. Omitted, every page keeps the default two moves.
+export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps this current", moveNotes, stages = STAGES, moves }: { deals?: Deal[][]; width?: number; pill?: string; moveNotes?: string[]; stages?: string[]; moves?: { from: number; to: number }[] } = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState<Deal[][]>(deals);
   const [arrived, setArrived] = useState<string | null>(null);
@@ -132,8 +135,14 @@ export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps thi
     const run = () => {
       if (cancelled) return;
       let t = MOVE_MS;
-      MOVES.forEach((m, mi) => {
-        const note = moveNotes?.[mi] ?? m.note;
+      // Walk the moves once on a copy so each move knows which card it carries,
+      // including a second move out of the same column.
+      const sim = deals.map((c) => [...c]);
+      (moves ?? MOVES).forEach((m, mi) => {
+        const note = moveNotes?.[mi] ?? MOVES[mi]?.note ?? "";
+        const carried = sim[m.from].shift();
+        if (carried) sim[m.to].unshift(carried);
+        const carriedFirm = carried ? carried.firm : null;
         timers.push(
           setTimeout(() => {
             if (cancelled) return;
@@ -144,7 +153,7 @@ export function PipelineBoard({ deals = START, width = 940, pill = "Jo keeps thi
               next[m.to].unshift({ ...card, note });
               return next;
             });
-            setArrived(deals[m.from][0].firm);
+            setArrived(carriedFirm);
           }, t)
         );
         t += MOVE_MS;
