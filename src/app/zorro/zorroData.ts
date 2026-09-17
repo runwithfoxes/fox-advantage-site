@@ -49,6 +49,7 @@ The decks are here too, so you can go back through them. They open in the browse
       { name: "Monday 9:45. Gimnasio Zorro", what: "What you are building, and why. The fox, the gym, Sergio, the four agents on film, how it works in a real gym, and what starts them.", href: "/zorro/decks/monday-0945.html", external: true },
       { name: "Monday 11:15. How you build it", what: "The tools, where the data is, what an agent is here, how you make one, the order, Cato, the Attio connection, and the clock.", href: "/zorro/decks/monday-1115.html", external: true },
       { name: "Tuesday 9:45. Carlos and Enrique get built", what: "The screen you should have, Isa, the loose question asked twice, Carlos's page, Sergio's row, your ten, run it twice, Enrique's page and his email, the card in Attio, and tonight's number.", href: "/zorro/decks/tuesday-0945.html", external: true },
+      { name: "Four Agents", what: "Carlos, Enrique, Cato and Rosa: what each one does, what it reads, and where it puts its work. Each card opens the exact instructions, and from there the exact files.", href: "/zorro/decks/four-agents.html", external: true },
     ],
   },
   {
