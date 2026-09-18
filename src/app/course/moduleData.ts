@@ -470,9 +470,13 @@ export const MODULE_1: ModuleDef = {
      opens on a negative, "My goal for this course is not to try and explain all things AI", which
      used to be the second line and is now the first thing a reader meets. And "Everything in this
      course is marketing making the most out of AI" runs "is marketing making" together when read
-     aloud; a comma after "marketing" would fix it without changing a word. */
+     aloud; a comma after "marketing" would fix it without changing a word.
+
+     ⭐⭐ ALL OF THE ABOVE IS HISTORY. Paul REPLACED the whole opening on 18 Sep 2026 ("It is too
+     long") with the four paragraphs below, dictated. Only change made: "show you I build" to
+     "show you how I build", a dictation slip. Do not reword. */
   opening:
-    "My goal for this course is not to try and explain all things AI. But to help show how I work. There is a certain fluency that comes from using AI all day long for the past few years. Some of these are tiny but useful things I've learned that I do without thinking. Others later in the course are more ambitious, ones that I've sweated days and weeks trying to figure out.\n\nHow we might define 'fluent' is less of a concern for me, and it will change. At one stage, this may have been about how to write good prompts. Not so now.\n\nPrompting is where everyone starts. But it is not the interesting part. Look at the ten things below and you'll see where the work actually is. Only one of them is about prompting, and even that one is about telling it what the output is for, not about the words you use.\n\nMost of the rest are things I do before I ask: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research. The others are things I do after it answers: I never believe it, I always ask for sources, I make it prove it read the whole document.\n\nEverything in this course is marketing making the most out of AI, not just about AI. If you stick with the course and practice, I'd be confident that you are pretty fluent.",
+    "Welcome to AI Fluency for Ambitious Marketers.\n\nOver the coming weeks and months, I'll show you how I build agents that can work autonomously, how I create systems that allow me to produce really high quality outcomes at speed, as well as sprinkling in insights and my views about how I believe marketing roles, teams and departments will change dramatically.\n\nBut let's start slow. Module 1 is a collection of things that I do all the time. You'll notice that only one of them is about prompting. Most of the rest are things I do before I start prompting: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research.\n\nI'm a marketer, so that is my focus here. But it will be evident to you that you can apply this to non marketing work too. Enjoy.",
   items: [
     {
       t: "Check which model you're on",
