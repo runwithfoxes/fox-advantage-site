@@ -104,17 +104,22 @@ export default function InterestPicker({ n }: { n: number }) {
           transition:background .15s ease,border-color .15s ease,color .15s ease;
         }
         .ip-words button:hover{border-color:#3A7CA5;}
-        .ip-words button[aria-pressed="true"]{background:#EAF1F6;border-color:#3A7CA5;color:#3A7CA5;}
-        .ip-field{display:flex;align-items:center;gap:8px;margin-top:16px;background:#FAFAF8;
-          border:1px solid rgba(20,20,30,.12);border-radius:10px;padding:5px 5px 5px 14px;}
+        /* Picked must be unmistakable, Paul 18 Sep: "when I click on them, it's not obvious that
+           anything is happening." Solid sky with a tick, not the pale figure highlight. */
+        .ip-words button[aria-pressed="true"]{background:#3A7CA5;border-color:#3A7CA5;color:#fff;}
+        .ip-words button[aria-pressed="true"]::before{content:"✓ ";}
+        .ip-foot{display:flex;gap:10px;margin-top:16px;align-items:stretch;flex-wrap:wrap;}
+        .ip-field{flex:1 1 260px;display:flex;align-items:center;background:#FAFAF8;
+          border:1px solid rgba(20,20,30,.12);border-radius:10px;padding:5px 14px;}
         .ip-field:focus-within{border-color:#3A7CA5;}
         .ip-field input{flex:1;min-width:0;border:0;background:transparent;outline:none;
           font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13px;color:#1D1B1B;padding:6px 0;}
         .ip-field input::placeholder{color:#A8A8A2;}
-        .ip-send{flex:0 0 28px;height:28px;border-radius:50%;border:0;background:#3A7CA5;cursor:pointer;
-          display:flex;align-items:center;justify-content:center;padding:0;}
+        .ip-send{flex:0 0 auto;border:0;border-radius:10px;background:#3A7CA5;color:#fff;cursor:pointer;
+          font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13px;padding:0 18px;min-height:40px;
+          display:flex;align-items:center;gap:10px;transition:background .15s ease;}
+        .ip-send:hover{background:#1A3A4E;}
         .ip-send:disabled{background:#C9C9C3;cursor:default;}
-        .ip-send svg{display:block;margin-left:2px;}
         .ip-done{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13px;color:#1D1B1B;margin:0;line-height:1.6;}
         .ip-done b{color:#3A7CA5;font-weight:400;}
       `}</style>
@@ -152,6 +157,7 @@ export default function InterestPicker({ n }: { n: number }) {
                   </button>
                 ))}
               </div>
+              <div className="ip-foot">
               <div className="ip-field">
                 <input
                   type="text"
@@ -164,17 +170,21 @@ export default function InterestPicker({ n }: { n: number }) {
                   maxLength={300}
                   aria-label="Anything else you would like to learn about"
                 />
-                <button
-                  type="button"
-                  className="ip-send"
-                  onClick={send}
-                  disabled={!picked.size && !other.trim()}
-                  aria-label="Send"
-                >
-                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
-                    <path d="M1.5 1 L9 5 L1.5 9 Z" fill="#fff" />
-                  </svg>
-                </button>
+              </div>
+              {/* The send stands on its own, not inside the "anything else" field: the words
+                  are the main answer, and a button tucked into the text box read as belonging
+                  only to the text (Paul, 18 Sep). It counts what is picked. */}
+              <button
+                type="button"
+                className="ip-send"
+                onClick={send}
+                disabled={!picked.size && !other.trim()}
+              >
+                {picked.size ? `send ${picked.size} picked` : "send"}
+                <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
+                  <path d="M1.5 1 L9 5 L1.5 9 Z" fill="#fff" />
+                </svg>
+              </button>
               </div>
             </>
           )}
