@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
-import { MODULES } from "../courseModules";
+import { MODULES, courseToday } from "../courseModules";
 import { MODULES_BY_N } from "../moduleData";
 import CourseDoor from "./CourseDoor";
 import ModuleClient from "./ModuleClient";
@@ -50,7 +50,7 @@ export default async function ModulePage({
      courseModules.ts (`on`), compared in Dublin time. Module 1 is exempt so it can be checked
      on production before Mon 21 Sep; it has no link in until then. Dev sees everything. */
   const opens = MODULES.find((m) => m.n === mod.n)?.on;
-  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Dublin" }).format(new Date());
+  const today = courseToday();
   if (process.env.NODE_ENV !== "development" && mod.n !== 1 && opens && today < opens) {
     redirect("/course");
   }
@@ -72,8 +72,10 @@ export default async function ModulePage({
       ? "dev@localhost"
       : (await cookies()).get("rwf_course_id")?.value ?? "";
   if (!identified.includes("@")) {
-    return <CourseDoor n={mod.n} title={mod.title} when={mod.when} />;
+    return (
+      <CourseDoor n={mod.n} title={mod.title} when={mod.when} live={!opens || today >= opens} />
+    );
   }
 
-  return <ModuleClient mod={mod} />;
+  return <ModuleClient mod={mod} live={!opens || today >= opens} />;
 }

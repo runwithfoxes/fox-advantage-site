@@ -39,7 +39,7 @@ export const MODULES: Module[] = [
     title: "(1) The 80/20 of AI",
     when: "Mon 21 Sep",
     on: "2026-09-21",
-    built: false,
+    built: true, /* 18 Sep 2026: module 1 is written and goes live on its date. */
     /* The grumpy fox beside his headline "20 things that get you 80% of the way".
        Paul's headline verbatim. A statement, not a depiction, so no window chrome
        inside the artefact. */
@@ -115,6 +115,18 @@ export const MODULES: Module[] = [
 ];
 
 /** See Module.built. Both conditions, always. */
-export function isLive(m: Module, now: Date = new Date()): boolean {
-  return m.built && now >= new Date(m.on + "T00:00:00");
+export function isLive(m: Module, today: string = courseToday()): boolean {
+  return m.built && today >= m.on;
+}
+
+/**
+ * Today's date in Dublin as YYYY-MM-DD, which is how `on` is written, so a module opens at
+ * midnight Irish time and not at midnight on whatever clock the server runs.
+ * ⭐ COURSE_NOW overrides it (e.g. COURSE_NOW=2026-09-21) so the launch-day page can be
+ * looked at before launch day. Set it on a local server only, never on Vercel.
+ */
+export function courseToday(): string {
+  const fake = process.env.COURSE_NOW;
+  if (fake && /^\d{4}-\d{2}-\d{2}$/.test(fake)) return fake;
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Dublin" }).format(new Date());
 }

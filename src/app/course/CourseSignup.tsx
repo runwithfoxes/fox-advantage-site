@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ASK } from "./courseCopy";
 
@@ -135,6 +136,7 @@ export default function CourseSignup({
   doneText,
   note,
   compact = false,
+  refreshOnDone = false,
 }: {
   source: SignupSource;
   module?: number;
@@ -144,7 +146,11 @@ export default function CourseSignup({
   /** the quiet line beside or under the pill */
   note?: React.ReactNode;
   compact?: boolean;
+  /** The module door, 18 Sep 2026: on success, re-render the page on the server so the
+      cookie just set lets the module appear, with no second click. */
+  refreshOnDone?: boolean;
 }) {
+  const router = useRouter();
   const [state, setState] = useState<State>({ kind: "idle" });
   const [first, setFirst] = useState("");
   const [email, setEmail] = useState("");
@@ -161,8 +167,7 @@ export default function CourseSignup({
     }
 
     setState({ kind: "sending" });
-    setState(
-      await send({
+    const result = await send({
         first_name: first.trim(),
         email: email.trim(),
         signup_source: source,
@@ -173,8 +178,9 @@ export default function CourseSignup({
         })(),
         ...(typeof window !== "undefined" ? { page_url: window.location.href } : {}),
         ...(module !== undefined ? { signup_module: module, signup_module_lands: lands } : {}),
-      }),
-    );
+    });
+    setState(result);
+    if (result.kind === "done" && refreshOnDone) router.refresh();
   }
 
   if (state.kind === "done") {

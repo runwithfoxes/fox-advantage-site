@@ -38,10 +38,13 @@ export default function CourseDoor({
   n,
   title,
   when,
+  live = false,
 }: {
   n: number;
   title: string;
   when: string;
+  /** true once the module's date has come, so the eyebrow stops saying "Opens". */
+  live?: boolean;
 }) {
   return (
     <div className="mod-shell">
@@ -56,7 +59,7 @@ export default function CourseDoor({
 
       <header className="mod-masthead">
         <p className="mod-eyebrow">
-          Module {n} of 6 &middot; Opens {when}
+          Module {n} of 6 &middot; {live ? "Open now" : `Opens ${when}`}
         </p>
         <h1 className="mod-h1">{title}</h1>
         <p className="mod-standfirst">
@@ -68,6 +71,7 @@ export default function CourseDoor({
       <CourseSignup
         source="card"
         module={n}
+        refreshOnDone
         lands={when}
         /* ⛔ DEFECT FIXED 4 Aug 2026, Paul: "this is huge... it is making a big deal out of
            a term and condition." CourseSignup renders `note` RAW, with no wrapper. Every
@@ -90,7 +94,8 @@ export default function CourseDoor({
            broke and recovered. */
         doneText={
           <>
-            You&rsquo;re in. <Link href={`/course/${n}`}>Open {title}</Link>
+            You&rsquo;re in. Opening {title}&hellip; If it does not open,{" "}
+            <Link href={`/course/${n}`}>click here</Link>.
           </>
         }
       />

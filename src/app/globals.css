@@ -6973,7 +6973,7 @@ a.project-card {
 .co-joinbar input::placeholder{color:#B4B4AE}
 .co-joinbar .sep{width:1px;background:var(--border);margin:9px 0}
 .co-joinbar button{
-  border:0;background:var(--sky);color:#fff;cursor:pointer;
+  border:0;background:var(--sky, #3A7CA5);color:#fff;cursor:pointer; /* fallback: --sky is unset on the module door, 18 Sep 2026 */
   font-family:var(--mono);font-size:15px;padding:0 20px;
   transition:background .18s ease;
 }

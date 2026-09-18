@@ -569,7 +569,7 @@ function Body({
   );
 }
 
-export default function ModuleClient({ mod }: { mod: ModuleDef }) {
+export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; live?: boolean }) {
   const [filter, setFilter] = useState<Kind | null>(null);
   const [done, setDone] = useState<Set<number>>(new Set());
   const [open, setOpen] = useState<number | null>(null);
@@ -761,7 +761,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         <div className="mod-maincol">
       <header className="mod-masthead">
         <p className="mod-eyebrow">
-          Module {mod.n} of 6 &middot; opens {mod.when}
+          Module {mod.n} of 6 &middot; {live ? "open now" : `opens ${mod.when}`}
         </p>
         {/* The headline, with its declared words in Fox blue. Falls back to a plain
             headline when the module names no highlight, or names one that is not actually
@@ -798,7 +798,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
         ))}
         <div className="mod-meta">
           <span>
-            Opens<b>{mod.when}</b>
+            {live ? "Opened" : "Opens"}<b>{mod.when}</b>
           </span>
           <span>
             {/* ⚠️ PLURALISATION FIXED 4 Aug 2026 under Paul's standing rule, "you can fix

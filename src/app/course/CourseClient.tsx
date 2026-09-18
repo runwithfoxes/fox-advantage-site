@@ -69,12 +69,14 @@ function ModuleCard({
   m,
   open,
   onToggle,
+  today,
 }: {
   m: (typeof MODULES)[number];
   open: boolean;
   onToggle: () => void;
+  today: string;
 }) {
-  const live = isLive(m);
+  const live = isLive(m, today);
   const blurb = MODULE_BLURBS[m.n];
 
   /* ⚠️ THE POST-LAUNCH BRANCH, LEFT OBVIOUS AND UNWIRED ON PURPOSE (BRIEF-A §3).
@@ -85,7 +87,9 @@ function ModuleCard({
      a 404. The seam is A's link and C's page.
      `live` is false for all six today (nothing is built), so this branch cannot fire
      yet. It is here so that wiring it later is one href, not a redesign. */
-  const MODULE_HREF: string | null = null;
+  /* ⭐ WIRED 18 Sep 2026 for launch. A live card goes to the module; the module page's own
+     email door catches anyone not yet signed up, so nobody is asked twice. */
+  const MODULE_HREF: string | null = live ? `/course/${m.n}` : null;
 
   return (
     /* ⭐ THE ID IS WHAT MAKES THE PAGE FORWARDABLE IN PIECES. Added 20 Jul. Before it,
@@ -119,6 +123,10 @@ function ModuleCard({
           /* the copy control is inside the body, so without it here a click would copy
              the link AND toggle the card, which reads as the page misfiring */
           if ((e.target as HTMLElement).closest(".co-cardaction, .co-copylink")) return;
+          if (MODULE_HREF) {
+            window.location.href = MODULE_HREF;
+            return;
+          }
           onToggle();
         }}
       >
@@ -188,7 +196,7 @@ function ModuleCard({
 
 /* ---------------------------------------------------------------- the page */
 
-export default function CourseClient() {
+export default function CourseClient({ today }: { today: string }) {
   const [openCard, setOpenCard] = useState<number | null>(null);
 
   /**
@@ -360,6 +368,7 @@ export default function CourseClient() {
                 m={m}
                 open={openCard === m.n}
                 onToggle={() => setOpenCard(openCard === m.n ? null : m.n)}
+                today={today}
               />
             ))}
           </section>

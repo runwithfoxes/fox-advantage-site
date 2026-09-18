@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import CourseClient from "./CourseClient";
+import { courseToday } from "./courseModules";
+
+/* Rebuilt every 5 minutes so a module card turns live shortly after midnight on its date
+   without a deploy. 18 Sep 2026. */
+export const revalidate = 300;
 import { COURSE_URL } from "./courseCopy";
 
 /**
@@ -120,5 +125,5 @@ export const metadata: Metadata = {
 };
 
 export default function CoursePage() {
-  return <CourseClient />;
+  return <CourseClient today={courseToday()} />;
 }
