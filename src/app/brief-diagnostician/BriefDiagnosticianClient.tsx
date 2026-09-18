@@ -195,9 +195,9 @@ export default function BriefDiagnosticianClient() {
           /<span>Run</span>withfoxes
         </a>
         <nav>
-          <a href="/#projects">/projects</a>
+          <a href="/#agents">/agents</a>
           <a href="/contact">/contact</a>
-          <a href="/#signup" className="cta-bar">
+          <a href="/book" className="cta-bar">
             /get_the_book
           </a>
         </nav>

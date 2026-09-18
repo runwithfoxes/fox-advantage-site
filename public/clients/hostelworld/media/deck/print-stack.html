@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How brands grow - board session</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF4E8; --ink:#141414; --coral:#F1613D; --yellow:#F5C51C; --teal:#2BD9D9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{ height:100%; }
+  body{ background:var(--ink); font-family:'Archivo',sans-serif; color:var(--ink); overflow:hidden; cursor:default; }
+
+  .slide{ position:absolute; inset:0; display:none; background:var(--cream); overflow:hidden; }
+  .slide.on{ display:block; }
+  .slide.dark{ color:var(--cream); }
+
+  .h-block{ font-family:'Anton',sans-serif; text-transform:uppercase; line-height:.94; letter-spacing:.5px; }
+  .h-block em{ font-style:normal; color:var(--coral); }
+  .mono-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:2px; text-transform:uppercase; background:var(--ink); color:var(--cream); padding:7px 14px; margin-bottom:2.4vh; }
+  .mono-cap{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.6; }
+
+  .photo-right{ position:absolute; top:0; right:0; bottom:0; width:40vw; height:100vh; object-fit:cover; }
+  .txt-left{ position:absolute; left:56px; top:26vh; width:52vw; }
+  .txt-left .h-block{ font-size:9.5vh; }
+  .link{ display:inline-block; margin-top:3.4vh; font-family:'JetBrains Mono',monospace; font-size:1.8vh; letter-spacing:1px; color:var(--coral); text-decoration:none; border-bottom:2px solid var(--coral); padding-bottom:2px; }
+
+  .divider .h-block{ position:absolute; left:56px; top:34vh; font-size:15vh; z-index:2; }
+  .divider:has(img) .h-block{ right:43vw; font-size:min(15vh, 8.5vw); }
+  .divider:not(:has(img)) .h-block{ right:6vw; font-size:min(15vh, 8.5vw); }
+  .divider .kicker{ position:absolute; left:58px; top:25vh; z-index:2; }
+  .divider img{ position:absolute; right:0; top:0; bottom:0; width:40vw; height:100vh; object-fit:cover; }
+  .divider.coral{ background:var(--coral); }
+  .divider.coral .h-block{ color:var(--ink); }
+  .divider.coral .h-block .w{ color:var(--cream); }
+  .divider.yellow{ background:var(--yellow); }
+  .divider.teal{ background:var(--teal); }
+
+  .cover{ background:linear-gradient(115deg, #E8542E 0%, #F1613D 45%, #E98A2B 75%, #94A83B 100%); }
+  .cover .h-block{ position:absolute; left:56px; top:26vh; right:41vw; font-size:min(13vh, 7.5vw); z-index:2; color:var(--ink); }
+  .cover .h-block .w{ color:var(--cream); }
+  .cover img{ position:absolute; right:0; top:0; bottom:0; width:38vw; height:100vh; object-fit:cover; }
+
+  .stat-stack{ position:absolute; left:56px; top:34vh; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:1.12; }
+
+  /* split slide: text left, image revealed on click */
+  .half-left{ position:absolute; left:56px; top:0; bottom:0; width:40vw; display:flex; align-items:center; }
+  .half-left .h-block{ font-size:min(8vh, 4.4vw); }
+  .half-right{ position:absolute; right:0; top:0; bottom:0; width:50vw; background:var(--ink); opacity:0; transition:opacity .5s ease; }
+  .half-right img{ width:100%; height:100%; object-fit:cover; object-position:center; }
+  .step.on{ opacity:1; }
+
+  /* case slide: copy left, uncropped asset right, source footer */
+  .case-txt{ position:absolute; left:56px; top:50%; transform:translateY(-50%); width:42vw; }
+  .case-txt .h-block{ font-size:min(7vh, 3.9vw); }
+  .case-body{ margin-top:3vh; font-size:2.1vh; line-height:1.55; font-weight:600; max-width:36vw; }
+  .case-img{ position:absolute; right:0; top:0; bottom:0; width:50vw; height:100vh; object-fit:cover; object-position:center; }
+  .case-src{ position:absolute; left:56px; bottom:4vh; max-width:44vw; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:.5px; color:var(--ink); opacity:.5; text-decoration:none; word-break:break-all; }
+
+  /* lottery distinctive assets, measured */
+  .asset-row{ position:absolute; left:56px; right:56px; top:32vh; display:flex; gap:1.4vw; align-items:flex-start; }
+  .asset{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .asset-pic{ width:100%; height:16vh; display:flex; align-items:center; justify-content:center; background:var(--ink); overflow:hidden; }
+  .asset-pic img{ width:100%; height:100%; object-fit:cover; }
+  .asset-num{ font-family:'Anton',sans-serif; font-size:6vh; line-height:1.1; color:var(--coral); margin-top:1.6vh; }
+  .asset-lbl{ font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; line-height:1.35; opacity:.75; margin-top:.6vh; }
+  .asset-src{ position:absolute; left:56px; bottom:5vh; font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* pre-read footnote (slide 3): seminal sources, clickable in the deck */
+  .pre-read{ position:absolute; left:56px; right:56px; bottom:4.5vh; display:flex; flex-wrap:wrap; align-items:baseline; gap:.8vh 2.4vw; font-family:'JetBrains Mono',monospace; font-size:1.85vh; letter-spacing:.5px; }
+  .pre-read-tag{ text-transform:uppercase; letter-spacing:2px; opacity:.5; }
+  .pre-read a{ color:var(--coral); text-decoration:none; border-bottom:2px solid var(--coral); padding-bottom:2px; }
+
+  /* magnum cue-builder slide */
+  .cue-head{ position:absolute; left:56px; top:9vh; font-size:7vh; }
+  .cue-panel{ position:absolute; left:56px; top:26vh; width:30vw; background:var(--ink); color:var(--cream); padding:3vh 2vw; }
+  .cue-panel-t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.9vh; letter-spacing:.5px; margin-bottom:1.8vh; color:var(--yellow); }
+  .cue-panel p{ font-size:1.95vh; line-height:1.55; font-weight:500; }
+  .cue-phone{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:92vh; width:auto; }
+  .cue-lines{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .cue-lines line{ stroke:var(--coral); stroke-width:3; }
+  .cue-tag{ position:absolute; left:70%; background:var(--coral); color:var(--ink); font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.6vh; line-height:1.15; letter-spacing:.5px; padding:1.6vh 1.4vw; transform:translateY(-50%); }
+  .cue-src{ position:absolute; right:3vw; bottom:4vh; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* penetration: headline left, Binet & Field chart right, used as supplied */
+  .pen-txt{ position:absolute; left:56px; right:54vw; top:50%; transform:translateY(-50%); }
+  .pen-txt .h-block{ font-size:min(7.4vh, 4.1vw); }
+  .pen-sub{ margin-top:3vh; font-size:2vh; line-height:1.5; font-weight:600; opacity:.8; }
+  .pen-chart{ position:absolute; right:3vw; top:50%; transform:translateY(-50%); width:46vw; height:76vh; object-fit:contain; object-position:center; }
+
+  /* system set-up: words only, big and bold, in the slide-5 register */
+  .sys-txt{ position:absolute; left:56px; right:56px; top:50%; transform:translateY(-50%); }
+  .sys-block{ font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.5px;
+              font-size:min(8.4vh, 4.7vw); line-height:1.08; }
+  .sys-block em{ font-style:normal; color:var(--coral); }
+
+  /* cost of dull: type on the left, photo on the right, never over it */
+  .cow-txt{ position:absolute; left:56px; right:52vw; top:50%; transform:translateY(-50%); }
+  .cow-txt .h-block{ font-size:min(7.4vh, 4.1vw); }
+  .cow-sub{ margin-top:3vh; font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:1px; text-transform:uppercase; opacity:.65; }
+  .cow-img{ position:absolute; right:0; top:0; bottom:0; width:48vw; height:100vh; object-fit:cover; object-position:center; }
+
+  /* aim for fame: chart sits on the cream, headline above it */
+  .fame-head{ position:absolute; left:56px; top:7vh; font-size:7vh; }
+  .fame-chart{ position:absolute; left:56px; top:19vh; width:calc(100vw - 112px); height:73vh; object-fit:contain; object-position:center; }
+  .fame-src{ position:absolute; left:56px; bottom:4vh; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; text-transform:uppercase; opacity:.5; }
+
+  /* 60/40 simulation, embedded as-is from the original deck */
+  .sim-frame{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  /* click targets that sit OUTSIDE the iframe, so the sim stays interactive but the deck still advances */
+  .sim-nav{ position:absolute; top:0; bottom:0; width:3.4vw; z-index:5; cursor:pointer; }
+  .sim-nav.next{ right:0; }
+  .sim-nav.prev{ left:0; }
+
+  /* full-bleed single image slides */
+  .full-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--cream); }
+  .full-img.cover-fit{ object-fit:cover; }
+
+  /* CEP circles */
+  .cep-def{ margin-top:2.4vh; max-width:68vw; font-size:2.5vh; line-height:1.45; font-weight:600; }
+  .cep-eg{ position:absolute; left:56px; right:56px; bottom:5vh; background:var(--ink); color:var(--cream); padding:2.2vh 2vw; display:flex; align-items:center; gap:2vw; }
+  .cep-eg-tag{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); }
+  .cep-eg p{ font-size:2.3vh; line-height:1.4; font-weight:500; }
+  .cep-eg b{ color:var(--coral); }
+  .cep-row{ position:absolute; left:56px; right:56px; top:52vh; transform:translateY(-38%); display:flex; gap:1.6vw; }
+  .cep{ flex:1; aspect-ratio:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--cream); text-align:center; padding:1.4vw; }
+  .cep b{ font-family:'Anton',sans-serif; font-size:3.1vh; letter-spacing:1px; text-transform:uppercase; margin-bottom:.6vh; font-weight:400; }
+  .cep span{ font-size:1.4vh; line-height:1.3; font-weight:600; }
+
+  /* 95/5 */
+  .big95{ position:absolute; left:56px; top:20vh; font-family:'Anton',sans-serif; font-size:32vh; line-height:1; }
+  .big95 em{ font-style:normal; color:var(--coral); }
+  .sub-line{ position:absolute; left:58px; top:56vh; max-width:46vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:4.2vh; line-height:1.15; }
+  .dove-head{ position:absolute; left:56px; top:22vh; max-width:50vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:min(8vh, 4.6vw); line-height:1.0; letter-spacing:.5px; }
+  .dove-head em{ font-style:normal; color:var(--coral); }
+  .dove-line{ position:absolute; left:56px; bottom:9vh; max-width:46vw; font-size:2.2vh; line-height:1.5; font-weight:700; }
+  .dove-line .ninefive{ color:var(--coral); }
+  .dove-line .mono-cap{ display:block; margin-top:1vh; font-weight:400; }
+  .dove-img{ position:absolute; right:6vw; top:50%; transform:translateY(-50%); height:54vh; width:30vw; object-fit:contain; object-position:center; mix-blend-mode:multiply; }
+
+  /* lottery results */
+  .res-stats{ position:absolute; left:8vw; right:8vw; top:12vh; display:flex; gap:3vw; }
+  .res-stats > div{ flex:1; text-align:center; }
+  .res-stats .h-block{ font-size:9vh; }
+  .res-chart{ position:absolute; left:10vw; right:10vw; bottom:8vh; }
+  .res-chart svg{ width:100%; height:auto; }
+
+  /* linkage bars, centred and big */
+  .bars{ position:absolute; left:14vw; right:14vw; top:32vh; display:flex; flex-direction:column; gap:2.6vh; }
+  .bar-row{ display:flex; align-items:center; gap:18px; }
+  .bar-lbl{ flex:none; width:16vw; font-family:'JetBrains Mono',monospace; font-size:1.8vh; text-align:right; }
+  .bar-track{ flex:1; height:4.6vh; background:rgba(20,20,20,.07); }
+  .bar{ display:block; height:100%; background:var(--coral); }
+  .bar.y{ background:var(--yellow); }
+  .bar-val{ flex:none; width:4vw; font-family:'Anton',sans-serif; font-size:3.2vh; }
+
+  /* dull slide chart */
+  .dull-chart{ position:absolute; left:56px; bottom:9vh; width:44vw; }
+  .dull-chart .cols{ display:flex; align-items:flex-end; gap:4vw; height:26vh; }
+  .dull-chart .col{ flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:1vh; height:100%; }
+  .dull-chart .colbar{ width:100%; }
+  .dull-chart .num{ font-family:'Anton',sans-serif; font-size:3.4vh; color:var(--cream); }
+  .dull-chart .lbl{ font-family:'JetBrains Mono',monospace; font-size:1.4vh; letter-spacing:1px; text-transform:uppercase; color:var(--cream); opacity:.7; text-align:center; }
+  .dull-x{ position:absolute; left:32vw; bottom:26vh; font-family:'Anton',sans-serif; font-size:6vh; color:var(--coral); }
+
+  /* case videos side by side, uncropped */
+  .vid-pair{ position:absolute; left:56px; right:56px; top:30vh; bottom:8vh; display:flex; gap:20px; }
+  .vid-pair video{ flex:1; min-width:0; height:100%; object-fit:contain; background:var(--ink); }
+
+  /* full-screen video slide */
+  .vid-full{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:var(--ink); cursor:pointer; }
+  .play-hint{ position:absolute; left:50%; bottom:5vh; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:2px; text-transform:uppercase; color:var(--cream); opacity:.65; pointer-events:none; }
+
+  /* question cards */
+  .qcards{ position:absolute; left:56px; right:56px; top:28vh; bottom:10vh; display:flex; gap:20px; }
+  .qcard{ flex:1; padding:2.8vh 1.8vw; display:flex; flex-direction:column; }
+  .qcard .qn{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; letter-spacing:2px; margin-bottom:1.8vh; }
+  .qcard .qt{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:3.6vh; line-height:1.1; margin-bottom:2vh; }
+  .qcard .qa{ font-size:2vh; line-height:1.5; font-weight:600; margin-top:auto; }
+  .qcard.c1{ background:var(--coral); color:var(--cream); }
+  .qcard.c2{ background:var(--teal); color:var(--ink); }
+  .qcard.c3{ background:var(--yellow); color:var(--ink); }
+
+  /* two-pillar plus slide */
+  .plus-wrap{ position:absolute; left:56px; right:56px; top:18vh; display:flex; align-items:flex-start; gap:2.6vw; }
+  .plus-col{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .pill{ width:100%; min-height:12vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+    font-family:'Anton',sans-serif; font-size:4vh; letter-spacing:1px; text-transform:uppercase; border-radius:12vh; text-align:center; padding:2vh 2vw; }
+  .pill.m{ background:var(--coral); color:var(--cream); }
+  .pill.p{ background:var(--yellow); color:var(--ink); }
+  .pill small{ font-family:'JetBrains Mono',monospace; font-size:1.6vh; letter-spacing:1.5px; text-transform:none; margin-top:.8vh; font-weight:400; }
+  .plus-sign{ flex:none; align-self:flex-start; margin-top:3vh; font-family:'Anton',sans-serif; font-size:9vh; line-height:1; color:var(--ink); }
+  .lane-item{ font-size:2.3vh; font-weight:600; padding:1.3vh 0; text-align:center; }
+  .lane-item span{ font-family:'JetBrains Mono',monospace; font-size:1.5vh; color:var(--coral); margin-right:8px; }
+
+  /* working post-its on the close slide (remove before submission) */
+  .stickies{ position:absolute; inset:0; z-index:3; pointer-events:none; }
+  .sticky{ position:absolute; width:13vw; min-height:14vh; background:#FDF06F; color:#141414; padding:1.6vh 1vw;
+    font-family:'JetBrains Mono',monospace; font-size:1.35vh; line-height:1.45; box-shadow:0 6px 18px rgba(20,20,20,.28); }
+
+  /* physical availability: real screens */
+  /* the site: whole page visible, centred in the right half */
+  .screen-centred{ position:absolute; right:4vw; top:50%; transform:translateY(-50%);
+    width:44vw; max-height:84vh; object-fit:contain; box-shadow:0 10px 40px rgba(20,20,20,.16); }
+  /* the SERP: full height down the right, anchored top-left so the query and the listing survive */
+  .screen-right{ width:46vw; object-fit:cover; object-position:left top; background:#fff; }
+
+  /* footnote block under a headline (used for the AI note on the system slide) */
+  .sys-note{ margin-top:4vh; max-width:44vw; border-left:5px solid var(--coral); padding-left:1.4vw; }
+  .sys-note-tag{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:1vh; }
+  .sys-note p{ font-size:1.95vh; line-height:1.5; font-weight:600; }
+
+  /* AI opinion slide: three panels + the behaviours line */
+  .ai-head{ position:absolute; left:56px; top:8vh; font-size:7vh; }
+  .ai-panels{ position:absolute; left:56px; right:56px; top:30vh; display:flex; gap:1.6vw; }
+  .ai-panel{ flex:1; background:var(--ink); color:var(--cream); padding:3vh 1.6vw; }
+  .ai-panel h4{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; font-size:3.1vh; line-height:1.1; letter-spacing:.5px; color:var(--yellow); margin-bottom:1.6vh; }
+  .ai-panel p{ font-size:1.9vh; line-height:1.5; font-weight:500; }
+  .ai-foot{ position:absolute; left:56px; right:56px; bottom:7vh; }
+  .ai-foot .lbl{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; opacity:.6; margin-bottom:1.2vh; }
+  .ai-foot .line{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:4.4vh; line-height:1.12; letter-spacing:.5px; }
+  .ai-foot .line em{ font-style:normal; color:var(--coral); }
+
+  /* summary / bridge slide. one accent only: coral. everything else is ink on cream. */
+  .sum-head{ position:absolute; left:56px; top:7vh; font-size:6.4vh; }
+  .sum-cols{ position:absolute; left:56px; right:56px; top:26vh; display:flex; gap:4vw; }
+  .sum-col{ flex:1; }
+  .sum-pill{ display:block; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.8vh; letter-spacing:.5px; padding-bottom:1.4vh; margin-bottom:1vh; border-bottom:2px solid var(--ink); }
+  .sum-pill small{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; font-weight:400; opacity:.55; margin-top:.7vh; }
+  .sum-item{ display:flex; gap:14px; align-items:baseline; padding:1.3vh 0; font-size:2.1vh; line-height:1.4; font-weight:400; border-top:1px solid rgba(20,20,20,.1); }
+  .sum-item:first-of-type{ border-top:none; }
+  .sum-item span{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.5vh; color:var(--coral); }
+  .sum-ai{ position:absolute; left:56px; right:56px; bottom:15vh; background:var(--ink); color:var(--cream); padding:2.4vh 2vw; font-size:2.4vh; line-height:1.45; font-weight:400; }
+  .sum-ai em{ font-style:normal; color:var(--coral); }
+  .sum-bridge{ position:absolute; left:56px; right:56px; bottom:6vh; font-size:2.1vh; line-height:1.45; font-weight:400; }
+
+  /* Richard's five questions: table slide. no bold, size does the work. */
+  .qt-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+  .qtable{ position:absolute; left:56px; right:56px; top:20vh; bottom:5vh; display:flex; flex-direction:column; }
+  .qt-row{ display:flex; gap:2vw; padding:1.6vh 0; border-top:1px solid rgba(20,20,20,.25); flex:1; align-items:flex-start; }
+  .qt-row.head{ flex:none; border-top:none; padding-bottom:.8vh; }
+  .qt-row.head div{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; opacity:.5; font-weight:400; }
+  .qt-n{ flex:none; width:2.6vw; font-family:'JetBrains Mono',monospace; font-size:1.8vh; color:var(--coral); line-height:1.5; }
+  .qt-q{ flex:1.35; font-size:2.5vh; line-height:1.3; font-weight:400; }
+  .qt-t{ flex:1; font-size:1.85vh; line-height:1.45; font-weight:400; opacity:.65; }
+  .qt-j{ flex:1; font-size:1.85vh; line-height:1.45; font-weight:400; }
+
+  /* Richard's detail slides */
+  .qd-head{ position:absolute; left:56px; top:6vh; font-size:5.4vh; }
+  .qd-row{ position:absolute; left:56px; right:56px; top:19vh; bottom:5vh; display:flex; gap:2.4vw; }
+  .qd-card{ flex:1; display:flex; flex-direction:column; border-top:2px solid var(--ink); padding-top:2vh; }
+  .qd-n{ font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:1.4vh; }
+  .qd-q{ font-size:2.5vh; line-height:1.25; font-weight:500; margin-bottom:1vh; }
+  .qd-t{ font-size:1.8vh; line-height:1.45; font-weight:400; opacity:.6; margin-bottom:1.6vh; }
+  .qd-card ul{ list-style:none; margin-bottom:auto; }
+  .qd-card li{ font-size:1.8vh; line-height:1.45; font-weight:400; padding:1.2vh 0; border-top:1px solid rgba(20,20,20,.1); }
+  .qd-card li b{ font-weight:600; }
+  .qd-eng{ margin-top:2vh; padding-top:1.4vh; border-top:1px solid rgba(20,20,20,.25); font-family:'JetBrains Mono',monospace; font-size:1.3vh; letter-spacing:1px; line-height:1.4; text-transform:uppercase; opacity:.6; }
+
+  /* H2 priorities: seven cells (Richard v4) */
+  .h2-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+
+  /* Richard: WHY MARKETING. his opener, sits before the cover. two proof blocks. */
+  .wm-head{ position:absolute; left:56px; top:5.5vh; font-size:5.2vh; }
+  .wm-claim{ position:absolute; left:56px; right:56px; top:14vh; font-size:2.5vh; line-height:1.3; font-weight:600; }
+  .wm-cols{ position:absolute; left:56px; right:56px; top:23vh; display:grid; grid-template-columns:3fr 4fr; gap:2.6vw; }
+  .wm-col-t{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.9vh; letter-spacing:.5px; color:var(--coral); border-bottom:2px solid var(--ink); padding-bottom:1vh; margin-bottom:1.4vh; }
+  .wm-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:3.4vh 1.8vw; }
+  .wm-grid.one{ grid-template-columns:1fr; gap:3.6vh 0; }
+  .wm-item h4{ font-size:2.3vh; line-height:1.2; font-weight:600; margin-bottom:.6vh; }
+  .wm-item p{ font-size:1.85vh; line-height:1.45; opacity:.8; }
+  .wm-job{ position:absolute; left:56px; right:56px; bottom:11vh; border-top:2px solid var(--ink); padding-top:1.8vh; font-size:2.1vh; line-height:1.4; font-weight:600; }
+  .wm-job em{ font-style:normal; color:var(--coral); }
+  .wm-src{ position:absolute; left:56px; right:56px; bottom:3.5vh; font-family:'JetBrains Mono',monospace; font-size:1.05vh; letter-spacing:.5px; line-height:1.5; opacity:.5; }
+
+  /* Richard: the two H2 asks. shared furniture. */
+  .ask-head{ position:absolute; left:56px; top:5.5vh; font-size:5.2vh; }
+  .ask-sub{ position:absolute; left:56px; right:56px; top:15vh; font-size:2.1vh; line-height:1.35; font-weight:600; }
+  .ask-cols{ position:absolute; left:56px; right:56px; top:22vh; display:grid; grid-template-columns:5fr 4fr; gap:2.4vw; }
+  .ask-blk{ margin-bottom:1.8vh; }
+  .ask-blk h4{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:.7vh; }
+  .ask-blk p{ font-size:1.6vh; line-height:1.4; }
+  .ask-blk ul{ list-style:none; }
+  .ask-blk li{ font-size:1.6vh; line-height:1.4; padding:.45vh 0 .45vh 14px; position:relative; }
+  .ask-blk li:before{ content:''; position:absolute; left:0; top:1.1vh; width:5px; height:5px; background:var(--coral); }
+  .ask-card{ border-top:2px solid var(--ink); padding:1.1vh 0 1.4vh; }
+  .ask-card .w{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; }
+  .ask-card .st{ font-family:'JetBrains Mono',monospace; font-size:1.1vh; letter-spacing:1px; text-transform:uppercase; opacity:.6; margin-bottom:.8vh; }
+  .ask-card .scope{ font-size:1.55vh; line-height:1.35; margin-bottom:.8vh; }
+  .ask-card .fig{ font-family:'Anton',sans-serif; font-size:4.4vh; line-height:1; }
+  .ask-card .figc{ color:var(--coral); }
+  .ask-card .note{ font-size:1.45vh; line-height:1.35; opacity:.75; margin-top:.5vh; }
+  .ask-card.live{ border-top:2px solid var(--coral); }
+  .ask-intro{ position:absolute; left:56px; right:56px; top:25vh; font-size:1.6vh; line-height:1.4; opacity:.8; }
+  .ask-src{ position:absolute; left:56px; right:56px; bottom:3.5vh; font-family:'JetBrains Mono',monospace; font-size:1.05vh; letter-spacing:.5px; line-height:1.5; opacity:.5; }
+
+  /* Ask 2: org chart across the top, hires table under it */
+  /* title card + Gary's supplied opening slide (dropped in as an image, unaltered) */
+  .title-card{ display:flex; flex-direction:column; justify-content:center; padding-left:56px; }
+  .tc-rule{ width:9vw; height:5px; background:var(--coral); margin-bottom:3.4vh; }
+  .tc-h{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:.95; letter-spacing:-1px; }
+  .tc-h em{ font-style:normal; color:var(--coral); }
+  .slide.gary{ align-items:center; justify-content:center; padding:0; background:#fff; }
+  .slide.gary.on{ display:flex; }
+  .gary-img{ max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; margin:0 auto; }
+  .org-row{ position:absolute; left:56px; right:56px; top:30.5vh; }
+  .org-legend{ display:flex; align-items:center; gap:.5vw; font-family:'JetBrains Mono',monospace; font-size:1.15vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.65; margin-bottom:1.1vh; }
+  .org-legend i{ width:1.15vh; height:1.15vh; border-radius:50%; background:var(--coral); display:inline-block; }
+  .org-cmo{ background:var(--ink); color:var(--cream); padding:1.1vh 1.2vw; width:15vw; text-align:center; margin:0 auto .4vh; }
+  .org-cmo .r{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.1vh; }
+  .org-cmo .n{ font-size:1.45vh; opacity:.75; margin-top:.2vh; }
+  .org-stem{ width:1.5px; height:1.7vh; background:rgba(20,20,20,.45); margin:0 auto; }
+  .org-bar{ height:1.5px; background:rgba(20,20,20,.45); margin:0 8.4%; }
+  .org-leads{ display:flex; gap:.9vw; align-items:stretch; }
+  .org-lead{ flex:1; position:relative; text-align:center; }
+  .org-lead .drop{ width:1.5px; height:1.7vh; background:rgba(20,20,20,.45); margin:0 auto; }
+  .org-fn{ border:1.5px solid rgba(20,20,20,.35); padding:1.1vh .8vw; font-size:1.55vh; line-height:1.25; min-height:6.2vh; display:flex; align-items:center; justify-content:center; position:relative; }
+  .org-fn.gap{ border:1.5px solid var(--coral); background:rgba(241,97,61,.1); }
+  .org-fn.gap::after{ content:''; position:absolute; top:-.75vh; right:-.75vh; width:1.5vh; height:1.5vh; border-radius:50%; background:var(--coral); }
+  .hires{ position:absolute; left:56px; right:56px; top:53vh; border-collapse:collapse; width:calc(100vw - 112px); }
+  .hires th{ font-family:'JetBrains Mono',monospace; font-size:1.15vh; letter-spacing:2px; text-transform:uppercase; text-align:left; opacity:.55; padding:0 0 .9vh; border-bottom:2px solid var(--ink); }
+  .hires th.num, .hires td.num{ text-align:right; }
+  .hires td{ font-size:1.7vh; line-height:1.35; padding:1.3vh 1.4vw 1.3vh 0; border-bottom:1px solid rgba(20,20,20,.12); vertical-align:top; }
+  .hires td.role{ font-weight:600; width:22%; }
+  .hires td.num{ font-family:'Anton',sans-serif; font-size:2.6vh; padding-right:0; white-space:nowrap; }
+  .hires tr.band td{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2vh; letter-spacing:.5px; color:var(--coral); padding:1.6vh 0 .5vh; border-bottom:none; }
+  .hires tr.total td{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.4vh; border-bottom:none; padding-top:1.6vh; }
+  .ask-note{ position:absolute; left:56px; right:56px; bottom:7vh; font-size:1.5vh; line-height:1.4; opacity:.75; }
+
+  /* Richard: THE WHO. argument left, cohort margin chart right. */
+  .who-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
+  .who-left{ position:absolute; left:56px; top:19vh; width:40vw; }
+  .who-sub{ font-size:2.4vh; line-height:1.35; font-weight:500; margin-bottom:2vh; }
+  .who-item{ display:flex; gap:14px; align-items:baseline; padding:1.3vh 0; font-size:1.9vh; line-height:1.45; border-top:1px solid rgba(20,20,20,.12); }
+  .who-item span{ flex:none; font-family:'JetBrains Mono',monospace; font-size:1.4vh; color:var(--coral); }
+  .who-job{ position:absolute; left:56px; bottom:6vh; width:40vw; border-top:2px solid var(--ink); padding-top:1.6vh; font-size:2.1vh; line-height:1.4; }
+  .who-panel{ position:absolute; right:56px; top:14vh; width:46vw; }
+  .who-ct{ font-size:2.2vh; line-height:1.3; font-weight:500; margin-bottom:.8vh; }
+  .who-cs{ font-size:1.6vh; line-height:1.4; opacity:.6; margin-bottom:1.6vh; }
+  .who-ylab{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.55; margin-bottom:.8vh; }
+  .who-svg{ width:100%; height:auto; display:block; }
+  .who-svg .grid{ stroke:rgba(20,20,20,.12); stroke-width:1; }
+  .who-svg .axis{ stroke:rgba(20,20,20,.45); stroke-width:1.5; }
+  .who-svg .ln{ fill:none; stroke-width:3; stroke-linejoin:round; }
+  .who-svg .ln.appplus{ stroke:var(--coral); }
+  .who-svg .ln.social{ stroke:var(--ink); }
+  .who-svg .ln.nsm{ stroke:rgba(20,20,20,.32); stroke-width:2.5; }
+  .who-svg text{ font-family:'JetBrains Mono',monospace; font-size:11px; fill:var(--ink); }
+  .who-svg text.tick{ opacity:.5; }
+  .who-svg text.endlbl{ font-family:'Archivo',sans-serif; font-size:14px; font-weight:600; }
+  .who-svg text.endlbl.sm{ font-size:10.5px; font-weight:500; }
+  .who-svg text.endval{ font-family:'Anton',sans-serif; font-size:19px; }
+  .who-foot{ position:absolute; right:56px; bottom:6vh; width:45vw; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1px; text-transform:uppercase; opacity:.55; line-height:1.6; }
+
+  /* Richard: five questions, AI band under the table */
+  .qt-band{ position:absolute; left:56px; right:56px; bottom:8.5vh; background:var(--ink); color:var(--cream); padding:1.6vh 2vw; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.6vh; letter-spacing:1px; }
+  .qt-foot{ position:absolute; left:56px; right:56px; bottom:4.5vh; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1px; opacity:.55; }
+  .qtable.with-band{ bottom:14vh; }
+
+  /* Richard: H2 priorities, now seven */
+  .h2-sub{ position:absolute; left:56px; top:16.5vh; font-size:2vh; font-weight:500; opacity:.75; }
+  .h2-grid{ position:absolute; left:56px; right:56px; top:23vh; bottom:5vh; display:grid; grid-template-columns:repeat(4,1fr); gap:2.4vh 2vw; }
+  .h2-cell{ border-top:2px solid var(--ink); padding-top:1.3vh; display:flex; flex-direction:column; }
+  .h2-cell .n{ font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:2px; text-transform:uppercase; color:var(--coral); margin-bottom:.7vh; }
+  .h2-cell h4{ font-size:2vh; line-height:1.2; font-weight:500; margin-bottom:.9vh; }
+  .h2-cell .d{ font-size:1.6vh; line-height:1.4; margin-bottom:1vh; }
+  .h2-cell .s{ font-size:1.5vh; line-height:1.4; opacity:.65; padding:1vh 0; border-top:1px solid rgba(20,20,20,.12); }
+  .h2-cell .s i{ font-style:normal; font-family:'JetBrains Mono',monospace; font-size:1.1vh; letter-spacing:1.5px; color:var(--coral); display:block; margin-bottom:.4vh; }
+  .h2-cell .why{ margin-top:auto; padding-top:1vh; border-top:1px solid rgba(20,20,20,.12); font-size:1.55vh; line-height:1.4; }
+  .counter{ position:fixed; bottom:22px; right:28px; z-index:9; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--cream); mix-blend-mode:difference; opacity:.7; }
+
+  .lightbox{ display:none; position:fixed; inset:0; z-index:60; background:rgba(20,20,20,.6); padding:3vh 4vw; }
+  .lightbox.open{ display:block; }
+  .lightbox-inner{ position:relative; width:100%; height:100%; background:#fff; overflow:hidden; }
+  .lightbox-inner iframe{ width:100%; height:100%; border:none; display:block; }
+  .lightbox-close{ position:absolute; top:12px; right:12px; z-index:2; width:38px; height:38px; border-radius:50%; border:none; background:var(--ink); color:var(--cream); font-size:18px; cursor:pointer; line-height:1; }
+</style>
+
+<style id="print-stack">
+  html,body{ height:auto !important; overflow:visible !important; background:#fff !important; }
+  #counter{ display:none !important; }
+  .slide{ position:relative !important; display:block !important; opacity:1 !important;
+          visibility:visible !important; transform:none !important;
+          width:1600px !important; height:900px !important; overflow:hidden !important;
+          page-break-after:always; break-after:page; margin:0 !important; }
+  .slide .step, .slide .half-right{ opacity:1 !important; visibility:visible !important; transform:none !important; }
+  .lightbox{ display:none !important; }
+  @page{ size:1600px 900px; margin:0; }
+</style>
+</head>
+<body style="width:1600px">
+
+<!-- 0 WHY MARKETING. Richard's opener (23 Jul), sits BEFORE the cover.
+     SPEAKER NOTE (Richard, verbatim):
+     "Why marketing. Before Paul takes you through the brand laws and our H2 priorities,
+      I want to answer that question first, and this isn't my view, it's Gary's, from his
+      own market briefing. His fact: we have a large, growing market that already wants what
+      we offer, and we've built the only platform that responds to that need. That's a
+      business fact, not a marketing pitch. That fact is what defines marketing's job to be
+      done; get more of these travellers onto the platform. Everything Paul takes you through
+      next is in service of that one job. A few slides from now, we'll get sharper still on
+      exactly which travellers matter most." -->
+<section class="slide title-card">
+  <div class="tc-rule"></div>
+  <div class="tc-h">Marketing;<br><em>July 2026</em></div>
+</section>
+
+<section class="slide gary">
+  <img class="gary-img" src="why-marketing-gary.png" alt="Why Marketing - a large market that wants what we offer, and the only platform built for it">
+</section>
+
+<!-- 1 COVER -->
+<section class="slide cover dark">
+  <div class="h-block">The principles<br>behind <span class="w">sustained<br>brand growth</span></div>
+  <img src="cover-guests.jpg" alt="">
+</section>
+
+<!-- 2 OPENING CLAIM. AI named up front as a force running THROUGH the system, not a separate topic. -->
+<section class="slide">
+  <div class="txt-left" style="top:26vh">
+    <div class="h-block">Marketing is<br>a system. <em>Not a line<br>of separate bets.</em></div>
+    <div class="sys-note">
+      <span class="sys-note-tag">A note on AI</span>
+      <p>AI runs through every one of these principles. It is not a separate topic at the end. An AI-enabled marketing team is how you do all of this faster, and how you keep finding the gaps.</p>
+    </div>
+  </div>
+  <img class="photo-right" src="travel1.jpg" alt="">
+</section>
+
+<!-- 3 TWO PILLARS -->
+<section class="slide">
+  <div class="plus-wrap">
+    <div class="plus-col">
+      <div class="pill m">Mental availability<small>easy to think of</small></div>
+      <div style="height:3vh"></div>
+      <div class="lane-item"><span>01</span>Come to mind when the trigger fires</div>
+      <div class="lane-item"><span>02</span>Penetration drives customer growth</div>
+      <div class="lane-item"><span>03</span>Distinctive brand assets</div>
+      <div class="lane-item"><span>04</span>One big idea, run for decades</div>
+    </div>
+    <div class="plus-sign">+</div>
+    <div class="plus-col">
+      <div class="pill p">Physical availability<small>easy to buy</small></div>
+      <div style="height:3vh"></div>
+      <div class="lane-item"><span>05</span>Buying as easy as thinking of you</div>
+      <div class="lane-item"><span>06</span>Search and performance are the storefront</div>
+    </div>
+  </div>
+  <div class="pre-read">
+    <span class="pre-read-tag">Pre-read</span>
+    <a href="https://minimba.com/articles/what-are-category-entry-points" target="_blank">Mini MBA &middot; What are category entry points?</a>
+    <a href="https://marketingscience.info/news-and-insights/mental-availability-is-not-awareness-brand-salience-is-not-awareness" target="_blank">Ehrenberg-Bass, Byron Sharp &middot; Mental availability is not awareness</a>
+    <a href="https://www.jenniromaniuk.com/blog/2023/1/19/increasing-mental-market-share-by-using-category-entry-points" target="_blank">Jenni Romaniuk &middot; Category entry points</a>
+  </div>
+</section>
+
+<!-- 4 DIVIDER: MENTAL -->
+<section class="slide divider coral">
+  <span class="kicker mono-tag">#Easytothinkof</span>
+  <div class="h-block">Mental<br><span class="w">availability</span></div>
+  <img src="travel2.webp" alt="">
+</section>
+
+<!-- 5 PRINCIPLE 1: TRIGGERS -->
+<section class="slide">
+  <div class="txt-left">
+    <div class="h-block">Mental availability<br>is <em>not the same as</em><br>brand awareness.</div>
+  </div>
+  <img class="photo-right" src="travel4.jpeg" alt="">
+</section>
+
+<!-- 6 BAILEYS TREAT BAR: full-screen CEP example -->
+<section class="slide">
+  <img class="full-img cover-fit" src="baileys-treat-bar.webp" alt="Baileys Treat Bar at Bewley's">
+</section>
+
+<!-- 7 CEPs (before the lottery example). Written-out definition at the top, worked example at the foot. -->
+<section class="slide">
+  <div class="txt-left" style="top:7vh; width:84vw">
+    <div class="h-block" style="font-size:7.2vh">What are <em>category entry points?</em></div>
+    <p class="cep-def">The situations that send someone looking to buy. Link your brand to the ones that come up most, and you get thought of when they happen.</p>
+  </div>
+  <div class="cep-row" style="top:50vh">
+    <div class="cep" style="background:#C0392B"><b>Why</b><span>Do I decide to buy product</span></div>
+    <div class="cep" style="background:#76C7B0; color:#141414"><b>When</b><span>Do I decide what to buy</span></div>
+    <div class="cep" style="background:#2E4A5A"><b>Where</b><span>Do I make decisions to buy</span></div>
+    <div class="cep" style="background:#E67E22"><b>Who</b><span>Am I with</span></div>
+    <div class="cep" style="background:#5B9BBF"><b>What</b><span>Else am I doing</span></div>
+    <div class="cep" style="background:#5B3A6E"><b>How</b><span>Do I want to feel</span></div>
+  </div>
+  <div class="cep-eg">
+    <span class="cep-eg-tag">Written as a sentence</span>
+    <p>&ldquo;I need a gift to put in a card.&rdquo; <b>That is the entry point the National Lottery went after.</b></p>
+  </div>
+</section>
+
+<!-- 7 LOTTERY: TV AD LEFT, RESULTS RIGHT -->
+<section class="slide">
+  <div style="position:absolute; left:0; top:0; bottom:0; width:50vw; background:var(--ink); display:flex; align-items:center">
+    <video class="svid" src="raffle-tv-ad.mp4" poster="raffle-tv-ad-poster.jpg" preload="metadata" playsinline style="width:100%; cursor:pointer"></video>
+  </div>
+  <div class="play-hint" style="left:25vw">Click to play with sound</div>
+  <div style="position:absolute; right:0; top:0; bottom:0; width:50vw; padding:8vh 3vw 6vh; display:flex; flex-direction:column; justify-content:center; gap:5vh">
+    <div style="display:flex; gap:2vw">
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh; color:var(--coral)">27:1</div><div class="mono-cap" style="opacity:1">Short term ROI</div><div class="mono-cap">up from 18.6:1 in 2019</div></div>
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh">15%</div><div class="mono-cap" style="opacity:1">Digital sales</div><div class="mono-cap">up from 9% in 2019</div></div>
+      <div style="flex:1"><div class="h-block" style="font-size:6.5vh; color:var(--coral)">500k</div><div class="mono-cap" style="opacity:1">Tickets sold out</div><div class="mono-cap">by 24 December</div></div>
+    </div>
+    <svg viewBox="0 0 600 320" style="width:100%; height:auto">
+      <g stroke="rgba(20,20,20,.1)" stroke-dasharray="3 4">
+        <line x1="40" y1="30" x2="590" y2="30"/><line x1="40" y1="95" x2="590" y2="95"/>
+        <line x1="40" y1="160" x2="590" y2="160"/><line x1="40" y1="225" x2="590" y2="225"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="#141414" opacity=".55">
+        <text x="2" y="34">€2.5m</text><text x="2" y="99">€1.5m</text><text x="2" y="164">€1m</text><text x="2" y="229">€500k</text>
+        <text x="40" y="292">1</text><text x="300" y="292">15</text><text x="575" y="292">30</text>
+      </g>
+      <polyline fill="none" stroke="rgba(20,20,20,.18)" stroke-width="2" points="40,278 100,272 160,262 220,252 260,246 285,262 310,238 340,225 370,218 400,205 420,160 435,110 450,278 470,272 500,250 530,235 560,205 590,190"/>
+      <polyline fill="none" stroke="rgba(20,20,20,.35)" stroke-width="2" points="40,278 100,268 160,256 220,246 260,240 285,258 310,230 340,214 370,208 400,192 420,150 435,86 450,276 470,268 500,242 530,222 560,150 590,98"/>
+      <polyline fill="none" stroke="#F1613D" stroke-width="4" points="40,278 100,262 160,248 220,240 260,232 285,250 310,215 340,198 370,188 400,170 420,120 435,30 450,274 470,268 500,238 530,225 560,165 590,158"/>
+      <circle cx="435" cy="30" r="6" fill="#F1613D"/>
+      <text x="450" y="26" font-family="Anton, sans-serif" font-size="20" fill="#F1613D">€2.5m</text>
+      <text x="40" y="315" font-family="JetBrains Mono, monospace" font-size="11" fill="#141414" opacity=".55">DAILY TICKET SALES BY YEAR, DECEMBER</text>
+    </svg>
+  </div>
+</section>
+
+<!-- PENETRATION: growth comes from acquisition, not loyalty. Binet & Field. -->
+<section class="slide">
+  <div class="pen-txt">
+    <div class="h-block">Penetration drives <em>customer growth.</em></div>
+    <div class="pen-sub">Sustainable market share growth comes through penetration.</div>
+  </div>
+  <!-- SPEAKER NOTE (this HTML deck has no notes pane): Loyalty is largely a by-product of penetration growth, not the primary growth strategy. -->
+
+  <img class="pen-chart" src="penetration-chart.png" alt="Penetration is the main driver of very large business effects. Loyalty only 7%, penetration only 22%, both 7%. Binet and Field, Eff Week 2016, IPA.">
+</section>
+
+<!-- 9 95/5 -->
+<section class="slide">
+  <div class="dove-head">33% of Dove&rsquo;s buyers<br>bought it <em>just once</em><br>in six years.</div>
+  <div class="dove-line"><b class="ninefive">95/5.</b> At any moment, 95% of the category is not in market today.
+    <span class="mono-cap">UK buyers &middot; Wiemer Snijders &amp; Charles Graham</span>
+  </div>
+  <img class="dove-img" src="dove-cropped.png" alt="Dove Original">
+</section>
+
+<!-- 10 60/40 SIMULATION: Binet & Field, carried over from the original deck, unchanged -->
+<section class="slide">
+  <iframe class="sim-frame" src="sim-6040.html" title="60/40 brand building and sales activation simulation"></iframe>
+  <div class="sim-nav prev" title="Previous"></div>
+  <div class="sim-nav next" title="Next"></div>
+</section>
+
+<!-- 16 ASSETS RANGE, full slide -->
+<section class="slide"><img class="full-img" src="assets-range.webp" alt="Distinctive brand assets can be"></section>
+
+<!-- 2.5 SECONDS OF ATTENTION, full slide -->
+<section class="slide"><img class="full-img" src="two-seconds-chart.jpeg" alt="85% of digital ads get less than 2.5 seconds of attention"></section>
+
+<!-- MAGNUM: be deliberate / distinctive cue builders -->
+<section class="slide">
+  <div class="cue-head h-block">Be <em>deliberate.</em></div>
+  <div class="cue-panel">
+    <div class="cue-panel-t">Distinctive cue builders</div>
+    <p>Build and reinforce your distinctive brand assets. Pieces of comms specifically designed to refresh cues and serve as a small reminder that the brand exists, and how you remember it.</p>
+  </div>
+  <img class="cue-phone" src="magnum-phone.png" alt="Magnum Instagram ad">
+  <svg class="cue-lines" viewBox="0 0 1600 900" preserveAspectRatio="none">
+    <line x1="1023" y1="378" x2="1120" y2="378"/>
+    <line x1="1023" y1="473" x2="1120" y2="473"/>
+    <line x1="1023" y1="675" x2="1120" y2="675"/>
+  </svg>
+  <div class="cue-tag" style="top:42%">Shape asset</div>
+  <div class="cue-tag" style="top:52.5%">Logo asset</div>
+  <div class="cue-tag" style="top:75%">Brand name<br>asset</div>
+  <div class="cue-src">Source: Amplified Intelligence</div>
+</section>
+
+<!-- 18 OATLY, full slide -->
+<section class="slide"><img class="full-img cover-fit" src="oatly-voice.jpg" alt="Oatly - tastes totally normal"></section>
+
+<!-- 17 MEASURED: National Lottery distinctive assets, tracked -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:8vh; font-size:6.4vh">Distinctive assets can be<br><em>measured.</em></div>
+  <div class="asset-row">
+    <div class="asset"><div class="asset-pic"><img src="lot-star.png" alt="National Lottery star"></div><div class="asset-num">98%</div><div class="asset-lbl">Star logo</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-couldbeyou.png" alt="It could be you"></div><div class="asset-num">90%</div><div class="asset-lbl">&ldquo;It could be you&rdquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-yellowring.png" alt="Yellow ring"></div><div class="asset-num">88%</div><div class="asset-lbl">Yellow ring</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-waterslides.png" alt="Waterslides house"></div><div class="asset-num">83%</div><div class="asset-lbl">Waterslides &lsquo;House&rsquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-bluesky.png" alt="Mr Blue Sky"></div><div class="asset-num">79%</div><div class="asset-lbl">&ldquo;Mr Blue Sky&rdquo;</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-green.png" alt="Green background"></div><div class="asset-num">79%</div><div class="asset-lbl">Green background</div></div>
+    <div class="asset"><div class="asset-pic"><img src="lot-dreaminspector.png" alt="Dream Inspector"></div><div class="asset-num">62%</div><div class="asset-lbl">Dream Inspector</div></div>
+  </div>
+  <div class="asset-src">% prompted link of asset to the National Lottery &middot; brand tracking, March 2023</div>
+</section>
+
+<!-- 23 CASES: side-by-side films -->
+<section class="slide">
+  <div class="h-block" style="position:absolute; left:56px; top:10vh; font-size:7vh">Humans originate. <em>AI amplifies.</em></div>
+  <div class="vid-pair">
+    <video class="svid" src="big-idea-sharelove.mp4" poster="big-idea-sharelove-poster.jpg" preload="metadata" playsinline style="cursor:pointer"></video>
+    <video class="svid" src="big-idea-foxslide.mp4" poster="big-idea-foxslide-poster.jpg" preload="metadata" playsinline style="cursor:pointer"></video>
+  </div>
+  <div class="play-hint" style="color:var(--ink); left:28vw">Click either film to play with sound</div>
+</section>
+
+<!-- 19 DISTINCTIVE VOICE / ISA: sits after Oatly, ahead of the Economist run -->
+<section class="slide">
+  <div class="txt-left" style="width:48vw; top:30vh">
+    <div class="h-block" style="font-size:8vh">Distinctive voice is brilliant <em>for AI amplification.</em></div>
+  </div>
+  <div style="position:absolute; right:56px; top:14vh; bottom:14vh; width:34vw; display:flex; align-items:center">
+    <img style="width:100%" src="isa-chat.png" alt="Isa answering in the brand voice">
+  </div>
+</section>
+
+<!-- 11 BIG IDEA: one image -->
+<section class="slide">
+  <div class="txt-left" style="width:44vw; top:32vh">
+    <div class="h-block" style="font-size:8.5vh">One big idea.<br><em>Run for decades.</em></div>
+    <p style="margin-top:3.4vh; max-width:36vw; font-size:2.1vh; line-height:1.5; font-weight:600; opacity:.8">A big idea, brilliantly executed and funded, is what rises above the noise.</p>
+  </div>
+</section>
+
+<!-- 11 PERSIL: proposition left, DIRT IS GOOD revealed on click -->
+<section class="slide">
+  <div class="half-left">
+    <div class="h-block">Persil&rsquo;s proposition<br><em>= modern parenting.</em></div>
+  </div>
+  <div class="half-right step" style="width:54vw">
+    <img src="dirt-is-good-boy.jpeg" alt="Persil Dirt is Good" style="object-position:51% center">
+  </div>
+</section>
+
+<!-- 12 SPECSAVERS: IPA gold, £1.1bn over 30 years -->
+<section class="slide">
+  <div class="case-txt">
+    <div class="h-block">&pound;1.1bn of<br><em>incremental profit.</em><br>One idea. 30 years.</div>
+    <p class="case-body">Specsavers won the IPA Gold for long-term effectiveness. The case calculated that its big idea, &ldquo;Should&rsquo;ve gone to Specsavers&rdquo;, contributed &pound;1.1bn of incremental profit over 30 years.</p>
+  </div>
+  <img class="case-img" src="specsavers-billboard.jpeg" alt="Should've gone to Specsavers billboard with ladder">
+  <a class="case-src" href="https://ipa.co.uk/knowledge/case-studies/should-ve-gone-to-specsavers-a-far-sighted-view-of-advertising-s-role-in-building-a-business-over-30-years" target="_blank">ipa.co.uk/knowledge/case-studies/should-ve-gone-to-specsavers-a-far-sighted-view-of-advertising-s-role-in-building-a-business-over-30-years</a>
+</section>
+
+<!-- Fame removed from the deck entirely (Paul, 23 Jul): the appendix chart slide deleted and the principle dropped from both principle lists, so six principles, not seven. -->
+
+<!-- 20 COST OF DULL: headline left, clean cow right. no type over the photo. -->
+<section class="slide">
+  <div class="cow-txt">
+    <div class="h-block">50% of ads are <em>less engaging</em><br>than cows in a field.</div>
+    <div class="cow-sub">The extraordinary cost of dull.</div>
+  </div>
+  <img class="cow-img" src="dull-cow-clean.jpg" alt="Cows in a field">
+</section>
+
+<!-- SYSTEM SET-UP: words only, sets up the Economist as everything working together -->
+<section class="slide">
+  <div class="sys-txt">
+    <p class="sys-block">This is what it looks like when it all comes together. <em>Focus on the Category Entry Points that matter most to our valuable audiences.</em> Distinctive brand assets. <em>Consistency.</em> One big idea.</p>
+  </div>
+</section>
+
+<!-- 22 THE ORIGINAL ECONOMIST AD, full slide: the one big idea, before the variants -->
+<section class="slide">
+  <img class="full-img" src="econ-1-never-read.png" alt="I never read The Economist. Management trainee. Aged 42.">
+</section>
+
+<!-- 20 FOUR MORE ECONOMIST, the variants that follow the original -->
+<section class="slide">
+  <div style="position:absolute; inset:5vh 8vw; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-4-outside-bot.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-6-ai-worried.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-2-lightbulb.png" alt="">
+    <img style="width:100%; height:100%; object-fit:contain; min-height:0" src="econ-5-facts-sake.png" alt="">
+  </div>
+</section>
+
+<!-- DIVIDER: PHYSICAL -->
+<section class="slide divider yellow">
+  <span class="kicker mono-tag">#Easytobuy</span>
+  <div class="h-block">Physical<br><span style="color:var(--cream)">availability</span></div>
+  <img src="travel5.webp" alt="">
+</section>
+
+<!-- 21 EASY TO BUY -->
+<section class="slide">
+  <div class="txt-left" style="top:32vh">
+    <div class="h-block" style="font-size:8.5vh">Make buying as easy <em>as thinking of you.</em></div>
+  </div>
+  <img class="photo-right" style="object-fit:contain; background:var(--cream)" src="hostel-app-chat.jpg" alt="Hostelworld app">
+</section>
+
+<!-- PHYSICAL 2: THE PRODUCT IS THE BOTTLE. Richard's point: the app and the site ARE the packaging. -->
+<section class="slide">
+  <div class="txt-left" style="top:24vh; width:40vw">
+    <div class="h-block" style="font-size:6.6vh">Your app and your site <em>are the bottle.</em></div>
+    <p class="case-body" style="max-width:34vw">Dove invests in the bottle because the bottle is where the promise is kept. Hostelworld does not have a bottle. It has an app and a website. That is the product, the packaging and the shelf, all at once. Every promise the marketing makes gets paid off, or lost, right there.</p>
+  </div>
+  <img class="screen-centred" src="hw-homepage.png" alt="Hostelworld.com homepage">
+</section>
+
+<!-- PHYSICAL 3: SEARCH IS THE STOREFRONT, NOT THE BRAND -->
+<section class="slide">
+  <div class="txt-left" style="top:22vh; width:40vw">
+    <div class="h-block" style="font-size:6.6vh">Search captures demand. <em>It does not create it.</em></div>
+    <p class="case-body" style="max-width:34vw">This is essential. It is the till at the front of the shop, and it has to work. But it only reaches people who are already looking. Spend everything here and you are not bringing customers in, you are collecting the ones who arrived on their own. It is a cold call from a brand nobody has heard of, and it only pays once the work above it is done.</p>
+  </div>
+  <img class="photo-right screen-right" src="serp-solo.png" alt="Google search results for meet people traveling solo">
+</section>
+
+<!-- AI: PAUL'S OPINION. Richard: the board WILL ask, and this is the bit he wants bottled. -->
+<section class="slide">
+  <div class="ai-head h-block">AI runs through <em>all of it.</em></div>
+  <div class="ai-panels">
+    <div class="ai-panel">
+      <h4>A thinking partner</h4>
+      <p>Interrogating a plan, finding the gaps in your own process, arguing with your assumptions before the market does. This is the use most teams never get to.</p>
+    </div>
+    <div class="ai-panel">
+      <h4>Speed of execution</h4>
+      <p>Making the work faster to produce, so more of the budget goes into ideas and reach and less into production. Speed is the obvious use. It is not the biggest one.</p>
+    </div>
+    <div class="ai-panel">
+      <h4>Repeatable systems</h4>
+      <p>Turning the things you do every week into workflows that run the same way every time, so the team is freed up for the work that only humans can do.</p>
+    </div>
+  </div>
+  <div class="ai-foot">
+    <div class="lbl">What I would ask of a marketing team today</div>
+    <div class="line">Be curious. <em>Think critically.</em> Keep pushing at the edge of what it can do, because the edge moves every month.</div>
+  </div>
+</section>
+
+<!-- SUMMARY + BRIDGE TO RICHARD. Richard's explicit ask: all the principles on one slide, AI as the enabler, hand over. -->
+<section class="slide">
+  <div class="sum-head h-block">The principles, <em>in one place.</em></div>
+  <div class="sum-cols">
+    <div class="sum-col">
+      <span class="sum-pill">Mental availability<small>Easy to think of</small></span>
+      <div class="sum-item"><span>01</span>Come to mind when the trigger fires. Category entry points, not awareness.</div>
+      <div class="sum-item"><span>02</span>Penetration drives customer growth.</div>
+      <div class="sum-item"><span>03</span>Build distinctive brand assets. Table stakes, and measurable.</div>
+      <div class="sum-item"><span>04</span>One big idea, run for decades. Assets get you recognised. An idea makes you mean something.</div>
+    </div>
+    <div class="sum-col">
+      <span class="sum-pill">Physical availability<small>Easy to buy</small></span>
+      <div class="sum-item"><span>05</span>Make buying as easy as thinking of you. The app and the site are the bottle.</div>
+      <div class="sum-item"><span>06</span>Search captures demand, it does not create it. Essential, but not the brand.</div>
+    </div>
+  </div>
+  <div class="sum-ai">And an <em>AI-enabled marketing team</em> is how you do all six faster, and how you keep finding the gaps.</div>
+  <div class="sum-bridge">Those are the principles. Richard&rsquo;s strategic questions are already working through every one of them.</div>
+</section>
+
+<!-- RICHARD 1: THE WHO. his v4 slide 1. chart rebuilt from the CohortChart data in his pptx. -->
+<section class="slide">
+  <div class="who-head h-block">The <em>who?</em></div>
+  <div class="who-left">
+    <div class="who-sub">Social members are worth more, and there are more of them every quarter.</div>
+    <div class="who-item"><span>01</span>New Social Members already outnumber non-social every quarter (0.83m vs 0.45m). Deliberate, not accidental.</div>
+    <div class="who-item"><span>02</span>8x more margin, engaged first-trip Social Members (&euro;47 vs &euro;6). 6x overall (&euro;35 vs &euro;6).</div>
+    <div class="who-item"><span>03</span>Gap widens with time. Value compounds, not a one-off skew.</div>
+    <div class="who-item"><span>04</span>Fixed cohorts strip out acquisition-mix noise. This is real value, not selection bias.</div>
+  </div>
+  <div class="who-job">Not every traveller is equally valuable. Marketing&rsquo;s job to be done gets sharper here: grow the valuable customer base by creating demand for the social proposition. It shapes every question that follows.</div>
+  <div class="who-panel">
+    <div class="who-ct">Social members are worth materially more than non-members</div>
+    <div class="who-cs">Fixed cohorts strip out acquisition-mix effects and isolate the value the social network creates per customer</div>
+    <div class="who-ylab">Cumulative direct margin / customer</div>
+    <svg class="who-svg" viewBox="0 0 640 448" preserveAspectRatio="xMidYMid meet">
+      <line class="grid" x1="62" y1="400.0" x2="500" y2="400.0"/>
+      <line class="grid" x1="62" y1="324.0" x2="500" y2="324.0"/>
+      <line class="grid" x1="62" y1="248.0" x2="500" y2="248.0"/>
+      <line class="grid" x1="62" y1="172.0" x2="500" y2="172.0"/>
+      <line class="grid" x1="62" y1="96.0" x2="500" y2="96.0"/>
+      <line class="grid" x1="62" y1="20.0" x2="500" y2="20.0"/>
+      <text class="tick" x="52" y="404.0" text-anchor="end">&euro;0</text>
+      <text class="tick" x="52" y="328.0" text-anchor="end">&euro;10</text>
+      <text class="tick" x="52" y="252.0" text-anchor="end">&euro;20</text>
+      <text class="tick" x="52" y="176.0" text-anchor="end">&euro;30</text>
+      <text class="tick" x="52" y="100.0" text-anchor="end">&euro;40</text>
+      <text class="tick" x="52" y="24.0" text-anchor="end">&euro;50</text>
+      <line class="axis" x1="62" y1="20" x2="62" y2="400"/>
+      <polyline class="ln nsm" points="62.0,370.4 70.6,371.4 79.2,371.7 87.8,371.5 96.4,371.0 104.9,370.5 113.5,369.9 122.1,369.4 130.7,368.9 139.3,368.4 147.9,367.9 156.5,367.5 165.1,367.0 173.6,366.7 182.2,366.3 190.8,365.9 199.4,365.7 208.0,365.3 216.6,365.0 225.2,364.7 233.8,364.4 242.4,364.1 250.9,363.9 259.5,363.6 268.1,363.3 276.7,363.1 285.3,362.8 293.9,362.6 302.5,362.3 311.1,361.9 319.6,361.7 328.2,361.4 336.8,361.1 345.4,360.8 354.0,360.6 362.6,360.2 371.2,360.0 379.8,359.7 388.4,359.5 396.9,359.1 405.5,358.9 414.1,358.6 422.7,358.4 431.3,358.0 439.9,357.7 448.5,357.4 457.1,357.1 465.6,356.8 474.2,356.5 482.8,356.1 491.4,355.8 500.0,355.4"/>
+      <polyline class="ln social" points="62.0,281.8 70.6,266.5 79.2,254.1 87.8,243.7 96.4,234.7 104.9,226.8 113.5,219.8 122.1,213.6 130.7,208.2 139.3,203.2 147.9,198.7 156.5,194.7 165.1,191.1 173.6,187.8 182.2,184.7 190.8,181.9 199.4,179.5 208.0,177.1 216.6,174.9 225.2,172.8 233.8,170.8 242.4,169.0 250.9,167.2 259.5,165.5 268.1,163.9 276.7,162.3 285.3,160.8 293.9,159.4 302.5,158.0 311.1,156.7 319.6,155.4 328.2,154.1 336.8,152.9 345.4,151.7 354.0,150.5 362.6,149.3 371.2,148.2 379.8,147.0 388.4,145.9 396.9,144.8 405.5,143.8 414.1,142.7 422.7,141.6 431.3,140.5 439.9,139.4 448.5,138.3 457.1,137.2 465.6,136.0 474.2,134.8 482.8,133.5 491.4,132.2 500.0,130.6"/>
+      <polyline class="ln appplus" points="62.0,257.8 70.6,235.3 79.2,217.3 87.8,202.2 96.4,189.3 104.9,178.0 113.5,168.2 122.1,159.4 130.7,151.7 139.3,144.7 147.9,138.3 156.5,132.7 165.1,127.6 173.6,122.9 182.2,118.7 190.8,114.7 199.4,111.3 208.0,108.0 216.6,104.9 225.2,102.0 233.8,99.2 242.4,96.7 250.9,94.3 259.5,92.0 268.1,89.8 276.7,87.6 285.3,85.6 293.9,83.7 302.5,81.8 311.1,79.9 319.6,78.1 328.2,76.4 336.8,74.8 345.4,73.2 354.0,71.6 362.6,70.0 371.2,68.5 379.8,67.0 388.4,65.5 396.9,64.0 405.5,62.6 414.1,61.1 422.7,59.7 431.3,58.2 439.9,56.8 448.5,55.3 457.1,53.8 465.6,52.3 474.2,50.7 482.8,49.0 491.4,47.3 500.0,45.2"/>
+      <text class="endval" x="508" y="43.2" fill="#F1613D">&euro;47</text>
+      <text class="endlbl" x="508" y="60.2" fill="#F1613D">Social member</text>
+      <text class="endlbl sm" x="508" y="74.2" fill="#F1613D">(read/write messages</text>
+      <text class="endlbl sm" x="508" y="86.2" fill="#F1613D">on first trip)</text>
+      <text class="endval" x="508" y="128.6">&euro;35</text>
+      <text class="endlbl" x="508" y="145.6">Social Members</text>
+      <text class="endval" x="508" y="353.4" opacity=".55">&euro;6</text>
+      <text class="endlbl" x="508" y="370.4" opacity=".55">Non-social Members</text>
+      <line class="axis" x1="62" y1="400" x2="500" y2="400"/>
+      <text class="tick" x="62.0" y="420" text-anchor="middle">0</text>
+      <text class="tick" x="171.5" y="420" text-anchor="middle">13</text>
+      <text class="tick" x="281.0" y="420" text-anchor="middle">26</text>
+      <text class="tick" x="390.5" y="420" text-anchor="middle">39</text>
+      <text class="tick" x="500.0" y="420" text-anchor="middle">52</text>
+      <text class="tick" x="281" y="442" text-anchor="middle">WEEKS SINCE ACQUISITION</text>
+    </svg>
+  </div>
+  <div class="who-foot">Acquisition cohorts with first transaction 1 Jul 2023 &ndash; 17 Jul 2025 (n = 2,639,225) each followed for a full 52 weeks (D364-eligible, fixed population). Members classified SM/NSM at first chat expiry. Per-customer cumulative values; levels reconciled to milestone D364.</div>
+</section>
+
+<!-- RICHARD 2: FIVE QUESTIONS FOR THIS BOARD (v4: marketing's job is now the engine) -->
+<section class="slide">
+  <div class="qt-head h-block">Five <em>questions.</em></div>
+  <div class="qtable with-band">
+    <div class="qt-row head">
+      <div class="qt-n"></div><div class="qt-q">The question</div><div class="qt-t">The tension</div><div class="qt-j">Marketing&rsquo;s job</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">1</div>
+      <div class="qt-q">Are we building against the real entry points?</div>
+      <div class="qt-t">We&rsquo;ve identified who&rsquo;s valuable, not yet which entry points reliably create more of them.</div>
+      <div class="qt-j">Know Who Is Valuable<br>(Customer &amp; Cohort Intelligence Engine)</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">2</div>
+      <div class="qt-q">Too few people know us. Fewer know what we stand for.</div>
+      <div class="qt-t">Brand recognition is not meaning. Both = growth.</div>
+      <div class="qt-j">Mean Something<br>(Brand Positioning and Creative Engine)</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">3</div>
+      <div class="qt-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
+      <div class="qt-t">Search only reaches people who are already ready to buy.</div>
+      <div class="qt-j">Create Demand<br>(Demand Creation Engine + Unmissable Social Engine)</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">4</div>
+      <div class="qt-q">Is buying us easy? The first time, and every time after.</div>
+      <div class="qt-t">Friction anywhere undoes the investment that got them there.</div>
+      <div class="qt-j">Invest &amp; Deepen Relationships<br>(CRM, Lifecycle and Web-to-App Engine*)</div>
+    </div>
+    <div class="qt-row">
+      <div class="qt-n">5</div>
+      <div class="qt-q">How do we know it works before trading shows it?</div>
+      <div class="qt-t">We need proof, not platforms marking their own homework.</div>
+      <div class="qt-j">Know It&rsquo;s Working &amp; Enrich<br>(Measurement and Decisioning Engine)</div>
+    </div>
+  </div>
+  <div class="qt-band">AI enabled marketing organisation</div>
+  <div class="qt-foot">* Product Customer UX Roadmap also identifies and eliminates friction</div>
+</section>
+
+<!-- Detail Q1-Q3 moved to appendix (Richard, 21 Jul): out of the board flow. -->
+
+<!-- Detail Q4-Q5 moved to appendix (Richard, 21 Jul): out of the board flow. -->
+
+<!-- RICHARD 5: H2 PRIORITIES. seven in v4, was five. -->
+<section class="slide">
+  <div class="h2-head h-block">H2 <em>priorities.</em></div>
+  <div class="h2-sub">Focus on acquiring more &lsquo;Social Members&rsquo;</div>
+  <div class="h2-grid">
+    <div class="h2-cell">
+      <div class="n">01</div>
+      <h4>Mean Something</h4>
+      <div class="d">Give the brand one idea, and the craft to execute it consistently.</div>
+      <div class="s"><i>H2</i>Idea crafted (agency briefed) &rarr; creative engine built (GenAI + human craft).</div>
+      <div class="why">Turns spend that resets every campaign into spend that compounds.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">02</div>
+      <h4>Create Demand</h4>
+      <div class="d">Scale what&rsquo;s proven to create new demand, before testing what&rsquo;s next.</div>
+      <div class="s"><i>H2</i>Scale proven paid social (8 markets) &rarr; scope new channels (gated to paid social benchmark).</div>
+      <div class="why">Grows the pool of buyers who think of us first, not just those already searching.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">03</div>
+      <h4>Reclaim &amp; Reallocate</h4>
+      <div class="d">Test where reclaimed spend can fund this, carefully, so we don&rsquo;t lose the bookings it&rsquo;s currently protecting.</div>
+      <div class="s"><i>H2</i>Set up and test priority channel (incrementality, hold out) &rarr; reallocate.</div>
+      <div class="why">Raises the ceiling on everything else, at no incremental cost.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">04</div>
+      <h4>Invest &amp; Deepen Relationships</h4>
+      <div class="d">Retention working. The next test is whether we can deepen it further.</div>
+      <div class="s"><i>H2</i>Scale win-back + web-to-app (proven) &rarr; test new incentives and offers.</div>
+      <div class="why">Protects value already earned, rather than letting it leak between trips.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">05</div>
+      <h4>Know Who Is Valuable</h4>
+      <div class="d">Turn scattered customer insight into one connected, real-time view.</div>
+      <div class="s"><i>H2</i>Build cohort and CEP model (phase 1).</div>
+      <div class="why">Makes every other priority sharper and more efficient.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">06</div>
+      <h4>Know It&rsquo;s Working</h4>
+      <div class="d">Judge results on our own evidence, not platform-reported numbers.</div>
+      <div class="s"><i>H2</i>Onboard incrementality testing &rarr; validate brand tracking &rarr; close UDM data gaps.</div>
+      <div class="why">Visibility and robustness to invest with confidence, at pace.</div>
+    </div>
+    <div class="h2-cell">
+      <div class="n">07</div>
+      <h4>Building an AI-Enabled Marketing Org</h4>
+      <div class="d">Rebuild how the function operates. Capability, structure, accountability.</div>
+      <div class="s"><i>H2</i>Stand up three layers: Intelligence (UDM) &rarr; Platform (Creative) &rarr; Activation (AI champions).</div>
+      <div class="why">Makes the other six priorities move faster.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPENDIX (Richard, 21 Jul) =====================
+     Out of the main board flow: these sit after H2 priorities and are reached
+     only if a follow-up question comes up. -->
+
+<!-- APPENDIX: DETAIL Q1-Q3 -->
+
+<!-- APPENDIX: DETAIL Q4-Q5 -->
+
+<!-- RICHARD 6: ASK 1, PAID SOCIAL FUNDING TEST. added 23 Jul, moved to the back of the deck 23 Jul, the last two slides. -->
+<section class="slide">
+  <div class="ask-head h-block">Ask 01. <em>Paid social funding test.</em></div>
+  <div class="ask-sub">Paid social incrementality test; &euro;600k over 10 weeks. Prove paid social incrementality holds as we scale.</div>
+  <div class="ask-cols">
+    <div>
+      <div class="ask-blk">
+        <h4>What we&rsquo;ve run so far</h4>
+        <p>Two test waves, both English creative only. Results opposite.</p>
+      </div>
+      <div class="ask-blk">
+        <h4>What we&rsquo;ve found</h4>
+        <p>Incrementality shown across 2 waves, but test limitations:</p>
+        <ul>
+          <li>Investment; below levels to prove incrementality holds as it scales (below test market significance).</li>
+          <li>Creative; every result from English only. UK inconclusive. We don&rsquo;t yet know if additional creative routes unlock more demand across more Category Entry Points.</li>
+        </ul>
+      </div>
+      <div class="ask-blk">
+        <h4>What the investment ask buys us</h4>
+        <ul>
+          <li>Funding paid media to reach statistical significance across priority &lsquo;must win&rsquo; feeder 5 EU markets.</li>
+          <li>Includes smaller markets, testing elasticity across market size. Validation of lag effect to realise value (currently 9-13wks).</li>
+          <li>Creative testing in three non-English languages and two new Category Entry Points.</li>
+          <li>Evidence for a bigger-ticket rollout ask, rather than a projection.</li>
+        </ul>
+      </div>
+      <div class="ask-blk">
+        <h4>The commitment</h4>
+        <ul>
+          <li>Back to the board in October with latest results to show if it holds as we scale.</li>
+          <li>Some effects may still be landing given known measurement lag, but enough will be resolved to inform the investment decision.</li>
+          <li>Next ask part-funded by reclaim &amp; reallocation test programme set up and running H2.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="ask-card">
+        <div class="w">Wave 1</div>
+        <div class="st">Complete, statistically significant</div>
+        <div class="scope">12 EU markets* &middot; English creative</div>
+        <div class="fig">+6.8-12.0%</div>
+        <div class="note">Incremental bookings &middot; 2.03x ROAS</div>
+      </div>
+      <div class="ask-card">
+        <div class="w">Wave 2</div>
+        <div class="st">Complete, flagged</div>
+        <div class="scope">UK &middot; full-market &amp; creative quality test</div>
+        <div class="fig">+2.5-15.3%</div>
+        <div class="note">App installs. Creative refresh mid-test +40% CTR. However, booking inconclusive due to market noise &amp; creative test prevented clean comparison. Wave 3 reruns under stable conditions.</div>
+      </div>
+      <div class="ask-card live">
+        <div class="w" style="color:var(--coral)">Ask; Wave 3</div>
+        <div class="scope" style="margin-top:.8vh">5 EU feeder mkts scaled to reach significance. Small &amp; large mkt cluster; (including UK). 3 new languages &middot; 2 new Category Entry Points.</div>
+        <div class="fig figc">1.5-2.5x</div>
+        <div class="note">Est. ROAS, based on results to date</div>
+      </div>
+    </div>
+  </div>
+  <div class="ask-src">Wave 1 EU test mkts; &euro;0.2m test investment. Wave 2; UK test &euro;0.3m investment. Wave 3; DK+NL+FR+IT+UK deliver large and small cluster &amp; cost effectively reach test significance. Why these markets: EU 18-34 TikTok reach efficiency (18-48% penetration) far exceeds scale markets (US 2%, Brazil 6%, Germany 8%). Methodology: DiD, Synthetic Control &amp; BSTS, cross-validated. Onboarding Incrmntal, a third-party incrementality vendor, this month for independent validation and speed to scale.</div>
+</section>
+
+<!-- RICHARD 7: ASK 2, MARKETING ORGANISATION. added 23 Jul. -->
+<section class="slide">
+  <div class="ask-head h-block">Ask 02. <em>Marketing organisation.</em></div>
+  <div class="ask-sub">Marketing capacity and capability investment; &euro;80k max H2 2026.<br>
+    To deliver the H2 plan, we need to deploy dedicated capacity as we ramp up and scale demand building and measurement activity (incrementality and reclaim and reallocate testing programme).</div>
+  <div class="ask-intro">This investment moves the team from a channel-based structure to one organised around the marketing system itself, creating demand against valuable cohorts, with capability added where it is critical to H2: Media, Creative and Analytics.</div>
+  <div class="org-row">
+    <div class="org-legend"><i></i>H2 2026 critical capability gap</div>
+    <div class="org-cmo">
+      <div class="r">CMO</div>
+      <div class="n">Richard Bowden</div>
+    </div>
+    <div class="org-stem"></div>
+    <div class="org-bar"></div>
+    <div class="org-leads">
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Media &amp; Performance</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Brand &amp; Creative</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Marketing Analytics &amp; Insights</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn">Social Media and Creators</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn">CRM</div></div>
+    </div>
+  </div>
+  <table class="hires">
+    <tr><th>Role / hire</th><th>Purpose</th><th class="num">H2 &euro;</th></tr>
+    <tr class="band"><td colspan="2">Build demand</td><td class="num">&euro;40k</td></tr>
+    <tr>
+      <td class="role">Motion Designer x 1</td>
+      <td>Closes a creative capability gap and strengthens brand control as we scale paid social.</td>
+      <td class="num"></td>
+    </tr>
+    <tr>
+      <td class="role">Paid Media Executive x 1</td>
+      <td>Adds dedicated capacity to execute demand generation channels and reallocate spend where headroom is identified.</td>
+      <td class="num"></td>
+    </tr>
+    <tr class="band"><td colspan="2">Measure demand</td><td class="num">&euro;40k</td></tr>
+    <tr>
+      <td class="role">Analyst x 2</td>
+      <td>Builds the measurement capability behind reclaim &amp; reallocate and incrementality testing, harnessing UDM so budget decisions are evidence-led.</td>
+      <td class="num"></td>
+    </tr>
+    <tr class="total"><td>Total ask</td><td></td><td class="num">&euro;80k max</td></tr>
+  </table>
+  <div class="ask-note">Note; to complete the marketing structure further Brand, CRM and Social capability will be brought to the board in October for approval from January 2027.</div>
+</section>
+
+<div class="counter" id="counter"></div>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+function show(i){
+  // pause any sound videos when leaving a slide
+  slides[cur] && slides[cur].querySelectorAll('video').forEach(v=>{ if(!v.muted) v.pause(); });
+  cur = Math.max(0, Math.min(slides.length-1, i));
+  slides.forEach((s,k)=> s.classList.toggle('on', k===cur));
+  // reset click-to-reveal steps on the slide we land on
+  slides[cur].querySelectorAll('.step').forEach(el=>el.classList.remove('on'));
+  document.getElementById('counter').textContent = (cur+1) + ' / ' + slides.length;
+  slides[cur].querySelectorAll('video[autoplay]').forEach(v=>v.play());
+}
+function advance(){
+  const nextStep = slides[cur].querySelector('.step:not(.on)');
+  if(nextStep){ nextStep.classList.add('on'); return; }
+  show(cur+1);
+}
+function openLightbox(id){
+  const lb = document.getElementById(id);
+  const fr = lb.querySelector('iframe');
+  if(fr && !fr.src) fr.src = fr.dataset.src;
+  lb.classList.add('open');
+}
+function closeLightboxes(){ document.querySelectorAll('.lightbox.open').forEach(lb=>lb.classList.remove('open')); }
+
+document.addEventListener('click', (e)=>{
+  if(e.target.classList.contains('sim-nav')){
+    if(e.target.classList.contains('prev')) show(cur-1); else advance();
+    return;
+  }
+  const t = e.target.closest('[data-lightbox]');
+  if(t){ e.preventDefault(); openLightbox(t.dataset.lightbox); return; }
+  const lb = e.target.closest('.lightbox');
+  if(lb){ if(e.target.closest('.lightbox-close') || e.target === lb) closeLightboxes(); return; }
+  const sv = e.target.closest('video.svid');
+  if(sv){ // click-to-play with sound; click again to pause. only one film plays at a time.
+    if(sv.paused){
+      slides[cur].querySelectorAll('video').forEach(v=>{ if(v!==sv) v.pause(); });
+      sv.muted = false; sv.play();
+    } else { sv.pause(); }
+    return;
+  }
+  if(e.target.closest('a, video')) return;
+  advance();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){ closeLightboxes(); return; }
+  if(document.querySelector('.lightbox.open')) return;
+  if(e.key==='ArrowRight' || e.key===' ' || e.key==='Enter' || e.key==='ArrowDown'){ e.preventDefault(); advance(); }
+  if(e.key==='ArrowLeft' || e.key==='ArrowUp'){ e.preventDefault(); show(cur-1); }
+});
+// the 60/40 sim lives in an iframe, which swallows clicks and keys.
+// it forwards nav keys up to us; the .sim-nav strips give a click target outside it.
+window.addEventListener('message', (e)=>{
+  const k = e.data && e.data.simNav;
+  if(!k) return;
+  if(k==='ArrowLeft' || k==='ArrowUp') show(cur-1);
+  else advance();
+});
+
+const m = location.hash.match(/^#s(\d+)$/);
+show(m ? parseInt(m[1],10) : 0);
+</script>
+</body>
+</html>

@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* ⭐⭐ THE MODULE FILES SHIP WITH THE SERVERLESS FUNCTION, NOT AS STATIC ASSETS.
+  /* The gated audit PDFs live in content/for/, NOT public/, so they cannot
+     be fetched without the page password. fs.readFile is invisible to
+     Next's dependency tracing, so without this line the file is missing
+     from the serverless bundle on Vercel and the route 404s in production
+     while working locally. */
+  outputFileTracingIncludes: {
+    "/for/[slug]/audit": ["./content/for/**"],
+    "/for/[slug]/pdf": ["./content/for/**"],
+    /* ⭐⭐ THE MODULE FILES SHIP WITH THE SERVERLESS FUNCTION, NOT AS STATIC ASSETS.
      `course-files/` is outside `public/` on purpose, so that the only way to read one is
      through `api/course-file`, which checks the course cookie. Nothing imports these files,
      so Next's tracer cannot see them and would leave them out of the deployment: the route
@@ -9,7 +17,6 @@ const nextConfig: NextConfig = {
      them in the bundle.
      ⚠️ THE PATH IS RELATIVE TO THE PROJECT ROOT and the glob must keep matching if a
      module 3 folder appears beside module-2. */
-  outputFileTracingIncludes: {
     "/api/course-file/[...path]": ["./course-files/**/*"],
   },
   async rewrites() {
@@ -19,11 +26,42 @@ const nextConfig: NextConfig = {
          own page. That is how a visit is attributed to a campaign: Vercel does
          not capture UTM parameters outside the Plus add-on, and a query string
          in a one-to-one LinkedIn message reads as marketing automation.
-         /li = Jo's HeyReach campaign. Add one line per channel. */
+         /li = Jo's HeyReach campaign, /fb = the Meta ads for the free course.
+         Add one line per channel. */
       {
         source: "/course/li",
         destination: "/course",
       },
+      {
+        source: "/course/fb",
+        destination: "/course",
+      },
+
+      /* De-iframed pages. Each of these was a Next route whose entire body was
+         an <iframe> pointing at a static file. Crawlers and AI engines read the
+         outer document, so the sitemap advertised a URL serving zero words
+         while the real content sat at a second URL nothing linked to. Serving
+         the file at the pretty path gives one URL with the words in it. Each
+         static file carries rel="canonical" back to the path named here,
+         because the file stays directly reachable at its own URL too.
+         ⚠️ Before adding one: every asset, link and fetch target in the file
+         must be ROOT ABSOLUTE. The file gets served from a path it does not sit
+         at, so anything relative resolves against the pretty path and 404s
+         silently while a word count still passes clean. */
+      {
+        source: "/info",
+        destination: "/info/index.html",
+      },
+      {
+        source: "/training",
+        destination: "/training-app/index.html",
+      },
+      {
+        source: "/productivity",
+        destination: "/productivity-app/index.html",
+      },
+
+      /* Static article pages. Same mechanism, but these never had a Next route. */
       {
         source: "/distinctive",
         destination: "/distinctive/index.html",

@@ -173,7 +173,19 @@ export default function ModuleArrival({ n }: { n: number }) {
 
         {/* ⚠️ BOTH LABELS ARE PLACEHOLDER. "Save and begin" is wrong at the end of a course. */}
         <div className="arr-actions">
-          <button type="button" onClick={() => setSaved(true)}>
+          <button
+            type="button"
+            onClick={() => {
+              setSaved(true);
+              /* 18 Sep 2026: the number now goes to the course record, keyed to the person. */
+              fetch("/api/course-event", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ event: "fluency_rated", module: n, detail: String(v) }),
+                keepalive: true,
+              }).catch(() => {});
+            }}
+          >
             {end ? "Save" : "Save and begin"}
           </button>
           {saved && (

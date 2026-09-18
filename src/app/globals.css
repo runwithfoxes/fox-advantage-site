@@ -21,9 +21,22 @@
   --text: #1D1B1B;
   --text-muted: #8A8A85;
   --border: #E0E0DC;
-  --mono: var(--font-mono), 'JetBrains Mono', monospace;
-  --sans: var(--font-sans), 'Space Grotesk', sans-serif;
-  --serif: var(--font-serif), 'Source Serif 4', Georgia, serif;
+  /* ⛔ NEVER write these as `var(--font-mono), ...` again. `--font-mono`,
+     `--font-sans` and `--font-serif` are ALSO Tailwind v4 theme defaults, and
+     Tailwind declares them on :root. A custom property is substituted where it
+     is DECLARED, not where it is used, so `var(--font-serif)` HERE resolved
+     against Tailwind's own `ui-serif, Georgia, Cambria, ...` rather than the
+     next/font value on <body>, which arrives too late to win. Every alias below
+     therefore began with a system font, and the whole type system rendered in
+     ui-monospace / ui-sans-serif / ui-serif on every React page while all three
+     real fonts sat loaded and unused. It looks plausible in a screenshot, which
+     is why it survived from 21 Jul to 25 Jul.
+     These literal names are the families next/font registers, so they resolve to
+     the self-hosted files. Verify by reading the COMPUTED font-family of a real
+     element, never by looking at a render. */
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
 }
 
 * {
@@ -1266,14 +1279,16 @@ a.project-card {
 }
 
 /* ---- CHAPTER READER LAYOUT ---- */
-.chapter-page {
+.chapter-page,
+.essay-page {
   min-height: 100vh;
   background: var(--bg);
   position: relative;
   z-index: 1;
 }
 
-.chapter-nav {
+.chapter-nav,
+.essay-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -1288,7 +1303,8 @@ a.project-card {
   align-items: center;
 }
 
-.chapter-nav-logo {
+.chapter-nav-logo,
+.essay-nav-logo {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
@@ -1298,15 +1314,18 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-nav-logo span {
+.chapter-nav-logo span,
+.essay-nav-logo span {
   color: var(--logo-orange);
 }
 
-.chapter-nav-logo:hover {
+.chapter-nav-logo:hover,
+.essay-nav-logo:hover {
   color: var(--orange);
 }
 
-.chapter-nav-back {
+.chapter-nav-back,
+.essay-nav-back {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 300;
@@ -1316,11 +1335,13 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-nav-back:hover {
+.chapter-nav-back:hover,
+.essay-nav-back:hover {
   color: var(--orange);
 }
 
-.chapter-nav-count {
+.chapter-nav-count,
+.essay-nav-count {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 400;
@@ -1328,16 +1349,19 @@ a.project-card {
   color: var(--text-muted);
 }
 
-.chapter-main {
+.chapter-main,
+.essay-main {
   padding: 128px 32px 160px;
 }
 
-.chapter-inner {
+.chapter-inner,
+.essay-inner {
   max-width: 680px;
   margin: 0 auto;
 }
 
-.chapter-header {
+.chapter-header,
+.essay-header {
   margin-bottom: 64px;
 }
 
@@ -1360,7 +1384,8 @@ a.project-card {
   margin-bottom: 24px;
 }
 
-.chapter-heading {
+.chapter-heading,
+.essay-heading {
   font-family: var(--sans);
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 300;
@@ -1368,7 +1393,15 @@ a.project-card {
   line-height: 1.15;
 }
 
-.chapter-footer {
+/* On the diary index the page title is the main headline, so each
+   dispatch heading steps down a size rather than competing with it. */
+.diary-entry .essay-heading {
+  font-size: clamp(24px, 3.2vw, 32px);
+  letter-spacing: -0.5px;
+}
+
+.chapter-footer,
+.essay-footer {
   margin-top: 96px;
   padding-top: 48px;
   border-top: 1px solid var(--border);
@@ -1377,11 +1410,13 @@ a.project-card {
   align-items: start;
 }
 
-.chapter-footer a {
+.chapter-footer a,
+.essay-footer a {
   text-decoration: none;
 }
 
-.chapter-footer-label {
+.chapter-footer-label,
+.essay-footer-label {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 2px;
@@ -1390,7 +1425,8 @@ a.project-card {
   margin-bottom: 8px;
 }
 
-.chapter-footer-title {
+.chapter-footer-title,
+.essay-footer-title {
   font-family: var(--sans);
   font-size: 18px;
   font-weight: 400;
@@ -1399,11 +1435,13 @@ a.project-card {
   transition: color 0.3s;
 }
 
-.chapter-footer a:hover .chapter-footer-title {
+.chapter-footer a:hover .chapter-footer-title,
+.essay-footer a:hover .essay-footer-title {
   color: var(--orange);
 }
 
-.chapter-footer-next {
+.chapter-footer-next,
+.essay-footer-next {
   text-align: right;
 }
 
@@ -1523,7 +1561,8 @@ a.project-card {
 }
 
 /* ---- CHAPTER READER PROSE ---- */
-.chapter-prose {
+.chapter-prose,
+.essay-prose {
   font-family: 'JetBrains Mono', monospace;
   font-size: 15px;
   font-weight: 300;
@@ -1532,13 +1571,17 @@ a.project-card {
   max-width: 680px;
 }
 
-.chapter-prose p {
+.chapter-prose p,
+.essay-prose p {
   margin-bottom: 24px;
 }
 
 .chapter-prose h1,
 .chapter-prose h2,
-.chapter-prose h3 {
+.chapter-prose h3,
+.essay-prose h1,
+.essay-prose h2,
+.essay-prose h3 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -1546,11 +1589,12 @@ a.project-card {
   margin-bottom: 24px;
 }
 
-.chapter-prose h1 { font-size: 36px; }
-.chapter-prose h2 { font-size: 28px; }
-.chapter-prose h3 { font-size: 22px; }
+.chapter-prose h1, .essay-prose h1 { font-size: 36px; }
+.chapter-prose h2, .essay-prose h2 { font-size: 28px; }
+.chapter-prose h3, .essay-prose h3 { font-size: 22px; }
 
-.chapter-prose blockquote {
+.chapter-prose blockquote,
+.essay-prose blockquote {
   border-left: 2px solid var(--orange);
   padding-left: 20px;
   margin: 32px 0;
@@ -1558,28 +1602,326 @@ a.project-card {
   font-style: italic;
 }
 
-.chapter-prose a {
+.chapter-prose a,
+.essay-prose a {
   color: var(--orange);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .chapter-prose ul,
-.chapter-prose ol {
+.chapter-prose ol,
+.essay-prose ul,
+.essay-prose ol {
   margin: 24px 0;
   padding-left: 24px;
 }
 
-.chapter-prose li {
+.chapter-prose li,
+.essay-prose li {
   margin-bottom: 8px;
 }
 
-.chapter-prose strong {
+.chapter-prose strong,
+.essay-prose strong {
   font-weight: 500;
 }
 
-.chapter-prose em {
+.chapter-prose em,
+.essay-prose em {
   font-style: italic;
+}
+
+/* ---------- ESSAYS ----------
+   Paul's own writing, on his own domain first and on Substack after. The reading
+   register above is SHARED with the chapter reader on purpose, so the two never
+   drift apart. Only what genuinely differs lives down here: the index list, the
+   dated meta line, and the quiet Substack credit at the foot of a piece. */
+
+/* Substack images arrive at up to 1456px. Without this they blow out of the column. */
+.essay-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 32px 0;
+}
+
+/* ⭐ THE ONE MEDIA PRIMITIVE FOR ESSAYS. Video in a piece is rare, so the temptation
+   is to hand-roll a wrapper each time it comes up. Do not. `class="essay-embed"` on a
+   bare <video> or <iframe> is the whole contract, and it holds for both because the
+   sizing is identical: full column width, 16/9, no scrollbar, no layout shift while it
+   loads. remark runs with `sanitize: false`, so the tag passes through from markdown
+   untouched. First used by distinctive-brand-assets-in-an-ai-world, which carries four
+   YouTube films and two videos already hosted on this site.
+   ⚠️ NO ROUNDED CORNERS. */
+.essay-prose .essay-embed {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 32px 0;
+  border: 0;
+}
+
+/* ⭐ THE RATIO BELONGS TO THE IFRAME ONLY, and this is the whole reason the two are
+   split. An iframe has no intrinsic size, so without a ratio it collapses. A <video>
+   has one, and hard-coding 16/9 over it is a real bug rather than a tidy default:
+   animated-6040-activate.mp4 is SQUARE, and the black bars would have run down both
+   sides of a cream ad on a cream page. Let the file say how tall it is.
+   The black here is the letterbox inside a YouTube player, not page chrome, so the
+   light-mode rule still holds for everything around it. */
+.essay-prose iframe.essay-embed {
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+/* ⭐ EVERY <video class="essay-embed"> NEEDS A poster. Chrome paints nothing at all
+   until the first frame decodes, so a video without one is a blank rectangle sitting
+   in the middle of a piece for as long as the network takes. */
+
+/* the line under an essay title: date, and how long it takes to read */
+.essay-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* the dek, one line, sits under the heading */
+.essay-dek {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+/* ⭐ THE ONE ASK, at the foot, where the reader has just finished and liked it.
+   A LINK, NEVER A FORM: see the reasoning on COURSE_NOTE in src/lib/essays.ts. */
+.essay-course {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.essay-course a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.essay-course a:hover {
+  color: var(--ink, var(--text));
+}
+
+/* ⚠️ QUIET, AND AT THE FOOT, AND SMALLER THAN THE COURSE LINE ABOVE IT. Substack is a
+   mirror with a few hundred people on it, not a goal (Paul, 24 Jul). This is a credit
+   that the piece exists in two places, not a second ask. A prominent link at the top
+   would send a reader away before they read the thing they arrived for. */
+.essay-substack {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.essay-substack a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.essay-substack a:hover {
+  color: var(--orange);
+}
+
+/* when the course line is above it there is already a rule and a gap, so the credit
+   tucks under rather than opening a second banded block */
+.essay-course + .essay-substack {
+  margin-top: 10px;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Three items do not fit across a phone: the logo, the back link and the date collide
+   and the date wraps onto two lines. It is redundant there anyway, it sits again in
+   .essay-meta directly under the title, so drop it and keep the two controls. */
+@media (max-width: 640px) {
+  .essay-nav {
+    padding: 16px 24px;
+  }
+  .essay-nav-count {
+    display: none;
+  }
+  .essay-main {
+    padding: 112px 24px 120px;
+  }
+}
+
+/* Essay titles are sentences, not chapter names, so the two feet meet in the middle
+   and read as one run-on line. Give them room and a hard stop. */
+.essay-footer {
+  gap: 48px;
+}
+
+.essay-footer > a {
+  max-width: calc(50% - 24px);
+}
+
+.essay-footer-next {
+  text-align: right;
+}
+
+/* two 50% columns on a phone leaves each title in a four-word ribbon, so stack them */
+@media (max-width: 640px) {
+  .essay-footer {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .essay-footer > a {
+    max-width: 100%;
+  }
+  .essay-footer-next {
+    text-align: left;
+  }
+}
+
+/* ---------- the index ---------- */
+.essay-index-head {
+  margin-bottom: 56px;
+}
+
+.essay-index-kick {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.essay-index-intro {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+/* THE DIARY'S LONG PAGE. /diary renders every dispatch in full (Paul, 28 Aug
+   2026: "more like a blog than essays", no extra clicks to read). Entries after
+   the first are separated by the same rule-plus-gap rhythm as .essay-footer.
+   The date line is the entry's permalink to /diary/[slug]; it stays in the
+   meta register and only warms on hover, like the index list titles. */
+.diary-entry + .diary-entry {
+  margin-top: 96px;
+  padding-top: 64px;
+  border-top: 1px solid var(--border);
+}
+
+.diary-permalink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.diary-permalink:hover {
+  color: var(--orange);
+}
+
+/* dispatches older than the rendered set, as a dated list of links */
+.diary-older {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.essay-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.essay-list-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.essay-list-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.essay-list-thumb {
+  width: 88px;
+  height: 88px;
+  flex: 0 0 88px;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.essay-list-title {
+  font-family: var(--sans);
+  font-size: 21px;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  transition: color 0.3s;
+}
+
+.essay-list-item:hover .essay-list-title {
+  color: var(--orange);
+}
+
+.essay-list-dek {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.essay-list-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .essay-list-thumb {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+  }
+  .essay-list-item {
+    gap: 16px;
+  }
+  .essay-list-title {
+    font-size: 18px;
+  }
 }
 
 .chapter-prose hr {
@@ -3657,6 +3999,8 @@ a.project-card {
   z-index: 100;
 }
 .hp-dropdown-wrap:hover .hp-mega { display: block; }
+/* The last dropdown before /contact opens leftwards, or it runs off the window. */
+.hp-mega.hp-mega-end { left: auto; right: -20px; }
 .hp-mega-inner {
   background: rgba(26,58,78,0.95);
   backdrop-filter: blur(12px);
@@ -4365,9 +4709,42 @@ a.project-card {
 .hp-cta-bar:hover { background: #2F6688; }
 
 /* ---- HP RESPONSIVE ---- */
+/* ---- MOBILE MENU (7 Sep 2026) ---- the drawer behind /menu on phones.
+   Hidden above 900px, where the full link row is on the bar. */
+.mm-btn {
+  display: none;
+  font: inherit; letter-spacing: 1px; color: var(--text-muted);
+  background: none; border: none; padding: 6px 0; cursor: pointer;
+}
+.mm-drawer {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--bg);
+  background-image: radial-gradient(circle, rgba(208,208,204,.55) .9px, transparent .9px);
+  background-size: 28px 28px;
+  padding: 92px 24px 32px;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity .22s ease-out, transform .22s ease-out, visibility 0s linear .22s;
+  overflow-y: auto;
+}
+.mm-drawer.open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.mm-close { position: absolute; top: 14px; right: 24px; font-size: 13px; }
+.mm-list { display: flex; flex-direction: column; font-family: var(--mono); letter-spacing: 0; }
+.mm-list > a, .mm-label {
+  font-size: 24px; line-height: 1; padding: 18px 0; color: #1D1B1B; text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.mm-group { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+.mm-label { display: block; color: var(--text-muted); border-bottom: none; padding-bottom: 8px; }
+.mm-group > a { font-size: 15px; padding: 9px 0 9px 18px; color: #1D1B1B; text-decoration: none; }
+.mm-group > a:last-child { padding-bottom: 20px; }
+.mm-list > a.mm-cta {
+  margin-top: 28px; padding: 16px 20px; text-align: center; font-size: 16px;
+  background: #3A7CA5; color: #fff; border: none;
+}
 @media (max-width: 900px) {
   .hp-nav { padding: 14px 24px; }
   .hp-nav-links { display: none; }
+  .mm-btn { display: inline-block; }
   .hp-about { padding: 80px 24px 0; }
   .hp-about-grid { grid-template-columns: 1fr; gap: 32px; }
   .hp-about-photo { max-width: 280px; }
@@ -4948,7 +5325,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -5501,7 +5880,18 @@ a.project-card {
   color: #1D1B1B;
 }
 
-.ah-hero { height: 280vh; position: relative; }
+/* 280vh felt slow: "if you didn't know, you'd think it is not moving" (Paul, 5 Sep).
+   190vh gets the windows assembled in two thirds of the scroll it used to take. */
+.ah-hero { height: 190vh; position: relative; }
+/* the global section rule gives the hero root 120px underneath; the bio sets
+   its own 48px, so the hero carries none (Paul, 5 Sep: same gap above and below) */
+.hp-root .ah-root { padding-bottom: 0; }
+/* The assembled windows stop well above the foot of the sticky stage, and
+   that empty band grows with the viewport height. Measured at 900, 982 and
+   1080 tall it is half the viewport minus 338px, to the pixel. The bio is pulled up by exactly that band, so
+   the gap the eye sees under the last window is the same 48px as the gap
+   under the bio. Below 1024px the hero is a static stack and this is off. */
+@media (min-width: 1024px) { .hp-root .hpx-about { margin-top: clamp(-260px, calc(338px - 50vh), 0px); } }
 .ah-sticky {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   background-image: radial-gradient(circle, var(--ah-dot) .9px, transparent .9px);
@@ -5530,9 +5920,20 @@ a.project-card {
   color: #565452; max-width: 44ch;
 }
 .ah-ctas { display: flex; gap: 11px; margin-top: 30px; font-size: 14px; }
-.ah-ctas a { text-decoration: none; padding: 10px 19px; }
+.ah-ctas a, .ah-ctas button { text-decoration: none; padding: 10px 19px; font: inherit; cursor: pointer; border: none; }
 .ah-ctas .ah-ghost { color: #1D1B1B; border: 1px solid var(--ah-border); background: #fff; }
 .ah-ctas .ah-primary { background: var(--ah-deep); color: #fff; font-weight: 500; }
+/* four doors on a phone (Paul, 7 Sep: "a little smaller so not too clunky").
+   At 390px the three used to fill the width and "AI Agents" wrapped to two
+   lines; with Contact added they only fit one row if they ease down. */
+@media (max-width: 640px) {
+  .ah-ctas { gap: 8px; font-size: 12.5px; }
+  .ah-ctas a, .ah-ctas button { padding: 8px 11px; white-space: nowrap; }
+}
+@media (max-width: 400px) {
+  .ah-ctas { gap: 6px; font-size: 12px; }
+  .ah-ctas a, .ah-ctas button { padding: 8px 9px; }
+}
 
 .ah-stage { position: absolute; left: 50%; top: 50%; width: 0; height: 0; z-index: 2; }
 .ah-win { position: absolute; will-change: transform, opacity; user-select: none; -webkit-user-select: none; touch-action: none; }
@@ -5912,7 +6313,9 @@ a.project-card {
   background-image: radial-gradient(circle, rgba(208,208,204,0.45) 0.8px, transparent 0.8px);
   background-size: 28px 28px;
   background-color: var(--bg);
-  padding: 52px 0 8px;
+  /* 48px above the bio; 40px between the bio and its line, and the section
+     under it gives the same 40px between the line and its buttons (Paul, 5 Sep) */
+  padding: 48px 0 40px;
 }
 /* bio (left) + recent essays (right) sit side by side on desktop, stack on mobile */
 .hpx-about-grid {
@@ -6531,6 +6934,19 @@ a.project-card {
   font-family:var(--sans);font-weight:300;color:#6E6C68;
   font-size:clamp(17px,1.5vw,20px);line-height:1.55;margin:22px 0 0;
 }
+/* The category line. Inherits family, colour and full width from .co-hero p above (the
+   no-cap rule at the end of this block applies to it too); the ONLY change is one step
+   down in size, so the headline still lands first and Paul's selling paragraph still
+   lands second.
+   ⚠️ SIZE, NOT COLOUR. A lighter grey was tried first and measured 3.4:1 on the cream,
+   under the 4.5:1 floor for body text. It is differentiated by scale alone on purpose.
+   ⚠️ SELECTOR IS .co-hero p.co-define, NOT .co-define. .co-hero p sets the size, and a
+   single class loses to it on specificity, so a bare .co-define silently does nothing.
+   No !important anywhere in this file's hero block; do not introduce one here. */
+.co-hero p.co-define{
+  font-size:clamp(15px,1.2vw,17px);
+  margin:16px 0 0;
+}
 .co-herojoin{margin-top:34px}
 
 /* ---------- the way in ----------
@@ -6891,6 +7307,13 @@ a.project-card {
 /* ---------- the pill again ---------- */
 .co-footjoin{padding:64px 0 110px}
 
+/* The legal footer at the very bottom of /course. Unlike the homepage, this page's
+   hp-bottom-bar is PERMANENTLY visible (hp-bb-visible) and fixed to the viewport, so
+   the last ~44px of the document sits underneath it. .hpx-footer's own 36px of bottom
+   padding is not enough to clear it and the links end up behind the bar. Measured, not
+   guessed: the bar is 12px of type plus 14px padding top and bottom. */
+.co-footer{padding-bottom:76px}
+
 /* ---------- mobile ----------
    🔴 COURSE TRAFFIC LANDS OVERWHELMINGLY ON PHONES (LinkedIn and radio), so this is
    the layout that matters, not the desktop one.
@@ -6920,6 +7343,19 @@ a.project-card {
   .co-bio{padding:56px 0 0;gap:18px}
   .co-biophoto{width:84px;height:84px}
   .co-footjoin{padding:48px 0 96px}
+
+  /* The bottom bar WRAPS on a phone: measured 77px tall at 390px against 47px on
+     desktop. The 76px base clearance leaves the footer links only 10px above it,
+     which is close enough to read as a mistake on the layout that matters most
+     (course traffic is overwhelmingly phones). */
+  .co-footer{padding-bottom:104px; flex-wrap:wrap; row-gap:10px}
+
+  /* Left to itself the row squeezes the company name onto two ragged lines rather
+     than wrapping, because flex shrinks the text span before it breaks the row.
+     So give the name its own full-width line and let the two links share the next
+     one, and drop the separator that would otherwise lead that second line. */
+  .co-footer > span:first-child{flex-basis:100%; text-align:center}
+  .co-footer > span:nth-child(2){display:none}
 
   /* THE ARTEFACT DROPS TO ITS AUTHORED 284x186. At 1:1 every measured value inside
      the window is exactly what it was designed at, which is the whole reason the
@@ -7228,7 +7664,8 @@ a.project-card {
    an accident. It was 16px against a 28px line-height, which is exactly backwards and was
    the single clearest cause of the blockiness. One line plus a little. */
 .mod-body + .mod-body{margin-top:30px;}
-[data-ph]{border-bottom:1px dashed #F47521;}
+/* Build view only (?build), 18 Sep 2026: members were seeing the dashed line under placeholder prose. */
+.mod-build [data-ph]{border-bottom:1px dashed #F47521;}
 
 /* Part of the reading spec: an artifact (copy box, prompt button, window mock, link
    list) sits 28px off the prose, so it reads as a separate thing to do rather than the
@@ -7316,7 +7753,7 @@ a.project-card {
 .mod-lcard{display:grid;grid-template-columns:168px 1fr;gap:20px;align-items:start;padding:16px 0;border-bottom:1px solid #E0E0DC;text-decoration:none;color:inherit;}
 .mod-lcard:hover .mod-ltitle{color:#3A7CA5;border-bottom-color:#3A7CA5;}
 .mod-lthumb{aspect-ratio:16/10;background-size:cover;background-position:top center;border:1px solid #C9C9C3;display:grid;place-items:center;font-family:var(--mono);font-size:.625rem;letter-spacing:.08em;color:#A8A8A2;background-color:#FAFAF8;}
-.mod-lthumb[data-ph]{background-image:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px);background-size:14px 14px;border-style:dashed;border-color:#F47521;}
+.mod-build .mod-lthumb[data-ph]{background-image:radial-gradient(rgba(208,208,204,.55) 1px,transparent 1px);background-size:14px 14px;border-style:dashed;border-color:#F47521;}
 .mod-ltitle{display:block;font-family:var(--sans);font-weight:600;font-size:1.0625rem;letter-spacing:-.01em;border-bottom:1px solid transparent;color:#1D1B1B;}
 .mod-lwhy{display:block;font-family:'Source Serif 4',Georgia,serif;font-size:.9375rem;color:#1D1B1B;margin-top:7px;}
 .mod-lmeta{display:block;font-family:var(--mono);font-size:.6875rem;color:#A8A8A2;margin-top:9px;}
@@ -8085,3 +8522,44 @@ a.project-card {
   .mod-frow{grid-template-columns:1fr auto;gap:6px 20px;}
   .mod-fwhat{grid-column:1 / -1;}
 }
+
+/* Homepage variant. The reading pages run an 820px measure, but the homepage
+   container is .hpx-wrap (max-width 1200px, 48px padding, so a 1104px content
+   box). Left at 820px the links sit as a narrow orphan column under the
+   storefront grid, so the wide variant matches 1104px and lines up with it.
+   Two columns because ten links stacked in one is a lot of dead height at this
+   width. Scoped to the modifier: the eight pages on the default are untouched. */
+.site-footer-wide .site-footer-inner {
+  max-width: 1104px;
+}
+.site-footer-wide .site-footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 48px;
+}
+@media (max-width: 768px) {
+  .site-footer-wide .site-footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== the testimonial band on navy (Paul, 6 Sep 2026: "the background in navy,
+   like the book band, but not big words, copy in white"). Full bleed, the dot
+   grid in light dots, the words at the same size as before. ===== */
+.hpx-quotes {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 44px max(24px, calc(50vw - 50%)) 40px;
+  background-color: #1A3A4E;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  border-top: none;
+  border-bottom: none;
+}
+.hpx-quotes .hpx-qquote { color: #fff; }
+.hpx-quotes .hpx-qattr { color: rgba(255, 255, 255, 0.62); }
+.hpx-quotes .hpx-qattr strong { color: #fff; }
+.hpx-quotes .hpx-qarrow { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+.hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
+.hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
+.hpx-quotes .hpx-qdot.on { background: #fff; }

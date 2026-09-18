@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
-import ModuleIsa from "./ModuleIsa";
 import ModuleArrival from "./ModuleArrival";
 import FolderWindow from "./FolderWindow";
 import ChatWindow from "./ChatWindow";
@@ -139,12 +138,33 @@ function ItemPicture({
  * disposition, and markdown is the thing that goes into a Claude project. These three are
  * TAKEAWAYS, so the link has to hand over the file, not show a reading copy of it.
  */
+/* ⭐ WHAT A NAMED PERSON DID, sent to /api/course-event (Redis record + Klaviyo metric).
+   Wired 18 Sep 2026 for launch: the route was built 3 Aug and nothing ever called it.
+   Fire and forget: the route ignores anyone without the door cookie, and a failure here must
+   never reach the reader. `keepalive` so a download click that leaves the page still lands. */
+function track(event: string, module: number, item?: string, detail?: string) {
+  try {
+    fetch("/api/course-event", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ event, module, item, detail }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* never break the page for tracking */
+  }
+}
+
 function DocLinks({
   docs,
   onCopy,
+  n,
+  item,
 }: {
   docs?: Item["docs"];
   onCopy: (msg: string) => void;
+  n: number;
+  item: string;
 }) {
   /* ⛔ STATE BEFORE THE EARLY RETURN. Hooks cannot sit behind a conditional. */
   const [open, setOpen] = useState<string | null>(null);
@@ -179,6 +199,7 @@ function DocLinks({
       if (!r.ok) throw new Error(String(r.status));
       await navigator.clipboard.writeText(await r.text());
       onCopy(`${fileOf(f)} copied`);
+      track("download_taken", n, item, `copy ${fileOf(f)}`);
     } catch {
       /* ⛔ Say so. A silent failure here looks exactly like a successful copy, and the
          person only finds out when they paste nothing into their project. */
@@ -213,6 +234,7 @@ function DocLinks({
               className="mod-fileact"
               href={`/api/course-file/${docs.dir}/${fileOf(f)}`}
               download
+              onClick={() => track("download_taken", n, item, `download ${fileOf(f)}`)}
             >
               Download
             </a>
@@ -564,6 +586,14 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
   }, []);
 
   useEffect(() => {
+    track("module_viewed", mod.n);
+  }, [mod.n]);
+
+  useEffect(() => {
+    if (open !== null && mod.items[open]) track("item_opened", mod.n, mod.items[open].t);
+  }, [open, mod.n, mod.items]);
+
+  useEffect(() => {
     try {
       const raw = localStorage.getItem(key);
       if (raw) setDone(new Set(JSON.parse(raw) as number[]));
@@ -628,6 +658,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
     try {
       await navigator.clipboard.writeText(it.prompt);
       say("Prompt copied");
+      track("prompt_copied", mod.n, it.t);
       markDone(i); /* taking the prompt IS doing the thing */
     } catch {
       say("Copy failed");
@@ -654,7 +685,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
   const fox = FOXES[(mod.n - 1) % FOXES.length];
 
   return (
-    <div className="mod-shell">
+    <div className={build ? "mod-shell mod-build" : "mod-shell"}>
       {/* Reuses the book chapter nav verbatim (.chapter-nav). The chapters' numeric
           count is dropped: the eyebrow already says "Module N of 6". */}
       <header className="chapter-nav">
@@ -681,8 +712,9 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
           Right holds everything that used to run full width, masthead included. */}
       <div className="mod-grid">
         <div className="mod-railcol">
-          {/* The REAL Isa, scoped to this module. v8 drew this panel; it is wired now. */}
-          <ModuleIsa mod={mod} />
+          {/* ⛔ ISA IS OFF FOR LAUNCH. Paul, 18 Sep 2026: "We might be safer just to take Isa
+              off... We can always bring it back on later." ModuleIsa.tsx is kept intact; putting
+              `<ModuleIsa mod={mod} />` back here is the whole of turning her on again. */}
 
           <nav className="mod-rail">
             <p>/in this module</p>
@@ -922,7 +954,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   </button>
                 )}
 
-                <DocLinks docs={it.docs} onCopy={say} />
+                <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />
                 <ReadingList reading={it.reading} />
 
                 {it.links && (
@@ -1064,7 +1096,14 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                         </button>
                         {/* The markdown, which is the thing that goes into a Claude
                             project. */}
-                        <a className="mod-fileact" href={f.take} download>
+                        <a
+                          className="mod-fileact"
+                          href={f.take}
+                          download
+                          onClick={() =>
+                            track("download_taken", mod.n, set.title, `download ${f.name}`)
+                          }
+                        >
                           Download
                         </a>
                         <button
@@ -1076,6 +1115,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                               if (!r.ok) throw new Error(String(r.status));
                               await navigator.clipboard.writeText(await r.text());
                               say(`${f.name}.md copied`);
+                              track("download_taken", mod.n, set.title, `copy ${f.name}`);
                             } catch {
                               say("Copy failed");
                             }
@@ -1211,7 +1251,7 @@ export default function ModuleClient({ mod }: { mod: ModuleDef }) {
                   belongs: you finish the piece, then you are handed where to go next.
                   ⛔ It was MISSING here entirely until 3 Aug. He opened Create Projects and
                   his three links were not in it. */}
-              <DocLinks docs={mod.items[open].docs} onCopy={say} />
+              <DocLinks docs={mod.items[open].docs} onCopy={say} n={mod.n} item={mod.items[open].t} />
               <ReadingList reading={mod.items[open].reading} />
             </div>
           </div>

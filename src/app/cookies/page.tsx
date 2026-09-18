@@ -1,6 +1,14 @@
 // Cookie notice for runwithfoxes.com.
-// Created 8 June 2026. Updated 20 July 2026 when Vercel Web Analytics was added.
-// Reflects the site's ACTUAL behaviour: no cookies of any kind, no advertising pixels.
+// Created 8 June 2026. Updated 20 July 2026 when Vercel Web Analytics was added, and
+// 30 July 2026 when the course signup began reporting to Meta.
+// Reflects the site's ACTUAL behaviour: no cookies of any kind, no advertising pixel.
+//
+// ⛔ 30 JUL 2026: THE "no advertising pixels" LINE WAS TRUE AND IS NOW ONLY HALF TRUE.
+// There is still no browser pixel (no `fbq`, nothing on the device, so still no banner
+// needed), but a course signup now sends a server-side conversion event to Meta with a
+// hashed email - see src/lib/meta-capi.ts and the "When you sign up" section below.
+// If that server event is ever widened beyond the signup, or a browser pixel is ever
+// added, THIS PAGE CHANGES FIRST and a consent banner comes with the pixel.
 // Analytics is Vercel Web Analytics, which is cookieless: it identifies a visitor by a hash
 // of the incoming request that resets every day, so nobody can be followed between days or
 // between sites. If that ever changes, or a cookie-setting tool is added, this page changes
@@ -42,8 +50,10 @@ export default function CookiesPage() {
 
         <p style={p}>
           The short version: this site sets no cookies. We do use analytics, but the cookieless kind, so we can see
-          that a page was visited without knowing who visited it. We do not use Google Analytics, we run no advertising
-          pixels, we do not build a profile of you, and we do not sell data.
+          that a page was visited without knowing who visited it. We do not use Google Analytics, there is no
+          advertising pixel on this site, we do not build a profile of you, and we do not sell data. There is one
+          thing we share, and it is described below: if you sign up for the course after clicking one of our ads,
+          we tell Meta the signup happened.
         </p>
 
         <h2 style={h2}>What we measure</h2>
@@ -80,6 +90,21 @@ export default function CookiesPage() {
         <p style={p}>
           This is strictly functional storage. It keeps the site working and remembers your choices. It is not used
           to track you across other websites.
+        </p>
+
+        <h2 style={h2}>When you sign up for the course</h2>
+        <p style={p}>
+          We advertise the free course on Facebook and Instagram. If you sign up after clicking one of those ads, we
+          tell Meta that the signup happened, so we can see which ad was worth running. This happens on our own
+          server after you submit the form. There is no Facebook pixel on this site and nothing to do with it is
+          stored on your device.
+        </p>
+        <p style={p}>
+          What we send is a scrambled version of your email address rather than the address itself, along with the
+          reference Meta adds to the link you clicked. Meta can match that scramble to your account if you have one
+          with them, which is how they are able to tell us the ad worked. We send nothing for anyone who has not
+          signed up, and nothing for anyone who arrived any other way. If you would rather we had not, email Paul at
+          the address below and we will remove it.
         </p>
 
         <h2 style={h2}>Managing it</h2>

@@ -20,31 +20,15 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
  * page is that every pixel on it comes from SoftCo's brand system; Isa arrives
  * in Run with Foxes' own chrome and colours, which breaks the demonstration.
  */
-/**
- * ⭐ `children` decides whether the suppression reaches sub-routes.
- *
- * /course keeps CHILDREN suppressed, and that is now a decision rather than collateral.
- * The course home is here on the 18 Jul ruling: its whole job is one signup pill and she
- * auto-opens over it. Module pages are suppressed for a different reason: ⭐ THEY HAVE
- * THEIR OWN ISA, embedded in the rail (`ModuleIsa.tsx`), scoped to the module.
- * Un-suppressing the floating one here was built and looked at on 24 Jul 2026 and gave
- * two Isas on one page, the second opening over the count boxes and the copy. Paul:
- * "We don't want two Isas on the page." If you ever change this, delete ModuleIsa.
- *
- * /softco keeps prefix matching: the point of that page is that every pixel comes from
- * SoftCo's brand system, and Isa arrives in Run with Foxes' chrome and colours.
- */
-const NO_CHAT_ROUTES: { path: string; children: boolean }[] = [
-  { path: "/course", children: true },
-  { path: "/softco", children: true },
-];
+/* Routes with no floating Isa (the path and everything under it). /course: the home is
+ * one signup pill and module pages had their own Isa in the rail (removed for launch, Paul,
+ * 18 Sep 2026). /zorro: Isa sits in the rail there. /softco: SoftCo's brand only. */
+const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();
   const suppressed = NO_CHAT_ROUTES.some(
-    (r) =>
-      pathname === r.path ||
-      (r.children && pathname?.startsWith(r.path + "/"))
+    (r) => pathname === r || pathname?.startsWith(r + "/")
   );
   const [ready, setReady] = useState(false);
   useEffect(() => {

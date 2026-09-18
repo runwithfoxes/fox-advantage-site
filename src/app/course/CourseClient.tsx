@@ -17,6 +17,7 @@ import {
   SHARE,
   STRIP,
 } from "./courseCopy";
+import MobileMenu from "@/components/MobileMenu";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -280,21 +281,37 @@ export default function CourseClient() {
                 <Link href="/millionaire-raffle">Millionaire Raffle</Link>
                 <Link href="/marketer-of-the-year">Marketer of the Year</Link>
                 <Link href="/48">48</Link>
-                <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
               </div>
             </div>
           </div>
-          <Link href="/book">/book</Link>
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">/books &#9662;</span>
+            <div className="hp-mega hp-mega-end">
+              <div className="hp-projects-dropdown">
+                <Link href="/book">The Fox Advantage</Link>
+                <Link href="/run-with-foxes">Run with Foxes</Link>
+              </div>
+            </div>
+          </div>
           <Link href="/contact" className="hp-nav-cta">
             /contact
           </Link>
         </div>
+      <MobileMenu />
       </nav>
 
       <div className="co-root">
 
         <header className="co-hero wrap" id="top">
           <h1 className="co-h1">{HERO.headline}</h1>
+
+          {/* ⭐ THE CATEGORY LINE. Deliberately QUIETER than the paragraph below it and
+              deliberately ABOVE it. Above, because a third of a page is what gets read
+              and this is the sentence that has to survive being lifted. Quieter,
+              because the hero's job is still to sell and Paul's paragraph is what does
+              that: a definition set at the same weight would be the first thing read
+              and the sell would arrive second. Reasoning in courseCopy.ts. */}
+          <p className="co-define">{HERO.definition}</p>
 
           <p>{HERO.sub}</p>
 
@@ -376,6 +393,30 @@ export default function CourseClient() {
             />
           </section>
         </main>
+
+        {/*
+          ⭐ THE LEGAL FOOTER. This page had NONE, and that was the problem.
+
+          /cookies was reachable from exactly one place on the whole site: the
+          homepage footer. Someone arriving from a Facebook ad lands here on
+          /course/fb and never touches the homepage, so the notice describing
+          what we tell Meta about their signup was invisible to precisely the
+          people it is about.
+
+          ⛔ DELIBERATELY THE SMALL LEGAL LINE, NOT <SiteFooter />. The site-links
+          footer would offer a menu of other pages at the exact point someone is
+          meant to be signing up. Nothing goes near the pill either: a notice at
+          the moment of decision costs signups and protects nobody. Paul, 30 Jul:
+          "I don't want to add in lines that are distracting or off putting."
+          Honest and findable, not in the way.
+        */}
+        <footer className="hpx-footer co-footer">
+          <span>&copy; 2026 Run with Foxes Limited</span>
+          <span className="hpx-footer-sep">&middot;</span>
+          <Link href="/privacy">Privacy</Link>
+          <span className="hpx-footer-sep">&middot;</span>
+          <Link href="/cookies">Cookies</Link>
+        </footer>
 
         <div className="hp-bottom-bar hp-bb-visible">
           <a href="#top">#top</a>

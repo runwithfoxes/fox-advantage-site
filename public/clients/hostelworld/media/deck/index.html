@@ -90,7 +90,6 @@
   .pen-sub{ margin-top:3vh; font-size:2vh; line-height:1.5; font-weight:600; opacity:.8; }
   .pen-chart{ position:absolute; right:3vw; top:50%; transform:translateY(-50%); width:46vw; height:76vh; object-fit:contain; object-position:center; }
 
-
   /* system set-up: words only, big and bold, in the slide-5 register */
   .sys-txt{ position:absolute; left:56px; right:56px; top:50%; transform:translateY(-50%); }
   .sys-block{ font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.5px;
@@ -263,7 +262,6 @@
   /* H2 priorities: seven cells (Richard v4) */
   .h2-head{ position:absolute; left:56px; top:6vh; font-size:5.6vh; }
 
-
   /* Richard: WHY MARKETING. his opener, sits before the cover. two proof blocks. */
   .wm-head{ position:absolute; left:56px; top:5.5vh; font-size:5.2vh; }
   .wm-claim{ position:absolute; left:56px; right:56px; top:14vh; font-size:2.5vh; line-height:1.3; font-weight:600; }
@@ -299,14 +297,29 @@
   .ask-src{ position:absolute; left:56px; right:56px; bottom:3.5vh; font-family:'JetBrains Mono',monospace; font-size:1.05vh; letter-spacing:.5px; line-height:1.5; opacity:.5; }
 
   /* Ask 2: org chart across the top, hires table under it */
-  .org-row{ position:absolute; left:56px; right:56px; top:31vh; display:flex; gap:1vw; align-items:stretch; }
-  .org-cmo{ background:var(--ink); color:var(--cream); padding:1.2vh 1.2vw; min-width:13vw; }
-  .org-cmo .r{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.2vh; }
-  .org-cmo .n{ font-size:1.5vh; opacity:.75; margin-top:.3vh; }
-  .org-fn{ flex:1; border:1.5px solid rgba(20,20,20,.35); padding:1.2vh 1vw; font-size:1.6vh; line-height:1.25; display:flex; align-items:center; }
+  /* title card + Gary's supplied opening slide (dropped in as an image, unaltered) */
+  .title-card{ padding-left:56px; }
+  .tc-rule{ position:absolute; left:56px; top:34vh; width:9vw; height:5px; background:var(--coral); }
+  .tc-h{ position:absolute; left:56px; top:41vh; font-family:'Anton',sans-serif; text-transform:uppercase; font-size:11vh; line-height:.95; letter-spacing:-1px; }
+  .tc-h em{ font-style:normal; color:var(--coral); }
+  .slide.gary{ align-items:center; justify-content:center; padding:0; background:#fff; }
+  .slide.gary.on{ display:flex; }
+  .gary-img{ max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; margin:0 auto; }
+  .org-row{ position:absolute; left:56px; right:56px; top:30.5vh; }
+  .org-legend{ display:flex; align-items:center; gap:.5vw; font-family:'JetBrains Mono',monospace; font-size:1.15vh; letter-spacing:1.5px; text-transform:uppercase; opacity:.65; margin-bottom:1.1vh; }
+  .org-legend i{ width:1.15vh; height:1.15vh; border-radius:50%; background:var(--coral); display:inline-block; }
+  .org-cmo{ background:var(--ink); color:var(--cream); padding:1.1vh 1.2vw; width:15vw; text-align:center; margin:0 auto .4vh; }
+  .org-cmo .r{ font-family:'Anton',sans-serif; text-transform:uppercase; font-size:2.1vh; }
+  .org-cmo .n{ font-size:1.45vh; opacity:.75; margin-top:.2vh; }
+  .org-stem{ width:1.5px; height:1.7vh; background:rgba(20,20,20,.45); margin:0 auto; }
+  .org-bar{ height:1.5px; background:rgba(20,20,20,.45); margin:0 8.4%; }
+  .org-leads{ display:flex; gap:.9vw; align-items:stretch; }
+  .org-lead{ flex:1; position:relative; text-align:center; }
+  .org-lead .drop{ width:1.5px; height:1.7vh; background:rgba(20,20,20,.45); margin:0 auto; }
+  .org-fn{ border:1.5px solid rgba(20,20,20,.35); padding:1.1vh .8vw; font-size:1.55vh; line-height:1.25; min-height:6.2vh; display:flex; align-items:center; justify-content:center; position:relative; }
   .org-fn.gap{ border:1.5px solid var(--coral); background:rgba(241,97,61,.1); }
-  .org-fn .tag{ display:block; font-family:'JetBrains Mono',monospace; font-size:1vh; letter-spacing:1.5px; text-transform:uppercase; color:var(--coral); margin-top:.4vh; }
-  .hires{ position:absolute; left:56px; right:56px; top:46vh; border-collapse:collapse; width:calc(100vw - 112px); }
+  .org-fn.gap::after{ content:''; position:absolute; top:-.75vh; right:-.75vh; width:1.5vh; height:1.5vh; border-radius:50%; background:var(--coral); }
+  .hires{ position:absolute; left:56px; right:56px; top:53vh; border-collapse:collapse; width:calc(100vw - 112px); }
   .hires th{ font-family:'JetBrains Mono',monospace; font-size:1.15vh; letter-spacing:2px; text-transform:uppercase; text-align:left; opacity:.55; padding:0 0 .9vh; border-bottom:2px solid var(--ink); }
   .hires th.num, .hires td.num{ text-align:right; }
   .hires td{ font-size:1.7vh; line-height:1.35; padding:1.3vh 1.4vw 1.3vh 0; border-bottom:1px solid rgba(20,20,20,.12); vertical-align:top; }
@@ -337,6 +350,7 @@
   .who-svg text{ font-family:'JetBrains Mono',monospace; font-size:11px; fill:var(--ink); }
   .who-svg text.tick{ opacity:.5; }
   .who-svg text.endlbl{ font-family:'Archivo',sans-serif; font-size:14px; font-weight:600; }
+  .who-svg text.endlbl.sm{ font-size:10.5px; font-weight:500; }
   .who-svg text.endval{ font-family:'Anton',sans-serif; font-size:19px; }
   .who-foot{ position:absolute; right:56px; bottom:6vh; width:45vw; font-family:'JetBrains Mono',monospace; font-size:1.2vh; letter-spacing:1px; text-transform:uppercase; opacity:.55; line-height:1.6; }
 
@@ -376,51 +390,13 @@
       done; get more of these travellers onto the platform. Everything Paul takes you through
       next is in service of that one job. A few slides from now, we'll get sharper still on
       exactly which travellers matter most." -->
-<section class="slide">
-  <div class="wm-head h-block">Why <em>marketing.</em></div>
-  <div class="wm-claim">A large market that wants what we offer, and the only platform built for it.</div>
-  <div class="wm-cols">
-    <div>
-      <div class="wm-col-t">A large market that wants what we offer</div>
-      <div class="wm-grid one">
-        <div class="wm-item">
-          <h4>Large and growing</h4>
-          <p>~$424bn a year, up from $333bn in 2018; 350m travellers who spend ~2.8x the average tourist.</p>
-        </div>
-        <div class="wm-item">
-          <h4>They want to meet people</h4>
-          <p>Travel is now the #1 way young Europeans meet people, 45%, versus just 9% via apps.</p>
-        </div>
-        <div class="wm-item">
-          <h4>&hellip; and things to do</h4>
-          <p>Gen Z prioritise experiences, 52% splurge on them, the pull our OccasionGenius catalogue serves.</p>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="wm-col-t">The only platform built for it</div>
-      <div class="wm-grid">
-        <div class="wm-item">
-          <h4>Asset-light &amp; app-centric</h4>
-          <p>No property or inventory, the app is the product. The mature social base runs ~35% marketing / ~65% margin, behind targets of &gt;20% EBITDA and ~70% cash conversion.</p>
-        </div>
-        <div class="wm-item">
-          <h4>A compounding data moat</h4>
-          <p>~4m members &middot; 3,000+ city networks &middot; ~20m messages, a proprietary graph that deepens with every trip.</p>
-        </div>
-        <div class="wm-item">
-          <h4>AI plays to our strengths</h4>
-          <p>Our data makes AI-powered matching, recommendations and discovery sharper as we scale.</p>
-        </div>
-        <div class="wm-item">
-          <h4>No direct competitor</h4>
-          <p>Social apps have no booking engine; OTAs have no social layer. We are the only social travel platform at scale.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="wm-job">Marketing&rsquo;s job to be done: <em>get more of these travellers onto the platform.</em> A large, growing market wants what we uniquely offer, and our asset-light social platform is the only one built to win it. The question is how we get more of that market onto it. That is a marketing problem.</div>
-  <div class="wm-src">Sources. Market: WYSE Travel Confederation (international youth tourism receipts, 2025); WeRoad &lsquo;How Travel is Changing&rsquo; 2026 (5,000 travellers aged 20-40, IT/ES/FR/DE/UK); McKinsey (experiences). Financial targets: Hostelworld Group FY2025 results &amp; Capital Markets Day medium-term targets (EBITDA margin &gt;20%, ~70% FCF conversion, marketing 45-50% of revenue). Internal (PE/UDM): mature social-member cohort economics and live social-network stats (Jun 2026).</div>
+<section class="slide title-card">
+  <div class="tc-rule"></div>
+  <div class="tc-h">Marketing;<br><em>July 2026</em></div>
+</section>
+
+<section class="slide gary">
+  <img class="gary-img" src="why-marketing-gary.png" alt="Why Marketing - a large market that wants what we offer, and the only platform built for it">
 </section>
 
 <!-- 1 COVER -->
@@ -462,6 +438,7 @@
   </div>
   <div class="pre-read">
     <span class="pre-read-tag">Pre-read</span>
+    <a href="https://minimba.com/articles/what-are-category-entry-points" target="_blank">Mini MBA &middot; What are category entry points?</a>
     <a href="https://marketingscience.info/news-and-insights/mental-availability-is-not-awareness-brand-salience-is-not-awareness" target="_blank">Ehrenberg-Bass, Byron Sharp &middot; Mental availability is not awareness</a>
     <a href="https://www.jenniromaniuk.com/blog/2023/1/19/increasing-mental-market-share-by-using-category-entry-points" target="_blank">Jenni Romaniuk &middot; Category entry points</a>
   </div>
@@ -658,7 +635,6 @@
 
 <!-- Fame removed from the deck entirely (Paul, 23 Jul): the appendix chart slide deleted and the principle dropped from both principle lists, so six principles, not seven. -->
 
-
 <!-- 20 COST OF DULL: headline left, clean cow right. no type over the photo. -->
 <section class="slide">
   <div class="cow-txt">
@@ -800,21 +776,23 @@
       <polyline class="ln social" points="62.0,281.8 70.6,266.5 79.2,254.1 87.8,243.7 96.4,234.7 104.9,226.8 113.5,219.8 122.1,213.6 130.7,208.2 139.3,203.2 147.9,198.7 156.5,194.7 165.1,191.1 173.6,187.8 182.2,184.7 190.8,181.9 199.4,179.5 208.0,177.1 216.6,174.9 225.2,172.8 233.8,170.8 242.4,169.0 250.9,167.2 259.5,165.5 268.1,163.9 276.7,162.3 285.3,160.8 293.9,159.4 302.5,158.0 311.1,156.7 319.6,155.4 328.2,154.1 336.8,152.9 345.4,151.7 354.0,150.5 362.6,149.3 371.2,148.2 379.8,147.0 388.4,145.9 396.9,144.8 405.5,143.8 414.1,142.7 422.7,141.6 431.3,140.5 439.9,139.4 448.5,138.3 457.1,137.2 465.6,136.0 474.2,134.8 482.8,133.5 491.4,132.2 500.0,130.6"/>
       <polyline class="ln appplus" points="62.0,257.8 70.6,235.3 79.2,217.3 87.8,202.2 96.4,189.3 104.9,178.0 113.5,168.2 122.1,159.4 130.7,151.7 139.3,144.7 147.9,138.3 156.5,132.7 165.1,127.6 173.6,122.9 182.2,118.7 190.8,114.7 199.4,111.3 208.0,108.0 216.6,104.9 225.2,102.0 233.8,99.2 242.4,96.7 250.9,94.3 259.5,92.0 268.1,89.8 276.7,87.6 285.3,85.6 293.9,83.7 302.5,81.8 311.1,79.9 319.6,78.1 328.2,76.4 336.8,74.8 345.4,73.2 354.0,71.6 362.6,70.0 371.2,68.5 379.8,67.0 388.4,65.5 396.9,64.0 405.5,62.6 414.1,61.1 422.7,59.7 431.3,58.2 439.9,56.8 448.5,55.3 457.1,53.8 465.6,52.3 474.2,50.7 482.8,49.0 491.4,47.3 500.0,45.2"/>
       <text class="endval" x="508" y="43.2" fill="#F1613D">&euro;47</text>
-      <text class="endlbl" x="508" y="60.2" fill="#F1613D">Engaged social</text>
+      <text class="endlbl" x="508" y="60.2" fill="#F1613D">Social member</text>
+      <text class="endlbl sm" x="508" y="74.2" fill="#F1613D">(read/write messages</text>
+      <text class="endlbl sm" x="508" y="86.2" fill="#F1613D">on first trip)</text>
       <text class="endval" x="508" y="128.6">&euro;35</text>
-      <text class="endlbl" x="508" y="145.6">Social member</text>
+      <text class="endlbl" x="508" y="145.6">Social Members</text>
       <text class="endval" x="508" y="353.4" opacity=".55">&euro;6</text>
-      <text class="endlbl" x="508" y="370.4" opacity=".55">Non-social</text>
+      <text class="endlbl" x="508" y="370.4" opacity=".55">Non-social Members</text>
       <line class="axis" x1="62" y1="400" x2="500" y2="400"/>
       <text class="tick" x="62.0" y="420" text-anchor="middle">0</text>
       <text class="tick" x="171.5" y="420" text-anchor="middle">13</text>
       <text class="tick" x="281.0" y="420" text-anchor="middle">26</text>
       <text class="tick" x="390.5" y="420" text-anchor="middle">39</text>
       <text class="tick" x="500.0" y="420" text-anchor="middle">52</text>
-      <text class="tick" x="281" y="442" text-anchor="middle">WEEKS SINCE FIRST TRIP</text>
+      <text class="tick" x="281" y="442" text-anchor="middle">WEEKS SINCE ACQUISITION</text>
     </svg>
   </div>
-  <div class="who-foot">Engaged social member = read/write messages on first trip</div>
+  <div class="who-foot">Acquisition cohorts with first transaction 1 Jul 2023 &ndash; 17 Jul 2025 (n = 2,639,225) each followed for a full 52 weeks (D364-eligible, fixed population). Members classified SM/NSM at first chat expiry. Per-customer cumulative values; levels reconciled to milestone D364.</div>
 </section>
 
 <!-- RICHARD 2: FIVE QUESTIONS FOR THIS BOARD (v4: marketing's job is now the engine) -->
@@ -861,9 +839,7 @@
 
 <!-- Detail Q1-Q3 moved to appendix (Richard, 21 Jul): out of the board flow. -->
 
-
 <!-- Detail Q4-Q5 moved to appendix (Richard, 21 Jul): out of the board flow. -->
-
 
 <!-- RICHARD 5: H2 PRIORITIES. seven in v4, was five. -->
 <section class="slide">
@@ -927,71 +903,8 @@
      only if a follow-up question comes up. -->
 
 <!-- APPENDIX: DETAIL Q1-Q3 -->
-<section class="slide">
-  <div class="qd-head h-block">Questions <em>one to three.</em></div>
-  <div class="qd-row">
-    <div class="qd-card">
-      <div class="qd-n">Question 01</div>
-      <div class="qd-q">Are we building against the real entry points?</div>
-      <div class="qd-t">We know who&rsquo;s valuable, not yet which entry points reliably create more of them.</div>
-      <ul>
-        <li>Entry point testing. 6 identified. Find My People and Cheap Bed validating first.</li>
-        <li>CEP validation depends on the same cohort model (UDM) referenced throughout this section.</li>
-      </ul>
-      <div class="qd-eng">&rarr; Know Who Is Valuable (Customer and Cohort Intelligence Engine)</div>
-    </div>
-    <div class="qd-card">
-      <div class="qd-n">Question 02</div>
-      <div class="qd-q">Too few people know us. Fewer know what we stand for.</div>
-      <div class="qd-t">Recognition is not meaning.</div>
-      <ul>
-        <li>No single creative idea or distinctive assets yet.</li>
-        <li>Creative executional excellence critical. UK test, quality execution alone: +40% ad click-through.</li>
-        <li>Brand Tracking early signal. 12% aware vs 34% category (UK). Among aware, social association &gt;50%.</li>
-      </ul>
-      <div class="qd-eng">&rarr; Mean Something (Brand Positioning, Creative Platform and Creative Engine)</div>
-    </div>
-    <div class="qd-card">
-      <div class="qd-n">Question 03</div>
-      <div class="qd-q">Are we investing in demand tomorrow, or only chasing today&rsquo;s booking?</div>
-      <div class="qd-t">Search only reaches people who are already ready to buy.</div>
-      <ul>
-        <li>Search reaches just ~5% of the category in-market today.</li>
-        <li>EU test: +12% new customers, 1.5 to 2.5x payback within the year.</li>
-        <li>Social presence. 2.5m+, engagement on-par with category. Shift to creator-led by category entry point, a compounding play.</li>
-      </ul>
-      <div class="qd-eng">&rarr; Create Demand (Demand Creation Engine + Unmissable Social Engine)</div>
-    </div>
-  </div>
-</section>
 
 <!-- APPENDIX: DETAIL Q4-Q5 -->
-<section class="slide">
-  <div class="qd-head h-block">Questions <em>four and five.</em></div>
-  <div class="qd-row">
-    <div class="qd-card">
-      <div class="qd-n">Question 04</div>
-      <div class="qd-q">Is buying us easy? The first time, and every time after.</div>
-      <div class="qd-t">Friction anywhere undoes the investment that got them there. The opportunity is to keep them warm thereafter.</div>
-      <ul>
-        <li>At the click, new customers: route to app, not web. 3.9% vs 2.7% conversion.</li>
-        <li>Win-back already pays back &euro;2.67 per &euro;1 spent (~940k lapsed customers). Proven, CRM-led.</li>
-      </ul>
-      <div class="qd-eng">&rarr; Invest &amp; Deepen Relationships (CRM; Lapsed customer reactivation + Web-to-App Engine)</div>
-    </div>
-    <div class="qd-card">
-      <div class="qd-n">Question 05</div>
-      <div class="qd-q">How do we know it works before trading shows it?</div>
-      <div class="qd-t">We need a system that judges results over the right timeframe, not just the click.</div>
-      <ul>
-        <li>Meta self-reported 87% incremental. Independent check: 67%. Can&rsquo;t rely on the advertiser.</li>
-        <li>Measure lag. Effects land over 3 weeks, carry 6 to 10 more. Day-to-day attribution misses this.</li>
-        <li>Track Brand and Measurement system. Brand (Tracksuit) reads the market. Live incrementality is the referee. Attribution stays in its lane.</li>
-      </ul>
-      <div class="qd-eng">&rarr; Know It&rsquo;s Working &amp; Enrich (Measurement and Decisioning Engine)</div>
-    </div>
-  </div>
-</section>
 
 <!-- RICHARD 6: ASK 1, PAID SOCIAL FUNDING TEST. added 23 Jul, moved to the back of the deck 23 Jul, the last two slides. -->
 <section class="slide">
@@ -1052,7 +965,7 @@
       </div>
     </div>
   </div>
-  <div class="ask-src">Wave 1 EU test mkts; &euro;0.2m test investment. Wave 2; UK test &euro;0.3m investment. Wave 3; DK+NL+FR+IT deliver large and small cluster &amp; cost effectively reach test significance. Why these markets: EU 18-34 TikTok reach efficiency (18-48% penetration) far exceeds scale markets (US 2%, Brazil 6%, Germany 8%). Methodology: DiD, Synthetic Control &amp; BSTS, cross-validated. Onboarding Incrmntal, a third-party incrementality vendor, this month for independent validation and speed to scale.</div>
+  <div class="ask-src">Wave 1 EU test mkts; &euro;0.2m test investment. Wave 2; UK test &euro;0.3m investment. Wave 3; DK+NL+FR+IT+UK deliver large and small cluster &amp; cost effectively reach test significance. Why these markets: EU 18-34 TikTok reach efficiency (18-48% penetration) far exceeds scale markets (US 2%, Brazil 6%, Germany 8%). Methodology: DiD, Synthetic Control &amp; BSTS, cross-validated. Onboarding Incrmntal, a third-party incrementality vendor, this month for independent validation and speed to scale.</div>
 </section>
 
 <!-- RICHARD 7: ASK 2, MARKETING ORGANISATION. added 23 Jul. -->
@@ -1062,15 +975,20 @@
     To deliver the H2 plan, we need to deploy dedicated capacity as we ramp up and scale demand building and measurement activity (incrementality and reclaim and reallocate testing programme).</div>
   <div class="ask-intro">This investment moves the team from a channel-based structure to one organised around the marketing system itself, creating demand against valuable cohorts, with capability added where it is critical to H2: Media, Creative and Analytics.</div>
   <div class="org-row">
+    <div class="org-legend"><i></i>H2 2026 critical capability gap</div>
     <div class="org-cmo">
       <div class="r">CMO</div>
       <div class="n">Richard Bowden</div>
     </div>
-    <div class="org-fn gap">Media &amp; Performance<span class="tag">H2 capability gap</span></div>
-    <div class="org-fn gap">Brand &amp; Creative<span class="tag">H2 capability gap</span></div>
-    <div class="org-fn">Social Media and Creators</div>
-    <div class="org-fn gap">Marketing Analytics &amp; Insights<span class="tag">H2 capability gap</span></div>
-    <div class="org-fn">CRM</div>
+    <div class="org-stem"></div>
+    <div class="org-bar"></div>
+    <div class="org-leads">
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Media &amp; Performance</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Brand &amp; Creative</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn gap">Marketing Analytics &amp; Insights</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn">Social Media and Creators</div></div>
+      <div class="org-lead"><div class="drop"></div><div class="org-fn">CRM</div></div>
+    </div>
   </div>
   <table class="hires">
     <tr><th>Role / hire</th><th>Purpose</th><th class="num">H2 &euro;</th></tr>

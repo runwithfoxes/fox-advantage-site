@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ghostwriter · configured for Nova HCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --deep-sky:#1A3A4E;
+    --border:#E0E0DC; --card-hover:#F5F5F0; --cream:#F7EAD9; --fox-orange:#F47521;
+    --sky-soft:rgba(58,124,165,0.10);
+    --shadow:0 1px 2px rgba(29,27,27,.04), 0 8px 22px rgba(29,27,27,.06); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; font-weight:300; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; font-weight:300; }
+  a{ color:inherit; }
+
+  .wrap{ position:relative; max-width:1120px; margin:0 auto; padding:0 40px; }
+  .dot::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px); background-size:28px 28px; opacity:.4; pointer-events:none; }
+  .dot{ position:relative; } .dot > *{ position:relative; }
+
+  /* header: full-width description */
+  .head{ padding:54px 0 30px; }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sky-blue); margin-bottom:13px; }
+  .head h1{ font-size:clamp(34px,5vw,52px); letter-spacing:-1.4px; line-height:1; }
+  .sell{ margin-top:20px; }
+  .sell p{ font-size:0.9375rem; line-height:1.85; color:var(--text); margin-top:14px; max-width:none; font-weight:300; }
+  .sell p:first-child{ margin-top:0; }
+  .sell b{ font-weight:400; }
+
+  /* THE THREE MAIN BUTTONS */
+  .tabbar{ display:flex; border:1px solid var(--border); }
+  .tab{ flex:1; background:var(--bg); border:none; border-right:1px solid var(--border); cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:16px 14px; transition:background .2s, color .2s; }
+  .tab:last-child{ border-right:none; }
+  .tab:hover{ color:var(--text); background:var(--card-hover); }
+  .tab.active, .tab.active:hover{ background:var(--sky-blue); color:var(--bg); }
+  @media(max-width:640px){ .tabbar{ flex-direction:column; } .tab{ border-right:none; border-bottom:1px solid var(--border); } .tab:last-child{ border-bottom:none; } }
+
+  .panel{ display:none; padding:42px 0 24px; }
+  .panel.active{ display:block; }
+
+  /* ===== FLOW ===== */
+  .flow{ position:relative; display:flex; flex-direction:column; align-items:center; max-width:500px; margin:0 auto; }
+  .connector{ width:1px; height:20px; background:var(--border); }
+  .marker{ font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:5px 13px; background:var(--bg); }
+  .node{ position:relative; width:100%; border:1px solid var(--border); border-radius:12px; background:var(--bg); box-shadow:var(--shadow); transition:transform .2s ease-out; }
+  .node:hover{ transform:translateY(-1px); }
+  .node-head{ display:flex; align-items:center; gap:9px; padding:7px 13px; color:var(--muted); font-size:10px; letter-spacing:.3px; border-bottom:1px solid var(--border); background:var(--card-hover); border-radius:12px 12px 0 0; }
+  .badge{ flex:none; width:19px; height:19px; border-radius:6px; background:var(--deep-sky); color:var(--cream); font-size:10px; display:flex; align-items:center; justify-content:center; }
+  .node-body{ display:flex; gap:11px; padding:11px 13px; align-items:flex-start; }
+  .node-icon{ flex:none; width:30px; height:30px; border-radius:8px; background:var(--sky-soft); color:var(--sky-blue); display:flex; align-items:center; justify-content:center; }
+  .node-icon svg{ width:16px; height:16px; }
+  .node-text{ flex:1; min-width:0; }
+  .node-title{ font-size:12px; font-weight:400; line-height:1.4; margin-bottom:3px; }
+  .node-sub{ font-size:11px; line-height:1.5; color:var(--muted); }
+  .check{ margin-top:9px; padding:8px 11px; background:var(--sky-soft); border-radius:8px; font-size:10.5px; line-height:1.5; color:var(--text); }
+  .check strong{ font-weight:500; color:var(--deep-sky); }
+  .bridge{ width:50%; height:14px; border:1px solid var(--border); border-bottom:none; border-radius:10px 10px 0 0; }
+  .bridge-join{ width:50%; height:14px; border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; }
+  .lanes{ display:flex; width:100%; gap:0; }
+  .lane{ flex:1; display:flex; flex-direction:column; align-items:center; }
+  .v{ width:1px; background:var(--border); height:12px; }
+  .v.fill{ flex:1; min-height:12px; }
+  .pill{ font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:5px 12px; border:1px solid; border-radius:20px; background:var(--bg); }
+  .pill.keep{ color:var(--sky-blue); border-color:var(--sky-blue); }
+  .pill.hold{ color:var(--muted); border-color:var(--border); }
+  .lane-card{ width:86%; border:1px solid var(--border); border-radius:10px; background:var(--bg); box-shadow:var(--shadow); padding:10px 12px; font-size:11px; line-height:1.5; color:var(--muted); }
+  .lane-card strong{ color:var(--text); font-weight:400; }
+
+  /* "what it uses" = chips, full width, label-left rows */
+  .uses-grid{ width:100%; }
+  .userow{ display:flex; gap:22px; padding:14px 2px; border-top:1px solid var(--border); align-items:flex-start; }
+  .userow:last-child{ border-bottom:1px solid var(--border); }
+  .uselbl{ flex:0 0 96px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-top:7px; }
+  .chips{ flex:1; display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:6px 11px; background:var(--bg); }
+  .chip.skill{ color:var(--sky-blue); border-color:rgba(58,124,165,.35); }
+
+  /* experience: Cian's point of view, drafted, then the same idea as a longer article */
+  .exp-lead{ font-size:14px; color:var(--text); line-height:1.8; margin-bottom:30px; max-width:none; }
+  .exp-lead b{ font-weight:400; }
+  .gw-show{ display:flex; gap:20px; align-items:stretch; }
+  @media(max-width:860px){ .gw-show{ flex-direction:column; } }
+  /* hero: the LinkedIn draft, big, in Cian's voice */
+  .gw-hero{ flex:1 1 56%; min-width:0; display:flex; flex-direction:column; }
+  .gw-frame{ display:block; border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; background:#fff; flex:1; display:flex; }
+  .gw-frame .shot{ display:block; width:100%; padding:26px 26px 24px; }
+  .gw-cap{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 16px; border:1px solid var(--border); border-top:none; background:var(--bg); }
+  .gw-cap .t{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text); }
+  .gw-cap .lnk{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--sky-blue); text-decoration:none; white-space:nowrap; }
+  .gw-cap .lnk:hover{ text-decoration:underline; }
+  /* the post card itself: name row + typed body */
+  .gw-postcard{ display:flex; flex-direction:column; height:100%; }
+  .gw-who{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .gw-avatar{ flex:none; width:38px; height:38px; border-radius:50%; background:var(--deep-sky); color:var(--cream); font-family:'Space Grotesk',sans-serif; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .gw-who .nm{ font-size:13px; color:var(--text); font-weight:400; }
+  .gw-who .rl{ font-size:11px; color:var(--muted); }
+  .gw-hook{ font-family:'Space Grotesk',sans-serif; font-size:20px; line-height:1.35; color:var(--text); margin-bottom:14px; }
+  .gw-body{ font-size:13px; line-height:1.85; color:var(--text); }
+  .gw-cursor{ display:inline-block; width:6px; height:14px; background:var(--sky-blue); margin-left:2px; vertical-align:-2px; animation:gw-blink 1s step-end infinite; }
+  @keyframes gw-blink{ 50%{ opacity:0; } }
+  /* the honest label: this is our sample, not their published work */
+  .gw-note{ margin-top:12px; border:1px solid var(--border); background:var(--card-hover); padding:11px 14px; font-family:'JetBrains Mono',monospace; font-size:11px; line-height:1.6; color:var(--muted); }
+  .gw-note b{ font-weight:400; color:var(--text); }
+  /* spread: the same idea, working further out */
+  .gw-spread{ flex:1 1 44%; min-width:0; display:flex; flex-direction:column; gap:12px; }
+  .gw-spread-lbl{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding-bottom:2px; }
+  .gw-mini{ display:flex; flex-direction:column; text-decoration:none; color:inherit; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); overflow:hidden; padding:16px 18px; transition:transform .2s ease-out; }
+  .gw-mini:hover{ transform:translateY(-2px); }
+  .gw-mini .meta{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+  .gw-mini .meta .ch{ font-family:'Space Grotesk',sans-serif; font-size:15px; color:var(--text); }
+  .gw-mini .meta .tag{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; }
+  .gw-mini .meta .tag.post{ color:var(--sky-blue); }
+  .gw-mini .meta .tag.auto{ color:var(--fox-orange); }
+  .gw-mini .snip{ font-size:12px; line-height:1.7; color:var(--muted); }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="wrap dot">
+    <div class="head">
+      <div class="eyebrow">An example · configured for Nova HCM</div>
+      <h1>Ghostwriter</h1>
+      <div class="sell">
+        <p class="sell-lead">For an HR leader to know Nova before they start looking for a system, someone has to publish regularly and publish something worth reading. That has meant hiring a content person, an agency or a freelancer. None of those work well here. You know the market and have no time to write. Writers with the time do not know the market. <b>You said on the call that you are not short of things to say, you are just not consistent.</b></p>
+        <p class="sell-body">You already produce the material. You speak at UNLEASH and the HR technology shows, you ran a two hour workshop with fifteen people last week, you have the same conversation at every conference, and you run diagnostic calls most weeks. None of it gets written down. Ghostwriter takes what you already say, from a voice note or a recording of a talk, and turns it into LinkedIn posts, articles for the website and short video clips, <b>in your voice rather than a generic company tone</b>. You do not have to write anything.</p>
+        <p class="sell-rail">You know how to use these tools yourself. This adds two things. It runs your positioning and messaging every time, so everything is consistent. And it runs on a cadence without you having to find the time. <b>Only a small share of your market is looking for a system in any quarter.</b> The rest come later, when a contract is up for renewal, a new HR leader inherits a bad setup, or the board asks for something the system cannot produce. Publishing consistently means Nova is a name they know by then. Nothing is invented, no client is named without their written agreement, and you approve every piece before it goes out.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE THREE MAIN BUTTONS -->
+  <div class="wrap">
+    <div class="tabbar">
+      <button class="tab active" data-p="exp">Experience</button>
+      <button class="tab" data-p="bts">Behind the scenes</button>
+      <button class="tab" data-p="uses">What it uses</button>
+    </div>
+
+    <div class="panel active" data-p="exp">
+      <div class="exp-lead">Rather than describe this, we wrote a sample. The draft below comes from something you said on the call, about the gap between what the vendors sell and what your clients are dealing with. <b>It would go to you for review before it went anywhere, and the same subject is shown developed further.</b> It is here to show how the system works. The subjects we would publish would come out of the brand strategy work.</div>
+      <div class="gw-show">
+        <div class="gw-hero">
+          <div class="gw-frame">
+            <div class="shot">
+              <div class="gw-postcard">
+                <div class="gw-who">
+                  <span class="gw-avatar">CC</span>
+                  <div><div class="nm">Cian Collins</div><div class="rl">Founder, Nova HCM · independent HR technology advisory</div></div>
+                </div>
+                <div class="gw-hook" id="gwHook">Every vendor at the HR technology shows is talking about AI. Almost none of their customers are.</div>
+                <div class="gw-body"><span id="gwOpen"></span><span class="gw-cursor"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="gw-cap">
+            <span class="t" id="gwCapLbl">LinkedIn post, written in Cian's voice</span>
+            <span class="lnk" style="cursor:default;">Draft, for your review before posting</span>
+          </div>
+          <div class="gw-note"><b>Illustrative sample by Run with Foxes. Not published by Nova HCM.</b> We wrote this from the call on 28 July, using the workshop you described and the point you made about the vendors. It has not been posted anywhere. The real voice would be agreed with you in the brand strategy work.</div>
+        </div>
+        <div class="gw-spread">
+          <div class="gw-spread-lbl">The same subject, developed further</div>
+          <div class="gw-mini">
+            <div class="meta">
+              <span class="ch">An article on the Nova site</span>
+              <span class="tag auto">Same subject, longer form</span>
+            </div>
+            <div class="snip">Fix the baseline before you buy the intelligence. A longer version for the HR directors and chief people officers Nova sells to, covering what has to be true before an AI feature in an HR system is any use, why the demos skip that part, and the questions to ask a salesperson who leads with it.</div>
+          </div>
+          <div class="gw-mini">
+            <div class="meta">
+              <span class="ch">Next up</span>
+              <span class="tag post">Two further subjects, drafted for your review</span>
+            </div>
+            <div class="snip">"Why HR teams are not very good at buying HR systems, and what to do about it." · "The six months you lose going to market on your own."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-p="bts"></div>
+    <div class="panel" data-p="uses"></div>
+  </div>
+
+<script>
+const el = h => { const d=document.createElement('template'); d.innerHTML=h.trim(); return d.content.firstChild; };
+const ICONS = {
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h5"/></svg>',
+  make:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  look:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  gate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+  ship:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>',
+  image:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>'
+};
+
+const TABS = {
+  bts:{ start:"Something Cian already said out loud", end:'Approved by Cian, published, and building familiarity', nodes:[
+    {type:'node', badge:'1', when:'Set up once', icon:'brief', title:'The brand strategy governs the voice', sub:'The positioning, key messages and tone of voice from the brand strategy are what this system runs on. They are written in once, and every draft after that is produced against them.'},
+    {type:'branch', lanes:[
+      {cls:'keep', pill:'A recording', text:'A talk, a conference session or a workshop is recorded, and the system pulls the arguments <strong>Cian</strong> actually made out of it.'},
+      {cls:'hold', pill:'A voice note', text:'Or Cian records two minutes on something that came up during the week, and the system turns it into a draft in his own words.'}
+    ]},
+    {type:'node', badge:'2', when:'Cian decides', icon:'look', title:'Cian chooses the subject', sub:'The gap between what the vendors sell and what clients are actually dealing with, why HR teams struggle to buy systems well, the months lost going to market alone. Nothing is written that Cian has not chosen.'},
+    {type:'node', badge:'3', when:'In Cian\'s voice', icon:'make', title:'Written as Cian would say it', sub:'Each piece has to be useful to an HR leader whether or not they ever become a client. It is written in Cian\'s voice, because the authority in this market is his rather than the company\'s.',
+      check:'<strong>Nothing is fabricated, and no client work is used as source material.</strong> No invented statistics, no invented examples, and no client named or quoted without their written agreement. Diagnostic calls and project work stay confidential.'},
+    {type:'node', badge:'4', when:'Before publication', icon:'gate', title:'Cian approves the draft', sub:'Every post and every article is read and approved before it is published.',
+      check:'<strong>Approval gate:</strong> nothing is published without Cian\'s explicit sign-off.'},
+    {type:'node', badge:'5', when:'On a cadence', icon:'ship', title:'LinkedIn first, then the website', sub:'LinkedIn is where HR leaders see the name first. The same subject is then written up as an article on the Nova site, which gives the site fresh content and gives search engines something to find.'},
+    {type:'node', badge:'6', when:'Over time', icon:'share', title:'Familiarity ahead of the buying trigger', sub:'Companies that are not looking this quarter still get to know the name. When the trigger arrives, a contract up for renewal, a new HR leader inheriting a poor setup, or a board request the system cannot answer, Nova is already familiar.'}
+  ]},
+  uses:{ groups:[
+    {label:'Rules', items:['Cian\'s own voice, never a generic company tone','no fabricated statistics, examples or quotes','client calls and project work are never used as source material','no client named without their written agreement','useful to an HR leader even if they never buy','no hype and no jargon an HR director would not use']},
+    {label:'Gates', cls:'skill', items:['Cian approves every piece before it is published']},
+    {label:'Audience', items:['HR directors','chief people officers','heads of HR operations','finance and IT where the decision is shared','mid-market employers']},
+    {label:'Source material', items:['recordings of talks and conference sessions','short voice notes','the positioning and messaging framework','the questions HR leaders ask on diagnostic calls, never the calls themselves']},
+    {label:'Formats', cls:'skill', items:['LinkedIn posts','articles for the Nova site','short video clips']},
+    {label:'Channels', items:['LinkedIn, for the first contact','the Nova website, for depth and for search']},
+    {label:'Tools', items:['your own Claude']},
+    {label:'Models', items:['Claude Opus 4.8']}
+  ]}
+};
+
+function renderInto(container, tab){
+  container.innerHTML='';
+  if(tab.groups){
+    const wrap = el('<div class="uses-grid"></div>');
+    tab.groups.forEach(g=>{
+      const row = el(`<div class="userow"><div class="uselbl">${g.label}</div></div>`);
+      const c = el('<div class="chips"></div>');
+      g.items.forEach(it=> c.appendChild(el(`<span class="chip ${g.cls||''}">${it}</span>`)));
+      row.appendChild(c);
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap); return;
+  }
+  const flow = el('<div class="flow"></div>');
+  flow.appendChild(el(`<span class="marker">${tab.start}</span>`));
+  tab.nodes.forEach(nd=>{
+    flow.appendChild(el('<div class="connector"></div>'));
+    if(nd.type==='branch'){
+      flow.appendChild(el('<div class="bridge"></div>'));
+      const lanes = el('<div class="lanes"></div>');
+      nd.lanes.forEach(l=> lanes.appendChild(el(`<div class="lane">
+        <div class="v"></div><span class="pill ${l.cls}">${l.pill}</span><div class="v"></div>
+        <div class="lane-card">${l.text}</div><div class="v fill"></div></div>`)));
+      flow.appendChild(lanes);
+      flow.appendChild(el('<div class="bridge-join"></div>'));
+    } else {
+      flow.appendChild(el(`<div class="node">
+        <div class="node-head"><span class="badge">${nd.badge}</span> ${nd.when}</div>
+        <div class="node-body">
+          <div class="node-icon">${ICONS[nd.icon]||ICONS.link}</div>
+          <div class="node-text">
+            <div class="node-title">${nd.title}</div>
+            <div class="node-sub">${nd.sub}</div>
+            ${nd.check?`<div class="check">${nd.check}</div>`:''}
+          </div>
+        </div></div>`));
+    }
+  });
+  flow.appendChild(el('<div class="connector"></div>'));
+  flow.appendChild(el(`<span class="marker">${tab.end}</span>`));
+  container.appendChild(flow);
+}
+
+['bts','uses'].forEach(k=> renderInto(document.querySelector(`.panel[data-p="${k}"]`), TABS[k]));
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function revealFlow(panel){
+  const flow = panel && panel.querySelector('.flow'); if(!flow) return;
+  const kids = [...flow.children];
+  if(reduceMotion){ kids.forEach(k=>{ k.style.opacity='1'; k.style.transform='none'; }); return; }
+  kids.forEach(k=>{ k.style.opacity='0'; k.style.transform='translateY(20px)';
+    k.style.transition='opacity .6s ease-out, transform .6s ease-out'; });
+  requestAnimationFrame(()=> kids.forEach((k,i)=> setTimeout(()=>{ k.style.opacity='1'; k.style.transform='none'; }, i*90)));
+}
+
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.p===t.dataset.p));
+  if(t.dataset.p==='bts') revealFlow(document.querySelector('.panel[data-p="bts"]'));
+}));
+
+// Experience: the LinkedIn draft types out in Cian's voice (illustrative, not published)
+const GW_POST = "I ran a workshop last week. Fifteen people in a room for two hours, working through onboarding, contracts, talent, recruitment and payroll, and AI did not come up once in the whole session. Meanwhile every stand at every HR technology show this year has had AI written across the front of it. That gap is worth paying attention to, and it is not that the buyers are behind. You cannot layer intelligence on top of a process that is still half on paper, and the HR teams living with those processes know it better than anyone. The work that actually pays off is unglamorous. Get the baseline right, so the data sits where it should and the workflow runs without somebody shepherding it through, and then the AI conversation becomes worth having.";
+(function(){
+  const node = document.getElementById('gwOpen');
+  if(!node) return;
+  if(reduceMotion){ node.textContent = GW_POST; return; }
+  let k = 0;
+  const typer = setInterval(()=>{ k++; node.textContent = GW_POST.slice(0,k); if(k>=GW_POST.length) clearInterval(typer); }, 14);
+})();
+</script>
+<script>
+(function(){function h(){parent.postMessage({rwfEmbed:'ghostwriter',rwfHeight:document.body.scrollHeight},'*');}
+addEventListener('load',h);addEventListener('resize',h);document.addEventListener('click',function(){setTimeout(h,60);});
+try{new MutationObserver(h).observe(document.body,{subtree:true,childList:true,attributes:true});}catch(e){}})();
+</script>
+</body>
+</html>

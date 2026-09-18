@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Carlos&rsquo;s instructions</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#FAFAF8;--text:#1D1B1B;--muted:#8A8A85;--sky:#3A7CA5;--border:#E0E0DC;--frame:#EDEEF1;--panel:#FFFFFF;
+--sans:'Space Grotesk',ui-sans-serif,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font:300 19px/1.65 var(--sans)}
+body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);background-size:28px 28px;opacity:.4;pointer-events:none;z-index:-1}
+.wrap{max-width:820px;margin:0 auto;padding:64px 24px 120px}
+.back{font:400 12px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--sky)}
+.deeper{float:right;font:400 16px/1 var(--sans);color:var(--sky);text-decoration:none}.deeper:hover{text-decoration:underline}
+@media(max-width:600px){.deeper{float:none;display:block;margin-top:18px}}
+.who{margin-top:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.who h1{font:300 64px/1.05 var(--sans);letter-spacing:-1.5px}
+.who .job{font:400 22px/1.3 var(--sans);color:var(--sky);margin-top:8px}
+.who .intro{margin-top:22px}
+.file{margin-top:36px;background:var(--panel);border:1px solid rgba(20,20,30,.10);border-radius:14px;box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.06);overflow:hidden}
+.flab{font:400 12px/1 var(--mono);letter-spacing:1px;color:var(--muted);background:var(--frame);padding:12px 22px;border-bottom:1px solid rgba(20,20,30,.07)}
+.fbody{padding:8px 30px 26px}
+.fbody h2{font:300 30px/1.2 var(--sans);letter-spacing:-.5px;margin-top:20px}
+.fbody h3{font:400 21px/1.3 var(--sans);margin-top:26px}
+.fbody p{margin-top:12px}
+.said .fbody{padding:20px 30px 22px}
+pre{white-space:pre-wrap;font:300 16px/1.6 var(--mono)}
+.rows{border-style:dashed;box-shadow:none;background:transparent}
+.rows .flab{background:transparent}
+.gap{color:var(--muted)}
+@media(max-width:600px){.who h1{font-size:44px}.fbody{padding:6px 18px 20px}.flab{padding:12px 18px}}
+</style></head>
+<body><div class="wrap">
+<a class="back" href="four-agents.html">Back to the four agents</a>
+<a class="deeper" href="files-carlos.html">See Carlos&rsquo;s exact files, as they are on disk</a>
+<div class="who"><h1>Carlos</h1><div class="job">Counts the visits</div><p class="intro">Carlos does not use Claude. Counting has one right answer, so his page was turned into a small program, and the program runs every Monday. This is the page the program was built from, word for word. If the page and the program ever disagree, the page is right and the program gets fixed.</p></div>
+<section class="file "><div class="flab">The file students/carlos-role.md</div><div class="fbody"><h2>Carlos. The one who pulls the numbers and cannot write</h2>
+<p>The first of the four. Four questions, on one page. His code turns four files into one file Enrique can judge from, the same shape every Monday. He is not allowed to write a word to a member or to describe a number. In real agent teams the mistakes are almost never in the fetching, they are in the sentence written next to what was fetched.</p>
+<h3>What Carlos produces</h3>
+<p>One file per Monday, agent/out/candidates-&lt;YYYY-MM-DD&gt;.json, one row per member id in the member file, with exactly these keys: member_id, first_name, last_name, email, plan, goal, notes, joined, days_since_joined, weeks_since_joined, visits_per_week_last12 (twelve whole numbers, oldest week first), usual_per_week, visits_last3, weeks_since_last_visit, previously, last_reply, last_sent, gaps.</p>
+<p>A week runs Monday to Sunday and the twelve weeks are the twelve full weeks ending the Sunday before the Monday being run. Only swipes dated before the Monday and on or after the joined date are counted; a swipe before joining is not counted and gaps says how many. usual_per_week is visits in the first nine of the twelve weeks divided by nine, to two decimal places; for a member who joined after the start of those nine weeks it is visits in the full weeks between joining and the last three weeks divided by that number of weeks, and empty with a gaps line if there is none. weeks_since_last_visit is days from the last counted swipe to the Monday divided by seven, whole weeks; a member with no counted swipe counts as last visited on the day they joined. previously is the member&#x27;s entry in agent/state/memory.json copied as is (flagged_on, action, reason), only if its flagged_on is before the Monday; entries dated the Monday itself are ignored, so a rerun after Enrique has run still gives the same file. days_since_joined is the Monday minus the joined date; weeks_since_joined is that divided by seven, whole weeks; visits_last3 is the sum of the last three of the twelve weekly counts. last_reply is the reply_text of the email-log row with replied = yes and the latest sent_at before the Monday, with that sent_at date. last_sent is the latest sent_at before the Monday, or empty.</p>
+<h3>Where it lands</h3>
+<p>That file, and one line for that Monday in agent/out/carlos-run.log: the Monday, the row count, the path. A rerun of the same Monday replaces its line.</p>
+<h3>How he knows he is done</h3>
+<p>Every row in the member file has a row, every number can be recomputed from the four files by anyone who checks, and two runs on the same Monday from the same four files give the same file byte for byte. If any of the four files is missing he writes no file and one log line naming the path.</p>
+<h3>What he does not do</h3>
+<p>He does not judge who is drifting, write notes, touch Attio, round beyond two places, estimate, say &quot;about&quot;, or filter: every member gets a row, whatever their plan or status.</p>
+<h3>The handoff</h3>
+<p>In: the door log, the member file, the email log, the memory file. Out: the file and the log line. Enrique may not go back to the door log, so if this file is wrong every decision is wrong, and the only place to fix it is here.</p></div></section>
+</div></body></html>

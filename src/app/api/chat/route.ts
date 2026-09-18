@@ -1,12 +1,14 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText } from "ai";
 import { getSystemPrompt } from "@/lib/chat-system-prompt";
+import { getZorroSystemPrompt } from "@/lib/zorro-system-prompt";
 import {
   currentSource,
   saveConversationExchange,
   saveError,
   saveInboundQuestion,
 } from "@/lib/conversation-store";
+import { sendIsaDownAlert } from "@/lib/isa-down-alert";
 import { getRateLimiter } from "@/lib/rate-limit";
 import { MODULES_BY_N } from "@/app/course/moduleData";
 
@@ -125,11 +127,15 @@ export async function POST(req: Request) {
     return new Response("Invalid request body", { status: 400 });
   }
 
-  const { messages, id: chatId, moduleN } = body as {
+  const { messages, id: chatId, moduleN, mode } = body as {
     messages?: unknown;
     id?: unknown;
     moduleN?: unknown;
+    mode?: unknown;
   };
+  // /zorro, the UCD x IE student page: Isa with the gym course loaded, and room to
+  // troubleshoot. Everything else is the site Isa, short and in her lane.
+  const zorro = mode === "zorro";
 
   if (!Array.isArray(messages) || messages.length === 0) {
     return new Response("Messages must be a non-empty array", { status: 400 });
@@ -198,9 +204,11 @@ export async function POST(req: Request) {
 
     const result = streamText({
       model: provider("claude-sonnet-4-6"),
-      system: getSystemPrompt(sanitizedChatId) + moduleContext(moduleN),
+      system: zorro
+        ? getZorroSystemPrompt()
+        : getSystemPrompt(sanitizedChatId) + moduleContext(moduleN),
       messages: modelMessages,
-      maxOutputTokens: 200,
+      maxOutputTokens: zorro ? 450 : 200,
       onFinish: async ({ text }) => {
         await saveConversationExchange({
           chatId: sanitizedChatId,
@@ -215,9 +223,15 @@ export async function POST(req: Request) {
         // block below, so record them here with the actual question + detail.
         const err = (event as { error?: unknown }).error;
         console.error("[chat] stream error:", err);
-        await saveError({
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        await saveError({ userMessage: userText, errorMessage });
+        // Recording the error isn't enough on its own: the store is only read
+        // when someone goes looking. Email Paul now, throttled to one an hour,
+        // so a broken Isa can't sit unnoticed until the next daily cron.
+        await sendIsaDownAlert({
+          chatId: sanitizedChatId,
           userMessage: userText,
-          errorMessage: err instanceof Error ? err.message : String(err),
+          errorMessage,
         });
       },
     });

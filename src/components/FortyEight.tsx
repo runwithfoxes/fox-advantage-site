@@ -18,9 +18,9 @@ export default function FortyEightPage() {
           /<span>Run</span>withfoxes
         </Link>
         <nav>
-          <Link href="/#projects">/projects</Link>
+          <Link href="/#agents">/agents</Link>
           <Link href="/contact">/contact</Link>
-          <Link href="/#signup" className="cta-bar">
+          <Link href="/book" className="cta-bar">
             /get_the_book
           </Link>
         </nav>
@@ -270,9 +270,9 @@ export default function FortyEightPage() {
         <Link href="/" className="active">
           &larr; back
         </Link>
-        <Link href="/#projects">/projects</Link>
+        <Link href="/#agents">/agents</Link>
         <Link href="/contact">/contact</Link>
-        <Link href="/#signup" className="cta-bar">
+        <Link href="/book" className="cta-bar">
           get the book
         </Link>
       </div>

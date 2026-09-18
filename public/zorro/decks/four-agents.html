@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Four Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#FAFAF8;--text:#1D1B1B;--muted:#8A8A85;--sky:#3A7CA5;--deep:#1A3A4E;--border:#E0E0DC;--frame:#EDEEF1;--panel:#FFFFFF;--fill:#D9D9D4;--orange:#F47521;--green:#2E7D5B;
+--sans:'Space Grotesk',ui-sans-serif,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--mono);font-weight:300;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:0 0;background:var(--bg)}
+#stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#d0d0cc .8px,transparent .8px);background-size:28px 28px;opacity:.4;pointer-events:none}
+.slide{position:absolute;inset:0;padding:72px 96px 60px;display:none;flex-direction:column;justify-content:flex-start}
+.slide.on{display:flex}
+.kicker{position:absolute;left:96px;top:64px}
+.kicker{font:400 13px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+h1{font:300 54px/1.12 var(--sans);letter-spacing:-1px;margin-top:0;max-width:none}
+h1.huge{font-size:96px;letter-spacing:-3px}
+.dek{font:300 21px/1.6 var(--mono);margin-top:16px;max-width:none}
+.dek.after{margin-top:34px}
+.small{font-size:14px;margin-top:26px}
+.muted{color:var(--muted)}
+.fill{color:var(--orange)}
+.split{display:flex;justify-content:space-between;align-items:center}
+.split .left{flex:0 0 640px}.split .right{flex:0 0 auto;display:flex;justify-content:flex-end}
+.s-title .split{align-items:center;flex:1}
+.bio{flex:1;align-items:center}
+.film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.title-over{position:absolute;left:96px;bottom:56px;z-index:1;color:var(--bg);max-width:470px}
+.title-over h1.huge{font-size:62px;letter-spacing:-2px}
+.title-over .dek{font-size:17px;margin-top:10px}
+.title-over .small{font-size:11.5px;margin-top:14px;line-height:1.5}
+.title-over .dek,.title-over .small{color:var(--bg)}
+.title-over .small{opacity:.8}
+.s-video .kicker,.s-video .notes{display:none}
+.s-video{padding:0}
+.fox{width:560px;height:560px;object-fit:contain}
+.lines{list-style:none;margin-top:30px}
+.lines li{font:300 22px/1.6 var(--mono);padding:14px 0;border-top:1px solid var(--border)}
+.lines li:last-child{border-bottom:1px solid var(--border)}
+.shot{width:100%;height:100%;object-fit:cover;object-position:top left}
+
+.bio{display:flex;gap:64px}
+.bio-photo{width:400px;height:520px;object-fit:cover;flex:0 0 400px}
+.bio-text{flex:1;max-width:860px}
+.bio-p{font:300 22px/1.7 var(--mono);margin-top:22px}
+.bio-text h1{margin-bottom:8px}
+
+/* windows */
+.win{background:var(--frame);border:1px solid rgba(20,20,30,.10);border-radius:15px;padding:0 8px 8px;box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.08),0 28px 64px rgba(26,58,78,.10);display:flex;flex-direction:column}
+.win-bar{height:30px;display:flex;align-items:center;gap:10px;font:600 11.5px/1 var(--mono);color:var(--text);padding:0 4px}
+.lights{display:inline-flex;gap:6px}.lights i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.lights i:nth-child(1){background:#ff5f57}.lights i:nth-child(2){background:#febc2e}.lights i:nth-child(3){background:#28c840}
+.win-right{margin-left:auto;font-weight:400;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-size:10.5px}
+.win-panel{background:var(--panel);border:1px solid rgba(20,20,30,.07);border-radius:9px;flex:1;overflow:hidden;position:relative}
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slide.on .rise{opacity:0;animation:rise .7s ease-out forwards}
+.slide.on .bar{transform-origin:bottom;transform:scaleY(0);animation:bar .6s ease-out forwards}
+@keyframes bar{to{transform:none}}
+.slide.on .dot{opacity:0;animation:pop .35s ease-out forwards}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+@keyframes blink{50%{opacity:0}}
+.caret{color:var(--sky);animation:blink 1s step-end infinite}
+.ring{animation:ringpulse 2.4s ease-in-out infinite}
+@keyframes ringpulse{50%{stroke-width:6;opacity:.5}}
+@media(prefers-reduced-motion:reduce){.slide.on .rise,.slide.on .bar,.slide.on .dot,.slide.on .bcard{animation:none!important;opacity:1;transform:none}}
+
+/* 3 map */
+.maprow{display:flex;gap:40px;margin-top:20px;align-items:center}
+.mapwrap{width:1000px;height:600px}
+.maplegend{list-style:none;flex:1}
+.maplegend li{font:300 20px/1.3 var(--mono);padding:11px 0;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center}
+.maplegend li:last-child{border-bottom:1px solid var(--border)}
+.maplegend span{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sky);color:var(--bg);font:400 12px/1 var(--mono);align-items:center;justify-content:center}
+.mapnum{font:400 11px var(--mono);fill:#FAFAF8}
+.map{width:100%;height:100%}
+.maplabel{font:400 16px var(--mono);fill:var(--text)}.maplabel.muted{fill:var(--muted);font-size:14px}
+
+/* 4 four words */
+.fourwords{display:flex;gap:0;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.word{flex:1;padding:56px 0;font:300 72px/1 var(--sans);letter-spacing:-2px;border-left:1px solid var(--border);padding-left:32px}
+.word:first-child{border-left:0;padding-left:0}
+
+/* 5 phones */
+.phones{display:flex;gap:200px;margin-top:56px;justify-content:center}
+.phone{width:420px}
+.screen{width:340px;height:380px;margin:0 auto;background:var(--frame);border:1px solid rgba(20,20,30,.12);border-radius:34px;padding:22px 16px 16px;position:relative}
+.screen.chat{display:flex;flex-direction:column;gap:14px}
+.bubble{max-width:82%;padding:12px 14px;border-radius:14px;font:300 15px/1.5 var(--mono);background:var(--panel);border:1px solid rgba(20,20,30,.07)}
+.bubble.me{align-self:flex-end;background:var(--sky);color:var(--bg)}
+.bubble.ai{display:flex;flex-direction:column;gap:8px}
+.pill{display:inline-block;height:10px;border-radius:5px;background:var(--fill)}
+.w40{width:40%}.w55{width:55%}.w60{width:60%}.w70{width:70%}.w80{width:80%}.w90{width:90%}
+.composer{margin-top:auto;height:44px;border-radius:22px;background:var(--panel);border:1px solid rgba(20,20,30,.08);display:flex;align-items:center;padding:0 8px 0 16px;gap:10px}
+.composer .pill{flex:0 0 55%}.send{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--sky)}
+.screen.log{padding:30px 22px;display:flex;flex-direction:column;gap:16px}
+.logline{font:300 17px/1.4 var(--mono);color:var(--text);padding-left:18px;position:relative}
+.logline::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--sky)}
+.phone-cap{margin-top:22px;text-align:center;font:300 18px/1.5 var(--mono);color:var(--text);white-space:nowrap}
+.pnum{font:300 40px/1 var(--sans);color:var(--sky);text-align:center}
+.ptitle{font:300 28px/1.2 var(--sans);text-align:center;margin:8px 0 22px}
+
+/* 6, 19 big numbers */
+.bigrow{display:flex;margin-top:70px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.big{flex:1;padding:44px 0 40px 32px;border-left:1px solid var(--border)}.big:first-child{border-left:0;padding-left:0}
+.num{font:300 120px/1 var(--sans);letter-spacing:-4px}.num .plus{font-size:56px;color:var(--sky);margin-left:8px;letter-spacing:-1px}
+.cap{margin-top:14px;font:300 20px/1.4 var(--mono);color:var(--muted)}
+.quote{font:300 34px/1.4 var(--sans);letter-spacing:-.5px;margin-top:56px;max-width:1250px}
+.quote.big{font-size:46px;margin-top:70px;max-width:1350px}
+.attrib{margin-top:34px;font:300 18px/1 var(--mono);color:var(--muted)}
+
+/* 7 door */
+.row{display:flex;align-items:center}.row.top{align-items:flex-start}.gap48{gap:48px}.gap40{gap:40px}
+.row{margin-top:36px}
+.reader{width:320px;height:440px}
+.log{border-collapse:collapse;width:100%;font:300 16px/1.5 var(--mono)}
+.log th{text-align:left;font-weight:400;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:14px 18px 8px;border-bottom:1px solid var(--border)}
+.log td{padding:9px 18px;border-bottom:1px solid var(--border)}
+.log-more{padding:14px 18px;font-size:14px;color:var(--muted)}
+
+/* 9, 10 chart */
+.chartwrap{margin-top:30px;width:1100px}
+.chart{width:1100px;height:420px}
+.axis{font:400 13px var(--mono);fill:var(--muted)}.axis.dark{fill:var(--text)}
+
+/* 11, 12 handoff */
+.handoff{position:relative;margin-top:40px;display:flex;gap:56px;align-items:flex-start;height:420px}
+.hcard-in{padding:22px 22px}.hname{font:300 34px/1.1 var(--sans);letter-spacing:-.5px}.hjob{margin-top:10px;font:300 16px/1.6 var(--mono)}
+.handoff.moving .hjob{color:var(--text)}
+.recordwrap{position:absolute;left:1068px;top:300px}
+.record{width:300px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:16px 18px;display:flex;flex-direction:column;gap:9px;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.rname{font:400 11px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.rline{margin-top:4px}
+.pillx{display:inline-block;font:400 11px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:10px;background:var(--sky);color:var(--bg)}
+.pillx.was{background:var(--fill);color:var(--text)}
+.mover{position:absolute;opacity:0;will-change:transform}
+.mover.sheet{width:84px;height:104px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;padding:16px 12px;display:flex;flex-direction:column;gap:11px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.sheet i{display:block;height:7px;border-radius:4px;background:var(--fill)}.mover.sheet i:nth-child(2){width:70%}.mover.sheet i:nth-child(3){width:85%}
+.mover.table{width:110px;height:72px;background:var(--panel);border:1px solid rgba(20,20,30,.15);border-radius:7px;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.table i{display:block;background:var(--fill);border-radius:3px}.mover.table i:nth-child(1){background:var(--sky);opacity:.55}
+.mover.mail{width:104px;height:70px;background:var(--panel);border:1.5px solid var(--sky);border-radius:8px;position:absolute;overflow:hidden;box-shadow:0 8px 20px rgba(26,58,78,.12)}
+.mover.mail span{position:absolute;left:-2px;right:-2px;top:-30px;height:70px;border:1.5px solid var(--sky);transform:rotate(45deg) scale(.6);transform-origin:center}
+.mover.tick{font:400 44px/1 var(--mono);color:var(--green)}
+/* the four cards sit 356px apart (300 wide, 56 gap). Each object is born inside one card and carried to the next; the email drops into the record under Rosa's card. */
+.slide.on .m1{left:110px;top:100px;animation:m1 9s linear infinite}
+.slide.on .m2{left:466px;top:110px;animation:m2 9s linear infinite}
+.slide.on .m3{left:822px;top:110px;animation:m3 9s linear infinite}
+.slide.on .m4{left:942px;top:118px;animation:m4 9s linear infinite}
+@keyframes m1{0%{opacity:0;transform:translate(0,20px)}5%{opacity:1;transform:none}10%{opacity:1;transform:none}26%{opacity:1;transform:translate(356px,0) scale(.85)}29%{opacity:0;transform:translate(356px,0) scale(.6)}100%{opacity:0}}
+@keyframes m2{0%,29%{opacity:0;transform:translate(0,20px)}34%{opacity:1;transform:none}39%{opacity:1;transform:none}55%{opacity:1;transform:translate(356px,0) scale(.85)}58%{opacity:0;transform:translate(356px,0) scale(.6)}100%{opacity:0}}
+@keyframes m3{0%,58%{opacity:0;transform:translate(0,20px)}63%{opacity:1;transform:none}76%{opacity:1;transform:none}92%{opacity:1;transform:translate(271px,196px) scale(.7)}95%{opacity:0;transform:translate(271px,196px) scale(.5)}100%{opacity:0}}
+@keyframes m4{0%,66%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.15)}74%{opacity:1;transform:none}78%{opacity:0}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.mover{display:none}}
+
+/* 13 film 1 */
+.term{padding:20px 22px;font:300 15px/1.9 var(--mono);color:var(--text)}
+.tl{white-space:pre-wrap}
+.filmcap{margin-top:18px;font:400 12px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.scatter{width:100%;height:100%}
+
+/* 14, 16, 17 board */
+.board{display:flex;height:100%;padding:8px 6px 6px}
+.bcol{flex:1;border-left:1px solid var(--border);padding:8px 8px 0;position:relative;min-width:0}
+.bcol:first-child{border-left:0}
+.bhead{font:400 11px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:6px 4px 12px;min-height:38px}
+.bbody{display:flex;flex-wrap:wrap;gap:4px 6px;align-content:flex-start}
+.bcard{width:calc(25% - 5px);height:27px;background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:5px;padding:2px 8px;font:400 10.5px/1.2 var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.bsub{display:block;font-weight:300;font-size:9px;color:var(--muted)}
+.bcard.ghost{width:100%;height:30px;display:flex;align-items:center}
+.bmore{font:300 11px/1 var(--mono);color:var(--muted);padding:8px 4px}
+.slide.on .bcard.slide-in{opacity:0;animation:slidein .45s ease-out forwards}
+@keyframes slidein{from{opacity:0;transform:translateX(-120%)}to{opacity:1;transform:none}}
+.slide.on .bcard.move{animation:moveout .5s ease-in forwards}
+@keyframes moveout{to{opacity:0;transform:translateX(110%)}}
+.slide.on .bcard.dim{animation:dimout .5s ease-in forwards}
+@keyframes dimout{to{opacity:0;transform:translateX(230%)}}
+.slide.on .arrive{opacity:0;animation:rise .4s ease-out forwards}
+
+.bcol:nth-child(4) .bcard,.bcol:nth-child(5) .bcard{width:calc(33.33% - 4px)}
+.bcol:nth-child(2) .bcard{width:calc(20% - 5px)}
+
+/* 15 the open card */
+.open{display:flex;gap:22px;padding:22px;height:100%}
+.ocard{width:380px;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px;box-shadow:0 8px 24px rgba(26,58,78,.08);align-self:flex-start}
+.oname{font:300 32px/1.1 var(--sans);letter-spacing:-.5px;margin-bottom:18px}
+.ok{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.ov{font:300 16px/1.5 var(--mono);margin-top:4px}
+.ostatus{margin-top:22px;display:flex;gap:8px}
+.email{flex:1;background:var(--panel);border:1px solid rgba(20,20,30,.1);border-radius:9px;padding:24px 28px;align-self:flex-start;box-shadow:0 8px 24px rgba(26,58,78,.08)}
+.ehead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.el{font:300 17px/1.7 var(--mono);margin-bottom:12px}
+.drew{width:300px;border:1px solid var(--sky);border-radius:9px;padding:18px 20px;align-self:flex-start}
+.dhead{font:400 10.5px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.ditem{font:400 14px/1.5 var(--mono);padding:10px 0;border-top:1px solid var(--border)}
+.ditem span{display:block;font-weight:300;font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* 16 loop */
+.loopwrap{width:340px;height:440px;margin-top:20px}
+.loop{width:100%;height:100%}
+.ringline{stroke-dashoffset:2000;stroke-dasharray:2000}
+.slide.on .ringline{animation:draw 2.4s ease-out 6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.looplabel{font:400 24px var(--mono);fill:var(--text)}
+.loopmid{font:300 38px var(--sans);fill:var(--sky)}
+
+/* 17 the real world process */
+.process{display:flex;align-items:flex-start;gap:0;margin-top:44px}
+.st{flex:1;min-width:0}
+.st-arrow{flex:0 0 40px;padding-top:120px}.st-arrow svg{width:40px;height:20px}
+.st-title{font:300 26px/1.1 var(--sans);letter-spacing:-.3px;margin-bottom:14px}
+.st .win{width:250px!important;height:190px!important}
+.st-body{padding:14px}
+.st-plain{width:250px;height:190px}
+.st-door{width:250px;height:190px}
+.st-rows{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-cols{display:flex;gap:8px;height:140px}.st-cols i{flex:1;border-left:1px solid var(--border)}.st-cols i:first-child{border-left:0}
+.st-mail{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.st-agents{display:flex;flex-direction:column;gap:5px;height:190px;justify-content:center;overflow:hidden}
+.st-agent{background:var(--panel);border:1px solid rgba(20,20,30,.12);border-radius:7px;padding:4px 9px;font:300 10.5px/1.3 var(--mono);white-space:nowrap;box-shadow:0 1px 2px rgba(26,58,78,.06)}
+.st-name{display:block;font:300 14px/1.1 var(--sans);margin-bottom:1px}
+.st-text{margin-top:16px;font:300 15px/1.55 var(--mono);padding-right:18px}
+.st-loop{margin-top:18px}.st-loop svg{width:100%;height:40px;display:block}.st-loop p{font:300 15px/1.5 var(--mono);color:var(--sky);margin-top:6px}
+.st-note{margin-top:22px;font-size:17px}
+
+/* 18 the clock */
+.clockface{width:250px;height:190px}
+.st-term{padding:12px 14px;font:300 11px/1.55 var(--mono);color:var(--text);display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.st-term .you{color:var(--sky);font-style:normal}.st-term .dim{color:var(--muted)}
+.st-term.beat{font-size:10px;line-height:1.5;white-space:nowrap}
+.clocknote{display:flex;gap:64px;margin-top:34px;border-top:1px solid var(--border)}
+.clocknote div{flex:1;padding-top:20px}
+.clocknote b{display:block;font:300 24px/1.2 var(--sans);letter-spacing:-.3px;margin-bottom:8px}
+.clocknote p{font:300 16px/1.6 var(--mono)}
+/* 18 week */
+.week{display:flex;margin-top:60px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.day{flex:1;padding:36px 28px 40px;border-left:1px solid var(--border);min-height:420px}.day:first-child{border-left:0;padding-left:0}
+.dname{font:300 30px/1 var(--sans);letter-spacing:-.5px}
+.dtext{font:300 17px/1.6 var(--mono);margin-top:22px}
+.mini{width:150px;height:110px;margin-top:28px;border:1px solid rgba(20,20,30,.12);border-radius:9px;background:var(--panel);position:relative;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px}
+.mini.term{flex-direction:column;align-items:flex-start;justify-content:flex-start}
+.mini.term i{display:block;height:6px;border-radius:3px;background:var(--fill);width:70%}.mini.term i:nth-child(2){width:45%}.mini.term i:nth-child(3){width:30%;background:var(--sky)}
+.mini.two b{display:block;width:44px;height:58px;border:1px solid rgba(20,20,30,.15);border-radius:5px;background:var(--bg)}
+.mini.blank{border-style:dashed}
+.mini em,.mini.number em{font:300 46px/1 var(--sans);font-style:normal;color:var(--sky)}
+
+/* 21 */
+.tonight{list-style:none;margin-top:44px;counter-reset:t}
+.tonight li{counter-increment:t;position:relative;padding:22px 0 22px 70px;border-top:1px solid var(--border);font:300 26px/1.4 var(--mono)}
+.tonight li:last-child{border-bottom:1px solid var(--border)}
+.tonight li::before{content:counter(t);position:absolute;left:0;top:26px;font:300 22px/1 var(--mono);color:var(--sky)}
+
+/* notes and chrome */
+.notes{display:none}
+#stage.notes-on .slide.on .notes{display:block;position:absolute;left:96px;right:96px;bottom:18px;padding:14px 18px;background:var(--deep);color:var(--bg);font:300 15px/1.6 var(--mono);border-radius:0}
+#counter{position:fixed;right:18px;bottom:12px;font:400 11px/1 var(--mono);letter-spacing:1.5px;color:var(--muted);opacity:.7}
+
+.slide{padding-top:44px}
+.slide h1{font-size:44px}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto auto auto auto auto 1fr;column-gap:28px;margin-top:22px}
+.badge{display:grid;grid-template-rows:subgrid;grid-row:span 7;align-content:start;background:var(--panel);border:1px solid rgba(20,20,30,.10);border-radius:16px;padding:16px 20px 16px;position:relative;
+  box-shadow:0 1px 2px rgba(26,58,78,.05),0 10px 24px rgba(26,58,78,.07)}
+.slot{width:54px;height:8px;border-radius:4px;background:var(--frame);border:1px solid rgba(20,20,30,.10);margin:0 auto 18px;align-self:start}
+.ag-head{display:flex;gap:12px;align-items:center}
+.face{flex:0 0 48px;height:48px;border-radius:50%;background:var(--frame);display:flex;align-items:center;justify-content:center}
+.face svg{width:34px;height:34px}
+.bname{font:300 30px/1 var(--sans);letter-spacing:-.5px}
+.bjob{font:400 17px/1.25 var(--sans);color:var(--sky);margin-top:6px}
+.bwhen{font:400 11px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:12px 0 2px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.brow{margin-top:10px}
+.blink{align-self:end;margin-top:8px;padding-top:10px;border-top:1px solid var(--border);font:400 17px/1.3 var(--sans);color:var(--sky);text-decoration:none}
+.blink:hover{text-decoration:underline}
+.blab{font:400 11px/1 var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.brow p,.brow li{font:300 15px/1.32 var(--sans)}
+.brow li{margin-bottom:4px}
+.path{display:block;font:400 11px/1.35 var(--mono);color:var(--sky);margin-top:1px;word-break:break-word}
+.brow ul{list-style:none}
+.brow li{padding-left:14px;position:relative}
+.brow li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;background:var(--sky)}
+</style></head>
+<body><div id="stage"><section class="slide" data-n="1">
+<h1>The four agents, and the job each one does</h1>
+<div class="badges"><div class="badge">
+  
+  <div class="ag-head"><div class="face"><svg viewBox="0 0 64 64"><rect x="10" y="22" width="8" height="30" rx="2" fill="#B9B9B3"/><rect x="22" y="14" width="8" height="38" rx="2" fill="#B9B9B3"/>
+   <rect x="34" y="26" width="8" height="26" rx="2" fill="#B9B9B3"/><rect x="46" y="42" width="8" height="10" rx="2" fill="#3A7CA5"/><line x1="8" y1="54" x2="56" y2="54" stroke="#8A8A85" stroke-width="1.5"/></svg></div>
+    <div><div class="bname">Carlos</div><div class="bjob">Counts the visits</div></div></div>
+  <div class="bwhen">1st, every Monday</div>
+  <div class="brow"><div class="blab">What it does</div><p>Counts how many times each member came to the gym, week by week, for the last twelve weeks. He does not write any emails.</p></div>
+  <div class="brow"><div class="blab">What it reads</div><ul><li>Every swipe at the door<span class="path">data/checkins.csv</span></li><li>The 900 members, goals and notes<span class="path">data/members.csv</span></li><li>Emails sent before, and replies<span class="path">data/email_log.csv</span></li><li>Who got an email before<span class="path">agent/state/memory.json</span></li></ul></div>
+  <div class="brow"><div class="blab">Where it puts its work</div><ul><li>A file with one line per member: visits each week, usual visits, goal and notes. Enrique reads it next.<span class="path">agent/out/candidates-(date).json</span></li><li>One line to say he finished<span class="path">agent/out/carlos-run.log</span></li></ul></div>
+  <a class="blink" href="instructions-carlos.html" target="_blank" onclick="event.stopPropagation()">Read Carlos&rsquo;s instructions</a>
+</div><div class="badge">
+  
+  <div class="ag-head"><div class="face"><svg viewBox="0 0 64 64"><rect x="10" y="18" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#8A8A85" stroke-width="1.5"/>
+   <path d="M11 20 L32 36 L53 20" fill="none" stroke="#3A7CA5" stroke-width="2.2" stroke-linejoin="round"/></svg></div>
+    <div><div class="bname">Enrique</div><div class="bjob">Writes the emails</div></div></div>
+  <div class="bwhen">2nd, every Monday</div>
+  <div class="brow"><div class="blab">What it does</div><p>Looks at each member and chooses: send an email, leave them alone, or ask Marta. Then he writes the email in Marta&rsquo;s voice and sends it.</p></div>
+  <div class="brow"><div class="blab">What it reads</div><ul><li>Carlos&rsquo;s file<span class="path">agent/out/candidates-(date).json</span></li><li>His own job page<span class="path">students/enrique-role.md</span></li><li>How Marta writes<span class="path">messaging/email-voice-and-rules.md</span></li><li>What to say for each goal<span class="path">messaging/messages-by-goal.md</span></li></ul></div>
+  <div class="brow"><div class="blab">Where it puts its work</div><ul><li>A file with one line per member: the choice, the reason and the email. Cato reads it next.<span class="path">agent/out/decisions-(date).json</span></li><li>The member&rsquo;s card in Attio: emailed or ask marta, the reason, the email<span class="path">Attio, People</span></li><li>Who he wrote to and when, so nobody gets two emails in four weeks<span class="path">agent/state/memory.json</span></li></ul></div>
+  <a class="blink" href="instructions-enrique.html" target="_blank" onclick="event.stopPropagation()">Read Enrique&rsquo;s instructions</a>
+</div><div class="badge">
+  
+  <div class="ag-head"><div class="face"><svg viewBox="0 0 64 64"><circle cx="28" cy="28" r="14" fill="#FFFFFF" stroke="#8A8A85" stroke-width="2"/>
+   <line x1="38" y1="38" x2="52" y2="52" stroke="#8A8A85" stroke-width="4" stroke-linecap="round"/><path d="M21 28 L26 33 L35 23" fill="none" stroke="#3A7CA5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="bname">Cato</div><div class="bjob">Checks the other two</div></div></div>
+  <div class="bwhen">3rd, every Monday</div>
+  <div class="brow"><div class="blab">What it does</div><p>Counts the visits again himself and makes his own choice for each member. Then he compares with Enrique and says agree or disagree, and why.</p></div>
+  <div class="brow"><div class="blab">What it reads</div><ul><li>Every swipe at the door<span class="path">data/checkins.csv</span></li><li>The members<span class="path">data/members.csv</span></li><li>Carlos&rsquo;s file and Enrique&rsquo;s file<span class="path">agent/out/candidates-(date).json, decisions-(date).json</span></li><li>His own job page<span class="path">students/cato-brief.md</span></li></ul></div>
+  <div class="brow"><div class="blab">Where it puts its work</div><ul><li>A file with one line per member: agree or disagree, and why<span class="path">agent/out/cato-(date).json</span></li><li>The member&rsquo;s card in Attio: his reason, and the email held for Marta when he disagrees<span class="path">Attio, People</span></li></ul></div>
+  <a class="blink" href="instructions-cato.html" target="_blank" onclick="event.stopPropagation()">Read Cato&rsquo;s instructions</a>
+</div><div class="badge">
+  
+  <div class="ag-head"><div class="face"><svg viewBox="0 0 64 64"><rect x="14" y="10" width="26" height="44" rx="2" fill="#FFFFFF" stroke="#8A8A85" stroke-width="1.5"/><circle cx="34" cy="33" r="1.8" fill="#8A8A85"/>
+   <path d="M56 32 H44" stroke="#3A7CA5" stroke-width="2.4" stroke-linecap="round"/><path d="M49 27 L44 32 L49 37" fill="none" stroke="#3A7CA5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div><div class="bname">Rosa</div><div class="bjob">Counts who came back</div></div></div>
+  <div class="bwhen">4th, two weeks later</div>
+  <div class="brow"><div class="blab">What it does</div><p>Two weeks after the emails, counts how many of those members have come back to the gym. That number is what Marta wants to know.</p></div>
+  <div class="brow"><div class="blab">What it reads</div><ul><li>Who got an email, and when<span class="path">agent/state/memory.json</span></li><li>Every swipe at the door<span class="path">data/checkins.csv</span></li><li>Who opened and who replied<span class="path">data/email_log.csv</span></li></ul></div>
+  <div class="brow"><div class="blab">Where it puts its work</div><ul><li>A file: who came back, and one sentence for Marta at the top<span class="path">agent/out/returns-(date).json</span></li><li>The member&rsquo;s card in Attio: came back or didn&rsquo;t come back<span class="path">Attio, People</span></li><li>Who was counted, so nobody is counted twice<span class="path">agent/state/memory.json</span></li></ul></div>
+  <a class="blink" href="instructions-rosa.html" target="_blank" onclick="event.stopPropagation()">Read Rosa&rsquo;s instructions</a>
+</div></div><div class="notes">These are the four agents, like four people on staff. Each one has one job. Carlos counts the visits and writes no words. Enrique reads what Carlos made, chooses who gets an email, and sends it. Cato does the work of the other two again, on his own, and says where he disagrees. Rosa comes back two weeks later and counts who came back. Each one reads a few files and leaves its work in a place the next one can find it.</div></section></div><div id="counter"></div><script>
+const stage=document.getElementById('stage'),slides=[...document.querySelectorAll('.slide')],N=slides.length;
+let i=0;
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`;stage.style.transformOrigin='center';}
+function show(k,replay){i=Math.max(0,Math.min(N-1,k));slides.forEach((s,j)=>{s.classList.toggle('on',j===i)});history.replaceState(null,'',`?s=${i+1}`);document.getElementById('counter').textContent=`${i+1} / ${N}`;if(replay){const s=slides[i];s.classList.remove('on');void s.offsetWidth;s.classList.add('on');}const v=slides[i].querySelector('video');if(v){v.currentTime=0;v.play().catch(()=>{});}}
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1)}else if(e.key==='Home'){show(0)}else if(e.key==='End'){show(N-1)}else if(e.key==='n'||e.key==='N'){stage.classList.toggle('notes-on')}else if(e.key==='r'||e.key==='R'){show(i,true)}else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+addEventListener('click',e=>{if(e.clientX>innerWidth*.8)show(i+1);else if(e.clientX<innerWidth*.2)show(i-1)});
+addEventListener('resize',fit);fit();
+const q=parseInt(new URLSearchParams(location.search).get('s')||'1',10);show(q-1);
+// a slide that plays itself waits to be looked at
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')show(i,true)});
+addEventListener('pageshow',e=>{if(e.persisted)show(i,true)});
+</script></body></html>

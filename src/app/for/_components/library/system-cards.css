@@ -1,0 +1,153 @@
+/* System cards, ppsy- prefix. The website big in a browser window, chatbot
+   and outbound as their own cards, dashed wires joining them. */
+
+.ppsy {
+  margin: 34px 0 0;
+}
+
+.ppsy-stack {
+  display: block;
+}
+.ppsy-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+.ppsy-col {
+  min-width: 0;
+}
+.ppsy-stem {
+  width: 0;
+  height: 26px;
+  margin: 0 auto;
+  border-left: 1.5px dashed #8a8a85;
+}
+
+/* the website, big, in browser chrome, like the film box */
+.ppsy-browser {
+  border: 1px solid #d5d3cb;
+  background: #fff;
+  box-shadow: 0 18px 40px -18px rgba(26, 58, 78, 0.25);
+}
+.ppsy-browserbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #eceae4;
+  background: #fbfbfa;
+}
+.ppsy-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.ppsy-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e3e1da;
+}
+.ppsy-dots i:first-child {
+  background: #e8756c;
+}
+.ppsy-dots i:nth-child(2) {
+  background: #e6b054;
+}
+.ppsy-dots i:nth-child(3) {
+  background: #79b489;
+}
+.ppsy-url {
+  flex: 1;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  color: #1d1b1b;
+  border: 1px solid #eceae4;
+  background: #fff;
+  padding: 4px 10px;
+}
+.ppsy-live {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2e7d4f;
+}
+.ppsy-frame {
+  height: 470px;
+  overflow: hidden;
+}
+.ppsy-frame iframe {
+  width: 143%;
+  height: 143%;
+  border: 0;
+  transform: scale(0.7);
+  transform-origin: top left;
+}
+
+.ppsy-cardlbl {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a85;
+  margin: 10px 0 0;
+}
+
+/* the chatbot card wears the house window title bar */
+.ppsy-chatcard {
+  background: #fff;
+  border: 1px solid #d5d3cb;
+  box-shadow: 0 12px 28px -16px rgba(26, 58, 78, 0.22);
+}
+.ppsy-chatbody {
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ppsy-msg {
+  margin: 0;
+  max-width: 90%;
+  padding: 9px 12px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.ppsy-them {
+  align-self: flex-start;
+  background: #f1f0ec;
+  color: #1d1b1b;
+}
+.ppsy-us {
+  align-self: flex-end;
+  background: rgba(58, 124, 165, 0.1);
+  color: #1d1b1b;
+}
+.ppsy-booked {
+  margin: 2px 0 0;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  color: #2e7d4f;
+}
+.ppsy-chatcard .ppsy-cardlbl {
+  padding: 0 16px 14px;
+  margin: 0;
+}
+
+.ppsy-hint {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 14px 0 0;
+}
+.ppsy-slash {
+  color: var(--pps-sky);
+}
+
+@media (max-width: 900px) {
+  .ppsy-row2 {
+    grid-template-columns: 1fr;
+  }
+}

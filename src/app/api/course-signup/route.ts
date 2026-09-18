@@ -1,6 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { recordSignup } from "@/lib/course-signup-record";
 import { getSignupRateLimiter } from "@/lib/rate-limit";
+import { looksUndeliverable } from "@/lib/email-dns";
+import { sendCourseSignupEvent } from "@/lib/meta-capi";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -27,9 +29,19 @@ import { getSignupRateLimiter } from "@/lib/rate-limit";
   tells the reader their first module is below. Send a `Joined` event from here
   and every course signup is pointed at a module that does not exist yet.
 
-  Adding people to a list is safe: `GET /lists/U33KxM/flow-triggers/` returns
-  zero flows. Sending an event named `Joined` is what is dangerous, which is the
-  reverse of what most of the project docs used to warn about.
+  ⚠️ ADDING SOMEONE TO THIS LIST NOW SENDS THEM A LIVE EMAIL. This block used to
+  say the opposite - "adding people to a list is safe, `GET
+  /lists/U33KxM/flow-triggers/` returns zero flows" - and that was true when it
+  was written and is not true now. The same call returns one flow today:
+  `course - interest welcome` (YzmgvX), status live. It is what has sent the
+  welcome to every one of the 294 people on the list.
+
+  So a bulk import into `course-interest` mails every address in it,
+  immediately. Re-read the flow-triggers endpoint before doing anything of the
+  sort - do not trust this comment either, including this correction to it.
+
+  Sending an event named `Joined` is dangerous for a separate reason, unchanged
+  from below.
 
   If the course ever needs events, give it its OWN metric name (for example
   `Course Signup`), never `Joined`, so the two products cannot collide by
@@ -210,13 +222,42 @@ export async function POST(req: NextRequest) {
       ? body.signup_module_lands
       : null;
 
+  /*
+    ⭐ THE META CLICK ID. Only ever present when the visitor arrived from a
+    Facebook or Instagram ad, because Meta appends `?fbclid=...` to the landing
+    URL. It is read off the URL by the page and posted here.
+
+    It is NOT stored anywhere and NOT written to Klaviyo. It exists for exactly
+    one purpose: `sendCourseSignupEvent` turns it into the `fbc` parameter so
+    Meta can tie this signup back to the ad that produced it. Without it the
+    conversion event still lands but is unattributed, and an unattributed
+    conversion teaches the optimiser nothing about WHICH ad worked - which is
+    the entire point of running one creative at a time.
+
+    Shape-checked in meta-capi.ts rather than here, so there is one gate on it.
+  */
+  const fbclid = typeof body.fbclid === "string" ? body.fbclid : undefined;
+  const pageUrl = typeof body.page_url === "string" ? body.page_url : undefined;
+
   const now = Date.now();
   const door = doorFor(now);
   const stamp = new Date(now).toISOString();
 
   try {
-    const existing = await existingProfile(key, email);
+    /* Run alongside the profile lookup rather than before it. The DNS answer is
+       needed to write the property below, but it costs no wall-clock time here -
+       the Klaviyo round trip it shares is always the slower of the two. */
+    const [existing, undeliverable] = await Promise.all([
+      existingProfile(key, email),
+      looksUndeliverable(email),
+    ]);
     const firstTouch = !existing?.hasIntent;
+
+    if (undeliverable) {
+      // Visible in the Vercel logs the same day, not three days later when
+      // someone happens to read the list.
+      console.warn("[course-signup] no mail route for domain", email);
+    }
 
     // Step 1: the profile and its intent. Intent properties are written on the
     // first touch only, so a second signup never overwrites what actually
@@ -235,6 +276,10 @@ export async function POST(req: NextRequest) {
     if (looksMachineGenerated(firstName)) {
       properties.signup_name_shape = "machine";
     }
+
+    /* Also every touch: the person may come back and type it correctly, and the
+       second submission should not inherit the first one's verdict. */
+    properties.signup_email_dns = undeliverable ? "no_mail_route" : "ok";
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
@@ -332,6 +377,47 @@ export async function POST(req: NextRequest) {
       ts: stamp, email, first_name: firstName, signup_source: source,
       signup_module: signupModule, signup_module_lands: lands,
       door, klaviyo: "ok",
+    });
+
+    /*
+      ⭐ META CONVERSIONS API - AFTER THE RESPONSE, NOT BEFORE IT.
+
+      `after()` runs this once the visitor already has their "You're in", so a
+      slow or unreachable Meta costs them nothing. It must never move above the
+      return, and it must never be awaited inline.
+
+      ⛔ IT ONLY RUNS ON THE SUCCESS PATH, DELIBERATELY. A honeypot bot (fake
+      200, nothing written), a failed Klaviyo call and a rate-limited caller all
+      return earlier, so none of them reach here. Sending a conversion for a bot
+      would teach the optimiser to go and find more bots, which is the single
+      most expensive thing that can go wrong on a conversion campaign.
+
+      ⚠️ `already: true` DOES reach here, on purpose: someone re-submitting is
+      still a person who responded to an ad, and meta-capi.ts dedupes them to
+      one event per day by `event_id`.
+
+      Never throws - `sendCourseSignupEvent` returns its failures rather than
+      raising, so nothing here can affect a signup that has already succeeded.
+    */
+    after(async () => {
+      const result = await sendCourseSignupEvent({
+        email,
+        firstName,
+        fbclid,
+        clientIp: clientIp(req),
+        userAgent: req.headers.get("user-agent") ?? undefined,
+        sourceUrl: pageUrl,
+        signupSource: source,
+      });
+      /* The ONLY visible difference between "configured and working" and "env
+         vars missing, silently sending nothing" - see the header of
+         meta-capi.ts. Read this line in the Vercel logs before believing the
+         integration is live. */
+      if (result.status !== "sent") {
+        console.warn("[course-signup] meta capi", result.status, result.reason);
+      } else {
+        console.log("[course-signup] meta capi sent", result.eventId, fbclid ? "attributed" : "no fbclid");
+      }
     });
 
     // Someone who submits twice, or refreshes mid-submit, has done nothing

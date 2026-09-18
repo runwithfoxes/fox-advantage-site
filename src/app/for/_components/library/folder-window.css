@@ -1,0 +1,129 @@
+/* THE FOLDER WINDOW. A depicted directory: file list left, open document right.
+ *
+ * Ported from ~/projects/.rwf-wt-course-modules/src/app/globals.css (the `.fw-*` rules,
+ * lines ~7974-8038 there). Every class renamed `ppfolder-*` per this repo's rule that
+ * generic class names collide with globals.css and fail silently. Not appended to this
+ * repo's globals.css: imported as a plain stylesheet by FolderWindow.tsx, same pattern
+ * as src/app/softco/softco.css.
+ *
+ * ROUNDED AT 15px ON PURPOSE and it is NOT a breach of any no-rounded-corners brand
+ * rule: this is a depicted software window, which is artwork. Our own chrome (the
+ * buttons inside it) stays square.
+ */
+
+.ppfolder {
+  container-type: inline-size;
+  border: 1px solid #e0e0dc;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05), 0 20px 42px -14px rgba(26, 58, 78, 0.16);
+}
+
+.ppfolder-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-bottom: 1px solid #e0e0dc;
+}
+
+.ppfolder-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+}
+.ppfolder-dot-r { background: #ff5f57; }
+.ppfolder-dot-a { background: #febc2e; }
+.ppfolder-dot-g { background: #28c840; }
+
+.ppfolder-title {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: #8a8a85;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.08em;
+}
+
+/* 196px is measured against this repo's own layout, not chosen freehand: it is a
+   column width that reads well beside a document pane at the widths this component
+   is dropped into. Adjust if the surrounding page disagrees. */
+.ppfolder-body {
+  display: grid;
+  grid-template-columns: 196px 1fr;
+}
+
+.ppfolder-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  border-right: 1px solid #e0e0dc;
+  background: #fcfcfa;
+}
+.ppfolder-list li { margin: 0; }
+
+.ppfolder-list button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #8a8a85;
+  padding: 9px 14px;
+  border-radius: 0;
+}
+.ppfolder-list button:hover { color: #3a7ca5; }
+.ppfolder-list button.is-open {
+  color: #1d1b1b;
+  background: #fff;
+  box-shadow: inset 2px 0 0 #3a7ca5;
+}
+
+/* THE FIXED HEIGHT IS THE FEATURE: about a screen of document, the rest scrolls
+   inside here rather than growing the page around it. */
+.ppfolder-pane {
+  height: 420px;
+  overflow-y: auto;
+  padding: 24px 26px;
+}
+
+.ppfolder-state {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: #a8a8a2;
+  margin: 0;
+}
+
+.ppfolder-doc {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #1d1b1b;
+}
+.ppfolder-doc > :first-child { margin-top: 0; }
+.ppfolder-doc p { margin: 0 0 14px; }
+.ppfolder-doc p:last-child { margin-bottom: 0; }
+
+/* A CONTAINER QUERY, NEVER A MEDIA QUERY. A component this narrow can sit inside a
+   page far wider than it is, so only the component's own width can answer "do I
+   still fit". */
+@container (max-width: 560px) {
+  .ppfolder-body { grid-template-columns: 1fr; }
+  .ppfolder-list {
+    display: flex;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid #e0e0dc;
+    padding: 6px;
+  }
+  .ppfolder-list button { white-space: nowrap; }
+  .ppfolder-list button.is-open { box-shadow: inset 0 -2px 0 #3a7ca5; }
+}

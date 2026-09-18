@@ -40,6 +40,75 @@ Route `src/app/api/clients/[slug]/feedback/route.ts`, guarded by the `CLIENT_FEE
 ## /distinctive page (2026-07-10) - LIVE
 Public article-style page at runwithfoxes.com/distinctive: "Distinctive brands have an incredible opportunity with AI". Static HTML at `public/distinctive/index.html` (assets in `public/distinctive/assets/`), served via a `/distinctive` rewrite in next.config.ts (same pattern as /broad-lake). **GOTCHA for every rewrite-served page: asset URLs must be ABSOLUTE (`/distinctive/assets/...`). The page URL has no trailing slash, so relative `assets/...` resolves to `/assets/` and 404s in the browser while direct curl checks of the full path still pass. Verify a deploy by RENDERING the live URL and checking the images paint, not by curling asset paths (b04253f shipped broken this way; fixed ff10cc6).** Content = the Substack DBA essay near-verbatim (National Lottery waterslides/William/Village/Dream Inspector, voice section with Oatly + Isa, grumpy fox engine), first person, byline, CTAs = /contact + chat-with-Isa (homepage). Videos reference the existing `/video/` files; three lottery films are click-to-play YouTube embeds. Built for Amy Mitchell (PT78) to send to a challenger-brand client, but generic. Page rules learned this session are baked into the /branded-page skill: hero headline one line (two max), clamp(32px,3.4vw,48px), hero close under the nav. Shipped b58f06c -> main.
 
+## /essays - Paul's writing, on his own domain first (14 live as of 2 Aug 2026)
+
+**Publishing is a drop-in-a-file job.** Put a markdown file in `src/content/essays/` with
+frontmatter (`title`, `date`, `dek`, optional `substack`) and it appears. The index, the
+reader and the sitemap all read `src/lib/essays.ts`, so they cannot drift apart. Images live
+in `public/essays/{slug}/` numbered in document order (`01.png`, `02.jpeg`, ...). Deliberately
+NOT built like `chapters.ts`, which hardcodes its order in a TS array. Do not add one here.
+
+### ⭐ `.essay-embed` - the ONE media primitive. Do not hand-roll another.
+`class="essay-embed"` on a bare `<video>` or `<iframe>` is the whole contract: full column
+width, no border, no rounded corners. `remark` runs with `sanitize: false`, so the tag passes
+through from markdown untouched. First used by `distinctive-brand-assets-in-an-ai-world`.
+
+- ⚠️ **The 16/9 ratio is on `iframe.essay-embed` ONLY, and that split is load-bearing.** An
+  iframe has no intrinsic size and collapses without a ratio. A `<video>` HAS one, and
+  hard-coding 16/9 over it is a real bug: `animated-6040-activate.mp4` is **1080x1080**, and
+  the black bars ran down both sides of a cream ad on a cream page. Let the file say how tall
+  it is.
+- ⚠️ **Every `<video class="essay-embed">` needs a `poster`.** Chrome paints nothing at all
+  until the first frame decodes, so without one it is a blank rectangle mid-essay for as long
+  as the network takes. Generate with `ffmpeg -ss <t> -i in.mp4 -frames:v 1 -q:v 3 out.jpg`.
+
+### ⭐ Sizing a lead image, and the thumbnail it silently breaks
+A markdown image has no way to carry a width, so an essay that needs its image at anything
+other than full column width has to be written as a raw `<img src="..." width="476" ... />`.
+Two things bite when you do that, and both did on `diary-of-an-ai-agent-team` (7 Sep 2026).
+
+1. ⚠️ **`firstImage()` in `src/lib/essays.ts` used to match `![]()` only.** The homepage
+   essays block and the `/essays` index both take their thumbnail from it, so the raw tag
+   was invisible and the piece would have shipped with a blank card and nothing saying why.
+   It now tries markdown first and falls back to a raw `<img src>`. Check the card, not just
+   the essay page: `curl -s localhost:3000/ | grep -o '<your-slug>[^"]*'`.
+2. ⚠️ **Do NOT put `class="essay-embed"` on the image to do the sizing.** That primitive is
+   `width: 100%`, which is the opposite of what you want and undoes the width attribute. It
+   is for `<video>` and `<iframe>`, nothing else.
+
+A transparent `-nobg` fox PNG is fine as a lead image, the page ground is cream. Keep it a
+PNG, and keep the file at full size with the width set on the tag, so it stays sharp at 2x.
+
+### Importing from Substack - the three traps, all of which have bitten
+The ten essays of 24 Jul (`16197cd`) and the four of 2 Aug (`130945f`) both came from the
+Substack API: `/api/v1/archive?sort=new&limit=50` lists every post, `/api/v1/posts/{slug}`
+returns full `body_html`. There is **no Substack export on Paul's laptop**; do not go looking.
+
+1. ⭐ **FETCH THE `<img src>` EXACTLY AS GIVEN.** It is already the `w_1456` CDN URL, which is
+   what the 680px reader column needs at 2x. Unwrapping to the original URL encoded inside it
+   pulls the 2500px source: four essays came down at **18MB instead of 3.5MB**.
+2. ⭐ **STRIP SUBSTACK'S FURNITURE.** Subscribe/share widgets arrive as bare markdown links
+   (seven across four essays). None of the live essays carry them; the foot of a piece already
+   has the course note and the Substack credit.
+3. ⭐ **Substack puts the leading space INSIDE `<em>`** (`Building<em> DBAs</em>`). Stripping
+   it welds words together (`Building*Distinctive*`). Move the space outside the marker.
+
+Substack-hosted videos (`native-video-embed`, identified only by a `mediaUploadId`) cannot be
+fetched: the API answers *"Cannot verify mediaUpload belongs to pub"*. Both in the DBA essay
+turned out to be files **already on this site**, which `/distinctive` confirms since it was
+built from the same essay. Identify them by the sentence each one follows.
+
+### ⚠️ Known gap, and it is not in this repo
+`src/app/essays/[slug]/page.tsx` canonicalises to runwithfoxes.com on the stated basis that
+the Substack copy points back here. **It does not.** All 14 posts self-canonicalise to
+substack.com, so Substack is telling Google it holds the original of every essay. Fixing it is
+a setting on Substack, not a code change. Flagged to Paul 2 Aug 2026.
+
+**Overlap with existing pages was measured, not assumed** (2 Aug): `18 things worth knowing
+about GEO` shares **24%** of its sentences with `/answer-engine-optimization`, and the DBA
+essay shares **18%** with `/distinctive`. That is related writing, not duplicate pages, so all
+of them stay. An older commit message called it a straight duplicate; that note was stale.
+
 ## Current state (2026-06-04) - accordion port LIVE
 Live and deployed. The homepage was ported from `wireframes/wireframe-accordion-homepage.html` to a single nested accordion and shipped to production (merge `ef84f97..69bae26` -> main, Vercel auto-deploy). Structure now: hero -> bio (magazine wrap) + contact-CTA strip (sequential green dots) -> LIVE Substack carousel -> 7-module nested accordion (L0 row -> L1 intro -> L2 reused rich panels) -> rotating testimonial band -> book block. Single font (JetBrains Mono) across the homepage via `--sans -> mono` on `.hp-root`. Nav is now `/tools` + `/previous`. All copy approved, zero 404s. See "Homepage structure" below (updated) and the session summary `~/paul-hub/clients/rwf/sessions/website-2026-06-04-homepage-accordion-port.json`. Rollback if ever needed: `git revert 69bae26` (or revert the merge) + push.
 
@@ -150,10 +219,15 @@ Every module section follows:
 ## Voice rules (hard rules for all copy on this site)
 - No generalisations ("most teams", "nobody thinks about")
 - No judgement or criticism of teams/marketers
+  Both broken again on 6 Sep 2026 by a Research Agent draft that opened "Most research in a marketing team either doesn't get done, or takes a large part of somebody's time... it keeps slipping". Paul: "you're being too negative when you talk about things slipping, and I never say most anything. I don't mind you comparing it to what happens with it, but I don't want this to sound anyway judgmental or look at those, aren't we amazing?" So a comparison to how the work is done today is allowed, a verdict on the reader's team is not, and neither is a line that admires us.
 - No salesy closers ("that's where it gets interesting", "that's the bit")
+- No salesy openers either, and nothing that talks down to the reader. Paul, 6 Sep 2026, on "the reason people want one is simple": "That just sounds patronizing. Less salesy talk and more pragmatic." And on a first draft that read as a pitch: "I want it written in a plain way so people understand, okay, I understand what this is, and I also feel like there's no real hype. Seems very practical."
+- Any written piece shown on the site (a post, an email, a note) reads like a person wrote it: paragraphs of different lengths, one thought carried through, never a run of one-line soundbites. Paul, 5 Sep 2026, on a ghostwriter post of five single lines: "It doesn't feel like the way writing is done. It's too AI. It needs to feel more natural, less one-line soundbite-ish."
+- No frivolous benefit lines. State the outcome plainly. Paul, 5 Sep 2026, on "You read one note with your coffee. The research is done, checked and sourced, and it is already with the next agent": "Don't say things like this because it makes the sense frivolous." The fix was "Every company on your list has a researched card in the CRM before the working day starts, with a source on every fact."
 - No "replace" language - frame as opportunity, not replacement
 - Quality and speed are the two themes running through everything
 - "We" not "you" - peer-to-peer, optimistic
+- Say that WE BUILD these. Paul, 6 Sep 2026, on the agent pages: "some of my writing is a bit passive and needs to be more clear that we build these for clients." His own fix: "A team of research agents for marketing and sales, working every day, and you are not the bottleneck" became "We build research agents for marketing and sales, working every day, so you're not the bottleneck." An agent is never the only subject on a page; "it is possible to have", "is done", "once it is built" all read as if nobody did the work.
 - No corporate words, no AI hype words
 - No em dashes anywhere
 - No rounded corners
@@ -167,6 +241,7 @@ Every module section follows:
 - Research intro: "We love research, and have helped teams with a range of solutions such as message testing, company intelligence, review analysis, pricing monitors, and agents that call and interview people on their shopping behaviour."
 
 ## Isa chatbot behaviour
+- **Opening reply (2026-08-05, approved by Paul):** her FIRST reply in any conversation introduces her, answers the question, and brings Paul in, whatever was asked. She does not wait to be asked about him. Why: attitude was accidentally gated on Paul being the subject. Every tone example in `chat-system-prompt.ts` had Paul as its target, so with him out of the conversation the model had no worked example of what attitude looks like and fell back to bland. Measured on the 42 bare-"hello" replies the health-check cron had logged, only 10 (24%) opened with a Paul tease. Also note she never introduced herself and never had: no such rule has ever existed in the prompt's git history, and the widget welcome (a static string) does not say her name either. Two guardrails came in with it: the joke lands on Paul and NEVER on the visitor or what they asked, and "one dry aside per response, max" was replaced (it read as a cap on personality when what needs capping is comedy for its own sake). Paul's steer, verbatim: "isa can never be rude or make fun of visitors... isa is good when she is playful and endearing and mocking me."
 - Auto-opens after 5 seconds on first page load (2 seconds on `/contact`) - DESKTOP ONLY (2026-07-08): no auto-open at <=768px viewports, where the panel is full-screen; on mobile the bubble stays and only opens on tap
 - Welcome message (updated 2026-07-21 for the course launch, was the book message): text-only, "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. Register today. Did I mention it is free? Paul asked me to say it was brilliant..."
 - "Register today" links to `/course`. (The old book-cover thumbnail + "free to download" -> `/book#signup` welcome was replaced; the book is still a real free offer, just no longer Isa's opening line.)

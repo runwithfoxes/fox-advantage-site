@@ -30,7 +30,7 @@ export default function AnswersPage() {
           /<span>Run</span>withfoxes
         </Link>
         <nav>
-          <Link href="/#projects">/projects</Link>
+          <Link href="/#agents">/agents</Link>
           <Link href="/contact">/contact</Link>
           <Link href="/book#signup" className="cta-bar">
             /get_the_book

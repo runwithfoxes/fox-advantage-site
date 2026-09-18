@@ -2,8 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { SubstackPost } from "@/lib/substack";
 import AgentsHero from "./AgentsHero";
+import AgentsSection from "./agents/AgentsSection";
+import SiteFooter from "./SiteFooter";
+import MobileMenu from "@/components/MobileMenu";
+
+/* The four most recent essays, read off local markdown by app/page.tsx. Was the live
+   Substack feed until 24 Jul 2026; see the note there. */
+export type HomeEssay = {
+  slug: string;
+  title: string;
+  href: string;
+  date: string;
+  image: string | null;
+};
 
 function LazyVideo({ src, className, loop }: { src: string; className?: string; loop?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -130,7 +142,7 @@ const SF_PAGES: Record<string, string> = {
   "campaign-manager": "/products/module-campaign-manager.html",
 };
 
-export default function HomePage({ posts }: { posts: SubstackPost[] }) {
+export default function HomePage({ essays }: { essays: HomeEssay[] }) {
   const navRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState("all");
@@ -148,19 +160,7 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
           /<span>Run</span>withfoxes
         </a>
         <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  {SF_MODS.map((m) => (
-                    <a key={m.key} href={SF_PAGES[m.key] || "#"}>{m.name}</a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="#agents">/agents</a>
 
           <div className="hp-dropdown-wrap">
             <span className="hp-dropdown-trigger">/previous &#9662;</span>
@@ -170,14 +170,31 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
                 <Link href="/millionaire-raffle">Millionaire Raffle</Link>
                 <Link href="/marketer-of-the-year">Marketer of the Year</Link>
                 <Link href="/48">48</Link>
-                <Link href="/run-with-foxes">Run with Foxes (book 1)</Link>
               </div>
             </div>
           </div>
 
-          <Link href="/book">/book</Link>
+          <div className="hp-dropdown-wrap">
+            <Link href="/essays" className="hp-dropdown-trigger">/essays &#9662;</Link>
+            <div className="hp-mega">
+              <div className="hp-projects-dropdown">
+                <Link href="/essays">Paul&apos;s essays</Link>
+                <Link href="/diary">Diary of our agent team</Link>
+              </div>
+            </div>
+          </div>
+          <div className="hp-dropdown-wrap">
+            <span className="hp-dropdown-trigger">/books &#9662;</span>
+            <div className="hp-mega hp-mega-end">
+              <div className="hp-projects-dropdown">
+                <Link href="/book">The Fox Advantage</Link>
+                <Link href="/run-with-foxes">Run with Foxes</Link>
+              </div>
+            </div>
+          </div>
           <Link href="/contact" className="hp-nav-cta">/contact</Link>
         </div>
+      <MobileMenu />
       </nav>
 
       <div ref={heroRef} id="heroWrapper">
@@ -201,86 +218,42 @@ export default function HomePage({ posts }: { posts: SubstackPost[] }) {
             <aside className="hpx-nl">
               <div className="hpx-nl-head">
                 <span className="hpx-nl-kick">/recent essays</span>
-                <a className="hpx-nl-more" href="https://runwithfoxes.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="View newsletter">&rarr;</a>
+                <Link className="hpx-nl-more" href="/essays" aria-label="All essays">&rarr;</Link>
               </div>
               <div className="hpx-nl-list">
-                {posts.slice(0, 4).map((p) => (
-                  <a key={p.slug} className="hpx-nl-item" href={p.link} target="_blank" rel="noopener noreferrer">
+                {essays.map((p) => (
+                  <Link key={p.slug} className="hpx-nl-item" href={p.href}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {p.image ? <img className="hpx-nl-thumb" src={p.image} alt="" /> : <span className="hpx-nl-thumb" />}
                     <div className="hpx-nl-text">
                       <div className="hpx-nl-title">{p.title}</div>
                       <div className="hpx-nl-meta">{p.date.toUpperCase()} &middot; Paul Dervan</div>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </aside>
-          </div>
-          <div className="hpx-metastrip">
-            <span className="hpx-ctas-label">Contact us to</span>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\build it for you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\work alongside you</Link>
-            <Link className="hpx-mod-cta" href="/contact"><span className="hpx-fdot"></span>\train your team</Link>
           </div>
         </div>
       </section>
 
       <div className="cl-modules-wrap">
 
-        {/* ===== PRODUCTS STOREFRONT (replaces the old module accordion) ===== */}
+        {/* ===== /AGENTS (replaces the products storefront, 5 Sep 2026) ===== */}
         <div className="hpx-wrap">
-          <section className="sf-store" id="products">
-            <div className="sf-shop">
-              <div className="sf-shop-kick">/products</div>
-              <div className="sf-fbar">
-                {SF_CATS.map((c) => (
-                  <button
-                    key={c[0]}
-                    className={`sf-fbtn${filter === c[0] ? " active" : ""}`}
-                    onClick={() => setFilter(c[0])}
-                  >
-                    {c[1]}
-                  </button>
-                ))}
-              </div>
-              <div className="sf-grid">
-                {SF_MODS.filter((m) => filter === "all" || sfCatsOf(m).includes(filter)).map((m) => {
-                  const href = SF_PAGES[m.key] || "#";
-                  const live = href !== "#";
-                  return (
-                    <a key={m.key} className={`sf-card${live ? "" : " soon"}`} href={href}>
-                      <div className="sf-card-vis">
-                        {m.badges && m.badges.length > 0 && (
-                          <div className="sf-card-badges">
-                            {m.badges.map((b) => (
-                              <span key={b} className={`sf-card-badge ${b.toLowerCase()}`}>{b}</span>
-                            ))}
-                          </div>
-                        )}
-                        <span className="sf-vis" dangerouslySetInnerHTML={{ __html: SF_VIS[m.icon] }} />
-                      </div>
-                      <div className="sf-card-bd">
-                        {m.tag && <span className="sf-tagb">{m.tag}</span>}
-                        <div className="sf-card-nm">
-                          <span className="sf-ci" dangerouslySetInnerHTML={{ __html: SF_IC[m.icon] }} />
-                          <h3>{m.name}</h3>
-                        </div>
-                        <div className="sf-card-ben">{m.ben}</div>
-                        <div className="sf-card-cta">{live ? "See how it works" : "Page coming"} <span className="arr">&rarr;</span></div>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
+          <AgentsSection />
 
           {/* TESTIMONIALS - rotating band, manual, fixed height */}
           <Testimonials />
 
         </div>
       </div>
+
+      {/* The GEO/agent content cluster was reachable only from within itself, so
+          the pages were orphans from the homepage, which is where radio traffic
+          lands. Same SiteFooter primitive the cluster uses, wide variant for this
+          container. No `current`: the homepage is not one of the links. */}
+      <SiteFooter wide />
 
       <footer className="hpx-footer">
         <span>&copy; 2026 Run with Foxes Limited</span>

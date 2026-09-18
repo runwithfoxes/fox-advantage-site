@@ -1,0 +1,144 @@
+/* AI answer sample exhibit, ppgeo- prefix. House ppw window chrome. */
+
+.ppgeo {
+  margin: 34px 0 0;
+}
+
+.ppgeo-win {
+  width: 940px;
+}
+
+.ppgeo-inner {
+  padding: 20px 24px 24px;
+  background: #fbfbfa;
+}
+
+.ppgeo-k {
+  margin: 0 0 14px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #54545c;
+}
+
+.ppgeo-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.ppgeo-n {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+}
+.ppgeo-n.ppgeo-good {
+  color: #2e7d4f;
+}
+.ppgeo-n.ppgeo-bad {
+  color: #1a3a4e;
+}
+.ppgeo-l {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #3c3c40;
+}
+
+.ppgeo-rule {
+  margin: 22px 0;
+  border-top: 1px solid #e3e3df;
+}
+
+.ppgeo-table {
+  display: grid;
+  gap: 7px;
+}
+.ppgeo-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 64px;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: #3c3c40;
+}
+.ppgeo-bar {
+  display: block;
+  height: 12px;
+  background: #efefec;
+}
+.ppgeo-bar i {
+  display: block;
+  height: 100%;
+  background: #3a7ca5;
+}
+.ppgeo-ct {
+  text-align: right;
+  color: #54545c;
+}
+.ppgeo-zero .ppgeo-dom,
+.ppgeo-zero .ppgeo-ct {
+  color: #1a3a4e;
+  font-weight: 600;
+}
+.ppgeo-zero .ppgeo-bar {
+  background: repeating-linear-gradient(
+    -45deg,
+    #efefec 0 6px,
+    #fbfbfa 6px 12px
+  );
+}
+
+.ppgeo-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.ppgeo-t {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #3c3c40;
+}
+
+.ppgeo-dl {
+  margin: 18px 0 0;
+}
+.ppgeo-dl a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #1a3a4e;
+  background: #fff;
+  color: #1a3a4e;
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.ppgeo-dl a:hover {
+  background: #1a3a4e;
+  color: #fafaf8;
+}
+
+@media (max-width: 900px) {
+  .ppgeo-split,
+  .ppgeo-facts {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .ppgeo-row {
+    grid-template-columns: 150px 1fr 64px;
+  }
+}
+
+/* Plain intro sentence inside the window (Paul, 10 Aug: say who was
+   asked and how). */
+.ppgeo-intro {
+  margin: 0 0 18px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #3c3c40;
+  max-width: 780px;
+}

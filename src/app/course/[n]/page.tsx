@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { MODULES } from "../courseModules";
 import { MODULES_BY_N } from "../moduleData";
 import CourseDoor from "./CourseDoor";
 import ModuleClient from "./ModuleClient";
@@ -43,6 +44,16 @@ export default async function ModulePage({
   const { n } = await params;
   const mod = MODULES_BY_N[Number(n)];
   if (!mod) notFound();
+
+  /* ⭐ A MODULE OPENS ON ITS DATE, 18 Sep 2026. Before this nothing hid modules 2-6, so anyone
+     typing /course/3 got placeholder prose and "AWAITING PAUL'S WORDS." Dates come from
+     courseModules.ts (`on`), compared in Dublin time. Module 1 is exempt so it can be checked
+     on production before Mon 21 Sep; it has no link in until then. Dev sees everything. */
+  const opens = MODULES.find((m) => m.n === mod.n)?.on;
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Dublin" }).format(new Date());
+  if (process.env.NODE_ENV !== "development" && mod.n !== 1 && opens && today < opens) {
+    redirect("/course");
+  }
 
   /* ⭐⭐ THE DOOR IS CHECKED ON THE SERVER, 3 Aug 2026. Paul: "I want everybody that does the
      course must sign up through email." A client-side gate renders the whole module and then

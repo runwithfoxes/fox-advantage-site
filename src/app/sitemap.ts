@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllChapters, isChapterGated } from "@/lib/chapters";
+import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
 import { toolBuckets } from "./students/toolData";
 
 const BASE = "https://runwithfoxes.com";
@@ -22,10 +24,24 @@ const PUBLIC_ROUTES = [
   "/books",
   "/brand",
   "/brief-diagnostician",
-  "/coach",
+  /* ⛔ "/coach" WAS HERE AND CAME OUT, 2 Aug 2026. It is not a page: the route is
+     an 11-line `redirect()` that 307s to metrics-pyramid.vercel.app, where the
+     Marketing Effectiveness Coach actually lives. A sitemap advertises URLs you
+     want indexed, and a URL that leaves the domain can never be indexed at that
+     URL, so this was asking Google to index a signpost. It lands in Search
+     Console as a "Page with redirect" exclusion.
+     ⚠️ THE REDIRECT ITSELF STAYS. /coach is a working vanity URL and anyone who
+     has it keeps landing on the tool. This removes it from the sitemap only.
+     ⚠️ Do NOT "fix" this by building a /coach page that describes the tool. That
+     is a new content page and the 21 Jul standing hold is live.
+     How it stayed hidden: site_gaps.py follows redirects, so it was counting the
+     DESTINATION's words, scoring 200+ and reporting "ok". Fixed the same day - it
+     now tests for an off-domain hop BEFORE the word count. */
   "/contact",
   "/cookies",
   "/course",
+  "/diary",
+  "/essays",
   "/distinctive",
   "/experts",
   "/info",
@@ -33,7 +49,6 @@ const PUBLIC_ROUTES = [
   "/millionaire-raffle",
   "/privacy",
   "/productivity",
-  "/research",
   "/run-with-foxes",
   "/students",
   "/students/tools/ai-writer",
@@ -52,7 +67,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const tools = toolBuckets.map((b) => `/students/tools/${b.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools];
+  /* same principle: read from the loader the pages render from, so an essay cannot
+     exist without being in the sitemap or linger in it after being removed */
+  const essays = getAllEssays().map((e) => `/essays/${e.slug}`);
+
+  /* same again for the diary: the loader is the list */
+  const dispatches = getAllDispatches().map((d) => `/diary/${d.slug}`);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }

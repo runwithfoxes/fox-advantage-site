@@ -1,0 +1,70 @@
+/* Ladder of marketing metrics, ppld- prefix. Typographic rungs, the lit one
+   walking upward on a loop. Index 0 is the TOP rung, so the walk runs from
+   the highest index down to 0. */
+
+.ppld {
+  margin: 0;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  padding: 10px 0 0;
+}
+.ppld-rung {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 18px;
+  align-items: baseline;
+  padding: 13px 20px;
+  border-bottom: 1px solid #eceae4;
+  animation: ppld-walk 7.5s steps(1) infinite;
+  /* five rungs, bottom first: rung i lights during its slot */
+  animation-delay: calc((4 - var(--i)) * 1.3s);
+}
+.ppld-rung:last-child {
+  border-bottom: none;
+  padding-bottom: 17px;
+}
+.ppld-name {
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  color: var(--pps-text);
+}
+.ppld-detail {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  color: var(--pps-muted);
+}
+
+@keyframes ppld-walk {
+  0% {
+    background: rgba(58, 124, 165, 0.09);
+    box-shadow: inset 2px 0 0 #3a7ca5;
+  }
+  17.3% {
+    background: transparent;
+    box-shadow: none;
+  }
+  100% {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ppld-rung {
+    animation: none;
+  }
+  .ppld-rung:first-child {
+    background: rgba(58, 124, 165, 0.09);
+    box-shadow: inset 2px 0 0 #3a7ca5;
+  }
+}
+
+.ppld-caption {
+  font-family: var(--pps-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+  margin: 0;
+  padding: 14px 20px 16px;
+  border-top: 1px solid var(--pps-border);
+}

@@ -1,0 +1,140 @@
+"use client";
+
+// The pricing block, formalised from the ARI build: one or two cards, the
+// covers / does-not-cover pair, then the close box. Numbers and bullets come
+// in as props; nothing here invents a price.
+
+import "./pricing.css";
+
+export interface PriceCard {
+  // Optional. Paul, 28 Aug 2026, on Boreman: "they are not part 1, 2 and 3.
+  // They are simply 3 agents." Where the cards are a menu rather than a ladder,
+  // a "Part one" label invents an order the buyer is not being asked to follow.
+  // Every existing page passes one and renders exactly as before.
+  label?: string; // "Option A", "Part one"
+  title: string;
+  bullets: string[];
+  price: string; // "€9,500 plus VAT"
+  note?: string; // timeline / phase line under the price
+  // Optional footed total. Paul's ask, 24 Aug 2026, on the Expleo build: a
+  // buyer reading a setup fee and a monthly should not have to add them up
+  // herself. Pass the first-period total in plain words. Older pages omit it
+  // and render exactly as before.
+  total?: { label: string; value: string };
+  // Optional itemised build-up and a struck-through list price. Paul, 28 Aug
+  // 2026, on Bright, where Seamus had already named his budget: "One price,
+  // show it coming to 28k and with a discount to get to 20k, but show the
+  // discount with line through 28k so it feel useful. This is not a menu."
+  // `lines` is what the number is made of, `was` is the total of those lines,
+  // struck, sitting directly above what he actually pays. A struck number needs
+  // a stated reason underneath it or it reads as a price that was never real.
+  // Older pages pass neither and render exactly as before.
+  lines?: { label: string; value: string }[];
+  was?: string; // "€24,000"
+  featured?: boolean;
+}
+
+export function PricingCards({ cards }: { cards: PriceCard[] }) {
+  return (
+    <div className="ppp-cards" data-count={cards.length}>
+      {cards.map((c) => (
+        <div key={c.title} className="ppp-card" data-featured={c.featured ? "1" : "0"}>
+          {c.label ? <p className="ppp-card-label">{c.label}</p> : null}
+          <h3 className="ppp-card-title">{c.title}</h3>
+          <ul className="ppp-card-list">
+            {c.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+          {c.lines && (
+            <div className="ppp-card-lines">
+              {c.lines.map((l, i) => (
+                <div key={i} className="ppp-card-line">
+                  <span className="ppp-card-line-k">{l.label}</span>
+                  <span className="ppp-card-line-v">{l.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {c.was && <p className="ppp-card-was">{c.was}</p>}
+          <p className="ppp-card-price">{c.price}</p>
+          {c.note && <p className="ppp-card-note">{c.note}</p>}
+          {c.total && (
+            <div className="ppp-card-total">
+              <span className="ppp-card-total-k">{c.total.label}</span>
+              <span className="ppp-card-total-v">{c.total.value}</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function CoversGrid({
+  covers,
+  notCovered,
+}: {
+  covers: string[];
+  notCovered: string[];
+}) {
+  return (
+    <div className="ppp-covers">
+      <div>
+        <p className="ppp-covers-label">What the price covers</p>
+        <ul>
+          {covers.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p className="ppp-covers-label">What it doesn&rsquo;t</p>
+        <ul>
+          {notCovered.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export function CloseBox({
+  clientName,
+  calUrl = "https://cal.com/paul-dervan-mjfd50",
+}: {
+  clientName: string;
+  calUrl?: string;
+}) {
+  const mailto = `mailto:paul@runwithfoxes.com?subject=${encodeURIComponent(
+    `${clientName} - your page`
+  )}`;
+  return (
+    <div className="ppp-close">
+      <p className="ppp-close-line">
+        If this looks right, the next step is a conversation, not a contract.
+      </p>
+      <div className="ppp-close-actions">
+        <a
+          className="ppp-close-btn"
+          href={calUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() =>
+            window.dispatchEvent(
+              new CustomEvent("prospect-track", {
+                detail: { type: "open", name: "book-a-chat" },
+              })
+            )
+          }
+        >
+          Book a time to chat
+        </a>
+        <a className="ppp-close-mail" href={mailto}>
+          or email Paul directly
+        </a>
+      </div>
+    </div>
+  );
+}
