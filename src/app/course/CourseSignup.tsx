@@ -137,6 +137,7 @@ export default function CourseSignup({
   note,
   compact = false,
   refreshOnDone = false,
+  goOnDone,
 }: {
   source: SignupSource;
   module?: number;
@@ -149,6 +150,9 @@ export default function CourseSignup({
   /** The module door, 18 Sep 2026: on success, re-render the page on the server so the
       cookie just set lets the module appear, with no second click. */
   refreshOnDone?: boolean;
+  /** /course from launch day, 18 Sep 2026: on success, go here (module 1) rather than
+      showing a thank you, because the course is open and they came for it. */
+  goOnDone?: string;
 }) {
   const router = useRouter();
   const [state, setState] = useState<State>({ kind: "idle" });
@@ -180,7 +184,9 @@ export default function CourseSignup({
         ...(module !== undefined ? { signup_module: module, signup_module_lands: lands } : {}),
     });
     setState(result);
-    if (result.kind === "done" && refreshOnDone) router.refresh();
+    /* A full load, not router.push: push reused the door page cached before the cookie existed. */
+    if (result.kind === "done" && goOnDone) window.location.assign(goOnDone);
+    else if (result.kind === "done" && refreshOnDone) router.refresh();
   }
 
   if (state.kind === "done") {

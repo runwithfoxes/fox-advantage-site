@@ -46,6 +46,8 @@ export const HERO = {
      the two new closing sentences carry the self-paced promise and the full date.
      The middle sentence is unchanged - it was already his structure and he kept it. */
   sub: "A free online course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one released every fortnight. Do at your own pace. Starts 21st September 2026.",
+  /* From 21 Sep 2026, Paul 18 Sep: "Module 1 is open now." replaces the start date. */
+  subOpen: "A free online course for marketers. How to get both speed and quality, how to create adjacent value, and how to set yourself up to take advantage of AI in your marketing. Six modules, one released every fortnight. Do at your own pace. Module 1 is open now.",
 
   /* ✅ APPROVED BY PAUL, 1 Aug 2026. The plain-category line, and the ONLY reason it
      exists is that search and answer engines had no unambiguous statement anywhere on

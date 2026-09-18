@@ -197,6 +197,8 @@ function ModuleCard({
 /* ---------------------------------------------------------------- the page */
 
 export default function CourseClient({ today }: { today: string }) {
+  /* Launch day on: the top line says module 1 is open and both signup boxes take you in. */
+  const m1Live = isLive(MODULES[0], today);
   const [openCard, setOpenCard] = useState<number | null>(null);
 
   /**
@@ -321,11 +323,12 @@ export default function CourseClient({ today }: { today: string }) {
               and the sell would arrive second. Reasoning in courseCopy.ts. */}
           <p className="co-define">{HERO.definition}</p>
 
-          <p>{HERO.sub}</p>
+          <p>{m1Live ? HERO.subOpen : HERO.sub}</p>
 
           <div className="co-herojoin">
             <CourseSignup
               source="hero"
+              goOnDone={m1Live ? "/course/1" : undefined}
               /* 🔴 THE SHARE ROW APPEARS ONLY AFTER SIGNUP, NEVER BESIDE THE PILL. Paul,
                  19 Jul: "as few things on as possible so that people can just see it and
                  sign up." A share cluster above the fold competes with the one thing the
@@ -390,6 +393,7 @@ export default function CourseClient({ today }: { today: string }) {
           <section className="co-footjoin">
             <CourseSignup
               source="foot"
+              goOnDone={m1Live ? "/course/1" : undefined}
               doneText={
                 <>
                   {ASK.heroDone}

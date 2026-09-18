@@ -46,7 +46,7 @@ export function getSignupRateLimiter(): Ratelimit | null {
 
   return new Ratelimit({
     redis: r,
-    limiter: Ratelimit.slidingWindow(5, "60 s"),
+    limiter: Ratelimit.slidingWindow(30, "60 s"), /* was 5; 18 Sep 2026, the module door now uses this route, so an office opening the launch email together must not be refused */
     prefix: "ratelimit:course-signup",
   });
 }
