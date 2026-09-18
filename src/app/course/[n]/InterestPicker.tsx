@@ -40,6 +40,9 @@ const KEY = "rwf-course-interests-sent";
 
 export default function InterestPicker({ n }: { n: number }) {
   const [picked, setPicked] = useState<Set<string>>(new Set());
+  /* Words the person typed themselves. They become tiles, picked, and count like the rest
+     (Paul, 18 Sep: "when I wrote growth, it doesn't add to it"). */
+  const [own, setOwn] = useState<string[]>([]);
   const [other, setOther] = useState("");
   const [sent, setSent] = useState(false);
 
@@ -59,8 +62,25 @@ export default function InterestPicker({ n }: { n: number }) {
     setPicked(next);
   };
 
+  const addOwn = () => {
+    const w = other.trim().replace(/\s+/g, " ").slice(0, 40);
+    if (!w) return;
+    const known = [...WORDS, ...own].find((x) => x.toLowerCase() === w.toLowerCase());
+    const word = known ?? w.charAt(0).toUpperCase() + w.slice(1);
+    if (!known) setOwn([...own, word]);
+    const next = new Set(picked);
+    next.add(word);
+    setPicked(next);
+    setOther("");
+  };
+
   const send = () => {
-    if (!picked.size && !other.trim()) return;
+    /* Anything still sitting in the box counts too, so nothing typed is lost. */
+    const extra = other.trim();
+    const all = new Set(picked);
+    if (extra) all.add(extra.charAt(0).toUpperCase() + extra.slice(1));
+    if (!all.size) return;
+    setPicked(all);
     setSent(true);
     try {
       localStorage.setItem(KEY, "1");
@@ -73,8 +93,9 @@ export default function InterestPicker({ n }: { n: number }) {
       body: JSON.stringify({
         event: "interests_picked",
         module: n,
-        detail: [...picked].join(", "),
-        item: other.trim(),
+        detail: [...all].join(", "),
+        /* Their own words, kept apart so they can be read as new ideas, not counted as ours. */
+        item: [...all].filter((w) => !WORDS.includes(w)).join(", "),
       }),
       keepalive: true,
     }).catch(() => {});
@@ -146,7 +167,7 @@ export default function InterestPicker({ n }: { n: number }) {
           ) : (
             <>
               <div className="ip-words">
-                {WORDS.map((w) => (
+                {[...WORDS, ...own].map((w) => (
                   <button
                     key={w}
                     type="button"
@@ -164,9 +185,12 @@ export default function InterestPicker({ n }: { n: number }) {
                   value={other}
                   onChange={(e) => setOther(e.target.value)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") send();
+                    if (e.key === "Enter" || e.key === ",") {
+                      e.preventDefault();
+                      addOwn();
+                    }
                   }}
-                  placeholder="anything else?"
+                  placeholder="add your own, press enter"
                   maxLength={300}
                   aria-label="Anything else you would like to learn about"
                 />
@@ -180,7 +204,10 @@ export default function InterestPicker({ n }: { n: number }) {
                 onClick={send}
                 disabled={!picked.size && !other.trim()}
               >
-                {picked.size ? `send ${picked.size} picked` : "send"}
+                {(() => {
+                  const c = picked.size + (other.trim() ? 1 : 0);
+                  return c ? `send ${c} picked` : "send";
+                })()}
                 <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
                   <path d="M1.5 1 L9 5 L1.5 9 Z" fill="#fff" />
                 </svg>
