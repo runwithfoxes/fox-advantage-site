@@ -42,6 +42,7 @@ const ALLOWED: readonly CourseEventName[] = [
   "prompt_copied",
   "download_taken",
   "fluency_rated",
+  "interests_picked",
 ];
 
 /** Small, because everything here is attacker-controlled and lands in a durable record. */
@@ -100,8 +101,9 @@ export async function POST(req: NextRequest) {
     domain: domainOf(email),
     event,
     module: moduleN,
-    item: clean(body.item, MAX_ITEM),
-    detail: clean(body.detail, MAX_DETAIL),
+    /* interests_picked carries a list of words and a free line, so it gets more room. */
+    item: clean(body.item, event === "interests_picked" ? 400 : MAX_ITEM),
+    detail: clean(body.detail, event === "interests_picked" ? 400 : MAX_DETAIL),
   };
 
   await recordEvent(rec);
@@ -124,6 +126,7 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
     prompt_copied: "Course: prompt copied",
     download_taken: "Course: download taken",
     fluency_rated: "Course: fluency rated",
+    interests_picked: "Course: interests picked",
   }[rec.event];
 
   try {

@@ -41,7 +41,10 @@ export type CourseEventName =
   /** Took a file. Same weight as a copy, different shape. */
   | "download_taken"
   /** Saved a self-rated fluency number. Module 1 opens it, module 6 closes it. */
-  | "fluency_rated";
+  | "fluency_rated"
+  /** Picked what they want to learn more about, on module 1 (Paul, 18 Sep 2026). `detail`
+      holds the picked words, comma separated; `item` holds their "anything else" line. */
+  | "interests_picked";
 
 export interface CourseEvent {
   ts: string;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import InterestPicker from "./InterestPicker";
 
 /**
  * THE ARRIVAL BLOCK, 2 Aug 2026. EXPERIMENT, NOT A DECISION.
@@ -138,7 +139,12 @@ export default function ModuleArrival({ n }: { n: number }) {
           moduleData.ts. Do not reintroduce a second welcome: this block sits below the
           video and its only job is the fluency question. */}
 
-      {asks && (
+      {/* 18 Sep 2026, Paul: module 1 asks what they want to learn more about INSTEAD of the
+          fluency slider. The slider stays on module 6 only, where it needs rethinking before
+          30 Nov because its note promises an answer given at the start of module 1. */}
+      {n === 1 && <InterestPicker n={n} />}
+
+      {asks && n !== 1 && (
       <div className="arr-rate">
         {/* Paul's words, 2 Aug. Not to be reworded, and identical at both ends on purpose. */}
         <p className="arr-q">How AI fluent do you feel that you are?</p>
