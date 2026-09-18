@@ -46,12 +46,20 @@ export default function InterestPicker({ n }: { n: number }) {
   const [other, setOther] = useState("");
   const [sent, setSent] = useState(false);
 
-  /* Asked once. A reload after sending shows the thank-you, not the question again. */
+  /* Remembers what they sent, in this browser. A reload shows the thank-you WITH their picks
+     and a way to change them (Paul, 18 Sep: a bare thank-you on refresh read as a bug). */
   useEffect(() => {
     try {
-      if (localStorage.getItem(KEY)) setSent(true);
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as { picked?: string[] };
+      const words = Array.isArray(saved?.picked) ? saved.picked : [];
+      if (!words.length) return; /* nothing saved to show: ask again */
+      setPicked(new Set(words));
+      setOwn(words.filter((w) => !WORDS.includes(w)));
+      setSent(true);
     } catch {
-      /* blocked storage just means we may ask again */
+      /* old "1" value or blocked storage: just ask again */
     }
   }, []);
 
@@ -81,9 +89,11 @@ export default function InterestPicker({ n }: { n: number }) {
     if (extra) all.add(extra.charAt(0).toUpperCase() + extra.slice(1));
     if (!all.size) return;
     setPicked(all);
+    setOwn([...all].filter((w) => !WORDS.includes(w)));
+    setOther("");
     setSent(true);
     try {
-      localStorage.setItem(KEY, "1");
+      localStorage.setItem(KEY, JSON.stringify({ picked: [...all] }));
     } catch {
       /* fine */
     }
@@ -143,6 +153,9 @@ export default function InterestPicker({ n }: { n: number }) {
         .ip-send:disabled{background:#C9C9C3;cursor:default;}
         .ip-done{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:13px;color:#1D1B1B;margin:0;line-height:1.6;}
         .ip-done b{color:#3A7CA5;font-weight:400;}
+        .ip-change{font:inherit;color:#8A8A85;background:none;border:0;padding:0;margin-top:6px;
+          cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+        .ip-change:hover{color:#3A7CA5;}
       `}</style>
 
       <h2 className="ip-q">What would you like to learn more about?</h2>
@@ -163,6 +176,10 @@ export default function InterestPicker({ n }: { n: number }) {
                   <b>{[...picked].join(" · ")}</b>
                 </>
               ) : null}
+              <br />
+              <button type="button" className="ip-change" onClick={() => setSent(false)}>
+                change
+              </button>
             </p>
           ) : (
             <>
