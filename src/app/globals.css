@@ -7541,6 +7541,10 @@ a.project-card {
 .mod-railcol{position:sticky;top:96px;max-height:calc(100vh - 124px);
   display:flex;flex-direction:column;gap:44px;margin-top:116px;}
 .mod-rail{font-family:var(--mono);font-size:.75rem;overflow:auto;min-height:0;}
+/* The course name at the top of the rail, 18 Sep 2026. Links back to /course. */
+.mod-coursetitle{font-family:var(--sans);font-weight:500;font-size:1.375rem;line-height:1.2;
+  letter-spacing:-.01em;color:#1D1B1B;text-decoration:none;display:block;max-width:15em;}
+.mod-coursetitle:hover{color:#3A7CA5;}
 
 /* Rounded at 15px ON PURPOSE, and it is not a breach of the no-rounded-corners rule:
    this is a depicted software window, which is artwork. Our own chrome stays square. */

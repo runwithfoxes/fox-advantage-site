@@ -716,6 +716,12 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
               off... We can always bring it back on later." ModuleIsa.tsx is kept intact; putting
               `<ModuleIsa mod={mod} />` back here is the whole of turning her on again. */}
 
+          {/* The course's name, in the slot Isa left. Paul, 18 Sep 2026: "what is missing
+              here is the title... Maybe we put that as a title above the /in this module". */}
+          <a href="/course" className="mod-coursetitle">
+            AI Fluency for Ambitious Marketers
+          </a>
+
           <nav className="mod-rail">
             <p>/in this module</p>
             {mod.items.map((it, i) =>
