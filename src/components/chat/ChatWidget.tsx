@@ -7,6 +7,11 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import type { UIMessage } from "ai";
 import { renderChatMarkdown } from "@/lib/chat-markdown";
+import { MODULES, isLive } from "@/app/course/courseModules";
+
+/* ⭐ Paul, 19 Sep 2026: from launch day Isa says "we've launched a new free training course for
+   marketers. Tuck in." Read once when the page loads, in the visitor's browser, Dublin date. */
+const LAUNCHED = isLive(MODULES[0]);
 
 /** Extract text content from a UIMessage's parts */
 function getMessageText(message: UIMessage): string {
@@ -22,7 +27,9 @@ const WELCOME: UIMessage = {
   parts: [
     {
       type: "text",
-      text: "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. [Register today](/course). Did I mention it is free? Paul asked me to say it was brilliant...",
+      text: LAUNCHED
+        ? "Hi, we've launched a new free training course for marketers: AI Fluency for Ambitious Marketers. [Tuck in](/course). Did I mention it is free? Paul asked me to say it was brilliant..."
+        : "Hi, we're launching a new free online training course: AI Fluency for Ambitious Marketers. [Register today](/course). Did I mention it is free? Paul asked me to say it was brilliant...",
     },
   ],
 };
@@ -243,7 +250,11 @@ export default function ChatWidget() {
                 <div>
                   {/* Text-only welcome, no course card (Paul's call). The link
                       carries the CTA; the copy carries the voice. */}
-                  <p>Hi, we&apos;re launching a new free online training course: AI Fluency for Ambitious Marketers. <a href="/course">Register today</a>. Did I mention it is free? Paul asked me to say it was brilliant...</p>
+                  {LAUNCHED ? (
+                    <p>Hi, we&apos;ve launched a new free training course for marketers: AI Fluency for Ambitious Marketers. <a href="/course">Tuck in</a>. Did I mention it is free? Paul asked me to say it was brilliant...</p>
+                  ) : (
+                    <p>Hi, we&apos;re launching a new free online training course: AI Fluency for Ambitious Marketers. <a href="/course">Register today</a>. Did I mention it is free? Paul asked me to say it was brilliant...</p>
+                  )}
                 </div>
               ) : (
                 <div
