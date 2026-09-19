@@ -80,7 +80,7 @@ export default function AboutPage() {
             <p>
               There is also a free AI marketing course,{" "}
               <Link href="/course">AI Fluency for Ambitious Marketers</Link>. Six
-              modules, one a fortnight, starting 21st September.
+              modules, one a fortnight, from 21st September.
             </p>
             <p>
               The name does double duty. Run with Foxes is also Paul&apos;s 2020

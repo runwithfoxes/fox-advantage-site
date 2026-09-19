@@ -226,7 +226,7 @@ export const SHARE = {
   copied: "Link copied",
   /* the native sheet's own fields */
   title: "AI Fluency for Ambitious Marketers",
-  text: "A free online course for marketers, six modules, starts 21 September.",
+  text: "A free online course for marketers, six modules, one a fortnight from 21 September.",
 };
 
 /* ⚠️ ABSOLUTE, AND HARDCODED ON PURPOSE. A share target cannot resolve a relative URL,

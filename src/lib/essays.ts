@@ -51,7 +51,7 @@ export const COURSE_NOTE = {
   lead: "Free AI marketing course:",
   title: "AI Fluency for Ambitious Marketers",
   href: "/course",
-  tail: "starts 21st September.",
+  tail: "runs one module a fortnight from 21st September.",
 };
 
 export interface Essay {

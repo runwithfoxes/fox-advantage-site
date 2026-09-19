@@ -61,7 +61,7 @@ const OG_IMAGE = "/course/og-course.jpg";
 
 const TITLE = "AI Fluency for Ambitious Marketers";
 const DESCRIPTION =
-  "A free, practical, non-hype AI fluency course for ambitious marketers. Six modules, one a fortnight, opening Monday 21 September 2026.";
+  "A free, practical, non-hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.";
 
 /**
  * ⭐ THE SEARCH TITLE AND DESCRIPTION ARE DELIBERATELY NOT THE SHARE-CARD ONES.
@@ -92,7 +92,7 @@ const DESCRIPTION =
  */
 const SEARCH_TITLE = "Free AI marketing course: AI Fluency for Ambitious Marketers";
 const SEARCH_DESCRIPTION =
-  "A free, practical, non-hype AI marketing course for ambitious marketers. Six modules, one a fortnight, opening Monday 21 September 2026.";
+  "A free, practical, non-hype AI marketing course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.";
 
 export const metadata: Metadata = {
   title: SEARCH_TITLE,
