@@ -7788,6 +7788,9 @@ a.project-card {
 
 @media (max-width:860px){
   .mod-grid{grid-template-columns:1fr;gap:28px;}
+  /* The COLUMN must unstick too, not just the list inside it. Only .mod-rail was released,
+     so on a phone the title and the ten items stayed pinned over the text. Fixed 19 Sep 2026. */
+  .mod-railcol{position:static;max-height:none;}
   .mod-rail{position:static;max-height:none;}
   /* One item per line on a phone. It was inline-grid, so two short titles shared a line
      (08 and 09 on module 1) while every other row sat alone. Fixed 19 Sep 2026. */

@@ -547,6 +547,8 @@ export const MODULE_1: ModuleDef = {
          said what prompting is, so "brief it" reads as brief who. His rule, verbatim:
          a title has to name the activity and the lesson. */
       t: "When prompting, give AI context",
+      /* fig-36, built 19 Sep 2026 on Paul's go. It was the only item in module 1 with no picture. */
+      figure: "fig-36",
       /* ⭐ NOW PAUL'S OWN WORDS, VERBATIM, 2 Aug 2026 (evening). `placeholder` is gone with
          them, so the orange marker comes off and this item joins /course/everything.
 
