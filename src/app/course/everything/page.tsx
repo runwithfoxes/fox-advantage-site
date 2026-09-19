@@ -72,6 +72,10 @@ export default function EverythingPage() {
   MODULES.forEach((m) => {
     const def = MODULES_BY_N[m.n];
     if (!def) return;
+    /* ⭐ 19 Sep 2026: A MODULE'S LESSONS JOIN THE LIBRARY ON ITS LAUNCH DAY, same check as its
+       files below and the /course card. Before this, module 2's three written lessons, prompts
+       included, were public here weeks before module 2 opened, while its own page was locked. */
+    if (!isLive(m)) return;
     def.items.forEach((item, i) => {
       /* ⛔ PLACEHOLDERS NEVER REACH A PUBLIC PAGE. On the module page Paul can see his
          own unwritten items behind ?build. Here, an item carrying "PAUL TO WRITE" would
@@ -298,7 +302,9 @@ export default function EverythingPage() {
        ⭐ SO IT NOW COUNTS ITEMS, which is the thing the word "built" was always pointing at.
        A module joins the count when it has content and not one moment sooner, and that
        holds however many empty modules get registered next. */
-    has: (MODULES_BY_N[m.n]?.items.length ?? 0) > 0,
+    /* 19 Sep 2026: counted as built only once it is live, so launch day reads 1 of 6, not 6 of 6
+       (placeholder items were enough to count a module before). */
+    has: isLive(m) && (MODULES_BY_N[m.n]?.items.length ?? 0) > 0,
   }));
 
   return (

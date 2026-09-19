@@ -404,6 +404,46 @@ export const SHELF: ShelfSection[] = [
         by: "Matt Shumer, somethingbig.ai",
         url: "https://somethingbig.ai/something-big-is-happening",
       },
+      /* ⭐ ADDED 19 Sep 2026 on Paul's go ("go with your library"), from his own files and Sam's
+         research. Each note is a NEUTRAL line saying what the thing is, on his instruction the
+         same day: "You might write a neutral descriptive line for each library item." Never a
+         reason to read it. Every URL fetched and its <title> checked. */
+      {
+        name: "Build a system",
+        by: "Paul Dervan, runwithfoxes.com",
+        url: "/essays/build-a-system",
+        note: "Paul's essay on the setup behind his work: things he built, joined to inexpensive tools and held together by Claude Code.",
+      },
+      {
+        name: "Thesis Statements",
+        by: "Every",
+        url: "https://every.to/thesis-statements",
+        note: "A hundred leaders each predict how work and AI will look in 2027.",
+      },
+      {
+        name: "An opinionated guide to which AI to use to do stuff",
+        by: "Ethan Mollick, One Useful Thing",
+        url: "https://www.oneusefulthing.org/p/an-opinionated-guide-to-which-ai-b22",
+        note: "The Summer 2026 guide to which AI tools to use, written for non-experts.",
+      },
+      {
+        name: "How I Plan, Build, and Run Loops with Claude Code in 40 Minutes",
+        by: "Peter Yang with Thariq Shihipar, YouTube",
+        url: "https://www.youtube.com/watch?v=aVO6E181cNU",
+        note: "Thariq from the Claude Code team shows how he plans, builds and runs long tasks with Claude Code.",
+      },
+      {
+        name: "Effective context engineering for AI agents",
+        by: "Anthropic",
+        url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        note: "Anthropic's engineers on what to give an AI agent to work with, and what to leave out.",
+      },
+      {
+        name: "How we built our multi-agent research system",
+        by: "Anthropic",
+        url: "https://www.anthropic.com/engineering/multi-agent-research-system",
+        note: "How Anthropic built Claude's Research feature, with several agents working on one question.",
+      },
     ],
   },
   {
@@ -505,10 +545,87 @@ export const SHELF: ShelfSection[] = [
       { name: "Kling AI", by: "kling.ai", url: "https://kling.ai" },
       { name: "MiniMax", by: "minimax.io", url: "https://www.minimax.io" },
       { name: "fal", by: "fal.ai", url: "https://fal.ai" },
-      /* ⭐ PAUL, 19 Sep 2026: "personal assistants like Grokbot have got very popular... the
-         website for Grokbot and just add". SpaceXAI's own launch page, 11 Aug 2026; its <title>
-         "Introducing Grok Bot | SpaceXAI" confirmed by fetch. No `note`: his to write. */
-      { name: "Grok Bot", by: "x.ai", url: "https://x.ai/news/introducing-grok-bot" },
+      /* Both named by Paul in his own essay "Build a system" as part of his setup. Added 19 Sep. */
+      {
+        name: "GitHub",
+        by: "github.com",
+        url: "https://github.com",
+        note: "Stores code and keeps every version of it.",
+      },
+      {
+        name: "Healthchecks.io",
+        by: "healthchecks.io",
+        url: "https://healthchecks.io",
+        note: "Tells you when a job that should run on a schedule did not run.",
+      },
+    ],
+  },
+  {
+    /* ⭐ PAUL, 19 Sep 2026: "personal assistants like Grokbot have got very popular... find links
+       that are credible about these or the website for Grokbot and just add." Researched the same
+       day; every link fetched. ⚠️ Title is a first draft, his to name. Notes are neutral, on his
+       instruction. OpenAI's and Perplexity's own pages block automated checks, so ChatGPT Work
+       links a news piece (Fox Business) and Comet links Perplexity's page unconfirmed, the same
+       footing as claude.ai and chatgpt.com in Tools. */
+    slug: "assistants",
+    title: "Personal assistants",
+    entries: [
+      {
+        name: "Grok Bot",
+        by: "SpaceXAI",
+        url: "https://x.ai/news/introducing-grok-bot",
+        note: "SpaceXAI's assistant. Each bot has its own computer in the cloud and works in the apps you already use. Launched 11 August 2026.",
+      },
+      {
+        name: "SpaceXAI's Grok Bot turns agents into persistent digital coworkers",
+        by: "Carl Franzen, VentureBeat",
+        url: "https://venturebeat.com/orchestration/spacexais-grok-bot-turns-agents-into-persistent-digital-coworkers-that-can-operate-your-apps-for-120-per-month",
+        note: "Launch coverage of Grok Bot, with its prices.",
+      },
+      {
+        name: "Claude in Chrome",
+        by: "Anthropic",
+        url: "https://claude.com/claude-in-chrome",
+        note: "Claude in a Chrome side panel. It reads pages, fills in forms and clicks through sites for you.",
+      },
+      {
+        name: "OpenAI launches ChatGPT Work",
+        by: "Fox Business",
+        url: "https://www.foxbusiness.com/technology/openai-unveils-chatgpt-work-automate-workplace-tasks-ai-race-intensifies",
+        note: "OpenAI's assistant that works across your apps and files and keeps going while you are offline.",
+      },
+      {
+        name: "Manus",
+        by: "manus.im",
+        url: "https://manus.im",
+        note: "An agent that builds slides, websites and apps, and can use a browser for you.",
+      },
+      {
+        name: "Comet",
+        by: "Perplexity",
+        url: "https://www.perplexity.ai/comet",
+        note: "A web browser with an assistant built in that can act on the page for you.",
+      },
+      {
+        name: "Gemini Spark",
+        by: "Google",
+        url: "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        note: "Google's assistant that runs around the clock and has its own Gmail address you send work to.",
+      },
+    ],
+  },
+  {
+    /* ⭐ PAUL, 4 Aug 2026, on Kaggle: "they offer up huge datasets so people can practice. I thought
+       that was very interesting." Added 19 Sep. ⚠️ Title is a first draft, his to name. */
+    slug: "practice",
+    title: "Practice material",
+    entries: [
+      {
+        name: "Kaggle",
+        by: "kaggle.com",
+        url: "https://www.kaggle.com",
+        note: "Free datasets to practise analysis on.",
+      },
     ],
   },
   {
