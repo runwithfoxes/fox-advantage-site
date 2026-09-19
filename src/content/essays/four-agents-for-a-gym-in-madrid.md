@@ -65,9 +65,7 @@ When the clock does start the team, a short runner script runs the four in order
 
 The whole Monday took about five and a half minutes. Most of that is Enrique and Cato thinking. The last two lines are Rosa's work from two weeks before landing in the CRM: on 31 August the team wrote to 65 members, and 28 of them had been back through the door in the two weeks since.
 
-There are a few rules I follow when I build an agent team, and this one has all of them in it.
-
-Give each agent one job, and keep the counting and the writing apart. Carlos counts with code and gets the same answer every time. Choosing who to email and writing to them needs judgement, so that goes to Enrique, and he only ever works from Carlos's numbers. When one agent does both, mistakes creep in and they are hard to find, because every step after it still looks fine.
+There are a few rules I follow when I build an agent team, and this one has all of them in it. The first is to give each agent one job and keep the counting and the writing apart. Carlos counts with code and gets the same answer every time. Choosing who to email and writing to them needs judgement, so that goes to Enrique, and he only ever works from Carlos's numbers. When one agent does both, mistakes creep in and they are hard to find, because every step after it still looks fine.
 
 Every team needs a checker, and the checker does the whole job again on its own. Cato doesn't read Enrique's answers and decide whether they look right. He counts the visits himself, makes his own choice for each member, and only then compares the two. If he started from Enrique's answers, he would mostly end up agreeing with them.
 
