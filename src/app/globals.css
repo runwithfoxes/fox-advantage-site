@@ -7789,7 +7789,9 @@ a.project-card {
 @media (max-width:860px){
   .mod-grid{grid-template-columns:1fr;gap:28px;}
   .mod-rail{position:static;max-height:none;}
-  .mod-rail a{display:inline-grid;border-top:0;padding:4px 14px 4px 0;}
+  /* One item per line on a phone. It was inline-grid, so two short titles shared a line
+     (08 and 09 on module 1) while every other row sat alone. Fixed 19 Sep 2026. */
+  .mod-rail a{display:grid;border-top:0;padding:4px 0;}
   .mod-comp{grid-template-columns:repeat(2,1fr);}
   .mod-shell{padding:0 20px 80px;}
   .mod-readerbody{padding:26px 20px 32px;}

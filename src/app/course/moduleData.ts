@@ -1137,6 +1137,8 @@ export const MODULE_1: ModuleDef = {
          earns a sentence pointing at it. */
       t: "Use a Voice App",
       figure: "fig-28",
+      /* The app his text names, linked so nobody has to search for it. 19 Sep 2026. */
+      reading: [{ title: "Monologue", by: "monologue.to", url: "https://www.monologue.to/" }],
       text: "I rarely type anymore. I use a voice app. The one I use is Monologue. I click a button on laptop, talk and when finished talking, click the button again. My typing is getting worse but I get through a lot more, using this.\n\nPart of what is good about AI is that you can just chat, and ramble on and rant. So you can express yourself faster and in often more nuanced ways than if you have to think about what to type.",
     },
     {

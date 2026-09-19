@@ -1,4 +1,4 @@
-import { MODULES } from "../courseModules";
+import { MODULES, isLive } from "../courseModules";
 import { MODULES_BY_N } from "../moduleData";
 import { SHELF, SHELF_COUNT } from "../shelf";
 import EverythingClient, {
@@ -6,6 +6,10 @@ import EverythingClient, {
   type Row,
   type Section,
 } from "./EverythingClient";
+
+/* ⭐ REBUILT EVERY 5 MINUTES, same as /course, so a module's files turn clickable on its
+   launch morning without a deploy. Without this the page is frozen at build time. */
+export const revalidate = 300;
 
 /**
  * /course/everything - THE LIBRARY.
@@ -173,7 +177,11 @@ export default function EverythingPage() {
          ⛔ WHAT HAS NOT CHANGED: the FILES stay unreachable. Only the names appear. The
          contents are still served solely by `api/course-file` behind the identity cookie,
          and that is the check that matters, because being unlinked was never privacy. */
-      if (!def.built) {
+      /* ⭐ 19 Sep 2026: GATED ON THE LAUNCH DATE, not on moduleData's own `built` flag.
+         That flag stayed false for module 1 after it was finished, so its Kite files would
+         have stayed unclickable after launch. isLive() is the same check the /course card
+         uses: built in courseModules.ts AND its date has come, Dublin time. */
+      if (!isLive(m)) {
         /* ⛔ NO LONGER COUNTED AS HIDDEN, and the counter's own words are why: the build
            view says "N things are hidden from this page". As of 4 Aug the set is ON the
            page, named, with only its contents held back. Counting it would make Paul's one
