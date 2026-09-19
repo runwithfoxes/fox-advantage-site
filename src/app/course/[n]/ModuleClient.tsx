@@ -872,6 +872,9 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             {para}
           </p>
         ))}
+        {/* THE ARRIVAL BLOCK (the interest picker on module 1). Moved above the details row
+            on Paul's instruction, 19 Sep 2026: the question comes straight after his opening. */}
+        <ModuleArrival n={mod.n} />
         <div className="mod-meta">
           <span>
             {live ? "Opened" : "Opens"}<b>{mod.when}</b>
@@ -896,10 +899,6 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
         </div>
       </header>
 
-      {/* THE ARRIVAL BLOCK, 2 Aug 2026, EXPERIMENT. Welcome, video placeholder and the
-          fluency slider take the position the counter strip and progress bar held.
-          Revert = delete this line and set SHOW_COUNTERS back to true. */}
-      <ModuleArrival n={mod.n} />
 
       {SHOW_COUNTERS && (
       <div className="mod-comp">
