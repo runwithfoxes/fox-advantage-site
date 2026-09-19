@@ -505,6 +505,10 @@ export const SHELF: ShelfSection[] = [
       { name: "Kling AI", by: "kling.ai", url: "https://kling.ai" },
       { name: "MiniMax", by: "minimax.io", url: "https://www.minimax.io" },
       { name: "fal", by: "fal.ai", url: "https://fal.ai" },
+      /* ⭐ PAUL, 19 Sep 2026: "personal assistants like Grokbot have got very popular... the
+         website for Grokbot and just add". SpaceXAI's own launch page, 11 Aug 2026; its <title>
+         "Introducing Grok Bot | SpaceXAI" confirmed by fetch. No `note`: his to write. */
+      { name: "Grok Bot", by: "x.ai", url: "https://x.ai/news/introducing-grok-bot" },
     ],
   },
   {
