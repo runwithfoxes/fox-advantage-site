@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import SpecimenClient from "./SpecimenClient";
 
 /**
@@ -19,5 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function SpecimenPage() {
+  /* Hidden on the live site for launch (19 Sep 2026): a design test page, local use only. */
+  if (process.env.NODE_ENV === "production") notFound();
   return <SpecimenClient />;
 }
