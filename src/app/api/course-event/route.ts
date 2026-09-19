@@ -43,6 +43,7 @@ const ALLOWED: readonly CourseEventName[] = [
   "download_taken",
   "fluency_rated",
   "interests_picked",
+  "library_clicked",
 ];
 
 /** Small, because everything here is attacker-controlled and lands in a durable record. */
@@ -127,6 +128,7 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
     download_taken: "Course: download taken",
     fluency_rated: "Course: fluency rated",
     interests_picked: "Course: interests picked",
+    library_clicked: "Course: library clicked",
   }[rec.event];
 
   try {

@@ -18,6 +18,22 @@ import { HERO } from "../courseCopy";
  * DISCIPLINE, which was the actual complaint, not a skin.
  */
 
+/* ⭐ WHAT A NAMED PERSON REACHED FOR IN THE LIBRARY, 19 Sep 2026. Same route and same rules
+   as the module pages: fire and forget, and anyone without the course cookie is ignored by
+   the route. Before this the library recorded nothing at all. */
+function track(item: string, detail: string, module?: number) {
+  try {
+    fetch("/api/course-event", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ event: "library_clicked", module, item, detail }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* never break the page for tracking */
+  }
+}
+
 export type FileRow = {
   /**
    * ⭐ "pending" ADDED 4 Aug 2026. A document that EXISTS and is NAMED here but cannot be
@@ -399,7 +415,17 @@ export default function EverythingClient({
                           type="button"
                           className={s.rwmain}
                           aria-expanded={open.has(r.key)}
-                          onClick={() => toggle(r.key)}
+                          onClick={() => {
+                            if (!open.has(r.key))
+                              track(
+                                r.name,
+                                r.files.some((f) => f.kind === "pending")
+                                  ? "opened, not out yet"
+                                  : "opened folder",
+                                r.modN,
+                              );
+                            toggle(r.key);
+                          }}
                         >
                           <FolderIcon on={open.has(r.key)} />
                           <span className={s.rwname}>{r.name}</span>
@@ -447,6 +473,7 @@ export default function EverythingClient({
                               href={f.url}
                               target="_blank"
                               rel="noopener noreferrer"
+                              onClick={() => track(f.name, "opened link", r.modN)}
                             >
                               <span className={s.rwmain}>
                                 <LinkIcon />
@@ -469,7 +496,10 @@ export default function EverythingClient({
                               <button
                                 type="button"
                                 className={s.rwcopy}
-                                onClick={() => copy(f.body as string, "Prompt copied")}
+                                onClick={() => {
+                                  track(f.name, "copied prompt", r.modN);
+                                  copy(f.body as string, "Prompt copied");
+                                }}
                               >
                                 copy
                               </button>
@@ -500,6 +530,7 @@ export default function EverythingClient({
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => track(r.name, "opened link")}
                     >
                       <span className={s.rwmain}>
                         <LinkIcon />
