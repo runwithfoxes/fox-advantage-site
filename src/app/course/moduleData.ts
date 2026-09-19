@@ -809,10 +809,9 @@ export const MODULE_1: ModuleDef = {
         { figure: "bp-01" },
         {
           text: "The real thing I want people to understand is that when you connect with these tools, you don't have to go into the tools. A lot of these tools are complicated and they certainly are time consuming. And what you can do is teach Claude on all the documentation of a particular tool, and then you can train it to operate that tool for you, such as Attio, as long as they've got a good API.",
-          image: {
-            src: "/course/attio-board-moving.png",
-            alt: "A board in Attio with five columns, steady, slipping, emailed, came back and didn't come back, with member cards moved into the slipping column",
-          },
+          /* fig-37, Paul 19 Sep: the prompt in a chat, then the cards moving in Attio, close up.
+             It replaced a still of the class deck's board. */
+          figure: "fig-37",
         },
         {
           text: "And the main thing to know is you're not looking at it, you're not getting information from it, you're actually getting it to do things such as move cards around, move a pipeline from meeting to proposal, etc.",
