@@ -245,7 +245,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex: 0 1 auto;
+  /* 19 Sep 2026: the name no longer shrinks for the description. Once every row had a
+     line, long lines cut names to "Ethan M..." and "Neil P...". A cap keeps a very long
+     article title from taking the whole row. */
+  flex: 0 0 auto;
+  max-width: 55%;
 }
 .rw:hover .rwname {
   color: #3a7ca5;
@@ -261,7 +265,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 1 1 0;
 }
 
 .rwmeta {
