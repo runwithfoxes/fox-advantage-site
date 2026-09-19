@@ -18,9 +18,10 @@
  * attributed to him. The layout is proven with module 1's real material; these render with a
  * real header and a zero count, and only in the build view, until they have content.
  *
- * ⛔ NO `note` INVENTED EITHER. Same rule as `reading` in moduleData.ts, which deliberately
- * has no `why` field: a one-line reason written for him reads exactly like one written by him.
- * A section can ship with names and sources and no commentary at all.
+ * ⭐ `note` IS A NEUTRAL LINE SAYING WHAT THE THING IS, and every entry has one, on Paul's
+ * instruction of 19 Sep 2026: "You might write a neutral descriptive line for each library
+ * item." Written from each page's own description. ⛔ It is never a REASON to read or use the
+ * thing, because a reason written for him reads exactly like one written by him.
  *
  * ⚠️ MOST TITLES BELOW ARE CLOSE TO HIS WORDS BUT ARE NOT YET HIS. He described the first
  * four lists on 3 Aug 2026 and never named them, so treat every `title` and `blurb` here as
@@ -69,16 +70,19 @@ export const SHELF: ShelfSection[] = [
         name: "Ethan Mollick",
         by: "oneusefulthing.org",
         url: "https://www.oneusefulthing.org",
+        note: "Wharton professor who writes One Useful Thing, on what AI means for work and education.",
       },
       {
         name: "Lenny's Podcast",
         by: "lennyspodcast.com",
         url: "https://www.lennyspodcast.com",
+        note: "Interviews with product and growth leaders, with practical advice.",
       },
       {
         name: "Peter Yang",
         by: "youtube.com",
         url: "https://www.youtube.com/@PeterYangYT",
+        note: "Practical AI tutorials and interviews on YouTube.",
       },
       /* ⭐ ADDED 3 Aug 2026, his second batch: "Dan Shipper, https://x.com/danshipper, GREG
          ISENBERG https://x.com/gregisenberg, claire vo 🖤 @clairevo". He gave two URLs and
@@ -93,9 +97,24 @@ export const SHELF: ShelfSection[] = [
          ⚠️ Dan Shipper runs Every, which sits in "Companies I watch". Not a duplicate: it is
          his own filing rule working, the person under People and the publisher under
          Companies. */
-      { name: "Dan Shipper", by: "x.com", url: "https://x.com/danshipper" },
-      { name: "Greg Isenberg", by: "x.com", url: "https://x.com/gregisenberg" },
-      { name: "Claire Vo", by: "x.com", url: "https://x.com/clairevo" },
+      {
+        name: "Dan Shipper",
+        by: "x.com",
+        url: "https://x.com/danshipper",
+        note: "CEO of Every.",
+      },
+      {
+        name: "Greg Isenberg",
+        by: "x.com",
+        url: "https://x.com/gregisenberg",
+        note: "Hosts The Startup Ideas Podcast and runs the studio Late Checkout.",
+      },
+      {
+        name: "Claire Vo",
+        by: "x.com",
+        url: "https://x.com/clairevo",
+        note: "Builds ChatPRD and hosts a podcast on how people use AI at work.",
+      },
       /* ⭐ ADDED 3 Aug 2026, his third batch: "I follow: https://substack.com/@neilperkin
          https://www.aibyaakash.com/ https://substack.com/@letstalkbranding
          https://substack.com/@kylepoyar", then "https://substack.com/@dotmartin" a moment
@@ -123,15 +142,36 @@ export const SHELF: ShelfSection[] = [
          ⭐ SO THE ROW SAT AS "Martin" AND WAS FLAGGED TO HIM RATHER THAN QUIETLY SETTLED,
          which is the only reason the right name is here now. ⛔ A plausible surname invented
          to finish the row would have looked exactly as complete as this one does. */
-      { name: "Neil Perkin", by: "substack.com", url: "https://substack.com/@neilperkin" },
-      { name: "Aakash Gupta", by: "aibyaakash.com", url: "https://www.aibyaakash.com" },
+      {
+        name: "Neil Perkin",
+        by: "substack.com",
+        url: "https://substack.com/@neilperkin",
+        note: "Founder of Only Dead Fish and author of books on agile business and marketing. Writes about AI and strategy.",
+      },
+      {
+        name: "Aakash Gupta",
+        by: "aibyaakash.com",
+        url: "https://www.aibyaakash.com",
+        note: "Writes AI by Aakash, a newsletter about AI.",
+      },
       {
         name: "Stef Hamerlinck",
         by: "substack.com",
         url: "https://substack.com/@letstalkbranding",
+        note: "Writes Let's Talk Branding, on how generative AI is changing brand building.",
       },
-      { name: "Kyle Poyar", by: "substack.com", url: "https://substack.com/@kylepoyar" },
-      { name: "Martin O'Leary", by: "uncharted", url: "https://substack.com/@dotmartin" },
+      {
+        name: "Kyle Poyar",
+        by: "substack.com",
+        url: "https://substack.com/@kylepoyar",
+        note: "Writes Growth Unhinged, a weekly newsletter on how software companies grow.",
+      },
+      {
+        name: "Martin O'Leary",
+        by: "uncharted",
+        url: "https://substack.com/@dotmartin",
+        note: "Writes uncharted, on winning customers, leading marketing teams and which new tech is worth it.",
+      },
       /* ⭐ ADDED 3 Aug 2026, Paul: "i follow Thariq Thariq @trq212 https://x.com/trq212".
          The handle is real on the same control test as the rows above, a made-up handle
          returns 404 where this returns 200.
@@ -146,7 +186,12 @@ export const SHELF: ShelfSection[] = [
          flagged, and only corrected once the profile itself was seen. ⛔ A doubled word is
          the commonest artefact of dictation, but "probably a repetition" is not evidence,
          and a plausible surname invented to fill the gap would have been worse than both. */
-      { name: "Thariq", by: "x.com", url: "https://x.com/trq212" },
+      {
+        name: "Thariq",
+        by: "x.com",
+        url: "https://x.com/trq212",
+        note: "Works on Claude Code at Anthropic.",
+      },
       /* ⭐ ADDED 3 Aug 2026, his fourth batch: "Boris Cherny https://x.com/bcherny", then
          "Peter Steinberger 🦞 @steipete https://x.com/steipete", then "https://x.com/karpathy
          Andrej Karpathy". In his order.
@@ -164,9 +209,24 @@ export const SHELF: ShelfSection[] = [
          Paul's screen mid-session is something seen, not something asked for; the row was
          written only once he typed the name. The distinction matters more here than anywhere
          else in this file, because a list of people is published under his name. */
-      { name: "Boris Cherny", by: "x.com", url: "https://x.com/bcherny" },
-      { name: "Peter Steinberger", by: "x.com", url: "https://x.com/steipete" },
-      { name: "Andrej Karpathy", by: "x.com", url: "https://x.com/karpathy" },
+      {
+        name: "Boris Cherny",
+        by: "x.com",
+        url: "https://x.com/bcherny",
+        note: "Works on Claude Code at Anthropic, which he created.",
+      },
+      {
+        name: "Peter Steinberger",
+        by: "x.com",
+        url: "https://x.com/steipete",
+        note: "Developer who created OpenClaw, now at OpenAI.",
+      },
+      {
+        name: "Andrej Karpathy",
+        by: "x.com",
+        url: "https://x.com/karpathy",
+        note: "AI researcher and teacher, and a founding member of OpenAI.",
+      },
     ],
   },
   {
@@ -182,18 +242,48 @@ export const SHELF: ShelfSection[] = [
        follow", so the four titles read in one voice instead of two. */
     title: "Companies I watch",
     entries: [
-      { name: "Ramp", by: "ramp.com", url: "https://ramp.com" },
-      { name: "Every", by: "every.to", url: "https://every.to" },
-      { name: "Mercury", by: "mercury.com", url: "https://mercury.com" },
-      { name: "Anthropic", by: "anthropic.com", url: "https://anthropic.com" },
-      { name: "Vercel", by: "vercel.com", url: "https://vercel.com" },
+      {
+        name: "Ramp",
+        by: "ramp.com",
+        url: "https://ramp.com",
+        note: "Company cards and spend management for businesses.",
+      },
+      {
+        name: "Every",
+        by: "every.to",
+        url: "https://every.to",
+        note: "A publication, apps and training from people who build with AI every day.",
+      },
+      {
+        name: "Mercury",
+        by: "mercury.com",
+        url: "https://mercury.com",
+        note: "Online banking for businesses.",
+      },
+      {
+        name: "Anthropic",
+        by: "anthropic.com",
+        url: "https://anthropic.com",
+        note: "The AI company that makes Claude.",
+      },
+      {
+        name: "Vercel",
+        by: "vercel.com",
+        url: "https://vercel.com",
+        note: "Hosts websites and apps. This course site runs on it.",
+      },
       /* ⭐ PAUL, 22 Aug 2026: "supabase is a company i follow", with the link. His sixth,
          added at the end so his 3 Aug order stays as he gave it.
          ⚠️ ALREADY IN TOOLS AND THAT IS NOT A DUPLICATE, by his own filing rule: the tool is
          a tool, the company is a company. Same shape as Vercel and Anthropic, which sit in
          both for the same reason. Domain returned 200, <title> "Supabase | The Postgres
          Development Platform". */
-      { name: "Supabase", by: "supabase.com", url: "https://supabase.com" },
+      {
+        name: "Supabase",
+        by: "supabase.com",
+        url: "https://supabase.com",
+        note: "A database with sign-in, storage and APIs. Free to start.",
+      },
     ],
   },
   {
@@ -251,17 +341,20 @@ export const SHELF: ShelfSection[] = [
         name: "Critical thinking has never been more critical",
         by: "Paul Dervan, The Fox Advantage",
         url: "/chapter/ch12-critical-thinking-has-never-been-more-critical",
+        note: "A chapter from Paul's book on why critical thinking matters more now that AI is everywhere.",
       },
       {
         name: "Fox behaviours",
         by: "Paul Dervan, The Fox Advantage",
         url: "/chapter/ch16-fox-behaviours",
+        note: "A chapter from Paul's book on the habits of marketers who are doing well with AI.",
       },
       {
         /* The trailing full stop is the publisher's, kept rather than tidied. */
         name: "27 Claude tips after 1,800 hours.",
         by: "Ruben Hassid, How to AI",
         url: "https://ruben.substack.com/p/1800-hours-of-claude",
+        note: "27 tips for Claude from someone who has used it for 1,800 hours.",
       },
       /* ⭐⭐ HE SENT THIS ONE IN THE "I FOLLOW" MESSAGE AND IT IS FILED HERE ANYWAY, because
          it is a POST rather than a person: `substack.com/home/post/p-209120273`, which 302s
@@ -273,6 +366,7 @@ export const SHELF: ShelfSection[] = [
         name: "5 GTM Skills Your AI Agent Should Be Running by Now",
         by: "Maja Voje, GTM Strategist",
         url: "https://knowledge.gtmstrategist.com/p/5-gtm-skills-ai-agent-should-run",
+        note: "Go-to-market skills from sales and growth operators, set up to run in an AI agent.",
       },
       /* ⭐ ADDED 3 Aug 2026, Paul: "x article showing video game built through claude". It is
          a post carrying a VIDEO rather than an article, which is why this section is named
@@ -295,6 +389,7 @@ export const SHELF: ShelfSection[] = [
         name: "Claude Opus 5 one-shotted this game.",
         by: "Matt Shumer, x.com",
         url: "https://x.com/mattshumer_/status/2081054356405731740",
+        note: "A video of a game Claude Opus 5 built in one go, all custom code.",
       },
       /* ⭐ ADDED 3 Aug 2026, Paul: "article https://x.com/trq212/status/2052809885763747935".
          Posted 8 May 2026.
@@ -317,6 +412,7 @@ export const SHELF: ShelfSection[] = [
         name: "Using Claude Code: The Unreasonable Effectiveness of HTML",
         by: "Thariq, x.com",
         url: "https://x.com/trq212/status/2052809885763747935",
+        note: "Thariq, from the Claude Code team, on having Claude Code produce its work as HTML pages.",
       },
       /* ⭐ PAUL, 22 Aug 2026: "This is a series of articles from Go to Market (GTM)
          specialists", with the link. ONE ROW FOR THE WHOLE SERIES, not fifteen: it is a
@@ -339,6 +435,7 @@ export const SHELF: ShelfSection[] = [
         name: "GTM Atlas",
         by: "Attio",
         url: "https://atlas.attio.com/",
+        note: "Attio's guide to go-to-market for early teams, one chapter per operator.",
       },
       /* ⭐ PAUL, 22 Aug 2026: "This is not an article or video but a git", with the link and
          the repo's About line. He was offered its own section and chose to widen this one
@@ -403,6 +500,7 @@ export const SHELF: ShelfSection[] = [
         name: "Something Big Is Happening",
         by: "Matt Shumer, somethingbig.ai",
         url: "https://somethingbig.ai/something-big-is-happening",
+        note: "A note for people outside tech on what AI is starting to change.",
       },
       /* ⭐ ADDED 19 Sep 2026 on Paul's go ("go with your library"), from his own files and Sam's
          research. Each note is a NEUTRAL line saying what the thing is, on his instruction the
@@ -473,26 +571,91 @@ export const SHELF: ShelfSection[] = [
        wrong one publishes a broken recommendation under his name.
        Both are queued with him. */
     entries: [
-      { name: "Clay", by: "clay.com", url: "https://clay.com" },
-      { name: "Apify", by: "apify.com", url: "https://apify.com" },
+      {
+        name: "Clay",
+        by: "clay.com",
+        url: "https://clay.com",
+        note: "Finds data on companies and people and runs sales and marketing workflows.",
+      },
+      {
+        name: "Apify",
+        by: "apify.com",
+        url: "https://apify.com",
+        note: "Ready-made tools that collect data from websites.",
+      },
       /* ⚠️ Also in "Companies I watch". He named it in both lists and both are true, so it
          is listed twice on purpose rather than silently deduplicated. Flagged to him. */
-      { name: "Vercel", by: "vercel.com", url: "https://vercel.com" },
-      { name: "Claude", by: "claude.ai", url: "https://claude.ai" },
-      { name: "ChatGPT", by: "chatgpt.com", url: "https://chatgpt.com" },
-      { name: "Gemini", by: "gemini.google.com", url: "https://gemini.google.com" },
-      { name: "GetImg", by: "getimg.ai", url: "https://getimg.ai" },
-      { name: "Smartlead", by: "smartlead.ai", url: "https://smartlead.ai" },
-      { name: "Klaviyo", by: "klaviyo.com", url: "https://klaviyo.com" },
-      { name: "Attio", by: "attio.com", url: "https://attio.com" },
-      { name: "Supabase", by: "supabase.com", url: "https://supabase.com" },
-      { name: "ElevenLabs", by: "elevenlabs.io", url: "https://elevenlabs.io" },
+      {
+        name: "Vercel",
+        by: "vercel.com",
+        url: "https://vercel.com",
+        note: "Hosts websites and apps. This course site runs on it.",
+      },
+      {
+        name: "Claude",
+        by: "claude.ai",
+        url: "https://claude.ai",
+        note: "Anthropic's AI assistant.",
+      },
+      {
+        name: "ChatGPT",
+        by: "chatgpt.com",
+        url: "https://chatgpt.com",
+        note: "OpenAI's AI assistant.",
+      },
+      {
+        name: "Gemini",
+        by: "gemini.google.com",
+        url: "https://gemini.google.com",
+        note: "Google's AI assistant.",
+      },
+      {
+        name: "GetImg",
+        by: "getimg.ai",
+        url: "https://getimg.ai",
+        note: "Makes and edits images, video and audio with a choice of AI models in one place.",
+      },
+      {
+        name: "Smartlead",
+        by: "smartlead.ai",
+        url: "https://smartlead.ai",
+        note: "Sends cold email at volume from many mailboxes.",
+      },
+      {
+        name: "Klaviyo",
+        by: "klaviyo.com",
+        url: "https://klaviyo.com",
+        note: "Email and SMS marketing.",
+      },
+      {
+        name: "Attio",
+        by: "attio.com",
+        url: "https://attio.com",
+        note: "A CRM for sales and revenue teams.",
+      },
+      {
+        name: "Supabase",
+        by: "supabase.com",
+        url: "https://supabase.com",
+        note: "A database with sign-in, storage and APIs. Free to start.",
+      },
+      {
+        name: "ElevenLabs",
+        by: "elevenlabs.io",
+        url: "https://elevenlabs.io",
+        note: "Makes lifelike AI voices and voice agents.",
+      },
       /* ⭐ THE TOOL'S OWN HOME, like every other row here. seedance.ai resolves and is not
          it; the model is ByteDance's and this is ByteDance's page for it. Paul reaches it
          through Replicate (replicate.com/bytedance/seedance-1-pro, also live) in the
          /fox-video skill, and that link would have been the odd one out in a list where
          everything else points at the product rather than at a reseller. */
-      { name: "Seedance", by: "seed.bytedance.com", url: "https://seed.bytedance.com/en/seedance" },
+      {
+        name: "Seedance",
+        by: "seed.bytedance.com",
+        url: "https://seed.bytedance.com/en/seedance",
+        note: "ByteDance's model that makes video from text and pictures.",
+      },
       /* ⭐⭐ HEYGEN'S, AND PAUL'S "HGN" IS WHAT FOUND IT. Both of the addresses guessed from
          the name alone were wrong and both were live, which is the worst version of wrong:
          hyperframes.com is an unrelated domain in maintenance mode, and hyperframe.ai
@@ -501,17 +664,32 @@ export const SHELF: ShelfSection[] = [
          github.com/heygen-com/hyperframes.
          ⛔ THE LESSON, NOT THE FACT: a name is not an address. Two live sites one letter
          apart, and nothing about either would have announced the mistake once published. */
-      { name: "HyperFrames", by: "heygen.com", url: "https://hyperframes.heygen.com" },
+      {
+        name: "HyperFrames",
+        by: "heygen.com",
+        url: "https://hyperframes.heygen.com",
+        note: "Lets AI agents make videos by writing web code. Open source, from HeyGen.",
+      },
       /* ⭐ ADDED 3 Aug 2026, Paul: "tool: https://www.monologue.to/". Its own title reads
          "Monologue - Dictation, voice notes, and bot-free meeting notes", Mac and iOS.
          The row carries the product name only, same as every tool above it: the strapline
          is the vendor's copy, not a `note` from Paul. */
-      { name: "Monologue", by: "monologue.to", url: "https://www.monologue.to" },
+      {
+        name: "Monologue",
+        by: "monologue.to",
+        url: "https://www.monologue.to",
+        note: "Voice dictation, voice notes and meeting transcripts for Apple devices.",
+      },
       /* ⭐ PAUL, 22 Aug 2026: "can you add https://www.granola.ai/ to tools." Its own title
          reads "Granola - The AI Notepad for back-to-back meetings". Product name only on the
          row, same as Monologue above it: the strapline is the vendor's copy, not a `note`
          from Paul. Domain returned 200 and does not redirect off www. */
-      { name: "Granola", by: "granola.ai", url: "https://www.granola.ai" },
+      {
+        name: "Granola",
+        by: "granola.ai",
+        url: "https://www.granola.ai",
+        note: "Takes notes in your meetings without a bot joining the call.",
+      },
       /* ⭐⭐ PAUL, 22 Aug 2026, in his order: "Descript, Figma, Cal.com, HubSpot, Firecrawl,
          Serper, Replicate, Kling, Minimax, FAL." These are the paid and keyed tools that were
          already in his stack and missing from this list. Source: `reference_tool_stack.md`
@@ -535,16 +713,66 @@ export const SHELF: ShelfSection[] = [
          but it points at a front door he does not personally use.
 
          ⛔ NO `note` ON ANY OF THEM. His to write, same as every other row in this section. */
-      { name: "Descript", by: "descript.com", url: "https://www.descript.com" },
-      { name: "Figma", by: "figma.com", url: "https://www.figma.com" },
-      { name: "Cal.com", by: "cal.com", url: "https://cal.com" },
-      { name: "HubSpot", by: "hubspot.com", url: "https://www.hubspot.com" },
-      { name: "Firecrawl", by: "firecrawl.dev", url: "https://www.firecrawl.dev" },
-      { name: "Serper", by: "serper.dev", url: "https://serper.dev" },
-      { name: "Replicate", by: "replicate.com", url: "https://replicate.com" },
-      { name: "Kling AI", by: "kling.ai", url: "https://kling.ai" },
-      { name: "MiniMax", by: "minimax.io", url: "https://www.minimax.io" },
-      { name: "fal", by: "fal.ai", url: "https://fal.ai" },
+      {
+        name: "Descript",
+        by: "descript.com",
+        url: "https://www.descript.com",
+        note: "Edits video and audio by editing the transcript.",
+      },
+      {
+        name: "Figma",
+        by: "figma.com",
+        url: "https://www.figma.com",
+        note: "Design tool for screens, websites and products.",
+      },
+      {
+        name: "Cal.com",
+        by: "cal.com",
+        url: "https://cal.com",
+        note: "Scheduling: people book time with you from a link.",
+      },
+      {
+        name: "HubSpot",
+        by: "hubspot.com",
+        url: "https://www.hubspot.com",
+        note: "A CRM with marketing, sales and service software.",
+      },
+      {
+        name: "Firecrawl",
+        by: "firecrawl.dev",
+        url: "https://www.firecrawl.dev",
+        note: "Turns web pages into clean text an AI agent can use.",
+      },
+      {
+        name: "Serper",
+        by: "serper.dev",
+        url: "https://serper.dev",
+        note: "Google search results for programs to use.",
+      },
+      {
+        name: "Replicate",
+        by: "replicate.com",
+        url: "https://replicate.com",
+        note: "Runs open-source AI models through an API.",
+      },
+      {
+        name: "Kling AI",
+        by: "kling.ai",
+        url: "https://kling.ai",
+        note: "Makes AI video and images from text and pictures.",
+      },
+      {
+        name: "MiniMax",
+        by: "minimax.io",
+        url: "https://www.minimax.io",
+        note: "AI company with video, voice and language models.",
+      },
+      {
+        name: "fal",
+        by: "fal.ai",
+        url: "https://fal.ai",
+        note: "Runs image, video and audio AI models for developers.",
+      },
       /* Both named by Paul in his own essay "Build a system" as part of his setup. Added 19 Sep. */
       {
         name: "GitHub",
