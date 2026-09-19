@@ -363,7 +363,9 @@ def main() -> int:
     # two figures on purpose. A count is a snapshot of a moving target; hard-coding one
     # makes the gate cry wolf and teaches everyone to ignore it.
     # What actually matters is that no figure the SITE POINTS AT has vanished underneath it.
-    referenced = set(re.findall(r'figure:\s*"([^"]+)"',
+    # Only a real figure name counts. A comment quoting Paul ('his figure: "topic three is...')
+    # matched the looser pattern and blocked every run from 4 Aug to 19 Sep 2026.
+    referenced = set(re.findall(r'figure:\s*"((?:fig|bp)-[\w-]+)"',
                                 (REPO / "src/app/course/moduleData.ts").read_text()))
     missing = sorted(referenced - set(figures))
     if missing:
