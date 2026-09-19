@@ -23,7 +23,7 @@ export function openDoor(door: Door) {
   window.dispatchEvent(new CustomEvent<Door>("rwf:door", { detail: door }));
 }
 
-export default function AgentsHero() {
+export default function AgentsHero({ courseOpen = false }: { courseOpen?: boolean }) {
   const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -399,7 +399,22 @@ export default function AgentsHero() {
             {/* Training-course pill. Now a live anchor to /course, revealed for
                 the 21 Sep launch. It has held its own space since the hero
                 shipped, so revealing it shifts nothing else on the page. */}
-            <a className="ah-kicker" href="/course">New: Free AI training course for marketers →</a>
+            {/* Paul's wording for launch day, 19 Sep 2026: "Free AI training course for marketers.
+                Start today". It has to tell a first-time visitor there is a free course (radio
+                listeners, people from LinkedIn), so "free course" leads. Switches on its own when
+                module 1 opens. */}
+            <a className="ah-kicker" href="/course">
+              {courseOpen ? (
+                <span>
+                  Free AI training course for marketers.{" "}
+                  {/* Kept together so a phone breaks after "marketers." and the arrow
+                      never sits on a line by itself. */}
+                  <span style={{ whiteSpace: "nowrap" }}>Start today →</span>
+                </span>
+              ) : (
+                "New: Free AI training course for marketers →"
+              )}
+            </a>
             <h1>Marketing Agents for your business</h1>
             <p className="ah-sub">They make the ads, write the outreach, and run the campaigns, around the clock.</p>
             {/* THREE DOORS (Paul, 5 Sep): "AI Agents, Consulting, Training".

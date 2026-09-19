@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/HomePage";
 import { getAllEssays, formatEssayDateShort } from "@/lib/essays";
+import { MODULES, isLive } from "./course/courseModules";
+
+/* ⭐ REBUILT EVERY 5 MINUTES, 19 Sep 2026, so the course pill changes by itself when module 1
+   opens (Monday 21 Sep, Dublin time) rather than waiting for a deploy. It was fully static. */
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   description:
@@ -23,5 +28,5 @@ export default async function Home() {
       image: e.image ?? null,
     }));
 
-  return <HomePage essays={essays} />;
+  return <HomePage essays={essays} courseOpen={isLive(MODULES[0])} />;
 }

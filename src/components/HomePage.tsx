@@ -142,7 +142,14 @@ const SF_PAGES: Record<string, string> = {
   "campaign-manager": "/products/module-campaign-manager.html",
 };
 
-export default function HomePage({ essays }: { essays: HomeEssay[] }) {
+export default function HomePage({
+  essays,
+  courseOpen = false,
+}: {
+  essays: HomeEssay[];
+  /** Module 1 is live. Decided on the server by date (app/page.tsx). */
+  courseOpen?: boolean;
+}) {
   const navRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState("all");
@@ -198,7 +205,7 @@ export default function HomePage({ essays }: { essays: HomeEssay[] }) {
       </nav>
 
       <div ref={heroRef} id="heroWrapper">
-        <AgentsHero />
+        <AgentsHero courseOpen={courseOpen} />
       </div>
 
       {/* BIO (left) + RECENT ESSAYS compact list (right), then the contact-CTA strip */}
