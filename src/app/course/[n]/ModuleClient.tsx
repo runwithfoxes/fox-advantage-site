@@ -276,7 +276,11 @@ function slotsFor(
   /* ⭐ 19 Sep 2026: an item's inline prompts, each a slot named by its key. */
   const inline: Record<string, React.ReactNode> = {};
   for (const [k, text] of Object.entries(it.inlinePrompts ?? {})) {
-    inline[k] = <PromptBlock text={text} onCopy={() => onCopyText?.(text)} />;
+    inline[k] = Array.isArray(text) ? (
+      <PromptList lines={text} onCopy={(t) => onCopyText?.(t)} />
+    ) : (
+      <PromptBlock text={text} onCopy={() => onCopyText?.(text)} />
+    );
   }
   return {
     ...inline,
@@ -408,6 +412,32 @@ const BUILD_PARAM = "build";
  * to read 828 words before pasting them, they can paste them and read them there.
  */
 const PROMPT_IS_LONG_AT = 120; /* words */
+
+/* ⭐ SEVERAL SHORT PROMPTS IN ONE BOX, a copy button on each line. Paul, 19 Sep 2026, on
+   item 06's three checks sitting in three boxes that each repeated the header: "one box". */
+function PromptList({
+  lines,
+  onCopy,
+}: {
+  lines: string[];
+  onCopy: (text: string) => void;
+}) {
+  return (
+    <div className="mod-copybox">
+      <div className="mod-copyhead">
+        <span>Paste any of these into Claude or ChatGPT</span>
+      </div>
+      {lines.map((line, j) => (
+        <div className="mod-copyrow" key={j}>
+          <pre>{line}</pre>
+          <button type="button" onClick={() => onCopy(line)}>
+            Copy
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function PromptBlock({
   text,

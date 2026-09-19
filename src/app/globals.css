@@ -7679,6 +7679,12 @@ a.project-card {
 .mod-copybox pre{margin:0;padding:16px 14px;font-family:var(--mono);font-size:.8125rem;line-height:1.65;white-space:pre-wrap;color:#1D1B1B;}
 .mod-copyhead button{font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;cursor:pointer;border-radius:0;}
 .mod-copyhead button:hover{background:#2F6688;border-color:#2F6688;}
+/* One box, several prompts, a copy button per line (Paul 19 Sep 2026). */
+.mod-copyrow{display:flex;align-items:center;gap:14px;padding-right:14px;border-top:1px solid #E0E0DC;}
+.mod-copyhead + .mod-copyrow{border-top:0;}
+.mod-copyrow pre{flex:1;}
+.mod-copyrow button{flex:none;font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid #3A7CA5;background:#3A7CA5;color:#fff;cursor:pointer;border-radius:0;}
+.mod-copyrow button:hover{background:#2F6688;border-color:#2F6688;}
 /* A LONG PROMPT IS ONE BUTTON (Paul, 2 Aug 2026, after Spiral's "copy prompt for agent",
    then again after the first attempt: "we can just use the copy button"). Outlined rather
    than solid so it reads as one of several things you can do in an item, not the item's

@@ -98,7 +98,8 @@ export default function EverythingPage() {
 
       /* ⭐ 19 Sep 2026: the prompts an item places inside its prose, named from their key
          (SOURCE_OF_SOURCE becomes "Source of source prompt"). */
-      Object.entries(item.inlinePrompts ?? {}).forEach(([k, body]) => {
+      Object.entries(item.inlinePrompts ?? {}).forEach(([k, value]) => {
+        const body = Array.isArray(value) ? value.join("\n\n") : value;
         const words = k.toLowerCase().replace(/_/g, " ");
         files.push({
           kind: "prompt",

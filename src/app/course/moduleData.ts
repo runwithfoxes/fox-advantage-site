@@ -63,7 +63,8 @@ export type Item = {
    * lands under the sentence that describes it. For items that need more than one prompt
    * (Paul: item 06's three checks, item 08's brief and comparison). Keys are CAPITALS.
    */
-  inlinePrompts?: Record<string, string>;
+  /** A list renders as ONE box with a copy button per line (Paul, 19 Sep: "one box"). */
+  inlinePrompts?: Record<string, string | string[]>;
   /** Short description of the screenshot needed. Its presence means the item owes a picture. */
   grab?: string;
   /**
@@ -998,11 +999,13 @@ export const MODULE_1: ModuleDef = {
          for one. Rewrite that section into prose and fig-33 silently goes out of date. */
       t: "Create a Red Team",
       figure: "fig-33",
-      text: "The robots still lie. We see fewer hallucinations on the new models, but I never believe what I read. I always run a bunch of checks as a given. It's just a step in the process.\n\nFirstly, I always ask it for sources. Often, I ask for the source of the source. When asking it to search online, I tell it to find credible sources, not vendor-supplied stats and not somebody's blog. When asking it to read something, I don't just ask Claude if it read the full doc. I ask it to prove to me with evidence that it read every single claim. Ask it to summarise each page.\n\n{{SOURCES}}\n\n{{SOURCE_OF_SOURCE}}\n\n{{READ_IT_ALL}}\n\nOne way to create a Red Team. So a team dedicated to find gaps, holes, flaws, inaccuracies. You can try it. When you get response or answer back from your AI, paste in the instructions from the button below. Just click on the copy button and paste into your Claude chat.",
+      text: "The robots still lie. We see fewer hallucinations on the new models, but I never believe what I read. I always run a bunch of checks as a given. It's just a step in the process.\n\nFirstly, I always ask it for sources. Often, I ask for the source of the source. When asking it to search online, I tell it to find credible sources, not vendor-supplied stats and not somebody's blog. When asking it to read something, I don't just ask Claude if it read the full doc. I ask it to prove to me with evidence that it read every single claim. Ask it to summarise each page.\n\n{{CHECKS}}\n\nOne way to create a Red Team. So a team dedicated to find gaps, holes, flaws, inaccuracies. You can try it. When you get response or answer back from your AI, paste in the instructions from the button below. Just click on the copy button and paste into your Claude chat.",
       inlinePrompts: {
-        SOURCES: "Give me the source for every claim in your answer.",
-        SOURCE_OF_SOURCE: "For each source, tell me where it got its information from. I want the source of the source.",
-        READ_IT_ALL: "Prove you read the whole document. Summarise each page in one line and list every claim it makes.",
+        CHECKS: [
+          "Give me the source for every claim in your answer.",
+          "For each source, tell me where it got its information from. I want the source of the source.",
+          "Prove you read the whole document. Summarise each page in one line and list every claim it makes.",
+        ],
       },
       /* Paul's verbatim persona, pulled from copy/red-team-persona.md by
          scripts/extract-personas.py. 410 words, so it renders as one button. */
