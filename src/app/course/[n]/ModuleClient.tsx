@@ -269,8 +269,17 @@ function DocLinks({
  * silently VANISHED on open, and the marker line was swallowed without a trace. That is the
  * exact drift the 3 Aug unification note warns about, one field later.
  */
-function slotsFor(it: Item): Record<string, React.ReactNode> {
+function slotsFor(
+  it: Item,
+  onCopyText?: (text: string) => void,
+): Record<string, React.ReactNode> {
+  /* ⭐ 19 Sep 2026: an item's inline prompts, each a slot named by its key. */
+  const inline: Record<string, React.ReactNode> = {};
+  for (const [k, text] of Object.entries(it.inlinePrompts ?? {})) {
+    inline[k] = <PromptBlock text={text} onCopy={() => onCopyText?.(text)} />;
+  }
   return {
+    ...inline,
     FOLDER:
       it.docs && it.docs.as !== "links" ? (
         <FolderWindow
@@ -653,6 +662,18 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
      them. They are in git, in the commit that removed the row, if sharing comes back.
      ⚠️ When it does, build the per-item ROUTE first. All three composed a URL of the shape
      /course/1/create-projects, and no such route exists. */
+  /* The same copy as below, for a prompt placed inside an item's prose. */
+  const copyInline = async (it: Item, i: number, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      say("Prompt copied");
+      track("prompt_copied", mod.n, it.t);
+      markDone(i);
+    } catch {
+      say("Copy failed");
+    }
+  };
+
   const copyPrompt = async (it: Item, i: number) => {
     if (!it.prompt) return;
     try {
@@ -936,7 +957,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
                 <ItemPicture item={it} build={build} />
 
-                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it)} />
+                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t))} />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
@@ -1212,7 +1233,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
-                slots={slotsFor(mod.items[open])}
+                slots={slotsFor(mod.items[open], (t) => copyInline(mod.items[open], open, t))}
               />
 
               {/* ⭐⭐ THE LONG ARTICLE: a passage, then the picture of what you just read,

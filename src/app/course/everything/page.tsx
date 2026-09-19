@@ -96,6 +96,18 @@ export default function EverythingPage() {
         });
       }
 
+      /* ⭐ 19 Sep 2026: the prompts an item places inside its prose, named from their key
+         (SOURCE_OF_SOURCE becomes "Source of source prompt"). */
+      Object.entries(item.inlinePrompts ?? {}).forEach(([k, body]) => {
+        const words = k.toLowerCase().replace(/_/g, " ");
+        files.push({
+          kind: "prompt",
+          name: words.charAt(0).toUpperCase() + words.slice(1) + " prompt",
+          meta: `${body.split("\n").length} lines`,
+          body,
+        });
+      });
+
       /* ⭐⭐ `links` AND `reading`, FLATTENED INTO ONE LIST, 3 Aug 2026. This page was built
          on 2 Aug reading `links` only; `reading` was added to the Item type that same evening,
          hours later, and nothing connected them. The result was silent and total: nine links

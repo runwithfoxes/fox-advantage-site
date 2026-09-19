@@ -57,6 +57,13 @@ export type Item = {
    * Ignored for short prompts, which render in full and need no naming.
    */
   promptLabel?: string;
+  /**
+   * ⭐ MORE PROMPTS, PLACED IN THE PROSE, added 19 Sep 2026. Each key renders wherever
+   * `{{KEY}}` sits alone on a line in `text`, as the same copy box as `prompt`, so a prompt
+   * lands under the sentence that describes it. For items that need more than one prompt
+   * (Paul: item 06's three checks, item 08's brief and comparison). Keys are CAPITALS.
+   */
+  inlinePrompts?: Record<string, string>;
   /** Short description of the screenshot needed. Its presence means the item owes a picture. */
   grab?: string;
   /**
@@ -722,7 +729,10 @@ export const MODULE_1: ModuleDef = {
          is why fig-31 is the figure standing above it.
          ⚠️ One dictation slip repaired, his to put back: "I do this for image, videos" ->
          "images". Nothing else touched, including the spaced hyphen, which is his. */
-      text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.",
+      text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.\n\n{{TRANSCRIPT}}",
+      inlinePrompts: {
+        TRANSCRIPT: "This is the full transcript of a video where [the expert] explains how\nthey [do the thing]. I work in [your role]. Tell me what is new,\ninteresting or relevant to me, and what I can skip. Then tell me how\ncredible it is: which claims are backed up, and which are just opinion.",
+      },
     },
     {
       /* ⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, headline and copy together in one go.
@@ -988,7 +998,12 @@ export const MODULE_1: ModuleDef = {
          for one. Rewrite that section into prose and fig-33 silently goes out of date. */
       t: "Create a Red Team",
       figure: "fig-33",
-      text: "The robots still lie. We see fewer hallucinations on the new models, but I never believe what I read. I always run a bunch of checks as a given. It's just a step in the process.\n\nFirstly, I always ask it for sources. Often, I ask for the source of the source. When asking it to search online, I tell it to find credible sources, not vendor-supplied stats and not somebody's blog. When asking it to read something, I don't just ask Claude if it read the full doc. I ask it to prove to me with evidence that it read every single claim. Ask it to summarise each page.\n\nOne way to create a Red Team. So a team dedicated to find gaps, holes, flaws, inaccuracies. You can try it. When you get response or answer back from your AI, paste in the instructions from the button below. Just click on the copy button and paste into your Claude chat.",
+      text: "The robots still lie. We see fewer hallucinations on the new models, but I never believe what I read. I always run a bunch of checks as a given. It's just a step in the process.\n\nFirstly, I always ask it for sources. Often, I ask for the source of the source. When asking it to search online, I tell it to find credible sources, not vendor-supplied stats and not somebody's blog. When asking it to read something, I don't just ask Claude if it read the full doc. I ask it to prove to me with evidence that it read every single claim. Ask it to summarise each page.\n\n{{SOURCES}}\n\n{{SOURCE_OF_SOURCE}}\n\n{{READ_IT_ALL}}\n\nOne way to create a Red Team. So a team dedicated to find gaps, holes, flaws, inaccuracies. You can try it. When you get response or answer back from your AI, paste in the instructions from the button below. Just click on the copy button and paste into your Claude chat.",
+      inlinePrompts: {
+        SOURCES: "Give me the source for every claim in your answer.",
+        SOURCE_OF_SOURCE: "For each source, tell me where it got its information from. I want the source of the source.",
+        READ_IT_ALL: "Prove you read the whole document. Summarise each page in one line and list every claim it makes.",
+      },
       /* Paul's verbatim persona, pulled from copy/red-team-persona.md by
          scripts/extract-personas.py. 410 words, so it renders as one button. */
       prompt: PERSONAS["red-team-persona"],
@@ -1097,7 +1112,11 @@ export const MODULE_1: ModuleDef = {
          linked. The OpenAI prompt optimizer was cut during the rewrite. Restoring his copy
          puts that plural back without putting the link back. His call. */
       figure: "fig-35",
-      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. The tools have improved dramatically. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nA few things.\n\n1 - Claude, ChatGPT and Gemini all have 'deep research' features. Claude just calls it \"Research\" but it's the same thing.\n2 - You need to write a decent research brief.\n3 - I often run all three in parallel and get them to critique and build on each other.\n\nThe way I get to a good research brief? I ask Claude. So I explain what I want, explain that I plan to click the Research button, and I want it to convert my bad prompt into a rigorous research brief prompt. That's it. There are also some decent websites you can use to help you write better prompts.",
+      text: "A year ago, using AI for research felt risky. Too many hallucinations. Flaky results. I don't feel that way now. The tools have improved dramatically. If you plan it properly, you can get really good results in 20 minutes. It won't replace talking to customers, but can save hours and weeks.\n\nA few things.\n\n1 - Claude, ChatGPT and Gemini all have 'deep research' features. Claude just calls it \"Research\" but it's the same thing.\n2 - You need to write a decent research brief.\n3 - I often run all three in parallel and get them to critique and build on each other.\n\nThe way I get to a good research brief? I ask Claude. So I explain what I want, explain that I plan to click the Research button, and I want it to convert my bad prompt into a rigorous research brief prompt. That's it. There are also some decent websites you can use to help you write better prompts.\n\n{{BRIEF}}\n\n{{COMPARE}}",
+      inlinePrompts: {
+        BRIEF: "I'm going to use the Research button to look into [what you want to know].\nI'll use what comes back for [what you'll do with it, and who it's for].\nTurn this into a proper research brief I can paste in. Say what to find\nout, which sources count (no vendor stats, no blogs), what to leave out,\nand how to lay out the findings.",
+        COMPARE: "Here are three research reports on the same question, from Claude,\nChatGPT and Gemini. Tell me where they agree, where they disagree, and\nwhat each one missed. Then put them together into one report, and mark\nanything only one of them found so I can check it.",
+      },
       /* ⭐⭐ THE OPENAI LINK IS GONE, Paul's call, 3 Aug 2026: "lose the chatgpt link." It was
          platform.openai.com, the developer platform rather than ChatGPT, a separate login
          from a ChatGPT subscription that returns 403 to anyone not signed in. He wrote it up
