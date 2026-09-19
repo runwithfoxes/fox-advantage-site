@@ -799,6 +799,29 @@ export const MODULE_1: ModuleDef = {
          ⭐ `compare-figures.py` now reads 0.000% on all ten across every seek time, and its
          `--control` goes red, so the pass is a real one. */
       figure: "bp-01",
+      /* ⭐ THE LONGER VERSION, Paul 19 Sep 2026, dictated for this item: the Attio example from
+         the UCD class. His words verbatim, "Atio" corrected to Attio. The two pictures are from
+         the class decks: the board from Monday 09:45 slide 14 (the made-up Gimnasio Zorro
+         members, never real people) and a real card in the Zorro workspace from Tuesday 09:45
+         slide 15, with the class caption painted out because it names agents the course
+         reader has not met. bp-01 leads as beat one because it is the item's teaser figure. */
+      beats: [
+        { figure: "bp-01" },
+        {
+          text: "The real thing I want people to understand is that when you connect with these tools, you don't have to go into the tools. A lot of these tools are complicated and they certainly are time consuming. And what you can do is teach Claude on all the documentation of a particular tool, and then you can train it to operate that tool for you, such as Attio, as long as they've got a good API.",
+          image: {
+            src: "/course/attio-board-moving.png",
+            alt: "A board in Attio with five columns, steady, slipping, emailed, came back and didn't come back, with member cards moved into the slipping column",
+          },
+        },
+        {
+          text: "And the main thing to know is you're not looking at it, you're not getting information from it, you're actually getting it to do things such as move cards around, move a pipeline from meeting to proposal, etc.",
+          image: {
+            src: "/course/attio-card-written-by-agent.png",
+            alt: "One member's card in Attio with its status, reason and email filled in, and its activity log showing every change was made by an agent",
+          },
+        },
+      ],
       /* ⭐ Paul's link, 3 Aug 2026, "for more reading on topic 1", and topic 1 is THIS item.
          Title read off the live page, "Connectors | Claude by Anthropic", trimmed to the
          page's own name.
