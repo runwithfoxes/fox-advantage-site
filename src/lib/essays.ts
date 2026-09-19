@@ -95,7 +95,11 @@ function firstImage(body: string): string | null {
   const md = body.match(/!\[[^\]]*\]\(([^)]+)\)/);
   if (md) return md[1];
   const tag = body.match(/<img[^>]+src=["']([^"']+)["']/i);
-  return tag ? tag[1] : null;
+  if (tag) return tag[1];
+  /* An essay that leads with a film has no image at all, so fall back to the video's
+     poster. First needed by four-agents-for-a-gym-in-madrid. */
+  const poster = body.match(/<video[^>]+poster=["']([^"']+)["']/i);
+  return poster ? poster[1] : null;
 }
 
 function readEssayFile(file: string): Essay | null {
