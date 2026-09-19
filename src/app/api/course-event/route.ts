@@ -44,6 +44,10 @@ const ALLOWED: readonly CourseEventName[] = [
   "fluency_rated",
   "interests_picked",
   "library_clicked",
+  "link_opened",
+  "file_opened",
+  "session_watched",
+  "item_done",
 ];
 
 /** Small, because everything here is attacker-controlled and lands in a durable record. */
@@ -129,6 +133,10 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
     fluency_rated: "Course: fluency rated",
     interests_picked: "Course: interests picked",
     library_clicked: "Course: library clicked",
+    link_opened: "Course: link opened",
+    file_opened: "Course: file opened",
+    session_watched: "Course: session watched",
+    item_done: "Course: item done",
   }[rec.event];
 
   try {
@@ -151,6 +159,11 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
               domain: rec.domain,
             },
             time: rec.ts,
+            /* ⭐ 19 Sep 2026: EVERY EVENT GETS ITS OWN ID. Without one Klaviyo keys an event on
+               its time to the second, so two of the same kind from one person in one second
+               were kept as one. Found by a real test: opening a library folder and copying its
+               prompt 0.8s apart arrived as a single event. */
+            unique_id: crypto.randomUUID(),
             metric: { data: { type: "metric", attributes: { name: metric } } },
             profile: {
               data: { type: "profile", attributes: { email: rec.email } },

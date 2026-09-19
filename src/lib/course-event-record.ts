@@ -48,7 +48,17 @@ export type CourseEventName =
   /** Reached for something in the library (/course/everything), 19 Sep 2026. `item` is the
       row's name, `detail` says what they did. Opening the folder of a module that is not out
       yet is logged as "opened, not out yet", which works as a pre-order for that module. */
-  | "library_clicked";
+  | "library_clicked"
+  /** 19 Sep 2026, Paul: "If people click on anything in the module or library, will we capture
+      it". The four clicks that sent nothing until then. */
+  /** Opened an "Additional reading" link or a link card. `detail` is the link's title. */
+  | "link_opened"
+  /** Opened a file to read it on the page (downloads and copies were already recorded). */
+  | "file_opened"
+  /** Pressed "Watch it work" on a recorded session. */
+  | "session_watched"
+  /** Ticked an item as done by hand. */
+  | "item_done";
 
 export interface CourseEvent {
   ts: string;

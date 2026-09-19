@@ -226,7 +226,10 @@ function DocLinks({
               type="button"
               className="mod-fileact"
               aria-expanded={open === f}
-              onClick={() => setOpen(open === f ? null : f)}
+              onClick={() => {
+                if (open !== f) track("file_opened", n, item, fileOf(f));
+                setOpen(open === f ? null : f);
+              }}
             >
               {open === f ? "Close" : "Open"}
             </button>
@@ -272,6 +275,7 @@ function DocLinks({
 function slotsFor(
   it: Item,
   onCopyText?: (text: string) => void,
+  onPlay?: () => void,
 ): Record<string, React.ReactNode> {
   /* ⭐ 19 Sep 2026: an item's inline prompts, each a slot named by its key. */
   const inline: Record<string, React.ReactNode> = {};
@@ -297,12 +301,14 @@ function slotsFor(
       ) : undefined,
     SESSION: it.session ? (
       <ChatWindow
+        onPlay={onPlay}
         session={KITE_SESSION}
         start={"A real session with Kite’s writer, start to finish."}
       />
     ) : undefined,
     SESSION_POST: it.session ? (
       <ChatWindow
+        onPlay={onPlay}
         session={KITE_POST_SESSION}
         start={"A second ask: a social post, and a gap in the pack."}
       />
@@ -311,6 +317,7 @@ function slotsFor(
        says "an analyst", and the refs quote raw CSV rows. */
     SESSION_DATA: it.session ? (
       <ChatWindow
+        onPlay={onPlay}
         session={KITE_DATA_SESSION}
         start={"Kite’s own numbers, checked before they are believed."}
         title="an analyst"
@@ -320,6 +327,7 @@ function slotsFor(
        customer file. Same analyst, same title bar. */
     SESSION_SEGMENT: it.session ? (
       <ChatWindow
+        onPlay={onPlay}
         session={KITE_SEGMENT_SESSION}
         start={"The CMO’s question, answered from the file."}
         title="an analyst"
@@ -334,6 +342,7 @@ function slotsFor(
        scripts/check-research-corpus.mjs. */
     SESSION_RESEARCH: it.session ? (
       <ChatWindow
+        onPlay={onPlay}
         session={KITE_RESEARCH_SESSION}
         start={"The CMO’s four questions, answered from the sources."}
         title="an analyst"
@@ -358,7 +367,15 @@ function slotsFor(
  * section... That's part of the value", so nothing here is written per link and adding a
  * ninth costs nothing.
  */
-function ReadingList({ reading }: { reading?: Item["reading"] }) {
+function ReadingList({
+  reading,
+  n,
+  item,
+}: {
+  reading?: Item["reading"];
+  n: number;
+  item: string;
+}) {
   if (!reading || reading.length === 0) return null;
   return (
     <div className="mod-reading">
@@ -370,6 +387,7 @@ function ReadingList({ reading }: { reading?: Item["reading"] }) {
           href={R.url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track("link_opened", n, item, R.title)}
         >
           {R.title}
           <i>{R.by}</i>
@@ -655,6 +673,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
   const toggleDone = (i: number) => {
     const next = new Set(done);
+    if (!next.has(i)) track("item_done", mod.n, mod.items[i].t);
     next.has(i) ? next.delete(i) : next.add(i);
     persist(next);
   };
@@ -987,7 +1006,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
                 <ItemPicture item={it} build={build} />
 
-                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t))} />
+                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t))} />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
@@ -1012,7 +1031,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                 )}
 
                 <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />
-                <ReadingList reading={it.reading} />
+                <ReadingList reading={it.reading} n={mod.n} item={it.t} />
 
                 {it.links && (
                   <div className="mod-linklist">
@@ -1027,6 +1046,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                         href={L.url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => track("link_opened", mod.n, it.t, L.title)}
                       >
                         {L.thumb && (
                           <span
@@ -1138,14 +1158,13 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                           aria-expanded={
                             setFile?.set === set.title && setFile.file === f.name
                           }
-                          onClick={() =>
-                            setSetFile(
-                              setFile?.set === set.title &&
-                                setFile.file === f.name
-                                ? null
-                                : { set: set.title, file: f.name },
-                            )
-                          }
+                          onClick={() => {
+                            const opening = !(
+                              setFile?.set === set.title && setFile.file === f.name
+                            );
+                            if (opening) track("file_opened", mod.n, set.title, f.name);
+                            setSetFile(opening ? { set: set.title, file: f.name } : null);
+                          }}
                         >
                           {setFile?.set === set.title && setFile.file === f.name
                             ? "Close"
@@ -1263,7 +1282,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
-                slots={slotsFor(mod.items[open], (t) => copyInline(mod.items[open], open, t))}
+                slots={slotsFor(mod.items[open], (t) => copyInline(mod.items[open], open, t), () => track("session_watched", mod.n, mod.items[open].t))}
               />
 
               {/* ⭐⭐ THE LONG ARTICLE: a passage, then the picture of what you just read,
@@ -1309,7 +1328,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   ⛔ It was MISSING here entirely until 3 Aug. He opened Create Projects and
                   his three links were not in it. */}
               <DocLinks docs={mod.items[open].docs} onCopy={say} n={mod.n} item={mod.items[open].t} />
-              <ReadingList reading={mod.items[open].reading} />
+              <ReadingList reading={mod.items[open].reading} n={mod.n} item={mod.items[open].t} />
             </div>
           </div>
         </div>

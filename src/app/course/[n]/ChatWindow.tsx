@@ -127,7 +127,10 @@ export default function ChatWindow({
   session,
   start,
   title = "a writer",
+  onPlay,
 }: {
+  /** Called when the reader presses play. The module page records it (19 Sep 2026). */
+  onPlay?: () => void;
   /** The recorded session this window plays. One window, one recording. */
   session: Turn[];
   /** The start plate's one line of type, in our own voice, saying what will happen. */
@@ -161,6 +164,7 @@ export default function ChatWindow({
   }, [units.length]);
 
   const play = () => {
+    onPlay?.();
     clear();
     setDone(0);
     setWithin(0);
