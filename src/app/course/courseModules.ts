@@ -30,6 +30,13 @@ export type Module = {
    * the content exists, which is the fabrication ban by the back door.
    */
   built: boolean;
+  /**
+   * ⭐ AN EXACT OPENING TIME, when a module must switch before its date. Paul, 19 Sep 2026:
+   * "go live with website tomorrow evening at 5 or 6pm as nobody will be visiting", so the
+   * site can be checked by eye on Sunday evening and the launch email booked only after.
+   * With COURSE_NOW set (local testing) the date part alone is used.
+   */
+  opensAt?: string;
   art: Art;
 };
 
@@ -40,6 +47,7 @@ export const MODULES: Module[] = [
     when: "Mon 21 Sep",
     on: "2026-09-21",
     built: true, /* 18 Sep 2026: module 1 is written and goes live on its date. */
+    opensAt: "2026-09-20T17:00:00+01:00", /* Sunday 5pm Dublin, Paul 19 Sep */
     /* The grumpy fox beside his headline "20 things that get you 80% of the way".
        Paul's headline verbatim. A statement, not a depiction, so no window chrome
        inside the artefact. */
@@ -116,7 +124,12 @@ export const MODULES: Module[] = [
 
 /** See Module.built. Both conditions, always. */
 export function isLive(m: Module, today: string = courseToday()): boolean {
-  return m.built && today >= m.on;
+  if (!m.built) return false;
+  if (m.opensAt) {
+    if (process.env.COURSE_NOW) return today >= m.opensAt.slice(0, 10);
+    return Date.now() >= Date.parse(m.opensAt);
+  }
+  return today >= m.on;
 }
 
 /**
