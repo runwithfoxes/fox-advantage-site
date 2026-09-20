@@ -22,3 +22,10 @@ rules already said every Seedream run carries the fox reference. A fox image nev
 page unless it was made with the reference, whatever the lesson is about.
 
 Six images was Paul's number. Five were made.
+
+## 20 Sep, 16:15: all of them rejected
+
+Paul, on every image made that afternoon, the referenced one included: "your six were
+terrible", "you cannot use them". `fox-on-the-court.jpg` is deleted from /public and
+`court-prompt.txt` is kept only as a record of what was tried. None of it reached main.
+The sixth image was never made.

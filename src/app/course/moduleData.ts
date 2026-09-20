@@ -890,14 +890,10 @@ export const MODULE_1: ModuleDef = {
           prompt: "A cinematic 3D-animated anthropomorphic fox walking directly toward the camera down the aisle of a bright, industrial gym. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression — visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.\n\nBackground: softly blurred gym interior with tall windows flooding hazy morning sunlight across the floor, out-of-focus human athletes lifting dumbbells and using machines, mirrored wall on the left, kettlebells and medicine balls lining the right wall. Shallow depth of field, warm volumetric light rays, long shadows on gray rubber flooring.\n\nStyle: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.",
           placeholder: true,
         },
-        {
-          text: "Then I changed the gym to a basketball court. I also gave the image generator two pictures to work from, my fox and the gym still, so it stayed the same character in the same clothes. A prompt on its own got me a fox, but not my fox.",
-          promptHead: "The prompt that made the image below, with the two pictures attached",
-          prompt: "The stylized Pixar-style grumpy orange fox character from the first reference image, exactly the same face and proportions: large round plush head, short muzzle, huge half-lidded amber eyes, flat unimpressed mouth, compact stocky body, ROUNDED DARK BROWN MITTEN PAWS with no separate fingers, solid orange bushy tail. He wears the same navy blue zip-up tracksuit with white side stripes as in the second reference image, crisp white sneakers, and a white towel draped over one shoulder. He is walking directly toward the camera across the polished hardwood of an indoor basketball court, looking straight down the lens, deadpan and tired. Camera at the fox's eye level, head-on, fox centred, full body, about seventy percent of frame height, grounded with a real cast shadow and a soft reflection on the floor. Background, softly out of focus: tall windows flooding hazy morning sunlight across the court in warm volumetric rays, out-of-focus human players shooting and dribbling, a hoop and backboard on the left, retracted bleachers and a rack of basketballs along the right wall, painted court lines. Same light and colour as the second reference image. Photographed on location, shot on 35mm film, shallow depth of field, cinematic.",
-          image: {
-            src: "/course/fox-on-the-court.jpg",
-            alt: "The same grumpy fox in the same navy tracksuit and towel, now walking across an indoor basketball court",
-          },
+        /* ⛔ NO GENERATED FOX HERE. Five court images were made on 20 Sep 2026 and Paul threw
+           all of them out: "your six were terrible", "you cannot use them". The court beat and
+           its image are removed. Whatever shows the rebuilt image comes from Paul's own hands
+           or from work he has already approved, never from a rushed run. */
           placeholder: true,
         },
         {
