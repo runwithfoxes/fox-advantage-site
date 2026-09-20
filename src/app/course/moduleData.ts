@@ -492,11 +492,13 @@ export const MODULE_1: ModuleDef = {
      "show you how I build", a dictation slip. Do not reword. */
   opening:
     "Welcome to AI Fluency for Ambitious Marketers.\n\nOver the coming weeks and months, I'll show you how I build agents that can work autonomously, how I create systems that allow me to produce really high quality outcomes at speed, as well as sprinkling in insights and my views about how I believe marketing roles, teams and departments will change dramatically.\n\nBut let's start slow. Module 1 is a collection of things that I do all the time. You'll notice that only one of them is about prompting. Most of the rest are things I do before I start prompting: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research.\n\nI'm a marketer, so that is my focus here. But it will be evident to you that you can apply this to non marketing work too. Enjoy.",
-  /* ⚠️ DRAFT, 20 Sep 2026, NOT PAUL'S WORDS YET. Written for him to edit in chat. Every fact
+  /* ⚠️ DRAFT, 20 Sep 2026, NOT PAUL'S WORDS YET. Written for him to edit in chat. Second
+     pass: the first ran to four paragraphs and told the reader what to do with their week.
+     Paul: "Make that ending shorter. Less preachy... less earnest and shorter." Every fact
      in it is from this file or courseCopy.ts: module 2's title, its date, the AI Writer
      example, "we'll email you", the library, "Copy anything. Send it on." */
   closing:
-    "That's the end of module 1.\n\nThese are all small things, and I do every one of them all the time. If you take two or three of them into your own work this week, you'll see it in what you get back.\n\nModule 2 is called Slow, then fast, and it opens on Monday 5 October. I take one example, building an AI Writer, and show you where the marketing thinking goes in before any of the speed arrives. We'll email you when it opens.\n\nIn the meantime, everything from this module is in the library. Copy anything, and send it on to your team.",
+    "That's module 1.\n\nModule 2 is Slow, then fast. It opens on Monday 5 October and we'll email you when it does. Until then, everything from this module is in the library. Copy anything, send it on.",
   items: [
     {
       t: "Check which model you're on",
