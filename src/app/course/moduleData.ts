@@ -492,11 +492,11 @@ export const MODULE_1: ModuleDef = {
      "show you how I build", a dictation slip. Do not reword. */
   opening:
     "Welcome to AI Fluency for Ambitious Marketers.\n\nOver the coming weeks and months, I'll show you how I build agents that can work autonomously, how I create systems that allow me to produce really high quality outcomes at speed, as well as sprinkling in insights and my views about how I believe marketing roles, teams and departments will change dramatically.\n\nBut let's start slow. Module 1 is a collection of things that I do all the time. You'll notice that only one of them is about prompting. Most of the rest are things I do before I start prompting: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research.\n\nI'm a marketer, so that is my focus here. But it will be evident to you that you can apply this to non marketing work too. Enjoy.",
-  /* ⚠️ DRAFT, 20 Sep 2026, NOT PAUL'S WORDS YET. Written for him to edit in chat. Second
-     pass: the first ran to four paragraphs and told the reader what to do with their week.
-     Paul: "Make that ending shorter. Less preachy... less earnest and shorter." Every fact
-     in it is from this file or courseCopy.ts: module 2's title, its date, the AI Writer
-     example, "we'll email you", the library, "Copy anything. Send it on." */
+  /* ⭐ APPROVED BY PAUL, 20 Sep 2026: "Those words are good." Drafted for him in chat. The
+     first pass ran to four paragraphs and told the reader what to do with their week, and he
+     said: "Make that ending shorter. Less preachy... less earnest and shorter." Every fact
+     in it is from this file or courseCopy.ts. ⚠️ It names module 2's date, so it changes if
+     that date does. */
   closing:
     "That's module 1.\n\nModule 2 is Slow, then fast. It opens on Monday 5 October and we'll email you when it does. Until then, everything from this module is in the library. Copy anything, send it on.",
   items: [
@@ -523,11 +523,13 @@ export const MODULE_1: ModuleDef = {
          written down rather than left to be noticed. Either it gets a home or the line
          goes, and both are Paul's call.
 
-         ⚠️ IT NAMES THREE MODELS AND TWO VERSION NUMBERS: Opus 4.8, Opus 5, Sonnet, Fable
+         ⭐ "Opus 4.8 (and now Opus 5)" BECAME "Opus 5" ON PAUL'S WORD, 20 Sep 2026, off his
+         phone on launch day: "I mention 4.8 but that is old news. I use opus 5."
+         ⚠️ IT STILL NAMES THREE MODELS AND A VERSION NUMBER: Opus 5, Sonnet, Fable
          5. Course copy that names live products dates faster than the rest of the page.
          The module opens 21 Sep 2026. Check these are still current before it ships, and
          never quietly update them: a version number is a specific and it is Paul's. */
-      text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 4.8 (and now Opus 5) on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask.\n\nCost aside, it's possible we'll start to use different models for different types of tasks. And we'll mix them up and pair them up. I use Fable 5 when I have a project that is clear and I'm comfortable it can work away for hours with little supervision from me.\n\nAnyway, for now, my main point is be aware, test and be intentional on the model you're using.",
+      text: "An easy but very important thing to understand is that the models don't all behave the same. For example, I use Opus 5 on Claude a lot. I find it to be accurate and capable of doing complex tasks. But if I'm just asking simple questions, I'll switch to their Sonnet model.\n\nWhy not stay on Opus all the time? Cost. There is an argument that staying on Opus is cheaper in the long run, as you get accuracy faster, as you're using fewer prompts. Later in this course, I'll show how I train Claude to guess what model I want so I don't have to ask.\n\nCost aside, it's possible we'll start to use different models for different types of tasks. And we'll mix them up and pair them up. I use Fable 5 when I have a project that is clear and I'm comfortable it can work away for hours with little supervision from me.\n\nAnyway, for now, my main point is be aware, test and be intentional on the model you're using.",
       grab: "The model dropdown, open",
       figure: "fig-14",
       /* Paul's link, corrected by him 2 Aug 2026. It replaces the "Choosing the right
