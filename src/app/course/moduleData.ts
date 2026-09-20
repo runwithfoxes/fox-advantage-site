@@ -877,7 +877,7 @@ export const MODULE_1: ModuleDef = {
            ⛔ THE COURT IMAGE WAS MADE WITH TWO REFERENCE PICTURES AND THE PAGE SAYS SO. Text alone
            did not give his fox. Never reword this to suggest the prompt did it alone. */
         {
-          text: "Here is one I did. This is a still from a short film of my fox walking through a gym.",
+          text: "Here are the steps, so you can follow them.\n\n1. Pick an image you like. It can be one of your own.\n2. Open Claude and drop the image into the chat.\n3. Ask it to write a very descriptive prompt that would create this type of image in an image generator, and to stay under a thousand characters.\n4. Change the one thing you want to change in the prompt. I changed the gym to a basketball court.\n5. Open an image tool. I used ChatGPT for this one. Upload your original image and paste in the new prompt.\n6. Look at what comes back. If something is off, tell it what to fix.\n\nHere is one I did. This is a still from a short film of my fox walking through a gym.",
           image: {
             src: "/course/fox-in-the-gym.jpg",
             alt: "A grumpy cartoon fox in a navy tracksuit, a towel over his shoulder, walking through a gym towards the camera",
@@ -890,10 +890,18 @@ export const MODULE_1: ModuleDef = {
           prompt: "A cinematic 3D-animated anthropomorphic fox walking directly toward the camera down the aisle of a bright, industrial gym. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression — visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.\n\nBackground: softly blurred gym interior with tall windows flooding hazy morning sunlight across the floor, out-of-focus human athletes lifting dumbbells and using machines, mirrored wall on the left, kettlebells and medicine balls lining the right wall. Shallow depth of field, warm volumetric light rays, long shadows on gray rubber flooring.\n\nStyle: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.",
           placeholder: true,
         },
-        /* ⛔ NO GENERATED FOX HERE. Five court images were made on 20 Sep 2026 and Paul threw
-           all of them out: "your six were terrible", "you cannot use them". The court beat and
-           its image are removed. Whatever shows the rebuilt image comes from Paul's own hands
-           or from work he has already approved, never from a rushed run. */
+        /* ⭐⭐ THE COURT IMAGE IS PAUL'S OWN, made by him in ChatGPT on 20 Sep 2026 at 16:08, from
+           the gym still plus a prompt, after he threw out all five Dray had generated ("your
+           six were terrible", "you cannot use them"). His original is kept at
+           course-files/module-1/image/pauls-chatgpt-original.png.
+           ⛔ Never swap a generated fox in here. If this image changes, it changes in his hands.
+           ⚠️ THE PROMPT SHOWN MUST BE THE ONE HE PASTED. Awaiting his confirmation of which. */
+        {
+          text: "Then I changed the gym to a basketball court, uploaded the gym image to ChatGPT with the new prompt, and this is what came back.",
+          image: {
+            src: "/course/fox-on-the-court.jpg",
+            alt: "The same grumpy fox in the same navy tracksuit and towel, now walking across an indoor basketball court",
+          },
           placeholder: true,
         },
         {
