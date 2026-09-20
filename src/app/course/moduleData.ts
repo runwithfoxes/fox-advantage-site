@@ -1320,6 +1320,14 @@ export const MODULE_1: ModuleDef = {
          rewrite lands. Nothing in it invents a lesson, a statistic or a claim about
          what he does beyond what this build actually contains.
          ⛔ No figure: none exists for data analysis in the library. */
+      /* ⚠️ DRAFT BY DRAY, 20 Sep 2026, on Paul's "you draft", AWAITING HIS EDIT. Paragraphs two to
+         four were rewritten because item 02 now uses this same campaign file: item 10 introduced
+         Kite as new and promised a reveal the reader had already seen, and the page gave three
+         different pieces of advice from one file with nothing to say why. Every claim about item
+         02's answers was checked against the two saved replies in course-files/module-1/context:
+         they disagree on radio, and neither says why March doubled. The analyst's March and radio
+         lines are in KITE_DATA_SESSION. ⛔ If item 02's recordings are ever re-recorded, re-read
+         this paragraph against them. */
       t: "Analyse Kite's numbers",
       docs: {
         dir: "module-1/data",
@@ -1333,7 +1341,7 @@ export const MODULE_1: ModuleDef = {
         ],
         as: "links",
       },
-      text: "Marketers get sent campaign reports all the time. Spreadsheets from ad platforms, exports from email tools, results by week and by channel. I find Claude is genuinely good at reading these files, and you don't need to be an analyst to use it. You drop the file in and you talk to it.\n\nTo let you practice, we built a file for Kite, a fictional insurance brand we use through this course. Everything in it is made up, and the file has faults hidden in it on purpose, because real files have faults. Kite's marketer wants to know which channels worked and where next year's money should go.\n\nBelow you can watch how this works. Kite's marketer asks the question, and the analyst works through the file and answers. The analyst is Claude running on two files you can take for your own work: analyst-dna, which tells it how to behave, and data-rules, which gives it ten rules for reading marketing numbers. Watch how it checks the file before it believes it.\n\n{{SESSION_DATA}}\n\nNow try it yourself. Everything you need is in the files below: Kite's two data files, the notes that explain them, and the two analyst files. Start a new Claude Project. The analyst-dna file goes into the project instructions, and the rest go into the files. Then ask the same question and see whether it finds what you watched it find here. When it does, try it again with one of your own reports.",
+      text: "Marketers get sent campaign reports all the time. Spreadsheets from ad platforms, exports from email tools, results by week and by channel. I find Claude is genuinely good at reading these files, and you don't need to be an analyst to use it. You drop the file in and you talk to it.\n\nYou've met this file already. In item 02 you gave Claude Kite's campaign results and asked for a summary, twice. Kite is a fictional insurance brand we use through this course, and everything in the file is made up. It also has faults in it on purpose, because real files have faults. You may have seen Claude catch some of them.\n\nThis time the question is harder. Kite's marketer wants to know which channels worked and where next year's money should go. And this time Claude gets more to work with: the policy system's own count of new policies, the notes that explain Kite's year, and two files you can take for your own work. analyst-dna tells it how to behave, and data-rules gives it ten rules for reading marketing numbers.\n\nWatch what changes. In item 02 the two answers disagreed about radio, and neither could say why policies doubled in March. Here the analyst knows what happened in March, because it is written in the notes. And it won't make a call on radio from this file at all. It tells you how to find out.\n\n{{SESSION_DATA}}\n\nNow try it yourself. Everything you need is in the files below: Kite's two data files, the notes that explain them, and the two analyst files. Start a new Claude Project. The analyst-dna file goes into the project instructions, and the rest go into the files. Then ask the same question and see whether it finds what you watched it find here. When it does, try it again with one of your own reports.",
       session: true,
       placeholder: true,
     },
