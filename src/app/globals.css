@@ -7506,6 +7506,8 @@ a.project-card {
    paragraphs, for the reason given in the reading spec below: the gap between paragraphs
    has to beat the gap between lines. */
 .mod-standfirst + .mod-standfirst{margin-top:30px;}
+/* Paul's closing words, after the last item. The item above already draws the rule. */
+.mod-closing{padding:56px 0 24px;}
 /* The chapters float the fox beside a long prose column so it never runs out of text
    to wrap. Here the standfirst is short and the fox is taller, so it overhung the
    metadata row and squeezed four columns into a wrapped mess. The meta clears the

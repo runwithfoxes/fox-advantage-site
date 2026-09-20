@@ -1132,6 +1132,19 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
           })}
         </main>
 
+        {/* PAUL'S CLOSING WORDS, 20 Sep 2026. The page used to stop on the last item's Done
+            tick. Same type as his opening (.mod-standfirst), so the module starts and ends in
+            his voice. Renders only when the module has a `closing`. */}
+        {mod.closing && (
+          <section className="mod-closing">
+            {mod.closing.split(/\n{2,}/).map((para, i) => (
+              <p className="mod-standfirst" key={i}>
+                {para}
+              </p>
+            ))}
+          </section>
+        )}
+
         {/* ⭐⭐ THE MODULE'S FILES, 3 Aug 2026. Paul: "Just have them all listed connected
             to module 2."
 
