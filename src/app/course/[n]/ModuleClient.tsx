@@ -1386,7 +1386,11 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                       "here is the wireframe I got back". A beat can also be prose alone,
                       which is how this article closes. */}
                   {b.figure ? (
-                    <Figure name={b.figure} className={figStyles.banner} />
+                    /* Wrapped so the gap ABOVE it can be set for a beat. The banner's own 4px
+                       top margin is for a figure under a headline; in a beat it follows prose. */
+                    <div className="mod-beatfig">
+                      <Figure name={b.figure} className={figStyles.banner} />
+                    </div>
                   ) : b.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img

@@ -8200,7 +8200,17 @@ a.project-card {
    for "Break down and rebuild". Renders only inside the opened window. The gap above is
    larger than the gap between paragraphs, so a reader can tell a new beat has started
    without a heading doing it. */
-.mod-beat{margin-top:36px;}
+.mod-beat{margin-top:56px;}
+/* ⭐ BREATHING SPACE BETWEEN WORDS AND A PICTURE, 20 Sep 2026. Paul, with a screenshot of a
+   figure sat 4px under his last line: "give breathing space between words and any images or
+   figures." Measured across every item, list and opened: the 4px was in three beats of this
+   article and nowhere else, because a figure's banner margin (4px) is set for a figure UNDER A
+   HEADLINE and in a beat it follows prose. 32px above every picture, figure and prompt box in a
+   beat. The gap between beats went 36 to 56 so a picture still sits closer to its own words
+   than to the next beat's. */
+/* 32, not 28: the banner's own 4px top margin collapses into this one, it does not add. */
+.mod-beatfig{margin-top:32px;}
+.mod-beat .mod-copybox,.mod-beat .mod-promptbtn{margin-top:32px;}
 /* ⭐ "Read full essay", Paul's own line, made a real control. Blue because blue means
    clickable on this page and nothing else. Sits under the teaser prose at the same 28px the
    other artifacts use. */
@@ -8213,7 +8223,7 @@ a.project-card {
    than as part of the page. ⚠️ It is a whole homepage at 2400x5053, so at column width it
    runs about 1575px tall. Deliberately NOT cropped or capped: his sentence is "here is the
    wireframe I got back", and a cropped wireframe is not the wireframe he got back. */
-.mod-beatimg{display:block;width:100%;height:auto;margin-top:20px;border:1px solid #E0E0DC;}
+.mod-beatimg{display:block;width:100%;height:auto;margin-top:32px;border:1px solid #E0E0DC;}
 /* ⭐ A NUMBERED LIST inside an item's prose, 3 Aug 2026, because Paul wrote one. Tight: the
    gap between points is much smaller than the 30px between paragraphs, because three numbered
    things belong together and paragraph spacing pulls them apart. */
