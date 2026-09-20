@@ -754,6 +754,23 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
   ];
   const fox = FOXES[(mod.n - 1) % FOXES.length];
 
+  // The numbered contents, rendered twice: in the rail on desktop, and after the masthead
+  // on a phone (.mod-rail-phone). One definition so the two can never list different items.
+  const railContents = (
+    <>
+      <p>/in this module</p>
+      {mod.items.map((it, i) =>
+        visible(it) ? (
+          <a key={i} href={`#i${i + 1}`} data-done={done.has(i) ? "1" : "0"}>
+            <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
+            <span className="mod-dot" />
+            <span>{it.t}</span>
+          </a>
+        ) : null,
+      )}
+    </>
+  );
+
   return (
     <div className={build ? "mod-shell mod-build" : "mod-shell"}>
       {/* Reuses the book chapter nav verbatim (.chapter-nav). The chapters' numeric
@@ -792,17 +809,8 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             AI Fluency for Ambitious Marketers
           </a>
 
-          <nav className="mod-rail">
-            <p>/in this module</p>
-            {mod.items.map((it, i) =>
-              visible(it) ? (
-                <a key={i} href={`#i${i + 1}`} data-done={done.has(i) ? "1" : "0"}>
-                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mod-dot" />
-                  <span>{it.t}</span>
-                </a>
-              ) : null,
-            )}
+          <nav className="mod-rail mod-rail-desk">
+            {railContents}
 
             {/* ⭐⭐ THE LIBRARY, AT THE FOOT OF EVERY MODULE'S RAIL, Paul 3 Aug 2026: "can we
                 link this from the rail in all modules? So call it the /library at the bottom
@@ -898,6 +906,14 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
           </span>
         </div>
       </header>
+
+      {/* ⭐ THE CONTENTS ON A PHONE, 20 Sep 2026. The rail column stacks ABOVE this column
+          under 860px, so a phone opened on the course name, ten items and a link to the
+          library before it had said which module this is. Paul, off his phone: "It's not
+          good, as confusing, with library at top." So on a phone the rail's list is hidden
+          and this copy shows here, after his opening. The library link moves to the foot
+          of the page (.mod-lib-phone). Desktop never sees either. */}
+      <nav className="mod-rail mod-rail-phone">{railContents}</nav>
 
 
       {SHOW_COUNTERS && (
@@ -1224,6 +1240,11 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             ))}
           </section>
         )}
+        {/* The library link, on a phone only. It is the rail's link moved to the foot,
+            because the rail's copy is hidden under 860px. See .mod-rail-phone above. */}
+        <Link className="mod-lib-phone" href="/course/everything">
+          /library of everything
+        </Link>
         </div>
       </div>
 

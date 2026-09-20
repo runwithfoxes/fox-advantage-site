@@ -7632,6 +7632,8 @@ a.project-card {
    from the numbered contents above. */
 .mod-rail a.mod-rail-lib + a.mod-rail-lib{margin-top:7px;}
 .mod-rail a:hover{color:#3A7CA5;}
+/* Phone-only copies of the contents and the library link. Shown under 860px, see below. */
+.mod-rail-phone,.mod-lib-phone{display:none;}
 .mod-k{color:#A8A8A2;font-variant-numeric:tabular-nums;}
 .mod-dot{width:7px;height:7px;border:1px solid #C9C9C3;background:#fff;display:block;margin-top:6px;}
 .mod-rail a[data-done="1"] .mod-dot{background:#3A7CA5;border-color:#3A7CA5;}
@@ -7823,6 +7825,16 @@ a.project-card {
   /* One item per line on a phone. It was inline-grid, so two short titles shared a line
      (08 and 09 on module 1) while every other row sat alone. Fixed 19 Sep 2026. */
   .mod-rail a{display:grid;border-top:0;padding:4px 0;}
+  /* THE MODULE'S NAME COMES FIRST ON A PHONE, 20 Sep 2026. The rail column stacks above the
+     main column here, so the page opened on the contents list and the library link before
+     it had said which module this is. Paul: "confusing, with library at top." The rail's
+     list is hidden, its copy shows after the masthead, and the library link goes to the
+     foot of the page. */
+  /* .mod-rail-desk is on the module page's rail only. /zorro and /course/everything share
+     .mod-rail and have no phone copy, so they must not be hidden by this. */
+  .mod-rail-desk{display:none;}
+  .mod-rail-phone{display:block;margin:28px 0 36px;}
+  .mod-lib-phone{display:block;margin-top:48px;font-family:var(--mono);font-size:.75rem;color:#3A7CA5;text-decoration:none;}
   .mod-comp{grid-template-columns:repeat(2,1fr);}
   .mod-shell{padding:0 20px 80px;}
   .mod-readerbody{padding:26px 20px 32px;}
