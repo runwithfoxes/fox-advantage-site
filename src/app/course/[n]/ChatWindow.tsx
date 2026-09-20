@@ -71,6 +71,15 @@ function buildUnits(session: Turn[]): Unit[] {
         case "flag":
           units.push({ turn: t, kind: "typed", block, text: block.text });
           break;
+        case "md":
+          units.push({ turn: t, kind: "typed", block, text: block.text });
+          break;
+        case "table":
+          units.push({ turn: t, kind: "rows", block, rows: block.rows.length });
+          break;
+        case "list":
+          units.push({ turn: t, kind: "rows", block, rows: block.items.length });
+          break;
         case "audit":
           units.push({
             turn: t,
@@ -324,6 +333,23 @@ function clip(text: string, within: number) {
   return within === Infinity ? text : text.slice(0, within);
 }
 
+/**
+ * Draws `**bold**` and `*italic*` and nothing else. A pair still open because the line is
+ * mid-way through typing runs to the end, and a lone trailing `*` is held back, so no marker
+ * is ever seen on screen.
+ */
+function rich(text: string) {
+  return text
+    .replace(/\*+$/, "")
+    .split("**")
+    .map((part, i) => {
+      const inner = part
+        .split("*")
+        .map((bit, k) => (k % 2 === 1 ? <i key={k}>{bit}</i> : bit));
+      return i % 2 === 1 ? <b key={i}>{inner}</b> : <span key={i}>{inner}</span>;
+    });
+}
+
 function BlockView({ block, within }: { block: Block; within: number }) {
   switch (block.kind) {
     case "p":
@@ -331,6 +357,54 @@ function BlockView({ block, within }: { block: Block; within: number }) {
 
     case "flag":
       return <p className="cw-flag">{clip(block.text, within)}</p>;
+
+    /* ⭐ A REPLY THAT ARRIVED AS MARKDOWN, 20 Sep 2026 (module 1 item 02). The three blocks
+       below are generated from the saved reply, never typed. `**bold**` is drawn; nothing
+       else is interpreted. */
+    case "md":
+      return <p className="cw-p">{rich(clip(block.text, within))}</p>;
+
+    case "table": {
+      const shown = within === Infinity ? block.rows.length : within;
+      return (
+        <div className="cw-gridwrap">
+          <table className="cw-table">
+            {block.head.length > 0 && (
+              <thead>
+                <tr>
+                  {block.head.map((h, i) => (
+                    <th key={i} scope="col" data-r={block.align?.[i] === "r" ? "" : undefined}>
+                      {rich(h)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {block.rows.slice(0, shown).map((row, r) => (
+                <tr key={r}>
+                  {row.map((c, i) => (
+                    <td key={i} data-r={block.align?.[i] === "r" ? "" : undefined}>
+                      {rich(c)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    case "list": {
+      const shown = within === Infinity ? block.items.length : within;
+      const items = block.items.slice(0, shown).map((it, i) => <li key={i}>{rich(it)}</li>);
+      return block.ordered ? (
+        <ol className="cw-list">{items}</ol>
+      ) : (
+        <ul className="cw-list">{items}</ul>
+      );
+    }
 
     case "plan": {
       /* ⭐ A DEFINITION LIST, NOT BULLETS. The plan is label and answer, and its whole purpose

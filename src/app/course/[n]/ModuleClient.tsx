@@ -12,6 +12,10 @@ import {
   KITE_SEGMENT_SESSION,
   KITE_RESEARCH_SESSION,
 } from "../writerSession";
+import {
+  CONTEXT_WITHOUT_SESSION,
+  CONTEXT_WITH_SESSION,
+} from "../contextSessions.generated";
 import { SimilarityScale } from "./SimilarityScale";
 import { Figure } from "../figures/Figure";
 import figStyles from "../figures/Figure.module.css";
@@ -276,6 +280,8 @@ function slotsFor(
   it: Item,
   onCopyText?: (text: string) => void,
   onPlay?: () => void,
+  /** The item's file rows, for an item whose docs are `inline`. See `{{FILES}}` below. */
+  files?: React.ReactNode,
 ): Record<string, React.ReactNode> {
   /* ⭐ 19 Sep 2026: an item's inline prompts, each a slot named by its key. */
   const inline: Record<string, React.ReactNode> = {};
@@ -288,6 +294,28 @@ function slotsFor(
   }
   return {
     ...inline,
+    /* ⭐ 20 Sep 2026: the file rows in the prose, for module 1 item 02, where the download has
+       to come before the prompts that use it. Only for docs marked `inline`. */
+    FILES: it.docs?.inline ? files : undefined,
+    /* ⭐ Module 1 item 02's two recordings: the same file and the same model, asked without
+       context and then with it. Generated from the saved replies, never typed. A plain chat,
+       so the title bar says so. */
+    SESSION_CONTEXT_WITHOUT: it.session ? (
+      <ChatWindow
+        onPlay={onPlay}
+        session={CONTEXT_WITHOUT_SESSION}
+        start={"What came back without context."}
+        title="a chat"
+      />
+    ) : undefined,
+    SESSION_CONTEXT_WITH: it.session ? (
+      <ChatWindow
+        onPlay={onPlay}
+        session={CONTEXT_WITH_SESSION}
+        start={"What came back with context."}
+        title="a chat"
+      />
+    ) : undefined,
     FOLDER:
       it.docs && it.docs.as !== "links" ? (
         <FolderWindow
@@ -1029,7 +1057,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
                 <ItemPicture item={it} build={build} />
 
-                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t))} />
+                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t), <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />)} />
 
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
@@ -1053,7 +1081,9 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   </button>
                 )}
 
-                <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />
+                {!it.docs?.inline && (
+                  <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />
+                )}
                 <ReadingList reading={it.reading} n={mod.n} item={it.t} />
 
                 {it.links && (
@@ -1318,7 +1348,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
               <Body
                 text={mod.items[open].text}
                 ph={mod.items[open].placeholder}
-                slots={slotsFor(mod.items[open], (t) => copyInline(mod.items[open], open, t), () => track("session_watched", mod.n, mod.items[open].t))}
+                slots={slotsFor(mod.items[open], (t) => copyInline(mod.items[open], open, t), () => track("session_watched", mod.n, mod.items[open].t), <DocLinks docs={mod.items[open].docs} onCopy={say} n={mod.n} item={mod.items[open].t} />)}
               />
 
               {/* ⭐⭐ THE LONG ARTICLE: a passage, then the picture of what you just read,
@@ -1363,7 +1393,9 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   belongs: you finish the piece, then you are handed where to go next.
                   ⛔ It was MISSING here entirely until 3 Aug. He opened Create Projects and
                   his three links were not in it. */}
-              <DocLinks docs={mod.items[open].docs} onCopy={say} n={mod.n} item={mod.items[open].t} />
+              {!mod.items[open].docs?.inline && (
+                <DocLinks docs={mod.items[open].docs} onCopy={say} n={mod.n} item={mod.items[open].t} />
+              )}
               <ReadingList reading={mod.items[open].reading} n={mod.n} item={mod.items[open].t} />
             </div>
           </div>

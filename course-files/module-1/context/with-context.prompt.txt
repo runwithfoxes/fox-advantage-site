@@ -1,0 +1,5 @@
+Task: write a one-page summary of the campaign results in the attached file.
+Background: it is for the quarterly review, and we are being asked whether to keep spending.
+Audience: the CFO. She cares about what we got for the money, not impressions.
+Format: one page. A short table of numbers, then three lines of plain English.
+Bar: she should be able to decide in two minutes without coming back to me.

@@ -72,6 +72,17 @@ export type Block =
    * verbatim from the run like every other word.
    */
   | { kind: "chart"; chart: string; caption?: string }
+  /**
+   * ⭐ THREE PLAIN BLOCKS FOR A REPLY THAT ARRIVED AS MARKDOWN, added 20 Sep 2026 for module
+   * 1 item 02's two recordings. `md` is a paragraph, `table` and `list` are what they say.
+   * Text in all three may carry `**bold**` and `*italic*`, which the window draws; nothing
+   * else in the markdown is interpreted. ⛔ These are never typed by hand: they are GENERATED from
+   * the saved reply by `scripts/build-context-sessions.mjs`, so a recording cannot drift
+   * from the run. `head` is empty for a table that had no header row.
+   */
+  | { kind: "md"; text: string }
+  | { kind: "table"; head: string[]; align?: string[]; rows: string[][] }
+  | { kind: "list"; ordered: boolean; items: string[] }
   | { kind: "audit"; label: string; text: string }
   | {
       kind: "grid";

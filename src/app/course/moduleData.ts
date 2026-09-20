@@ -124,6 +124,13 @@ export type Item = {
      * a window would be a big object doing a small job.
      */
     as?: "window" | "links";
+    /**
+     * ⭐ LINKS IN THE PROSE, NOT AT THE FOOT, 20 Sep 2026. With `as: "links"` and `inline`,
+     * the file rows render where `{{FILES}}` sits in `text` and are not repeated at the foot.
+     * Module 1 item 02 needs it: the reader downloads the file BEFORE the two prompts that
+     * use it. ⛔ `inline` with no `{{FILES}}` in the text would hide the files altogether.
+     */
+    inline?: boolean;
   };
   /**
    * ⭐⭐ THE LONG ARTICLE. A run of BEATS, each one a figure followed by Paul's copy for that
@@ -587,17 +594,40 @@ export const MODULE_1: ModuleDef = {
          underneath therefore has no lead-in sentence any more, and the note about the Bar
          line doing the most work is gone. Flagged to Paul on the day. Do not restore them
          quietly: if they come back it is because he said so. */
-      text: "Another really useful thing is to explain what you will do with the output you're asking AI for. So instead of asking it to run some research, explain why you want the research. Or if you're preparing a report for your Chief Financial Officer, tell your AI this. You'll get a better response. This is partly what people mean when they say give it context.",
-      /* ⚠️ PROMPT REWRITTEN BY DRAY, 2 Aug 2026, AND IT IS NOT MARKED ON THE PAGE.
-         `placeholder` only draws the orange marker on the prose, so this block LOOKS
-         like Paul's verbatim article text and is not. Two changes he asked for:
-         "Format: the shape I want back" was his own line and he rejected it as the
-         vaguest thing in the item; and the five slots are filled in rather than
-         abstract, so the block is a worked example a marketer can edit instead of a
-         template they have to interpret. No invented figures: nothing here states a
-         budget, a result or a metric. */
-      prompt:
-        "Task: write a one-page summary of our campaign results.\nBackground: it is for the quarterly review, and we are being asked whether to keep spending.\nAudience: the CFO. She cares about what we got for the money, not impressions.\nFormat: one page. A short table of numbers, then three lines of plain English.\nBar: she should be able to decide in two minutes without coming back to me.",
+/* ⭐⭐ A REPORT, TWO PROMPTS AND WHAT EACH GAVE BACK, 20 Sep 2026. Paul, reviewing on his
+         phone on launch day: "we give a prompt, but we don't actually have a report. So we
+         can't really use that prompt." Then: "Can we give a report that they can download and
+         then try two different prompts and also show them what we get... one with context,
+         one without."
+
+         His paragraph is untouched. Everything after it is new: the lead-in and the closing
+         line are Dray's drafts, which he cleared in chat ("ok go"); the file is Kite's
+         campaign export from item 10; the two windows are real runs, generated from
+         course-files/module-1/context/ (read its README for which run and why).
+
+         ⛔ THE TWO ARE "WITHOUT CONTEXT" AND "WITH CONTEXT", NEVER "BAD" AND "GOOD". The reply
+         without context is long and accurate. What it cannot do is answer the question,
+         because nobody told it the question. That is the lesson, and it is his own line:
+         "You'll get a better response."
+
+         The with-context prompt is the block this item has carried since 2 Aug, with one
+         change: "our campaign results" became "the campaign results in the attached file",
+         so the prompt can be run. It moved from `prompt` to `inlinePrompts` so that it sits
+         above its own window. ⚠️ The library names a prompt from its KEY, so the keys read
+         as "Without context prompt" and "With context prompt" on /course/everything. */
+      text: "Another really useful thing is to explain what you will do with the output you're asking AI for. So instead of asking it to run some research, explain why you want the research. Or if you're preparing a report for your Chief Financial Officer, tell your AI this. You'll get a better response. This is partly what people mean when they say give it context.\n\nHere's an example you can try. Below is a year of campaign results for Kite, a fictional insurance brand we use through this course. Download it, attach it to a new chat and try these two prompts.\n\n{{FILES}}\n\nFirst, without context.\n\n{{WITHOUT_CONTEXT}}\n\n{{SESSION_CONTEXT_WITHOUT}}\n\nThen with it.\n\n{{WITH_CONTEXT}}\n\n{{SESSION_CONTEXT_WITH}}\n\nBoth answers came from the same file and the same model. The only thing that changed was what I told it about the job.",
+      session: true,
+      docs: {
+        dir: "module-1/data",
+        folder: "data/",
+        files: ["campaigns-2025.csv"],
+        as: "links",
+        inline: true,
+      },
+      inlinePrompts: {
+        WITHOUT_CONTEXT: "Summarise our campaign results.",
+        WITH_CONTEXT: "Task: write a one-page summary of the campaign results in the attached file.\nBackground: it is for the quarterly review, and we are being asked whether to keep spending.\nAudience: the CFO. She cares about what we got for the money, not impressions.\nFormat: one page. A short table of numbers, then three lines of plain English.\nBar: she should be able to decide in two minutes without coming back to me.",
+      },
     },
     {
       /* ⭐⭐ PAUL'S ITEM, NAMED AND SCOPED BY HIM ON 3 Aug 2026: "i'd like for number 7 to be
