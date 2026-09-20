@@ -7506,6 +7506,13 @@ a.project-card {
    paragraphs, for the reason given in the reading spec below: the gap between paragraphs
    has to beat the gap between lines. */
 .mod-standfirst + .mod-standfirst{margin-top:30px;}
+/* ⭐ A LINK INSIDE PAUL'S OPENING, 20 Sep 2026. Deliberately the SAME treatment as a link in
+   a chapter or an essay (.chapter-prose a, .essay-prose a): orange, underlined, 3px offset.
+   The standfirst is the same serif at the same measure, so a reader who has read an essay on
+   this site already knows what that looks like, and a second style for the same job would be
+   a second thing to keep in step. */
+.mod-standfirst-link{color:#3A7CA5;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+.mod-standfirst-link:hover{color:#2F6688;}
 /* Paul's closing words, after the last item. The item above already draws the rule. */
 .mod-closing{padding:56px 0 24px;}
 /* The chapters float the fox beside a long prose column so it never runs out of text

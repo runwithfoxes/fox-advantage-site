@@ -337,6 +337,23 @@ export const SHELF: ShelfSection[] = [
 
        ⛔ NO `note` ON ANY OF THEM. His to write, and the section is correct without one. */
     entries: [
+      /* ⭐ PAUL'S ASK, 20 Sep 2026, the evening module 1 opened: "can you add the essay into
+         the library of everything section." The same piece module 1's opening now links to,
+         so a reader who missed the link in his welcome meets it again here.
+
+         ⭐ RELATIVE, like the two chapters below and for the same reason: this page IS
+         runwithfoxes.com, so an absolute link would jump a reader on localhost or a Vercel
+         preview straight to production with nothing looking wrong.
+
+         ⭐ HIS NAME IS ON IT, his standing rule from 3 Aug: "yes put my name on my articles".
+         The `note` is written from the essay's own dek in its frontmatter, not invented, and
+         it says what the piece IS rather than why it is worth reading. */
+      {
+        name: "Four agents for a gym in Madrid",
+        by: "Paul Dervan, Run with Foxes",
+        url: "/essays/four-agents-for-a-gym-in-madrid",
+        note: "An agent team Paul built for a made-up gym: the case, what each agent does, the tech underneath, and how you know it works.",
+      },
       {
         name: "Critical thinking has never been more critical",
         by: "Paul Dervan, The Fox Advantage",

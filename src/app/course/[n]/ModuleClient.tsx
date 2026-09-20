@@ -662,6 +662,55 @@ function Body({
   );
 }
 
+/* ⭐ ONE PHRASE OF PAUL'S OPENING, TURNED INTO A LINK. Paul, 20 Sep 2026: "can you
+   highlight this sentence as a hyperlink... as this will give them a sense of what is to
+   come." The phrase and the href live on the module (`openingLink` in moduleData.ts).
+
+   ⛔ THIS IS A LOOKUP, NOT A PARSER. His opening is dictated prose held as a plain string
+   and rendered as plain paragraphs, and it stays that way: the moment that string has to be
+   parsed, a stray bracket in his own words shows up as literal text in the middle of his
+   welcome. So this finds the exact run of characters and wraps it, and does nothing at all
+   if it is not in this paragraph.
+
+   ⚠️ IF THE OPENING IS REWORDED AND THE PHRASE NO LONGER MATCHES, the link quietly
+   disappears and the paragraph still reads correctly. A missing link beats mangled copy.
+
+   Only the FIRST occurrence is linked, because two identical links in one paragraph is a
+   mistake in the copy rather than something to render faithfully. */
+function openingParts(
+  para: string,
+  link: { phrase: string; href: string; title: string } | undefined,
+  moduleN: number,
+) {
+  if (!link?.phrase) return para;
+  const at = para.indexOf(link.phrase);
+  if (at === -1) return para;
+  return (
+    <>
+      {para.slice(0, at)}
+      {/* ⭐ NEW TAB, AND IT IS TRACKED. Paul, 20 Sep 2026: "can it open a new window so they
+          don't leave the module? Also will we be able to see in your tracking if anybody
+          clicks on it." Both answered here, and it is a plain <a> rather than next/link for
+          exactly that reason: a Link would client-navigate away from the module.
+
+          ⭐ THE ITEM IS NAMED "Paul's opening" ON PURPOSE. Every other link_opened carries
+          the lesson it sat inside, and this one sits in no lesson. Leaving it null would
+          make the click invisible in the report's per-item table, which is the table that
+          answers his question. Same shape as the Additional reading links above. */}
+      <a
+        className="mod-standfirst-link"
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => track("link_opened", moduleN, "Paul's opening", link.title)}
+      >
+        {link.phrase}
+      </a>
+      {para.slice(at + link.phrase.length)}
+    </>
+  );
+}
+
 export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; live?: boolean }) {
   const [filter, setFilter] = useState<Kind | null>(null);
   const [done, setDone] = useState<Set<number>>(new Set());
@@ -913,7 +962,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             uses. */}
         {(mod.opening ?? mod.blurb).split(/\n{2,}/).map((para, i) => (
           <p className="mod-standfirst" key={i}>
-            {para}
+            {openingParts(para, mod.opening ? mod.openingLink : undefined, mod.n)}
           </p>
         ))}
         {/* THE ARRIVAL BLOCK (the interest picker on module 1). Moved above the details row

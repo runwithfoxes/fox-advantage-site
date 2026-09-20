@@ -282,6 +282,28 @@ export type ModuleDef = {
    */
   opening?: string;
   /**
+   * ⭐ ONE PHRASE OF THE OPENING TURNED INTO A LINK. Paul, 20 Sep 2026: "can you highlight
+   * this sentence as a hyperlink... as this will give them a sense of what is to come."
+   *
+   * ⛔ A PHRASE AND A HREF, NOT MARKUP. The opening is Paul's dictated words and it is
+   * rendered as plain paragraphs on purpose. Putting markdown or HTML in that string would
+   * make his copy a thing that has to be parsed, and the first malformed bracket would show
+   * up on the page as literal text in the middle of his welcome. This stays a lookup: the
+   * renderer finds `phrase` in the opening and wraps exactly that run of characters.
+   *
+   * ⚠️ IF THE OPENING IS REWORDED AND THE PHRASE NO LONGER APPEARS, THE LINK SILENTLY
+   * VANISHES and the paragraph still reads correctly. That is the right failure: a missing
+   * link is better than mangled copy. The phrase is repeated here verbatim for that reason,
+   * so a search for it finds both places at once.
+   */
+  openingLink?: {
+    phrase: string;
+    href: string;
+    /** ⭐ What the click is called in the record. Written here rather than derived from the
+     *  href, so the report reads "Four agents for a gym in Madrid" and not a URL slug. */
+    title: string;
+  };
+  /**
    * ⭐ PAUL'S WORDS AT THE FOOT OF THE MODULE, after the last item. Added 20 Sep 2026: the
    * page stopped on item 10's file list and a Done tick. Paul: "let's write a better ending
    * to the module, as is abrupt." Same register and the same type as `opening`. Splits on a
@@ -507,6 +529,16 @@ export const MODULE_1: ModuleDef = {
      "show you how I build", a dictation slip. Do not reword. */
   opening:
     "Welcome to AI Fluency for Ambitious Marketers.\n\nOver the coming weeks and months, I'll show you how I build agents that can work autonomously, how I create systems that allow me to produce really high quality outcomes at speed, as well as sprinkling in insights and my views about how I believe marketing roles, teams and departments will change dramatically.\n\nBut let's start slow. Module 1 is a collection of things that I do all the time. You'll notice that only one of them is about prompting. Most of the rest are things I do before I start prompting: checking which model I'm on, having a project already set up so I'm never starting from nothing, writing a proper brief before I hit research.\n\nI'm a marketer, so that is my focus here. But it will be evident to you that you can apply this to non marketing work too. Enjoy.",
+  /* ⭐ PAUL'S ASK, 20 Sep 2026: link the promise in the opening to the essay that shows it
+     already done, "as this will give them a sense of what is to come". Relative, not
+     absolute, for the same reason the two book chapters in shelf.ts are: this page IS
+     runwithfoxes.com, and an absolute link jumps a reader on localhost or a Vercel preview
+     straight to production with nothing looking wrong. */
+  openingLink: {
+    phrase: "how I build agents that can work autonomously",
+    href: "/essays/four-agents-for-a-gym-in-madrid",
+    title: "Four agents for a gym in Madrid",
+  },
   /* ⭐ APPROVED BY PAUL, 20 Sep 2026: "Those words are good." Drafted for him in chat. The
      first pass ran to four paragraphs and told the reader what to do with their week, and he
      said: "Make that ending shorter. Less preachy... less earnest and shorter." Every fact
