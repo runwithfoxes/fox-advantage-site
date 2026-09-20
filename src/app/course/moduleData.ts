@@ -697,7 +697,7 @@ export const MODULE_1: ModuleDef = {
          instruction, 3 Aug. "It is for me" in the last paragraph is left exactly as dictated,
          twice flagged to him and twice kept. */
       t: "I use Claude as a technical colleague",
-      text: "I use Claude as my main AI. Marketers really like it. It is intuitive, responds well to feedback and writes well. So my examples will mostly be in Claude. But tools will change, evolve and get better. And they will copy each other. What I think matters more than the tool is becoming comfortable with how to use AI, to get speed without losing quality.\n\nThere is a very important other thing to understand about Claude. I use it as a technical colleague.\n\nWhat I mean by this, it's not what Claude can do itself, but its ability to connect with other software and other tools. For example, my entire website was built through Claude. This training site and everything on it was built through Claude. So not just the writing, but the navigation, the tools, the images. If you got my welcome email, that was created, and sent through Claude.\n\nAnd when you connect with these tools, you don't have to go into the tools. A lot of these tools are complicated and they certainly are time consuming. You can teach Claude all the documentation of a particular tool, and then train it to operate that tool for you, such as Attio, as long as they've got a good API.\n\nAnd the main thing to know is you're not looking at it, you're not getting information from it, you're actually getting it to do things such as move cards around, move a pipeline from meeting to proposal, etc.",
+      text: "I use Claude as my main AI. Marketers really like it. It is intuitive, responds well to feedback and writes well. So my examples will mostly be in Claude. But tools will change, evolve and get better. And they will copy each other. What I think matters more than the tool is becoming comfortable with how to use AI, to get speed without losing quality.\n\nThere is a very important other thing to understand about Claude. I use it as a technical colleague.",
       /* ⭐ bp-01, "the middle man", built 2 Aug. A BLUEPRINT rather than a figure, and the
          distinction is the reason it fits here: a figure names nothing so it stays reusable,
          a blueprint names everything so it is evidence. This one names Attio, Klaviyo, Vercel
@@ -725,14 +725,23 @@ export const MODULE_1: ModuleDef = {
          reader has not met. bp-01 leads as beat one because it is the item's teaser figure.
          19 Sep, later: Paul's two paragraphs moved up into `text` so everyone reads them; the
          beats now carry only the pictures. */
+      /* ⭐ 20 Sep 2026, Paul, reversing the 19 Sep move: "keep this off the first page, as there is
+         literally nothing else to read in 'read full essay' otherwise." The last three paragraphs
+         of his text left `text` and sit in the beats, one before each picture, in his order and
+         word for word. The list shows his first two paragraphs and the essay link. */
       beats: [
-        { figure: "bp-01" },
+        {
+          text: "What I mean by this, it's not what Claude can do itself, but its ability to connect with other software and other tools. For example, my entire website was built through Claude. This training site and everything on it was built through Claude. So not just the writing, but the navigation, the tools, the images. If you got my welcome email, that was created, and sent through Claude.",
+          figure: "bp-01",
+        },
         {
           /* fig-37, Paul 19 Sep: the prompt in a chat, then the cards moving in Attio, close up.
              It replaced a still of the class deck's board. */
+          text: "And when you connect with these tools, you don't have to go into the tools. A lot of these tools are complicated and they certainly are time consuming. You can teach Claude all the documentation of a particular tool, and then train it to operate that tool for you, such as Attio, as long as they've got a good API.",
           figure: "fig-37",
         },
         {
+          text: "And the main thing to know is you're not looking at it, you're not getting information from it, you're actually getting it to do things such as move cards around, move a pipeline from meeting to proposal, etc.",
           image: {
             src: "/course/attio-card-written-by-agent.png",
             alt: "One member's card in Attio with its status, reason and email filled in, and its activity log showing every change was made by an agent",
