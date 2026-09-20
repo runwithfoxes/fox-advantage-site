@@ -121,7 +121,7 @@ export default function InterestPicker({ n }: { n: number }) {
           figures.generated.ts, not invented. */}
       <style>{`
         .ip{margin-top:48px;}
-        .ip-q{font-family:var(--sans);font-weight:500;font-size:1.5rem;letter-spacing:-.01em;color:#1D1B1B;margin:0 0 20px;}
+        .ip-q{font-family:var(--sans);font-weight:500;font-size:1.5rem;line-height:1.25;letter-spacing:-.01em;color:#1D1B1B;margin:0 0 20px;}
         .ip-win{max-width:640px;background:#EDEEF1;border:1px solid rgba(20,20,30,.10);border-radius:15px;padding:0 8px 8px;
           box-shadow:0 1px 1px rgba(26,58,78,.06),0 5px 12px rgba(26,58,78,.11),0 14px 26px rgba(26,58,78,.08);}
         .ip-bar{display:flex;align-items:center;gap:6px;height:30px;padding-left:3px;}

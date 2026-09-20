@@ -7660,7 +7660,11 @@ a.project-card {
 .mod-type{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;background:transparent;color:#8A8A85;border:1px solid #C9C9C3;}
 /* Bigger than the prose it sits over, so an item announces itself as a section. 20 -> 24px.
    Part of the same 2 Aug fix as .mod-n above. */
-.mod-h3{font-family:var(--sans);font-weight:500;font-size:1.5rem;margin:0;letter-spacing:-.01em;flex:1 1 auto;color:#1D1B1B;}
+/* LINE-HEIGHT 1.25, 20 Sep 2026. It had none, so it inherited the body's 1.6, and a headline
+   that wrapped on a phone sat at 38px a line. Paul read the interest question (.ip-q, same
+   24px, same weight) as "too big compared to other headlines": it was the same size, wrapped
+   to two loose lines. Both are now 1.25 and must stay the same as each other. */
+.mod-h3{font-family:var(--sans);font-weight:500;font-size:1.5rem;line-height:1.25;margin:0;letter-spacing:-.01em;flex:1 1 auto;color:#1D1B1B;}
 .mod-h3 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left;border-bottom:1px solid transparent;}
 .mod-h3 button:hover{color:#3A7CA5;border-bottom-color:#3A7CA5;}
 /* Actions read BLUE AT REST, not only on hover. That was the root of the all-grey
