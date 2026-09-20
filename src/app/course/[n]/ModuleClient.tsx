@@ -911,9 +911,17 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
           under 860px, so a phone opened on the course name, ten items and a link to the
           library before it had said which module this is. Paul, off his phone: "It's not
           good, as confusing, with library at top." So on a phone the rail's list is hidden
-          and this copy shows here, after his opening. The library link moves to the foot
-          of the page (.mod-lib-phone). Desktop never sees either. */}
-      <nav className="mod-rail mod-rail-phone">{railContents}</nav>
+          and this copy shows here, after his opening, with the library link under it.
+          Desktop never sees it. */}
+      <nav className="mod-rail mod-rail-phone">
+        {railContents}
+        {/* Directly under the list, as in the rail. It sat at the foot of the page for an
+            hour on 20 Sep and Paul: "We should have a link to library directly under the
+            module links, right?" */}
+        <Link className="mod-rail-lib" href="/course/everything">
+          /library of everything
+        </Link>
+      </nav>
 
 
       {SHOW_COUNTERS && (
@@ -1240,11 +1248,6 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             ))}
           </section>
         )}
-        {/* The library link, on a phone only. It is the rail's link moved to the foot,
-            because the rail's copy is hidden under 860px. See .mod-rail-phone above. */}
-        <Link className="mod-lib-phone" href="/course/everything">
-          /library of everything
-        </Link>
         </div>
       </div>
 
