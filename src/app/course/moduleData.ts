@@ -181,6 +181,14 @@ export type Item = {
      * ⚠️ A beat can also be text alone, which is how the article closes.
      */
     image?: { src: string; alt: string };
+    /**
+     * ⭐ A PROMPT INSIDE A BEAT, with a copy button, drawn after the beat's text and before its
+     * picture. Added 20 Sep 2026 for the fox image in "Break down and rebuild", where the
+     * prompt IS the thing being shown. ⛔ Word for word from the run, never tidied.
+     */
+    prompt?: string;
+    /** The heading on the prompt's box. An image prompt is not pasted into Claude. */
+    promptHead?: string;
     placeholder?: boolean;
   }[];
   /**
@@ -629,158 +637,11 @@ export const MODULE_1: ModuleDef = {
         WITH_CONTEXT: "Task: write a one-page summary of the campaign results in the attached file.\nBackground: it is for the quarterly review, and we are being asked whether to keep spending.\nAudience: the CFO. She cares about what we got for the money, not impressions.\nFormat: one page. A short table of numbers, then three lines of plain English.\nBar: she should be able to decide in two minutes without coming back to me.",
       },
     },
-    {
-      /* ⭐⭐ PAUL'S ITEM, NAMED AND SCOPED BY HIM ON 3 Aug 2026: "i'd like for number 7 to be
-         called 'Break down and rebuilt' and this is a longer article that covers the idea
-         that AI is really good to deconstruct things, so I can understand them, and then
-         rebuild." He corrected the title himself a minute later: "Break down and rebuild
-         (not rebuilt)". His words, his title.
-
-         ⭐⭐ IT IS THE SECOND BUNDLE OF THE DAY AND THE BIGGER ONE. He named four things it
-         absorbs: image to prompt and back to image, copying what experts say in YouTube
-         transcripts, photograph, and website code to create wireframes. Two of those are on
-         his 2 Aug list of nine (#8 image, #9 transcript) and one is already an item further
-         down (Photograph the mess). The fourth, website source to a wireframe, is new today.
-
-         ⛔ SO "PHOTOGRAPH THE MESS" IS NOW DUPLICATED and Paul has not said to cut it. It
-         still stands as its own item lower in the array. Do not delete his content on an
-         inference; ask him.
-
-         ⭐⭐ THE FIGURE LIBRARY ALREADY HELD THIS ARGUMENT, WHICH IS WHY IT NEEDS NO NEW
-         DRAWING. fig-01/02 decode an image, fig-03/04 a page source into a first-pass
-         wireframe, fig-05/06 the same shape for video, fig-31 a YouTube transcript.
-         fig-05's own note in course-figures.html says it outright: "The same three cards.
-         What changes is only what sits in the first and the last, which is the whole
-         argument for having a vocabulary rather than drawing each one." His lesson and the
-         figure system's founding insight are the same thing.
-
-         ⛔⛔ AND THAT IS THE PROBLEM THE RENDERER HAS. This item names FOUR decodes and an
-         item carries ONE picture. It is the open design question from 25 Jul, arriving with
-         a real item behind it for the first time. fig-02 is wired as the flagship, the image
-         one, because it is the example he led with. ⚠️ A reader who is shown one decode and
-         told about four is being told the picture is an illustration rather than the lesson.
-         Paul's call: one figure, a figure per beat, or a strip that pans across all four.
-
-         ⚠️ THE PROSE IS SAMPLE COPY, NOT HIS. He said "this is a longer article", so it is
-         his to write and this is short on purpose: something to react to, not a stand-in for
-         a long piece. `placeholder: true` marks it. It names ONLY the four things he named
-         and invents no example, no statistic and no claim about what he does. */
-      t: "Break down and rebuild",
-      /* ⭐ THE TEASER, and it is his pick: "You can use the youtube transcript as one we
-         [show] before we click to open window." fig-31 alone in the list. */
-      figure: "fig-31",
-      /* ⭐⭐ THE ARTICLE. All four relevant figures, each with his copy after it, only inside
-         the opened window. His instruction, 3 Aug: "I want all of our figures relevant in
-         this article", then the correction that fixed the shape: "We show one figure only.
-         And then we show them all in the longer article with my copy after each one, as I
-         explain it."
-
-         Order: decode a picture, remake it as something new, take a transcript, take a
-         page's structure. fig-31 sits second-last rather than first, because it is the
-         teaser and a reader who clicked in on it should meet the general move first.
-
-         ⭐ fig-06 IS IMAGE TO VIDEO, not image back to image. Flagged to Paul because his
-         phrase was "image to prompt and back to image" and prompt-back-to-image does not
-         exist as a drawing. His ruling, 3 Aug: "image to video works." So nothing is missing.
-
-         ⚠️ EVERY BEAT'S COPY BELOW IS A STAND-IN AND IS DELIBERATELY THIN. It says what the
-         drawing shows and nothing more, so the shape can be judged without anyone inventing
-         Paul's teaching. He writes the real thing: "my copy after each one, as I explain it."
-
-         ⛔ PHOTOGRAPH HAS NO FIGURE. He named it as part of this item and the library has no
-         drawing for it. It is the one beat that would need a new one. */
-      /* ⭐⭐ THE ORDER IS HIS, 3 Aug 2026, given as a walkthrough of how he will write it:
-         "the first thing I'll talk about is using YouTube... Then I'll talk about using an
-         image to deconstruct... After image, I'll move to talking about how you can create a
-         video from an image. And then after that I'll talk about being able to take the code
-         of a website like my website and create a wireframe for it."
-
-         ⭐ SO YOUTUBE LEADS, and that is why fig-31 is also the teaser standing above the
-         list. A reader who clicked in on the transcript meets the transcript first.
-         ⛔ Do not "improve" this into general-to-specific. He is building from the thing he
-         does most often outward, and beat 2 to beat 3 is a deliberate chain: you deconstruct
-         a picture, then you make a video out of it.
-
-         ⚠️ OPEN, HIS, NOT BUILT: "I might show a real photograph of something here as well as
-         the figure with the prompt beside it" on the image beat. A real photograph beside a
-         figure is a new shape and a beat currently holds exactly one drawing. Wait for him. */
-      /* Paul's link, 3 Aug 2026: "there is a brilliant link here for awesome nano banana
-         images and how to create them". Title and owner verified against the live repo
-         (23.4k stars) rather than guessed from the URL.
-
-         ⚠️ HIS URL CARRIES AN ANCHOR, #case-24-movie-storyboardby-geminiapp, so it lands a
-         reader in the middle of the page on ONE case. Kept exactly as he sent it, because
-         changing a URL somebody pasted is a real change, not a tidy-up. FLAGGED TO HIM: his
-         own description is about the whole collection, which is the top of the page.
-
-         ⚠️ IT IS A GITHUB README, a developer surface for an audience of marketers. Same
-         flag already standing on item 01's reading link, and the same person's call.
-
-         ⚠️ NANO BANANA IS GOOGLE'S GEMINI IMAGE MODEL, and the beat above names GetImg. Not
-         a contradiction, he says "there's many out there", but worth knowing they are
-         different tools before anyone edits either. */
-      reading: [
-        {
-          title: "Awesome-Nano-Banana-images",
-          by: "PicoTrex",
-          url: "https://github.com/PicoTrex/Awesome-Nano-Banana-images/blob/main/README_en.md#case-24-movie-storyboardby-geminiapp",
-        },
-      ],
-      beats: [
-        /* Beat one carries NO prose: his article opens with the two paragraphs in `text`
-           above, and this figure follows them. */
-        { figure: "fig-31" },
-        {
-          text: "You can deconstruct the prompt for an image. For example, you can take an image from your website, drop it into Claude and ask Claude to write a descriptive prompt that would create this type of image in an image generator. I use an image generator called GetImg, but there's many out there. And when I ask Claude for this prompt, I ask it to stay under a thousand characters. Once I have the prompt, then I can adjust and amend the prompt a little bit to change the details of the image, but keep the same aesthetic as the image. Beware of copyright, and I'm not endorsing that you steal any images or artwork or IP from anybody else.",
-          figure: "fig-02",
-        },
-        {
-          text: "And if you have an image, then it's easy to create a video or an animated version of this image. Again, this is just getting Claude to write the prompt for a video based on this image. This is not difficult, but it is interesting because in marketing creating video was always a trade-off: the cost and time to make animation versus the benefits of having video versus images. That trade-off no longer really exists.",
-          figure: "fig-06",
-        },
-        {
-          text: "Another great deconstruction is if you're building a website and you want inspiration for wireframes from websites you like. All you need to do is open up a website, right click to view source code, copy it, paste into Claude and ask it to create a wireframe for you.",
-          figure: "fig-04",
-        },
-        /* ⭐⭐ THE PROOF BEAT. Paul, 3 Aug 2026: "I tried this on my own website, and here is
-           the wireframe I got back." A real artefact, not a drawing, and that is why the beat
-           type gained `image`. Every figure above says how the move works; this one says he
-           did it.
-
-           ⭐ PNG RATHER THAN THE HTML, and both existed. The HTML is a fixed 1200px sheet with
-           no media queries and global `body` and `*` rules, so inside the article it needs an
-           iframe or it restyles the page. The wireframe is also entirely greeked, so live text,
-           the only thing HTML would win on, has nothing to offer. The PNG is 2400px wide
-           against a 748px column, better than 3x.
-
-           ⚠️ IT IS 2400x5053, so at column width it renders about 1575px tall, taller than the
-           window it opens in. That is honest, because it is a whole homepage and his sentence
-           is "here is the wireframe I got back", but it is a lot of scrolling. Flagged. */
-        {
-          text: "I tried this on my own website, and here is the wireframe I got back.",
-          image: {
-            src: "/course/rwf-homepage-wireframe.png",
-            alt: "A greeked wireframe of the Run with Foxes homepage, generated by Claude from the page source",
-          },
-        },
-        /* ⭐ THE CLOSING PASSAGE, and it carries no picture. It points at the Nano Banana link
-           in Additional reading directly below it, which is why `figure` had to become
-           optional. ⛔ "with a brilliant link below" is copy that DEPENDS ON THE LAYOUT: if the
-           reading list ever moves out from under the article, this sentence lies. */
-        {
-          text: "There is a brilliant link below with wonderful examples of how to generate images using nano banana, with all the prompt included. I've studied this and tried many of them.",
-        },
-      ],
-      /* ⭐⭐ PAUL'S TEASER COPY, VERBATIM, 3 Aug 2026. The sample written for him is gone.
-         Two paragraphs: the move, then the YouTube transcript worked through in full, which
-         is why fig-31 is the figure standing above it.
-         ⚠️ One dictation slip repaired, his to put back: "I do this for image, videos" ->
-         "images". Nothing else touched, including the spaced hyphen, which is his. */
-      text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.\n\n{{TRANSCRIPT}}",
-      inlinePrompts: {
-        TRANSCRIPT: "This is the full transcript of a video where [the expert] explains how\nthey [do the thing]. I work in [your role]. Tell me what is new,\ninteresting or relevant to me, and what I can skip. Then tell me how\ncredible it is: which claims are backed up, and which are just opinion.",
-      },
-    },
+    /* ⭐ ITEMS 03 AND 04 SWAPPED, 20 Sep 2026, Paul's call on launch day: "should we move 04 to
+       03 and then it makes sense?" The technical colleague item says Claude drives other tools,
+       "the navigation, the tools, the images". Break down and rebuild then shows exactly that:
+       Claude writes the prompt and the image generator makes the picture. It also says why the
+       examples are in Claude before the first long Claude example arrives. */
     {
       /* ⭐ PAUL'S WORDS, VERBATIM, 3 Aug 2026, headline and copy together in one go.
 
@@ -900,6 +761,191 @@ export const MODULE_1: ModuleDef = {
           url: "https://claude.com/connectors",
         },
       ],
+    },
+    {
+      /* ⭐⭐ PAUL'S ITEM, NAMED AND SCOPED BY HIM ON 3 Aug 2026: "i'd like for number 7 to be
+         called 'Break down and rebuilt' and this is a longer article that covers the idea
+         that AI is really good to deconstruct things, so I can understand them, and then
+         rebuild." He corrected the title himself a minute later: "Break down and rebuild
+         (not rebuilt)". His words, his title.
+
+         ⭐⭐ IT IS THE SECOND BUNDLE OF THE DAY AND THE BIGGER ONE. He named four things it
+         absorbs: image to prompt and back to image, copying what experts say in YouTube
+         transcripts, photograph, and website code to create wireframes. Two of those are on
+         his 2 Aug list of nine (#8 image, #9 transcript) and one is already an item further
+         down (Photograph the mess). The fourth, website source to a wireframe, is new today.
+
+         ⛔ SO "PHOTOGRAPH THE MESS" IS NOW DUPLICATED and Paul has not said to cut it. It
+         still stands as its own item lower in the array. Do not delete his content on an
+         inference; ask him.
+
+         ⭐⭐ THE FIGURE LIBRARY ALREADY HELD THIS ARGUMENT, WHICH IS WHY IT NEEDS NO NEW
+         DRAWING. fig-01/02 decode an image, fig-03/04 a page source into a first-pass
+         wireframe, fig-05/06 the same shape for video, fig-31 a YouTube transcript.
+         fig-05's own note in course-figures.html says it outright: "The same three cards.
+         What changes is only what sits in the first and the last, which is the whole
+         argument for having a vocabulary rather than drawing each one." His lesson and the
+         figure system's founding insight are the same thing.
+
+         ⛔⛔ AND THAT IS THE PROBLEM THE RENDERER HAS. This item names FOUR decodes and an
+         item carries ONE picture. It is the open design question from 25 Jul, arriving with
+         a real item behind it for the first time. fig-02 is wired as the flagship, the image
+         one, because it is the example he led with. ⚠️ A reader who is shown one decode and
+         told about four is being told the picture is an illustration rather than the lesson.
+         Paul's call: one figure, a figure per beat, or a strip that pans across all four.
+
+         ⚠️ THE PROSE IS SAMPLE COPY, NOT HIS. He said "this is a longer article", so it is
+         his to write and this is short on purpose: something to react to, not a stand-in for
+         a long piece. `placeholder: true` marks it. It names ONLY the four things he named
+         and invents no example, no statistic and no claim about what he does. */
+      t: "Break down and rebuild",
+      /* ⭐ THE TEASER, and it is his pick: "You can use the youtube transcript as one we
+         [show] before we click to open window." fig-31 alone in the list. */
+      figure: "fig-31",
+      /* ⭐⭐ THE ARTICLE. All four relevant figures, each with his copy after it, only inside
+         the opened window. His instruction, 3 Aug: "I want all of our figures relevant in
+         this article", then the correction that fixed the shape: "We show one figure only.
+         And then we show them all in the longer article with my copy after each one, as I
+         explain it."
+
+         Order: decode a picture, remake it as something new, take a transcript, take a
+         page's structure. fig-31 sits second-last rather than first, because it is the
+         teaser and a reader who clicked in on it should meet the general move first.
+
+         ⭐ fig-06 IS IMAGE TO VIDEO, not image back to image. Flagged to Paul because his
+         phrase was "image to prompt and back to image" and prompt-back-to-image does not
+         exist as a drawing. His ruling, 3 Aug: "image to video works." So nothing is missing.
+
+         ⚠️ EVERY BEAT'S COPY BELOW IS A STAND-IN AND IS DELIBERATELY THIN. It says what the
+         drawing shows and nothing more, so the shape can be judged without anyone inventing
+         Paul's teaching. He writes the real thing: "my copy after each one, as I explain it."
+
+         ⛔ PHOTOGRAPH HAS NO FIGURE. He named it as part of this item and the library has no
+         drawing for it. It is the one beat that would need a new one. */
+      /* ⭐⭐ THE ORDER IS HIS, 3 Aug 2026, given as a walkthrough of how he will write it:
+         "the first thing I'll talk about is using YouTube... Then I'll talk about using an
+         image to deconstruct... After image, I'll move to talking about how you can create a
+         video from an image. And then after that I'll talk about being able to take the code
+         of a website like my website and create a wireframe for it."
+
+         ⭐ SO YOUTUBE LEADS, and that is why fig-31 is also the teaser standing above the
+         list. A reader who clicked in on the transcript meets the transcript first.
+         ⛔ Do not "improve" this into general-to-specific. He is building from the thing he
+         does most often outward, and beat 2 to beat 3 is a deliberate chain: you deconstruct
+         a picture, then you make a video out of it.
+
+         ⚠️ OPEN, HIS, NOT BUILT: "I might show a real photograph of something here as well as
+         the figure with the prompt beside it" on the image beat. A real photograph beside a
+         figure is a new shape and a beat currently holds exactly one drawing. Wait for him. */
+      /* Paul's link, 3 Aug 2026: "there is a brilliant link here for awesome nano banana
+         images and how to create them". Title and owner verified against the live repo
+         (23.4k stars) rather than guessed from the URL.
+
+         ⚠️ HIS URL CARRIES AN ANCHOR, #case-24-movie-storyboardby-geminiapp, so it lands a
+         reader in the middle of the page on ONE case. Kept exactly as he sent it, because
+         changing a URL somebody pasted is a real change, not a tidy-up. FLAGGED TO HIM: his
+         own description is about the whole collection, which is the top of the page.
+
+         ⚠️ IT IS A GITHUB README, a developer surface for an audience of marketers. Same
+         flag already standing on item 01's reading link, and the same person's call.
+
+         ⚠️ NANO BANANA IS GOOGLE'S GEMINI IMAGE MODEL, and the beat above names GetImg. Not
+         a contradiction, he says "there's many out there", but worth knowing they are
+         different tools before anyone edits either. */
+      reading: [
+        {
+          title: "Awesome-Nano-Banana-images",
+          by: "PicoTrex",
+          url: "https://github.com/PicoTrex/Awesome-Nano-Banana-images/blob/main/README_en.md#case-24-movie-storyboardby-geminiapp",
+        },
+      ],
+      beats: [
+        /* Beat one carries NO prose: his article opens with the two paragraphs in `text`
+           above, and this figure follows them. */
+        { figure: "fig-31" },
+        {
+          text: "You can deconstruct the prompt for an image. For example, you can take an image from your website, drop it into Claude and ask Claude to write a descriptive prompt that would create this type of image in an image generator. I use an image generator called GetImg, but there's many out there. And when I ask Claude for this prompt, I ask it to stay under a thousand characters. Once I have the prompt, then I can adjust and amend the prompt a little bit to change the details of the image, but keep the same aesthetic as the image. Beware of copyright, and I'm not endorsing that you steal any images or artwork or IP from anybody else.",
+          figure: "fig-02",
+        },
+        /* ⭐⭐ THE FOX, 20 Sep 2026. Paul: "could we deconstruct an image. We can use one of my
+           foxes... show the prompt in great detail. And recreate the same image but on a
+           basketball court." Record, prompts and what went wrong first:
+           course-files/module-1/image/README.md.
+           ⚠️ THE THREE PASSAGES BELOW ARE DRAY'S DRAFTS, awaiting Paul's words. The two prompts
+           are word for word: the first is Claude's reply to the still, the second is the prompt
+           that made the court image.
+           ⛔ THE COURT IMAGE WAS MADE WITH TWO REFERENCE PICTURES AND THE PAGE SAYS SO. Text alone
+           did not give his fox. Never reword this to suggest the prompt did it alone. */
+        {
+          text: "Here is one I did. This is a still from a short film of my fox walking through a gym.",
+          image: {
+            src: "/course/fox-in-the-gym.jpg",
+            alt: "A grumpy cartoon fox in a navy tracksuit, a towel over his shoulder, walking through a gym towards the camera",
+          },
+          placeholder: true,
+        },
+        {
+          text: "I dropped it into Claude and asked for a prompt that would create this type of image. This is what came back.",
+          promptHead: "The prompt Claude wrote from the still",
+          prompt: "A cinematic 3D-animated anthropomorphic fox walking directly toward the camera down the aisle of a bright, industrial gym. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression — visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.\n\nBackground: softly blurred gym interior with tall windows flooding hazy morning sunlight across the floor, out-of-focus human athletes lifting dumbbells and using machines, mirrored wall on the left, kettlebells and medicine balls lining the right wall. Shallow depth of field, warm volumetric light rays, long shadows on gray rubber flooring.\n\nStyle: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.",
+          placeholder: true,
+        },
+        {
+          text: "Then I changed the gym to a basketball court. I also gave the image generator two pictures to work from, my fox and the gym still, so it stayed the same character in the same clothes. A prompt on its own got me a fox, but not my fox.",
+          promptHead: "The prompt that made the image below, with the two pictures attached",
+          prompt: "The stylized Pixar-style grumpy orange fox character from the first reference image, exactly the same face and proportions: large round plush head, short muzzle, huge half-lidded amber eyes, flat unimpressed mouth, compact stocky body, ROUNDED DARK BROWN MITTEN PAWS with no separate fingers, solid orange bushy tail. He wears the same navy blue zip-up tracksuit with white side stripes as in the second reference image, crisp white sneakers, and a white towel draped over one shoulder. He is walking directly toward the camera across the polished hardwood of an indoor basketball court, looking straight down the lens, deadpan and tired. Camera at the fox's eye level, head-on, fox centred, full body, about seventy percent of frame height, grounded with a real cast shadow and a soft reflection on the floor. Background, softly out of focus: tall windows flooding hazy morning sunlight across the court in warm volumetric rays, out-of-focus human players shooting and dribbling, a hoop and backboard on the left, retracted bleachers and a rack of basketballs along the right wall, painted court lines. Same light and colour as the second reference image. Photographed on location, shot on 35mm film, shallow depth of field, cinematic.",
+          image: {
+            src: "/course/fox-on-the-court.jpg",
+            alt: "The same grumpy fox in the same navy tracksuit and towel, now walking across an indoor basketball court",
+          },
+          placeholder: true,
+        },
+        {
+          text: "And if you have an image, then it's easy to create a video or an animated version of this image. Again, this is just getting Claude to write the prompt for a video based on this image. This is not difficult, but it is interesting because in marketing creating video was always a trade-off: the cost and time to make animation versus the benefits of having video versus images. That trade-off no longer really exists.",
+          figure: "fig-06",
+        },
+        {
+          text: "Another great deconstruction is if you're building a website and you want inspiration for wireframes from websites you like. All you need to do is open up a website, right click to view source code, copy it, paste into Claude and ask it to create a wireframe for you.",
+          figure: "fig-04",
+        },
+        /* ⭐⭐ THE PROOF BEAT. Paul, 3 Aug 2026: "I tried this on my own website, and here is
+           the wireframe I got back." A real artefact, not a drawing, and that is why the beat
+           type gained `image`. Every figure above says how the move works; this one says he
+           did it.
+
+           ⭐ PNG RATHER THAN THE HTML, and both existed. The HTML is a fixed 1200px sheet with
+           no media queries and global `body` and `*` rules, so inside the article it needs an
+           iframe or it restyles the page. The wireframe is also entirely greeked, so live text,
+           the only thing HTML would win on, has nothing to offer. The PNG is 2400px wide
+           against a 748px column, better than 3x.
+
+           ⚠️ IT IS 2400x5053, so at column width it renders about 1575px tall, taller than the
+           window it opens in. That is honest, because it is a whole homepage and his sentence
+           is "here is the wireframe I got back", but it is a lot of scrolling. Flagged. */
+        {
+          text: "I tried this on my own website, and here is the wireframe I got back.",
+          image: {
+            src: "/course/rwf-homepage-wireframe.png",
+            alt: "A greeked wireframe of the Run with Foxes homepage, generated by Claude from the page source",
+          },
+        },
+        /* ⭐ THE CLOSING PASSAGE, and it carries no picture. It points at the Nano Banana link
+           in Additional reading directly below it, which is why `figure` had to become
+           optional. ⛔ "with a brilliant link below" is copy that DEPENDS ON THE LAYOUT: if the
+           reading list ever moves out from under the article, this sentence lies. */
+        {
+          text: "There is a brilliant link below with wonderful examples of how to generate images using nano banana, with all the prompt included. I've studied this and tried many of them.",
+        },
+      ],
+      /* ⭐⭐ PAUL'S TEASER COPY, VERBATIM, 3 Aug 2026. The sample written for him is gone.
+         Two paragraphs: the move, then the YouTube transcript worked through in full, which
+         is why fig-31 is the figure standing above it.
+         ⚠️ One dictation slip repaired, his to put back: "I do this for image, videos" ->
+         "images". Nothing else touched, including the spaced hyphen, which is his. */
+      text: "AI is excellent for deconstructing things and rebuilding them. I do this for image, videos, wireframes, webpages, processes, workflows.\n\nFor example, if I want to learn how something is done, I go to youtube and find an expert explaining their process. The longer and detailed the video the better. I don't watch it. Instead, I find the transcript of the video (found under \"more\") - and copy the entire thing into Claude, and ask Claude to tell what is new, interesting or relevant to me. I also get Claude to check how much is credible.\n\n{{TRANSCRIPT}}",
+      inlinePrompts: {
+        TRANSCRIPT: "This is the full transcript of a video where [the expert] explains how\nthey [do the thing]. I work in [your role]. Tell me what is new,\ninteresting or relevant to me, and what I can skip. Then tell me how\ncredible it is: which claims are backed up, and which are just opinion.",
+      },
     },
     {
       /* ⭐ MOVED TO SLOT 03 ON 3 Aug 2026, on Paul's instruction: "projects is more

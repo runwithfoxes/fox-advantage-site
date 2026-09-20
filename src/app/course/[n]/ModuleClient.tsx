@@ -489,12 +489,20 @@ function PromptBlock({
   text,
   label,
   onCopy,
+  show,
+  head,
 }: {
   text: string;
   label?: string;
   onCopy: () => void;
+  /** Keep a long prompt readable. For the fox beats in "Break down and rebuild", 20 Sep
+   *  2026, where Paul asked to "show the prompt in great detail": there the prompt is the
+   *  thing being taught, so it is reading material however long it is. */
+  show?: boolean;
+  /** The box's one line of heading, when "Paste this into Claude or ChatGPT" is not true. */
+  head?: string;
 }) {
-  const long = text.trim().split(/\s+/).length > PROMPT_IS_LONG_AT;
+  const long = !show && text.trim().split(/\s+/).length > PROMPT_IS_LONG_AT;
 
   /* ⭐ A LONG PROMPT IS ONE BUTTON AND NOTHING ELSE. First attempt kept the box, a word
      count and a "show it" toggle, and Paul killed all three on sight: "this is ugly, not
@@ -519,7 +527,7 @@ function PromptBlock({
   return (
     <div className="mod-copybox">
       <div className="mod-copyhead">
-        <span>Paste this into Claude or ChatGPT</span>
+        <span>{head ?? "Paste this into Claude or ChatGPT"}</span>
         <button type="button" onClick={onCopy}>
           Copy
         </button>
@@ -1363,6 +1371,15 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
               {mod.items[open].beats?.map((b, j) => (
                 <div className="mod-beat" key={j}>
                   {b.text && <Body text={b.text} ph={b.placeholder} />}
+                  {/* A prompt inside a beat, 20 Sep 2026: after the words, before the picture. */}
+                  {b.prompt && (
+                    <PromptBlock
+                      text={b.prompt}
+                      show
+                      head={b.promptHead}
+                      onCopy={() => copyInline(mod.items[open], open, b.prompt as string)}
+                    />
+                  )}
                   {/* ⛔ A FIGURE AND A REAL ARTEFACT ARE DIFFERENT THINGS AND THE PAGE SAYS SO.
                       A figure is a drawing of the move, reusable, naming nothing. An image is
                       evidence that Paul actually did it. His copy leans on that difference:
