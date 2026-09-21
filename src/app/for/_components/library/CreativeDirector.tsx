@@ -22,7 +22,14 @@ const A = "/for/creative-director";
 // The six generated images, per the presentation's own markup.
 const OURS = new Set([2, 4, 5, 7, 10, 12]);
 
-export default function CreativeDirector({ notes = true }: { notes?: boolean } = {}) {
+// `opening` replaces the first sentence of the first note, for a page that
+// needs to say it differently. Paul, 21 Sep 2026, on Drinkaware: "This
+// creative director agent would be trained on copywriting too." Every other
+// page passes nothing and renders exactly as before.
+export default function CreativeDirector({
+  notes = true,
+  opening,
+}: { notes?: boolean; opening?: string } = {}) {
   const [revealed, setRevealed] = useState(false);
 
   return (
@@ -75,9 +82,9 @@ export default function CreativeDirector({ notes = true }: { notes?: boolean } =
           dictation. Off on Bright, 31 Aug, on Paul's call. */}
       {notes && (
       <p className="pps-standfirst" style={{ marginTop: 30 }}>
-        We may be stretching it a little to call this agent a Creative
-        Director, as it is more like an Art Director, but it has been
-        trained on advertising copywriting too. We&rsquo;ve found that
+        {opening ??
+          "We may be stretching it a little to call this agent a Creative Director, as it is more like an Art Director, but it has been trained on advertising copywriting too."}{" "}
+        We&rsquo;ve found that
         focusing on very narrow use cases produces the best results. The
         agent learns how to do one small set of things consistently well.
         The value here is for brands that do lots of advertising and need

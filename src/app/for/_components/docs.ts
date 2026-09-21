@@ -78,4 +78,8 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // call and the build worked out in /jo that day. It follows the IHCE page,
   // with the Growth Agent figures turned to the helpdesk, and one price.
   brosnan: dynamic(() => import("./BrosnanDoc"), { ssr: false }),
+  // Dearbhla O'Brien and Amy, Drinkaware. Built 21 Sep 2026 from the 7 Sep
+  // call: Paddy's character sprint, then the creative director agent and
+  // training, one price.
+  drinkaware: dynamic(() => import("./DrinkawareDoc"), { ssr: false }),
 };
