@@ -297,26 +297,30 @@ export default function DrinkawareDoc() {
         <PricingCards
           cards={[
             {
-              title: "The creative director agent and training",
+              title: "The character and the creative director agent",
               bullets: [
-                "Built around Paddy's character and your brand",
-                "Tested with Amy on real requests",
+                "The character, created with you over three to four weeks",
+                "The creative director agent, built around the character and your brand",
                 "Training for Amy, then handed over and yours to keep",
               ],
-              price: "€5,000 plus VAT",
-              note: "One off.",
+              lines: [
+                { label: "Character development, Paddy Geraghty", value: "€10,000" },
+                { label: "Creative director agent and training", value: "€5,000" },
+              ],
+              price: "€15,000 plus VAT",
+              note: "Total. Paddy invoices the character development himself.",
             },
           ]}
         />
         <CoversGrid
           covers={[
+            "Creating the character and a first set of images and short clips",
             "Building and testing the agent",
             "Setting it up in your own Claude account",
             "Training Amy to run it and change it",
             "A named point of contact, Paul",
           ]}
           notCovered={[
-            "Paddy Geraghty's character work, three to four weeks, about €10,000, invoiced by Paddy",
             "A Claude subscription, and the image and video tools the agent uses",
           ]}
         />
