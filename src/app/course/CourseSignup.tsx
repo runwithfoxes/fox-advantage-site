@@ -59,11 +59,14 @@ export type SignupPayload = {
    * non-empty value here is the single most reliable "this is not a person"
    * signal available without putting a puzzle in front of a real visitor.
    *
-   * Named `company_url` on purpose. Call it `website` or `address` and a
-   * password manager will helpfully autofill it, which would silently reject
-   * real people - the one way this technique goes wrong.
+   * ⛔ DEFECT FIXED 21 Sep 2026. It was named `company_url`, chosen as "unfamiliar
+   * to autofill". It was not: Chrome fills anything that says "company" and
+   * ignores autocomplete="off", so on launch day 13 real people (Una Herlihy
+   * five times) saw "You're in" and were silently thrown away. The name is now
+   * `rwf_hp`, which matches no autofill heuristic in any browser. Never give it
+   * a name that means something (company, website, url, address, org, phone).
    */
-  company_url?: string;
+  rwf_hp?: string;
   /**
    * ⭐ META'S CLICK ID, read off the URL, never stored. Present only when the
    * visitor arrived from a Facebook or Instagram ad, because Meta appends
@@ -158,7 +161,7 @@ export default function CourseSignup({
   const [state, setState] = useState<State>({ kind: "idle" });
   const [first, setFirst] = useState("");
   const [email, setEmail] = useState("");
-  /* Stays "" for every real visitor. See SignupPayload.company_url. */
+  /* Stays "" for every real visitor. See SignupPayload.rwf_hp. */
   const [trap, setTrap] = useState("");
 
   async function onSubmit(e: React.FormEvent) {
@@ -175,7 +178,7 @@ export default function CourseSignup({
         first_name: first.trim(),
         email: email.trim(),
         signup_source: source,
-        company_url: trap,
+        rwf_hp: trap,
         ...(() => {
           const fbclid = readFbclid();
           return fbclid ? { fbclid } : {};
@@ -204,11 +207,11 @@ export default function CourseSignup({
             - tabIndex={-1} + aria-hidden keep it out of the tab order and out of
               the accessibility tree, so a screen reader user never meets it. A
               careless honeypot is an accessibility trap; this one is not.
-            - the name is deliberately unfamiliar to autofill heuristics.
+            - the name means nothing, so autofill leaves it alone. See SignupPayload.rwf_hp.
         */}
         <input
           type="text"
-          name="company_url"
+          name="rwf_hp"
           value={trap}
           onChange={(e) => setTrap(e.target.value)}
           tabIndex={-1}

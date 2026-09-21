@@ -157,7 +157,7 @@ export async function POST(req: NextRequest) {
 
   /*
     ⭐ THE HONEYPOT, CHECKED FIRST - before validation, before Redis, before
-    Klaviyo. `company_url` is an off-screen field the page renders but no human
+    Klaviyo. `rwf_hp` is an off-screen field the page renders but no human
     can see or tab into, so anything in it came from something filling the DOM
     blind.
 
@@ -169,7 +169,10 @@ export async function POST(req: NextRequest) {
     This is the piece that actually stops the junk. The name check below only
     counts, and the rate limit only slows.
   */
-  if (String(body.company_url ?? "").trim() !== "") {
+  /* ⛔ 21 Sep 2026: the trap used to be `company_url`, which Chrome autofilled for
+     real people. The old name is now IGNORED, not checked, so a module tab opened
+     before this deploy still lets its visitor in. See CourseSignup's SignupPayload. */
+  if (String(body.rwf_hp ?? "").trim() !== "") {
     // Logged, not silent. This branch is the one place a real person could be
     // wrongly turned away (a password manager filling the trap), and until now
     // it left NO trace anywhere - the reply is a fake 200 and nothing is
