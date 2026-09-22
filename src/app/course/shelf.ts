@@ -337,6 +337,18 @@ export const SHELF: ShelfSection[] = [
 
        ⛔ NO `note` ON ANY OF THEM. His to write, and the section is correct without one. */
     entries: [
+      /* ⭐ PAUL, 22 Sep 2026, on the slider page built for his LinkedIn post: "Could we make
+         this page somewhere on my website and have a link on it to the library of everything?"
+         and then, looking at the library: "Is it in the everything library? I don't see it."
+         So the link goes both ways. His own page, at /course/same-prompt.
+         ⚠️ THE NAME AND THE NOTE ARE DRAFTS, written from the page's own headline and
+         description rather than from his words, and his to change. */
+      {
+        name: "The same prompt, run twice",
+        by: "Paul Dervan, Run with Foxes",
+        url: "https://runwithfoxes.com/course/same-prompt",
+        note: "One image prompt on its own, then with a picture beside it.",
+      },
       /* ⭐ PAUL'S ASK, 20 Sep 2026, the evening module 1 opened: "can you add the essay into
          the library of everything section." The same piece module 1's opening now links to,
          so a reader who missed the link in his welcome meets it again here.
