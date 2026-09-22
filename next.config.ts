@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         source: "/info",
         destination: "/info/index.html",
       },
+      /* The fox prompt slider, 22 Sep 2026, made for a LinkedIn post about the course.
+         A static page from /branded-page, linking to /course/everything. */
+      {
+        source: "/course/same-prompt",
+        destination: "/course/same-prompt/index.html",
+      },
       {
         source: "/training",
         destination: "/training-app/index.html",
