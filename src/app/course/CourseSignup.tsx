@@ -62,9 +62,12 @@ export type SignupPayload = {
    * ⛔ DEFECT FIXED 21 Sep 2026. It was named `company_url`, chosen as "unfamiliar
    * to autofill". It was not: Chrome fills anything that says "company" and
    * ignores autocomplete="off", so on launch day 13 real people (Una Herlihy
-   * five times) saw "You're in" and were silently thrown away. The name is now
-   * `rwf_hp`, which matches no autofill heuristic in any browser. Never give it
-   * a name that means something (company, website, url, address, org, phone).
+   * five times) saw "You're in" and were silently thrown away. It was renamed
+   * `rwf_hp`, and that did NOT fix it: 21-23 Sep, 20 more (Dan O'Doherty three
+   * times). Position was the cause, not the name. From 23 Sep the trap sits after
+   * the real boxes, they carry name and autocomplete, and the route lets a filled
+   * trap in unless the name is machine-shaped too. Still never give it a name that
+   * means something (company, website, url, address, org, phone).
    */
   rwf_hp?: string;
   /**
@@ -199,6 +202,31 @@ export default function CourseSignup({
   return (
     <div className={"co-join" + (compact ? " co-join-compact" : "")}>
       <form className="co-joinbar" onSubmit={onSubmit} noValidate>
+        <input
+          type="text"
+          className="nm"
+          name="first_name"
+          autoComplete="given-name"
+          placeholder="First name"
+          value={first}
+          onChange={(e) => setFirst(e.target.value)}
+          required
+        />
+        <span className="sep" />
+        <input
+          type="email"
+          className="em"
+          name="email"
+          autoComplete="email"
+          placeholder="your@email.com"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            /* clear a stale error the moment they start fixing it */
+            if (state.kind === "error") setState({ kind: "idle" });
+          }}
+          required
+        />
         {/*
           THE TRAP. Four things here are load-bearing, do not "tidy" any of them:
             - positioned off-screen, NOT display:none. A hidden required field can
@@ -207,7 +235,11 @@ export default function CourseSignup({
             - tabIndex={-1} + aria-hidden keep it out of the tab order and out of
               the accessibility tree, so a screen reader user never meets it. A
               careless honeypot is an accessibility trap; this one is not.
-            - the name means nothing, so autofill leaves it alone. See SignupPayload.rwf_hp.
+            - it sits AFTER the real boxes, and the real boxes carry name and
+              autocomplete, so autofill has proper targets and no reason to aim
+              here. Until 23 Sep it came first and the real boxes had neither, and
+              browsers filled it whatever it was called. Even so a filled trap no
+              longer turns anyone away on its own (see the route). See SignupPayload.rwf_hp.
         */}
         <input
           type="text"
@@ -218,27 +250,6 @@ export default function CourseSignup({
           autoComplete="off"
           aria-hidden="true"
           style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
-        />
-        <input
-          type="text"
-          className="nm"
-          placeholder="First name"
-          value={first}
-          onChange={(e) => setFirst(e.target.value)}
-          required
-        />
-        <span className="sep" />
-        <input
-          type="email"
-          className="em"
-          placeholder="your@email.com"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            /* clear a stale error the moment they start fixing it */
-            if (state.kind === "error") setState({ kind: "idle" });
-          }}
-          required
         />
         <button type="submit" aria-label="Sign up" disabled={state.kind === "sending"}>
           {state.kind === "sending" ? "…" : "→"}

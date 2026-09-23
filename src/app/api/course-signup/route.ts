@@ -155,42 +155,44 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
   }
 
-  /*
-    ⭐ THE HONEYPOT, CHECKED FIRST - before validation, before Redis, before
-    Klaviyo. `rwf_hp` is an off-screen field the page renders but no human
-    can see or tab into, so anything in it came from something filling the DOM
-    blind.
-
-    IT ANSWERS 200 OK, NOT AN ERROR, AND THAT IS THE WHOLE POINT. A 400 teaches
-    a bot which field gave it away and it comes back without that field. A
-    cheerful success teaches it nothing and it goes away happy. Nothing is
-    written anywhere: no profile, no list, no welcome email, no Upstash record.
-
-    This is the piece that actually stops the junk. The name check below only
-    counts, and the rate limit only slows.
-  */
-  /* ⛔ 21 Sep 2026: the trap used to be `company_url`, which Chrome autofilled for
-     real people. The old name is now IGNORED, not checked, so a module tab opened
-     before this deploy still lets its visitor in. See CourseSignup's SignupPayload. */
-  if (String(body.rwf_hp ?? "").trim() !== "") {
-    // Logged, not silent. This branch is the one place a real person could be
-    // wrongly turned away (a password manager filling the trap), and until now
-    // it left NO trace anywhere - the reply is a fake 200 and nothing is
-    // recorded. A visible line means a false positive is discoverable in the
-    // Vercel logs instead of being invisible, as it was when Maebh went missing
-    // on 24 Jul and could not be confirmed either way. The email is included on
-    // purpose so a human report can be matched to a rejection; the trap value is
-    // NOT logged (it is attacker-controlled and worthless).
-    console.warn(
-      "[course-signup] honeypot rejected",
-      String(body.email ?? "").trim().toLowerCase() || "(no email)",
-      clientIp(req),
-    );
-    return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
-  }
-
   const email = String(body.email ?? "").trim().toLowerCase();
   const firstName = String(body.first_name ?? "").trim();
+
+  /*
+    ⭐ THE HONEYPOT FLAGS. IT ONLY REJECTS WHEN THE NAME IS A MACHINE'S TOO.
+
+    `rwf_hp` is an off-screen field the page renders but no human can see or tab
+    into. The idea was that anything in it came from a bot filling the DOM blind.
+
+    ⛔ THAT WAS WRONG, TWICE. 21 Sep 2026: the field was `company_url`, Chrome
+    autofilled it, and 13 real people saw "You're in" and were thrown away. It was
+    renamed `rwf_hp` on the belief that a meaningless name matches no autofill in
+    any browser. It did not help: from 21 to 23 Sep another 20 or so real people
+    were thrown away the same way (Dan O'Doherty three times, two at Sabre). The
+    browser fills the trap because of WHERE it sits, not what it is called: it was
+    the first text box in the form, and the real name and email boxes carried no
+    name or autocomplete for autofill to aim at. So the name is not the fix and
+    never was.
+
+    So now, the same rule as the name check below: a false positive costs a
+    member, a false negative costs one row in a count. The trap on its own lets
+    the person in, marks the Klaviyo profile `signup_trap: filled` and the record
+    `trap: true`, and sends NO Meta conversion (a bot conversion teaches the
+    optimiser to find bots). Only trap AND a machine-shaped name gets the old fake
+    200 with nothing written, which is exactly the shape of the July bots.
+
+    The fake 200 still matters there: a 400 teaches a bot which field gave it
+    away. The trap value is never logged (attacker-controlled and worthless); the
+    email is, so a person who writes in can be matched to a line.
+  */
+  const trapFilled = String(body.rwf_hp ?? "").trim() !== "";
+  if (trapFilled && looksMachineGenerated(firstName)) {
+    console.warn("[course-signup] honeypot rejected", email || "(no email)", clientIp(req));
+    return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
+  }
+  if (trapFilled) {
+    console.warn("[course-signup] honeypot filled, let in", email || "(no email)", clientIp(req));
+  }
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
@@ -284,6 +286,10 @@ export async function POST(req: NextRequest) {
        second submission should not inherit the first one's verdict. */
     properties.signup_email_dns = undeliverable ? "no_mail_route" : "ok";
 
+    /* Every touch, like the two above. Only ever written when true, so a later clean
+       submission leaves an earlier flag in place rather than wiping it. */
+    if (trapFilled) properties.signup_trap = "filled";
+
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
       headers: headers(key, true),
@@ -305,7 +311,7 @@ export async function POST(req: NextRequest) {
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed",
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -371,7 +377,7 @@ export async function POST(req: NextRequest) {
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed",
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -379,7 +385,7 @@ export async function POST(req: NextRequest) {
     await recordSignup({
       ts: stamp, email, first_name: firstName, signup_source: source,
       signup_module: signupModule, signup_module_lands: lands,
-      door, klaviyo: "ok",
+      door, klaviyo: "ok", ...(trapFilled ? { trap: true as const } : {}),
     });
 
     /*
@@ -391,7 +397,9 @@ export async function POST(req: NextRequest) {
 
       ⛔ IT ONLY RUNS ON THE SUCCESS PATH, DELIBERATELY. A honeypot bot (fake
       200, nothing written), a failed Klaviyo call and a rate-limited caller all
-      return earlier, so none of them reach here. Sending a conversion for a bot
+      return earlier, so none of them reach here. A person let in with the trap
+      filled (23 Sep 2026) does reach here and is skipped by `trapFilled`, since
+      we cannot be sure they are a person. Sending a conversion for a bot
       would teach the optimiser to go and find more bots, which is the single
       most expensive thing that can go wrong on a conversion campaign.
 
@@ -402,7 +410,7 @@ export async function POST(req: NextRequest) {
       Never throws - `sendCourseSignupEvent` returns its failures rather than
       raising, so nothing here can affect a signup that has already succeeded.
     */
-    after(async () => {
+    if (!trapFilled) after(async () => {
       const result = await sendCourseSignupEvent({
         email,
         firstName,
