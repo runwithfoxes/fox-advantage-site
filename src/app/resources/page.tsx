@@ -74,7 +74,15 @@ export default function ResourceHubPage() {
 
   return (
     <div className={s.page}>
-      <HubHero />
+      <HubHero
+        lines={[
+          ...REPORTS.map((r) => ({ label: `Report ${r.no}${r.example ? " · example" : ""}`, title: r.title, href: r.href })),
+          ...INSTRUMENTS.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
+          ...library
+            .filter((e) => e.type !== "Study")
+            .map((e) => ({ label: `${e.type} · ${formatDay(e.date)}`, title: e.title, href: e.href })),
+        ]}
+      />
 
       <main className={s.wrap}>
         {/* ── THE FLAGSHIP IMAGE, full width ── */}

@@ -15,9 +15,10 @@ import s from "./hero.module.css";
  *
  * ⛔ MOCKUP: both forms post nowhere. No Klaviyo, no Attio, no course signup route.
  */
-export default function HubHero() {
-  const [tab, setTab] = useState<"join" | "signin">("join");
-  const [done, setDone] = useState<string | null>(null);
+export type Line = { label: string; title: string; href?: string };
+
+export default function HubHero({ lines }: { lines: Line[] }) {
+  const [done, setDone] = useState(false);
 
   return (
     <section className={s.hero}>
@@ -31,7 +32,9 @@ export default function HubHero() {
           <a href="#trackers">/trackers</a>
           <a href="#tools">/tools</a>
           <Link href="/course">/course</Link>
-          <Link href="/contact">/contact</Link>
+          <a href="#" className={s.signin}>
+            /sign in
+          </a>
         </nav>
       </header>
 
@@ -46,44 +49,36 @@ export default function HubHero() {
           <p className={s.stamp}>New study: who AI names across 41 categories of Irish life</p>
         </div>
 
+        {/* The GEO hero's question paper, holding our research instead of questions. Same
+            scroll: 160s for one pass, paused on hover. Links not ready yet go to "#". */}
         <div className={s.panel}>
-          <div className={s.tabs} role="tablist">
-            <button type="button" role="tab" aria-selected={tab === "join"} onClick={() => { setTab("join"); setDone(null); }}>
-              Get new research
-            </button>
-            <button type="button" role="tab" aria-selected={tab === "signin"} onClick={() => { setTab("signin"); setDone(null); }}>
-              Sign in
-            </button>
+          <div className={s.head}>
+            <span className={s.headLab}>Library</span>
+            <span className={s.headSub}>Research and papers</span>
+            <span className={s.headCount}>{lines.length} pieces</span>
           </div>
-
+          <div className={s.scroll}>
+            <div className={s.scrollInner}>
+              {[...lines, ...lines].map((l, i) => (
+                <a key={i} className={s.line} href={l.href ?? "#"} aria-hidden={i >= lines.length ? true : undefined} tabIndex={i >= lines.length ? -1 : undefined}>
+                  <span className={s.lineLab}>{l.label}</span>
+                  <span className={s.lineT}>{l.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
           {done ? (
-            <p className={s.done}>{done}</p>
-          ) : tab === "join" ? (
-            <form
-              className={s.form}
-              onSubmit={(e) => {
-                e.preventDefault();
-                setDone("You are on the list. New studies and trackers come to you the day they go up.");
-              }}
-            >
-              <p className={s.lead}>Each new study and tracker, the day it goes up. Nothing else.</p>
-              <input id="hub-name" type="text" placeholder="First name" aria-label="First name" />
-              <input id="hub-email" type="email" required placeholder="you@company.ie" aria-label="Work email" />
-              <button type="submit">Send me new research →</button>
-              <p className={s.fine}>Free. Unsubscribe from any email.</p>
-            </form>
+            <p className={s.done}>You are on the list.</p>
           ) : (
             <form
-              className={s.form}
+              className={s.join}
               onSubmit={(e) => {
                 e.preventDefault();
-                setDone("Check your email. The sign-in link is on its way.");
+                setDone(true);
               }}
             >
-              <p className={s.lead}>Your saved reports, your course progress and your brand&rsquo;s own results.</p>
-              <input id="hub-signin" type="email" required placeholder="you@company.ie" aria-label="Email" />
-              <button type="submit">Email me a sign-in link →</button>
-              <p className={s.fine}>No password. Same address you used for the course.</p>
+              <input id="hub-email" type="email" required placeholder="Get new research: you@company.ie" aria-label="Work email" />
+              <button type="submit" aria-label="Send me new research">→</button>
             </form>
           )}
         </div>
