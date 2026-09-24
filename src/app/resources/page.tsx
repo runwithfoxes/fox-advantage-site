@@ -1,33 +1,92 @@
 import Link from "next/link";
+import { readFileSync } from "fs";
+import { join } from "path";
+import { createHash } from "crypto";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
-import Library from "./Library";
-import { AREAS, getLibrary, formatDay } from "./library";
+import Archive from "./Archive";
+import { AREAS, getLibrary, formatDay, type Area } from "./library";
 import { CATEGORIES, OWNER_LABEL, type Owner } from "./data";
+import { REPORTS, INSTRUMENTS, TOOLS, PLAYBOOKS, CALENDAR, type Report } from "./examples";
+import { MODULES } from "../course/courseModules";
 import s from "./front.module.css";
 
 export const metadata: Metadata = {
-  title: "Resources | Run with Foxes",
+  title: "Research | Run with Foxes",
   robots: { index: false, follow: false },
 };
 
 const ORDER: Owner[] = ["state", "middle", "other"];
+const COLS = ORDER.flatMap((o) => CATEGORIES.filter((c) => c.owner === o).sort((a, b) => b.rate - a.rate));
+
+function Ex({ on }: { on: boolean }) {
+  return on ? <span className={s.ex}>Example</span> : null;
+}
+
+/** Cover art: a chart in the brand blues, and a subtle fox in the corner, the way the book
+ *  chapters carry one. None of the example covers carries a number. */
+function CoverArt({ r }: { r: Report }) {
+  return (
+    <div className={s.coverArt} aria-hidden>
+      {r.cover === "bars" && (
+        <div className={s.coverBars}>
+          {COLS.map((c) => (
+            <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} />
+          ))}
+        </div>
+      )}
+      {r.cover === "rings" && (
+        <svg viewBox="0 0 200 160" className={s.coverSvg}>
+          {[74, 58, 42, 26, 10].map((rad, i) => (
+            <circle key={rad} cx="92" cy="80" r={rad} fill={["#E3EEF5", "#C4DCEA", "#6CAAC8", "#3A7CA5", "#1A3A4E"][i]} />
+          ))}
+        </svg>
+      )}
+      {r.cover === "blocks" && (
+        <svg viewBox="0 0 200 160" className={s.coverSvg}>
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <rect key={i} x={14 + i * 24} y={150 - (i + 1) * 21} width="18" height={(i + 1) * 21} fill={["#C4DCEA", "#A7CBE0", "#6CAAC8", "#3A7CA5", "#2B5E80", "#1A3A4E"][i]} />
+          ))}
+        </svg>
+      )}
+      {r.cover === "grid" && (
+        <svg viewBox="0 0 200 160" className={s.coverSvg}>
+          {Array.from({ length: 35 }).map((_, i) => {
+            const shade = ["#E3EEF5", "#C4DCEA", "#6CAAC8", "#3A7CA5", "#1A3A4E"][(i * 7 + Math.floor(i / 7)) % 5];
+            return <rect key={i} x={10 + (i % 7) * 22} y={12 + Math.floor(i / 7) * 28} width="18" height="24" fill={shade} />;
+          })}
+        </svg>
+      )}
+      <img className={s.coverFox} src={`/fox/${r.fox}`} alt="" />
+    </div>
+  );
+}
 
 /**
- * /resources. Structure after Anthropic's research index (Paul, 24 Sep 2026: "it feels
- * comprehensive and has lots of things in it, and just from a format, it is less linear").
- * Four ways in, all near the top: the areas, the featured study, the latest three, and
- * everything in one searchable table. The look is ours: the logo, the three faces, the fox,
- * the dot-grid figure frame, hairlines, no radius.
+ * /resources. Name still open (Paul, 24 Sep: "the observatory is not going to be right").
+ * Colour enters through the artwork, never the chrome: the flagship chart, the report covers
+ * with a fox on each, the essays' own illustrations. The page type stays calm.
  */
-export default function ResourcesPage() {
+export default function ResearchPage() {
   const library = getLibrary().filter((e) => !e.soon);
   const entries = library.map((e) => ({ ...e, day: formatDay(e.date) }));
-  const areas = AREAS.map((a) => ({ ...a, count: library.filter((e) => e.area === a.key).length }));
-  const latest = library.filter((e) => e.type !== "Study" && e.type !== "Category").slice(0, 3);
-
-  /* The featured figure: one column per category, grouped by who owns the answer, height = rate. */
-  const cols = ORDER.flatMap((o) => CATEGORIES.filter((c) => c.owner === o).sort((a, b) => b.rate - a.rate));
+  const areaNames = Object.fromEntries(AREAS.map((a) => [a.key, a.name])) as Record<Area, string>;
+  const seen = new Set<string>();
+  /* One card per picture, compared by the FILE, not its name: "Two ways I work with agents"
+     and "Diary of an AI agent team" carry the same illustration under two paths. */
+  const pictured = library
+    .filter((e) => {
+      if (!e.image) return false;
+      let key = e.image;
+      try {
+        key = createHash("md5").update(readFileSync(join(process.cwd(), "public", e.image))).digest("hex");
+      } catch {}
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 4);
+  const others = REPORTS.filter((r) => r.no !== "No. 01");
 
   return (
     <div className={s.page}>
@@ -36,8 +95,9 @@ export default function ResourcesPage() {
           /<span>Run</span>withfoxes
         </Link>
         <nav className={s.navlinks}>
-          <Link href="/course">/course</Link>
-          <Link href="/essays">/essays</Link>
+          <a href="#reports">/reports</a>
+          <a href="#trackers">/trackers</a>
+          <a href="#tools">/tools</a>
           <Link href="/contact" className={s.navcta}>
             /contact
           </Link>
@@ -47,19 +107,21 @@ export default function ResourcesPage() {
       <main className={s.wrap}>
         <section className={s.hero}>
           <div className={s.heroLeft}>
-            <h1 className={s.h1}>Resources</h1>
+            <div>
+              <span className={s.kicker}>\from Run with Foxes</span>
+              <h1 className={s.h1}>Research</h1>
+            </div>
             <img className={s.fox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
           </div>
           <div className={s.heroRight}>
             <p className={s.standfirst}>
-              What we find out running our own agents, measuring AI search in Ireland and
-              reading what employers ask for. Free to read, with the method and the limits
-              beside every number.
+              What AI is doing to marketing, measured in Ireland first. Studies every quarter,
+              trackers our agents read every day, and the tools we use with clients. Free to read.
             </p>
             <p className={s.arealinks}>
               <span>Areas:</span>
               {AREAS.map((a) => (
-                <a key={a.key} href="#everything">
+                <a key={a.key} href={`#area-${a.key}`}>
                   {a.name}
                 </a>
               ))}
@@ -67,57 +129,281 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <Library
-          areas={areas}
-          entries={entries}
-          middle={
-            <section className={s.featured}>
-              <Link href="/resources/geo-ireland" className={s.feature}>
-                <div className={s.frame}>
-                  <div className={s.cols} role="img" aria-label="Who AI names most in each of 41 Irish categories">
-                    {cols.map((c) => (
-                      <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} title={`${c.name}: ${c.top} ${c.rate.toFixed(2)}`} />
-                    ))}
+        {/* ── THE FLAGSHIP IMAGE, full width ── */}
+        <Link href="/resources/geo-ireland" className={s.flagship}>
+          <div className={s.flagArt}>
+            <div className={s.flagBars} role="img" aria-label="Who AI names most in each of 41 Irish categories">
+              {COLS.map((c) => (
+                <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} title={`${c.name}: ${c.top} ${c.rate.toFixed(2)}`} />
+              ))}
+            </div>
+            <img className={s.flagFox} src="/fox/fox-sideeye-right-nobg.png" alt="" />
+            <div className={s.flagKey}>
+              {ORDER.map((o) => (
+                <span key={o} className={s[o]}>
+                  {OWNER_LABEL[o]}, {CATEGORIES.filter((c) => c.owner === o).length}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className={s.flagText}>
+            <div>
+              <span className={s.meta}>Study No. 01 &middot; GEO Ireland &middot; 23 Aug 2026</span>
+              <h2 className={s.flagTitle}>Who AI names when you ask an Irish question</h2>
+            </div>
+            <div>
+              <p className={s.featureDek}>
+                Five AI engines, 41 categories. In 17 of them the first name back is a state body.
+                In most of the rest it is a booking site or a marketplace.
+              </p>
+              <span className={s.readLink}>Read the study →</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* ── Latest, with their own pictures ── */}
+        <section className={s.pictured}>
+          {pictured.map((e) => (
+            <Link key={e.href} href={e.href} className={s.picCard}>
+              <div className={s.picImg}>
+                <img src={e.image} alt="" />
+              </div>
+              <span className={s.meta}>
+                {e.type} &middot; {formatDay(e.date)}
+              </span>
+              <span className={s.picTitle}>{e.title}</span>
+            </Link>
+          ))}
+        </section>
+
+        {/* ── Reports: covers with a fox on each ── */}
+        <section className={s.shelf} id="reports">
+          <div className={s.shelfHead}>
+            <h2 className={s.h2}>Reports</h2>
+            <span className={s.meta}>Numbered editions on a fixed calendar</span>
+          </div>
+          <div className={s.covers}>
+            {others.map((r) => {
+              const body = (
+                <>
+                  <div className={s.cover}>
+                    <div className={s.coverTop}>
+                      <span>{r.no}</span>
+                      <span>{r.cadence}</span>
+                    </div>
+                    <CoverArt r={r} />
+                    <div className={s.coverFoot}>
+                      <span className={s.coverTitle}>{r.title}</span>
+                    </div>
                   </div>
-                  <div className={s.key}>
-                    {ORDER.map((o) => (
-                      <span key={o} className={s[o]}>
-                        {OWNER_LABEL[o]}, {CATEGORIES.filter((c) => c.owner === o).length}
-                      </span>
-                    ))}
-                  </div>
+                  <span className={s.meta}>
+                    First edition {r.when} <Ex on={r.example} />
+                  </span>
+                  <p className={s.coverLine}>{r.line}</p>
+                </>
+              );
+              return r.href ? (
+                <Link key={r.no} href={r.href} className={s.coverCard}>
+                  {body}
+                </Link>
+              ) : (
+                <div key={r.no} className={s.coverCard}>
+                  {body}
                 </div>
-                <div className={s.featureText}>
-                  <div>
-                    <span className={s.meta}>Study &middot; AI search &middot; 23 Aug 2026</span>
-                    <h2 className={s.featureTitle}>Who AI names when you ask an Irish question</h2>
-                  </div>
-                  <p className={s.featureDek}>
-                    We asked five AI engines the questions people in Ireland ask, across 41
-                    categories. In 17 the name that comes back first is a state body. In most of
-                    the rest it is a booking site or a marketplace. Repeated every quarter.
-                  </p>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ── Areas ── */}
+        <section className={s.areas} aria-label="Areas">
+          {AREAS.map((a) => {
+            const items = library.filter((e) => e.area === a.key);
+            return (
+              <div key={a.key} className={s.area} id={`area-${a.key}`}>
+                <span className={s.areaName}>{a.name}</span>
+                <ul className={s.areaList}>
+                  {items.slice(0, 3).map((e) => (
+                    <li key={e.href}>
+                      <Link href={e.href}>{e.title}</Link>
+                    </li>
+                  ))}
+                </ul>
+                <span className={s.areaCount}>
+                  {items.length} {items.length === 1 ? "piece" : "pieces"}
+                </span>
+              </div>
+            );
+          })}
+        </section>
+
+        {/* ── Trackers ── */}
+        <section className={s.shelf} id="trackers">
+          <div className={s.shelfHead}>
+            <h2 className={s.h2}>Trackers</h2>
+            <span className={s.meta}>Read by our agents. A big move waits for the next read.</span>
+          </div>
+          <div className={s.board}>
+            {INSTRUMENTS.map((t) => (
+              <div key={t.name} className={s.boardRow}>
+                <span className={`${s.dot} ${t.status === "testing" ? s.dotOn : ""}`} aria-hidden />
+                <div className={s.boardName}>
+                  {t.href ? <Link href={t.href}>{t.name}</Link> : t.name}
+                  <span>{t.what}</span>
                 </div>
-              </Link>
-              <div className={s.latest}>
-                {latest.map((e) => (
-                  <Link key={e.href} href={e.href} className={s.latestItem}>
-                    <span className={s.meta}>
-                      {e.type} &middot; {formatDay(e.date)}
+                <span className={s.boardCell}>{t.reads}</span>
+                <span className={s.boardCell}>
+                  {t.status}
+                  {t.last ? `, ${t.last}` : ""}
+                </span>
+                <p className={s.boardLine}>
+                  {t.line} <Ex on={t.example} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Tools ── */}
+        <section className={s.shelf} id="tools">
+          <div className={s.shelfHead}>
+            <h2 className={s.h2}>Tools</h2>
+            <span className={s.meta}>Free. Your own full result is the only thing we ask an email for.</span>
+          </div>
+          <div className={s.tools}>
+            {TOOLS.map((t) => {
+              const inner = (
+                <>
+                  <div className="mod-winbar">
+                    <span className="mod-lights">
+                      <i />
+                      <i />
+                      <i />
                     </span>
-                    <span className={s.latestTitle}>{e.title}</span>
-                    {e.dek ? <span className={s.latestDek}>{e.dek}</span> : null}
-                  </Link>
+                    <span className="mod-wintitle">{t.bar}</span>
+                  </div>
+                  <div className={s.toolBody}>
+                    <span className={s.toolName}>
+                      {t.name} <Ex on={t.example} />
+                    </span>
+                    <p>{t.line}</p>
+                    <span className={s.toolGo}>{t.href ? "Open →" : "Coming"}</span>
+                  </div>
+                </>
+              );
+              return t.href ? (
+                <Link key={t.name} href={t.href} className={`mod-win ${s.tool}`}>
+                  {inner}
+                </Link>
+              ) : (
+                <div key={t.name} className={`mod-win ${s.tool} ${s.toolSoon}`}>
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ── Playbooks, and the course ── */}
+        <section className={`${s.shelf} ${s.split}`}>
+          <div>
+            <div className={s.shelfHead}>
+              <h2 className={s.h2}>Playbooks</h2>
+              <span className={s.meta}>Prompts, files and templates we use</span>
+            </div>
+            <div className={s.files}>
+              {PLAYBOOKS.map((p) => (
+                <div key={p.name} className={s.fileRow}>
+                  <span className={s.fileName}>
+                    {p.name} <Ex on={p.example} />
+                  </span>
+                  <span className={s.fileKind}>
+                    {p.kind} &middot; {p.from}
+                  </span>
+                  <span className={s.fileActs}>
+                    {p.href ? <Link href={p.href}>Open</Link> : <span>Open</span>}
+                    <span>Copy</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className={s.shelfHead}>
+              <h2 className={s.h2}>The course</h2>
+              <span className={s.meta}>AI Fluency for Ambitious Marketers. Free.</span>
+            </div>
+            <ol className={s.modules}>
+              {MODULES.map((m) => (
+                <li key={m.n} className={m.built ? s.modOpen : undefined}>
+                  <span className={s.modDot} />
+                  <Link href={m.built ? `/course/${m.n}` : `/course#m${m.n}`}>{m.title.replace(/^\(\d\)\s*/, "")}</Link>
+                  <span className={s.modWhen}>{m.built ? "Open now" : m.when}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ── Coming up ── */}
+        <section className={s.shelf}>
+          <div className={s.shelfHead}>
+            <h2 className={s.h2}>Coming up</h2>
+            <span className={s.meta}>The next six months</span>
+          </div>
+          <div className={s.calendar}>
+            {CALENDAR.map((c) => (
+              <div key={c.month} className={s.month}>
+                <span className={s.monthName}>{c.month}</span>
+                {c.items.map((it) => (
+                  <span key={it.t} className={s.monthItem}>
+                    {it.t} <Ex on={it.example} />
+                  </span>
                 ))}
               </div>
-            </section>
-          }
-        />
+            ))}
+          </div>
+        </section>
+
+        {/* ── How we publish, and who ── */}
+        <section className={`${s.shelf} ${s.split}`}>
+          <div>
+            <h2 className={s.h2}>How we publish</h2>
+            <ol className={s.standards}>
+              <li>Every number carries the date it was read.</li>
+              <li>The method and its limits sit beside the finding.</li>
+              <li>A big move waits for the next read to confirm it.</li>
+              <li>Studies are free to read, with no form.</li>
+              <li>We only ask for an email when the answer is about you.</li>
+            </ol>
+          </div>
+          <div>
+            <h2 className={s.h2}>Research team</h2>
+            <div className={s.people}>
+              <div className={s.person}>
+                <img src="/Paul_photo.jpg" alt="Paul Dervan" />
+                <div>
+                  <span className={s.personName}>Paul Dervan</span>
+                  <span className={s.meta}>Founder, Run with Foxes</span>
+                </div>
+              </div>
+              <div className={s.person}>
+                <span className={s.initials}>SO</span>
+                <div>
+                  <span className={s.personName}>Susan O&rsquo;Shea</span>
+                  <span className={s.meta}>Head of research, from October 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Archive entries={entries} areaNames={areaNames} />
       </main>
 
       <SiteFooter current="/resources" wide />
       <div className={s.banner}>
-        Mockup, 24 Sep 2026. GEO Ireland numbers are day one (23 Aug) and not signed off. Jobs numbers are the 23 Sep test.
+        Mockup, 24 Sep 2026. Anything tagged Example is made up for this mockup. GEO Ireland numbers are day one and not signed off.
       </div>
     </div>
   );

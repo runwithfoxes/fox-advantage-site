@@ -25,6 +25,7 @@ export type Entry = {
   title: string;
   href: string;
   dek?: string;
+  image?: string;
   soon?: boolean;
 };
 
@@ -58,6 +59,7 @@ export function getLibrary(): Entry[] {
     title: e.title,
     href: `/essays/${e.slug}`,
     dek: e.dek,
+    image: e.image ?? undefined,
   }));
   const modules: Entry[] = MODULES.map((m) => ({
     date: m.on,
