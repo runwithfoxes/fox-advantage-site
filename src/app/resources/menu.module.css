@@ -1,0 +1,60 @@
+/* The Resources menu. Ramp's LAYOUT (columns, tiles, a featured panel), the site's own
+   dropdown SKIN, taken value for value from .hp-mega-inner / .hp-projects-dropdown in
+   globals.css (Paul, 24 Sep: "you need to use our brand for colours and fonts"):
+   deep sky at 0.95 with a 12px blur, 8px corners, the 0 12px 40px shadow, JetBrains Mono
+   throughout, 9px labels at 2px tracking in white 0.4, links in white 0.85, hover #5A9CC5. */
+.wrap { position: static; }
+.trigger {
+  background: none; border: 0; cursor: pointer; padding: 0;
+  font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.92);
+}
+.trigger:hover, .trigger[aria-expanded="true"] { color: #5A9CC5; }
+.chev { font-size: 10px; letter-spacing: 0; margin-left: 2px; }
+
+.panel {
+  position: absolute; left: 32px; right: 32px; top: 60px; z-index: 50;
+  display: grid; grid-template-columns: 1.35fr 1fr 0.9fr 1.1fr;
+  background: #1A3A4E; /* solid over the film: at 0.95 the headline behind showed through */
+  border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  font-family: var(--mono);
+  animation: menuIn 0.18s ease-out both;
+}
+@keyframes menuIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .panel { animation: none; } }
+
+.col { padding: 26px 30px 28px; display: grid; align-content: start; gap: 2px; }
+.rule { border-left: 1px solid rgba(255, 255, 255, 0.1); }
+.lab { display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-bottom: 14px; }
+
+.item { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: center; padding: 7px 0; text-decoration: none; }
+.tile {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.75); transition: background 0.2s, color 0.2s;
+}
+.item:hover .tile { background: #3A7CA5; color: #fff; }
+.itemT { display: block; font-family: var(--mono); font-size: 13px; letter-spacing: 0.5px; color: rgba(255, 255, 255, 0.85); line-height: 1.4; transition: color 0.2s; }
+.itemD { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.45); line-height: 1.5; margin-top: 2px; }
+.item:hover .itemT { color: #5A9CC5; }
+
+.plain { font-family: var(--mono); font-size: 13px; letter-spacing: 0.5px; color: rgba(255, 255, 255, 0.85); text-decoration: none; padding: 6px 0; line-height: 1.4; transition: color 0.2s; }
+.plain:hover { color: #5A9CC5; }
+
+.featured { background: rgba(255, 255, 255, 0.04); padding: 26px 30px 28px; text-decoration: none; display: grid; align-content: start; gap: 4px; border-left: 1px solid rgba(255, 255, 255, 0.1); }
+.featImg { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; margin-bottom: 12px; }
+.featImg img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.featured:hover .featImg img { transform: scale(1.03); }
+.featOver {
+  position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-weight: 700; font-size: 18px;
+  letter-spacing: -0.03em; color: #fff; text-shadow: 0 2px 14px rgba(4, 10, 16, 0.6);
+}
+.featured:hover .itemT { color: #5A9CC5; }
+
+@media (max-width: 1100px) {
+  .panel { grid-template-columns: 1fr 1fr; }
+  .featured { grid-column: 1 / -1; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .col:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .panel { grid-template-columns: 1fr; left: 12px; right: 12px; max-height: 78vh; overflow: auto; }
+  .rule { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+}

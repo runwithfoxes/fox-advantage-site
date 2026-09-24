@@ -85,37 +85,6 @@ export default function ResourceHubPage() {
       />
 
       <main className={s.wrap}>
-        {/* ── THE FLAGSHIP IMAGE, full width ── */}
-        <Link href="/resources/geo-ireland" className={s.flagship}>
-          <div className={s.flagArt}>
-            <div className={s.flagBars} role="img" aria-label="Who AI names most in each of 41 Irish categories">
-              {COLS.map((c) => (
-                <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} title={`${c.name}: ${c.top} ${c.rate.toFixed(2)}`} />
-              ))}
-            </div>
-            <div className={s.flagKey}>
-              {ORDER.map((o) => (
-                <span key={o} className={s[o]}>
-                  {OWNER_LABEL[o]}, {CATEGORIES.filter((c) => c.owner === o).length}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className={s.flagText}>
-            <div>
-              <span className={s.meta}>Study No. 01 &middot; GEO Ireland &middot; 23 Aug 2026</span>
-              <h2 className={s.flagTitle}>Who AI names when you ask an Irish question</h2>
-            </div>
-            <div>
-              <p className={s.featureDek}>
-                Five AI engines, 41 categories. In 17 of them the first name back is a state body.
-                In most of the rest it is a booking site or a marketplace.
-              </p>
-              <span className={s.readLink}>Read the study →</span>
-            </div>
-          </div>
-        </Link>
-
         {/* ── Latest, as words: the pictures were foxes, and foxes now live on the report covers only ── */}
         <section className={s.latestRow}>
           {latest.map((e) => (
@@ -258,7 +227,7 @@ export default function ResourceHubPage() {
         </section>
 
         {/* ── Playbooks, and the course ── */}
-        <section className={`${s.shelf} ${s.split}`}>
+        <section className={`${s.shelf} ${s.split}`} id="playbooks">
           <div>
             <div className={s.shelfHead}>
               <h2 className={s.h2}>Playbooks</h2>

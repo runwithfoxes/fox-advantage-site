@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import s from "./hero.module.css";
+import ResourcesMenu from "./ResourcesMenu";
 
 /**
  * THE HUB'S HEADER. Paul, 24 Sep 2026: "take the header from the geo ireland website and have
@@ -21,17 +22,14 @@ export default function HubHero({ lines }: { lines: Line[] }) {
   const [done, setDone] = useState(false);
 
   return (
-    <section className={s.hero}>
+    <section className={s.hero} id="top">
       <video className={s.film} autoPlay muted loop playsInline poster="/resources/hero-cliff.jpg" src="/resources/hero-cliff.mp4" />
       <header className={s.nav}>
         <Link href="/" className={s.logo}>
           /Runwithfoxes
         </Link>
         <nav className={s.links}>
-          <a href="#reports">/reports</a>
-          <a href="#trackers">/trackers</a>
-          <a href="#tools">/tools</a>
-          <Link href="/course">/course</Link>
+          <ResourcesMenu />
           <a href="#" className={s.signin}>
             /sign in
           </a>

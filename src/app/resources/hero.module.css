@@ -13,8 +13,8 @@
 .nav { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; }
 .logo { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: #fff; text-decoration: none; }
 .links { display: flex; gap: 26px; align-items: center; }
-.links a { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.82); text-decoration: none; }
-.links a:hover { color: #fff; }
+.links > a { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255, 255, 255, 0.82); text-decoration: none; }
+.links > a:hover { color: #fff; }
 
 .inner {
   position: relative; z-index: 2; flex: 1; width: 100%; max-width: 1240px; margin: 0 auto;
@@ -65,7 +65,7 @@
 
 @media (max-width: 960px) {
   .inner { grid-template-columns: 1fr; gap: 32px; align-items: start; padding-top: 56px; }
-  .links a:not(:last-child) { display: none; }
+  .links > a:not(:last-child) { display: none; }
 }
 @media (max-width: 600px) {
   .nav { padding: 16px; }
@@ -98,4 +98,4 @@
 .join button:hover { background: var(--orange-hover); }
 .signin { border: 1px solid rgba(255,255,255,.6); padding: 6px 12px; }
 .panel .done { border-top: 1px solid rgba(255,255,255,.22); padding: 14px 0 0; font-size: 15px; }
-@media (max-width: 960px) { .links a.signin { display: inline-block; } }
+@media (max-width: 960px) { .links > a.signin { display: inline-block; } }
