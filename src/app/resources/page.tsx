@@ -1,211 +1,124 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllEssays, formatEssayDate } from "@/lib/essays";
-import { MODULES, isLive } from "../course/courseModules";
-import { MODULE_BLURBS } from "../course/courseCopy";
-import ModuleArtefact from "../course/ModuleArtefact";
-import { Shell, Item, Frame, OwnerStrip, CategoryChips } from "./parts";
-import s from "./resources.module.css";
+import SiteFooter from "@/components/SiteFooter";
+import Library from "./Library";
+import { AREAS, getLibrary, formatDay } from "./library";
+import { CATEGORIES, OWNER_LABEL, type Owner } from "./data";
+import s from "./front.module.css";
 
 export const metadata: Metadata = {
   title: "Resources | Run with Foxes",
   robots: { index: false, follow: false },
 };
 
+const ORDER: Owner[] = ["state", "middle", "other"];
+
 /**
- * /resources, the front door. The module page's grammar, turned into a library: the rail is
- * the list of shelves, each shelf is a numbered item, and each shelf reuses the thing it
- * points at (the course's own module card, the essays index's own rows).
+ * /resources. Structure after Anthropic's research index (Paul, 24 Sep 2026: "it feels
+ * comprehensive and has lots of things in it, and just from a format, it is less linear").
+ * Four ways in, all near the top: the areas, the featured study, the latest three, and
+ * everything in one searchable table. The look is ours: the logo, the three faces, the fox,
+ * the dot-grid figure frame, hairlines, no radius.
  */
 export default function ResourcesPage() {
-  const essays = getAllEssays();
-  const live = MODULES.find((m) => isLive(m)) ?? MODULES[0];
+  const library = getLibrary().filter((e) => !e.soon);
+  const entries = library.map((e) => ({ ...e, day: formatDay(e.date) }));
+  const areas = AREAS.map((a) => ({ ...a, count: library.filter((e) => e.area === a.key).length }));
+  const latest = library.filter((e) => e.type !== "Study" && e.type !== "Category").slice(0, 3);
+
+  /* The featured figure: one column per category, grouped by who owns the answer, height = rate. */
+  const cols = ORDER.flatMap((o) => CATEGORIES.filter((c) => c.owner === o).sort((a, b) => b.rate - a.rate));
 
   return (
-    <Shell
-      back={{ href: "/", label: "← home" }}
-      railTitle="Resources"
-      railHref="/resources"
-      railLabel="/on the shelves"
-      rail={[
-        { href: "#research", k: "01", t: "Research: GEO Ireland" },
-        { href: "#trackers", k: "02", t: "Trackers" },
-        { href: "#course", k: "03", t: "The course" },
-        { href: "#essays", k: "04", t: `Essays (${essays.length})` },
-        { href: "#answers", k: "05", t: "Short answers" },
-      ]}
-    >
-      <header className="mod-masthead">
-        <p className="mod-eyebrow">Resources &middot; free to read</p>
-        <h1 className="mod-h1">
-          Research on AI and <span className="mod-hl">marketing</span>
-        </h1>
-        <div className="chapter-fox-hero">
-          <img className="chapter-fox-hero-img" src="/fox/chapter-fox-sitting-nobg.png" alt="" />
-        </div>
-        <p className="mod-standfirst">
-          What we find out running our own agents, measuring AI search in Ireland and reading
-          what employers ask for. Published as we go, with the method and the limits beside
-          every number.
-        </p>
-        <div className="mod-meta">
-          <span>
-            Research<b>1 study, 41 categories</b>
-          </span>
-          <span>
-            Trackers<b>1 testing, 2 planned</b>
-          </span>
-          <span>
-            Course<b>6 modules, 1 open</b>
-          </span>
-          <span>
-            Essays<b>{essays.length}</b>
-          </span>
-          <span>
-            Sharing<b>Copy anything. Send it on.</b>
-          </span>
-        </div>
+    <div className={s.page}>
+      <header className="chapter-nav">
+        <Link href="/" className="chapter-nav-logo">
+          /<span>Run</span>withfoxes
+        </Link>
+        <nav className={s.navlinks}>
+          <Link href="/course">/course</Link>
+          <Link href="/essays">/essays</Link>
+          <Link href="/contact" className={s.navcta}>
+            /contact
+          </Link>
+        </nav>
       </header>
 
-      <main>
-        <Item id="research" n={1} title="Who AI names when you ask an Irish question" href="/resources/geo-ireland" hint="Read the study">
-          <Frame label="Who is named most in each of the 41 categories">
-            <OwnerStrip />
-            <CategoryChips />
-          </Frame>
-          <p className="mod-body">
-            We asked five AI engines the questions people in Ireland ask, across 41 categories
-            from tax to hotels, and counted the names that came back. In 17 categories the name
-            is a state body. In most of the rest it is a booking site or a marketplace. The
-            brands paying for the advertising are rarely the answer.
-          </p>
-          <p className="mod-body">Repeated every quarter. Susan O&rsquo;Shea leads research from October.</p>
-        </Item>
-
-        <Item id="trackers" n={2} title="Trackers our agents read every day">
-          <div className="mod-win" style={{ marginTop: 4 }}>
-            <div className="mod-winbar">
-              <span className="mod-lights">
-                <i />
-                <i />
-                <i />
-              </span>
-              <span className="mod-wintitle">trackers</span>
-            </div>
-            <table className={s.trk}>
-              <thead>
-                <tr>
-                  <th>Tracker</th>
-                  <th>Status</th>
-                  <th>Read</th>
-                  <th>This week</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Link href="/resources/jobs-ai">Jobs and AI</Link>
-                  </td>
-                  <td>testing</td>
-                  <td>daily</td>
-                  <td className={s.line}>
-                    Wayflyer is hiring a revenue analyst: &ldquo;You&rsquo;re an AI-native builder.&rdquo;
-                  </td>
-                </tr>
-                <tr>
-                  <td>Who AI recommends in Ireland</td>
-                  <td className={s.soon}>planned</td>
-                  <td className={s.soon}>daily</td>
-                  <td className={`${s.line} ${s.soon}`}>
-                    The GEO Ireland questions asked every morning, so a brand can watch its own name move.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Irish ads by sector</td>
-                  <td className={s.soon}>planned</td>
-                  <td className={s.soon}>weekly</td>
-                  <td className={`${s.line} ${s.soon}`}>
-                    What each sector is running on Meta this week, and what changed.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <main className={s.wrap}>
+        <section className={s.hero}>
+          <div className={s.heroLeft}>
+            <h1 className={s.h1}>Resources</h1>
+            <img className={s.fox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
           </div>
-          <p className="mod-body" style={{ marginTop: 24 }}>
-            A big move waits for the next read to confirm it before it goes up.
-          </p>
-        </Item>
+          <div className={s.heroRight}>
+            <p className={s.standfirst}>
+              What we find out running our own agents, measuring AI search in Ireland and
+              reading what employers ask for. Free to read, with the method and the limits
+              beside every number.
+            </p>
+            <p className={s.arealinks}>
+              <span>Areas:</span>
+              {AREAS.map((a) => (
+                <a key={a.key} href="#everything">
+                  {a.name}
+                </a>
+              ))}
+            </p>
+          </div>
+        </section>
 
-        <Item id="course" n={3} title="AI Fluency for Ambitious Marketers" href="/course" hint="All six modules">
-          {/* The course page's own module card, reused whole, with its own artefact window. */}
-          <div className={`co-root ${s.courseCard}`} style={{ background: "none", padding: 0 }}>
-            <article className="co-card">
-              <div className="co-chrome">
-                <i className="r" />
-                <i className="y" />
-                <i className="g" />
-                <span className="co-chrome-name">Module {live.n}</span>
-              </div>
-              <div className="co-cardbody">
-                <div className="co-cardinfo">
-                  <h3 className="co-cardtitle">{live.title}</h3>
-                  <p>{MODULE_BLURBS[live.n]}</p>
-                  <div className="co-cardfoot">
-                    <span className="co-badge">Live</span>
-                    <span className="co-when">Open now</span>
+        <Library
+          areas={areas}
+          entries={entries}
+          middle={
+            <section className={s.featured}>
+              <Link href="/resources/geo-ireland" className={s.feature}>
+                <div className={s.frame}>
+                  <div className={s.cols} role="img" aria-label="Who AI names most in each of 41 Irish categories">
+                    {cols.map((c) => (
+                      <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} title={`${c.name}: ${c.top} ${c.rate.toFixed(2)}`} />
+                    ))}
                   </div>
-                  <Link className="co-cardaction" href={`/course/${live.n}`}>
-                    What&apos;s in it <span aria-hidden>→</span>
+                  <div className={s.key}>
+                    {ORDER.map((o) => (
+                      <span key={o} className={s[o]}>
+                        {OWNER_LABEL[o]}, {CATEGORIES.filter((c) => c.owner === o).length}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className={s.featureText}>
+                  <div>
+                    <span className={s.meta}>Study &middot; AI search &middot; 23 Aug 2026</span>
+                    <h2 className={s.featureTitle}>Who AI names when you ask an Irish question</h2>
+                  </div>
+                  <p className={s.featureDek}>
+                    We asked five AI engines the questions people in Ireland ask, across 41
+                    categories. In 17 the name that comes back first is a state body. In most of
+                    the rest it is a booking site or a marketplace. Repeated every quarter.
+                  </p>
+                </div>
+              </Link>
+              <div className={s.latest}>
+                {latest.map((e) => (
+                  <Link key={e.href} href={e.href} className={s.latestItem}>
+                    <span className={s.meta}>
+                      {e.type} &middot; {formatDay(e.date)}
+                    </span>
+                    <span className={s.latestTitle}>{e.title}</span>
+                    {e.dek ? <span className={s.latestDek}>{e.dek}</span> : null}
                   </Link>
-                </div>
-                <ModuleArtefact art={live.art} />
+                ))}
               </div>
-            </article>
-          </div>
-          <div className="mod-reading">
-            <span className="mod-readinglbl">Coming next</span>
-            {MODULES.filter((m) => m.n !== live.n).map((m) => (
-              <Link key={m.n} className="mod-readinglink" href={`/course#m${m.n}`}>
-                {m.title}
-                <i>Opens {m.when}</i>
-              </Link>
-            ))}
-          </div>
-        </Item>
-
-        <Item id="essays" n={4} title="Essays" href="/essays" hint={`All ${essays.length}`}>
-          {/* The essays index's own rows, the newest four. */}
-          <div className={`essay-list ${s.essays}`}>
-            {essays.slice(0, 4).map((e) => (
-              <Link key={e.slug} href={`/essays/${e.slug}`} className="essay-list-item">
-                {e.image ? <img className="essay-list-thumb" src={e.image} alt="" /> : <span className="essay-list-thumb" />}
-                <div>
-                  <div className="essay-list-title">{e.title}</div>
-                  {e.dek ? <div className="essay-list-dek">{e.dek}</div> : null}
-                  <div className="essay-list-date">{formatEssayDate(e.date)}</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Item>
-
-        <Item id="answers" n={5} title="Short answers to the questions we get asked">
-          <div className="mod-reading" style={{ marginTop: 0, paddingTop: 0, borderTop: 0 }}>
-            {[
-              ["/what-is-a-marketing-agent", "What is a marketing agent?"],
-              ["/what-does-a-marketing-agent-cost", "What does a marketing agent cost?"],
-              ["/ai-marketing-agent-vs-agency", "An AI agent or an agency?"],
-              ["/when-an-ai-agent-needs-a-human", "When does an AI agent need a human?"],
-              ["/ai-marketing-ireland", "AI marketing in Ireland"],
-              ["/answer-engine-optimization", "Answer engine optimisation: 18 things worth knowing"],
-            ].map(([href, t]) => (
-              <Link key={href} className="mod-readinglink" href={href}>
-                {t}
-              </Link>
-            ))}
-          </div>
-        </Item>
+            </section>
+          }
+        />
       </main>
-    </Shell>
+
+      <SiteFooter current="/resources" wide />
+      <div className={s.banner}>
+        Mockup, 24 Sep 2026. GEO Ireland numbers are day one (23 Aug) and not signed off. Jobs numbers are the 23 Sep test.
+      </div>
+    </div>
   );
 }
