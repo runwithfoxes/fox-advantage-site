@@ -18,6 +18,7 @@ import {
 } from "../contextSessions.generated";
 import { SimilarityScale } from "./SimilarityScale";
 import { Figure } from "../figures/Figure";
+import OpeningVideo from "./OpeningVideo";
 import figStyles from "../figures/Figure.module.css";
 import {
   kindOf,
@@ -965,6 +966,17 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             {openingParts(para, mod.opening ? mod.openingLink : undefined, mod.n)}
           </p>
         ))}
+        {/* ⭐ PAUL ON CAMERA, straight after his opening paragraphs. Paul, 24 Sep 2026: "let's
+            put it on my module 2 at the very top. Just after my opening paragraph." Only a
+            module with a film gets anything here; no placeholder frame, ever. */}
+        {mod.openingVideo && (
+          <OpeningVideo
+            n={mod.n}
+            src={mod.openingVideo.src}
+            poster={mod.openingVideo.poster}
+            title={mod.openingVideo.title}
+          />
+        )}
         {/* THE ARRIVAL BLOCK (the interest picker on module 1). Moved above the details row
             on Paul's instruction, 19 Sep 2026: the question comes straight after his opening. */}
         <ModuleArrival n={mod.n} />

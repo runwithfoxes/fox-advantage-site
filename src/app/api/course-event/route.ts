@@ -48,6 +48,9 @@ const ALLOWED: readonly CourseEventName[] = [
   "file_opened",
   "session_watched",
   "item_done",
+  "video_played",
+  "video_progress",
+  "video_completed",
 ];
 
 /** Small, because everything here is attacker-controlled and lands in a durable record. */
@@ -137,6 +140,9 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
     file_opened: "Course: file opened",
     session_watched: "Course: session watched",
     item_done: "Course: item done",
+    video_played: "Course: video played",
+    video_progress: "Course: video progress",
+    video_completed: "Course: video completed",
   }[rec.event];
 
   try {

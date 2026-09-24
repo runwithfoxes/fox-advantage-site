@@ -7513,6 +7513,11 @@ a.project-card {
    a second thing to keep in step. */
 .mod-standfirst-link{color:#3A7CA5;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
 .mod-standfirst-link:hover{color:#2F6688;}
+/* ⭐ PAUL ON CAMERA at the top of a module, 24 Sep 2026. Full column width, the same hairline
+   as a card, the film's own name card as the poster. Sits under the opening paragraphs with
+   the paragraph gap above it, and clears the floated fox so it never tucks under him. */
+.mod-video{margin:34px 0 0;padding:0;clear:both;}
+.mod-video-player{display:block;width:100%;aspect-ratio:16/9;background:#1D1B1B;border:1px solid #E0E0DC;border-radius:4px;}
 /* Paul's closing words, after the last item. The item above already draws the rule. */
 .mod-closing{padding:56px 0 24px;}
 /* The chapters float the fox beside a long prose column so it never runs out of text

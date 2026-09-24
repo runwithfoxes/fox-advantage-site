@@ -310,6 +310,19 @@ export type ModuleDef = {
    * blank line. Optional: a module with none ends on its last item, as before.
    */
   closing?: string;
+  /**
+   * ⭐ PAUL ON CAMERA AT THE TOP OF THE MODULE, straight after his opening paragraphs.
+   * Added 24 Sep 2026: "let's put it on my module 2 at the very top. Just after my opening
+   * paragraph." The file is the cut made in ~/projects/video-pipeline from the QuickTime
+   * recording of the same day; the poster is its name card. Optional: a module without one
+   * shows nothing, never an empty frame (the placeholder rule of 4 Aug 2026 still stands).
+   */
+  openingVideo?: {
+    src: string;
+    poster: string;
+    /** What the film is called in the record. */
+    title: string;
+  };
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -1523,6 +1536,11 @@ export const MODULE_2: ModuleDef = {
    * ⭐ "an AI Writer", capitalised, is his. It was "a writer" until this version.
    * ⛔ Do not rewrite, tighten or reorder it, and do not restore anything listed above.
    */
+  openingVideo: {
+    src: "/course/module-2-intro.mp4",
+    poster: "/course/module-2-intro-poster.jpg",
+    title: "Module 2 intro",
+  },
   opening:
     "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
   items: [

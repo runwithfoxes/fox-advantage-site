@@ -58,7 +58,15 @@ export type CourseEventName =
   /** Pressed "Watch it work" on a recorded session. */
   | "session_watched"
   /** Ticked an item as done by hand. */
-  | "item_done";
+  | "item_done"
+  /** 24 Sep 2026, Paul: "make sure that we are tracking anyone who clicks on it and watches
+      any of it and watches till the end or re-watches it". The film at the top of a module.
+      `item` is the film's title. `detail` on video_played is "first" or "again N" (a replay
+      after finishing counts as a rewatch); on video_progress it is "25%", "50%" or "75%",
+      each sent once per play; on video_completed it is the play number. */
+  | "video_played"
+  | "video_progress"
+  | "video_completed";
 
 export interface CourseEvent {
   ts: string;
