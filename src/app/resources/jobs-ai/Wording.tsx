@@ -12,7 +12,7 @@ export default function Wording() {
   const rows = WORDING.filter(
     (r) => (kind === "all" || r.ask === kind) && (!t || `${r.co} ${r.role} ${r.q}`.toLowerCase().includes(t)),
   );
-  const kinds: (Ask | "all")[] = ["all", "tools", "builder", "search"];
+  const kinds: (Ask | "all")[] = ["all", "tools", "lead", "search", "build", "sell"];
 
   return (
     <div className="mod-win" style={{ marginTop: 4 }}>
@@ -43,15 +43,14 @@ export default function Wording() {
         ))}
       </div>
       {rows.map((r) => (
-        <div key={r.co} className={s.quote}>
+        <div key={r.co + r.role} className={s.quote}>
           <div className={s.who}>
             <b>{r.co}</b>
             <span>{r.role}</span>
             <em>{ASK_LABEL[r.ask]}</em>
+            <span>{r.when}, {r.where}</span>
           </div>
-          <blockquote className={r.quoted ? undefined : s.described}>
-            {r.quoted ? `“${r.q}”` : r.q}
-          </blockquote>
+          <blockquote>{"\u201C" + r.q + "\u201D"}</blockquote>
         </div>
       ))}
       {rows.length === 0 ? <p className={s.empty}>Nothing matches that yet.</p> : null}

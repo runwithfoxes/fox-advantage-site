@@ -21,6 +21,7 @@ const DISCOVER: { g: Glyph; t: string; d: string; href: string; ex?: boolean }[]
   { g: "tool", t: "Tools", d: "Free to use, built by us", href: "/resources#tools" },
   { g: "playbook", t: "Playbooks", d: "Prompts, files and templates", href: "/resources#playbooks" },
   { g: "essay", t: "Essays", d: "How we build, written up as we go", href: "/essays" },
+  { g: "diary", t: "Diary", d: "Our agent team, written up daily", href: "/diary" },
   { g: "answer", t: "Short answers", d: "The questions we get asked", href: "/answers" },
 ];
 const LEARN: { t: string; href: string }[] = [
@@ -30,7 +31,7 @@ const LEARN: { t: string; href: string }[] = [
   { t: "The Fox Advantage, free book", href: "/book" },
 ];
 const CONNECT: { t: string; href: string }[] = [
-  { t: "Diary of our agent team", href: "/diary" },
+  { t: "Who writes here", href: "/resources#writers" },
   { t: "Get new research by email", href: "/resources#top" },
   { t: "Talk to us", href: "/contact" },
 ];

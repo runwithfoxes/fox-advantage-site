@@ -7,6 +7,8 @@ import { AREAS, getLibrary, formatDay, type Area } from "./library";
 import { CATEGORIES, OWNER_LABEL, type Owner } from "./data";
 import { REPORTS, INSTRUMENTS, TOOLS, PLAYBOOKS, CALENDAR, type Report } from "./examples";
 import { MODULES } from "../course/courseModules";
+import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
 import s from "./front.module.css";
 
 export const metadata: Metadata = {
@@ -96,6 +98,82 @@ export default function ResourceHubPage() {
               {e.dek ? <span className={s.latestDek}>{e.dek}</span> : null}
             </Link>
           ))}
+        </section>
+
+        {/* ── Who writes here: four streams, each with its own voice and rhythm ── */}
+        <section className={s.shelf} id="writers">
+          <div className={s.shelfHead}>
+            <h2 className={s.h2}>Who writes here</h2>
+            <span className={s.meta}>Two people and two agents, each named for what they are</span>
+          </div>
+          <div className={s.writers}>
+            <div className={s.writer}>
+              <div className={s.byline}>
+                <img src="/Paul_photo.jpg" alt="" />
+                <div>
+                  <span className={s.personName}>Paul Dervan</span>
+                  <span className={s.meta}>Essays &middot; founder</span>
+                </div>
+              </div>
+              <ul className={s.writerList}>
+                {getAllEssays().slice(0, 3).map((e) => (
+                  <li key={e.slug}>
+                    <Link href={`/essays/${e.slug}`}>{e.title}</Link>
+                    <span>{formatDay(e.date)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link className={s.writerAll} href="/essays">All essays →</Link>
+            </div>
+            <div className={s.writer}>
+              <div className={s.byline}>
+                <span className={s.agentMark}>L</span>
+                <div>
+                  <span className={s.personName}>Lena</span>
+                  <span className={s.meta}>The agent team diary &middot; an agent, daily</span>
+                </div>
+              </div>
+              <ul className={s.writerList}>
+                {getAllDispatches().slice(0, 3).map((d) => (
+                  <li key={d.slug}>
+                    <Link href={`/diary/${d.slug}`}>{d.title}</Link>
+                    <span>{formatDay(d.date)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link className={s.writerAll} href="/diary">The whole diary →</Link>
+            </div>
+            <div className={s.writer}>
+              <div className={s.byline}>
+                <span className={s.initials}>SO</span>
+                <div>
+                  <span className={s.personName}>Susan O&rsquo;Shea</span>
+                  <span className={s.meta}>Research &middot; head of research</span>
+                </div>
+              </div>
+              <p className={s.writerSoon}>Susan joins in October. Her first piece goes up here.</p>
+            </div>
+            <div className={s.writer}>
+              <div className={s.byline}>
+                <span className={s.agentMark}>J</span>
+                <div>
+                  <span className={s.personName}>The jobs and AI desk</span>
+                  <span className={s.meta}>Irish job ads &middot; an agent, weekly</span>
+                </div>
+              </div>
+              <ul className={s.writerList}>
+                <li>
+                  <Link href="/resources/jobs-ai">About 1 in 20 new marketing and sales ads asks anything real about AI</Link>
+                  <span>24 Sept 2026</span>
+                </li>
+                <li>
+                  <Link href="/resources/jobs-ai#careers">Tech firms&rsquo; careers pages ask for AI four times as often</Link>
+                  <span>24 Sept 2026</span>
+                </li>
+              </ul>
+              <Link className={s.writerAll} href="/resources/jobs-ai">The tracker →</Link>
+            </div>
+          </div>
         </section>
 
         {/* ── Reports: covers with a fox on each ── */}

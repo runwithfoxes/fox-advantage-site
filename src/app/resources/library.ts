@@ -71,12 +71,12 @@ export function getLibrary(): Entry[] {
   }));
   const fixed: Entry[] = [
     {
-      date: "2026-09-23",
+      date: "2026-09-24",
       area: "work",
       type: "Tracker",
-      title: "How Irish employers ask for AI in marketing and sales jobs",
+      title: "About 1 in 20 new marketing and sales ads asks anything real about AI",
       href: "/resources/jobs-ai",
-      dek: "The exact words from real job ads. Dublin tech firms now ask sales staff to use AI tools.",
+      dek: "302 new ads read across seven sources. Tech firms' careers pages ask four times as often.",
     },
     {
       date: "2026-08-23",
