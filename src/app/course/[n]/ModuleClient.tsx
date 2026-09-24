@@ -977,6 +977,17 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             title={mod.openingVideo.title}
           />
         )}
+        {/* The tour of the real Claude project, straight after the intro film (Paul, 24 Sep
+            2026). Its caption is the one line that says what it is; the film has no sound. */}
+        {mod.tourVideo && (
+          <OpeningVideo
+            n={mod.n}
+            src={mod.tourVideo.src}
+            poster={mod.tourVideo.poster}
+            title={mod.tourVideo.title}
+            caption="The Kite Insurance writer, a Claude project, opened and clicked through. No sound."
+          />
+        )}
         {/* THE ARRIVAL BLOCK (the interest picker on module 1). Moved above the details row
             on Paul's instruction, 19 Sep 2026: the question comes straight after his opening. */}
         <ModuleArrival n={mod.n} />

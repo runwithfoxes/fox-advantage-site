@@ -26,11 +26,14 @@ export default function OpeningVideo({
   src,
   poster,
   title,
+  caption,
 }: {
   n: number;
   src: string;
   poster: string;
   title: string;
+  /** One line under the film, in the module's label style. Optional. */
+  caption?: string;
 }) {
   const plays = useRef(0);
   const sent = useRef<Set<number>>(new Set());
@@ -97,6 +100,7 @@ export default function OpeningVideo({
           track("video_completed", `play ${plays.current}`);
         }}
       />
+      {caption && <figcaption className="mod-video-caption">{caption}</figcaption>}
     </figure>
   );
 }

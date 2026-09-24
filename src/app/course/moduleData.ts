@@ -323,6 +323,18 @@ export type ModuleDef = {
     /** What the film is called in the record. */
     title: string;
   };
+  /**
+   * ⭐ A SECOND FILM UNDER THE FIRST, 24 Sep 2026. Paul: "I want people to see the detail...
+   * showing the actual Claude project... as many may have never used projects." A screen
+   * recording of the real claude.ai project, sidebar hidden, cropped to the page: the
+   * project page and its files, the instructions opened, the writer chat, two artifacts.
+   * Same shape and the same events as openingVideo, under its own title in the record.
+   */
+  tourVideo?: {
+    src: string;
+    poster: string;
+    title: string;
+  };
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -1540,6 +1552,11 @@ export const MODULE_2: ModuleDef = {
     src: "/course/module-2-intro.mp4",
     poster: "/course/module-2-intro-poster.jpg",
     title: "Module 2 intro",
+  },
+  tourVideo: {
+    src: "/course/module-2-kite-project-tour.mp4",
+    poster: "/course/module-2-kite-project-tour-poster.jpg",
+    title: "Kite project tour",
   },
   opening:
     "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
