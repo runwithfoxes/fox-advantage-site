@@ -12,7 +12,7 @@ import { MODULES } from "../course/courseModules";
 import s from "./front.module.css";
 
 export const metadata: Metadata = {
-  title: "Research | Run with Foxes",
+  title: "Resource hub | Run with Foxes",
   robots: { index: false, follow: false },
 };
 
@@ -67,7 +67,7 @@ function CoverArt({ r }: { r: Report }) {
  * Colour enters through the artwork, never the chrome: the flagship chart, the report covers
  * with a fox on each, the essays' own illustrations. The page type stays calm.
  */
-export default function ResearchPage() {
+export default function ResourceHubPage() {
   const library = getLibrary().filter((e) => !e.soon);
   const entries = library.map((e) => ({ ...e, day: formatDay(e.date) }));
   const areaNames = Object.fromEntries(AREAS.map((a) => [a.key, a.name])) as Record<Area, string>;
@@ -109,14 +109,14 @@ export default function ResearchPage() {
           <div className={s.heroLeft}>
             <div>
               <span className={s.kicker}>\from Run with Foxes</span>
-              <h1 className={s.h1}>Research</h1>
+              <h1 className={s.h1}>Resource hub</h1>
             </div>
             <img className={s.fox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
           </div>
           <div className={s.heroRight}>
             <p className={s.standfirst}>
-              What AI is doing to marketing, measured in Ireland first. Studies every quarter,
-              trackers our agents read every day, and the tools we use with clients. Free to read.
+              Everything we make to help marketers work with AI, in one place. Studies and
+              trackers, free tools, playbooks, the course and our essays. Free to use.
             </p>
             <p className={s.arealinks}>
               <span>Areas:</span>
