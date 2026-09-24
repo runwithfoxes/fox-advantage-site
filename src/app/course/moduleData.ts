@@ -1553,11 +1553,11 @@ export const MODULE_2: ModuleDef = {
     poster: "/course/module-2-intro-poster.jpg",
     title: "Module 2 intro",
   },
-  tourVideo: {
-    src: "/course/module-2-kite-project-tour.mp4",
-    poster: "/course/module-2-kite-project-tour-poster.jpg",
-    title: "Kite project tour",
-  },
+  /* ⛔ NO tourVideo YET. The first tour film (URL jumps, nothing clicked) went here on 24 Sep
+     and Paul rejected it: "it is not clear what is going on... It needs to reflect a user like a
+     demo." The real-mouse take is in ~/projects/video-pipeline/work/cuts/kite-tour/, one beat
+     short. When it is joined and he has passed it, the file goes to public/course/ and this slot
+     comes back. The rejected file is still in public/course/ until then and must not be linked. */
   opening:
     "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
   items: [
