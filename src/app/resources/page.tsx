@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { readFileSync } from "fs";
-import { join } from "path";
-import { createHash } from "crypto";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import Archive from "./Archive";
+import HubHero from "./HubHero";
 import { AREAS, getLibrary, formatDay, type Area } from "./library";
 import { CATEGORIES, OWNER_LABEL, type Owner } from "./data";
 import { REPORTS, INSTRUMENTS, TOOLS, PLAYBOOKS, CALENDAR, type Report } from "./examples";
@@ -12,7 +10,7 @@ import { MODULES } from "../course/courseModules";
 import s from "./front.module.css";
 
 export const metadata: Metadata = {
-  title: "Resource hub | Run with Foxes",
+  title: "Ireland and AI | Run with Foxes",
   robots: { index: false, follow: false },
 };
 
@@ -71,64 +69,14 @@ export default function ResourceHubPage() {
   const library = getLibrary().filter((e) => !e.soon);
   const entries = library.map((e) => ({ ...e, day: formatDay(e.date) }));
   const areaNames = Object.fromEntries(AREAS.map((a) => [a.key, a.name])) as Record<Area, string>;
-  const seen = new Set<string>();
-  /* One card per picture, compared by the FILE, not its name: "Two ways I work with agents"
-     and "Diary of an AI agent team" carry the same illustration under two paths. */
-  const pictured = library
-    .filter((e) => {
-      if (!e.image) return false;
-      let key = e.image;
-      try {
-        key = createHash("md5").update(readFileSync(join(process.cwd(), "public", e.image))).digest("hex");
-      } catch {}
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    })
-    .slice(0, 4);
+  const latest = library.filter((e) => e.type !== "Study" && e.type !== "Category").slice(0, 4);
   const others = REPORTS.filter((r) => r.no !== "No. 01");
 
   return (
     <div className={s.page}>
-      <header className="chapter-nav">
-        <Link href="/" className="chapter-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav className={s.navlinks}>
-          <a href="#reports">/reports</a>
-          <a href="#trackers">/trackers</a>
-          <a href="#tools">/tools</a>
-          <Link href="/contact" className={s.navcta}>
-            /contact
-          </Link>
-        </nav>
-      </header>
+      <HubHero />
 
       <main className={s.wrap}>
-        <section className={s.hero}>
-          <div className={s.heroLeft}>
-            <div>
-              <span className={s.kicker}>\from Run with Foxes</span>
-              <h1 className={s.h1}>Resource hub</h1>
-            </div>
-            <img className={s.fox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
-          </div>
-          <div className={s.heroRight}>
-            <p className={s.standfirst}>
-              Everything we make to help marketers work with AI, in one place. Studies and
-              trackers, free tools, playbooks, the course and our essays. Free to use.
-            </p>
-            <p className={s.arealinks}>
-              <span>Areas:</span>
-              {AREAS.map((a) => (
-                <a key={a.key} href={`#area-${a.key}`}>
-                  {a.name}
-                </a>
-              ))}
-            </p>
-          </div>
-        </section>
-
         {/* ── THE FLAGSHIP IMAGE, full width ── */}
         <Link href="/resources/geo-ireland" className={s.flagship}>
           <div className={s.flagArt}>
@@ -137,7 +85,6 @@ export default function ResourceHubPage() {
                 <i key={c.name} className={s[c.owner]} style={{ height: `${c.rate * 100}%` }} title={`${c.name}: ${c.top} ${c.rate.toFixed(2)}`} />
               ))}
             </div>
-            <img className={s.flagFox} src="/fox/fox-sideeye-right-nobg.png" alt="" />
             <div className={s.flagKey}>
               {ORDER.map((o) => (
                 <span key={o} className={s[o]}>
@@ -161,17 +108,15 @@ export default function ResourceHubPage() {
           </div>
         </Link>
 
-        {/* ── Latest, with their own pictures ── */}
-        <section className={s.pictured}>
-          {pictured.map((e) => (
-            <Link key={e.href} href={e.href} className={s.picCard}>
-              <div className={s.picImg}>
-                <img src={e.image} alt="" />
-              </div>
+        {/* ── Latest, as words: the pictures were foxes, and foxes now live on the report covers only ── */}
+        <section className={s.latestRow}>
+          {latest.map((e) => (
+            <Link key={e.href} href={e.href} className={s.latestCell}>
               <span className={s.meta}>
                 {e.type} &middot; {formatDay(e.date)}
               </span>
               <span className={s.picTitle}>{e.title}</span>
+              {e.dek ? <span className={s.latestDek}>{e.dek}</span> : null}
             </Link>
           ))}
         </section>

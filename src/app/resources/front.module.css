@@ -348,3 +348,12 @@ a.tool:hover { box-shadow: 0 10px 30px rgba(20,16,40,.12); }
 .cover .coverArt { padding: 8px 0 0; align-items: flex-end; }
 .cover .coverSvg { width: 88%; margin-right: auto; }
 .cover .coverFox { width: 38%; bottom: 0; right: 0; }
+
+/* v5: the hub opens on the film, so the page starts flush under it */
+.page .wrap { padding-top: 0; }
+.latestRow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 40px 0 44px; border-bottom: 1px solid var(--border); }
+.latestCell { display: grid; gap: 8px; align-content: start; color: inherit; text-decoration: none; padding-top: 14px; border-top: 2px solid var(--text); }
+.latestCell:hover .picTitle { color: var(--orange); }
+.flagBars { padding-right: 0; }
+@media (max-width: 1000px) { .latestRow { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .latestRow { grid-template-columns: 1fr; } }
