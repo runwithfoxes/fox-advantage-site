@@ -9,7 +9,7 @@ import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
 import AgentsSection from "@/components/agents/AgentsSection";
-import AdDeskWindow from "@/components/agents/AdDeskWindow";
+import PhoneDemo from "./PhoneDemo";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
@@ -133,19 +133,9 @@ export default function HomeNext() {
              essays, updates on reports, the course". The left slot takes any figure or agent window;
              today it is the Advertising Agent on our own course campaign (real ad, real numbers). ── */}
         <section className={n.front} id="latest">
+          {/* Paul, 25 Sep: no "Featured" label, no title. The live hero's instruction, on a phone. */}
           <div className={n.feature}>
-            <div className={n.featureHead}>
-              <span className={n.kicker}>Featured &middot; an agent at work</span>
-              <Link href="/#agents" className={n.featureAll}>All ten agents →</Link>
-            </div>
-            <h2 className={n.featureTitle}>Our advertising agent, running the ads for our own free course</h2>
-            <div className={n.featureFig}>
-              <AdDeskWindow />
-            </div>
-            <p className={n.featureCap}>
-              The real ad and the real numbers from Meta. It writes the ads, puts them live, reads what
-              works and makes the next ones, every day.
-            </p>
+            <PhoneDemo />
           </div>
 
           <div className={n.newsCol}>
