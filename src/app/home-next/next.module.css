@@ -353,3 +353,7 @@ a.entryT:hover { color: #3A7CA5; }
 .phoneStage { height: 500px; }
 .phoneFrame { left: 50%; top: 30px; transform: translateX(-50%); }
 .phone { height: 452px; }
+/* Klara's thread is longer: wider bubbles, no "Today" line, so it fits without clipping. */
+.phoneStream :global(.ppw-b) { max-width: 90%; }
+.phoneStream :global(.ppw-day) { display: none; }
+.phone { width: 218px; }

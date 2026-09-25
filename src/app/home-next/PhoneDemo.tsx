@@ -18,11 +18,13 @@ import n from "./next.module.css";
  * the start, so nothing below it moves while it plays.
  */
 type Msg = { from: "you" | "agents"; t: string };
+/* Paul, 25 Sep: the agent has a name, Klara, and texts him first. The sign-up number is
+   made up for the mockup, on his word. */
 const THREAD: Msg[] = [
-  { from: "you", t: "Can you start a campaign to marketers who just changed roles?" },
-  { from: "agents", t: "On it. Research is finding who moved this month." },
-  { from: "agents", t: "First lines to you to approve by 10." },
-  { from: "you", t: "Perfect, thanks" },
+  { from: "agents", t: "Good morning Paul. Sign-ups from the campaign are on track at 142." },
+  { from: "agents", t: "I've sent you your daily competitor pricing results." },
+  { from: "agents", t: "You've a meeting clash at 2pm. Want me to reschedule with Susan?" },
+  { from: "you", t: "Yes please" },
 ];
 
 export default function PhoneDemo() {
@@ -38,13 +40,14 @@ export default function PhoneDemo() {
     const run = () => {
       setShown(0);
       setTyping(false);
-      at(600, () => setShown(1));
-      at(1500, () => setTyping(true));
-      at(3000, () => { setTyping(false); setShown(2); });
-      at(3500, () => setTyping(true));
-      at(4900, () => { setTyping(false); setShown(3); });
-      at(6400, () => setShown(4));
-      at(11500, run);
+      at(500, () => setTyping(true));
+      at(1700, () => { setTyping(false); setShown(1); });
+      at(2300, () => setTyping(true));
+      at(3400, () => { setTyping(false); setShown(2); });
+      at(4000, () => setTyping(true));
+      at(5200, () => { setTyping(false); setShown(3); });
+      at(6800, () => setShown(4));
+      at(12000, run);
     };
     run();
     return () => {
@@ -68,10 +71,10 @@ export default function PhoneDemo() {
         <div className={`ppw-ibx ${n.phoneIbx}`}>
           <div className="ppw-conv">
             <div className="ppw-chd">
-              <span className="ppw-av ppw-a1">RF</span>
+              <span className="ppw-av ppw-a1">K</span>
               <div className="ppw-who">
-                Your agents
-                <div className="ppw-sub2">5 agents on it</div>
+                Klara
+                <div className="ppw-sub2">Project manager &middot; an AI</div>
               </div>
             </div>
             <div className={`ppw-stream ${n.phoneStream}`}>
