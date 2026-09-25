@@ -302,39 +302,54 @@ a.entryT:hover { color: #3A7CA5; }
 @media (max-width: 700px) { .doorRow { padding: 18px 16px; gap: 8px; } .doorPrimary, .doorGhost { font-size: 13px; padding: 10px 12px; } }
 .front { margin-top: 40px; }
 
-/* ── The phone demo (Paul, 25 Sep): the hero's instruction, light, in the figures' dotted frame ── */
-.front { margin-top: 0; padding-top: 48px; }
-.phoneFrame { border: 1px solid var(--border); background-color: #F4F3EF; background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px); background-size: 28px 28px;
-  display: flex; justify-content: center; align-items: center; padding: 48px 24px; min-height: 100%; }
-.phone { position: relative; width: 340px; height: 640px; border-radius: 52px; background: #fff; border: 10px solid #1D1B1B;
-  box-shadow: 0 2px 0 1px #3a3a3a inset, 0 30px 60px rgba(29,27,27,.18), 0 8px 18px rgba(29,27,27,.10); overflow: hidden; display: flex; flex-direction: column; }
-.phoneIsland { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 104px; height: 30px; border-radius: 20px; background: #1D1B1B; z-index: 2; }
-.phoneBar { display: flex; justify-content: space-between; align-items: center; padding: 14px 26px 0; height: 46px; font-family: var(--mono); font-size: 12px; color: #1D1B1B; }
-.phoneBar span:last-child { font-size: 7px; letter-spacing: 1px; }
-.phoneApp { visibility: hidden; }
-.phoneScreen { flex: 1; background: #FAFAF8; border-top: 1px solid #EDEDE9; padding: 22px 20px; display: flex; flex-direction: column; gap: 18px; font-family: var(--mono); }
-.phoneWho { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #8a8a85; margin-bottom: 8px; }
-.phoneYou { align-self: flex-end; max-width: 92%; }
-.phoneYou .phoneWho { text-align: right; }
-.phoneAsk { margin: 0; background: #1A3A4E; color: #fff; font-size: 14px; line-height: 1.5; padding: 12px 14px; min-height: 63px; }
-.phoneCur { display: inline-block; width: 8px; height: 16px; background: #A9CBE4; vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.phoneReply { opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
-.phoneReply.on { opacity: 1; transform: none; }
-.phoneLead { margin: 0 0 10px; font-size: 14px; color: #1D1B1B; display: flex; align-items: center; gap: 4px; }
-.phoneDot { width: 8px; height: 8px; border-radius: 50%; background: #3A7CA5; box-shadow: 0 0 0 4px rgba(58,124,165,.15); display: inline-block; }
-.phoneSteps { list-style: none; margin: 0; padding: 0; border-top: 1px solid #E0E0DC; }
-.phoneSteps li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid #E0E0DC; font-size: 12px; line-height: 1.45; color: #6b6b66;
-  opacity: 0; transform: translateX(-6px); transition: opacity .35s ease, transform .35s ease; }
-.phoneSteps li.on { opacity: 1; transform: none; }
-.phoneSteps b { color: #1D1B1B; font-weight: 600; display: block; }
-.tick { width: 14px; height: 14px; border: 1px solid #3A7CA5; border-radius: 50%; margin-top: 2px; position: relative; }
-.tick.done { background: #3A7CA5; }
-.tick.done::after { content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 7px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
-.phoneHome { width: 120px; height: 5px; border-radius: 3px; background: #1D1B1B; margin: 8px auto 10px; flex: none; }
-@media (max-width: 700px) { .phone { width: 300px; height: 600px; } .phoneFrame { padding: 28px 12px; } }
-/* Fixes after the first look: the frame hugs the phone instead of stretching to the news
-   column, and the phone is tall enough for all five agents. */
+/* ── The phone (Paul, 25 Sep, second pass): the library's message parts in a small phone, sized
+   like the homepage figures. Restrained: light screen, thin dark bezel, the dotted figure ground. ── */
+.front { margin-top: 0; padding-top: 48px; grid-template-columns: 1fr 1fr; }
 .feature { align-self: start; }
-.phoneFrame { min-height: 0; padding: 40px 24px; }
-.phone { height: 720px; }
+.phoneFrame { border: 1px solid var(--border); background-color: #F4F3EF; background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px); background-size: 28px 28px;
+  display: flex; justify-content: center; padding: 36px 24px; }
+.phone { width: 248px; height: 468px; border-radius: 36px; background: #fff; border: 6px solid #1b1b1f; box-shadow: 0 18px 40px rgba(26,58,78,.14), 0 4px 10px rgba(26,58,78,.06);
+  overflow: hidden; display: flex; flex-direction: column; }
+.phoneTop { display: flex; justify-content: space-between; align-items: center; height: 34px; padding: 0 20px; font-family: var(--ppw-sans, -apple-system, sans-serif); font-size: 11px; font-weight: 600; color: #1b1b1f; flex: none; }
+.phoneIsland { width: 72px; height: 20px; border-radius: 12px; background: #1b1b1f; }
+.phoneSig { width: 22px; height: 9px; border-radius: 3px; border: 1px solid #1b1b1f; position: relative; }
+.phoneSig::after { content: ""; position: absolute; inset: 1px 5px 1px 1px; background: #1b1b1f; border-radius: 1px; }
+.phoneIbx { flex: 1; display: flex; min-height: 0; border-top: 1px solid rgba(20,20,30,.07); }
+.phoneIbx :global(.ppw-conv) { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.phoneStream { display: flex; flex-direction: column; }
+.phoneStream :global(.ppw-b) { max-width: 82%; }
+.phoneStream :global(.ppw-type) { align-self: flex-start; }
+.phoneHome { width: 90px; height: 4px; border-radius: 2px; background: #1b1b1f; margin: 6px auto 8px; flex: none; }
+
+/* Third pass: no box. The hero's composition: a real window behind, the phone in front,
+   overlapping, on the page's own dot ground. Sizes match the live hero's windows. */
+.phoneStage { position: relative; height: 470px; background-image: radial-gradient(circle, rgba(208,208,204,0.55) 0.8px, transparent 0.8px); background-size: 28px 28px; }
+.stageWin { position: absolute; top: 18px; right: 0; width: 440px; }
+.phoneFrame { position: absolute; left: 14px; top: 44px; border: 0; background: none; padding: 0; display: block; z-index: 2; }
+.phone { width: 208px; height: 408px; border-radius: 30px; border-width: 5px; box-shadow: 0 24px 50px rgba(26,58,78,.22), 0 6px 14px rgba(26,58,78,.10); }
+.phoneTop { height: 28px; padding: 0 16px; font-size: 10px; }
+.phoneIsland { width: 58px; height: 16px; }
+.phoneSig { width: 18px; height: 8px; }
+.phoneStream :global(.ppw-b) { font-size: 10.5px; padding: 7px 10px; margin-bottom: 7px; max-width: 84%; }
+.phoneIbx :global(.ppw-chd) { padding: 8px 11px; }
+.phoneIbx :global(.ppw-stream) { padding: 11px; }
+@media (max-width: 700px) { .phoneStage { height: 440px; } .stageWin { width: 300px; top: 0; } .phoneFrame { left: 0; top: 70px; } }
+/* Fourth tune: the window behind readable (less scaling), the phone tall enough for the thread. */
+.front { grid-template-columns: 1.35fr 1fr; }
+.phoneStage { height: 500px; }
+.stageWin { width: 560px; top: 8px; right: 0; }
+.phoneFrame { left: 0; top: 56px; }
+.phone { height: 430px; }
+@media (max-width: 1100px) { .stageWin { width: min(560px, 80%); } }
+/* Fifth tune (Paul: "that black line doesn't work. We have this grey aesthetic"): the phone's
+   body is the windows' own frame, #edeef1 with its hairline, not a black bezel. */
+.phone { background: #fff; border: 7px solid #edeef1; outline: 1px solid rgba(20,20,30,.10); box-shadow: 0 1px 0 1px rgba(20,20,30,.06), 0 20px 44px rgba(26,58,78,.16), 0 5px 12px rgba(26,58,78,.07); }
+.phoneTop { color: #54545c; }
+.phoneIsland { background: #d9dade; }
+.phoneSig { border-color: #8a8a93; }
+.phoneSig::after { background: #8a8a93; }
+.phoneHome { background: #c9cacf; }
+/* The Campaign window came out (Paul, 25 Sep). The phone sits alone, centred in its column. */
+.phoneStage { height: 500px; }
+.phoneFrame { left: 50%; top: 30px; transform: translateX(-50%); }
+.phone { height: 452px; }

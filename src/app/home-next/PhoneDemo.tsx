@@ -1,96 +1,98 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import "../for/_components/library/agent-windows.css";
 import n from "./next.module.css";
 
 /**
- * THE FEATURED ITEM: the live hero's instruction, on a phone. Paul, 25 Sep 2026, on the dark
- * "You ~ run with foxes" terminal in the live hero: "Could this be not black and using our
- * figures but on what looks like an iphone screen. And this is thing we see on left of screen
- * as the featured item."
+ * THE FEATURED ITEM: texting your agents from a phone.
  *
- * Same instruction as the hero (AgentsHero.tsx, INSTR). Drawn in the course figures' language:
- * cream ground, dotted frame, sky blue for what moves. It types ONCE when it comes into view and
- * holds its finished height from the start, so nothing below it jumps (DOCTRINE, 6 Sep).
+ * Paul, 25 Sep 2026, second pass: "You're not using our figures from our design system. It's
+ * about 10 times too big. And I wanted to feel like a text message... You can talk to your
+ * agents on your phone. You can send them messages, but it needs to look like a phone.
+ * Everything needs to be tight and neat... restrained and professional."
+ *
+ * Built from the library's Outreach window parts (agent-windows.css): the .ppw-chd header with
+ * an avatar, the .ppw-b bubbles (grey out, white in, the curved corner), the .ppw-type dots.
+ * Sized like the homepage figures, not a poster. The conversation holds its full height from
+ * the start, so nothing below it moves while it plays.
  */
-const INSTR = "launch a campaign to 200 marketers who just changed roles";
-const STEPS: [string, string][] = [
-  ["Research", "finding who changed roles, and where they went"],
-  ["Writer", "a first line for each person, in your voice"],
-  ["Brand Guardian", "every message checked against your brand"],
-  ["Outreach", "sent from your own inbox, a few each day"],
-  ["Campaign Manager", "replies and meetings logged in your CRM"],
+type Msg = { from: "you" | "agents"; t: string };
+const THREAD: Msg[] = [
+  { from: "you", t: "Can you start a campaign to marketers who just changed roles?" },
+  { from: "agents", t: "On it. Research is finding who moved this month." },
+  { from: "agents", t: "First lines to you to approve by 10." },
+  { from: "you", t: "Perfect, thanks" },
 ];
 
 export default function PhoneDemo() {
-  const root = useRef<HTMLDivElement>(null);
-  const [typed, setTyped] = useState(0);
-  const [stage, setStage] = useState(0); // 0 typing, 1 answered, 2+ steps shown
-  const started = useRef(false);
+  // starts complete, so the phone reads with no JS; the effect replays it
+  const [shown, setShown] = useState(THREAD.length);
+  const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      setTyped(INSTR.length);
-      setStage(STEPS.length + 2);
-      return;
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let cancelled = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    const io = new IntersectionObserver(
-      (es) => {
-        if (!es[0].isIntersecting || started.current) return;
-        started.current = true;
-        for (let i = 1; i <= INSTR.length; i++) timers.push(setTimeout(() => setTyped(i), 400 + i * 38));
-        const done = 400 + INSTR.length * 38;
-        timers.push(setTimeout(() => setStage(1), done + 500));
-        for (let s = 0; s <= STEPS.length; s++) timers.push(setTimeout(() => setStage(2 + s), done + 1200 + s * 700));
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(el);
+    const at = (ms: number, f: () => void) => timers.push(setTimeout(() => !cancelled && f(), ms));
+    const run = () => {
+      setShown(0);
+      setTyping(false);
+      at(600, () => setShown(1));
+      at(1500, () => setTyping(true));
+      at(3000, () => { setTyping(false); setShown(2); });
+      at(3500, () => setTyping(true));
+      at(4900, () => { setTyping(false); setShown(3); });
+      at(6400, () => setShown(4));
+      at(11500, run);
+    };
+    run();
     return () => {
-      io.disconnect();
+      cancelled = true;
       timers.forEach(clearTimeout);
     };
   }, []);
 
+  /* Composed the way the live hero is (Paul, 25 Sep, third pass: "we don't want that box
+     behind it... I feel like I'm just looking at a wireframe"): no frame, the phone on its own
+     on the page's dot ground. The Campaign window behind it came out on Paul's word the same evening. */
   return (
-    <div className={n.phoneFrame} ref={root}>
-      <div className={n.phone}>
-        <div className={n.phoneIsland} aria-hidden />
-        <div className={n.phoneBar}>
+    <div className={n.phoneStage}>
+      <div className={n.phoneFrame}>
+      <div className={`ppw-scope ${n.phone}`}>
+        <div className={n.phoneTop} aria-hidden>
           <span>9:41</span>
-          <span className={n.phoneApp}>/Runwithfoxes</span>
-          <span aria-hidden>●●●</span>
+          <span className={n.phoneIsland} />
+          <span className={n.phoneSig} />
         </div>
-        <div className={n.phoneScreen}>
-          <div className={n.phoneYou}>
-            <span className={n.phoneWho}>You</span>
-            <p className={n.phoneAsk}>
-              {INSTR.slice(0, typed)}
-              {stage === 0 ? <span className={n.phoneCur} aria-hidden /> : null}
-            </p>
-          </div>
-          <div className={`${n.phoneReply} ${stage >= 1 ? n.on : ""}`}>
-            <span className={n.phoneWho}>Your agents</span>
-            <p className={n.phoneLead}>
-              <span className={n.phoneDot} aria-hidden /> <b>5 agents on it</b>
-            </p>
-            <ol className={n.phoneSteps}>
-              {STEPS.map(([who, what], i) => (
-                <li key={who} className={stage >= 2 + i ? n.on : ""}>
-                  <span className={`${n.tick} ${stage >= 3 + i ? n.done : ""}`} aria-hidden />
-                  <span>
-                    <b>{who}</b> {what}
-                  </span>
-                </li>
+        <div className={`ppw-ibx ${n.phoneIbx}`}>
+          <div className="ppw-conv">
+            <div className="ppw-chd">
+              <span className="ppw-av ppw-a1">RF</span>
+              <div className="ppw-who">
+                Your agents
+                <div className="ppw-sub2">5 agents on it</div>
+              </div>
+            </div>
+            <div className={`ppw-stream ${n.phoneStream}`}>
+              <div className="ppw-day">Today</div>
+              {THREAD.slice(0, shown).map((m, i) => (
+                <div key={i} className={`ppw-b ${m.from === "you" ? "ppw-out" : "ppw-in"}`}>
+                  {m.t}
+                </div>
               ))}
-            </ol>
+              {typing ? (
+                <div className="ppw-b ppw-type">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
         <div className={n.phoneHome} aria-hidden />
+      </div>
       </div>
     </div>
   );
