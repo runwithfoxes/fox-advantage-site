@@ -459,3 +459,10 @@ a.entryT:hover { color: #3A7CA5; }
 /* Fixes after the first look: the markers take the rest of the head row; bar labels get room. */
 .dHead .liveRow { flex: 1 1 420px; justify-content: flex-end; }
 .hbar { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) 28px; }
+
+/* The sector dropdown (Paul, 25 Sep): our boxed mono skin over a native select. */
+.secPick { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+.secSelect { position: relative; display: inline-block; }
+.secSelect select { appearance: none; -webkit-appearance: none; font-family: var(--mono); font-size: 14px; color: #fff; background: #1A3A4E; border: 1px solid #1A3A4E; border-radius: 0; padding: 11px 44px 11px 16px; cursor: pointer; min-width: 240px; }
+.secSelect::after { content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+.secSelect select:focus-visible { outline: 2px solid #3A7CA5; outline-offset: 2px; }

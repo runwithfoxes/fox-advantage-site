@@ -36,13 +36,20 @@ export default function SectorPicker() {
         <h2 className={n.dH2}>Your sector</h2>
         <span className={n.secSub}>Everything we measure for a sector, in one place</span>
       </div>
-      <div className={n.secTabs} role="tablist">
-        {SECTORS.map((x) => (
-          <button key={x.key} type="button" role="tab" aria-selected={x.key === on} className={x.key === on ? n.secOn : ""} onClick={() => setOn(x.key)}>
-            {x.name}
-          </button>
-        ))}
-      </div>
+      {/* Paul, 25 Sep: a dropdown, not a button per sector. A native select in our skin, so a
+          phone opens its own picker and the list can grow to every sector we measure. */}
+      <label className={n.secPick}>
+        <span>Show me</span>
+        <span className={n.secSelect}>
+          <select value={on} onChange={(e) => setOn(e.target.value)} aria-label="Pick a sector">
+            {SECTORS.map((x) => (
+              <option key={x.key} value={x.key}>
+                {x.name}
+              </option>
+            ))}
+          </select>
+        </span>
+      </label>
 
       <div className={n.secPanel}>
         <div className={n.secMain}>
