@@ -249,5 +249,5 @@ a.entryT:hover { color: #3A7CA5; }
 .filmStill { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .film { display: none; }
-  .filmStill { display: block; position: absolute; inset: 0; background: url(/resources/hero-fox-walk-last.jpg) center bottom / cover no-repeat; }
+  .filmStill { display: block; position: absolute; inset: 0; background: url(/resources/fox-hero-flip-last-frame.jpg) center bottom / cover no-repeat; }
 }

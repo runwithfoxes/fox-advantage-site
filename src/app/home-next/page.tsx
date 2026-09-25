@@ -83,10 +83,11 @@ export default function HomeNext() {
     <div className={f.page}>
       {/* ── The header: film, headline, and the latest move ── */}
       <section className={`${h.hero} ${n.hero}`} id="top">
-        {/* Approved hero film (fox-ads approved/homepage-hero, 69d27c6), slowed to half speed with
-            drawn-in frames after Paul said it jumps too quickly. Plays ONCE and rests on the beach:
-            a walking fox cannot loop cleanly. Reduced motion gets the last frame as a still. */}
-        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/hero-fox-walk.jpg" src="/resources/hero-fox-walk-slow.mp4" />
+        {/* Approved hero film (fox-ads approved/homepage-hero), under its approved file name so a new
+            cut from Dray swaps in by copying one file. Plays ONCE and rests on the beach: a walking
+            fox cannot loop cleanly. Reduced motion gets the last frame as a still. Slow motion was
+            tried and ruled out by Paul, 25 Sep: "the slow mo makes it feel generic ai". */}
+        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <div className={n.filmStill} aria-hidden />
         <NextNav />
 
