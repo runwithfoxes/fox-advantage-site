@@ -134,9 +134,48 @@ export default function HomeNext() {
              today it is the Advertising Agent on our own course campaign (real ad, real numbers). ── */}
         <section className={n.front} id="latest">
           {/* Paul, 25 Sep: no "Featured" label, no title. The live hero's instruction, on a phone. */}
-          <div className={n.feature}>
-            <PhoneDemo />
-          </div>
+          {/* A feature piece that can stay up for weeks (Paul, 25 Sep): the essay's headline and
+              opening, with the phone set into the text on the right. Smaller than the essay page,
+              no fox. The text is the live essay's own opening, word for word. */}
+          <article className={n.feature}>
+            <span className={n.kicker}>Essay &middot; Paul Dervan &middot; 25 Sept 2026</span>
+            <h2 className={n.featTitle}>
+              <Link href="/essays/how-i-build-proactive-agents">How I build proactive agents</Link>
+            </h2>
+            <p className={n.featDek}>
+              The rules I give my inbox agent so it follows things through, instead of telling me once
+              and moving on.
+            </p>
+            <div className={n.featBody}>
+              <div className={n.featPhone}>
+                <PhoneDemo />
+              </div>
+              <p>
+                I have an agent that owns my inbox. It has two jobs. My inbox gets to zero every day,
+                and nobody who wrote to me gets forgotten.
+              </p>
+              <p>
+                It never sends an email. Every reply it writes is a draft, and I review, edit and press
+                send. It never deletes anything either. Every email gets a label, so I can still search
+                for it.
+              </p>
+              <p>
+                It used to be reactive. It would tell me about an email and then do nothing about it.
+                If I didn&rsquo;t answer, it was forgotten. So I gave it a few rules, and now it follows
+                things through. These are the rules.
+              </p>
+              <p>
+                If a person wrote to me and I haven&rsquo;t replied, it matters. The only emails it can
+                ignore are the ones a machine sent, like newsletters. If you let the agent decide
+                what&rsquo;s important, anything it doesn&rsquo;t recognise goes in a pile marked
+                &ldquo;unsure&rdquo;. Then you have to go through that pile yourself, which is the job
+                you gave it.
+              </p>
+              <Link href="/essays/how-i-build-proactive-agents" className={n.featMore}>
+                Read the essay &rarr;
+              </Link>
+            </div>
+          </article>
 
           <div className={n.newsCol}>
             <div className={n.featureHead}>
