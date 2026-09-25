@@ -103,10 +103,10 @@ export const ASK_LABEL: Record<Ask, string> = {
 export const JOBS_RUN = {
   date: "24 Sep 2026",
   ads: 862,
-  jobs: 739,
+  jobs: 663, // Sam, 25 Sep: marketing and sales titles only, title filter fixed (was 739, all roles)
   newAds: 302,
   newReal: 15,
-  real: 48,
+  real: 51,
   cost: "$2.09",
 };
 
@@ -122,7 +122,7 @@ export const JOBS_SOURCES: { name: string; only: number; shared: number; rate: n
 export const JOBS_KINDS: { ask: Ask; n: number }[] = [
   { ask: "tools", n: 24 },
   { ask: "sell", n: 12 },
-  { ask: "lead", n: 6 },
+  { ask: "lead", n: 9 },
   { ask: "search", n: 4 },
   { ask: "build", n: 2 },
 ];

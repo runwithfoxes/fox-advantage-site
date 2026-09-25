@@ -90,7 +90,7 @@ export const INSTRUMENTS: Instrument[] = [
     reads: "Daily",
     status: "testing",
     last: "24 Sep",
-    line: "About 1 in 20 new ads asks anything real about AI. Verizon is hiring people to buy it.",
+    line: "About 1 in 13 new ads asks anything real about AI. Verizon is hiring people to buy it.",
     href: "/resources/jobs-ai",
     example: false,
   },

@@ -47,7 +47,7 @@ export const DESKS: Desk[] = [
     mark: "J",
     kind: "agent",
     pieces: [
-      { t: "About 1 in 20 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/jobs-ai" },
+      { t: "About 1 in 13 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/jobs-ai" },
       { t: "Tech firms’ careers pages ask for AI four times as often", day: "24 Sept 2026", href: "/resources/jobs-ai#careers" },
     ],
     all: { t: "The tracker →", href: "/resources/jobs-ai" },
@@ -124,8 +124,8 @@ export const TRACKERS: Tracker[] = [
     what: "The AI asks in Irish marketing and sales job ads",
     desk: "Jeff",
     reads: "Weekly",
-    // Sam's 24 Sep run: 739 separate jobs from seven sources, 48 with a real AI ask.
-    reading: { value: "48", of: "of 739 ads ask for AI", last: "24 Sep" },
+    // Sam's recount, 25 Sep: 663 marketing and sales ads on 24 Sep, 51 with a real AI ask (7.7%).
+    reading: { value: "51", of: "of 663 ads ask for AI", last: "24 Sep" },
     href: "/resources/jobs-ai",
     example: false,
   },

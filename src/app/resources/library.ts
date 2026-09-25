@@ -74,7 +74,7 @@ export function getLibrary(): Entry[] {
       date: "2026-09-24",
       area: "work",
       type: "Tracker",
-      title: "About 1 in 20 new marketing and sales ads asks anything real about AI",
+      title: "About 1 in 13 new marketing and sales ads asks anything real about AI",
       href: "/resources/jobs-ai",
       dek: "302 new ads read across seven sources. Tech firms' careers pages ask four times as often.",
     },

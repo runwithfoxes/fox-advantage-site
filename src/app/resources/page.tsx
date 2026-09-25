@@ -163,7 +163,7 @@ export default function ResourceHubPage() {
               </div>
               <ul className={s.writerList}>
                 <li>
-                  <Link href="/resources/jobs-ai">About 1 in 20 new marketing and sales ads asks anything real about AI</Link>
+                  <Link href="/resources/jobs-ai">About 1 in 13 new marketing and sales ads asks anything real about AI</Link>
                   <span>24 Sept 2026</span>
                 </li>
                 <li>
