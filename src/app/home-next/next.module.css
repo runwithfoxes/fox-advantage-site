@@ -517,3 +517,32 @@ a.entryT:hover { color: #3A7CA5; }
 /* the dropdown matches the slimmer buttons */
 .secSelect select { font-size: 12.5px; padding: 8px 38px 8px 14px; min-width: 210px; }
 .secSelect::after { right: 14px; width: 6px; height: 6px; }
+
+/* Hero, 25 Sep evening (Paul): the card about 10% smaller, grabbable. */
+.heroInner { grid-template-columns: 1fr 360px; }
+.heroInner [class*="panel"] { padding: 18px 22px 16px; }
+.heroInner [class*="scroll"] { height: 290px; }
+.heroInner [class*="lineT"] { font-size: 13.5px; }
+.heroInner [class*="lineLab"] { font-size: 9px; }
+.heroInner [class*="headLab"], .heroInner [class*="headSub"] { font-size: 10px; }
+.heroInner [class*="join"] input { font-size: 11px; padding: 9px 11px; }
+.grab { cursor: grab; touch-action: none; user-select: none; position: relative; z-index: 4; transition: box-shadow .2s ease; }
+.grabbing { cursor: grabbing; box-shadow: 0 18px 50px rgba(4,10,16,.35), 0 6px 16px rgba(4,10,16,.2) !important; }
+.grab input { cursor: text; }
+
+/* The phone about 10% smaller. */
+.phone { width: 196px; height: 407px; border-radius: 28px; }
+.featPhone { width: 214px; }
+.phoneStream :global(.ppw-b) { font-size: 10px; }
+
+/* Paul, 25 Sep: "get the word teams onto the same line as marketing", card nudged right; and
+   the subcopy font. The live homepage hero sets its line in Space Grotesk (.ah-sub) and its
+   mono headline with word-spacing -.16em (.ah h1); both carried over here. */
+.heroInner { max-width: 1320px; gap: 40px; }
+.heroInner h1 { font-size: clamp(2.6rem, 5.4vw, 4.8rem); word-spacing: -0.16em; }
+.heroInner h1 + p { font-family: var(--sans); font-size: 19px; line-height: 1.5; max-width: 40ch; }
+.heroInner { max-width: 1340px !important; padding-right: 40px !important; }
+/* the headline keeps the page's left edge (148px at 1440, the buttons' line) while the card sits further right */
+.heroInner { padding-left: max(48px, min(98px, calc((100vw - 1144px) / 2))) !important; }
+@media (max-width: 960px) { .heroInner { padding-left: 48px !important; padding-right: 48px !important; } }
+@media (max-width: 600px) { .heroInner { padding-left: 16px !important; padding-right: 16px !important; } }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import s from "../resources/hero.module.css";
 import n from "./next.module.css";
 import type { Line } from "../resources/HubHero";
@@ -13,8 +13,46 @@ import type { Line } from "../resources/HubHero";
  */
 export default function LibraryCard({ lines }: { lines: Line[] }) {
   const [done, setDone] = useState(false);
+  /* Paul, 25 Sep: "Can the card be grabable." It lifts and moves with the pointer anywhere on
+     the card except the email box; a press that moves less than 5px is still a click, so the
+     links keep working. It stays where it is dropped. */
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef<{ sx: number; sy: number; ox: number; oy: number; moved: boolean } | null>(null);
+  const onDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("input,button,form")) return;
+    drag.current = { sx: e.clientX, sy: e.clientY, ox: pos.x, oy: pos.y, moved: false };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    if (!d) return;
+    const dx = e.clientX - d.sx;
+    const dy = e.clientY - d.sy;
+    if (!d.moved && Math.hypot(dx, dy) < 5) return;
+    d.moved = true;
+    setDragging(true);
+    setPos({ x: d.ox + dx, y: d.oy + dy });
+  };
+  const onUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    drag.current = null;
+    setDragging(false);
+    if (d?.moved) {
+      // swallow the click that follows a drag, so dropping the card does not open a link
+      const stop = (ev: Event) => { ev.preventDefault(); ev.stopPropagation(); };
+      e.currentTarget.addEventListener("click", stop, { capture: true, once: true });
+    }
+  };
   return (
-    <div className={`${s.panel} ${n.darkGlass}`}>
+    <div
+      className={`${s.panel} ${n.darkGlass} ${n.grab} ${dragging ? n.grabbing : ""}`}
+      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+      onPointerDown={onDown}
+      onPointerMove={onMove}
+      onPointerUp={onUp}
+      onPointerCancel={onUp}
+    >
       <div className={s.head}>
         <span className={s.headLab}>Library</span>
         <span className={s.headSub}>Research and papers</span>

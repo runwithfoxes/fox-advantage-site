@@ -110,15 +110,14 @@ export default function HomeNext() {
         <div className={n.filmStill} aria-hidden />
         <NextNav />
 
-        <div className={h.inner}>
+        <div className={`${h.inner} ${n.heroInner}`}>
           <div className={h.text}>
-            <span className={h.pill}>Marketing consultancy · research · agents · training</span>
-            <h1 className={`${h.title} ${n.placeholder}`}>The headline goes here</h1>
+            {/* Paul, 25 Sep: the headline and its line, no pill ("Less is more"), no "New study" line. */}
+            <h1 className={h.title}>Rebuilding marketing teams</h1>
             <p className={h.sub}>
-              A line under it saying what Run with Foxes is: a consultancy that measures Irish
-              marketing every week, builds the agents that do the work, and teaches marketers to use them.
+              A new kind of marketing consultancy that mixes old&#8209;school marketing fundamentals, marketing
+              rigour and technology.
             </p>
-            <p className={h.stamp}>New study: who AI names across 41 categories of Irish life</p>
           </div>
 
           {/* The hub's own card: a flow of our research (Paul, 25 Sep). */}
