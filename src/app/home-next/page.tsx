@@ -80,7 +80,7 @@ export default function HomeNext() {
   const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
     ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
     { type: "Tracker", who: "Jeff", t: "About 1 in 20 new marketing and sales ads asks anything real about AI", href: "/resources/jobs-ai", day: "Read 24 Sept 2026" },
-    ...(openMod ? [{ type: "Course", who: "Module " + openMod.n + " is open", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
+    ...(openMod ? [{ type: "Course · module " + openMod.n + " open", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
     ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
     ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
     { type: "Study", who: "Jess", t: "GEO Ireland: who five AI engines name across 41 categories of Irish life", href: "/resources/geo-ireland", day: "Day one, 23 Aug 2026" },
@@ -140,7 +140,7 @@ export default function HomeNext() {
               opening, with the phone set into the text on the right. Smaller than the essay page,
               no fox. The text is the live essay's own opening, word for word. */}
           <article className={n.feature}>
-            <span className={n.kicker}>Essay &middot; Paul Dervan &middot; 25 Sept 2026</span>
+            <span className={n.kicker}>Essay &middot; 25 Sept 2026</span>
             <h2 className={n.featTitle}>
               <Link href="/essays/how-i-build-proactive-agents">How I build proactive agents</Link>
             </h2>
@@ -148,6 +148,11 @@ export default function HomeNext() {
               The rules I give my inbox agent so it follows things through, instead of telling me once
               and moving on.
             </p>
+            {/* Paul, 25 Sep: a small photo and his name, editorial style */}
+            <div className={n.byline}>
+              <img src="/Paul_photo.jpg" alt="" />
+              <span>By <b>Paul Dervan</b></span>
+            </div>
             <div className={n.featBody}>
               <div className={n.featPhone}>
                 <PhoneDemo />
@@ -187,12 +192,15 @@ export default function HomeNext() {
               {news.map((x) => (
                 <li key={x.href + x.t} className={n.newsItem}>
                   <span className={n.newsType}>
-                    {x.type} <span>&middot; {x.who}</span> {x.ex ? <Ex /> : null}
+                    {x.type} {x.ex ? <Ex /> : null}
                   </span>
                   <Link href={x.href} className={n.newsT}>
                     {x.t}
                   </Link>
-                  <span className={n.newsDay}>{x.day}</span>
+                  <span className={n.newsBy}>
+                    {x.who === "Paul Dervan" ? <img src="/Paul_photo.jpg" alt="" /> : <i>{x.who.slice(0, 1)}</i>}
+                    <b>{x.who}</b> <span>&middot; {x.day}</span>
+                  </span>
                 </li>
               ))}
             </ol>
