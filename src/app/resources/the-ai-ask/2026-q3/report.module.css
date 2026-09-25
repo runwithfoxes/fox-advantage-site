@@ -243,3 +243,17 @@
 .pairs3 .pRow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 .pairs3 .pRow .pLab { font-size: 11px; }
 @media (max-width: 900px) { .pairs3 { grid-template-columns: 1fr; } }
+
+/* The report's hero (Paul, 25 Sep): homepage hero size, the title in the film. */
+.heroR { min-height: min(86vh, 820px); }
+.heroInnerR { align-items: center; }
+.eyebrowW { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.85); text-shadow: 0 1px 10px rgba(4,10,16,.45); }
+.issueW { border: 1px solid rgba(255,255,255,.45); padding: 3px 8px; letter-spacing: .08em; }
+.h1W { font-family: var(--sans); font-weight: 500; font-size: clamp(32px, 3.8vw, 52px); line-height: 1.06; letter-spacing: -0.025em; margin: 18px 0 20px; max-width: 18ch; color: #fff; text-shadow: 0 2px 24px rgba(4,10,16,.45); text-wrap: balance; }
+.hlW { color: #A9CBE4; }
+.byW { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11.5px; color: rgba(255,255,255,.88); text-shadow: 0 1px 8px rgba(4,10,16,.5); }
+.byW .byDot { color: rgba(255,255,255,.5); }
+.glanceHero { margin-top: 0 !important; }
+.glanceHero .glanceFox { display: none; }
+.mast { grid-template-columns: minmax(0, 760px); padding-top: 24px; }
+.heroInnerR h1.h1W { word-spacing: normal !important; font-size: clamp(30px, 3.1vw, 44px) !important; max-width: 20ch; }

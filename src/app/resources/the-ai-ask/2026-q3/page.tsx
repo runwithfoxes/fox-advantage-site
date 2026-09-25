@@ -113,44 +113,31 @@ export default function AiAskQ3() {
 
   return (
     <div className={`${f.page} ${r.page}`}>
-      <section className={`${h.hero} ${n.heroShort} ${r.band}`}>
-        <img className={h.film} src="/resources/fox-hero-flip-last-frame.jpg" alt="" style={{ objectPosition: "center 100%" }} />
+      {/* Paul, 25 Sep: the band "same size as hero in homepage and put headline into photo". The
+          report's title, byline and the at-a-glance card sit in the film, as the homepage's do. */}
+      <section className={`${h.hero} ${r.heroR}`} id="top">
+        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <NextNav />
-      </section>
-
-      <div className={r.draft}>
-        Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
-      </div>
-
-      <header className={r.mast} id="intro">
-        <div className={r.mastMain}>
-          <span className={r.eyebrow}>
-            {META.kicker} <span className={r.issue}>Issue 01 · Q3 2026</span>
-          </span>
-          <h1 className={r.h1}>
-            {META.title} <span className="mod-hl">{META.titleHl}</span>
-          </h1>
-          <div className={r.by}>
-            <i className={r.byMark}>S</i>
-            <span>{META.byline}</span>
-            <span className={r.byDot}>·</span>
-            <span>{META.checked}</span>
-            <span className={r.byDot}>·</span>
-            <span>{META.date}</span>
-            <span className={r.byDot}>·</span>
-            <span>{mins} min read</span>
+        <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>
+          <div className={h.text}>
+            <span className={r.eyebrowW}>
+              {META.kicker} <span className={r.issueW}>Issue 01 · Q3 2026</span>
+            </span>
+            <h1 className={r.h1W}>
+              {META.title} <span className={r.hlW}>{META.titleHl}</span>
+            </h1>
+            <div className={r.byW}>
+              <i className={r.byMark}>S</i>
+              <span>{META.byline}</span>
+              <span className={r.byDot}>·</span>
+              <span>{META.checked}</span>
+              <span className={r.byDot}>·</span>
+              <span>{META.date}</span>
+              <span className={r.byDot}>·</span>
+              <span>{mins} min read</span>
+            </div>
           </div>
-          <p className={r.standfirst}>
-            <Text s={INTRO[0]} />
-          </p>
-          {INTRO.slice(1).map((p, i) => (
-            <p key={i} className={r.p}>
-              <Text s={p} />
-            </p>
-          ))}
-        </div>
-
-        <aside className={`mod-win ${r.glance}`}>
+        <aside className={`mod-win ${r.glance} ${r.glanceHero}`}>
           <div className="mod-winbar">
             <span className="mod-lights">
               <i />
@@ -175,6 +162,24 @@ export default function AiAskQ3() {
             <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
           </div>
         </aside>
+        </div>
+      </section>
+
+      <div className={r.draft}>
+        Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
+      </div>
+
+      <header className={r.mast} id="intro">
+        <div className={r.mastMain}>
+          <p className={r.standfirst}>
+            <Text s={INTRO[0]} />
+          </p>
+          {INTRO.slice(1).map((p, i) => (
+            <p key={i} className={r.p}>
+              <Text s={p} />
+            </p>
+          ))}
+        </div>
       </header>
 
       <section className={r.findings} id="findings">
