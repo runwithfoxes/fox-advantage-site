@@ -193,7 +193,7 @@ a.bRow:hover { background: rgba(58,124,165,.05); }
    cover pushes into the column beside it; a desk's not-yet-written title reads in the
    same serif as a written one, only greyed. */
 .studies > *, .covers > *, .writers > * { min-width: 0; }
-.soonTitle { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.4; color: var(--text-muted); }
+.writers .soonTitle { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.4; color: var(--text-muted); }
 /* The cover's height comes from its drawing (4:3 viewBox); a fixed aspect-ratio on top of
    that forced the flagship wider than its column. */
 .cover, .flag .cover { aspect-ratio: auto; width: 100%; }

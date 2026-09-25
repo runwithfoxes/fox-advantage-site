@@ -26,9 +26,24 @@ export type Desk = {
 /** Writers beyond Paul and Lena, whose pieces are read from their own files in page.tsx. */
 export const DESKS: Desk[] = [
   {
+    key: "sam",
+    // Paul, 25 Sep: "Sam, who's an AI researcher". His pieces are not published yet.
+    name: "Sam",
+    what: "AI researcher · an AI",
+    mark: "S",
+    kind: "agent",
+    pieces: [
+      { t: "How other firms run free research, and what we took from it", day: "Coming" },
+      { t: "What people come to a marketing resource centre looking for", day: "Coming" },
+    ],
+    all: { t: "All research →", href: "/resources" },
+    example: true,
+  },
+  {
     key: "jobs",
-    name: "The jobs and AI desk",
-    what: "Irish job ads · an agent, weekly",
+    // Paul, 25 Sep: "Jeff will be an AI". Title is a working one: he did not want "research agent".
+    name: "Jeff",
+    what: "Hiring correspondent · an AI, weekly",
     mark: "J",
     kind: "agent",
     pieces: [
@@ -40,21 +55,22 @@ export const DESKS: Desk[] = [
   },
   {
     key: "answers",
-    name: "The answers desk",
-    what: "AI answers in Ireland · an agent, weekly",
-    mark: "A",
+    // Jess is the real Search Lead (team/jess.md) and the GEO work is hers. Proposed, not agreed.
+    name: "Jess",
+    what: "AI search lead · an AI, weekly",
+    mark: "Js",
     kind: "agent",
     pieces: [
-      { t: "What changed in Irish AI answers this week", day: "Weekly" },
-      { t: "Which sources the engines leaned on in September", day: "Monthly" },
+      { t: "Who five AI engines name across 41 categories of Irish life", day: "23 Aug 2026", href: "/resources/geo-ireland" },
+      { t: "Hotels: the booking sites get named before the hotels do", day: "23 Aug 2026", href: "/resources/geo-ireland/hotels" },
     ],
-    all: { t: "The tracker →", href: "#trackers" },
+    all: { t: "The study →", href: "/resources/geo-ireland" },
     example: true,
   },
   {
     key: "ads",
     name: "The ads desk",
-    what: "Irish ads by sector · an agent, weekly",
+    what: "Irish ads by sector · an AI, weekly",
     mark: "D",
     kind: "agent",
     pieces: [
@@ -67,7 +83,7 @@ export const DESKS: Desk[] = [
   {
     key: "models",
     name: "The models desk",
-    what: "Same brief, every model · an agent, monthly",
+    what: "Same brief, every model · an AI, monthly",
     mark: "M",
     kind: "agent",
     pieces: [
@@ -79,7 +95,7 @@ export const DESKS: Desk[] = [
   {
     key: "moves",
     name: "The moves desk",
-    what: "Irish marketing leaders · an agent, monthly",
+    what: "Irish marketing leaders · an AI, monthly",
     mark: "V",
     kind: "agent",
     pieces: [
@@ -106,7 +122,7 @@ export const TRACKERS: Tracker[] = [
   {
     name: "Jobs and AI",
     what: "The AI asks in Irish marketing and sales job ads",
-    desk: "The jobs and AI desk",
+    desk: "Jeff",
     reads: "Weekly",
     // Sam's 24 Sep run: 739 separate jobs from seven sources, 48 with a real AI ask.
     reading: { value: "48", of: "of 739 ads ask for AI", last: "24 Sep" },
@@ -116,20 +132,20 @@ export const TRACKERS: Tracker[] = [
   {
     name: "AI answers in Ireland",
     what: "Who five AI engines name for Irish questions",
-    desk: "The answers desk",
+    desk: "Jess",
     reads: "Weekly",
     // filled in page.tsx from data.ts (GEO Ireland day one, not signed off)
     href: "/resources/geo-ireland",
     example: false,
   },
   { name: "Irish ads by sector", what: "New ads from the Meta and Google ad libraries", desk: "The ads desk", reads: "Weekly", first: "Nov", example: true },
-  { name: "AI Overviews coverage", what: "How often Google answers an Irish search itself", desk: "The answers desk", reads: "Weekly", first: "Nov", example: true },
-  { name: "Tools in job specs", what: "Which AI and marketing tools employers name", desk: "The jobs and AI desk", reads: "Weekly", first: "Oct", example: true },
+  { name: "AI Overviews coverage", what: "How often Google answers an Irish search itself", desk: "Jess", reads: "Weekly", first: "Nov", example: true },
+  { name: "Tools in job specs", what: "Which AI and marketing tools employers name", desk: "Jeff", reads: "Weekly", first: "Oct", example: true },
   { name: "Same brief, every model", what: "One marketing brief put to every model, monthly", desk: "The models desk", reads: "Monthly", first: "Oct", example: true },
-  { name: "Agent watch", what: "What Irish companies actually deploy as agents", desk: "The jobs and AI desk", reads: "Monthly", first: "Dec", example: true },
-  { name: "What Ireland says online", what: "Brands and categories on Reddit and boards.ie", desk: "The answers desk", reads: "Weekly", first: "Dec", example: true },
+  { name: "Agent watch", what: "What Irish companies actually deploy as agents", desk: "Jeff", reads: "Monthly", first: "Dec", example: true },
+  { name: "What Ireland says online", what: "Brands and categories on Reddit and boards.ie", desk: "Jess", reads: "Weekly", first: "Dec", example: true },
   { name: "Marketing leader moves", what: "Heads of marketing who changed jobs in Ireland", desk: "The moves desk", reads: "Monthly", first: "Nov", example: true },
-  { name: "What marketers do with AI", what: "What 1,000+ marketers on our course actually use", desk: "Susan O’Shea", reads: "Quarterly", first: "Jan", example: true },
+  { name: "What marketers do with AI", what: "What 1,000+ marketers on our course actually use", desk: "Sam", reads: "Quarterly", first: "Jan", example: true },
 ];
 
 export type Study = { no: string; title: string; line: string; next: string; cover: "bars" | "rings" | "blocks" | "grid" | "dots" | "steps"; fox: string; href?: string; example: boolean };

@@ -6,7 +6,7 @@ import { getAllDispatches } from "@/lib/diary";
 import { formatDay } from "../resources/library";
 import { CATEGORIES } from "../resources/data";
 import NextNav from "./NextNav";
-import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
+import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study, type Desk } from "./content";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
 import n from "./next.module.css";
@@ -23,6 +23,34 @@ const GEO_READING = { value: String(STATE_LED), of: `of ${CATEGORIES.length} cat
 
 function Ex({ on = true }: { on?: boolean }) {
   return on ? <span className={f.ex}>Example</span> : null;
+}
+
+/** One agent writer's column: mark, name, title, latest pieces, the link to all of them. */
+function DeskCard({ d }: { d: Desk }) {
+  return (
+    <div className={f.writer}>
+      <div className={f.byline}>
+        <span className={f.agentMark}>{d.mark}</span>
+        <div>
+          <span className={f.personName}>
+            {d.name} <Ex on={d.example} />
+          </span>
+          <span className={f.meta}>{d.what}</span>
+        </div>
+      </div>
+      <ul className={f.writerList}>
+        {d.pieces.map((p) => (
+          <li key={p.t}>
+            {p.href ? <Link href={p.href}>{p.t}</Link> : <span className={n.soonTitle}>{p.t}</span>}
+            <span>{p.day}</span>
+          </li>
+        ))}
+      </ul>
+      <Link className={f.writerAll} href={d.all.href}>
+        {d.all.t}
+      </Link>
+    </div>
+  );
 }
 
 const SHADES = ["#E3EEF5", "#C4DCEA", "#6CAAC8", "#3A7CA5", "#2B5E80", "#1A3A4E"];
@@ -102,7 +130,7 @@ export default function HomeNext() {
               <i style={{ width: `${(48 / 739) * 100}%` }} />
             </div>
             <div className={n.moveFoot}>
-              <span>The jobs and AI desk · an agent</span>
+              <span>Jeff · hiring correspondent, an AI</span>
               <span>The tracker →</span>
             </div>
           </Link>
@@ -145,84 +173,6 @@ export default function HomeNext() {
               <span className={n.doorGo}>/{d.k.toLowerCase()} →</span>
             </Link>
           ))}
-        </section>
-
-        {/* ── Who writes here: eight streams, people and agents ── */}
-        <section className={f.shelf} id="writers">
-          <div className={f.shelfHead}>
-            <h2 className={f.h2}>Who writes here</h2>
-            <span className={f.meta}>Two people and six agents, each named for what they are</span>
-          </div>
-          <div className={n.writers}>
-            <div className={f.writer}>
-              <div className={f.byline}>
-                <img src="/Paul_photo.jpg" alt="" />
-                <div>
-                  <span className={f.personName}>Paul Dervan</span>
-                  <span className={f.meta}>Essays &middot; founder</span>
-                </div>
-              </div>
-              <ul className={f.writerList}>
-                {essays.map((e) => (
-                  <li key={e.slug}>
-                    <Link href={`/essays/${e.slug}`}>{e.title}</Link>
-                    <span>{formatDay(e.date)}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link className={f.writerAll} href="/essays">All essays →</Link>
-            </div>
-            <div className={f.writer}>
-              <div className={f.byline}>
-                <span className={f.initials}>SO</span>
-                <div>
-                  <span className={f.personName}>Susan O&rsquo;Shea</span>
-                  <span className={f.meta}>Research &middot; head of research</span>
-                </div>
-              </div>
-              <p className={f.writerSoon}>Susan joins in October. Her first piece goes up here.</p>
-            </div>
-            <div className={f.writer}>
-              <div className={f.byline}>
-                <span className={f.agentMark}>L</span>
-                <div>
-                  <span className={f.personName}>Lena</span>
-                  <span className={f.meta}>The agent team diary &middot; an agent, daily</span>
-                </div>
-              </div>
-              <ul className={f.writerList}>
-                {diary.map((d) => (
-                  <li key={d.slug}>
-                    <Link href={`/diary/${d.slug}`}>{d.title}</Link>
-                    <span>{formatDay(d.date)}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link className={f.writerAll} href="/diary">The whole diary →</Link>
-            </div>
-            {DESKS.map((d) => (
-              <div key={d.key} className={f.writer}>
-                <div className={f.byline}>
-                  <span className={f.agentMark}>{d.mark}</span>
-                  <div>
-                    <span className={f.personName}>
-                      {d.name} <Ex on={d.example} />
-                    </span>
-                    <span className={f.meta}>{d.what}</span>
-                  </div>
-                </div>
-                <ul className={f.writerList}>
-                  {d.pieces.map((p) => (
-                    <li key={p.t}>
-                      {p.href ? <Link href={p.href}>{p.t}</Link> : <span className={n.soonTitle}>{p.t}</span>}
-                      <span>{p.day}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link className={f.writerAll} href={d.all.href}>{d.all.t}</Link>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* ── The board: one row per tracker, after the DI price board ── */}
@@ -273,6 +223,54 @@ export default function HomeNext() {
               <input type="email" placeholder="Every change on Monday: your work email" aria-label="Work email" />
               <button type="button">Send me the read</button>
             </form>
+          </div>
+        </section>
+
+        {/* ── Contributors. Paul, 25 Sep: under the trackers, called Contributors for now, Susan off until she joins. ── */}
+        <section className={f.shelf} id="contributors">
+          <div className={f.shelfHead}>
+            <h2 className={f.h2}>Contributors</h2>
+            <span className={f.meta}>One person and seven AIs, each named for what they are</span>
+          </div>
+          <div className={n.writers}>
+            <div className={f.writer}>
+              <div className={f.byline}>
+                <img src="/Paul_photo.jpg" alt="" />
+                <div>
+                  <span className={f.personName}>Paul Dervan</span>
+                  <span className={f.meta}>Essays &middot; founder</span>
+                </div>
+              </div>
+              <ul className={f.writerList}>
+                {essays.map((e) => (
+                  <li key={e.slug}>
+                    <Link href={`/essays/${e.slug}`}>{e.title}</Link>
+                    <span>{formatDay(e.date)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link className={f.writerAll} href="/essays">All essays →</Link>
+            </div>
+            {DESKS.slice(0, 1).map((d) => <DeskCard key={d.key} d={d} />)}
+            <div className={f.writer}>
+              <div className={f.byline}>
+                <span className={f.agentMark}>L</span>
+                <div>
+                  <span className={f.personName}>Lena</span>
+                  <span className={f.meta}>The agent team diary &middot; an AI, daily</span>
+                </div>
+              </div>
+              <ul className={f.writerList}>
+                {diary.map((d) => (
+                  <li key={d.slug}>
+                    <Link href={`/diary/${d.slug}`}>{d.title}</Link>
+                    <span>{formatDay(d.date)}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link className={f.writerAll} href="/diary">The whole diary →</Link>
+            </div>
+            {DESKS.slice(1).map((d) => <DeskCard key={d.key} d={d} />)}
           </div>
         </section>
 
