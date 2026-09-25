@@ -7,6 +7,11 @@ import { formatDay, getLibrary } from "../resources/library";
 import { CATEGORIES } from "../resources/data";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
+import DoorButtons from "./DoorButtons";
+import AgentsSection from "@/components/agents/AgentsSection";
+import AdDeskWindow from "@/components/agents/AdDeskWindow";
+import "@/components/agents/agents-section.css";
+import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
@@ -65,8 +70,20 @@ function Cover({ st }: { st: Study }) {
  */
 export default function HomeNext() {
   const essays = getAllEssays().slice(0, 3);
-  const lead = essays[0];
   const diary = getAllDispatches().slice(0, 3);
+  const openMod = MODULES.find((m) => m.built);
+  const nextMod = MODULES.find((m) => !m.built);
+  /* What's new: one list across every kind of thing we publish, newest first. Only real
+     items, except where tagged. */
+  const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
+    ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
+    { type: "Tracker", who: "Jeff", t: "About 1 in 20 new marketing and sales ads asks anything real about AI", href: "/resources/jobs-ai", day: "Read 24 Sept 2026" },
+    ...(openMod ? [{ type: "Course", who: "Module " + openMod.n + " is open", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
+    ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
+    ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
+    { type: "Study", who: "Jess", t: "GEO Ireland: who five AI engines name across 41 categories of Irish life", href: "/resources/geo-ireland", day: "Day one, 23 Aug 2026" },
+    { type: "Research", who: "Sam", t: "How other firms run free research, and what we took from it", href: "/resources", day: "Coming", ex: true },
+  ];
   const trackers = TRACKERS.map((t) => (t.name === "AI answers in Ireland" ? { ...t, reading: GEO_READING } : t));
   const flagship = STUDIES[0];
   /* The card's lines, built the way the hub builds them: studies, trackers, then every
@@ -107,105 +124,61 @@ export default function HomeNext() {
         </div>
       </section>
 
+      <DoorButtons />
+
       {/* The tracker strip came out (Paul, 25 Sep): with the scrolling card in the header, "there's too many things moving". */}
       <main className={f.wrap}>
-        {/* ── Contributors. Paul, 25 Sep: straight under the tracker strip, at the very top, and
-             not symmetrical. So a front page: Paul's latest essay as the lead on the left, every
-             other contributor as a short entry down the right. Susan off until she joins. ── */}
-        <section className={n.contrib} id="contributors">
-          <div className={n.lead}>
-            <div className={n.contribHead}>
-              <h2 className={f.h2}>Contributors</h2>
-              <span className={f.meta}>One person and seven AIs, each named for what they are</span>
+        {/* ── The front page. Paul, 25 Sep: keep the big left side as the key feature, but "a space
+             where I can feature like a figure or demo of agents work"; the right gives "a sense of
+             essays, updates on reports, the course". The left slot takes any figure or agent window;
+             today it is the Advertising Agent on our own course campaign (real ad, real numbers). ── */}
+        <section className={n.front} id="latest">
+          <div className={n.feature}>
+            <div className={n.featureHead}>
+              <span className={n.kicker}>Featured &middot; an agent at work</span>
+              <Link href="/#agents" className={n.featureAll}>All ten agents →</Link>
             </div>
-            <div className={n.leadBy}>
-              <img src="/Paul_photo.jpg" alt="" />
-              <span>
-                <span className={f.personName}>Paul Dervan</span>
-                <span className={f.meta}>Essays &middot; founder</span>
-              </span>
+            <h2 className={n.featureTitle}>Our advertising agent, running the ads for our own free course</h2>
+            <div className={n.featureFig}>
+              <AdDeskWindow />
             </div>
-            {lead ? (
-              <Link href={`/essays/${lead.slug}`} className={n.leadStory}>
-                {lead.image ? <img className={n.leadImg} src={lead.image} alt="" /> : null}
-                <span className={n.leadTitle}>{lead.title}</span>
-                {lead.dek ? <span className={n.leadDek}>{lead.dek}</span> : null}
-                <span className={f.meta}>{formatDay(lead.date)}</span>
-              </Link>
-            ) : null}
-            <ul className={n.leadMore}>
-              {essays.slice(1, 3).map((e) => (
-                <li key={e.slug}>
-                  <Link href={`/essays/${e.slug}`}>{e.title}</Link>
-                  <span>{formatDay(e.date)}</span>
-                </li>
-              ))}
-            </ul>
-            <Link className={f.writerAll} href="/essays">All essays →</Link>
+            <p className={n.featureCap}>
+              The real ad and the real numbers from Meta. It writes the ads, puts them live, reads what
+              works and makes the next ones, every day.
+            </p>
           </div>
 
-          <ol className={n.stream}>
-            {[DESKS[0], null, ...DESKS.slice(1)].map((d) => {
-              if (!d) {
-                const x = diary[0];
-                return (
-                  <li key="lena" className={n.entry}>
-                    <span className={f.agentMark}>L</span>
-                    <span className={n.entryBody}>
-                      <span className={n.entryWho}>
-                        Lena <span>The agent team diary &middot; an AI, daily</span>
-                      </span>
-                      {x ? (
-                        <Link href={`/diary/${x.slug}`} className={n.entryT}>
-                          {x.title}
-                        </Link>
-                      ) : null}
-                      {x ? <span className={n.entryDay}>{formatDay(x.date)}</span> : null}
-                    </span>
-                  </li>
-                );
-              }
-              const p = d.pieces[0];
-              return (
-                <li key={d.key} className={n.entry}>
-                  <span className={f.agentMark}>{d.mark}</span>
-                  <span className={n.entryBody}>
-                    <span className={n.entryWho}>
-                      {d.name} <span>{d.what}</span> <Ex on={d.example} />
-                    </span>
-                    {p.href ? (
-                      <Link href={p.href} className={n.entryT}>
-                        {p.t}
-                      </Link>
-                    ) : (
-                      <span className={`${n.entryT} ${n.entrySoon}`}>{p.t}</span>
-                    )}
-                    <span className={n.entryDay}>{p.day}</span>
+          <div className={n.newsCol}>
+            <div className={n.featureHead}>
+              <span className={n.kicker}>What&rsquo;s new</span>
+            </div>
+            <ol className={n.news}>
+              {news.map((x) => (
+                <li key={x.href + x.t} className={n.newsItem}>
+                  <span className={n.newsType}>
+                    {x.type} <span>&middot; {x.who}</span> {x.ex ? <Ex /> : null}
                   </span>
+                  <Link href={x.href} className={n.newsT}>
+                    {x.t}
+                  </Link>
+                  <span className={n.newsDay}>{x.day}</span>
                 </li>
-              );
-            })}
-          </ol>
+              ))}
+            </ol>
+            <div className={n.newsFoot}>
+              <Link href="/essays">Essays →</Link>
+              <Link href="/diary">Diary →</Link>
+              <Link href="/resources">Research →</Link>
+              <Link href="/course">The course →</Link>
+            </div>
+          </div>
         </section>
 
-        {/* ── The four doors ── */}
-        <section className={n.doors} aria-label="What we do">
-          {[
-            { k: "Consulting", t: "We diagnose what is holding your marketing back, and fix it with you.", href: "/contact", ex: true },
-            { k: "Agents", t: "Ten agents we build for marketing teams, working every day.", href: "/#agents", ex: false },
-            { k: "Training", t: "A free course for marketers, and training for whole teams.", href: "/course", ex: false },
-            { k: "Resources", t: "Studies, trackers and tools on what AI is doing to marketing.", href: "/resources", ex: false },
-          ].map((d, i) => (
-            <Link key={d.k} href={d.href} className={n.door}>
-              <span className={n.doorNum}>0{i + 1}</span>
-              <span className={n.doorName}>{d.k}</span>
-              <span className={n.doorLine}>
-                {d.t} {d.ex ? <Ex /> : null}
-              </span>
-              <span className={n.doorGo}>/{d.k.toLowerCase()} →</span>
-            </Link>
-          ))}
-        </section>
+        {/* The live homepage's agents section, whole: its inline reader, and the full-screen
+            surface the four buttons under the hero open (Paul, 25 Sep). */}
+        <div className={n.agentsWrap}>
+          <AgentsSection />
+        </div>
 
         {/* ── The board: one row per tracker, after the DI price board ── */}
         <section className={f.shelf} id="trackers">

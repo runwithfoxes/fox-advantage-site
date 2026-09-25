@@ -251,3 +251,53 @@ a.entryT:hover { color: #3A7CA5; }
   .film { display: none; }
   .filmStill { display: block; position: absolute; inset: 0; background: url(/resources/fox-hero-flip-last-frame.jpg) center bottom / cover no-repeat; }
 }
+
+/* ── The front page: a feature on the left, what's new on the right (Paul, 25 Sep) ── */
+.front { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; margin-top: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--border); }
+.front > * { min-width: 0; }
+.featureHead { display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--text); padding-top: 14px; margin-bottom: 18px; }
+.kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.featureAll { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; }
+.featureTitle { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 22px; max-width: 26ch; }
+.featureFig :global(.agw) { margin: 0; max-width: none; }
+.featureCap { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.55; color: var(--text-muted); margin: 14px 0 0; max-width: 60ch; }
+.news { list-style: none; padding: 0; margin: 0; }
+.newsItem { display: grid; gap: 5px; padding: 14px 0 16px; border-bottom: 1px solid var(--border); }
+.newsItem:first-child { padding-top: 0; }
+.newsType { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; }
+.newsType span { color: var(--text-muted); text-transform: none; letter-spacing: .02em; }
+.newsT { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.4; color: var(--text); text-decoration: none; }
+.newsT:hover { color: #3A7CA5; }
+.newsDay { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.newsFoot { display: flex; flex-wrap: wrap; gap: 8px 18px; padding-top: 16px; font-family: var(--mono); font-size: 12px; }
+.newsFoot a { color: #3A7CA5; text-decoration: none; }
+@media (max-width: 1100px) { .front { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 700px) { .featureTitle { font-size: 24px; } .front { margin-top: 40px; } }
+
+/* The agent windows read their colours from .ag, which only the agents section has. Same values here. */
+.featureFig {
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  --ag-sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  color: var(--ag-text);
+}
+/* Give the window the width it was drawn for, so the four number tiles are not clipped. */
+.front { grid-template-columns: 1.9fr 1fr; gap: 48px; }
+
+/* ── The four buttons under the hero, as on the live homepage (Paul, 25 Sep): boxed, mono,
+   deep sky for the first, white with a hairline for the rest, on the site's dot grid. ── */
+.doorBand { background-color: var(--bg); background-image: radial-gradient(circle, rgba(208,208,204,0.55) 0.8px, transparent 0.8px); background-size: 28px 28px; border-bottom: 1px solid var(--border); }
+.doorRow { max-width: 1240px; margin: 0 auto; padding: 26px 48px; display: flex; gap: 11px; flex-wrap: wrap; }
+.doorPrimary, .doorGhost { font-family: var(--mono); font-size: 15px; padding: 14px 26px; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+.doorPrimary { background: #1A3A4E; color: #fff; }
+.doorPrimary:hover { background: #22495f; }
+.doorGhost { background: #fff; color: #1D1B1B; border-color: #E0E0DC; }
+.doorGhost:hover { border-color: #3A7CA5; color: #3A7CA5; }
+.agentsWrap { margin-top: 72px; }
+@media (max-width: 700px) { .doorRow { padding: 18px 16px; gap: 8px; } .doorPrimary, .doorGhost { font-size: 13px; padding: 10px 12px; } }
+.front { margin-top: 40px; }
