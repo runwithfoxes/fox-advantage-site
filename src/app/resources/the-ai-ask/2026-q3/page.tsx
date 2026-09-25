@@ -97,10 +97,10 @@ export default function AiAskQ3() {
   const mk = N.jobsie;
   const big: Record<string, { v: string; l: string }> = {
     mkt: { v: `${mk["2025-Q4"].marketing.pct}% → ${mk["2026-Q3"].marketing.pct}%`, l: "marketing ads asking for AI, a year apart" },
-    talk: { v: `${N.talk_vs_ask.any_ai_word.pct}% · ${N.talk_vs_ask.real_ask.pct}%`, l: "mention AI · actually ask for it" },
-    head: { v: `${N.levels.head.pct}%`, l: `of head and director ads ask, against ${N.levels.junior.pct}% of junior` },
+    talk: { v: `${N.talk_vs_ask.mention_ai.pct}% · ${N.talk_vs_ask.real_ask.pct}%`, l: "mention AI · actually ask for it" },
+    head: { v: `${N.levels.head.pct}%`, l: `of head and director ads ask, against ${N.levels.entry.pct}% of entry level` },
     speed: { v: `${N.tools_asks_reasons["speed, efficiency, productivity"]}`, l: `sentences want speed, against ${N.tools_asks_reasons["writing, drafting, copy"]} about writing` },
-    tools: { v: `${N.tools_sep.AI['"AI tools", no name']} of ${N.tools_sep.AI.any}`, l: "ads asking for AI tools don't name one" },
+    tools: { v: `${N.ai_tools_named.generic_without_any_name} of ${N.ai_tools_named.ads_generic_ai_tools}`, l: "ads asking for AI tools name no tool at all" },
     rules: { v: "0", l: `of ${N.total_ads.toLocaleString("en-IE")} ads tell you to keep AI out of your CV` },
   };
   const rail = [
@@ -165,7 +165,7 @@ export default function AiAskQ3() {
               { v: N.total_ads.toLocaleString("en-IE"), l: "Irish marketing and sales job ads read" },
               { v: `${N.sep_all.pct}%`, l: `of September's ads ask for AI, ${N.sep_all.k} of ${N.sep_all.n}` },
               { v: `${mk["2026-Q3"].marketing.pct}%`, l: `of marketing ads on jobs.ie ask, up from ${mk["2025-Q4"].marketing.pct}% a year ago` },
-              { v: `${(N.dublin_job_boards.dublin.pct / N.dublin_job_boards.outside.pct).toFixed(0)}×`, l: "as often in Dublin as outside it, on the job boards" },
+              { v: `${N.talk_vs_ask_by_channel.careers_pages.real_ask.pct}%`, l: `of tech firms' careers-page ads ask, against ${N.talk_vs_ask_by_channel.job_boards.real_ask.pct}% on the job boards` },
             ].map((s) => (
               <div key={s.l} className={r.glanceRow}>
                 <span className="mod-num">{s.v}</span>

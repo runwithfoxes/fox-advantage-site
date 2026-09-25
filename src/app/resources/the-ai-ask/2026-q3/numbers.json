@@ -5,354 +5,454 @@
   "2026-Q2": "Apr 2026",
   "2026-Q3": "24 Sep 2026"
  },
- "total_ads": 1832,
- "archive_ads": 1172,
- "sep_ads": 660,
+ "method": "rebuilt after Cato review; dedupe on company+title or first 300 chars of text; roles sorted sales-first; Irish locations only; every candidate judged by one rulebook",
+ "total_ads": 1686,
+ "archive_ads": 1095,
+ "sep_ads": 591,
  "sep_all": {
-  "n": 660,
-  "k": 47,
-  "pct": 7.1
+  "k": 53,
+  "n": 591,
+  "pct": 9.0
  },
  "sep_kinds": {
-  "search": 4,
+  "search": 5,
+  "lead": 4,
   "tools": 24,
-  "sell": 11,
-  "lead": 6,
+  "sell": 18,
   "build": 2
  },
  "jobsie": {
   "2025-Q4": {
-   "ads": 294,
+   "ads": 266,
    "all": {
-    "n": 294,
     "k": 2,
-    "pct": 0.7
+    "n": 266,
+    "pct": 0.8
    },
    "marketing": {
-    "n": 80,
     "k": 0,
+    "n": 40,
     "pct": 0.0
    },
    "sales": {
-    "n": 214,
     "k": 2,
+    "n": 226,
     "pct": 0.9
    }
   },
   "2026-Q1": {
-   "ads": 690,
+   "ads": 647,
    "all": {
-    "n": 690,
-    "k": 22,
-    "pct": 3.2
+    "k": 24,
+    "n": 647,
+    "pct": 3.7
    },
    "marketing": {
-    "n": 177,
-    "k": 17,
-    "pct": 9.6
+    "k": 14,
+    "n": 111,
+    "pct": 12.6
    },
    "sales": {
-    "n": 513,
-    "k": 5,
-    "pct": 1.0
+    "k": 10,
+    "n": 536,
+    "pct": 1.9
    }
   },
   "2026-Q2": {
-   "ads": 188,
+   "ads": 182,
    "all": {
-    "n": 188,
     "k": 1,
+    "n": 182,
     "pct": 0.5
    },
    "marketing": {
-    "n": 40,
     "k": 1,
-    "pct": 2.5
+    "n": 25,
+    "pct": 4.0
    },
    "sales": {
-    "n": 148,
     "k": 0,
+    "n": 157,
     "pct": 0.0
    }
   },
   "2026-Q3": {
-   "ads": 141,
+   "ads": 139,
    "all": {
-    "n": 141,
     "k": 10,
-    "pct": 7.1
+    "n": 139,
+    "pct": 7.2
    },
    "marketing": {
-    "n": 52,
     "k": 8,
-    "pct": 15.4
+    "n": 31,
+    "pct": 25.8
    },
    "sales": {
-    "n": 89,
     "k": 2,
-    "pct": 2.2
+    "n": 108,
+    "pct": 1.9
    }
   }
  },
- "sep_mkt_sales_all_sources": {
+ "sep_by_role_all_sources": {
   "marketing": {
-   "n": 190,
-   "k": 26,
-   "pct": 13.7
+   "k": 19,
+   "n": 100,
+   "pct": 19.0
   },
   "sales": {
-   "n": 470,
-   "k": 21,
-   "pct": 4.5
+   "k": 34,
+   "n": 491,
+   "pct": 6.9
+  }
+ },
+ "sep_by_role_boards": {
+  "marketing": {
+   "k": 15,
+   "n": 92,
+   "pct": 16.3
+  },
+  "sales": {
+   "k": 12,
+   "n": 435,
+   "pct": 2.8
   }
  },
  "levels": {
-  "junior": {
-   "n": 296,
-   "k": 10,
-   "pct": 3.4
+  "entry": {
+   "k": 3,
+   "n": 103,
+   "pct": 2.9
+  },
+  "executive": {
+   "k": 14,
+   "n": 226,
+   "pct": 6.2
   },
   "manager": {
-   "n": 195,
-   "k": 21,
-   "pct": 10.8
+   "k": 24,
+   "n": 166,
+   "pct": 14.5
   },
   "head": {
-   "n": 28,
    "k": 6,
-   "pct": 21.4
+   "n": 23,
+   "pct": 26.1
   },
   "unclear": {
-   "n": 141,
+   "k": 6,
+   "n": 73,
+   "pct": 8.2
+  }
+ },
+ "levels_boards": {
+  "entry": {
+   "k": 3,
+   "n": 103,
+   "pct": 2.9
+  },
+  "executive": {
+   "k": 6,
+   "n": 197,
+   "pct": 3.0
+  },
+  "manager": {
    "k": 10,
+   "n": 137,
+   "pct": 7.3
+  },
+  "head": {
+   "k": 3,
+   "n": 20,
+   "pct": 15.0
+  },
+  "unclear": {
+   "k": 5,
+   "n": 70,
    "pct": 7.1
   }
  },
  "kinds_by_level": {
-  "junior": {
-   "tools": 9,
-   "sell": 1
+  "entry": {
+   "tools": 3
+  },
+  "executive": {
+   "sell": 8,
+   "tools": 6
   },
   "manager": {
-   "tools": 9,
-   "search": 3,
-   "sell": 5,
-   "build": 1,
-   "lead": 3
+   "lead": 2,
+   "search": 4,
+   "sell": 7,
+   "tools": 10,
+   "build": 1
   },
   "head": {
-   "lead": 3,
-   "sell": 2,
+   "lead": 2,
+   "sell": 3,
    "tools": 1
   },
   "unclear": {
    "search": 1,
-   "tools": 5,
-   "sell": 3,
+   "tools": 4,
    "build": 1
   }
  },
  "roles": [
   {
    "role": "Product marketing",
-   "n": 10,
-   "k": 4,
-   "pct": 40.0,
-   "index": 5.6
+   "group": "marketing",
+   "k": 5,
+   "n": 7,
+   "pct": 71.4,
+   "index": 8.0
   },
   {
-   "role": "SEO, content and social",
-   "n": 26,
-   "k": 4,
-   "pct": 15.4,
-   "index": 2.2
+   "role": "Digital, performance and ecommerce marketing",
+   "group": "marketing",
+   "k": 10,
+   "n": 22,
+   "pct": 45.5,
+   "index": 5.1
   },
   {
-   "role": "Digital and performance marketing",
-   "n": 50,
-   "k": 12,
-   "pct": 24.0,
-   "index": 3.4
+   "role": "Content, social and communications",
+   "group": "marketing",
+   "k": 1,
+   "n": 18,
+   "pct": 5.6,
+   "index": 0.6
   },
   {
-   "role": "Brand and general marketing",
-   "n": 102,
+   "role": "Brand, events and general marketing",
+   "group": "marketing",
+   "k": 3,
+   "n": 53,
+   "pct": 5.7,
+   "index": 0.6
+  },
+  {
+   "role": "Business development, SDR and BDR",
+   "group": "sales",
    "k": 6,
-   "pct": 5.9,
-   "index": 0.8
+   "n": 34,
+   "pct": 17.6,
+   "index": 2.0
   },
   {
-   "role": "Customer success, account management",
-   "n": 37,
-   "k": 4,
-   "pct": 10.8,
-   "index": 1.5
-  },
-  {
-   "role": "Business development, SDR",
-   "n": 50,
-   "k": 6,
-   "pct": 12.0,
+   "role": "Customer success and account management",
+   "group": "sales",
+   "k": 8,
+   "n": 51,
+   "pct": 15.7,
    "index": 1.7
   },
   {
-   "role": "Account executive, enterprise sales",
-   "n": 81,
-   "k": 4,
-   "pct": 4.9,
-   "index": 0.7
+   "role": "Account executives and enterprise sales",
+   "group": "sales",
+   "k": 11,
+   "n": 88,
+   "pct": 12.5,
+   "index": 1.4
   },
   {
-   "role": "Field, retail and inside sales",
-   "n": 299,
-   "k": 5,
-   "pct": 1.7,
-   "index": 0.2
+   "role": "Field, retail, inside and other sales",
+   "group": "sales",
+   "k": 9,
+   "n": 318,
+   "pct": 2.8,
+   "index": 0.3
   }
  ],
  "talk_vs_ask": {
-  "any_ai_word": {
-   "n": 660,
-   "k": 146,
-   "pct": 22.1
-  },
-  "after_blurbs_removed": {
-   "n": 660,
-   "k": 100,
-   "pct": 15.2
+  "mention_ai": {
+   "k": 114,
+   "n": 591,
+   "pct": 19.3
   },
   "real_ask": {
-   "n": 660,
-   "k": 47,
-   "pct": 7.1
+   "k": 53,
+   "n": 591,
+   "pct": 9.0
   }
  },
  "talk_vs_ask_jobsie": {
   "2025-Q4": {
-   "any_ai_word": {
-    "n": 294,
-    "k": 5,
-    "pct": 1.7
+   "mention_ai": {
+    "k": 3,
+    "n": 266,
+    "pct": 1.1
    },
    "real_ask": {
-    "n": 294,
     "k": 2,
-    "pct": 0.7
+    "n": 266,
+    "pct": 0.8
    }
   },
   "2026-Q1": {
-   "any_ai_word": {
-    "n": 690,
-    "k": 34,
-    "pct": 4.9
+   "mention_ai": {
+    "k": 29,
+    "n": 647,
+    "pct": 4.5
    },
    "real_ask": {
-    "n": 690,
-    "k": 22,
-    "pct": 3.2
+    "k": 24,
+    "n": 647,
+    "pct": 3.7
    }
   },
   "2026-Q2": {
-   "any_ai_word": {
-    "n": 188,
-    "k": 3,
-    "pct": 1.6
+   "mention_ai": {
+    "k": 2,
+    "n": 182,
+    "pct": 1.1
    },
    "real_ask": {
-    "n": 188,
     "k": 1,
+    "n": 182,
     "pct": 0.5
    }
   },
   "2026-Q3": {
-   "any_ai_word": {
-    "n": 141,
+   "mention_ai": {
     "k": 11,
-    "pct": 7.8
+    "n": 139,
+    "pct": 7.9
    },
    "real_ask": {
-    "n": 141,
     "k": 10,
-    "pct": 7.1
+    "n": 139,
+    "pct": 7.2
    }
   }
  },
- "recruiters": {
-  "recruiter": {
-   "n": 94,
-   "k": 9,
-   "pct": 9.6
-  },
-  "direct": {
-   "n": 566,
-   "k": 38,
-   "pct": 6.7
-  }
- },
- "careers_vs_boards": {
+ "talk_vs_ask_by_channel": {
   "careers_pages": {
-   "n": 94,
-   "k": 20,
-   "pct": 21.3
+   "mention_ai": {
+    "k": 52,
+    "n": 64,
+    "pct": 81.2
+   },
+   "real_ask": {
+    "k": 26,
+    "n": 64,
+    "pct": 40.6
+   }
   },
   "job_boards": {
-   "n": 566,
-   "k": 27,
-   "pct": 4.8
+   "mention_ai": {
+    "k": 62,
+    "n": 527,
+    "pct": 11.8
+   },
+   "real_ask": {
+    "k": 27,
+    "n": 527,
+    "pct": 5.1
+   }
   }
  },
- "dublin_job_boards": {
+ "recruiters_boards_only": {
+  "recruiter": {
+   "k": 9,
+   "n": 89,
+   "pct": 10.1
+  },
+  "direct": {
+   "k": 18,
+   "n": 438,
+   "pct": 4.1
+  }
+ },
+ "careers_pages": {
+  "companies_with_ads": 16,
+  "ads": 64,
+  "companies_checked": 33
+ },
+ "place_boards": {
   "dublin": {
-   "n": 235,
-   "k": 19,
-   "pct": 8.1
+   "k": 20,
+   "n": 230,
+   "pct": 8.7
   },
   "outside": {
-   "n": 300,
-   "k": 6,
-   "pct": 2.0
+   "k": 4,
+   "n": 243,
+   "pct": 1.6
+  },
+  "unknown": {
+   "k": 3,
+   "n": 54,
+   "pct": 5.6
+  }
+ },
+ "place_boards_by_role": {
+  "marketing": {
+   "dublin": {
+    "k": 11,
+    "n": 48,
+    "pct": 22.9
+   },
+   "outside": {
+    "k": 2,
+    "n": 37,
+    "pct": 5.4
+   }
+  },
+  "sales": {
+   "dublin": {
+    "k": 9,
+    "n": 182,
+    "pct": 4.9
+   },
+   "outside": {
+    "k": 2,
+    "n": 206,
+    "pct": 1.0
+   }
   }
  },
  "language_roles": {
   "language": {
-   "n": 63,
-   "k": 6,
-   "pct": 9.5
+   "k": 9,
+   "n": 51,
+   "pct": 17.6
   },
   "other": {
-   "n": 597,
-   "k": 41,
-   "pct": 6.9
+   "k": 44,
+   "n": 540,
+   "pct": 8.1
   }
  },
  "tools_sep": {
   "Office": {
-   "any": 107,
-   "Excel": 56,
+   "any": 91,
+   "Excel": 45,
    "Microsoft Office": 62,
-   "PowerPoint": 19,
-   "Google Workspace": 10
+   "PowerPoint": 18,
+   "Google Workspace": 6
   },
   "CRM": {
-   "any": 65,
+   "any": 64,
    "Salesforce": 54,
-   "HubSpot": 10,
-   "Microsoft Dynamics": 3,
-   "Zoho": 1,
+   "HubSpot": 9,
+   "Microsoft Dynamics": 2,
+   "Zoho": 0,
    "Pipedrive": 0
   },
   "Analytics": {
-   "any": 25,
+   "any": 26,
    "Google Analytics": 11,
    "Tableau": 8,
    "SQL": 7,
    "Google Tag Manager": 4,
    "Looker": 3,
-   "Power BI": 2
+   "Power BI": 3
   },
   "Paid ads": {
-   "any": 26,
-   "Google Ads": 22,
+   "any": 23,
+   "Google Ads": 19,
    "Meta Ads Manager": 8,
    "TikTok Ads": 2,
    "LinkedIn Ads": 1
@@ -378,15 +478,15 @@
    "Zapier": 1
   },
   "Sales tools": {
-   "any": 5,
-   "Apollo, Outreach, Salesloft": 2,
-   "LinkedIn Sales Navigator": 2,
+   "any": 8,
+   "Apollo, Outreach, Salesloft": 3,
+   "LinkedIn Sales Navigator": 4,
    "ZoomInfo": 2,
    "Gong": 1
   },
   "AI": {
-   "any": 27,
-   "\"AI tools\", no name": 24,
+   "any": 25,
+   "\"AI tools\", no name": 21,
    "Claude": 3,
    "Gemini": 3,
    "ChatGPT": 2,
@@ -395,209 +495,240 @@
    "Cursor": 1
   }
  },
+ "ai_tools_named": {
+  "ads_generic_ai_tools": 24,
+  "generic_without_any_name": 21,
+  "ads_naming_ai_product": 6,
+  "naming": [
+   [
+    "Femtech Healthcare Limited",
+    "Senior AI Search & SEO Specialist"
+   ],
+   [
+    "intercom",
+    "Senior Product Marketing Manager"
+   ],
+   [
+    "mongodb",
+    "Staff Technical Product Marketing Manager, Context Engineering"
+   ],
+   [
+    "Osborne Recruitment",
+    "Digital Marketing and Content Specialist"
+   ],
+   [
+    "DocuSign",
+    "Sales Development Representative (French Speaker)"
+   ],
+   [
+    "Microsoft",
+    "Digital Enterprise Solution Sales Specialist - AI Workforce- French speaking"
+   ]
+  ]
+ },
  "tools_jobsie_share": {
   "Excel": {
    "2025-Q4": {
-    "n": 294,
-    "k": 28,
-    "pct": 9.5
+    "k": 23,
+    "n": 266,
+    "pct": 8.6
    },
    "2026-Q1": {
-    "n": 690,
-    "k": 65,
-    "pct": 9.4
+    "k": 60,
+    "n": 647,
+    "pct": 9.3
    },
    "2026-Q2": {
-    "n": 188,
-    "k": 18,
-    "pct": 9.6
+    "k": 17,
+    "n": 182,
+    "pct": 9.3
    },
    "2026-Q3": {
-    "n": 141,
-    "k": 20,
-    "pct": 14.2
+    "k": 17,
+    "n": 139,
+    "pct": 12.2
    }
   },
   "Salesforce": {
    "2025-Q4": {
-    "n": 294,
     "k": 12,
-    "pct": 4.1
+    "n": 266,
+    "pct": 4.5
    },
    "2026-Q1": {
-    "n": 690,
-    "k": 39,
-    "pct": 5.7
+    "k": 35,
+    "n": 647,
+    "pct": 5.4
    },
    "2026-Q2": {
-    "n": 188,
-    "k": 8,
-    "pct": 4.3
+    "k": 7,
+    "n": 182,
+    "pct": 3.8
    },
    "2026-Q3": {
-    "n": 141,
     "k": 6,
+    "n": 139,
     "pct": 4.3
    }
   },
   "HubSpot": {
    "2025-Q4": {
-    "n": 294,
     "k": 4,
-    "pct": 1.4
+    "n": 266,
+    "pct": 1.5
    },
    "2026-Q1": {
-    "n": 690,
     "k": 5,
-    "pct": 0.7
+    "n": 647,
+    "pct": 0.8
    },
    "2026-Q2": {
-    "n": 188,
     "k": 4,
-    "pct": 2.1
+    "n": 182,
+    "pct": 2.2
    },
    "2026-Q3": {
-    "n": 141,
     "k": 5,
-    "pct": 3.5
+    "n": 139,
+    "pct": 3.6
    }
   },
   "Canva": {
    "2025-Q4": {
-    "n": 294,
     "k": 6,
-    "pct": 2.0
+    "n": 266,
+    "pct": 2.3
    },
    "2026-Q1": {
-    "n": 690,
     "k": 15,
-    "pct": 2.2
+    "n": 647,
+    "pct": 2.3
    },
    "2026-Q2": {
-    "n": 188,
     "k": 7,
-    "pct": 3.7
+    "n": 182,
+    "pct": 3.8
    },
    "2026-Q3": {
-    "n": 141,
     "k": 9,
-    "pct": 6.4
+    "n": 139,
+    "pct": 6.5
    }
   },
   "Adobe": {
    "2025-Q4": {
-    "n": 294,
-    "k": 9,
-    "pct": 3.1
+    "k": 6,
+    "n": 266,
+    "pct": 2.3
    },
    "2026-Q1": {
-    "n": 690,
-    "k": 21,
-    "pct": 3.0
+    "k": 18,
+    "n": 647,
+    "pct": 2.8
    },
    "2026-Q2": {
-    "n": 188,
     "k": 5,
+    "n": 182,
     "pct": 2.7
    },
    "2026-Q3": {
-    "n": 141,
     "k": 4,
-    "pct": 2.8
+    "n": 139,
+    "pct": 2.9
    }
   },
   "Google Ads": {
    "2025-Q4": {
-    "n": 294,
-    "k": 8,
-    "pct": 2.7
+    "k": 7,
+    "n": 266,
+    "pct": 2.6
    },
    "2026-Q1": {
-    "n": 690,
-    "k": 15,
+    "k": 14,
+    "n": 647,
     "pct": 2.2
    },
    "2026-Q2": {
-    "n": 188,
     "k": 6,
-    "pct": 3.2
+    "n": 182,
+    "pct": 3.3
    },
    "2026-Q3": {
-    "n": 141,
     "k": 7,
+    "n": 139,
     "pct": 5.0
    }
   },
   "Meta Ads Manager": {
    "2025-Q4": {
-    "n": 294,
     "k": 5,
-    "pct": 1.7
+    "n": 266,
+    "pct": 1.9
    },
    "2026-Q1": {
-    "n": 690,
     "k": 7,
-    "pct": 1.0
+    "n": 647,
+    "pct": 1.1
    },
    "2026-Q2": {
-    "n": 188,
     "k": 2,
+    "n": 182,
     "pct": 1.1
    },
    "2026-Q3": {
-    "n": 141,
     "k": 6,
+    "n": 139,
     "pct": 4.3
    }
   },
   "Any AI tool": {
    "2025-Q4": {
-    "n": 294,
     "k": 0,
+    "n": 266,
     "pct": 0.0
    },
    "2026-Q1": {
-    "n": 690,
-    "k": 9,
-    "pct": 1.3
+    "k": 10,
+    "n": 647,
+    "pct": 1.5
    },
    "2026-Q2": {
-    "n": 188,
     "k": 1,
+    "n": 182,
     "pct": 0.5
    },
    "2026-Q3": {
-    "n": 141,
     "k": 5,
-    "pct": 3.5
+    "n": 139,
+    "pct": 3.6
    }
   }
  },
  "pay_shown_jobsie": {
   "2025-Q4": {
-   "n": 294,
-   "k": 69,
-   "pct": 23.5
+   "k": 59,
+   "n": 266,
+   "pct": 22.2
   },
   "2026-Q1": {
-   "n": 690,
-   "k": 186,
-   "pct": 27.0
+   "k": 174,
+   "n": 647,
+   "pct": 26.9
   },
   "2026-Q2": {
-   "n": 188,
    "k": 60,
-   "pct": 31.9
+   "n": 182,
+   "pct": 33.0
   },
   "2026-Q3": {
-   "n": 141,
    "k": 40,
-   "pct": 28.4
+   "n": 139,
+   "pct": 28.8
   }
  },
  "pay_on_ai_asks": {
-  "with_pay": 11,
-  "of": 47,
+  "with_pay": 14,
+  "of": 53,
   "companies": [
    "Staffline Recruitment Ireland",
    "Excel Recruitment",
@@ -605,19 +736,162 @@
    "Femtech Healthcare Limited",
    "dropbox",
    "dropbox",
+   "notion",
+   "notion",
    "squarespace",
    "tines",
+   "Yuno Energy",
    "Okta",
    "Microsoft",
    "Kearys Motor Group"
   ]
  },
- "screening_notices_sep": 8,
- "second_reader": {
-  "sample": 40,
-  "real_vs_noise_agree": 39,
-  "kind_agree": 37
+ "screening_notices": {
+  "2025-Q4": [],
+  "2026-Q1": [],
+  "2026-Q2": [],
+  "2026-Q3": [
+   [
+    "learnupon",
+    "Director, Partnerships",
+    "careers:learnupon"
+   ],
+   [
+    "okta",
+    "Associate Customer Success Enablement Manager - EMEA",
+    "careers:okta"
+   ],
+   [
+    "okta",
+    "Business Development Representative - Dutch",
+    "careers:okta"
+   ],
+   [
+    "okta",
+    "Sales Development Representative - German",
+    "careers:okta"
+   ],
+   [
+    "Salesforce",
+    "Customer Success Manager - Marketing cloud -Arabic speaker",
+    "indeed"
+   ],
+   [
+    "Clio",
+    "Senior Field Marketing Manager",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Renewals Account Manager - FR / IT / ES",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Inside partner account manager - German",
+    "indeed"
+   ],
+   [
+    "Workday",
+    "Business Development Representative (Danish Speaker)",
+    "indeed"
+   ]
+  ]
  },
+ "applicant_rules": [
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive (DACH)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive (Portugal)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive UKI/Nordics"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Customer Success Manager (DACH; German-Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Sales Engineer (Spanish-Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Customer Success Associate - Dublin (MENA ROSE - Turkish Speaker)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Director, Enterprise Customer Success"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Enterprise Customer Success Manager (German Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Manager, Customer Success - Dublin (Israel/Iberia)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Mid-Market Account Executive (DACH)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Recruiter, Enterprise Sales"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Sales Development Representative (Africa)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Sales Development Representative (UKI)"
+  ],
+  [
+   "2026-Q3",
+   "squarespace",
+   "International Strategy and Marketing Lead"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Lead Analyst, Revenue"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Sales Compensation Manager"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Senior Performance Marketing Manager"
+  ]
+ ],
+ "agents_in_duties": [
+  [
+   "2026-Q3",
+   "wayflyer",
+   "Technical Revenue Operations Analyst"
+  ]
+ ],
  "examples": {
   "search": [
    [
@@ -635,24 +909,20 @@
    [
     "Femtech Healthcare Limited",
     "Senior AI Search & SEO Specialist"
+   ],
+   [
+    "Yuno Energy",
+    "Digital Marketing Manager"
    ]
   ],
   "lead": [
    [
+    "Excel Recruitment",
+    "Ecommerce & Digital Marketing Manager - Luxury Retail"
+   ],
+   [
     "datadog",
     "Director, Enterprise Customer Success"
-   ],
-   [
-    "Verizon",
-    "Senior Manager, Strategic Sourcing - Marketing (Digital, MarTech & Research)"
-   ],
-   [
-    "Verizon",
-    "Senior Manager, Strategic Sourcing - Marketing (Agency Category)"
-   ],
-   [
-    "Verizon",
-    "Associate Director - Strategic Sourcing (Marketing)"
    ],
    [
     "Accenture",
@@ -674,6 +944,10 @@
    ],
    [
     "gitlab",
+    "Business Development Representative"
+   ],
+   [
+    "gitlab",
     "Director, Customer Success, EMEA"
    ],
    [
@@ -681,8 +955,28 @@
     "Growth Account Executive"
    ],
    [
-    "greenhouse",
-    "Senior Account Executive, Mid-Market"
+    "intercom",
+    "Account Executive, Enterprise (German)"
+   ],
+   [
+    "intercom",
+    "Account Executive, MidMarket - French Speaking"
+   ],
+   [
+    "intercom",
+    "Business Development Representative"
+   ],
+   [
+    "intercom",
+    "Manager, Account Executives (SMB)"
+   ],
+   [
+    "intercom",
+    "Senior Customer Success Manager"
+   ],
+   [
+    "intercom",
+    "Senior Product Marketing Manager"
    ],
    [
     "mongodb",
@@ -693,8 +987,8 @@
     "Director, Technology Solution Marketing"
    ],
    [
-    "Oliver James",
-    "Sales - Business Developer"
+    "Google Ireland Ltd",
+    "Head of Sales, Google Customer Solutions, Israel (English, Hebrew)"
    ],
    [
     "Microsoft",
@@ -705,8 +999,12 @@
     "Inside partner account manager - German"
    ],
    [
-    "Watchguard Technologies",
-    "Inside partner account manager"
+    "Kaseya",
+    "Senior Account Manager. German Market"
+   ],
+   [
+    "Keeper Security, Inc.",
+    "Inside Sales Representative, Mid-Market (EMEA)"
    ]
   ],
   "build": [
@@ -720,22 +1018,179 @@
    ]
   ]
  },
+ "q1_marketing_asks_by_poster": [
+  [
+   "Cpl Resources - Marketing",
+   4
+  ],
+  [
+   "McSport",
+   3
+  ],
+  [
+   "Soho Bar and Venue",
+   1
+  ],
+  [
+   "O'Callaghan Collection",
+   1
+  ],
+  [
+   "Purcell O'Leary Recruitment",
+   1
+  ],
+  [
+   "Cpl Resources - Language Jobs",
+   1
+  ],
+  [
+   "TK Maxx TJX Europe Homesense",
+   1
+  ],
+  [
+   "EZ Living Furniture",
+   1
+  ],
+  [
+   "StayCity",
+   1
+  ]
+ ],
+ "q1_marketing_examples": [
+  [
+   "McSport",
+   "Digital Marketing Executive",
+   "tools"
+  ],
+  [
+   "McSport",
+   "Ecommerce Executive",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Product Marketing Manager - 12 month FTC",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Product Marketing Manager - Part time 12 month FTC",
+   "tools"
+  ],
+  [
+   "Soho Bar and Venue",
+   "Digital Marketing Manager",
+   "lead"
+  ],
+  [
+   "O'Callaghan Collection",
+   "Senior Digital Marketing Executive",
+   "search"
+  ],
+  [
+   "Purcell O'Leary Recruitment",
+   "Digital Marketing Manager",
+   "lead"
+  ],
+  [
+   "Cpl Resources - Language Jobs",
+   "German Speaking roles in Dublin (SaaS/Marketing)",
+   "tools"
+  ],
+  [
+   "TK Maxx TJX Europe Homesense",
+   "Communications Manager - 14 Months FTC",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Growth Regions Field Marketing Lead 12 Month FTC",
+   "tools"
+  ],
+  [
+   "McSport",
+   "Social Media & Content Creator",
+   "tools"
+  ],
+  [
+   "EZ Living Furniture",
+   "Social Media Executive (Maternity Cover)",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Marketing Coordinator - 6 Month Contract with possible extension Dublin",
+   "tools"
+  ],
+  [
+   "StayCity",
+   "SEO & Organic Growth Lead",
+   "search"
+  ]
+ ],
+ "q3_jobsie_marketing_examples": [
+  [
+   "Staffline Recruitment Ireland",
+   "Marketing Analyst",
+   "search"
+  ],
+  [
+   "Excel Recruitment",
+   "Ecommerce & Digital Marketing Manager - Luxury Retail",
+   "lead"
+  ],
+  [
+   "Cpl Resources - Cork",
+   "Product Marketing Communications Contractor - German",
+   "tools"
+  ],
+  [
+   "Yuno Limited t/a Yuno Energy",
+   "Digital Marketing Manager",
+   "search"
+  ],
+  [
+   "Cpl Resources - Cork",
+   "Product Marketing Communication DE/FR/ES",
+   "tools"
+  ],
+  [
+   "Ballyhoura Development Limited",
+   "Graduate Development Officer Digital Communications & Marketing",
+   "tools"
+  ],
+  [
+   "Excel Recruitment",
+   "Senior Digital Marketing Manager",
+   "search"
+  ],
+  [
+   "Femtech Healthcare Limited",
+   "Senior AI Search & SEO Specialist",
+   "search"
+  ]
+ ],
  "tools_asks_reasons": {
-  "asks": 38,
-  "sentences": 77,
-  "speed, efficiency, productivity": 28,
-  "automating tasks, workflows": 22,
-  "analysing data, insight": 14,
-  "campaigns, targeting, personalisation": 12,
-  "images, video, design": 8,
+  "asks": 39,
+  "sentences": 88,
+  "speed, efficiency, productivity": 30,
+  "automating tasks, workflows": 23,
+  "analysing data, insight": 16,
+  "campaigns, targeting, personalisation": 11,
+  "images, video, design": 9,
   "writing, drafting, copy": 8,
-  "research": 5,
-  "summarising": 2,
-  "note": "all four quarters, keyword count, a sentence can count twice"
+  "research": 8,
+  "summarising": 2
  },
- "named_ai_product_ads_sep": {
-  "ads": 6,
-  "as_tool_to_use": 2,
-  "note": "Osborne (ChatGPT), DocuSign (Gemini, NotebookLM); others name AI as a search platform, a perk or a product sold"
+ "second_reader": {
+  "first_check": {
+   "sample": 40,
+   "real_vs_noise_agree": 39,
+   "kind_agree": 37
+  },
+  "full_rejudge": {
+   "candidates": 152,
+   "overruled_by_sam": 6
+  }
  }
 }

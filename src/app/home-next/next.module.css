@@ -579,3 +579,8 @@ a.entryT:hover { color: #3A7CA5; }
 /* exact values from .hpx-nl-title / .hpx-nl-meta on the live homepage */
 .recentT { font-weight: 500; font-size: 14px; letter-spacing: -.2px; line-height: 1.3; }
 .recentMeta { font-size: 10px; letter-spacing: 1px; }
+/* Paul, 25 Sep: the hero sign-up "slightly too big... probably 10% too big" */
+.hj { max-width: 420px; margin-top: 26px; }
+.hjForm input { font-size: 11.5px; padding: 9px 12px; }
+.hjForm button { font-size: 11.5px; padding: 0 14px; }
+.hjFine { font-size: 10.5px; margin-top: 9px; }

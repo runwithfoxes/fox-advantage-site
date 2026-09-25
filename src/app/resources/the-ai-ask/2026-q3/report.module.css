@@ -230,3 +230,16 @@
 /* the masthead rule sits on the content edge, not the box edge */
 .mast { border-bottom: 0; }
 .fHead { border-top: 2px solid #1A3A4E; padding-top: 16px; }
+
+/* post-Cato figures: paired bars (2.1), group rows (3.1), three pairs (3.3) */
+.pairKey { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11px; color: #6b6b66; margin-bottom: 4px; }
+.pairKey i { display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: -1px; }
+.pairGroup { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid #F2F2EE; }
+.pairBars { display: grid; gap: 5px; }
+.pairLine { display: grid; grid-template-columns: minmax(0, 1fr) 110px; gap: 10px; align-items: center; }
+.idxGroup { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; padding: 10px 0 2px; }
+.pairs3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.pairs3 .pair { padding-right: 0; }
+.pairs3 .pRow { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.pairs3 .pRow .pLab { font-size: 11px; }
+@media (max-width: 900px) { .pairs3 { grid-template-columns: 1fr; } }

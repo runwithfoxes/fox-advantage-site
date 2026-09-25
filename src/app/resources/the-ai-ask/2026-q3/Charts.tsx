@@ -142,31 +142,39 @@ export function F11() {
   );
 }
 
-/* ── 2.1 Mentions against asks ────────────────────────────────────────────────────── */
+/* ── 2.1 Mentions against asks, by channel (Sam's post-Cato figure: paired bars) ───── */
 export function F21() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const t = N.talk_vs_ask;
-  const rows = [
-    { k: "Mention AI anywhere", v: t.any_ai_word, c: GREY },
-    { k: "Mention AI outside the company blurb", v: t.after_blurbs_removed, c: PALE },
-    { k: "Ask the person to do something with AI", v: t.real_ask, c: SKY },
+  const c = N.talk_vs_ask_by_channel;
+  const groups = [
+    { k: "All ads", m: t.mention_ai, a: t.real_ask },
+    { k: "Tech firms' careers pages", m: c.careers_pages.mention_ai, a: c.careers_pages.real_ask },
+    { k: "Job boards", m: c.job_boards.mention_ai, a: c.job_boards.real_ask },
   ];
   return (
     <div ref={ref} className={r.funnel}>
-      {rows.map((row, i) => (
-        <div key={row.k} className={r.fRow}>
-          <span className={r.fLab}>{row.k}</span>
-          <span className={r.fTrack}>
-            <i style={{ width: seen ? `${(row.v.k / t.any_ai_word.k) * 100}%` : 0, background: row.c, transitionDelay: `${i * 150}ms` }} />
-          </span>
-          <span className={r.fVal}>
-            <b>{row.v.k}</b> <em>{row.v.pct}%</em>
-          </span>
+      <div className={r.pairKey}>
+        <span><i style={{ background: GREY }} /> Mention AI</span>
+        <span><i style={{ background: SKY }} /> Ask the person to do something with AI</span>
+      </div>
+      {groups.map((g, i) => (
+        <div key={g.k} className={r.pairGroup}>
+          <span className={r.fLab}>{g.k}</span>
+          <div className={r.pairBars}>
+            {[{ v: g.m, c: GREY }, { v: g.a, c: SKY }].map((b, j) => (
+              <div key={j} className={r.pairLine}>
+                <span className={r.fTrack}>
+                  <i style={{ width: seen ? `${b.v.pct}%` : 0, background: b.c, transitionDelay: `${i * 140 + j * 70}ms` }} />
+                </span>
+                <span className={r.fVal}>
+                  <b>{b.v.pct}%</b> <em>{b.v.k} of {b.v.n}</em>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
-      <p className={r.fNote}>
-        <b>{Math.round((t.real_ask.k / t.any_ai_word.k) * 10)} in 10</b> ads that mention AI ask for it. Out of {t.any_ai_word.n} ads.
-      </p>
     </div>
   );
 }
@@ -176,8 +184,11 @@ export function F31() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const [sort, setSort] = useState<"index" | "n">("index");
   const [hover, setHover] = useState<string | null>(null);
-  const rows = [...N.roles].sort((a, b) => (sort === "index" ? b.index - a.index : b.n - a.n));
-  const max = 6;
+  const groups = (["marketing", "sales"] as const).map((g) => ({
+    g,
+    rows: N.roles.filter((x) => x.group === g).sort((a, b) => (sort === "index" ? b.index - a.index : b.n - a.n)),
+  }));
+  const max = 8;
   return (
     <div ref={ref}>
       <div className={r.chartHead}>
@@ -187,7 +198,9 @@ export function F31() {
         <div className={r.idxAvg} style={{ left: `calc(210px + (100% - 290px) * ${1 / max})` }}>
           <span>average job = 1</span>
         </div>
-        {rows.map((row) => (
+        {groups.map(({ g, rows }) => [
+          <span key={g} className={r.idxGroup}>{g === "marketing" ? "Marketing" : "Sales"}</span>,
+          ...rows.map((row) => (
           <div key={row.role} className={`${r.idxRow} ${hover === row.role ? r.idxHot : ""}`} onMouseEnter={() => setHover(row.role)} onMouseLeave={() => setHover(null)}>
             <span className={r.idxLab}>{row.role}</span>
             <span className={r.idxTrack}>
@@ -198,68 +211,80 @@ export function F31() {
               <em>{hover === row.role ? `${row.k} of ${row.n} ads, ${row.pct}%` : `${row.n} ads`}</em>
             </span>
           </div>
-        ))}
+          )),
+        ])}
       </div>
     </div>
   );
 }
 
-/* ── 3.2 By level, with what each level was asked for ─────────────────────────────── */
+/* ── 3.2 By level, four levels, all ads or job boards only ────────────────────────── */
+type Lv = "entry" | "executive" | "manager" | "head";
 export function F32() {
   const [ref, seen] = useSeen<HTMLDivElement>();
-  const [on, setOn] = useState<"junior" | "manager" | "head">("head");
-  const lv = N.levels;
+  const [on, setOn] = useState<Lv>("head");
+  const [src, setSrc] = useState<"all" | "boards">("all");
+  const lv = (src === "all" ? N.levels : N.levels_boards) as Record<Lv, { k: number; n: number; pct: number }>;
   const kbl = N.kinds_by_level as Record<string, Partial<Record<Kind, number>>>;
-  const cols = [
-    { k: "junior" as const, t: "Junior" },
-    { k: "manager" as const, t: "Manager, senior" },
-    { k: "head" as const, t: "Head, director" },
+  const cols: { k: Lv; t: string }[] = [
+    { k: "entry", t: "Entry level" },
+    { k: "executive", t: "Executive" },
+    { k: "manager", t: "Manager, senior" },
+    { k: "head", t: "Head, director" },
   ];
-  const mix = kbl[on];
+  const mix = kbl[on] ?? {};
   const tot = Object.values(mix).reduce((a, b) => a + (b ?? 0), 0);
   return (
-    <div ref={ref} className={r.levels}>
-      <div className={r.lvCols}>
-        {cols.map((c) => (
-          <button key={c.k} type="button" className={`${r.lvCol} ${on === c.k ? r.lvOn : ""}`} onMouseEnter={() => setOn(c.k)} onFocus={() => setOn(c.k)} onClick={() => setOn(c.k)}>
-            <span className={r.lvBarWrap}>
-              <i style={{ height: seen ? `${(lv[c.k].pct / 25) * 100}%` : 0 }} />
-            </span>
-            <b>{lv[c.k].pct}%</b>
-            <span className={r.lvT}>{c.t}</span>
-            <em>{lv[c.k].k} of {lv[c.k].n}</em>
-          </button>
-        ))}
+    <div ref={ref}>
+      <div className={r.chartHead}>
+        <Toggle opts={[{ k: "all", t: "All ads" }, { k: "boards", t: "Job boards only" }]} on={src} set={setSrc} />
       </div>
-      <div className={r.lvMix}>
-        <span className={r.kick}>What {cols.find((c) => c.k === on)!.t.toLowerCase()} ads asked for</span>
-        <div className={r.mixBar}>
-          {KIND_ORDER.filter((k) => mix[k]).map((k) => (
-            <i key={k} style={{ flex: mix[k], background: KIND[k].c }} title={`${KIND[k].label}: ${mix[k]}`} />
+      <div className={r.levels}>
+        <div className={r.lvCols} style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+          {cols.map((c) => (
+            <button key={c.k} type="button" className={`${r.lvCol} ${on === c.k ? r.lvOn : ""}`} onMouseEnter={() => setOn(c.k)} onFocus={() => setOn(c.k)} onClick={() => setOn(c.k)}>
+              <span className={r.lvBarWrap}>
+                <i style={{ height: seen ? `${(lv[c.k].pct / 30) * 100}%` : 0 }} />
+              </span>
+              <b>{lv[c.k].pct}%</b>
+              <span className={r.lvT}>{c.t}</span>
+              <em>{lv[c.k].k} of {lv[c.k].n}</em>
+            </button>
           ))}
         </div>
-        <ul className={r.mixKey}>
-          {KIND_ORDER.filter((k) => mix[k]).map((k) => (
-            <li key={k}>
-              <i style={{ background: KIND[k].c }} /> {KIND[k].label} <b>{mix[k]}</b>
-            </li>
-          ))}
-        </ul>
-        <span className={r.mixTot}>{tot} asks</span>
+        <div className={r.lvMix}>
+          <span className={r.kick}>What {cols.find((c) => c.k === on)!.t.toLowerCase()} ads asked for, all ads</span>
+          <div className={r.mixBar}>
+            {KIND_ORDER.filter((k) => mix[k]).map((k) => (
+              <i key={k} style={{ flex: mix[k], background: KIND[k].c }} title={`${KIND[k].label}: ${mix[k]}`} />
+            ))}
+          </div>
+          <ul className={r.mixKey}>
+            {KIND_ORDER.filter((k) => mix[k]).map((k) => (
+              <li key={k}>
+                <i style={{ background: KIND[k].c }} /> {KIND[k].label} <b>{mix[k]}</b>
+              </li>
+            ))}
+          </ul>
+          <span className={r.mixTot}>{tot} asks</span>
+        </div>
       </div>
     </div>
   );
 }
 
-/* ── 3.3 Pairs: careers pages against boards, Dublin against the rest ─────────────── */
+/* ── 3.3 Pairs: who asks more, no multiples printed (Sam: "several times", small numbers) ── */
 export function F33() {
   const [ref, seen] = useSeen<HTMLDivElement>();
+  const c = N.talk_vs_ask_by_channel;
   const pairs = [
-    { t: "Where the ad was posted", a: { k: "Tech firms' careers pages", v: N.careers_vs_boards.careers_pages }, b: { k: "Job boards", v: N.careers_vs_boards.job_boards } },
-    { t: "Where the job is, job boards only", a: { k: "Dublin", v: N.dublin_job_boards.dublin }, b: { k: "Outside Dublin", v: N.dublin_job_boards.outside } },
+    { t: "Where the ad was posted, all ads", a: { k: "Tech firms' careers pages", v: c.careers_pages.real_ask }, b: { k: "Job boards", v: c.job_boards.real_ask } },
+    { t: "Who posted it, job boards only", a: { k: "Recruiters", v: N.recruiters_boards_only.recruiter }, b: { k: "Direct employers", v: N.recruiters_boards_only.direct } },
+    { t: "Where the job is, job boards only", a: { k: "Dublin", v: N.place_boards.dublin }, b: { k: "Outside Dublin", v: N.place_boards.outside } },
   ];
+  const max = Math.max(...pairs.flatMap((p) => [p.a.v.pct, p.b.v.pct]));
   return (
-    <div ref={ref} className={r.pairs}>
+    <div ref={ref} className={r.pairs3}>
       {pairs.map((p) => (
         <div key={p.t} className={r.pair}>
           <span className={r.kick}>{p.t}</span>
@@ -267,14 +292,13 @@ export function F33() {
             <div key={s.k} className={r.pRow}>
               <span className={r.pLab}>{s.k}</span>
               <span className={r.fTrack}>
-                <i style={{ width: seen ? `${(s.v.pct / 25) * 100}%` : 0, background: i ? GREY : SKY }} />
+                <i style={{ width: seen ? `${(s.v.pct / max) * 100}%` : 0, background: i ? GREY : SKY }} />
               </span>
               <span className={r.fVal}>
                 <b>{s.v.pct}%</b> <em>{s.v.k} of {s.v.n}</em>
               </span>
             </div>
           ))}
-          <span className={r.pX}>{(p.a.v.pct / p.b.v.pct).toFixed(1)}×</span>
         </div>
       ))}
     </div>
