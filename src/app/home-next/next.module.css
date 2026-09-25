@@ -476,3 +476,23 @@ a.entryT:hover { color: #3A7CA5; }
 .newsBy img { object-fit: cover; }
 .newsBy i { background: #1A3A4E; color: #fff; font-style: normal; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; }
 .newsBy b { color: var(--text); font-weight: 500; }
+
+/* Paul, 25 Sep: "The fonts on the right hand side for the essays look like a different type of
+   font." Every heading on this page is Space Grotesk; the What's new titles were the one set in
+   the reading serif. Titles in the heading face, serif kept for reading text only. */
+.newsT { font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; }
+
+/* The bottom half moved to /home-next/more. The agents section stays mounted on the homepage
+   only for the full-screen panels the four buttons open; its inline reader is hidden here. */
+.agentsHidden { margin: 0; height: 0; overflow: visible; }
+.agentsHidden :global(.ag-switch), .agentsHidden :global(.ag-split), .agentsHidden :global(.ag-panel-solo) { display: none; }
+.agentsHidden :global(section.ag) { padding: 0; margin: 0; min-height: 0; }
+.moreLink { padding: 40px 0 16px; border-top: 1px solid var(--border); margin-top: 56px; font-family: var(--mono); font-size: 13px; }
+.moreLink a { color: #3A7CA5; text-decoration: none; }
+
+/* The second page's header: a short band of the same film under the same nav. */
+.heroShort { min-height: 300px; }
+.shortInner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; width: 100%; padding: 60px 48px 44px; }
+.shortTitle { font-family: var(--mono); font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.04em; color: #fff; margin: 0; text-shadow: 0 2px 20px rgba(4,10,16,.45); }
+@media (max-width: 700px) { .shortInner { padding: 40px 16px 32px; } }
+.heroShort { min-height: 0 !important; height: 340px; }
