@@ -140,7 +140,7 @@ export default function DataBand() {
               </div>
             ))}
           </div>
-          <span className={n.dNote}>What the {kindsTotal} asks were for</span>
+          <span className={n.dNote}>What the asks were for · split from the {kindsTotal}-ad count, recount coming</span>
         </Card>
 
         <Card

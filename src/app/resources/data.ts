@@ -103,10 +103,10 @@ export const ASK_LABEL: Record<Ask, string> = {
 export const JOBS_RUN = {
   date: "24 Sep 2026",
   ads: 862,
-  jobs: 663, // Sam, 25 Sep: marketing and sales titles only, title filter fixed (was 739, all roles)
+  jobs: 660, // Sam, 25 Sep, frozen: marketing and sales titles only, duplicates and a dash variant removed (was 739, then 663)
   newAds: 302,
   newReal: 15,
-  real: 51,
+  real: 47,
   cost: "$2.09",
 };
 
