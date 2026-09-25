@@ -27,7 +27,7 @@ import { useEffect, useRef, useState } from "react";
 */
 
 /** date, spend in euro, impressions, clicks, landing page views */
-const DAILY: [string, number, number, number, number][] = [
+export const DAILY: [string, number, number, number, number][] = [
   ["30 Jul", 0.99, 382, 4, 0],
   ["31 Jul", 4.15, 1190, 21, 7],
   ["1 Aug", 4.06, 1160, 21, 15],
@@ -51,7 +51,7 @@ const DAILY: [string, number, number, number, number][] = [
   ["19 Aug", 3.48, 830, 16, 11],
 ];
 
-const TOTALS = { spend: 98.19, reach: 12561, clicks: 447, views: 281, costPerView: 0.35 };
+export const TOTALS = { spend: 98.19, reach: 12561, clicks: 447, views: 281, costPerView: 0.35 };
 
 /** Counts from 0 to `to` over `ms`, eased, when `go` flips true. */
 function useCount(to: number, go: boolean, ms = 1400) {

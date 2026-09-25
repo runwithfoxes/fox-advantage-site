@@ -10,6 +10,8 @@ import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
 import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
+import DataBand from "./DataBand";
+import SectorPicker from "./SectorPicker";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
@@ -202,6 +204,9 @@ export default function HomeNext() {
             </div>
           </div>
         </section>
+
+        <DataBand />
+        <SectorPicker />
 
         {/* The live homepage's agents section, whole: its inline reader, and the full-screen
             surface the four buttons under the hero open (Paul, 25 Sep). */}
@@ -396,25 +401,49 @@ export default function HomeNext() {
           </div>
         </section>
 
-        {/* ── One sign-up, choose what you get ── */}
-        <section className={n.join}>
+        {/* ── The account (Paul, 25 Sep): read a good amount free, sign in for the depth. One free
+             account holds the research and the course. There is no paid tier. ── */}
+        <section className={n.account} id="account">
           <div>
-            <h2 className={f.h2}>Get the reads you want</h2>
-            <p className={n.joinLine}>Pick the trackers and studies. We send each one when it is read, and nothing else.</p>
+            <h2 className={f.h2}>Read it free. Sign in for the detail.</h2>
+            <div className={n.accCols}>
+              <div>
+                <span className={n.dKick}>Free to everyone</span>
+                <ul className={n.accList}>
+                  <li>Every chart and its headline</li>
+                  <li>The studies, the essays and the diary</li>
+                </ul>
+              </div>
+              <div>
+                <span className={n.dKick}>With a free account</span>
+                <ul className={n.accList}>
+                  <li>Your sector and your own brand&rsquo;s results</li>
+                  <li>Full tables and downloads</li>
+                  <li>Each tracker&rsquo;s weekly read, by email</li>
+                  <li>The whole course, with your progress saved</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <form className={n.joinForm}>
-            <div className={n.picks}>
-              {["Jobs and AI", "AI answers in Ireland", "Irish ads by sector", "The studies", "Paul's essays", "The agent diary"].map((p, i) => (
-                <label key={p} className={n.pick}>
-                  <input type="checkbox" defaultChecked={i < 2} /> {p}
-                </label>
-              ))}
-            </div>
-            <div className={n.joinRow}>
+          <div className={n.accSide}>
+            <form className={n.joinRow}>
               <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-              <button type="button">Send me these</button>
+              <button type="button">Create a free account</button>
+            </form>
+            <span className={n.accFine}>Already have one? <a href="#">Sign in</a>. Same account as the course.</span>
+            <div className={n.accCourse}>
+              <span className={n.dKick}>The course, in your account</span>
+              <ol className={n.accMods}>
+                {MODULES.map((m) => (
+                  <li key={m.n} className={m.built ? n.accModOn : ""}>
+                    <span>{m.n}</span>
+                    {m.title.replace(/^\(\d\)\s*/, "")}
+                    <em>{m.built ? "Open" : m.when}</em>
+                  </li>
+                ))}
+              </ol>
             </div>
-          </form>
+          </div>
         </section>
       </main>
 
