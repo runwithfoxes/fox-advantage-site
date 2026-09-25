@@ -114,7 +114,7 @@ export default function AiAskQ3() {
   return (
     <div className={`${f.page} ${r.page}`}>
       {/* Paul, 25 Sep: the band "same size as hero in homepage and put headline into photo". The
-          report's title, byline and the at-a-glance card sit in the film, as the homepage's do. */}
+          report's title and byline sit in the film; the at-a-glance card went back under it (Paul, late 25 Sep) to give the film room, as the homepage's do. */}
       <section className={`${h.hero} ${r.heroR}`} id="top">
         <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <NextNav />
@@ -137,7 +137,25 @@ export default function AiAskQ3() {
               <span>{mins} min read</span>
             </div>
           </div>
-        <aside className={`mod-win ${r.glance} ${r.glanceHero}`}>
+        </div>
+      </section>
+
+      <div className={r.draft}>
+        Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
+      </div>
+
+      <header className={r.mast} id="intro">
+        <div className={r.mastMain}>
+          <p className={r.standfirst}>
+            <Text s={INTRO[0]} />
+          </p>
+          {INTRO.slice(1).map((p, i) => (
+            <p key={i} className={r.p}>
+              <Text s={p} />
+            </p>
+          ))}
+        </div>
+        <aside className={`mod-win ${r.glance}`}>
           <div className="mod-winbar">
             <span className="mod-lights">
               <i />
@@ -162,24 +180,6 @@ export default function AiAskQ3() {
             <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
           </div>
         </aside>
-        </div>
-      </section>
-
-      <div className={r.draft}>
-        Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
-      </div>
-
-      <header className={r.mast} id="intro">
-        <div className={r.mastMain}>
-          <p className={r.standfirst}>
-            <Text s={INTRO[0]} />
-          </p>
-          {INTRO.slice(1).map((p, i) => (
-            <p key={i} className={r.p}>
-              <Text s={p} />
-            </p>
-          ))}
-        </div>
       </header>
 
       <section className={r.findings} id="findings">
