@@ -1,0 +1,196 @@
+/* /home-next. Only what the hub's own CSS does not already carry. Same contract as
+   front.module.css: Space Grotesk 500 heads, Source Serif reading, JetBrains Mono labels,
+   hairlines, sky blue for what is clickable, colour through artwork, no cream fill. */
+
+/* ── Nav: four doors over the film ── */
+.hero { min-height: min(92vh, 880px); }
+.nav { position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; }
+.logo { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: #fff; text-decoration: none; }
+.links { display: flex; gap: 26px; align-items: center; }
+.signin, .cta { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255,255,255,.85); text-decoration: none; }
+.signin { border: 1px solid rgba(255,255,255,.6); padding: 6px 12px; }
+.cta { background: var(--orange); color: #fff; padding: 7px 13px; }
+.cta:hover { background: var(--orange-hover); }
+.menuEx { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #A9CBE4; border: 1px solid rgba(169,203,228,.45); padding: 1px 5px; margin-left: 6px; }
+.menuGo { font-family: var(--mono); font-size: 12px; color: #A9CBE4; margin-top: 10px; }
+.menuFace { display: block; width: 72px; height: 72px; overflow: hidden; margin-bottom: 12px; }
+.menuFace img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Agents: the big panel. Ten agents in two columns, numbered like the agents section. */
+.agentsPanel { grid-template-columns: 2.6fr 1fr; }
+.agentGrid { padding: 26px 30px 28px; }
+.agentCols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 36px; }
+.agentItem { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding: 9px 0; text-decoration: none; border-top: 1px solid rgba(255,255,255,.08); }
+.agentNum { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); padding-top: 2px; }
+.agentItem:hover span span:first-child { color: #5A9CC5; }
+.threePanel { grid-template-columns: 1.3fr 1fr 1fr; }
+.modRow { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; text-decoration: none; border-top: 1px solid rgba(255,255,255,.08); }
+.modWhen { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.45); white-space: nowrap; }
+.modRow:hover span:first-child { color: #5A9CC5; }
+
+/* ── The tape: every tracker's latest reading, under the nav ── */
+.tape { position: relative; z-index: 3; overflow: hidden; border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18);
+  background: rgba(8,16,24,.38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.tapeInner { display: flex; width: max-content; animation: tape 90s linear infinite; }
+.tape:hover .tapeInner { animation-play-state: paused; }
+@keyframes tape { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@media (prefers-reduced-motion: reduce) { .tapeInner { animation: none } }
+.tapeItem { font-family: var(--mono); font-size: 11.5px; letter-spacing: .02em; color: rgba(255,255,255,.82); padding: 9px 26px; border-right: 1px solid rgba(255,255,255,.14); white-space: nowrap; }
+.tapeItem b { color: #fff; font-weight: 700; }
+.tapeName { color: #A9CBE4; margin-right: 10px; }
+.tapeWhen { color: rgba(255,255,255,.5); margin-left: 8px; }
+
+/* Placeholder headline: shows where it goes and how big, reads plainly as a placeholder. */
+.placeholder { color: rgba(255,255,255,.5); border: 1px dashed rgba(255,255,255,.45); padding: 6px 14px 10px; display: inline-block; }
+
+/* ── The latest move card ── */
+.move { display: block; text-decoration: none; color: #fff; }
+.moveBig { display: flex; align-items: baseline; gap: 12px; padding: 22px 0 6px; }
+.moveNum { font-family: var(--mono); font-weight: 700; font-size: 72px; letter-spacing: -0.05em; line-height: 1; }
+.moveOf { font-family: var(--mono); font-size: 18px; color: rgba(255,255,255,.7); }
+.moveLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; margin: 6px 0 18px; text-shadow: 0 1px 10px rgba(4,10,16,.45); }
+.moveBar { height: 8px; background: rgba(255,255,255,.16); }
+.moveBar i { display: block; height: 100%; background: #A9CBE4; }
+.moveFoot { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(255,255,255,.22); margin-top: 18px; padding-top: 12px;
+  font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.7); }
+.moveFoot span:last-child { color: #A9CBE4; }
+.move:hover .moveFoot span:last-child { color: #fff; }
+
+/* ── The four doors ── */
+.doors { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); margin: -40px 0 0; }
+.door { display: grid; align-content: start; gap: 10px; padding: 26px 26px 30px 0; text-decoration: none; color: inherit; }
+.door + .door { border-left: 1px solid var(--border); padding-left: 26px; }
+.doorNum { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.doorName { font-family: var(--sans); font-weight: 500; font-size: 28px; letter-spacing: -0.02em; }
+.doorLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; }
+.doorGo { font-family: var(--mono); font-size: 12px; color: #3A7CA5; margin-top: 6px; }
+.door:hover .doorName { color: #3A7CA5; }
+
+/* ── Writers at scale: four across, two rows ── */
+.writers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 32px; }
+.soonTitle { color: var(--text-muted); }
+
+/* ── The board ── */
+.board { border-top: 1px solid var(--text); }
+.bRow { display: grid; grid-template-columns: 2.3fr 1.6fr 1.1fr 1.3fr .6fr .6fr; gap: 20px; align-items: center; padding: 14px 0;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; font-family: var(--mono); font-size: 12px; }
+a.bRow:hover { background: rgba(58,124,165,.05); }
+.bHead { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); padding: 10px 0; }
+.bName { display: grid; grid-template-columns: 14px 1fr; gap: 10px; align-items: start; font-family: var(--sans); font-weight: 500; font-size: 16px; }
+.bWhat { display: block; font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.live { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--text-muted); margin-top: 6px; }
+.liveOn { background: #3A7CA5; border-color: #3A7CA5; box-shadow: 0 0 0 4px rgba(58,124,165,.15); }
+.bRead b { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; margin-right: 6px; }
+.bRead span { color: var(--text-muted); }
+.bSoon { color: var(--text-muted); }
+.bSpark i { display: block; height: 0; border-top: 1px dashed var(--border); width: 90%; }
+.firstRead { font-size: 10.5px; color: var(--text-muted); }
+.bCell { color: var(--text-muted); }
+.boardFoot { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 22px; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.boardJoin { display: flex; }
+.boardJoin input { font-family: var(--mono); font-size: 12px; padding: 11px 12px; border: 1px solid var(--border); width: 300px; background: #fff; }
+.boardJoin button { font-family: var(--mono); font-size: 12px; padding: 0 16px; border: 0; background: var(--text); color: #fff; cursor: pointer; }
+
+/* ── Studies ── */
+.studies { display: grid; grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
+.flag { display: grid; gap: 22px; text-decoration: none; color: inherit; }
+.flagTitle { display: block; font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; }
+.flagLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; margin: 10px 0 12px; }
+.covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
+.coverCard { display: grid; gap: 12px; align-content: start; }
+.coverLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.5; margin: -4px 0 0; }
+.cover { border: 1px solid var(--border); background: #fff; display: grid; grid-template-rows: auto 1fr auto; aspect-ratio: 4 / 5; }
+.flag .cover { aspect-ratio: 5 / 4; }
+.coverTop { display: flex; justify-content: space-between; padding: 12px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.coverArt { position: relative; padding: 0 14px; display: flex; align-items: flex-end; }
+.coverSvg { width: 100%; height: auto; display: block; }
+.coverFox { position: absolute; right: 10px; top: -6px; width: 22%; max-width: 70px; opacity: .92; }
+.coverFoot { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: -0.01em; line-height: 1.2; padding: 14px; border-top: 1px solid var(--border); }
+.flag .coverFoot { font-size: 22px; }
+.cal { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--text); margin-top: 44px; }
+.calMonth { display: grid; gap: 8px; align-content: start; padding: 14px 16px 18px; border-right: 1px solid var(--border); }
+.calMonth:first-child { padding-left: 0; }
+.calMonth:last-child { border-right: 0; }
+.calName { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.calItem { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.4; }
+.calNote { display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+/* ── Tools: four across, two rows ── */
+.tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+/* ── Areas ── */
+.areas { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); margin-top: 8px; }
+.area { display: grid; gap: 8px; align-content: start; padding: 22px 18px 26px; }
+.area:first-child { padding-left: 0; }
+.area + .area { border-left: 1px solid var(--border); }
+.areaName { font-family: var(--sans); font-weight: 500; font-size: 19px; }
+.areaLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.45; }
+.areaGo { font-family: var(--mono); font-size: 11px; color: #3A7CA5; margin-top: 4px; }
+
+/* ── Proof ── */
+.proof { display: grid; grid-template-columns: 1.2fr 1.5fr; gap: 48px 56px; }
+.proofPerson { display: grid; grid-template-columns: 120px 1fr; gap: 22px; align-items: start; }
+.proofPerson img { width: 120px; height: 120px; object-fit: cover; }
+.proofName { display: block; font-family: var(--sans); font-weight: 500; font-size: 26px; letter-spacing: -0.02em; }
+.proofLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.55; margin: 8px 0 0; }
+.proofFacts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--text); }
+.proofFacts > div { padding: 18px 18px 0 0; display: grid; gap: 6px; align-content: start; }
+.proofFacts > div + div { border-left: 1px solid var(--border); padding-left: 18px; }
+.factBig { font-family: var(--mono); font-weight: 700; font-size: 38px; letter-spacing: -0.04em; }
+.factLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.45; }
+.logos { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 18px; }
+.logoRow { font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+
+/* ── Join ── */
+.join { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; padding: 48px 0 24px; margin-top: 72px; border-top: 2px solid var(--text); }
+.joinLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; margin: 12px 0 0; }
+.joinForm { display: grid; gap: 16px; }
+.picks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 18px; }
+.pick { font-family: var(--mono); font-size: 12px; display: flex; gap: 8px; align-items: center; }
+.pick input { accent-color: #3A7CA5; }
+.joinRow { display: flex; }
+.joinRow input { flex: 1; font-family: var(--mono); font-size: 13px; padding: 13px 14px; border: 1px solid var(--border); background: #fff; }
+.joinRow button { font-family: var(--mono); font-size: 13px; padding: 0 20px; border: 0; background: var(--orange); color: #fff; cursor: pointer; }
+
+/* ── Phone and tablet ── */
+@media (max-width: 1100px) {
+  .signin { display: none; }
+  .writers, .tools { grid-template-columns: repeat(2, 1fr); }
+  .doors { grid-template-columns: repeat(2, 1fr); }
+  .door:nth-child(3) { border-left: 0; padding-left: 0; }
+  .door:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .studies, .proof, .join { grid-template-columns: 1fr; }
+  .areas { grid-template-columns: repeat(3, 1fr); }
+  .area:nth-child(4) { border-left: 0; padding-left: 0; }
+  .area:nth-child(n+4) { border-top: 1px solid var(--border); }
+  .cal { grid-template-columns: repeat(3, 1fr); }
+  .bRow { grid-template-columns: 2fr 1.6fr 1fr; }
+  .bRow > :nth-child(n+4) { display: none; }
+  .bSpark { display: none; }
+  .bRow { grid-template-columns: 2fr 1.6fr; }
+}
+@media (max-width: 700px) {
+  .nav { padding: 16px; }
+  .links { gap: 14px; }
+  .links > :not(.cta) { display: none; }
+  .writers, .tools, .doors, .covers, .picks { grid-template-columns: 1fr; }
+  .door, .door + .door { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
+  .door:first-child { border-top: 0; }
+  .doors { margin-top: 0; }
+  .areas { grid-template-columns: 1fr 1fr; }
+  .area, .area + .area { border-left: 0; padding-left: 0; }
+  .area:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cal { grid-template-columns: 1fr 1fr; }
+  .calMonth { padding-left: 0; }
+  .proofFacts { grid-template-columns: 1fr; }
+  .proofFacts > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); padding-top: 14px; }
+  .boardFoot { flex-direction: column; align-items: stretch; }
+  .boardJoin input { width: auto; flex: 1; }
+  .moveNum { font-size: 56px; }
+}
+
+/* Fixes after the first look: grid children must be allowed to shrink, or the flagship
+   cover pushes into the column beside it; a desk's not-yet-written title reads in the
+   same serif as a written one, only greyed. */
+.studies > *, .covers > *, .writers > * { min-width: 0; }
+.soonTitle { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.4; color: var(--text-muted); }
