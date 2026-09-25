@@ -114,7 +114,7 @@ export default function AiAskQ3() {
   return (
     <div className={`${f.page} ${r.page}`}>
       <section className={`${h.hero} ${n.heroShort} ${r.band}`}>
-        <img className={h.film} src="/resources/fox-hero-flip-last-frame.jpg" alt="" style={{ objectPosition: "center 70%" }} />
+        <img className={h.film} src="/resources/fox-hero-flip-last-frame.jpg" alt="" style={{ objectPosition: "center 100%" }} />
         <NextNav />
       </section>
 

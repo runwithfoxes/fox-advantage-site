@@ -4,7 +4,7 @@
    No bold for emphasis (Paul, 25 Sep: "less pulling the attention"); emphasis is the sky. */
 
 .page { --wrap: 1240px; }
-.band { height: 150px !important; }
+.band { height: 210px !important; }
 .draft { max-width: var(--wrap); margin: 18px auto 0; padding: 0 48px; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: #F47521; }
 
 /* ── Masthead ── */

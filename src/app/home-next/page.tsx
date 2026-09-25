@@ -9,6 +9,7 @@ import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
 import HeroJoin from "./HeroJoin";
+import HeroFilm from "./HeroFilm";
 import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
 import DataBand from "./DataBand";
@@ -109,7 +110,7 @@ export default function HomeNext() {
             cut from Dray swaps in by copying one file. Plays ONCE and rests on the beach: a walking
             fox cannot loop cleanly. Reduced motion gets the last frame as a still. Slow motion was
             tried and ruled out by Paul, 25 Sep: "the slow mo makes it feel generic ai". */}
-        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
+        <HeroFilm className={`${h.film} ${n.film}`} poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <div className={n.filmStill} aria-hidden />
         <NextNav />
 
@@ -119,7 +120,7 @@ export default function HomeNext() {
             <h1 className={h.title}>Designing marketing teams</h1>
             <p className={h.sub}>
               A new kind of marketing consultancy that mixes old&#8209;school marketing fundamentals, marketing
-              rigour and technology.
+              rigour, creativity, craft and technology.
             </p>
             {/* Paul, 25 Sep: the sign-up moves here, into the space under his line. The card
                 loses its own email box, so the hero asks once. */}
