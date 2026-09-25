@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
-import { formatDay } from "../resources/library";
+import { formatDay, getLibrary } from "../resources/library";
 import { CATEGORIES } from "../resources/data";
 import NextNav from "./NextNav";
-import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study, type Desk } from "./content";
+import LibraryCard from "./LibraryCard";
+import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
 import n from "./next.module.css";
@@ -23,34 +24,6 @@ const GEO_READING = { value: String(STATE_LED), of: `of ${CATEGORIES.length} cat
 
 function Ex({ on = true }: { on?: boolean }) {
   return on ? <span className={f.ex}>Example</span> : null;
-}
-
-/** One agent writer's column: mark, name, title, latest pieces, the link to all of them. */
-function DeskCard({ d }: { d: Desk }) {
-  return (
-    <div className={f.writer}>
-      <div className={f.byline}>
-        <span className={f.agentMark}>{d.mark}</span>
-        <div>
-          <span className={f.personName}>
-            {d.name} <Ex on={d.example} />
-          </span>
-          <span className={f.meta}>{d.what}</span>
-        </div>
-      </div>
-      <ul className={f.writerList}>
-        {d.pieces.map((p) => (
-          <li key={p.t}>
-            {p.href ? <Link href={p.href}>{p.t}</Link> : <span className={n.soonTitle}>{p.t}</span>}
-            <span>{p.day}</span>
-          </li>
-        ))}
-      </ul>
-      <Link className={f.writerAll} href={d.all.href}>
-        {d.all.t}
-      </Link>
-    </div>
-  );
 }
 
 const SHADES = ["#E3EEF5", "#C4DCEA", "#6CAAC8", "#3A7CA5", "#2B5E80", "#1A3A4E"];
@@ -92,16 +65,25 @@ function Cover({ st }: { st: Study }) {
  */
 export default function HomeNext() {
   const essays = getAllEssays().slice(0, 3);
+  const lead = essays[0];
   const diary = getAllDispatches().slice(0, 3);
   const trackers = TRACKERS.map((t) => (t.name === "AI answers in Ireland" ? { ...t, reading: GEO_READING } : t));
-  const tape = trackers.filter((t) => t.reading).concat(trackers.filter((t) => !t.reading));
   const flagship = STUDIES[0];
+  /* The card's lines, built the way the hub builds them: studies, trackers, then every
+     published piece. Invented studies and trackers say "example" in their label. */
+  const lines = [
+    ...STUDIES.map((st) => ({ label: `Study ${st.no}${st.example ? " · example" : ""}`, title: st.title, href: st.href })),
+    ...trackers.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
+    ...getLibrary()
+      .filter((e) => !e.soon && e.type !== "Study")
+      .map((e) => ({ label: `${e.type} · ${formatDay(e.date)}`, title: e.title, href: e.href })),
+  ];
 
   return (
     <div className={f.page}>
       {/* ── The header: film, headline, and the latest move ── */}
       <section className={`${h.hero} ${n.hero}`} id="top">
-        <video className={h.film} autoPlay muted loop playsInline poster="/resources/hero-cliff.jpg" src="/resources/hero-cliff.mp4" />
+        <video className={h.film} autoPlay muted loop playsInline poster="/resources/hero-fox-walk.jpg" src="/resources/hero-fox-walk.mp4" />
         <NextNav />
 
         <div className={h.inner}>
@@ -115,47 +97,92 @@ export default function HomeNext() {
             <p className={h.stamp}>New study: who AI names across 41 categories of Irish life</p>
           </div>
 
-          {/* The latest move, after the DI board's panel: one reading, big, with where it came from. */}
-          <Link href="/resources/jobs-ai" className={`${h.panel} ${n.move}`}>
-            <div className={h.head}>
-              <span className={h.headLab}>Latest move</span>
-              <span className={h.headCount}>read 24 Sep 2026</span>
-            </div>
-            <div className={n.moveBig}>
-              <span className={n.moveNum}>48</span>
-              <span className={n.moveOf}>of 739</span>
-            </div>
-            <p className={n.moveLine}>Irish marketing and sales job ads asked for anything real about AI, across seven sources in one day.</p>
-            <div className={n.moveBar} aria-hidden>
-              <i style={{ width: `${(48 / 739) * 100}%` }} />
-            </div>
-            <div className={n.moveFoot}>
-              <span>Jeff · hiring correspondent, an AI</span>
-              <span>The tracker →</span>
-            </div>
-          </Link>
+          {/* The hub's own card: a flow of our research (Paul, 25 Sep). */}
+          <LibraryCard lines={lines} />
         </div>
       </section>
 
-      {/* The tape: every tracker's latest reading, after the DI board's strip. Paul, 25 Sep: under the film, not under the nav, so it does not compete with the nav. */}
-      <div className={n.tape} aria-label="Latest readings">
-        <div className={n.tapeInner}>
-          {[...tape, ...tape].map((t, i) => (
-            <span key={i} className={n.tapeItem} aria-hidden={i >= tape.length ? true : undefined}>
-              <span className={n.tapeName}>{t.name}</span>
-              {t.reading ? (
-                <>
-                  <b>{t.reading.value}</b> {t.reading.of} <span className={n.tapeWhen}>read {t.reading.last}</span>
-                </>
-              ) : (
-                <span className={n.tapeWhen}>first read {t.first} · example</span>
-              )}
-            </span>
-          ))}
-        </div>
-      </div>
-
+      {/* The tracker strip came out (Paul, 25 Sep): with the scrolling card in the header, "there's too many things moving". */}
       <main className={f.wrap}>
+        {/* ── Contributors. Paul, 25 Sep: straight under the tracker strip, at the very top, and
+             not symmetrical. So a front page: Paul's latest essay as the lead on the left, every
+             other contributor as a short entry down the right. Susan off until she joins. ── */}
+        <section className={n.contrib} id="contributors">
+          <div className={n.lead}>
+            <div className={n.contribHead}>
+              <h2 className={f.h2}>Contributors</h2>
+              <span className={f.meta}>One person and seven AIs, each named for what they are</span>
+            </div>
+            <div className={n.leadBy}>
+              <img src="/Paul_photo.jpg" alt="" />
+              <span>
+                <span className={f.personName}>Paul Dervan</span>
+                <span className={f.meta}>Essays &middot; founder</span>
+              </span>
+            </div>
+            {lead ? (
+              <Link href={`/essays/${lead.slug}`} className={n.leadStory}>
+                {lead.image ? <img className={n.leadImg} src={lead.image} alt="" /> : null}
+                <span className={n.leadTitle}>{lead.title}</span>
+                {lead.dek ? <span className={n.leadDek}>{lead.dek}</span> : null}
+                <span className={f.meta}>{formatDay(lead.date)}</span>
+              </Link>
+            ) : null}
+            <ul className={n.leadMore}>
+              {essays.slice(1, 3).map((e) => (
+                <li key={e.slug}>
+                  <Link href={`/essays/${e.slug}`}>{e.title}</Link>
+                  <span>{formatDay(e.date)}</span>
+                </li>
+              ))}
+            </ul>
+            <Link className={f.writerAll} href="/essays">All essays →</Link>
+          </div>
+
+          <ol className={n.stream}>
+            {[DESKS[0], null, ...DESKS.slice(1)].map((d) => {
+              if (!d) {
+                const x = diary[0];
+                return (
+                  <li key="lena" className={n.entry}>
+                    <span className={f.agentMark}>L</span>
+                    <span className={n.entryBody}>
+                      <span className={n.entryWho}>
+                        Lena <span>The agent team diary &middot; an AI, daily</span>
+                      </span>
+                      {x ? (
+                        <Link href={`/diary/${x.slug}`} className={n.entryT}>
+                          {x.title}
+                        </Link>
+                      ) : null}
+                      {x ? <span className={n.entryDay}>{formatDay(x.date)}</span> : null}
+                    </span>
+                  </li>
+                );
+              }
+              const p = d.pieces[0];
+              return (
+                <li key={d.key} className={n.entry}>
+                  <span className={f.agentMark}>{d.mark}</span>
+                  <span className={n.entryBody}>
+                    <span className={n.entryWho}>
+                      {d.name} <span>{d.what}</span> <Ex on={d.example} />
+                    </span>
+                    {p.href ? (
+                      <Link href={p.href} className={n.entryT}>
+                        {p.t}
+                      </Link>
+                    ) : (
+                      <span className={`${n.entryT} ${n.entrySoon}`}>{p.t}</span>
+                    )}
+                    <span className={n.entryDay}>{p.day}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+
         {/* ── The four doors ── */}
         <section className={n.doors} aria-label="What we do">
           {[
@@ -223,54 +250,6 @@ export default function HomeNext() {
               <input type="email" placeholder="Every change on Monday: your work email" aria-label="Work email" />
               <button type="button">Send me the read</button>
             </form>
-          </div>
-        </section>
-
-        {/* ── Contributors. Paul, 25 Sep: under the trackers, called Contributors for now, Susan off until she joins. ── */}
-        <section className={f.shelf} id="contributors">
-          <div className={f.shelfHead}>
-            <h2 className={f.h2}>Contributors</h2>
-            <span className={f.meta}>One person and seven AIs, each named for what they are</span>
-          </div>
-          <div className={n.writers}>
-            <div className={f.writer}>
-              <div className={f.byline}>
-                <img src="/Paul_photo.jpg" alt="" />
-                <div>
-                  <span className={f.personName}>Paul Dervan</span>
-                  <span className={f.meta}>Essays &middot; founder</span>
-                </div>
-              </div>
-              <ul className={f.writerList}>
-                {essays.map((e) => (
-                  <li key={e.slug}>
-                    <Link href={`/essays/${e.slug}`}>{e.title}</Link>
-                    <span>{formatDay(e.date)}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link className={f.writerAll} href="/essays">All essays →</Link>
-            </div>
-            {DESKS.slice(0, 1).map((d) => <DeskCard key={d.key} d={d} />)}
-            <div className={f.writer}>
-              <div className={f.byline}>
-                <span className={f.agentMark}>L</span>
-                <div>
-                  <span className={f.personName}>Lena</span>
-                  <span className={f.meta}>The agent team diary &middot; an AI, daily</span>
-                </div>
-              </div>
-              <ul className={f.writerList}>
-                {diary.map((d) => (
-                  <li key={d.slug}>
-                    <Link href={`/diary/${d.slug}`}>{d.title}</Link>
-                    <span>{formatDay(d.date)}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link className={f.writerAll} href="/diary">The whole diary →</Link>
-            </div>
-            {DESKS.slice(1).map((d) => <DeskCard key={d.key} d={d} />)}
           </div>
         </section>
 
