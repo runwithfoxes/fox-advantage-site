@@ -76,24 +76,6 @@ export default function HomeNext() {
         <video className={h.film} autoPlay muted loop playsInline poster="/resources/hero-cliff.jpg" src="/resources/hero-cliff.mp4" />
         <NextNav />
 
-        {/* The tape: every tracker's latest reading, after the DI board's strip. */}
-        <div className={n.tape} aria-label="Latest readings">
-          <div className={n.tapeInner}>
-            {[...tape, ...tape].map((t, i) => (
-              <span key={i} className={n.tapeItem} aria-hidden={i >= tape.length ? true : undefined}>
-                <span className={n.tapeName}>{t.name}</span>
-                {t.reading ? (
-                  <>
-                    <b>{t.reading.value}</b> {t.reading.of} <span className={n.tapeWhen}>read {t.reading.last}</span>
-                  </>
-                ) : (
-                  <span className={n.tapeWhen}>first read {t.first} · example</span>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-
         <div className={h.inner}>
           <div className={h.text}>
             <span className={h.pill}>Marketing consultancy · research · agents · training</span>
@@ -126,6 +108,24 @@ export default function HomeNext() {
           </Link>
         </div>
       </section>
+
+      {/* The tape: every tracker's latest reading, after the DI board's strip. Paul, 25 Sep: under the film, not under the nav, so it does not compete with the nav. */}
+      <div className={n.tape} aria-label="Latest readings">
+        <div className={n.tapeInner}>
+          {[...tape, ...tape].map((t, i) => (
+            <span key={i} className={n.tapeItem} aria-hidden={i >= tape.length ? true : undefined}>
+              <span className={n.tapeName}>{t.name}</span>
+              {t.reading ? (
+                <>
+                  <b>{t.reading.value}</b> {t.reading.of} <span className={n.tapeWhen}>read {t.reading.last}</span>
+                </>
+              ) : (
+                <span className={n.tapeWhen}>first read {t.first} · example</span>
+              )}
+            </span>
+          ))}
+        </div>
+      </div>
 
       <main className={f.wrap}>
         {/* ── The four doors ── */}

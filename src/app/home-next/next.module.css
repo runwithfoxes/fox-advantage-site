@@ -197,3 +197,12 @@ a.bRow:hover { background: rgba(58,124,165,.05); }
 /* The cover's height comes from its drawing (4:3 viewBox); a fixed aspect-ratio on top of
    that forced the flagship wider than its column. */
 .cover, .flag .cover { aspect-ratio: auto; width: 100%; }
+
+/* The tape moved under the film (Paul, 25 Sep 2026). On the page's own ground now: hairlines,
+   mono, sky blue for the names, ink for the numbers. No glass, no dark band. */
+.tape { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-top: 0; border-bottom: 1px solid var(--border); }
+.tapeItem { color: var(--text-muted); border-right: 1px solid var(--border); padding: 12px 26px; }
+.tapeItem b { color: var(--text); }
+.tapeName { color: #3A7CA5; }
+.tapeWhen { color: var(--text-muted); opacity: .8; }
+.doors { margin-top: -60px; }
