@@ -496,3 +496,24 @@ a.entryT:hover { color: #3A7CA5; }
 .shortTitle { font-family: var(--mono); font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.04em; color: #fff; margin: 0; text-shadow: 0 2px 20px rgba(4,10,16,.45); }
 @media (max-width: 700px) { .shortInner { padding: 40px 16px 32px; } }
 .heroShort { min-height: 0 !important; height: 340px; }
+
+/* Windows, not boxes (Paul, 25 Sep: "it feels a bit flat because of flat edges. We solved for
+   this in our building of our modules"). The module rule: a depicted window is artwork and is
+   rounded (.mod-win, 15px, soft shadow, grey bar with lights); our own chrome stays square. */
+.dWin { margin-top: 0 !important; display: flex; flex-direction: column; }
+.dWin .dCard { border: 0; background: #fff; flex: 1; }
+.secMain, .secSide { padding: 0 !important; border: 0 !important; display: flex; flex-direction: column; }
+.winBody { padding: 16px 18px 14px; display: grid; gap: 4px; align-content: start; }
+.dGrid { gap: 18px; }
+
+/* Tidier (Paul, 25 Sep: the four buttons "feel too big... too fat"). Slimmer buttons, a
+   slimmer band, the same order and colours. */
+.doorRow { padding: 16px 48px; gap: 8px; }
+.doorPrimary, .doorGhost { font-size: 12.5px; padding: 8px 16px; letter-spacing: .02em; }
+.dH2 { font-size: 26px; }
+.data { padding-top: 56px; }
+@media (max-width: 700px) { .doorRow { padding: 12px 16px; gap: 6px; } .doorPrimary, .doorGhost { font-size: 12px; padding: 7px 11px; } }
+.secMain, .secSide { border: 1px solid #E0E0DC !important; }
+/* the dropdown matches the slimmer buttons */
+.secSelect select { font-size: 12.5px; padding: 8px 38px 8px 14px; min-width: 210px; }
+.secSelect::after { right: 14px; width: 6px; height: 6px; }

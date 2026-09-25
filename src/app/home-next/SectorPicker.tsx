@@ -52,7 +52,16 @@ export default function SectorPicker() {
       </label>
 
       <div className={n.secPanel}>
-        <div className={n.secMain}>
+<div className={`mod-win ${n.dWin} ${n.secMain}`}>
+          <div className="mod-winbar">
+            <span className="mod-lights">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="mod-wintitle">{`sector · ${s.name.toLowerCase()}`}</span>
+          </div>
+          <div className={n.winBody}>
           <span className={n.dKick}>
             AI answers &middot; who the engines name first <span className={n.dDraft}>Draft</span>
           </span>
@@ -70,9 +79,19 @@ export default function SectorPicker() {
             </div>
           ))}
           <span className={n.dStamp}>Share of answers naming it, on the engine that named it most · day one, read 23 Aug 2026</span>
+          </div>
         </div>
 
-        <aside className={n.secSide}>
+<aside className={`mod-win ${n.dWin} ${n.secSide}`}>
+          <div className="mod-winbar">
+            <span className="mod-lights">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="mod-wintitle">your_account</span>
+          </div>
+          <div className={n.winBody}>
           <span className={n.dKick}>With a free account</span>
           {["Every engine, side by side", "Your own brand's result", "Ads running in the sector", "Who is hiring, and for what", "The full sector report, as a PDF"].map((t) => (
             <a key={t} href="#account" className={n.secLocked}>
@@ -86,6 +105,7 @@ export default function SectorPicker() {
           <Link href="/resources/geo-ireland" className={n.dLearn}>
             Read the GEO Ireland study →
           </Link>
+          </div>
         </aside>
       </div>
     </section>

@@ -18,6 +18,7 @@ import n from "./next.module.css";
 const OWN = { state: "#1A3A4E", middle: "#6CAAC8", other: "#CFCFC9" } as const;
 
 function Card({
+  bar,
   kicker,
   title,
   stamp,
@@ -26,6 +27,7 @@ function Card({
   learn,
   draft,
 }: {
+  bar: string;
   kicker: string;
   title: string;
   stamp: string;
@@ -35,7 +37,18 @@ function Card({
   draft?: boolean;
 }) {
   return (
-    <article className={n.dCard}>
+    /* A depicted window, like the module pages' .mod-win (Paul, 25 Sep: "it feels a bit flat
+       because of flat edges"): rounded, soft shadow, the grey bar with the three lights. */
+    <article className={`mod-win ${n.dWin}`}>
+      <div className="mod-winbar">
+        <span className="mod-lights">
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className="mod-wintitle">{bar}</span>
+      </div>
+      <div className={n.dCard}>
       <span className={n.dKick}>
         {kicker} {draft ? <span className={n.dDraft}>Draft</span> : null}
       </span>
@@ -55,6 +68,7 @@ function Card({
             {learn.t}
           </Link>
         ) : null}
+      </div>
       </div>
     </article>
   );
@@ -87,6 +101,7 @@ export default function DataBand() {
 
       <div className={n.dGrid}>
         <Card
+          bar="geo_ireland"
           kicker="GEO Ireland · AI answers"
           title={`In ${counts.state} of ${n41} categories, the first name AI gives is a state body`}
           stamp={`Five engines, ${n41} categories of Irish life · day one, read 23 Aug 2026`}
@@ -107,6 +122,7 @@ export default function DataBand() {
         </Card>
 
         <Card
+          bar="jobs_and_ai"
           kicker="Jobs and AI · Jeff"
           title={`${JOBS_RUN.real} of ${JOBS_RUN.jobs} marketing and sales job ads ask for anything real about AI`}
           stamp={`Seven sources, one day · read ${JOBS_RUN.date}`}
@@ -128,6 +144,7 @@ export default function DataBand() {
         </Card>
 
         <Card
+          bar="jobs_and_ai · sources"
           kicker="Jobs and AI · where they ask"
           title="Company careers pages ask for AI about four times as often as the job boards"
           stamp={`Share of each source's ads with a real AI ask · read ${JOBS_RUN.date}`}
@@ -147,6 +164,7 @@ export default function DataBand() {
         </Card>
 
         <Card
+          bar="meta_campaign"
           kicker="Our own campaign · Meta"
           title={`Our course ads held at ${Math.round(TOTALS.costPerView * 100)}c a visit for 21 days`}
           stamp={`€5 a day, 30 Jul to 19 Aug 2026 · read from Meta 6 Sep`}

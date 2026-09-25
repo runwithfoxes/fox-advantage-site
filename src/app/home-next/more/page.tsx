@@ -329,7 +329,16 @@ export default function HomeNextMore() {
               <button type="button">Create a free account</button>
             </form>
             <span className={n.accFine}>Already have one? <a href="#">Sign in</a>. Same account as the course.</span>
-            <div className={n.accCourse}>
+            <div className={`mod-win ${n.dWin}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="mod-wintitle">your_course</span>
+              </div>
+              <div className={n.winBody}>
               <span className={n.dKick}>The course, in your account</span>
               <ol className={n.accMods}>
                 {MODULES.map((m) => (
@@ -340,6 +349,7 @@ export default function HomeNextMore() {
                   </li>
                 ))}
               </ol>
+              </div>
             </div>
           </div>
         </section>
