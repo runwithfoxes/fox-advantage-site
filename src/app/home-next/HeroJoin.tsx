@@ -17,10 +17,10 @@ export default function HeroJoin() {
         }}
       >
         <input type="email" required placeholder="you@company.ie" aria-label="Work email" />
-        <button type="submit">Create a free account</button>
+        <button type="submit">Get full access, free</button>
       </form>
       <span className={n.hjFine}>
-        Free research, trackers and the course in one account. Already have one? <a href="#">Sign in</a>
+        Every report, tracker and the course, in one free account. Already have one? <a href="#">Sign in</a>
       </span>
     </div>
   );

@@ -158,12 +158,14 @@ export default function NextNav() {
         {trig("agents", "agents")}
         {trig("training", "training")}
         <ResourcesMenu />
-        <a href="#" className={n.signin}>
+        {/* Paul, 25 Sep, after Every's "Upgrade to All Access": we have no paid tier, so the
+            button offers full access and says it is free. Contact lives in the four buttons. */}
+        <a href="#" className={n.signinPlain}>
           /sign in
         </a>
-        <Link href="/contact" className={n.cta}>
-          /talk to us
-        </Link>
+        <a href="#account" className={n.fullAccess}>
+          Get full access, free
+        </a>
       </nav>
     </header>
   );

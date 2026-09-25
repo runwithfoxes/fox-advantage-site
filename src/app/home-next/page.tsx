@@ -81,7 +81,7 @@ export default function HomeNext() {
   const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
     ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
     { type: "Tracker", who: "Jeff", t: "About 1 in 14 new marketing and sales ads asks anything real about AI", href: "/resources/jobs-ai", day: "Read 24 Sept 2026" },
-    ...(openMod ? [{ type: "Course · module " + openMod.n + " open", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
+    ...(openMod ? [{ type: "Course", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
     ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
     ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
     { type: "Study", who: "Jess", t: "GEO Ireland: who five AI engines name across 41 categories of Irish life", href: "/resources/geo-ireland", day: "Day one, 23 Aug 2026" },
@@ -189,20 +189,18 @@ export default function HomeNext() {
 
           <div className={n.newsCol}>
             <div className={n.featureHead}>
-              <span className={n.kicker}>What&rsquo;s new</span>
+              <span className={n.recentLab}>/what&rsquo;s new</span>
             </div>
             <ol className={n.news}>
               {news.map((x) => (
-                <li key={x.href + x.t} className={n.newsItem}>
-                  <span className={n.newsType}>
-                    {x.type} {x.ex ? <Ex /> : null}
-                  </span>
-                  <Link href={x.href} className={n.newsT}>
+                <li key={x.href + x.t} className={n.recentItem}>
+                  {/* Paul, 25 Sep: like the live homepage's /recent essays list. Mono title, no
+                      bold, no pictures, one quiet meta line. */}
+                  <Link href={x.href} className={n.recentT}>
                     {x.t}
                   </Link>
-                  <span className={n.newsBy}>
-                    {x.who === "Paul Dervan" ? <img src="/Paul_photo.jpg" alt="" /> : <i>{x.who.slice(0, 1)}</i>}
-                    <b>{x.who}</b> <span>&middot; {x.day}</span>
+                  <span className={n.recentMeta}>
+                    {x.type} &middot; {x.day} &middot; {x.who} {x.ex ? <Ex /> : null}
                   </span>
                 </li>
               ))}
