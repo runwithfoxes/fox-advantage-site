@@ -113,7 +113,7 @@ export default function HomeNext() {
         <div className={`${h.inner} ${n.heroInner}`}>
           <div className={h.text}>
             {/* Paul, 25 Sep: the headline and its line, no pill ("Less is more"), no "New study" line. */}
-            <h1 className={h.title}>Rebuilding marketing teams</h1>
+            <h1 className={h.title}>Designing marketing teams</h1>
             <p className={h.sub}>
               A new kind of marketing consultancy that mixes old&#8209;school marketing fundamentals, marketing
               rigour and technology.
