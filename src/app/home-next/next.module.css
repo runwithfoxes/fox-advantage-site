@@ -243,3 +243,11 @@ a.entryT:hover { color: #3A7CA5; }
    every label there. A dark tint holds the same white type on the street, the cliffs and
    the sand. Measured on all three scenes, 25 Sep. */
 .darkGlass { background: rgba(10, 18, 28, 0.46) !important; border-color: rgba(255, 255, 255, 0.28) !important; }
+
+/* The fox walk film: anchored bottom centre so the fox is never cropped (approved handoff). */
+.film { object-position: center bottom; }
+.filmStill { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .film { display: none; }
+  .filmStill { display: block; position: absolute; inset: 0; background: url(/resources/hero-fox-walk-last.jpg) center bottom / cover no-repeat; }
+}

@@ -83,7 +83,11 @@ export default function HomeNext() {
     <div className={f.page}>
       {/* ── The header: film, headline, and the latest move ── */}
       <section className={`${h.hero} ${n.hero}`} id="top">
-        <video className={h.film} autoPlay muted loop playsInline poster="/resources/hero-fox-walk.jpg" src="/resources/hero-fox-walk.mp4" />
+        {/* Approved hero film (fox-ads approved/homepage-hero, 69d27c6), slowed to half speed with
+            drawn-in frames after Paul said it jumps too quickly. Plays ONCE and rests on the beach:
+            a walking fox cannot loop cleanly. Reduced motion gets the last frame as a still. */}
+        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/hero-fox-walk.jpg" src="/resources/hero-fox-walk-slow.mp4" />
+        <div className={n.filmStill} aria-hidden />
         <NextNav />
 
         <div className={h.inner}>
