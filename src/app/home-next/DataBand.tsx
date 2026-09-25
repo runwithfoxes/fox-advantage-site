@@ -127,7 +127,7 @@ export default function DataBand() {
           title={`${JOBS_RUN.real} of ${JOBS_RUN.jobs} marketing and sales job ads ask for anything real about AI`}
           stamp={`Seven sources, one day · read ${JOBS_RUN.date}`}
           deeper="Every ad, by role and seniority"
-          learn={{ t: "Learn the tools employers name →", href: "/course" }}
+          learn={{ t: "Read the full report, The AI Ask →", href: "/resources/the-ai-ask/2026-q3" }}
         >
           <div className={n.hbars}>
             {JOBS_KINDS.map((k) => (

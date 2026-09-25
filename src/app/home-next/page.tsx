@@ -79,6 +79,7 @@ export default function HomeNext() {
   /* What's new: one list across every kind of thing we publish, newest first. Only real
      items, except where tagged. */
   const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
+    { type: "Report", who: "Sam", t: "The AI Ask, Q3 2026: Irish marketing jobs take up AI, sales jobs don't", href: "/resources/the-ai-ask/2026-q3", day: "25 Sept 2026" },
     ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
     { type: "Tracker", who: "Jeff", t: "About 1 in 14 new marketing and sales ads asks anything real about AI", href: "/resources/jobs-ai", day: "Read 24 Sept 2026" },
     ...(openMod ? [{ type: "Course", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
@@ -92,6 +93,7 @@ export default function HomeNext() {
   /* The card's lines, built the way the hub builds them: studies, trackers, then every
      published piece. Invented studies and trackers say "example" in their label. */
   const lines = [
+    { label: "Report · The AI Ask · Q3 2026", title: "Irish marketing jobs take up AI, sales jobs don't", href: "/resources/the-ai-ask/2026-q3" },
     ...STUDIES.map((st) => ({ label: `Study ${st.no}${st.example ? " · example" : ""}`, title: st.title, href: st.href })),
     ...trackers.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
     ...getLibrary()
