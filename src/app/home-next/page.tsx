@@ -8,6 +8,7 @@ import { CATEGORIES } from "../resources/data";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
+import HeroJoin from "./HeroJoin";
 import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
 import DataBand from "./DataBand";
@@ -118,10 +119,13 @@ export default function HomeNext() {
               A new kind of marketing consultancy that mixes old&#8209;school marketing fundamentals, marketing
               rigour and technology.
             </p>
+            {/* Paul, 25 Sep: the sign-up moves here, into the space under his line. The card
+                loses its own email box, so the hero asks once. */}
+            <HeroJoin />
           </div>
 
           {/* The hub's own card: a flow of our research (Paul, 25 Sep). */}
-          <LibraryCard lines={lines} />
+          <LibraryCard lines={lines} join={false} />
         </div>
       </section>
 

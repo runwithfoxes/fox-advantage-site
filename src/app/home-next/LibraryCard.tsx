@@ -11,7 +11,7 @@ import type { Line } from "../resources/HubHero";
  * reports." Same markup and classes as the panel in HubHero.tsx: 160s a pass, paused on hover,
  * one-line email sign-up at the foot. ⛔ MOCKUP: the form posts nowhere.
  */
-export default function LibraryCard({ lines }: { lines: Line[] }) {
+export default function LibraryCard({ lines, join = true }: { lines: Line[]; join?: boolean }) {
   const [done, setDone] = useState(false);
   /* Paul, 25 Sep: "Can the card be grabable." It lifts and moves with the pointer anywhere on
      the card except the email box; a press that moves less than 5px is still a click, so the
@@ -68,7 +68,7 @@ export default function LibraryCard({ lines }: { lines: Line[] }) {
           ))}
         </div>
       </div>
-      {done ? (
+      {!join ? null : done ? (
         <p className={s.done}>You are on the list.</p>
       ) : (
         <form
