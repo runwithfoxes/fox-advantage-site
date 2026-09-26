@@ -87,3 +87,5 @@
   .stackRow { grid-template-columns: 1fr; gap: 4px; }
   .stackRow .barLab { white-space: normal; }
 }
+/* 26 Sep, phone pass: the download button was nowrap and ran past the right edge at 390. */
+@media (max-width: 560px) { .dl { display: flex; width: 100%; } .dlBtn { white-space: normal; width: 100%; justify-content: center; text-align: center; } }
