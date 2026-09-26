@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { CATEGORIES, JOBS_KINDS, JOBS_RUN, JOBS_SOURCES, ASK_LABEL } from "../resources/data";
+import { CATEGORIES, JOBS_RUN, ASK_LABEL } from "../resources/data";
 import { DAILY, TOTALS } from "@/components/agents/AdDeskWindow";
 import n from "./next.module.css";
+/* Sam's final count for The AI Ask, Q3 2026 (paul-hub 8ccbc95f8, after Cato's fourth check). The
+   jobs cards read it straight from the report's own numbers file, so the homepage and the report
+   can never disagree. Paul, 26 Sep: 56 of 636, not the 47 of 660 from the first night. */
+import ASK from "../resources/the-ai-ask/2026-q3/numbers.json";
 
 /**
  * THE NUMBERS. Paul, 25 Sep 2026: "we need to have a lot of the charts... you might see on the
@@ -78,10 +82,17 @@ export default function DataBand() {
   const n41 = CATEGORIES.length;
   const counts = { state: 0, middle: 0, other: 0 };
   CATEGORIES.forEach((c) => (counts[c.owner] += 1));
-  const kindsTotal = JOBS_KINDS.reduce((a, k) => a + k.n, 0);
-  const kindMax = Math.max(...JOBS_KINDS.map((k) => k.n));
-  const boards = JOBS_SOURCES.filter((s) => s.ofJobs);
-  const rateMax = Math.max(...boards.map((s) => s.rate));
+  const kinds = (Object.entries(ASK.sep_kinds) as [keyof typeof ASK_LABEL, number][])
+    .map(([ask, v]) => ({ ask, n: v }))
+    .sort((a, b) => b.n - a.n);
+  const kindMax = Math.max(...kinds.map((k) => k.n));
+  const ch = ASK.talk_vs_ask_by_channel;
+  const channels = [
+    { name: "Careers pages", k: ch.careers_pages.real_ask.k, of: ch.careers_pages.real_ask.n, pct: ch.careers_pages.real_ask.pct, own: true },
+    { name: "Job boards", k: ch.job_boards.real_ask.k, of: ch.job_boards.real_ask.n, pct: ch.job_boards.real_ask.pct, own: false },
+  ];
+  const rateMax = Math.max(...channels.map((c) => c.pct));
+  const times = Math.round(ch.careers_pages.real_ask.pct / ch.job_boards.real_ask.pct);
   const views = DAILY.map((d) => d[4]);
   const vMax = Math.max(...views);
 
@@ -92,7 +103,7 @@ export default function DataBand() {
         {/* the live markers (Paul, 25 Sep, point 5): real counts, each with its read date */}
         <div className={n.liveRow}>
           <span><i className={n.liveDot} /> Updated 24 Sep</span>
-          <span><b>{JOBS_RUN.jobs}</b> job ads read</span>
+          <span><b>{ASK.sep_all.n}</b> job ads read</span>
           <span><b>{n41}</b> categories asked</span>
           <span><b>5</b> AI engines</span>
           <span><b>1,000+</b> marketers on the course</span>
@@ -124,13 +135,13 @@ export default function DataBand() {
         <Card
           bar="jobs_and_ai"
           kicker="Jobs and AI · Jeff"
-          title={`${JOBS_RUN.real} of ${JOBS_RUN.jobs} marketing and sales job ads ask for anything real about AI`}
+          title={`${ASK.sep_all.k} of ${ASK.sep_all.n} marketing and sales job ads ask for anything real about AI`}
           stamp={`Seven sources, one day · read ${JOBS_RUN.date}`}
           deeper="Every ad, by role and seniority"
           learn={{ t: "Read the full report, The AI Ask →", href: "/resources/the-ai-ask/2026-q3" }}
         >
           <div className={n.hbars}>
-            {JOBS_KINDS.map((k) => (
+            {kinds.map((k) => (
               <div key={k.ask} className={n.hbar}>
                 <span className={n.hLab}>{ASK_LABEL[k.ask]}</span>
                 <span className={n.hTrack}>
@@ -140,27 +151,28 @@ export default function DataBand() {
               </div>
             ))}
           </div>
-          <span className={n.dNote}>What the asks were for · split from the {kindsTotal}-ad count, recount coming</span>
+          <span className={n.dNote}>What the {ASK.sep_all.k} asks were for</span>
         </Card>
 
         <Card
           bar="jobs_and_ai · sources"
           kicker="Jobs and AI · where they ask"
-          title="Company careers pages ask for AI about four times as often as the job boards"
-          stamp={`Share of each source's ads with a real AI ask · read ${JOBS_RUN.date}`}
+          title={`Tech companies' careers pages ask for AI about ${times} times as often as the job boards`}
+          stamp={`Share of ads with a real AI ask · read ${JOBS_RUN.date}`}
           deeper="The full source table, and the quotes"
         >
           <div className={n.hbars}>
-            {boards.map((s) => (
-              <div key={s.name} className={n.hbar}>
-                <span className={n.hLab}>{s.name}</span>
+            {channels.map((c) => (
+              <div key={c.name} className={n.hbar}>
+                <span className={n.hLab}>{c.name}</span>
                 <span className={n.hTrack}>
-                  <i style={{ width: `${(s.rate / rateMax) * 100}%`, background: s.name === "Careers pages" ? "#1A3A4E" : undefined }} />
+                  <i style={{ width: `${(c.pct / rateMax) * 100}%`, background: c.own ? "#1A3A4E" : undefined }} />
                 </span>
-                <span className={n.hVal}>{s.rate}%</span>
+                <span className={n.hVal}>{Math.round(c.pct)}%</span>
               </div>
             ))}
           </div>
+          <span className={n.dNote}>{channels.map((c) => `${c.name}: ${c.k} of ${c.of}`).join(" · ")}</span>
         </Card>
 
         <Card

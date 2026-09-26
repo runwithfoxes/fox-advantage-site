@@ -47,8 +47,8 @@ export const DESKS: Desk[] = [
     mark: "J",
     kind: "agent",
     pieces: [
-      { t: "About 1 in 14 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/jobs-ai" },
-      { t: "Tech firms’ careers pages ask for AI four times as often", day: "24 Sept 2026", href: "/resources/jobs-ai#careers" },
+      { t: "About 1 in 11 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/jobs-ai" },
+      { t: "Tech firms’ careers pages ask for AI about nine times as often", day: "24 Sept 2026", href: "/resources/jobs-ai#careers" },
     ],
     all: { t: "The tracker →", href: "/resources/jobs-ai" },
     example: false,
@@ -124,8 +124,8 @@ export const TRACKERS: Tracker[] = [
     what: "The AI asks in Irish marketing and sales job ads",
     desk: "Jeff",
     reads: "Weekly",
-    // Sam's recount, 25 Sep: 660 marketing and sales ads on 24 Sep, 47 with a real AI ask (7.1%), frozen.
-    reading: { value: "47", of: "of 660 ads ask for AI", last: "24 Sep" },
+    // Sam's final, 25 Sep, after Cato's fourth check: 636 marketing and sales ads on 24 Sep, 56 with a real AI ask (8.8%).
+    reading: { value: "56", of: "of 636 ads ask for AI", last: "24 Sep" },
     href: "/resources/jobs-ai",
     example: false,
   },
