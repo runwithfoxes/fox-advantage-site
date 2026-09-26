@@ -1,4 +1,5 @@
 import { CATEGORIES } from "../resources/data";
+import { SERIES, editionsOf, type ReportSeries } from "../resources/catalogue";
 import n from "./next.module.css";
 
 /**
@@ -67,3 +68,19 @@ export default function Cover({ no, cadence, title, cover, fox }: { no: string; 
     </div>
   );
 }
+
+/**
+ * THE SHELF: every series in one order, with its number, its drawing and its fox, so the
+ * homepage covers and each series page agree. Real studies first, then the examples, newest
+ * edition first. The drawing and the fox belong to the series' place in the catalogue and never
+ * change when the order does.
+ */
+export type ShelfEntry = { se: ReportSeries; no: string; cover: CoverArt; fox: string };
+export function seriesShelf(): ShelfEntry[] {
+  const newest = (se: ReportSeries) => editionsOf(se).filter((r) => r.status !== "coming")[0];
+  const idx = (se: ReportSeries) => SERIES.findIndex((x) => x.slug === se.slug);
+  return [...SERIES]
+    .sort((a, b) => Number(a.example) - Number(b.example) || (newest(b)?.date ?? "").localeCompare(newest(a)?.date ?? ""))
+    .map((se, i) => ({ se, no: `No. ${String(i + 1).padStart(2, "0")}`, cover: COVER_ARTS[idx(se) % COVER_ARTS.length], fox: COVER_FOXES[idx(se) % COVER_FOXES.length] }));
+}
+export const shelfEntry = (slug: string) => seriesShelf().find((e) => e.se.slug === slug);

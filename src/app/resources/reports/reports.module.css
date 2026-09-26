@@ -93,7 +93,7 @@
 
 /* ══════════ THE SERIES PAGE: one subject owns it ══════════ */
 .band { background: #1A3A4E; color: #fff; }
-.bandInner { max-width: var(--wrap); margin: 0 auto; padding: 24px var(--gut) 44px; display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 36px; align-items: start; position: relative; }
+.bandInner { max-width: var(--wrap); margin: 0 auto; padding: 24px var(--gut) 44px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; align-items: start; position: relative; }
 .bigMark { width: 132px; height: 132px; border: 1px solid rgba(255,255,255,.5); font-family: var(--mono); font-size: 40px; letter-spacing: .02em; display: flex; align-items: center; justify-content: center; color: #fff; }
 .bandEyebrow { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 14px; }
 .bandH1 { font-family: var(--sans); font-weight: 500; font-size: clamp(32px, 3.8vw, 54px); line-height: 1.04; letter-spacing: -0.025em; margin: 0 0 16px; text-wrap: pretty; color: #fff; }
@@ -203,3 +203,8 @@
 /* the trend chart keeps a reading width, so the SVG's axis text stays at its size */
 .trendWrap { max-width: 720px; }
 @media (max-width: 1100px) { .latest { margin-top: 0; } }
+
+/* The cover in the series band (26 Sep): the homepage cover, at 220px, on the deep ground. */
+.bigCover { width: 220px; }
+.bigCover > div { box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+@media (max-width: 700px) { .bandInner { grid-template-columns: 1fr; } .bigCover { width: 180px; } }

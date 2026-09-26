@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Cover, { COVER_ARTS, COVER_FOXES } from "./Cover";
+import Cover, { seriesShelf } from "./Cover";
 import Publications, { type Pub } from "../resources/Publications";
 import {
   SERIES, PUBLISHED, COMING, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
@@ -71,20 +71,12 @@ export default function ResearchBands() {
   const featSeries = seriesOf(featured);
   const featFig = featured.figures[1] ?? featured.figures[0];
 
-  /* The covers: the series, newest edition first, the featured one's series left out because it
-     is drawn big just above. Each series keeps the same drawing and fox every time it appears. */
+  /* The covers: the shelf (Cover.tsx), minus the featured series, which is drawn big above. */
   const newest = (slug: string) => editionsOf(SERIES.find((se) => se.slug === slug)!).filter((r) => r.status !== "coming")[0];
-  /* Real studies first (GEO Ireland is the big one), then the examples, newest edition first. The
-     number on a cover is its place on this shelf; the drawing and the fox belong to the series. */
-  const series = [...SERIES]
-    .filter((se) => se.slug !== featSeries.slug)
-    .sort((a, b) => Number(a.example) - Number(b.example) || (newest(b.slug)?.date ?? "").localeCompare(newest(a.slug)?.date ?? ""));
-  const art = (i: number) => COVER_ARTS[i % COVER_ARTS.length];
-  const fox = (i: number) => COVER_FOXES[i % COVER_FOXES.length];
-  const idx = (slug: string) => SERIES.findIndex((se) => se.slug === slug);
-  const no = (slug: string) => `No. ${String(series.findIndex((se) => se.slug === slug) + 1).padStart(2, "0")}`;
+  const shelf = seriesShelf().filter((e) => e.se.slug !== featSeries.slug);
   const plural = (k: number, w: string) => `${k} ${w}${k === 1 ? "" : "s"}`;
-  const [flag, ...rest] = series;
+  const [flagE, ...restE] = shelf;
+  const flag = flagE.se;
   const flagEd = newest(flag.slug);
 
   /* The reading list: every report, dated, newest first. Search and filter live inside it. */
@@ -180,10 +172,10 @@ export default function ResearchBands() {
         </div>
         <div className={n.studies}>
           <Link href={seriesHref(flag)} className={n.flag}>
-            <Cover no={no(flag.slug)} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={art(idx(flag.slug))} fox={fox(idx(flag.slug))} />
+            <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} />
             <div>
               <span className={f.meta}>
-                {flagEd ? `${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
+                {flagEd ? `Latest edition ${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
               </span>
               <span className={n.flagTitle}>{flag.name}</span>
               <p className={n.flagLine}>{flag.line}</p>
@@ -191,12 +183,11 @@ export default function ResearchBands() {
             </div>
           </Link>
           <div className={`${n.covers} ${n.coversWide}`}>
-            {rest.map((se) => {
+            {restE.map(({ se, no, cover, fox }) => {
               const ed = newest(se.slug);
-              const i = idx(se.slug);
               return (
                 <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
-                  <Cover no={no(se.slug)} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={art(i)} fox={fox(i)} />
+                  <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} />
                   <span className={f.meta}>
                     {ed ? `${plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition")} · latest ${day(ed.date)}` : `First edition ${se.cadence}`} <Example on={se.example} />
                   </span>

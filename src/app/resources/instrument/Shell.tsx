@@ -12,7 +12,10 @@ import s from "./instrument.module.css";
  * the reference: the board is on every page, and a reading always says when it was read.
  * The mockup line sits in the flow under the band, never fixed, so it cannot cover a phone.
  */
-export function Shell({ children, tape = true }: { children: ReactNode; tape?: boolean }) {
+/* The tape is OFF by default since 26 Sep 2026. Paul: "it's not a tracking terminal board." A
+   strip of live readings under the nav is exactly the terminal feel, so no page carries it
+   unless it asks. */
+export function Shell({ children, tape = false }: { children: ReactNode; tape?: boolean }) {
   const live = TRACKERS.filter((t) => t.status !== "planned");
   return (
     <div className={s.page}>

@@ -6,6 +6,7 @@ import { SERIES, seriesBySlug, editionsOf, reportHref, day } from "../../catalog
 import { Chart, FigureWindow, Gate, Example } from "../../kit";
 import { Top, trendOf, nextEdition } from "../shared";
 import s from "../reports.module.css";
+import Cover, { shelfEntry } from "../../../home-next/Cover";
 
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -51,7 +52,11 @@ export default async function SeriesPage({ params }: { params: Promise<{ series:
       <Top crumbs={[{ href: "/resources", t: "Resources" }, { href: "/resources/reports", t: "Reports" }, { t: se.name }]} />
       <header className={s.band}>
         <div className={s.bandInner}>
-          <span className={s.bigMark} aria-hidden>{se.mark}</span>
+          {/* The series' own cover, the same drawing and fox as on the homepage shelf (Paul, 26 Sep:
+              the covers are the look; a letter stamp is not). */}
+          <div className={s.bigCover}>
+            {(() => { const e = shelfEntry(se.slug); return e ? <Cover no={e.no} cadence={se.cadence} title={se.name} cover={e.cover} fox={e.fox} /> : <span className={s.bigMark} aria-hidden>{se.mark}</span>; })()}
+          </div>
           <div>
             <div className={s.bandEyebrow}>
               <span>Report series</span>
