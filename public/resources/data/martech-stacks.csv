@@ -1,0 +1,2309 @@
+sector,county,tools,crm,ai_tool,read
+Food and drink,Kildare,5,yes,no,2026-07-29
+Tourism and hospitality,Wexford,28,no,no,2026-08-29
+Food and drink,Mayo,27,no,yes,2026-09-09
+Tourism and hospitality,Galway,3,yes,yes,2026-09-17
+Tax and accounting,Clare,14,yes,no,2026-08-14
+Tax and accounting,Tipperary,22,no,no,2026-08-03
+Motor,Galway,20,no,no,2026-09-14
+Energy,Donegal,21,yes,no,2026-09-20
+Tourism and hospitality,Clare,8,yes,yes,2026-06-09
+Tourism and hospitality,Tipperary,35,yes,no,2026-08-07
+Food and drink,Donegal,22,no,no,2026-08-11
+Motor,Donegal,0,no,yes,2026-06-28
+Tax and accounting,Mayo,14,yes,no,2026-07-30
+Tourism and hospitality,Wexford,20,no,no,2026-08-15
+Tax and accounting,Kildare,21,no,no,2026-05-31
+Motor,Donegal,27,no,no,2026-06-27
+Tax and accounting,Donegal,4,yes,yes,2026-05-26
+Tourism and hospitality,Galway,32,no,yes,2026-07-10
+Energy,Wexford,25,yes,no,2026-08-14
+Food and drink,Wexford,2,no,no,2026-06-03
+Energy,Wexford,13,no,no,2026-08-13
+Food and drink,Donegal,22,yes,no,2026-06-14
+Food and drink,Kildare,14,no,yes,2026-05-29
+Tourism and hospitality,Galway,21,no,no,2026-08-18
+Energy,Galway,9,no,yes,2026-08-14
+Energy,Mayo,29,yes,no,2026-08-28
+Motor,Galway,29,yes,yes,2026-09-02
+Tourism and hospitality,Clare,2,yes,no,2026-09-18
+Tax and accounting,Donegal,15,yes,no,2026-06-22
+Energy,Mayo,26,no,no,2026-07-20
+Food and drink,Galway,14,no,yes,2026-05-25
+Food and drink,Kildare,17,no,yes,2026-07-11
+Tax and accounting,Kildare,12,no,no,2026-07-18
+Tourism and hospitality,Galway,24,no,no,2026-07-24
+Tax and accounting,Wexford,32,no,no,2026-07-26
+Food and drink,Mayo,8,no,yes,2026-08-24
+Tax and accounting,Tipperary,21,yes,no,2026-07-25
+Tourism and hospitality,Mayo,29,yes,no,2026-09-19
+Tax and accounting,Donegal,17,yes,yes,2026-08-12
+Tourism and hospitality,Kildare,16,yes,no,2026-07-16
+Food and drink,Clare,8,yes,no,2026-06-25
+Tourism and hospitality,Galway,23,no,yes,2026-07-02
+Tourism and hospitality,Kildare,26,yes,no,2026-07-22
+Food and drink,Mayo,10,no,yes,2026-08-31
+Food and drink,Clare,8,no,no,2026-08-13
+Motor,Mayo,21,no,yes,2026-08-03
+Motor,Tipperary,22,yes,yes,2026-08-18
+Food and drink,Kildare,18,no,yes,2026-07-08
+Tax and accounting,Clare,5,yes,no,2026-08-02
+Tax and accounting,Tipperary,28,yes,no,2026-07-26
+Motor,Galway,24,yes,yes,2026-07-10
+Tax and accounting,Wexford,10,yes,no,2026-07-25
+Motor,Kildare,13,no,yes,2026-08-09
+Tax and accounting,Tipperary,24,no,yes,2026-06-18
+Tourism and hospitality,Donegal,27,yes,no,2026-06-22
+Tax and accounting,Galway,19,no,no,2026-07-29
+Food and drink,Mayo,2,yes,yes,2026-07-04
+Motor,Donegal,21,yes,yes,2026-06-07
+Food and drink,Galway,25,no,yes,2026-06-01
+Tax and accounting,Tipperary,-2,no,no,2026-08-06
+Food and drink,Galway,16,yes,yes,2026-08-20
+Tourism and hospitality,Mayo,26,yes,no,2026-05-26
+Energy,Donegal,22,yes,no,2026-07-14
+Food and drink,Donegal,14,no,no,2026-07-28
+Energy,Tipperary,9,yes,no,2026-09-15
+Motor,Wexford,26,yes,yes,2026-05-28
+Tax and accounting,Mayo,21,no,yes,2026-05-25
+Motor,Galway,1,no,yes,2026-08-12
+Tourism and hospitality,Mayo,13,no,yes,2026-05-29
+Food and drink,Kildare,24,no,yes,2026-09-11
+Energy,Mayo,26,yes,yes,2026-08-16
+Energy,Tipperary,21,no,yes,2026-09-18
+Tax and accounting,Kildare,0,no,yes,2026-07-25
+Tax and accounting,Galway,34,no,yes,2026-08-27
+Food and drink,Clare,31,no,no,2026-07-07
+Tourism and hospitality,Galway,2,yes,yes,2026-07-12
+Motor,Galway,8,no,no,2026-08-21
+Tourism and hospitality,Mayo,28,yes,no,2026-09-05
+Tax and accounting,Tipperary,16,no,yes,2026-06-19
+Food and drink,Wexford,24,yes,no,2026-05-30
+Energy,Tipperary,0,no,no,2026-08-15
+Motor,Clare,35,no,yes,2026-08-23
+Food and drink,Kildare,31,yes,yes,2026-08-20
+Tax and accounting,Clare,8,no,yes,2026-07-13
+Tax and accounting,Wexford,19,yes,yes,2026-06-14
+Motor,Wexford,16,no,no,2026-09-16
+Tourism and hospitality,Kildare,21,yes,no,2026-06-18
+Tax and accounting,Kildare,22,no,no,2026-07-25
+Energy,Mayo,11,yes,no,2026-08-02
+Tourism and hospitality,Donegal,25,no,no,2026-08-14
+Energy,Galway,30,yes,no,2026-06-20
+Tax and accounting,Galway,10,yes,no,2026-08-02
+Tourism and hospitality,Donegal,11,no,no,2026-08-11
+Tax and accounting,Kildare,27,yes,yes,2026-08-19
+Tourism and hospitality,Wexford,18,no,no,2026-07-21
+Food and drink,Mayo,19,no,yes,2026-08-18
+Food and drink,Donegal,1,no,no,2026-09-09
+Tax and accounting,Galway,27,yes,yes,2026-07-05
+Energy,Donegal,33,yes,no,2026-08-07
+Food and drink,Wexford,7,no,no,2026-09-13
+Tax and accounting,Clare,15,yes,yes,2026-06-16
+Tax and accounting,Galway,23,no,no,2026-08-05
+Food and drink,Galway,19,yes,yes,2026-08-05
+Tax and accounting,Clare,15,yes,yes,2026-08-23
+Tax and accounting,Donegal,8,no,no,2026-06-06
+Tax and accounting,Tipperary,29,yes,yes,2026-07-05
+Food and drink,Wexford,29,no,yes,2026-08-25
+Motor,Galway,6,no,no,2026-06-03
+Tourism and hospitality,Clare,13,yes,no,2026-07-22
+Food and drink,Mayo,23,no,yes,2026-09-06
+Tax and accounting,Clare,26,yes,no,2026-08-08
+Tourism and hospitality,Clare,22,no,yes,2026-09-03
+Food and drink,Wexford,12,no,no,2026-08-22
+Energy,Tipperary,23,no,no,2026-08-10
+Tax and accounting,Mayo,21,no,no,2026-07-02
+Tax and accounting,Galway,0,yes,no,2026-06-22
+Food and drink,Donegal,21,no,no,2026-08-26
+Tourism and hospitality,Galway,21,no,yes,2026-09-14
+Tax and accounting,Tipperary,22,yes,no,2026-05-25
+Motor,Kildare,24,yes,yes,2026-09-13
+Tax and accounting,Tipperary,1,yes,no,2026-08-05
+Energy,Mayo,22,yes,yes,2026-07-22
+Food and drink,Galway,25,no,yes,2026-08-21
+Tourism and hospitality,Kildare,6,no,yes,2026-07-12
+Food and drink,Tipperary,20,yes,yes,2026-07-06
+Tourism and hospitality,Donegal,28,yes,no,2026-09-13
+Food and drink,Kildare,18,no,yes,2026-08-27
+Energy,Galway,26,no,no,2026-06-15
+Food and drink,Donegal,9,no,yes,2026-09-11
+Energy,Clare,26,no,yes,2026-07-02
+Food and drink,Galway,25,yes,no,2026-09-10
+Food and drink,Mayo,0,no,no,2026-09-02
+Motor,Galway,11,yes,yes,2026-06-04
+Food and drink,Clare,28,yes,no,2026-08-19
+Tourism and hospitality,Galway,13,no,yes,2026-07-24
+Tourism and hospitality,Galway,17,no,yes,2026-08-12
+Energy,Galway,-1,yes,no,2026-09-03
+Food and drink,Galway,25,no,no,2026-07-09
+Food and drink,Galway,21,yes,no,2026-07-29
+Motor,Wexford,-1,no,yes,2026-07-21
+Tax and accounting,Galway,16,yes,yes,2026-06-29
+Motor,Galway,24,no,no,2026-06-04
+Tax and accounting,Galway,15,yes,no,2026-07-29
+Tourism and hospitality,Mayo,20,yes,yes,2026-06-02
+Tax and accounting,Galway,7,no,no,2026-08-04
+Motor,Kildare,31,no,yes,2026-08-03
+Motor,Mayo,22,no,no,2026-09-03
+Tourism and hospitality,Donegal,-1,no,yes,2026-09-01
+Motor,Donegal,18,yes,no,2026-07-24
+Tourism and hospitality,Mayo,27,no,yes,2026-06-03
+Tourism and hospitality,Tipperary,18,yes,yes,2026-09-16
+Food and drink,Tipperary,27,no,yes,2026-09-05
+Tourism and hospitality,Kildare,1,no,no,2026-09-17
+Motor,Wexford,24,yes,yes,2026-08-01
+Food and drink,Wexford,31,yes,yes,2026-07-19
+Motor,Mayo,5,yes,yes,2026-06-19
+Tourism and hospitality,Tipperary,7,yes,yes,2026-07-28
+Tax and accounting,Galway,27,no,yes,2026-08-05
+Motor,Galway,19,yes,no,2026-07-07
+Tax and accounting,Tipperary,27,yes,yes,2026-08-02
+Tax and accounting,Clare,7,no,no,2026-08-21
+Food and drink,Galway,22,no,yes,2026-09-13
+Food and drink,Galway,24,no,yes,2026-06-24
+Tourism and hospitality,Galway,10,no,yes,2026-06-30
+Food and drink,Kildare,16,yes,yes,2026-08-18
+Tax and accounting,Wexford,21,no,yes,2026-06-04
+Tax and accounting,Galway,14,no,no,2026-08-18
+Food and drink,Donegal,21,no,yes,2026-06-24
+Tourism and hospitality,Galway,11,no,no,2026-08-10
+Motor,Mayo,34,yes,yes,2026-09-14
+Food and drink,Galway,27,no,no,2026-06-05
+Tax and accounting,Wexford,-1,no,yes,2026-06-01
+Tourism and hospitality,Wexford,18,no,yes,2026-08-31
+Tourism and hospitality,Tipperary,24,yes,yes,2026-06-06
+Motor,Galway,23,yes,no,2026-07-19
+Tax and accounting,Clare,18,yes,no,2026-07-13
+Tourism and hospitality,Galway,11,yes,yes,2026-08-05
+Motor,Wexford,28,yes,yes,2026-06-14
+Food and drink,Wexford,33,no,no,2026-08-14
+Food and drink,Galway,9,yes,no,2026-06-07
+Food and drink,Wexford,12,no,yes,2026-08-30
+Energy,Mayo,18,no,no,2026-07-07
+Motor,Mayo,16,no,no,2026-06-03
+Energy,Kildare,26,yes,yes,2026-08-01
+Motor,Clare,2,no,yes,2026-09-04
+Energy,Wexford,30,no,yes,2026-07-20
+Food and drink,Kildare,31,yes,no,2026-07-02
+Energy,Clare,-2,yes,yes,2026-06-05
+Tax and accounting,Clare,18,no,yes,2026-06-17
+Energy,Kildare,20,yes,no,2026-07-29
+Motor,Donegal,14,yes,no,2026-06-29
+Tourism and hospitality,Wexford,21,no,no,2026-06-13
+Tourism and hospitality,Mayo,3,yes,no,2026-07-21
+Energy,Galway,30,yes,yes,2026-08-09
+Tourism and hospitality,Clare,32,yes,yes,2026-06-10
+Food and drink,Galway,2,yes,yes,2026-09-07
+Tax and accounting,Galway,7,no,yes,2026-09-17
+Tax and accounting,Mayo,21,no,yes,2026-05-25
+Food and drink,Wexford,24,yes,yes,2026-06-09
+Tourism and hospitality,Donegal,17,yes,no,2026-06-01
+Energy,Kildare,8,no,yes,2026-09-06
+Food and drink,Kildare,29,no,no,2026-08-25
+Motor,Mayo,26,yes,yes,2026-07-03
+Motor,Wexford,6,no,yes,2026-07-21
+Motor,Galway,17,yes,yes,2026-06-16
+Tax and accounting,Mayo,25,no,yes,2026-08-08
+Tax and accounting,Tipperary,22,yes,yes,2026-06-06
+Tax and accounting,Tipperary,23,no,yes,2026-07-04
+Energy,Wexford,8,yes,no,2026-06-12
+Tax and accounting,Donegal,31,no,yes,2026-08-09
+Tourism and hospitality,Galway,30,yes,yes,2026-06-15
+Motor,Mayo,6,no,no,2026-05-31
+Food and drink,Tipperary,21,no,no,2026-06-24
+Tax and accounting,Kildare,21,yes,yes,2026-05-24
+Tax and accounting,Donegal,17,yes,no,2026-09-14
+Tourism and hospitality,Tipperary,27,no,no,2026-06-22
+Tourism and hospitality,Mayo,0,no,no,2026-09-07
+Motor,Donegal,32,yes,no,2026-06-07
+Tax and accounting,Clare,25,no,yes,2026-08-26
+Motor,Tipperary,7,no,yes,2026-06-11
+Tax and accounting,Galway,13,no,no,2026-07-13
+Tourism and hospitality,Kildare,20,no,no,2026-06-20
+Tourism and hospitality,Galway,14,yes,yes,2026-06-28
+Tax and accounting,Tipperary,15,no,no,2026-09-04
+Food and drink,Donegal,5,no,no,2026-07-10
+Energy,Donegal,28,yes,no,2026-07-04
+Tax and accounting,Wexford,27,no,no,2026-06-30
+Food and drink,Donegal,9,no,no,2026-09-03
+Tax and accounting,Mayo,15,no,no,2026-07-25
+Food and drink,Galway,19,yes,no,2026-08-05
+Tourism and hospitality,Kildare,16,yes,no,2026-08-21
+Tax and accounting,Kildare,15,yes,yes,2026-09-10
+Tourism and hospitality,Clare,4,no,yes,2026-07-29
+Food and drink,Galway,29,no,no,2026-07-17
+Energy,Mayo,22,no,yes,2026-07-27
+Food and drink,Donegal,-3,no,no,2026-05-30
+Tax and accounting,Donegal,18,yes,yes,2026-08-05
+Tax and accounting,Wexford,24,yes,yes,2026-08-13
+Food and drink,Kildare,15,yes,yes,2026-07-21
+Tourism and hospitality,Galway,19,no,yes,2026-09-11
+Food and drink,Wexford,2,no,yes,2026-06-08
+Motor,Mayo,29,yes,yes,2026-08-26
+Tax and accounting,Mayo,20,no,yes,2026-06-19
+Energy,Galway,-2,no,yes,2026-06-08
+Energy,Galway,20,yes,yes,2026-08-03
+Tourism and hospitality,Wexford,19,no,no,2026-06-06
+Tourism and hospitality,Donegal,27,no,yes,2026-05-30
+Tax and accounting,Clare,28,yes,no,2026-07-14
+Energy,Tipperary,3,yes,yes,2026-06-21
+Food and drink,Mayo,30,yes,no,2026-06-09
+Tourism and hospitality,Kildare,26,no,yes,2026-09-08
+Tourism and hospitality,Clare,-1,yes,yes,2026-06-14
+Motor,Donegal,13,yes,yes,2026-06-11
+Tourism and hospitality,Mayo,23,yes,yes,2026-07-11
+Tax and accounting,Clare,16,yes,yes,2026-06-27
+Tax and accounting,Galway,25,yes,yes,2026-06-14
+Tax and accounting,Mayo,5,no,no,2026-06-27
+Food and drink,Kildare,33,no,no,2026-07-21
+Food and drink,Clare,31,no,no,2026-06-28
+Tourism and hospitality,Galway,4,no,yes,2026-07-29
+Motor,Wexford,14,no,no,2026-07-17
+Energy,Wexford,17,no,yes,2026-08-12
+Tax and accounting,Donegal,25,no,yes,2026-08-21
+Tax and accounting,Galway,27,no,no,2026-08-17
+Tax and accounting,Kildare,-1,yes,no,2026-06-04
+Tourism and hospitality,Donegal,32,yes,no,2026-07-27
+Food and drink,Kildare,31,no,yes,2026-07-31
+Tourism and hospitality,Clare,6,yes,yes,2026-08-14
+Tax and accounting,Wexford,12,yes,no,2026-05-29
+Energy,Wexford,20,yes,yes,2026-06-04
+Food and drink,Kildare,14,yes,yes,2026-07-13
+Food and drink,Clare,28,yes,no,2026-06-29
+Tourism and hospitality,Wexford,6,yes,yes,2026-06-07
+Tax and accounting,Wexford,28,no,no,2026-07-05
+Tourism and hospitality,Tipperary,21,no,no,2026-07-15
+Tax and accounting,Donegal,-2,no,no,2026-07-30
+Motor,Mayo,13,yes,no,2026-08-09
+Tax and accounting,Donegal,25,yes,no,2026-06-26
+Tourism and hospitality,Tipperary,20,no,no,2026-06-19
+Tax and accounting,Galway,21,yes,no,2026-06-15
+Tourism and hospitality,Kildare,-1,yes,yes,2026-06-16
+Tourism and hospitality,Galway,21,no,yes,2026-07-08
+Tax and accounting,Mayo,24,yes,yes,2026-05-31
+Tax and accounting,Galway,6,yes,no,2026-09-19
+Motor,Clare,14,no,no,2026-07-05
+Tax and accounting,Clare,21,no,no,2026-06-05
+Food and drink,Kildare,16,yes,yes,2026-08-11
+Motor,Galway,19,yes,yes,2026-06-20
+Energy,Donegal,8,no,yes,2026-06-08
+Tax and accounting,Clare,26,no,yes,2026-08-17
+Tax and accounting,Clare,26,no,no,2026-06-21
+Food and drink,Galway,1,yes,no,2026-08-14
+Motor,Kildare,11,no,yes,2026-08-25
+Tourism and hospitality,Kildare,18,yes,no,2026-06-28
+Motor,Mayo,17,no,no,2026-06-03
+Tax and accounting,Donegal,24,yes,yes,2026-07-20
+Energy,Kildare,4,no,yes,2026-06-18
+Tourism and hospitality,Mayo,22,yes,no,2026-06-20
+Tourism and hospitality,Kildare,26,yes,yes,2026-05-27
+Tourism and hospitality,Galway,4,yes,no,2026-06-09
+Motor,Mayo,12,yes,no,2026-08-25
+Food and drink,Galway,18,yes,no,2026-05-30
+Motor,Kildare,24,yes,yes,2026-06-17
+Energy,Clare,27,yes,no,2026-08-24
+Food and drink,Wexford,8,yes,yes,2026-06-11
+Tourism and hospitality,Mayo,34,no,no,2026-09-01
+Tax and accounting,Clare,34,no,yes,2026-08-23
+Food and drink,Kildare,5,yes,yes,2026-06-22
+Tourism and hospitality,Wexford,8,no,no,2026-06-09
+Food and drink,Mayo,22,no,no,2026-07-08
+Tax and accounting,Wexford,24,yes,no,2026-06-08
+Food and drink,Galway,21,no,no,2026-07-27
+Energy,Galway,-1,yes,yes,2026-07-20
+Tourism and hospitality,Kildare,27,yes,no,2026-08-29
+Tourism and hospitality,Tipperary,30,yes,no,2026-08-19
+Tax and accounting,Kildare,-4,no,no,2026-08-19
+Tourism and hospitality,Donegal,9,no,no,2026-09-20
+Food and drink,Tipperary,24,yes,no,2026-09-02
+Tax and accounting,Wexford,15,yes,no,2026-09-14
+Tourism and hospitality,Kildare,21,no,no,2026-08-02
+Motor,Galway,-2,yes,yes,2026-07-28
+Motor,Clare,27,no,yes,2026-06-10
+Food and drink,Galway,20,yes,no,2026-07-03
+Energy,Galway,-1,no,no,2026-06-18
+Tourism and hospitality,Galway,10,yes,yes,2026-08-08
+Motor,Galway,17,no,yes,2026-06-21
+Motor,Mayo,13,yes,no,2026-07-27
+Motor,Mayo,24,no,yes,2026-08-29
+Food and drink,Donegal,12,yes,no,2026-06-12
+Tax and accounting,Tipperary,25,no,no,2026-09-05
+Tax and accounting,Mayo,31,no,yes,2026-06-24
+Tourism and hospitality,Tipperary,-4,no,yes,2026-07-14
+Tourism and hospitality,Clare,8,no,no,2026-07-26
+Tax and accounting,Galway,25,yes,yes,2026-07-29
+Tax and accounting,Clare,17,yes,yes,2026-08-25
+Tourism and hospitality,Galway,25,no,yes,2026-06-11
+Motor,Donegal,4,yes,yes,2026-07-30
+Energy,Kildare,34,yes,yes,2026-09-19
+Tax and accounting,Kildare,24,no,no,2026-08-07
+Tourism and hospitality,Donegal,6,no,yes,2026-08-28
+Food and drink,Clare,8,yes,yes,2026-06-11
+Tax and accounting,Tipperary,19,yes,no,2026-08-23
+Tax and accounting,Donegal,21,yes,no,2026-07-02
+Energy,Wexford,26,yes,no,2026-07-30
+Tourism and hospitality,Clare,12,no,no,2026-08-17
+Food and drink,Tipperary,26,yes,no,2026-07-17
+Tourism and hospitality,Galway,21,no,no,2026-09-07
+Food and drink,Tipperary,-2,yes,yes,2026-08-12
+Tax and accounting,Donegal,16,yes,no,2026-09-10
+Tourism and hospitality,Donegal,19,yes,no,2026-07-01
+Tourism and hospitality,Donegal,22,no,no,2026-09-10
+Tax and accounting,Mayo,20,no,yes,2026-06-17
+Tourism and hospitality,Tipperary,12,no,yes,2026-07-10
+Energy,Donegal,35,yes,yes,2026-07-15
+Energy,Wexford,24,no,no,2026-08-01
+Food and drink,Galway,-2,yes,yes,2026-09-16
+Tax and accounting,Tipperary,21,yes,no,2026-07-18
+Food and drink,Kildare,25,no,no,2026-05-31
+Tax and accounting,Galway,24,no,no,2026-09-17
+Food and drink,Tipperary,21,no,no,2026-06-01
+Tourism and hospitality,Galway,0,no,yes,2026-07-29
+Tax and accounting,Clare,25,no,yes,2026-06-19
+Tax and accounting,Tipperary,22,no,yes,2026-05-29
+Tax and accounting,Donegal,3,yes,no,2026-06-11
+Tourism and hospitality,Donegal,19,no,yes,2026-07-06
+Tax and accounting,Kildare,16,no,yes,2026-05-24
+Energy,Tipperary,24,no,yes,2026-06-20
+Tax and accounting,Clare,14,yes,yes,2026-08-14
+Food and drink,Tipperary,3,yes,no,2026-07-01
+Energy,Donegal,23,no,no,2026-09-15
+Tax and accounting,Tipperary,24,no,yes,2026-07-08
+Tourism and hospitality,Clare,-1,yes,no,2026-07-31
+Tourism and hospitality,Donegal,16,yes,yes,2026-07-14
+Tourism and hospitality,Wexford,15,no,yes,2026-08-16
+Motor,Donegal,26,yes,yes,2026-08-21
+Tax and accounting,Tipperary,19,no,yes,2026-08-09
+Food and drink,Wexford,11,no,yes,2026-06-03
+Food and drink,Galway,32,no,yes,2026-08-26
+Energy,Galway,34,no,no,2026-08-06
+Energy,Mayo,-1,no,yes,2026-07-03
+Food and drink,Wexford,21,no,yes,2026-08-20
+Food and drink,Donegal,19,yes,no,2026-08-23
+Food and drink,Galway,24,yes,no,2026-06-15
+Tourism and hospitality,Wexford,14,no,yes,2026-07-14
+Motor,Kildare,1,yes,no,2026-07-14
+Food and drink,Wexford,22,no,yes,2026-06-28
+Motor,Galway,30,no,yes,2026-07-31
+Motor,Galway,5,no,yes,2026-06-06
+Food and drink,Clare,16,yes,no,2026-09-10
+Food and drink,Kildare,26,no,yes,2026-07-14
+Tax and accounting,Mayo,16,no,yes,2026-07-10
+Food and drink,Mayo,16,yes,yes,2026-06-22
+Tax and accounting,Wexford,1,yes,no,2026-06-24
+Tax and accounting,Tipperary,28,yes,no,2026-09-11
+Tourism and hospitality,Galway,26,no,no,2026-07-04
+Energy,Donegal,3,yes,no,2026-08-24
+Tourism and hospitality,Galway,20,yes,yes,2026-09-07
+Food and drink,Galway,25,yes,yes,2026-09-12
+Motor,Tipperary,24,yes,yes,2026-09-02
+Tourism and hospitality,Kildare,25,yes,yes,2026-06-28
+Tax and accounting,Tipperary,6,no,no,2026-08-28
+Food and drink,Galway,29,no,no,2026-07-20
+Tax and accounting,Galway,34,no,no,2026-06-21
+Tax and accounting,Kildare,10,no,no,2026-05-26
+Energy,Galway,12,no,no,2026-09-13
+Food and drink,Kildare,26,no,yes,2026-08-18
+Food and drink,Wexford,25,no,yes,2026-06-30
+Motor,Galway,25,no,yes,2026-09-01
+Tourism and hospitality,Clare,6,no,no,2026-06-21
+Tourism and hospitality,Mayo,26,yes,yes,2026-05-29
+Motor,Clare,24,no,yes,2026-07-12
+Energy,Donegal,4,no,yes,2026-08-29
+Tourism and hospitality,Galway,12,no,yes,2026-06-11
+Food and drink,Tipperary,25,no,yes,2026-07-29
+Tourism and hospitality,Clare,14,yes,no,2026-06-27
+Tourism and hospitality,Donegal,25,yes,no,2026-09-16
+Energy,Clare,5,no,no,2026-07-08
+Energy,Tipperary,24,no,yes,2026-09-06
+Motor,Clare,25,yes,yes,2026-07-02
+Food and drink,Galway,0,yes,no,2026-09-14
+Food and drink,Mayo,8,yes,no,2026-07-27
+Food and drink,Wexford,24,no,yes,2026-07-07
+Food and drink,Clare,17,yes,no,2026-07-16
+Food and drink,Kildare,25,no,no,2026-07-07
+Tax and accounting,Galway,2,no,no,2026-09-14
+Food and drink,Wexford,32,no,yes,2026-09-10
+Tourism and hospitality,Galway,24,yes,yes,2026-05-25
+Tax and accounting,Tipperary,-2,yes,yes,2026-08-22
+Food and drink,Donegal,13,yes,no,2026-07-29
+Tax and accounting,Wexford,25,no,yes,2026-09-14
+Motor,Kildare,18,no,yes,2026-08-17
+Energy,Wexford,15,no,yes,2026-07-22
+Tourism and hospitality,Mayo,3,no,yes,2026-09-02
+Tax and accounting,Wexford,22,yes,no,2026-06-09
+Food and drink,Donegal,33,no,no,2026-09-14
+Motor,Wexford,0,yes,yes,2026-05-28
+Tourism and hospitality,Donegal,19,no,yes,2026-08-29
+Tourism and hospitality,Donegal,17,no,no,2026-07-23
+Motor,Galway,18,yes,no,2026-09-13
+Tax and accounting,Tipperary,16,no,yes,2026-08-21
+Food and drink,Clare,2,no,no,2026-08-25
+Tourism and hospitality,Wexford,24,yes,yes,2026-06-30
+Tourism and hospitality,Clare,22,no,no,2026-07-22
+Tax and accounting,Kildare,1,no,no,2026-08-21
+Food and drink,Donegal,13,no,no,2026-09-07
+Tourism and hospitality,Donegal,18,yes,no,2026-09-16
+Motor,Galway,19,yes,no,2026-08-18
+Food and drink,Galway,18,yes,no,2026-08-21
+Tourism and hospitality,Wexford,1,no,no,2026-08-04
+Food and drink,Clare,22,no,yes,2026-07-15
+Food and drink,Tipperary,20,no,no,2026-06-13
+Food and drink,Mayo,-4,yes,no,2026-07-30
+Energy,Kildare,13,no,no,2026-09-14
+Energy,Tipperary,24,yes,yes,2026-07-05
+Tax and accounting,Clare,25,yes,yes,2026-07-03
+Motor,Wexford,27,no,no,2026-06-01
+Food and drink,Mayo,9,no,yes,2026-06-19
+Tax and accounting,Mayo,29,no,no,2026-07-29
+Tourism and hospitality,Clare,22,no,yes,2026-09-16
+Tourism and hospitality,Wexford,7,yes,yes,2026-07-16
+Tax and accounting,Galway,13,no,no,2026-08-13
+Motor,Donegal,24,yes,yes,2026-08-18
+Motor,Tipperary,14,yes,no,2026-06-25
+Motor,Clare,16,no,yes,2026-09-20
+Tax and accounting,Mayo,5,yes,yes,2026-07-13
+Tax and accounting,Donegal,34,no,no,2026-06-06
+Motor,Tipperary,26,no,yes,2026-06-07
+Motor,Galway,-2,yes,yes,2026-08-26
+Tourism and hospitality,Mayo,20,yes,yes,2026-07-28
+Energy,Kildare,17,yes,no,2026-06-21
+Tax and accounting,Donegal,14,yes,no,2026-06-03
+Tax and accounting,Galway,28,no,yes,2026-08-24
+Motor,Mayo,11,yes,yes,2026-08-23
+Tourism and hospitality,Clare,31,no,yes,2026-07-01
+Tourism and hospitality,Galway,33,yes,yes,2026-07-30
+Tax and accounting,Tipperary,-1,yes,yes,2026-07-25
+Energy,Tipperary,7,no,no,2026-06-25
+Food and drink,Galway,15,no,yes,2026-07-29
+Food and drink,Clare,16,yes,no,2026-08-01
+Tourism and hospitality,Wexford,28,no,no,2026-06-12
+Tourism and hospitality,Kildare,4,no,yes,2026-05-31
+Tourism and hospitality,Galway,25,no,no,2026-07-28
+Food and drink,Kildare,24,yes,no,2026-06-10
+Tourism and hospitality,Tipperary,3,yes,no,2026-09-16
+Tourism and hospitality,Kildare,10,yes,yes,2026-08-22
+Tourism and hospitality,Wexford,18,no,yes,2026-07-10
+Energy,Galway,14,yes,no,2026-07-02
+Tax and accounting,Galway,26,no,yes,2026-06-22
+Motor,Donegal,5,no,no,2026-09-11
+Energy,Wexford,34,yes,no,2026-06-23
+Tourism and hospitality,Galway,20,no,no,2026-06-11
+Motor,Tipperary,6,yes,no,2026-09-15
+Energy,Kildare,9,yes,no,2026-08-11
+Energy,Galway,24,no,yes,2026-08-17
+Energy,Mayo,17,no,no,2026-06-11
+Food and drink,Donegal,22,yes,no,2026-08-25
+Tax and accounting,Wexford,5,no,yes,2026-08-07
+Tax and accounting,Galway,29,yes,yes,2026-08-05
+Tourism and hospitality,Clare,23,yes,no,2026-07-05
+Food and drink,Mayo,-2,no,no,2026-06-28
+Tourism and hospitality,Wexford,15,no,yes,2026-06-03
+Food and drink,Donegal,21,no,yes,2026-08-17
+Food and drink,Galway,17,no,yes,2026-06-08
+Energy,Tipperary,14,yes,no,2026-07-28
+Food and drink,Clare,10,yes,no,2026-06-16
+Tax and accounting,Kildare,25,yes,yes,2026-07-29
+Tourism and hospitality,Wexford,28,yes,no,2026-06-07
+Tax and accounting,Mayo,9,no,no,2026-09-13
+Food and drink,Tipperary,9,no,yes,2026-07-04
+Food and drink,Wexford,23,yes,yes,2026-06-09
+Energy,Kildare,16,yes,no,2026-06-29
+Motor,Clare,15,yes,yes,2026-06-08
+Tourism and hospitality,Wexford,5,no,no,2026-06-11
+Tourism and hospitality,Tipperary,32,no,no,2026-09-11
+Motor,Galway,34,no,yes,2026-06-15
+Food and drink,Galway,8,yes,no,2026-05-25
+Tax and accounting,Donegal,15,yes,yes,2026-08-05
+Food and drink,Donegal,26,yes,no,2026-09-08
+Food and drink,Tipperary,19,no,no,2026-07-12
+Food and drink,Galway,17,yes,no,2026-07-06
+Food and drink,Kildare,4,no,yes,2026-08-22
+Tourism and hospitality,Kildare,35,no,no,2026-08-11
+Motor,Wexford,25,yes,no,2026-09-05
+Tourism and hospitality,Clare,2,yes,yes,2026-07-02
+Food and drink,Donegal,17,yes,yes,2026-06-29
+Food and drink,Mayo,28,yes,yes,2026-08-01
+Energy,Mayo,22,yes,yes,2026-09-01
+Motor,Wexford,21,no,no,2026-06-26
+Tax and accounting,Tipperary,5,no,no,2026-06-22
+Tourism and hospitality,Galway,21,yes,no,2026-06-18
+Food and drink,Clare,29,yes,no,2026-07-29
+Motor,Tipperary,8,no,no,2026-09-10
+Food and drink,Mayo,16,yes,yes,2026-09-06
+Energy,Clare,16,no,yes,2026-07-12
+Tax and accounting,Mayo,25,no,yes,2026-09-19
+Tourism and hospitality,Wexford,14,no,no,2026-06-24
+Tourism and hospitality,Donegal,9,yes,no,2026-08-14
+Tourism and hospitality,Donegal,21,no,yes,2026-08-07
+Motor,Tipperary,33,no,no,2026-06-03
+Tax and accounting,Wexford,8,no,yes,2026-09-13
+Tourism and hospitality,Kildare,7,no,no,2026-08-09
+Food and drink,Clare,22,no,yes,2026-06-30
+Tax and accounting,Tipperary,14,no,no,2026-06-11
+Food and drink,Clare,22,no,yes,2026-05-29
+Tax and accounting,Tipperary,-2,yes,no,2026-06-27
+Energy,Donegal,29,yes,yes,2026-08-22
+Tax and accounting,Galway,31,no,yes,2026-07-20
+Tourism and hospitality,Donegal,2,yes,no,2026-08-05
+Motor,Tipperary,12,yes,yes,2026-08-15
+Tax and accounting,Tipperary,15,yes,no,2026-06-24
+Tax and accounting,Mayo,23,no,no,2026-08-25
+Tourism and hospitality,Mayo,21,no,no,2026-07-29
+Tax and accounting,Wexford,8,no,yes,2026-06-02
+Food and drink,Galway,25,yes,no,2026-07-18
+Food and drink,Tipperary,31,no,yes,2026-07-01
+Motor,Donegal,2,no,no,2026-06-28
+Energy,Tipperary,13,no,yes,2026-09-04
+Tax and accounting,Kildare,25,yes,yes,2026-06-26
+Tourism and hospitality,Kildare,16,yes,yes,2026-06-03
+Tax and accounting,Clare,24,yes,no,2026-06-10
+Motor,Tipperary,5,no,no,2026-06-07
+Energy,Galway,24,no,no,2026-08-02
+Motor,Donegal,20,yes,no,2026-08-19
+Tax and accounting,Tipperary,-2,yes,yes,2026-08-04
+Tourism and hospitality,Wexford,13,no,yes,2026-05-24
+Tourism and hospitality,Kildare,17,no,no,2026-09-11
+Food and drink,Tipperary,13,no,yes,2026-06-23
+Tax and accounting,Galway,24,yes,yes,2026-06-04
+Tax and accounting,Galway,7,no,no,2026-06-30
+Tax and accounting,Kildare,28,yes,no,2026-07-05
+Tourism and hospitality,Kildare,23,yes,no,2026-07-03
+Tourism and hospitality,Clare,-3,no,yes,2026-07-05
+Motor,Tipperary,14,yes,yes,2026-09-09
+Tax and accounting,Mayo,21,no,yes,2026-09-05
+Energy,Kildare,23,yes,yes,2026-09-05
+Tourism and hospitality,Wexford,16,no,no,2026-09-20
+Motor,Clare,8,no,no,2026-06-20
+Tourism and hospitality,Galway,29,no,yes,2026-06-10
+Tourism and hospitality,Tipperary,32,yes,no,2026-08-27
+Tax and accounting,Wexford,-1,no,no,2026-07-10
+Tourism and hospitality,Clare,16,no,yes,2026-09-06
+Food and drink,Galway,23,yes,yes,2026-05-31
+Tourism and hospitality,Mayo,25,yes,no,2026-08-13
+Tax and accounting,Mayo,21,no,no,2026-06-16
+Motor,Kildare,9,yes,yes,2026-06-05
+Tourism and hospitality,Tipperary,23,no,no,2026-06-06
+Motor,Galway,34,yes,no,2026-09-08
+Tax and accounting,Kildare,10,no,yes,2026-06-22
+Food and drink,Kildare,11,no,yes,2026-05-24
+Tax and accounting,Clare,23,no,no,2026-06-16
+Tourism and hospitality,Kildare,23,no,yes,2026-08-16
+Food and drink,Clare,26,yes,no,2026-07-23
+Tax and accounting,Mayo,2,no,yes,2026-06-12
+Energy,Clare,33,no,no,2026-07-28
+Motor,Wexford,21,yes,yes,2026-08-25
+Tourism and hospitality,Mayo,0,yes,yes,2026-06-10
+Tax and accounting,Donegal,21,no,yes,2026-07-30
+Energy,Galway,15,yes,no,2026-09-13
+Tourism and hospitality,Tipperary,26,no,yes,2026-09-17
+Food and drink,Mayo,17,yes,yes,2026-06-07
+Food and drink,Wexford,12,no,no,2026-07-25
+Food and drink,Galway,31,no,no,2026-08-06
+Motor,Tipperary,22,yes,yes,2026-07-16
+Energy,Wexford,5,no,yes,2026-07-22
+Food and drink,Galway,14,no,no,2026-09-10
+Motor,Tipperary,22,yes,yes,2026-06-11
+Energy,Clare,22,no,yes,2026-08-03
+Tax and accounting,Tipperary,22,no,yes,2026-09-20
+Tourism and hospitality,Clare,10,yes,no,2026-06-25
+Tourism and hospitality,Tipperary,23,no,yes,2026-06-08
+Tax and accounting,Wexford,24,no,yes,2026-07-29
+Energy,Tipperary,-1,yes,yes,2026-08-07
+Tourism and hospitality,Mayo,21,no,no,2026-06-12
+Food and drink,Galway,29,yes,no,2026-06-22
+Tourism and hospitality,Kildare,14,yes,yes,2026-08-07
+Food and drink,Galway,20,yes,no,2026-08-11
+Tourism and hospitality,Kildare,9,no,yes,2026-08-22
+Food and drink,Mayo,24,no,yes,2026-08-24
+Motor,Mayo,30,no,yes,2026-06-17
+Tourism and hospitality,Kildare,4,yes,yes,2026-07-17
+Tax and accounting,Wexford,7,no,no,2026-07-18
+Tax and accounting,Clare,22,no,yes,2026-09-12
+Food and drink,Wexford,15,no,no,2026-09-02
+Food and drink,Mayo,15,yes,no,2026-06-20
+Tax and accounting,Donegal,4,yes,no,2026-06-24
+Tourism and hospitality,Donegal,22,yes,no,2026-06-11
+Tourism and hospitality,Tipperary,34,no,no,2026-07-29
+Tax and accounting,Wexford,1,yes,yes,2026-05-30
+Motor,Mayo,12,no,no,2026-09-13
+Tax and accounting,Galway,26,no,no,2026-06-08
+Food and drink,Mayo,17,no,no,2026-06-25
+Motor,Galway,22,yes,yes,2026-06-29
+Food and drink,Clare,4,yes,yes,2026-06-28
+Energy,Donegal,29,yes,no,2026-06-15
+Food and drink,Wexford,26,no,no,2026-07-20
+Tax and accounting,Clare,2,yes,no,2026-09-18
+Tourism and hospitality,Wexford,21,yes,no,2026-08-30
+Food and drink,Donegal,26,yes,no,2026-06-02
+Motor,Galway,14,no,yes,2026-08-28
+Food and drink,Galway,23,yes,yes,2026-09-13
+Tourism and hospitality,Mayo,0,no,yes,2026-06-22
+Tax and accounting,Mayo,35,yes,no,2026-07-16
+Tourism and hospitality,Galway,22,no,no,2026-09-19
+Tax and accounting,Donegal,3,yes,yes,2026-06-03
+Tax and accounting,Galway,13,no,no,2026-08-12
+Tax and accounting,Wexford,21,yes,yes,2026-07-24
+Tourism and hospitality,Wexford,13,yes,yes,2026-09-01
+Tax and accounting,Wexford,26,yes,yes,2026-08-10
+Motor,Donegal,0,no,no,2026-05-29
+Tourism and hospitality,Donegal,34,no,no,2026-07-21
+Tourism and hospitality,Clare,34,yes,no,2026-09-13
+Food and drink,Kildare,-2,yes,no,2026-07-21
+Food and drink,Galway,20,no,yes,2026-06-21
+Tax and accounting,Mayo,20,no,yes,2026-09-08
+Energy,Kildare,21,no,no,2026-08-20
+Tourism and hospitality,Tipperary,14,yes,no,2026-08-01
+Tax and accounting,Mayo,-2,no,no,2026-06-22
+Tax and accounting,Kildare,25,yes,no,2026-06-03
+Motor,Tipperary,22,yes,no,2026-08-12
+Food and drink,Donegal,10,no,yes,2026-09-19
+Food and drink,Wexford,20,yes,yes,2026-08-21
+Food and drink,Galway,19,yes,no,2026-09-15
+Tax and accounting,Donegal,13,no,no,2026-07-18
+Tax and accounting,Galway,22,no,yes,2026-06-04
+Tourism and hospitality,Galway,1,no,no,2026-07-18
+Tax and accounting,Mayo,29,no,no,2026-07-06
+Food and drink,Clare,32,no,yes,2026-08-12
+Food and drink,Wexford,1,no,yes,2026-07-18
+Tax and accounting,Galway,17,no,yes,2026-06-01
+Tourism and hospitality,Galway,28,yes,yes,2026-08-21
+Tax and accounting,Clare,26,no,yes,2026-09-07
+Tax and accounting,Kildare,21,yes,no,2026-07-28
+Tax and accounting,Mayo,12,yes,yes,2026-08-10
+Food and drink,Wexford,25,no,no,2026-08-08
+Motor,Wexford,28,no,yes,2026-08-04
+Energy,Galway,10,yes,no,2026-09-04
+Food and drink,Clare,7,yes,yes,2026-07-31
+Food and drink,Galway,21,yes,yes,2026-07-06
+Energy,Clare,25,no,no,2026-05-26
+Motor,Wexford,22,no,yes,2026-08-19
+Tax and accounting,Wexford,2,no,yes,2026-07-16
+Food and drink,Kildare,25,no,yes,2026-07-21
+Food and drink,Galway,26,yes,no,2026-07-27
+Food and drink,Tipperary,8,yes,no,2026-07-22
+Tax and accounting,Galway,17,yes,no,2026-06-08
+Tax and accounting,Kildare,18,yes,no,2026-06-13
+Food and drink,Kildare,14,yes,no,2026-08-10
+Tax and accounting,Kildare,18,no,no,2026-07-28
+Tax and accounting,Clare,2,no,no,2026-09-09
+Energy,Galway,29,no,yes,2026-08-29
+Tourism and hospitality,Tipperary,31,yes,no,2026-08-22
+Tourism and hospitality,Tipperary,6,yes,no,2026-07-27
+Energy,Donegal,17,yes,no,2026-07-09
+Tax and accounting,Clare,27,yes,no,2026-08-03
+Food and drink,Clare,16,yes,yes,2026-07-27
+Tourism and hospitality,Clare,17,no,yes,2026-08-05
+Food and drink,Tipperary,11,yes,yes,2026-07-24
+Food and drink,Tipperary,21,no,yes,2026-06-03
+Food and drink,Galway,22,no,no,2026-06-01
+Tourism and hospitality,Wexford,10,no,no,2026-07-02
+Energy,Clare,8,yes,no,2026-09-06
+Tourism and hospitality,Kildare,18,yes,no,2026-08-30
+Tourism and hospitality,Galway,21,yes,yes,2026-07-18
+Tax and accounting,Mayo,18,yes,no,2026-05-28
+Food and drink,Mayo,6,no,yes,2026-07-12
+Food and drink,Clare,25,no,yes,2026-07-15
+Tourism and hospitality,Clare,28,no,no,2026-06-23
+Motor,Donegal,-3,yes,yes,2026-07-04
+Tax and accounting,Galway,12,no,no,2026-07-14
+Tourism and hospitality,Wexford,22,yes,yes,2026-08-25
+Tourism and hospitality,Galway,18,no,yes,2026-06-07
+Tourism and hospitality,Clare,16,yes,yes,2026-08-26
+Motor,Wexford,4,no,no,2026-07-11
+Food and drink,Wexford,34,no,no,2026-08-01
+Food and drink,Mayo,22,no,yes,2026-08-16
+Food and drink,Clare,8,yes,no,2026-07-28
+Tourism and hospitality,Galway,19,no,no,2026-07-29
+Tax and accounting,Galway,19,yes,no,2026-06-29
+Motor,Wexford,16,no,no,2026-07-10
+Tax and accounting,Donegal,23,no,no,2026-08-30
+Tax and accounting,Wexford,2,no,yes,2026-07-13
+Tax and accounting,Wexford,34,yes,yes,2026-07-20
+Tourism and hospitality,Clare,23,yes,no,2026-09-08
+Food and drink,Kildare,10,yes,yes,2026-07-30
+Tourism and hospitality,Wexford,8,no,yes,2026-06-27
+Tourism and hospitality,Donegal,27,no,yes,2026-06-17
+Tax and accounting,Mayo,23,no,no,2026-06-14
+Tourism and hospitality,Galway,24,no,no,2026-06-17
+Tax and accounting,Galway,6,yes,yes,2026-09-10
+Tax and accounting,Galway,28,no,no,2026-06-22
+Tax and accounting,Galway,21,yes,yes,2026-05-29
+Motor,Tipperary,0,no,no,2026-09-03
+Motor,Wexford,19,no,yes,2026-08-12
+Motor,Galway,29,no,yes,2026-07-30
+Food and drink,Clare,24,yes,no,2026-06-08
+Food and drink,Kildare,21,no,yes,2026-07-18
+Food and drink,Galway,9,yes,no,2026-07-26
+Tourism and hospitality,Mayo,25,yes,no,2026-09-17
+Food and drink,Galway,30,yes,no,2026-08-26
+Tax and accounting,Kildare,5,yes,no,2026-09-11
+Energy,Galway,19,yes,no,2026-07-17
+Motor,Mayo,24,no,yes,2026-08-11
+Tourism and hospitality,Clare,27,no,no,2026-09-07
+Tourism and hospitality,Mayo,25,yes,yes,2026-08-21
+Food and drink,Galway,-2,no,no,2026-07-19
+Tourism and hospitality,Tipperary,29,no,yes,2026-07-16
+Food and drink,Tipperary,34,yes,yes,2026-08-05
+Tax and accounting,Kildare,1,no,yes,2026-08-05
+Energy,Tipperary,9,yes,no,2026-08-04
+Energy,Galway,29,no,no,2026-06-16
+Tourism and hospitality,Mayo,19,yes,no,2026-07-15
+Tax and accounting,Mayo,24,yes,no,2026-08-01
+Energy,Galway,11,no,yes,2026-06-17
+Motor,Mayo,34,no,yes,2026-07-02
+Tourism and hospitality,Donegal,23,no,no,2026-07-06
+Tourism and hospitality,Galway,6,no,yes,2026-07-20
+Energy,Mayo,17,yes,no,2026-08-26
+Energy,Kildare,18,yes,no,2026-06-30
+Motor,Tipperary,27,no,yes,2026-05-25
+Tourism and hospitality,Clare,28,no,no,2026-09-02
+Food and drink,Galway,11,yes,yes,2026-07-28
+Tourism and hospitality,Kildare,21,yes,yes,2026-08-04
+Tax and accounting,Kildare,30,no,no,2026-09-20
+Tax and accounting,Kildare,5,yes,no,2026-08-08
+Tourism and hospitality,Galway,18,yes,no,2026-08-18
+Tax and accounting,Kildare,15,no,yes,2026-08-04
+Food and drink,Wexford,27,yes,yes,2026-08-10
+Tourism and hospitality,Mayo,27,yes,yes,2026-08-25
+Tax and accounting,Tipperary,11,yes,no,2026-06-02
+Energy,Wexford,26,yes,yes,2026-06-06
+Motor,Clare,20,no,no,2026-08-13
+Tourism and hospitality,Mayo,-1,yes,no,2026-07-19
+Tourism and hospitality,Galway,14,no,no,2026-07-06
+Tax and accounting,Wexford,22,yes,yes,2026-06-15
+Tourism and hospitality,Wexford,22,yes,no,2026-07-17
+Tourism and hospitality,Mayo,22,yes,yes,2026-07-07
+Tax and accounting,Wexford,4,no,yes,2026-08-10
+Tourism and hospitality,Mayo,31,no,no,2026-08-27
+Tourism and hospitality,Donegal,34,no,no,2026-06-08
+Food and drink,Mayo,7,yes,yes,2026-06-08
+Tourism and hospitality,Kildare,20,no,yes,2026-06-07
+Tax and accounting,Mayo,25,yes,yes,2026-09-07
+Energy,Mayo,16,no,no,2026-06-30
+Tax and accounting,Galway,15,yes,no,2026-07-09
+Food and drink,Mayo,7,no,no,2026-06-01
+Food and drink,Wexford,23,no,yes,2026-07-05
+Tax and accounting,Clare,23,yes,yes,2026-08-04
+Food and drink,Tipperary,4,yes,yes,2026-06-19
+Food and drink,Galway,18,yes,no,2026-07-13
+Food and drink,Clare,24,yes,yes,2026-07-29
+Tax and accounting,Mayo,15,no,no,2026-07-10
+Food and drink,Galway,18,yes,no,2026-08-06
+Food and drink,Donegal,0,yes,no,2026-07-08
+Tourism and hospitality,Wexford,34,no,no,2026-06-11
+Tax and accounting,Mayo,22,no,no,2026-08-30
+Tax and accounting,Kildare,7,no,no,2026-05-30
+Motor,Kildare,18,no,yes,2026-09-13
+Motor,Wexford,28,no,no,2026-07-14
+Energy,Clare,22,yes,no,2026-06-23
+Food and drink,Clare,23,no,yes,2026-07-13
+Food and drink,Mayo,0,yes,yes,2026-07-19
+Energy,Mayo,26,yes,yes,2026-07-13
+Tourism and hospitality,Donegal,25,yes,no,2026-08-21
+Energy,Wexford,10,no,no,2026-06-28
+Food and drink,Clare,19,no,yes,2026-06-23
+Food and drink,Galway,28,no,no,2026-08-20
+Food and drink,Kildare,27,yes,no,2026-08-08
+Tourism and hospitality,Clare,16,no,no,2026-08-25
+Food and drink,Galway,7,no,no,2026-09-20
+Tourism and hospitality,Kildare,22,no,no,2026-08-23
+Tax and accounting,Donegal,28,yes,yes,2026-09-07
+Tourism and hospitality,Mayo,6,no,yes,2026-07-06
+Tourism and hospitality,Kildare,19,no,no,2026-06-02
+Energy,Wexford,23,yes,yes,2026-08-26
+Tax and accounting,Mayo,13,yes,yes,2026-08-05
+Tourism and hospitality,Kildare,20,yes,no,2026-06-18
+Motor,Galway,5,no,no,2026-07-22
+Tourism and hospitality,Wexford,32,no,yes,2026-06-28
+Motor,Clare,34,yes,yes,2026-05-28
+Tax and accounting,Donegal,-4,no,no,2026-07-23
+Food and drink,Tipperary,10,no,yes,2026-08-16
+Tax and accounting,Kildare,25,no,no,2026-06-14
+Food and drink,Tipperary,22,yes,yes,2026-09-14
+Tourism and hospitality,Clare,17,yes,yes,2026-08-06
+Food and drink,Tipperary,0,no,no,2026-06-18
+Tourism and hospitality,Tipperary,26,no,no,2026-06-07
+Energy,Clare,30,no,no,2026-07-30
+Tax and accounting,Kildare,-4,yes,no,2026-07-11
+Food and drink,Galway,14,yes,no,2026-07-07
+Tax and accounting,Galway,26,yes,yes,2026-08-28
+Tax and accounting,Mayo,21,yes,no,2026-09-19
+Tax and accounting,Wexford,26,no,yes,2026-09-08
+Food and drink,Mayo,-1,no,no,2026-08-03
+Tourism and hospitality,Wexford,24,no,no,2026-07-23
+Food and drink,Kildare,24,yes,yes,2026-09-01
+Food and drink,Galway,4,yes,yes,2026-08-03
+Tourism and hospitality,Clare,9,no,yes,2026-05-24
+Motor,Tipperary,23,no,yes,2026-08-01
+Tourism and hospitality,Galway,18,no,no,2026-06-13
+Food and drink,Tipperary,17,no,yes,2026-09-17
+Motor,Donegal,5,yes,yes,2026-07-17
+Motor,Kildare,21,no,no,2026-08-16
+Tourism and hospitality,Galway,30,yes,yes,2026-08-27
+Tourism and hospitality,Kildare,10,no,no,2026-07-20
+Motor,Clare,17,no,no,2026-07-02
+Food and drink,Donegal,20,yes,yes,2026-05-29
+Tourism and hospitality,Donegal,15,yes,no,2026-06-26
+Food and drink,Tipperary,15,no,no,2026-07-20
+Energy,Mayo,0,no,no,2026-08-17
+Food and drink,Galway,25,yes,yes,2026-09-18
+Tax and accounting,Galway,23,yes,no,2026-07-11
+Tourism and hospitality,Galway,3,yes,yes,2026-06-19
+Food and drink,Galway,14,no,yes,2026-07-09
+Tourism and hospitality,Kildare,28,no,no,2026-09-10
+Energy,Galway,20,yes,yes,2026-09-05
+Tourism and hospitality,Galway,25,yes,yes,2026-05-26
+Tax and accounting,Wexford,4,no,no,2026-05-28
+Tourism and hospitality,Galway,27,yes,yes,2026-07-06
+Food and drink,Donegal,20,yes,yes,2026-08-12
+Tourism and hospitality,Clare,6,yes,yes,2026-07-29
+Tourism and hospitality,Galway,9,no,yes,2026-07-22
+Energy,Donegal,27,yes,yes,2026-07-07
+Tourism and hospitality,Mayo,16,yes,no,2026-08-20
+Energy,Galway,18,yes,no,2026-08-22
+Motor,Kildare,4,yes,no,2026-07-14
+Tourism and hospitality,Clare,34,no,no,2026-08-14
+Tourism and hospitality,Wexford,31,yes,yes,2026-07-16
+Motor,Galway,-3,no,no,2026-08-30
+Tourism and hospitality,Wexford,14,yes,no,2026-07-15
+Motor,Clare,18,yes,yes,2026-07-12
+Energy,Kildare,18,yes,yes,2026-07-16
+Energy,Galway,27,no,no,2026-08-31
+Food and drink,Wexford,-2,no,no,2026-06-11
+Motor,Mayo,32,no,yes,2026-07-30
+Tax and accounting,Wexford,20,no,yes,2026-08-20
+Tourism and hospitality,Clare,-2,no,no,2026-06-25
+Food and drink,Mayo,11,no,no,2026-06-10
+Energy,Wexford,27,no,no,2026-05-25
+Food and drink,Galway,23,yes,yes,2026-05-30
+Motor,Galway,21,yes,no,2026-07-20
+Tax and accounting,Donegal,7,no,no,2026-06-07
+Motor,Galway,22,no,no,2026-08-12
+Tax and accounting,Mayo,24,yes,yes,2026-06-27
+Motor,Kildare,4,no,no,2026-06-13
+Tax and accounting,Wexford,13,yes,yes,2026-07-23
+Tax and accounting,Kildare,21,no,no,2026-07-17
+Tax and accounting,Galway,24,yes,no,2026-07-25
+Tax and accounting,Wexford,17,yes,no,2026-09-14
+Motor,Tipperary,0,no,yes,2026-06-06
+Tourism and hospitality,Tipperary,32,yes,no,2026-06-21
+Tourism and hospitality,Galway,25,no,no,2026-06-23
+Food and drink,Galway,-3,no,yes,2026-06-10
+Motor,Galway,13,no,yes,2026-07-12
+Tax and accounting,Kildare,22,yes,no,2026-06-21
+Tax and accounting,Galway,18,no,yes,2026-06-08
+Tax and accounting,Kildare,16,no,yes,2026-06-02
+Tourism and hospitality,Donegal,-2,yes,yes,2026-08-26
+Food and drink,Clare,34,no,yes,2026-07-21
+Tax and accounting,Galway,21,yes,yes,2026-06-02
+Tax and accounting,Kildare,5,yes,no,2026-05-26
+Tourism and hospitality,Galway,9,yes,no,2026-08-19
+Tax and accounting,Galway,25,no,no,2026-05-27
+Tourism and hospitality,Tipperary,13,no,yes,2026-07-09
+Tax and accounting,Donegal,23,no,yes,2026-09-16
+Motor,Wexford,6,yes,yes,2026-07-26
+Tax and accounting,Donegal,23,no,no,2026-07-30
+Food and drink,Galway,31,yes,no,2026-07-31
+Motor,Clare,-2,no,no,2026-08-14
+Motor,Donegal,13,yes,no,2026-07-08
+Tourism and hospitality,Clare,22,yes,yes,2026-06-22
+Tax and accounting,Wexford,26,yes,yes,2026-05-31
+Tourism and hospitality,Mayo,25,no,yes,2026-06-24
+Tourism and hospitality,Clare,10,yes,no,2026-07-07
+Tourism and hospitality,Mayo,34,no,yes,2026-09-03
+Food and drink,Kildare,30,yes,no,2026-06-12
+Tax and accounting,Mayo,4,yes,yes,2026-09-11
+Tourism and hospitality,Wexford,8,no,no,2026-07-04
+Food and drink,Wexford,15,yes,yes,2026-06-09
+Food and drink,Mayo,17,yes,no,2026-08-23
+Food and drink,Kildare,26,yes,no,2026-08-15
+Tourism and hospitality,Clare,6,yes,no,2026-06-06
+Food and drink,Clare,34,no,no,2026-08-08
+Motor,Tipperary,34,no,yes,2026-07-04
+Motor,Mayo,1,yes,yes,2026-08-30
+Tourism and hospitality,Galway,20,yes,yes,2026-06-29
+Tourism and hospitality,Wexford,29,yes,yes,2026-07-21
+Tax and accounting,Mayo,16,no,yes,2026-09-17
+Tourism and hospitality,Kildare,21,yes,yes,2026-05-30
+Tourism and hospitality,Donegal,0,yes,yes,2026-07-15
+Tourism and hospitality,Wexford,35,no,no,2026-07-26
+Tourism and hospitality,Galway,30,no,no,2026-07-22
+Tax and accounting,Galway,-3,no,no,2026-08-07
+Tax and accounting,Kildare,20,yes,yes,2026-06-28
+Food and drink,Galway,15,no,no,2026-09-05
+Food and drink,Galway,19,yes,yes,2026-07-10
+Tourism and hospitality,Tipperary,23,yes,yes,2026-08-12
+Tourism and hospitality,Tipperary,-1,no,no,2026-08-11
+Tourism and hospitality,Galway,22,yes,no,2026-07-25
+Food and drink,Kildare,28,no,yes,2026-07-03
+Energy,Kildare,6,yes,yes,2026-06-30
+Tourism and hospitality,Galway,14,yes,no,2026-06-01
+Food and drink,Galway,19,yes,no,2026-07-12
+Tourism and hospitality,Tipperary,17,no,yes,2026-09-12
+Tourism and hospitality,Galway,14,no,no,2026-07-23
+Tax and accounting,Kildare,10,yes,no,2026-09-16
+Food and drink,Galway,25,no,no,2026-08-20
+Energy,Galway,27,no,no,2026-05-25
+Tourism and hospitality,Tipperary,-2,no,no,2026-07-30
+Food and drink,Tipperary,20,no,yes,2026-09-03
+Food and drink,Galway,25,yes,yes,2026-07-08
+Food and drink,Donegal,15,no,yes,2026-06-28
+Motor,Donegal,19,yes,no,2026-08-27
+Energy,Galway,5,yes,yes,2026-08-20
+Tax and accounting,Clare,26,no,no,2026-06-02
+Food and drink,Clare,30,yes,no,2026-06-08
+Energy,Mayo,5,no,no,2026-09-14
+Food and drink,Clare,12,no,yes,2026-06-06
+Tourism and hospitality,Wexford,17,yes,no,2026-08-08
+Food and drink,Kildare,19,no,no,2026-06-14
+Tax and accounting,Donegal,23,no,yes,2026-08-02
+Energy,Clare,10,no,yes,2026-07-12
+Food and drink,Kildare,34,yes,yes,2026-07-11
+Tax and accounting,Tipperary,31,no,yes,2026-07-02
+Tax and accounting,Tipperary,2,no,yes,2026-07-24
+Food and drink,Clare,13,yes,yes,2026-06-08
+Tourism and hospitality,Wexford,24,yes,no,2026-08-31
+Food and drink,Donegal,16,yes,yes,2026-07-06
+Motor,Wexford,17,no,yes,2026-06-22
+Energy,Donegal,9,yes,no,2026-06-01
+Motor,Mayo,23,no,no,2026-06-01
+Tax and accounting,Mayo,29,yes,yes,2026-09-19
+Food and drink,Galway,-2,no,no,2026-08-29
+Tax and accounting,Kildare,15,no,yes,2026-08-29
+Food and drink,Tipperary,19,yes,no,2026-05-30
+Tourism and hospitality,Tipperary,26,yes,yes,2026-09-10
+Food and drink,Tipperary,19,no,yes,2026-07-13
+Tax and accounting,Wexford,9,no,no,2026-07-29
+Food and drink,Mayo,32,yes,no,2026-06-12
+Food and drink,Galway,34,yes,no,2026-07-22
+Food and drink,Mayo,7,no,no,2026-07-04
+Tax and accounting,Clare,19,yes,yes,2026-08-27
+Food and drink,Wexford,22,no,yes,2026-08-13
+Food and drink,Kildare,26,yes,no,2026-09-15
+Food and drink,Mayo,26,no,yes,2026-06-17
+Energy,Tipperary,-2,no,no,2026-05-30
+Food and drink,Galway,25,yes,no,2026-08-16
+Tourism and hospitality,Kildare,31,no,yes,2026-07-16
+Tax and accounting,Tipperary,6,no,yes,2026-07-22
+Motor,Wexford,10,no,no,2026-08-06
+Tourism and hospitality,Wexford,15,no,no,2026-07-30
+Motor,Kildare,13,yes,yes,2026-08-26
+Food and drink,Donegal,16,no,no,2026-08-12
+Motor,Donegal,4,yes,yes,2026-09-15
+Tax and accounting,Wexford,23,no,no,2026-07-07
+Tax and accounting,Galway,31,yes,yes,2026-06-25
+Tourism and hospitality,Wexford,-1,yes,yes,2026-06-20
+Food and drink,Tipperary,17,no,yes,2026-09-04
+Energy,Galway,20,no,no,2026-07-02
+Tax and accounting,Clare,25,no,yes,2026-06-04
+Tourism and hospitality,Galway,20,yes,no,2026-08-08
+Tourism and hospitality,Mayo,1,no,no,2026-08-19
+Food and drink,Galway,21,no,no,2026-06-26
+Food and drink,Galway,30,yes,yes,2026-08-12
+Energy,Tipperary,1,no,no,2026-08-06
+Food and drink,Galway,20,yes,no,2026-09-14
+Food and drink,Wexford,19,yes,yes,2026-08-31
+Tourism and hospitality,Wexford,16,yes,no,2026-06-10
+Tax and accounting,Mayo,16,yes,no,2026-06-11
+Energy,Donegal,-2,no,no,2026-06-05
+Tax and accounting,Kildare,35,no,no,2026-06-30
+Tax and accounting,Tipperary,34,yes,no,2026-05-26
+Food and drink,Wexford,7,no,yes,2026-07-22
+Energy,Galway,15,yes,yes,2026-07-11
+Tourism and hospitality,Mayo,15,no,no,2026-08-04
+Food and drink,Galway,13,yes,yes,2026-06-25
+Tourism and hospitality,Tipperary,15,yes,yes,2026-08-28
+Food and drink,Tipperary,12,no,yes,2026-07-04
+Tax and accounting,Wexford,33,yes,no,2026-08-23
+Tourism and hospitality,Galway,20,yes,yes,2026-08-30
+Motor,Donegal,6,yes,yes,2026-05-29
+Food and drink,Galway,14,yes,no,2026-09-17
+Tourism and hospitality,Galway,20,no,no,2026-07-31
+Tax and accounting,Galway,26,yes,yes,2026-05-28
+Tourism and hospitality,Donegal,24,no,no,2026-09-14
+Tax and accounting,Kildare,1,yes,yes,2026-06-22
+Food and drink,Clare,22,no,yes,2026-08-09
+Tax and accounting,Mayo,29,no,no,2026-07-25
+Tourism and hospitality,Donegal,2,no,yes,2026-08-07
+Food and drink,Tipperary,16,yes,no,2026-09-16
+Tax and accounting,Galway,17,no,no,2026-07-21
+Energy,Tipperary,26,no,yes,2026-06-28
+Energy,Clare,20,no,no,2026-06-04
+Food and drink,Galway,4,yes,no,2026-08-07
+Tax and accounting,Clare,25,yes,yes,2026-07-26
+Tourism and hospitality,Clare,24,yes,no,2026-06-04
+Food and drink,Clare,-2,yes,yes,2026-06-16
+Tourism and hospitality,Galway,9,yes,no,2026-08-23
+Tax and accounting,Clare,23,yes,yes,2026-08-25
+Tourism and hospitality,Donegal,14,no,yes,2026-08-02
+Tourism and hospitality,Kildare,25,yes,yes,2026-09-03
+Tourism and hospitality,Clare,8,no,no,2026-06-30
+Food and drink,Kildare,32,no,yes,2026-07-15
+Tax and accounting,Galway,26,yes,no,2026-09-17
+Tax and accounting,Kildare,4,no,no,2026-06-19
+Food and drink,Kildare,9,no,yes,2026-08-21
+Food and drink,Wexford,25,no,yes,2026-07-18
+Tourism and hospitality,Galway,22,yes,no,2026-05-30
+Motor,Wexford,28,yes,yes,2026-05-24
+Energy,Mayo,-2,no,no,2026-07-27
+Tourism and hospitality,Wexford,23,no,yes,2026-07-12
+Food and drink,Kildare,21,yes,yes,2026-06-16
+Food and drink,Mayo,9,no,yes,2026-06-23
+Energy,Wexford,21,no,yes,2026-07-19
+Motor,Galway,27,yes,no,2026-07-25
+Food and drink,Donegal,15,yes,yes,2026-09-19
+Food and drink,Wexford,26,no,no,2026-06-12
+Tax and accounting,Mayo,-2,yes,yes,2026-07-13
+Energy,Clare,30,yes,no,2026-07-12
+Motor,Tipperary,20,no,yes,2026-06-15
+Tax and accounting,Galway,2,yes,yes,2026-09-16
+Tourism and hospitality,Galway,14,no,no,2026-06-06
+Tax and accounting,Clare,22,no,yes,2026-08-22
+Food and drink,Wexford,24,no,no,2026-08-02
+Food and drink,Galway,27,yes,no,2026-09-05
+Tourism and hospitality,Clare,12,no,yes,2026-09-17
+Tourism and hospitality,Wexford,34,yes,yes,2026-07-06
+Tax and accounting,Galway,26,no,yes,2026-06-29
+Motor,Kildare,9,yes,no,2026-09-16
+Motor,Donegal,21,yes,no,2026-07-18
+Tourism and hospitality,Tipperary,19,no,no,2026-05-28
+Energy,Tipperary,20,no,no,2026-07-02
+Tax and accounting,Wexford,22,yes,yes,2026-08-01
+Food and drink,Tipperary,6,no,no,2026-08-12
+Motor,Wexford,33,yes,no,2026-07-25
+Tax and accounting,Donegal,26,yes,yes,2026-05-27
+Tax and accounting,Galway,3,no,no,2026-07-20
+Tourism and hospitality,Galway,17,no,no,2026-08-03
+Tourism and hospitality,Kildare,17,yes,no,2026-06-08
+Tourism and hospitality,Mayo,21,yes,yes,2026-09-06
+Energy,Kildare,20,no,no,2026-08-03
+Tax and accounting,Kildare,12,yes,no,2026-09-05
+Energy,Wexford,32,no,no,2026-08-24
+Energy,Clare,33,yes,no,2026-08-07
+Tax and accounting,Kildare,2,no,yes,2026-05-25
+Tourism and hospitality,Donegal,12,no,yes,2026-07-26
+Motor,Tipperary,18,no,yes,2026-06-30
+Food and drink,Wexford,24,no,no,2026-08-09
+Food and drink,Galway,16,yes,yes,2026-07-11
+Tax and accounting,Mayo,9,yes,no,2026-08-27
+Tourism and hospitality,Clare,27,yes,no,2026-08-23
+Tax and accounting,Tipperary,32,yes,no,2026-09-18
+Motor,Kildare,-1,yes,no,2026-08-24
+Food and drink,Kildare,19,yes,yes,2026-07-31
+Tourism and hospitality,Donegal,24,yes,no,2026-08-29
+Food and drink,Kildare,25,no,yes,2026-07-12
+Food and drink,Wexford,25,yes,yes,2026-06-12
+Tax and accounting,Donegal,12,no,no,2026-07-18
+Tax and accounting,Tipperary,27,no,yes,2026-07-07
+Tax and accounting,Wexford,25,yes,no,2026-09-16
+Tourism and hospitality,Galway,7,yes,yes,2026-06-25
+Tourism and hospitality,Kildare,8,no,yes,2026-06-28
+Food and drink,Donegal,21,yes,yes,2026-06-05
+Tourism and hospitality,Clare,27,yes,no,2026-06-30
+Energy,Kildare,19,yes,no,2026-07-15
+Motor,Clare,5,yes,yes,2026-09-02
+Tourism and hospitality,Clare,35,yes,yes,2026-09-17
+Tax and accounting,Tipperary,22,yes,no,2026-06-21
+Tourism and hospitality,Galway,8,yes,no,2026-07-11
+Tourism and hospitality,Mayo,9,no,yes,2026-08-31
+Motor,Donegal,15,no,yes,2026-07-18
+Energy,Galway,27,no,yes,2026-08-02
+Tourism and hospitality,Kildare,25,yes,yes,2026-09-07
+Tax and accounting,Mayo,3,yes,no,2026-08-01
+Tourism and hospitality,Clare,23,yes,yes,2026-09-01
+Tax and accounting,Galway,31,yes,no,2026-06-20
+Energy,Tipperary,3,no,no,2026-09-11
+Motor,Wexford,12,no,yes,2026-07-01
+Tourism and hospitality,Clare,19,yes,no,2026-06-09
+Food and drink,Tipperary,23,yes,yes,2026-08-15
+Food and drink,Mayo,20,yes,yes,2026-08-04
+Tax and accounting,Wexford,1,yes,yes,2026-08-01
+Tourism and hospitality,Donegal,22,no,no,2026-08-15
+Food and drink,Galway,21,yes,yes,2026-07-20
+Tax and accounting,Tipperary,9,no,no,2026-08-18
+Tax and accounting,Tipperary,14,yes,no,2026-06-22
+Tax and accounting,Donegal,16,yes,no,2026-08-29
+Tourism and hospitality,Galway,17,yes,no,2026-07-22
+Energy,Mayo,26,no,no,2026-08-09
+Energy,Galway,6,yes,no,2026-05-25
+Tax and accounting,Mayo,27,yes,yes,2026-07-28
+Tourism and hospitality,Donegal,34,no,no,2026-06-05
+Motor,Kildare,9,yes,yes,2026-09-02
+Food and drink,Kildare,11,no,no,2026-05-26
+Motor,Donegal,22,yes,yes,2026-06-08
+Food and drink,Tipperary,23,no,no,2026-07-12
+Food and drink,Galway,15,yes,no,2026-09-14
+Tax and accounting,Donegal,12,yes,yes,2026-06-14
+Tax and accounting,Wexford,34,no,yes,2026-08-18
+Food and drink,Galway,20,no,no,2026-05-27
+Tourism and hospitality,Kildare,9,yes,no,2026-08-15
+Energy,Clare,13,yes,no,2026-08-28
+Food and drink,Tipperary,29,no,no,2026-06-23
+Food and drink,Tipperary,23,yes,no,2026-07-16
+Energy,Donegal,19,yes,yes,2026-08-30
+Food and drink,Clare,3,yes,no,2026-09-15
+Tax and accounting,Galway,31,no,yes,2026-07-12
+Tourism and hospitality,Donegal,23,no,yes,2026-09-20
+Energy,Mayo,-1,no,yes,2026-09-07
+Tourism and hospitality,Galway,11,no,no,2026-09-05
+Food and drink,Wexford,22,yes,no,2026-09-12
+Food and drink,Kildare,27,yes,yes,2026-08-17
+Food and drink,Galway,17,yes,no,2026-08-29
+Tax and accounting,Kildare,0,no,no,2026-08-15
+Tourism and hospitality,Wexford,33,no,no,2026-06-13
+Food and drink,Galway,34,yes,no,2026-07-25
+Motor,Galway,-4,yes,yes,2026-09-16
+Food and drink,Mayo,13,no,no,2026-09-03
+Tourism and hospitality,Tipperary,18,yes,yes,2026-09-16
+Energy,Clare,19,no,no,2026-08-27
+Motor,Kildare,18,no,yes,2026-06-30
+Tax and accounting,Clare,1,yes,yes,2026-07-09
+Motor,Galway,27,no,yes,2026-08-29
+Tax and accounting,Tipperary,34,no,no,2026-09-10
+Tourism and hospitality,Mayo,9,no,yes,2026-07-25
+Tourism and hospitality,Donegal,11,no,yes,2026-06-26
+Food and drink,Donegal,20,no,yes,2026-07-18
+Tourism and hospitality,Tipperary,20,no,yes,2026-06-12
+Energy,Galway,27,no,yes,2026-09-18
+Food and drink,Galway,3,no,no,2026-06-13
+Motor,Galway,33,yes,no,2026-08-20
+Tax and accounting,Kildare,22,yes,yes,2026-09-02
+Tourism and hospitality,Donegal,4,yes,yes,2026-08-23
+Food and drink,Mayo,21,yes,yes,2026-08-18
+Tax and accounting,Donegal,27,no,yes,2026-08-26
+Food and drink,Donegal,13,yes,yes,2026-06-11
+Energy,Kildare,25,no,no,2026-06-02
+Tourism and hospitality,Galway,8,no,no,2026-09-02
+Tourism and hospitality,Wexford,27,no,yes,2026-07-23
+Tourism and hospitality,Galway,24,no,no,2026-07-25
+Tax and accounting,Tipperary,1,no,no,2026-07-22
+Food and drink,Mayo,21,yes,yes,2026-07-08
+Tourism and hospitality,Galway,19,yes,yes,2026-06-07
+Tax and accounting,Wexford,17,yes,yes,2026-09-10
+Tourism and hospitality,Tipperary,22,yes,yes,2026-08-01
+Tax and accounting,Clare,8,no,yes,2026-08-19
+Food and drink,Mayo,30,yes,no,2026-08-03
+Tax and accounting,Kildare,27,no,yes,2026-07-15
+Food and drink,Mayo,-1,no,no,2026-07-16
+Tourism and hospitality,Wexford,9,no,no,2026-09-04
+Food and drink,Galway,25,no,yes,2026-08-07
+Food and drink,Tipperary,15,yes,yes,2026-07-15
+Tourism and hospitality,Clare,25,yes,yes,2026-05-30
+Energy,Wexford,11,no,yes,2026-06-17
+Food and drink,Galway,31,yes,no,2026-06-02
+Tax and accounting,Clare,28,yes,no,2026-09-19
+Tax and accounting,Clare,9,no,no,2026-08-06
+Food and drink,Galway,14,no,yes,2026-08-06
+Tourism and hospitality,Tipperary,18,no,yes,2026-08-18
+Tourism and hospitality,Wexford,14,yes,yes,2026-05-31
+Tourism and hospitality,Kildare,28,no,no,2026-08-07
+Tourism and hospitality,Kildare,11,no,yes,2026-07-30
+Energy,Tipperary,32,yes,no,2026-07-18
+Tax and accounting,Wexford,26,yes,yes,2026-07-03
+Motor,Tipperary,-2,yes,no,2026-09-06
+Tax and accounting,Galway,18,no,no,2026-06-13
+Energy,Galway,26,no,no,2026-07-08
+Tourism and hospitality,Galway,24,no,yes,2026-06-17
+Tax and accounting,Kildare,22,no,no,2026-07-28
+Food and drink,Galway,11,yes,yes,2026-07-15
+Tax and accounting,Galway,31,yes,no,2026-06-01
+Food and drink,Tipperary,30,no,yes,2026-09-09
+Tax and accounting,Tipperary,7,yes,yes,2026-05-31
+Tax and accounting,Donegal,19,no,yes,2026-08-24
+Food and drink,Wexford,16,no,yes,2026-07-15
+Tourism and hospitality,Mayo,16,no,yes,2026-08-10
+Tourism and hospitality,Donegal,17,yes,yes,2026-07-30
+Tax and accounting,Tipperary,11,no,yes,2026-07-09
+Food and drink,Clare,25,no,no,2026-06-16
+Tourism and hospitality,Clare,34,no,yes,2026-06-26
+Energy,Galway,10,no,no,2026-07-12
+Food and drink,Tipperary,21,no,yes,2026-09-15
+Tax and accounting,Tipperary,21,yes,yes,2026-07-28
+Tourism and hospitality,Donegal,22,no,no,2026-06-26
+Motor,Kildare,27,no,yes,2026-07-15
+Tourism and hospitality,Kildare,8,yes,no,2026-08-28
+Tourism and hospitality,Tipperary,26,yes,yes,2026-07-13
+Food and drink,Clare,25,no,yes,2026-08-14
+Tax and accounting,Kildare,2,yes,yes,2026-09-12
+Tourism and hospitality,Tipperary,17,no,yes,2026-07-08
+Energy,Galway,26,no,no,2026-06-14
+Tourism and hospitality,Mayo,24,no,yes,2026-07-24
+Food and drink,Clare,21,yes,no,2026-08-09
+Energy,Mayo,5,yes,no,2026-08-26
+Motor,Wexford,21,no,no,2026-07-04
+Tourism and hospitality,Mayo,33,no,no,2026-08-12
+Tax and accounting,Clare,1,no,no,2026-08-02
+Tourism and hospitality,Donegal,7,yes,yes,2026-09-15
+Motor,Mayo,28,yes,yes,2026-05-28
+Energy,Mayo,13,no,no,2026-09-20
+Food and drink,Galway,24,yes,yes,2026-08-29
+Tourism and hospitality,Galway,9,no,yes,2026-06-22
+Food and drink,Donegal,21,yes,yes,2026-09-06
+Food and drink,Galway,26,no,no,2026-06-16
+Tax and accounting,Galway,5,yes,yes,2026-06-21
+Motor,Galway,15,yes,yes,2026-07-16
+Tourism and hospitality,Wexford,20,no,no,2026-09-11
+Energy,Tipperary,20,no,yes,2026-08-22
+Motor,Galway,20,no,yes,2026-06-26
+Tourism and hospitality,Galway,7,yes,yes,2026-08-31
+Tourism and hospitality,Galway,30,no,no,2026-08-23
+Food and drink,Tipperary,21,yes,yes,2026-08-19
+Motor,Tipperary,-3,no,yes,2026-07-08
+Tax and accounting,Galway,12,no,no,2026-06-05
+Tourism and hospitality,Mayo,17,no,no,2026-06-21
+Food and drink,Galway,22,no,yes,2026-07-26
+Motor,Galway,15,yes,no,2026-05-30
+Tax and accounting,Wexford,6,no,yes,2026-09-09
+Tourism and hospitality,Galway,22,yes,yes,2026-09-06
+Tax and accounting,Wexford,22,no,yes,2026-07-23
+Food and drink,Tipperary,-4,yes,yes,2026-07-03
+Tax and accounting,Donegal,21,yes,yes,2026-06-22
+Tourism and hospitality,Wexford,20,no,yes,2026-07-09
+Tax and accounting,Mayo,16,yes,no,2026-08-24
+Tax and accounting,Wexford,23,yes,no,2026-06-14
+Food and drink,Donegal,9,no,yes,2026-09-06
+Tourism and hospitality,Galway,24,yes,no,2026-08-31
+Tourism and hospitality,Galway,22,no,no,2026-09-16
+Food and drink,Clare,-3,yes,no,2026-07-20
+Motor,Galway,11,no,no,2026-09-14
+Tax and accounting,Mayo,29,no,yes,2026-09-13
+Tax and accounting,Galway,19,no,no,2026-08-14
+Tax and accounting,Clare,23,yes,yes,2026-07-02
+Food and drink,Tipperary,9,no,no,2026-07-25
+Energy,Tipperary,24,no,no,2026-07-19
+Tax and accounting,Clare,24,yes,yes,2026-05-27
+Tax and accounting,Galway,0,no,no,2026-07-17
+Energy,Galway,11,yes,yes,2026-08-13
+Tourism and hospitality,Kildare,24,no,no,2026-07-24
+Energy,Mayo,23,no,no,2026-06-26
+Tax and accounting,Kildare,24,no,no,2026-06-10
+Food and drink,Galway,1,yes,yes,2026-06-21
+Food and drink,Tipperary,28,no,yes,2026-07-19
+Tourism and hospitality,Wexford,23,yes,yes,2026-09-20
+Energy,Wexford,1,yes,no,2026-08-26
+Tourism and hospitality,Galway,8,no,no,2026-06-06
+Tax and accounting,Donegal,18,yes,no,2026-07-03
+Tourism and hospitality,Tipperary,18,yes,no,2026-06-17
+Tourism and hospitality,Galway,19,no,no,2026-09-16
+Food and drink,Mayo,7,no,no,2026-06-28
+Motor,Wexford,21,yes,no,2026-06-06
+Tourism and hospitality,Tipperary,21,no,no,2026-06-10
+Tourism and hospitality,Kildare,7,no,yes,2026-09-16
+Food and drink,Tipperary,21,no,yes,2026-06-05
+Tax and accounting,Tipperary,18,no,no,2026-09-13
+Tax and accounting,Tipperary,26,yes,no,2026-07-23
+Energy,Kildare,28,yes,no,2026-09-14
+Tax and accounting,Galway,3,yes,no,2026-08-09
+Energy,Clare,23,yes,yes,2026-06-10
+Tourism and hospitality,Mayo,34,no,yes,2026-07-29
+Food and drink,Kildare,10,no,yes,2026-06-01
+Tourism and hospitality,Wexford,11,no,yes,2026-08-15
+Energy,Mayo,29,no,no,2026-08-23
+Tax and accounting,Tipperary,13,yes,no,2026-07-24
+Tax and accounting,Galway,20,no,no,2026-06-02
+Tax and accounting,Kildare,-1,no,yes,2026-06-11
+Tax and accounting,Galway,24,yes,no,2026-09-02
+Food and drink,Tipperary,27,yes,yes,2026-07-26
+Food and drink,Mayo,4,no,no,2026-06-16
+Motor,Galway,16,no,yes,2026-06-21
+Food and drink,Wexford,20,yes,no,2026-06-30
+Motor,Mayo,13,no,no,2026-06-13
+Motor,Kildare,21,yes,no,2026-05-27
+Tax and accounting,Galway,10,no,yes,2026-07-03
+Tax and accounting,Galway,33,yes,no,2026-07-05
+Energy,Kildare,29,no,no,2026-09-16
+Food and drink,Wexford,2,no,yes,2026-08-17
+Tourism and hospitality,Donegal,15,yes,no,2026-09-07
+Tax and accounting,Wexford,26,no,yes,2026-07-28
+Tourism and hospitality,Wexford,16,yes,no,2026-07-02
+Energy,Galway,28,no,yes,2026-06-12
+Food and drink,Galway,3,no,no,2026-07-26
+Energy,Tipperary,22,no,no,2026-06-17
+Food and drink,Clare,29,yes,no,2026-06-13
+Tourism and hospitality,Kildare,4,yes,no,2026-07-15
+Tax and accounting,Galway,15,no,yes,2026-08-05
+Food and drink,Clare,20,yes,yes,2026-08-21
+Tourism and hospitality,Galway,20,yes,yes,2026-09-15
+Motor,Kildare,16,yes,no,2026-06-16
+Tourism and hospitality,Kildare,10,no,yes,2026-09-19
+Motor,Kildare,27,yes,yes,2026-09-20
+Energy,Galway,31,no,no,2026-07-29
+Motor,Kildare,-1,yes,no,2026-06-30
+Tourism and hospitality,Galway,15,yes,no,2026-05-27
+Food and drink,Kildare,21,no,yes,2026-06-06
+Energy,Galway,24,no,no,2026-06-12
+Tourism and hospitality,Wexford,26,yes,no,2026-07-23
+Tax and accounting,Clare,1,no,yes,2026-06-21
+Tax and accounting,Galway,28,no,yes,2026-07-07
+Tax and accounting,Tipperary,28,yes,yes,2026-05-29
+Tax and accounting,Kildare,6,yes,no,2026-07-09
+Tourism and hospitality,Kildare,19,no,yes,2026-08-15
+Tax and accounting,Clare,20,yes,no,2026-08-27
+Tax and accounting,Galway,16,yes,no,2026-08-31
+Food and drink,Wexford,19,no,no,2026-09-14
+Food and drink,Galway,6,yes,yes,2026-05-24
+Food and drink,Tipperary,26,yes,no,2026-09-15
+Food and drink,Galway,23,no,no,2026-06-03
+Tourism and hospitality,Galway,2,no,no,2026-06-05
+Food and drink,Tipperary,20,no,no,2026-08-14
+Tourism and hospitality,Mayo,16,no,no,2026-07-27
+Motor,Galway,27,no,no,2026-07-09
+Tourism and hospitality,Mayo,14,no,yes,2026-05-31
+Tax and accounting,Kildare,9,yes,no,2026-06-26
+Motor,Wexford,21,yes,no,2026-08-20
+Tourism and hospitality,Galway,32,no,yes,2026-08-28
+Tourism and hospitality,Galway,-4,no,yes,2026-07-01
+Food and drink,Kildare,9,yes,no,2026-07-10
+Food and drink,Clare,17,no,yes,2026-08-25
+Tax and accounting,Kildare,25,no,no,2026-08-02
+Tourism and hospitality,Donegal,16,no,no,2026-06-06
+Tourism and hospitality,Kildare,11,no,no,2026-09-17
+Tax and accounting,Wexford,24,no,no,2026-06-07
+Tourism and hospitality,Donegal,32,yes,no,2026-07-24
+Tax and accounting,Galway,2,yes,yes,2026-08-27
+Food and drink,Wexford,16,no,no,2026-09-20
+Food and drink,Clare,23,yes,yes,2026-07-07
+Tax and accounting,Clare,26,no,yes,2026-07-10
+Tax and accounting,Clare,26,yes,yes,2026-08-01
+Tax and accounting,Clare,10,no,yes,2026-07-17
+Motor,Mayo,21,no,yes,2026-07-01
+Food and drink,Tipperary,31,no,no,2026-06-29
+Food and drink,Tipperary,9,yes,no,2026-06-20
+Tax and accounting,Clare,12,no,yes,2026-08-15
+Tax and accounting,Mayo,16,yes,no,2026-07-25
+Food and drink,Wexford,19,no,yes,2026-09-15
+Tax and accounting,Galway,19,no,no,2026-07-12
+Tourism and hospitality,Tipperary,0,yes,no,2026-08-16
+Tax and accounting,Donegal,34,yes,no,2026-05-27
+Tax and accounting,Tipperary,20,no,no,2026-08-08
+Energy,Wexford,8,no,yes,2026-07-06
+Food and drink,Galway,13,yes,no,2026-09-08
+Tourism and hospitality,Galway,29,no,yes,2026-08-01
+Tourism and hospitality,Wexford,25,yes,no,2026-07-09
+Food and drink,Tipperary,16,yes,yes,2026-08-16
+Energy,Tipperary,7,yes,yes,2026-09-12
+Food and drink,Clare,24,no,no,2026-07-07
+Food and drink,Kildare,27,no,no,2026-06-07
+Tourism and hospitality,Galway,5,yes,no,2026-06-12
+Tax and accounting,Galway,20,no,yes,2026-06-06
+Food and drink,Galway,24,no,yes,2026-06-01
+Tourism and hospitality,Galway,18,no,yes,2026-09-05
+Food and drink,Galway,22,no,no,2026-08-13
+Tourism and hospitality,Galway,4,no,yes,2026-09-04
+Food and drink,Kildare,32,no,yes,2026-09-02
+Tourism and hospitality,Galway,34,yes,yes,2026-09-13
+Tourism and hospitality,Kildare,0,yes,yes,2026-09-12
+Tax and accounting,Clare,10,yes,yes,2026-06-09
+Motor,Donegal,16,no,no,2026-06-07
+Tax and accounting,Galway,27,no,yes,2026-05-27
+Tourism and hospitality,Galway,18,no,yes,2026-07-14
+Tourism and hospitality,Galway,8,yes,yes,2026-08-04
+Motor,Tipperary,31,no,yes,2026-06-09
+Tax and accounting,Donegal,23,yes,yes,2026-08-21
+Tax and accounting,Wexford,6,no,yes,2026-07-03
+Food and drink,Galway,21,no,no,2026-08-01
+Tourism and hospitality,Mayo,29,yes,no,2026-07-29
+Food and drink,Galway,14,no,no,2026-06-24
+Tax and accounting,Galway,23,yes,no,2026-06-20
+Energy,Clare,10,yes,yes,2026-08-21
+Tax and accounting,Donegal,31,no,yes,2026-09-04
+Tourism and hospitality,Galway,23,no,no,2026-07-31
+Motor,Galway,10,no,yes,2026-06-23
+Tax and accounting,Galway,9,yes,no,2026-08-08
+Energy,Kildare,18,yes,no,2026-07-12
+Tax and accounting,Galway,20,yes,yes,2026-07-17
+Tax and accounting,Wexford,14,no,yes,2026-08-16
+Tax and accounting,Wexford,4,no,yes,2026-07-22
+Food and drink,Tipperary,32,yes,no,2026-06-16
+Food and drink,Galway,24,no,no,2026-09-01
+Tourism and hospitality,Kildare,-2,no,no,2026-05-30
+Tax and accounting,Wexford,13,no,no,2026-07-23
+Food and drink,Tipperary,28,yes,no,2026-06-25
+Energy,Donegal,14,no,yes,2026-05-29
+Tourism and hospitality,Galway,22,yes,yes,2026-05-30
+Energy,Galway,2,no,yes,2026-09-03
+Tax and accounting,Mayo,24,no,yes,2026-06-19
+Energy,Clare,23,no,yes,2026-07-18
+Energy,Tipperary,8,no,no,2026-06-01
+Food and drink,Mayo,13,no,yes,2026-07-25
+Food and drink,Mayo,17,yes,no,2026-08-19
+Energy,Donegal,16,yes,no,2026-06-11
+Food and drink,Tipperary,18,yes,yes,2026-08-29
+Tourism and hospitality,Galway,5,no,no,2026-08-28
+Tourism and hospitality,Mayo,29,no,no,2026-08-14
+Food and drink,Tipperary,20,no,no,2026-07-22
+Tax and accounting,Mayo,5,yes,no,2026-05-28
+Motor,Kildare,16,yes,yes,2026-08-19
+Food and drink,Galway,20,yes,no,2026-09-04
+Food and drink,Tipperary,24,no,no,2026-07-02
+Energy,Kildare,27,no,no,2026-09-08
+Food and drink,Donegal,11,yes,yes,2026-07-19
+Food and drink,Tipperary,32,no,no,2026-07-20
+Tourism and hospitality,Galway,28,yes,yes,2026-08-06
+Tax and accounting,Donegal,7,no,yes,2026-07-24
+Tourism and hospitality,Wexford,14,no,no,2026-07-30
+Motor,Mayo,28,yes,yes,2026-06-16
+Food and drink,Donegal,23,no,no,2026-07-01
+Food and drink,Galway,26,yes,no,2026-06-12
+Food and drink,Galway,-2,no,no,2026-08-28
+Motor,Wexford,26,yes,no,2026-06-04
+Tax and accounting,Wexford,25,yes,no,2026-08-03
+Tourism and hospitality,Mayo,0,yes,no,2026-08-04
+Food and drink,Wexford,15,yes,no,2026-09-17
+Motor,Galway,23,yes,no,2026-08-02
+Tax and accounting,Galway,15,no,no,2026-08-23
+Motor,Donegal,15,no,no,2026-08-30
+Tourism and hospitality,Clare,7,yes,yes,2026-06-17
+Tourism and hospitality,Mayo,24,no,yes,2026-08-27
+Tax and accounting,Mayo,32,yes,no,2026-09-07
+Food and drink,Tipperary,5,yes,yes,2026-08-21
+Food and drink,Clare,18,no,yes,2026-08-24
+Tourism and hospitality,Donegal,22,yes,yes,2026-09-03
+Energy,Galway,23,no,no,2026-05-31
+Motor,Kildare,14,no,yes,2026-08-21
+Tax and accounting,Clare,8,yes,yes,2026-06-04
+Tax and accounting,Wexford,28,no,yes,2026-06-06
+Food and drink,Wexford,24,yes,no,2026-08-13
+Tax and accounting,Galway,4,yes,no,2026-09-16
+Motor,Wexford,12,no,no,2026-07-13
+Tax and accounting,Galway,25,yes,yes,2026-08-19
+Tourism and hospitality,Mayo,26,no,yes,2026-06-17
+Energy,Galway,26,yes,yes,2026-06-07
+Food and drink,Kildare,10,no,yes,2026-06-27
+Tourism and hospitality,Mayo,34,no,no,2026-07-24
+Motor,Tipperary,29,no,no,2026-06-29
+Motor,Wexford,4,yes,no,2026-07-29
+Food and drink,Tipperary,10,yes,no,2026-07-12
+Energy,Clare,17,no,no,2026-06-08
+Motor,Kildare,20,no,yes,2026-05-24
+Tourism and hospitality,Wexford,16,yes,yes,2026-06-23
+Tax and accounting,Mayo,9,yes,no,2026-05-30
+Food and drink,Clare,31,no,yes,2026-09-04
+Tax and accounting,Tipperary,28,no,no,2026-06-03
+Food and drink,Galway,4,yes,no,2026-07-24
+Tax and accounting,Galway,7,no,yes,2026-06-16
+Food and drink,Kildare,25,no,no,2026-07-19
+Motor,Wexford,19,yes,yes,2026-07-31
+Tourism and hospitality,Galway,14,no,no,2026-07-01
+Tourism and hospitality,Kildare,-1,yes,yes,2026-07-26
+Motor,Tipperary,31,yes,yes,2026-05-29
+Food and drink,Kildare,21,no,yes,2026-08-05
+Food and drink,Donegal,9,yes,no,2026-05-31
+Food and drink,Kildare,8,yes,yes,2026-07-26
+Tourism and hospitality,Donegal,29,no,yes,2026-08-30
+Food and drink,Clare,19,no,no,2026-05-26
+Tax and accounting,Galway,24,yes,no,2026-08-22
+Tourism and hospitality,Wexford,2,no,no,2026-07-26
+Tourism and hospitality,Kildare,21,yes,no,2026-05-28
+Food and drink,Donegal,34,no,yes,2026-07-16
+Tax and accounting,Mayo,3,yes,no,2026-08-02
+Tax and accounting,Galway,10,no,yes,2026-07-29
+Food and drink,Galway,19,yes,yes,2026-07-24
+Motor,Galway,20,no,no,2026-08-05
+Motor,Galway,23,yes,yes,2026-07-23
+Tourism and hospitality,Clare,-1,yes,no,2026-06-17
+Energy,Galway,33,yes,yes,2026-06-07
+Tourism and hospitality,Kildare,20,no,no,2026-07-20
+Motor,Mayo,6,yes,yes,2026-08-22
+Tourism and hospitality,Galway,17,yes,no,2026-07-25
+Motor,Donegal,21,yes,yes,2026-08-19
+Motor,Galway,20,yes,yes,2026-08-14
+Energy,Wexford,27,no,no,2026-08-22
+Tourism and hospitality,Wexford,1,no,yes,2026-09-15
+Food and drink,Tipperary,21,yes,yes,2026-07-08
+Tourism and hospitality,Wexford,23,yes,no,2026-06-03
+Energy,Galway,6,yes,no,2026-06-16
+Energy,Tipperary,20,yes,no,2026-06-03
+Tax and accounting,Kildare,28,no,yes,2026-08-14
+Tax and accounting,Kildare,24,yes,yes,2026-08-13
+Tax and accounting,Clare,18,yes,no,2026-06-11
+Motor,Mayo,5,yes,no,2026-06-04
+Tourism and hospitality,Tipperary,25,no,yes,2026-05-24
+Food and drink,Kildare,34,yes,no,2026-07-13
+Tourism and hospitality,Galway,10,yes,no,2026-07-29
+Tax and accounting,Galway,19,yes,yes,2026-06-12
+Tourism and hospitality,Kildare,25,no,yes,2026-08-06
+Tourism and hospitality,Galway,13,yes,no,2026-08-08
+Tourism and hospitality,Donegal,22,yes,no,2026-09-20
+Tax and accounting,Kildare,5,yes,no,2026-06-02
+Tourism and hospitality,Galway,31,yes,yes,2026-09-14
+Tourism and hospitality,Tipperary,20,no,yes,2026-08-14
+Tourism and hospitality,Galway,2,yes,yes,2026-08-27
+Tourism and hospitality,Galway,21,yes,yes,2026-09-04
+Tourism and hospitality,Galway,22,no,yes,2026-07-22
+Tourism and hospitality,Donegal,15,no,no,2026-05-25
+Energy,Tipperary,20,no,no,2026-08-01
+Food and drink,Mayo,11,no,yes,2026-07-31
+Energy,Galway,30,yes,yes,2026-07-10
+Food and drink,Tipperary,25,yes,no,2026-09-08
+Energy,Mayo,0,no,yes,2026-07-03
+Tax and accounting,Kildare,12,yes,no,2026-07-06
+Tax and accounting,Galway,26,yes,no,2026-09-01
+Tax and accounting,Mayo,18,no,no,2026-08-23
+Tax and accounting,Mayo,21,no,yes,2026-06-25
+Tourism and hospitality,Wexford,10,yes,yes,2026-06-24
+Food and drink,Tipperary,22,no,yes,2026-06-25
+Food and drink,Clare,21,yes,no,2026-07-13
+Food and drink,Donegal,6,no,yes,2026-08-31
+Food and drink,Mayo,15,yes,yes,2026-06-21
+Motor,Mayo,21,yes,no,2026-09-14
+Tourism and hospitality,Kildare,22,no,no,2026-08-15
+Energy,Donegal,25,no,no,2026-07-12
+Tax and accounting,Donegal,-2,no,yes,2026-07-07
+Tax and accounting,Donegal,28,yes,yes,2026-08-28
+Energy,Clare,31,yes,no,2026-07-17
+Food and drink,Mayo,4,no,yes,2026-06-26
+Tax and accounting,Galway,12,no,yes,2026-06-11
+Food and drink,Wexford,29,yes,no,2026-06-13
+Energy,Clare,13,yes,no,2026-05-24
+Food and drink,Galway,20,yes,yes,2026-08-13
+Motor,Galway,-1,no,yes,2026-07-17
+Tax and accounting,Wexford,21,yes,yes,2026-08-09
+Tourism and hospitality,Kildare,28,no,yes,2026-05-25
+Tax and accounting,Mayo,2,no,yes,2026-08-05
+Food and drink,Galway,12,no,no,2026-06-29
+Tax and accounting,Tipperary,27,no,yes,2026-08-04
+Tax and accounting,Mayo,27,yes,no,2026-07-31
+Tourism and hospitality,Galway,26,no,yes,2026-08-25
+Food and drink,Wexford,0,no,yes,2026-05-29
+Energy,Mayo,26,no,yes,2026-07-31
+Energy,Galway,32,no,yes,2026-09-14
+Motor,Clare,2,yes,yes,2026-09-20
+Food and drink,Galway,13,yes,no,2026-08-12
+Tax and accounting,Clare,15,no,yes,2026-07-25
+Food and drink,Donegal,15,no,no,2026-06-29
+Food and drink,Donegal,23,yes,no,2026-05-29
+Tourism and hospitality,Tipperary,8,no,yes,2026-05-27
+Food and drink,Donegal,23,no,no,2026-07-25
+Tax and accounting,Galway,34,no,yes,2026-05-29
+Tourism and hospitality,Kildare,1,no,no,2026-08-30
+Tourism and hospitality,Galway,21,yes,no,2026-06-12
+Tourism and hospitality,Wexford,17,yes,no,2026-06-10
+Tax and accounting,Donegal,22,no,no,2026-06-04
+Tax and accounting,Wexford,18,no,no,2026-08-24
+Tax and accounting,Clare,12,yes,no,2026-06-26
+Tax and accounting,Galway,34,no,yes,2026-05-27
+Tax and accounting,Kildare,23,no,yes,2026-07-18
+Tourism and hospitality,Galway,-2,no,yes,2026-07-04
+Tourism and hospitality,Tipperary,12,no,yes,2026-08-16
+Tax and accounting,Galway,27,no,no,2026-08-31
+Tax and accounting,Clare,14,yes,yes,2026-07-14
+Motor,Tipperary,18,yes,yes,2026-06-19
+Tourism and hospitality,Galway,9,no,no,2026-06-12
+Food and drink,Galway,32,no,yes,2026-06-27
+Tourism and hospitality,Galway,31,no,no,2026-05-26
+Food and drink,Clare,1,yes,no,2026-07-09
+Tax and accounting,Kildare,15,no,no,2026-09-12
+Tourism and hospitality,Mayo,24,yes,yes,2026-08-12
+Tax and accounting,Donegal,15,no,no,2026-06-28
+Food and drink,Wexford,25,no,yes,2026-09-04
+Tax and accounting,Galway,11,no,yes,2026-09-16
+Tax and accounting,Wexford,35,yes,yes,2026-08-08
+Motor,Wexford,29,no,yes,2026-07-11
+Tax and accounting,Clare,-2,yes,no,2026-08-18
+Tax and accounting,Kildare,20,yes,yes,2026-07-22
+Tourism and hospitality,Galway,19,yes,no,2026-06-18
+Tax and accounting,Galway,27,no,yes,2026-09-12
+Tourism and hospitality,Galway,15,yes,no,2026-06-05
+Food and drink,Wexford,8,no,no,2026-07-25
+Tax and accounting,Tipperary,28,yes,no,2026-09-08
+Tourism and hospitality,Wexford,24,no,no,2026-06-05
+Tourism and hospitality,Wexford,1,no,no,2026-07-06
+Food and drink,Wexford,18,yes,yes,2026-06-20
+Tax and accounting,Donegal,29,no,no,2026-07-25
+Food and drink,Galway,23,no,yes,2026-06-30
+Tourism and hospitality,Donegal,22,no,no,2026-07-28
+Food and drink,Clare,6,yes,no,2026-07-19
+Food and drink,Galway,33,no,no,2026-08-22
+Food and drink,Wexford,29,yes,yes,2026-06-08
+Energy,Galway,10,no,no,2026-09-19
+Food and drink,Mayo,16,yes,no,2026-06-05
+Tax and accounting,Kildare,29,yes,no,2026-07-22
+Tourism and hospitality,Tipperary,15,no,yes,2026-07-15
+Motor,Kildare,27,no,no,2026-08-22
+Tax and accounting,Kildare,2,yes,yes,2026-06-13
+Energy,Tipperary,30,no,yes,2026-06-12
+Food and drink,Clare,23,no,yes,2026-08-12
+Motor,Donegal,6,yes,no,2026-05-31
+Tax and accounting,Mayo,7,no,yes,2026-07-11
+Food and drink,Wexford,17,yes,yes,2026-06-14
+Tourism and hospitality,Wexford,21,no,yes,2026-08-02
+Tax and accounting,Galway,21,no,yes,2026-06-12
+Tax and accounting,Donegal,10,yes,no,2026-06-13
+Tourism and hospitality,Wexford,30,no,yes,2026-07-20
+Tourism and hospitality,Galway,27,no,yes,2026-07-30
+Tourism and hospitality,Donegal,2,yes,no,2026-06-23
+Motor,Mayo,20,no,no,2026-09-04
+Food and drink,Clare,17,yes,no,2026-07-30
+Energy,Mayo,19,yes,no,2026-09-10
+Tourism and hospitality,Kildare,26,no,yes,2026-05-24
+Tax and accounting,Galway,9,yes,yes,2026-07-01
+Tourism and hospitality,Clare,26,yes,yes,2026-09-11
+Tax and accounting,Wexford,20,yes,yes,2026-08-01
+Food and drink,Galway,10,yes,yes,2026-07-22
+Tourism and hospitality,Galway,21,yes,yes,2026-08-27
+Motor,Mayo,26,yes,yes,2026-07-09
+Tax and accounting,Donegal,24,no,no,2026-07-10
+Tax and accounting,Donegal,23,no,no,2026-09-03
+Food and drink,Tipperary,6,yes,yes,2026-07-13
+Food and drink,Galway,34,no,yes,2026-06-11
+Tax and accounting,Kildare,34,yes,no,2026-07-13
+Tax and accounting,Galway,5,yes,no,2026-08-16
+Food and drink,Galway,8,no,no,2026-08-16
+Food and drink,Clare,28,yes,no,2026-07-10
+Food and drink,Kildare,18,no,yes,2026-06-02
+Energy,Galway,22,yes,no,2026-08-13
+Food and drink,Kildare,1,yes,yes,2026-05-27
+Motor,Clare,35,yes,yes,2026-07-28
+Tax and accounting,Kildare,27,yes,no,2026-08-18
+Tax and accounting,Galway,8,yes,yes,2026-07-25
+Tax and accounting,Wexford,19,yes,yes,2026-09-18
+Motor,Mayo,16,yes,no,2026-07-10
+Food and drink,Galway,26,no,no,2026-06-26
+Energy,Mayo,21,yes,no,2026-09-12
+Food and drink,Tipperary,1,yes,yes,2026-09-18
+Tourism and hospitality,Galway,23,no,yes,2026-07-03
+Energy,Kildare,28,yes,yes,2026-08-14
+Tax and accounting,Wexford,5,yes,yes,2026-08-08
+Food and drink,Tipperary,11,yes,no,2026-06-26
+Tourism and hospitality,Wexford,28,no,yes,2026-07-11
+Tax and accounting,Donegal,20,yes,yes,2026-06-20
+Food and drink,Galway,17,yes,no,2026-07-29
+Motor,Clare,0,yes,no,2026-05-24
+Food and drink,Clare,32,yes,yes,2026-06-23
+Energy,Tipperary,23,yes,yes,2026-07-14
+Food and drink,Tipperary,2,yes,yes,2026-07-26
+Motor,Galway,10,yes,yes,2026-09-04
+Tax and accounting,Tipperary,23,no,no,2026-07-13
+Food and drink,Tipperary,19,yes,yes,2026-08-11
+Tax and accounting,Mayo,25,yes,yes,2026-08-02
+Food and drink,Galway,-1,no,yes,2026-09-12
+Motor,Clare,21,no,yes,2026-06-24
+Tax and accounting,Tipperary,21,no,yes,2026-07-25
+Tax and accounting,Kildare,5,yes,yes,2026-07-28
+Tourism and hospitality,Tipperary,17,no,yes,2026-08-01
+Tourism and hospitality,Galway,27,no,no,2026-09-13
+Tourism and hospitality,Tipperary,22,no,yes,2026-07-19
+Food and drink,Mayo,25,yes,yes,2026-06-07
+Energy,Wexford,10,no,no,2026-09-06
+Tax and accounting,Tipperary,28,no,yes,2026-06-16
+Food and drink,Mayo,32,no,yes,2026-08-06
+Food and drink,Mayo,2,yes,no,2026-06-04
+Motor,Galway,9,yes,no,2026-06-05
+Motor,Wexford,24,yes,yes,2026-08-04
+Food and drink,Galway,27,no,no,2026-07-30
+Energy,Mayo,28,no,yes,2026-06-03
+Motor,Mayo,-2,no,yes,2026-06-16
+Tax and accounting,Tipperary,32,no,no,2026-09-01
+Motor,Tipperary,31,no,yes,2026-08-22
+Energy,Tipperary,9,yes,yes,2026-08-03
+Tax and accounting,Galway,7,yes,no,2026-08-01
+Tourism and hospitality,Kildare,20,yes,no,2026-06-22
+Food and drink,Galway,16,no,yes,2026-05-24
+Motor,Galway,14,no,yes,2026-09-12
+Food and drink,Galway,-2,no,yes,2026-07-23
+Tax and accounting,Kildare,34,no,no,2026-07-09
+Tax and accounting,Tipperary,26,yes,no,2026-08-07
+Food and drink,Galway,-1,no,yes,2026-06-28
+Energy,Kildare,13,yes,no,2026-07-16
+Food and drink,Kildare,19,yes,no,2026-06-08
+Energy,Tipperary,16,no,yes,2026-08-18
+Tax and accounting,Tipperary,16,yes,no,2026-06-06
+Food and drink,Wexford,6,no,yes,2026-06-04
+Tax and accounting,Mayo,35,yes,yes,2026-08-20
+Tax and accounting,Wexford,21,yes,no,2026-07-22
+Tax and accounting,Kildare,1,yes,no,2026-07-08
+Motor,Galway,20,yes,no,2026-07-10
+Food and drink,Mayo,23,yes,no,2026-08-07
+Tourism and hospitality,Tipperary,13,yes,yes,2026-05-28
+Food and drink,Galway,25,no,yes,2026-05-27
+Energy,Donegal,4,yes,no,2026-08-30
+Food and drink,Galway,32,yes,no,2026-07-25
+Tax and accounting,Clare,25,yes,no,2026-08-28
+Tourism and hospitality,Galway,3,yes,yes,2026-08-04
+Tourism and hospitality,Galway,12,yes,no,2026-07-18
+Motor,Galway,22,no,no,2026-07-13
+Motor,Clare,14,yes,no,2026-08-01
+Tourism and hospitality,Donegal,23,no,yes,2026-07-09
+Food and drink,Clare,6,no,no,2026-09-15
+Tax and accounting,Galway,32,no,yes,2026-07-23
+Food and drink,Clare,25,yes,no,2026-08-08
+Tourism and hospitality,Clare,3,no,yes,2026-06-03
+Motor,Kildare,9,no,no,2026-07-01
+Food and drink,Galway,15,yes,yes,2026-06-09
+Energy,Galway,17,yes,no,2026-09-05
+Motor,Wexford,27,yes,yes,2026-09-04
+Energy,Kildare,-1,yes,no,2026-07-25
+Motor,Donegal,27,no,yes,2026-07-16
+Tourism and hospitality,Wexford,26,yes,yes,2026-07-13
+Tax and accounting,Tipperary,6,no,yes,2026-06-01
+Tax and accounting,Clare,16,yes,no,2026-06-16
+Tourism and hospitality,Galway,19,no,yes,2026-05-24
+Tax and accounting,Kildare,25,yes,yes,2026-08-04
+Energy,Clare,25,no,no,2026-09-12
+Motor,Mayo,-1,yes,no,2026-06-08
+Tax and accounting,Donegal,28,yes,yes,2026-09-13
+Tourism and hospitality,Kildare,22,no,yes,2026-05-31
+Energy,Donegal,8,no,no,2026-06-21
+Food and drink,Mayo,19,no,no,2026-07-19
+Tourism and hospitality,Mayo,17,no,yes,2026-06-23
+Energy,Galway,18,no,yes,2026-06-16
+Tax and accounting,Wexford,27,no,no,2026-08-11
+Tourism and hospitality,Mayo,3,no,no,2026-08-06
+Food and drink,Wexford,33,no,yes,2026-06-01
+Tourism and hospitality,Wexford,30,yes,yes,2026-08-24
+Energy,Kildare,-1,yes,yes,2026-07-26
+Food and drink,Mayo,16,no,yes,2026-07-31
+Food and drink,Mayo,29,yes,no,2026-09-13
+Motor,Wexford,19,yes,yes,2026-07-22
+Motor,Galway,23,yes,no,2026-06-08
+Tourism and hospitality,Tipperary,2,yes,yes,2026-07-27
+Tax and accounting,Donegal,30,yes,yes,2026-08-07
+Tax and accounting,Galway,20,no,yes,2026-06-22
+Tax and accounting,Mayo,-1,yes,yes,2026-07-31
+Food and drink,Clare,14,no,no,2026-06-18
+Food and drink,Galway,23,no,yes,2026-08-17
+Energy,Donegal,22,yes,yes,2026-09-16
+Motor,Kildare,14,no,no,2026-07-10
+Tax and accounting,Clare,12,no,no,2026-08-30
+Tax and accounting,Tipperary,24,yes,no,2026-06-28
+Tourism and hospitality,Wexford,25,yes,no,2026-08-04
+Tourism and hospitality,Galway,-4,yes,yes,2026-07-21
+Tourism and hospitality,Kildare,19,yes,yes,2026-06-14
+Tax and accounting,Clare,15,no,no,2026-07-03
+Food and drink,Wexford,20,yes,no,2026-08-01
+Tourism and hospitality,Galway,14,yes,yes,2026-06-21
+Tourism and hospitality,Kildare,10,no,yes,2026-08-11
+Tax and accounting,Clare,29,no,yes,2026-06-10
+Tourism and hospitality,Galway,25,no,yes,2026-08-12
+Energy,Galway,-1,yes,no,2026-06-12
+Food and drink,Galway,9,yes,no,2026-06-25
+Food and drink,Mayo,19,yes,yes,2026-08-19
+Tax and accounting,Galway,16,yes,yes,2026-06-23
+Tax and accounting,Donegal,21,no,yes,2026-07-03
+Food and drink,Clare,9,no,yes,2026-06-20
+Motor,Wexford,35,yes,yes,2026-09-16
+Tax and accounting,Galway,20,no,yes,2026-08-04
+Tax and accounting,Wexford,5,yes,no,2026-06-15
+Food and drink,Kildare,8,yes,yes,2026-08-12
+Tax and accounting,Clare,24,yes,no,2026-08-25
+Tourism and hospitality,Clare,26,yes,no,2026-06-21
+Energy,Galway,15,yes,no,2026-08-13
+Tourism and hospitality,Galway,12,no,yes,2026-08-04
+Tourism and hospitality,Clare,31,no,no,2026-08-11
+Tax and accounting,Galway,20,yes,no,2026-09-13
+Tourism and hospitality,Wexford,-3,no,no,2026-07-18
+Tourism and hospitality,Mayo,11,no,no,2026-05-26
+Energy,Galway,24,yes,no,2026-09-01
+Food and drink,Donegal,19,no,yes,2026-09-14
+Tax and accounting,Kildare,25,yes,yes,2026-06-19
+Tax and accounting,Donegal,11,yes,no,2026-09-19
+Food and drink,Donegal,30,yes,yes,2026-06-23
+Energy,Tipperary,31,no,yes,2026-05-28
+Tax and accounting,Tipperary,8,no,yes,2026-08-16
+Tax and accounting,Galway,18,yes,yes,2026-08-17
+Food and drink,Galway,21,no,no,2026-06-01
+Motor,Donegal,16,no,yes,2026-08-14
+Tax and accounting,Tipperary,27,yes,yes,2026-06-15
+Energy,Galway,5,yes,yes,2026-08-09
+Tourism and hospitality,Donegal,29,no,no,2026-07-10
+Tourism and hospitality,Clare,31,yes,no,2026-06-04
+Tourism and hospitality,Mayo,10,yes,no,2026-08-06
+Tourism and hospitality,Galway,9,yes,yes,2026-05-24
+Food and drink,Wexford,22,no,yes,2026-08-12
+Tax and accounting,Clare,14,yes,yes,2026-07-05
+Tourism and hospitality,Galway,22,no,no,2026-07-15
+Food and drink,Galway,8,no,yes,2026-07-28
+Tax and accounting,Kildare,34,yes,yes,2026-09-16
+Food and drink,Kildare,32,yes,yes,2026-07-17
+Tourism and hospitality,Mayo,-1,yes,yes,2026-09-19
+Tourism and hospitality,Donegal,9,no,yes,2026-06-06
+Food and drink,Donegal,16,no,no,2026-08-02
+Tourism and hospitality,Galway,15,yes,no,2026-08-17
+Tourism and hospitality,Galway,24,no,no,2026-09-15
+Tourism and hospitality,Mayo,5,no,yes,2026-06-13
+Tax and accounting,Tipperary,30,yes,yes,2026-09-15
+Motor,Galway,20,yes,yes,2026-07-01
+Tourism and hospitality,Galway,0,no,yes,2026-09-19
+Tourism and hospitality,Galway,15,yes,yes,2026-08-15
+Energy,Clare,29,no,no,2026-09-06
+Tax and accounting,Kildare,22,no,no,2026-05-26
+Tax and accounting,Wexford,16,yes,yes,2026-08-04
+Tourism and hospitality,Tipperary,1,yes,yes,2026-07-14
+Tourism and hospitality,Donegal,23,yes,no,2026-07-30
+Tourism and hospitality,Galway,24,yes,yes,2026-08-04
+Energy,Galway,4,no,yes,2026-09-03
+Tax and accounting,Galway,11,yes,yes,2026-08-13
+Food and drink,Galway,16,yes,no,2026-06-21
+Food and drink,Galway,19,no,yes,2026-09-08
+Motor,Galway,15,yes,no,2026-08-23
+Motor,Clare,12,yes,yes,2026-08-27
+Food and drink,Clare,27,no,no,2026-07-30
+Tax and accounting,Kildare,27,no,yes,2026-06-23
+Energy,Tipperary,-4,no,no,2026-06-15
+Food and drink,Donegal,8,yes,yes,2026-07-12
+Energy,Wexford,18,no,yes,2026-07-27
+Tourism and hospitality,Donegal,15,no,yes,2026-05-28
+Food and drink,Wexford,24,yes,no,2026-09-08
+Tax and accounting,Wexford,-2,no,yes,2026-06-10
+Motor,Clare,29,yes,yes,2026-08-10
+Motor,Mayo,21,no,yes,2026-08-07
+Food and drink,Galway,-4,yes,yes,2026-06-10
+Motor,Galway,15,yes,no,2026-06-27
+Tax and accounting,Mayo,21,yes,no,2026-06-06
+Tourism and hospitality,Wexford,15,no,no,2026-06-27
+Motor,Kildare,15,yes,yes,2026-07-16
+Food and drink,Tipperary,8,yes,yes,2026-06-29
+Food and drink,Clare,31,no,yes,2026-09-08
+Tourism and hospitality,Donegal,21,yes,yes,2026-07-27
+Tax and accounting,Clare,10,no,yes,2026-09-04
+Energy,Galway,10,no,yes,2026-09-08
+Food and drink,Galway,19,yes,yes,2026-06-16
+Tax and accounting,Tipperary,20,yes,no,2026-07-28
+Food and drink,Galway,28,yes,yes,2026-09-06
+Tax and accounting,Donegal,1,no,no,2026-07-26
+Food and drink,Wexford,23,yes,yes,2026-09-03
+Motor,Wexford,34,no,yes,2026-06-16
+Motor,Donegal,-3,yes,no,2026-08-18
+Tourism and hospitality,Galway,19,yes,no,2026-09-17
+Tax and accounting,Tipperary,18,yes,yes,2026-07-17
+Food and drink,Galway,19,yes,yes,2026-05-28
+Food and drink,Donegal,20,no,yes,2026-06-08
+Food and drink,Galway,5,yes,no,2026-09-03
+Tax and accounting,Galway,28,no,no,2026-08-27
+Food and drink,Galway,27,yes,no,2026-06-13
+Tourism and hospitality,Tipperary,1,no,yes,2026-08-08
+Food and drink,Wexford,17,yes,no,2026-09-09
+Energy,Donegal,21,yes,no,2026-08-12
+Tourism and hospitality,Galway,26,no,yes,2026-07-22
+Food and drink,Tipperary,22,yes,no,2026-08-11
+Food and drink,Wexford,1,yes,yes,2026-07-11
+Tax and accounting,Wexford,34,yes,yes,2026-09-17
+Tax and accounting,Donegal,21,yes,yes,2026-06-10
+Tax and accounting,Donegal,4,no,no,2026-06-28
+Motor,Mayo,7,yes,yes,2026-09-17
+Motor,Mayo,16,yes,yes,2026-05-30
+Energy,Galway,18,yes,no,2026-09-09
+Tourism and hospitality,Mayo,16,yes,yes,2026-08-02
+Tax and accounting,Donegal,-2,yes,no,2026-09-10
+Motor,Clare,30,no,no,2026-05-26
+Food and drink,Tipperary,20,yes,no,2026-05-30
+Energy,Galway,4,no,no,2026-08-29
+Tax and accounting,Donegal,20,no,yes,2026-09-19
+Tax and accounting,Donegal,27,yes,no,2026-06-26
+Food and drink,Donegal,18,no,no,2026-08-05
+Motor,Mayo,25,no,no,2026-05-25
+Tourism and hospitality,Mayo,0,no,yes,2026-08-18
+Food and drink,Galway,34,no,yes,2026-08-03
+Food and drink,Donegal,29,yes,yes,2026-09-06
+Motor,Galway,10,yes,yes,2026-08-01
+Tourism and hospitality,Galway,21,yes,yes,2026-09-18
+Motor,Galway,22,yes,yes,2026-07-09
+Food and drink,Galway,19,yes,no,2026-07-14
+Tax and accounting,Galway,26,yes,yes,2026-08-05
+Tourism and hospitality,Kildare,-1,yes,no,2026-06-27
+Food and drink,Mayo,34,yes,no,2026-08-02
+Energy,Galway,20,no,yes,2026-07-26
+Food and drink,Tipperary,0,no,no,2026-05-27
+Energy,Galway,14,yes,no,2026-07-04
+Tax and accounting,Clare,20,yes,no,2026-06-19
+Tax and accounting,Tipperary,15,no,no,2026-06-11
+Food and drink,Kildare,25,yes,yes,2026-07-16
+Food and drink,Mayo,5,yes,no,2026-08-04
+Tax and accounting,Galway,26,no,no,2026-09-18
+Tourism and hospitality,Galway,24,no,yes,2026-06-29
+Tax and accounting,Mayo,0,yes,no,2026-08-19
+Tax and accounting,Wexford,13,yes,yes,2026-08-31
+Motor,Donegal,20,no,yes,2026-08-09
+Energy,Clare,16,no,yes,2026-08-30
+Motor,Mayo,19,no,yes,2026-09-09
+Motor,Wexford,4,yes,no,2026-08-31
+Food and drink,Wexford,21,yes,no,2026-08-15
+Tax and accounting,Galway,26,yes,no,2026-06-05
+Motor,Galway,-4,yes,yes,2026-07-19
+Food and drink,Galway,9,yes,no,2026-07-07
+Motor,Galway,24,no,yes,2026-06-04
+Tax and accounting,Galway,16,no,no,2026-06-30
+Tourism and hospitality,Wexford,20,no,yes,2026-06-10
+Food and drink,Mayo,10,no,yes,2026-09-11
+Tourism and hospitality,Clare,30,yes,no,2026-08-27
+Food and drink,Galway,34,no,yes,2026-05-30
+Food and drink,Donegal,6,no,no,2026-08-26
+Tourism and hospitality,Galway,9,yes,yes,2026-06-07
+Motor,Tipperary,20,no,yes,2026-07-14
+Tourism and hospitality,Galway,23,yes,yes,2026-08-13
+Motor,Tipperary,17,no,no,2026-06-21
+Tax and accounting,Galway,5,no,yes,2026-07-05
+Tourism and hospitality,Mayo,23,no,yes,2026-07-09
+Tax and accounting,Clare,33,yes,yes,2026-06-24
+Food and drink,Galway,8,no,yes,2026-08-20
+Tourism and hospitality,Galway,8,no,yes,2026-09-01
+Tax and accounting,Galway,21,no,yes,2026-08-06
+Tax and accounting,Galway,23,no,yes,2026-08-24
+Tourism and hospitality,Kildare,26,yes,yes,2026-07-13
+Tax and accounting,Clare,2,no,no,2026-08-15
+Energy,Wexford,23,yes,no,2026-08-07
+Tourism and hospitality,Galway,33,no,no,2026-05-26
+Energy,Donegal,-3,yes,no,2026-06-09
+Tourism and hospitality,Tipperary,7,yes,yes,2026-09-12
+Tax and accounting,Donegal,26,no,yes,2026-06-19
+Tourism and hospitality,Mayo,21,no,yes,2026-07-05
+Tax and accounting,Kildare,14,no,no,2026-09-08
+Food and drink,Galway,7,yes,yes,2026-09-03
+Tax and accounting,Tipperary,22,no,no,2026-08-27
+Tourism and hospitality,Galway,21,yes,yes,2026-09-20
+Tourism and hospitality,Donegal,2,yes,no,2026-08-09
+Motor,Galway,9,yes,yes,2026-08-16
+Motor,Donegal,28,yes,no,2026-07-07
+Food and drink,Kildare,22,yes,yes,2026-07-22
+Food and drink,Kildare,22,no,yes,2026-08-18
+Energy,Galway,0,no,no,2026-08-31
+Tourism and hospitality,Clare,27,yes,yes,2026-07-07
+Energy,Clare,30,yes,yes,2026-08-06
+Food and drink,Galway,5,yes,yes,2026-07-02
+Tourism and hospitality,Wexford,7,yes,yes,2026-06-20
+Tourism and hospitality,Galway,26,no,no,2026-08-12
+Food and drink,Mayo,21,no,yes,2026-06-02
+Tourism and hospitality,Galway,28,no,no,2026-09-16
+Food and drink,Clare,-2,yes,yes,2026-07-20
+Food and drink,Tipperary,34,yes,no,2026-06-22
+Food and drink,Tipperary,26,yes,no,2026-06-07
+Food and drink,Wexford,-3,no,yes,2026-08-12
+Food and drink,Tipperary,7,yes,yes,2026-07-16
+Food and drink,Clare,20,no,no,2026-08-30
+Energy,Donegal,24,no,no,2026-08-06
+Energy,Kildare,25,yes,no,2026-08-20
+Tax and accounting,Clare,4,yes,no,2026-07-03
+Food and drink,Clare,28,no,yes,2026-09-14
+Energy,Tipperary,23,no,no,2026-07-18
+Tax and accounting,Wexford,5,yes,no,2026-05-25
+Food and drink,Wexford,9,yes,no,2026-07-27
+Tax and accounting,Tipperary,28,no,no,2026-07-10
+Tourism and hospitality,Wexford,22,yes,no,2026-05-24
+Tourism and hospitality,Tipperary,17,yes,yes,2026-08-09
+Tourism and hospitality,Mayo,3,yes,yes,2026-06-03
+Energy,Wexford,25,no,no,2026-08-04
+Tourism and hospitality,Wexford,20,no,no,2026-09-18
+Tax and accounting,Galway,0,no,yes,2026-06-25
+Motor,Mayo,17,yes,no,2026-08-16
+Tourism and hospitality,Galway,23,yes,no,2026-08-11
+Tax and accounting,Donegal,22,no,no,2026-09-07
+Tax and accounting,Clare,14,no,yes,2026-08-01
+Energy,Galway,9,yes,yes,2026-09-01
+Motor,Wexford,25,yes,no,2026-08-18
+Tourism and hospitality,Mayo,20,yes,yes,2026-09-09
+Tax and accounting,Tipperary,2,yes,yes,2026-08-06
+Tax and accounting,Wexford,19,yes,no,2026-07-26
+Tourism and hospitality,Wexford,20,no,no,2026-05-24
+Energy,Mayo,16,no,yes,2026-06-28
+Motor,Mayo,24,no,yes,2026-08-13
+Food and drink,Mayo,-2,no,yes,2026-06-11
+Food and drink,Tipperary,29,no,yes,2026-07-11
+Energy,Wexford,33,yes,no,2026-09-02
+Tax and accounting,Galway,7,no,no,2026-07-01
+Tax and accounting,Galway,11,no,no,2026-08-25
+Tax and accounting,Tipperary,26,yes,yes,2026-09-13
+Tax and accounting,Galway,15,no,no,2026-08-29
+Food and drink,Wexford,26,no,no,2026-08-13
+Tax and accounting,Donegal,0,no,yes,2026-08-07
+Tax and accounting,Donegal,35,yes,yes,2026-09-17
+Energy,Tipperary,31,yes,yes,2026-05-24
+Tourism and hospitality,Wexford,5,yes,yes,2026-09-13
+Energy,Galway,21,no,no,2026-08-14
+Food and drink,Wexford,27,yes,yes,2026-08-24
+Tourism and hospitality,Mayo,18,no,no,2026-06-20
+Tax and accounting,Tipperary,28,yes,yes,2026-08-28
+Tourism and hospitality,Galway,1,yes,no,2026-06-18
+Food and drink,Mayo,30,yes,no,2026-07-09
+Food and drink,Mayo,21,yes,yes,2026-09-04
+Tax and accounting,Kildare,9,no,yes,2026-07-26
+Food and drink,Tipperary,14,yes,yes,2026-06-02
+Tourism and hospitality,Kildare,24,no,yes,2026-07-10
+Tax and accounting,Galway,27,no,yes,2026-05-28
+Tax and accounting,Clare,21,no,yes,2026-05-29
+Tourism and hospitality,Clare,-2,yes,no,2026-07-23
+Energy,Clare,31,yes,no,2026-07-07
+Energy,Galway,32,yes,yes,2026-08-30
+Food and drink,Wexford,-2,no,yes,2026-08-24
+Tax and accounting,Kildare,19,no,yes,2026-06-21
+Tax and accounting,Clare,26,yes,no,2026-08-29
+Energy,Kildare,21,no,no,2026-09-17
+Tourism and hospitality,Tipperary,22,no,yes,2026-08-30
+Food and drink,Donegal,9,no,no,2026-09-05
+Food and drink,Galway,33,no,no,2026-08-02
+Tax and accounting,Kildare,34,yes,no,2026-07-21
+Food and drink,Wexford,5,no,no,2026-08-05
+Tax and accounting,Kildare,11,no,yes,2026-08-26
+Tourism and hospitality,Mayo,17,no,no,2026-08-20
+Tourism and hospitality,Wexford,24,yes,no,2026-08-11
+Motor,Clare,15,yes,yes,2026-08-03
+Motor,Donegal,9,yes,no,2026-09-14
+Tax and accounting,Tipperary,33,no,no,2026-07-22
+Tax and accounting,Galway,24,yes,no,2026-08-08
+Tax and accounting,Clare,-3,yes,no,2026-06-28
+Tourism and hospitality,Galway,10,yes,yes,2026-08-21
+Food and drink,Clare,28,yes,yes,2026-07-22
+Tax and accounting,Donegal,22,no,yes,2026-07-31
+Tourism and hospitality,Galway,20,no,no,2026-06-28
+Motor,Wexford,0,no,yes,2026-09-01
+Tourism and hospitality,Galway,33,yes,no,2026-08-24
+Food and drink,Mayo,24,no,yes,2026-09-09
+Tourism and hospitality,Mayo,0,no,yes,2026-05-29
+Tax and accounting,Donegal,19,no,no,2026-05-27
+Energy,Donegal,18,no,yes,2026-07-11
+Tax and accounting,Clare,27,yes,no,2026-09-17
+Tourism and hospitality,Galway,28,yes,no,2026-08-29
+Tax and accounting,Tipperary,12,yes,yes,2026-07-17
+Tourism and hospitality,Tipperary,32,no,no,2026-07-23
+Tax and accounting,Clare,21,no,yes,2026-07-10
+Tourism and hospitality,Clare,4,yes,no,2026-05-30
+Tourism and hospitality,Mayo,15,no,no,2026-08-29
+Motor,Galway,20,yes,yes,2026-06-05
+Motor,Galway,25,yes,yes,2026-07-18
+Motor,Mayo,25,no,yes,2026-08-25
+Tourism and hospitality,Galway,12,no,yes,2026-06-01
+Tax and accounting,Wexford,33,yes,yes,2026-06-16
+Energy,Wexford,31,yes,no,2026-08-28
+Tax and accounting,Mayo,7,no,yes,2026-09-18
+Tourism and hospitality,Mayo,15,no,no,2026-05-30
+Tourism and hospitality,Galway,26,no,yes,2026-08-13
+Food and drink,Galway,15,no,yes,2026-08-02
+Motor,Tipperary,16,yes,yes,2026-06-25
+Tourism and hospitality,Mayo,-1,yes,no,2026-09-12
+Tax and accounting,Clare,35,no,yes,2026-09-18
+Tourism and hospitality,Galway,27,no,no,2026-08-13
+Food and drink,Mayo,1,yes,yes,2026-08-10
+Energy,Clare,11,no,yes,2026-08-03
+Motor,Donegal,16,yes,yes,2026-05-31
+Motor,Clare,15,yes,no,2026-09-16
+Tourism and hospitality,Mayo,17,yes,no,2026-08-29
+Tax and accounting,Clare,8,no,yes,2026-08-08
+Tourism and hospitality,Tipperary,26,yes,yes,2026-06-03
+Tourism and hospitality,Mayo,34,no,no,2026-09-12
+Motor,Mayo,-3,yes,yes,2026-06-16
+Food and drink,Wexford,21,no,no,2026-08-15
+Motor,Clare,17,yes,no,2026-09-03
+Motor,Galway,21,no,yes,2026-07-02
+Tourism and hospitality,Tipperary,21,no,no,2026-08-29
+Food and drink,Galway,10,yes,yes,2026-08-06
+Tourism and hospitality,Galway,30,no,yes,2026-08-19
+Food and drink,Donegal,32,no,no,2026-08-11
+Food and drink,Tipperary,9,no,yes,2026-07-10
+Motor,Tipperary,19,no,no,2026-08-20
+Motor,Wexford,16,no,no,2026-08-26
+Food and drink,Clare,26,no,no,2026-05-28
+Tourism and hospitality,Galway,23,no,yes,2026-09-13
+Food and drink,Tipperary,11,yes,no,2026-08-22
+Food and drink,Mayo,29,yes,yes,2026-06-30
+Tax and accounting,Galway,22,no,yes,2026-06-20
+Tourism and hospitality,Mayo,1,no,no,2026-09-15
+Tax and accounting,Clare,18,yes,yes,2026-09-15
+Tax and accounting,Galway,21,yes,yes,2026-06-04
+Tourism and hospitality,Clare,19,no,yes,2026-09-20
+Food and drink,Donegal,24,no,yes,2026-09-03
+Tourism and hospitality,Clare,0,yes,no,2026-08-10
+Tax and accounting,Mayo,32,yes,no,2026-08-18
+Food and drink,Clare,29,no,yes,2026-07-12
+Food and drink,Galway,10,yes,yes,2026-09-05
+Food and drink,Tipperary,8,no,yes,2026-09-12
+Motor,Wexford,29,no,yes,2026-07-21
+Food and drink,Wexford,20,yes,yes,2026-06-05
+Tourism and hospitality,Wexford,17,yes,no,2026-07-01
+Energy,Galway,9,no,no,2026-05-29
+Tourism and hospitality,Wexford,29,yes,no,2026-05-24
+Food and drink,Galway,20,yes,no,2026-07-03
+Tax and accounting,Donegal,7,yes,no,2026-07-27
+Energy,Galway,8,yes,no,2026-09-15
+Tax and accounting,Galway,26,no,no,2026-06-02
+Food and drink,Clare,26,yes,yes,2026-06-20
+Food and drink,Wexford,22,yes,yes,2026-09-06
+Tax and accounting,Kildare,11,yes,yes,2026-07-28
+Tax and accounting,Mayo,21,no,yes,2026-08-15
+Tax and accounting,Galway,32,no,no,2026-07-22
+Tourism and hospitality,Clare,-1,no,yes,2026-05-30
+Food and drink,Tipperary,20,no,no,2026-07-09
+Energy,Wexford,29,no,no,2026-07-28
+Tourism and hospitality,Galway,23,no,yes,2026-06-10
+Tourism and hospitality,Kildare,19,no,yes,2026-06-20
+Motor,Mayo,12,no,no,2026-08-31
+Tourism and hospitality,Wexford,28,no,yes,2026-09-03
+Food and drink,Donegal,30,no,yes,2026-07-01
+Food and drink,Kildare,8,no,no,2026-08-11
+Motor,Mayo,18,no,no,2026-09-12
+Food and drink,Mayo,19,yes,no,2026-07-23
+Tax and accounting,Kildare,24,yes,no,2026-07-03
+Motor,Kildare,25,no,no,2026-05-24
+Energy,Kildare,9,no,no,2026-09-15
+Tax and accounting,Galway,24,no,no,2026-07-16
+Food and drink,Clare,23,yes,no,2026-08-26
+Tourism and hospitality,Mayo,0,yes,no,2026-07-23
+Tax and accounting,Clare,21,no,no,2026-08-30
+Energy,Mayo,15,no,no,2026-06-30
+Tax and accounting,Galway,22,yes,yes,2026-07-14
+Tourism and hospitality,Clare,28,no,no,2026-09-14
+Food and drink,Galway,2,yes,no,2026-05-27
+Food and drink,Tipperary,27,yes,no,2026-08-16
+Tax and accounting,Galway,27,no,no,2026-07-19
+Tourism and hospitality,Donegal,6,no,yes,2026-05-31
+Food and drink,Clare,12,yes,no,2026-08-15
+Tourism and hospitality,Donegal,16,yes,yes,2026-09-12
+Energy,Kildare,16,no,yes,2026-06-27
+Tax and accounting,Donegal,24,no,yes,2026-05-30
+Tourism and hospitality,Wexford,9,yes,no,2026-07-31
+Tourism and hospitality,Galway,32,no,no,2026-06-19
+Food and drink,Wexford,26,yes,yes,2026-07-19
+Food and drink,Galway,-1,no,yes,2026-09-16
+Tax and accounting,Clare,7,no,no,2026-08-01
+Tourism and hospitality,Clare,24,yes,yes,2026-09-09
+Tax and accounting,Donegal,17,yes,yes,2026-05-25
+Tourism and hospitality,Clare,24,yes,no,2026-09-20
+Energy,Galway,11,no,yes,2026-07-04
+Energy,Galway,22,no,no,2026-06-10
+Tax and accounting,Kildare,22,yes,no,2026-07-14
+Tourism and hospitality,Mayo,7,yes,no,2026-08-02
+Tax and accounting,Clare,16,no,no,2026-07-23
+Motor,Kildare,21,no,no,2026-06-13
+Food and drink,Clare,22,yes,no,2026-08-06
+Motor,Wexford,28,yes,no,2026-08-20
+Tourism and hospitality,Donegal,7,no,yes,2026-07-13
+Tax and accounting,Galway,29,yes,yes,2026-09-19
+Tourism and hospitality,Wexford,27,no,yes,2026-06-04
+Food and drink,Galway,1,no,no,2026-08-22
+Tax and accounting,Galway,20,yes,no,2026-07-11
+Tourism and hospitality,Donegal,25,yes,yes,2026-06-28
+Tourism and hospitality,Donegal,16,no,no,2026-06-09
+Energy,Donegal,28,no,no,2026-06-01
+Energy,Galway,4,no,no,2026-08-10
+Food and drink,Galway,22,no,yes,2026-05-24
+Tourism and hospitality,Clare,20,no,no,2026-07-31
+Tax and accounting,Mayo,0,no,no,2026-08-31
+Tourism and hospitality,Tipperary,8,no,no,2026-06-04
+Tourism and hospitality,Galway,19,no,yes,2026-05-24
+Tourism and hospitality,Wexford,14,yes,yes,2026-08-20
+Food and drink,Clare,25,yes,no,2026-07-05
+Tourism and hospitality,Galway,0,yes,yes,2026-06-04
+Motor,Galway,30,yes,yes,2026-08-03
+Motor,Clare,23,no,yes,2026-06-11
+Tax and accounting,Wexford,10,yes,yes,2026-09-11
+Motor,Galway,19,no,yes,2026-08-03
+Tourism and hospitality,Kildare,16,yes,yes,2026-07-31
+Energy,Tipperary,20,yes,no,2026-09-18
+Tourism and hospitality,Kildare,27,no,yes,2026-08-16
+Energy,Donegal,5,no,no,2026-07-29
+Tax and accounting,Wexford,33,no,yes,2026-08-26
+Food and drink,Tipperary,33,yes,yes,2026-09-03
+Tax and accounting,Galway,9,yes,no,2026-06-27
+Tax and accounting,Donegal,13,yes,no,2026-07-14
+Motor,Mayo,16,no,yes,2026-06-18
+Tourism and hospitality,Tipperary,16,no,yes,2026-08-03
+Tourism and hospitality,Mayo,21,yes,no,2026-09-18
+Food and drink,Donegal,1,no,yes,2026-07-17
+Energy,Mayo,31,no,no,2026-09-02
+Food and drink,Galway,31,yes,no,2026-09-15
+Tourism and hospitality,Galway,5,yes,no,2026-07-26
+Food and drink,Mayo,10,no,yes,2026-05-28
+Energy,Kildare,28,no,yes,2026-07-13
+Tax and accounting,Kildare,25,yes,no,2026-07-06
+Tax and accounting,Donegal,23,no,yes,2026-09-07
+Tourism and hospitality,Galway,-2,no,yes,2026-07-16
+Food and drink,Wexford,35,no,no,2026-09-06
+Tourism and hospitality,Tipperary,34,no,yes,2026-07-25
+Energy,Kildare,1,no,no,2026-06-21
+Motor,Galway,11,yes,yes,2026-08-19
+Tax and accounting,Tipperary,22,no,no,2026-05-27
+Tourism and hospitality,Tipperary,24,no,no,2026-05-28
+Tax and accounting,Galway,25,no,yes,2026-08-29
+Food and drink,Galway,10,yes,no,2026-08-18
+Tax and accounting,Galway,34,yes,yes,2026-08-26
+Food and drink,Wexford,26,no,no,2026-07-12
+Tax and accounting,Galway,8,yes,yes,2026-09-08
+Tourism and hospitality,Wexford,19,yes,yes,2026-05-24
+Tax and accounting,Clare,16,no,no,2026-09-16
+Motor,Tipperary,23,yes,yes,2026-06-07
+Tax and accounting,Tipperary,28,yes,yes,2026-06-11
+Energy,Donegal,12,no,no,2026-07-03
+Tourism and hospitality,Kildare,27,no,no,2026-09-06
+Tourism and hospitality,Tipperary,26,yes,no,2026-08-24
+Tax and accounting,Donegal,1,no,no,2026-08-27
+Food and drink,Tipperary,19,no,no,2026-05-27
+Motor,Wexford,24,no,no,2026-09-06
+Tax and accounting,Tipperary,22,yes,yes,2026-08-21
+Tax and accounting,Wexford,21,yes,yes,2026-08-27
+Energy,Galway,9,yes,no,2026-09-05
+Motor,Tipperary,26,yes,no,2026-08-30
+Food and drink,Mayo,26,yes,no,2026-08-10
+Motor,Tipperary,-3,no,no,2026-06-10
+Tax and accounting,Tipperary,12,no,no,2026-09-03
+Food and drink,Mayo,26,yes,no,2026-09-11
+Food and drink,Galway,27,yes,no,2026-09-01
+Tax and accounting,Galway,25,yes,no,2026-06-23
+Motor,Clare,12,no,yes,2026-07-29
+Tourism and hospitality,Mayo,21,no,yes,2026-06-08
+Tax and accounting,Donegal,20,no,yes,2026-06-27
+Motor,Galway,9,no,yes,2026-09-05
+Tourism and hospitality,Galway,15,yes,yes,2026-07-05
+Tourism and hospitality,Tipperary,16,yes,no,2026-09-04
+Energy,Kildare,22,yes,no,2026-08-09
+Food and drink,Galway,22,yes,yes,2026-09-07
+Energy,Wexford,6,yes,yes,2026-07-29
+Tax and accounting,Donegal,22,yes,no,2026-07-21
+Tourism and hospitality,Tipperary,32,no,no,2026-07-10
+Tourism and hospitality,Tipperary,7,no,no,2026-08-29
+Tax and accounting,Wexford,17,yes,no,2026-07-26
+Energy,Mayo,26,yes,yes,2026-08-24
+Energy,Donegal,27,yes,yes,2026-07-15
+Food and drink,Galway,23,yes,no,2026-09-01
+Tourism and hospitality,Kildare,-2,yes,yes,2026-08-23
+Tourism and hospitality,Kildare,33,yes,no,2026-07-17
+Tourism and hospitality,Mayo,24,no,yes,2026-08-16
+Energy,Tipperary,0,no,no,2026-08-29
+Food and drink,Donegal,19,yes,no,2026-05-31
+Motor,Galway,26,yes,yes,2026-08-30
+Tourism and hospitality,Wexford,13,yes,no,2026-09-11
+Tourism and hospitality,Tipperary,21,yes,yes,2026-07-26
+Tax and accounting,Galway,-2,yes,yes,2026-09-19
+Tourism and hospitality,Wexford,33,no,yes,2026-05-29
+Motor,Clare,30,yes,no,2026-09-05
+Tourism and hospitality,Clare,-2,no,no,2026-06-18
+Tax and accounting,Galway,11,yes,no,2026-08-17
+Tax and accounting,Mayo,27,no,yes,2026-06-26
+Motor,Tipperary,17,no,yes,2026-07-18
+Food and drink,Galway,21,yes,no,2026-06-17
+Food and drink,Galway,1,yes,no,2026-06-03
+Motor,Mayo,32,no,yes,2026-09-13
+Tax and accounting,Tipperary,20,yes,yes,2026-07-21
+Energy,Donegal,5,no,no,2026-07-25
+Tax and accounting,Donegal,16,no,no,2026-08-26
+Tourism and hospitality,Tipperary,25,yes,no,2026-08-26
+Energy,Galway,17,no,yes,2026-07-28
+Tourism and hospitality,Galway,25,yes,yes,2026-08-21
+Motor,Tipperary,6,no,yes,2026-07-26
+Tourism and hospitality,Donegal,35,yes,no,2026-06-01
+Tax and accounting,Wexford,23,no,no,2026-08-06
+Food and drink,Clare,7,yes,no,2026-06-19
+Energy,Galway,19,yes,no,2026-07-30
+Food and drink,Galway,28,no,no,2026-07-08
+Motor,Donegal,25,no,yes,2026-05-29
+Food and drink,Galway,21,no,no,2026-06-27
+Tourism and hospitality,Kildare,5,no,yes,2026-06-18
+Tax and accounting,Tipperary,29,no,no,2026-07-09
+Tax and accounting,Donegal,23,yes,yes,2026-06-27
+Tourism and hospitality,Mayo,0,no,yes,2026-08-26
+Motor,Clare,11,yes,no,2026-08-26
+Tourism and hospitality,Donegal,19,no,yes,2026-07-12
+Motor,Mayo,20,no,yes,2026-08-07
+Tourism and hospitality,Mayo,27,yes,yes,2026-07-17
+Food and drink,Donegal,8,yes,yes,2026-07-16
+Food and drink,Clare,31,yes,yes,2026-06-05
+Tax and accounting,Tipperary,22,no,no,2026-07-01
+Motor,Clare,10,yes,no,2026-06-30
+Tourism and hospitality,Galway,18,yes,yes,2026-08-18
+Food and drink,Kildare,27,no,yes,2026-07-01
+Tax and accounting,Clare,14,yes,yes,2026-09-14
+Tourism and hospitality,Kildare,22,no,yes,2026-08-15
+Motor,Galway,0,yes,yes,2026-06-06
+Tax and accounting,Galway,25,no,yes,2026-07-19
+Food and drink,Donegal,20,no,yes,2026-08-11
+Tourism and hospitality,Wexford,8,no,no,2026-08-06

@@ -72,9 +72,8 @@ function Line({ d }: { d: FigLine }) {
             <text x={L - 6} y={y(t) + 3} textAnchor="end">{num(t, d.unit)}</text>
           </g>
         ))}
-        {d.x.map((l, i) => (
-          <text key={l} x={x(i)} y={H - 8} textAnchor="middle">{l}</text>
-        ))}
+        {/* an empty label is a tick a template chose not to print (a 26-week history shows every fifth) */}
+        {d.x.map((l, i) => (l ? <text key={i} x={x(i)} y={H - 8} textAnchor="middle">{l}</text> : null))}
         {d.series.map((s, si) => {
           const c = col(s, si);
           const p = s.values.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ");

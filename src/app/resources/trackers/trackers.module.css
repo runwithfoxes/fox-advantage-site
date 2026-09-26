@@ -1,0 +1,114 @@
+/* THE BOARD (/resources/trackers) and one tracker's page. The board is a table with a
+   sparkline in every row, because twenty measures are read as a column of numbers, not as
+   twenty cards. A tracker page belongs to one measure: the reading drawn big, its history as
+   the one figure, then the log. */
+
+/* ── Board head: two columns, the words left, the stamp right ── */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 48px; align-items: end; padding: 8px 0 26px; border-bottom: 2px solid #1A3A4E; }
+.stamp { font-family: var(--mono); font-size: 11.5px; line-height: 1.8; color: #4a4a46; text-align: right; }
+.stamp b { font-weight: 400; color: #1D1B1B; }
+.stamp i { font-style: normal; color: #3A7CA5; }
+
+/* ── The board rows. One grid, every column a fixed width but the name, so the numbers align. ── */
+.board { list-style: none; margin: 0; padding: 0; }
+.cols, .row { display: grid; grid-template-columns: 18px minmax(0, 1fr) 132px 118px 104px 74px 88px 112px; gap: 0 16px; align-items: center; }
+.cols { padding: 10px 0 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8A85; border-bottom: 1px solid #1A3A4E; }
+.row { padding: 13px 0; border-bottom: 1px solid #EDEDE9; text-decoration: none; color: inherit; transition: background .12s; }
+.row:hover { background: rgba(58,124,165,.05); }
+.rowPlan { color: #8A8A85; }
+.name { min-width: 0; }
+.nameT { display: block; font-family: var(--sans); font-weight: 500; font-size: 15.5px; line-height: 1.25; letter-spacing: -0.01em; }
+.row:hover .nameT { color: #3A7CA5; }
+.nameL { display: block; font-family: var(--mono); font-size: 11px; color: #8A8A85; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reading { font-family: var(--mono); font-size: 19px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; text-align: right; color: #1D1B1B; }
+.readingL { display: block; font-family: var(--mono); font-size: 9.5px; color: #8A8A85; letter-spacing: 0; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.delta { font-family: var(--mono); font-size: 11.5px; color: #1D1B1B; text-align: right; }
+.delta > span { white-space: normal; justify-content: flex-end; }
+.meta { font-family: var(--mono); font-size: 11px; color: #4a4a46; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.right { text-align: right; }
+.owner { font-family: var(--mono); font-size: 11px; color: #4a4a46; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.owner em { font-style: normal; color: #8A8A85; }
+.metaRow { display: none; }
+.empty { font-family: var(--mono); font-size: 12px; color: #8A8A85; padding: 28px 0; }
+.group { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; padding: 22px 0 6px; margin: 0; }
+
+/* ── Under the board: how a tracker is read, three rows, and the gate ── */
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 36px 0 8px; }
+.howN { font-family: var(--mono); font-size: 11px; color: #3A7CA5; margin-bottom: 8px; display: block; }
+.howT { font-family: var(--sans); font-weight: 500; font-size: 16px; margin: 0 0 6px; }
+.howP { font-family: var(--serif); font-size: 15px; line-height: 1.55; margin: 0; color: #4a4a46; }
+
+/* ── One tracker ── */
+.mast { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 56px; align-items: start; padding: 8px 0 32px; border-bottom: 2px solid #1A3A4E; }
+.eyebrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #3A7CA5; }
+.eyebrow em { font-style: normal; color: #8A8A85; border: 1px solid #E0E0DC; padding: 3px 8px; letter-spacing: .08em; }
+.byline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 11.5px; color: #6b6b66; margin-top: 18px; clear: right; }
+.mark { width: 24px; height: 24px; border-radius: 50%; background: #1A3A4E; color: #fff; font-style: normal; font-family: var(--mono); font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.dotSep { color: #C9C9C3; }
+
+/* The reading: the number this page is for, at a size nothing else on the page reaches. */
+.read { border-left: 2px solid #3A7CA5; padding: 4px 0 4px 22px; margin-top: 8px; }
+.readV { font-family: var(--mono); font-size: 72px; line-height: 1; letter-spacing: -0.03em; color: #3A7CA5; font-variant-numeric: tabular-nums; display: block; }
+.readL { font-family: var(--mono); font-size: 12px; line-height: 1.5; color: #1D1B1B; margin: 10px 0 0; display: block; max-width: 300px; }
+.readD { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11.5px; color: #4a4a46; margin-top: 14px; }
+.readD b { font-weight: 400; color: #1D1B1B; }
+.readNo { font-family: var(--mono); font-size: 12px; color: #8A8A85; margin-top: 8px; }
+
+.body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; padding: 36px 0 24px; }
+.main { min-width: 0; }
+.side { font-family: var(--mono); font-size: 12px; }
+.sideBlock { border-top: 1px solid #1A3A4E; padding: 14px 0 22px; }
+.sideBlock p { margin: 0 0 6px; line-height: 1.65; color: #4a4a46; }
+.sideBlock a { color: #3A7CA5; text-decoration: none; display: block; padding: 6px 0; border-bottom: 1px solid #EDEDE9; }
+.sideBlock a:hover { color: #1A3A4E; }
+.sideBlock a span { color: #8A8A85; float: right; font-variant-numeric: tabular-nums; }
+.desk { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: center; }
+.desk b { font-weight: 400; display: block; color: #1D1B1B; }
+.desk span { color: #8A8A85; font-size: 11px; }
+
+/* globals.css pads every section 120px for the marketing pages; these are reading sections */
+.sec { margin-top: 34px; padding: 0; scroll-margin-top: 24px; }
+.secFirst { margin-top: 0; }
+
+/* The log: a table of reads, the newest first, the change and a note the page works out. */
+.log { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
+.log th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8A85; padding: 0 12px 8px 0; border-bottom: 1px solid #1A3A4E; }
+.log td { padding: 9px 12px 9px 0; border-bottom: 1px solid #EDEDE9; vertical-align: top; font-variant-numeric: tabular-nums; }
+.log td:nth-child(2), .log th:nth-child(2), .log td:nth-child(3), .log th:nth-child(3) { text-align: right; white-space: nowrap; }
+.log td:last-child { color: #4a4a46; }
+.logNow td { color: #1A3A4E; }
+.logNow td:nth-child(2) { color: #3A7CA5; }
+
+/* What moved: the biggest moves of the run, one line each, in order of size. */
+.moves { list-style: none; margin: 0; padding: 0; }
+.moves li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-bottom: 1px solid #EDEDE9; font-family: var(--serif); font-size: 15.5px; line-height: 1.5; }
+.moves li span:first-child { font-family: var(--mono); font-size: 11.5px; color: #8A8A85; padding-top: 3px; }
+.moves b { font-weight: 400; color: #3A7CA5; }
+
+.dl { margin-top: 18px; }
+
+@media (max-width: 1100px) {
+  .cols, .row { grid-template-columns: 18px minmax(0, 1fr) 120px 110px 96px 84px; }
+  .hideMid { display: none; }
+  .mast, .body { grid-template-columns: 1fr; gap: 28px; }
+  .head { grid-template-columns: 1fr; gap: 16px; }
+  .stamp { text-align: left; }
+}
+@media (max-width: 700px) {
+  .cols { display: none; }
+  .row { grid-template-columns: 18px minmax(0, 1fr) minmax(0, 42%); grid-template-areas: "dot name reading" ". spark delta" ". meta meta"; gap: 6px 12px; padding: 14px 0; }
+  .readingL { white-space: normal; }
+  .reading { align-self: start; }
+  .rowDot { grid-area: dot; }
+  .name { grid-area: name; }
+  .spark { grid-area: spark; }
+  .reading { grid-area: reading; }
+  .delta { grid-area: delta; }
+  .metaRow { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px 14px; font-family: var(--mono); font-size: 10.5px; color: #8A8A85; }
+  .hideMid, .hideSmall { display: none; }
+  .nameL { white-space: normal; }
+  .how { grid-template-columns: 1fr; gap: 20px; }
+  .readV { font-size: 54px; }
+  .log th:last-child, .log td:last-child { display: none; }
+  .moves li { grid-template-columns: 1fr; gap: 2px; }
+}

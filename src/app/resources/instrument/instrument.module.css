@@ -1,0 +1,84 @@
+/* THE INSTRUMENT SHELL, 26 Sep 2026. The trackers and the datasets are readings, not reading
+   matter, so their pages open on a deep band (the site's own #1A3A4E, never a photo) that
+   carries the four-door nav and the tape: every tracker's latest reading going past. The DI
+   Board (7 Sep) is the reference: a reading carries when it was read, and the board is on
+   every page. Below the band the page is the site's cream, and everything is measured against
+   the brand spec: mono for the machine, Space Grotesk 500 for heads, Source Serif to read. */
+
+.page { background: #FAFAF8; color: #1D1B1B; min-height: 100vh; }
+.band { background: #1A3A4E; position: relative; z-index: 5; }
+
+/* The tape: one strip, its content twice so the loop has no seam. 90s a pass, slower than the
+   hub card, and it stops under the pointer so a reading can be caught and clicked. */
+.tape { border-top: 1px solid rgba(255,255,255,.12); overflow: hidden; position: relative; }
+.tape::before, .tape::after { content: ""; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2; pointer-events: none; }
+.tape::before { left: 0; background: linear-gradient(90deg, #1A3A4E, rgba(26,58,78,0)); }
+.tape::after { right: 0; background: linear-gradient(270deg, #1A3A4E, rgba(26,58,78,0)); }
+.tapeInner { display: inline-flex; white-space: nowrap; animation: tape 90s linear infinite; will-change: transform; }
+.tape:hover .tapeInner { animation-play-state: paused; }
+.tapeHalf { display: inline-flex; }
+@keyframes tape { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .tapeInner { animation: none; } .tape { overflow-x: auto; } }
+.cell { display: inline-flex; align-items: baseline; gap: 8px; padding: 9px 22px 9px 0; margin-right: 22px; border-right: 1px solid rgba(255,255,255,.14); font-family: var(--mono); font-size: 11.5px; color: rgba(255,255,255,.72); text-decoration: none; }
+.cell:hover { color: #fff; }
+.cell b { font-weight: 400; color: #fff; font-variant-numeric: tabular-nums; }
+.cell i { font-style: normal; color: #A9CBE4; }
+.cell em { font-style: normal; color: rgba(255,255,255,.5); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+.tapeHalf > .cell:first-child { padding-left: 48px; }
+
+/* One line under the band, not fixed, so it never covers a phone screen (Paul, 26 Sep). */
+.mock { max-width: 1240px; margin: 0 auto; padding: 10px 48px 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; color: #F47521; }
+
+/* ── Page furniture every instrument page shares ── */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+.crumb { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; padding: 26px 0 0; }
+.crumb a { color: #3A7CA5; text-decoration: none; }
+.crumb a:hover { color: #1A3A4E; }
+.crumb span { color: #8A8A85; }
+.h1 { font-family: var(--sans); font-weight: 500; font-size: clamp(30px, 3.6vw, 50px); line-height: 1.06; letter-spacing: -0.025em; margin: 14px 0 16px; text-wrap: pretty; }
+.stand { font-family: var(--serif); font-size: 20px; line-height: 1.5; margin: 0; max-width: 720px; }
+.p { font-family: var(--serif); font-size: 17px; line-height: 1.65; margin: 0 0 16px; max-width: 720px; }
+.lab { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; margin: 0 0 12px; }
+.h2 { font-family: var(--sans); font-weight: 500; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: pretty; }
+.small { font-family: var(--mono); font-size: 12px; line-height: 1.7; color: #4a4a46; margin: 0; }
+.rule { border: 0; border-top: 2px solid #1A3A4E; margin: 28px 0 0; }
+.hair { border: 0; border-top: 1px solid #E0E0DC; margin: 0; }
+.link { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; }
+.link:hover { color: #1A3A4E; }
+
+/* The fox: the module-page treatment, one per page, floated at the top (brand spec, 21 Aug). */
+.fox { float: right; width: 168px; margin: -10px -40px 12px 24px; shape-outside: margin-box; }
+.fox img { width: 100%; height: auto; filter: drop-shadow(0 6px 12px rgba(0,0,0,.12)); }
+
+/* Status: the one dot. Live pulses slowly, testing is hollow, planned is a dash. */
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #3A7CA5; box-shadow: 0 0 0 0 rgba(58,124,165,.4); animation: pulse 3s ease-out infinite; flex: none; }
+.dotTest { background: #fff; border: 1.5px solid #3A7CA5; animation: none; box-shadow: none; }
+.dotPlan { background: none; border: 0; width: 8px; height: 2px; border-radius: 0; background: #C9C9C3; animation: none; box-shadow: none; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(58,124,165,.45); } 70% { box-shadow: 0 0 0 7px rgba(58,124,165,0); } 100% { box-shadow: 0 0 0 0 rgba(58,124,165,0); } }
+@media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+/* Direction: a small chevron, ink, never a colour that says good or bad (a measure is neither). */
+.dir { display: inline-flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dir svg { flex: none; }
+
+/* Chips and the sector picker, shared by both boards. */
+.filters { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 18px 0 14px; }
+.chip { font-family: var(--mono); font-size: 11.5px; padding: 6px 11px; border: 1px solid #E0E0DC; background: #fff; color: #1D1B1B; cursor: pointer; }
+.chip:hover { border-color: #3A7CA5; }
+.chipOn { background: #1A3A4E; border-color: #1A3A4E; color: #fff; }
+.pick { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11.5px; color: #8A8A85; }
+.pick select { font-family: var(--mono); font-size: 11.5px; padding: 6px 30px 6px 10px; border: 1px solid #1A3A4E; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231A3A4E' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 10px center; color: #1D1B1B; appearance: none; -webkit-appearance: none; }
+.count { font-family: var(--mono); font-size: 11px; color: #8A8A85; }
+
+@media (max-width: 900px) {
+  .wrap, .mock { padding-left: 24px; padding-right: 24px; }
+  .fox { width: 130px; margin-right: -12px; }
+}
+@media (max-width: 700px) {
+  .wrap, .mock { padding-left: 16px; padding-right: 16px; }
+  .tapeHalf > .cell:first-child { padding-left: 16px; }
+  .fox { width: 104px; margin: -6px -4px 8px 14px; }
+  .stand { font-size: 18px; }
+  .pick { margin-left: 0; width: 100%; }
+  .pick select { flex: 1; }
+}
