@@ -110,6 +110,7 @@ export default function EverythingClient({
   hidden,
   shelfCount,
   embed = false,
+  locked = false,
 }: {
   sections: Section[];
   modules: ModuleRow[];
@@ -117,6 +118,9 @@ export default function EverythingClient({
   shelfCount: number;
   /** 26 Sep 2026: true renders only the search, filter and boxes, for /resources/library. */
   embed?: boolean;
+  /** 26 Sep 2026, Paul: "Library requires email too." true keeps the prompt words out of the
+      HTML and turns copy into the lock line; names, lessons and links stay on the page. */
+  locked?: boolean;
 }) {
   const [q, setQ] = useState("");
   const [mod, setMod] = useState<number | null>(null);
@@ -382,16 +386,20 @@ export default function EverythingClient({
                                 <span className={s.rwname}>{f.name}</span>
                               </button>
                               <span className={s.rwmeta}>{f.meta}</span>
-                              <button
-                                type="button"
-                                className={s.rwcopy}
-                                onClick={() => {
-                                  track(f.name, "copied prompt", r.modN);
-                                  copy(f.body as string, "Prompt copied");
-                                }}
-                              >
-                                copy
-                              </button>
+                              {locked ? (
+                                <span className={s.rwcopy} aria-label="Opens with a free account">free account</span>
+                              ) : (
+                                <button
+                                  type="button"
+                                  className={s.rwcopy}
+                                  onClick={() => {
+                                    track(f.name, "copied prompt", r.modN);
+                                    copy(f.body as string, "Prompt copied");
+                                  }}
+                                >
+                                  copy
+                                </button>
+                              )}
                             </div>
                           ),
                         )}
@@ -399,17 +407,19 @@ export default function EverythingClient({
                         {/* The prompt itself, opened from its own file row. Same rule as
                             above: in the DOM always, so it is copyable by a machine that
                             never clicks. */}
-                        {r.files
-                          .filter((f) => f.kind === "prompt")
-                          .map((f, j) => (
-                            <div
-                              key={j}
-                              className={s.promptwrap}
-                              hidden={!open.has(`${r.key}-p`)}
-                            >
-                              <pre className={s.prompt}>{f.body}</pre>
-                            </div>
-                          ))}
+                        {locked
+                          ? null
+                          : r.files
+                              .filter((f) => f.kind === "prompt")
+                              .map((f, j) => (
+                                <div
+                                  key={j}
+                                  className={s.promptwrap}
+                                  hidden={!open.has(`${r.key}-p`)}
+                                >
+                                  <pre className={s.prompt}>{f.body}</pre>
+                                </div>
+                              ))}
                       </div>
                     </div>
                   ) : (

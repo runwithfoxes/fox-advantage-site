@@ -17,7 +17,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "The Library | Run with Foxes",
-  description: "Every prompt, link and file from the free AI course for marketers, in one place. Search it, copy what you need, take it with you.",
+  description: "Every prompt, link and file from the free AI course for marketers, in one place. Free with an account, the same one as the course.",
   robots: { index: false, follow: false },
 };
 
@@ -87,7 +87,7 @@ export default function LibraryPage() {
             Every prompt, link and file from the course, <em>in one place</em>
           </>
         }
-        standfirst="It is here so you can find the thing you half-remember without going back through a lesson to look for it. Search it, copy what you need, take it with you. The lessons stay in the course; this is what they hand you."
+        standfirst="It is here so you can find the thing you half-remember without going back through a lesson to look for it. Search it, open what you need, take it with you. The lessons stay in the course; this is what they hand you. It opens with a free account, the same one as the course."
         fox="chapter-fox-sitting-nobg.png"
         below={
           <div className={L.shelfWrap}>
@@ -127,10 +127,10 @@ export default function LibraryPage() {
           <div className={L.secHead}>
             <h2 className={L.h2}>Start here: the prompts</h2>
             <p className={L.secLine}>
-              The exact words to paste, lifted out of the lessons. Open one to read it, copy it, and the lesson it came from is one click away.
+              The exact words to paste, lifted out of the lessons. With a free account each one opens here, you copy it, and the lesson it came from is one click away.
             </p>
           </div>
-          <PromptRows rows={prompts} />
+          <PromptRows rows={prompts} locked />
         </section>
 
         {/* ── The browser: the whole library as folders and files ── */}
@@ -141,7 +141,7 @@ export default function LibraryPage() {
               A lesson is a folder and what it hands you is inside it. Paul&rsquo;s own lists, the people, companies, articles and tools he keeps going back to, sit beside them as their own folders. Search covers the words in the lessons too, so the one about the spreadsheet is findable by &ldquo;spreadsheet&rdquo;.
             </p>
           </div>
-          <EverythingClient embed sections={lib.sections} modules={lib.modules} hidden={lib.hidden} shelfCount={lib.shelfCount} />
+          <EverythingClient embed locked sections={lib.sections} modules={lib.modules} hidden={lib.hidden} shelfCount={lib.shelfCount} />
         </section>
 
         {/* ── Where it comes from: six doors ── */}
@@ -172,7 +172,7 @@ export default function LibraryPage() {
             <DownloadText href="/resources/library/all-prompts.txt" label="Download every prompt" meta={`${prompts.length} prompts, one text file`} />
             <span className={L.dlNote}>Built from the library itself when you ask for it, so it is never out of date.</span>
           </div>
-          <Gate adds={["Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />
+          <Gate adds={["Every prompt, opened and copied here", "Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />
         </section>
       </main>
 
