@@ -13,6 +13,7 @@ import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
 import DataBand from "./DataBand";
 import SectorPicker from "./SectorPicker";
+import CentreBands from "../resources/CentreBands";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
@@ -232,11 +233,11 @@ export default function HomeNext() {
           <AgentsSection />
         </div>
 
-        {/* Everything below here moved to /home-next/more (Paul, 25 Sep). */}
-        <div className={n.moreLink}>
-          <Link href="/home-next/more">Trackers, studies, tools and the ten agents &rarr;</Link>
-        </div>
       </main>
+
+      {/* The resource centre, whole, under everything Paul settled on 25 Sep. Paul, 25 Sep: "the
+          Resource hub becomes the homepage." One component shared with /resources, never a copy. */}
+      <CentreBands />
 
       <SiteFooter current="/" wide />
       <div className={f.banner}>
