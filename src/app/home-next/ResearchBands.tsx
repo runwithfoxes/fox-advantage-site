@@ -7,6 +7,10 @@ import {
   type Author,
 } from "../resources/catalogue";
 import { Chart, FigureWindow, DownloadPdf, Example } from "../resources/kit";
+import { MODULES } from "../course/courseModules";
+import { librarySummary } from "../resources/library/summary";
+import PromptRows from "../resources/library/PromptRows";
+import L from "../resources/library/library.module.css";
 import s from "../resources/hub.module.css";
 import f from "../resources/front.module.css";
 import n from "./next.module.css";
@@ -25,6 +29,12 @@ import n from "./next.module.css";
  * findings as numerals, the PDF. His Anthropic Economic Index reference.
  * Band 2, reports and papers: the twelve series as covers, the newest big, then every report
  * dated as a reading list inside a window, with search and every PDF.
+ * Band 3, the course and the library, together and big. Paul, 26 Sep, on bands 1 and 2: "the
+ * training course should be more prominent. And where would people find the library, for
+ * example? I think they're all important parts." The course is his 25 Sep your_course window
+ * (six modules, module 1 open, the sign-up); the library is its shelf on a deep band, counted
+ * live off the course's own sources, with the first prompts to copy right here and the door
+ * to the whole library.
  */
 
 const AUTHOR_MARK = (a: Author) => (a.kind === "person" ? a.name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase() : a.name[0]);
@@ -57,6 +67,9 @@ export default function ResearchBands() {
     date: r.date, day: day(r.date), type: "Report", title: r.title, href: reportHref(r),
     author: r.author.name, sector: r.sectors[0] ?? AREA_LABEL[r.area], example: r.example,
   })).sort((a, b) => b.date.localeCompare(a.date));
+
+  const lib = librarySummary();
+  const nextModule = MODULES.find((m) => !m.built);
 
   return (
     <>
@@ -149,6 +162,78 @@ export default function ResearchBands() {
             <Publications rows={pubs} />
           </div>
         </article>
+      </section>
+
+      {/* ── Band 3: the course and the library ── */}
+      <section className={f.shelf} id="learn">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>The course, and the library</h2>
+          <span className={f.meta}>
+            AI Fluency for Ambitious Marketers, six free modules, one a fortnight. Every prompt and link from it lives in the library, free to take.
+          </span>
+        </div>
+        <div className={n.learnGrid}>
+          {/* The course: the module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">your_course</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>The course, free · {MODULES.filter((m) => m.built).length} of {MODULES.length} modules open</span>
+              <ol className={n.accMods}>
+                {MODULES.map((m) => (
+                  <li key={m.n} className={m.built ? n.accModOn : ""}>
+                    <span>{m.n}</span>
+                    {m.title.replace(/^\(\d\)\s*/, "")}
+                    <em>{m.built ? <Link href={`/course/${m.n}`}>Open</Link> : m.when}</em>
+                  </li>
+                ))}
+              </ol>
+              <form className={`${n.joinRow} ${n.learnJoin}`}>
+                <input type="email" placeholder="you@company.ie" aria-label="Work email" />
+                <button type="button">Start module 1, free</button>
+              </form>
+              <span className={n.accFine}>
+                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here. <Link href="/course">About the course →</Link>
+              </span>
+            </div>
+          </article>
+
+          {/* The library: the shelf on a deep band, counted live, then the prompts to copy. */}
+          <div className={n.libCol}>
+            <div className={n.libBand}>
+              <div className={n.libHead}>
+                <span className={n.libLab}>The library</span>
+                <span className={n.libSub}>{lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
+              </div>
+              <div className={L.shelf} role="img" aria-label={`Things in the library by module: ${lib.perModule.map((m) => `module ${m.n} ${m.things}`).join(", ")}`}>
+                {lib.perModule.map((m) => (
+                  <div key={m.n} className={`${L.spine} ${m.has ? L.spineOn : ""}`}>
+                    <span className={L.spineN}>{m.things}</span>
+                    <span className={L.spineBar} style={{ height: `${14 + Math.round((m.things / lib.maxThings) * 64)}px` }} />
+                    <span className={L.spineMod}>{String(m.n).padStart(2, "0")}</span>
+                  </div>
+                ))}
+              </div>
+              <ul className={n.libLedger}>
+                {lib.ledger.slice(0, 6).map((x) => (
+                  <li key={x.l}><b>{x.n}</b> {x.l}</li>
+                ))}
+              </ul>
+              <Link href="/resources/library" className={n.libGo}>Everything in the library →</Link>
+            </div>
+            <article className={`mod-win ${n.dWin}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights"><i /><i /><i /></span>
+                <span className="mod-wintitle">library · start here · {lib.prompts.length} prompts</span>
+              </div>
+              <div className={n.libPrompts}>
+                <PromptRows rows={lib.prompts.slice(0, 4)} />
+              </div>
+            </article>
+          </div>
+        </div>
       </section>
     </>
   );
