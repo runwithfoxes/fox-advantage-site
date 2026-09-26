@@ -1,0 +1,64 @@
+/* /resources/tools (26 Sep 2026). The index is a table, the one drawn thing is the window in
+   the band. Palette: sky #3A7CA5 for the clickable and the live chip, deep for the window's
+   run button, muted for coming. */
+
+.wrap { padding-top: 0 !important; }
+
+.counts { list-style: none; margin: 28px 0 0; padding: 0; display: flex; gap: 32px; clear: right; }
+.counts li { display: grid; gap: 4px; }
+.counts b { font-family: var(--mono); font-weight: 400; font-size: 26px; line-height: 1; color: #fff; }
+.counts span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A9CBE4; }
+
+/* the window: a real tool drawn as a screen */
+.win { margin: 6px 0 0 !important; }
+.winBody { padding: 16px 20px 18px; display: grid; gap: 8px; background: #fff; }
+.winLab { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #3A7CA5; margin-bottom: 6px; }
+.winStep { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A85; margin-top: 6px; }
+.winInput { display: flex; align-items: stretch; border: 1px solid #E0E0DC; background: #FAFAF8; }
+.winInput span { flex: 1; min-width: 0; padding: 10px 12px; font-family: var(--mono); font-size: 12.5px; color: #8A8A85; }
+.winInput b { font-family: var(--mono); font-weight: 400; font-size: 12px; padding: 0 14px; display: flex; align-items: center; background: #1A3A4E; color: #fff; }
+.winFree { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; margin: 0; color: #1D1B1B; padding: 10px 12px; border-left: 2px solid #6CAAC8; }
+.winFull { font-family: var(--mono); font-size: 12px; line-height: 1.55; margin: 0; color: #1D1B1B; display: flex; gap: 8px; align-items: baseline; }
+.winFull svg { color: #3A7CA5; flex: none; position: relative; top: 1px; }
+.winTime { font-family: var(--mono); font-size: 10.5px; color: #8A8A85; border-top: 1px solid #EDEDE9; padding-top: 10px; margin-top: 4px; }
+
+.sec { padding: 56px 0 8px; }
+.sec + .sec { margin-top: 24px; }
+.secHead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+.h2 { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin: 0; }
+.secSub { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+
+/* the table */
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0 16px 10px 0; border-bottom: 1px solid #1A3A4E; }
+.table td { vertical-align: top; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--border); font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.5; color: var(--text); }
+.table td:first-child { width: 30%; }
+.table td svg { color: #3A7CA5; position: relative; top: 1px; margin-right: 4px; }
+.name { font-family: var(--sans); font-weight: 500; font-size: 17px; color: var(--text); text-decoration: none; }
+a.name:hover { color: #3A7CA5; }
+.line { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: #6b6b66; margin-top: 4px; }
+.area { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
+.num { font-family: var(--mono) !important; font-size: 12px !important; white-space: nowrap; }
+.chip { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border: 1px solid currentColor; white-space: nowrap; }
+.live { color: #fff; background: #3A7CA5; border-color: #3A7CA5; }
+.beta { color: #1A3A4E; }
+.coming { color: var(--text-muted); }
+.rowSoon td { color: #6b6b66; }
+.rowSoon .name { color: #6b6b66; }
+
+@media (max-width: 900px) {
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; width: auto; }
+  .table tr { border-bottom: 1px solid #1A3A4E; padding: 14px 0 6px; }
+  .table td { border-bottom: 0; padding: 6px 0 10px; }
+  .table td:first-child { width: auto; padding-bottom: 14px; }
+  .table td::before { content: attr(data-l); display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .table td:first-child::before { display: none; }
+}
+@media (max-width: 700px) {
+  .sec { padding-top: 40px; }
+  .h2 { font-size: 24px; }
+  .secHead { flex-direction: column; gap: 6px; }
+  .counts { gap: 20px; }
+  .counts b { font-size: 22px; }
+}

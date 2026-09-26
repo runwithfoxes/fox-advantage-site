@@ -1,0 +1,67 @@
+/* /resources/playbooks (26 Sep 2026). Sheets on hairlines, a numbered procedure line for the
+   steps, files with a lock. Sky for the clickable and the step numbers, deep for the rules. */
+
+.wrap { padding-top: 0 !important; }
+
+/* the kinds ledger in the band */
+.kinds { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.22); }
+.kinds a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); text-decoration: none; color: #fff; }
+.kinds a:hover .kindName { color: #A9CBE4; }
+.kindName { font-family: var(--sans); font-weight: 500; font-size: 16px; }
+.kindTrack { display: block; height: 1px; background: rgba(255, 255, 255, 0.18); }
+.kindN { font-family: var(--mono); font-weight: 400; font-size: 16px; color: #A9CBE4; font-variant-numeric: tabular-nums; }
+.kindsFoot { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #A9CBE4; padding-top: 12px; }
+
+/* each kind */
+.kind { padding: 56px 0 8px; }
+.kind + .kind { border-top: 1px solid var(--border); margin-top: 40px; }
+.kindHead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 16px 64px; align-items: start; margin-bottom: 8px; }
+.h2 { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; margin: 0; }
+.kindLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; margin: 0; color: var(--text); }
+
+/* the sheets */
+.sheets { list-style: none; margin: 0; padding: 0; border-top: 1px solid #1A3A4E; }
+.sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) 240px; gap: 18px 48px; padding: 26px 0 28px; border-bottom: 1px solid var(--border); }
+.sheetName { min-width: 0; }
+.h3 { font-family: var(--sans); font-weight: 500; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em; margin: 0 0 8px; }
+.sheetLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15.5px; line-height: 1.55; margin: 0 0 10px; color: var(--text); }
+.sheetMeta { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+
+/* the procedure line: numbers on one track, the step under each */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 14px; position: relative; }
+.steps::before { content: ""; position: absolute; left: 0; right: 0; top: 10px; height: 1px; background: var(--border); }
+.steps li { display: grid; gap: 10px; align-content: start; min-width: 0; position: relative; }
+.stepN { font-family: var(--mono); font-size: 11px; color: #3A7CA5; background: var(--bg); padding-right: 8px; width: max-content; position: relative; line-height: 20px; }
+.stepN::before { content: ""; position: absolute; left: 0; bottom: -1px; width: 22px; height: 2px; background: #3A7CA5; }
+.stepT { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.45; color: var(--text); }
+.sheetActions { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; align-items: baseline; }
+.copy { all: unset; cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #3A7CA5; border-bottom: 1px solid transparent; }
+.copy:hover { border-bottom-color: #3A7CA5; }
+.sheetLink { font-family: var(--mono); font-size: 11px; color: #3A7CA5; text-decoration: none; }
+.sheetLink:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* the files */
+.files { list-style: none; margin: 0; padding: 0; }
+.files li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #EDEDE9; font-family: var(--mono); font-size: 12px; }
+.files li:first-child { border-top: 1px solid #EDEDE9; }
+.files svg { color: #3A7CA5; position: relative; top: 1px; }
+.fileName { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fileFmt { color: var(--text-muted); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+@media (max-width: 960px) {
+  .kindHead { grid-template-columns: 1fr; gap: 8px; }
+  .sheet { grid-template-columns: minmax(0, 1fr) 220px; }
+  .sheetSteps { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .kind { padding-top: 40px; }
+  .kind + .kind { margin-top: 28px; }
+  .h2 { font-size: 24px; }
+  .sheet { grid-template-columns: 1fr; gap: 14px; padding: 20px 0 22px; }
+  .steps { grid-auto-flow: row; grid-auto-columns: auto; gap: 10px; }
+  .steps::before { left: 10px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+  .steps li { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+  .stepN { padding: 0 6px 0 0; }
+  .stepN::before { width: 14px; }
+  .files { max-width: 100%; }
+}

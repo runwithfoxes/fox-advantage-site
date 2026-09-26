@@ -460,6 +460,22 @@
   .rwdesc {
     display: none;
   }
+  /* 26 Sep 2026: on a phone the name kept the 55% cap while the source ran at full width, so
+     "How I Plan, Build, and Run Loops" read as "H…" beside a byline. The name takes the row;
+     the source is the column that shortens. */
+  .rw {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto;
+  }
+  .rwname {
+    max-width: none;
+    flex: 1 1 auto;
+  }
+  .rwmeta {
+    justify-self: end;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .child {
     padding-left: 28px;
   }
@@ -477,3 +493,7 @@
     margin-top: 2px;
   }
 }
+
+/* The library browser on its own, under /resources/library's head (26 Sep 2026). The page
+   around it sets the measure; this only nulls the top margin the module shell gave .tools. */
+.embed .tools { margin-top: 0; }
