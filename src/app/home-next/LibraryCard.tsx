@@ -59,8 +59,8 @@ export default function LibraryCard({ lines, join = true, still = false, count }
       })}
     >
       <div className={s.head}>
-        <span className={s.headLab}>Library</span>
-        <span className={s.headSub}>Research and papers</span>
+        <span className={s.headLab}>Research</span>
+        <span className={s.headSub}>Reports and papers</span>
         <span className={s.headCount}>{count ?? lines.length} pieces</span>
       </div>
       <div className={s.scroll}>

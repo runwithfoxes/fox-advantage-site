@@ -51,8 +51,8 @@ export default function HubHero({ lines }: { lines: Line[] }) {
             scroll: 160s for one pass, paused on hover. Links not ready yet go to "#". */}
         <div className={s.panel}>
           <div className={s.head}>
-            <span className={s.headLab}>Library</span>
-            <span className={s.headSub}>Research and papers</span>
+            <span className={s.headLab}>Research</span>
+            <span className={s.headSub}>Reports and papers</span>
             <span className={s.headCount}>{lines.length} pieces</span>
           </div>
           <div className={s.scroll}>
