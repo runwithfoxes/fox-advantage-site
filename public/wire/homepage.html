@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Homepage wireframe, in colour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAFAF8;--ink:#1D1B1B;--muted:#8A8A85;--border:#E0E0DC;--sky:#3A7CA5;--skyl:#6CAAC8;--deep:#1A3A4E;--cream:#F7EAD9;--orange:#F47521;--pale:#E8EFF4;--paler:#F1F5F8}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:15px;line-height:1.5}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .head{max-width:1360px;margin:0 auto;padding:28px 24px 8px}
+  .head h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;font-size:30px;margin:0 0 6px}
+  .head p{margin:0;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:12px}
+  .key{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 0;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted)}
+  .key i{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:6px;border-radius:2px}
+  .cols{display:grid;grid-template-columns:900px 340px;gap:40px;max-width:1360px;margin:0 auto;padding:16px 24px 80px;align-items:start}
+  @media (max-width:1320px){.cols{grid-template-columns:1fr;max-width:940px}}
+  .col h2{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .frame{border:1px solid var(--border);background:#fff;border-radius:10px;overflow:hidden}
+  .band{position:relative;border-bottom:1px solid var(--border);padding:14px 18px 16px}
+  .band:last-child{border-bottom:0}
+  .band.new{background:#FFF8F2}
+  .band.keep{background:#fff}
+  .band.ask{background:#F6F9FB}
+  .tag{position:absolute;top:8px;right:10px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px}
+  .tag.k{color:var(--sky);border:1px solid var(--skyl)}
+  .tag.n{color:var(--orange);border:1px dashed var(--orange)}
+  .tag.q{color:var(--deep);border:1px solid var(--deep)}
+  .lab{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);margin:0 0 4px}
+  .lab b{color:var(--ink);font-weight:500}
+  .h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;font-size:20px;margin:0 0 4px}
+  .note{font-size:13px;color:#55534f;margin:0 0 10px}
+  .phone .h{font-size:15px}.phone .note{font-size:11.5px}.phone .band{padding:10px 12px 12px}
+  /* sketches */
+  .sk{display:grid;gap:6px}
+  .bx{background:var(--pale);border:1px solid #D6E2EA;border-radius:8px;min-height:22px;position:relative}
+  .bx.win{background:#fff;border:1px solid var(--border);box-shadow:0 1px 0 var(--border)}
+  .bx.win:before{content:"";position:absolute;left:8px;top:6px;width:6px;height:6px;border-radius:50%;background:#FF5F57;box-shadow:10px 0 0 #FEBC2E,20px 0 0 #28C840}
+  .bx.deep{background:var(--deep);border-color:var(--deep)}
+  .bx.sky{background:var(--sky);border-color:var(--sky)}
+  .bx.skyl{background:var(--skyl);border-color:var(--skyl)}
+  .bx.cream{background:var(--cream);border-color:#EAD8C2}
+  .bx.ink{background:#3b3936;border-color:#3b3936}
+  .bx.flat{border-radius:2px}
+  .bx .t{position:absolute;left:8px;bottom:6px;font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;max-width:92%}
+  .bx.deep .t,.bx.sky .t,.bx.ink .t{color:#fff;opacity:.85}
+  .bx.win .t{bottom:auto;top:20px;left:8px}
+  .row{display:grid;gap:6px}
+  .lines{display:grid;gap:4px}
+  .ln{height:7px;border-radius:3px;background:#DFE4E7}
+  .ln.d{background:#B9C4CC}
+  .ln.s{background:var(--skyl)}
+  .bars{display:flex;align-items:flex-end;gap:2px;height:100%;padding:8px 8px 18px}
+  .bars i{flex:1;background:var(--sky);border-radius:1px}
+  .bars i:nth-child(odd){background:var(--deep)}
+  .bars i:nth-child(3n){background:var(--skyl)}
+  .fox{position:absolute;right:6px;top:6px;width:22px;height:22px;border-radius:50%;background:var(--orange);opacity:.85}
+  .fox:after{content:"";position:absolute;left:5px;top:7px;width:12px;height:8px;background:#fff;border-radius:6px 6px 2px 2px;opacity:.9}
+  .spark{position:absolute;left:8px;right:8px;top:50%;height:1px;background:var(--skyl)}
+  .spark:after{content:"";position:absolute;left:0;right:0;top:-6px;height:12px;border-bottom:1.5px solid var(--sky);border-radius:0 0 40% 20%}
+  .num{font-family:"JetBrains Mono",monospace;font-size:18px;color:var(--sky);position:absolute;left:8px;top:6px}
+  .phone .num{font-size:13px}
+  .q{font-size:13px;color:var(--deep);background:#fff;border-left:3px solid var(--sky);padding:6px 10px;margin:8px 0 0}
+  .phone .q{font-size:11px}
+  .legend{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="head">
+  <h1>The homepage, as one research page. A wireframe in colour.</h1>
+  <p>26 Sep 2026 · every count is the real one from the catalogue · point at what moves or goes</p>
+  <div class="key">
+    <span><i style="background:#fff;border:1px solid var(--skyl)"></i>KEEP, as you left it last night</span>
+    <span><i style="background:#FFF8F2;border:1px dashed var(--orange)"></i>NEW, from today's build, drawn in last night's look</span>
+    <span><i style="background:#F6F9FB;border:1px solid var(--deep)"></i>A QUESTION for you</span>
+    <span><i style="background:#fff;border:1px solid var(--border);box-shadow:inset 8px 0 0 -5px #FF5F57"></i>window chrome (rounded, three dots)</span>
+    <span><i style="background:var(--deep)"></i>deep band</span>
+    <span><i style="background:var(--orange)"></i>the fox</span>
+  </div>
+</div>
+
+<div class="cols">
+  <div class="col">
+    <h2>Laptop, 1440 wide (drawn at 900)</h2>
+    <div class="frame" id="lap"></div>
+  </div>
+  <div class="col phone">
+    <h2>Phone, 390 wide</h2>
+    <div class="frame" id="ph"></div>
+  </div>
+</div>
+
+<script>
+const S = {
+  cov: (n, big) => `<div class="bx win" style="min-height:${big?150:86}px"><div class="bars">${Array.from({length:big?18:9},(_,i)=>`<i style="height:${30+((i*37)%60)}%"></i>`).join('')}</div><div class="fox"></div><span class="t">${n}</span></div>`,
+  card: (t,h=70) => `<div class="bx win" style="min-height:${h}px"><span class="t">${t}</span></div>`,
+  txt: (n=4) => `<div class="lines">${Array.from({length:n},(_,i)=>`<div class="ln${i%3==1?' d':''}" style="width:${70+((i*23)%30)}%"></div>`).join('')}</div>`,
+  tbl: (rows, cols, spark) => `<div class="bx win" style="padding:26px 10px 10px"><div class="lines">${Array.from({length:rows},(_,i)=>`<div class="row" style="grid-template-columns:${cols}">${cols.split(' ').map((c,j)=>j==1&&spark?`<div class="bx" style="min-height:10px;background:none;border:0"><div class="spark" style="top:5px"></div></div>`:`<div class="ln${j==0?' d':''}"></div>`).join('')}</div>`).join('')}</div></div>`,
+};
+const bands = [
+ {k:'keep', lab:'0 · header', h:'Nav', note:'/Runwithfoxes · consulting · agents · training · resources · sign in · Get full access, free',
+  lap:`<div class="bx flat" style="min-height:26px;background:#fff"></div>`, ph:`<div class="bx flat" style="min-height:22px;background:#fff"></div>`},
+ {k:'keep', lab:'1 · hero', h:'Designing marketing teams', note:'The film (Dublin, cliffs, beach, once). Headline and the line on the left, sign-up under it, the research card on the right, the fox small at bottom centre. On a phone the card comes off the film and sits under the buttons, still.',
+  lap:`<div class="bx ink" style="min-height:190px"><div style="position:absolute;left:18px;top:26px;width:44%"><div class="ln" style="height:16px;width:80%;background:#fff;opacity:.9"></div><div class="ln" style="height:16px;width:60%;background:#fff;opacity:.9;margin-top:6px"></div><div class="ln" style="width:90%;margin-top:14px;opacity:.6"></div><div class="ln" style="width:70%;margin-top:4px;opacity:.6"></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:14px"><div class="bx" style="min-height:18px;background:#fff;opacity:.9"></div><div class="bx sky" style="min-height:18px"></div></div></div><div class="bx win" style="position:absolute;right:18px;top:20px;width:30%;min-height:140px;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)"><span class="t" style="color:#fff">Research · Reports and papers · 47 pieces</span></div><div class="fox" style="left:50%;top:auto;bottom:10px;right:auto"></div><span class="t">film, plays once</span></div>`,
+  ph:`<div class="bx ink" style="min-height:220px"><div style="position:absolute;left:12px;right:12px;top:22px"><div class="ln" style="height:14px;width:80%;background:#fff;opacity:.9"></div><div class="ln" style="height:14px;width:95%;background:#fff;opacity:.9;margin-top:5px"></div><div class="ln" style="width:100%;margin-top:12px;opacity:.6"></div><div class="ln" style="width:90%;margin-top:4px;opacity:.6"></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:12px"><div class="bx" style="min-height:16px;background:#fff;opacity:.9"></div><div class="bx sky" style="min-height:16px"></div></div></div><div class="fox" style="left:45%;top:auto;bottom:8px;right:auto"></div></div>`},
+ {k:'keep', lab:'2 · the four doors', h:'Consulting · AI Agents · Training · Contact', note:'One row. Agents drops the big page down, as on the live site.',
+  lap:`<div class="row" style="grid-template-columns:auto auto auto auto 1fr"><div class="bx deep flat" style="min-height:22px;width:90px"></div><div class="bx flat" style="min-height:22px;width:90px;background:#fff"></div><div class="bx flat" style="min-height:22px;width:80px;background:#fff"></div><div class="bx flat" style="min-height:22px;width:80px;background:#fff"></div><span></span></div>`,
+  ph:`<div class="row" style="grid-template-columns:1fr 1fr 1fr 1fr"><div class="bx deep flat" style="min-height:20px"></div><div class="bx flat" style="min-height:20px;background:#fff"></div><div class="bx flat" style="min-height:20px;background:#fff"></div><div class="bx flat" style="min-height:20px;background:#fff"></div></div>
+  <div class="bx win" style="min-height:120px;margin-top:6px;background:var(--deep);border-color:var(--deep)"><span class="t" style="color:#fff">the research card, still, latest six</span></div>`},
+ {k:'keep', lab:'3 · contributors', h:'Paul · Sam · Lena · Jeff', note:'Straight under the header, as you asked. Four writers, each with their latest. Susan off until she joins.',
+  lap:`<div class="row" style="grid-template-columns:repeat(4,1fr)">${[1,2,3,4].map(()=>`<div>${S.txt(3)}</div>`).join('')}</div>`,
+  ph:`<div class="row" style="grid-template-columns:1fr 1fr">${[1,2,3,4].map(()=>`<div>${S.txt(2)}</div>`).join('')}</div>`},
+ {k:'keep', lab:'4 · latest writing', h:'The essay, and what’s new', note:'Big essay on the left with the phone demo, the what’s new list on the right, mono, no bold, no pictures. Every new report, tracker read and diary entry lands in this list.',
+  lap:`<div class="row" style="grid-template-columns:1.55fr 1fr"><div><div class="ln d" style="height:14px;width:60%"></div><div style="margin-top:6px">${S.txt(6)}</div><div class="bx win" style="min-height:70px;width:110px;margin-top:8px;border-radius:14px"><span class="t">phone</span></div></div><div>${S.txt(9)}</div></div>`,
+  ph:`<div class="ln d" style="height:12px;width:70%"></div><div style="margin-top:6px">${S.txt(4)}</div><div style="margin-top:10px">${S.txt(6)}</div>`},
+ {k:'keep', lab:'5 · the numbers', h:'Four window cards', note:'GEO Ireland · Jobs and AI (56 of 636) · where they ask · our own campaign. Real numbers, each with its read date and its lock line.',
+  lap:`<div class="row" style="grid-template-columns:repeat(4,1fr)">${['geo_ireland','jobs_and_ai','jobs_and_ai · sources','meta_campaign'].map(t=>S.card(t,90)).join('')}</div>`,
+  ph:`<div class="row" style="grid-template-columns:1fr">${['geo_ireland','jobs_and_ai'].map(t=>S.card(t,50)).join('')}<div class="lab">+2 more, stacked</div></div>`},
+ {k:'keep', lab:'6 · your sector', h:'Show me: Tourism', note:'The sector window beside the your_account window. Same as last night.',
+  lap:`<div class="row" style="grid-template-columns:1.6fr 1fr">${S.card('sector · tourism',80)}${S.card('your_account',80)}</div>`,
+  ph:`<div class="row" style="grid-template-columns:1fr">${S.card('sector · tourism',50)}${S.card('your_account',40)}</div>`},
+ {k:'new', lab:'7 · featured report', h:'The AI Ask, Q3 2026, drawn big', note:'Your Economic Index reference. The real figure 2 in a window on the left; title, standfirst, Sam’s byline, Read the report and Download the PDF (31 pages) on the right; the three findings as numerals under the figure. The one real report we have, so it leads.',
+  lap:`<div class="row" style="grid-template-columns:1fr 1fr"><div>${S.card('figure_2 · 1,773 job ads',110)}<div class="row" style="grid-template-columns:1fr 1fr 1fr;margin-top:6px"><div class="bx" style="min-height:40px;background:none;border:0"><span class="num">8.8%</span></div><div class="bx" style="min-height:40px;background:none;border:0"><span class="num">14.1%</span></div><div class="bx" style="min-height:40px;background:none;border:0"><span class="num">36.7%</span></div></div></div><div><div class="ln s" style="width:40%"></div><div class="ln d" style="height:16px;width:90%;margin-top:8px"></div><div class="ln d" style="height:16px;width:60%;margin-top:6px"></div><div style="margin-top:10px">${S.txt(3)}</div><div class="row" style="grid-template-columns:auto auto 1fr;margin-top:10px"><div class="ln s" style="width:80px"></div><div class="bx flat" style="min-height:18px;width:130px;background:#fff"></div><span></span></div></div></div>`,
+  ph:`<div class="ln s" style="width:50%"></div><div class="ln d" style="height:13px;width:95%;margin-top:6px"></div><div class="ln d" style="height:13px;width:70%;margin-top:4px"></div><div style="margin-top:8px">${S.txt(3)}</div><div style="margin-top:8px">${S.card('figure_2',60)}</div>`},
+ {k:'new', lab:'8 · reports and papers', h:'12 series as covers, 43 editions behind them', note:'Last night’s covers: the drawn figure, the number, the cadence, the small fox. Newest edition big on the left, the other eleven in a grid. Example on the ten made-up ones. Each opens its series page, then its edition page and PDF.',
+  lap:`<div class="row" style="grid-template-columns:1.2fr 3fr"><div>${S.cov('No. 01 · GEO Ireland',true)}<div style="margin-top:6px">${S.txt(3)}</div></div><div class="row" style="grid-template-columns:repeat(4,1fr)">${['The AI Ask','State of AI','Agent Economics','Ads by Sector','Marketing Team','AI Overviews','Boardroom Pulse','Creative Audit'].map(n=>S.cov(n)).join('')}<div class="lab" style="grid-column:1/-1">+ Small Firms and AI · The Mystery Shop · The Irish Martech Index</div></div></div>`,
+  ph:`${S.cov('No. 01 · GEO Ireland',true)}<div class="row" style="grid-template-columns:1fr 1fr;margin-top:6px">${['The AI Ask','State of AI','Agent Economics','Ads by Sector'].map(n=>S.cov(n)).join('')}</div><div class="lab">+ 7 more, two a row</div>`},
+ {k:'ask', lab:'9 · every piece, dated', h:'The publications table, inside a window', note:'Anthropic’s plain table (date, kind, title, by, sector) with search and kind chips, 126 rows, 15 at a time. Sits inside our window chrome so the edges are not flat.',
+  lap:S.tbl(7,'1fr 1fr 4fr 1.2fr 1.2fr'), ph:S.tbl(6,'1fr 3fr 1fr'),
+  q:'Keep this band, or is what’s new (band 4) plus the covers enough? I’d keep it: it is the one place everything is findable, and search lives here.'},
+ {k:'new', lab:'10 · the trackers', h:'20 trackers, one table, in a window', note:'Last night’s columns (tracker, latest reading, since last read, desk, reads, last read) with a small sparkline per row. Live first, then testing, then planned. Jeff and Jess as desks. Each row opens its tracker page and history CSV.',
+  lap:S.tbl(8,'2.2fr 1fr 1fr 1fr .8fr .8fr',true), ph:`${S.tbl(6,'2fr 1fr 1fr',true)}<div class="lab">rows stack: name, reading, spark, desk</div>`},
+ {k:'new', lab:'11 · datasets', h:'20 files, 108k rows, in a window', note:'Name, what it is, rows as a bar, columns, updated, size. First eight rows free on each dataset page; the CSV comes with the account.',
+  lap:S.tbl(7,'2.5fr 1fr .6fr 1fr .6fr'), ph:S.tbl(5,'2fr 1fr')},
+ {k:'keep', lab:'12 · tools', h:'12 window cards', note:'Last night’s tools cards, now twelve: three live, five beta, four coming. Free first look, the full result for an email.',
+  lap:`<div class="row" style="grid-template-columns:repeat(4,1fr)">${Array.from({length:8},(_,i)=>S.card(['brief_diagnostician','metrics_pyramid','agent_cost','ai_writer','brand_in_the_answer','message_grader','job_ad_checker','reply_test'][i],56)).join('')}</div><div class="lab">+4 more</div>`,
+  ph:`<div class="row" style="grid-template-columns:1fr 1fr">${Array.from({length:4},(_,i)=>S.card(['brief_diag…','metrics_pyr…','agent_cost','ai_writer'][i],44)).join('')}</div>`},
+ {k:'new', lab:'13 · playbooks', h:'20 files, a file list in a window', note:'Prompts, templates, checklists, agent briefs. A copy button on prompts. The short version on the page; the file with the account.',
+  lap:S.tbl(6,'.3fr 3fr 1fr .6fr'), ph:S.tbl(5,'.3fr 3fr .6fr')},
+ {k:'ask', lab:'14 · the library', h:'The library of everything, as a shelf', note:'One spine per section, sized by the course’s own counts (119 things: 8 prompts, 10 links, 26 files, 15 people, 28 tools). One link to /resources/library, which has the full browser.',
+  lap:`<div class="row" style="grid-template-columns:1fr 1fr"><div><div class="ln d" style="height:14px;width:60%"></div><div style="margin-top:6px">${S.txt(3)}</div><div class="row" style="grid-template-columns:repeat(3,1fr);margin-top:10px"><span class="num" style="position:static">119</span><span class="num" style="position:static">8</span><span class="num" style="position:static">28</span></div></div><div style="display:flex;align-items:flex-end;gap:4px;height:90px">${[60,90,40,100,70,55,85].map((h,i)=>`<div class="bx ${['deep','sky','skyl','deep','sky','skyl','deep'][i]} flat" style="flex:1;min-height:${h}%"></div>`).join('')}</div></div>`,
+  ph:`<div class="ln d" style="height:12px;width:70%"></div><div style="display:flex;align-items:flex-end;gap:3px;height:60px;margin-top:8px">${[60,90,40,100,70,55,85].map((h,i)=>`<div class="bx ${['deep','sky','skyl','deep','sky','skyl','deep'][i]} flat" style="flex:1;min-height:${h}%"></div>`).join('')}</div>`,
+  q:'A shelf band here, or only a line in the sign-in band (“the library, every prompt”) with the section living at /resources/library? I’d keep the shelf: it is the most course-like thing on the page and it earns the course a place on a research page.'},
+ {k:'ask', lab:'15 · coming up', h:'The next six months', note:'Six columns, one per month: the next editions of each series, and the course modules in sky.',
+  lap:`<div class="row" style="grid-template-columns:repeat(6,1fr)">${['Oct','Nov','Dec','Jan','Feb','Mar'].map(m=>`<div><div class="lab">${m}</div>${S.txt(3)}</div>`).join('')}</div>`,
+  ph:`<div class="row" style="grid-template-columns:repeat(3,1fr)">${['Oct','Nov','Dec'].map(m=>`<div><div class="lab">${m}</div>${S.txt(2)}</div>`).join('')}</div>`,
+  q:'Keep, or cut? It was on your /more page last night. I’d keep it: it is the proof the studies repeat on a calendar, which is what makes them a programme.'},
+ {k:'keep', lab:'16 · the account', h:'Read it free. Sign in for the detail.', note:'Last night’s band: free to everyone on the left, with a free account on the right, the email box, and the your_course window. “Full free access” wording, as Every does it. This is the only ask on the page.',
+  lap:`<div class="row" style="grid-template-columns:1.2fr 1fr"><div><div class="ln d" style="height:16px;width:70%"></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:10px"><div>${S.txt(2)}</div><div>${S.txt(4)}</div></div></div><div><div class="row" style="grid-template-columns:2fr 1fr"><div class="bx" style="min-height:20px;background:#fff"></div><div class="bx sky" style="min-height:20px"></div></div><div style="margin-top:8px">${S.card('your_course',70)}</div></div></div>`,
+  ph:`<div class="ln d" style="height:13px;width:90%"></div><div style="margin-top:8px">${S.txt(4)}</div><div class="row" style="grid-template-columns:2fr 1fr;margin-top:8px"><div class="bx" style="min-height:18px;background:#fff"></div><div class="bx sky" style="min-height:18px"></div></div>`},
+ {k:'keep', lab:'17 · footer', h:'Explore', note:'The site footer, as it is.', lap:`<div class="bx" style="min-height:40px;background:#F3F3F0;border-color:#F3F3F0"></div>`, ph:`<div class="bx" style="min-height:30px;background:#F3F3F0;border-color:#F3F3F0"></div>`},
+];
+const tag = {keep:['k','keep'],new:['n','new'],ask:['q','question']};
+function draw(id, key){
+  document.getElementById(id).innerHTML = bands.map(b=>`<div class="band ${b.k}"><span class="tag ${tag[b.k][0]}">${tag[b.k][1]}</span><p class="lab">${b.lab}</p><p class="h">${b.h}</p><p class="note">${b.note}</p><div class="sk">${b[key]}</div>${b.q?`<p class="q">${b.q}</p>`:''}</div>`).join('');
+}
+draw('lap','lap'); draw('ph','ph');
+</script>
+</body>
+</html>

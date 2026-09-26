@@ -86,10 +86,16 @@ export function F11() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const [show, setShow] = useState<"both" | "marketing" | "sales">("both");
   const [hover, setHover] = useState<number | null>(null);
-  const W = 640, H = 260, L = 44, R = 86, T = 18, B = 34, max = 20;
+  /* The axis top comes from the data, never a guess: Sam's final has marketing at 25.8% in
+     September, and a fixed 20% top sent the last point up through the Both/Marketing/Sales
+     buttons (Paul, 26 Sep: "the line covering the words / labels top right"). */
+  const series = (["marketing", "sales"] as const).map((k) => ({ k, c: k === "marketing" ? SKY : MUTED, pts: PERIODS.map((p) => N.jobsie[p][k]) }));
+  const top = Math.max(...series.flatMap((s) => s.pts.map((pt) => pt.pct)));
+  const max = top > 20 ? 30 : 20;
+  const ticks = max === 30 ? [0, 10, 20, 30] : [0, 5, 10, 15, 20];
+  const W = 640, H = 260, L = 44, R = 86, T = 18, B = 34;
   const x = (i: number) => L + (i * (W - L - R)) / 3;
   const y = (v: number) => T + (1 - v / max) * (H - T - B);
-  const series = (["marketing", "sales"] as const).map((k) => ({ k, c: k === "marketing" ? SKY : MUTED, pts: PERIODS.map((p) => N.jobsie[p][k]) }));
   return (
     <div ref={ref} className={r.chartWrap}>
       <div className={r.chartHead}>
@@ -99,7 +105,7 @@ export function F11() {
         {/* the middle of the line, held loosely (Sam, 1.2) */}
         <rect x={x(1) - 18} y={T} width={x(2) - x(1) + 36} height={H - T - B} fill="rgba(58,124,165,.06)" />
         <text x={(x(1) + x(2)) / 2} y={T + 12} textAnchor="middle" className={r.svgNote}>small samples, hold loosely</text>
-        {[0, 5, 10, 15, 20].map((v) => (
+        {ticks.map((v) => (
           <g key={v}>
             <line x1={L} x2={W - R} y1={y(v)} y2={y(v)} stroke="#E0E0DC" />
             <text x={L - 8} y={y(v) + 4} textAnchor="end" className={r.svgAx}>{v}%</text>
