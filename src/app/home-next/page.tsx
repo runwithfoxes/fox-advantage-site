@@ -127,11 +127,18 @@ export default function HomeNext() {
           </div>
 
           {/* The hub's own card: a flow of our research (Paul, 25 Sep). */}
-          <LibraryCard lines={lines} join={false} />
+          <div className={n.heroCardSlot}>
+            <LibraryCard lines={lines} join={false} />
+          </div>
         </div>
       </section>
 
       <DoorButtons />
+
+      {/* Phone only (Paul, 26 Sep 2026): the card comes off the hero and sits here, still. */}
+      <div className={n.phoneLib}>
+        <LibraryCard lines={lines.slice(0, 6)} count={lines.length} join={false} still />
+      </div>
 
       {/* The tracker strip came out (Paul, 25 Sep): with the scrolling card in the header, "there's too many things moving". */}
       <main className={f.wrap}>

@@ -11,7 +11,10 @@ import type { Line } from "../resources/HubHero";
  * reports." Same markup and classes as the panel in HubHero.tsx: 160s a pass, paused on hover,
  * one-line email sign-up at the foot. ⛔ MOCKUP: the form posts nowhere.
  */
-export default function LibraryCard({ lines, join = true }: { lines: Line[]; join?: boolean }) {
+/* still: the phone copy. Paul, 26 Sep 2026, looking at it on his phone: move the card off the
+   hero, and not grabbable on mobile. It sits under the hero as a plain list: no drag (which also
+   caught every touch, so the page would not scroll under a thumb), no rolling, just the latest few. */
+export default function LibraryCard({ lines, join = true, still = false, count }: { lines: Line[]; join?: boolean; still?: boolean; count?: number }) {
   const [done, setDone] = useState(false);
   /* Paul, 25 Sep: "Can the card be grabable." It lifts and moves with the pointer anywhere on
      the card except the email box; a press that moves less than 5px is still a click, so the
@@ -46,21 +49,23 @@ export default function LibraryCard({ lines, join = true }: { lines: Line[]; joi
   };
   return (
     <div
-      className={`${s.panel} ${n.darkGlass} ${n.grab} ${dragging ? n.grabbing : ""}`}
-      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
-      onPointerDown={onDown}
-      onPointerMove={onMove}
-      onPointerUp={onUp}
-      onPointerCancel={onUp}
+      className={still ? `${s.panel} ${n.darkGlass} ${n.libStill}` : `${s.panel} ${n.darkGlass} ${n.grab} ${dragging ? n.grabbing : ""}`}
+      {...(still ? {} : {
+        style: { transform: `translate(${pos.x}px, ${pos.y}px)` },
+        onPointerDown: onDown,
+        onPointerMove: onMove,
+        onPointerUp: onUp,
+        onPointerCancel: onUp,
+      })}
     >
       <div className={s.head}>
         <span className={s.headLab}>Library</span>
         <span className={s.headSub}>Research and papers</span>
-        <span className={s.headCount}>{lines.length} pieces</span>
+        <span className={s.headCount}>{count ?? lines.length} pieces</span>
       </div>
       <div className={s.scroll}>
         <div className={s.scrollInner}>
-          {[...lines, ...lines].map((l, i) => (
+          {(still ? lines : [...lines, ...lines]).map((l, i) => (
             <a key={i} className={s.line} href={l.href ?? "#"} aria-hidden={i >= lines.length ? true : undefined} tabIndex={i >= lines.length ? -1 : undefined}>
               <span className={s.lineLab}>{l.label}</span>
               <span className={s.lineT}>{l.title}</span>

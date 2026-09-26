@@ -594,3 +594,13 @@ a.entryT:hover { color: #3A7CA5; }
   .doorRow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
   .doorPrimary, .doorGhost { padding: 8px 2px; text-align: center; white-space: nowrap; }
 }
+
+/* The library card on a phone (Paul, 26 Sep 2026): off the hero, under the four buttons, still. */
+.phoneLib { display: none; }
+@media (max-width: 700px) {
+  .heroCardSlot { display: none; }
+  .phoneLib { display: block; padding: 24px 16px 0; }
+  .libStill { background: rgb(14, 26, 38) !important; backdrop-filter: none; box-shadow: none; }
+  .libStill [class*="scroll"] { height: auto; overflow: visible; mask-image: none; -webkit-mask-image: none; }
+  .libStill [class*="scrollInner"] { animation: none; }
+}
