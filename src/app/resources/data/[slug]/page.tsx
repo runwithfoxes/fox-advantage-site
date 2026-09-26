@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { statSync } from "node:fs";
-import { join } from "node:path";
+import SIZES from "../../catalogue/file-sizes.json";
 import { AREA_LABEL, DATASETS, TRACKERS, datasetBySlug, datasetHref, day, reportBySlug, reportHref, trackerHref, type ColumnType } from "../../catalogue";
 import { Example, Gate, DownloadPdf } from "../../kit";
 import { Shell, inst } from "../../instrument/Shell";
@@ -33,7 +32,8 @@ function cell(v: string | number | boolean, type: ColumnType) {
 
 function fileSize(p: string) {
   try {
-    const b = statSync(join(process.cwd(), "public", p)).size;
+    const b = (SIZES as Record<string, number>)[p.split("/").pop() ?? ""];
+    if (!b) return undefined;
     return b < 1024 ? `${b} B` : b < 1024 * 1024 ? `${Math.round(b / 1024)} KB` : `${(b / 1024 / 1024).toFixed(1)} MB`;
   } catch {
     return undefined;

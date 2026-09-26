@@ -87,10 +87,15 @@ function grow(ds, target, r) {
 }
 
 const csvText = (header, rows) => [header.map(q).join(","), ...rows.map((rw) => rw.map(q).join(","))].join("\n") + "\n";
+/* Sizes go into a manifest the pages import, because reading them off disk at request time made
+   Vercel bundle the whole public folder (films included, 480MB) into the page and refuse the build,
+   26 Sep 2026. */
+const sizes = {};
 function write(name, header, rows) {
   const text = csvText(header, rows);
   writeFileSync(join(out, name), text);
-  return Buffer.byteLength(text);
+  sizes[name] = Buffer.byteLength(text);
+  return sizes[name];
 }
 
 const capped = [];
@@ -118,6 +123,7 @@ for (const t of cat.trackers) {
   const bytes = write(`${t.slug}-history.csv`, ["read", t.readingLabel.replace(/,/g, " ")], rows);
   total += bytes; count++;
 }
+writeFileSync(join(process.cwd(), "src/app/resources/catalogue/file-sizes.json"), JSON.stringify(sizes, null, 1) + "\n");
 console.log(`\n${count} files, ${(total / 1024).toFixed(0)} KB in ${out}`);
 if (capped.length) console.log("capped:\n  " + capped.join("\n  "));
 const biggest = Math.max(...cat.datasets.map((d) => { try { return statSync(join(out, `${d.slug}.csv`)).size; } catch { return 0; } }));

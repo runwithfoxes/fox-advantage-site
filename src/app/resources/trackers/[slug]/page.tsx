@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { statSync } from "node:fs";
-import { join } from "node:path";
+import SIZES from "../../catalogue/file-sizes.json";
 import { AREA_LABEL, TRACKERS, day, trackerBySlug, trackerHref, type Tracker } from "../../catalogue";
 import { Chart, Example, FigureWindow, Gate, DownloadPdf } from "../../kit";
 import { Shell, Dot, Dir, inst } from "../../instrument/Shell";
@@ -32,7 +31,8 @@ const shortLabel = (l: string) => (/^\d{4}-\d{2}-\d{2}$/.test(l) ? day(l).replac
 
 function fileSize(p: string) {
   try {
-    const b = statSync(join(process.cwd(), "public", p)).size;
+    const b = (SIZES as Record<string, number>)[p.split("/").pop() ?? ""];
+    if (!b) return undefined;
     return b < 1024 ? `${b} B` : b < 1024 * 1024 ? `${Math.round(b / 1024)} KB` : `${(b / 1024 / 1024).toFixed(1)} MB`;
   } catch {
     return undefined;
