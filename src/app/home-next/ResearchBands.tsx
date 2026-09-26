@@ -2,14 +2,14 @@ import Link from "next/link";
 import Cover, { COVER_ARTS, COVER_FOXES } from "./Cover";
 import Publications, { type Pub } from "../resources/Publications";
 import {
-  SERIES, PUBLISHED, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS,
-  seriesOf, editionsOf, reportBySlug, reportHref, seriesHref, datasetHref, day,
+  SERIES, PUBLISHED, COMING, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
+  seriesOf, editionsOf, reportBySlug, reportHref, seriesHref, datasetHref, trackerHref, day,
   type Author,
 } from "../resources/catalogue";
 import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
 import { formatDay } from "../resources/library";
-import { Chart, FigureWindow, DownloadPdf, Example } from "../resources/kit";
+import { Chart, FigureWindow, DownloadPdf, Example, Sparkline } from "../resources/kit";
 import { MODULES } from "../course/courseModules";
 import { librarySummary } from "../resources/library/summary";
 import L from "../resources/library/library.module.css";
@@ -49,6 +49,23 @@ const AUTHOR_MARK = (a: Author) => (a.kind === "person" ? a.name.split(/\s+/).ma
 
 const CADENCE_SHORT: Record<string, string> = { Quarterly: "Quarterly", "Twice a year": "Twice a year", Yearly: "Yearly", Monthly: "Monthly" };
 
+/* Coming up: the next six months, from what is announced, what repeats, and the course. */
+const CADENCE_MONTHS: Record<string, number> = { Monthly: 1, Quarterly: 3, "Twice a year": 6, Yearly: 12 };
+function addMonths(iso: string, k: number) {
+  const d = new Date(iso + "T12:00:00Z");
+  d.setUTCMonth(d.getUTCMonth() + k);
+  return d.toISOString().slice(0, 10);
+}
+const monthKey = (iso: string) => iso.slice(0, 7);
+function nextEditionLabel(cadence: string, iso: string) {
+  const y = iso.slice(0, 4), m = Number(iso.slice(5, 7));
+  if (cadence === "Quarterly") return `Q${Math.ceil(m / 3)} ${y}`;
+  if (cadence === "Twice a year") return `H${m <= 6 ? 1 : 2} ${y}`;
+  if (cadence === "Yearly") return y;
+  return `${new Date(iso + "T12:00:00Z").toLocaleDateString("en-IE", { month: "short", timeZone: "UTC" })} ${y}`;
+}
+const monthName = (k: string) => new Date(k + "-01T12:00:00Z").toLocaleDateString("en-IE", { month: "short", timeZone: "UTC" });
+
 export default function ResearchBands() {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
   const featSeries = seriesOf(featured);
@@ -86,6 +103,29 @@ export default function ResearchBands() {
   const datasets = [...DATASETS].sort((a, b) => Number(a.example) - Number(b.example) || b.rows - a.rows).slice(0, 6);
   const toolOrder: Record<string, number> = { live: 0, beta: 1, coming: 2 };
   const tools = [...TOOLS].sort((a, b) => toolOrder[a.status] - toolOrder[b.status]).slice(0, 6);
+
+  /* Trackers, small (Paul, 26 Sep: "not a tracking terminal board"): the real two, then four examples. */
+  const trackerOrder: Record<string, number> = { live: 0, testing: 1, planned: 2 };
+  const trackers = [...TRACKERS]
+    .filter((t) => t.status !== "planned")
+    .sort((a, b) => Number(a.example) - Number(b.example) || trackerOrder[a.status] - trackerOrder[b.status] || b.lastRead.localeCompare(a.lastRead))
+    .slice(0, 6);
+
+  const today = CATALOGUE.built.slice(0, 10);
+  const months: string[] = [];
+  for (let i = 0; i < 6; i++) months.push(monthKey(addMonths(today.slice(0, 7) + "-01", i + 1)));
+  type Up = { key: string; title: string; example: boolean; course?: boolean; href?: string };
+  const upcoming: Up[] = [
+    ...COMING.map<Up>((r) => ({ key: monthKey(r.date), title: `${seriesOf(r).name}, ${r.edition}`, example: r.example, href: seriesHref(seriesOf(r)) })),
+    ...SERIES.filter((se) => se.example).flatMap<Up>((se) => {
+      const step = CADENCE_MONTHS[se.cadence];
+      const last = editionsOf(se).filter((r) => r.status !== "coming")[0];
+      if (!step || !last) return [];
+      const next = addMonths(last.date, step);
+      return months.includes(monthKey(next)) ? [{ key: monthKey(next), title: `${se.name}, ${nextEditionLabel(se.cadence, next)}`, example: true, href: seriesHref(se) }] : [];
+    }),
+    ...MODULES.filter((m) => !m.built).map<Up>((m) => ({ key: monthKey(m.on), title: `Course module ${m.n}: ${m.title.replace(/^\(\d+\)\s*/, "")}`, example: false, course: true, href: "/course" })),
+  ];
 
   return (
     <>
@@ -385,6 +425,101 @@ export default function ResearchBands() {
               <Link href="/resources/tools" className={n.doorGo}>All tools →</Link>
             </div>
           </article>
+        </div>
+      </section>
+
+      {/* ── Band 7: trackers, small ── */}
+      <section className={f.shelf} id="trackers">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>What we read every week</h2>
+          <span className={f.meta}>A few measures our agents read on a clock. A reading is a number and the day it was read. {COUNTS.trackers} trackers in all.</span>
+        </div>
+        <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+          <div className="mod-winbar">
+            <span className="mod-lights"><i /><i /><i /></span>
+            <span className="mod-wintitle">trackers · {TRACKERS.filter((t) => t.status === "live").length} live · read by Jeff, Sam and Lena</span>
+          </div>
+          <div className={n.trkBody}>
+            {trackers.map((t) => (
+              <Link key={t.slug} href={trackerHref(t)} className={n.trkRow}>
+                <span className={n.trkName}>{t.name} <Example on={t.example} /><em>{t.line}</em></span>
+                <span className={n.trkSpark}><Sparkline values={t.history} width={110} height={26} /></span>
+                <span className={n.trkRead}><b>{t.reading}</b><em>{t.readingLabel}</em></span>
+                <span className={n.trkMeta}>{t.cadence} · read {day(t.lastRead)} · {t.owner.name}</span>
+              </Link>
+            ))}
+            <Link href="/resources/trackers" className={n.doorGo}>All {COUNTS.trackers} trackers →</Link>
+          </div>
+        </article>
+      </section>
+
+      {/* ── Band 8: coming up, the next six months ── */}
+      <section className={f.shelf} id="calendar">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>Coming up</h2>
+          <span className={f.meta}>Every study repeats on a fixed calendar, so the change between editions is the finding. The next six months.</span>
+        </div>
+        <div className={n.cal}>
+          {months.map((k) => (
+            <div key={k} className={n.calMonth}>
+              <span className={n.calName}>{monthName(k)}</span>
+              {upcoming.filter((u) => u.key === k).map((u) => (
+                <Link key={u.title} href={u.href ?? "#"} className={`${n.calItem} ${u.course ? n.calCourse : ""}`}>
+                  {u.title} <Example on={u.example} />
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Band 9: the account, last. Paul's 25 Sep band, with Every's "full free access" wording. ── */}
+      <section className={n.account} id="account">
+        <div>
+          <h2 className={f.h2}>Read it free. Sign in for the detail.</h2>
+          <div className={n.accCols}>
+            <div>
+              <span className={n.dKick}>Free to everyone</span>
+              <ul className={n.accList}>
+                <li>Every report, in full, and every chart</li>
+                <li>The essays and the diary</li>
+                <li>A first go on every tool</li>
+              </ul>
+            </div>
+            <div>
+              <span className={n.dKick}>Full access, free</span>
+              <ul className={n.accList}>
+                <li>Every report as a PDF, every dataset as a file</li>
+                <li>The library: every prompt, link and file</li>
+                <li>Your sector, and your own brand&rsquo;s result</li>
+                <li>The course, with your progress saved</li>
+                <li>The next edition of any series, by email</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className={n.accSide}>
+          <form className={n.joinRow}>
+            <input type="email" placeholder="you@company.ie" aria-label="Work email" />
+            <button type="button">Get full access, free</button>
+          </form>
+          <span className={n.accFine}>One account for everything here. Already have one? <a href="#">Sign in</a>. No paid tier; there is nothing to upgrade to.</span>
+          <div className={`mod-win ${n.dWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">your_account</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>What is waiting in it</span>
+              <ol className={n.accMods}>
+                <li><span>1</span>{COUNTS.reports} reports as PDFs<em>{COUNTS.series} series</em></li>
+                <li><span>2</span>{COUNTS.datasets} datasets as files<em>{Math.round(COUNTS.rows / 1000)}k rows</em></li>
+                <li><span>3</span>The library<em>{lib.everything} things</em></li>
+                <li><span>4</span>The course<em>{MODULES.filter((m) => m.built).length} of {MODULES.length} open</em></li>
+                <li><span>5</span>Your sector, every report and tracker<em>on request</em></li>
+              </ol>
+            </div>
+          </div>
         </div>
       </section>
     </>

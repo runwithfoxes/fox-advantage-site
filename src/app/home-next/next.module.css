@@ -678,3 +678,32 @@ a.entryT:hover { color: #3A7CA5; }
 .useMeta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
 @media (max-width: 1100px) { .useGrid { grid-template-columns: 1fr; } .writeGrid { gap: 32px; } }
 @media (max-width: 700px) { .writeGrid { grid-template-columns: 1fr; } }
+
+/* Band 7 trackers small; band 8 coming up; band 9 the account. */
+.trkBody { padding: 8px 18px 16px; display: grid; }
+.trkRow { display: grid; grid-template-columns: 1.6fr 120px 1fr 1.2fr; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); color: inherit; text-decoration: none; }
+.trkRow:hover .trkName { color: #3A7CA5; }
+.trkName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; display: grid; gap: 2px; }
+.trkName em { font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); font-weight: 400; }
+.trkSpark { display: block; line-height: 0; }
+.trkRead { display: grid; gap: 1px; }
+.trkRead b { font-family: var(--mono); font-weight: 500; font-size: 18px; color: #3A7CA5; }
+.trkRead em { font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.trkMeta { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); text-align: right; }
+.trkBody > a:last-child { margin-top: 14px; }
+.cal .calItem { display: block; text-decoration: none; color: inherit; }
+.cal .calItem:hover { color: #3A7CA5; }
+.calCourse { color: #3A7CA5; }
+.account { margin-top: 24px; }
+@media (max-width: 1100px) { .cal { grid-template-columns: repeat(3, 1fr); } .calMonth { border-right: 0; padding-left: 0; } .account { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 700px) {
+  .trkRow { grid-template-columns: 1fr auto; gap: 6px 12px; }
+  .trkSpark { grid-column: 1; grid-row: 2; }
+  .trkRead { grid-column: 2; grid-row: 1 / span 2; text-align: right; }
+  .trkMeta { grid-column: 1 / -1; text-align: left; }
+  .cal { grid-template-columns: repeat(2, 1fr); }
+  .accCols { grid-template-columns: 1fr; }
+}
+.trkName { display: block; }
+.trkName em { display: block; margin-top: 2px; }
+@media (max-width: 700px) { .account .joinRow { flex-direction: column; gap: 8px; } .account .joinRow button { padding: 12px; } }
