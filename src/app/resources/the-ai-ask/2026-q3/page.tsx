@@ -4,10 +4,10 @@ import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import N from "./numbers.json";
 import { META, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, type Block } from "./copy";
-import { FigWin, F11, F21, F31, F32, F33, F41, F42, F51, F52, F71 } from "./Charts";
+import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from "./Charts";
 
 /* each chart imported by name: a map object exported from a client file arrives empty on the server */
-const FIGS = { f11: F11, f21: F21, f31: F31, f32: F32, f33: F33, f41: F41, f42: F42, f51: F51, f52: F52, f71: F71 };
+const FIGS = { f11: F11, f21: F21, f31: F31, f32: F32, f33: F33, f34: F34, f41: F41, f42: F42, f51: F51, f52: F52, f71: F71 };
 import { Hl, Rail } from "./Parts";
 import f from "../../front.module.css";
 import h from "../../hero.module.css";
@@ -95,10 +95,11 @@ export default function AiAskQ3() {
   const words = [...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
   const mins = Math.round(words / 230);
   const mk = N.jobsie;
+  const dm = N.fine_roles_boards_year.find((x) => x.role === "Digital marketing")!;
   const big: Record<string, { v: string; l: string }> = {
     mkt: { v: `${mk["2025-Q4"].marketing.pct}% → ${mk["2026-Q3"].marketing.pct}%`, l: "marketing ads asking for AI, a year apart" },
     talk: { v: `${N.talk_vs_ask.mention_ai.pct}% · ${N.talk_vs_ask.real_ask.pct}%`, l: "mention AI · actually ask for it" },
-    head: { v: `${N.levels.head.pct}%`, l: `of head and director ads ask, against ${N.levels.entry.pct}% of entry level` },
+    digital: { v: `${dm.k} of ${dm.n}`, l: "digital marketing ads on the job boards asked for AI over the year" },
     speed: { v: `${N.tools_asks_reasons["speed, efficiency, productivity"]}`, l: `sentences want speed, against ${N.tools_asks_reasons["writing, drafting, copy"]} about writing` },
     tools: { v: `${N.ai_tools_named.generic_without_any_name} of ${N.ai_tools_named.ads_generic_ai_tools}`, l: "ads asking for AI tools name no tool at all" },
     rules: { v: "0", l: `of ${N.total_ads.toLocaleString("en-IE")} ads tell you to keep AI out of your CV` },

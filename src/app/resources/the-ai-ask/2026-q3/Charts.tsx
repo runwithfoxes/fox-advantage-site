@@ -5,7 +5,7 @@ import N from "./numbers.json";
 import r from "./report.module.css";
 
 /**
- * The AI Ask's figures. Every number comes from numbers.json (Sam, paul-hub 18a6b347e), never
+ * The AI Ask's figures. Every number comes from numbers.json (Sam's final, paul-hub 8ccbc95f8), never
  * typed. Drawn in the site's blues, in module windows, and each one does one thing when you
  * touch it: a hover that gives the count, a toggle, a pick. Nothing moves until it is on screen.
  */
@@ -218,9 +218,47 @@ export function F31() {
   );
 }
 
-/* ── 3.2 By level, four levels, all ads or job boards only ────────────────────────── */
-type Lv = "entry" | "executive" | "manager" | "head";
+/* ── 3.2 Job by job, job boards only, the whole year (Sam's figure, added after Cato's second
+   review). His rules: job types under 5 ads left out, under 15 faded, ranked by share, marketing
+   in sky and sales in deep blue, the number of ads in brackets. Hover a bar for the count. ── */
 export function F32() {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const [grp, setGrp] = useState<"all" | "marketing" | "sales">("all");
+  const [hover, setHover] = useState<string | null>(null);
+  const rows = (N.fine_roles_boards_year as { group: string; role: string; k: number; n: number; pct: number }[])
+    .filter((x) => x.n >= 5 && (grp === "all" || x.group === grp))
+    .sort((a, b) => b.pct - a.pct);
+  const max = Math.max(...rows.map((x) => x.pct), 1);
+  return (
+    <div ref={ref}>
+      <div className={r.chartHead}>
+        <Toggle opts={[{ k: "all", t: "All" }, { k: "marketing", t: "Marketing" }, { k: "sales", t: "Sales" }]} on={grp} set={setGrp} />
+      </div>
+      <div className={r.pairKey}>
+        <span><i style={{ background: SKY }} /> Marketing</span>
+        <span><i style={{ background: DEEP }} /> Sales</span>
+        <span><i style={{ background: SKY, opacity: 0.3 }} /> Fewer than 15 ads</span>
+      </div>
+      <div className={r.hbars}>
+        {rows.map((x, i) => (
+          <div key={x.role} className={r.fRow} onMouseEnter={() => setHover(x.role)} onMouseLeave={() => setHover(null)}>
+            <span className={r.fLab}>{x.role} ({x.n})</span>
+            <span className={r.fTrack}>
+              <i style={{ width: seen ? `${(x.pct / max) * 100}%` : 0, background: x.group === "marketing" ? SKY : DEEP, opacity: x.n < 15 ? 0.3 : 1, transitionDelay: `${i * 30}ms` }} />
+            </span>
+            <span className={r.fVal}>
+              <b>{x.pct}%</b> {hover === x.role ? <em>{x.k} of {x.n}</em> : null}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── 3.3 By level, four levels, all ads or job boards only ────────────────────────── */
+type Lv = "entry" | "executive" | "manager" | "head";
+export function F33() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const [on, setOn] = useState<Lv>("head");
   const [src, setSrc] = useState<"all" | "boards">("all");
@@ -273,8 +311,8 @@ export function F32() {
   );
 }
 
-/* ── 3.3 Pairs: who asks more, no multiples printed (Sam: "several times", small numbers) ── */
-export function F33() {
+/* ── 3.4 Pairs: who asks more, no multiples printed (Sam: "about three times", small numbers) ── */
+export function F34() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const c = N.talk_vs_ask_by_channel;
   const pairs = [
@@ -305,7 +343,7 @@ export function F33() {
   );
 }
 
-/* ── 4.1 Waffle: the 47 asks, one square each ─────────────────────────────────────── */
+/* ── 4.1 Waffle: the real asks, one square each ─────────────────────────────────────── */
 export function F41() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const [pick, setPick] = useState<Kind | null>(null);
