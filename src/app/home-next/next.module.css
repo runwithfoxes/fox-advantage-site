@@ -646,3 +646,18 @@ a.entryT:hover { color: #3A7CA5; }
   .libBand [class*="shelf"] { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
   .libBand [class*="spineN"] { font-size: 15px; }
 }
+
+/* Band 3 the course alone, band 4 the library alone (Paul, 26 Sep: separate them; the library needs an email). */
+.courseSide { display: grid; gap: 14px; align-content: start; position: relative; padding-top: 6px; }
+.courseFox { width: 96px; justify-self: end; margin-bottom: -6px; }
+.courseStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.4; margin: 0; }
+.courseLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.6; color: #55534f; margin: 0; }
+.libGrid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
+.libJoin { margin-top: 0; }
+.libJoin button { background: var(--orange); }
+.libRows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+.libRows li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.libRowName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+.libRowFrom { grid-column: 1; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.libRowLock { grid-column: 2; grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px; color: #3A7CA5; }
+@media (max-width: 1100px) { .libGrid { grid-template-columns: 1fr; } .courseFox { justify-self: start; } }

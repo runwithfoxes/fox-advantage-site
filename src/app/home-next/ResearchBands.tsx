@@ -9,7 +9,6 @@ import {
 import { Chart, FigureWindow, DownloadPdf, Example } from "../resources/kit";
 import { MODULES } from "../course/courseModules";
 import { librarySummary } from "../resources/library/summary";
-import PromptRows from "../resources/library/PromptRows";
 import L from "../resources/library/library.module.css";
 import s from "../resources/hub.module.css";
 import f from "../resources/front.module.css";
@@ -164,16 +163,14 @@ export default function ResearchBands() {
         </article>
       </section>
 
-      {/* ── Band 3: the course and the library ── */}
-      <section className={f.shelf} id="learn">
+      {/* ── Band 3: the course ── */}
+      <section className={f.shelf} id="course">
         <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>The course, and the library</h2>
-          <span className={f.meta}>
-            AI Fluency for Ambitious Marketers, six free modules, one a fortnight. Every prompt and link from it lives in the library, free to take.
-          </span>
+          <h2 className={f.h2}>The course</h2>
+          <span className={f.meta}>AI Fluency for Ambitious Marketers. Free. Module 1 is open now.</span>
         </div>
         <div className={n.learnGrid}>
-          {/* The course: the module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
+          {/* The module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
           <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
@@ -195,16 +192,34 @@ export default function ResearchBands() {
                 <button type="button">Start module 1, free</button>
               </form>
               <span className={n.accFine}>
-                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here. <Link href="/course">About the course →</Link>
+                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.
               </span>
             </div>
           </article>
+          {/* The course's own words (its page description), the fox from the module pages, one door. */}
+          <div className={n.courseSide}>
+            <img className={n.courseFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+            <p className={n.courseStand}>
+              A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
+            </p>
+            <p className={n.courseLine}>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
+            <Link href="/course" className={n.doorGo}>About the course →</Link>
+          </div>
+        </div>
+      </section>
 
-          {/* The library: the shelf on a deep band, counted live, then the prompts to copy. */}
+      {/* ── Band 4: the library, its own door. Paul, 26 Sep: "I want people to want to go to
+           library even if they don't want training. Library requires email too." ── */}
+      <section className={f.shelf} id="library">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>The library</h2>
+          <span className={f.meta}>Every prompt, link, file, person and tool we use, in one place. Free with an account.</span>
+        </div>
+        <div className={n.libGrid}>
           <div className={n.libCol}>
             <div className={n.libBand}>
               <div className={n.libHead}>
-                <span className={n.libLab}>The library</span>
+                <span className={n.libLab}>What is in it</span>
                 <span className={n.libSub}>{lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
               </div>
               <div className={L.shelf} role="img" aria-label={`Things in the library by module: ${lib.perModule.map((m) => `module ${m.n} ${m.things}`).join(", ")}`}>
@@ -221,18 +236,38 @@ export default function ResearchBands() {
                   <li key={x.l}><b>{x.n}</b> {x.l}</li>
                 ))}
               </ul>
-              <Link href="/resources/library" className={n.libGo}>Everything in the library →</Link>
             </div>
-            <article className={`mod-win ${n.dWin}`}>
-              <div className="mod-winbar">
-                <span className="mod-lights"><i /><i /><i /></span>
-                <span className="mod-wintitle">library · start here · {lib.prompts.length} prompts</span>
-              </div>
-              <div className={n.libPrompts}>
-                <PromptRows rows={lib.prompts.slice(0, 4)} />
-              </div>
-            </article>
+            <form className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`}>
+              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
+              <button type="button">Open the library, free</button>
+            </form>
+            <span className={n.accFine}>One free account for the library, the course, every PDF and every dataset. Already have one? <Link href="/resources/library">Sign in</Link>.</span>
           </div>
+          {/* A look inside: the first prompts by name. The words themselves open with the account. */}
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">library · prompts · {lib.prompts.length} so far</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>A look inside</span>
+              <ol className={n.libRows}>
+                {lib.prompts.slice(0, 6).map((r) => (
+                  <li key={r.key}>
+                    <span className={n.libRowName}>{r.name}</span>
+                    <span className={n.libRowFrom}>{r.from} · module {r.modN} · {r.lines} {r.lines === 1 ? "line" : "lines"}</span>
+                    <span className={n.libRowLock} aria-label="With a free account">
+                      <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden><rect x="2" y="5.5" width="8" height="5.5" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" /><path d="M4 5.5V4a2 2 0 014 0v1.5" fill="none" stroke="currentColor" strokeWidth="1.2" /></svg>
+                      copy
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <span className={n.accFine}>
+                And {lib.ledger.filter((x) => x.l !== "prompts").map((x) => `${x.n} ${x.l.toLowerCase().replace(" i ", " I ")}`).slice(0, 4).join(", ")}. Every one opens with the account.
+              </span>
+            </div>
+          </article>
         </div>
       </section>
     </>
