@@ -21,7 +21,7 @@
 .row:hover .nameT { color: #3A7CA5; }
 .nameL { display: block; font-family: var(--mono); font-size: 11px; color: #8A8A85; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .reading { font-family: var(--mono); font-size: 19px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; text-align: right; color: #1D1B1B; }
-.readingL { display: block; font-family: var(--mono); font-size: 9.5px; color: #8A8A85; letter-spacing: 0; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.readingL { display: block; font-family: var(--mono); font-size: 10.5px; color: #8A8A85; letter-spacing: 0; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .delta { font-family: var(--mono); font-size: 11.5px; color: #1D1B1B; text-align: right; }
 .delta > span { white-space: normal; justify-content: flex-end; }
 .meta { font-family: var(--mono); font-size: 11px; color: #4a4a46; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

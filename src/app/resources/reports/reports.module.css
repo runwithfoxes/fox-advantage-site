@@ -208,3 +208,6 @@
 .bigCover { width: 220px; }
 .bigCover > div { box-shadow: 0 10px 30px rgba(0,0,0,.25); }
 @media (max-width: 700px) { .bandInner { grid-template-columns: 1fr; } .bigCover { width: 180px; } }
+
+/* Phone pass, 27 Sep 2026: the PDF link in the table was a 28x15 tap target. */
+.tPdf a { display: inline-block; padding: 10px 0 10px 12px; margin: -10px 0; }
