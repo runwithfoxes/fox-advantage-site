@@ -1,0 +1,89 @@
+/* THE RESOURCE CENTRE KIT, 26 Sep 2026. Shared by every template. Values are the site's own
+   (brand spec web palette): sky #3A7CA5 is the data colour, deep #1A3A4E the highlight and dark
+   ground, sky-light #6CAAC8 the second series, muted #8A8A85, border #E0E0DC, track #EDEDE9.
+   Orange #F47521 is the logo and the Example tag only, never a chart or a field. */
+
+/* ── Example tag: the same dashed tag the hub already uses (resources front.module.css .ex) ── */
+.ex { display: inline-block; vertical-align: 2px; margin-left: 6px; padding: 1px 6px; font-family: var(--mono); font-size: 9px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: #F47521; border: 1px dashed #F47521; white-space: nowrap; }
+
+/* ── Gate: the quiet line at the END of a piece. Never a pop-up, never mid-paragraph. ── */
+.gate { margin: 40px 0 8px; border-top: 1px solid #E0E0DC; padding-top: 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 32px; align-items: start; }
+.gateHead { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; margin: 0 0 10px; }
+.gateList { list-style: none; margin: 0; padding: 0; }
+.gateList li { display: flex; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid #EDEDE9; font-family: var(--mono); font-size: 12.5px; color: #1D1B1B; }
+.gateList li svg { color: #3A7CA5; flex: none; position: relative; top: 1px; }
+.gateForm { display: flex; }
+.gateForm input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 12.5px; padding: 11px 13px; border: 1px solid #E0E0DC; border-right: 0; background: #FAFAF8; color: #1D1B1B; }
+.gateForm button { font-family: var(--mono); font-size: 12.5px; padding: 0 16px; border: 0; background: #3A7CA5; color: #fff; cursor: pointer; white-space: nowrap; }
+.gateForm button:hover { background: #1A3A4E; }
+.gateNote { font-family: var(--mono); font-size: 10.5px; line-height: 1.6; color: #8A8A85; margin: 10px 0 0; }
+.gateDone { font-family: var(--mono); font-size: 12.5px; color: #1A3A4E; margin: 0; padding: 11px 0; }
+@media (max-width: 760px) { .gate { grid-template-columns: 1fr; gap: 18px; } }
+
+/* ── Download button: opens its own small email step in place, then hands over the file ── */
+.dl { display: inline-flex; flex-direction: column; gap: 8px; }
+.dlBtn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; padding: 9px 14px; border: 1px solid #1A3A4E; background: #fff; color: #1A3A4E; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.dlBtn:hover { background: #1A3A4E; color: #fff; }
+.dlBtn em { font-style: normal; color: #8A8A85; }
+.dlBtn:hover em { color: #cfd9e0; }
+.dlStep { display: flex; max-width: 360px; }
+.dlStep input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 12px; padding: 9px 11px; border: 1px solid #E0E0DC; border-right: 0; background: #FAFAF8; }
+.dlStep button { font-family: var(--mono); font-size: 12px; padding: 0 12px; border: 0; background: #3A7CA5; color: #fff; cursor: pointer; }
+.dlNote { font-family: var(--mono); font-size: 10.5px; color: #8A8A85; }
+
+/* ── Sparkline ── */
+.spark { display: block; overflow: visible; }
+
+/* ── Figure window: The AI Ask's window chrome (globals .mod-win), same body padding and type ── */
+.fig { margin: 22px 0 24px !important; }
+.figTools { margin-left: auto; font-family: var(--mono); font-size: 11px; color: #8A8A85; }
+.figBody { padding: 18px 20px 14px; background: #fff; }
+.figN { display: block; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; margin-bottom: 4px; }
+.figTitle { font-family: var(--sans); font-weight: 500; font-size: 16px; line-height: 1.35; margin: 0 0 14px; text-wrap: pretty; }
+.figCap { font-family: var(--mono); font-size: 10.5px; line-height: 1.55; color: #8A8A85; margin: 14px 0 0; border-top: 1px solid #EDEDE9; padding-top: 10px; }
+
+/* ── Charts: every kind in FigureData. Static markup so crawlers, PDFs and phones all read it. ── */
+.bars { display: grid; gap: 7px; }
+.bar { display: grid; grid-template-columns: minmax(90px, 34%) minmax(0, 1fr) 56px; gap: 10px; align-items: center; font-family: var(--mono); font-size: 11.5px; }
+.barLab { color: #1D1B1B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barTrack { height: 10px; background: #EDEDE9; position: relative; }
+.barTrack i { position: absolute; inset: 0 auto 0 0; background: #6CAAC8; }
+.barHi i { background: #1A3A4E; }
+.barVal { text-align: right; color: #1D1B1B; font-variant-numeric: tabular-nums; }
+.barVal small { display: block; font-size: 9.5px; color: #8A8A85; }
+
+.stack { display: grid; gap: 10px; }
+.stackRow { display: grid; grid-template-columns: minmax(90px, 26%) minmax(0, 1fr); gap: 10px; align-items: center; font-family: var(--mono); font-size: 11.5px; }
+.stackBar { display: flex; height: 18px; gap: 2px; }
+.stackBar i { display: block; height: 100%; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-family: var(--mono); font-size: 11px; color: #4a4a46; }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.key i { width: 10px; height: 10px; display: inline-block; }
+
+.svg { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--mono); }
+.svg text { font-size: 10px; fill: #8A8A85; }
+.svg .lab { fill: #1D1B1B; font-size: 10.5px; }
+
+.small { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 18px; }
+.smallCell { border-top: 1px solid #E0E0DC; padding-top: 8px; }
+.smallLab { font-family: var(--mono); font-size: 10.5px; color: #1D1B1B; display: flex; justify-content: space-between; gap: 8px; }
+.smallLab b { font-weight: 400; color: #3A7CA5; }
+
+.table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
+.table th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8A85; padding: 0 10px 8px 0; border-bottom: 1px solid #1A3A4E; }
+.table td { padding: 8px 10px 8px 0; border-bottom: 1px solid #EDEDE9; color: #1D1B1B; font-variant-numeric: tabular-nums; }
+.table td:not(:first-child), .table th:not(:first-child) { text-align: right; }
+.tableWrap { overflow-x: auto; }
+
+.waffle { display: grid; grid-template-columns: repeat(auto-fill, minmax(12px, 1fr)); gap: 3px; max-width: 520px; }
+.waffle i { aspect-ratio: 1; display: block; }
+
+/* Phones: labels go above their bar rather than being cut to "Sell an AI pro…". The SVG charts
+   (line, range) scale down with their box, so their axis text is small at 390; that is known and
+   accepted for a mockup, and a template can pass a narrower chart if a figure needs it. */
+@media (max-width: 560px) {
+  .bar { grid-template-columns: minmax(0, 1fr) 52px; row-gap: 4px; }
+  .bar .barLab { grid-column: 1 / -1; white-space: normal; }
+  .stackRow { grid-template-columns: 1fr; gap: 4px; }
+  .stackRow .barLab { white-space: normal; }
+}
