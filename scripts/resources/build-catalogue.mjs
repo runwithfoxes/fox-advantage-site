@@ -666,6 +666,13 @@ const PLAYBOOKS = PB.map(([slug, name, kind, line, area, steps, files, from, exa
 
 /* ════════════════════════════ WRITE AND CHECK ════════════════════════════ */
 
+/* PDF page counts, read back by scripts/resources/build-pdfs.mjs (it writes pdf-pages.json beside itself).
+   When a slug is there, its real page count replaces the seeded guess, so the catalogue never promises
+   a page count the file does not have. */
+const PAGES_FILE = path.join(__dirname, "pdf-pages.json");
+const PDF_PAGES = fs.existsSync(PAGES_FILE) ? JSON.parse(fs.readFileSync(PAGES_FILE, "utf8")) : {};
+for (const rp of REPORTS) if (PDF_PAGES[rp.slug]) rp.pages = PDF_PAGES[rp.slug];
+
 const cat = { built: "2026-09-26", seed: SEED, authors: Object.values(A), series: SERIES, reports: REPORTS.sort((a, b) => b.date.localeCompare(a.date)), trackers: TRACKERS, datasets: DATASETS, tools: TOOLS, playbooks: PLAYBOOKS };
 
 // every KofN anywhere in the file must agree with itself

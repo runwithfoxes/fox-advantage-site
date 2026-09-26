@@ -117,6 +117,8 @@ export type ReportSeries = {
   cadence: Cadence;
   area: Area;
   lead: Author;
+  /** who checks every number; the generator writes it, the type was missing it (26 Sep, reports build) */
+  checker?: string;
   /** where the numbers come from, one line */
   method: string;
   /** a short mark for the series cover: 2 to 3 letters in mono */

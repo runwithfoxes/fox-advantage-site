@@ -9,6 +9,8 @@ import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from ".
 /* each chart imported by name: a map object exported from a client file arrives empty on the server */
 const FIGS = { f11: F11, f21: F21, f31: F31, f32: F32, f33: F33, f34: F34, f41: F41, f42: F42, f51: F51, f52: F52, f71: F71 };
 import { Hl, Rail } from "./Parts";
+import { Gate, DownloadPdf } from "../../kit";
+import { reportBySlug } from "../../catalogue";
 import f from "../../front.module.css";
 import h from "../../hero.module.css";
 import n from "../../../home-next/next.module.css";
@@ -33,6 +35,9 @@ function Lock() {
     </svg>
   );
 }
+
+/* this edition's row in the resource centre catalogue: the PDF path, page count and what an account adds */
+const CAT = reportBySlug("the-ai-ask-2026-q3");
 
 let figNo: Record<string, string> = {};
 
@@ -155,6 +160,10 @@ export default function AiAskQ3() {
               <Text s={p} />
             </p>
           ))}
+          {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
+          <div id="download" style={{ marginTop: 8 }}>
+            <DownloadPdf href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
+          </div>
         </div>
         <aside className={`mod-win ${r.glance}`}>
           <div className="mod-winbar">
@@ -278,6 +287,8 @@ export default function AiAskQ3() {
               <i className={r.byMark}>S</i>
               <p className={r.small}>{SIGNOFF}</p>
             </div>
+            {/* The gate rule (Paul, 26 Sep): the finding is free, the files need an email. Listed once, at the end. */}
+            <Gate adds={CAT?.withAccount ?? []} />
             <Link href="/home-next" className={r.back}>
               &larr; Back to the homepage
             </Link>

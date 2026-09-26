@@ -500,7 +500,7 @@
     "The report as a PDF",
     "The next issue by email when it lands"
    ],
-   "pages": 28,
+   "pages": 31,
    "minutes": 16,
    "href": "/resources/the-ai-ask/2026-q3",
    "series": "the-ai-ask"
@@ -709,7 +709,7 @@
     "Every ad as a CSV with its link",
     "The report as a PDF"
    ],
-   "pages": 31,
+   "pages": 6,
    "minutes": 11,
    "series": "irish-ads-by-sector"
   },
@@ -879,7 +879,7 @@
     "Every answer and source as a CSV",
     "The report as a PDF"
    ],
-   "pages": 23,
+   "pages": 4,
    "minutes": 9,
    "series": "ai-overviews-in-ireland"
   },
@@ -1017,7 +1017,7 @@
     "Every ad's score as a CSV",
     "The report as a PDF"
    ],
-   "pages": 20,
+   "pages": 5,
    "minutes": 7,
    "series": "the-creative-audit"
   },
@@ -1165,7 +1165,7 @@
     "Every reply scored, as a CSV",
     "The report as a PDF"
    ],
-   "pages": 14,
+   "pages": 5,
    "minutes": 6,
    "series": "the-mystery-shop"
   },
@@ -1248,7 +1248,7 @@
     "The answers as a CSV",
     "The next reading by email"
    ],
-   "pages": 22,
+   "pages": 5,
    "minutes": 12,
    "href": "/resources/geo-ireland",
    "series": "geo-ireland"
@@ -1454,7 +1454,7 @@
     "Every ad as a CSV with its link",
     "The report as a PDF"
    ],
-   "pages": 23,
+   "pages": 6,
    "minutes": 10,
    "series": "irish-ads-by-sector"
   },
@@ -1617,7 +1617,7 @@
     "Every answer and source as a CSV",
     "The report as a PDF"
    ],
-   "pages": 19,
+   "pages": 4,
    "minutes": 6,
    "series": "ai-overviews-in-ireland"
   },
@@ -1752,7 +1752,7 @@
     "Every ad's score as a CSV",
     "The report as a PDF"
    ],
-   "pages": 22,
+   "pages": 5,
    "minutes": 8,
    "series": "the-creative-audit"
   },
@@ -1900,7 +1900,7 @@
     "Every reply scored, as a CSV",
     "The report as a PDF"
    ],
-   "pages": 17,
+   "pages": 5,
    "minutes": 9,
    "series": "the-mystery-shop"
   },
@@ -2065,7 +2065,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 34,
+   "pages": 6,
    "minutes": 10,
    "series": "state-of-ai-in-irish-marketing"
   },
@@ -2214,7 +2214,7 @@
     "The run logs behind it",
     "The report as a PDF"
    ],
-   "pages": 24,
+   "pages": 5,
    "minutes": 9,
    "series": "agent-economics"
   },
@@ -2364,7 +2364,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 18,
+   "pages": 5,
    "minutes": 9,
    "series": "the-boardroom-pulse"
   },
@@ -2518,7 +2518,7 @@
     "The panel's answers as a CSV",
     "The report as a PDF"
    ],
-   "pages": 16,
+   "pages": 5,
    "minutes": 7,
    "series": "small-firms-and-ai"
   },
@@ -2663,7 +2663,7 @@
     "The tool table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 18,
+   "pages": 5,
    "minutes": 5,
    "series": "the-irish-martech-index"
   },
@@ -2865,7 +2865,7 @@
     "Every ad as a CSV with its link",
     "The report as a PDF"
    ],
-   "pages": 28,
+   "pages": 6,
    "minutes": 8,
    "series": "irish-ads-by-sector"
   },
@@ -3021,7 +3021,7 @@
     "Every answer and source as a CSV",
     "The report as a PDF"
    ],
-   "pages": 23,
+   "pages": 4,
    "minutes": 6,
    "series": "ai-overviews-in-ireland"
   },
@@ -3153,7 +3153,7 @@
     "Every ad's score as a CSV",
     "The report as a PDF"
    ],
-   "pages": 23,
+   "pages": 5,
    "minutes": 9,
    "series": "the-creative-audit"
   },
@@ -3301,7 +3301,7 @@
     "Every reply scored, as a CSV",
     "The report as a PDF"
    ],
-   "pages": 20,
+   "pages": 5,
    "minutes": 8,
    "series": "the-mystery-shop"
   },
@@ -3442,7 +3442,7 @@
     "The salary table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 30,
+   "pages": 5,
    "minutes": 11,
    "series": "the-irish-marketing-team"
   },
@@ -3641,7 +3641,7 @@
     "Every ad as a CSV with its link",
     "The report as a PDF"
    ],
-   "pages": 29,
+   "pages": 6,
    "minutes": 8,
    "series": "irish-ads-by-sector"
   },
@@ -3790,7 +3790,7 @@
     "Every answer and source as a CSV",
     "The report as a PDF"
    ],
-   "pages": 19,
+   "pages": 4,
    "minutes": 6,
    "series": "ai-overviews-in-ireland"
   },
@@ -3919,7 +3919,7 @@
     "Every ad's score as a CSV",
     "The report as a PDF"
    ],
-   "pages": 22,
+   "pages": 5,
    "minutes": 10,
    "series": "the-creative-audit"
   },
@@ -4080,7 +4080,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 28,
+   "pages": 6,
    "minutes": 12,
    "series": "state-of-ai-in-irish-marketing"
   },
@@ -4225,7 +4225,7 @@
     "The run logs behind it",
     "The report as a PDF"
    ],
-   "pages": 22,
+   "pages": 5,
    "minutes": 10,
    "series": "agent-economics"
   },
@@ -4372,7 +4372,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 19,
+   "pages": 5,
    "minutes": 9,
    "series": "the-boardroom-pulse"
   },
@@ -4526,7 +4526,7 @@
     "The panel's answers as a CSV",
     "The report as a PDF"
    ],
-   "pages": 19,
+   "pages": 5,
    "minutes": 7,
    "series": "small-firms-and-ai"
   },
@@ -4668,7 +4668,7 @@
     "The tool table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 16,
+   "pages": 5,
    "minutes": 5,
    "series": "the-irish-martech-index"
   },
@@ -4864,7 +4864,7 @@
     "Every ad as a CSV with its link",
     "The report as a PDF"
    ],
-   "pages": 21,
+   "pages": 6,
    "minutes": 11,
    "series": "irish-ads-by-sector"
   },
@@ -5021,7 +5021,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 29,
+   "pages": 6,
    "minutes": 9,
    "series": "state-of-ai-in-irish-marketing"
   },
@@ -5162,7 +5162,7 @@
     "The run logs behind it",
     "The report as a PDF"
    ],
-   "pages": 21,
+   "pages": 5,
    "minutes": 8,
    "series": "agent-economics"
   },
@@ -5306,7 +5306,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 14,
+   "pages": 5,
    "minutes": 7,
    "series": "the-boardroom-pulse"
   },
@@ -5460,7 +5460,7 @@
     "The panel's answers as a CSV",
     "The report as a PDF"
    ],
-   "pages": 18,
+   "pages": 5,
    "minutes": 6,
    "series": "small-firms-and-ai"
   },
@@ -5599,7 +5599,7 @@
     "The tool table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 13,
+   "pages": 5,
    "minutes": 6,
    "series": "the-irish-martech-index"
   },
@@ -5740,7 +5740,7 @@
     "The salary table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 27,
+   "pages": 5,
    "minutes": 13,
    "series": "the-irish-marketing-team"
   },
@@ -5893,7 +5893,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 31,
+   "pages": 6,
    "minutes": 11,
    "series": "state-of-ai-in-irish-marketing"
   },
@@ -6030,7 +6030,7 @@
     "The run logs behind it",
     "The report as a PDF"
    ],
-   "pages": 18,
+   "pages": 5,
    "minutes": 10,
    "series": "agent-economics"
   },
@@ -6171,7 +6171,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 17,
+   "pages": 5,
    "minutes": 7,
    "series": "the-boardroom-pulse"
   },
@@ -6325,7 +6325,7 @@
     "The panel's answers as a CSV",
     "The report as a PDF"
    ],
-   "pages": 21,
+   "pages": 5,
    "minutes": 7,
    "series": "small-firms-and-ai"
   },
@@ -6474,7 +6474,7 @@
     "The full answer table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 28,
+   "pages": 6,
    "minutes": 14,
    "series": "state-of-ai-in-irish-marketing"
   },
@@ -6615,7 +6615,7 @@
     "The salary table as a CSV",
     "The report as a PDF"
    ],
-   "pages": 26,
+   "pages": 5,
    "minutes": 14,
    "series": "the-irish-marketing-team"
   }
