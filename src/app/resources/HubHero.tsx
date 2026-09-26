@@ -18,7 +18,9 @@ import ResourcesMenu from "./ResourcesMenu";
  */
 export type Line = { label: string; title: string; href?: string };
 
-export default function HubHero({ lines }: { lines: Line[] }) {
+export type Counts = { series: number; reports: number; trackers: number; datasets: number; tools: number; playbooks: number; rows: number };
+
+export default function HubHero({ lines, counts }: { lines: Line[]; counts?: Counts }) {
   const [done, setDone] = useState(false);
 
   return (
@@ -29,7 +31,7 @@ export default function HubHero({ lines }: { lines: Line[] }) {
           /Runwithfoxes
         </Link>
         <nav className={s.links}>
-          <ResourcesMenu />
+          <ResourcesMenu counts={counts} />
           <a href="#" className={s.signin}>
             /sign in
           </a>
@@ -38,18 +40,22 @@ export default function HubHero({ lines }: { lines: Line[] }) {
 
       <div className={s.inner}>
         <div className={s.text}>
-          <span className={s.pill}>The Run with Foxes resource hub</span>
+          {/* Paul, 25 Sep, on the homepage pill: "Less is more." No pill here either. */}
           <h1 className={s.title}>Ireland and AI</h1>
           <p className={s.sub}>
-            Research, trackers, tools, playbooks and a free course on what AI is doing to
+            Research, trackers, datasets, tools, playbooks and a free course on what AI is doing to
             marketing, measured in Ireland first.
           </p>
-          <p className={s.stamp}>New study: who AI names across 41 categories of Irish life</p>
+          {counts ? (
+            <p className={s.stamp}>{counts.reports} reports · {counts.trackers} trackers · {counts.datasets} datasets · {counts.tools} tools · {counts.playbooks} playbooks</p>
+          ) : null}
         </div>
 
         {/* The GEO hero's question paper, holding our research instead of questions. Same
-            scroll: 160s for one pass, paused on hover. Links not ready yet go to "#". */}
-        <div className={s.panel}>
+            scroll: 160s for one pass, paused on hover. Links not ready yet go to "#".
+            Paul, 26 Sep, on his phone: the card comes off the hero on a phone. Hidden here at
+            700px and under; the still copy below the film takes its place. */}
+        <div className={`${s.panel} ${s.panelWide}`}>
           <div className={s.head}>
             <span className={s.headLab}>Research</span>
             <span className={s.headSub}>Reports and papers</span>
@@ -79,6 +85,22 @@ export default function HubHero({ lines }: { lines: Line[] }) {
               <button type="submit" aria-label="Send me new research">→</button>
             </form>
           )}
+        </div>
+      </div>
+      {/* Phone only: the same research, as a still solid list under the film. No scroll, no glass. */}
+      <div className={s.panelPhone}>
+        <div className={s.head}>
+          <span className={s.headLab}>Research</span>
+          <span className={s.headSub}>Reports and papers</span>
+          <span className={s.headCount}>{lines.length} pieces</span>
+        </div>
+        <div className={s.still}>
+          {lines.slice(0, 6).map((l, i) => (
+            <a key={i} className={s.line} href={l.href ?? "#"}>
+              <span className={s.lineLab}>{l.label}</span>
+              <span className={s.lineT}>{l.title}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

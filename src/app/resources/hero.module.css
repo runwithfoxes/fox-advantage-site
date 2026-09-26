@@ -99,3 +99,17 @@
 .signin { border: 1px solid rgba(255,255,255,.6); padding: 6px 12px; }
 .panel .done { border-top: 1px solid rgba(255,255,255,.22); padding: 14px 0 0; font-size: 15px; }
 @media (max-width: 960px) { .links > a.signin { display: inline-block; } }
+
+/* 26 Sep 2026: the phone. The nav keeps to one line; the research card leaves the film and sits
+   under it as a still, solid list (Paul, 26 Sep, on home-next: off the hero on a phone). */
+.panelPhone { display: none; }
+@media (max-width: 700px) {
+  .links { gap: 14px; }
+  .links > a, .signin { white-space: nowrap; }
+  .panelWide { display: none; }
+  .panelPhone { display: block; position: relative; z-index: 2; background: rgb(14, 26, 38); padding: 18px 16px 8px; }
+  .still { padding-top: 14px; }
+  .still .line { margin-bottom: 14px; }
+  .still .lineT { text-shadow: none; }
+  .inner { padding-bottom: 28px; }
+}

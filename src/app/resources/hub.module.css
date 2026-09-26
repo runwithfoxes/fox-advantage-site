@@ -1,0 +1,285 @@
+/* THE HUB, 26 Sep 2026. Anthropic's research index for the LAYOUT SYSTEM (a reading measure that
+   figures break out of, an index that is a table not a card grid, one featured thing drawn big,
+   dates on everything), ours for the look: Space Grotesk 500 headlines that run the full column,
+   Source Serif for anything read, JetBrains Mono for everything the machine says, hairlines
+   #E0E0DC, sky #3A7CA5 as the one data colour, deep #1A3A4E for the highlighted thing, orange
+   only on the logo and the Example tag. No radius on our own surfaces; the window chrome
+   (.mod-win) is a picture of software, so it keeps its 15px. */
+
+.page { background: var(--bg); color: var(--text); padding-bottom: 40px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px 40px; }
+
+.meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-muted); }
+.h2 { font-family: var(--sans); font-weight: 500; font-size: 38px; letter-spacing: -0.02em; line-height: 1.05; margin: 0; text-wrap: pretty; }
+.h3 { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1.15; margin: 0; }
+.serif { font-family: var(--serif); font-size: 17px; line-height: 1.65; margin: 0; }
+.link { font-family: var(--mono); font-size: 12px; color: var(--orange); text-decoration: none; }
+.link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.band { padding: 64px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 24px; }
+.bandHead { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: baseline; margin-bottom: 30px; }
+.bandHead p { margin: 0; }
+.bandLine { font-family: var(--serif); font-size: 17px; line-height: 1.5; margin: 6px 0 0; grid-column: 1; }
+
+/* ── 1. The ruler. The centre in one line of numbers, straight under the film. It is the page's
+   contents as well: each figure is an anchor into its band, so the strip is a table of contents
+   written as a scale rather than a list of words. Numbers in Space Grotesk, labels in mono. ── */
+.ruler { display: grid; grid-template-columns: repeat(7, 1fr); border-bottom: 1px solid var(--text); }
+.rule { display: grid; gap: 4px; align-content: start; padding: 22px 16px 20px 0; border-right: 1px solid var(--border); color: inherit; text-decoration: none; position: relative; }
+.rule + .rule { padding-left: 16px; }
+.rule:last-child { border-right: 0; }
+.rule::before { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 0; background: var(--orange); transition: width .25s ease; }
+.rule + .rule::before { left: 16px; }
+.rule:hover::before { width: 36px; }
+.ruleN { font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.ruleN em { font-style: normal; font-family: var(--mono); font-size: 12px; letter-spacing: 0; color: var(--text-muted); margin-left: 6px; }
+.ruleL { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+.ruleS { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── 2. Featured: one piece drawn big. The figure breaks out to the full measure, the way a
+   figure in an Anthropic post breaks out of its reading column; the findings stand beside it as
+   three numerals, the way The AI Ask's own at-a-glance card does. The rest of the page is
+   restrained so that this one figure carries the weight. ── */
+.feat { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 56px; padding: 56px 0 64px; border-bottom: 1px solid var(--border); align-items: start; }
+.featKick { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+.featKick b { font-weight: 400; color: var(--text-muted); text-transform: none; letter-spacing: 0.04em; }
+.featTitle { font-family: var(--sans); font-weight: 500; font-size: clamp(30px, 3.2vw, 44px); letter-spacing: -0.025em; line-height: 1.06; margin: 0; text-wrap: pretty; }
+.featTitle a { color: inherit; text-decoration: none; }
+.featTitle a:hover { color: var(--orange); }
+.featStand { font-family: var(--serif); font-size: 20px; line-height: 1.5; margin: 18px 0 0; }
+.featBy { display: flex; align-items: center; gap: 12px; margin-top: 22px; font-family: var(--mono); font-size: 12px; color: var(--text-muted); }
+.featBy i { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; background: #1A3A4E; color: var(--bg); font-style: normal; font-size: 13px; }
+.featBy b { font-weight: 400; color: var(--text); }
+.featActs { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; margin-top: 26px; }
+.featFig { margin: 0 !important; }
+.featFig :global(.mod-winbar) { padding: 12px 16px; }
+.featBig { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--text); margin-top: 28px; }
+.featBig > div { padding: 18px 18px 18px 0; border-right: 1px solid var(--border); display: grid; gap: 6px; align-content: start; }
+.featBig > div + div { padding-left: 18px; }
+.featBig > div:last-child { border-right: 0; }
+.featBig b { font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; color: #1A3A4E; }
+.featBig span { font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--text-muted); }
+.featBig p { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; margin: 4px 0 0; }
+
+/* ── 3. Publications. The series first, as a rail of stamps: every recurring study with its mark,
+   its cadence and how many editions exist, so a reader sees a research PROGRAMME before a list.
+   Then the table. ── */
+.seriesRail { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 40px; }
+.stamp { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 14px 0; border-top: 1px solid var(--text); color: inherit; text-decoration: none; }
+.stampMark { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; background: #1A3A4E; color: var(--bg); }
+.stamp.ex .stampMark { background: var(--bg); color: #1A3A4E; border: 1px solid #1A3A4E; }
+.stampName { font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: -0.01em; display: block; }
+.stamp:hover .stampName { color: var(--orange); }
+.stampMeta { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
+
+.pubs { }
+.pubBar { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; padding: 7px 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); cursor: pointer; }
+.chips button i { font-style: normal; color: var(--text-muted); margin-left: 4px; }
+.chips button[aria-pressed="true"] { border-color: var(--text); color: var(--text); }
+.chips button[aria-pressed="true"] i { color: var(--orange); }
+.search { width: 300px; max-width: 100%; font-family: var(--mono); font-size: 12.5px; padding: 10px 14px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+.search:focus { outline: none; border-color: var(--text); }
+.tableWrap { overflow-x: auto; margin-top: 18px; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 14px 16px 10px 0; border-bottom: 1px solid var(--text); white-space: nowrap; }
+.table td { font-family: var(--mono); font-size: 12px; color: var(--text-muted); padding: 13px 16px 13px 0; border-bottom: 1px solid var(--border); vertical-align: top; white-space: nowrap; }
+.table td.titleCell { white-space: normal; width: 52%; }
+.table td.titleCell a { font-family: var(--serif); font-size: 17px; line-height: 1.4; color: var(--text); text-decoration: none; }
+.table tr:hover td.titleCell a { color: var(--orange); }
+.num { font-variant-numeric: tabular-nums; }
+.empty { font-family: var(--mono); font-size: 12px; padding: 18px 0; }
+.pubFoot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 14px; }
+.more { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--orange); background: var(--bg); border: 1px solid var(--border); padding: 10px 18px; cursor: pointer; }
+.more:hover { border-color: var(--orange); }
+
+/* ── 4. The trackers board. Each row is one instrument: a status lamp, the name, its own history
+   as a sparkline, the reading as a numeral with its unit, the move since the last read with an
+   arrow, cadence and last read, and who reads it. The sparkline column is the made thing: twenty
+   small lines side by side read as a dashboard of what the agents watch. ── */
+.board { border-top: 1px solid var(--text); }
+.boardHead, .row { display: grid; grid-template-columns: 14px minmax(0, 1.5fr) 132px minmax(0, 1.1fr) 108px 112px 80px; gap: 16px; align-items: center; }
+.boardHead { padding: 10px 0; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.row { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.lamp { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--text-muted); display: block; }
+.lampLive { background: #2E7D4F; border-color: #2E7D4F; }
+.lampTest { background: #E0B14A; border-color: #E0B14A; }
+.rowName { display: grid; gap: 3px; min-width: 0; }
+.rowName a { font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+.rowName a:hover { color: var(--orange); }
+.rowName span { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+.reading { display: grid; gap: 2px; min-width: 0; }
+.reading b { font-family: var(--sans); font-weight: 500; font-size: 20px; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; color: #1A3A4E; }
+.reading span { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.4; }
+.delta { font-family: var(--mono); font-size: 11.5px; font-variant-numeric: tabular-nums; line-height: 1.4; }
+.up { color: #2E7D4F; }
+.down { color: #B0413E; }
+.flat { color: var(--text-muted); }
+.cell { font-family: var(--mono); font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── 5. Datasets. A dense table, and the row count drawn as a bar on a log scale beside the number,
+   so 26,886 rows and 41 rows can sit in one column and still look like their size (DOCTRINE: a
+   dense dataset must LOOK like its size). ── */
+.dataTable { width: 100%; border-collapse: collapse; border-top: 1px solid var(--text); }
+.dataTable th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.dataTable td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--border); vertical-align: top; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); white-space: nowrap; }
+.dataTable td.dName { white-space: normal; min-width: 240px; }
+.dataTable td.dName a { font-family: var(--sans); font-weight: 500; font-size: 15px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+.dataTable td.dName a:hover { color: var(--orange); }
+.dataTable td.dName .dLine { display: block; font-family: var(--serif); font-size: 14px; line-height: 1.45; color: var(--text); margin-top: 3px; white-space: normal; }
+.rowsCell { display: grid; grid-template-columns: 64px 110px; gap: 10px; align-items: center; }
+.rowsCell b { font-weight: 400; color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.rowsBar { height: 8px; background: #EDEDE9; position: relative; }
+.rowsBar i { position: absolute; inset: 0 auto 0 0; background: #3A7CA5; }
+
+/* ── 6. Tools and playbooks side by side. Tools are windows because each one is a piece of
+   software you open; playbooks are files because each one is a thing you take. Two different
+   objects, two different shapes. ── */
+.twoUp { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; }
+.tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tool :global(.mod-wintitle) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.tool { margin-top: 0 !important; color: inherit; text-decoration: none; display: flex; flex-direction: column; transition: box-shadow .2s ease; }
+a.tool:hover { box-shadow: 0 10px 30px rgba(20,16,40,.12); }
+.toolBody { padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; flex: 1; }
+.toolName { font-family: var(--sans); font-weight: 500; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; }
+.toolBody p { font-family: var(--serif); font-size: 14px; line-height: 1.5; margin: 0; }
+.toolFoot { display: flex; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); margin-top: auto; padding-top: 6px; }
+.toolFoot b { font-weight: 400; color: var(--orange); }
+.toolSoon .toolFoot b { color: var(--text-muted); }
+.files { border-top: 1px solid var(--text); }
+.file { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--border); color: inherit; text-decoration: none; }
+.file svg { color: var(--text-muted); position: relative; top: 2px; }
+.fileName { font-family: var(--mono); font-size: 13px; color: var(--text); }
+.file:hover .fileName { color: var(--orange); }
+.fileKind { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+.fileN { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); white-space: nowrap; }
+
+/* ── 7. The library of everything, drawn as a shelf. Each section is a spine whose width is its
+   count, so the shelf reads as how much is in it before a single word is read. Counts come from
+   the course's own sources (moduleData, shelf.ts), never a second copy. ── */
+.libBand { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.libGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 56px; align-items: start; }
+.libNums { display: grid; grid-template-columns: repeat(3, auto); gap: 22px 32px; margin-top: 26px; justify-content: start; }
+.libNums div { display: grid; gap: 4px; }
+.libNums b { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.libNums span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.shelf { display: flex; align-items: flex-end; gap: 6px; height: 220px; padding: 0 8px; border-bottom: 3px solid var(--text); }
+.spine { position: relative; display: flex; align-items: flex-end; justify-content: center; color: inherit; text-decoration: none; min-width: 34px; transition: filter .2s ease; }
+.spine i { position: absolute; inset: 0; background: var(--c); }
+.spine span { position: relative; z-index: 1; writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--bg); padding: 12px 0 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-height: 100%; }
+.spine:nth-child(5n + 5) span, .spine:nth-child(5n + 3) span { color: #1A3A4E; }
+.spine em { position: absolute; top: -20px; left: 0; right: 0; text-align: center; font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--text); }
+.spine:hover { filter: brightness(1.12); }
+.shelfKey { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.shelfKey span { display: inline-flex; gap: 6px; align-items: center; }
+.shelfKey i { width: 10px; height: 10px; display: inline-block; background: var(--c); }
+.libRules { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 0; }
+.libRules li { font-family: var(--serif); font-size: 16px; line-height: 1.5; padding: 10px 0; border-top: 1px solid var(--border); }
+
+/* ── 8. Who writes here. One column per voice, each named for what it is: a photo for a person, a
+   dark mark for an agent, and the count of what they have put on the page under their name. ── */
+.writers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 28px; }
+.writer { display: grid; align-content: start; gap: 12px; border-top: 2px solid var(--text); padding-top: 16px; }
+.byline { display: flex; gap: 12px; align-items: center; }
+.byline img, .byline .mark { width: 44px; height: 44px; flex: none; object-fit: cover; }
+.mark { display: flex; align-items: center; justify-content: center; background: #1A3A4E; color: var(--bg); font-family: var(--mono); font-size: 15px; }
+.markPerson { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+.who { display: grid; gap: 2px; min-width: 0; }
+.who b { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: -0.01em; }
+.who span { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.4; }
+.writerCount { font-family: var(--mono); font-size: 11px; color: var(--text); }
+.writerCount em { font-style: normal; color: var(--orange); }
+.writerLatest { display: grid; gap: 3px; padding-top: 10px; border-top: 1px solid var(--border); }
+.writerLatest a { font-family: var(--serif); font-size: 15px; line-height: 1.4; color: var(--text); text-decoration: none; }
+.writerLatest a:hover { color: var(--orange); }
+.writerLatest span { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.writerSoon { font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--text-muted); margin: 0; padding-top: 10px; border-top: 1px solid var(--border); }
+
+/* ── 9. Coming up. Six months as six columns; each entry is a series stamp mark plus its edition,
+   so the calendar shows the programme repeating rather than a list of titles. ── */
+.calendar { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--text); }
+.month { padding: 14px 16px 18px 0; border-right: 1px solid var(--border); display: grid; gap: 10px; align-content: start; }
+.month + .month { padding-left: 16px; }
+.month:last-child { border-right: 0; }
+.monthName { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+.monthItem { display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start; color: inherit; text-decoration: none; }
+.monthItem i { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; background: #1A3A4E; color: var(--bg); font-style: normal; }
+.monthItem i.exm { background: var(--bg); color: #1A3A4E; border: 1px solid #1A3A4E; }
+.monthItem i.course { background: #3A7CA5; }
+.monthItem span { font-family: var(--serif); font-size: 14.5px; line-height: 1.4; }
+.monthItem small { display: block; font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+a.monthItem:hover span { color: var(--orange); }
+
+/* ── 10. How we publish, beside the gate. ── */
+.standards { counter-reset: st; list-style: none; padding: 0; margin: 24px 0 0; }
+.standards li { counter-increment: st; display: grid; grid-template-columns: 36px 1fr; padding: 12px 0; border-top: 1px solid var(--border); font-family: var(--serif); font-size: 17px; line-height: 1.5; }
+.standards li::before { content: counter(st, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--orange); padding-top: 4px; }
+
+.banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; background: #1A3A4E; color: var(--bg); text-align: center; padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px)); }
+
+@media (max-width: 1100px) {
+  .ruler { grid-template-columns: repeat(4, 1fr); }
+  .rule:nth-child(4) { border-right: 0; }
+  .rule:nth-child(n + 5) { border-top: 1px solid var(--border); }
+  .rule:nth-child(5) { padding-left: 0; }
+  .rule:nth-child(5)::before { left: 0; }
+  .seriesRail { grid-template-columns: repeat(4, 1fr); }
+  .boardHead, .row { grid-template-columns: 14px minmax(0, 1.4fr) 110px minmax(0, 1fr) 80px; }
+  .boardHead > :nth-child(n + 6), .row > :nth-child(n + 6) { display: none; }
+  .tools { grid-template-columns: repeat(2, 1fr); }
+  .twoUp { grid-template-columns: 1fr; gap: 56px; }
+  .writers { grid-template-columns: repeat(2, 1fr); }
+  .calendar { grid-template-columns: repeat(3, 1fr); }
+  .month:nth-child(3) { border-right: 0; }
+  .month:nth-child(n + 4) { border-top: 1px solid var(--border); }
+  .month:nth-child(4) { padding-left: 0; }
+  .libGrid { grid-template-columns: 1fr; gap: 36px; }
+}
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px 32px; }
+  .band, .libBand { padding: 44px 0; }
+  .h2 { font-size: 30px; }
+  .bandHead { grid-template-columns: 1fr; }
+  .ruler { grid-template-columns: repeat(2, 1fr); }
+  .rule { padding: 16px 12px 14px 0; border-right: 1px solid var(--border); }
+  .rule:nth-child(2n) { border-right: 0; padding-left: 12px; }
+  .rule:nth-child(2n)::before { left: 12px; }
+  .rule:nth-child(2n + 1) { padding-left: 0; }
+  .rule:nth-child(2n + 1)::before { left: 0; }
+  .rule:nth-child(n + 3) { border-top: 1px solid var(--border); }
+  .rule:nth-child(4) { border-right: 0; }
+  .ruleN { font-size: 28px; }
+  .feat { grid-template-columns: 1fr; gap: 28px; padding: 40px 0 44px; }
+  .feat > div:first-child { order: 2; }
+  .featBig { grid-template-columns: 1fr; }
+  .featBig > div { border-right: 0; border-bottom: 1px solid var(--border); padding: 14px 0; }
+  .featBig > div + div { padding-left: 0; }
+  .seriesRail { grid-template-columns: repeat(2, 1fr); gap: 0 16px; margin-bottom: 30px; }
+  .pubBar { flex-direction: column; align-items: stretch; }
+  .search { width: 100%; }
+  .table th:nth-child(2), .table td:nth-child(2), .table th:nth-child(4), .table td:nth-child(4), .table th:nth-child(5), .table td:nth-child(5) { display: none; }
+  .table td.titleCell { width: auto; }
+  .table td.titleCell a { font-size: 15.5px; }
+  .table td { font-size: 11px; padding-right: 10px; }
+  .boardHead { display: none; }
+  .row { grid-template-columns: 14px minmax(0, 1fr) 96px; grid-template-rows: auto auto; row-gap: 8px; }
+  .row > .reading { grid-column: 2; }
+  .row > .delta { grid-column: 3; grid-row: 2; text-align: right; }
+  .row > :nth-child(3) { justify-self: end; }
+  .dataTable th:nth-child(n + 4), .dataTable td:nth-child(n + 4) { display: none; }
+  .dataTable td.dName { min-width: 0; }
+  .rowsCell { grid-template-columns: auto; }
+  .rowsBar { display: none; }
+  .dataTable td { padding-right: 10px; }
+  .tools { grid-template-columns: 1fr; }
+  .shelf { height: 170px; gap: 4px; padding: 0 2px; }
+  .spine { min-width: 22px; }
+  .spine span { display: none; }
+  .libNums { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .libNums b { font-size: 24px; }
+  .writers { grid-template-columns: 1fr; gap: 24px; }
+  .calendar { grid-template-columns: 1fr 1fr; }
+  .month { border-right: 0; border-bottom: 1px solid var(--border); padding-left: 0 !important; }
+  .month:nth-child(n + 3) { border-top: 0; }
+}
