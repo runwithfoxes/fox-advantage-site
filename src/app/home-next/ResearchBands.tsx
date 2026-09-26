@@ -2,10 +2,13 @@ import Link from "next/link";
 import Cover, { COVER_ARTS, COVER_FOXES } from "./Cover";
 import Publications, { type Pub } from "../resources/Publications";
 import {
-  SERIES, PUBLISHED, COUNTS, AREA_LABEL,
-  seriesOf, editionsOf, reportBySlug, reportHref, seriesHref, day,
+  SERIES, PUBLISHED, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS,
+  seriesOf, editionsOf, reportBySlug, reportHref, seriesHref, datasetHref, day,
   type Author,
 } from "../resources/catalogue";
+import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
+import { formatDay } from "../resources/library";
 import { Chart, FigureWindow, DownloadPdf, Example } from "../resources/kit";
 import { MODULES } from "../course/courseModules";
 import { librarySummary } from "../resources/library/summary";
@@ -28,6 +31,12 @@ import n from "./next.module.css";
  * findings as numerals, the PDF. His Anthropic Economic Index reference.
  * Band 2, reports and papers: the twelve series as covers, the newest big, then every report
  * dated as a reading list inside a window, with search and every PDF.
+ * Band 5, essays and the diary: Paul's essays and Lena's diary as two reading lists, mono
+ * titles, no bold, no pictures (Paul, 25 Sep: "tidier and cleaner and less pulling the
+ * attention"). "I think the homepage should have lots of latest writing."
+ * Band 6, resources to use: prompts and playbooks to download, datasets to practise on, tools
+ * with a free first go. Paul, 26 Sep: "it's resources, not just research, but it's not a
+ * tracking terminal board."
  * Band 3, the course and the library, together and big. Paul, 26 Sep, on bands 1 and 2: "the
  * training course should be more prominent. And where would people find the library, for
  * example? I think they're all important parts." The course is his 25 Sep your_course window
@@ -69,6 +78,14 @@ export default function ResearchBands() {
 
   const lib = librarySummary();
   const nextModule = MODULES.find((m) => !m.built);
+  const essays = getAllEssays().slice(0, 7);
+  const diary = getAllDispatches().slice(0, 7);
+  const essayCount = getAllEssays().length;
+  const diaryCount = getAllDispatches().length;
+  const playbooks = [...PLAYBOOKS].sort((a, b) => Number(a.example) - Number(b.example)).slice(0, 6);
+  const datasets = [...DATASETS].sort((a, b) => Number(a.example) - Number(b.example) || b.rows - a.rows).slice(0, 6);
+  const toolOrder: Record<string, number> = { live: 0, beta: 1, coming: 2 };
+  const tools = [...TOOLS].sort((a, b) => toolOrder[a.status] - toolOrder[b.status]).slice(0, 6);
 
   return (
     <>
@@ -266,6 +283,106 @@ export default function ResearchBands() {
               <span className={n.accFine}>
                 And {lib.ledger.filter((x) => x.l !== "prompts").map((x) => `${x.n} ${x.l.toLowerCase().replace(" i ", " I ")}`).slice(0, 4).join(", ")}. Every one opens with the account.
               </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* ── Band 5: essays and the diary ── */}
+      <section className={f.shelf} id="writing">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>Essays, and the diary</h2>
+          <span className={f.meta}>How we build, written up as we go. {essayCount} essays by Paul, {diaryCount} diary entries by Lena. Always free, no form.</span>
+        </div>
+        <div className={n.writeGrid}>
+          <div>
+            <span className={n.dKick}>Essays · Paul Dervan</span>
+            <ol className={n.writeList}>
+              {essays.map((e) => (
+                <li key={e.slug}>
+                  <Link href={`/essays/${e.slug}`} className={n.writeT}>{e.title}</Link>
+                  <span className={n.writeDek}>{e.dek}</span>
+                  <span className={n.writeMeta}>{formatDay(e.date)}</span>
+                </li>
+              ))}
+            </ol>
+            <Link href="/essays" className={n.doorGo}>All {essayCount} essays →</Link>
+          </div>
+          <div>
+            <span className={n.dKick}>Diary of an agent team · Lena, an agent</span>
+            <ol className={n.writeList}>
+              {diary.map((d) => (
+                <li key={d.slug}>
+                  <Link href={`/diary/${d.slug}`} className={n.writeT}>{d.title}</Link>
+                  <span className={n.writeDek}>{d.dek}</span>
+                  <span className={n.writeMeta}>{formatDay(d.date)}</span>
+                </li>
+              ))}
+            </ol>
+            <Link href="/diary" className={n.doorGo}>The whole diary →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Band 6: resources to use ── */}
+      <section className={f.shelf} id="use">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>Things to use</h2>
+          <span className={f.meta}>Prompts and playbooks to download, datasets to practise on, tools with a free first go. The file and the full result come with the free account.</span>
+        </div>
+        <div className={n.useGrid}>
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">playbooks · {COUNTS.playbooks} files</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>Prompts, templates, checklists, agent briefs</span>
+              <ol className={n.useRows}>
+                {playbooks.map((x) => (
+                  <li key={x.slug}>
+                    <Link href={x.href ?? "/resources/playbooks"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                    <span className={n.useMeta}>{x.kind}{x.files.length ? ` · ${x.files.length} ${x.files.length === 1 ? "file" : "files"}` : ""}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link href="/resources/playbooks" className={n.doorGo}>All playbooks →</Link>
+            </div>
+          </article>
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">datasets · {COUNTS.datasets} files</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>Real Irish data to practise on</span>
+              <ol className={n.useRows}>
+                {datasets.map((x) => (
+                  <li key={x.slug}>
+                    <Link href={datasetHref(x)} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                    <span className={n.useMeta}>{x.rows.toLocaleString("en-IE")} rows · {x.columns.length} columns · first 8 rows free</span>
+                  </li>
+                ))}
+              </ol>
+              <Link href="/resources/data" className={n.doorGo}>All datasets →</Link>
+            </div>
+          </article>
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">tools · {TOOLS.filter((t) => t.status === "live").length} live</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>Free. Your own full result is the only thing we ask an email for</span>
+              <ol className={n.useRows}>
+                {tools.map((x) => (
+                  <li key={x.slug}>
+                    <Link href={x.href ?? "/resources/tools"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                    <span className={n.useMeta}>{x.line} · {x.status === "live" ? `${x.minutes} min` : x.status}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link href="/resources/tools" className={n.doorGo}>All tools →</Link>
             </div>
           </article>
         </div>

@@ -661,3 +661,20 @@ a.entryT:hover { color: #3A7CA5; }
 .libRowFrom { grid-column: 1; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
 .libRowLock { grid-column: 2; grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px; color: #3A7CA5; }
 @media (max-width: 1100px) { .libGrid { grid-template-columns: 1fr; } .courseFox { justify-self: start; } }
+
+/* Band 5 essays and the diary; band 6 things to use. */
+.writeGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.writeList { list-style: none; margin: 12px 0 18px; padding: 0; }
+.writeList li { display: grid; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.writeT { font-family: var(--mono); font-size: 14px; line-height: 1.45; color: var(--text); text-decoration: none; }
+.writeT:hover { color: #3A7CA5; }
+.writeDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: #55534f; }
+.writeMeta { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.useGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+.useRows { list-style: none; margin: 8px 0 12px; padding: 0; }
+.useRows li { display: grid; gap: 2px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.useName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.useName:hover { color: #3A7CA5; }
+.useMeta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+@media (max-width: 1100px) { .useGrid { grid-template-columns: 1fr; } .writeGrid { gap: 32px; } }
+@media (max-width: 700px) { .writeGrid { grid-template-columns: 1fr; } }
