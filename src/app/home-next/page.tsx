@@ -13,7 +13,7 @@ import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
 import DataBand from "./DataBand";
 import SectorPicker from "./SectorPicker";
-import CentreBands from "../resources/CentreBands";
+import ResearchBands from "./ResearchBands";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
@@ -35,37 +35,6 @@ function Ex({ on = true }: { on?: boolean }) {
   return on ? <span className={f.ex}>Example</span> : null;
 }
 
-const SHADES = ["#E3EEF5", "#C4DCEA", "#6CAAC8", "#3A7CA5", "#2B5E80", "#1A3A4E"];
-
-/** Each study gets its own drawing in the blues, and one subtle fox. No drawing carries a number. */
-function Cover({ st }: { st: Study }) {
-  return (
-    <div className={n.cover}>
-      <div className={n.coverTop}>
-        <span>{st.no}</span>
-        <span>Quarterly</span>
-      </div>
-      <div className={n.coverArt} aria-hidden>
-        <svg viewBox="0 0 200 150" className={n.coverSvg}>
-          {st.cover === "bars" &&
-            CATEGORIES.map((c, i) => (
-              <rect key={c.name} x={6 + i * 4.6} y={146 - c.rate * 130} width="3.4" height={c.rate * 130} fill={c.owner === "state" ? "#1A3A4E" : c.owner === "middle" ? "#6CAAC8" : "#CFCFC9"} />
-            ))}
-          {st.cover === "rings" && [70, 55, 40, 25, 10].map((r, i) => <circle key={r} cx="100" cy="76" r={r} fill={SHADES[i + 1]} />)}
-          {st.cover === "blocks" && [0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={20 + i * 28} y={146 - (i + 1) * 21} width="20" height={(i + 1) * 21} fill={SHADES[i]} />)}
-          {st.cover === "grid" &&
-            Array.from({ length: 40 }).map((_, i) => <rect key={i} x={10 + (i % 8) * 23} y={8 + Math.floor(i / 8) * 28} width="19" height="24" fill={SHADES[(i * 7 + Math.floor(i / 8)) % 6]} />)}
-          {st.cover === "dots" &&
-            Array.from({ length: 60 }).map((_, i) => <circle key={i} cx={14 + (i % 10) * 19} cy={14 + Math.floor(i / 10) * 24} r={3 + ((i * 13) % 7)} fill={SHADES[(i * 5) % 6]} />)}
-          {st.cover === "steps" &&
-            [0, 1, 2, 3, 4].map((i) => <path key={i} d={`M${10 + i * 36} 140 V${120 - i * 22} H${40 + i * 36}`} stroke={SHADES[i + 1]} strokeWidth="6" fill="none" />)}
-        </svg>
-        <img className={n.coverFox} src={`/fox/${st.fox}`} alt="" />
-      </div>
-      <div className={n.coverFoot}>{st.title}</div>
-    </div>
-  );
-}
 
 /**
  * /home-next. The Resource hub turned into the homepage, drawn at the size it is meant to
@@ -233,11 +202,11 @@ export default function HomeNext() {
           <AgentsSection />
         </div>
 
-      </main>
 
-      {/* The resource centre, whole, under everything Paul settled on 25 Sep. Paul, 25 Sep: "the
-          Resource hub becomes the homepage." One component shared with /resources, never a copy. */}
-      <CentreBands />
+        {/* The research and resources bands, under everything Paul settled on 25 Sep. Paul, 26 Sep:
+            "the homepage does become the main research page, resources page... this is the place." */}
+        <ResearchBands />
+      </main>
 
       <SiteFooter current="/" wide />
       <div className={f.banner}>

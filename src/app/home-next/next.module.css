@@ -604,3 +604,18 @@ a.entryT:hover { color: #3A7CA5; }
   .libStill [class*="scroll"] { height: auto; overflow: visible; mask-image: none; -webkit-mask-image: none; }
   .libStill [class*="scrollInner"] { animation: none; }
 }
+
+/* Research bands under Your sector, 26 Sep 2026 (Paul: reports first, in the 25 Sep look). */
+.rbFeat { border-top: 2px solid var(--text); }
+.coversWide { grid-template-columns: repeat(4, 1fr); gap: 22px 18px; }
+.coverCard { text-decoration: none; color: inherit; }
+.rbList { margin-top: 44px; }
+.rbListBody { padding: 8px 22px 18px; }
+@media (max-width: 1100px) { .coversWide { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) {
+  .coversWide { grid-template-columns: repeat(2, 1fr); gap: 18px 12px; }
+  .studies { grid-template-columns: 1fr; gap: 28px; }
+  .rbListBody { padding: 6px 12px 14px; }
+}
+.coverTop span { white-space: nowrap; }
+.coversWide .coverTop { font-size: 9px; letter-spacing: .06em; padding: 10px 12px; }

@@ -58,7 +58,8 @@ export default function Publications({ rows }: { rows: Pub[] }) {
     <div className={s.pubs}>
       <div className={s.pubBar}>
         <div className={s.chips} role="tablist" aria-label="Kind of publication">
-          {(["all", ...TYPES] as const).map((k) => (
+          {/* a kind with nothing in it gets no chip, so a reports-only list shows only Reports */}
+          {(["all", ...TYPES] as const).filter((k) => k === "all" || (counts[k] ?? 0) > 0).map((k) => (
             <button
               key={k}
               type="button"
