@@ -25,7 +25,9 @@ export default function LibraryCard({ lines, join = true, still = false, count }
   const onDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if ((e.target as HTMLElement).closest("input,button,form")) return;
     drag.current = { sx: e.clientX, sy: e.clientY, ox: pos.x, oy: pos.y, moved: false };
-    e.currentTarget.setPointerCapture(e.pointerId);
+    /* No pointer capture yet. Capturing on the press retargets the click to the card, so a plain
+       click on a row never reached its link (Paul, 27 Sep: "users can click on them"). Capture
+       only once it is a real drag, in onMove. */
   };
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const d = drag.current;
@@ -33,6 +35,7 @@ export default function LibraryCard({ lines, join = true, still = false, count }
     const dx = e.clientX - d.sx;
     const dy = e.clientY - d.sy;
     if (!d.moved && Math.hypot(dx, dy) < 5) return;
+    if (!d.moved) e.currentTarget.setPointerCapture(e.pointerId);
     d.moved = true;
     setDragging(true);
     setPos({ x: d.ox + dx, y: d.oy + dy });

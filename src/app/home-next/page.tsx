@@ -17,6 +17,7 @@ import ResearchBands from "./ResearchBands";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
 import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
+import { SERIES, editionsOf, seriesOf, reportHref } from "../resources/catalogue";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
 import n from "./next.module.css";
@@ -65,8 +66,13 @@ export default function HomeNext() {
   /* The card's lines, built the way the hub builds them: studies, trackers, then every
      published piece. Invented studies and trackers say "example" in their label. */
   const lines = [
-    { label: "Report · The AI Ask · Q3 2026", title: "Irish marketing jobs take up AI, sales jobs don't", href: "/resources/the-ai-ask/2026-q3" },
-    ...STUDIES.map((st) => ({ label: `Study ${st.no}${st.example ? " · example" : ""}`, title: st.title, href: st.href })),
+    /* Paul, 27 Sep: "users can click on them". Every row is the newest edition of a real series
+       from the catalogue, so every row has a page to open. (The old STUDIES list was the 25 Sep
+       placeholder set and half its rows went to "#".) */
+    ...SERIES.map((se) => editionsOf(se).filter((r) => r.status !== "coming")[0])
+      .filter((r): r is NonNullable<typeof r> => Boolean(r))
+      .sort((a, b) => Number(a.example) - Number(b.example) || b.date.localeCompare(a.date))
+      .map((r) => ({ label: `Report · ${seriesOf(r).name}${r.example ? " · example" : ""}`, title: r.title, href: reportHref(r) })),
     ...trackers.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
     ...getLibrary()
       .filter((e) => !e.soon && e.type !== "Study")
