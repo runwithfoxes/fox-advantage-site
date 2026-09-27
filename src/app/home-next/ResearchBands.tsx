@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Cover, { seriesShelf } from "./Cover";
+import Cover, { COVER_PHOTOS, seriesShelf } from "./Cover";
 import Publications, { type Pub } from "../resources/Publications";
 import {
   SERIES, PUBLISHED, COMING, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
@@ -132,7 +132,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       </div>
       <div className={n.studies}>
         <Link href={seriesHref(flag)} className={n.flag}>
-          <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} />
+          <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]} />
           <div>
             <span className={f.meta}>
               {flagEd ? `Latest edition ${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
@@ -147,7 +147,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             const ed = newest(se.slug);
             return (
               <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
-                <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} />
+                <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} photo={COVER_PHOTOS[se.slug]} />
                 <span className={f.meta}>
                   {ed ? `${plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition")} · latest ${day(ed.date)}` : `First edition ${se.cadence}`} <Example on={se.example} />
                 </span>
