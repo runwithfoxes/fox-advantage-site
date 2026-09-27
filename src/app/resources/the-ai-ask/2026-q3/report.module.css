@@ -278,3 +278,12 @@
   .joinForm input { flex: 1 1 100%; border-right: 1px solid #E0E0DC; }
   .joinForm button { flex: 1 1 100%; }
 }
+
+/* 27 Sep (Paul): the rail starts at the top. The introduction, the at-a-glance window and the
+   findings now live INSIDE the main column beside the rail, so their page-wide grids come off. */
+.main .mast { max-width: none; margin: 0; padding: 4px 0 8px; display: block; border: 0; }
+.main .mastMain { max-width: none; }
+.main .glance { margin: 8px 0 40px !important; }
+.main .findings { max-width: none; margin: 0; padding: 0 0 8px; }
+.body { padding-top: 24px; }
+@media (max-width: 1100px) { .main .glanceFox { display: none; } }

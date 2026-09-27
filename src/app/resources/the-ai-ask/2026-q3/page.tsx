@@ -146,88 +146,6 @@ export default async function AiAskQ3() {
         Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
       </div>
 
-      <header className={r.mast} id="intro">
-        <div className={r.mastMain}>
-          {/* The byline, editorial style: Sam's mark and Paul's photo, then who wrote and checked it. */}
-          <div className={r.who}>
-            <span className={r.whoFaces}>
-              <i className={r.byMark}>S</i>
-              <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
-            </span>
-            <span className={r.whoText}>
-              {/* each piece stays whole; on a phone the line breaks between pieces, never mid-piece
-                  or after a lone dot */}
-              <span className={r.whoLine}>
-                <span>{META.byline}</span>
-                <span className={r.byDot}>·</span>
-                <span>{META.checked}</span>
-              </span>
-              <span className={`${r.whoLine} ${r.whoMeta}`}>
-                <span>Issue 01 · Q3 2026 · {META.date}</span>
-                <span className={r.byDot}>·</span>
-                <span>{mins} min read</span>
-              </span>
-            </span>
-          </div>
-          <p className={r.standfirst}>
-            <Text s={INTRO[0]} />
-          </p>
-          {INTRO.slice(1).map((p, i) => (
-            <p key={i} className={r.p}>
-              <Text s={p} />
-            </p>
-          ))}
-          {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
-          <div id="download" style={{ marginTop: 8 }}>
-            <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
-          </div>
-        </div>
-        <aside className={`mod-win ${r.glance}`}>
-          <div className="mod-winbar">
-            <span className="mod-lights">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="mod-wintitle">at_a_glance</span>
-          </div>
-          <div className={r.glanceBody}>
-            <img className={r.glanceFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
-            {[
-              { v: N.total_ads.toLocaleString("en-IE"), l: "Irish marketing and sales job ads read" },
-              { v: `${N.sep_all.pct}%`, l: `of September's ads ask for AI, ${N.sep_all.k} of ${N.sep_all.n}` },
-              { v: `${mk["2026-Q3"].marketing.pct}%`, l: `of marketing ads on jobs.ie ask, up from ${mk["2025-Q4"].marketing.pct}% a year ago` },
-              { v: `${N.talk_vs_ask_by_channel.careers_pages.real_ask.pct}%`, l: `of tech firms' careers-page ads ask, against ${N.talk_vs_ask_by_channel.job_boards.real_ask.pct}% on the job boards` },
-            ].map((s) => (
-              <div key={s.l} className={r.glanceRow}>
-                <span className="mod-num">{s.v}</span>
-                <span className="mod-lbl">{s.l}</span>
-              </div>
-            ))}
-            <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
-          </div>
-        </aside>
-      </header>
-
-      <section className={r.findings} id="findings">
-        <div className={r.fHead}>
-          <h2 className={r.h2s}>What we found</h2>
-          <span className={r.fSub}>Six findings, each one a chapter</span>
-        </div>
-        <ol className={r.fGrid}>
-          {FINDINGS.map((fd, i) => (
-            <li key={i}>
-              <a href={`#ch${fd.ch}`} className={r.fCard}>
-                <span className={r.fN}>0{i + 1}</span>
-                <span className={r.fBig}>{big[fd.big].v}</span>
-                <span className={r.fBigL}>{big[fd.big].l}</span>
-                <span className={r.fText}>{fd.text}</span>
-                <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
 
       <div className={r.body}>
         <aside className={r.railCol}>
@@ -235,6 +153,91 @@ export default async function AiAskQ3() {
         </aside>
 
         <main className={r.main} id="report-main">
+        {/* Paul, 27 Sep: "the rail on the left. I'd like that to be at the top. At the moment it doesn't
+            come down until you pass a couple of screens... We'd have to move this [at a glance] down the
+            page, but that's okay." So the two-column article starts at the introduction, the rail beside
+            it from the first line, and the at-a-glance window sits in the flow after the intro. */}
+          <header className={r.mast} id="intro">
+            <div className={r.mastMain}>
+              {/* The byline, editorial style: Sam's mark and Paul's photo, then who wrote and checked it. */}
+              <div className={r.who}>
+                <span className={r.whoFaces}>
+                  <i className={r.byMark}>S</i>
+                  <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
+                </span>
+                <span className={r.whoText}>
+                  {/* each piece stays whole; on a phone the line breaks between pieces, never mid-piece
+                      or after a lone dot */}
+                  <span className={r.whoLine}>
+                    <span>{META.byline}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{META.checked}</span>
+                  </span>
+                  <span className={`${r.whoLine} ${r.whoMeta}`}>
+                    <span>Issue 01 · Q3 2026 · {META.date}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{mins} min read</span>
+                  </span>
+                </span>
+              </div>
+              <p className={r.standfirst}>
+                <Text s={INTRO[0]} />
+              </p>
+              {INTRO.slice(1).map((p, i) => (
+                <p key={i} className={r.p}>
+                  <Text s={p} />
+                </p>
+              ))}
+              {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
+              <div id="download" style={{ marginTop: 8 }}>
+                <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
+              </div>
+            </div>
+          </header>
+            <aside className={`mod-win ${r.glance}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="mod-wintitle">at_a_glance</span>
+              </div>
+              <div className={r.glanceBody}>
+                <img className={r.glanceFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+                {[
+                  { v: N.total_ads.toLocaleString("en-IE"), l: "Irish marketing and sales job ads read" },
+                  { v: `${N.sep_all.pct}%`, l: `of September's ads ask for AI, ${N.sep_all.k} of ${N.sep_all.n}` },
+                  { v: `${mk["2026-Q3"].marketing.pct}%`, l: `of marketing ads on jobs.ie ask, up from ${mk["2025-Q4"].marketing.pct}% a year ago` },
+                  { v: `${N.talk_vs_ask_by_channel.careers_pages.real_ask.pct}%`, l: `of tech firms' careers-page ads ask, against ${N.talk_vs_ask_by_channel.job_boards.real_ask.pct}% on the job boards` },
+                ].map((s) => (
+                  <div key={s.l} className={r.glanceRow}>
+                    <span className="mod-num">{s.v}</span>
+                    <span className="mod-lbl">{s.l}</span>
+                  </div>
+                ))}
+                <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
+              </div>
+            </aside>
+          <section className={r.findings} id="findings">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>What we found</h2>
+              <span className={r.fSub}>Six findings, each one a chapter</span>
+            </div>
+            <ol className={r.fGrid}>
+              {FINDINGS.map((fd, i) => (
+                <li key={i}>
+                  <a href={`#ch${fd.ch}`} className={r.fCard}>
+                    <span className={r.fN}>0{i + 1}</span>
+                    <span className={r.fBig}>{big[fd.big].v}</span>
+                    <span className={r.fBigL}>{big[fd.big].l}</span>
+                    <span className={r.fText}>{fd.text}</span>
+                    <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
           {CHAPTERS.map((c) => (
             <section key={c.id} id={c.id} className={r.chapter}>
               <div className={r.chHead}>

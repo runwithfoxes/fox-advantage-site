@@ -110,96 +110,6 @@ export default async function AdAuditQ3() {
 
       <div className={r.draft}>Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site.</div>
 
-      <header className={r.mast} id="intro">
-        <div className={r.mastMain}>
-          <div className={r.who}>
-            <span className={r.whoFaces}>
-              <i className={r.byMark}>S</i>
-              <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
-            </span>
-            <span className={r.whoText}>
-              <span className={r.whoLine}>
-                <span>{META.byline}</span>
-                <span className={r.byDot}>·</span>
-                <span>{META.checked}</span>
-              </span>
-              <span className={`${r.whoLine} ${r.whoMeta}`}>
-                <span>Issue 01 · Q3 2026 · {META.date}</span>
-                <span className={r.byDot}>·</span>
-                <span>{mins} min read</span>
-              </span>
-            </span>
-          </div>
-          <p className={r.standfirst}>
-            <Text s={INTRO[0]} />
-          </p>
-          {/* The ad the opening paragraph is about. Facts from numbers.json (biggest_single_ad). */}
-          <div className={a.opener}>
-            <img src="/resources/the-ad-audit/2026-q3/0.jpg" alt="Revolut's Graham Norton ad" />
-            <span className={a.openerText}>
-              <b>{gn.adv}</b>
-              <span>
-                Shown only in Ireland, {day(gn.start)} to {day(gn.stop)}
-              </span>
-              <b className={a.openerBig}>{gn.reach.toLocaleString("en-IE")}</b>
-              <span>people reached by its biggest copy, the most of any single ad in the study</span>
-            </span>
-          </div>
-          {INTRO.slice(1).map((p, i) => (
-            <p key={i} className={r.p}>
-              <Text s={p} />
-            </p>
-          ))}
-          <div id="download" style={{ marginTop: 8 }}>
-            <DownloadPdf want="report" item="the-ad-audit-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ad-audit-q3-2026.pdf"} pages={CAT?.pages} />
-          </div>
-        </div>
-        <aside className={`mod-win ${r.glance}`}>
-          <div className="mod-winbar">
-            <span className="mod-lights">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="mod-wintitle">at_a_glance</span>
-          </div>
-          <div className={r.glanceBody}>
-            <img className={r.glanceFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
-            {[
-              { v: N.totals.ads.toLocaleString("en-IE"), l: `ads ten banks and lenders showed in Ireland, 1 July to 26 September` },
-              { v: N.totals.creatives.toLocaleString("en-IE"), l: "different ads, once copies with the same words are merged" },
-              { v: `${(N.totals.q3_reach / 1e6).toFixed(1)}m`, l: "reach, added up across ads started in the quarter: showings, not people" },
-              { v: `${cat.offer_creatives} of ${N.totals.bank_creatives}`, l: "different bank ads state an offer: a rate, a cashback, a bonus or something free" },
-            ].map((s) => (
-              <div key={s.l} className={r.glanceRow}>
-                <span className="mod-num">{s.v}</span>
-                <span className="mod-lbl">{s.l}</span>
-              </div>
-            ))}
-            <span className={r.glanceNext}>Next issue: Q4 2026, in December</span>
-          </div>
-        </aside>
-      </header>
-
-      <section className={r.findings} id="findings">
-        <div className={r.fHead}>
-          <h2 className={r.h2s}>What we found</h2>
-          <span className={r.fSub}>Six findings, each one a chapter</span>
-        </div>
-        <ol className={r.fGrid}>
-          {FINDINGS.map((fd, i) => (
-            <li key={i}>
-              <a href={`#ch${fd.ch}`} className={r.fCard}>
-                <span className={r.fN}>0{i + 1}</span>
-                <span className={r.fBig}>{big[fd.ch].v}</span>
-                <span className={r.fBigL}>{big[fd.ch].l}</span>
-                <span className={r.fText}>{fd.text}</span>
-                <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
 
       <div className={r.body}>
         <aside className={r.railCol}>
@@ -207,6 +117,99 @@ export default async function AdAuditQ3() {
         </aside>
 
         <main className={r.main} id="report-main">
+        {/* Paul, 27 Sep: "the rail on the left. I'd like that to be at the top. At the moment it doesn't
+            come down until you pass a couple of screens... We'd have to move this [at a glance] down the
+            page, but that's okay." So the two-column article starts at the introduction, the rail beside
+            it from the first line, and the at-a-glance window sits in the flow after the intro. */}
+          <header className={r.mast} id="intro">
+            <div className={r.mastMain}>
+              <div className={r.who}>
+                <span className={r.whoFaces}>
+                  <i className={r.byMark}>S</i>
+                  <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
+                </span>
+                <span className={r.whoText}>
+                  <span className={r.whoLine}>
+                    <span>{META.byline}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{META.checked}</span>
+                  </span>
+                  <span className={`${r.whoLine} ${r.whoMeta}`}>
+                    <span>Issue 01 · Q3 2026 · {META.date}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{mins} min read</span>
+                  </span>
+                </span>
+              </div>
+              <p className={r.standfirst}>
+                <Text s={INTRO[0]} />
+              </p>
+              {/* The ad the opening paragraph is about. Facts from numbers.json (biggest_single_ad). */}
+              <div className={a.opener}>
+                <img src="/resources/the-ad-audit/2026-q3/0.jpg" alt="Revolut's Graham Norton ad" />
+                <span className={a.openerText}>
+                  <b>{gn.adv}</b>
+                  <span>
+                    Shown only in Ireland, {day(gn.start)} to {day(gn.stop)}
+                  </span>
+                  <b className={a.openerBig}>{gn.reach.toLocaleString("en-IE")}</b>
+                  <span>people reached by its biggest copy, the most of any single ad in the study</span>
+                </span>
+              </div>
+              {INTRO.slice(1).map((p, i) => (
+                <p key={i} className={r.p}>
+                  <Text s={p} />
+                </p>
+              ))}
+              <div id="download" style={{ marginTop: 8 }}>
+                <DownloadPdf want="report" item="the-ad-audit-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ad-audit-q3-2026.pdf"} pages={CAT?.pages} />
+              </div>
+            </div>
+          </header>
+            <aside className={`mod-win ${r.glance}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="mod-wintitle">at_a_glance</span>
+              </div>
+              <div className={r.glanceBody}>
+                <img className={r.glanceFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+                {[
+                  { v: N.totals.ads.toLocaleString("en-IE"), l: `ads ten banks and lenders showed in Ireland, 1 July to 26 September` },
+                  { v: N.totals.creatives.toLocaleString("en-IE"), l: "different ads, once copies with the same words are merged" },
+                  { v: `${(N.totals.q3_reach / 1e6).toFixed(1)}m`, l: "reach, added up across ads started in the quarter: showings, not people" },
+                  { v: `${cat.offer_creatives} of ${N.totals.bank_creatives}`, l: "different bank ads state an offer: a rate, a cashback, a bonus or something free" },
+                ].map((s) => (
+                  <div key={s.l} className={r.glanceRow}>
+                    <span className="mod-num">{s.v}</span>
+                    <span className="mod-lbl">{s.l}</span>
+                  </div>
+                ))}
+                <span className={r.glanceNext}>Next issue: Q4 2026, in December</span>
+              </div>
+            </aside>
+          <section className={r.findings} id="findings">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>What we found</h2>
+              <span className={r.fSub}>Six findings, each one a chapter</span>
+            </div>
+            <ol className={r.fGrid}>
+              {FINDINGS.map((fd, i) => (
+                <li key={i}>
+                  <a href={`#ch${fd.ch}`} className={r.fCard}>
+                    <span className={r.fN}>0{i + 1}</span>
+                    <span className={r.fBig}>{big[fd.ch].v}</span>
+                    <span className={r.fBigL}>{big[fd.ch].l}</span>
+                    <span className={r.fText}>{fd.text}</span>
+                    <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
           {CHAPTERS.map((c) => (
             <section key={c.id} id={c.id} className={r.chapter}>
               <div className={r.chHead}>
