@@ -266,50 +266,41 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       <section className={f.shelf} id="library">
         <div className={`${f.shelfHead} ${n.learnHead}`}>
           <h2 className={f.h2}>The library</h2>
-          <span className={f.meta}>Every prompt, link, file, person and tool we use, in one place. Free with an account.</span>
+          <span className={f.meta}>Prompts, datasets, tools, templates and files. Free with an account, course or no course.</span>
         </div>
-        <div className={n.libGrid}>
-          <div className={n.libCol}>
-            {/* Paul, 27 Sep: "Maybe we show scroller mpegs of both the course and library?" The
-                library page itself, scrolled top to bottom in 24 seconds, in a window. Recorded with
-                brand-scroll/record-scroll.mjs; the poster is its first frame. */}
-            <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
-              <div className="mod-winbar">
-                <span className="mod-lights"><i /><i /><i /></span>
-                <span className="mod-wintitle">the library · {lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
-              </div>
-              <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
-            </article>
+        {/* Paul, 27 Sep: the essay's shape, "section of left side explain what is the library... And the
+            scroller on the right", and "we need to talk up the library... I want people to be motivated
+            to get stuff (datasets, tools, prompts etc) even if they don't want to do the course." */}
+        <div className={n.tellGrid}>
+          <div className={n.tellCol}>
+            <p className={n.tellStand}>
+              The useful things, in one place. The prompts we run, written out in full. Datasets to practise on.
+              The tools we built, the templates and checklists, the briefs we give our agents. Take what you need.
+            </p>
+            <div className={n.tellBody}>
+              <p>
+                Most of it came out of the course, but you don&rsquo;t need the course to use it. Search it, open
+                the thing you half remember, copy it and take it with you. It grows every fortnight as a module
+                opens, and every time a report lands.
+              </p>
+            </div>
+            <ul className={n.tellLedger}>
+              {lib.ledger.slice(0, 6).map((x) => (
+                <li key={x.l}><b>{x.n}</b> {x.l}</li>
+              ))}
+            </ul>
             <form className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`}>
               <input type="email" placeholder="you@company.ie" aria-label="Work email" />
               <button type="button">Open the library, free</button>
             </form>
-            <span className={n.accFine}>One free account for the library, the course, every PDF and every dataset. Already have one? <Link href="/resources/library">Sign in</Link>.</span>
+            <span className={n.accFine}>One free account for the library, every PDF, every dataset and the course. Already have one? <Link href="/resources/library">Sign in</Link>.</span>
           </div>
-          {/* A look inside: the first prompts by name. The words themselves open with the account. */}
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+          <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">library · prompts · {lib.prompts.length} so far</span>
+              <span className="mod-wintitle">the library · {lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
             </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>A look inside</span>
-              <ol className={n.libRows}>
-                {lib.prompts.slice(0, 6).map((r) => (
-                  <li key={r.key}>
-                    <span className={n.libRowName}>{r.name}</span>
-                    <span className={n.libRowFrom}>{r.from} · module {r.modN} · {r.lines} {r.lines === 1 ? "line" : "lines"}</span>
-                    <span className={n.libRowLock} aria-label="With a free account">
-                      <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden><rect x="2" y="5.5" width="8" height="5.5" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" /><path d="M4 5.5V4a2 2 0 014 0v1.5" fill="none" stroke="currentColor" strokeWidth="1.2" /></svg>
-                      copy
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              <span className={n.accFine}>
-                And {lib.ledger.filter((x) => x.l !== "prompts").map((x) => `${x.n} ${x.l.toLowerCase().replace(" i ", " I ")}`).slice(0, 4).join(", ")}. Every one opens with the account.
-              </span>
-            </div>
+            <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
           </article>
         </div>
       </section>
@@ -321,22 +312,16 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           <h2 className={f.h2}>Free course: AI Fluency for Ambitious Marketers</h2>
           <span className={f.meta}>Six modules, one a fortnight. Module 1 is open now.</span>
         </div>
-        <div className={n.learnGrid}>
-          {/* Paul, 27 Sep: a scroller of module 2, "as you see video of me up front, so is not just a
-              wall of text." 14 seconds down the module page, in a window. */}
-          <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">module 2 · Slow, then fast · opens Mon 5 Oct</span>
-            </div>
-            <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/course-module-2-scroll-poster.jpg" src="/resources/scroll/course-module-2-scroll.mp4" aria-label="Module 2 of the course, scrolled top to bottom" />
-          </article>
-          {/* The course's own words (its page description), the fox from the module pages, one door. */}
-          <div className={n.courseSide}>
-            <p className={n.courseStand}>
+        {/* Paul, 27 Sep: the essay's shape here too, the course's own words on the left ("the course copy
+            here is fine"), the module 2 scroller on the right, "as you see video of me up front". */}
+        <div className={n.tellGrid}>
+          <div className={n.tellCol}>
+            <p className={n.tellStand}>
               A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
             </p>
-            <p className={n.courseLine}>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
+            <div className={n.tellBody}>
+              <p>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
+            </div>
             <ol className={`${n.accMods} ${n.courseMods}`}>
               {MODULES.map((m) => (
                 <li key={m.n} className={m.built ? n.accModOn : ""}>
@@ -350,9 +335,15 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
               <input type="email" placeholder="you@company.ie" aria-label="Work email" />
               <button type="button">Start module 1, free</button>
             </form>
-            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.</span>
-            <Link href="/course" className={n.doorGo}>About the course →</Link>
+            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here. <Link href="/course">About the course</Link>.</span>
           </div>
+          <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">module 2 · Slow, then fast · opens Mon 5 Oct</span>
+            </div>
+            <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/course-module-2-scroll-poster.jpg" src="/resources/scroll/course-module-2-scroll.mp4" aria-label="Module 2 of the course, scrolled top to bottom" />
+          </article>
         </div>
       </section>
 

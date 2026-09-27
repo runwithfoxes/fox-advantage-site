@@ -743,3 +743,15 @@ a.entryT:hover { color: #3A7CA5; }
 .scrollWin { overflow: hidden; }
 .scrollFilm { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: #1A3A4E; }
 .courseMods { margin: 14px 0 12px; }
+
+/* The library and the course bands in the essay's shape (Paul, 27 Sep): the words on the left, the
+   page itself scrolling in a window on the right. */
+.tellGrid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+.tellCol { min-width: 0; }
+.tellStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.45; color: var(--text); margin: 0 0 14px; }
+.tellBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
+.tellBody p { margin: 0 0 14px; }
+.tellLedger { list-style: none; margin: 4px 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.tellLedger b { color: var(--text); font-weight: 500; font-size: 14px; margin-right: 4px; }
+.courseMods { margin: 6px 0 16px; }
+@media (max-width: 900px) { .tellGrid { grid-template-columns: 1fr; gap: 24px; } }
