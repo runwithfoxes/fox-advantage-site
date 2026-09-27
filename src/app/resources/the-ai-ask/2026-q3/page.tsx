@@ -126,22 +126,13 @@ export default function AiAskQ3() {
         <NextNav />
         <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>
           <div className={h.text}>
-            <span className={r.eyebrowW}>
-              {META.kicker} <span className={r.issueW}>Issue 01 · Q3 2026</span>
-            </span>
+            {/* Paul, 27 Sep, on his phone: "I can see five pieces of information on that hero. That's
+                not good." So the film carries two: the report's name and the headline. The issue, the
+                byline, the date and the read time moved to the top of the article. */}
+            <span className={r.eyebrowW}>{META.kicker}</span>
             <h1 className={r.h1W}>
               {META.heroTitle} <span className={r.hlW}>{META.titleHl}</span>
             </h1>
-            <div className={r.byW}>
-              <i className={r.byMark}>S</i>
-              <span>{META.byline}</span>
-              <span className={r.byDot}>·</span>
-              <span>{META.checked}</span>
-              <span className={r.byDot}>·</span>
-              <span>{META.date}</span>
-              <span className={r.byDot}>·</span>
-              <span>{mins} min read</span>
-            </div>
           </div>
         </div>
       </section>
@@ -152,6 +143,27 @@ export default function AiAskQ3() {
 
       <header className={r.mast} id="intro">
         <div className={r.mastMain}>
+          {/* The byline, editorial style: Sam's mark and Paul's photo, then who wrote and checked it. */}
+          <div className={r.who}>
+            <span className={r.whoFaces}>
+              <i className={r.byMark}>S</i>
+              <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
+            </span>
+            <span className={r.whoText}>
+              {/* each piece stays whole; on a phone the line breaks between pieces, never mid-piece
+                  or after a lone dot */}
+              <span className={r.whoLine}>
+                <span>{META.byline}</span>
+                <span className={r.byDot}>·</span>
+                <span>{META.checked}</span>
+              </span>
+              <span className={`${r.whoLine} ${r.whoMeta}`}>
+                <span>Issue 01 · Q3 2026 · {META.date}</span>
+                <span className={r.byDot}>·</span>
+                <span>{mins} min read</span>
+              </span>
+            </span>
+          </div>
           <p className={r.standfirst}>
             <Text s={INTRO[0]} />
           </p>
