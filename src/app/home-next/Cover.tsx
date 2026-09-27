@@ -32,28 +32,28 @@ export const COVER_FOXES = [
 /* Paul, 27 Sep, on the drawn covers: "I don't think I like them. This is header of the AI Ask
    and I do like it. Feels bigger, more on-brand." So a series can carry a scene instead: the fox
    somewhere in Ireland that fits the study, the title set in the picture the way the AI Ask
-   header sets it. Three to look at first; the rest of the shelf keeps the drawing until he picks. */
-export const COVER_PHOTOS: Record<string, string> = {
-  "geo-ireland": "/covers/geo-ireland.jpg",
-  "the-mystery-shop": "/covers/the-mystery-shop.jpg",
-  "the-creative-audit": "/covers/the-creative-audit.jpg",
-};
+   header sets it. Then, the same day: "The photos work better than the charts. So let's use photos always." All twelve
+   carry one; the AI Ask's is the last frame of its own header film. Sources and prompts:
+   ~/projects/fox-ads/dray/output/report-covers/gen.py */
+export const COVER_PHOTOS: Record<string, string> = Object.fromEntries(
+  ["the-ai-ask", "geo-ireland", "state-of-ai-in-irish-marketing", "agent-economics", "irish-ads-by-sector", "the-irish-marketing-team",
+   "ai-overviews-in-ireland", "the-boardroom-pulse", "the-creative-audit", "small-firms-and-ai", "the-mystery-shop", "the-irish-martech-index",
+  ].map((slug) => [slug, `/covers/${slug}.jpg`]),
+);
 
 export default function Cover({ no, cadence, title, cover, fox, photo }: { no: string; cadence: string; title: string; cover: CoverArt; fox: string; photo?: string }) {
   if (photo) {
+    /* Paul, 27 Sep: "the white background of the report feels flat." So the picture IS the card:
+       number and cadence in the picture's top corners, the title in the picture at the foot, no
+       white frame around it. */
     return (
       <div className={`${n.cover} ${n.coverScene}`}>
-        <div className={n.coverTop}>
+        <img src={photo} alt="" />
+        <div className={n.coverSceneTop}>
           <span>{no}</span>
           <span>{cadence}</span>
         </div>
-        <div className={n.coverPhoto}>
-          <img src={photo} alt="" />
-          {/* the title sits in the picture on the big cover only; at card size it crowded the scene,
-              so the small cards keep the plate under, level with the drawn covers beside them */}
-          <span className={n.coverPhotoTitle}>{title}</span>
-        </div>
-        <div className={`${n.coverFoot} ${n.coverSceneFoot}`}>{title}</div>
+        <span className={n.coverPhotoTitle}>{title}</span>
       </div>
     );
   }
