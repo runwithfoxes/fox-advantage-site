@@ -269,6 +269,20 @@ export async function POST(req: NextRequest) {
     // pulled the person in. Every touch is appended either way, so a repeat is
     // visible rather than silently lost.
     const properties: Record<string, unknown> = {};
+    /* 27 Sep 2026, the resource centre's tags (see /api/access). A course sign-up is a full-access
+       sign-up too, and the route the person took stays visible: rwf_first_want is set only when no
+       profile existed (someone who came in through a report and then joins the course keeps
+       "report" as their first want), rwf_last_want is "course" every time, and rwf_wants gets
+       "course" appended below. Paul, 27 Sep: "if I have registered for the course, do I get access
+       to all these things? The answer should be yes. And if I come in through a report, I can also
+       take on the course... And we can track those." */
+    properties.rwf_last_want = "course";
+    properties.rwf_last_page = pageUrl ?? null;
+    properties.rwf_last_ask_at = stamp;
+    if (!existing) {
+      properties.rwf_first_want = "course";
+      properties.rwf_first_ask_at = stamp;
+    }
     if (firstTouch) {
       properties.signup_source = source;
       properties.signup_door = door;
@@ -388,6 +402,31 @@ export async function POST(req: NextRequest) {
       door, klaviyo: "ok", ...(trapFilled ? { trap: true as const } : {}),
     });
 
+    /* The resource centre's running list and its own metric (never `Joined`, see above). Both
+       best-effort: a failure here must not cost a signup that has already succeeded. */
+    if (profileId) {
+      await fetch(`${KLAVIYO}/profiles/${profileId}/`, {
+        method: "PATCH",
+        headers: headers(key, true),
+        body: JSON.stringify({ data: { type: "profile", id: profileId, attributes: {}, meta: { patch_properties: { append: { rwf_wants: "course" } } } } }),
+      }).catch(() => null);
+    }
+    await fetch(`${KLAVIYO}/events/`, {
+      method: "POST",
+      headers: headers(key, true),
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { want: "course", item: signupModule !== null ? `module-${signupModule}` : null, page: pageUrl ?? null, first: !existing },
+            metric: { data: { type: "metric", attributes: { name: "Resource Access" } } },
+            profile: { data: { type: "profile", attributes: { email } } },
+            time: stamp,
+          },
+        },
+      }),
+    }).catch(() => null);
+
     /*
       ⭐ META CONVERSIONS API - AFTER THE RESPONSE, NOT BEFORE IT.
 
@@ -434,6 +473,7 @@ export async function POST(req: NextRequest) {
     // Someone who submits twice, or refreshes mid-submit, has done nothing
     // wrong. Both land here as a success with `already` set, not as an error.
     const res = NextResponse.json({ ok: true, door, already: !!existing });
+    res.cookies.set("rwf_access", "1", { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * 365 });
 
     /* ⭐⭐ THE IDENTITY COOKIE IS SET HERE AND NOWHERE ELSE, 3 Aug 2026. This is the moment
        the course gets a name to attach behaviour to, which is the entire reason Paul wants
