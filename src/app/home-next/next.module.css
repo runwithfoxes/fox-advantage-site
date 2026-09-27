@@ -757,3 +757,10 @@ a.entryT:hover { color: #3A7CA5; }
 .courseMods { margin: 6px 0 16px; }
 @media (max-width: 900px) { .tellGrid { grid-template-columns: 1fr; gap: 24px; } }
 .rbAll { display: inline-block; margin-top: 28px; }
+
+/* Phone (27 Sep, from the phone-width pass): a band heading at 38px runs "Free course: AI Fluency for
+   Ambitious Marketers" to four lines. 28px on a phone, and the line under it sits close. */
+@media (max-width: 600px) {
+  .rbFeat h2, section h2[class*="h2"] { font-size: 28px; line-height: 1.1; }
+  .learnHead { gap: 6px; margin-bottom: 22px; }
+}
