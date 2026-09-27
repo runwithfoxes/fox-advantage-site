@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../kit/ViewedPing";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SIZES from "../../catalogue/file-sizes.json";
@@ -48,6 +50,7 @@ function fileSize(p: string) {
  * and at the end the gate, with the whole CSV through it.
  */
 export default async function DatasetPage({ params }: { params: Promise<{ slug: string }> }) {
+  const unlocked = await hasAccess();
   const { slug } = await params;
   const x = datasetBySlug(slug);
   if (!x) notFound();
@@ -60,6 +63,7 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
 
   return (
     <Shell>
+      <ViewedPing want="dataset" item={x.slug} />
       <main className={inst.wrap}>
         <p className={inst.crumb}>
           <Link href="/resources">Resources</Link>
@@ -186,7 +190,7 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
 
             <Gate want="dataset" item={x.slug} adds={["The whole file, every row, as a CSV", "A fresh copy each time it is re-read", ...(x.sectors.length ? ["Your sector cut out"] : [])]} />
             <div className={d.dl}>
-              <DownloadPdf kind="csv" href={x.csv} label="Download the whole file" size={size} />
+              <DownloadPdf want="dataset" item={x.slug} unlocked={unlocked} kind="csv" href={x.csv} label="Download the whole file" size={size} />
             </div>
           </div>
 

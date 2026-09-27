@@ -157,7 +157,10 @@ export async function POST(req: NextRequest) {
     }).catch(() => null);
 
     const res = NextResponse.json({ ok: true, first });
-    res.cookies.set("rwf_access", "1", { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * 365 });
+    const jar = { httpOnly: true, sameSite: "lax" as const, secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * 365 };
+    res.cookies.set("rwf_access", "1", jar);
+    // the course's identity cookie too, so one person is one person across the course and the centre (src/lib/access.ts)
+    res.cookies.set("rwf_course_id", email, jar);
     return res;
   } catch (err) {
     console.error("[access] failed", err);

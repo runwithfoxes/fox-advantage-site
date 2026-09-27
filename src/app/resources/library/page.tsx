@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ViewedPing from "../kit/ViewedPing";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import EverythingClient from "@/app/course/everything/EverythingClient";
@@ -80,6 +81,7 @@ export default function LibraryPage() {
 
   return (
     <div className={f.page}>
+      <ViewedPing want="library" />
       <Band
         kicker="the library"
         title={

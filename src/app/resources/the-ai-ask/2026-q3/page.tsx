@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../kit/ViewedPing";
 import AccessForm from "../../kit/AccessForm";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
@@ -91,7 +93,8 @@ function BlockView({ b, ch }: { b: Block; ch: number }) {
  * shell is the module page's (masthead, sticky contents rail with dots, numbered sections,
  * figures in module windows). NOT FOR THE LIVE SITE until Paul approves Sam's text.
  */
-export default function AiAskQ3() {
+export default async function AiAskQ3() {
+  const unlocked = await hasAccess();
   // figure numbers follow Sam's chapter.section order: first figure in chapter 3 is 3.1, etc.
   figNo = {};
   CHAPTERS.forEach((c) => {
@@ -120,6 +123,7 @@ export default function AiAskQ3() {
 
   return (
     <div className={`${f.page} ${r.page}`}>
+      <ViewedPing want="report" item="the-ai-ask-2026-q3" />
       {/* Paul, 25 Sep: the band "same size as hero in homepage and put headline into photo". The
           report's title and byline sit in the film; the at-a-glance card went back under it (Paul, late 25 Sep) to give the film room, as the homepage's do. */}
       <section className={`${h.hero} ${r.heroR}`} id="top">
@@ -175,7 +179,7 @@ export default function AiAskQ3() {
           ))}
           {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
           <div id="download" style={{ marginTop: 8 }}>
-            <DownloadPdf href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
+            <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
           </div>
         </div>
         <aside className={`mod-win ${r.glance}`}>

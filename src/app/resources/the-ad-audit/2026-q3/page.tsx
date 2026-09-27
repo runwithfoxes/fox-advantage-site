@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../kit/ViewedPing";
 import AccessForm from "../../kit/AccessForm";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
@@ -63,7 +65,8 @@ function BlockView({ b }: { b: Block }) {
  * window, the findings, and the chapters with numbered figures in module windows.
  * NOT FOR THE LIVE SITE until Paul approves Sam's text.
  */
-export default function AdAuditQ3() {
+export default async function AdAuditQ3() {
+  const unlocked = await hasAccess();
   const words = [...INTRO, ...CHAPTERS.flatMap((c) => [...c.lede, ...c.subs.flatMap((s) => s.blocks)].map((b) => ("p" in b ? b.p : "")))].join(" ").split(/\s+/).length;
   const mins = Math.round(words / 230);
   const A = N.advertisers;
@@ -87,6 +90,7 @@ export default function AdAuditQ3() {
 
   return (
     <div className={`${f.page} ${r.page}`}>
+      <ViewedPing want="report" item="the-ad-audit-2026-q3" />
       <section className={`${h.hero} ${r.heroR}`} id="top">
         {/* A still, not a film: the fox outside a Dublin bank (report-covers/gen.py, "the-ad-audit").
             The object position is inline so no stylesheet order can move it. Not the site's .film
@@ -147,7 +151,7 @@ export default function AdAuditQ3() {
             </p>
           ))}
           <div id="download" style={{ marginTop: 8 }}>
-            <DownloadPdf href={CAT?.pdf ?? "/resources/pdf/the-ad-audit-q3-2026.pdf"} pages={CAT?.pages} />
+            <DownloadPdf want="report" item="the-ad-audit-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ad-audit-q3-2026.pdf"} pages={CAT?.pages} />
           </div>
         </div>
         <aside className={`mod-win ${r.glance}`}>

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../../kit/ViewedPing";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import SiteFooter from "@/components/SiteFooter";
@@ -38,6 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ series: s
  * - method: details rows, the sign-off with the author's mark, then the gate and the way back.
  */
 export default async function EditionPage({ params }: { params: Promise<{ series: string; slug: string }> }) {
+  const unlocked = await hasAccess();
   const { slug } = await params;
   const r = reportBySlug(slug);
   if (!r) notFound();
@@ -49,6 +52,7 @@ export default async function EditionPage({ params }: { params: Promise<{ series
   if (r.status === "coming") {
     return (
       <div className={s.page}>
+      <ViewedPing want="report" item={r.slug} />
         <Top crumbs={crumbs} />
         <main className={s.wrap}>
           <section className={s.coming}>
@@ -105,7 +109,7 @@ export default async function EditionPage({ params }: { params: Promise<{ series
             <Byline r={r} />
             <p className={s.stand}>{r.standfirst}</p>
             <div id="download">
-              <DownloadPdf href={r.pdf} pages={r.pages} />
+              <DownloadPdf want="report" item={r.slug} unlocked={unlocked} href={r.pdf} pages={r.pages} />
             </div>
           </div>
           <aside className={`mod-win ${s.glance}`} aria-label="At a glance">

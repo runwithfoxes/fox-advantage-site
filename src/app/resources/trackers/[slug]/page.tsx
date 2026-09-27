@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../kit/ViewedPing";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SIZES from "../../catalogue/file-sizes.json";
@@ -47,6 +49,7 @@ function fileSize(p: string) {
  * typed in; the owner desk; and at the end the gate and the history as a CSV through it.
  */
 export default async function TrackerPage({ params }: { params: Promise<{ slug: string }> }) {
+  const unlocked = await hasAccess();
   const { slug } = await params;
   const x = trackerBySlug(slug);
   if (!x) notFound();
@@ -79,6 +82,7 @@ export default async function TrackerPage({ params }: { params: Promise<{ slug: 
 
   return (
     <Shell>
+      <ViewedPing want="tracker" item={x.slug} />
       <main className={inst.wrap}>
         <p className={inst.crumb}>
           <Link href="/resources">Resources</Link>
@@ -202,7 +206,7 @@ export default async function TrackerPage({ params }: { params: Promise<{ slug: 
             <Gate want="tracker" item={x.slug} adds={x.withAccount} />
             {!planned ? (
               <div className={t.dl}>
-                <DownloadPdf kind="csv" href={csv} label="Download the history" size={fileSize(csv)} />
+                <DownloadPdf want="tracker" item={x.slug} unlocked={unlocked} kind="csv" href={csv} label="Download the history" size={fileSize(csv)} />
               </div>
             ) : null}
           </div>

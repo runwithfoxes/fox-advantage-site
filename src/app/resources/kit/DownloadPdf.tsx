@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import k from "./kit.module.css";
+import AccessForm, { type Want } from "./AccessForm";
 
 /**
- * Download as PDF. The page is free to read; the PDF is one of the things an account adds (the
- * gate rule), so the button opens a one-line email step in place, then hands over the file.
- * ⛔ MOCKUP: the email goes nowhere. Every example PDF carries "Example, made-up numbers" on
- * every page, and a draft carries "Draft, not approved" (see BUILD-NOTES, the PDF rule).
+ * Download as PDF or CSV. The page is free to read; the file is one of the things an account
+ * adds. A reader who already has access (the server passes `unlocked` from the cookie) gets the
+ * file in one click. Anyone else gets the one-line ask in place, real since 27 Sep 2026: it posts
+ * to /api/access tagged with this page (want, item), and the file opens the moment it succeeds.
+ * Every example PDF carries "Example, made-up numbers" on every page, and a draft carries "Draft,
+ * not approved" (BUILD-NOTES, the PDF rule).
  */
 /** kind "csv" is the same step for a data file: a tracker's history or a dataset's full CSV. */
-export default function DownloadPdf({ href, pages, label, kind = "pdf", size }: { href: string; pages?: number; label?: string; kind?: "pdf" | "csv"; size?: string }) {
+export default function DownloadPdf({ href, pages, label, kind = "pdf", size, want = "report", item, unlocked = false }: { href: string; pages?: number; label?: string; kind?: "pdf" | "csv"; size?: string; want?: Want; item?: string; unlocked?: boolean }) {
   const text = label ?? (kind === "csv" ? "Download the CSV" : "Download the PDF");
   const meta = kind === "csv" ? size : pages ? `${pages} pages` : undefined;
-  const [step, setStep] = useState<"idle" | "email" | "ready">("idle");
+  const [step, setStep] = useState<"idle" | "email" | "ready">(unlocked ? "ready" : "idle");
   return (
     <div className={k.dl}>
       {step === "ready" ? (
@@ -25,19 +28,8 @@ export default function DownloadPdf({ href, pages, label, kind = "pdf", size }: 
           {kind === "csv" ? <CsvIcon /> : <PdfIcon />} {text} {meta ? <em>{meta}</em> : null}
         </button>
       )}
-      {step === "email" ? (
-        <form
-          className={k.dlStep}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setStep("ready");
-          }}
-        >
-          <input type="email" required autoFocus placeholder="you@company.ie" aria-label="Work email" />
-          <button type="submit">Send it</button>
-        </form>
-      ) : null}
-      {step === "email" ? <span className={k.dlNote}>Free, one account for everything. Mockup: sends nothing.</span> : null}
+      {step === "email" ? <AccessForm want={want} item={item} className={k.dlStep} label="Send it" done="" doneClassName={k.dlNote} onDone={() => setStep("ready")} /> : null}
+      {step === "email" ? <span className={k.dlNote}>Free, one account for everything here.</span> : null}
     </div>
   );
 }
