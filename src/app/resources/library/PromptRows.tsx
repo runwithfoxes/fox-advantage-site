@@ -40,7 +40,8 @@ export default function PromptRows({ rows, locked = false }: { rows: PromptRow[]
             </a>
             <span className={L.promptMeta}>{r.lines} lines</span>
             {locked ? (
-              <span className={L.promptCopy} aria-label="Opens with a free account">free account</span>
+              /* Paul, 27 Sep: no lock line on every row; the account band at the foot is the one ask */
+              <a className={L.promptCopy} href="#account">copy</a>
             ) : (
               <button type="button" className={L.promptCopy} onClick={() => copy(r)}>
                 {said === r.key ? "copied" : "copy"}

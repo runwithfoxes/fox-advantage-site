@@ -387,7 +387,7 @@ export default function EverythingClient({
                               </button>
                               <span className={s.rwmeta}>{f.meta}</span>
                               {locked ? (
-                                <span className={s.rwcopy} aria-label="Opens with a free account">free account</span>
+                                <a className={s.rwcopy} href="#account">copy</a>
                               ) : (
                                 <button
                                   type="button"

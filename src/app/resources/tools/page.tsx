@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import { TOOLS, AREA_LABEL, type Tool } from "../catalogue";
-import { Example, Gate, Lock } from "../kit";
+import { Example, Gate } from "../kit";
 import Band from "../library/Band";
 import f from "../front.module.css";
 import T from "./tools.module.css";
@@ -64,7 +64,7 @@ export default function ToolsPage() {
               <p className={T.winFree}>{featured.free}</p>
               <span className={T.winStep}>03 · With a free account</span>
               <p className={T.winFull}>
-                <Lock /> {featured.full}
+                {featured.full}
               </p>
               <span className={T.winTime}>about {featured.minutes} minutes</span>
             </div>
@@ -116,7 +116,7 @@ export default function ToolsPage() {
                   <td data-l="You put in">{t.input}</td>
                   <td data-l="Free, on screen">{t.free}</td>
                   <td data-l="With a free account">
-                    <Lock /> {t.full}
+                    {t.full}
                   </td>
                   <td data-l="Time" className={T.num}>
                     {t.minutes} min
