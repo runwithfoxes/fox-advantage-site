@@ -542,7 +542,9 @@ a.entryT:hover { color: #3A7CA5; }
    the subcopy font. The live homepage hero sets its line in Space Grotesk (.ah-sub) and its
    mono headline with word-spacing -.16em (.ah h1); both carried over here. */
 .heroInner { max-width: 1320px; gap: 40px; }
-.heroInner h1 { font-size: clamp(2.6rem, 5.4vw, 4.8rem); word-spacing: -0.16em; }
+.heroInner h1 { font-size: clamp(2.6rem, 5.4vw, 4.8rem); word-spacing: -0.16em; text-wrap: balance; }
+/* On a phone the headline sits at 36px so "Giving marketing teams an edge" makes two lines, not three with "Giving" alone (27 Sep). */
+@media (max-width: 600px) { .heroInner h1 { font-size: 2.25rem; } }
 .heroInner h1 + p { font-family: var(--sans); font-size: 19px; line-height: 1.5; max-width: 40ch; }
 .heroInner { max-width: 1340px !important; padding-right: 40px !important; }
 /* the headline keeps the page's left edge (148px at 1440, the buttons' line) while the card sits further right */
