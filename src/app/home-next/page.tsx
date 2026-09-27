@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 
 /* GEO Ireland day one (23 Aug 2026), NOT signed off by Paul: categories whose most-named
    answer is a state body. Counted off data.ts, never typed. */
+const SHOW_NUMBERS = false;
 const STATE_LED = CATEGORIES.filter((c) => c.owner === "state").length;
 const GEO_READING = { value: String(STATE_LED), of: `of ${CATEGORIES.length} categories led by a state body`, last: "23 Aug" };
 
@@ -193,7 +194,11 @@ export default function HomeNext() {
           </div>
         </section>
 
-        <DataBand />
+        {/* The numbers band is HIDDEN, not deleted (Paul, 27 Sep): "is there not an overlap with these
+            [Reports and papers]? ... they are reports." and "So these are like insights? ... find a way
+            for them to turn up somewhere but less busy, but hide them for now." Flip SHOW_NUMBERS to
+            bring the four insight cards back while a quieter home is found for them. */}
+        {SHOW_NUMBERS && <DataBand />}
         <SectorPicker />
 
         {/* The live homepage's agents section, whole: its inline reader, and the full-screen
