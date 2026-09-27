@@ -19,12 +19,17 @@ import type { Counts } from "./HubHero";
 
 type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "answer" | "course" | "library" | "figure" | "diary" | "book" | "contact" | "news";
 
+/* Paul, 27 Sep, on this menu: "it needs to link to things that make sense... not a good experience if
+   i click on dataset and land on a page telling me i must register." Every item goes to a page that
+   shows the thing. Reports, trackers, tools and playbooks now open their own index pages instead of
+   anchors on the homepage (four of those bands are hidden since 27 Sep, so the anchors landed on
+   nothing). Datasets still points at the homepage until it has an index page of its own. */
 const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts }[] = [
-  { g: "report", t: "Reports", d: "Series on a fixed calendar, every edition", href: "/resources#reports", n: "reports" },
-  { g: "tracker", t: "Trackers", d: "What our agents read, weekly or daily", href: "/resources#trackers", n: "trackers" },
+  { g: "report", t: "Reports", d: "Series on a fixed calendar, every edition", href: "/resources/reports", n: "reports" },
+  { g: "tracker", t: "Trackers", d: "What our agents read, weekly or daily", href: "/resources/trackers", n: "trackers" },
   { g: "data", t: "Datasets", d: "The rows behind the reports, first rows free", href: "/resources#data", n: "datasets" },
-  { g: "tool", t: "Tools", d: "Free to use, a first look on screen", href: "/resources#tools", n: "tools" },
-  { g: "playbook", t: "Playbooks", d: "Prompts, templates and agent briefs", href: "/resources#playbooks", n: "playbooks" },
+  { g: "tool", t: "Tools", d: "Free to use, a first look on screen", href: "/resources/tools", n: "tools" },
+  { g: "playbook", t: "Playbooks", d: "Prompts, templates and agent briefs", href: "/resources/playbooks", n: "playbooks" },
   { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/resources/library" },
 ];
 const READ: { t: string; href: string }[] = [
