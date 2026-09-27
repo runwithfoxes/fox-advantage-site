@@ -1,0 +1,658 @@
+{
+ "geo-ireland-day-one": {
+  "title": "Average rate by category",
+  "caption": "8 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "%",
+   "rows": [
+    {
+     "label": "Tax",
+     "value": 95.8,
+     "highlight": true
+    },
+    {
+     "label": "Mental health",
+     "value": 95.8
+    },
+    {
+     "label": "Student grants",
+     "value": 95.2
+    },
+    {
+     "label": "Home energy grants",
+     "value": 89.5
+    },
+    {
+     "label": "Vaccines",
+     "value": 87
+    },
+    {
+     "label": "Scams",
+     "value": 81.8
+    },
+    {
+     "label": "Alcohol",
+     "value": 79.2
+    },
+    {
+     "label": "Business software",
+     "value": 75
+    }
+   ]
+  }
+ },
+ "the-ai-ask-roles-2026-q3": {
+  "title": "Average asks by role",
+  "caption": "8 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Account executives and enterprise sales",
+     "value": 13,
+     "highlight": true
+    },
+    {
+     "label": "Business development, SDR and BDR",
+     "value": 10
+    },
+    {
+     "label": "Digital, performance and ecommerce marketing",
+     "value": 9
+    },
+    {
+     "label": "Customer success and account management",
+     "value": 8
+    },
+    {
+     "label": "Field, retail, inside and other sales",
+     "value": 8
+    },
+    {
+     "label": "Product marketing",
+     "value": 4
+    },
+    {
+     "label": "Brand, events and general marketing",
+     "value": 3
+    },
+    {
+     "label": "Content, social and communications",
+     "value": 1
+    }
+   ]
+  }
+ },
+ "irish-ad-library": {
+  "title": "Rows by sector",
+  "caption": "16,927 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Technology and SaaS",
+     "value": 4280,
+     "highlight": true
+    },
+    {
+     "label": "Media and publishing",
+     "value": 4136
+    },
+    {
+     "label": "Education",
+     "value": 2184
+    },
+    {
+     "label": "Energy",
+     "value": 2153
+    },
+    {
+     "label": "Public sector",
+     "value": 2125
+    },
+    {
+     "label": "Retail and ecommerce",
+     "value": 2049
+    }
+   ]
+  }
+ },
+ "marketing-job-ads": {
+  "title": "Rows by role",
+  "caption": "18,782 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Head of marketing",
+     "value": 4715,
+     "highlight": true
+    },
+    {
+     "label": "Brand",
+     "value": 4668
+    },
+    {
+     "label": "Events",
+     "value": 2411
+    },
+    {
+     "label": "Performance and paid",
+     "value": 2356
+    },
+    {
+     "label": "SEO",
+     "value": 2322
+    },
+    {
+     "label": "Ecommerce",
+     "value": 2310
+    }
+   ]
+  }
+ },
+ "ai-overview-answers": {
+  "title": "Average sources by month, across every row",
+  "caption": "15,016 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 6.02
+    },
+    {
+     "label": "Jun 26",
+     "value": 5.94
+    },
+    {
+     "label": "Jul 26",
+     "value": 5.99
+    },
+    {
+     "label": "Aug 26",
+     "value": 6.02
+    },
+    {
+     "label": "Sep 26",
+     "value": 5.96,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "marketing-salaries": {
+  "title": "Average low by month, across every row",
+  "caption": "8,915 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "€",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 47229.08
+    },
+    {
+     "label": "Jun 26",
+     "value": 47148.55
+    },
+    {
+     "label": "Jul 26",
+     "value": 47198.68
+    },
+    {
+     "label": "Aug 26",
+     "value": 47245.27
+    },
+    {
+     "label": "Sep 26",
+     "value": 47219.85,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "homepage-chat-audit": {
+  "title": "Average seconds by month, across every row",
+  "caption": "500 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 0
+    },
+    {
+     "label": "Jun 26",
+     "value": 0
+    },
+    {
+     "label": "Jul 26",
+     "value": 0
+    },
+    {
+     "label": "Aug 26",
+     "value": 0
+    },
+    {
+     "label": "Sep 26",
+     "value": 0,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "reply-times": {
+  "title": "Average hours by month, across every row",
+  "caption": "522 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 21.04
+    },
+    {
+     "label": "Jun 26",
+     "value": 21.24
+    },
+    {
+     "label": "Jul 26",
+     "value": 19.28
+    },
+    {
+     "label": "Aug 26",
+     "value": 19.28
+    },
+    {
+     "label": "Sep 26",
+     "value": 15.1,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "martech-stacks": {
+  "title": "Average tools by month, across every row",
+  "caption": "2,308 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 17.77
+    },
+    {
+     "label": "Jun 26",
+     "value": 17.1
+    },
+    {
+     "label": "Jul 26",
+     "value": 17.52
+    },
+    {
+     "label": "Aug 26",
+     "value": 17.77
+    },
+    {
+     "label": "Sep 26",
+     "value": 17.92,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "sme-panel-answers": {
+  "title": "Average staff by sector",
+  "caption": "1,902 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Public sector",
+     "value": 34.23,
+     "highlight": true
+    },
+    {
+     "label": "Health",
+     "value": 33.42
+    },
+    {
+     "label": "Property",
+     "value": 32.86
+    },
+    {
+     "label": "Retail and ecommerce",
+     "value": 32.72
+    },
+    {
+     "label": "Professional services",
+     "value": 31.99
+    },
+    {
+     "label": "Tourism and hospitality",
+     "value": 31.73
+    },
+    {
+     "label": "Financial services",
+     "value": 31.61
+    }
+   ]
+  }
+ },
+ "boardroom-panel": {
+  "title": "Rows by role",
+  "caption": "400 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Content and social",
+     "value": 97,
+     "highlight": true
+    },
+    {
+     "label": "Digital marketing",
+     "value": 94
+    },
+    {
+     "label": "SEO",
+     "value": 58
+    },
+    {
+     "label": "Ecommerce",
+     "value": 57
+    },
+    {
+     "label": "Communications",
+     "value": 54
+    },
+    {
+     "label": "Performance and paid",
+     "value": 40
+    }
+   ]
+  }
+ },
+ "creative-scores": {
+  "title": "Rows by sector",
+  "caption": "1,549 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Tourism and hospitality",
+     "value": 776,
+     "highlight": true
+    },
+    {
+     "label": "Education",
+     "value": 213
+    },
+    {
+     "label": "Financial services",
+     "value": 191
+    },
+    {
+     "label": "Tax and accounting",
+     "value": 186
+    },
+    {
+     "label": "Public sector",
+     "value": 183
+    }
+   ]
+  }
+ },
+ "cpc-by-sector": {
+  "title": "Average cpc by month, across every row",
+  "caption": "1,400 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "€",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 1.98
+    },
+    {
+     "label": "Jun 26",
+     "value": 2.07
+    },
+    {
+     "label": "Jul 26",
+     "value": 2.18
+    },
+    {
+     "label": "Aug 26",
+     "value": 2.15
+    },
+    {
+     "label": "Sep 26",
+     "value": 2.04,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "cpm-by-platform": {
+  "title": "Average cpm by month, across every row",
+  "caption": "900 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "€",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 15.62
+    },
+    {
+     "label": "Jun 26",
+     "value": 16.02
+    },
+    {
+     "label": "Jul 26",
+     "value": 16.15
+    },
+    {
+     "label": "Aug 26",
+     "value": 16.35
+    },
+    {
+     "label": "Sep 26",
+     "value": 17.35,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "agent-run-log": {
+  "title": "Average cost by month, across every row",
+  "caption": "6,511 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "€",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 221.85
+    },
+    {
+     "label": "Jun 26",
+     "value": 214.67
+    },
+    {
+     "label": "Jul 26",
+     "value": 212.28
+    },
+    {
+     "label": "Aug 26",
+     "value": 216.66
+    },
+    {
+     "label": "Sep 26",
+     "value": 214.99,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "public-tenders-marketing": {
+  "title": "Rows by buyer type",
+  "caption": "329 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Local authority",
+     "value": 129,
+     "highlight": true
+    },
+    {
+     "label": "University",
+     "value": 111
+    },
+    {
+     "label": "State agency",
+     "value": 47
+    },
+    {
+     "label": "Health body",
+     "value": 42
+    }
+   ]
+  }
+ },
+ "ai-citation-sources": {
+  "title": "Rows by engine",
+  "caption": "26,886 rows in the file, every group shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "Perplexity",
+     "value": 6933,
+     "highlight": true
+    },
+    {
+     "label": "Claude",
+     "value": 6714
+    },
+    {
+     "label": "Copilot",
+     "value": 6645
+    },
+    {
+     "label": "ChatGPT",
+     "value": 3306
+    },
+    {
+     "label": "Google AI",
+     "value": 3288
+    }
+   ]
+  }
+ },
+ "newsletter-inbox": {
+  "title": "Average subject words by month, across every row",
+  "caption": "4,091 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 17.73
+    },
+    {
+     "label": "Jun 26",
+     "value": 17.72
+    },
+    {
+     "label": "Jul 26",
+     "value": 17.61
+    },
+    {
+     "label": "Aug 26",
+     "value": 18.13
+    },
+    {
+     "label": "Sep 26",
+     "value": 17.9,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "ai-seat-prices": {
+  "title": "Average price by month, across every row",
+  "caption": "338 rows in the file, the last 5 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "€",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 195.47
+    },
+    {
+     "label": "Jun 26",
+     "value": 196.9
+    },
+    {
+     "label": "Jul 26",
+     "value": 185.62
+    },
+    {
+     "label": "Aug 26",
+     "value": 168.29
+    },
+    {
+     "label": "Sep 26",
+     "value": 186.73,
+     "highlight": true
+    }
+   ]
+  }
+ },
+ "team-pages": {
+  "title": "Average team size by month, across every row",
+  "caption": "548 rows in the file, the last 4 months shown. Drawn from the whole file, not the sample.",
+  "data": {
+   "kind": "bars",
+   "unit": "count",
+   "rows": [
+    {
+     "label": "May 26",
+     "value": 23.08
+    },
+    {
+     "label": "Jun 26",
+     "value": 20.63
+    },
+    {
+     "label": "Jul 26",
+     "value": 21.3
+    },
+    {
+     "label": "Aug 26",
+     "value": 18.81,
+     "highlight": true
+    }
+   ]
+  }
+ }
+}
