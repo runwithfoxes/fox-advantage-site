@@ -63,7 +63,7 @@ function Cover({ st }: { st: Study }) {
 /**
  * /home-next. The Resource hub turned into the homepage, drawn at the size it is meant to
  * reach: ten trackers, six studies, eight writers, eight tools. Paul, 25 Sep 2026.
- * The headline is a placeholder on purpose: "Don't worry about the headline for the moment."
+ * The headline is "Giving marketing teams an edge" (Paul, 27 Sep: "That's what we'll use for now").
  */
 export default function HomeNextMore() {
   const essays = getAllEssays().slice(0, 3);

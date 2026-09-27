@@ -39,7 +39,7 @@ function Ex({ on = true }: { on?: boolean }) {
 /**
  * /home-next. The Resource hub turned into the homepage, drawn at the size it is meant to
  * reach: ten trackers, six studies, eight writers, eight tools. Paul, 25 Sep 2026.
- * The headline is a placeholder on purpose: "Don't worry about the headline for the moment."
+ * The headline is "Giving marketing teams an edge" (Paul, 27 Sep: "That's what we'll use for now").
  */
 export default function HomeNext() {
   const essays = getAllEssays().slice(0, 3);
@@ -210,7 +210,7 @@ export default function HomeNext() {
 
       <SiteFooter current="/" wide />
       <div className={f.banner}>
-        Mockup, 25 Sep 2026. The homepage at full scale. Anything tagged Example is made up. GEO Ireland numbers are day one and not signed off. The headline is a placeholder.
+        Mockup, 25 Sep 2026. The homepage at full scale. Anything tagged Example is made up. GEO Ireland numbers are day one and not signed off.
       </div>
     </div>
   );
