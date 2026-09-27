@@ -20,6 +20,9 @@ export type Chapter = { id: string; n: number; title: string; lede?: string[]; s
 export const META = {
   kicker: "The AI Ask · quarterly report · Ireland",
   title: "The AI Ask, Q3 2026: Irish marketing jobs take up AI,",
+  // Paul, 27 Sep, on his phone: the headline was too long. The eyebrow above it already says the
+  // report and the issue, so the hero drops the prefix; `title` stays for the tab and the catalogue.
+  heroTitle: "Irish marketing jobs take up AI,",
   titleHl: "sales jobs don't",
   date: "25 September 2026",
   byline: "Sam · AI researcher, Run with Foxes",

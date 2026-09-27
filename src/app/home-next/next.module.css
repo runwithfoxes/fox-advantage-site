@@ -518,8 +518,11 @@ a.entryT:hover { color: #3A7CA5; }
 .secSelect select { font-size: 12.5px; padding: 8px 38px 8px 14px; min-width: 210px; }
 .secSelect::after { right: 14px; width: 6px; height: 6px; }
 
-/* Hero, 25 Sep evening (Paul): the card about 10% smaller, grabbable. */
-.heroInner { grid-template-columns: 1fr 360px; }
+/* Hero, 25 Sep evening (Paul): the card about 10% smaller, grabbable. Desktop only: this rule
+   had no media query, and in the production build it won over hero.module's phone rule (the CSS
+   chunks land in a different order there than in dev), so a phone got a 140px text column and a
+   360px card off the right edge. Found 27 Sep from Paul's phone screenshot of the AI Ask. */
+@media (min-width: 961px) { .heroInner { grid-template-columns: 1fr 360px; } }
 .heroInner [class*="panel"] { padding: 18px 22px 16px; }
 .heroInner [class*="scroll"] { height: 290px; }
 .heroInner [class*="lineT"] { font-size: 13.5px; }

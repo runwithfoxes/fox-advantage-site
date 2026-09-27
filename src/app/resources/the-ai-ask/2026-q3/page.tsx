@@ -130,7 +130,7 @@ export default function AiAskQ3() {
               {META.kicker} <span className={r.issueW}>Issue 01 · Q3 2026</span>
             </span>
             <h1 className={r.h1W}>
-              {META.title} <span className={r.hlW}>{META.titleHl}</span>
+              {META.heroTitle} <span className={r.hlW}>{META.titleHl}</span>
             </h1>
             <div className={r.byW}>
               <i className={r.byMark}>S</i>
