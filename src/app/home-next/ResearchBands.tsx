@@ -68,6 +68,8 @@ const monthName = (k: string) => new Date(k + "-01T12:00:00Z").toLocaleDateStrin
 
 /* The opening of the big cover's latest edition, in the report's own words (Paul, 27 Sep). Add a
    series here when it becomes the big cover; without an entry the column shows title and line only. */
+const SHOW_FEATURED = false;
+
 const FLAG_EXCERPT: Record<string, string[]> = {
   "geo-ireland": [
     "We put the questions people in Ireland ask to Claude, ChatGPT, Perplexity and Google\u2019s AI Overviews, in 41 categories from tax to hotels, and counted which names came back and how often.",
@@ -207,93 +209,57 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
 
   return (
     <>
+      {/* ── Band 1: the featured report, drawn big. HIDDEN (Paul, 27 Sep): "I like these insights
+           and format of them, although may be a bit big. But think this section is not needed. Is
+           overlap." The three-number row under the figure is the format the insights should take
+           when they get a home. SHOW_FEATURED brings it back. ── */}
+      {SHOW_FEATURED && (
+        <>
       {/* ── Band 1: the featured report, drawn big ── */}
-      <section className={`${f.shelf} ${n.rbFeat}`} id="featured">
-        <div className={f.shelfHead}>
-          <h2 className={f.h2}>This quarter</h2>
-          <span className={f.meta}>Our newest report. Free to read in full, the PDF with a free account.</span>
-        </div>
-        <div className={s.feat}>
-          <div>
-            <FigureWindow id="feat-fig" n={featFig.id.replace("f", "")} title={featFig.title} caption={`${featFig.caption} Source: ${featSeries.name}, ${featured.edition}.`} tools={<span>{featured.sample}</span>}>
-              <Chart data={featFig.data} />
-            </FigureWindow>
-            <div className={s.featBig}>
-              {featured.findings.slice(0, 3).map((x) => (
-                <div key={x.label}>
-                  <b>{x.big}</b>
-                  <span>{x.label}</span>
-                  <p>{x.text}</p>
+          <section className={`${f.shelf} ${n.rbFeat}`} id="featured">
+            <div className={f.shelfHead}>
+              <h2 className={f.h2}>This quarter</h2>
+              <span className={f.meta}>Our newest report. Free to read in full, the PDF with a free account.</span>
+            </div>
+            <div className={s.feat}>
+              <div>
+                <FigureWindow id="feat-fig" n={featFig.id.replace("f", "")} title={featFig.title} caption={`${featFig.caption} Source: ${featSeries.name}, ${featured.edition}.`} tools={<span>{featured.sample}</span>}>
+                  <Chart data={featFig.data} />
+                </FigureWindow>
+                <div className={s.featBig}>
+                  {featured.findings.slice(0, 3).map((x) => (
+                    <div key={x.label}>
+                      <b>{x.big}</b>
+                      <span>{x.label}</span>
+                      <p>{x.text}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div>
+                <p className={s.featKick}>
+                  {featSeries.name} · {featured.edition} <b>{featured.status === "draft" ? "Draft, not approved" : "Published"} · {day(featured.date)}</b>
+                </p>
+                <h3 className={s.featTitle}>
+                  <Link href={reportHref(featured)}>{featured.title}</Link>
+                </h3>
+                <p className={s.featStand}>{featured.standfirst}</p>
+                <p className={s.featBy}>
+                  <i>{AUTHOR_MARK(featured.author)}</i>
+                  <span><b>{featured.author.name}</b> · {featured.author.role}{featured.checkedBy ? ` · checked by ${featured.checkedBy}` : ""} · {featured.minutes} min read</span>
+                </p>
+                <div className={s.featActs}>
+                  <Link href={reportHref(featured)} className={s.link}>Read the report →</Link>
+                  <DownloadPdf href={featured.pdf} pages={featured.pages} />
+                </div>
+              </div>
             </div>
-          </div>
-          <div>
-            <p className={s.featKick}>
-              {featSeries.name} · {featured.edition} <b>{featured.status === "draft" ? "Draft, not approved" : "Published"} · {day(featured.date)}</b>
-            </p>
-            <h3 className={s.featTitle}>
-              <Link href={reportHref(featured)}>{featured.title}</Link>
-            </h3>
-            <p className={s.featStand}>{featured.standfirst}</p>
-            <p className={s.featBy}>
-              <i>{AUTHOR_MARK(featured.author)}</i>
-              <span><b>{featured.author.name}</b> · {featured.author.role}{featured.checkedBy ? ` · checked by ${featured.checkedBy}` : ""} · {featured.minutes} min read</span>
-            </p>
-            <div className={s.featActs}>
-              <Link href={reportHref(featured)} className={s.link}>Read the report →</Link>
-              <DownloadPdf href={featured.pdf} pages={featured.pages} />
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+
+        </>
+      )}
 
       {part === undefined && reportsBand}
-
-      {/* ── Band 3: the course ── */}
-      <section className={f.shelf} id="course">
-        <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>The course</h2>
-          <span className={f.meta}>AI Fluency for Ambitious Marketers. Free. Module 1 is open now.</span>
-        </div>
-        <div className={n.learnGrid}>
-          {/* The module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">your_course</span>
-            </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>The course, free · {MODULES.filter((m) => m.built).length} of {MODULES.length} modules open</span>
-              <ol className={n.accMods}>
-                {MODULES.map((m) => (
-                  <li key={m.n} className={m.built ? n.accModOn : ""}>
-                    <span>{m.n}</span>
-                    {m.title.replace(/^\(\d\)\s*/, "")}
-                    <em>{m.built ? <Link href={`/course/${m.n}`}>Open</Link> : m.when}</em>
-                  </li>
-                ))}
-              </ol>
-              <form className={`${n.joinRow} ${n.learnJoin}`}>
-                <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-                <button type="button">Start module 1, free</button>
-              </form>
-              <span className={n.accFine}>
-                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.
-              </span>
-            </div>
-          </article>
-          {/* The course's own words (its page description), the fox from the module pages, one door. */}
-          <div className={n.courseSide}>
-            <img className={n.courseFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
-            <p className={n.courseStand}>
-              A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
-            </p>
-            <p className={n.courseLine}>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
-            <Link href="/course" className={n.doorGo}>About the course →</Link>
-          </div>
-        </div>
-      </section>
 
       {/* ── Band 4: the library, its own door. Paul, 26 Sep: "I want people to want to go to
            library even if they don't want training. Library requires email too." ── */}
@@ -355,6 +321,51 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
               </span>
             </div>
           </article>
+        </div>
+      </section>
+
+      {/* ── Band 3: the course ── */}
+      <section className={f.shelf} id="course">
+        <div className={`${f.shelfHead} ${n.learnHead}`}>
+          <h2 className={f.h2}>The course</h2>
+          <span className={f.meta}>AI Fluency for Ambitious Marketers. Free. Module 1 is open now.</span>
+        </div>
+        <div className={n.learnGrid}>
+          {/* The module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
+          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+            <div className="mod-winbar">
+              <span className="mod-lights"><i /><i /><i /></span>
+              <span className="mod-wintitle">your_course</span>
+            </div>
+            <div className={n.winBody}>
+              <span className={n.dKick}>The course, free · {MODULES.filter((m) => m.built).length} of {MODULES.length} modules open</span>
+              <ol className={n.accMods}>
+                {MODULES.map((m) => (
+                  <li key={m.n} className={m.built ? n.accModOn : ""}>
+                    <span>{m.n}</span>
+                    {m.title.replace(/^\(\d\)\s*/, "")}
+                    <em>{m.built ? <Link href={`/course/${m.n}`}>Open</Link> : m.when}</em>
+                  </li>
+                ))}
+              </ol>
+              <form className={`${n.joinRow} ${n.learnJoin}`}>
+                <input type="email" placeholder="you@company.ie" aria-label="Work email" />
+                <button type="button">Start module 1, free</button>
+              </form>
+              <span className={n.accFine}>
+                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.
+              </span>
+            </div>
+          </article>
+          {/* The course's own words (its page description), the fox from the module pages, one door. */}
+          <div className={n.courseSide}>
+            <img className={n.courseFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+            <p className={n.courseStand}>
+              A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
+            </p>
+            <p className={n.courseLine}>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
+            <Link href="/course" className={n.doorGo}>About the course →</Link>
+          </div>
         </div>
       </section>
 
