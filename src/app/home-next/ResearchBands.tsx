@@ -66,6 +66,16 @@ function nextEditionLabel(cadence: string, iso: string) {
 }
 const monthName = (k: string) => new Date(k + "-01T12:00:00Z").toLocaleDateString("en-IE", { month: "short", timeZone: "UTC" });
 
+/* The opening of the big cover's latest edition, in the report's own words (Paul, 27 Sep). Add a
+   series here when it becomes the big cover; without an entry the column shows title and line only. */
+const FLAG_EXCERPT: Record<string, string[]> = {
+  "geo-ireland": [
+    "We put the questions people in Ireland ask to Claude, ChatGPT, Perplexity and Google\u2019s AI Overviews, in 41 categories from tax to hotels, and counted which names came back and how often.",
+    "In 17 of 41 categories the most-named name is a state body or a regulator. Some of those are natural, like Revenue for tax. The striking ones are markets where advertisers spend and the regulator still wins. The Health Insurance Authority, at 0.61, beats every insurer. The Charities Regulator is named more than four times as often as any charity.",
+    "Reddit is cited 1,313 times, ahead of citizensinformation.ie and the HSE. gov.uk is cited 176 times on Irish questions. What forums say about a brand is now part of how it is found.",
+  ],
+};
+
 export default function ResearchBands({ part }: { part?: "reports" | "rest" } = {}) {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
   const featSeries = seriesOf(featured);
@@ -139,6 +149,25 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             </span>
             <span className={n.flagTitle}>{flag.name}</span>
             <p className={n.flagLine}>{flag.line}</p>
+            {/* Paul, 27 Sep: "This space should have some of the report in it. Similar format to my
+                one above. So we give readers a sense of it." The byline and the report's own opening,
+                word for word, as the essay band does. */}
+            {flagEd && (
+              <div className={n.flagBy}>
+                <i className={n.flagMark}>{flagEd.author.name.slice(0, 1)}</i>
+                <span>
+                  By <b>{flagEd.author.name}</b>
+                  {flagEd.checkedBy ? <>, checked by <b>{flagEd.checkedBy}</b></> : null}
+                </span>
+              </div>
+            )}
+            {FLAG_EXCERPT[flag.slug] && (
+              <div className={n.flagBody}>
+                {FLAG_EXCERPT[flag.slug].map((t, i) => (
+                  <p key={i}>{t}</p>
+                ))}
+              </div>
+            )}
             <span className={n.doorGo}>Read the latest edition →</span>
           </div>
         </Link>

@@ -730,3 +730,11 @@ a.entryT:hover { color: #3A7CA5; }
 .flag .coverPhotoTitle { font-size: 26px; height: auto; display: block; }
 /* the row under a small card is ONE line, always: editions and the example tag, no date */
 .coverMeta { display: flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden; min-height: 20px; }
+
+/* The big cover's excerpt (Paul, 27 Sep): the essay band's byline and body, under the title and line. */
+.flagBy { display: flex; align-items: center; gap: 9px; margin: 2px 0 16px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.flagBy b { color: var(--text); font-weight: 500; }
+.flagMark { width: 24px; height: 24px; border-radius: 50%; background: #1A3A4E; color: #fff; font-style: normal; font-family: var(--mono); font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.flagBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
+.flagBody p { margin: 0 0 14px; }
+.flag .doorGo { margin-top: 2px; }
