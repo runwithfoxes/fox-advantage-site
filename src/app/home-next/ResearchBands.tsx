@@ -66,7 +66,7 @@ function nextEditionLabel(cadence: string, iso: string) {
 }
 const monthName = (k: string) => new Date(k + "-01T12:00:00Z").toLocaleDateString("en-IE", { month: "short", timeZone: "UTC" });
 
-export default function ResearchBands() {
+export default function ResearchBands({ part }: { part?: "reports" | "rest" } = {}) {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
   const featSeries = seriesOf(featured);
   const featFig = featured.figures[1] ?? featured.figures[0];
@@ -119,6 +119,60 @@ export default function ResearchBands() {
     ...MODULES.filter((m) => !m.built).map<Up>((m) => ({ key: monthKey(m.on), title: `Course module ${m.n}: ${m.title.replace(/^\(\d+\)\s*/, "")}`, example: false, course: true, href: "/course" })),
   ];
 
+  /* Band 2 stands alone because Paul moved it up the page (27 Sep: "let's move the reports up to just
+     under my first section"). page.tsx renders part="reports" under the essay and part="rest" for the
+     other bands; with no part the whole set renders in its old order. */
+  const reportsBand = (
+    <section className={f.shelf} id="reports">
+      <div className={f.shelfHead}>
+        <h2 className={f.h2}>Reports and papers</h2>
+        <span className={f.meta}>
+          {COUNTS.series} studies on a fixed calendar, {COUNTS.reports} editions. Free to read with no form; every PDF with a free account.
+        </span>
+      </div>
+      <div className={n.studies}>
+        <Link href={seriesHref(flag)} className={n.flag}>
+          <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} />
+          <div>
+            <span className={f.meta}>
+              {flagEd ? `Latest edition ${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
+            </span>
+            <span className={n.flagTitle}>{flag.name}</span>
+            <p className={n.flagLine}>{flag.line}</p>
+            <span className={n.doorGo}>Read the latest edition →</span>
+          </div>
+        </Link>
+        <div className={`${n.covers} ${n.coversWide}`}>
+          {restE.map(({ se, no, cover, fox }) => {
+            const ed = newest(se.slug);
+            return (
+              <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
+                <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} />
+                <span className={f.meta}>
+                  {ed ? `${plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition")} · latest ${day(ed.date)}` : `First edition ${se.cadence}`} <Example on={se.example} />
+                </span>
+                <p className={n.coverLine}>{se.line}</p>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Every report, dated, inside a module window so the list has a frame and not flat edges
+          (Paul, 25 Sep). Search and the filters are the window's own. */}
+      <article className={`mod-win ${n.rbList}`}>
+        <div className="mod-winbar">
+          <span className="mod-lights"><i /><i /><i /></span>
+          <span className="mod-wintitle">every_report · {PUBLISHED.length} editions · newest first</span>
+        </div>
+        <div className={n.rbListBody}>
+          <Publications rows={pubs} />
+        </div>
+      </article>
+    </section>
+  );
+  if (part === "reports") return reportsBand;
+
   return (
     <>
       {/* ── Band 1: the featured report, drawn big ── */}
@@ -162,54 +216,7 @@ export default function ResearchBands() {
         </div>
       </section>
 
-      {/* ── Band 2: reports and papers, the covers and the reading list ── */}
-      <section className={f.shelf} id="reports">
-        <div className={f.shelfHead}>
-          <h2 className={f.h2}>Reports and papers</h2>
-          <span className={f.meta}>
-            {COUNTS.series} studies on a fixed calendar, {COUNTS.reports} editions. Free to read with no form; every PDF with a free account.
-          </span>
-        </div>
-        <div className={n.studies}>
-          <Link href={seriesHref(flag)} className={n.flag}>
-            <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} />
-            <div>
-              <span className={f.meta}>
-                {flagEd ? `Latest edition ${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
-              </span>
-              <span className={n.flagTitle}>{flag.name}</span>
-              <p className={n.flagLine}>{flag.line}</p>
-              <span className={n.doorGo}>Read the latest edition →</span>
-            </div>
-          </Link>
-          <div className={`${n.covers} ${n.coversWide}`}>
-            {restE.map(({ se, no, cover, fox }) => {
-              const ed = newest(se.slug);
-              return (
-                <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
-                  <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} />
-                  <span className={f.meta}>
-                    {ed ? `${plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition")} · latest ${day(ed.date)}` : `First edition ${se.cadence}`} <Example on={se.example} />
-                  </span>
-                  <p className={n.coverLine}>{se.line}</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Every report, dated, inside a module window so the list has a frame and not flat edges
-            (Paul, 25 Sep). Search and the filters are the window's own. */}
-        <article className={`mod-win ${n.rbList}`}>
-          <div className="mod-winbar">
-            <span className="mod-lights"><i /><i /><i /></span>
-            <span className="mod-wintitle">every_report · {PUBLISHED.length} editions · newest first</span>
-          </div>
-          <div className={n.rbListBody}>
-            <Publications rows={pubs} />
-          </div>
-        </article>
-      </section>
+      {part === undefined && reportsBand}
 
       {/* ── Band 3: the course ── */}
       <section className={f.shelf} id="course">

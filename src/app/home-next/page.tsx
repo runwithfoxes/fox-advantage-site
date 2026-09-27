@@ -198,6 +198,9 @@ export default function HomeNext() {
             [Reports and papers]? ... they are reports." and "So these are like insights? ... find a way
             for them to turn up somewhere but less busy, but hide them for now." Flip SHOW_NUMBERS to
             bring the four insight cards back while a quieter home is found for them. */}
+        {/* Paul, 27 Sep: "let's move the reports up to just under my first section", the essay. Your
+            sector moved down under it; what that band means is still to be settled. */}
+        <ResearchBands part="reports" />
         {SHOW_NUMBERS && <DataBand />}
         <SectorPicker />
 
@@ -210,7 +213,7 @@ export default function HomeNext() {
 
         {/* The research and resources bands, under everything Paul settled on 25 Sep. Paul, 26 Sep:
             "the homepage does become the main research page, resources page... this is the place." */}
-        <ResearchBands />
+        <ResearchBands part="rest" />
       </main>
 
       <SiteFooter current="/" wide />
