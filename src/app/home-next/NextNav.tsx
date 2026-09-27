@@ -163,7 +163,7 @@ export default function NextNav() {
             button. It opens the account band, which registers a new reader and signs in an old one;
             the hero's own form beside it is the register ask. (25 Sep: no paid tier, so nothing
             says upgrade.) */}
-        <a href="#account" className={n.fullAccess}>
+        <a href="/signin" className={n.fullAccess}>
           Sign in
         </a>
       </nav>
