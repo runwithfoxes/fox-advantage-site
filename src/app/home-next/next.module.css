@@ -713,15 +713,16 @@ a.entryT:hover { color: #3A7CA5; }
 .trkName em { display: block; margin-top: 2px; }
 @media (max-width: 700px) { .account .joinRow { flex-direction: column; gap: 8px; } .account .joinRow button { padding: 12px; } }
 
-/* Scene covers (Paul, 27 Sep): the picture is the cover. "The photos work better than the charts.
-   So let's use photos always. But the white background of the report feels flat." So no white
-   frame: the number and cadence sit in the picture's top corners, the title at its foot, the fox
-   bottom centre with the crop anchored to the bottom. */
-.coverScene { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid var(--border); background: #1A3A4E; }
-.coverScene img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
-.coverScene::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,20,30,.30) 0%, rgba(8,20,30,0) 30%, rgba(8,20,30,0) 60%, rgba(8,20,30,.42) 100%); pointer-events: none; }
-.coverSceneTop { position: absolute; left: 0; right: 0; top: 0; z-index: 1; display: flex; justify-content: space-between; padding: 10px 12px; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.9); text-shadow: 0 1px 6px rgba(4,10,16,.5); }
-.coverPhotoTitle { position: absolute; left: 12px; bottom: 11px; max-width: 58%; z-index: 1; font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; line-height: 1.2; color: #fff; text-shadow: 0 1px 12px rgba(4,10,16,.55), 0 1px 3px rgba(4,10,16,.4); text-wrap: balance; }
-.flag .coverScene { aspect-ratio: 16 / 10; }
-.flag .coverSceneTop { font-size: 10px; letter-spacing: .1em; padding: 14px 16px; }
-.flag .coverPhotoTitle { font-size: 30px; left: 20px; bottom: 18px; max-width: 12ch; }
+/* Scene covers (Paul, 27 Sep): the picture on top, a deep navy plate under it with the number,
+   the cadence and the title. His three rulings in order: the drawn charts lose to photos, the
+   white frame "feels flat", and a title set in the picture "does not work" at card size. */
+.coverScene { display: grid; grid-template-rows: auto auto; border: 0; background: #1A3A4E; }
+.coverPhoto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.coverPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+.coverPlate { padding: 10px 12px 12px; display: grid; gap: 6px; color: #fff; }
+.coverSceneTop { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.62); }
+.coverPhotoTitle { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; line-height: 1.2; color: #fff; text-wrap: balance; }
+.flag .coverPhoto { aspect-ratio: 16 / 10; }
+.flag .coverPlate { padding: 14px 16px 16px; gap: 8px; }
+.flag .coverSceneTop { font-size: 10px; letter-spacing: .1em; }
+.flag .coverPhotoTitle { font-size: 26px; }

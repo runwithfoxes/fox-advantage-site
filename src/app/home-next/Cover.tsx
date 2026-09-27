@@ -43,17 +43,22 @@ export const COVER_PHOTOS: Record<string, string> = Object.fromEntries(
 
 export default function Cover({ no, cadence, title, cover, fox, photo }: { no: string; cadence: string; title: string; cover: CoverArt; fox: string; photo?: string }) {
   if (photo) {
-    /* Paul, 27 Sep: "the white background of the report feels flat." So the picture IS the card:
-       number and cadence in the picture's top corners, the title in the picture at the foot, no
-       white frame around it. */
+    /* Paul, 27 Sep, in order: the white frame "feels flat"; then the title set in the picture "does
+       not work. Headline can go underneath like you had but try different colour to white." So
+       the picture on top, and under it a deep navy plate carrying the number, the cadence and the
+       title. */
     return (
       <div className={`${n.cover} ${n.coverScene}`}>
-        <img src={photo} alt="" />
-        <div className={n.coverSceneTop}>
-          <span>{no}</span>
-          <span>{cadence}</span>
+        <div className={n.coverPhoto}>
+          <img src={photo} alt="" />
         </div>
-        <span className={n.coverPhotoTitle}>{title}</span>
+        <div className={n.coverPlate}>
+          <div className={n.coverSceneTop}>
+            <span>{no}</span>
+            <span>{cadence}</span>
+          </div>
+          <span className={n.coverPhotoTitle}>{title}</span>
+        </div>
       </div>
     );
   }
