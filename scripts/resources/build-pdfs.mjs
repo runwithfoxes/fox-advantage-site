@@ -51,11 +51,33 @@ const PRINT_CSS = `
   html, body { background: #fff !important; }
   [class*="page"] { background: #fff !important; }
   [class*="wrap"], [class*="mast"], [class*="body"], [class*="findings"], [class*="bandInner"], [class*="topInner"] { max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
-  [class*="body"], [class*="mast"], [class*="feature"], [class*="about"] { grid-template-columns: 1fr !important; }
+  /* the masthead keeps its two columns so the at-a-glance card sits beside the intro on page one,
+     not alone on page two (read on 27 Sep: page 2 of The AI Ask was one card and nothing else) */
+  [class*="body"], [class*="feature"], [class*="about"] { grid-template-columns: 1fr !important; }
+  [class*="mast"] { grid-template-columns: minmax(0, 1fr) 300px !important; gap: 32px !important; }
+  [class*="mast"] [class*="glance"] { align-self: start; }
+  /* the hero band, the masthead's first lines and the card share page one; the intro's later
+     paragraphs may run onto page two, the card itself never splits */
+  [class*="heroR"], [class*="hero"] { break-after: avoid; page-break-after: avoid; }
+  /* the 41 category chips on GEO Ireland stay on one page */
+  [class*="cats"], [class*="chipList"], [class*="catChips"] { break-inside: avoid; page-break-inside: avoid; }
   [class*="main"] { max-width: none !important; }
   /* a finding is its heading and its figure: they stay on one page together, or move together */
-  section[class*="chapter"]:not(#method):not(#more), figure, [class*="fGrid"], [class*="glance"], [class*="edRow"], details, [class*="sign"] { break-inside: avoid; page-break-inside: avoid; }
-  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  figure, [class*="fCard"], [class*="glance"], [class*="edRow"], details, [class*="sign"], [class*="frame"], .mod-win, [class*="chips"], [class*="key"] { break-inside: avoid; page-break-inside: avoid; }
+  h2, h3, [class*="chHead"], [class*="chN"], [class*="eyebrow"], .mod-itemtop, .mod-eyebrow, [class*="kick"]:not([class*="kicker"]) { break-after: avoid; page-break-after: avoid; }
+  /* a chapter's eyebrow, number and title never sit at the foot of a page (27 Sep: "METHOD" was
+     alone at the foot of page 29, "How we did it" on page 30; "02" and "04" the same on GEO Ireland) */
+  [class*="chHead"], .mod-itemtop { break-inside: avoid; page-break-inside: avoid; }
+  section[class*="chapter"], .mod-item { break-before: auto; }
+  /* a short finding (the generated editions: number, one sentence, one figure) stays on one page;
+     The AI Ask's long chapters break freely, and its chapter head is guarded above */
+  section[class*="chapter"].one-figure { break-inside: avoid; page-break-inside: avoid; }
+  /* screen-only lines inside the figures: hover prompts and the empty panel a pick fills */
+  [class*="readout"], [class*="wEx"], [class*="chartHead"] { display: none !important; }
+  /* the figures print at nine tenths so a heading, its paragraph and its figure share a page more
+     often; the text stays full size because that is what is read */
+  [class*="main"] .mod-win, [class*="main"] figure, .mod-item [class*="frame"] { zoom: 0.9; }
+  .mod-item { padding: 28px 0 !important; }
   [class*="chapter"] { border-bottom: 0 !important; }
   .mod-win { box-shadow: none !important; }
   details:not([open]) > *:not(summary) { display: block !important; }
@@ -97,12 +119,39 @@ for (const r of jobs) {
   await page.addStyleTag({ content: PRINT_CSS });
   // open every <details> so the method reads in full, and let the sweep-in highlights finish
   await page.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
+  await page.evaluate(() => {
+    document.querySelectorAll('section[class*="chapter"]').forEach((sec) => {
+      const figs = sec.querySelectorAll("figure, .mod-win").length;
+      const words = (sec.textContent || "").split(/\s+/).length;
+      if (figs <= 1 && words < 260) sec.classList.add("one-figure");
+    });
+  });
+  /* Every figure draws when it comes on screen (useSeen, threshold 0.3), and the bars then widen
+     over about a second. A single jump to the bottom skips the figures in the middle, so four bar
+     charts printed as empty tracks (read on 27 Sep). Scroll through in steps, then wait for the
+     last transition. */
   await page.evaluate(async () => {
+    const step = 500;
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((res) => setTimeout(res, 120));
+    }
     window.scrollTo(0, document.body.scrollHeight);
-    await new Promise((res) => setTimeout(res, 800));
+    await new Promise((res) => setTimeout(res, 300));
     window.scrollTo(0, 0);
   });
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(1600);
+  /* Figure 3.3's level bars are percentage heights set by a transition inside a flex wrapper, and
+     the print renderer drops them (27 Sep: four empty tracks). Freeze every transitioned inline
+     height to its final computed value before printing. Widths stay as set: freezing them in
+     pixels sent figure 3.1's bars past their track. */
+  await page.evaluate(() => {
+    document.querySelectorAll("[style]").forEach((el) => {
+      const e = el;
+      const cs = getComputedStyle(e);
+      if (e.style.height && e.style.height !== "0px" && e.style.height !== "0") e.style.height = cs.height;
+    });
+  });
   const buf = await page.pdf({
     path: file,
     format: "A4",
