@@ -165,8 +165,22 @@ function baseEdition(s, label, date, extra) {
 }
 
 /* A generic example-series builder. spec.metrics are drifting values; spec.edition(ctx) writes the text. */
+/* Each example series sits at its own point in the quarter or half, so the next editions spread
+   across the coming months instead of piling into one (the first cut put nine in November: every
+   example shared one calendar). The shift is fixed by the series' place in the build order, 0 to 45 days
+   earlier, and every edition of the series moves by the same amount, so the cadence holds. */
+let exampleCount = 0;
+function seriesShiftDays() {
+  return (exampleCount++ % 6) * 9;
+}
+function shiftDate(iso, days) {
+  const d = new Date(iso + "T12:00:00Z");
+  d.setUTCDate(d.getUTCDate() - days);
+  return d.toISOString().slice(0, 10);
+}
 function exampleSeries(s, calendar, spec) {
-  const cal = calendar.slice(-spec.count);
+  const shift = seriesShiftDays();
+  const cal = calendar.slice(-spec.count).map(([label, date]) => [label, shiftDate(date, shift)]);
   const series = {};
   for (const [k, m] of Object.entries(spec.metrics)) series[k] = trend(cal.length, m[0], m[1], m[2], m[3] ?? 0, m[4] ?? 100);
   const eds = cal.map(([label, date], i) => {

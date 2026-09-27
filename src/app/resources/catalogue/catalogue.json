@@ -506,9 +506,147 @@
    "series": "the-ai-ask"
   },
   {
-   "slug": "irish-ads-by-sector-q3-2026",
+   "slug": "the-creative-audit-q3-2026",
    "edition": "Q3 2026",
    "date": "2026-09-22",
+   "area": "brand",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/the-creative-audit-q3-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 4,
+   "title": "Only 51% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
+   "standfirst": "499 ads scored blind, Q3 2026.",
+   "sectors": [
+    "Media and publishing",
+    "Education",
+    "Health",
+    "Energy",
+    "Professional services"
+   ],
+   "sample": "499 ads",
+   "findings": [
+    {
+     "big": "50.9%",
+     "label": "branded in the first two seconds",
+     "text": "254 of 499 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
+     "count": {
+      "k": 254,
+      "n": 499,
+      "pct": 50.9
+     }
+    },
+    {
+     "big": "38.9%",
+     "label": "of AI-made ads do",
+     "text": "AI-made ads manage it 38.9% of the time. The tool is not the problem; the brief is."
+    },
+    {
+     "big": "37.1%",
+     "label": "use a distinctive asset",
+     "text": "185 ads use a distinctive asset at all, which is where the cheapest gains are.",
+     "count": {
+      "k": 185,
+      "n": 499,
+      "pct": 37.1
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "People-made and AI-made ads, scored the same way.",
+     "caption": "Share scoring well on each test, Q3 2026. Example data.",
+     "data": {
+      "kind": "range",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Brand in 2 seconds",
+        "low": 29.6,
+        "mid": 39.6,
+        "high": 44.6
+       },
+       {
+        "label": "Distinctive asset",
+        "low": 46.2,
+        "mid": 53.5,
+        "high": 63.2
+       },
+       {
+        "label": "One message",
+        "low": 44.9,
+        "mid": 55.5,
+        "high": 67.1
+       },
+       {
+        "label": "Readable at size",
+        "low": 24.2,
+        "mid": 35.6,
+        "high": 46.6
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "AI-made ads are closing the gap on branding.",
+     "caption": "Q4 2025 to Q3 2026. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "Q4 2025",
+       "Q1 2026",
+       "Q2 2026",
+       "Q3 2026"
+      ],
+      "series": [
+       {
+        "name": "All ads",
+        "values": [
+         41,
+         45.5,
+         47.5,
+         51
+        ]
+       },
+       {
+        "name": "AI-made",
+        "values": [
+         29,
+         34.3,
+         37.4,
+         38.9
+        ],
+        "highlight": true
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure",
+    "The scoring rules"
+   ],
+   "withAccount": [
+    "Send us your ad and get it scored",
+    "Every ad's score as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 7,
+   "series": "the-creative-audit"
+  },
+  {
+   "slug": "irish-ads-by-sector-q3-2026",
+   "edition": "Q3 2026",
+   "date": "2026-09-04",
    "area": "media",
    "author": {
     "name": "Sam",
@@ -714,317 +852,9 @@
    "series": "irish-ads-by-sector"
   },
   {
-   "slug": "ai-overviews-in-ireland-q3-2026",
-   "edition": "Q3 2026",
-   "date": "2026-09-22",
-   "area": "search",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/ai-overviews-in-ireland-q3-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 4,
-   "title": "Google answers 34% of Irish searches with AI first, and only 32% of its sources are Irish sites",
-   "standfirst": "2,379 searches across 8 sectors, Q3 2026.",
-   "sectors": [
-    "Health",
-    "Energy",
-    "Media and publishing",
-    "Tourism and hospitality",
-    "Technology and SaaS"
-   ],
-   "sample": "2,379 searches",
-   "findings": [
-    {
-     "big": "34.4%",
-     "label": "of searches get an AI answer",
-     "text": "818 of 2,379 searches opened with an AI answer, so the first click now goes to whoever it cites.",
-     "count": {
-      "k": 818,
-      "n": 2379,
-      "pct": 34.4
-     }
-    },
-    {
-     "big": "31.7%",
-     "label": "of cited sources are .ie",
-     "text": "Only 31.7% of the sources it cites are Irish sites. A UK page is answering Irish questions."
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "The share of searches answered by AI, sector by sector.",
-     "caption": "Share of searches with an AI answer, Q3 2026. Example data.",
-     "data": {
-      "kind": "bars",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Food and drink",
-        "value": 51.8
-       },
-       {
-        "label": "Professional services",
-        "value": 47.4
-       },
-       {
-        "label": "Media and publishing",
-        "value": 42.8
-       },
-       {
-        "label": "Energy",
-        "value": 38.6
-       },
-       {
-        "label": "Tourism and hospitality",
-        "value": 37.1
-       },
-       {
-        "label": "Health",
-        "value": 35.2
-       },
-       {
-        "label": "Property",
-        "value": 26.7
-       },
-       {
-        "label": "Technology and SaaS",
-        "value": 24
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Each sector's line over time.",
-     "caption": "Q4 2025 to Q3 2026. Example data.",
-     "data": {
-      "kind": "small",
-      "unit": "%",
-      "x": [
-       "Q4 2025",
-       "Q1 2026",
-       "Q2 2026",
-       "Q3 2026"
-      ],
-      "panels": [
-       {
-        "label": "Health",
-        "values": [
-         15.2,
-         36.4,
-         32,
-         24.7
-        ]
-       },
-       {
-        "label": "Energy",
-        "values": [
-         18.3,
-         33.5,
-         26.2,
-         45.3
-        ]
-       },
-       {
-        "label": "Media and publishing",
-        "values": [
-         19.7,
-         35.6,
-         24.6,
-         37.9
-        ]
-       },
-       {
-        "label": "Tourism and hospitality",
-        "values": [
-         11.3,
-         22.7,
-         31,
-         37.6
-        ]
-       },
-       {
-        "label": "Technology and SaaS",
-        "values": [
-         18,
-         30.3,
-         35.8,
-         30.9
-        ]
-       },
-       {
-        "label": "Food and drink",
-        "values": [
-         29.6,
-         21,
-         29,
-         38.2
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every sector's share and sources"
-   ],
-   "withAccount": [
-    "Your own searches, run each quarter",
-    "Every answer and source as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 9,
-   "series": "ai-overviews-in-ireland"
-  },
-  {
-   "slug": "the-creative-audit-q3-2026",
-   "edition": "Q3 2026",
-   "date": "2026-09-22",
-   "area": "brand",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/the-creative-audit-q3-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 4,
-   "title": "Only 51% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
-   "standfirst": "499 ads scored blind, Q3 2026.",
-   "sectors": [
-    "Media and publishing",
-    "Education",
-    "Health",
-    "Energy",
-    "Professional services"
-   ],
-   "sample": "499 ads",
-   "findings": [
-    {
-     "big": "50.9%",
-     "label": "branded in the first two seconds",
-     "text": "254 of 499 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
-     "count": {
-      "k": 254,
-      "n": 499,
-      "pct": 50.9
-     }
-    },
-    {
-     "big": "38.9%",
-     "label": "of AI-made ads do",
-     "text": "AI-made ads manage it 38.9% of the time. The tool is not the problem; the brief is."
-    },
-    {
-     "big": "37.1%",
-     "label": "use a distinctive asset",
-     "text": "185 ads use a distinctive asset at all, which is where the cheapest gains are.",
-     "count": {
-      "k": 185,
-      "n": 499,
-      "pct": 37.1
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "People-made and AI-made ads, scored the same way.",
-     "caption": "Share scoring well on each test, Q3 2026. Example data.",
-     "data": {
-      "kind": "range",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Brand in 2 seconds",
-        "low": 29.6,
-        "mid": 39.6,
-        "high": 44.6
-       },
-       {
-        "label": "Distinctive asset",
-        "low": 46.2,
-        "mid": 53.5,
-        "high": 63.2
-       },
-       {
-        "label": "One message",
-        "low": 44.9,
-        "mid": 55.5,
-        "high": 67.1
-       },
-       {
-        "label": "Readable at size",
-        "low": 24.2,
-        "mid": 35.6,
-        "high": 46.6
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "AI-made ads are closing the gap on branding.",
-     "caption": "Q4 2025 to Q3 2026. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "Q4 2025",
-       "Q1 2026",
-       "Q2 2026",
-       "Q3 2026"
-      ],
-      "series": [
-       {
-        "name": "All ads",
-        "values": [
-         41,
-         45.5,
-         47.5,
-         51
-        ]
-       },
-       {
-        "name": "AI-made",
-        "values": [
-         29,
-         34.3,
-         37.4,
-         38.9
-        ],
-        "highlight": true
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure",
-    "The scoring rules"
-   ],
-   "withAccount": [
-    "Send us your ad and get it scored",
-    "Every ad's score as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 7,
-   "series": "the-creative-audit"
-  },
-  {
    "slug": "the-mystery-shop-q3-2026",
    "edition": "Q3 2026",
-   "date": "2026-09-22",
+   "date": "2026-09-04",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -1254,9 +1084,314 @@
    "series": "geo-ireland"
   },
   {
-   "slug": "irish-ads-by-sector-q2-2026",
+   "slug": "ai-overviews-in-ireland-q3-2026",
+   "edition": "Q3 2026",
+   "date": "2026-08-17",
+   "area": "search",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/ai-overviews-in-ireland-q3-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 4,
+   "title": "Google answers 34% of Irish searches with AI first, and only 32% of its sources are Irish sites",
+   "standfirst": "2,379 searches across 8 sectors, Q3 2026.",
+   "sectors": [
+    "Health",
+    "Energy",
+    "Media and publishing",
+    "Tourism and hospitality",
+    "Technology and SaaS"
+   ],
+   "sample": "2,379 searches",
+   "findings": [
+    {
+     "big": "34.4%",
+     "label": "of searches get an AI answer",
+     "text": "818 of 2,379 searches opened with an AI answer, so the first click now goes to whoever it cites.",
+     "count": {
+      "k": 818,
+      "n": 2379,
+      "pct": 34.4
+     }
+    },
+    {
+     "big": "31.7%",
+     "label": "of cited sources are .ie",
+     "text": "Only 31.7% of the sources it cites are Irish sites. A UK page is answering Irish questions."
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "The share of searches answered by AI, sector by sector.",
+     "caption": "Share of searches with an AI answer, Q3 2026. Example data.",
+     "data": {
+      "kind": "bars",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Food and drink",
+        "value": 51.8
+       },
+       {
+        "label": "Professional services",
+        "value": 47.4
+       },
+       {
+        "label": "Media and publishing",
+        "value": 42.8
+       },
+       {
+        "label": "Energy",
+        "value": 38.6
+       },
+       {
+        "label": "Tourism and hospitality",
+        "value": 37.1
+       },
+       {
+        "label": "Health",
+        "value": 35.2
+       },
+       {
+        "label": "Property",
+        "value": 26.7
+       },
+       {
+        "label": "Technology and SaaS",
+        "value": 24
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Each sector's line over time.",
+     "caption": "Q4 2025 to Q3 2026. Example data.",
+     "data": {
+      "kind": "small",
+      "unit": "%",
+      "x": [
+       "Q4 2025",
+       "Q1 2026",
+       "Q2 2026",
+       "Q3 2026"
+      ],
+      "panels": [
+       {
+        "label": "Health",
+        "values": [
+         15.2,
+         36.4,
+         32,
+         24.7
+        ]
+       },
+       {
+        "label": "Energy",
+        "values": [
+         18.3,
+         33.5,
+         26.2,
+         45.3
+        ]
+       },
+       {
+        "label": "Media and publishing",
+        "values": [
+         19.7,
+         35.6,
+         24.6,
+         37.9
+        ]
+       },
+       {
+        "label": "Tourism and hospitality",
+        "values": [
+         11.3,
+         22.7,
+         31,
+         37.6
+        ]
+       },
+       {
+        "label": "Technology and SaaS",
+        "values": [
+         18,
+         30.3,
+         35.8,
+         30.9
+        ]
+       },
+       {
+        "label": "Food and drink",
+        "values": [
+         29.6,
+         21,
+         29,
+         38.2
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every sector's share and sources"
+   ],
+   "withAccount": [
+    "Your own searches, run each quarter",
+    "Every answer and source as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 9,
+   "series": "ai-overviews-in-ireland"
+  },
+  {
+   "slug": "the-creative-audit-q2-2026",
    "edition": "Q2 2026",
    "date": "2026-06-23",
+   "area": "brand",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/the-creative-audit-q2-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 3,
+   "title": "Only 48% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
+   "standfirst": "387 ads scored blind, Q2 2026.",
+   "sectors": [
+    "Public sector",
+    "Professional services",
+    "Financial services",
+    "Education",
+    "Technology and SaaS"
+   ],
+   "sample": "387 ads",
+   "findings": [
+    {
+     "big": "47.5%",
+     "label": "branded in the first two seconds",
+     "text": "184 of 387 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
+     "count": {
+      "k": 184,
+      "n": 387,
+      "pct": 47.5
+     }
+    },
+    {
+     "big": "37.4%",
+     "label": "of AI-made ads do",
+     "text": "AI-made ads manage it 37.4% of the time. The tool is not the problem; the brief is."
+    },
+    {
+     "big": "37.2%",
+     "label": "use a distinctive asset",
+     "text": "144 ads use a distinctive asset at all, which is where the cheapest gains are.",
+     "count": {
+      "k": 144,
+      "n": 387,
+      "pct": 37.2
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "People-made and AI-made ads, scored the same way.",
+     "caption": "Share scoring well on each test, Q2 2026. Example data.",
+     "data": {
+      "kind": "range",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Brand in 2 seconds",
+        "low": 32.8,
+        "mid": 46.8,
+        "high": 53.7
+       },
+       {
+        "label": "Distinctive asset",
+        "low": 18.9,
+        "mid": 32.6,
+        "high": 40
+       },
+       {
+        "label": "One message",
+        "low": 26.7,
+        "mid": 39.6,
+        "high": 50.5
+       },
+       {
+        "label": "Readable at size",
+        "low": 26,
+        "mid": 39.5,
+        "high": 48.5
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "AI-made ads are closing the gap on branding.",
+     "caption": "Q4 2025 to Q2 2026. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "Q4 2025",
+       "Q1 2026",
+       "Q2 2026"
+      ],
+      "series": [
+       {
+        "name": "All ads",
+        "values": [
+         41,
+         45.5,
+         47.5
+        ]
+       },
+       {
+        "name": "AI-made",
+        "values": [
+         29,
+         34.3,
+         37.4
+        ],
+        "highlight": true
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure",
+    "The scoring rules"
+   ],
+   "withAccount": [
+    "Send us your ad and get it scored",
+    "Every ad's score as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 8,
+   "series": "the-creative-audit"
+  },
+  {
+   "slug": "irish-ads-by-sector-q2-2026",
+   "edition": "Q2 2026",
+   "date": "2026-06-05",
    "area": "media",
    "author": {
     "name": "Sam",
@@ -1459,307 +1594,9 @@
    "series": "irish-ads-by-sector"
   },
   {
-   "slug": "ai-overviews-in-ireland-q2-2026",
-   "edition": "Q2 2026",
-   "date": "2026-06-23",
-   "area": "search",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/ai-overviews-in-ireland-q2-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 3,
-   "title": "Google answers 30% of Irish searches with AI first, and only 33% of its sources are Irish sites",
-   "standfirst": "1,866 searches across 8 sectors, Q2 2026.",
-   "sectors": [
-    "Energy",
-    "Tourism and hospitality",
-    "Technology and SaaS",
-    "Food and drink",
-    "Financial services"
-   ],
-   "sample": "1,866 searches",
-   "findings": [
-    {
-     "big": "30.2%",
-     "label": "of searches get an AI answer",
-     "text": "564 of 1,866 searches opened with an AI answer, so the first click now goes to whoever it cites.",
-     "count": {
-      "k": 564,
-      "n": 1866,
-      "pct": 30.2
-     }
-    },
-    {
-     "big": "32.5%",
-     "label": "of cited sources are .ie",
-     "text": "Only 32.5% of the sources it cites are Irish sites. A UK page is answering Irish questions."
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "The share of searches answered by AI, sector by sector.",
-     "caption": "Share of searches with an AI answer, Q2 2026. Example data.",
-     "data": {
-      "kind": "bars",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Technology and SaaS",
-        "value": 44.6
-       },
-       {
-        "label": "Health",
-        "value": 35.3
-       },
-       {
-        "label": "Energy",
-        "value": 34
-       },
-       {
-        "label": "Education",
-        "value": 30.4
-       },
-       {
-        "label": "Motor",
-        "value": 26
-       },
-       {
-        "label": "Financial services",
-        "value": 25.7
-       },
-       {
-        "label": "Tourism and hospitality",
-        "value": 23.9
-       },
-       {
-        "label": "Food and drink",
-        "value": 17.9
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Each sector's line over time.",
-     "caption": "Q4 2025 to Q2 2026. Example data.",
-     "data": {
-      "kind": "small",
-      "unit": "%",
-      "x": [
-       "Q4 2025",
-       "Q1 2026",
-       "Q2 2026"
-      ],
-      "panels": [
-       {
-        "label": "Energy",
-        "values": [
-         15.5,
-         24.8,
-         27
-        ]
-       },
-       {
-        "label": "Tourism and hospitality",
-        "values": [
-         28.2,
-         28.7,
-         36.8
-        ]
-       },
-       {
-        "label": "Technology and SaaS",
-        "values": [
-         26,
-         24.6,
-         28.9
-        ]
-       },
-       {
-        "label": "Food and drink",
-        "values": [
-         16.5,
-         31.6,
-         24.7
-        ]
-       },
-       {
-        "label": "Financial services",
-        "values": [
-         25,
-         17.6,
-         39.4
-        ]
-       },
-       {
-        "label": "Health",
-        "values": [
-         19.4,
-         20,
-         31.5
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every sector's share and sources"
-   ],
-   "withAccount": [
-    "Your own searches, run each quarter",
-    "Every answer and source as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 6,
-   "series": "ai-overviews-in-ireland"
-  },
-  {
-   "slug": "the-creative-audit-q2-2026",
-   "edition": "Q2 2026",
-   "date": "2026-06-23",
-   "area": "brand",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/the-creative-audit-q2-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 3,
-   "title": "Only 48% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
-   "standfirst": "387 ads scored blind, Q2 2026.",
-   "sectors": [
-    "Public sector",
-    "Professional services",
-    "Financial services",
-    "Education",
-    "Technology and SaaS"
-   ],
-   "sample": "387 ads",
-   "findings": [
-    {
-     "big": "47.5%",
-     "label": "branded in the first two seconds",
-     "text": "184 of 387 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
-     "count": {
-      "k": 184,
-      "n": 387,
-      "pct": 47.5
-     }
-    },
-    {
-     "big": "37.4%",
-     "label": "of AI-made ads do",
-     "text": "AI-made ads manage it 37.4% of the time. The tool is not the problem; the brief is."
-    },
-    {
-     "big": "37.2%",
-     "label": "use a distinctive asset",
-     "text": "144 ads use a distinctive asset at all, which is where the cheapest gains are.",
-     "count": {
-      "k": 144,
-      "n": 387,
-      "pct": 37.2
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "People-made and AI-made ads, scored the same way.",
-     "caption": "Share scoring well on each test, Q2 2026. Example data.",
-     "data": {
-      "kind": "range",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Brand in 2 seconds",
-        "low": 32.8,
-        "mid": 46.8,
-        "high": 53.7
-       },
-       {
-        "label": "Distinctive asset",
-        "low": 18.9,
-        "mid": 32.6,
-        "high": 40
-       },
-       {
-        "label": "One message",
-        "low": 26.7,
-        "mid": 39.6,
-        "high": 50.5
-       },
-       {
-        "label": "Readable at size",
-        "low": 26,
-        "mid": 39.5,
-        "high": 48.5
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "AI-made ads are closing the gap on branding.",
-     "caption": "Q4 2025 to Q2 2026. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "Q4 2025",
-       "Q1 2026",
-       "Q2 2026"
-      ],
-      "series": [
-       {
-        "name": "All ads",
-        "values": [
-         41,
-         45.5,
-         47.5
-        ]
-       },
-       {
-        "name": "AI-made",
-        "values": [
-         29,
-         34.3,
-         37.4
-        ],
-        "highlight": true
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure",
-    "The scoring rules"
-   ],
-   "withAccount": [
-    "Send us your ad and get it scored",
-    "Every ad's score as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 8,
-   "series": "the-creative-audit"
-  },
-  {
    "slug": "the-mystery-shop-q2-2026",
    "edition": "Q2 2026",
-   "date": "2026-06-23",
+   "date": "2026-06-05",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -2070,9 +1907,172 @@
    "series": "state-of-ai-in-irish-marketing"
   },
   {
+   "slug": "ai-overviews-in-ireland-q2-2026",
+   "edition": "Q2 2026",
+   "date": "2026-05-18",
+   "area": "search",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/ai-overviews-in-ireland-q2-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 3,
+   "title": "Google answers 30% of Irish searches with AI first, and only 33% of its sources are Irish sites",
+   "standfirst": "1,866 searches across 8 sectors, Q2 2026.",
+   "sectors": [
+    "Energy",
+    "Tourism and hospitality",
+    "Technology and SaaS",
+    "Food and drink",
+    "Financial services"
+   ],
+   "sample": "1,866 searches",
+   "findings": [
+    {
+     "big": "30.2%",
+     "label": "of searches get an AI answer",
+     "text": "564 of 1,866 searches opened with an AI answer, so the first click now goes to whoever it cites.",
+     "count": {
+      "k": 564,
+      "n": 1866,
+      "pct": 30.2
+     }
+    },
+    {
+     "big": "32.5%",
+     "label": "of cited sources are .ie",
+     "text": "Only 32.5% of the sources it cites are Irish sites. A UK page is answering Irish questions."
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "The share of searches answered by AI, sector by sector.",
+     "caption": "Share of searches with an AI answer, Q2 2026. Example data.",
+     "data": {
+      "kind": "bars",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Technology and SaaS",
+        "value": 44.6
+       },
+       {
+        "label": "Health",
+        "value": 35.3
+       },
+       {
+        "label": "Energy",
+        "value": 34
+       },
+       {
+        "label": "Education",
+        "value": 30.4
+       },
+       {
+        "label": "Motor",
+        "value": 26
+       },
+       {
+        "label": "Financial services",
+        "value": 25.7
+       },
+       {
+        "label": "Tourism and hospitality",
+        "value": 23.9
+       },
+       {
+        "label": "Food and drink",
+        "value": 17.9
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Each sector's line over time.",
+     "caption": "Q4 2025 to Q2 2026. Example data.",
+     "data": {
+      "kind": "small",
+      "unit": "%",
+      "x": [
+       "Q4 2025",
+       "Q1 2026",
+       "Q2 2026"
+      ],
+      "panels": [
+       {
+        "label": "Energy",
+        "values": [
+         15.5,
+         24.8,
+         27
+        ]
+       },
+       {
+        "label": "Tourism and hospitality",
+        "values": [
+         28.2,
+         28.7,
+         36.8
+        ]
+       },
+       {
+        "label": "Technology and SaaS",
+        "values": [
+         26,
+         24.6,
+         28.9
+        ]
+       },
+       {
+        "label": "Food and drink",
+        "values": [
+         16.5,
+         31.6,
+         24.7
+        ]
+       },
+       {
+        "label": "Financial services",
+        "values": [
+         25,
+         17.6,
+         39.4
+        ]
+       },
+       {
+        "label": "Health",
+        "values": [
+         19.4,
+         20,
+         31.5
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every sector's share and sources"
+   ],
+   "withAccount": [
+    "Your own searches, run each quarter",
+    "Every answer and source as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 6,
+   "series": "ai-overviews-in-ireland"
+  },
+  {
    "slug": "agent-economics-h1-2026",
    "edition": "H1 2026",
-   "date": "2026-05-19",
+   "date": "2026-05-10",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -2219,159 +2219,9 @@
    "series": "agent-economics"
   },
   {
-   "slug": "the-boardroom-pulse-h1-2026",
-   "edition": "H1 2026",
-   "date": "2026-05-19",
-   "area": "adoption",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Cato",
-   "pdf": "/resources/pdf/the-boardroom-pulse-h1-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 4,
-   "title": "Half of Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
-   "standfirst": "113 chief executives, finance and marketing directors, H1 2026.",
-   "sectors": [
-    "Property",
-    "Energy",
-    "Financial services",
-    "Health",
-    "Motor"
-   ],
-   "sample": "113 board members",
-   "findings": [
-    {
-     "big": "51.3%",
-     "label": "will raise AI spend",
-     "text": "58 of 113 plan to spend more on AI, and most expect marketing to fund it.",
-     "count": {
-      "k": 58,
-      "n": 113,
-      "pct": 51.3
-     }
-    },
-    {
-     "big": "17.7%",
-     "label": "expect to cut agency fees",
-     "text": "20 expect to cut agency fees to pay for it, the first time that line has moved.",
-     "count": {
-      "k": 20,
-      "n": 113,
-      "pct": 17.7
-     }
-    },
-    {
-     "big": "41.6%",
-     "label": "worry about quality",
-     "text": "47 of 113 name quality as the fear, ahead of cost or jobs.",
-     "count": {
-      "k": 47,
-      "n": 113,
-      "pct": 41.6
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "More boards plan to raise AI spend each round.",
-     "caption": "H2 2024 to H1 2026. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "H2 2024",
-       "H1 2025",
-       "H2 2025",
-       "H1 2026"
-      ],
-      "series": [
-       {
-        "name": "Raise AI spend",
-        "values": [
-         38,
-         40.4,
-         43.9,
-         51.5
-        ],
-        "highlight": true
-       },
-       {
-        "name": "Cut agency fees",
-        "values": [
-         22,
-         19.1,
-         18,
-         17.8
-        ]
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Where the money comes from.",
-     "caption": "Share of boards naming each budget as the source. Example data.",
-     "data": {
-      "kind": "stack",
-      "parts": [
-       "Marketing",
-       "IT",
-       "Operations",
-       "New money"
-      ],
-      "rows": [
-       {
-        "label": "CEOs",
-        "values": [
-         30,
-         22,
-         19,
-         29
-        ]
-       },
-       {
-        "label": "CFOs",
-        "values": [
-         33,
-         27,
-         23,
-         17
-        ]
-       },
-       {
-        "label": "Marketing directors",
-        "values": [
-         48,
-         26,
-         23,
-         3
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure"
-   ],
-   "withAccount": [
-    "Answers split by role and company size",
-    "The full answer table as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 9,
-   "series": "the-boardroom-pulse"
-  },
-  {
    "slug": "small-firms-and-ai-h1-2026",
    "edition": "H1 2026",
-   "date": "2026-05-19",
+   "date": "2026-05-10",
    "area": "adoption",
    "author": {
     "name": "Sam",
@@ -2525,7 +2375,7 @@
   {
    "slug": "the-irish-martech-index-h1-2026",
    "edition": "H1 2026",
-   "date": "2026-05-19",
+   "date": "2026-04-22",
    "area": "media",
    "author": {
     "name": "Jeff",
@@ -2668,9 +2518,291 @@
    "series": "the-irish-martech-index"
   },
   {
-   "slug": "irish-ads-by-sector-q1-2026",
+   "slug": "the-boardroom-pulse-h1-2026",
+   "edition": "H1 2026",
+   "date": "2026-04-04",
+   "area": "adoption",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato",
+   "pdf": "/resources/pdf/the-boardroom-pulse-h1-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 4,
+   "title": "Half of Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
+   "standfirst": "113 chief executives, finance and marketing directors, H1 2026.",
+   "sectors": [
+    "Property",
+    "Energy",
+    "Financial services",
+    "Health",
+    "Motor"
+   ],
+   "sample": "113 board members",
+   "findings": [
+    {
+     "big": "51.3%",
+     "label": "will raise AI spend",
+     "text": "58 of 113 plan to spend more on AI, and most expect marketing to fund it.",
+     "count": {
+      "k": 58,
+      "n": 113,
+      "pct": 51.3
+     }
+    },
+    {
+     "big": "17.7%",
+     "label": "expect to cut agency fees",
+     "text": "20 expect to cut agency fees to pay for it, the first time that line has moved.",
+     "count": {
+      "k": 20,
+      "n": 113,
+      "pct": 17.7
+     }
+    },
+    {
+     "big": "41.6%",
+     "label": "worry about quality",
+     "text": "47 of 113 name quality as the fear, ahead of cost or jobs.",
+     "count": {
+      "k": 47,
+      "n": 113,
+      "pct": 41.6
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "More boards plan to raise AI spend each round.",
+     "caption": "H2 2024 to H1 2026. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "H2 2024",
+       "H1 2025",
+       "H2 2025",
+       "H1 2026"
+      ],
+      "series": [
+       {
+        "name": "Raise AI spend",
+        "values": [
+         38,
+         40.4,
+         43.9,
+         51.5
+        ],
+        "highlight": true
+       },
+       {
+        "name": "Cut agency fees",
+        "values": [
+         22,
+         19.1,
+         18,
+         17.8
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Where the money comes from.",
+     "caption": "Share of boards naming each budget as the source. Example data.",
+     "data": {
+      "kind": "stack",
+      "parts": [
+       "Marketing",
+       "IT",
+       "Operations",
+       "New money"
+      ],
+      "rows": [
+       {
+        "label": "CEOs",
+        "values": [
+         30,
+         22,
+         19,
+         29
+        ]
+       },
+       {
+        "label": "CFOs",
+        "values": [
+         33,
+         27,
+         23,
+         17
+        ]
+       },
+       {
+        "label": "Marketing directors",
+        "values": [
+         48,
+         26,
+         23,
+         3
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure"
+   ],
+   "withAccount": [
+    "Answers split by role and company size",
+    "The full answer table as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 9,
+   "series": "the-boardroom-pulse"
+  },
+  {
+   "slug": "the-creative-audit-q1-2026",
    "edition": "Q1 2026",
    "date": "2026-03-24",
+   "area": "brand",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/the-creative-audit-q1-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 2,
+   "title": "Only 46% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
+   "standfirst": "364 ads scored blind, Q1 2026.",
+   "sectors": [
+    "Media and publishing",
+    "Retail and ecommerce",
+    "Property",
+    "Health",
+    "Education"
+   ],
+   "sample": "364 ads",
+   "findings": [
+    {
+     "big": "45.6%",
+     "label": "branded in the first two seconds",
+     "text": "166 of 364 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
+     "count": {
+      "k": 166,
+      "n": 364,
+      "pct": 45.6
+     }
+    },
+    {
+     "big": "34.3%",
+     "label": "of AI-made ads do",
+     "text": "AI-made ads manage it 34.3% of the time. The tool is not the problem; the brief is."
+    },
+    {
+     "big": "37.1%",
+     "label": "use a distinctive asset",
+     "text": "135 ads use a distinctive asset at all, which is where the cheapest gains are.",
+     "count": {
+      "k": 135,
+      "n": 364,
+      "pct": 37.1
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "People-made and AI-made ads, scored the same way.",
+     "caption": "Share scoring well on each test, Q1 2026. Example data.",
+     "data": {
+      "kind": "range",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Brand in 2 seconds",
+        "low": 49.7,
+        "mid": 59.8,
+        "high": 64.9
+       },
+       {
+        "label": "Distinctive asset",
+        "low": 32.3,
+        "mid": 38.5,
+        "high": 50.6
+       },
+       {
+        "label": "One message",
+        "low": 22.7,
+        "mid": 29.1,
+        "high": 41
+       },
+       {
+        "label": "Readable at size",
+        "low": 38.1,
+        "mid": 43.9,
+        "high": 51.6
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "AI-made ads are closing the gap on branding.",
+     "caption": "Q4 2025 to Q1 2026. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "Q4 2025",
+       "Q1 2026"
+      ],
+      "series": [
+       {
+        "name": "All ads",
+        "values": [
+         41,
+         45.5
+        ]
+       },
+       {
+        "name": "AI-made",
+        "values": [
+         29,
+         34.3
+        ],
+        "highlight": true
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure",
+    "The scoring rules"
+   ],
+   "withAccount": [
+    "Send us your ad and get it scored",
+    "Every ad's score as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 9,
+   "series": "the-creative-audit"
+  },
+  {
+   "slug": "irish-ads-by-sector-q1-2026",
+   "edition": "Q1 2026",
+   "date": "2026-03-06",
    "area": "media",
    "author": {
     "name": "Sam",
@@ -2870,9 +3002,157 @@
    "series": "irish-ads-by-sector"
   },
   {
+   "slug": "the-mystery-shop-q1-2026",
+   "edition": "Q1 2026",
+   "date": "2026-03-06",
+   "area": "agents",
+   "author": {
+    "name": "Lena",
+    "role": "Agent team diarist, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato",
+   "pdf": "/resources/pdf/the-mystery-shop-q1-2026.pdf",
+   "example": true,
+   "status": "published",
+   "n": 1,
+   "title": "Irish firms take 19 hours to answer an email, and only 58% of replies answer the question",
+   "standfirst": "153 firms, three channels each, Q1 2026.",
+   "sectors": [
+    "Technology and SaaS",
+    "Motor",
+    "Tax and accounting",
+    "Education",
+    "Retail and ecommerce",
+    "Financial services"
+   ],
+   "sample": "153 firms, 459 questions",
+   "findings": [
+    {
+     "big": "19h",
+     "label": "median email reply",
+     "text": "The median reply took 19 hours, long enough for a buyer to have asked a competitor."
+    },
+    {
+     "big": "58.2%",
+     "label": "answered the question",
+     "text": "89 of 153 replies answered what was asked; the rest sent a link or a form.",
+     "count": {
+      "k": 89,
+      "n": 153,
+      "pct": 58.2
+     }
+    },
+    {
+     "big": "24.2%",
+     "label": "have a chat that replies",
+     "text": "37 firms have a website chat that replies at all.",
+     "count": {
+      "k": 37,
+      "n": 153,
+      "pct": 24.2
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "Speed and quality by sector: fast is not the same as good.",
+     "caption": "Median hours to reply and share that answered, Q1 2026. Example data.",
+     "data": {
+      "kind": "table",
+      "columns": [
+       "Sector",
+       "Median hours",
+       "Answered",
+       "Chat replies"
+      ],
+      "rows": [
+       [
+        "Retail and ecommerce",
+        21.4,
+        "61.1%",
+        "5.9%"
+       ],
+       [
+        "Food and drink",
+        26.1,
+        "75%",
+        "13.3%"
+       ],
+       [
+        "Motor",
+        23.9,
+        "44%",
+        "46.7%"
+       ],
+       [
+        "Tourism and hospitality",
+        16.2,
+        "83.3%",
+        "46.2%"
+       ],
+       [
+        "Public sector",
+        18.7,
+        "56.3%",
+        "47.4%"
+       ],
+       [
+        "Education",
+        32.4,
+        "85.7%",
+        "24.1%"
+       ],
+       [
+        "Media and publishing",
+        37.1,
+        "45%",
+        "13%"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "One square per firm: who answered, who sent a form, who stayed silent.",
+     "caption": "Each firm's email reply. Example data.",
+     "data": {
+      "kind": "waffle",
+      "total": 153,
+      "parts": [
+       {
+        "label": "Answered",
+        "n": 89
+       },
+       {
+        "label": "Sent a link or form",
+        "n": 26
+       },
+       {
+        "label": "No reply",
+        "n": 38
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure"
+   ],
+   "withAccount": [
+    "Your own firm tested, all three channels",
+    "Every reply scored, as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 8,
+   "series": "the-mystery-shop"
+  },
+  {
    "slug": "ai-overviews-in-ireland-q1-2026",
    "edition": "Q1 2026",
-   "date": "2026-03-24",
+   "date": "2026-02-16",
    "area": "search",
    "author": {
     "name": "Sam",
@@ -3026,289 +3306,9 @@
    "series": "ai-overviews-in-ireland"
   },
   {
-   "slug": "the-creative-audit-q1-2026",
-   "edition": "Q1 2026",
-   "date": "2026-03-24",
-   "area": "brand",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/the-creative-audit-q1-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 2,
-   "title": "Only 46% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
-   "standfirst": "364 ads scored blind, Q1 2026.",
-   "sectors": [
-    "Media and publishing",
-    "Retail and ecommerce",
-    "Property",
-    "Health",
-    "Education"
-   ],
-   "sample": "364 ads",
-   "findings": [
-    {
-     "big": "45.6%",
-     "label": "branded in the first two seconds",
-     "text": "166 of 364 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
-     "count": {
-      "k": 166,
-      "n": 364,
-      "pct": 45.6
-     }
-    },
-    {
-     "big": "34.3%",
-     "label": "of AI-made ads do",
-     "text": "AI-made ads manage it 34.3% of the time. The tool is not the problem; the brief is."
-    },
-    {
-     "big": "37.1%",
-     "label": "use a distinctive asset",
-     "text": "135 ads use a distinctive asset at all, which is where the cheapest gains are.",
-     "count": {
-      "k": 135,
-      "n": 364,
-      "pct": 37.1
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "People-made and AI-made ads, scored the same way.",
-     "caption": "Share scoring well on each test, Q1 2026. Example data.",
-     "data": {
-      "kind": "range",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Brand in 2 seconds",
-        "low": 49.7,
-        "mid": 59.8,
-        "high": 64.9
-       },
-       {
-        "label": "Distinctive asset",
-        "low": 32.3,
-        "mid": 38.5,
-        "high": 50.6
-       },
-       {
-        "label": "One message",
-        "low": 22.7,
-        "mid": 29.1,
-        "high": 41
-       },
-       {
-        "label": "Readable at size",
-        "low": 38.1,
-        "mid": 43.9,
-        "high": 51.6
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "AI-made ads are closing the gap on branding.",
-     "caption": "Q4 2025 to Q1 2026. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "Q4 2025",
-       "Q1 2026"
-      ],
-      "series": [
-       {
-        "name": "All ads",
-        "values": [
-         41,
-         45.5
-        ]
-       },
-       {
-        "name": "AI-made",
-        "values": [
-         29,
-         34.3
-        ],
-        "highlight": true
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure",
-    "The scoring rules"
-   ],
-   "withAccount": [
-    "Send us your ad and get it scored",
-    "Every ad's score as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 9,
-   "series": "the-creative-audit"
-  },
-  {
-   "slug": "the-mystery-shop-q1-2026",
-   "edition": "Q1 2026",
-   "date": "2026-03-24",
-   "area": "agents",
-   "author": {
-    "name": "Lena",
-    "role": "Agent team diarist, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Cato",
-   "pdf": "/resources/pdf/the-mystery-shop-q1-2026.pdf",
-   "example": true,
-   "status": "published",
-   "n": 1,
-   "title": "Irish firms take 19 hours to answer an email, and only 58% of replies answer the question",
-   "standfirst": "153 firms, three channels each, Q1 2026.",
-   "sectors": [
-    "Technology and SaaS",
-    "Motor",
-    "Tax and accounting",
-    "Education",
-    "Retail and ecommerce",
-    "Financial services"
-   ],
-   "sample": "153 firms, 459 questions",
-   "findings": [
-    {
-     "big": "19h",
-     "label": "median email reply",
-     "text": "The median reply took 19 hours, long enough for a buyer to have asked a competitor."
-    },
-    {
-     "big": "58.2%",
-     "label": "answered the question",
-     "text": "89 of 153 replies answered what was asked; the rest sent a link or a form.",
-     "count": {
-      "k": 89,
-      "n": 153,
-      "pct": 58.2
-     }
-    },
-    {
-     "big": "24.2%",
-     "label": "have a chat that replies",
-     "text": "37 firms have a website chat that replies at all.",
-     "count": {
-      "k": 37,
-      "n": 153,
-      "pct": 24.2
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "Speed and quality by sector: fast is not the same as good.",
-     "caption": "Median hours to reply and share that answered, Q1 2026. Example data.",
-     "data": {
-      "kind": "table",
-      "columns": [
-       "Sector",
-       "Median hours",
-       "Answered",
-       "Chat replies"
-      ],
-      "rows": [
-       [
-        "Retail and ecommerce",
-        21.4,
-        "61.1%",
-        "5.9%"
-       ],
-       [
-        "Food and drink",
-        26.1,
-        "75%",
-        "13.3%"
-       ],
-       [
-        "Motor",
-        23.9,
-        "44%",
-        "46.7%"
-       ],
-       [
-        "Tourism and hospitality",
-        16.2,
-        "83.3%",
-        "46.2%"
-       ],
-       [
-        "Public sector",
-        18.7,
-        "56.3%",
-        "47.4%"
-       ],
-       [
-        "Education",
-        32.4,
-        "85.7%",
-        "24.1%"
-       ],
-       [
-        "Media and publishing",
-        37.1,
-        "45%",
-        "13%"
-       ]
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "One square per firm: who answered, who sent a form, who stayed silent.",
-     "caption": "Each firm's email reply. Example data.",
-     "data": {
-      "kind": "waffle",
-      "total": 153,
-      "parts": [
-       {
-        "label": "Answered",
-        "n": 89
-       },
-       {
-        "label": "Sent a link or form",
-        "n": 26
-       },
-       {
-        "label": "No reply",
-        "n": 38
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure"
-   ],
-   "withAccount": [
-    "Your own firm tested, all three channels",
-    "Every reply scored, as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 8,
-   "series": "the-mystery-shop"
-  },
-  {
    "slug": "the-irish-marketing-team-2026",
    "edition": "2026",
-   "date": "2026-02-10",
+   "date": "2026-01-14",
    "area": "work",
    "author": {
     "name": "Jeff",
@@ -3447,9 +3447,138 @@
    "series": "the-irish-marketing-team"
   },
   {
-   "slug": "irish-ads-by-sector-q4-2025",
+   "slug": "the-creative-audit-q4-2025",
    "edition": "Q4 2025",
    "date": "2025-12-16",
+   "area": "brand",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/the-creative-audit-q4-2025.pdf",
+   "example": true,
+   "status": "published",
+   "n": 1,
+   "title": "Only 41% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
+   "standfirst": "500 ads scored blind, Q4 2025.",
+   "sectors": [
+    "Property",
+    "Public sector",
+    "Health",
+    "Retail and ecommerce",
+    "Financial services"
+   ],
+   "sample": "500 ads",
+   "findings": [
+    {
+     "big": "41%",
+     "label": "branded in the first two seconds",
+     "text": "205 of 500 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
+     "count": {
+      "k": 205,
+      "n": 500,
+      "pct": 41
+     }
+    },
+    {
+     "big": "29%",
+     "label": "of AI-made ads do",
+     "text": "AI-made ads manage it 29% of the time. The tool is not the problem; the brief is."
+    },
+    {
+     "big": "36%",
+     "label": "use a distinctive asset",
+     "text": "180 ads use a distinctive asset at all, which is where the cheapest gains are.",
+     "count": {
+      "k": 180,
+      "n": 500,
+      "pct": 36
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "People-made and AI-made ads, scored the same way.",
+     "caption": "Share scoring well on each test, Q4 2025. Example data.",
+     "data": {
+      "kind": "range",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Brand in 2 seconds",
+        "low": 50,
+        "mid": 56,
+        "high": 64.2
+       },
+       {
+        "label": "Distinctive asset",
+        "low": 17.1,
+        "mid": 26.6,
+        "high": 34.9
+       },
+       {
+        "label": "One message",
+        "low": 42.8,
+        "mid": 56.6,
+        "high": 61.8
+       },
+       {
+        "label": "Readable at size",
+        "low": 27.7,
+        "mid": 39.8,
+        "high": 49.1
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "AI-made ads are closing the gap on branding.",
+     "caption": "Q4 2025 to Q4 2025. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "Q4 2025"
+      ],
+      "series": [
+       {
+        "name": "All ads",
+        "values": [
+         41
+        ]
+       },
+       {
+        "name": "AI-made",
+        "values": [
+         29
+        ],
+        "highlight": true
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure",
+    "The scoring rules"
+   ],
+   "withAccount": [
+    "Send us your ad and get it scored",
+    "Every ad's score as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 10,
+   "series": "the-creative-audit"
+  },
+  {
+   "slug": "irish-ads-by-sector-q4-2025",
+   "edition": "Q4 2025",
+   "date": "2025-11-28",
    "area": "media",
    "author": {
     "name": "Sam",
@@ -3646,284 +3775,6 @@
    "series": "irish-ads-by-sector"
   },
   {
-   "slug": "ai-overviews-in-ireland-q4-2025",
-   "edition": "Q4 2025",
-   "date": "2025-12-16",
-   "area": "search",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/ai-overviews-in-ireland-q4-2025.pdf",
-   "example": true,
-   "status": "published",
-   "n": 1,
-   "title": "Google answers 21% of Irish searches with AI first, and only 34% of its sources are Irish sites",
-   "standfirst": "1,904 searches across 8 sectors, Q4 2025.",
-   "sectors": [
-    "Technology and SaaS",
-    "Motor",
-    "Retail and ecommerce",
-    "Energy",
-    "Tourism and hospitality"
-   ],
-   "sample": "1,904 searches",
-   "findings": [
-    {
-     "big": "21%",
-     "label": "of searches get an AI answer",
-     "text": "400 of 1,904 searches opened with an AI answer, so the first click now goes to whoever it cites.",
-     "count": {
-      "k": 400,
-      "n": 1904,
-      "pct": 21
-     }
-    },
-    {
-     "big": "34%",
-     "label": "of cited sources are .ie",
-     "text": "Only 34% of the sources it cites are Irish sites. A UK page is answering Irish questions."
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "The share of searches answered by AI, sector by sector.",
-     "caption": "Share of searches with an AI answer, Q4 2025. Example data.",
-     "data": {
-      "kind": "bars",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Health",
-        "value": 38
-       },
-       {
-        "label": "Energy",
-        "value": 37.5
-       },
-       {
-        "label": "Technology and SaaS",
-        "value": 36.1
-       },
-       {
-        "label": "Tourism and hospitality",
-        "value": 30.4
-       },
-       {
-        "label": "Retail and ecommerce",
-        "value": 27.9
-       },
-       {
-        "label": "Motor",
-        "value": 27.2
-       },
-       {
-        "label": "Professional services",
-        "value": 15.2
-       },
-       {
-        "label": "Property",
-        "value": 15.1
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Each sector's line over time.",
-     "caption": "Q4 2025 to Q4 2025. Example data.",
-     "data": {
-      "kind": "small",
-      "unit": "%",
-      "x": [
-       "Q4 2025"
-      ],
-      "panels": [
-       {
-        "label": "Technology and SaaS",
-        "values": [
-         23.4
-        ]
-       },
-       {
-        "label": "Motor",
-        "values": [
-         17.1
-        ]
-       },
-       {
-        "label": "Retail and ecommerce",
-        "values": [
-         19.1
-        ]
-       },
-       {
-        "label": "Energy",
-        "values": [
-         30
-        ]
-       },
-       {
-        "label": "Tourism and hospitality",
-        "values": [
-         22.8
-        ]
-       },
-       {
-        "label": "Property",
-        "values": [
-         26.1
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every sector's share and sources"
-   ],
-   "withAccount": [
-    "Your own searches, run each quarter",
-    "Every answer and source as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 6,
-   "series": "ai-overviews-in-ireland"
-  },
-  {
-   "slug": "the-creative-audit-q4-2025",
-   "edition": "Q4 2025",
-   "date": "2025-12-16",
-   "area": "brand",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Vera",
-   "pdf": "/resources/pdf/the-creative-audit-q4-2025.pdf",
-   "example": true,
-   "status": "published",
-   "n": 1,
-   "title": "Only 41% of Irish ads show the brand in the first two seconds, and AI-made ads do it less often",
-   "standfirst": "500 ads scored blind, Q4 2025.",
-   "sectors": [
-    "Property",
-    "Public sector",
-    "Health",
-    "Retail and ecommerce",
-    "Financial services"
-   ],
-   "sample": "500 ads",
-   "findings": [
-    {
-     "big": "41%",
-     "label": "branded in the first two seconds",
-     "text": "205 of 500 ads show the brand in the first two seconds, so most of the money buys attention for nobody in particular.",
-     "count": {
-      "k": 205,
-      "n": 500,
-      "pct": 41
-     }
-    },
-    {
-     "big": "29%",
-     "label": "of AI-made ads do",
-     "text": "AI-made ads manage it 29% of the time. The tool is not the problem; the brief is."
-    },
-    {
-     "big": "36%",
-     "label": "use a distinctive asset",
-     "text": "180 ads use a distinctive asset at all, which is where the cheapest gains are.",
-     "count": {
-      "k": 180,
-      "n": 500,
-      "pct": 36
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "People-made and AI-made ads, scored the same way.",
-     "caption": "Share scoring well on each test, Q4 2025. Example data.",
-     "data": {
-      "kind": "range",
-      "unit": "%",
-      "rows": [
-       {
-        "label": "Brand in 2 seconds",
-        "low": 50,
-        "mid": 56,
-        "high": 64.2
-       },
-       {
-        "label": "Distinctive asset",
-        "low": 17.1,
-        "mid": 26.6,
-        "high": 34.9
-       },
-       {
-        "label": "One message",
-        "low": 42.8,
-        "mid": 56.6,
-        "high": 61.8
-       },
-       {
-        "label": "Readable at size",
-        "low": 27.7,
-        "mid": 39.8,
-        "high": 49.1
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "AI-made ads are closing the gap on branding.",
-     "caption": "Q4 2025 to Q4 2025. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "Q4 2025"
-      ],
-      "series": [
-       {
-        "name": "All ads",
-        "values": [
-         41
-        ]
-       },
-       {
-        "name": "AI-made",
-        "values": [
-         29
-        ],
-        "highlight": true
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure",
-    "The scoring rules"
-   ],
-   "withAccount": [
-    "Send us your ad and get it scored",
-    "Every ad's score as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 10,
-   "series": "the-creative-audit"
-  },
-  {
    "slug": "state-of-ai-in-irish-marketing-h2-2025",
    "edition": "H2 2025",
    "date": "2025-11-18",
@@ -4085,9 +3936,158 @@
    "series": "state-of-ai-in-irish-marketing"
   },
   {
+   "slug": "ai-overviews-in-ireland-q4-2025",
+   "edition": "Q4 2025",
+   "date": "2025-11-10",
+   "area": "search",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/ai-overviews-in-ireland-q4-2025.pdf",
+   "example": true,
+   "status": "published",
+   "n": 1,
+   "title": "Google answers 21% of Irish searches with AI first, and only 34% of its sources are Irish sites",
+   "standfirst": "1,904 searches across 8 sectors, Q4 2025.",
+   "sectors": [
+    "Technology and SaaS",
+    "Motor",
+    "Retail and ecommerce",
+    "Energy",
+    "Tourism and hospitality"
+   ],
+   "sample": "1,904 searches",
+   "findings": [
+    {
+     "big": "21%",
+     "label": "of searches get an AI answer",
+     "text": "400 of 1,904 searches opened with an AI answer, so the first click now goes to whoever it cites.",
+     "count": {
+      "k": 400,
+      "n": 1904,
+      "pct": 21
+     }
+    },
+    {
+     "big": "34%",
+     "label": "of cited sources are .ie",
+     "text": "Only 34% of the sources it cites are Irish sites. A UK page is answering Irish questions."
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "The share of searches answered by AI, sector by sector.",
+     "caption": "Share of searches with an AI answer, Q4 2025. Example data.",
+     "data": {
+      "kind": "bars",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Health",
+        "value": 38
+       },
+       {
+        "label": "Energy",
+        "value": 37.5
+       },
+       {
+        "label": "Technology and SaaS",
+        "value": 36.1
+       },
+       {
+        "label": "Tourism and hospitality",
+        "value": 30.4
+       },
+       {
+        "label": "Retail and ecommerce",
+        "value": 27.9
+       },
+       {
+        "label": "Motor",
+        "value": 27.2
+       },
+       {
+        "label": "Professional services",
+        "value": 15.2
+       },
+       {
+        "label": "Property",
+        "value": 15.1
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Each sector's line over time.",
+     "caption": "Q4 2025 to Q4 2025. Example data.",
+     "data": {
+      "kind": "small",
+      "unit": "%",
+      "x": [
+       "Q4 2025"
+      ],
+      "panels": [
+       {
+        "label": "Technology and SaaS",
+        "values": [
+         23.4
+        ]
+       },
+       {
+        "label": "Motor",
+        "values": [
+         17.1
+        ]
+       },
+       {
+        "label": "Retail and ecommerce",
+        "values": [
+         19.1
+        ]
+       },
+       {
+        "label": "Energy",
+        "values": [
+         30
+        ]
+       },
+       {
+        "label": "Tourism and hospitality",
+        "values": [
+         22.8
+        ]
+       },
+       {
+        "label": "Property",
+        "values": [
+         26.1
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every sector's share and sources"
+   ],
+   "withAccount": [
+    "Your own searches, run each quarter",
+    "Every answer and source as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 6,
+   "series": "ai-overviews-in-ireland"
+  },
+  {
    "slug": "agent-economics-h2-2025",
    "edition": "H2 2025",
-   "date": "2025-11-18",
+   "date": "2025-11-09",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -4230,156 +4230,9 @@
    "series": "agent-economics"
   },
   {
-   "slug": "the-boardroom-pulse-h2-2025",
-   "edition": "H2 2025",
-   "date": "2025-11-18",
-   "area": "adoption",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Cato",
-   "pdf": "/resources/pdf/the-boardroom-pulse-h2-2025.pdf",
-   "example": true,
-   "status": "published",
-   "n": 3,
-   "title": "About 1 in 2 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
-   "standfirst": "130 chief executives, finance and marketing directors, H2 2025.",
-   "sectors": [
-    "Professional services",
-    "Education",
-    "Food and drink",
-    "Financial services",
-    "Property"
-   ],
-   "sample": "130 board members",
-   "findings": [
-    {
-     "big": "43.8%",
-     "label": "will raise AI spend",
-     "text": "57 of 130 plan to spend more on AI, and most expect marketing to fund it.",
-     "count": {
-      "k": 57,
-      "n": 130,
-      "pct": 43.8
-     }
-    },
-    {
-     "big": "17.7%",
-     "label": "expect to cut agency fees",
-     "text": "23 expect to cut agency fees to pay for it, the first time that line has moved.",
-     "count": {
-      "k": 23,
-      "n": 130,
-      "pct": 17.7
-     }
-    },
-    {
-     "big": "40%",
-     "label": "worry about quality",
-     "text": "52 of 130 name quality as the fear, ahead of cost or jobs.",
-     "count": {
-      "k": 52,
-      "n": 130,
-      "pct": 40
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "More boards plan to raise AI spend each round.",
-     "caption": "H2 2024 to H2 2025. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "H2 2024",
-       "H1 2025",
-       "H2 2025"
-      ],
-      "series": [
-       {
-        "name": "Raise AI spend",
-        "values": [
-         38,
-         40.4,
-         43.9
-        ],
-        "highlight": true
-       },
-       {
-        "name": "Cut agency fees",
-        "values": [
-         22,
-         19.1,
-         18
-        ]
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Where the money comes from.",
-     "caption": "Share of boards naming each budget as the source. Example data.",
-     "data": {
-      "kind": "stack",
-      "parts": [
-       "Marketing",
-       "IT",
-       "Operations",
-       "New money"
-      ],
-      "rows": [
-       {
-        "label": "CEOs",
-        "values": [
-         38,
-         26,
-         20,
-         16
-        ]
-       },
-       {
-        "label": "CFOs",
-        "values": [
-         49,
-         15,
-         15,
-         21
-        ]
-       },
-       {
-        "label": "Marketing directors",
-        "values": [
-         43,
-         19,
-         24,
-         14
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure"
-   ],
-   "withAccount": [
-    "Answers split by role and company size",
-    "The full answer table as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 9,
-   "series": "the-boardroom-pulse"
-  },
-  {
    "slug": "small-firms-and-ai-h2-2025",
    "edition": "H2 2025",
-   "date": "2025-11-18",
+   "date": "2025-11-09",
    "area": "adoption",
    "author": {
     "name": "Sam",
@@ -4533,7 +4386,7 @@
   {
    "slug": "the-irish-martech-index-h2-2025",
    "edition": "H2 2025",
-   "date": "2025-11-18",
+   "date": "2025-10-22",
    "area": "media",
    "author": {
     "name": "Jeff",
@@ -4673,9 +4526,156 @@
    "series": "the-irish-martech-index"
   },
   {
+   "slug": "the-boardroom-pulse-h2-2025",
+   "edition": "H2 2025",
+   "date": "2025-10-04",
+   "area": "adoption",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato",
+   "pdf": "/resources/pdf/the-boardroom-pulse-h2-2025.pdf",
+   "example": true,
+   "status": "published",
+   "n": 3,
+   "title": "About 1 in 2 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
+   "standfirst": "130 chief executives, finance and marketing directors, H2 2025.",
+   "sectors": [
+    "Professional services",
+    "Education",
+    "Food and drink",
+    "Financial services",
+    "Property"
+   ],
+   "sample": "130 board members",
+   "findings": [
+    {
+     "big": "43.8%",
+     "label": "will raise AI spend",
+     "text": "57 of 130 plan to spend more on AI, and most expect marketing to fund it.",
+     "count": {
+      "k": 57,
+      "n": 130,
+      "pct": 43.8
+     }
+    },
+    {
+     "big": "17.7%",
+     "label": "expect to cut agency fees",
+     "text": "23 expect to cut agency fees to pay for it, the first time that line has moved.",
+     "count": {
+      "k": 23,
+      "n": 130,
+      "pct": 17.7
+     }
+    },
+    {
+     "big": "40%",
+     "label": "worry about quality",
+     "text": "52 of 130 name quality as the fear, ahead of cost or jobs.",
+     "count": {
+      "k": 52,
+      "n": 130,
+      "pct": 40
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "More boards plan to raise AI spend each round.",
+     "caption": "H2 2024 to H2 2025. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "H2 2024",
+       "H1 2025",
+       "H2 2025"
+      ],
+      "series": [
+       {
+        "name": "Raise AI spend",
+        "values": [
+         38,
+         40.4,
+         43.9
+        ],
+        "highlight": true
+       },
+       {
+        "name": "Cut agency fees",
+        "values": [
+         22,
+         19.1,
+         18
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Where the money comes from.",
+     "caption": "Share of boards naming each budget as the source. Example data.",
+     "data": {
+      "kind": "stack",
+      "parts": [
+       "Marketing",
+       "IT",
+       "Operations",
+       "New money"
+      ],
+      "rows": [
+       {
+        "label": "CEOs",
+        "values": [
+         38,
+         26,
+         20,
+         16
+        ]
+       },
+       {
+        "label": "CFOs",
+        "values": [
+         49,
+         15,
+         15,
+         21
+        ]
+       },
+       {
+        "label": "Marketing directors",
+        "values": [
+         43,
+         19,
+         24,
+         14
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure"
+   ],
+   "withAccount": [
+    "Answers split by role and company size",
+    "The full answer table as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 9,
+   "series": "the-boardroom-pulse"
+  },
+  {
    "slug": "irish-ads-by-sector-q3-2025",
    "edition": "Q3 2025",
-   "date": "2025-09-23",
+   "date": "2025-09-05",
    "area": "media",
    "author": {
     "name": "Sam",
@@ -5028,7 +5028,7 @@
   {
    "slug": "agent-economics-h1-2025",
    "edition": "H1 2025",
-   "date": "2025-05-20",
+   "date": "2025-05-11",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -5167,153 +5167,9 @@
    "series": "agent-economics"
   },
   {
-   "slug": "the-boardroom-pulse-h1-2025",
-   "edition": "H1 2025",
-   "date": "2025-05-20",
-   "area": "adoption",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Cato",
-   "pdf": "/resources/pdf/the-boardroom-pulse-h1-2025.pdf",
-   "example": true,
-   "status": "published",
-   "n": 2,
-   "title": "About 1 in 2 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
-   "standfirst": "172 chief executives, finance and marketing directors, H1 2025.",
-   "sectors": [
-    "Motor",
-    "Food and drink",
-    "Property",
-    "Financial services",
-    "Tax and accounting"
-   ],
-   "sample": "172 board members",
-   "findings": [
-    {
-     "big": "40.1%",
-     "label": "will raise AI spend",
-     "text": "69 of 172 plan to spend more on AI, and most expect marketing to fund it.",
-     "count": {
-      "k": 69,
-      "n": 172,
-      "pct": 40.1
-     }
-    },
-    {
-     "big": "19.2%",
-     "label": "expect to cut agency fees",
-     "text": "33 expect to cut agency fees to pay for it, the first time that line has moved.",
-     "count": {
-      "k": 33,
-      "n": 172,
-      "pct": 19.2
-     }
-    },
-    {
-     "big": "41.9%",
-     "label": "worry about quality",
-     "text": "72 of 172 name quality as the fear, ahead of cost or jobs.",
-     "count": {
-      "k": 72,
-      "n": 172,
-      "pct": 41.9
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "More boards plan to raise AI spend each round.",
-     "caption": "H2 2024 to H1 2025. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "H2 2024",
-       "H1 2025"
-      ],
-      "series": [
-       {
-        "name": "Raise AI spend",
-        "values": [
-         38,
-         40.4
-        ],
-        "highlight": true
-       },
-       {
-        "name": "Cut agency fees",
-        "values": [
-         22,
-         19.1
-        ]
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Where the money comes from.",
-     "caption": "Share of boards naming each budget as the source. Example data.",
-     "data": {
-      "kind": "stack",
-      "parts": [
-       "Marketing",
-       "IT",
-       "Operations",
-       "New money"
-      ],
-      "rows": [
-       {
-        "label": "CEOs",
-        "values": [
-         31,
-         24,
-         18,
-         27
-        ]
-       },
-       {
-        "label": "CFOs",
-        "values": [
-         38,
-         30,
-         18,
-         14
-        ]
-       },
-       {
-        "label": "Marketing directors",
-        "values": [
-         40,
-         28,
-         10,
-         22
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure"
-   ],
-   "withAccount": [
-    "Answers split by role and company size",
-    "The full answer table as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 7,
-   "series": "the-boardroom-pulse"
-  },
-  {
    "slug": "small-firms-and-ai-h1-2025",
    "edition": "H1 2025",
-   "date": "2025-05-20",
+   "date": "2025-05-11",
    "area": "adoption",
    "author": {
     "name": "Sam",
@@ -5467,7 +5323,7 @@
   {
    "slug": "the-irish-martech-index-h1-2025",
    "edition": "H1 2025",
-   "date": "2025-05-20",
+   "date": "2025-04-23",
    "area": "media",
    "author": {
     "name": "Jeff",
@@ -5604,9 +5460,153 @@
    "series": "the-irish-martech-index"
   },
   {
+   "slug": "the-boardroom-pulse-h1-2025",
+   "edition": "H1 2025",
+   "date": "2025-04-05",
+   "area": "adoption",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato",
+   "pdf": "/resources/pdf/the-boardroom-pulse-h1-2025.pdf",
+   "example": true,
+   "status": "published",
+   "n": 2,
+   "title": "About 1 in 2 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
+   "standfirst": "172 chief executives, finance and marketing directors, H1 2025.",
+   "sectors": [
+    "Motor",
+    "Food and drink",
+    "Property",
+    "Financial services",
+    "Tax and accounting"
+   ],
+   "sample": "172 board members",
+   "findings": [
+    {
+     "big": "40.1%",
+     "label": "will raise AI spend",
+     "text": "69 of 172 plan to spend more on AI, and most expect marketing to fund it.",
+     "count": {
+      "k": 69,
+      "n": 172,
+      "pct": 40.1
+     }
+    },
+    {
+     "big": "19.2%",
+     "label": "expect to cut agency fees",
+     "text": "33 expect to cut agency fees to pay for it, the first time that line has moved.",
+     "count": {
+      "k": 33,
+      "n": 172,
+      "pct": 19.2
+     }
+    },
+    {
+     "big": "41.9%",
+     "label": "worry about quality",
+     "text": "72 of 172 name quality as the fear, ahead of cost or jobs.",
+     "count": {
+      "k": 72,
+      "n": 172,
+      "pct": 41.9
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "More boards plan to raise AI spend each round.",
+     "caption": "H2 2024 to H1 2025. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "H2 2024",
+       "H1 2025"
+      ],
+      "series": [
+       {
+        "name": "Raise AI spend",
+        "values": [
+         38,
+         40.4
+        ],
+        "highlight": true
+       },
+       {
+        "name": "Cut agency fees",
+        "values": [
+         22,
+         19.1
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Where the money comes from.",
+     "caption": "Share of boards naming each budget as the source. Example data.",
+     "data": {
+      "kind": "stack",
+      "parts": [
+       "Marketing",
+       "IT",
+       "Operations",
+       "New money"
+      ],
+      "rows": [
+       {
+        "label": "CEOs",
+        "values": [
+         31,
+         24,
+         18,
+         27
+        ]
+       },
+       {
+        "label": "CFOs",
+        "values": [
+         38,
+         30,
+         18,
+         14
+        ]
+       },
+       {
+        "label": "Marketing directors",
+        "values": [
+         40,
+         28,
+         10,
+         22
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure"
+   ],
+   "withAccount": [
+    "Answers split by role and company size",
+    "The full answer table as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 7,
+   "series": "the-boardroom-pulse"
+  },
+  {
    "slug": "the-irish-marketing-team-2025",
    "edition": "2025",
-   "date": "2025-02-11",
+   "date": "2025-01-15",
    "area": "work",
    "author": {
     "name": "Jeff",
@@ -5900,7 +5900,7 @@
   {
    "slug": "agent-economics-h2-2024",
    "edition": "H2 2024",
-   "date": "2024-11-26",
+   "date": "2024-11-17",
    "area": "agents",
    "author": {
     "name": "Lena",
@@ -6035,150 +6035,9 @@
    "series": "agent-economics"
   },
   {
-   "slug": "the-boardroom-pulse-h2-2024",
-   "edition": "H2 2024",
-   "date": "2024-11-26",
-   "area": "adoption",
-   "author": {
-    "name": "Sam",
-    "role": "AI researcher, an agent",
-    "kind": "agent"
-   },
-   "checkedBy": "Cato",
-   "pdf": "/resources/pdf/the-boardroom-pulse-h2-2024.pdf",
-   "example": true,
-   "status": "published",
-   "n": 1,
-   "title": "About 1 in 3 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
-   "standfirst": "162 chief executives, finance and marketing directors, H2 2024.",
-   "sectors": [
-    "Public sector",
-    "Education",
-    "Retail and ecommerce",
-    "Food and drink",
-    "Technology and SaaS"
-   ],
-   "sample": "162 board members",
-   "findings": [
-    {
-     "big": "38.3%",
-     "label": "will raise AI spend",
-     "text": "62 of 162 plan to spend more on AI, and most expect marketing to fund it.",
-     "count": {
-      "k": 62,
-      "n": 162,
-      "pct": 38.3
-     }
-    },
-    {
-     "big": "22.2%",
-     "label": "expect to cut agency fees",
-     "text": "36 expect to cut agency fees to pay for it, the first time that line has moved.",
-     "count": {
-      "k": 36,
-      "n": 162,
-      "pct": 22.2
-     }
-    },
-    {
-     "big": "43.8%",
-     "label": "worry about quality",
-     "text": "71 of 162 name quality as the fear, ahead of cost or jobs.",
-     "count": {
-      "k": 71,
-      "n": 162,
-      "pct": 43.8
-     }
-    }
-   ],
-   "figures": [
-    {
-     "id": "f1",
-     "title": "More boards plan to raise AI spend each round.",
-     "caption": "H2 2024 to H2 2024. Example data.",
-     "data": {
-      "kind": "line",
-      "unit": "%",
-      "x": [
-       "H2 2024"
-      ],
-      "series": [
-       {
-        "name": "Raise AI spend",
-        "values": [
-         38
-        ],
-        "highlight": true
-       },
-       {
-        "name": "Cut agency fees",
-        "values": [
-         22
-        ]
-       }
-      ]
-     }
-    },
-    {
-     "id": "f2",
-     "title": "Where the money comes from.",
-     "caption": "Share of boards naming each budget as the source. Example data.",
-     "data": {
-      "kind": "stack",
-      "parts": [
-       "Marketing",
-       "IT",
-       "Operations",
-       "New money"
-      ],
-      "rows": [
-       {
-        "label": "CEOs",
-        "values": [
-         39,
-         16,
-         25,
-         20
-        ]
-       },
-       {
-        "label": "CFOs",
-        "values": [
-         46,
-         21,
-         17,
-         16
-        ]
-       },
-       {
-        "label": "Marketing directors",
-        "values": [
-         44,
-         21,
-         14,
-         21
-        ]
-       }
-      ]
-     }
-    }
-   ],
-   "free": [
-    "Every finding and figure"
-   ],
-   "withAccount": [
-    "Answers split by role and company size",
-    "The full answer table as a CSV",
-    "The report as a PDF"
-   ],
-   "pages": 4,
-   "minutes": 7,
-   "series": "the-boardroom-pulse"
-  },
-  {
    "slug": "small-firms-and-ai-h2-2024",
    "edition": "H2 2024",
-   "date": "2024-11-26",
+   "date": "2024-11-17",
    "area": "adoption",
    "author": {
     "name": "Sam",
@@ -6328,6 +6187,147 @@
    "pages": 4,
    "minutes": 7,
    "series": "small-firms-and-ai"
+  },
+  {
+   "slug": "the-boardroom-pulse-h2-2024",
+   "edition": "H2 2024",
+   "date": "2024-10-12",
+   "area": "adoption",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato",
+   "pdf": "/resources/pdf/the-boardroom-pulse-h2-2024.pdf",
+   "example": true,
+   "status": "published",
+   "n": 1,
+   "title": "About 1 in 3 Irish boards will spend more on AI next year, and the marketing budget is where most of it comes from",
+   "standfirst": "162 chief executives, finance and marketing directors, H2 2024.",
+   "sectors": [
+    "Public sector",
+    "Education",
+    "Retail and ecommerce",
+    "Food and drink",
+    "Technology and SaaS"
+   ],
+   "sample": "162 board members",
+   "findings": [
+    {
+     "big": "38.3%",
+     "label": "will raise AI spend",
+     "text": "62 of 162 plan to spend more on AI, and most expect marketing to fund it.",
+     "count": {
+      "k": 62,
+      "n": 162,
+      "pct": 38.3
+     }
+    },
+    {
+     "big": "22.2%",
+     "label": "expect to cut agency fees",
+     "text": "36 expect to cut agency fees to pay for it, the first time that line has moved.",
+     "count": {
+      "k": 36,
+      "n": 162,
+      "pct": 22.2
+     }
+    },
+    {
+     "big": "43.8%",
+     "label": "worry about quality",
+     "text": "71 of 162 name quality as the fear, ahead of cost or jobs.",
+     "count": {
+      "k": 71,
+      "n": 162,
+      "pct": 43.8
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "More boards plan to raise AI spend each round.",
+     "caption": "H2 2024 to H2 2024. Example data.",
+     "data": {
+      "kind": "line",
+      "unit": "%",
+      "x": [
+       "H2 2024"
+      ],
+      "series": [
+       {
+        "name": "Raise AI spend",
+        "values": [
+         38
+        ],
+        "highlight": true
+       },
+       {
+        "name": "Cut agency fees",
+        "values": [
+         22
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "Where the money comes from.",
+     "caption": "Share of boards naming each budget as the source. Example data.",
+     "data": {
+      "kind": "stack",
+      "parts": [
+       "Marketing",
+       "IT",
+       "Operations",
+       "New money"
+      ],
+      "rows": [
+       {
+        "label": "CEOs",
+        "values": [
+         39,
+         16,
+         25,
+         20
+        ]
+       },
+       {
+        "label": "CFOs",
+        "values": [
+         46,
+         21,
+         17,
+         16
+        ]
+       },
+       {
+        "label": "Marketing directors",
+        "values": [
+         44,
+         21,
+         14,
+         21
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "Every finding and figure"
+   ],
+   "withAccount": [
+    "Answers split by role and company size",
+    "The full answer table as a CSV",
+    "The report as a PDF"
+   ],
+   "pages": 4,
+   "minutes": 7,
+   "series": "the-boardroom-pulse"
   },
   {
    "slug": "state-of-ai-in-irish-marketing-h1-2024",
@@ -6481,7 +6481,7 @@
   {
    "slug": "the-irish-marketing-team-2024",
    "edition": "2024",
-   "date": "2024-02-13",
+   "date": "2024-01-17",
    "area": "work",
    "author": {
     "name": "Jeff",
