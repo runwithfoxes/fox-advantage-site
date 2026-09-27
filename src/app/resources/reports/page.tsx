@@ -136,7 +136,7 @@ export default function ReportsIndex() {
         </div>
         <ReportsTable rows={rows} sectors={sectors} years={years} />
 
-        <Gate adds={["Every report as a PDF", "The next edition of any series, by email the day it lands", "Your sector's cut of every report that has one", "The data behind every figure, as a CSV"]} />
+        <Gate want="report" adds={["Every report as a PDF", "The next edition of any series, by email the day it lands", "Your sector's cut of every report that has one", "The data behind every figure, as a CSV"]} />
       </main>
       <SiteFooter current="/resources" wide />
     </div>

@@ -189,7 +189,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ series:
           ))}
         </div>
 
-        <Gate adds={withAccount} />
+        <Gate want="report" item={se.slug} adds={withAccount} />
       </main>
       <SiteFooter current="/resources" wide />
     </div>

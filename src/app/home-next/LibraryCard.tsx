@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import AccessForm from "../resources/kit/AccessForm";
 import s from "../resources/hero.module.css";
 import n from "./next.module.css";
 import type { Line } from "../resources/HubHero";
@@ -15,7 +16,6 @@ import type { Line } from "../resources/HubHero";
    hero, and not grabbable on mobile. It sits under the hero as a plain list: no drag (which also
    caught every touch, so the page would not scroll under a thumb), no rolling, just the latest few. */
 export default function LibraryCard({ lines, join = true, still = false, count }: { lines: Line[]; join?: boolean; still?: boolean; count?: number }) {
-  const [done, setDone] = useState(false);
   /* Paul, 25 Sep: "Can the card be grabable." It lifts and moves with the pointer anywhere on
      the card except the email box; a press that moves less than 5px is still a click, so the
      links keep working. It stays where it is dropped. */
@@ -76,19 +76,8 @@ export default function LibraryCard({ lines, join = true, still = false, count }
           ))}
         </div>
       </div>
-      {!join ? null : done ? (
-        <p className={s.done}>You are on the list.</p>
-      ) : (
-        <form
-          className={s.join}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setDone(true);
-          }}
-        >
-          <input type="email" required placeholder="Get new research: you@company.ie" aria-label="Work email" />
-          <button type="submit" aria-label="Send me new research">→</button>
-        </form>
+      {!join ? null : (
+        <AccessForm want="research" className={s.join} doneClassName={s.done} placeholder="Get new research: you@company.ie" label="→" done="You are on the list." />
       )}
     </div>
   );

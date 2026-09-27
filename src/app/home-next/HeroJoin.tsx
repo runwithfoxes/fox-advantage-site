@@ -1,24 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import n from "./next.module.css";
+import AccessForm from "../resources/kit/AccessForm";
 
-/** The hero's one ask: a free account, with sign-in beside it. MOCKUP: posts nowhere. */
+/** The hero's one ask: a free account. Posts to /api/access tagged "account" (27 Sep). */
 export default function HeroJoin() {
-  const [done, setDone] = useState(false);
-  if (done) return <p className={n.hjDone}>You&rsquo;re in. Check your inbox to finish signing up.</p>;
   return (
     <div className={n.hj}>
-      <form
-        className={n.hjForm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          setDone(true);
-        }}
-      >
-        <input type="email" required placeholder="you@company.ie" aria-label="Work email" />
-        <button type="submit">Get full access, free</button>
-      </form>
+      <AccessForm want="account" className={n.hjForm} doneClassName={n.hjDone} done="You're in. Every report, the library and the course are open to you." />
       <span className={n.hjFine}>
         Every report, tracker and the course, in one free account. Already have one? <a href="#">Sign in</a>
       </span>

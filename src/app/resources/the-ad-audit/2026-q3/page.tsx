@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AccessForm from "../../kit/AccessForm";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
@@ -239,10 +240,7 @@ export default function AdAuditQ3() {
                 A free account opens the full tables, every ad by bank, product, offer and week, and the downloads. The December issue comes to you when it&rsquo;s read.
               </p>
             </div>
-            <form className={r.joinForm}>
-              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-              <button type="button">Get full access, free</button>
-            </form>
+            <AccessForm want="report" item="the-ad-audit-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF and the tables are yours, and the next issue comes to you the day it lands." />
           </section>
 
           <section id="method" className={r.chapter}>

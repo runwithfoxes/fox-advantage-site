@@ -131,7 +131,7 @@ export default function ToolsPage() {
         </section>
 
         <section className={T.sec} id="account">
-          <Gate adds={["The full result from every tool, not just the first look", "Your results kept, so you can run the same check next quarter and see what moved", "New tools the day they open, and the beta ones now"]} />
+          <Gate want="tool" adds={["The full result from every tool, not just the first look", "Your results kept, so you can run the same check next quarter and see what moved", "New tools the day they open, and the beta ones now"]} />
         </section>
       </main>
 

@@ -199,7 +199,7 @@ export default async function TrackerPage({ params }: { params: Promise<{ slug: 
               </section>
             ) : null}
 
-            <Gate adds={x.withAccount} />
+            <Gate want="tracker" item={x.slug} adds={x.withAccount} />
             {!planned ? (
               <div className={t.dl}>
                 <DownloadPdf kind="csv" href={csv} label="Download the history" size={fileSize(csv)} />

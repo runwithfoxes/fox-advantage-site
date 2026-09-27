@@ -172,7 +172,7 @@ export default function LibraryPage() {
             <DownloadText href="/resources/library/all-prompts.txt" label="Download every prompt" meta={`${prompts.length} prompts, one text file`} />
             <span className={L.dlNote}>Built from the library itself when you ask for it, so it is never out of date.</span>
           </div>
-          <Gate adds={["Every prompt, opened and copied here", "Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />
+          <Gate want="library" adds={["Every prompt, opened and copied here", "Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />
         </section>
       </main>
 

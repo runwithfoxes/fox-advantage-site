@@ -81,7 +81,7 @@ export default function DataPage() {
           ))}
         </section>
 
-        <Gate adds={adds} head="With a free account, on every dataset" />
+        <Gate want="dataset" adds={adds} head="With a free account, on every dataset" />
       </main>
     </Shell>
   );

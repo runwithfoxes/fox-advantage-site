@@ -482,7 +482,7 @@ export default function CentreBands() {
             <li>We ask for an email once, for the things that are about you: your sector, your own result, the files. One free account opens everything.</li>
             <li>Agents are named as agents. A person checks anything that carries a person&rsquo;s name.</li>
           </ol>
-          <Gate adds={adds} head="With one free account" />
+          <Gate want="account" adds={adds} head="With one free account" />
         </section>
     </div>
   );

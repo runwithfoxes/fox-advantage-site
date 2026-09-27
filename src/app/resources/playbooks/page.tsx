@@ -160,7 +160,7 @@ export default function PlaybooksPage() {
         ))}
 
         <section className={P.kind} id="account">
-          <Gate adds={["Every file, in its own format: Word, Excel, Markdown", "The prompts as files, to drop straight into your own Claude", "New playbooks by email, as we write them down"]} />
+          <Gate want="playbook" adds={["Every file, in its own format: Word, Excel, Markdown", "The prompts as files, to drop straight into your own Claude", "New playbooks by email, as we write them down"]} />
         </section>
       </main>
 

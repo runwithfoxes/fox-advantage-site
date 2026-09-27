@@ -12,6 +12,7 @@ import { formatDay } from "../resources/library";
 import { Chart, FigureWindow, DownloadPdf, Example, Sparkline } from "../resources/kit";
 import { MODULES } from "../course/courseModules";
 import { librarySummary } from "../resources/library/summary";
+import AccessForm from "../resources/kit/AccessForm";
 import L from "../resources/library/library.module.css";
 import s from "../resources/hub.module.css";
 import f from "../resources/front.module.css";
@@ -320,10 +321,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
                 <li key={x.l}><b>{x.n}</b> {x.l}</li>
               ))}
             </ul>
-            <form className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`}>
-              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-              <button type="button">Open the library, free</button>
-            </form>
+            <AccessForm want="library" label="Open the library, free" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
             <span className={n.accFine}>One free account for the library, every PDF, every dataset and the course. Already have one? <Link href="/resources/library">Sign in</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
@@ -362,10 +360,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
                 </li>
               ))}
             </ol>
-            <form className={`${n.joinRow} ${n.learnJoin}`}>
-              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-              <button type="button">Start module 1, free</button>
-            </form>
+            <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done="You're in. Module 1 is open to you now, and the rest arrive by email as they open." />
             <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here. <Link href="/course">About the course</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
@@ -569,10 +564,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           </div>
         </div>
         <div className={n.accSide}>
-          <form className={n.joinRow}>
-            <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-            <button type="button">Get full access, free</button>
-          </form>
+          <AccessForm want="account" className={n.joinRow} doneClassName={n.accFine} done="You're in. Every report, the library and the course are open to you." />
           <span className={n.accFine}>One account for everything here. Already have one? <a href="#">Sign in</a>. No paid tier; there is nothing to upgrade to.</span>
           <div className={`mod-win ${n.dWin}`}>
             <div className="mod-winbar">

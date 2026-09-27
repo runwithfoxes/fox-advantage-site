@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AccessForm from "../../kit/AccessForm";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
@@ -275,10 +276,7 @@ export default function AiAskQ3() {
                 A free account opens the full tables, every ad by role, level, employer and county, and the downloads. The December issue comes to you when it&rsquo;s read.
               </p>
             </div>
-            <form className={r.joinForm}>
-              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-              <button type="button">Get full access, free</button>
-            </form>
+            <AccessForm want="report" item="the-ai-ask-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF and the tables are yours, and the next issue comes to you the day it lands." />
           </section>
 
           <section id="method" className={r.chapter}>
@@ -300,7 +298,7 @@ export default function AiAskQ3() {
               <p className={r.small}>{SIGNOFF}</p>
             </div>
             {/* The gate rule (Paul, 26 Sep): the finding is free, the files need an email. Listed once, at the end. */}
-            <Gate adds={CAT?.withAccount ?? []} />
+            <Gate want="report" item="the-ai-ask-2026-q3" adds={CAT?.withAccount ?? []} />
             <Link href="/home-next" className={r.back}>
               &larr; Back to the homepage
             </Link>

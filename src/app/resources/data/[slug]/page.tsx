@@ -184,7 +184,7 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
               <p className={inst.p}>{x.licence}</p>
             </section>
 
-            <Gate adds={["The whole file, every row, as a CSV", "A fresh copy each time it is re-read", ...(x.sectors.length ? ["Your sector cut out"] : [])]} />
+            <Gate want="dataset" item={x.slug} adds={["The whole file, every row, as a CSV", "A fresh copy each time it is re-read", ...(x.sectors.length ? ["Your sector cut out"] : [])]} />
             <div className={d.dl}>
               <DownloadPdf kind="csv" href={x.csv} label="Download the whole file" size={size} />
             </div>
