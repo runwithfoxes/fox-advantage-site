@@ -148,8 +148,11 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             return (
               <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
                 <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} photo={COVER_PHOTOS[se.slug]} />
-                <span className={f.meta}>
-                  {ed ? `${plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition")} · latest ${day(ed.date)}` : `First edition ${se.cadence}`} <Example on={se.example} />
+                {/* Paul, 27 Sep: "too much copy squeezed to the report covers". One line, the same
+                    height on every card: the edition count and the example tag. The latest date
+                    lives on the series page. */}
+                <span className={`${f.meta} ${n.coverMeta}`}>
+                  {ed ? plural(editionsOf(se).filter((r) => r.status !== "coming").length, "edition") : `First edition ${se.cadence}`} <Example on={se.example} />
                 </span>
                 <p className={n.coverLine}>{se.line}</p>
               </Link>

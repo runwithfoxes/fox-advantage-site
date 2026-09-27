@@ -714,15 +714,19 @@ a.entryT:hover { color: #3A7CA5; }
 @media (max-width: 700px) { .account .joinRow { flex-direction: column; gap: 8px; } .account .joinRow button { padding: 12px; } }
 
 /* Scene covers (Paul, 27 Sep): the picture on top, a deep navy plate under it with the number,
-   the cadence and the title. His three rulings in order: the drawn charts lose to photos, the
-   white frame "feels flat", and a title set in the picture "does not work" at card size. */
+   the cadence and the title. His rulings in order: the drawn charts lose to photos, the white
+   frame "feels flat", a title set in the picture "does not work" at card size, and then "too much
+   copy squeezed to the report covers... all thumbnails need to be even in size." So every card is
+   the same height: the picture 4:3, the plate a fixed two-line box, the line under it one row. */
 .coverScene { display: grid; grid-template-rows: auto auto; border: 0; background: #1A3A4E; }
 .coverPhoto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
 .coverPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
-.coverPlate { padding: 10px 12px 12px; display: grid; gap: 6px; color: #fff; }
-.coverSceneTop { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.62); }
-.coverPhotoTitle { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; line-height: 1.2; color: #fff; text-wrap: balance; }
+.coverPlate { padding: 9px 12px 11px; display: grid; gap: 5px; color: #fff; }
+.coverSceneTop { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.62); white-space: nowrap; }
+.coverPhotoTitle { font-family: var(--sans); font-weight: 500; font-size: 14.5px; letter-spacing: -0.01em; line-height: 1.2; color: #fff; height: calc(2 * 1.2em); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .flag .coverPhoto { aspect-ratio: 16 / 10; }
 .flag .coverPlate { padding: 14px 16px 16px; gap: 8px; }
 .flag .coverSceneTop { font-size: 10px; letter-spacing: .1em; }
-.flag .coverPhotoTitle { font-size: 26px; }
+.flag .coverPhotoTitle { font-size: 26px; height: auto; display: block; }
+/* the row under a small card is ONE line, always: editions and the example tag, no date */
+.coverMeta { display: flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden; min-height: 20px; }
