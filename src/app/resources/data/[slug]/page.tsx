@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DatasetChart from "../DatasetChart";
 import { hasAccess } from "@/lib/access";
 import ViewedPing from "../../kit/ViewedPing";
 import Link from "next/link";
@@ -172,6 +173,12 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
               </figure>
+            </section>
+
+            {/* Paul, 27 Sep: "generous always". One chart from the whole file, free, before the ask. */}
+            <section className={d.sec} id="whole">
+              <p className={inst.lab}>The whole file, in one chart, free</p>
+              <DatasetChart x={x} />
             </section>
 
             <section className={d.sec} id="method">

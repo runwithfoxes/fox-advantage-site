@@ -108,6 +108,10 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
   })).sort((a, b) => b.date.localeCompare(a.date));
 
   const lib = librarySummary();
+  /* the tools count in the band copy reads off the shelf, so it never rots (Paul, 27 Sep: "wire it") */
+  const toolsN = lib.ledger.find((x) => x.l.toLowerCase() === "tools")?.n ?? 0;
+  const WORDS = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty"];
+  const toolCount = toolsN <= 20 ? WORDS[toolsN] : String(toolsN);
   const nextModule = MODULES.find((m) => !m.built);
   const essays = getAllEssays().slice(0, 7);
   const diary = getAllDispatches().slice(0, 7);
@@ -299,7 +303,8 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
                 The tools. <Ext href="https://clay.com">Clay</Ext>, which finds data on companies and people.{" "}
                 <Ext href="https://apify.com">Apify</Ext>, which collects data from websites.{" "}
                 <Ext href="https://playwright.dev">Playwright</Ext>, which lets Claude open a web page and click
-                through it for you. Twenty-eight of them, with a line on what each one is for.
+                through it for you. {toolCount} of
+                them, with a line on what each one is for.
               </p>
               <p>
                 The people we read, like <Ext href="https://www.oneusefulthing.org">Ethan Mollick</Ext> and{" "}
