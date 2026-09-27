@@ -60,6 +60,26 @@
    ]
   },
   {
+   "slug": "the-ad-audit",
+   "name": "The Ad Audit",
+   "line": "What one Irish category shows people on Facebook and Instagram, every quarter.",
+   "cadence": "Quarterly",
+   "area": "media",
+   "lead": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "method": "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.",
+   "mark": "AD",
+   "started": "2026-09-27",
+   "example": false,
+   "editions": [
+    "the-ad-audit-2026-q4",
+    "the-ad-audit-2026-q3"
+   ]
+  },
+  {
    "slug": "geo-ireland",
    "name": "GEO Ireland",
    "line": "Who five AI engines name when people ask Irish questions, category by category.",
@@ -311,6 +331,35 @@
  ],
  "reports": [
   {
+   "slug": "the-ad-audit-2026-q4",
+   "edition": "Q4 2026",
+   "date": "2026-12-18",
+   "area": "media",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Vera",
+   "pdf": "/resources/pdf/the-ad-audit-q4-2026.pdf",
+   "example": false,
+   "status": "coming",
+   "n": 2,
+   "title": "The Ad Audit, Q4 2026",
+   "standfirst": "The second reading. Same library, same rulebook, so the change is the finding.",
+   "sectors": [],
+   "sample": "Every ad in the quarter",
+   "findings": [],
+   "figures": [],
+   "free": [],
+   "withAccount": [
+    "The issue by email the day it lands"
+   ],
+   "pages": 0,
+   "minutes": 0,
+   "series": "the-ad-audit"
+  },
+  {
    "slug": "the-ai-ask-2026-q4",
    "edition": "Q4 2026",
    "date": "2026-12-15",
@@ -367,6 +416,147 @@
    "pages": 0,
    "minutes": 0,
    "series": "geo-ireland"
+  },
+  {
+   "slug": "the-ad-audit-2026-q3",
+   "edition": "Q3 2026",
+   "date": "2026-09-27",
+   "area": "media",
+   "author": {
+    "name": "Sam",
+    "role": "AI researcher, an agent",
+    "kind": "agent"
+   },
+   "checkedBy": "Cato and Paul Dervan",
+   "pdf": "/resources/pdf/the-ad-audit-q3-2026.pdf",
+   "example": false,
+   "status": "draft",
+   "n": 1,
+   "title": "Irish banks sell on social, and the newcomers reach the young",
+   "standfirst": "1,814 Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. 73% of the reach went to ads that only sell.",
+   "sectors": [
+    "Financial services"
+   ],
+   "sample": "1,814 ads, 764 different",
+   "findings": [
+    {
+     "big": "73%",
+     "label": "of the reach went to ads that only sell",
+     "text": "On Facebook and Instagram, Irish banking is mostly selling: 73% of the quarter's reach went to ads that only sell a product."
+    },
+    {
+     "big": "54.2%",
+     "label": "of the challengers' reach was under 35",
+     "text": "The newcomers reach the young: 54.2% of Monzo, bunq and Revolut's reach was under 35, against 28.6% for the Irish banks."
+    },
+    {
+     "big": "29.9%",
+     "label": "of different ads state an offer",
+     "text": "206 of 688 different bank ads state a rate, a cashback, a bonus or something free.",
+     "count": {
+      "k": 206,
+      "n": 688,
+      "pct": 29.9
+     }
+    }
+   ],
+   "figures": [
+    {
+     "id": "f1",
+     "title": "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.",
+     "caption": "Share of the category's Irish reach, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.",
+     "data": {
+      "kind": "bars",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Bank of Ireland",
+        "value": 20.6,
+        "highlight": true
+       },
+       {
+        "label": "PTSB",
+        "value": 16.6,
+        "highlight": false
+       },
+       {
+        "label": "AIB",
+        "value": 15.9,
+        "highlight": false
+       },
+       {
+        "label": "Monzo",
+        "value": 13.3,
+        "highlight": false
+       },
+       {
+        "label": "An Post",
+        "value": 10.4,
+        "highlight": false
+       },
+       {
+        "label": "Avant Money",
+        "value": 10.3,
+        "highlight": false
+       },
+       {
+        "label": "EBS",
+        "value": 5,
+        "highlight": false
+       },
+       {
+        "label": "Credit Union",
+        "value": 3.3,
+        "highlight": false
+       },
+       {
+        "label": "bunq",
+        "value": 2.8,
+        "highlight": false
+       },
+       {
+        "label": "Revolut",
+        "value": 1.7,
+        "highlight": false
+       }
+      ]
+     }
+    },
+    {
+     "id": "f2",
+     "title": "The digital challengers reach people under 35.",
+     "caption": "Share of Irish reach under 35, ads started in the quarter.",
+     "data": {
+      "kind": "bars",
+      "unit": "%",
+      "rows": [
+       {
+        "label": "Digital challengers",
+        "value": 54.2,
+        "highlight": true
+       },
+       {
+        "label": "Irish banks and lenders",
+        "value": 28.6
+       }
+      ]
+     }
+    }
+   ],
+   "free": [
+    "The whole report, every chapter and figure",
+    "The twelve most-seen ads",
+    "The method and its limits"
+   ],
+   "withAccount": [
+    "Every ad behind the numbers, by bank, product, offer and week",
+    "The report as a PDF",
+    "The next issue by email when it lands"
+   ],
+   "pages": 21,
+   "minutes": 22,
+   "href": "/resources/the-ad-audit/2026-q3",
+   "series": "the-ad-audit"
   },
   {
    "slug": "the-ai-ask-2026-q3",

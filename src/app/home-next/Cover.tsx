@@ -36,7 +36,7 @@ export const COVER_FOXES = [
    carry one; the AI Ask's is the last frame of its own header film. Sources and prompts:
    ~/projects/fox-ads/dray/output/report-covers/gen.py */
 export const COVER_PHOTOS: Record<string, string> = Object.fromEntries(
-  ["the-ai-ask", "geo-ireland", "state-of-ai-in-irish-marketing", "agent-economics", "irish-ads-by-sector", "the-irish-marketing-team",
+  ["the-ai-ask", "geo-ireland", "state-of-ai-in-irish-marketing", "agent-economics", "irish-ads-by-sector", "the-irish-marketing-team", "the-ad-audit",
    "ai-overviews-in-ireland", "the-boardroom-pulse", "the-creative-audit", "small-firms-and-ai", "the-mystery-shop", "the-irish-martech-index",
   ].map((slug) => [slug, `/covers/${slug}.jpg`]),
 );

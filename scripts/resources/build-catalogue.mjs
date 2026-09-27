@@ -139,6 +139,43 @@ function baseEdition(s, label, date, extra) {
   ]);
 }
 
+/* 1b. THE AD AUDIT - REAL. Issue 01 is Sam's banking report (paul-hub 024d205ce); its numbers come
+   from the page's numbers.json, which is Sam's file copied by script. Added 27 Sep 2026 by Dray 2. */
+{
+  const AD = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/numbers.json"), "utf8"));
+  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: "What one Irish category shows people on Facebook and Instagram, every quarter.", cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
+  const cat = AD.category, t = AD.totals, g = AD.groups;
+  const sales = cat.job_share_of_reach.sales;
+  const offer = kofn(cat.offer_creatives, t.bank_creatives);
+  addSeries(s, [
+    {
+      ...baseEdition(s, "Q3 2026", "2026-09-27", {}),
+      slug: "the-ad-audit-2026-q3", edition: "Q3 2026", n: 1,
+      title: "Irish banks sell on social, and the newcomers reach the young",
+      standfirst: `${fmt(t.ads)} Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. ${sales}% of the reach went to ads that only sell.`,
+      author: A.sam, checkedBy: "Cato and Paul Dervan", sectors: ["Financial services"],
+      sample: `${fmt(t.ads)} ads, ${fmt(t.creatives)} different`,
+      findings: [
+        { big: `${sales}%`, label: "of the reach went to ads that only sell", text: `On Facebook and Instagram, Irish banking is mostly selling: ${sales}% of the quarter's reach went to ads that only sell a product.` },
+        { big: `${g["Digital challengers"].under_35}%`, label: "of the challengers' reach was under 35", text: `The newcomers reach the young: ${g["Digital challengers"].under_35}% of Monzo, bunq and Revolut's reach was under 35, against ${g["Irish banks and lenders"].under_35}% for the Irish banks.` },
+        { big: `${offer.pct}%`, label: "of different ads state an offer", text: `${offer.k} of ${offer.n} different bank ads state a rate, a cashback, a bonus or something free.`, count: offer },
+      ],
+      figures: [
+        { id: "f1", title: "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.", caption: "Share of the category's Irish reach, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.", data: { kind: "bars", unit: "%", rows: AD.charts.f11.labels.map((l, i) => ({ label: l, value: AD.charts.f11.data[i], highlight: i === 0 })) } },
+        { id: "f2", title: "The digital challengers reach people under 35.", caption: "Share of Irish reach under 35, ads started in the quarter.", data: { kind: "bars", unit: "%", rows: [{ label: "Digital challengers", value: g["Digital challengers"].under_35, highlight: true }, { label: "Irish banks and lenders", value: g["Irish banks and lenders"].under_35 }] } },
+      ],
+      free: ["The whole report, every chapter and figure", "The twelve most-seen ads", "The method and its limits"],
+      withAccount: ["Every ad behind the numbers, by bank, product, offer and week", "The report as a PDF", "The next issue by email when it lands"],
+      pages: 24, minutes: 22, href: "/resources/the-ad-audit/2026-q3", example: false, status: "draft",
+    },
+    {
+      ...baseEdition(s, "Q4 2026", "2026-12-18", {}), slug: "the-ad-audit-2026-q4", n: 2,
+      title: "The Ad Audit, Q4 2026", standfirst: "The second reading. Same library, same rulebook, so the change is the finding.",
+      sectors: [], sample: "Every ad in the quarter", findings: [], figures: [], free: [], withAccount: ["The issue by email the day it lands"], pages: 0, minutes: 0, example: false, status: "coming",
+    },
+  ]);
+}
+
 /* 2. GEO IRELAND - REAL day one. */
 {
   const s = { slug: "geo-ireland", name: "GEO Ireland", line: "Who five AI engines name when people ask Irish questions, category by category.", cadence: "Quarterly", area: "search", lead: A.sam, method: "The same questions, 41 categories of Irish life, put to five AI engines, every name counted.", mark: "GEO", started: "2026-08-23", example: false };
