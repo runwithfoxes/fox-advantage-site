@@ -158,13 +158,13 @@ export default function NextNav() {
         {trig("agents", "agents")}
         {trig("training", "training")}
         <ResourcesMenu />
-        {/* Paul, 25 Sep, after Every's "Upgrade to All Access": we have no paid tier, so the
-            button offers full access and says it is free. Contact lives in the four buttons. */}
-        <a href="#" className={n.signinPlain}>
-          /sign in
-        </a>
+        {/* Paul, 27 Sep: "i don't think sign-in can look like this. It needs to feel more solid.
+            Also, the get full access is doing same thing. We need to make this simple." One solid
+            button. It opens the account band, which registers a new reader and signs in an old one;
+            the hero's own form beside it is the register ask. (25 Sep: no paid tier, so nothing
+            says upgrade.) */}
         <a href="#account" className={n.fullAccess}>
-          Get full access, free
+          Sign in
         </a>
       </nav>
     </header>

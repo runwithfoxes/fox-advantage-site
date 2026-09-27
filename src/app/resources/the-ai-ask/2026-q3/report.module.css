@@ -269,3 +269,12 @@
 .glanceHero .glanceFox { display: none; }
 .mast { padding-top: 32px; }
 .heroInnerR h1.h1W { word-spacing: normal !important; font-size: clamp(30px, 3.1vw, 44px) !important; max-width: 20ch; }
+
+/* Phone (27 Sep, found on the Ad Audit, shared by every report on this stylesheet): the sign-up box
+   was a two-column grid with no phone rule and ran 28px off the right edge. */
+@media (max-width: 700px) {
+  .join { grid-template-columns: 1fr; gap: 18px; padding: 20px 16px 22px; }
+  .joinForm { flex-wrap: wrap; gap: 8px; }
+  .joinForm input { flex: 1 1 100%; border-right: 1px solid #E0E0DC; }
+  .joinForm button { flex: 1 1 100%; }
+}
