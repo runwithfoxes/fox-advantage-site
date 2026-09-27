@@ -317,43 +317,40 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       {/* ── Band 3: the course ── */}
       <section className={f.shelf} id="course">
         <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>The course</h2>
-          <span className={f.meta}>AI Fluency for Ambitious Marketers. Free. Module 1 is open now.</span>
+          {/* Paul, 27 Sep: "we want to name it properly. Free Course: AI Fluency for Ambitious Marketers" */}
+          <h2 className={f.h2}>Free course: AI Fluency for Ambitious Marketers</h2>
+          <span className={f.meta}>Six modules, one a fortnight. Module 1 is open now.</span>
         </div>
         <div className={n.learnGrid}>
-          {/* The module window from 25 Sep. Module 1 is open; the rest carry their dates. */}
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+          {/* Paul, 27 Sep: a scroller of module 2, "as you see video of me up front, so is not just a
+              wall of text." 14 seconds down the module page, in a window. */}
+          <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">your_course</span>
+              <span className="mod-wintitle">module 2 · Slow, then fast · opens Mon 5 Oct</span>
             </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>The course, free · {MODULES.filter((m) => m.built).length} of {MODULES.length} modules open</span>
-              <ol className={n.accMods}>
-                {MODULES.map((m) => (
-                  <li key={m.n} className={m.built ? n.accModOn : ""}>
-                    <span>{m.n}</span>
-                    {m.title.replace(/^\(\d\)\s*/, "")}
-                    <em>{m.built ? <Link href={`/course/${m.n}`}>Open</Link> : m.when}</em>
-                  </li>
-                ))}
-              </ol>
-              <form className={`${n.joinRow} ${n.learnJoin}`}>
-                <input type="email" placeholder="you@company.ie" aria-label="Work email" />
-                <button type="button">Start module 1, free</button>
-              </form>
-              <span className={n.accFine}>
-                {nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.
-              </span>
-            </div>
+            <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/course-module-2-scroll-poster.jpg" src="/resources/scroll/course-module-2-scroll.mp4" aria-label="Module 2 of the course, scrolled top to bottom" />
           </article>
           {/* The course's own words (its page description), the fox from the module pages, one door. */}
           <div className={n.courseSide}>
-            <img className={n.courseFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
             <p className={n.courseStand}>
               A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
             </p>
             <p className={n.courseLine}>Each module is a lesson you read once. What it hands you, the prompts, the links and the files, goes into the library, so you never have to go back through a lesson to find the thing you half remember.</p>
+            <ol className={`${n.accMods} ${n.courseMods}`}>
+              {MODULES.map((m) => (
+                <li key={m.n} className={m.built ? n.accModOn : ""}>
+                  <span>{m.n}</span>
+                  {m.title.replace(/^\(\d\)\s*/, "")}
+                  <em>{m.built ? <Link href={`/course/${m.n}`}>Open</Link> : m.when}</em>
+                </li>
+              ))}
+            </ol>
+            <form className={`${n.joinRow} ${n.learnJoin}`}>
+              <input type="email" placeholder="you@company.ie" aria-label="Work email" />
+              <button type="button">Start module 1, free</button>
+            </form>
+            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here.</span>
             <Link href="/course" className={n.doorGo}>About the course →</Link>
           </div>
         </div>

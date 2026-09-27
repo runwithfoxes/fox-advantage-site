@@ -742,3 +742,4 @@ a.entryT:hover { color: #3A7CA5; }
 /* Scroll films of our own pages (Paul, 27 Sep): the page in a window, playing itself. */
 .scrollWin { overflow: hidden; }
 .scrollFilm { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: #1A3A4E; }
+.courseMods { margin: 14px 0 12px; }

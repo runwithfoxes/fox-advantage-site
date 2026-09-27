@@ -88,7 +88,7 @@ export default function LibraryPage() {
           </>
         }
         standfirst="It is here so you can find the thing you half-remember without going back through a lesson to look for it. Search it, open what you need, take it with you. The lessons stay in the course; this is what they hand you. It opens with a free account, the same one as the course."
-        fox="chapter-fox-sitting-nobg.png"
+        fox="chapter-fox-sitting-clean.png"
         below={
           <div className={L.shelfWrap}>
             <div className={L.shelfHead}>

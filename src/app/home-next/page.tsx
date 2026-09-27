@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 /* GEO Ireland day one (23 Aug 2026), NOT signed off by Paul: categories whose most-named
    answer is a state body. Counted off data.ts, never typed. */
 const SHOW_NUMBERS = false;
+const SHOW_SECTOR = false;
 const STATE_LED = CATEGORIES.filter((c) => c.owner === "state").length;
 const GEO_READING = { value: String(STATE_LED), of: `of ${CATEGORIES.length} categories led by a state body`, last: "23 Aug" };
 
@@ -202,7 +203,8 @@ export default function HomeNext() {
             sector moved down under it; what that band means is still to be settled. */}
         <ResearchBands part="reports" />
         {SHOW_NUMBERS && <DataBand />}
-        <SectorPicker />
+        {/* Paul, 27 Sep: "we need to hide this for the moment, until we discuss it." */}
+        {SHOW_SECTOR && <SectorPicker />}
 
         {/* The live homepage's agents section, whole: its inline reader, and the full-screen
             surface the four buttons under the hero open (Paul, 25 Sep). */}
