@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import AccessForm from "../resources/kit/AccessForm";
+import { Top } from "../resources/reports/shared";
 import f from "../resources/front.module.css";
 import k from "../resources/kit/kit.module.css";
 
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 export default function SignInPage() {
   return (
     <div className={f.page}>
+      <Top crumbs={[{ href: "/resources", t: "Resources" }, { t: "Sign in" }]} />
       <main className={f.wrap} style={{ maxWidth: 560, padding: "72px 24px 96px" }}>
         <p className={f.meta}>One free account for everything here</p>
         <h1 className={f.h2} style={{ marginBottom: 14 }}>Sign in</h1>
