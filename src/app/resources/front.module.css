@@ -378,3 +378,6 @@ a.tool:hover { box-shadow: 0 10px 30px rgba(20,16,40,.12); }
 
 /* The mockup note sits in the flow on a phone, never over the page (Paul, 26 Sep, on his phone). */
 @media (max-width: 700px) { .banner { position: static; } }
+
+/* Phone (27 Sep): a 38px band heading runs "Free course: AI Fluency for Ambitious Marketers" to four lines. */
+@media (max-width: 600px) { .h2 { font-size: 28px; line-height: 1.1; } }
