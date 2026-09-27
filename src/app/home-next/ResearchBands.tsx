@@ -152,7 +152,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </span>
       </div>
       <div className={n.studies}>
-        <Link href={seriesHref(flag)} className={n.flag}>
+        <Link href={flagEd && editionsOf(flag).filter((r) => r.status !== "coming").length === 1 && !flag.example ? reportHref(flagEd) : seriesHref(flag)} className={n.flag}>
           <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]} />
           <div>
             <span className={f.meta}>
@@ -186,7 +186,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           {restE.map(({ se, no, cover, fox }) => {
             const ed = newest(se.slug);
             return (
-              <Link key={se.slug} href={seriesHref(se)} className={n.coverCard}>
+              <Link key={se.slug} href={editionsOf(se).filter((r) => r.status !== "coming").length === 1 && !se.example ? reportHref(newest(se.slug)!) : seriesHref(se)} className={n.coverCard}>
                 <Cover no={no} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover={cover} fox={fox} photo={COVER_PHOTOS[se.slug]} />
                 {/* Paul, 27 Sep: "too much copy squeezed to the report covers". One line, the same
                     height on every card: the edition count and the example tag. The latest date

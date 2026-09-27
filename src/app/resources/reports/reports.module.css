@@ -211,3 +211,7 @@
 
 /* Phone pass, 27 Sep 2026: the PDF link in the table was a 28x15 tap target. */
 .tPdf a { display: inline-block; padding: 10px 0 10px 12px; margin: -10px 0; }
+
+/* the read-it link in the series band (27 Sep) */
+.bandRead { display: inline-block; margin: 14px 0 6px; font-family: var(--mono); font-size: 13px; color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 4px; }
+.bandRead:hover { text-decoration-color: #fff; }

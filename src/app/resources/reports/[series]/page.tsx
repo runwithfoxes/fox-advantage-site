@@ -6,7 +6,7 @@ import { SERIES, seriesBySlug, editionsOf, reportHref, day } from "../../catalog
 import { Chart, FigureWindow, Gate, Example } from "../../kit";
 import { Top, trendOf, nextEdition } from "../shared";
 import s from "../reports.module.css";
-import Cover, { shelfEntry } from "../../../home-next/Cover";
+import Cover, { COVER_PHOTOS, shelfEntry } from "../../../home-next/Cover";
 
 const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
@@ -55,7 +55,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ series:
           {/* The series' own cover, the same drawing and fox as on the homepage shelf (Paul, 26 Sep:
               the covers are the look; a letter stamp is not). */}
           <div className={s.bigCover}>
-            {(() => { const e = shelfEntry(se.slug); return e ? <Cover no={e.no} cadence={se.cadence} title={se.name} cover={e.cover} fox={e.fox} /> : <span className={s.bigMark} aria-hidden>{se.mark}</span>; })()}
+            {(() => { const e = shelfEntry(se.slug); return e ? <Cover no={e.no} cadence={se.cadence} title={se.name} cover={e.cover} fox={e.fox} photo={COVER_PHOTOS[se.slug]} /> : <span className={s.bigMark} aria-hidden>{se.mark}</span>; })()}
           </div>
           <div>
             <div className={s.bandEyebrow}>
@@ -66,6 +66,13 @@ export default async function SeriesPage({ params }: { params: Promise<{ series:
             </div>
             <h1 className={s.bandH1}>{se.name}</h1>
             <p className={s.bandLine}>{se.line}</p>
+            {/* Paul, 27 Sep, landing here from the shelf: "i currently see this, which can't be it?" So the
+                way to the report itself is the first thing under the line, not a row at the foot. */}
+            {newest ? (
+              <Link href={reportHref(newest)} className={s.bandRead}>
+                Read the latest edition, {newest.edition} · {newest.title} →
+              </Link>
+            ) : null}
             <div className={s.bandMeta}>
               <i className={s.mark}>{se.lead.name[0]}</i>
               <span>
