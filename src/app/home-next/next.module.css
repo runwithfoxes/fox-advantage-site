@@ -95,7 +95,7 @@ a.bRow:hover { background: rgba(58,124,165,.05); }
 .studies { display: grid; grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
 .flag { display: grid; gap: 22px; text-decoration: none; color: inherit; }
 .flagTitle { display: block; font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; }
-.flagLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; margin: 10px 0 12px; }
+.flagLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; margin: 10px 0 12px; }
 .covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
 .coverCard { display: grid; gap: 12px; align-content: start; }
 .coverLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.5; margin: -4px 0 0; }
@@ -364,7 +364,7 @@ a.entryT:hover { color: #3A7CA5; }
 .featTitle { font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 10px; }
 .featTitle a { color: var(--text); text-decoration: none; }
 .featTitle a:hover { color: #3A7CA5; }
-.featDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.5; color: var(--text-muted); margin: 0 0 22px; max-width: 38ch; }
+.featDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text-muted); margin: 0 0 22px; max-width: 44ch; }
 .featBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
 .featBody p { margin: 0 0 14px; }
 .featPhone { float: right; width: 240px; margin: 0 0 16px 32px; shape-outside: margin-box; }
@@ -748,7 +748,8 @@ a.entryT:hover { color: #3A7CA5; }
    page itself scrolling in a window on the right. */
 .tellGrid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
 .tellCol { min-width: 0; }
-.tellStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.45; color: var(--text); margin: 0 0 14px; }
+/* Paul, 27 Sep: "remember we want fonts all same size, the smaller size." One body size, no big opener. */
+.tellStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); margin: 0 0 14px; }
 .tellBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
 .tellBody p { margin: 0 0 14px; }
 .tellLedger { list-style: none; margin: 4px 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
