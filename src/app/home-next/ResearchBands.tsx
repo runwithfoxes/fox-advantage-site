@@ -72,6 +72,7 @@ const SHOW_FEATURED = false;
 const SHOW_TABLE = false;
 const SHOW_WRITING = false;
 const SHOW_USE = false;
+const SHOW_CALENDAR = false;
 
 const FLAG_EXCERPT: Record<string, string[]> = {
   "geo-ireland": [
@@ -80,6 +81,11 @@ const FLAG_EXCERPT: Record<string, string[]> = {
     "Reddit is cited 1,313 times, ahead of citizensinformation.ie and the HSE. gov.uk is cited 176 times on Irish questions. What forums say about a brand is now part of how it is found.",
   ],
 };
+
+/* An outside link in the band copy: opens in a new tab, keeps the page's link colour. */
+function Ext({ href, children }: { href: string; children: React.ReactNode }) {
+  return <a href={href} target="_blank" rel="noopener" className={n.tellLink}>{children}</a>;
+}
 
 export default function ResearchBands({ part }: { part?: "reports" | "rest" } = {}) {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
@@ -280,15 +286,33 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             to get stuff (datasets, tools, prompts etc) even if they don't want to do the course." */}
         <div className={n.tellGrid}>
           <div className={n.tellCol}>
+            {/* Paul, 27 Sep: "explain what is in it... name a few tools and link to them, as well as
+                articles and people and link to them, so they get a feel for it. So they want it all
+                and subscribe, and we'll let them know when we've added new ones we think they'd like."
+                Every name and link below is a real entry in the shelf (src/app/course/shelf.ts). */}
             <p className={n.tellStand}>
-              The useful things, in one place. The prompts we run, written out in full. Datasets to practise on.
-              The tools we built, the templates and checklists, the briefs we give our agents. Take what you need.
+              This is where we keep the things we use, and we add to it every week.
             </p>
             <div className={n.tellBody}>
               <p>
-                Most of it came out of the course, but you don&rsquo;t need the course to use it. Search it, open
-                the thing you half remember, copy it and take it with you. It grows every fortnight as a module
-                opens, and every time a report lands.
+                The tools. <Ext href="https://clay.com">Clay</Ext>, which finds data on companies and people.{" "}
+                <Ext href="https://apify.com">Apify</Ext>, which collects data from websites.{" "}
+                <Ext href="https://playwright.dev">Playwright</Ext>, which lets Claude open a web page and click
+                through it for you. Twenty-eight of them, with a line on what each one is for.
+              </p>
+              <p>
+                The people we read, like <Ext href="https://www.oneusefulthing.org">Ethan Mollick</Ext> and{" "}
+                <Ext href="https://x.com/danshipper">Dan Shipper</Ext>. The companies we watch for how they build,
+                like <Ext href="https://ramp.com">Ramp</Ext>, <Ext href="https://every.to">Every</Ext> and{" "}
+                <Ext href="https://anthropic.com">Anthropic</Ext>. The articles and videos we send each other, like{" "}
+                <Ext href="https://x.com/mattshumer_/status/2081054356405731740">the game Claude built in one go</Ext>.
+              </p>
+              <p>
+                And datasets to practise on, with real Irish numbers: GEO Ireland&rsquo;s 41 categories, the AI Ask&rsquo;s
+                job ads, and more as each report lands. Plus every prompt from the course, written out in full.
+              </p>
+              <p>
+                Register and it is all yours. When we add something we think you would like, we will let you know.
               </p>
             </div>
             <ul className={n.tellLedger}>
@@ -493,25 +517,31 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </article>
       </section>
 
+      {/* Band 8, coming up: HIDDEN (Paul, 27 Sep: "let's remove this for now? So we can review properly"). */}
+      {SHOW_CALENDAR && (
+        <>
       {/* ── Band 8: coming up, the next six months ── */}
-      <section className={f.shelf} id="calendar">
-        <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>Coming up</h2>
-          <span className={f.meta}>Every study repeats on a fixed calendar, so the change between editions is the finding. The next six months.</span>
-        </div>
-        <div className={n.cal}>
-          {months.map((k) => (
-            <div key={k} className={n.calMonth}>
-              <span className={n.calName}>{monthName(k)}</span>
-              {upcoming.filter((u) => u.key === k).map((u) => (
-                <Link key={u.title} href={u.href ?? "#"} className={`${n.calItem} ${u.course ? n.calCourse : ""}`}>
-                  {u.title} <Example on={u.example} />
-                </Link>
+          <section className={f.shelf} id="calendar">
+            <div className={`${f.shelfHead} ${n.learnHead}`}>
+              <h2 className={f.h2}>Coming up</h2>
+              <span className={f.meta}>Every study repeats on a fixed calendar, so the change between editions is the finding. The next six months.</span>
+            </div>
+            <div className={n.cal}>
+              {months.map((k) => (
+                <div key={k} className={n.calMonth}>
+                  <span className={n.calName}>{monthName(k)}</span>
+                  {upcoming.filter((u) => u.key === k).map((u) => (
+                    <Link key={u.title} href={u.href ?? "#"} className={`${n.calItem} ${u.course ? n.calCourse : ""}`}>
+                      {u.title} <Example on={u.example} />
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+
+        </>
+      )}
 
       {/* ── Band 9: the account, last. Paul's 25 Sep band, with Every's "full free access" wording. ── */}
       <section className={n.account} id="account">

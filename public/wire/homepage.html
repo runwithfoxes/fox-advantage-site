@@ -72,7 +72,7 @@
 <body>
 <div class="head">
   <h1>The homepage, as one research page. A wireframe in colour.</h1>
-  <p>27 Sep 2026 · traced off the rendered page, band by band, after the build · the 26 Sep plan had 18 bands and the page has 12; this is the page. Hidden since 27 Sep, waiting on a decision: the numbers band (four insight cards), This quarter (the AI Ask drawn big with a three-number row), Your sector, Essays and the diary, Things to use, and the every_report table (its line points to /resources/reports)</p>
+  <p>27 Sep 2026 · traced off the rendered page, band by band, after the build · the 26 Sep plan had 18 bands and the page has 11; this is the page. Hidden since 27 Sep, waiting on a decision: the numbers band (four insight cards), This quarter (the AI Ask drawn big with a three-number row), Your sector, Essays and the diary, Things to use, Coming up, and the every_report table (its line points to /resources/reports)</p>
   <div class="key">
     <span><i style="background:#fff;border:1px solid var(--skyl)"></i>ON THE PAGE, in this order</span>
     <span><i style="background:#FFF8F2;border:1px dashed var(--orange)"></i>NEW since the last trace</span>
@@ -129,13 +129,10 @@ const bands = [
  {k:'keep', lab:'8 · what we read every week', h:'Six trackers on the page, twenty behind the account', note:'Three windows across, two trackers each: the latest reading and the change since last read. The full twenty in the resources menu.',
   lap:`<div class="row" style="grid-template-columns:repeat(3,1fr)">${Array.from({length:3},(_,i)=>S.card(['job_ads','ai_answers','ad_prices'][i],70)).join('')}</div>`,
   ph:`${S.card('job_ads',44)}<div style="margin-top:6px">${S.card('ai_answers',44)}</div>`},
- {k:'keep', lab:'9 · coming up', h:'The next six months', note:'Six columns, one per month: the next editions of each series, and the course modules in sky.',
-  lap:`<div class="row" style="grid-template-columns:repeat(6,1fr)">${['Oct','Nov','Dec','Jan','Feb','Mar'].map(m=>`<div><div class="lab">${m}</div>${S.txt(3)}</div>`).join('')}</div>`,
-  ph:`<div class="row" style="grid-template-columns:repeat(3,1fr)">${['Oct','Nov','Dec'].map(m=>`<div><div class="lab">${m}</div>${S.txt(2)}</div>`).join('')}</div>`},
- {k:'keep', lab:'10 · the account', h:'Read it free. Sign in for the detail.', note:'Last night’s band: free to everyone on the left, with a free account on the right, the email box, and the your_course window. “Full free access” wording, as Every does it. This is the only ask on the page.',
+ {k:'keep', lab:'9 · the account', h:'Read it free. Sign in for the detail.', note:'Last night’s band: free to everyone on the left, with a free account on the right, the email box, and the your_course window. “Full free access” wording, as Every does it. This is the only ask on the page.',
   lap:`<div class="row" style="grid-template-columns:1.2fr 1fr"><div><div class="ln d" style="height:16px;width:70%"></div><div class="row" style="grid-template-columns:1fr 1fr;margin-top:10px"><div>${S.txt(2)}</div><div>${S.txt(4)}</div></div></div><div><div class="row" style="grid-template-columns:2fr 1fr"><div class="bx" style="min-height:20px;background:#fff"></div><div class="bx sky" style="min-height:20px"></div></div><div style="margin-top:8px">${S.card('your_course',70)}</div></div></div>`,
   ph:`<div class="ln d" style="height:13px;width:90%"></div><div style="margin-top:8px">${S.txt(4)}</div><div class="row" style="grid-template-columns:2fr 1fr;margin-top:8px"><div class="bx" style="min-height:18px;background:#fff"></div><div class="bx sky" style="min-height:18px"></div></div>`},
- {k:'keep', lab:'11 · footer', h:'Explore', note:'The site footer, as it is.', lap:`<div class="bx" style="min-height:40px;background:#F3F3F0;border-color:#F3F3F0"></div>`, ph:`<div class="bx" style="min-height:30px;background:#F3F3F0;border-color:#F3F3F0"></div>`},
+ {k:'keep', lab:'10 · footer', h:'Explore', note:'The site footer, as it is.', lap:`<div class="bx" style="min-height:40px;background:#F3F3F0;border-color:#F3F3F0"></div>`, ph:`<div class="bx" style="min-height:30px;background:#F3F3F0;border-color:#F3F3F0"></div>`},
 ];
 const tag = {keep:['k','keep'],new:['n','new'],ask:['q','question']};
 function draw(id, key){
