@@ -69,6 +69,9 @@ const monthName = (k: string) => new Date(k + "-01T12:00:00Z").toLocaleDateStrin
 /* The opening of the big cover's latest edition, in the report's own words (Paul, 27 Sep). Add a
    series here when it becomes the big cover; without an entry the column shows title and line only. */
 const SHOW_FEATURED = false;
+const SHOW_TABLE = false;
+const SHOW_WRITING = false;
+const SHOW_USE = false;
 
 const FLAG_EXCERPT: Record<string, string[]> = {
   "geo-ireland": [
@@ -192,17 +195,21 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </div>
       </div>
 
-      {/* Every report, dated, inside a module window so the list has a frame and not flat edges
-          (Paul, 25 Sep). Search and the filters are the window's own. */}
-      <article className={`mod-win ${n.rbList}`}>
-        <div className="mod-winbar">
-          <span className="mod-lights"><i /><i /><i /></span>
-          <span className="mod-wintitle">every_report · {PUBLISHED.length} editions · newest first</span>
-        </div>
-        <div className={n.rbListBody}>
-          <Publications rows={pubs} />
-        </div>
-      </article>
+      {/* Paul, 27 Sep, on the every_report table: it comes off the homepage. The full list, with
+          search and the filters, lives on /resources/reports; one line points there. SHOW_TABLE brings
+          the window back. */}
+      {SHOW_TABLE && (
+        <article className={`mod-win ${n.rbList}`}>
+          <div className="mod-winbar">
+            <span className="mod-lights"><i /><i /><i /></span>
+            <span className="mod-wintitle">every_report · {PUBLISHED.length} editions · newest first</span>
+          </div>
+          <div className={n.rbListBody}>
+            <Publications rows={pubs} />
+          </div>
+        </article>
+      )}
+      <Link href="/resources/reports" className={`${n.doorGo} ${n.rbAll}`}>Every edition, dated, newest first →</Link>
     </section>
   );
   if (part === "reports") return reportsBand;
@@ -347,105 +354,119 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </div>
       </section>
 
+      {/* Band 5, essays and the diary: HIDDEN (Paul, 27 Sep: "I think there are overlap and don't need
+           them here. Hide them for now."). The latest essay and the what's new list sit under the hero. */}
+      {SHOW_WRITING && (
+        <>
       {/* ── Band 5: essays and the diary ── */}
-      <section className={f.shelf} id="writing">
-        <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>Essays, and the diary</h2>
-          <span className={f.meta}>How we build, written up as we go. {essayCount} essays by Paul, {diaryCount} diary entries by Lena. Always free, no form.</span>
-        </div>
-        <div className={n.writeGrid}>
-          <div>
-            <span className={n.dKick}>Essays · Paul Dervan</span>
-            <ol className={n.writeList}>
-              {essays.map((e) => (
-                <li key={e.slug}>
-                  <Link href={`/essays/${e.slug}`} className={n.writeT}>{e.title}</Link>
-                  <span className={n.writeDek}>{e.dek}</span>
-                  <span className={n.writeMeta}>{formatDay(e.date)}</span>
-                </li>
-              ))}
-            </ol>
-            <Link href="/essays" className={n.doorGo}>All {essayCount} essays →</Link>
-          </div>
-          <div>
-            <span className={n.dKick}>Diary of an agent team · Lena, an agent</span>
-            <ol className={n.writeList}>
-              {diary.map((d) => (
-                <li key={d.slug}>
-                  <Link href={`/diary/${d.slug}`} className={n.writeT}>{d.title}</Link>
-                  <span className={n.writeDek}>{d.dek}</span>
-                  <span className={n.writeMeta}>{formatDay(d.date)}</span>
-                </li>
-              ))}
-            </ol>
-            <Link href="/diary" className={n.doorGo}>The whole diary →</Link>
-          </div>
-        </div>
-      </section>
+          <section className={f.shelf} id="writing">
+            <div className={`${f.shelfHead} ${n.learnHead}`}>
+              <h2 className={f.h2}>Essays, and the diary</h2>
+              <span className={f.meta}>How we build, written up as we go. {essayCount} essays by Paul, {diaryCount} diary entries by Lena. Always free, no form.</span>
+            </div>
+            <div className={n.writeGrid}>
+              <div>
+                <span className={n.dKick}>Essays · Paul Dervan</span>
+                <ol className={n.writeList}>
+                  {essays.map((e) => (
+                    <li key={e.slug}>
+                      <Link href={`/essays/${e.slug}`} className={n.writeT}>{e.title}</Link>
+                      <span className={n.writeDek}>{e.dek}</span>
+                      <span className={n.writeMeta}>{formatDay(e.date)}</span>
+                    </li>
+                  ))}
+                </ol>
+                <Link href="/essays" className={n.doorGo}>All {essayCount} essays →</Link>
+              </div>
+              <div>
+                <span className={n.dKick}>Diary of an agent team · Lena, an agent</span>
+                <ol className={n.writeList}>
+                  {diary.map((d) => (
+                    <li key={d.slug}>
+                      <Link href={`/diary/${d.slug}`} className={n.writeT}>{d.title}</Link>
+                      <span className={n.writeDek}>{d.dek}</span>
+                      <span className={n.writeMeta}>{formatDay(d.date)}</span>
+                    </li>
+                  ))}
+                </ol>
+                <Link href="/diary" className={n.doorGo}>The whole diary →</Link>
+              </div>
+            </div>
+          </section>
 
+        </>
+      )}
+
+      {/* Band 6, things to use: HIDDEN (Paul, 27 Sep, same note). The library band carries the
+           playbooks, datasets and tools story now. */}
+      {SHOW_USE && (
+        <>
       {/* ── Band 6: resources to use ── */}
-      <section className={f.shelf} id="use">
-        <div className={`${f.shelfHead} ${n.learnHead}`}>
-          <h2 className={f.h2}>Things to use</h2>
-          <span className={f.meta}>Prompts and playbooks to download, datasets to practise on, tools with a free first go. The file and the full result come with the free account.</span>
-        </div>
-        <div className={n.useGrid}>
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">playbooks · {COUNTS.playbooks} files</span>
+          <section className={f.shelf} id="use">
+            <div className={`${f.shelfHead} ${n.learnHead}`}>
+              <h2 className={f.h2}>Things to use</h2>
+              <span className={f.meta}>Prompts and playbooks to download, datasets to practise on, tools with a free first go. The file and the full result come with the free account.</span>
             </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>Prompts, templates, checklists, agent briefs</span>
-              <ol className={n.useRows}>
-                {playbooks.map((x) => (
-                  <li key={x.slug}>
-                    <Link href={x.href ?? "/resources/playbooks"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
-                    <span className={n.useMeta}>{x.kind}{x.files.length ? ` · ${x.files.length} ${x.files.length === 1 ? "file" : "files"}` : ""}</span>
-                  </li>
-                ))}
-              </ol>
-              <Link href="/resources/playbooks" className={n.doorGo}>All playbooks →</Link>
+            <div className={n.useGrid}>
+              <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+                <div className="mod-winbar">
+                  <span className="mod-lights"><i /><i /><i /></span>
+                  <span className="mod-wintitle">playbooks · {COUNTS.playbooks} files</span>
+                </div>
+                <div className={n.winBody}>
+                  <span className={n.dKick}>Prompts, templates, checklists, agent briefs</span>
+                  <ol className={n.useRows}>
+                    {playbooks.map((x) => (
+                      <li key={x.slug}>
+                        <Link href={x.href ?? "/resources/playbooks"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                        <span className={n.useMeta}>{x.kind}{x.files.length ? ` · ${x.files.length} ${x.files.length === 1 ? "file" : "files"}` : ""}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <Link href="/resources/playbooks" className={n.doorGo}>All playbooks →</Link>
+                </div>
+              </article>
+              <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+                <div className="mod-winbar">
+                  <span className="mod-lights"><i /><i /><i /></span>
+                  <span className="mod-wintitle">datasets · {COUNTS.datasets} files</span>
+                </div>
+                <div className={n.winBody}>
+                  <span className={n.dKick}>Real Irish data to practise on</span>
+                  <ol className={n.useRows}>
+                    {datasets.map((x) => (
+                      <li key={x.slug}>
+                        <Link href={datasetHref(x)} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                        <span className={n.useMeta}>{x.rows.toLocaleString("en-IE")} rows · {x.columns.length} columns · first 8 rows free</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <Link href="/resources/data" className={n.doorGo}>All datasets →</Link>
+                </div>
+              </article>
+              <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
+                <div className="mod-winbar">
+                  <span className="mod-lights"><i /><i /><i /></span>
+                  <span className="mod-wintitle">tools · {TOOLS.filter((t) => t.status === "live").length} live</span>
+                </div>
+                <div className={n.winBody}>
+                  <span className={n.dKick}>Free. Your own full result is the only thing we ask an email for</span>
+                  <ol className={n.useRows}>
+                    {tools.map((x) => (
+                      <li key={x.slug}>
+                        <Link href={x.href ?? "/resources/tools"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
+                        <span className={n.useMeta}>{x.line} · {x.status === "live" ? `${x.minutes} min` : x.status}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <Link href="/resources/tools" className={n.doorGo}>All tools →</Link>
+                </div>
+              </article>
             </div>
-          </article>
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">datasets · {COUNTS.datasets} files</span>
-            </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>Real Irish data to practise on</span>
-              <ol className={n.useRows}>
-                {datasets.map((x) => (
-                  <li key={x.slug}>
-                    <Link href={datasetHref(x)} className={n.useName}>{x.name} <Example on={x.example} /></Link>
-                    <span className={n.useMeta}>{x.rows.toLocaleString("en-IE")} rows · {x.columns.length} columns · first 8 rows free</span>
-                  </li>
-                ))}
-              </ol>
-              <Link href="/resources/data" className={n.doorGo}>All datasets →</Link>
-            </div>
-          </article>
-          <article className={`mod-win ${n.dWin} ${n.learnWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">tools · {TOOLS.filter((t) => t.status === "live").length} live</span>
-            </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>Free. Your own full result is the only thing we ask an email for</span>
-              <ol className={n.useRows}>
-                {tools.map((x) => (
-                  <li key={x.slug}>
-                    <Link href={x.href ?? "/resources/tools"} className={n.useName}>{x.name} <Example on={x.example} /></Link>
-                    <span className={n.useMeta}>{x.line} · {x.status === "live" ? `${x.minutes} min` : x.status}</span>
-                  </li>
-                ))}
-              </ol>
-              <Link href="/resources/tools" className={n.doorGo}>All tools →</Link>
-            </div>
-          </article>
-        </div>
-      </section>
+          </section>
+
+        </>
+      )}
 
       {/* ── Band 7: trackers, small ── */}
       <section className={f.shelf} id="trackers">

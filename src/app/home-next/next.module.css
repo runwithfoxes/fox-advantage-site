@@ -755,3 +755,4 @@ a.entryT:hover { color: #3A7CA5; }
 .tellLedger b { color: var(--text); font-weight: 500; font-size: 14px; margin-right: 4px; }
 .courseMods { margin: 6px 0 16px; }
 @media (max-width: 900px) { .tellGrid { grid-template-columns: 1fr; gap: 24px; } }
+.rbAll { display: inline-block; margin-top: 28px; }
