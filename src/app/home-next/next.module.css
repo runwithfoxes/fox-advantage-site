@@ -764,3 +764,5 @@ a.entryT:hover { color: #3A7CA5; }
   .learnHead { gap: 6px; margin-bottom: 22px; }
 }
 .tellLink { color: #3A7CA5; text-decoration: underline; text-decoration-color: rgba(58,124,165,.4); text-underline-offset: 3px; }
+/* Phone (27 Sep pass): the covers' number and cadence were 9px on a phone; 10.5px reads. */
+@media (max-width: 600px) { .coverSceneTop { font-size: 10.5px; } .coverPhotoTitle { font-size: 15px; } }
