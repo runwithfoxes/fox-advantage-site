@@ -270,26 +270,16 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </div>
         <div className={n.libGrid}>
           <div className={n.libCol}>
-            <div className={n.libBand}>
-              <div className={n.libHead}>
-                <span className={n.libLab}>What is in it</span>
-                <span className={n.libSub}>{lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
+            {/* Paul, 27 Sep: "Maybe we show scroller mpegs of both the course and library?" The
+                library page itself, scrolled top to bottom in 24 seconds, in a window. Recorded with
+                brand-scroll/record-scroll.mjs; the poster is its first frame. */}
+            <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights"><i /><i /><i /></span>
+                <span className="mod-wintitle">the library · {lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
               </div>
-              <div className={L.shelf} role="img" aria-label={`Things in the library by module: ${lib.perModule.map((m) => `module ${m.n} ${m.things}`).join(", ")}`}>
-                {lib.perModule.map((m) => (
-                  <div key={m.n} className={`${L.spine} ${m.has ? L.spineOn : ""}`}>
-                    <span className={L.spineN}>{m.things}</span>
-                    <span className={L.spineBar} style={{ height: `${14 + Math.round((m.things / lib.maxThings) * 64)}px` }} />
-                    <span className={L.spineMod}>{String(m.n).padStart(2, "0")}</span>
-                  </div>
-                ))}
-              </div>
-              <ul className={n.libLedger}>
-                {lib.ledger.slice(0, 6).map((x) => (
-                  <li key={x.l}><b>{x.n}</b> {x.l}</li>
-                ))}
-              </ul>
-            </div>
+              <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
+            </article>
             <form className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`}>
               <input type="email" placeholder="you@company.ie" aria-label="Work email" />
               <button type="button">Open the library, free</button>
