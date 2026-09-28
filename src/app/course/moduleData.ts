@@ -1603,7 +1603,10 @@ export const MODULE_2: ModuleDef = {
          the same label; fig-12 is `anim6`, `animated: true`, and fig-11 is the still of it.
          ⚠️ The 3 Aug session recorded anim6 as having NO library equivalent, which is why
          the port left it out. That was already stale: it is in `figures.generated.ts`. */
-      figure: "fig-12",
+      /* ⭐ fig-12 -> fig-38 ON PAUL'S INSTRUCTION, 28 Sep 2026: "a version of this figure but
+         has words in it - Positioning, Messaging, Tone of Voice, AI Slop Guide." The same
+         animated drawing with the four blocks named, because here the words are the lesson. */
+      figure: "fig-38",
       /* ⭐⭐ TITLE AND COPY REPLACED WHOLESALE BY PAUL, 4 Aug 2026, dictated. This
          SUPERSEDES the 26 Jul copy that decisions section 6b marked as his and not to be
          rewritten: he wrote that one and he has now replaced it himself.
