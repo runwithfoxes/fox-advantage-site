@@ -214,7 +214,7 @@ function DocLinks({
 
   return (
     <div className="mod-reading">
-      <span className="mod-readinglbl">The files</span>
+      <span className="mod-readinglbl">{docs.label ?? "The files"}</span>
       {docs.files.map((f) => (
         <span key={f} className="mod-filerow">
           {/* ⛔⛔ THE NAME IS A NAME. THE ACTIONS ARE NAMED. Paul, 4 Aug: "the UX is not
@@ -1227,6 +1227,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   </button>
                 )}
 
+                <DocLinks docs={it.moreDocs} onCopy={say} n={mod.n} item={it.t} />
                 {!it.docs?.inline && (
                   <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />
                 )}
