@@ -1779,7 +1779,7 @@ export const MODULE_2: ModuleDef = {
         as: "links",
       },
       t: "Start a new Claude Project",
-      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here. And drop your documents into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
+      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here. When ready, drop your documents into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
       /* The sentence and both links agreed with Paul, 28 Sep 2026; the same two Anthropic
          links module 1's "Create Projects" item carries. */
       textLinks: [
