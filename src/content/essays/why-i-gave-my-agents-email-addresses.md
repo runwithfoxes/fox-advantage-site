@@ -6,9 +6,7 @@ dek: "Three of my agents now send email from their own addresses, and why that i
 
 ![The grumpy fox in a flat cap and waistcoat, writing at his desk in a newsroom](/essays/why-i-gave-my-agents-email-addresses/01.jpg)
 
-Three of my agents now have their own email addresses. Jo, my AI agent responsible for new business, is jo@runwithfoxes.com. Klara, my project manager, has one too, and so does Sam, who does a lot of research for me and with me.
-
-These three are autonomous and proactive, so they do things on their own. My inbox agent doesn't have an email address. It still writes drafts for me to send.
+Three of my agents now have their own email addresses. Jo, my AI agent responsible for new business, is jo@runwithfoxes.com. Klara, my project manager, has one too, and so does Sam, who does a lot of research for me and with me. These three are autonomous and proactive, so they do things on their own.
 
 A part of my business, and a part of everybody's business, is sending things to people and emailing the things you said you would do. My agents could already write those emails. It's usually quite functional stuff, like the information someone wanted, something I said I'd give them, an agreement to meet or a calendar invite. The last step was always me. I'd go in, edit and review it to make sure it didn't sound crazy and wasn't incorrect, and then I'd click send.
 
