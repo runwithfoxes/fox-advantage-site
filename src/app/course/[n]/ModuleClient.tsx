@@ -309,23 +309,28 @@ function slotsFor(
       <PromptBlock text={text} onCopy={() => onCopyText?.(text)} />
     );
   }
-  return {
-    ...inline,
-    /* ⭐ 20 Sep 2026: the file rows in the prose, for module 1 item 02, where the download has
-       to come before the prompts that use it. Only for docs marked `inline`. */
-    FILES: it.docs?.inline ? files : undefined,
-    /* Module 2 item 03: Paul's screenshot of where the files go, 28 Sep 2026. */
-    GRAB: it.inlineImage ? (
+  /* Module 2 item 03: Paul's screenshots, each at its own {{NAME}}, 28 Sep 2026. */
+  const images: Record<string, React.ReactNode> = {};
+  for (const [k, im] of Object.entries(it.inlineImages ?? {})) {
+    images[k] = (
       /* eslint-disable-next-line @next/next/no-img-element */
       <img
         className="mod-inline-img"
-        src={it.inlineImage.src}
-        alt={it.inlineImage.alt}
-        width={it.inlineImage.w}
-        height={it.inlineImage.h}
+        src={im.src}
+        alt={im.alt}
+        width={im.w}
+        height={im.h}
         loading="lazy"
       />
-    ) : undefined,
+    );
+  }
+  return {
+    ...inline,
+    ...images,
+    /* ⭐ 20 Sep 2026: the file rows in the prose, for module 1 item 02, where the download has
+       to come before the prompts that use it. Only for docs marked `inline`. */
+    FILES: it.docs?.inline ? files : undefined,
+
     /* ⭐ Module 1 item 02's two recordings: the same file and the same model, asked without
        context and then with it. Generated from the saved replies, never typed. A plain chat,
        so the title bar says so. */

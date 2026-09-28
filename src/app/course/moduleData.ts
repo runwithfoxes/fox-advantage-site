@@ -56,9 +56,9 @@ export type Item = {
   /** A second links list at the foot, shown ABOVE `docs`. Paul, 28 Sep 2026: item 03 has to
    *  hand over Kite's documents as well as the three AI files. */
   moreDocs?: Item["docs"];
-  /** A picture in the prose at `{{GRAB}}`. Paul's own screenshot for module 2 item 03,
-   *  28 Sep 2026, showing where the files go. */
-  inlineImage?: { src: string; alt: string; w: number; h: number };
+  /** Pictures in the prose, each at `{{NAME}}` by its key. Paul's own screenshots for
+   *  module 2 item 03, 28 Sep 2026: where the files go, and the instructions box. */
+  inlineImages?: Record<string, { src: string; alt: string; w: number; h: number }>;
   /** His words, verbatim. */
   text: string;
   /** The exact words to paste. Lifted out of his prose into its own block. */
@@ -1789,7 +1789,7 @@ export const MODULE_2: ModuleDef = {
         label: "The three AI files",
       },
       t: "Start a new Claude Project",
-      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here.\n\nOnce you're in Claude, the first thing you need is Kite's documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six at once. They'll save to your computer, usually in your Downloads folder. If you took the zip, double click it to open the folder.\n\nThen drag the files into your project, into the Context box on the right side of your project page.\n\n{{GRAB}}\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
+      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here.\n\nOnce you're in Claude, the first thing you need is Kite's documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six at once. They'll save to your computer, usually in your Downloads folder. If you took the zip, double click it to open the folder.\n\nThen drag the files into your project, into the Context box on the right side of your project page.\n\n{{GRAB}}\n\nThere are three more files, and these ones are specific to AI. They are the same for every brand, not just Kite, so take them now and use them on any writer you build. Two of them, claims and sources and slop rules, go into the Context box with Kite's documents.\n\nThe third, the writer DNA, goes into your instructions. Instructions are what Claude reads at the start of every chat in this project, before you type anything. They tell it what job it's doing, what each file is and when to read it, and how to work with you. You write them once, and every chat starts from there.\n\nTo add the writer DNA to your instructions:\n\n1. Click the pencil next to Instructions, at the top right of your project page.\n2. At the bottom of this section, click Copy next to writer-dna.\n3. Paste it into the box and click Save instructions.\n\n{{GRAB_INSTRUCTIONS}}",
       /* The sentence and both links agreed with Paul, 28 Sep 2026; the same two Anthropic
          links module 1's "Create Projects" item carries. */
       textLinks: [
@@ -1807,11 +1807,19 @@ export const MODULE_2: ModuleDef = {
         { phrase: "messaging framework", href: "/api/course-file/module-2/kite/messaging-framework.md", title: "Kite messaging-framework", download: true },
       ],
       /* Paul's screenshot of the Kite project page, 28 Sep 2026, the Context box outlined. */
-      inlineImage: {
-        src: "/course/module-2-project-files.jpg",
-        alt: "The Kite Insurance writer project in Claude, with the Context box on the right holding the uploaded files",
-        w: 1600,
-        h: 959,
+      inlineImages: {
+        GRAB: {
+          src: "/course/module-2-project-files.jpg",
+          alt: "The Kite Insurance writer project in Claude, with the Context box on the right holding the uploaded files",
+          w: 1600,
+          h: 959,
+        },
+        GRAB_INSTRUCTIONS: {
+          src: "/course/module-2-project-instructions.jpg",
+          alt: "The Set project instructions box in Claude, with the writer DNA pasted in",
+          w: 1600,
+          h: 854,
+        },
       },
       moreDocs: {
         dir: "module-2/kite",
