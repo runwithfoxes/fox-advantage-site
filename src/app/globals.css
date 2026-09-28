@@ -7516,6 +7516,7 @@ a.project-card {
 /* ⭐ PAUL ON CAMERA at the top of a module, 24 Sep 2026. Full column width, the same hairline
    as a card, the film's own name card as the poster. Sits under the opening paragraphs with
    the paragraph gap above it, and clears the floated fox so it never tucks under him. */
+.mod-inline-img{display:block;width:100%;height:auto;border:1px solid #E0E0DC;border-radius:4px;}
 .mod-video{margin:34px 0 0;padding:0;clear:both;}
 .mod-video-player{display:block;width:100%;aspect-ratio:16/9;background:#1D1B1B;border:1px solid #E0E0DC;border-radius:4px;}
 /* Two films in a row sit 20px apart: closer than a paragraph, so they read as a pair. */

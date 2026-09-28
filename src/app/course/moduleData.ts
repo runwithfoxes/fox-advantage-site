@@ -56,6 +56,9 @@ export type Item = {
   /** A second links list at the foot, shown ABOVE `docs`. Paul, 28 Sep 2026: item 03 has to
    *  hand over Kite's documents as well as the three AI files. */
   moreDocs?: Item["docs"];
+  /** A picture in the prose at `{{GRAB}}`. Paul's own screenshot for module 2 item 03,
+   *  28 Sep 2026, showing where the files go. */
+  inlineImage?: { src: string; alt: string; w: number; h: number };
   /** His words, verbatim. */
   text: string;
   /** The exact words to paste. Lifted out of his prose into its own block. */
@@ -1786,7 +1789,7 @@ export const MODULE_2: ModuleDef = {
         label: "The three AI files",
       },
       t: "Start a new Claude Project",
-      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here. The first thing you need once you're in Claude is the following documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six in one zip file (double click the zip to open it). They'll save to your computer, usually in your Downloads folder. When ready, upload them to your project by dragging them into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
+      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here.\n\nOnce you're in Claude, the first thing you need is Kite's documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six at once. They'll save to your computer, usually in your Downloads folder. If you took the zip, double click it to open the folder.\n\nThen drag the files into your project, into the Context box on the right side of your project page.\n\n{{GRAB}}\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
       /* The sentence and both links agreed with Paul, 28 Sep 2026; the same two Anthropic
          links module 1's "Create Projects" item carries. */
       textLinks: [
@@ -1803,6 +1806,13 @@ export const MODULE_2: ModuleDef = {
         { phrase: "tone of voice", href: "/api/course-file/module-2/kite/tone-of-voice.md", title: "Kite tone-of-voice", download: true },
         { phrase: "messaging framework", href: "/api/course-file/module-2/kite/messaging-framework.md", title: "Kite messaging-framework", download: true },
       ],
+      /* Paul's screenshot of the Kite project page, 28 Sep 2026, the Context box outlined. */
+      inlineImage: {
+        src: "/course/module-2-project-files.jpg",
+        alt: "The Kite Insurance writer project in Claude, with the Context box on the right holding the uploaded files",
+        w: 1600,
+        h: 959,
+      },
       moreDocs: {
         dir: "module-2/kite",
         folder: "kite/",
