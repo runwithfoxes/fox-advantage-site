@@ -52,7 +52,7 @@ export type Item = {
   /** Phrases in `text` that become links, new tab and tracked. A lookup, not a parser: the
    *  first exact match of each phrase is wrapped, and a phrase that is not found does nothing.
    *  Paul, 28 Sep 2026, for the Anthropic project links in module 2 item 03. */
-  textLinks?: { phrase: string; href: string; title: string }[];
+  textLinks?: { phrase: string; href: string; title: string; download?: boolean }[];
   /** A second links list at the foot, shown ABOVE `docs`. Paul, 28 Sep 2026: item 03 has to
    *  hand over Kite's documents as well as the three AI files. */
   moreDocs?: Item["docs"];
@@ -1786,21 +1786,22 @@ export const MODULE_2: ModuleDef = {
         label: "The three AI files",
       },
       t: "Start a new Claude Project",
-      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here. The first thing you need once you're in Claude is the following documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. You'll find them all at the bottom of this section. When ready, drop your documents into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
+      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here. The first thing you need once you're in Claude is the following documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six in one zip file (double click the zip to open it). They'll save to your computer, usually in your Downloads folder. When ready, upload them to your project by dragging them into the files on the right side of your project page. So these would include your positioning, your messaging framework, tone of voice etc.\n\nThere are three more files, and these ones are specific to AI. One is claims and sources. One is slop rules. Those two go in with the rest. The third is the writer DNA, and that one doesn't go into your files. It goes into your instructions.\n\nNone of these three are Kite's. They are the same for every brand, so take them now and use them on any writer you build.",
       /* The sentence and both links agreed with Paul, 28 Sep 2026; the same two Anthropic
          links module 1's "Create Projects" item carries. */
       textLinks: [
         { phrase: "this short video", href: "https://www.youtube.com/watch?v=GJ5jTgcbRHA", title: "Getting started with projects in Claude.ai" },
         { phrase: "here", href: "https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects", title: "How can I create and manage projects?" },
         /* Paul, 28 Sep 2026: name the documents, link them, and say they are at the bottom.
-           Each name opens that document's reading page in a new tab. ⚠️ "proof" matches
+           Each name DOWNLOADS its .md, the file that goes into Claude (Paul: "I'm hoping to
+           download them so that I can attach them to my own Claude"). ⚠️ "proof" matches
            the first whole word "proof" in the paragraph, which is this list. */
-        { phrase: "audience", href: "/api/course-file/module-2/kite/audience.html", title: "Kite audience" },
-        { phrase: "competitors", href: "/api/course-file/module-2/kite/competitors.html", title: "Kite competitors" },
-        { phrase: "proof", href: "/api/course-file/module-2/kite/proof.html", title: "Kite proof" },
-        { phrase: "positioning statement", href: "/api/course-file/module-2/kite/positioning-statement.html", title: "Kite positioning-statement" },
-        { phrase: "tone of voice", href: "/api/course-file/module-2/kite/tone-of-voice.html", title: "Kite tone-of-voice" },
-        { phrase: "messaging framework", href: "/api/course-file/module-2/kite/messaging-framework.html", title: "Kite messaging-framework" },
+        { phrase: "audience", href: "/api/course-file/module-2/kite/audience.md", title: "Kite audience", download: true },
+        { phrase: "competitors", href: "/api/course-file/module-2/kite/competitors.md", title: "Kite competitors", download: true },
+        { phrase: "proof", href: "/api/course-file/module-2/kite/proof.md", title: "Kite proof", download: true },
+        { phrase: "positioning statement", href: "/api/course-file/module-2/kite/positioning-statement.md", title: "Kite positioning-statement", download: true },
+        { phrase: "tone of voice", href: "/api/course-file/module-2/kite/tone-of-voice.md", title: "Kite tone-of-voice", download: true },
+        { phrase: "messaging framework", href: "/api/course-file/module-2/kite/messaging-framework.md", title: "Kite messaging-framework", download: true },
       ],
       moreDocs: {
         dir: "module-2/kite",

@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { cookies } from "next/headers";
+import JSZip from "jszip";
 import { MODULES_BY_N } from "../../../course/moduleData";
 
 /**
@@ -51,12 +52,54 @@ const TYPES: Record<string, string> = {
 };
 
 export async function GET(
-  _req: Request,
+  req: Request,
   ctx: { params: Promise<{ path: string[] }> },
 ) {
   const rel = (await ctx.params).path.join("/");
 
   const allowed = servable();
+
+  /* ⭐ A WHOLE FOLDER AS ONE ZIP, Paul, 28 Sep 2026: people add these to Claude all at once,
+     so "Download all" beats six clicks. `module-2/kite.zip` zips servable .md or .csv files
+     directly under `module-2/kite/` (all of them, or the `files` asked for), so the zip can never hold a file the data does not
+     list, and it cannot drift from the single files because it is built from them per
+     request. Same door as a single file. */
+  if (rel.endsWith(".zip")) {
+    const dir = rel.slice(0, -4) + "/";
+    /* `?files=audience,proof` picks exactly the files the page lists; the folder holds
+       others (Kite's segment emails, the writer's format files) that a list may leave out. */
+    const want = new URL(req.url).searchParams.get("files")?.split(",").filter(Boolean);
+    const members = [...allowed.keys()].filter(
+      (k) =>
+        k.startsWith(dir) &&
+        !k.slice(dir.length).includes("/") &&
+        /\.(md|csv)$/.test(k) &&
+        (!want || want.some((w) => k.slice(dir.length) === (w.includes(".") ? w : `${w}.md`))),
+    );
+    if (!members.length) return new Response("Not found", { status: 404 });
+    const who =
+      process.env.NODE_ENV === "development"
+        ? "dev@localhost"
+        : (await cookies()).get("rwf_course_id")?.value ?? "";
+    if (!who) return new Response("Not found", { status: 404 });
+    const zip = new JSZip();
+    const folder = zip.folder(path.basename(dir))!;
+    try {
+      for (const k of members) folder.file(path.basename(k), await readFile(path.join(ROOT, k)));
+    } catch {
+      console.error(`[course-file] zip member missing on disk under ${dir}`);
+      return new Response("Not found", { status: 404 });
+    }
+    const out = await zip.generateAsync({ type: "arraybuffer" });
+    return new Response(out, {
+      headers: {
+        "Content-Type": "application/zip",
+        "Cache-Control": "private, no-store",
+        "Content-Disposition": `attachment; filename="${path.basename(rel)}"`,
+      },
+    });
+  }
+
   const modN = allowed.get(rel);
   /* ⛔ NOT 403. An unknown path and a known one you may not have both answer 404, so this
      route never confirms that a file exists to somebody who cannot read it. */

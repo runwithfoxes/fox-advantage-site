@@ -215,6 +215,22 @@ function DocLinks({
   return (
     <div className="mod-reading">
       <span className="mod-readinglbl">{docs.label ?? "The files"}</span>
+      {/* ⭐ DOWNLOAD ALL, Paul, 28 Sep 2026: people add these to Claude together, so one zip of
+          exactly the files listed here beats a click per file. */}
+      {docs.files.length > 1 && (
+        <span className="mod-filerow mod-fileall">
+          <span className="mod-filename">All {docs.files.length} files, as one zip</span>
+          <span className="mod-fileacts">
+            <a
+              className="mod-fileact"
+              href={`/api/course-file/${docs.dir}.zip?files=${docs.files.join(",")}`}
+              onClick={() => track("download_taken", n, item, `all ${docs.dir}`)}
+            >
+              Download all
+            </a>
+          </span>
+        </span>
+      )}
       {docs.files.map((f) => (
         <span key={f} className="mod-filerow">
           {/* ⛔⛔ THE NAME IS A NAME. THE ACTIONS ARE NAMED. Paul, 4 Aug: "the UX is not
@@ -619,7 +635,7 @@ function Body({
       third copy of the same idea. */
   slots?: Record<string, React.ReactNode>;
   /** Phrases to link, with the module and item for the link_opened event. */
-  links?: { phrase: string; href: string; title: string }[];
+  links?: { phrase: string; href: string; title: string; download?: boolean }[];
   n?: number;
   item?: string;
 }) {
@@ -677,7 +693,7 @@ function Body({
    occurrence in the paragraph, so pick one that only appears where the link belongs. */
 function linkParts(
   para: string,
-  links: { phrase: string; href: string; title: string }[] | undefined,
+  links: { phrase: string; href: string; title: string; download?: boolean }[] | undefined,
   moduleN: number | undefined,
   item: string | undefined,
 ): React.ReactNode {
@@ -697,9 +713,12 @@ function linkParts(
         key={k}
         className="mod-standfirst-link"
         href={L.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => moduleN && track("link_opened", moduleN, item, L.title)}
+        {...(L.download
+          ? { download: "" }
+          : { target: "_blank", rel: "noopener noreferrer" })}
+        onClick={() =>
+          moduleN && track(L.download ? "download_taken" : "link_opened", moduleN, item, L.title)
+        }
       >
         {L.phrase}
       </a>,

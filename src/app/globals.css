@@ -7788,6 +7788,8 @@ a.project-card {
 /* ⭐ A FILE ROW: the name opens it, the button takes it. 4 Aug 2026, Paul asked for both.
    The row owns the divider so the two controls read as ONE row rather than a link with a
    stray button after it; the link inside it therefore gives its border up. */
+/* The Download all row sits first in a list and reads as an action, not a file. */
+.mod-fileall .mod-filename{color:#8A8A85;}
 .mod-filerow{display:flex;align-items:center;gap:14px;border-bottom:1px solid #EDEDE9;
   padding:7px 0;}
 .mod-filerow:last-child{border-bottom:none;}
