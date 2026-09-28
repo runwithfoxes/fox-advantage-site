@@ -1700,7 +1700,10 @@ export const MODULE_2: ModuleDef = {
           "messaging-framework",
         ],
       },
-      text: "Ok, so you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer to help you write emails, write copy for the website, write social posts, write training guides. All sorts of marketing communications. You're going to need the following things.\n\n{{FOLDER}}\n\nThis is the slow part. In the sense that decisions on your positioning, your messaging, your tone of voice won't come from the robots. This is the hard work that marketers do. If you've this work done, you're 90% sorted. If not, don't worry, as I'll show you how to speed up this work too. For now, we'll assume Kite has all this information.",
+      /* REPLACED BY PAUL, 28 Sep 2026, pasted. The folder stays, after his last paragraph,
+         because that paragraph points at it ("so you can see it here"). One fix on his
+         standing grammar instruction: "team mates" -> "teammates". */
+      text: "Ok, so today you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer. This AI writer is going to write emails, copy for the website, social posts, write training guides. All sorts of marketing communications.\n\nIf you were briefing a human writer, you'd need to give them context about your brand, about your customers, insights if you have them, your positioning, your tone of voice. Same for an AI Writer. If you're building this for your team, you'll also need to give it instructions on how to interact with your teammates - so they have a good user experience with this piece of software.\n\nFor Kite, I've created these documents, so you can see it here, but also, so you can download and practice yourself. Doing it is far more useful than watching it.\n\n{{FOLDER}}",
     },
     {
       /* ⭐ ITEM 03 OPENED BY PAUL, 4 Aug 2026. His headline, his figure: "topic three is
