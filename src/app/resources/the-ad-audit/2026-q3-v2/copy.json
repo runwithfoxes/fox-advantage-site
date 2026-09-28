@@ -75,6 +75,9 @@
      "title": "Ten advertisers, 1,660 ads",
      "blocks": [
       {
+       "p": "Start with the size of each advertiser's effort. The pale bar is every ad it ran, the mid bar is how many different creatives those ads boil down to, and the dark bar is how many of those creatives were new this quarter. Look at the gap between the first two bars: that's how much each advertiser re-runs the same words as new ads."
+      },
+      {
        "fig": "f11",
        "kind": "Figure",
        "no": "1.1",
@@ -91,6 +94,9 @@
      "title": "The quarter, week by week",
      "blocks": [
       {
+       "p": "This is the whole category's tempo across the summer, week by week. One line is new creatives, the other is new ads, which includes copies. Look for the surges and the lulls, and where the biggest week falls."
+      },
+      {
        "fig": "f12",
        "kind": "Figure",
        "no": "1.2",
@@ -99,6 +105,9 @@
       },
       {
        "p": "The category doesn't drip. It surges. The biggest week of the summer began 14 September, when 45 new creatives went live in seven days, the back-to-work moment every bank marketer plans for. The quietest full week, beginning 10 August, saw 11. Your competitors' tempo is the weather your ads fly in."
+      },
+      {
+       "p": "The twelve creatives that reached the most people this quarter, one card each, with what it sells, its headline and its reach. They're here so you can see the category's work before the numbers about it."
       },
       {
        "gallery": [
@@ -225,6 +234,9 @@
      "title": "What the advertisers set",
      "blocks": [
       {
+       "p": "Before we look at who the ads reached, here is what the advertisers asked for. Each bar is one advertiser's ads this quarter, split by the age setting on them: everyone, a higher minimum age only, or a range with a top limit. The point is how similar the settings are, whatever the reason."
+      },
+      {
        "fig": "f21",
        "kind": "Figure",
        "no": "2.1",
@@ -241,11 +253,17 @@
      "title": "Who the platform found",
      "blocks": [
       {
+       "p": "Now who actually saw the ads, by age. The two groups are the three digital challengers and the seven Irish banks and lenders. Look at the two youngest bands and the two oldest, and at how different the shapes are for two groups working from similar settings."
+      },
+      {
        "fig": "f22",
        "kind": "Figure",
        "no": "2.2",
        "title": "Who the ads reached, by age band",
        "cap": "Share of each group's reach this quarter. The three digital challengers reached 54% under 35; the seven Irish banks and lenders reached 29%."
+      },
+      {
+       "p": "The same idea, advertiser by advertiser: what share of each one's reach was under thirty-five. The spread across the ten is the thing to notice."
       },
       {
        "fig": "f23",
@@ -263,6 +281,9 @@
      "n": "2.3",
      "title": "Several at once",
      "blocks": [
+      {
+       "p": "How many ads each advertiser has running on a typical day. This is the clearest picture of the several-at-once habit, and of how much it varies."
+      },
       {
        "fig": "f24",
        "kind": "Figure",
@@ -295,6 +316,9 @@
      "title": "How much new creative the category makes",
      "blocks": [
       {
+       "p": "How much new creative each advertiser makes in a typical week. The category average and median are marked. Look at where the most active advertiser sits against the rest, and how many are close to the average."
+      },
+      {
        "fig": "f31",
        "kind": "Figure",
        "no": "3.1",
@@ -310,6 +334,9 @@
      "n": "3.2",
      "title": "What the most competitive categories do",
      "blocks": [
+      {
+       "p": "For scale, two mobile games set beside the banks, all on a new-creatives-a-month basis. The games are there to show how far the road goes in a category that measures everything, not as a target."
+      },
       {
        "fig": "f32",
        "kind": "Figure",
@@ -330,6 +357,9 @@
      "title": "Where the reach goes",
      "blocks": [
       {
+       "p": "Where each advertiser's reach ends up: the share that sits on its top tenth of ads. A high bar means reach concentrated on a few ads. It's the result of the advertiser's budgets and the platform's delivery together, so read it as a shape, not a verdict."
+      },
+      {
        "fig": "f33",
        "kind": "Figure",
        "no": "3.3",
@@ -346,11 +376,17 @@
      "title": "How fresh the reach is",
      "blocks": [
       {
+       "p": "How fresh each advertiser's reach is: the share coming from creatives less than a month old. A high bar means the recent work is doing the reaching."
+      },
+      {
        "fig": "f34",
        "kind": "Figure",
        "no": "3.4",
        "title": "Share of each advertiser's reach from creatives first seen in the last 30 days of the quarter",
        "cap": "Category average 21.8%, median 22.5%, lowest 0.0%, highest 54.1%."
+      },
+      {
+       "p": "How many copies each advertiser runs of the same words. A copy can carry a different picture or run on a different date, so this is about habit, not waste."
       },
       {
        "fig": "f35",
@@ -381,6 +417,9 @@
      "title": "How much of the category's creative is a rewording",
      "blocks": [
       {
+       "p": "The share of each advertiser's creatives that are a rewording of another one of its own. The comparison is on words only, so a new picture under the same words doesn't show. Look at how wide the range is."
+      },
+      {
        "fig": "f41",
        "kind": "Figure",
        "no": "4.1",
@@ -397,11 +436,17 @@
      "title": "Wide or focused",
      "blocks": [
       {
+       "p": "How wide or narrow each advertiser's subject matter is. A high score means its reach sat on one or two topics; a low score means it was spread across many. The number of topics is in the label."
+      },
+      {
        "fig": "f42",
        "kind": "Figure",
        "no": "4.2",
        "title": "Focus score and topics advertised, by advertiser",
        "cap": "Topics are the product each creative sells, as read by our reader (17 topics). 100 means all of an advertiser's reach sat on one topic; lower means wider. Category average 37.7, median 32.9, lowest 12.5, highest 85.4."
+      },
+      {
+       "p": "What the whole category talks about, by share of reach. The first two or three topics take a large slice; the rest is a long tail."
       },
       {
        "fig": "f43",
@@ -435,6 +480,9 @@
      "title": "How many brand early",
      "blocks": [
       {
+       "p": "The first-three-seconds result, shown as a count of advertisers by score. Each advertiser's five most-seen videos were judged one by one, so the best possible score is five. Look at how many sit at the top and how many at the bottom."
+      },
+      {
        "fig": "f51",
        "kind": "Figure",
        "no": "5.1",
@@ -451,6 +499,9 @@
      "title": "Shorter ads brand earlier",
      "blocks": [
       {
+       "p": "The same fifty videos, split by how long they are. Short ads and long ads are made differently, and this shows what that does to early branding."
+      },
+      {
        "fig": "f52",
        "kind": "Figure",
        "no": "5.2",
@@ -466,6 +517,9 @@
      "n": "5.3",
      "title": "How the ones that do it, do it",
      "blocks": [
+      {
+       "p": "Four ads, one frame every half second for the first three seconds. Read each strip left to right and ask at which frame you'd know whose ad it is. Each caption says what is on screen and when."
+      },
       {
        "strip": "frames-f53-01.jpg",
        "frames": [
@@ -624,11 +678,17 @@
      "title": "How long the videos are",
      "blocks": [
       {
+       "p": "How long the category's videos are, and how much reach each length carried. Look for where the count is highest and where the reach is highest; they aren't the same band."
+      },
+      {
        "fig": "f54",
        "kind": "Figure",
        "no": "5.4",
        "title": "Video length: how many creatives in each band, and the share of video reach each band carried",
        "cap": "391 video creatives with a measured length."
+      },
+      {
+       "p": "The typical video length for each advertiser. Some make short ads, some make films, and the difference is large."
       },
       {
        "fig": "f55",
@@ -662,6 +722,9 @@
      "title": "Faces, famous faces and humour",
      "blocks": [
       {
+       "p": "Who is on screen. For each advertiser, the share of creatives that show people at all, the share with a famous face or a paid creator, and the share that try to be funny."
+      },
+      {
        "fig": "f61",
        "kind": "Figure",
        "no": "6.1",
@@ -690,11 +753,17 @@
      "title": "What the ads are made of",
      "blocks": [
       {
+       "p": "What the ads are made of, two ways: as a share of the creatives made, and as a share of the reach they carried. Look at how the two differ for video and for stills."
+      },
+      {
        "fig": "f71",
        "kind": "Figure",
        "no": "7.1",
        "title": "Formats: share of creatives, and share of reach",
        "cap": "A still that appears in several sizes counts once. Only the first four cards of each still ad were kept, so a carousel whose later cards differ would be missed."
+      },
+      {
+       "p": "How much of each advertiser's reach came from video. Most lean on it; a few don't."
       },
       {
        "fig": "f72",
@@ -728,6 +797,9 @@
      "title": "How long the ads are",
      "blocks": [
       {
+       "p": "How long the typical ad is, in words, once the required legal lines are taken out. Short is normal here, and the range is narrow."
+      },
+      {
        "fig": "f81",
        "kind": "Figure",
        "no": "8.1",
@@ -743,6 +815,9 @@
      "n": "8.2",
      "title": "The words the category uses",
      "blocks": [
+      {
+       "p": "The words the category uses most, counted by how many creatives use each one at least once. Brand names and everyday words are left out. Ask of each word whether a competitor could say it too."
+      },
       {
        "fig": "f82",
        "kind": "Figure",
@@ -760,11 +835,17 @@
      "title": "Numbers, questions and emoji",
      "blocks": [
       {
+       "p": "Three habits of the copy: putting a number in the ad, asking a question, and using an emoji. For each advertiser, the share of its creatives that do each. The range is the story."
+      },
+      {
        "fig": "f83",
        "kind": "Figure",
        "no": "8.3",
        "title": "Share of each advertiser's creatives that name a euro amount or a percentage, that ask a question, and that use an emoji",
        "cap": "Numbers: Category average 21.0%, median 12.4%, lowest 0.0%, highest 66.7%. Questions: category average 17.6%. Emoji: category average 15.9%."
+      },
+      {
+       "p": "The call to action, reduced to its first word. Most ads that have one use the same word."
       },
       {
        "fig": "f84",
@@ -804,11 +885,17 @@
      "title": "A long run is not a good ad",
      "blocks": [
       {
+       "p": "How much of each advertiser's reach comes from creatives that have run a long time with the same words. A high bar means a few long runners carry most of the reach. Reach builds with every day an ad is live, so a long run isn't proof the ad is good."
+      },
+      {
        "fig": "f91",
        "kind": "Figure",
        "no": "9.1",
        "title": "Share of each advertiser's whole-life reach from creatives that have run 60 days or more with the same words",
        "cap": "Category average 64.5%, median 68.5%, lowest 30.8%, highest 91.5%."
+      },
+      {
+       "p": "How long a typical creative stays live for each advertiser, from its first ad starting to its last ad stopping."
       },
       {
        "fig": "f92",
@@ -819,6 +906,9 @@
       },
       {
        "p": "Long runners carry the reach: 64% of the average advertiser's whole-life reach sits on creatives that have run sixty days or more, and one mortgage ad in the study has run since January. People who watch competitors' ads love a long run as a signal. Be careful with it. Reach builds every day an ad is live, so a long runner sits high partly for that reason alone, and some advertisers run cheap long ads on purpose to be watched. When you compare ads that have run different lengths, divide by the days."
+      },
+      {
+       "p": "The long runners, ranked by people reached per day rather than total reach, so that ads which have simply run longer don't sit on top for that reason alone."
       },
       {
        "fig": "t94",
@@ -833,6 +923,9 @@
      "n": "9.3",
      "title": "Short bursts, and what they might be",
      "blocks": [
+      {
+       "p": "The other end: the share of each advertiser's ads that ran two days or less. Short bursts are what a test looks like from outside, and also what a daily budget looks like, so this is a pattern to notice, not a finding."
+      },
       {
        "fig": "f93",
        "kind": "Figure",
