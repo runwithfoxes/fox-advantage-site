@@ -1139,6 +1139,18 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
                 <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t), <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />)} />
 
+                {it.video && (
+                  <div className="mod-item-video">
+                    <OpeningVideo
+                      n={mod.n}
+                      src={it.video.src}
+                      poster={it.video.poster}
+                      title={it.video.title}
+                      caption={it.video.caption}
+                    />
+                  </div>
+                )}
+
                 {/* ⭐ "Read full essay." Paul's own line, 3 Aug 2026, sent as the last line
                     of his teaser copy for "Break down and rebuild".
 

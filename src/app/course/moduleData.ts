@@ -46,6 +46,9 @@ export type LinkEntry = {
 export type Item = {
   /** Title. Imperative where possible. Paul's own headings work as-is. */
   t: string;
+  /** A film under the item's words, with reading space above it. Paul, 28 Sep 2026: the
+   *  Kite tour moved from under the intro film to under "I'll show you the process..." */
+  video?: { src: string; poster: string; title: string; caption?: string };
   /** His words, verbatim. */
   text: string;
   /** The exact words to paste. Lifted out of his prose into its own block. */
@@ -1553,13 +1556,6 @@ export const MODULE_2: ModuleDef = {
     poster: "/course/module-2-intro-poster.jpg",
     title: "Module 2 intro",
   },
-  /* The real-mouse take, first 65 seconds only (project page, files, instructions, audience.md),
-     Paul's call 28 Sep 2026. The rest of the take is one beat short and not used. */
-  tourVideo: {
-    src: "/course/module-2-kite-project-tour-v2.mp4",
-    poster: "/course/module-2-kite-project-tour-v2-poster.jpg",
-    title: "Kite project tour",
-  },
   opening:
     "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
   items: [
@@ -1629,6 +1625,14 @@ export const MODULE_2: ModuleDef = {
             know". Fixed on the SECOND sentence so his opening phrase is untouched. */
       t: "An AI Writer",
       text: "I read a lot about how AI writes slop. It does. But it doesn't have to. If you spend time up front. Writers need to know your brand's positioning, your target audience, insights or pain points related to your category. They need to know your brand's messaging, and your tone of voice. On top of that, we need to articulate instructions on how we want the writer to interact with us or our colleagues.\n\nI'll show you the process. It is not hard, and I'll give you the docs you need. We'll work through a fictional example of an insurance brand.",
+      /* The real-mouse take, first 65 seconds (project page, files, instructions,
+         audience.md). Paul, 28 Sep 2026: under these lines, with reading space between. */
+      video: {
+        src: "/course/module-2-kite-project-tour-v2.mp4",
+        poster: "/course/module-2-kite-project-tour-v2-poster.jpg",
+        title: "Kite project tour",
+        caption: "The Kite Insurance writer, a Claude project, opened and clicked through. No sound.",
+      },
     },
     {
       /* ⭐ ITEM 02 OPENED BY PAUL, 4 Aug 2026: "The next section is going to be called Kite,

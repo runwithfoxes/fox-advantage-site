@@ -7520,6 +7520,8 @@ a.project-card {
 .mod-video-player{display:block;width:100%;aspect-ratio:16/9;background:#1D1B1B;border:1px solid #E0E0DC;border-radius:4px;}
 /* Two films in a row sit 20px apart: closer than a paragraph, so they read as a pair. */
 .mod-video + .mod-video{margin-top:20px;}
+/* A film inside an item sits under the words with reading space, not tight to the last line. */
+.mod-item-video .mod-video{margin-top:48px;margin-bottom:8px;}
 .mod-video-caption{margin:10px 0 0;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:#8A8A85;}
 /* Paul's closing words, after the last item. The item above already draws the rule. */
 .mod-closing{padding:56px 0 24px;}
