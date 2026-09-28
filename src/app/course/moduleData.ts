@@ -1784,12 +1784,12 @@ export const MODULE_2: ModuleDef = {
       docs: {
         dir: "module-2/writer",
         folder: "writer/",
-        files: ["claims-and-sources", "slop-rules", "writer-dna"],
+        files: ["claims-and-sources", "slop-rules", "format-email", "format-blog", "format-web-page", "writer-dna"],
         as: "links",
-        label: "The three AI files",
+        label: "The six AI files",
       },
       t: "Start a new Claude Project",
-      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here.\n\nOnce you're in Claude, the first thing you need is Kite's documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. Click any of them to download it, or use Download all at the bottom of this section to get all six at once. They'll save to your computer, usually in your Downloads folder. If you took the zip, double click it to open the folder.\n\nThen drag the files into your project, into the Context box on the right side of your project page.\n\n{{GRAB}}\n\nThere are three more files, and these ones are specific to AI. They are the same for every brand, not just Kite, so take them now and use them on any writer you build. Two of them, claims and sources and slop rules, go into the Context box with Kite's documents.\n\nThe third, the writer DNA, goes into your instructions. Instructions are what Claude reads at the start of every chat in this project, before you type anything. They tell it what job it's doing, what each file is and when to read it, and how to work with you. You write them once, and every chat starts from there.\n\nTo add the writer DNA to your instructions:\n\n1. Click the pencil next to Instructions, at the top right of your project page.\n2. At the bottom of this section, click Copy next to writer-dna.\n3. Paste it into the box and click Save instructions.\n\n{{GRAB_INSTRUCTIONS}}",
+      text: "So create a new project in Claude. If you haven't set one up before, Anthropic show you how in this short video, and there's a step by step guide here.\n\nOnce you're in Claude, you need twelve files. Six are Kite's documents: audience, competitors, proof, positioning statement, tone of voice and messaging framework. The other six are specific to AI and are the same for every brand, not just Kite, so keep them for any writer you build: claims and sources, slop rules, format email, format blog, format web page and the writer DNA.\n\nThe quickest way is to download all twelve in one zip file. It will save to your computer, usually in your Downloads folder. Double click it to open the folder. You can also click any name above to download just that one, and they're all listed at the bottom of this section.\n\nThen drag every file except the writer DNA into your project, into the Context box on the right side of your project page.\n\n{{GRAB}}\n\nThe writer DNA goes into your instructions. Instructions are what Claude reads at the start of every chat in this project, before you type anything. They tell it what job it's doing, what each file is and when to read it, and how to work with you. You write them once, and every chat starts from there.\n\nTo add the writer DNA to your instructions:\n\n1. Click the pencil next to Instructions, at the top right of your project page.\n2. At the bottom of this section, click Copy next to writer-dna.\n3. Paste it into the box and click Save instructions.\n\n{{GRAB_INSTRUCTIONS}}",
       /* The sentence and both links agreed with Paul, 28 Sep 2026; the same two Anthropic
          links module 1's "Create Projects" item carries. */
       textLinks: [
@@ -1808,6 +1808,11 @@ export const MODULE_2: ModuleDef = {
         /* The three AI files, the same way, Paul 28 Sep 2026. */
         { phrase: "claims and sources", href: "/api/course-file/module-2/writer/claims-and-sources.md", title: "Writer claims-and-sources", download: true },
         { phrase: "slop rules", href: "/api/course-file/module-2/writer/slop-rules.md", title: "Writer slop-rules", download: true },
+        { phrase: "format email", href: "/api/course-file/module-2/writer/format-email.md", title: "Writer format-email", download: true },
+        { phrase: "format blog", href: "/api/course-file/module-2/writer/format-blog.md", title: "Writer format-blog", download: true },
+        { phrase: "format web page", href: "/api/course-file/module-2/writer/format-web-page.md", title: "Writer format-web-page", download: true },
+        /* All twelve in one zip, Paul 28 Sep 2026: "Give them all and get them all downloaded". */
+        { phrase: "download all twelve in one zip file", href: "/api/course-file/module-2.zip?files=kite/audience,kite/competitors,kite/proof,kite/positioning-statement,kite/tone-of-voice,kite/messaging-framework,writer/claims-and-sources,writer/slop-rules,writer/format-email,writer/format-blog,writer/format-web-page,writer/writer-dna", title: "All twelve files", download: true },
         { phrase: "writer DNA", href: "/api/course-file/module-2/writer/writer-dna.md", title: "Writer writer-dna", download: true },
       ],
       /* Paul's screenshot of the Kite project page, 28 Sep 2026, the Context box outlined. */

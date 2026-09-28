@@ -72,7 +72,9 @@ export async function GET(
     const members = [...allowed.keys()].filter(
       (k) =>
         k.startsWith(dir) &&
-        !k.slice(dir.length).includes("/") &&
+        /* A named list may reach into subfolders (`kite/audience`), for one zip of a whole
+           module's files; without one, only the folder's own files. */
+        (want ? true : !k.slice(dir.length).includes("/")) &&
         /\.(md|csv)$/.test(k) &&
         (!want || want.some((w) => k.slice(dir.length) === (w.includes(".") ? w : `${w}.md`))),
     );
