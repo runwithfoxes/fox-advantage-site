@@ -1805,6 +1805,10 @@ export const MODULE_2: ModuleDef = {
         { phrase: "positioning statement", href: "/api/course-file/module-2/kite/positioning-statement.md", title: "Kite positioning-statement", download: true },
         { phrase: "tone of voice", href: "/api/course-file/module-2/kite/tone-of-voice.md", title: "Kite tone-of-voice", download: true },
         { phrase: "messaging framework", href: "/api/course-file/module-2/kite/messaging-framework.md", title: "Kite messaging-framework", download: true },
+        /* The three AI files, the same way, Paul 28 Sep 2026. */
+        { phrase: "claims and sources", href: "/api/course-file/module-2/writer/claims-and-sources.md", title: "Writer claims-and-sources", download: true },
+        { phrase: "slop rules", href: "/api/course-file/module-2/writer/slop-rules.md", title: "Writer slop-rules", download: true },
+        { phrase: "writer DNA", href: "/api/course-file/module-2/writer/writer-dna.md", title: "Writer writer-dna", download: true },
       ],
       /* Paul's screenshot of the Kite project page, 28 Sep 2026, the Context box outlined. */
       inlineImages: {
