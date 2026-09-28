@@ -16,7 +16,7 @@
   ],
   "series": [
    {
-    "label": "Ads in the Library",
+    "label": "Ads",
     "data": [
      421,
      318,
@@ -316,15 +316,13 @@
   "fmt": "num",
   "labels": [
    "A Sudoku game, one ad network, 30 days",
-   "A block puzzle game, one network, 30 days",
-   "A strategy game, all networks, 30 days",
+   "A rival puzzle game, same network, 30 days",
    "Irish banking, the most active advertiser, a month",
    "Irish banking, the average advertiser, a month"
   ],
   "data": [
    600,
    1700,
-   8700,
    37,
    12
   ]
@@ -524,30 +522,21 @@
  "f51": {
   "type": "hbar",
   "fmt": "num",
-  "max": 5,
   "labels": [
-   "Brand A",
-   "Brand B",
-   "Brand C",
-   "Brand D",
-   "Brand E",
-   "Brand F",
-   "Brand G",
-   "Brand H",
-   "Brand I",
-   "Brand J"
+   "5 of 5",
+   "4 of 5",
+   "3 of 5",
+   "2 of 5",
+   "1 of 5",
+   "0 of 5"
   ],
   "data": [
+   3,
    2,
-   5,
+   0,
+   2,
    1,
-   4,
-   2,
-   4,
-   0,
-   0,
-   5,
-   5
+   2
   ]
  },
  "f52": {
@@ -1004,58 +993,47 @@
  "t94": {
   "type": "table",
   "head": [
-   "",
    "Days running",
    "People reached per day"
   ],
   "rows": [
    [
-    "Brand F",
     71,
     "about 31,000"
    ],
    [
-    "Brand E",
     118,
     "about 23,000"
    ],
    [
-    "Brand C",
     77,
     "about 17,000"
    ],
    [
-    "Brand G",
     81,
     "about 17,000"
    ],
    [
-    "Brand C",
     202,
     "about 15,000"
    ],
    [
-    "Brand E",
     166,
     "about 15,000"
    ],
    [
-    "Brand A",
     158,
     "about 13,000"
    ],
    [
-    "Brand J",
     75,
     "about 13,000"
    ],
    [
-    "Brand E",
     68,
     "about 12,000"
    ],
    [
-    "Brand F",
     76,
     "about 11,000"
    ]

@@ -39,9 +39,10 @@ const dpOf = (c: Chart) => {
 };
 
 /* JSON drops a trailing .0 (Sam's 26.0 arrives as 26), so each chart prints every value to the
-   most decimals any of its values carries: 26.0% beside 24.9%, never 26% beside it. */
+   most decimals any of its values carries: 26.0% beside 24.9%, never 26% beside it. Shares only. */
 function fmtOf(f: Chart["fmt"], dp = 0) {
-  const n = (v: number) => v.toLocaleString("en-IE", { minimumFractionDigits: dp, maximumFractionDigits: Math.max(dp, 2) });
+  // shares line up to one decimal; counts and seconds print exactly as the file has them (127, 78.1)
+  const n = (v: number) => v.toLocaleString("en-IE", { minimumFractionDigits: f === "pct" ? dp : 0, maximumFractionDigits: Math.max(dp, 2) });
   if (f === "pct") return (v: number) => `${n(v)}%`;
   if (f === "sec") return (v: number) => `${n(v)}s`;
   return n;

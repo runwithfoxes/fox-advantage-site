@@ -127,7 +127,7 @@ export default function AdAuditQ3v2() {
         </div>
       </section>
 
-      <div className={r.draft}>Draft two for Paul. Sam&rsquo;s rewrite of 28 September, not yet checked by Cato and not approved for the live site.</div>
+      <div className={r.draft}>Draft for Paul. Sam&rsquo;s text, checked by Cato, not approved for the live site.</div>
 
       <div className={r.body}>
         <aside className={r.railCol}>

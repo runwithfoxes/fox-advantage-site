@@ -56,7 +56,6 @@
 .table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
 .table th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; padding: 0 10px 8px 0; border-bottom: 1px solid #E0E0DC; }
 .table td { padding: 8px 10px 8px 0; border-bottom: 1px solid #F2F2EE; color: #1D1B1B; }
-.table td:first-child { color: #3A7CA5; }
 
 /* the first three seconds: a frame every half second */
 .frames { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
