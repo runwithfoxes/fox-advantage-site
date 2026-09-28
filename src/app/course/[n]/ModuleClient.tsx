@@ -608,6 +608,9 @@ function Body({
   text,
   ph,
   slots,
+  links,
+  n,
+  item,
 }: {
   text: string;
   ph?: boolean;
@@ -615,6 +618,10 @@ function Body({
       folder and item 04 wanted a session, and a second hard-coded marker would have been the
       third copy of the same idea. */
   slots?: Record<string, React.ReactNode>;
+  /** Phrases to link, with the module and item for the link_opened event. */
+  links?: { phrase: string; href: string; title: string }[];
+  n?: number;
+  item?: string;
 }) {
   return (
     <>
@@ -655,12 +662,59 @@ function Body({
         }
         return (
           <p key={i} className="mod-body" data-ph={ph ? "" : undefined}>
-            {para}
+            {linkParts(para, links, n, item)}
           </p>
         );
       })}
     </>
   );
+}
+
+/* ⭐ PHRASES IN AN ITEM'S PROSE, TURNED INTO LINKS. The same lookup as openingParts below,
+   for any number of phrases: each phrase's first exact match is wrapped, new tab, tracked
+   under the item. A phrase that is not in the paragraph does nothing, so a reworded line
+   loses its link and still reads correctly. ⚠️ A short phrase ("here") matches its FIRST
+   occurrence in the paragraph, so pick one that only appears where the link belongs. */
+function linkParts(
+  para: string,
+  links: { phrase: string; href: string; title: string }[] | undefined,
+  moduleN: number | undefined,
+  item: string | undefined,
+): React.ReactNode {
+  if (!links?.length) return para;
+  const hits = links
+    .map((L) => ({ L, at: findWord(para, L.phrase) }))
+    .filter((h) => h.at !== -1)
+    .sort((a, b) => a.at - b.at);
+  if (!hits.length) return para;
+  const out: React.ReactNode[] = [];
+  let from = 0;
+  hits.forEach(({ L, at }, k) => {
+    if (at < from) return;
+    out.push(para.slice(from, at));
+    out.push(
+      <a
+        key={k}
+        className="mod-standfirst-link"
+        href={L.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => moduleN && track("link_opened", moduleN, item, L.title)}
+      >
+        {L.phrase}
+      </a>,
+    );
+    from = at + L.phrase.length;
+  });
+  out.push(para.slice(from));
+  return <>{out}</>;
+}
+
+/* The first match of a phrase as a whole word, so "here" never links inside "there's". */
+function findWord(para: string, phrase: string) {
+  const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const m = new RegExp(`(?<![A-Za-z])${esc}(?![A-Za-z])`).exec(para);
+  return m ? m.index : -1;
 }
 
 /* ⭐ ONE PHRASE OF PAUL'S OPENING, TURNED INTO A LINK. Paul, 20 Sep 2026: "can you
@@ -1137,7 +1191,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
 
                 <ItemPicture item={it} build={build} />
 
-                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t), <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />)} />
+                <Body text={it.text} ph={it.placeholder} slots={slotsFor(it, (t) => copyInline(it, i, t), () => track("session_watched", mod.n, it.t), <DocLinks docs={it.docs} onCopy={say} n={mod.n} item={it.t} />)} links={it.textLinks} n={mod.n} item={it.t} />
 
                 {it.video && (
                   <div className="mod-item-video">
