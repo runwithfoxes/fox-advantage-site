@@ -33,10 +33,6 @@ export const metadata: Metadata = {
 const SHOW_NUMBERS = false;
 const SHOW_SECTOR = false;
 
-function Ex({ on = true }: { on?: boolean }) {
-  return on ? <span className={f.ex}>Example</span> : null;
-}
-
 
 /**
  * /home-next. The Resource hub turned into the homepage, drawn at the size it is meant to
@@ -48,24 +44,20 @@ export default function HomeNext() {
   /* The featured essay is drawn big on the left, so it stays out of the list beside it. */
   const FEATURED = "how-i-build-proactive-agents";
   const essays = getAllEssays().filter((e) => e.slug !== FEATURED).slice(0, 6);
-  const diary = getAllDispatches().slice(0, 3);
+  const diary = getAllDispatches().slice(0, 4);
   const openMod = MODULES.find((m) => m.built);
-  const nextMod = MODULES.find((m) => !m.built);
-  /* What's new: one list across every kind of thing we publish, newest first. Only real
-     items, except where tagged. */
-  const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
-    { type: "Report", who: "Sam", t: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI", href: "/resources/the-ai-ask/2026-q3", day: "25 Sept 2026" },
-    ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
-    { type: "Tracker", who: "Jeff", t: "About 1 in 11 new marketing and sales ads asks anything real about AI", href: "/resources/the-ai-ask/2026-q3", day: "Read 24 Sept 2026" },
-    ...(openMod ? [{ type: "Course", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
-    ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
-    ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
-    ...(essays[2] ? [{ type: "Essay", who: "Paul Dervan", t: essays[2].title, href: `/essays/${essays[2].slug}`, day: formatDay(essays[2].date) }] : []),
-    ...(diary[1] ? [{ type: "Diary", who: "Lena", t: diary[1].title, href: `/diary/${diary[1].slug}`, day: formatDay(diary[1].date) }] : []),
-    ...(essays[3] ? [{ type: "Essay", who: "Paul Dervan", t: essays[3].title, href: `/essays/${essays[3].slug}`, day: formatDay(essays[3].date) }] : []),
-    ...(essays[4] ? [{ type: "Essay", who: "Paul Dervan", t: essays[4].title, href: `/essays/${essays[4].slug}`, day: formatDay(essays[4].date) }] : []),
-    /* GEO Ireland's row waits for Paul's sign-off; the "coming" example row came off for launch (29 Sep). */
-  ];
+  /* What's new. Paul, 29 Sep: "all the essays on the right should be a mix of mine and Lena's and
+     Sam's. And we want names and circle icon beside each." So three writers, newest first, each row
+     carrying who wrote it (the circles came off the same afternoon: too busy). Jeff's tracker row came out: it repeated the report above it. */
+  type Who = "Paul Dervan" | "Lena" | "Sam";
+  const news: { type: string; who: Who; t: string; href: string; iso: string }[] = [
+    { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
+    ...essays.slice(0, 5).map((e) => ({ type: "Essay", who: "Paul Dervan" as Who, t: e.title, href: `/essays/${e.slug}`, iso: e.date })),
+    ...diary.map((d) => ({ type: "Diary", who: "Lena" as Who, t: d.title, href: `/diary/${d.slug}`, iso: d.date })),
+    ...(openMod ? [{ type: "Course", who: "Paul Dervan" as Who, t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, iso: openMod.on }] : []),
+  ]
+    .sort((a, b) => b.iso.localeCompare(a.iso))
+    .slice(0, 10);
   const trackers = TRACKERS;
   /* The card's lines, built the way the hub builds them: studies, trackers, then every
      published piece. Invented studies and trackers say "example" in their label. */
@@ -185,13 +177,13 @@ export default function HomeNext() {
             <ol className={n.news}>
               {news.map((x) => (
                 <li key={x.href + x.t} className={n.recentItem}>
-                  {/* Paul, 25 Sep: like the live homepage's /recent essays list. Mono title, no
-                      bold, no pictures, one quiet meta line. */}
+                  {/* Paul, 29 Sep: "The circles are making it too busy... just use their name, with a
+                      hyperlink on name to about us." */}
                   <Link href={x.href} className={n.recentT}>
                     {x.t}
                   </Link>
                   <span className={n.recentMeta}>
-                    {x.type} &middot; {x.day} &middot; {x.who} {x.ex ? <Ex /> : null}
+                    <Link href="/about#contributors" className={n.whoLink}>{x.who}</Link> &middot; {x.type} &middot; {formatDay(x.iso)}
                   </span>
                 </li>
               ))}

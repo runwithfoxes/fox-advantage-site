@@ -8646,3 +8646,16 @@ a.project-card {
 .hpx-quotes .hpx-qarrow:hover { border-color: #fff; color: #fff; }
 .hpx-quotes .hpx-qdot { background: rgba(255, 255, 255, 0.28); }
 .hpx-quotes .hpx-qdot.on { background: #fff; }
+
+/* About, contributors (29 Sep 2026). Paul's photo; the agents a letter on deep sky, the mark the
+   report byline and the homepage's What's new already use. */
+.about-contrib-label { margin-top: 56px; }
+.about-contrib { list-style: none; padding: 0; margin: 18px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+.about-contrib li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+.about-contrib-mark { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: #1A3A4E; color: #fff; font-style: normal; font-family: var(--mono); font-size: 15px; display: inline-flex; align-items: center; justify-content: center; }
+.about-contrib-name { font-family: var(--sans); font-weight: 500; font-size: 20px; color: var(--text); text-decoration: none; border: 0; }
+a.about-contrib-name:hover { color: var(--orange); }
+.about-contrib-role { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--text-muted); margin: 4px 0 8px; }
+.about-contrib p { margin: 0; font-family: var(--serif); font-size: 17px; line-height: 1.6; }
+@media (max-width: 700px) { .about-contrib { grid-template-columns: 1fr; } }
+.about-contrib li .about-contrib-mark { width: 44px !important; height: 44px !important; max-width: 44px !important; margin: 0 !important; }
