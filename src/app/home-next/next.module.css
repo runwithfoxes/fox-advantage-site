@@ -253,9 +253,10 @@ a.entryT:hover { color: #3A7CA5; }
 }
 
 /* ── The front page: a feature on the left, what's new on the right (Paul, 25 Sep) ── */
-.front { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; margin-top: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--border); }
+/* Paul, 29 Sep: no rules over the essay and the list ("I don't think these lines are necessary. We don't want too much extra space"). */
+.front { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; margin-top: 36px; padding-bottom: 56px; border-bottom: 1px solid var(--border); }
 .front > * { min-width: 0; }
-.featureHead { display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--text); padding-top: 14px; margin-bottom: 18px; }
+.featureHead { display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; margin-bottom: 18px; }
 .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
 .featureAll { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; }
 .featureTitle { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 22px; max-width: 26ch; }
@@ -360,7 +361,7 @@ a.entryT:hover { color: #3A7CA5; }
 
 /* ── The feature piece (Paul, 25 Sep): headline and opening, phone set in on the right ── */
 .front { grid-template-columns: 1.55fr 1fr; gap: 56px; }
-.feature { border-top: 2px solid var(--text); padding-top: 14px; }
+.feature { padding-top: 14px; }
 .featTitle { font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 10px; }
 .featTitle a { color: var(--text); text-decoration: none; }
 .featTitle a:hover { color: #3A7CA5; }
@@ -813,3 +814,24 @@ a.entryT:hover { color: #3A7CA5; }
 .comingCard .joinRow { min-width: 0; }
 .comingCard .joinRow input { min-width: 0; flex: 1 1 0; width: 0; }
 .comingCard .joinRow button { flex: 0 0 auto; }
+
+/* Words in the picture (Cover text prop). The AI Ask's header, at cover size. */
+.coverWordsScene { background: transparent; }
+.coverWordsScene .coverPhoto { aspect-ratio: 16 / 10; }
+/* Paul, 29 Sep: "We can't have words going across the face of the fox." The fox stands bottom centre
+   in every cover, so the words sit top left, in the sky, and the shade comes from the top. */
+.coverWords { position: absolute; inset: 0; display: grid; align-content: start; justify-items: start; gap: 8px; padding: 18px 20px 20px; background: linear-gradient(180deg, rgba(10,30,45,.66) 0%, rgba(10,30,45,.25) 38%, rgba(10,30,45,0) 60%); color: #fff; }
+.coverHeadline { max-width: 68%; }
+.coverKicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+.coverHeadline { font-family: var(--sans); font-weight: 500; font-size: 26px; line-height: 1.12; letter-spacing: -0.02em; }
+.coverHeadline em { font-style: normal; color: #A6CDE8; }
+.flag .coverWords { padding: 24px 28px 26px; gap: 10px; }
+.flag .coverHeadline { font-size: 30px; max-width: 62%; }
+.flag .coverKicker { font-size: 10.5px; }
+.comingCard .coverWords { padding: 14px 16px 16px; gap: 6px; }
+.comingCard .coverHeadline { font-size: 20px; }
+/* One out, two coming: the big one takes the wide column and the coming ones stack beside it. */
+.studiesComing { grid-template-columns: 1.75fr 1fr; gap: 48px; }
+.studiesComing .coversComing { grid-template-columns: 1fr; gap: 36px; }
+@media (max-width: 1100px) { .studiesComing { grid-template-columns: 1fr; gap: 40px; } .studiesComing .coversComing { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+@media (max-width: 700px) { .studiesComing .coversComing { grid-template-columns: 1fr; } .flag .coverHeadline { font-size: 26px; } }

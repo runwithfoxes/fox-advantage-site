@@ -85,7 +85,6 @@ export default function Proof() {
       <section className={f.shelf} id="work">
         <div className={f.shelfHead}>
           <h2 className={f.h2}>Three pieces of work</h2>
-          <span className={f.meta}>One idea each. The idea leads, the brand and the result follow.</span>
         </div>
         <div className={n.workGrid}>
           {CARDS.map((c) => (
@@ -115,7 +114,6 @@ export default function Proof() {
       <section className={f.shelf} id="books">
         <div className={f.shelfHead}>
           <h2 className={f.h2}>Books from us</h2>
-          <span className={f.meta}>Two books by Paul Dervan. One to buy, one free.</span>
         </div>
         <div className={n.bookGrid}>
           {BOOKS.map((b) => (

@@ -44,7 +44,10 @@ function Ex({ on = true }: { on?: boolean }) {
  * The headline is "Giving marketing teams an edge" (Paul, 27 Sep: "That's what we'll use for now").
  */
 export default function HomeNext() {
-  const essays = getAllEssays().slice(0, 3);
+  /* Paul, 29 Sep: "add more essays here because it just looks like blank space". Ten rows. */
+  /* The featured essay is drawn big on the left, so it stays out of the list beside it. */
+  const FEATURED = "how-i-build-proactive-agents";
+  const essays = getAllEssays().filter((e) => e.slug !== FEATURED).slice(0, 6);
   const diary = getAllDispatches().slice(0, 3);
   const openMod = MODULES.find((m) => m.built);
   const nextMod = MODULES.find((m) => !m.built);
@@ -57,6 +60,10 @@ export default function HomeNext() {
     ...(openMod ? [{ type: "Course", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
     ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
     ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
+    ...(essays[2] ? [{ type: "Essay", who: "Paul Dervan", t: essays[2].title, href: `/essays/${essays[2].slug}`, day: formatDay(essays[2].date) }] : []),
+    ...(diary[1] ? [{ type: "Diary", who: "Lena", t: diary[1].title, href: `/diary/${diary[1].slug}`, day: formatDay(diary[1].date) }] : []),
+    ...(essays[3] ? [{ type: "Essay", who: "Paul Dervan", t: essays[3].title, href: `/essays/${essays[3].slug}`, day: formatDay(essays[3].date) }] : []),
+    ...(essays[4] ? [{ type: "Essay", who: "Paul Dervan", t: essays[4].title, href: `/essays/${essays[4].slug}`, day: formatDay(essays[4].date) }] : []),
     /* GEO Ireland's row waits for Paul's sign-off; the "coming" example row came off for launch (29 Sep). */
   ];
   const trackers = TRACKERS;

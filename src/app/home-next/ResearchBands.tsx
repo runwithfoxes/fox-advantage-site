@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Cover, { COVER_PHOTOS, seriesShelf } from "./Cover";
-import { INTRO as ASK_INTRO } from "../resources/the-ai-ask/2026-q3/copy";
+import { INTRO as ASK_INTRO, META as ASK_META } from "../resources/the-ai-ask/2026-q3/copy";
 import Publications, { type Pub } from "../resources/Publications";
 import {
   SERIES, PUBLISHED, COMING, COMING_SOON, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
@@ -158,15 +158,16 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
   const reportsBand = (
     <section className={f.shelf} id="reports">
       <div className={f.shelfHead}>
+        {/* Paul, 29 Sep: "Let's not over-explain when we don't need to", so no line under the heading. */}
         <h2 className={f.h2}>Reports and papers</h2>
-        <span className={f.meta}>
-          {plural(COUNTS.series, "study", "studies")} out{COMING_SOON.length ? `, ${COMING_SOON.length} coming` : ""}, each on a fixed calendar. Free to read with no form; every PDF with a free account.
-        </span>
       </div>
       {/* One series on the shelf (29 Sep): the flag takes the whole row, cover beside the words. */}
-      <div className={`${n.studies} ${restE.length + COMING_SOON.length === 0 ? n.studiesOne : ""}`}>
+      {/* Paul, 29 Sep: the one report out is the big one; the coming ones sit stacked beside it at
+          about half its width, so the page reads as one out and two on the way. */}
+      <div className={`${n.studies} ${restE.length + COMING_SOON.length === 0 ? n.studiesOne : ""} ${restE.length === 0 && COMING_SOON.length ? n.studiesComing : ""}`}>
         <Link href={flagEd && editionsOf(flag).filter((r) => r.status !== "coming").length === 1 && !flag.example ? reportHref(flagEd) : seriesHref(flag)} className={n.flag}>
-          <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]} />
+          <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]}
+            text={flag.slug === "the-ai-ask" ? { kicker: ASK_META.kicker, headline: ASK_META.heroTitle, hl: ASK_META.titleHl } : undefined} />
           <div>
             <span className={f.meta}>
               {flagEd ? `Latest edition ${flagEd.edition} · ${day(flagEd.date)}` : flag.cadence} <Example on={flag.example} />
@@ -192,7 +193,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
                 ))}
               </div>
             )}
-            <span className={n.doorGo}>Read the latest edition →</span>
+            <span className={n.doorGo}>{flagEd && editionsOf(flag).filter((r) => r.status !== "coming").length === 1 ? "Read the report →" : "Read the latest edition →"}</span>
           </div>
         </Link>
         <div className={`${n.covers} ${restE.length ? n.coversWide : n.coversComing}`}>
@@ -200,8 +201,8 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
               told when it lands, posted to Klaviyo tagged with the series (want=report, item=slug). */}
           {COMING_SOON.map((se, i) => (
             <div key={se.slug} className={`${n.coverCard} ${n.comingCard}`}>
-              <Cover no={`No. ${String(shelf.length + i + 1).padStart(2, "0")}`} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover="bars" fox="" photo={COVER_PHOTOS[se.slug]} />
-              <span className={`${f.meta} ${n.coverMeta}`}>Coming soon · first edition {se.cadence.toLowerCase()}</span>
+              <Cover no={`No. ${String(shelf.length + i + 1).padStart(2, "0")}`} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover="bars" fox="" photo={COVER_PHOTOS[se.slug]}
+                text={{ kicker: "Coming soon · Ireland", headline: se.name }} />
               <p className={n.coverLine}>{se.line}</p>
               <AccessForm want="report" item={se.slug} label="Tell me when it lands" className={n.joinRow} doneClassName={n.accFine} done="You're on the list. We'll email you the day it lands." />
             </div>
@@ -238,7 +239,9 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           </div>
         </article>
       )}
-      <Link href="/resources/reports" className={`${n.doorGo} ${n.rbAll}`}>Every edition, dated, newest first →</Link>
+      {/* Paul, 29 Sep: "Two links here looks a bit strange." The list of every edition earns its link
+          back when there is more than one. */}
+      {PUBLISHED.length > 1 && <Link href="/resources/reports" className={`${n.doorGo} ${n.rbAll}`}>Every edition, dated, newest first →</Link>}
     </section>
   );
   if (part === "reports") return reportsBand;

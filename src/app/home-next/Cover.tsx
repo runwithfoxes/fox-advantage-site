@@ -41,7 +41,28 @@ export const COVER_PHOTOS: Record<string, string> = Object.fromEntries(
   ].map((slug) => [slug, `/covers/${slug}.jpg`]),
 );
 
-export default function Cover({ no, cadence, title, cover, fox, photo }: { no: string; cadence: string; title: string; cover: CoverArt; fox: string; photo?: string }) {
+/** Words set in the picture, the way the AI Ask's own header does it: a mono kicker line, then the
+    headline with its last words in the pale blue. Paul, 29 Sep, on the plain covers: "they look a
+    little bit bare. Can you add these little bits of writing on the image". */
+export type CoverText = { kicker: string; headline: string; hl?: string };
+
+export default function Cover({ no, cadence, title, cover, fox, photo, text }: { no: string; cadence: string; title: string; cover: CoverArt; fox: string; photo?: string; text?: CoverText }) {
+  if (photo && text) {
+    return (
+      <div className={`${n.cover} ${n.coverScene} ${n.coverWordsScene}`}>
+        <div className={n.coverPhoto}>
+          <img src={photo} alt="" />
+          <div className={n.coverWords}>
+            <span className={n.coverKicker}>{text.kicker}</span>
+            <span className={n.coverHeadline}>
+              {text.headline}
+              {text.hl ? <> <em>{text.hl}</em></> : null}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
   if (photo) {
     /* Paul, 27 Sep, in order: the white frame "feels flat"; then the title set in the picture "does
        not work. Headline can go underneath like you had but try different colour to white." So
