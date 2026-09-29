@@ -54,7 +54,8 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch1",
     n: 1,
-    title: "Marketing took up AI this year. Sales didn't.",
+    // Paul, 29 Sep: the headline no longer says marketing against sales, so this chapter names the one site where that split is true.
+    title: "On jobs.ie, marketing took up AI this year. Sales didn't.",
     lede: [
       `The clearest thing in the data is a split. In marketing on jobs.ie, an AI ask went from something we never saw to something in about ==one ad in four==. In sales it barely moved. I expected a rise. I didn't expect it to be this lopsided, and I didn't expect sales to sit so still for a whole year while marketing moved.`,
     ],
