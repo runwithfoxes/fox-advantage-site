@@ -185,7 +185,7 @@ export default async function AiAskQ3() {
               ))}
               {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
               <div id="download" style={{ marginTop: 8 }}>
-                <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/resources/pdf/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
+                <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/api/resource-file/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
               </div>
             </div>
           </header>

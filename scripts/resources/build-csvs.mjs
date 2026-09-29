@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const cat = JSON.parse(readFileSync(join(root, "src/app/resources/catalogue/catalogue.json"), "utf8"));
-const out = join(root, "public/resources/data");
+const out = join(root, "resource-files"); // behind api/resource-file, never public (29 Sep)
 mkdirSync(out, { recursive: true });
 const CAP = 2 * 1024 * 1024;
 
@@ -101,7 +101,10 @@ function write(name, header, rows) {
 const capped = [];
 let total = 0, count = 0;
 
+/* Examples are not written by default any more (29 Sep): resource-files/ ships. --examples to see them. */
+const withExamples = process.argv.includes("--examples");
 for (const ds of cat.datasets) {
+  if (ds.example && !withExamples) continue;
   const header = ds.columns.map((c) => c.name);
   let rows;
   if (!ds.example) {
@@ -119,6 +122,7 @@ for (const ds of cat.datasets) {
   console.log(`${ds.slug}.csv  ${rows.length.toLocaleString("en-IE")} rows  ${(bytes / 1024).toFixed(0)} KB${ds.example ? "" : "  (real: sample rows only)"}`);
 }
 for (const t of cat.trackers) {
+  if (t.example && !withExamples) continue;
   const rows = t.history.map((v, i) => [t.historyLabels[i], v]);
   const bytes = write(`${t.slug}-history.csv`, ["read", t.readingLabel.replace(/,/g, " ")], rows);
   total += bytes; count++;

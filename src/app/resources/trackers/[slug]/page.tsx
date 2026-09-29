@@ -77,7 +77,7 @@ export default async function TrackerPage({ params }: { params: Promise<{ slug: 
   const log = h.map((v, i) => ({ i, v, l: labels[i] })).reverse().slice(0, 8);
   const related = TRACKERS.filter((y) => y.slug !== x.slug && y.area === x.area).slice(0, 4);
   const sameDesk = TRACKERS.filter((y) => y.owner.name === x.owner.name).length;
-  const csv = `/resources/data/${x.slug}-history.csv`;
+  const csv = `/api/resource-file/${x.slug}-history.csv`;
   const planned = x.status === "planned";
 
   return (

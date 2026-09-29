@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
      ⚠️ THE PATH IS RELATIVE TO THE PROJECT ROOT and the glob must keep matching if a
      module 3 folder appears beside module-2. */
     "/api/course-file/[...path]": ["./course-files/**/*"],
+    /* The report PDFs and data files, behind the email door (29 Sep 2026). Same reason as above:
+       nothing imports them, so without this line the route 404s every file in production. */
+    "/api/resource-file/[file]": ["./resource-files/*"],
   },
   async rewrites() {
     return [

@@ -30,7 +30,7 @@ const { chromium } = pw;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..", "..");
 const CAT = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/catalogue/catalogue.json"), "utf8"));
-const OUT_DIR = path.join(ROOT, "public/resources/pdf");
+const OUT_DIR = path.join(ROOT, "resource-files"); // behind api/resource-file, never public (29 Sep)
 const PAGES_FILE = path.join(__dirname, "pdf-pages.json");
 const BASE = process.env.BASE || "http://localhost:3094";
 const only = process.argv.includes("--only") ? process.argv[process.argv.indexOf("--only") + 1] : null;
@@ -103,7 +103,9 @@ function pageCount(buf) {
   return (s.match(/\/Type\s*\/Page[^s]/g) || []).length;
 }
 
-const jobs = CAT.reports.filter((r) => r.status !== "coming" && (!only || r.slug === only));
+/* Examples are not built by default any more (29 Sep): they would land in resource-files/ and ship. --examples to see them. */
+const withExamples = process.argv.includes("--examples");
+const jobs = CAT.reports.filter((r) => r.status !== "coming" && (withExamples || !r.example) && (!only || r.slug === only));
 fs.mkdirSync(OUT_DIR, { recursive: true });
 const browser = await chromium.launch({ executablePath: exe });
 const page = await browser.newPage({ viewport: { width: 1000, height: 1400 } });

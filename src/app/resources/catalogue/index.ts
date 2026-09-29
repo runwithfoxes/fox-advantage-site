@@ -23,9 +23,11 @@ const held = (x: { slug: string; series?: string; report?: string }) => HELD.has
 const live = <T extends { slug: string; example: boolean; series?: string }>(xs: T[]): T[] => (LIVE ? xs.filter((x) => !x.example && !held(x)) : xs);
 
 export const SERIES: ReportSeries[] = live(CATALOGUE.series);
-export const REPORTS: Report[] = live(CATALOGUE.reports);
+/* The files are served by api/resource-file behind the email door, never from public/ (29 Sep). */
+const FILE = (p: string) => (p ? `/api/resource-file/${p.split("/").pop()}` : p);
+export const REPORTS: Report[] = live(CATALOGUE.reports).map((r) => ({ ...r, pdf: FILE(r.pdf) }));
 export const TRACKERS: Tracker[] = live(CATALOGUE.trackers);
-export const DATASETS: Dataset[] = live(CATALOGUE.datasets);
+export const DATASETS: Dataset[] = live(CATALOGUE.datasets).map((d) => ({ ...d, csv: FILE(d.csv) }));
 export const TOOLS: Tool[] = live(CATALOGUE.tools);
 export const PLAYBOOKS: Playbook[] = live(CATALOGUE.playbooks);
 
