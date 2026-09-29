@@ -310,7 +310,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
         {/* Paul, 27 Sep: the essay's shape, "section of left side explain what is the library... And the
             scroller on the right", and "we need to talk up the library... I want people to be motivated
             to get stuff (datasets, tools, prompts etc) even if they don't want to do the course." */}
-        <div className={n.tellGrid}>
+        <div className={`${n.tellGrid} ${n.tellMid}`}>
           <div className={n.tellCol}>
             {/* Paul, 27 Sep: "explain what is in it... name a few tools and link to them, as well as
                 articles and people and link to them, so they get a feel for it. So they want it all
@@ -365,11 +365,11 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
         <div className={`${f.shelfHead} ${n.learnHead}`}>
           {/* Paul, 27 Sep: "we want to name it properly. Free Course: AI Fluency for Ambitious Marketers" */}
           <h2 className={f.h2}>Free course: AI Fluency for Ambitious Marketers</h2>
-          <span className={f.meta}>Six modules, one a fortnight. Module 1 is open now.</span>
         </div>
         {/* Paul, 27 Sep: the essay's shape here too, the course's own words on the left ("the course copy
             here is fine"), the module 2 scroller on the right, "as you see video of me up front". */}
-        <div className={n.tellGrid}>
+        {/* Paul, 29 Sep: the window sits on the middle of the words beside it, not the top line. */}
+        <div className={`${n.tellGrid} ${n.tellMid}`}>
           <div className={n.tellCol}>
             <p className={n.tellStand}>
               A free, practical, non&#8209;hype AI fluency course for ambitious marketers. Six modules, one a fortnight, from Monday 21 September 2026.
