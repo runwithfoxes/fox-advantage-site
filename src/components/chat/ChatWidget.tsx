@@ -153,7 +153,14 @@ export default function ChatWidget() {
       return () => { window.removeEventListener("scroll", onScroll); clearTimeout(delayId); };
     }
 
-    const id = setTimeout(() => setIsOpen(true), isContact ? 2000 : 5000);
+    /* Paul, 29 Sep 2026: "only have it turn on after someone has been on the site for 20 seconds."
+       Counted from arrival on the site, not from each page, so moving between pages does not
+       restart the clock. The contact page keeps its 2 seconds (his 4 Jun exception). */
+    const ARRIVE = "isa-arrived";
+    let arrived = Number(sessionStorage.getItem(ARRIVE));
+    if (!arrived) { arrived = Date.now(); sessionStorage.setItem(ARRIVE, String(arrived)); }
+    const wait = isContact ? 2000 : Math.max(0, 20000 - (Date.now() - arrived));
+    const id = setTimeout(() => setIsOpen(true), wait);
     return () => clearTimeout(id);
   }, [isContact]);
 

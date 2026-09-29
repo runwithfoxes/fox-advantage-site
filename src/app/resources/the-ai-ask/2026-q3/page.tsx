@@ -127,7 +127,7 @@ export default async function AiAskQ3() {
           report's title and byline sit in the film; the at-a-glance card went back under it (Paul, late 25 Sep) to give the film room, as the homepage's do. */}
       <section className={`${h.hero} ${r.heroR}`} id="top">
         <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
-        <NextNav />
+        <NextNav known={unlocked} />
         <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>
           <div className={h.text}>
             {/* Paul, 27 Sep, on his phone: "I can see five pieces of information on that hero. That's

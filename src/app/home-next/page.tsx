@@ -88,7 +88,7 @@ export default async function HomeNext() {
             tried and ruled out by Paul, 25 Sep: "the slow mo makes it feel generic ai". */}
         <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <div className={n.filmStill} aria-hidden />
-        <NextNav />
+        <NextNav known={known} />
 
         <div className={`${h.inner} ${n.heroInner}`}>
           <div className={h.text}>

@@ -18,7 +18,7 @@ import { MODULES } from "../course/courseModules";
 type Door = "consulting" | "agents" | "training";
 
 
-export default function NextNav() {
+export default function NextNav({ known = false }: { known?: boolean } = {}) {
   const [open, setOpen] = useState<Door | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -156,8 +156,10 @@ export default function NextNav() {
             button. It opens the account band, which registers a new reader and signs in an old one;
             the hero's own form beside it is the register ask. (25 Sep: no paid tier, so nothing
             says upgrade.) */}
-        <a href="/signin" className={n.fullAccess}>
-          Sign in
+        {/* Paul, 29 Sep 2026: a visitor this browser already knows gets "Your course" here, not
+            Sign in. Pages that know pass `known`; the rest show Sign in. */}
+        <a href={known ? "/course" : "/signin"} className={n.fullAccess}>
+          {known ? "Your course" : "Sign in"}
         </a>
       </nav>
     </header>
