@@ -808,3 +808,8 @@ a.entryT:hover { color: #3A7CA5; }
 @media (max-width: 700px) { .coversComing { grid-template-columns: 1fr; gap: 32px; } }
 .studies .coversComing { gap: 28px 24px; }
 .comingCard .joinRow input { min-width: 0; }
+/* The tell-me box must be allowed to shrink, or its natural width pushes the card past its column. */
+.comingCard { min-width: 0; }
+.comingCard .joinRow { min-width: 0; }
+.comingCard .joinRow input { min-width: 0; flex: 1 1 0; width: 0; }
+.comingCard .joinRow button { flex: 0 0 auto; }
