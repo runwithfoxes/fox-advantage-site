@@ -32,7 +32,8 @@ const CARDS: Card[] = [
   {
     kicker: "Book",
     title: "Run with Foxes",
-    line: "Make better marketing decisions. The book on evidence, judgement and acting on both.",
+    // The book page's own description, not new words (RunWithFoxes.tsx).
+    line: "Real-life stories about the messy reality of decision-making in marketing, and the secrets of making better decisions.",
     meta: "Paul Dervan",
     cta: "About the book →",
     href: "/run-with-foxes",
