@@ -27,13 +27,12 @@ export default async function AboutPage() {
 
       <main className={`contact-main ${a.main}`}>
         <div className="about-inner">
-          <div className="section-label">/about</div>
-          <h1 className="contact-heading">Who we are</h1>
-
+          {/* Paul, 29 Sep 2026: "we don't need the about or who are we as words". His name is the
+              page's one h1 now, styled as the label it was. */}
           {/* Paul, 29 Sep 2026: "photo of me from bio and use same words". Word for word from the
               homepage bio (HomePage.tsx, hpx-bio-body), set in this page's reading type. */}
           <div>
-            <span className={a.bioName}>/Paul Dervan</span>
+            <h1 className={a.bioName}>/Paul Dervan</h1>
             <div className={a.bio}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className={a.bioPhoto} src="/Paul_photo.jpg" alt="Paul Dervan" />

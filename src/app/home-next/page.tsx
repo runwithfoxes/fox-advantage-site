@@ -137,11 +137,11 @@ export default async function HomeNext() {
               The rules I give my inbox agent so it follows things through, instead of telling me once
               and moving on.
             </p>
-            {/* Paul, 25 Sep: a small photo and his name, editorial style */}
-            <div className={n.byline}>
+            {/* Paul, 25 Sep: a small photo and his name, editorial style. 29 Sep: both go to his bio on About. */}
+            <Link href="/about" className={n.byline}>
               <img src="/Paul_photo.jpg" alt="" />
               <span>By <b>Paul Dervan</b></span>
-            </div>
+            </Link>
             <div className={n.featBody}>
               <div className={n.featPhone}>
                 <PhoneDemo />
