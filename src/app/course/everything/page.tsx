@@ -67,8 +67,8 @@ export default async function EverythingPage() {
      public by the 2 Aug decision above; his 26 Sep "Library requires email too" reverses it for
      the prompts. So the names, links and files stay readable for everyone, and the prompt text
      opens with an email (either access cookie, the course's included). */
-  const { sections, modules, hidden, shelfCount } = buildLibrary();
   const locked = !(await hasAccess());
+  const { sections, modules, hidden, shelfCount } = buildLibrary({ locked });
   return (
       <EverythingClient
         sections={sections}

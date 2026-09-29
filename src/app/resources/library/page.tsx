@@ -47,7 +47,7 @@ export default async function LibraryPage() {
   /* Paul, 29 Sep 2026: the names and links are free, the prompts need an email. Locked only for
      someone without an account; the page used to lock everybody, signed up or not. */
   const locked = !(await hasAccess());
-  const lib = buildLibrary();
+  const lib = buildLibrary({ locked });
   const folders = [...lib.lessonRows, ...lib.fileRows].filter((r) => r.type === "folder");
 
   const prompts: PromptRow[] = [];
@@ -56,7 +56,8 @@ export default async function LibraryPage() {
     if (r.type !== "folder") return;
     r.files.forEach((fl, i) => {
       if (fl.kind === "link") links += 1;
-      if (fl.kind === "prompt" && fl.body) prompts.push({ key: `${r.key}-${i}`, name: fl.name, from: r.name, modN: r.modN, lines: fl.body.split("\n").length, body: fl.body, href: r.href });
+      /* Locked, the body arrives empty (build.ts), so the row keeps its name and its length from `meta`. */
+      if (fl.kind === "prompt" && (fl.body || locked)) prompts.push({ key: `${r.key}-${i}`, name: fl.name, from: r.name, modN: r.modN, lines: parseInt(fl.meta ?? "", 10) || (fl.body ?? "").split("\n").length, body: fl.body ?? "", href: r.href });
     });
   });
   let docsOpen = 0;

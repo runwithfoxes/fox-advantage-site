@@ -22,9 +22,13 @@ export type Library = {
   fileRows: Row[];
 };
 
-export function buildLibrary(): Library {
+export function buildLibrary({ locked = false }: { locked?: boolean } = {}): Library {
   /* FLATTENED HERE, ON THE SERVER, so the whole list is in the HTML that search and the
-     AI engines read. A client-side fetch would leave them an empty page. */
+     AI engines read. A client-side fetch would leave them an empty page.
+     ⛔ `locked` LEAVES THE PROMPT TEXT OUT OF WHAT IS SENT, 29 Sep 2026. Hiding it on screen was
+     not enough: both library pages hid the prompts from a visitor with no email, but the text
+     still went down in the page's own data, readable in the source by anyone and by search.
+     Found by testing a production build as a new visitor; the dev server opens everything. */
   const lessonRows: Row[] = [];
 
   MODULES.forEach((m) => {
@@ -50,7 +54,7 @@ export function buildLibrary(): Library {
              no surrounding label has to. The same label works as a filename here. */
           name: item.promptLabel ?? "The prompt",
           meta: `${item.prompt.split("\n").length} lines`,
-          body: item.prompt,
+          body: locked ? "" : item.prompt,
         });
       }
 
@@ -63,7 +67,7 @@ export function buildLibrary(): Library {
           kind: "prompt",
           name: words.charAt(0).toUpperCase() + words.slice(1) + " prompt",
           meta: `${body.split("\n").length} lines`,
-          body,
+          body: locked ? "" : body,
         });
       });
 
@@ -101,7 +105,7 @@ export function buildLibrary(): Library {
         desc: firstSentence(item.text),
         href: `/course/${m.n}#i${i + 1}`,
         files,
-        search: [item.t, ...prose, def.title, item.prompt ?? "", ...files.map((f) => `${f.name} ${f.meta ?? ""}`)]
+        search: [item.t, ...prose, def.title, locked ? "" : item.prompt ?? "", ...files.map((f) => `${f.name} ${f.meta ?? ""}`)]
           .join(" ")
           .toLowerCase(),
       });
