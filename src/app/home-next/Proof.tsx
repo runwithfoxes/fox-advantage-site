@@ -3,132 +3,98 @@ import f from "../resources/front.module.css";
 import n from "./next.module.css";
 
 /**
- * The case studies and the two books. Paul, 29 Sep 2026: "Let's make sure we got the positioning
- * of them right. Because the Millionaire Raffle is about distinctive brand, it's about category
- * entry points. We have to figure out what the National Lottery Marketer of the Year one is about
- * so it doesn't sound like I'm just talking about myself."
+ * The two books and the two case studies, one row of four, no heading, at the foot of the page
+ * under the library and the course. Paul, 29 Sep 2026: "let's not call this three pieces of
+ * work. We don't have to give it a heading at all... get rid of the middle one, which is the
+ * national lottery... add in the books in here as well... move the whole thing down to the
+ * bottom... The Millionaire Raffle is not to be called a Millionaire Raffle. That's about mental
+ * availability in practice. And the 48 one is fame strategies."
  *
- * So the idea leads every card and the brand and the result follow it. The award is one small
- * line at the foot of the Lottery card, never the headline. Every number here is on the case
- * study page it links to; nothing is typed here that the page does not say.
+ * So each card is titled by the idea or the book, and the brand and the result follow. Every
+ * number here is on the page it links to; nothing is typed here that the page does not say.
  */
 
 type Card = {
-  idea: string;
-  big: string;
-  bigOf: string;
+  kicker: string;
   title: string;
   line: string;
-  who: string;
+  meta: string;
+  cta: string;
   href: string;
-  /** A real ad from the work. The Lottery card has none: the only picture is a magazine cover of Paul. */
-  image?: { src: string; alt: string };
+  /** A real ad, cropped to 4:3. `top` keeps a face that sits high in a portrait poster. */
+  image?: { src: string; alt: string; top?: boolean };
+  /** A book cover, shown whole on a plate of the same 4:3 size, so the row lines up. */
+  cover?: { src: string; alt: string };
+  num?: { big: string; of: string };
 };
 
 const CARDS: Card[] = [
   {
-    idea: "Category entry points",
-    big: "27:1",
-    bigOf: "return on the campaign",
-    title: "Millionaire Raffle",
-    line:
-      "We found the moment people think of a gift to put in a card, and made every frame of the ad about it. The tickets sold out so fast we had to pull the advertising.",
-    who: "National Lottery · 2019 to 2021",
+    kicker: "Book",
+    title: "Run with Foxes",
+    line: "Make better marketing decisions. The book on evidence, judgement and acting on both.",
+    meta: "Paul Dervan",
+    cta: "About the book →",
+    href: "/run-with-foxes",
+    cover: { src: "/book/cover-run-with-foxes.jpg", alt: "Run with Foxes book cover" },
+  },
+  {
+    kicker: "Book · free",
+    title: "The Fox Advantage",
+    line: "How teams collapse complexity to run faster. 54 short chapters, free to read here.",
+    meta: "Paul Dervan",
+    cta: "Read it free →",
+    href: "/book",
+    cover: { src: "/book/cover-the-fox-advantage.jpg", alt: "The Fox Advantage book cover" },
+  },
+  {
+    kicker: "Case study",
+    title: "Mental availability in practice",
+    line: "We found the moment people think of a gift to put in a card, and made every frame of the ad about it. The tickets sold out so fast we had to pull the advertising.",
+    meta: "Millionaire Raffle · National Lottery · 2019 to 2021",
+    cta: "Read the case study →",
     href: "/millionaire-raffle",
     image: { src: "/projects/millionaire-raffle/raffle-social.jpeg", alt: "The Millionaire Raffle social ad: a woman holding a gift envelope" },
+    num: { big: "27:1", of: "return on the campaign" },
   },
   {
-    idea: "Turning round a brand in decline",
-    big: "€1bn",
-    bigOf: "revenue, the first time",
-    title: "The National Lottery",
-    line:
-      "One brand instead of several competing with each other, three goals, and every decision checked against the evidence. Revenue passed €1 billion for the first time, 19% up on 2019.",
-    who: "National Lottery · 2020 to 2022 · Ireland's Marketer of the Year 2022",
-    href: "/marketer-of-the-year",
-  },
-  {
-    idea: "Fame",
-    big: "12%",
-    bigOf: "market share in year one",
-    title: "48",
-    line:
-      "A mobile network that only 18 to 22 year olds could join, and the ads got banned. Within six months, 63% of young people in Ireland knew it.",
-    who: "O2 Ireland · 2012 to 2014",
+    kicker: "Case study",
+    title: "Fame strategies",
+    line: "A mobile network that only 18 to 22 year olds could join, and the ads got banned. Within six months, 63% of young people in Ireland knew it.",
+    meta: "48 · O2 Ireland · 2012 to 2014",
+    cta: "Read the case study →",
     href: "/48",
-    image: { src: "/projects/48/poster.jpeg", alt: "The 48 launch poster: Go Conquer" },
-  },
-];
-
-const BOOKS = [
-  {
-    title: "Run with Foxes",
-    sub: "Make better marketing decisions",
-    line: "The book on how to decide well in marketing: evidence, judgement and the courage to act on both.",
-    cover: "/rwf-cover.jpg",
-    href: "/run-with-foxes",
-    cta: "About the book →",
-  },
-  {
-    title: "The Fox Advantage",
-    sub: "How teams collapse complexity to run faster",
-    line: "54 short chapters on how marketing teams thrive because of AI. Free to read here.",
-    cover: "/book_cover.JPG",
-    href: "/book",
-    cta: "Read it free →",
+    image: { src: "/projects/48/poster.jpeg", alt: "The 48 launch poster: Go Conquer", top: true },
+    num: { big: "12%", of: "market share in year one" },
   },
 ];
 
 export default function Proof() {
   return (
-    <>
-      <section className={f.shelf} id="work">
-        <div className={f.shelfHead}>
-          <h2 className={f.h2}>Three pieces of work</h2>
-        </div>
-        <div className={n.workGrid}>
-          {CARDS.map((c) => (
-            <Link key={c.href} href={c.href} className={n.workCard}>
-              {c.image ? (
-                <img className={n.workImg} src={c.image.src} alt={c.image.alt} loading="lazy" />
-              ) : (
-                <div className={n.workPlate}>
-                  <b>{c.big}</b>
-                  <span>{c.bigOf}</span>
-                </div>
-              )}
-              <span className={n.kicker}>{c.idea}</span>
-              <span className={n.workTitle}>{c.title}</span>
-              <p className={n.workLine}>{c.line}</p>
-              {c.image ? (
-                <span className={n.workNum}>
-                  <b>{c.big}</b> {c.bigOf}
-                </span>
-              ) : null}
-              <span className={`${f.meta} ${n.workWho}`}>{c.who}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className={f.shelf} id="books">
-        <div className={f.shelfHead}>
-          <h2 className={f.h2}>Books from us</h2>
-        </div>
-        <div className={n.bookGrid}>
-          {BOOKS.map((b) => (
-            <Link key={b.href} href={b.href} className={n.bookCard}>
-              <img className={n.bookCover} src={b.cover} alt={`${b.title} book cover`} loading="lazy" />
-              <div>
-                <span className={n.workTitle}>{b.title}</span>
-                <span className={n.bookSub}>{b.sub}</span>
-                <p className={n.workLine}>{b.line}</p>
-                <span className={n.doorGo}>{b.cta}</span>
+    <section className={`${f.shelf} ${n.fourShelf}`} id="work">
+      <div className={n.fourGrid}>
+        {CARDS.map((c) => (
+          <Link key={c.href} href={c.href} className={n.workCard}>
+            {c.image ? (
+              <img className={`${n.workImg} ${c.image.top ? n.workImgTop : ""}`} src={c.image.src} alt={c.image.alt} loading="lazy" />
+            ) : c.cover ? (
+              <div className={n.bookPlate}>
+                <img className={n.bookCover} src={c.cover.src} alt={c.cover.alt} loading="lazy" />
               </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </>
+            ) : null}
+            <span className={n.kicker}>{c.kicker}</span>
+            <span className={n.workTitle}>{c.title}</span>
+            <p className={n.workLine}>{c.line}</p>
+            {c.num ? (
+              <span className={n.workNum}>
+                <b>{c.num.big}</b> {c.num.of}
+              </span>
+            ) : null}
+            <span className={`${f.meta} ${n.workWho}`}>{c.meta}</span>
+            <span className={n.doorGo}>{c.cta}</span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

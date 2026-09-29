@@ -213,10 +213,6 @@ export default function HomeNext() {
             sector moved down under it; what that band means is still to be settled. */}
         <ResearchBands part="reports" />
 
-        {/* Paul, 29 Sep: the case studies and the two books. The idea leads each card, so the
-            work reads as a way of working, and the brand and the result follow it. */}
-        <Proof />
-
         {SHOW_NUMBERS && <DataBand />}
         {/* Paul, 27 Sep: "we need to hide this for the moment, until we discuss it." */}
         {SHOW_SECTOR && <SectorPicker />}
@@ -230,7 +226,7 @@ export default function HomeNext() {
 
         {/* The research and resources bands, under everything Paul settled on 25 Sep. Paul, 26 Sep:
             "the homepage does become the main research page, resources page... this is the place." */}
-        <ResearchBands part="rest" />
+        <ResearchBands part="rest" tail={<Proof />} />
       </main>
 
       <SiteFooter current="/" wide />

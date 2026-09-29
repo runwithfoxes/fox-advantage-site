@@ -93,7 +93,7 @@ function Ext({ href, children }: { href: string; children: React.ReactNode }) {
   return <a href={href} target="_blank" rel="noopener" className={n.tellLink}>{children}</a>;
 }
 
-export default function ResearchBands({ part }: { part?: "reports" | "rest" } = {}) {
+export default function ResearchBands({ part, tail }: { part?: "reports" | "rest"; tail?: React.ReactNode } = {}) {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
   const featSeries = seriesOf(featured);
   const featFig = featured.figures[1] ?? featured.figures[0];
@@ -565,6 +565,10 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
 
         </>
       )}
+
+      {/* The books and the case studies, one row, under the library and the course (Paul, 29 Sep:
+          "move the whole thing down to the bottom and put the course and the library above it"). */}
+      {tail}
 
       {/* ── Band 9: the account, last. Paul's 25 Sep band, with Every's "full free access" wording. ── */}
       <section className={n.account} id="account">
