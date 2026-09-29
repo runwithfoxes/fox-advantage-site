@@ -21,12 +21,15 @@ export type Chapter = { id: string; n: number; title: string; lede?: string[]; s
 
 export const META = {
   kicker: "The AI Ask · quarterly report · Ireland",
-  title: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI",
+  title: "The AI Ask, Q3 2026: 1 in 6 marketing jobs in Ireland asks for AI",
   // Paul, 27 Sep, on his phone: the headline was too long. The eyebrow above it already says the
   // report and the issue, so the hero drops the prefix; `title` stays for the tab and the catalogue.
   // Paul, 29 Sep: the old headline ("marketing jobs take up AI, sales jobs don't") was wrong, since
   // sales jobs ask too (Chapter 1.3, Chapter 3), and too long. 56 of 636 is 8.8%, about 1 in 11.
-  heroTitle: "1 in 11 marketing and sales jobs",
+  // Paul, 29 Sep, later: lead on marketing, "marketing is my thing", sales stays in the article; and "I don't
+  // care what the number is as long as we can stand over it". 17 of 100 marketing jobs across every source
+  // in September (numbers.json sep_by_role_all_sources, said in Chapter 1.3), not jobs.ie's 8 of 31.
+  heroTitle: "1 in 6 marketing jobs",
   titleHl: "asks for AI",
   date: "25 September 2026",
   byline: "Sam · AI researcher, Run with Foxes",

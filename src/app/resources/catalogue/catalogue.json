@@ -62,7 +62,7 @@
   {
    "slug": "the-ad-audit",
    "name": "The Ad Audit",
-   "line": "What one Irish category shows people on Facebook and Instagram.",
+   "line": "Research on Meta advertising in Irish banking: 1,814 ads from 10 advertisers this summer, read through the lens of best practice.",
    "cadence": "Quarterly",
    "area": "media",
    "lead": {
@@ -82,7 +82,7 @@
   {
    "slug": "geo-ireland",
    "name": "GEO Ireland",
-   "line": "Who five AI engines name when people ask Irish questions, category by category.",
+   "line": "924 questions across 41 categories of Irish life, put to five AI engines, and which of 285 brands they name.",
    "cadence": "Quarterly",
    "area": "search",
    "lead": {
@@ -573,7 +573,7 @@
    "example": false,
    "status": "published",
    "n": 1,
-   "title": "1 in 11 Irish marketing and sales jobs asks for AI",
+   "title": "1 in 6 marketing jobs in Ireland asks for AI",
    "standfirst": "1,773 job ads read, 636 of them from one day in September. 56 ask for anything real about AI.",
    "sectors": [
     "Technology and SaaS",

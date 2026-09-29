@@ -1,4 +1,6 @@
 import Link from "next/link";
+import EssayJoin from "./EssayJoin";
+import j from "./essay-join.module.css";
 import { notFound } from "next/navigation";
 import {
   COURSE_NOTE,
@@ -84,6 +86,7 @@ export default async function EssayPage({
       </header>
 
       <main className="essay-main">
+        <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-header">
             <div className="essay-meta">{formatEssayDate(essay.date)}</div>
@@ -134,6 +137,10 @@ export default async function EssayPage({
               <span />
             )}
           </div>
+        </div>
+        <aside className={j.side}>
+          <EssayJoin />
+        </aside>
         </div>
       </main>
     </div>

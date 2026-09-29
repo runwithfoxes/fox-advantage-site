@@ -530,7 +530,7 @@ export default function EverythingClient({
                 instruction while obeying the first.
                 ⛔ SO THESE THREE WORDS ARE A PLACEHOLDER FOR HIS, not a decision. */}
             <p className="mod-eyebrow">The library</p>
-            <h1 className="mod-h1">Everything from the course</h1>
+            <h1 className="mod-h1">The things we use</h1>
             {/* ⭐⭐ MODULE 1'S FOX, AT MODULE 1'S SIZE, Paul 3 Aug 2026: "The fox is too big
                 and it's pushing the page down. Look at the format for Module 1, the size of
                 the fox and how it indents into the text, and copy that."
@@ -552,10 +552,13 @@ export default function EverythingClient({
                 alt=""
               />
             </div>
+            {/* Paul, 29 Sep 2026: "the copy here is very connected to the course. Can we change it to
+                capture the essence of what we say on homepage". The homepage library band's own words. */}
             <p className="mod-standfirst">
-              Every prompt and every link, from all six modules, on one page. It is here
-              so you can find the thing you half-remember without going back through a
-              lesson to look for it. Take whatever is useful.
+              This is where we keep the things we use, and we add to it every week: the tools,
+              the people we read, the companies we watch, datasets to practise on, and every
+              prompt from the course. The names and links are free. The prompts open with a
+              free account.
             </p>
             <div className="mod-meta">
               <span>

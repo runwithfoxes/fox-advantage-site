@@ -49,13 +49,13 @@ export const dynamic = "force-dynamic";
  */
 
 const DESC =
-  "Every prompt and every link from the free AI course for marketers, on one page. Search it, copy what you need, take it with you.";
+  "The things we use: the tools, the people we read, the companies we watch, datasets to practise on, and every prompt from the course. Added to every week.";
 
 export const metadata = {
-  title: "Everything from the course - Run with Foxes",
+  title: "The library - Run with Foxes",
   description: DESC,
   openGraph: {
-    title: "Everything from the course - Run with Foxes",
+    title: "The library - Run with Foxes",
     description: DESC,
   },
 };

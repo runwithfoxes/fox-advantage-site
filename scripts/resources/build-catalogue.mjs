@@ -114,7 +114,7 @@ function baseEdition(s, label, date, extra) {
     {
       ...baseEdition(s, "Q3 2026", "2026-09-25", {}),
       slug: "the-ai-ask-2026-q3", edition: "Q3 2026", n: 1,
-      title: "1 in 11 Irish marketing and sales jobs asks for AI",
+      title: "1 in 6 marketing jobs in Ireland asks for AI",
       standfirst: `${fmt(ASK.total_ads)} job ads read, ${all.n} of them from one day in September. ${all.k} ask for anything real about AI.`,
       author: A.sam, checkedBy: "Cato and Paul Dervan", sectors: ["Technology and SaaS", "Retail and ecommerce", "Financial services"],
       sample: `${fmt(ASK.total_ads)} job ads`,
@@ -143,7 +143,7 @@ function baseEdition(s, label, date, extra) {
    from the page's numbers.json, which is Sam's file copied by script. Added 27 Sep 2026 by Dray 2. */
 {
   const AD = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/numbers.json"), "utf8"));
-  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: "What one Irish category shows people on Facebook and Instagram.", cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
+  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: "Research on Meta advertising in Irish banking: 1,814 ads from 10 advertisers this summer, read through the lens of best practice.", cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
   const cat = AD.category, t = AD.totals, g = AD.groups;
   const sales = cat.job_share_of_reach.sales;
   const offer = kofn(cat.offer_creatives, t.bank_creatives);
@@ -178,7 +178,7 @@ function baseEdition(s, label, date, extra) {
 
 /* 2. GEO IRELAND - REAL day one. */
 {
-  const s = { slug: "geo-ireland", name: "GEO Ireland", line: "Who five AI engines name when people ask Irish questions, category by category.", cadence: "Quarterly", area: "search", lead: A.sam, method: "The same questions, 41 categories of Irish life, put to five AI engines, every name counted.", mark: "GEO", started: "2026-08-23", example: false };
+  const s = { slug: "geo-ireland", name: "GEO Ireland", line: "924 questions across 41 categories of Irish life, put to five AI engines, and which of 285 brands they name.", cadence: "Quarterly", area: "search", lead: A.sam, method: "The same questions, 41 categories of Irish life, put to five AI engines, every name counted.", mark: "GEO", started: "2026-08-23", example: false };
   const state = kofn(17, 41);
   addSeries(s, [
     {

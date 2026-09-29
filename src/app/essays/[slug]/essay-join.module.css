@@ -1,0 +1,21 @@
+/* The essay and the sign-up beside it (Paul, 29 Sep 2026). The essay keeps its 680px column in the
+   middle; the box sits in the right margin and stays in view while reading. Below 1180px there is no
+   margin to sit in, so it follows the essay at the essay's width. */
+.layout { display: grid; grid-template-columns: 1fr minmax(0, 680px) 1fr; column-gap: 56px; }
+.layout > :global(.essay-inner) { grid-column: 2; max-width: none; margin: 0; min-width: 0; }
+.side { grid-column: 3; align-self: start; position: sticky; top: 120px; max-width: 250px; padding-top: 150px; }
+@media (max-width: 1180px) {
+  .layout { display: block; }
+  .side { position: static; max-width: 680px; margin: 56px auto 0; padding-top: 0; }
+}
+
+.box { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+.lab { font-family: var(--mono); font-size: 14px; letter-spacing: .06em; color: #3A7CA5; }
+.p { margin: 0; font-family: var(--mono); font-size: 12.5px; line-height: 1.7; color: var(--text); }
+.form { display: grid; gap: 8px; margin: 4px 0 0; }
+.form input { width: 100%; box-sizing: border-box; font-family: var(--mono); font-size: 13px; padding: 10px 12px; border: 1px solid var(--border); background: #fff; color: var(--text); border-radius: 0; }
+.form button { font-family: var(--mono); font-size: 13px; padding: 10px 12px; border: 0; background: #1A3A4E; color: #fff; cursor: pointer; border-radius: 0; }
+.form button:hover { background: #3A7CA5; }
+.done { margin: 0; font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: #3A7CA5; }
+.fine { font-family: var(--mono); font-size: 11px; line-height: 1.6; color: #8A8A85; }
+.fine a { color: #3A7CA5; text-decoration: none; }

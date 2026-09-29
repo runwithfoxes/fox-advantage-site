@@ -54,7 +54,7 @@ export default async function HomeNext() {
      carrying who wrote it (the circles came off the same afternoon: too busy). Jeff's tracker row came out: it repeated the report above it. */
   type Who = "Paul Dervan" | "Lena" | "Sam";
   const news: { type: string; who: Who; t: string; href: string; iso: string }[] = [
-    { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
+    { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 6 marketing jobs in Ireland asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
     ...essays.slice(0, 5).map((e) => ({ type: "Essay", who: "Paul Dervan" as Who, t: e.title, href: `/essays/${e.slug}`, iso: e.date })),
     ...diary.map((d) => ({ type: "Diary", who: "Lena" as Who, t: d.title, href: `/diary/${d.slug}`, iso: d.date })),
     ...(openMod ? [{ type: "Course", who: "Paul Dervan" as Who, t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, iso: openMod.on }] : []),
