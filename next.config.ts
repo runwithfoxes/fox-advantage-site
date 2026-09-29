@@ -107,16 +107,21 @@ const nextConfig: NextConfig = {
         destination: "/resources/the-ai-ask/2026-q3",
         permanent: false,
       },
+      /* The reports list page reads as a programme of thirteen with one report in it (29 Sep, Paul:
+         "we don't want that right?"). Until there are more, the reports band on the homepage is the
+         list. Only the list page itself; the report pages keep their own addresses. */
+      { source: "/resources/reports", destination: "/#reports", permanent: false },
       /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
          in the code; these two lines are what keep them off the live site. Remove to release. */
       { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },
       { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
       /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
       {
-        source: "/home-next",
+        source: "/home-next/:path*",
         destination: "/",
         permanent: false,
       },
+      { source: "/home-next", destination: "/", permanent: false },
       {
         source: "/clients",
         destination: "https://clients.runwithfoxes.com",

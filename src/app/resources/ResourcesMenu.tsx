@@ -27,7 +27,7 @@ type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "an
 /* Paul, 29 Sep 2026: Datasets, Playbooks, Trackers, Short answers and The course figures come off
    the menu until there is enough behind them, and Tools until they are ready. */
 const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts }[] = [
-  { g: "report", t: "Reports", d: "Series on a fixed calendar, every edition", href: "/resources/reports", n: "reports" },
+  { g: "report", t: "Reports", d: "The AI Ask, and the two on the way", href: "/#reports" },
   // The library band on the homepage, which carries the sign-up box (Paul, 29 Sep).
   { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/#library" },
 ];
