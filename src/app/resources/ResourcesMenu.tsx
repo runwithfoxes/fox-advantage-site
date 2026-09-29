@@ -25,11 +25,11 @@ type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "an
    anchors on the homepage (four of those bands are hidden since 27 Sep, so the anchors landed on
    nothing). Datasets still points at the homepage until it has an index page of its own. */
 /* Paul, 29 Sep 2026: Datasets, Playbooks, Trackers, Short answers and The course figures come off
-   the menu until there is enough behind them. */
+   the menu until there is enough behind them, and Tools until they are ready. */
 const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts }[] = [
   { g: "report", t: "Reports", d: "Series on a fixed calendar, every edition", href: "/resources/reports", n: "reports" },
-  { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/resources/library" },
-  { g: "tool", t: "Tools", d: "Free to use, a first look on screen", href: "/resources/tools", n: "tools" },
+  // The library band on the homepage, which carries the sign-up box (Paul, 29 Sep).
+  { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/#library" },
 ];
 const READ: { t: string; href: string }[] = [
   { t: "Essays, by Paul", href: "/essays" },
