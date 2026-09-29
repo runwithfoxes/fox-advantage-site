@@ -305,7 +305,6 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
       <section className={f.shelf} id="library">
         <div className={`${f.shelfHead} ${n.learnHead}`}>
           <h2 className={f.h2}>The library</h2>
-          <span className={f.meta}>Prompts, datasets, tools, templates and files. Free with an account, course or no course.</span>
         </div>
         {/* Paul, 27 Sep: the essay's shape, "section of left side explain what is the library... And the
             scroller on the right", and "we need to talk up the library... I want people to be motivated
