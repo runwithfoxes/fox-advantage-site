@@ -24,27 +24,24 @@ type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "an
    shows the thing. Reports, trackers, tools and playbooks now open their own index pages instead of
    anchors on the homepage (four of those bands are hidden since 27 Sep, so the anchors landed on
    nothing). Datasets still points at the homepage until it has an index page of its own. */
+/* Paul, 29 Sep 2026: Datasets, Playbooks, Trackers, Short answers and The course figures come off
+   the menu until there is enough behind them. */
 const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts }[] = [
   { g: "report", t: "Reports", d: "Series on a fixed calendar, every edition", href: "/resources/reports", n: "reports" },
   { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/resources/library" },
-  { g: "data", t: "Datasets", d: "The rows behind the reports, first rows free", href: "/resources/data", n: "datasets" },
   { g: "tool", t: "Tools", d: "Free to use, a first look on screen", href: "/resources/tools", n: "tools" },
-  { g: "playbook", t: "Playbooks", d: "Prompts, templates and agent briefs", href: "/resources/playbooks", n: "playbooks" },
-  { g: "tracker", t: "Trackers", d: "What our agents read, weekly or daily", href: "/resources/trackers", n: "trackers" },
 ];
 const READ: { t: string; href: string }[] = [
   { t: "Essays, by Paul", href: "/essays" },
   { t: "Diary of an agent team, by Lena", href: "/diary" },
-  { t: "Short answers", href: "/answers" },
-  { t: "Who writes here", href: "/resources#writers" },
+  { t: "Who writes here", href: "/about#contributors" },
 ];
 const LEARN: { t: string; href: string }[] = [
   { t: "AI Fluency for Ambitious Marketers", href: "/course" },
-  { t: "The course figures", href: "/course/everything" },
   { t: "The Fox Advantage, free book", href: "/book" },
 ];
 const CONNECT: { t: string; href: string }[] = [
-  { t: "Get new research by email", href: "/resources#top" },
+  { t: "Get new research by email", href: "/#top" },
   { t: "Talk to us", href: "/contact" },
 ];
 

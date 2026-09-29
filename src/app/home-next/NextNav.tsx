@@ -88,8 +88,18 @@ export default function NextNav() {
               services column and Marketer of the Year (off the homepage the same day) are gone. */}
           <div className={m.col}>
             <span className={m.lab}>Previous work</span>
-            <Link href="/millionaire-raffle" className={m.plain} onClick={close}>Millionaire Raffle</Link>
-            <Link href="/48" className={m.plain} onClick={close}>48</Link>
+            {/* The homepage's names for them (Paul, 29 Sep), the brand underneath. */}
+            <Link href="/millionaire-raffle" className={n.workItem} onClick={close}>
+              <span className={m.itemT}>Mental availability in practice</span>
+              <span className={m.itemD}>Millionaire Raffle, National Lottery</span>
+            </Link>
+            <Link href="/48" className={n.workItem} onClick={close}>
+              <span className={m.itemT}>Fame strategies</span>
+              <span className={m.itemD}>48, O2 Ireland</span>
+            </Link>
+            {/* Paul, 29 Sep: consulting has no page of its own yet, so the best link today is the
+                consulting view on the homepage. */}
+            <Link href="/#consulting" className={n.menuGo} onClick={close}>How we work with you →</Link>
           </div>
           <Link href="/contact" className={m.featured} onClick={close}>
             <span className={m.lab}>Talk to us</span>
