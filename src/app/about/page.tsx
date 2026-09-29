@@ -1,5 +1,8 @@
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
+import NextNav from "../home-next/NextNav";
+import { hasAccess } from "@/lib/access";
+import a from "./about.module.css";
 
 export const metadata = {
   title: "About - Run with Foxes",
@@ -7,26 +10,40 @@ export const metadata = {
     "Run with Foxes is a marketing consultancy run by Paul Dervan. We build marketing agents that make the ads, write the outreach and run the campaigns.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  /* The site's one nav, as on the homepage and the reports, so a known visitor sees "Your course". */
+  const known = await hasAccess();
   return (
     <div className="contact-page">
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact">/contact</Link>
-          <Link href="/book" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      {/* Paul, 29 Sep 2026: "i want the entire header of the page to use the fox and me car boot video...
+          full bleed on top of page, in same way homepage is full bleed. Also want consistent navigation
+          at top." No words in the film: he is on the left of it and the fox on the right. It plays once
+          and holds on the open boot, because a loop would shut and reopen the boot every five seconds. */}
+      <section className={a.hero} id="top">
+        <video className={a.film} autoPlay muted playsInline preload="auto" poster="/video/fox-tarantino-trunk-end.jpg" src="/video/fox-tarantino-trunk.mp4" />
+        <div className={a.still} aria-hidden />
+        <NextNav known={known} />
+      </section>
 
-      <main className="contact-main">
+      <main className={`contact-main ${a.main}`}>
         <div className="about-inner">
           <div className="section-label">/about</div>
           <h1 className="contact-heading">Who we are</h1>
+
+          {/* Paul, 29 Sep 2026: "photo of me from bio and use same words". Word for word from the
+              homepage bio (HomePage.tsx, hpx-bio-body), set in this page's reading type. */}
+          <div>
+            <span className={a.bioName}>/Paul Dervan</span>
+            <div className={a.bio}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className={a.bioPhoto} src="/Paul_photo.jpg" alt="Paul Dervan" />
+              <div className="rwf-body">
+                <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
+                <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
+                <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
+              </div>
+            </div>
+          </div>
 
           {/**
             * ⭐ THE ENTITY PAGE. Expanded 1 Aug 2026 from 162 words, which the search
@@ -137,18 +154,9 @@ export default function AboutPage() {
         </div>
       </main>
 
+      {/* The old phone bar ("← back /agents get the book") came off with the old top bar: the
+          homepage and the reports have neither, and two navs on a phone is not one nav. */}
       <SiteFooter current="/about" />
-
-      <div className="bottom-bar">
-        <Link href="/" className="active">
-          ← back
-        </Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book" className="cta-bar">
-          get the book
-        </Link>
-      </div>
     </div>
   );
 }
