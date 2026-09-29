@@ -347,7 +347,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
               ))}
             </ul>
             <AccessForm want="library" label="Open the library, free" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
-            <span className={n.accFine}>One free account for the library, every PDF, every dataset and the course. Already have one? <Link href="/resources/library">Sign in</Link>.</span>
+            <span className={n.accFine}>One free account for the library, every PDF, every dataset and the course. Already have one? <Link href="/signin">Sign in</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
