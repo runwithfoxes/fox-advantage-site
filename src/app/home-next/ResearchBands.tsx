@@ -570,52 +570,8 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
           "move the whole thing down to the bottom and put the course and the library above it"). */}
       {tail}
 
-      {/* ── Band 9: the account, last. Paul's 25 Sep band, with Every's "full free access" wording. ── */}
-      <section className={n.account} id="account">
-        <div>
-          <h2 className={f.h2}>Read it free. Sign in for the detail.</h2>
-          <div className={n.accCols}>
-            <div>
-              <span className={n.dKick}>Free to everyone</span>
-              <ul className={n.accList}>
-                <li>Every report, in full, and every chart</li>
-                <li>The essays and the diary</li>
-                <li>A first go on every tool</li>
-              </ul>
-            </div>
-            <div>
-              <span className={n.dKick}>Full access, free</span>
-              <ul className={n.accList}>
-                <li>Every report as a PDF, every dataset as a file</li>
-                <li>The library: every prompt, link and file</li>
-                <li>Your sector, and your own brand&rsquo;s result</li>
-                <li>The course, with your progress saved</li>
-                <li>The next edition of any series, by email</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className={n.accSide}>
-          <AccessForm want="account" className={n.joinRow} doneClassName={n.accFine} done="You're in. Every report, the library and the course are open to you." />
-          <span className={n.accFine}>One account for everything here. Already have one? <a href="/signin">Sign in</a>. No paid tier; there is nothing to upgrade to.</span>
-          <div className={`mod-win ${n.dWin}`}>
-            <div className="mod-winbar">
-              <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">your_account</span>
-            </div>
-            <div className={n.winBody}>
-              <span className={n.dKick}>What is waiting in it</span>
-              <ol className={n.accMods}>
-                <li><span>1</span>{COUNTS.reports === 1 ? "The report as a PDF" : `${COUNTS.reports} reports as PDFs`}<em>{plural(COUNTS.series, "series", "series")}</em></li>
-                <li><span>2</span>{COUNTS.datasets === 1 ? "The dataset as a file" : `${COUNTS.datasets} datasets as files`}<em>{COUNTS.rows >= 1000 ? `${Math.round(COUNTS.rows / 1000)}k rows` : `${COUNTS.rows} rows`}</em></li>
-                <li><span>3</span>The library<em>{lib.everything} things</em></li>
-                <li><span>4</span>The course<em>{MODULES.filter((m) => m.built).length} of {MODULES.length} open</em></li>
-                <li><span>5</span>Your sector, every report and tracker<em>on request</em></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Band 9, the account band, deleted (Paul, 29 Sep: "Let's delete this"). The hero asks once; every
+          coming report and the course carry their own box. */}
     </>
   );
 }
