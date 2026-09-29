@@ -92,7 +92,7 @@ export default function HomeNext() {
             {/* Paul, 25 Sep: the headline and its line, no pill ("Less is more"), no "New study" line. */}
             <h1 className={h.title}>Giving marketing teams an edge</h1>
             <p className={h.sub}>
-              A new kind of marketing consultancy that mixes old&#8209;school marketing fundamentals, marketing
+              A new kind of marketing consultancy that mixes old&#8209;school fundamentals, marketing
               rigour, creativity, craft and technology.
             </p>
             {/* Paul, 25 Sep: the sign-up moves here, into the space under his line. The card
