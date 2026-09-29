@@ -36,14 +36,18 @@ export default async function AboutPage() {
             <div className={a.bio}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className={a.bioPhoto} src="/Paul_photo.jpg" alt="Paul Dervan" />
-              <div className="rwf-body">
+              <div className={a.prose}>
                 <p>Twenty years in brand. Head of brand at O2 Ireland, then CMO at the National Lottery. Head of brand at Indeed and Miro, both global roles. Ireland&apos;s Marketer of the Year in 2022.</p>
                 <p>Trained by Peter Field, one half of Binet and Field. That obsession with effectiveness runs through everything here.</p>
                 <p>Run with Foxes is the consultancy. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.</p>
               </div>
             </div>
           </div>
+        </div>
 
+        {/* Paul, 29 Sep 2026: "put contributors here. and make copy on left narrower." The page text
+            on the left, the contributors in the empty space beside it. */}
+        <div className={a.cols}>
           {/**
             * ⭐ THE ENTITY PAGE. Expanded 1 Aug 2026 from 162 words, which the search
             * agent's own site_gaps.py flagged as thin. It is the page that has to
@@ -69,7 +73,7 @@ export default async function AboutPage() {
             * and "over 100 ads in a day" (unconfirmed). The €2.68 return and the 19%
             * figure are cleared but live on the case study, not here.
             */}
-          <div className="rwf-body">
+          <div className={`${a.prose} ${a.text}`}>
             <p>
               Run with Foxes is a marketing consultancy run by Paul Dervan. We
               build marketing agents for businesses, software that makes the
@@ -112,44 +116,47 @@ export default async function AboutPage() {
             </p>
           </div>
 
+          <aside className={a.contrib}>
           {/* Paul, 29 Sep 2026: "we just have contributors with names. So we have me, there's Lena who
               writes an essay, there's Sam who writes, and there's Cato." The three agents are labelled
               as AIs, as they are everywhere else on the site. */}
-          <div className="section-label about-contrib-label" id="contributors">/contributors</div>
-          <ul className="about-contrib">
+          {/* Later the same evening: "Give more information about the contributors." Every line below
+              comes from the agent's own job file in paul-hub/team/ (lena.md, sam.md, cato.md) or from
+              The AI Ask's own method section, and Lena's permission is Paul's own wording. */}
+          {/* Type from the homepage's what's new list (Paul, 29 Sep: "writing looks too big or bulky.
+              Can you use this reference point"), and no circles, as he had them taken off that list. */}
+          <div className={a.lab} id="contributors">/contributors</div>
+          <ul className={a.people}>
             <li>
-              <img className="about-contrib-mark" src="/Paul_photo.jpg" alt="" />
               <div>
-                <Link href="/essays" className="about-contrib-name">Paul Dervan</Link>
-                <span className="about-contrib-role">Founder</span>
+                <Link href="/essays" className={a.name}>Paul Dervan</Link>
+                <span className={a.role}>Founder</span>
                 <p>Writes the essays and the course. Ireland&apos;s Marketer of the Year 2022.</p>
               </div>
             </li>
             <li>
-              <i className="about-contrib-mark">L</i>
               <div>
-                <Link href="/diary" className="about-contrib-name">Lena</Link>
-                <span className="about-contrib-role">An AI · the diary</span>
-                <p>Writes the diary: what our agent team did that day, and what we learned from it.</p>
+                <Link href="/diary" className={a.name}>Lena</Link>
+                <span className={a.role}>An AI · the diary</span>
+                <p>Writes the diary of our agent team: what the agents did that day, how they passed work to each other, and what we learned. She has full permission to write about the team&apos;s work, as long as she is careful with client work, and she never names a client or any other company. Paul doesn&apos;t write any of it. He reads every dispatch before it goes up.</p>
               </div>
             </li>
             <li>
-              <i className="about-contrib-mark">S</i>
               <div>
-                <Link href="/resources/the-ai-ask/2026-q3" className="about-contrib-name">Sam</Link>
-                <span className="about-contrib-role">An AI · research</span>
-                <p>Our researcher. Writes The AI Ask and the reports, from the raw sources.</p>
+                <Link href="/resources/the-ai-ask/2026-q3" className={a.name}>Sam</Link>
+                <span className={a.role}>An AI · research</span>
+                <p>Our researcher. At the moment Sam writes The AI Ask, our quarterly report on what Irish marketing and sales job ads ask for when they mention AI. Sam works from the raw ads, collected from the job boards and the internet archive, counts each job once however many times it was posted, and keeps every ad, judgement and figure so the next quarter can be compared with this one. When the numbers are ready, Sam freezes them and hands them to Cato. Sam also does the desk research behind our own work, on companies, people and industries.</p>
               </div>
             </li>
             <li>
-              <i className="about-contrib-mark">C</i>
               <div>
-                <span className="about-contrib-name">Cato</span>
-                <span className="about-contrib-role">An AI · red team</span>
-                <p>Tries to break every number before a report goes out.</p>
+                <span className={a.name}>Cato</span>
+                <span className={a.role}>An AI · red team</span>
+                <p>Cato&apos;s job is to find our mistakes before anyone else does. He&apos;s named after the valet Inspector Clouseau paid to attack him without warning, so he could never go soft. A checker confirms the work matches the brief. Cato assumes the work is wrong and tries to prove it. He starts from the original source rather than our summary, works out every number again himself, and checks dates hardest, because the most common mistake he finds is a true number from the wrong period. He is judged on the mistakes he finds, not the work he passes, and on a day he finds nothing he lists the attacks that failed. He never fixes anything himself: he reports it, and the agent that made the mistake fixes it. He attacked The AI Ask four times before it was published.</p>
               </div>
             </li>
           </ul>
+          </aside>
         </div>
       </main>
 
