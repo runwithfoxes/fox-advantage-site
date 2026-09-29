@@ -434,6 +434,13 @@ export default function AgentsSection() {
       setView(h as Door);
       const el = document.getElementById("agents");
       if (!el) return;
+      /* The new homepage keeps this section collapsed and opens it full screen (29 Sep 2026), so a
+         link to /#agents has nothing to scroll to: open the surface instead. */
+      if (el.getBoundingClientRect().height < 40) {
+        setMode(h as Door);
+        setOpen(true);
+        return;
+      }
       const y = el.getBoundingClientRect().top + window.scrollY - 72;
       window.scrollTo({ top: y, behavior: "smooth" });
     };

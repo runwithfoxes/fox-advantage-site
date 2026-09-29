@@ -46,7 +46,6 @@ export default function Band({
         {aside ? <div className={b.aside}>{aside}</div> : null}
         {below ? <div className={b.below}>{below}</div> : null}
       </div>
-      <p className={b.mock}>Mockup, 26 Sep 2026. Anything tagged Example is made up.</p>
     </section>
   );
 }

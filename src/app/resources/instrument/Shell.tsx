@@ -23,7 +23,6 @@ export function Shell({ children, tape = false }: { children: ReactNode; tape?: 
         <NextNav />
         {tape ? <Tape items={live} /> : null}
       </div>
-      <p className={s.mock}>Mockup, 26 Sep 2026. Anything tagged Example is made up. Readings tagged Example never met a real market.</p>
       {children}
       <SiteFooter current="/resources" wide />
     </div>

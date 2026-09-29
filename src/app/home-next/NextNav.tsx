@@ -17,9 +17,6 @@ import { MODULES } from "../course/courseModules";
  */
 type Door = "consulting" | "agents" | "training";
 
-function Ex() {
-  return <span className={n.menuEx}>Example</span>;
-}
 
 export default function NextNav() {
   const [open, setOpen] = useState<Door | null>(null);
@@ -86,19 +83,12 @@ export default function NextNav() {
     }
     if (d === "consulting") {
       return (
-        <div className={`${m.panel} ${n.threePanel}`} role="menu">
+        <div className={`${m.panel} ${n.twoPanel}`} role="menu">
+          {/* Paul, 29 Sep: "We can take things off the nav bar if they shouldn't be there." The example
+              services column and Marketer of the Year (off the homepage the same day) are gone. */}
           <div className={m.col}>
-            <span className={m.lab}>What we do</span>
-            {["Marketing diagnosis", "Positioning and messaging", "Brand and effectiveness", "Media, budget and share of voice"].map((t) => (
-              <span key={t} className={m.plain}>
-                {t} <Ex />
-              </span>
-            ))}
-          </div>
-          <div className={`${m.col} ${m.rule}`}>
             <span className={m.lab}>Previous work</span>
             <Link href="/millionaire-raffle" className={m.plain} onClick={close}>Millionaire Raffle</Link>
-            <Link href="/marketer-of-the-year" className={m.plain} onClick={close}>Marketer of the Year</Link>
             <Link href="/48" className={m.plain} onClick={close}>48</Link>
           </div>
           <Link href="/contact" className={m.featured} onClick={close}>
@@ -124,14 +114,7 @@ export default function NextNav() {
           ))}
         </div>
         <div className={`${m.col} ${m.rule}`}>
-          <span className={m.lab}>For teams</span>
-          <span className={m.plain}>
-            In-company training <Ex />
-          </span>
-          <span className={m.plain}>
-            University teaching <Ex />
-          </span>
-          <span className={m.lab} style={{ marginTop: 18 }}>Read</span>
+          <span className={m.lab}>Read</span>
           <Link href="/book" className={m.plain} onClick={close}>The Fox Advantage, free book</Link>
           <Link href="/course/everything" className={m.plain} onClick={close}>Library of everything</Link>
         </div>

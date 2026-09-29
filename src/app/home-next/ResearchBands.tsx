@@ -354,7 +354,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
               <span className="mod-lights"><i /><i /><i /></span>
               <span className="mod-wintitle">the library · {lib.everything} things · {lib.built} of {lib.perModule.length} modules open</span>
             </div>
-            <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
+            <video className={`${n.scrollFilm} ${n.libFilm}`} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
           </article>
         </div>
       </section>

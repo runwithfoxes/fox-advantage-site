@@ -57,9 +57,6 @@ export function Shell({
         </div>
         <div className="mod-maincol">{children}</div>
       </div>
-      <div className={s.banner}>
-        Mockup, 24 Sep 2026. GEO Ireland numbers are day one (23 Aug) and not signed off. Jobs numbers are the 24 Sep run, one day of data.
-      </div>
     </div>
   );
 }

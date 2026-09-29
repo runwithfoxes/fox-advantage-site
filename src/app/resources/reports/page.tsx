@@ -47,7 +47,6 @@ export default function ReportsIndex() {
     <div className={s.page}>
       <Top crumbs={[{ href: "/resources", t: "Resources" }, { t: "Reports" }]} />
       <main className={s.wrap}>
-        <p className={s.note}>Mockup, 26 Sep 2026. Anything tagged Example is made up. The two real reports are drafts.</p>
         <header className={s.head}>
           <div>
             <h1 className={s.h1}>Reports</h1>
