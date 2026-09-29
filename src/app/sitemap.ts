@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllChapters, isChapterGated } from "@/lib/chapters";
 import { getAllEssays } from "@/lib/essays";
+import { REPORTS, reportHref } from "./resources/catalogue";
 import { getAllDispatches } from "@/lib/diary";
 import { toolBuckets } from "./students/toolData";
 
@@ -74,7 +75,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   /* same again for the diary: the loader is the list */
   const dispatches = getAllDispatches().map((d) => `/diary/${d.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches];
+  /* Published reports only, read from the filtered catalogue, so no example or held report is ever
+     offered to a search engine (29 Sep 2026, launch day). */
+  const reports = REPORTS.filter((r) => r.status === "published").map(reportHref);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...reports];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }
