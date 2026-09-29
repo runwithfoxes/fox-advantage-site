@@ -146,7 +146,7 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
               <img src="/resources/fox-hero-flip-last-frame.jpg" alt="" />
               <span className={s.featOver}>The AI Ask</span>
             </span>
-            <span className={s.itemT}>Irish marketing jobs take up AI, sales jobs don&rsquo;t</span>
+            <span className={s.itemT}>1 in 11 Irish marketing and sales jobs asks for AI</span>
             <span className={s.itemD}>Q3 2026. 1,773 job ads read; 56 of September&rsquo;s 636 ask for anything real about AI. By Sam.</span>
           </Link>
         </div>

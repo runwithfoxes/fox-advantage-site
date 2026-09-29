@@ -103,10 +103,10 @@ export const ASK_LABEL: Record<Ask, string> = {
 export const JOBS_RUN = {
   date: "24 Sep 2026",
   ads: 862,
-  jobs: 660, // Sam, 25 Sep, frozen: marketing and sales titles only, duplicates and a dash variant removed (was 739, then 663)
+  jobs: 636, // the final count in The AI Ask, Q3 2026 (numbers.json sep_all), after Cato's reviews (was 739, then 663, then 660)
   newAds: 302,
   newReal: 15,
-  real: 47,
+  real: 56, // 56 of 636, 8.8%, about 1 in 11 (numbers.json sep_all)
   cost: "$2.09",
 };
 

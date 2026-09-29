@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Cover, { COVER_PHOTOS, seriesShelf } from "./Cover";
+import { INTRO as ASK_INTRO } from "../resources/the-ai-ask/2026-q3/copy";
 import Publications, { type Pub } from "../resources/Publications";
 import {
   SERIES, PUBLISHED, COMING, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
@@ -74,8 +75,12 @@ const SHOW_TABLE = false;
 const SHOW_WRITING = false;
 const SHOW_USE = false;
 const SHOW_CALENDAR = false;
+/* Trackers, hidden on launch day (29 Sep 2026): one real tracker is a list of one. Back when there are three. */
+const SHOW_TRACKERS = false;
 
 const FLAG_EXCERPT: Record<string, string[]> = {
+  /* The AI Ask: Sam's own opening, read from the report's copy so it can never drift from the page. */
+  "the-ai-ask": ASK_INTRO.slice(0, 2),
   "geo-ireland": [
     "We put the questions people in Ireland ask to Claude, ChatGPT, Perplexity and Google\u2019s AI Overviews, in 41 categories from tax to hotels, and counted which names came back and how often.",
     "In 17 of 41 categories the most-named name is a state body or a regulator. Some of those are natural, like Revenue for tax. The striking ones are markets where advertisers spend and the regulator still wins. The Health Insurance Authority, at 0.61, beats every insurer. The Charities Regulator is named more than four times as often as any charity.",
@@ -95,8 +100,10 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
 
   /* The covers: the shelf (Cover.tsx), minus the featured series, which is drawn big above. */
   const newest = (slug: string) => editionsOf(SERIES.find((se) => se.slug === slug)!).filter((r) => r.status !== "coming")[0];
-  const shelf = seriesShelf().filter((e) => e.se.slug !== featSeries.slug);
-  const plural = (k: number, w: string) => `${k} ${w}${k === 1 ? "" : "s"}`;
+  /* Band 1 is hidden, so the featured series stays on the shelf: with one real series (29 Sep) it
+     is the shelf. Taking it out here would leave nothing to draw. */
+  const shelf = SHOW_FEATURED ? seriesShelf().filter((e) => e.se.slug !== featSeries.slug) : seriesShelf();
+  const plural = (k: number, w: string, ws = `${w}s`) => `${k} ${k === 1 ? w : ws}`;
   const [flagE, ...restE] = shelf;
   const flag = flagE.se;
   const flagEd = newest(flag.slug);
@@ -153,7 +160,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       <div className={f.shelfHead}>
         <h2 className={f.h2}>Reports and papers</h2>
         <span className={f.meta}>
-          {COUNTS.series} studies on a fixed calendar, {COUNTS.reports} editions. Free to read with no form; every PDF with a free account.
+          {plural(COUNTS.series, "study", "studies")} on a fixed calendar, {plural(COUNTS.reports, "edition")}. Free to read with no form; every PDF with a free account.
         </span>
       </div>
       <div className={n.studies}>
@@ -314,7 +321,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
                 <Ext href="https://x.com/mattshumer_/status/2081054356405731740">the game Claude built in one go</Ext>.
               </p>
               <p>
-                And datasets to practise on, with real Irish numbers: GEO Ireland&rsquo;s 41 categories, the AI Ask&rsquo;s
+                And datasets to practise on, with real Irish numbers: the AI Ask&rsquo;s
                 job ads, and more as each report lands. Plus every prompt from the course, written out in full.
               </p>
               <p>
@@ -493,6 +500,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       )}
 
       {/* ── Band 7: trackers, small ── */}
+      {SHOW_TRACKERS && (
       <section className={f.shelf} id="trackers">
         <div className={`${f.shelfHead} ${n.learnHead}`}>
           <h2 className={f.h2}>What we read every week</h2>
@@ -516,6 +524,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           </div>
         </article>
       </section>
+      )}
 
       {/* Band 8, coming up: HIDDEN (Paul, 27 Sep: "let's remove this for now? So we can review properly"). */}
       {SHOW_CALENDAR && (
@@ -570,7 +579,7 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
         </div>
         <div className={n.accSide}>
           <AccessForm want="account" className={n.joinRow} doneClassName={n.accFine} done="You're in. Every report, the library and the course are open to you." />
-          <span className={n.accFine}>One account for everything here. Already have one? <a href="#">Sign in</a>. No paid tier; there is nothing to upgrade to.</span>
+          <span className={n.accFine}>One account for everything here. Already have one? <a href="/signin">Sign in</a>. No paid tier; there is nothing to upgrade to.</span>
           <div className={`mod-win ${n.dWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
@@ -579,8 +588,8 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             <div className={n.winBody}>
               <span className={n.dKick}>What is waiting in it</span>
               <ol className={n.accMods}>
-                <li><span>1</span>{COUNTS.reports} reports as PDFs<em>{COUNTS.series} series</em></li>
-                <li><span>2</span>{COUNTS.datasets} datasets as files<em>{Math.round(COUNTS.rows / 1000)}k rows</em></li>
+                <li><span>1</span>{COUNTS.reports === 1 ? "The report as a PDF" : `${COUNTS.reports} reports as PDFs`}<em>{plural(COUNTS.series, "series", "series")}</em></li>
+                <li><span>2</span>{COUNTS.datasets === 1 ? "The dataset as a file" : `${COUNTS.datasets} datasets as files`}<em>{COUNTS.rows >= 1000 ? `${Math.round(COUNTS.rows / 1000)}k rows` : `${COUNTS.rows} rows`}</em></li>
                 <li><span>3</span>The library<em>{lib.everything} things</em></li>
                 <li><span>4</span>The course<em>{MODULES.filter((m) => m.built).length} of {MODULES.length} open</em></li>
                 <li><span>5</span>Your sector, every report and tracker<em>on request</em></li>

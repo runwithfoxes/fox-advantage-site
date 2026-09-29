@@ -5,7 +5,9 @@
  * ==highlight== marks, which pick out a phrase the way the module pages do and change no words,
  * and the titles of the three figures Sam wrote as prose (f34, f42, f71), which quote his text.
  * Every chart draws from numbers.json beside this file, never from the prose.
- * NOT APPROVED FOR THE LIVE SITE until Paul approves Sam's text.
+ * Approved by Paul for the live site on 29 Sep 2026. His changes that day: the headline (below), the
+ * base counts put back into the caption of Figure 1.1, captions that read on paper as well as on
+ * screen, and the fourth Cato review in the method.
  */
 
 export type Block =
@@ -19,11 +21,13 @@ export type Chapter = { id: string; n: number; title: string; lede?: string[]; s
 
 export const META = {
   kicker: "The AI Ask · quarterly report · Ireland",
-  title: "The AI Ask, Q3 2026: Irish marketing jobs take up AI,",
+  title: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI",
   // Paul, 27 Sep, on his phone: the headline was too long. The eyebrow above it already says the
   // report and the issue, so the hero drops the prefix; `title` stays for the tab and the catalogue.
-  heroTitle: "Irish marketing jobs take up AI,",
-  titleHl: "sales jobs don't",
+  // Paul, 29 Sep: the old headline ("marketing jobs take up AI, sales jobs don't") was wrong, since
+  // sales jobs ask too (Chapter 1.3, Chapter 3), and too long. 56 of 636 is 8.8%, about 1 in 11.
+  heroTitle: "1 in 11 marketing and sales jobs",
+  titleHl: "asks for AI",
   date: "25 September 2026",
   byline: "Sam · AI researcher, Run with Foxes",
   checked: "Checked by Cato and Paul Dervan",
@@ -60,7 +64,7 @@ export const CHAPTERS: Chapter[] = [
         title: "From none to one in four",
         blocks: [
           { p: `Figure 1.1 shows the share of jobs.ie ads with a real AI ask in each period, with marketing and sales jobs counted separately. We use jobs.ie alone for this because it's the one site we have for every period, so the line compares like with like. A job counts as sales if its title says sales, account executive, account manager, business development, customer success or similar. It counts as marketing only if it isn't a sales job and its title says marketing, brand, content, social media, communications, ecommerce or similar.` },
-          { fig: "f11", title: "Marketing ads that ask for AI rose from 0% to 26% in a year. Sales stayed under 2%.", cap: "Share of jobs.ie ads with a real AI ask. Oct to Dec 2025 is mostly October." },
+          { fig: "f11", title: "Marketing ads that ask for AI rose from 0% to 26% in a year. Sales stayed under 2%.", cap: "Share of jobs.ie ads with a real AI ask. Marketing: 0 of 43, 14 of 114, 2 of 25, 8 of 31. Sales: 2 of 236, 10 of 560, 0 of 159, 2 of 110. Oct to Dec 2025 is mostly October." },
           { p: `The asks that do appear in late 2025 are thin. One is a sales operations role at Actavo that lists "familiarity with Excel, AI, and CRM systems" as desirable. By September, the marketing asks on jobs.ie are specific. Femtech Healthcare is hiring a Senior AI Search and SEO Specialist to own how it is found "across Google and emerging AI search platforms like ChatGPT, Gemini, Claude and Perplexity". Excel Recruitment, hiring for a luxury retailer, wants an ecommerce and digital marketing manager to "champion innovation by exploring and implementing AI-powered technologies". Dolby, hiring through Cpl, wants its product marketing contractors to "use approved AI tools to speed up content workflows".` },
         ],
       },
@@ -142,7 +146,7 @@ export const CHAPTERS: Chapter[] = [
         title: "By level",
         blocks: [
           { p: `Figure 3.3 splits September's ads by level, read from the job title. We separate entry-level titles (graduate, junior, coordinator, trainee, assistant) from executive titles (sales executive, marketing executive, account executive, representative), because in Irish job ads an executive is often a few years into the job. We leave out shop and showroom sales titles, which asked for AI in none of 83 ads.` },
-          { fig: "f33", title: "Across all sources, one in five head and director ads asks for AI. On the job boards alone, the levels are much closer.", cap: "Share with a real AI ask by level, 24 September 2026. 69 titles don't say a level. Switch to job boards only to take out the tech firms' careers pages. Hover a level to see what it was asked for." },
+          { fig: "f33", title: "Across all sources, one in five head and director ads asks for AI. On the job boards alone, the levels are much closer.", cap: "Share with a real AI ask by level, 24 September 2026, all sources. Entry 3 of 48, executive 18 of 232, manager or senior 25 of 181, head or director 5 of 23. 69 titles don't say a level. On the job boards alone: entry 6.2%, executive 2.7%, manager 6.3%, head or director 2 of 20. On the web page, pick a level to see what it was asked for, or switch to job boards only." },
           { p: `Across all sources the more senior the job, the more likely it asks for AI. But most of that slope comes from the technology firms, where managers and directors are asked to sell or lead AI. On the job boards alone, entry-level, executive and manager ads all ask at roughly the same low rate, and the numbers at each level are small. So I'd put it this way: at the tech firms, AI is being written into senior jobs first; at ordinary Irish employers, ==level makes much less difference than the kind of job==.` },
           { p: `The kind of ask does change as you go up. All three entry-level asks are to use AI tools. Executives are asked to use AI (11 ads) or sell it (7). Managers get the widest spread: 10 to use tools, 9 to sell AI, 3 to work on AI search, 2 to lead it and 1 to build. At head and director level, 2 asks are to lead AI, 2 to sell it and 1 to use it. Mediolanum wants its Head of Sales to "continue to develop and leverage the existing AI platform" it uses to make content for financial advisers. Datadog wants its Director of Enterprise Customer Success to "champion practical AI adoption across the team" and coach managers "to use them well without eroding judgment".` },
         ],
@@ -177,7 +181,7 @@ export const CHAPTERS: Chapter[] = [
         n: "4.1",
         title: "Five kinds of ask",
         blocks: [
-          { fig: "f41", title: "Half the asks are to use AI tools. Building agents came up once.", cap: "The 56 real AI asks on 24 September 2026, one square each, by kind. Pick a kind to see who asked." },
+          { fig: "f41", title: "Half the asks are to use AI tools. Building agents came up once.", cap: "The 56 real AI asks on 24 September 2026, one square each, by kind. On the web page, pick a kind to see who asked." },
           { p: `The kinds split cleanly by employer. The AI search asks all come from smaller Irish firms or the recruiters working for them: Femtech Healthcare, Yuno Energy, Staffline and Excel Recruitment. They want someone to make sure the company turns up when a customer asks ChatGPT instead of Google. The sell asks come from technology companies, where AI is in the product. We count a sell ask only when the ad says the job itself involves selling or introducing AI, not when the company simply describes itself as an AI company. The lead asks are few and senior: Excel Recruitment for a luxury retailer, Datadog, Accenture and Mediolanum.` },
           { p: `Agents, the word of the year in tech, show up mostly as a product someone else is selling. ==Only one marketing or sales job in Ireland asks the person to build them.== Wayflyer wants its Technical Revenue Operations Analyst to "build, deploy and continuously sharpen AI-native workflows and agents that augment how Sales, CS and the wider Revenue org work". The only other build ask is MongoDB's, for a sales operations analyst to build "statistical and machine learning models" for forecasting.` },
         ],
@@ -218,7 +222,7 @@ export const CHAPTERS: Chapter[] = [
         n: "5.1",
         title: "What gets named",
         blocks: [
-          { fig: "f51", title: "Office software and the CRM are named far more than anything else.", cap: "Ads naming at least one tool of each type, 24 September 2026, 636 ads. An ad can name tools of several types. \"Excel\" counts the software only, not the verb. Pick a type to see the tools inside it." },
+          { fig: "f51", title: "Office software and the CRM are named far more than anything else.", cap: "Ads naming at least one tool of each type, 24 September 2026, 636 ads. An ad can name tools of several types. \"Excel\" counts the software only, not the verb. The list shows the AI tools named; on the web page, pick a type to see the tools inside it." },
           { p: `The old tools still run marketing and sales in Ireland. Microsoft Office alone is named in 60 ads, more than every marketing tool type in the table put together (58 ads). Salesforce is named in 52 ads, and the sales tools that sit around it, the prospecting and call-recording software that fills sales conferences, come up in 5 between them. Figma, the design tool product teams live in, isn't named in a single marketing or sales ad. Canva is named in 22.` },
         ],
       },
@@ -235,7 +239,7 @@ export const CHAPTERS: Chapter[] = [
         title: "How the tools changed over the year",
         blocks: [
           { p: `Figure 5.2 follows the most-named tools on jobs.ie across the four periods, as a share of ads so the different sample sizes don't matter.` },
-          { fig: "f52", title: "Canva pulled ahead of Adobe over the year.", cap: "Share of jobs.ie marketing and sales ads naming each tool. Ads per period: 279, 674, 184, 141. September rests on 141 ads, so one ad moves a share by 0.7 points. Pick tools to compare." },
+          { fig: "f52", title: "Canva pulled ahead of Adobe over the year.", cap: "Share of jobs.ie marketing and sales ads naming each tool. Ads per period: 279, 674, 184, 141. September rests on 141 ads, so one ad moves a share by 0.7 points. Canva and Adobe are drawn; on the web page, pick tools to compare." },
           { p: `Canva and Adobe were level in late 2025, both at 2.2% of ads. By September, Canva was named in 9 ads (6.4%) and Adobe in 4 (2.8%). That fits the rest of this report: ==the tools that let one person do more on their own are the ones rising==. But treat it with care. Nearly every tool rose on jobs.ie in September, so part of the rise may simply be that September's ads were more detailed. Canva's change rests on nine ads. We'll know more after December.` },
           { gate: "The full tool list for every period, and which employers name each one" },
         ],
@@ -306,7 +310,7 @@ export const METHOD: { k: string; t: string }[] = [
   { k: "Marketing and sales", t: `We sort each job by its title, checking for sales words first, so a "Growth Account Executive" counts as sales and not marketing. Jobs that aren't marketing or sales are removed: data labelling and content moderation, procurement, finance, legal, HR, engineering, software and design.` },
   { k: "Judging", t: `We pulled every sentence in each ad that mentions AI and sorted the ad into one of the five kinds of ask, or no real ask, using one written rulebook for every period. A company describing its own AI doesn't count. A company-wide rule that every employee uses AI does. A sell ask needs the ad to say the job itself sells or introduces AI. A second reader judged the candidate ads blind against that rulebook, and we judged the jobs that the final duplicate check split apart; 172 judgements sit behind this report, 109 of them the second reader's calls unchanged, 11 its calls we overruled, and 52 ours. Note that the second reader saw the AI sentences we pulled out, not whole ads, so this checks the judging, not whether we missed a sentence.` },
   { k: "Other measures", t: `Level comes from the job title, and 69 September titles don't state one. Location comes from the job board's own location field, with Dublin suburbs counted as Dublin and vague locations such as "Ireland" or "Remote" left out of the Dublin comparison. Salary is counted when the ad shows an annual euro figure. Tools are counted by name after company blurbs are removed. The reasons for using AI in Chapter 4 are a keyword count, and one sentence can count under more than one reason. Every figure in this report is written from one numbers file by the same script, so the text can't drift from the data.` },
-  { k: "Checking", t: `Before publication, Cato, the red team agent at Run with Foxes, attacked this report three times from the raw ads. The first time he found that our marketing test counted some sales jobs as marketing, that the same job posted under different names had been judged differently, and several factual errors. The second time he found that our new duplicate check merged some different jobs and missed two real duplicates, and that our rule for sell asks was uneven. The third time he found that the duplicate check could still chain sister companies together, and that our job-by-job chart and our finding on seniority mostly reflected the technology firms. We fixed each of these, and every figure here comes from the final data. September is one day of live ads, and the middle of the year rests on small archive samples.` },
+  { k: "Checking", t: `Before publication, Cato, the red team agent at Run with Foxes, attacked this report four times from the raw ads. The first time he found that our marketing test counted some sales jobs as marketing, that the same job posted under different names had been judged differently, and several factual errors. The second time he found that our new duplicate check merged some different jobs and missed two real duplicates, and that our rule for sell asks was uneven. The third time he found that the duplicate check could still chain sister companies together, and that our job-by-job chart and our finding on seniority mostly reflected the technology firms. The fourth time he re-ran our scripts and found every figure matched the data, but that one sentence comparing Office software with the marketing tools was wrong and one treated a job type with too few ads as solid. We fixed each of these, and every figure here comes from the final data. September is one day of live ads, and the middle of the year rests on small archive samples.` },
 ];
 
 export const SIGNOFF = `This report was researched and written by Sam, the AI researcher at Run with Foxes, and checked by Cato and Paul Dervan. The ads, the code, every judgement and every figure in this report are kept, so the next quarter can be compared with this one.`;

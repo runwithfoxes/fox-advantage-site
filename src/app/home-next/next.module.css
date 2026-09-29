@@ -766,3 +766,30 @@ a.entryT:hover { color: #3A7CA5; }
 .tellLink { color: #3A7CA5; text-decoration: underline; text-decoration-color: rgba(58,124,165,.4); text-underline-offset: 3px; }
 /* Phone (27 Sep pass): the covers' number and cadence were 9px on a phone; 10.5px reads. */
 @media (max-width: 600px) { .coverSceneTop { font-size: 10.5px; } .coverPhotoTitle { font-size: 15px; } }
+
+/* ── Three pieces of work, and the two books (Proof.tsx, 29 Sep 2026) ── */
+.workGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.workCard { display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; min-width: 0; }
+.workCard:hover .workTitle { color: var(--orange); }
+.workImg, .workPlate { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); background: #fff; margin-bottom: 8px; }
+.workPlate { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 24px; background: var(--text); color: #fff; border-color: var(--text); }
+.workPlate b { font-family: var(--sans); font-weight: 500; font-size: 64px; letter-spacing: -0.03em; line-height: 1; }
+.workPlate span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: rgba(255,255,255,.72); margin-top: 10px; }
+.workTitle { display: block; font-family: var(--sans); font-weight: 500; font-size: 24px; letter-spacing: -0.015em; line-height: 1.15; }
+.workLine { margin: 0; font-family: var(--sans); font-size: 16px; line-height: 1.5; color: var(--text); }
+.workNum { font-family: var(--sans); font-size: 15px; color: var(--text-muted); }
+.workNum b { font-weight: 500; color: var(--text); }
+.workWho { margin: 4px 0 0; }
+.bookGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.bookCard { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; color: inherit; text-decoration: none; min-width: 0; }
+.bookCard:hover .workTitle { color: var(--orange); }
+.bookCover { width: 150px; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(20,16,40,.18), 0 1px 2px rgba(20,16,40,.1); }
+.bookSub { display: block; font-family: var(--sans); font-size: 15px; color: var(--text-muted); margin: 4px 0 10px; }
+@media (max-width: 1100px) { .workGrid { gap: 24px; } .bookGrid { gap: 32px; } }
+@media (max-width: 700px) {
+  .workGrid { grid-template-columns: 1fr; gap: 40px; }
+  .bookGrid { grid-template-columns: 1fr; gap: 40px; }
+  .bookCard { grid-template-columns: 110px 1fr; gap: 20px; }
+  .bookCover { width: 110px; }
+  .workPlate b { font-size: 56px; }
+}

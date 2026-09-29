@@ -10,8 +10,9 @@
  * button, the film), and prints it to A4. Nothing is laid out twice.
  *
  * Every page of every PDF carries a footer with the report name, a page number, and the mockup's
- * own words: "Example, made-up numbers" for an example edition, "Draft, not approved" for The AI
- * Ask and GEO Ireland until Paul approves them.
+ * own words: "Example, made-up numbers" for an example edition, "Draft, not approved" for an edition
+ * whose catalogue status is still "draft". A published edition carries no stamp (The AI Ask, Q3 2026,
+ * approved by Paul 29 Sep 2026).
  *
  * When it is done it writes scripts/resources/pdf-pages.json, the real page count per slug. The
  * catalogue generator reads that file, so `node scripts/resources/build-catalogue.mjs` afterwards
@@ -86,7 +87,7 @@ const PRINT_CSS = `
 `;
 
 function footerFor(r, se) {
-  const stamp = r.example ? "Example, made-up numbers" : "Draft, not approved";
+  const stamp = r.example ? "Example, made-up numbers" : r.status === "draft" ? "Draft, not approved" : "";
   return `<div style="width:100%;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;color:#8A8A85;padding:0 14mm;display:flex;justify-content:space-between;">
     <span>${se.name} · ${r.edition} · Run with Foxes</span>
     <span style="color:${r.example ? "#F47521" : "#3A7CA5"}">${stamp}</span>

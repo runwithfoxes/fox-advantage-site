@@ -150,7 +150,7 @@ export default function NextNav() {
 
   return (
     <header className={n.nav} ref={wrap}>
-      <Link href="/home-next" className={n.logo}>
+      <Link href="/" className={n.logo}>
         /Runwithfoxes
       </Link>
       <nav className={n.links}>

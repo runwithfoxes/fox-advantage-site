@@ -455,7 +455,7 @@ export function F51() {
               <b>{v}</b>
             </div>
           ))}
-        {open === "AI" ? <p className={r.tNote}>24 of the 27 ads that mention AI tools don&rsquo;t name one.</p> : null}
+        {open === "AI" ? <p className={r.tNote}>{N.ai_tools_named.generic_without_any_name} of the {N.ai_tools_named.ads_generic_ai_tools} ads that ask for &ldquo;AI tools&rdquo;, &ldquo;AI fluency&rdquo; or &ldquo;AI platforms&rdquo; name no tool at all.</p> : null}
       </div>
     </div>
   );

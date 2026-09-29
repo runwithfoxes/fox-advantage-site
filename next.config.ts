@@ -96,6 +96,24 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      /* 29 Sep 2026, launch day. The jobs tracker page still headlines the September count that
+         Cato's reviews moved (660 and 47); the report carries the final one (636 and 56). Until the
+         tracker page is rebuilt from the report's numbers, the report is where that link goes. */
+      {
+        source: "/resources/jobs-ai",
+        destination: "/resources/the-ai-ask/2026-q3",
+        permanent: false,
+      },
+      /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
+         in the code; these two lines are what keep them off the live site. Remove to release. */
+      { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },
+      { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
+      /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
+      {
+        source: "/home-next",
+        destination: "/",
+        permanent: false,
+      },
       {
         source: "/clients",
         destination: "https://clients.runwithfoxes.com",

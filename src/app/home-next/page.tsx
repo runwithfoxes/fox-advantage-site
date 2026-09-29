@@ -4,19 +4,19 @@ import SiteFooter from "@/components/SiteFooter";
 import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
 import { formatDay, getLibrary } from "../resources/library";
-import { CATEGORIES } from "../resources/data";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
 import HeroJoin from "./HeroJoin";
 import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
+import Proof from "./Proof";
 import DataBand from "./DataBand";
 import SectorPicker from "./SectorPicker";
 import ResearchBands from "./ResearchBands";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
-import { DESKS, TRACKERS, STUDIES, TOOL_CARDS, AREAS_NEXT, type Study } from "./content";
+import { TRACKERS } from "./content";
 import { SERIES, editionsOf, seriesOf, reportHref } from "../resources/catalogue";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
@@ -24,15 +24,14 @@ import n from "./next.module.css";
 
 export const metadata: Metadata = {
   title: "Run with Foxes",
-  robots: { index: false, follow: false },
+  description:
+    "Giving marketing teams an edge. Research, essays, a free course and the library, from a new kind of marketing consultancy in Dublin.",
 };
 
-/* GEO Ireland day one (23 Aug 2026), NOT signed off by Paul: categories whose most-named
-   answer is a state body. Counted off data.ts, never typed. */
+/* Live from 29 Sep 2026. GEO Ireland's day-one reading came off the page that day: Paul has not
+   signed the numbers off. When he does, the tracker in content.ts takes it back. */
 const SHOW_NUMBERS = false;
 const SHOW_SECTOR = false;
-const STATE_LED = CATEGORIES.filter((c) => c.owner === "state").length;
-const GEO_READING = { value: String(STATE_LED), of: `of ${CATEGORIES.length} categories led by a state body`, last: "23 Aug" };
 
 function Ex({ on = true }: { on?: boolean }) {
   return on ? <span className={f.ex}>Example</span> : null;
@@ -52,17 +51,15 @@ export default function HomeNext() {
   /* What's new: one list across every kind of thing we publish, newest first. Only real
      items, except where tagged. */
   const news: { type: string; who: string; t: string; href: string; day: string; ex?: boolean }[] = [
-    { type: "Report", who: "Sam", t: "The AI Ask, Q3 2026: Irish marketing jobs take up AI, sales jobs don't", href: "/resources/the-ai-ask/2026-q3", day: "25 Sept 2026" },
+    { type: "Report", who: "Sam", t: "The AI Ask, Q3 2026: 1 in 11 Irish marketing and sales jobs asks for AI", href: "/resources/the-ai-ask/2026-q3", day: "25 Sept 2026" },
     ...(essays[0] ? [{ type: "Essay", who: "Paul Dervan", t: essays[0].title, href: `/essays/${essays[0].slug}`, day: formatDay(essays[0].date) }] : []),
-    { type: "Tracker", who: "Jeff", t: "About 1 in 11 new marketing and sales ads asks anything real about AI", href: "/resources/jobs-ai", day: "Read 24 Sept 2026" },
+    { type: "Tracker", who: "Jeff", t: "About 1 in 11 new marketing and sales ads asks anything real about AI", href: "/resources/the-ai-ask/2026-q3", day: "Read 24 Sept 2026" },
     ...(openMod ? [{ type: "Course", who: "Paul Dervan", t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, day: nextMod ? `Module ${nextMod.n} opens ${nextMod.when}` : "" }] : []),
     ...(diary[0] ? [{ type: "Diary", who: "Lena", t: diary[0].title, href: `/diary/${diary[0].slug}`, day: formatDay(diary[0].date) }] : []),
     ...(essays[1] ? [{ type: "Essay", who: "Paul Dervan", t: essays[1].title, href: `/essays/${essays[1].slug}`, day: formatDay(essays[1].date) }] : []),
-    { type: "Study", who: "Jess", t: "GEO Ireland: who five AI engines name across 41 categories of Irish life", href: "/resources/geo-ireland", day: "Day one, 23 Aug 2026" },
-    { type: "Research", who: "Sam", t: "How other firms run free research, and what we took from it", href: "/resources", day: "Coming", ex: true },
+    /* GEO Ireland's row waits for Paul's sign-off; the "coming" example row came off for launch (29 Sep). */
   ];
-  const trackers = TRACKERS.map((t) => (t.name === "AI answers in Ireland" ? { ...t, reading: GEO_READING } : t));
-  const flagship = STUDIES[0];
+  const trackers = TRACKERS;
   /* The card's lines, built the way the hub builds them: studies, trackers, then every
      published piece. Invented studies and trackers say "example" in their label. */
   const lines = [
@@ -208,6 +205,11 @@ export default function HomeNext() {
         {/* Paul, 27 Sep: "let's move the reports up to just under my first section", the essay. Your
             sector moved down under it; what that band means is still to be settled. */}
         <ResearchBands part="reports" />
+
+        {/* Paul, 29 Sep: the case studies and the two books. The idea leads each card, so the
+            work reads as a way of working, and the brand and the result follow it. */}
+        <Proof />
+
         {SHOW_NUMBERS && <DataBand />}
         {/* Paul, 27 Sep: "we need to hide this for the moment, until we discuss it." */}
         {SHOW_SECTOR && <SectorPicker />}
@@ -225,9 +227,6 @@ export default function HomeNext() {
       </main>
 
       <SiteFooter current="/" wide />
-      <div className={f.banner}>
-        Mockup, 25 Sep 2026. The homepage at full scale. Anything tagged Example is made up. GEO Ireland numbers are day one and not signed off.
-      </div>
     </div>
   );
 }

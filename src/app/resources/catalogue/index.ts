@@ -8,12 +8,26 @@ import type { Catalogue, Report, ReportSeries, Tracker, Dataset, Tool, Playbook,
  */
 export const CATALOGUE = data as unknown as Catalogue;
 
-export const SERIES: ReportSeries[] = CATALOGUE.series;
-export const REPORTS: Report[] = CATALOGUE.reports;
-export const TRACKERS: Tracker[] = CATALOGUE.trackers;
-export const DATASETS: Dataset[] = CATALOGUE.datasets;
-export const TOOLS: Tool[] = CATALOGUE.tools;
-export const PLAYBOOKS: Playbook[] = CATALOGUE.playbooks;
+/*
+  LIVE, 29 Sep 2026. The site went live with the new homepage before the research programme was
+  ready, so this is the one door every made-up thing is stopped at. Every item with example: true
+  is dropped here, which means no page, count, card, PDF list or report route can show one: a
+  made-up report's URL returns not found because reportBySlug never sees it. Two REAL series are
+  held back as well, by slug, until Paul signs them off (his words, 29 Sep: "The GEO isn't ready
+  and neither is the other research"): GEO Ireland and the Ad Audit. Take a slug out of HELD to
+  release it. Flip LIVE to false to see the full mockup again.
+*/
+const LIVE = true;
+const HELD = new Set(["geo-ireland", "the-ad-audit", "geo-ireland-day-one", "ai-answers-in-ireland"]);
+const held = (x: { slug: string; series?: string; report?: string }) => HELD.has(x.slug) || HELD.has(x.series ?? "") || HELD.has((x.report ?? "").replace(/-(2026|2027)-q\d$|-no-\d+$/, ""));
+const live = <T extends { slug: string; example: boolean; series?: string }>(xs: T[]): T[] => (LIVE ? xs.filter((x) => !x.example && !held(x)) : xs);
+
+export const SERIES: ReportSeries[] = live(CATALOGUE.series);
+export const REPORTS: Report[] = live(CATALOGUE.reports);
+export const TRACKERS: Tracker[] = live(CATALOGUE.trackers);
+export const DATASETS: Dataset[] = live(CATALOGUE.datasets);
+export const TOOLS: Tool[] = live(CATALOGUE.tools);
+export const PLAYBOOKS: Playbook[] = live(CATALOGUE.playbooks);
 
 /** Published and draft reports, newest first. "coming" editions are announced, not listed as reports. */
 export const PUBLISHED: Report[] = REPORTS.filter((r) => r.status !== "coming");

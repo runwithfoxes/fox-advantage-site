@@ -24,7 +24,7 @@ export type Desk = {
 };
 
 /** Writers beyond Paul and Lena, whose pieces are read from their own files in page.tsx. */
-export const DESKS: Desk[] = [
+const ALL_DESKS: Desk[] = [
   {
     key: "sam",
     // Paul, 25 Sep: "Sam, who's an AI researcher". His pieces are not published yet.
@@ -47,10 +47,10 @@ export const DESKS: Desk[] = [
     mark: "J",
     kind: "agent",
     pieces: [
-      { t: "About 1 in 11 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/jobs-ai" },
-      { t: "Tech firms’ careers pages ask for AI about nine times as often", day: "24 Sept 2026", href: "/resources/jobs-ai#careers" },
+      { t: "About 1 in 11 new marketing and sales ads asks anything real about AI", day: "24 Sept 2026", href: "/resources/the-ai-ask/2026-q3" },
+      { t: "Tech firms’ careers pages ask for AI about nine times as often", day: "24 Sept 2026", href: "/resources/the-ai-ask/2026-q3" },
     ],
-    all: { t: "The tracker →", href: "/resources/jobs-ai" },
+    all: { t: "The report →", href: "/resources/the-ai-ask/2026-q3" },
     example: false,
   },
   {
@@ -105,6 +105,8 @@ export const DESKS: Desk[] = [
     example: true,
   },
 ];
+export const DESKS: Desk[] = ALL_DESKS.filter((d) => !d.example);
+
 
 export type Tracker = {
   name: string;
@@ -118,7 +120,8 @@ export type Tracker = {
   example: boolean;
 };
 
-export const TRACKERS: Tracker[] = [
+/* LIVE, 29 Sep 2026: only trackers that have read for real reach the page. GEO Ireland is held until Paul signs it off. */
+const ALL_TRACKERS: Tracker[] = [
   {
     name: "Jobs and AI",
     what: "The AI asks in Irish marketing and sales job ads",
@@ -126,7 +129,8 @@ export const TRACKERS: Tracker[] = [
     reads: "Weekly",
     // Sam's final, 25 Sep, after Cato's fourth check: 636 marketing and sales ads on 24 Sep, 56 with a real AI ask (8.8%).
     reading: { value: "56", of: "of 636 ads ask for AI", last: "24 Sep" },
-    href: "/resources/jobs-ai",
+    // The tracker page is out of date; the report carries the reading (29 Sep).
+    href: "/resources/the-ai-ask/2026-q3",
     example: false,
   },
   {
@@ -147,10 +151,12 @@ export const TRACKERS: Tracker[] = [
   { name: "Marketing leader moves", what: "Heads of marketing who changed jobs in Ireland", desk: "The moves desk", reads: "Monthly", first: "Nov", example: true },
   { name: "What marketers do with AI", what: "What 1,000+ marketers on our course actually use", desk: "Sam", reads: "Quarterly", first: "Jan", example: true },
 ];
+export const TRACKERS: Tracker[] = ALL_TRACKERS.filter((t) => !t.example && t.href !== "/resources/geo-ireland");
+
 
 export type Study = { no: string; title: string; line: string; next: string; cover: "bars" | "rings" | "blocks" | "grid" | "dots" | "steps"; fox: string; href?: string; example: boolean };
 
-export const STUDIES: Study[] = [
+const ALL_STUDIES: Study[] = [
   { no: "No. 01", title: "GEO Ireland", line: "Who five AI engines name across 41 categories of Irish life.", next: "Second read, Dec", cover: "bars", fox: "fox-sideeye-right-nobg.png", href: "/resources/geo-ireland", example: false },
   { no: "No. 02", title: "What Irish Marketers Do with AI", line: "From what 1,000+ marketers do on our course, not what they say.", next: "Jan 2027", cover: "rings", fox: "chapter-fox-bored-nobg.png", example: true },
   { no: "No. 03", title: "The Irish Marketing Team", line: "Team size and roles at the top Irish companies, by sector.", next: "Feb 2027", cover: "blocks", fox: "fox-pm-nobg.png", example: true },
@@ -158,10 +164,13 @@ export const STUDIES: Study[] = [
   { no: "No. 05", title: "What Comes to Mind", line: "Which brands Irish people think of in real buying moments, by phone.", next: "Mar 2027", cover: "dots", fox: "chapter-fox-sitting-nobg.png", example: true },
   { no: "No. 06", title: "The Mystery Shop", line: "The same question put to 50 Irish brands’ chat, email and phone.", next: "Apr 2027", cover: "steps", fox: "fox-rain-nobg.png", example: true },
 ];
+/* GEO Ireland is the only real study and it is held, so this is empty on the live site. */
+export const STUDIES: Study[] = ALL_STUDIES.filter((x) => !x.example && x.href !== "/resources/geo-ireland");
+
 
 export type ToolCard = { name: string; line: string; href?: string; bar: string; example: boolean };
 
-export const TOOL_CARDS: ToolCard[] = [
+const ALL_TOOL_CARDS: ToolCard[] = [
   { name: "Brief Diagnostician", line: "Paste a brief. See which way it wants the ad to work.", href: "/brief-diagnostician", bar: "brief_diagnostician", example: false },
   { name: "The metrics pyramid", line: "See where each metric you track sits, activity to outcome.", href: "/coach", bar: "metrics_pyramid", example: false },
   { name: "What an agent costs", line: "What a marketing agent costs to build and to run.", href: "/what-does-a-marketing-agent-cost", bar: "agent_cost", example: false },
@@ -171,6 +180,8 @@ export const TOOL_CARDS: ToolCard[] = [
   { name: "How many are in market", line: "The share of your buyers ready to buy this quarter.", bar: "in_market", example: true },
   { name: "Team benchmark", line: "Your sector, revenue and team size. See where you sit.", bar: "team_benchmark", example: true },
 ];
+export const TOOL_CARDS: ToolCard[] = ALL_TOOL_CARDS.filter((t) => !t.example);
+
 
 export const AREAS_NEXT: { name: string; line: string }[] = [
   { name: "AI search", line: "What the engines say, and who they send people to" },

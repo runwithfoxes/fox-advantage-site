@@ -114,7 +114,7 @@ function baseEdition(s, label, date, extra) {
     {
       ...baseEdition(s, "Q3 2026", "2026-09-25", {}),
       slug: "the-ai-ask-2026-q3", edition: "Q3 2026", n: 1,
-      title: "Irish marketing jobs take up AI, sales jobs don't",
+      title: "1 in 11 Irish marketing and sales jobs asks for AI",
       standfirst: `${fmt(ASK.total_ads)} job ads read, ${all.n} of them from one day in September. ${all.k} ask for anything real about AI.`,
       author: A.sam, checkedBy: "Cato and Paul Dervan", sectors: ["Technology and SaaS", "Retail and ecommerce", "Financial services"],
       sample: `${fmt(ASK.total_ads)} job ads`,
@@ -129,7 +129,7 @@ function baseEdition(s, label, date, extra) {
       ],
       free: ["The whole report, every chapter and figure", "The method and its limits"],
       withAccount: ["Every ad behind the numbers, by role, level, employer and county", "The report as a PDF", "The next issue by email when it lands"],
-      pages: 28, minutes: 16, href: "/resources/the-ai-ask/2026-q3", example: false, status: "draft",
+      pages: 28, minutes: 16, href: "/resources/the-ai-ask/2026-q3", example: false, status: "published",
     },
     {
       ...baseEdition(s, "Q4 2026", "2026-12-15", {}), slug: "the-ai-ask-2026-q4", n: 2,

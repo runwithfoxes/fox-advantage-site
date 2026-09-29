@@ -21,7 +21,6 @@ import r from "./report.module.css";
 
 export const metadata: Metadata = {
   title: "The AI Ask, Q3 2026 | Run with Foxes",
-  robots: { index: false, follow: false },
 };
 
 /** Sam's ==phrase== marks become the module highlight. The words are never touched. */
@@ -91,7 +90,7 @@ function BlockView({ b, ch }: { b: Block; ch: number }) {
  *
  * Built so each quarter drops in: copy.ts holds Sam's words, numbers.json every figure. The
  * shell is the module page's (masthead, sticky contents rail with dots, numbered sections,
- * figures in module windows). NOT FOR THE LIVE SITE until Paul approves Sam's text.
+ * figures in module windows). Approved by Paul for the live site, 29 Sep 2026.
  */
 export default async function AiAskQ3() {
   const unlocked = await hasAccess();
@@ -141,10 +140,6 @@ export default async function AiAskQ3() {
           </div>
         </div>
       </section>
-
-      <div className={r.draft}>
-        Draft for Paul. Sam&rsquo;s text and numbers, not yet approved for the live site, and Cato is reviewing them now.
-      </div>
 
 
       <div className={r.body}>

@@ -70,28 +70,16 @@ export function getLibrary(): Entry[] {
     soon: !m.built,
   }));
   const fixed: Entry[] = [
+    /* GEO Ireland's study and category pages came out of this list on 29 Sep 2026: Paul has not
+       signed the numbers off. Put them back when he does. The jobs tracker page is out of date, so
+       its line points at The AI Ask, which carries the final reading (56 of 636, Sam, 25 Sep). */
     {
       date: "2026-09-24",
       area: "work",
       type: "Tracker",
-      title: "About 1 in 14 new marketing and sales ads asks anything real about AI",
-      href: "/resources/jobs-ai",
-      dek: "302 new ads read across seven sources. Tech firms' careers pages ask four times as often.",
-    },
-    {
-      date: "2026-08-23",
-      area: "search",
-      type: "Study",
-      title: "Who AI names when you ask an Irish question",
-      href: "/resources/geo-ireland",
-      dek: "Five AI engines, 41 categories. In 17 of them the name AI gives first is a state body.",
-    },
-    {
-      date: "2026-08-23",
-      area: "search",
-      type: "Category",
-      title: "Hotels: AI names the booking sites, not the hotels",
-      href: "/resources/geo-ireland/hotels",
+      title: "About 1 in 11 new marketing and sales ads asks anything real about AI",
+      href: "/resources/the-ai-ask/2026-q3",
+      dek: "636 live ads read across seven sources on one day. 56 ask for AI.",
     },
     { date: "2026-08-28", area: "agents", type: "Answer", title: "Diary of an AI marketing team", href: "/diary" },
     { date: "2026-07-21", area: "agents", type: "Answer", title: "What is a marketing agent?", href: "/what-is-a-marketing-agent" },

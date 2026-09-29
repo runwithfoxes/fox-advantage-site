@@ -9,7 +9,7 @@ export default function HeroJoin() {
     <div className={n.hj}>
       <AccessForm want="account" className={n.hjForm} doneClassName={n.hjDone} done="You're in. Every report, the library and the course are open to you." />
       <span className={n.hjFine}>
-        Every report, tracker and the course, in one free account. Already have one? <a href="#">Sign in</a>
+        Every report, tracker and the course, in one free account. Already have one? <a href="/signin">Sign in</a>
       </span>
     </div>
   );
