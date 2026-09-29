@@ -793,3 +793,9 @@ a.entryT:hover { color: #3A7CA5; }
   .bookCover { width: 110px; }
   .workPlate b { font-size: 56px; }
 }
+
+/* The reports band with one series: the flag alone, cover on the left and the words beside it. */
+.studiesOne { grid-template-columns: 1fr; }
+.studiesOne .flag { grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
+.studiesOne .covers { display: none; }
+@media (max-width: 1100px) { .studiesOne .flag { grid-template-columns: 1fr; gap: 22px; } }

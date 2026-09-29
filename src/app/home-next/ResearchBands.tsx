@@ -163,7 +163,8 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
           {plural(COUNTS.series, "study", "studies")} on a fixed calendar, {plural(COUNTS.reports, "edition")}. Free to read with no form; every PDF with a free account.
         </span>
       </div>
-      <div className={n.studies}>
+      {/* One series on the shelf (29 Sep): the flag takes the whole row, cover beside the words. */}
+      <div className={`${n.studies} ${restE.length === 0 ? n.studiesOne : ""}`}>
         <Link href={flagEd && editionsOf(flag).filter((r) => r.status !== "coming").length === 1 && !flag.example ? reportHref(flagEd) : seriesHref(flag)} className={n.flag}>
           <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]} />
           <div>
