@@ -799,3 +799,12 @@ a.entryT:hover { color: #3A7CA5; }
 .studiesOne .flag { grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
 .studiesOne .covers { display: none; }
 @media (max-width: 1100px) { .studiesOne .flag { grid-template-columns: 1fr; gap: 22px; } }
+
+/* Coming soon covers beside the one report out: two across, the box to be told sits under the line. */
+.coversComing { grid-template-columns: repeat(2, 1fr); gap: 26px 22px; align-content: start; }
+.comingCard .joinRow { margin-top: 4px; }
+.comingCard .joinRow input { font-size: 12px; padding: 10px 12px; }
+.comingCard .joinRow button { font-size: 12px; padding: 0 14px; white-space: nowrap; }
+@media (max-width: 700px) { .coversComing { grid-template-columns: 1fr; gap: 32px; } }
+.studies .coversComing { gap: 28px 24px; }
+.comingCard .joinRow input { min-width: 0; }

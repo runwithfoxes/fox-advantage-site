@@ -29,6 +29,13 @@ export const DATASETS: Dataset[] = live(CATALOGUE.datasets);
 export const TOOLS: Tool[] = live(CATALOGUE.tools);
 export const PLAYBOOKS: Playbook[] = live(CATALOGUE.playbooks);
 
+/* The held real series, shown as "coming soon" on the homepage shelf with a box to be told when
+   each one lands (Paul, 29 Sep: "have the GEO report and also the Meta advertising report... coming
+   soon and people can just subscribe"). Their pages stay off until they are released from HELD. */
+export const COMING_SOON: ReportSeries[] = ["the-ad-audit", "geo-ireland"]
+  .map((slug) => CATALOGUE.series.find((se) => se.slug === slug))
+  .filter((se): se is ReportSeries => Boolean(se) && HELD.has(se!.slug));
+
 /** Published and draft reports, newest first. "coming" editions are announced, not listed as reports. */
 export const PUBLISHED: Report[] = REPORTS.filter((r) => r.status !== "coming");
 export const COMING: Report[] = REPORTS.filter((r) => r.status === "coming");

@@ -3,7 +3,7 @@ import Cover, { COVER_PHOTOS, seriesShelf } from "./Cover";
 import { INTRO as ASK_INTRO } from "../resources/the-ai-ask/2026-q3/copy";
 import Publications, { type Pub } from "../resources/Publications";
 import {
-  SERIES, PUBLISHED, COMING, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
+  SERIES, PUBLISHED, COMING, COMING_SOON, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
   seriesOf, editionsOf, reportBySlug, reportHref, seriesHref, datasetHref, trackerHref, day,
   type Author,
 } from "../resources/catalogue";
@@ -160,11 +160,11 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
       <div className={f.shelfHead}>
         <h2 className={f.h2}>Reports and papers</h2>
         <span className={f.meta}>
-          {plural(COUNTS.series, "study", "studies")} on a fixed calendar, {plural(COUNTS.reports, "edition")}. Free to read with no form; every PDF with a free account.
+          {plural(COUNTS.series, "study", "studies")} out{COMING_SOON.length ? `, ${COMING_SOON.length} coming` : ""}, each on a fixed calendar. Free to read with no form; every PDF with a free account.
         </span>
       </div>
       {/* One series on the shelf (29 Sep): the flag takes the whole row, cover beside the words. */}
-      <div className={`${n.studies} ${restE.length === 0 ? n.studiesOne : ""}`}>
+      <div className={`${n.studies} ${restE.length + COMING_SOON.length === 0 ? n.studiesOne : ""}`}>
         <Link href={flagEd && editionsOf(flag).filter((r) => r.status !== "coming").length === 1 && !flag.example ? reportHref(flagEd) : seriesHref(flag)} className={n.flag}>
           <Cover no={flagE.no} cadence={CADENCE_SHORT[flag.cadence] ?? flag.cadence} title={flag.name} cover={flagE.cover} fox={flagE.fox} photo={COVER_PHOTOS[flag.slug]} />
           <div>
@@ -195,7 +195,17 @@ export default function ResearchBands({ part }: { part?: "reports" | "rest" } = 
             <span className={n.doorGo}>Read the latest edition →</span>
           </div>
         </Link>
-        <div className={`${n.covers} ${n.coversWide}`}>
+        <div className={`${n.covers} ${restE.length ? n.coversWide : n.coversComing}`}>
+          {/* Coming soon: a real series with no edition out yet. The cover, the line, and a box to be
+              told when it lands, posted to Klaviyo tagged with the series (want=report, item=slug). */}
+          {COMING_SOON.map((se, i) => (
+            <div key={se.slug} className={`${n.coverCard} ${n.comingCard}`}>
+              <Cover no={`No. ${String(shelf.length + i + 1).padStart(2, "0")}`} cadence={CADENCE_SHORT[se.cadence] ?? se.cadence} title={se.name} cover="bars" fox="" photo={COVER_PHOTOS[se.slug]} />
+              <span className={`${f.meta} ${n.coverMeta}`}>Coming soon · first edition {se.cadence.toLowerCase()}</span>
+              <p className={n.coverLine}>{se.line}</p>
+              <AccessForm want="report" item={se.slug} label="Tell me when it lands" className={n.joinRow} doneClassName={n.accFine} done="You're on the list. We'll email you the day it lands." />
+            </div>
+          ))}
           {restE.map(({ se, no, cover, fox }) => {
             const ed = newest(se.slug);
             return (
