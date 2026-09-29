@@ -1,9 +1,11 @@
 import EverythingClient from "./EverythingClient";
 import { buildLibrary } from "./build";
+import { hasAccess } from "@/lib/access";
 
 /* ⭐ REBUILT EVERY 5 MINUTES, same as /course, so a module's files turn clickable on its
    launch morning without a deploy. Without this the page is frozen at build time. */
-export const revalidate = 300;
+/* Reads the access cookie since 29 Sep, so it renders per visitor. */
+export const dynamic = "force-dynamic";
 
 /**
  * /course/everything - THE LIBRARY.
@@ -58,16 +60,22 @@ export const metadata = {
   },
 };
 
-export default function EverythingPage() {
+export default async function EverythingPage() {
   /* FLATTENED ON THE SERVER, so the whole list is in the HTML that search and the AI engines
-     read. The builder is build.ts, shared with /resources/library since 26 Sep 2026. */
+     read. The builder is build.ts, shared with /resources/library since 26 Sep 2026.
+     ⭐ 29 Sep 2026, Paul: "we want to be generous but motivate people to sign up". This page was
+     public by the 2 Aug decision above; his 26 Sep "Library requires email too" reverses it for
+     the prompts. So the names, links and files stay readable for everyone, and the prompt text
+     opens with an email (either access cookie, the course's included). */
   const { sections, modules, hidden, shelfCount } = buildLibrary();
+  const locked = !(await hasAccess());
   return (
-    <EverythingClient
-      sections={sections}
-      modules={modules}
-      hidden={hidden}
-      shelfCount={shelfCount}
-    />
+      <EverythingClient
+        sections={sections}
+        modules={modules}
+        hidden={hidden}
+        shelfCount={shelfCount}
+        locked={locked}
+      />
   );
 }

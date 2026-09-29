@@ -6,6 +6,7 @@ import EverythingClient from "@/app/course/everything/EverythingClient";
 import { buildLibrary } from "@/app/course/everything/build";
 import { SHELF } from "@/app/course/shelf";
 import { Gate } from "../kit";
+import { hasAccess } from "@/lib/access";
 import Band from "./Band";
 import PromptRows, { type PromptRow } from "./PromptRows";
 import DownloadText from "./DownloadText";
@@ -42,7 +43,10 @@ export const metadata: Metadata = {
  * - Where it comes from: six doors, one per module, with the count each has contributed.
  * - The gate, last: the file of every prompt and new items by email, for an account.
  */
-export default function LibraryPage() {
+export default async function LibraryPage() {
+  /* Paul, 29 Sep 2026: the names and links are free, the prompts need an email. Locked only for
+     someone without an account; the page used to lock everybody, signed up or not. */
+  const locked = !(await hasAccess());
   const lib = buildLibrary();
   const folders = [...lib.lessonRows, ...lib.fileRows].filter((r) => r.type === "folder");
 
@@ -132,7 +136,7 @@ export default function LibraryPage() {
               The exact words to paste, lifted out of the lessons. With a free account each one opens here, you copy it, and the lesson it came from is one click away.
             </p>
           </div>
-          <PromptRows rows={prompts} locked />
+          <PromptRows rows={prompts} locked={locked} />
         </section>
 
         {/* ── The browser: the whole library as folders and files ── */}
@@ -143,7 +147,7 @@ export default function LibraryPage() {
               A lesson is a folder and what it hands you is inside it. Paul&rsquo;s own lists, the people, companies, articles and tools he keeps going back to, sit beside them as their own folders. Search covers the words in the lessons too, so the one about the spreadsheet is findable by &ldquo;spreadsheet&rdquo;.
             </p>
           </div>
-          <EverythingClient embed locked sections={lib.sections} modules={lib.modules} hidden={lib.hidden} shelfCount={lib.shelfCount} />
+          <EverythingClient embed locked={locked} sections={lib.sections} modules={lib.modules} hidden={lib.hidden} shelfCount={lib.shelfCount} />
         </section>
 
         {/* ── Where it comes from: six doors ── */}
@@ -174,7 +178,7 @@ export default function LibraryPage() {
             <DownloadText href="/resources/library/all-prompts.txt" label="Download every prompt" meta={`${prompts.length} prompts, one text file`} />
             <span className={L.dlNote}>Built from the library itself when you ask for it, so it is never out of date.</span>
           </div>
-          <Gate want="library" adds={["Every prompt, opened and copied here", "Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />
+          {locked && <Gate want="library" adds={["Every prompt, opened and copied here", "Every prompt as one file, to keep", "New prompts, links and files by email the day a module opens", "The documents from the modules, in their own formats", "Everything else in the resource centre: every report, tracker and dataset"]} />}
         </section>
       </main>
 

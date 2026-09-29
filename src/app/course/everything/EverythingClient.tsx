@@ -1,5 +1,7 @@
 "use client";
 
+import LibJoin from "./LibJoin";
+
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import s from "./Everything.module.css";
@@ -580,10 +582,22 @@ export default function EverythingClient({
                 Cost<b>{HERO.freeNote}</b>
               </span>
               <span>
-                Sharing<b>Copy anything. Send it on.</b>
+                Sharing<b>{locked ? "The prompts open with a free account." : "Copy anything. Send it on."}</b>
               </span>
             </div>
           </header>
+
+          {/* 29 Sep 2026: for someone without an account the ask sits here, above the library, in
+              the page's own column. The names and links below stay open; the prompt text does not. */}
+          {locked && !embed ? (
+            <div className={s.libAsk} id="account">
+              <p>
+                Every prompt opens with a free account, the same one as the course, and new ones come by
+                email the day a module opens.
+              </p>
+              <LibJoin />
+            </div>
+          ) : null}
 
           {browser}
 
