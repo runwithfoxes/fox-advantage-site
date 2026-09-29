@@ -32,7 +32,9 @@ export default async function AboutPage() {
           {/* Paul, 29 Sep 2026: "photo of me from bio and use same words". Word for word from the
               homepage bio (HomePage.tsx, hpx-bio-body), set in this page's reading type. */}
           <div>
-            <h1 className={a.bioName}>/Paul Dervan</h1>
+            {/* Paul, 29 Sep: "we dont' need my name here as have it just below". Kept for search engines and
+                screen readers as the page's one heading, not shown. */}
+            <h1 className={a.srOnly}>Paul Dervan</h1>
             <div className={a.bio}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className={a.bioPhoto} src="/Paul_photo.jpg" alt="Paul Dervan" />

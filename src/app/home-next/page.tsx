@@ -73,9 +73,16 @@ export default async function HomeNext() {
       .sort((a, b) => Number(a.example) - Number(b.example) || b.date.localeCompare(a.date))
       .map((r) => ({ label: `Report · ${seriesOf(r).name}${r.example ? " · example" : ""}`, title: r.title, href: reportHref(r) })),
     ...trackers.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
-    ...getLibrary()
-      .filter((e) => !e.soon && e.type !== "Study")
-      .map((e) => ({ label: `${e.type} · ${formatDay(e.date)}`, title: e.title, href: e.href })),
+    /* Paul, 29 Sep: "We should include Lena's essays in the scrolling card on hero." Her diary
+       dispatches join the published pieces, newest first, labelled as hers. */
+    ...[
+      ...getLibrary()
+        .filter((e) => !e.soon && e.type !== "Study")
+        .map((e) => ({ iso: e.date, label: `${e.type} · ${formatDay(e.date)}`, title: e.title, href: e.href })),
+      ...getAllDispatches().map((d) => ({ iso: d.date, label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` })),
+    ]
+      .sort((x, y) => y.iso.localeCompare(x.iso))
+      .map(({ label, title, href }) => ({ label, title, href })),
   ];
 
   return (
