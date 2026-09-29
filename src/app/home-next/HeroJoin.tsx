@@ -1,15 +1,32 @@
 "use client";
 
+import Link from "next/link";
 import n from "./next.module.css";
 import AccessForm from "../resources/kit/AccessForm";
 
-/** The hero's one ask: a free account. Posts to /api/access tagged "account" (27 Sep). */
-export default function HeroJoin() {
+/**
+ * The hero's one ask: a free account. Posts to /api/access tagged "account" (27 Sep).
+ * Paul, 29 Sep 2026: someone back for the course sees a new homepage and "just thinks that it's a new
+ * thing altogether". So a visitor this browser already knows gets Welcome back and the way in, and
+ * everyone else is told, under the box, that the course signs in with the same email.
+ */
+export default function HeroJoin({ known = false }: { known?: boolean }) {
+  if (known) {
+    return (
+      <div className={n.hj}>
+        <p className={n.hjBack}>Welcome back.</p>
+        <div className={n.hjGo}>
+          <Link href="/course" className={n.hjGoMain}>Continue the course →</Link>
+          <Link href="/course/everything" className={n.hjGoGhost}>Open the library →</Link>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={n.hj}>
-      <AccessForm want="account" className={n.hjForm} doneClassName={n.hjDone} done="You're in. Every report, the library and the course are open to you." />
+      <AccessForm want="account" className={n.hjForm} doneClassName={n.hjDone} done="You're in. The reports, the library and the course are open to you." />
       <span className={n.hjFine}>
-        Every report, tracker and the course, in one free account. Already have one? <a href="/signin">Sign in</a>
+        The reports, the library and the course, in one free account. On the course already? <Link href="/signin">Sign in</Link> with the same email.
       </span>
     </div>
   );

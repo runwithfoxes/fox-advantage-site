@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
-import AccessForm from "../resources/kit/AccessForm";
+import SignInForm from "./SignInForm";
 import { Top } from "../resources/reports/shared";
 import f from "../resources/front.module.css";
 import k from "../resources/kit/kit.module.css";
@@ -22,17 +22,17 @@ export const metadata: Metadata = {
 export default function SignInPage() {
   return (
     <div className={f.page}>
-      <Top crumbs={[{ href: "/resources", t: "Resources" }, { t: "Sign in" }]} />
+      <Top crumbs={[{ href: "/", t: "Home" }, { t: "Sign in" }]} />
       <main className={f.wrap} style={{ maxWidth: 560, padding: "72px 24px 96px" }}>
         <p className={f.meta}>One free account for everything here</p>
         <h1 className={f.h2} style={{ marginBottom: 14 }}>Sign in</h1>
         <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: 16.5, lineHeight: 1.65, margin: "0 0 22px" }}>
-          Put in the email you used before and everything opens on this device: every report and its PDF, the library, the datasets
-          and the course. No password. If you have never been here, the same box signs you up.
+          On the course already? Put in the email you signed up with and it opens on this device, along with the
+          library and every report. No password. If you have never been here, the same box signs you up.
         </p>
-        <AccessForm want="account" label="Sign in" className={k.gateForm} doneClassName={k.gateDone} done="You're in. Everything is open to you on this device." />
+        <SignInForm />
         <p className={k.gateNote} style={{ marginTop: 18 }}>
-          Nothing to pay and nothing to upgrade to. <Link href="/resources">Back to the research</Link>.
+          Nothing to pay and nothing to upgrade to. <Link href="/">Back to the homepage</Link>.
         </p>
       </main>
       <SiteFooter current="/resources" wide />

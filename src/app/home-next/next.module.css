@@ -868,3 +868,10 @@ a.entryT:hover { color: #3A7CA5; }
 .whoLink:hover { color: #3A7CA5; }
 .workItem { display: grid; gap: 3px; padding: 8px 0; text-decoration: none; color: inherit; }
 .workItem:hover .itemT, .workItem:hover span:first-child { color: #A6CDE8; }
+
+/* Welcome back, for a visitor this browser already knows (29 Sep 2026). */
+.hjBack { margin: 0 0 14px; font-family: var(--sans); font-size: 18px; color: #fff; text-shadow: 0 1px 8px rgba(4,10,16,.5); }
+.hjGo { display: flex; gap: 10px; flex-wrap: wrap; }
+.hjGoMain { font-family: var(--mono); font-size: 13px; padding: 13px 18px; background: #3A7CA5; color: #fff; text-decoration: none; }
+.hjGoMain:hover { background: #2F6688; }
+.hjGoGhost { font-family: var(--mono); font-size: 13px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; }

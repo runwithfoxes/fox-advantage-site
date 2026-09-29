@@ -8,8 +8,8 @@
 
 /* ── The top band: the site nav on deep, so one nav serves the film hero and these pages ── */
 .top { background: #1A3A4E; color: #fff; }
-.topInner { max-width: var(--wrap); margin: 0 auto; }
-.crumb { display: flex; gap: 10px; align-items: center; padding: 6px var(--gut) 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.topInner { max-width: var(--wrap, 1240px); margin: 0 auto; }
+.crumb { display: flex; gap: 10px; align-items: center; padding: 6px var(--gut, 48px) 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); }
 .crumb a { color: inherit; text-decoration: none; }
 .crumb a:hover { color: #fff; }
 .crumb i { font-style: normal; color: rgba(255,255,255,.35); }

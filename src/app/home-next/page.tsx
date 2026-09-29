@@ -8,6 +8,7 @@ import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
 import HeroJoin from "./HeroJoin";
+import { hasAccess } from "@/lib/access";
 import AgentsSection from "@/components/agents/AgentsSection";
 import PhoneDemo from "./PhoneDemo";
 import Proof from "./Proof";
@@ -39,7 +40,9 @@ const SHOW_SECTOR = false;
  * reach: ten trackers, six studies, eight writers, eight tools. Paul, 25 Sep 2026.
  * The headline is "Giving marketing teams an edge" (Paul, 27 Sep: "That's what we'll use for now").
  */
-export default function HomeNext() {
+export default async function HomeNext() {
+  /* A visitor this browser already knows gets Welcome back in the hero (29 Sep 2026). */
+  const known = await hasAccess();
   /* Paul, 29 Sep: "add more essays here because it just looks like blank space". Ten rows. */
   /* The featured essay is drawn big on the left, so it stays out of the list beside it. */
   const FEATURED = "how-i-build-proactive-agents";
@@ -97,7 +100,7 @@ export default function HomeNext() {
             </p>
             {/* Paul, 25 Sep: the sign-up moves here, into the space under his line. The card
                 loses its own email box, so the hero asks once. */}
-            <HeroJoin />
+            <HeroJoin known={known} />
           </div>
 
           {/* The hub's own card: a flow of our research (Paul, 25 Sep). */}
