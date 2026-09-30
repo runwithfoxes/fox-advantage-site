@@ -163,7 +163,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
         <div className={`${m.col} ${m.rule}`}>
           <span className={m.lab}>Read</span>
           <Link href="/book" className={m.plain} onClick={close}>The Fox Advantage, free book</Link>
-          <Link href="/resources/library" className={m.plain} onClick={close}>Library of everything</Link>
+          <Link href="/#library" className={m.plain} onClick={close}>Library of everything</Link>
         </div>
         <Link href="/course" className={m.featured} onClick={close}>
           <span className={m.lab}>Featured</span>
