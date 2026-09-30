@@ -272,13 +272,14 @@ export default async function AiAskQ3() {
 
           <section id="join" className={r.join}>
             <div>
+              {/* Paul, 30 Sep 2026: "less selling and more neutral", smaller, and only what is really
+                  there: "just pdf download. Change any mention of ads and data sets." */}
               <span className={r.eyebrow}>Sign up</span>
-              <h2 className={r.h2}>Every ad behind this report, and the next one first</h2>
               <p className={r.p}>
-                Sign up to open the full tables, every ad by role, level, employer and county, and the downloads. The December issue comes to you when it&rsquo;s read.
+                Sign up for this report as a PDF, and we&rsquo;ll send you the next issue when it&rsquo;s ready.
               </p>
             </div>
-            <AccessForm want="report" item="the-ai-ask-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF and the tables are yours, and the next issue comes to you the day it lands." />
+            <AccessForm want="report" item="the-ai-ask-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF is yours, and the next issue comes to you when it's ready." />
           </section>
 
           <section id="method" className={r.chapter}>

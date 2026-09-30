@@ -128,7 +128,7 @@ function baseEdition(s, label, date, extra) {
         { id: "f2", title: "Tech careers pages ask about nine times as often as the job boards.", caption: "Share of ads with a real AI ask, by where the ad was posted.", data: { kind: "bars", unit: "%", rows: [{ label: "Tech careers pages", value: car.pct, count: { k: car.k, n: car.n, pct: car.pct }, highlight: true }, { label: "Job boards", value: bor.pct, count: { k: bor.k, n: bor.n, pct: bor.pct } }] } },
       ],
       free: ["The whole report, every chapter and figure", "The method and its limits"],
-      withAccount: ["Every ad behind the numbers, by role, level, employer and county", "The report as a PDF", "The next issue by email when it lands"],
+      withAccount: ["The report as a PDF", "The next issue by email when it lands"],
       pages: 28, minutes: 16, href: "/resources/the-ai-ask/2026-q3", example: false, status: "published",
     },
     {

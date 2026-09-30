@@ -333,12 +333,12 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
                 <Ext href="https://anthropic.com">Anthropic</Ext>. The articles and videos we send each other, like{" "}
                 <Ext href="https://x.com/mattshumer_/status/2081054356405731740">the game Claude built in one go</Ext>.
               </p>
+              {/* Paul, 30 Sep 2026: no promise of datasets or job ads; the library has neither. */}
               <p>
-                And datasets to practise on, with real Irish numbers: the AI Ask&rsquo;s
-                job ads, and more as each report lands. Plus every prompt from the course, written out in full.
+                And every prompt from the course, written out in full.
               </p>
               <p>
-                Register and it is all yours. When we add something we think you would like, we will let you know.
+                Sign up and it is all yours. When we add something we think you would like, we will let you know.
               </p>
             </div>
             <ul className={n.tellLedger}>
@@ -357,7 +357,7 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
             ) : (
               <>
                 <AccessForm want="library" label="Sign up" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
-                <span className={n.accFine}>Sign up once for the library, every PDF, every dataset and the course. Already signed up? <Link href="/signin">Sign in</Link>.</span>
+                <span className={n.accFine}>Sign up once for the library, the report PDFs and the course. Already signed up? <Link href="/signin">Sign in</Link>.</span>
               </>
             )}
           </div>

@@ -32,7 +32,7 @@ export default function Gate({ adds, head = "When you sign up", want = "account"
       </div>
       <div>
         <AccessForm want={want} item={item} className={k.gateForm} doneClassName={k.gateDone} done="You're in. Everything above is open to you." />
-        <p className={k.gateNote}>Signing up opens every report, tracker, dataset and the course. No payment, ever.</p>
+        <p className={k.gateNote}>Sign up once for the reports, the library and the course. No payment, ever.</p>
       </div>
     </aside>
   );
