@@ -201,7 +201,7 @@ export function F31() {
         <Toggle opts={[{ k: "index", t: "By index" }, { k: "n", t: "By number of ads" }]} on={sort} set={setSort} />
       </div>
       <div className={r.idx}>
-        <div className={r.idxAvg} style={{ left: `calc(210px + (100% - 290px) * ${1 / max})` }}>
+        <div className={r.idxAvg} style={{ left: `calc(var(--lab) + (100% - var(--lab) - var(--val)) * ${1 / max})` }}>
           <span>average job = 1</span>
         </div>
         {groups.map(({ g, rows }) => [
@@ -469,7 +469,7 @@ export function F52() {
   const COLORS: Record<string, string> = { Canva: SKY, Adobe: DEEP, Excel: MID, "Google Ads": PALE, Salesforce: "#9FB7C6", "Meta Ads Manager": "#7B97A8", HubSpot: "#B8C4CC", "Any AI tool": "#F47521" };
   const [on, setOn] = useState<string[]>(["Canva", "Adobe"]);
   const [hover, setHover] = useState<number | null>(null);
-  const W = 640, H = 240, L = 40, R = 110, T = 12, B = 30, max = 15;
+  const W = 640, H = 240, L = 40, R = 150, T = 12, B = 30, max = 15;
   const x = (i: number) => L + (i * (W - L - R)) / 3;
   const y = (v: number) => T + (1 - v / max) * (H - T - B);
   const toggle = (t: string) => setOn((s) => (s.includes(t) ? s.filter((x) => x !== t) : [...s, t]));
@@ -500,10 +500,17 @@ export function F52() {
               {pts.map((v, i) => (
                 <circle key={i} cx={x(i)} cy={y(seen ? v : 0)} r={hover === i ? 6 : 4} fill={COLORS[t]} stroke="#fff" strokeWidth={1.5} style={{ transition: "cy .8s cubic-bezier(.22,1,.36,1)" }} />
               ))}
-              <text x={x(3) + 10} y={y(seen ? pts[3] : 0) + 4} className={r.svgEnd} fill={COLORS[t]}>{t} {pts[3]}%</text>
             </g>
           );
         })}
+        {/* The end labels, pushed apart so no two overlap (Paul, 30 Sep: "this is a bit messy"). */}
+        {(() => {
+          const ends = on.map((t) => ({ t, v: share[t][PERIODS[3]].pct, y: y(seen ? share[t][PERIODS[3]].pct : 0) + 4 })).sort((a, b) => a.y - b.y);
+          for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 14) ends[i].y = ends[i - 1].y + 14;
+          return ends.map((e) => (
+            <text key={e.t} x={x(3) + 10} y={e.y} className={r.svgEnd} fill={COLORS[e.t]}>{e.t} {e.v}%</text>
+          ));
+        })()}
         {PERIODS.map((_, i) => (
           <rect key={i} x={x(i) - 40} y={T} width={80} height={H - T - B} fill="transparent" onMouseEnter={() => setHover(i)} />
         ))}
