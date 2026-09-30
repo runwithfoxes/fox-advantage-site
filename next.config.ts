@@ -111,6 +111,11 @@ const nextConfig: NextConfig = {
          "we don't want that right?"). Until there are more, the reports band on the homepage is the
          list. Only the list page itself; the report pages keep their own addresses. */
       { source: "/resources/reports", destination: "/#reports", permanent: false },
+      /* Paul, 30 Sep 2026: "I don't want other library pages. We have one library, and one way in." The
+         library is /course/everything, where every module already sends people; the way in is the
+         library band on the homepage. The resource-centre copy and the test page forward to it. */
+      { source: "/resources/library", destination: "/course/everything", permanent: false },
+      { source: "/for-library-test", destination: "/course/everything", permanent: false },
       /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
          in the code; these two lines are what keep them off the live site. Remove to release. */
       { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },

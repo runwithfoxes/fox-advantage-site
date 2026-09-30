@@ -904,3 +904,11 @@ a.entryT:hover { color: #3A7CA5; }
 .navBar .links > div > button:not([aria-expanded="true"]):hover { color: #3A7CA5; }
 .navBar .fullAccess { background: #1A3A4E; color: #fff; border: 1px solid #1A3A4E; box-shadow: none; }
 .navBar .fullAccess:hover { background: #3A7CA5; border-color: #3A7CA5; }
+
+/* The library band for a signed-in visitor (Paul, 30 Sep): no form, told they're in, one button in. */
+.libIn { display: grid; gap: 12px; justify-items: start; margin-top: 22px; }
+.libInLine { margin: 0; font-family: var(--mono); font-size: 14px; color: #3A7CA5; }
+.libInGo { font-family: var(--mono); font-size: 14px; padding: 12px 20px; background: #1A3A4E; color: #fff; text-decoration: none; }
+.libInGo:hover { background: #3A7CA5; }
+.libWinLink { display: block; text-decoration: none; color: inherit; }
+.libWinLink:hover :global(.mod-win) { box-shadow: 0 16px 40px rgba(26,58,78,.14); }

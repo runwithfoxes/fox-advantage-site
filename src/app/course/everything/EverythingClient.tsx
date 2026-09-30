@@ -1,5 +1,6 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
 import LibJoin from "./LibJoin";
 
 import Link from "next/link";
@@ -470,14 +471,9 @@ export default function EverythingClient({
 
   return (
     <div className="mod-shell">
-      <header className="chapter-nav">
-        <Link href="/" className="chapter-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <Link href="/course" className="chapter-nav-back">
-          ← course
-        </Link>
-      </header>
+      {/* Paul, 30 Sep 2026: "We have one library, and one way in." This is the one library, under the
+          site's one nav. */}
+      <NextNav bar known={!locked} />
 
       {/* ⛔ NO BUILD BANNER ON THIS PAGE, Paul 3 Aug 2026: "Can you take off the build view
           blue thing at the top?" The module page keeps its own. Here the banner sat above the

@@ -228,7 +228,7 @@ export default async function HomeNext() {
 
         {/* The research and resources bands, under everything Paul settled on 25 Sep. Paul, 26 Sep:
             "the homepage does become the main research page, resources page... this is the place." */}
-        <ResearchBands part="rest" tail={<Proof />} />
+        <ResearchBands part="rest" tail={<Proof />} known={known} />
       </main>
 
       <SiteFooter current="/" wide />

@@ -93,7 +93,7 @@ function Ext({ href, children }: { href: string; children: React.ReactNode }) {
   return <a href={href} target="_blank" rel="noopener" className={n.tellLink}>{children}</a>;
 }
 
-export default function ResearchBands({ part, tail }: { part?: "reports" | "rest"; tail?: React.ReactNode } = {}) {
+export default function ResearchBands({ part, tail, known = false }: { part?: "reports" | "rest"; tail?: React.ReactNode; known?: boolean } = {}) {
   const featured = reportBySlug("the-ai-ask-2026-q3")!;
   const featSeries = seriesOf(featured);
   const featFig = featured.figures[1] ?? featured.figures[0];
@@ -346,9 +346,22 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
                 <li key={x.l}><b>{x.n}</b> {x.l}</li>
               ))}
             </ul>
-            <AccessForm want="library" label="Open the library, free" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
-            <span className={n.accFine}>Sign up once for the library, every PDF, every dataset and the course. Already signed up? <Link href="/signin">Sign in</Link>.</span>
+            {/* Paul, 30 Sep 2026: "If they are logged in, make it obvious that they click on any of the links
+                and they're into it." So a signed-in visitor gets no form: they're told they're in, and the
+                button and the window beside it both open the library. */}
+            {known ? (
+              <div className={n.libIn}>
+                <p className={n.libInLine}>You&rsquo;re in. Everything in the library is open to you.</p>
+                <Link href="/course/everything" className={n.libInGo}>Open the library &rarr;</Link>
+              </div>
+            ) : (
+              <>
+                <AccessForm want="library" label="Sign up" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
+                <span className={n.accFine}>Sign up once for the library, every PDF, every dataset and the course. Already signed up? <Link href="/signin">Sign in</Link>.</span>
+              </>
+            )}
           </div>
+          <Link href="/course/everything" className={n.libWinLink} aria-label="Open the library">
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
@@ -356,6 +369,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
             </div>
             <video className={`${n.scrollFilm} ${n.libFilm}`} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg" src="/resources/scroll/library-scroll.mp4" aria-label="The library page, scrolled top to bottom" />
           </article>
+          </Link>
         </div>
       </section>
 
