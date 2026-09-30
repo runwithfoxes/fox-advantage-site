@@ -541,13 +541,8 @@ export default function EverythingClient({
                 ⛔ SO DO NOT SWAP THIS FOR A PORTRAIT ONE. chapter-fox-sitting-nobg.png is
                 module 1's own and is roughly square, which is what lets the same 180px width
                 and the same -60px gutter indent read identically on both pages. */}
-            <div className="chapter-fox-hero">
-              <img
-                className="chapter-fox-hero-img"
-                src="/fox/chapter-fox-sitting-nobg.png"
-                alt=""
-              />
-            </div>
+            {/* Paul, 30 Sep 2026: the fox came off this page ("that fox doesn't look good"). The note above
+                is kept for the day a fox comes back: module 1's square one, never a portrait. */}
             {/* Paul, 29 Sep 2026: "the copy here is very connected to the course. Can we change it to
                 capture the essence of what we say on homepage". The homepage library band's own words. */}
             <p className="mod-standfirst">
