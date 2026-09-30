@@ -881,9 +881,11 @@ a.entryT:hover { color: #3A7CA5; }
 .hjGoMain:hover { background: #2F6688; }
 .hjGoGhost { font-family: var(--mono); font-size: 13px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; }
 
-/* The agents menu's right column (Paul, 30 Sep): the Klara phone at three quarters, linking to the essay. */
-.menuPhone { display: flex; align-items: center; justify-content: center; padding: 22px 20px; }
-.menuPhone .phoneStage { height: auto; background: none; width: 147px; height: 306px; }
-.menuPhone .phoneFrame { position: static; transform: scale(.75); transform-origin: top left; }
+/* The agents menu's right column (Paul, 30 Sep): the Klara phone, linking to the essay. Second pass the
+   same morning: 15% smaller (0.75 to 0.6375) with the essay's headline under it. */
+.menuPhone { gap: 4px; }
+.menuPhoneBox { display: block; margin: 10px 0 14px; width: 125px; height: 260px; }
+.menuPhone .phoneStage { background: none; width: 125px; height: 260px; }
+.menuPhone .phoneFrame { position: static; transform: scale(.6375); transform-origin: top left; }
 .menuPhone .phone { box-shadow: 0 14px 34px rgba(4,10,16,.35); transition: transform .3s ease; }
 .menuPhone:hover .phone { transform: translateY(-3px); }

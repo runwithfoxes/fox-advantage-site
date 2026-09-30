@@ -97,7 +97,12 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
           {/* Paul, 30 Sep: "See them work" made no sense. The Klara phone from the homepage feature,
               playing, and a click goes to the essay it sits beside. */}
           <Link href="/essays/why-i-gave-my-agents-email-addresses" className={`${m.featured} ${n.menuPhone}`} onClick={close} aria-label="Why I gave my agents email addresses, an essay by Paul Dervan">
-            <PhoneDemo />
+            <span className={m.lab}>Essay</span>
+            <span className={n.menuPhoneBox}>
+              <PhoneDemo />
+            </span>
+            {/* Paul, 30 Sep: 15% smaller, with the essay's headline under it, neat like the rest. */}
+            <span className={m.itemT}>Why I gave my agents email addresses</span>
           </Link>
         </div>
       );
@@ -152,7 +157,9 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
         <Link href="/course" className={m.featured} onClick={close}>
           <span className={m.lab}>Featured</span>
           <span className={m.featImg}>
-            <img src="/resources/hero-bridge.jpg" alt="" />
+            {/* Paul, 30 Sep: not the fox on the bridge. Eight silent seconds of his module 2 opening
+                film (28.5s to 36.5s, no captions on screen), looping, until he records a new one. */}
+            <video src="/resources/nav-module-2-intro-loop.mp4" poster="/resources/nav-module-2-intro-loop-poster.jpg" autoPlay muted loop playsInline preload="auto" />
             <span className={m.featOver}>AI Fluency</span>
           </span>
           <span className={m.itemT}>AI Fluency for Ambitious Marketers</span>

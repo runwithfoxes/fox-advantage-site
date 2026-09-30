@@ -43,8 +43,8 @@
 
 .featured { background: rgba(255, 255, 255, 0.04); padding: 26px 30px 28px; text-decoration: none; display: grid; align-content: start; gap: 4px; border-left: 1px solid rgba(255, 255, 255, 0.1); }
 .featImg { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; margin-bottom: 12px; }
-.featImg img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-.featured:hover .featImg img { transform: scale(1.03); }
+.featImg img, .featImg video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.featured:hover .featImg img, .featured:hover .featImg video { transform: scale(1.03); }
 .featOver {
   position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-weight: 700; font-size: 18px;
   letter-spacing: -0.03em; color: #fff; text-shadow: 0 2px 14px rgba(4, 10, 16, 0.6);
