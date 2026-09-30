@@ -92,7 +92,7 @@ export default function SectorPicker() {
             <span className="mod-wintitle">your_account</span>
           </div>
           <div className={n.winBody}>
-          <span className={n.dKick}>With a free account</span>
+          <span className={n.dKick}>When you sign up</span>
           {["Every engine, side by side", "Your own brand's result", "Ads running in the sector", "Who is hiring, and for what", "The full sector report, as a PDF"].map((t) => (
             <a key={t} href="#account" className={n.secLocked}>
               <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden>

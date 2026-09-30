@@ -15,10 +15,10 @@ import AccessForm, { type Want } from "./AccessForm";
  * and never cutting a piece off halfway. Since 27 Sep the form is real: AccessForm posts to
  * /api/access tagged with what this page is (want) and which one (item).
  */
-export default function Gate({ adds, head = "With a free account", want = "account", item }: { adds: string[]; head?: string; want?: Want; item?: string }) {
+export default function Gate({ adds, head = "When you sign up", want = "account", item }: { adds: string[]; head?: string; want?: Want; item?: string }) {
   if (!adds.length) return null;
   return (
-    <aside className={k.gate} aria-label="What a free account adds">
+    <aside className={k.gate} aria-label="What signing up adds">
       <div>
         <p className={k.gateHead}>{head}</p>
         <ul className={k.gateList}>
@@ -31,8 +31,8 @@ export default function Gate({ adds, head = "With a free account", want = "accou
         </ul>
       </div>
       <div>
-        <AccessForm want={want} item={item} className={k.gateForm} doneClassName={k.gateDone} done="You have full access. Everything above is open to you." />
-        <p className={k.gateNote}>One account opens every report, tracker, dataset and the course. No payment, ever.</p>
+        <AccessForm want={want} item={item} className={k.gateForm} doneClassName={k.gateDone} done="You're in. Everything above is open to you." />
+        <p className={k.gateNote}>Signing up opens every report, tracker, dataset and the course. No payment, ever.</p>
       </div>
     </aside>
   );

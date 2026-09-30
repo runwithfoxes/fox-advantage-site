@@ -279,7 +279,7 @@ export default function CentreBands() {
           <div className={s.bandHead}>
             <h2 className={s.h2}>Datasets</h2>
             <span className={s.meta}>{COUNTS.datasets} files · {COUNTS.rows.toLocaleString("en-IE")} rows</span>
-            <p className={s.bandLine}>The rows behind the reports. The first eight of each are on the page; the whole file is one of the things a free account adds.</p>
+            <p className={s.bandLine}>The rows behind the reports. The first eight of each are on the page; the whole file comes when you sign up.</p>
           </div>
           <table className={s.dataTable}>
             <thead>
@@ -356,7 +356,7 @@ export default function CentreBands() {
             <div className={s.bandHead}>
               <h2 className={s.h2}>Playbooks</h2>
               <span className={s.meta}>{COUNTS.playbooks} files</span>
-              <p className={s.bandLine}>The prompts, templates, checklists and agent briefs we use ourselves. The short version is on the page; the files come with an account.</p>
+              <p className={s.bandLine}>The prompts, templates, checklists and agent briefs we use ourselves. The short version is on the page; the files come when you sign up.</p>
             </div>
             <div className={s.files}>
               {PLAYBOOKS.map((p) => (
@@ -479,10 +479,10 @@ export default function CentreBands() {
             <li>The same method every edition, so the change is the finding and not the noise.</li>
             <li>A big move waits for the next read to confirm it.</li>
             <li>Every report, tracker and dataset is free to read in full. No form, no pop-up, nothing cut off halfway.</li>
-            <li>We ask for an email once, for the things that are about you: your sector, your own result, the files. One free account opens everything.</li>
+            <li>We ask for an email once, for the things that are about you: your sector, your own result, the files. Signing up once opens everything.</li>
             <li>Agents are named as agents. A person checks anything that carries a person&rsquo;s name.</li>
           </ol>
-          <Gate want="account" adds={adds} head="With one free account" />
+          <Gate want="account" adds={adds} head="When you sign up" />
         </section>
     </div>
   );

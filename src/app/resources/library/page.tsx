@@ -19,7 +19,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "The Library | Run with Foxes",
-  description: "Every prompt, link and file from the free AI course for marketers, in one place. Free with an account, the same one as the course.",
+  description: "Every prompt, link and file from the free AI course for marketers, in one place. Free when you sign up, with the same email as the course.",
   robots: { index: false, follow: false },
 };
 
@@ -94,7 +94,7 @@ export default async function LibraryPage() {
             Every prompt, link and file from the course, <em>in one place</em>
           </>
         }
-        standfirst="It is here so you can find the thing you half-remember without going back through a lesson to look for it. Search it, open what you need, take it with you. The lessons stay in the course; this is what they hand you. It opens with a free account, the same one as the course."
+        standfirst="It is here so you can find the thing you half-remember without going back through a lesson to look for it. Search it, open what you need, take it with you. The lessons stay in the course; this is what they hand you. It opens when you sign up, with the same email as the course."
         fox="chapter-fox-sitting-clean.png"
         below={
           <div className={L.shelfWrap}>
@@ -134,7 +134,7 @@ export default async function LibraryPage() {
           <div className={L.secHead}>
             <h2 className={L.h2}>Start here: the prompts</h2>
             <p className={L.secLine}>
-              The exact words to paste, lifted out of the lessons. With a free account each one opens here, you copy it, and the lesson it came from is one click away.
+              The exact words to paste, lifted out of the lessons. Sign up and each one opens here, you copy it, and the lesson it came from is one click away.
             </p>
           </div>
           <PromptRows rows={prompts} locked={locked} />

@@ -10,7 +10,7 @@ import P from "./playbooks.module.css";
 
 export const metadata: Metadata = {
   title: "Playbooks | Run with Foxes",
-  description: "The prompts, templates, checklists and agent briefs we use ourselves. The short version is on the page; the files come with a free account.",
+  description: "The prompts, templates, checklists and agent briefs we use ourselves. The short version is on the page; the files come when you sign up.",
   robots: { index: false, follow: false },
 };
 
@@ -80,7 +80,7 @@ export default function PlaybooksPage() {
             The prompts, templates and checklists <em>we use ourselves</em>
           </>
         }
-        standfirst="Each one is on the page as the short version: what it is for and the steps, free to read and copy. The file itself, in Word, Excel or Markdown, comes with a free account. Nothing here is theory; every playbook was used on a real job before it was written down."
+        standfirst="Each one is on the page as the short version: what it is for and the steps, free to read and copy. The file itself, in Word, Excel or Markdown, comes when you sign up. Nothing here is theory; every playbook was used on a real job before it was written down."
         fox="fox-sideeye-right-nobg.png"
         aside={
           <ol className={P.kinds}>

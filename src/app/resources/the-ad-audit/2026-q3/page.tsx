@@ -241,10 +241,10 @@ export default async function AdAuditQ3() {
 
           <section id="join" className={r.join}>
             <div>
-              <span className={r.eyebrow}>Get full access, free</span>
+              <span className={r.eyebrow}>Sign up</span>
               <h2 className={r.h2}>Every ad behind this report, and the next one first</h2>
               <p className={r.p}>
-                A free account opens the full tables, every ad by bank, product, offer and week, and the downloads. The December issue comes to you when it&rsquo;s read.
+                Sign up to open the full tables, every ad by bank, product, offer and week, and the downloads. The December issue comes to you when it&rsquo;s read.
               </p>
             </div>
             <AccessForm want="report" item="the-ad-audit-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF and the tables are yours, and the next issue comes to you the day it lands." />

@@ -33,7 +33,7 @@ export default function DownloadText({ href, label, meta }: { href: string; labe
           <button type="submit">Send it</button>
         </form>
       ) : null}
-      {step === "email" ? <span className={k.dlNote}>Free, one account for everything. Mockup: sends nothing.</span> : null}
+      {step === "email" ? <span className={k.dlNote}>Free. Sign up once for everything. Mockup: sends nothing.</span> : null}
     </div>
   );
 }

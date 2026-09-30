@@ -29,7 +29,7 @@ export default function DownloadPdf({ href, pages, label, kind = "pdf", size, wa
         </button>
       )}
       {step === "email" ? <AccessForm want={want} item={item} className={k.dlStep} label="Send it" done="" doneClassName={k.dlNote} onDone={() => setStep("ready")} /> : null}
-      {step === "email" ? <span className={k.dlNote}>Free, one account for everything here.</span> : null}
+      {step === "email" ? <span className={k.dlNote}>Free. Sign up once for everything here.</span> : null}
     </div>
   );
 }

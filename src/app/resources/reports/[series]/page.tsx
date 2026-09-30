@@ -157,7 +157,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ series:
               </span>
               <div>
                 <p className={s.edTitle} style={{ color: "#3A7CA5" }}>Next edition</p>
-                <p className={s.edStand}>Same sources, same rulebook. An account gets it by email the day it lands.</p>
+                <p className={s.edStand}>Same sources, same rulebook. Sign up and it comes by email the day it lands.</p>
               </div>
             </div>
           ) : null}

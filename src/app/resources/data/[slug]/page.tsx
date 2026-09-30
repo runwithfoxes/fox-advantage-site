@@ -169,7 +169,7 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
                     </table>
                   </div>
                   <p className={d.sampleFoot}>
-                    {left > 0 ? <><b>{left.toLocaleString("en-IE")} more rows</b> in the file, with a free account.</> : <>That is the whole file.</>}
+                    {left > 0 ? <><b>{left.toLocaleString("en-IE")} more rows</b> in the file when you sign up.</> : <>That is the whole file.</>}
                   </p>
                 </div>
               </figure>

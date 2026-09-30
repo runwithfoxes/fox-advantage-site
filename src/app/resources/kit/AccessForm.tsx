@@ -20,7 +20,7 @@ export type Want = "library" | "report" | "dataset" | "tool" | "playbook" | "tra
 export default function AccessForm({
   want,
   item,
-  label = "Get full access, free",
+  label = "Sign up",
   className,
   inputClassName,
   done = "You're in. Everything on this page is open to you, and the links are on their way.",

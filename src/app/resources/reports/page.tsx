@@ -55,7 +55,7 @@ export default function ReportsIndex() {
             </p>
           </div>
           <p className={s.stand}>
-            Numbered studies on a fixed calendar. Each one asks the same question the same way every time, so the change between editions is the finding. Every report is free to read, with no form. An account adds the PDF, the data behind it and your own sector&rsquo;s cut.
+            Numbered studies on a fixed calendar. Each one asks the same question the same way every time, so the change between editions is the finding. Every report is free to read, with no form. Sign up for the PDF, the data behind it and your own sector&rsquo;s cut.
           </p>
         </header>
 

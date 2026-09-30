@@ -258,7 +258,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
           <section className={`${f.shelf} ${n.rbFeat}`} id="featured">
             <div className={f.shelfHead}>
               <h2 className={f.h2}>This quarter</h2>
-              <span className={f.meta}>Our newest report. Free to read in full, the PDF with a free account.</span>
+              <span className={f.meta}>Our newest report. Free to read in full. Sign up for the PDF.</span>
             </div>
             <div className={s.feat}>
               <div>
@@ -347,7 +347,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
               ))}
             </ul>
             <AccessForm want="library" label="Open the library, free" className={`${n.joinRow} ${n.learnJoin} ${n.libJoin}`} doneClassName={n.accFine} done="You're in. The library is open to you, and we'll tell you when we add something you'd like." />
-            <span className={n.accFine}>One free account for the library, every PDF, every dataset and the course. Already have one? <Link href="/signin">Sign in</Link>.</span>
+            <span className={n.accFine}>Sign up once for the library, every PDF, every dataset and the course. Already signed up? <Link href="/signin">Sign in</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
@@ -386,7 +386,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
               ))}
             </ol>
             <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done="You're in. Module 1 is open to you now, and the rest arrive by email as they open." />
-            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}Same free account as everything else here. <Link href="/course">About the course</Link>.</span>
+            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}The same sign-up as everything else here. <Link href="/course">About the course</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
@@ -449,7 +449,7 @@ export default function ResearchBands({ part, tail }: { part?: "reports" | "rest
           <section className={f.shelf} id="use">
             <div className={`${f.shelfHead} ${n.learnHead}`}>
               <h2 className={f.h2}>Things to use</h2>
-              <span className={f.meta}>Prompts and playbooks to download, datasets to practise on, tools with a free first go. The file and the full result come with the free account.</span>
+              <span className={f.meta}>Prompts and playbooks to download, datasets to practise on, tools with a free first go. Sign up for the file and the full result.</span>
             </div>
             <div className={n.useGrid}>
               <article className={`mod-win ${n.dWin} ${n.learnWin}`}>

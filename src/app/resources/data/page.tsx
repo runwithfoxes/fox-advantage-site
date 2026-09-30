@@ -8,7 +8,7 @@ import d from "./data.module.css";
 
 export const metadata: Metadata = {
   title: "Data: every dataset | Run with Foxes",
-  description: "Every dataset behind our research, with its columns, its row count and when it was last read. The first rows are free; the whole file comes with a free account.",
+  description: "Every dataset behind our research, with its columns, its row count and when it was last read. The first rows are free; the whole file comes when you sign up.",
   robots: { index: false, follow: false },
 };
 
@@ -42,7 +42,7 @@ export default function DataPage() {
             </figure>
             <h1 className={inst.h1}>The data</h1>
             <p className={inst.stand}>
-              Every file behind our reports and trackers, with its columns, its row count and the day it was last read. Open one to see its first rows. The whole file is yours with a free account.
+              Every file behind our reports and trackers, with its columns, its row count and the day it was last read. Open one to see its first rows. The whole file is yours when you sign up.
             </p>
           </div>
           <div>
@@ -81,7 +81,7 @@ export default function DataPage() {
           ))}
         </section>
 
-        <Gate want="dataset" adds={adds} head="With a free account, on every dataset" />
+        <Gate want="dataset" adds={adds} head="When you sign up, on every dataset" />
       </main>
     </Shell>
   );

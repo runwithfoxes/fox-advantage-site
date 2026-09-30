@@ -256,9 +256,9 @@ export default function AdAuditQ3v2() {
 
           <section id="join" className={r.join}>
             <div>
-              <span className={r.eyebrow}>Get full access, free</span>
+              <span className={r.eyebrow}>Sign up</span>
               <h2 className={r.h2}>Every ad behind this report, and the next one first</h2>
-              <p className={r.p}>A free account opens the full tables and the downloads. The December issue comes to you when it&rsquo;s ready.</p>
+              <p className={r.p}>Sign up to open the full tables and the downloads. The December issue comes to you when it&rsquo;s ready.</p>
             </div>
             <AccessForm want="report" item="the-ad-audit-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The tables are yours, and the next issue comes to you the day it lands." />
           </section>

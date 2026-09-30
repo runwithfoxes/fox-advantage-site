@@ -76,7 +76,7 @@ export default function TrackersPage() {
           ))}
         </section>
 
-        <Gate want="tracker" adds={adds} head="With a free account, on every tracker" />
+        <Gate want="tracker" adds={adds} head="When you sign up, on every tracker" />
       </main>
     </Shell>
   );

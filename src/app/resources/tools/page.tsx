@@ -8,7 +8,7 @@ import T from "./tools.module.css";
 
 export const metadata: Metadata = {
   title: "Tools | Run with Foxes",
-  description: "Free tools for marketers: put something in, get a first look for nothing, the full result with a free account.",
+  description: "Free tools for marketers: put something in, get a first look for nothing, the full result when you sign up.",
   robots: { index: false, follow: false },
 };
 
@@ -41,7 +41,7 @@ export default function ToolsPage() {
             Tools you can use today, <em>free</em>
           </>
         }
-        standfirst="Put something in and get a first look for nothing. The full result, the file, the notes, the rewrite, comes with a free account, and you are asked for it once. Each tool was built off a report or a lesson, so it checks the thing the research says matters."
+        standfirst="Put something in and get a first look for nothing. The full result, the file, the notes, the rewrite, comes when you sign up, and you are asked once. Each tool was built off a report or a lesson, so it checks the thing the research says matters."
         fox="fox-pm-nobg.png"
         aside={
           <figure className={`mod-win ${T.win}`}>
@@ -62,7 +62,7 @@ export default function ToolsPage() {
               </div>
               <span className={T.winStep}>02 · Free, on screen</span>
               <p className={T.winFree}>{featured.free}</p>
-              <span className={T.winStep}>03 · With a free account</span>
+              <span className={T.winStep}>03 · When you sign up</span>
               <p className={T.winFull}>
                 {featured.full}
               </p>
@@ -93,7 +93,7 @@ export default function ToolsPage() {
                 <th>Tool</th>
                 <th>You put in</th>
                 <th>Free, on screen</th>
-                <th>With a free account</th>
+                <th>When you sign up</th>
                 <th>Time</th>
                 <th>Status</th>
               </tr>
@@ -115,7 +115,7 @@ export default function ToolsPage() {
                   </td>
                   <td data-l="You put in">{t.input}</td>
                   <td data-l="Free, on screen">{t.free}</td>
-                  <td data-l="With a free account">
+                  <td data-l="When you sign up">
                     {t.full}
                   </td>
                   <td data-l="Time" className={T.num}>

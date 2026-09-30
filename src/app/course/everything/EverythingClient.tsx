@@ -557,8 +557,8 @@ export default function EverythingClient({
             <p className="mod-standfirst">
               This is where we keep the things we use, and we add to it every week: the tools,
               the people we read, the companies we watch, datasets to practise on, and every
-              prompt from the course. The names and links are free. The prompts open with a
-              free account.
+              prompt from the course. The names and links are free. The prompts open when you
+              sign up.
             </p>
             <div className="mod-meta">
               <span>
@@ -585,7 +585,7 @@ export default function EverythingClient({
                 Cost<b>{HERO.freeNote}</b>
               </span>
               <span>
-                Sharing<b>{locked ? "The prompts open with a free account." : "Copy anything. Send it on."}</b>
+                Sharing<b>{locked ? "The prompts open when you sign up." : "Copy anything. Send it on."}</b>
               </span>
             </div>
           </header>
@@ -595,7 +595,7 @@ export default function EverythingClient({
           {locked && !embed ? (
             <div className={s.libAsk} id="account">
               <p>
-                Every prompt opens with a free account, the same one as the course, and new ones come by
+                Every prompt opens when you sign up, with the same email as the course, and new ones come by
                 email the day a module opens.
               </p>
               <LibJoin />

@@ -8,7 +8,7 @@ import k from "../resources/kit/kit.module.css";
 
 export const metadata: Metadata = {
   title: "Sign in | Run with Foxes",
-  description: "One free account for every report, the library, the datasets and the course. Put in your email and everything opens.",
+  description: "Sign up once for every report, the library, the datasets and the course. Put in your email and everything opens.",
   robots: { index: false, follow: false },
 };
 
@@ -24,7 +24,7 @@ export default function SignInPage() {
     <div className={f.page}>
       <Top crumbs={[{ href: "/", t: "Home" }, { t: "Sign in" }]} />
       <main className={f.wrap} style={{ maxWidth: 560, padding: "72px 24px 96px" }}>
-        <p className={f.meta}>One free account for everything here</p>
+        <p className={f.meta}>Sign up once for everything here</p>
         <h1 className={f.h2} style={{ marginBottom: 14 }}>Sign in</h1>
         <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: 16.5, lineHeight: 1.65, margin: "0 0 22px" }}>
           On the course already? Put in the email you signed up with and it opens on this device, along with the
