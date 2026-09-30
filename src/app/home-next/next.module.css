@@ -293,7 +293,7 @@ a.entryT:hover { color: #3A7CA5; }
 
 /* ── The four buttons under the hero, as on the live homepage (Paul, 25 Sep): boxed, mono,
    deep sky for the first, white with a hairline for the rest, on the site's dot grid. ── */
-.doorBand { background-color: var(--bg); background-image: radial-gradient(circle, rgba(208,208,204,0.55) 0.8px, transparent 0.8px); background-size: 28px 28px; border-bottom: 1px solid var(--border); }
+.doorBand { background-color: var(--bg); border-bottom: 1px solid var(--border); } /* dots off, Paul 30 Sep */
 .doorRow { max-width: 1240px; margin: 0 auto; padding: 26px 48px; display: flex; gap: 11px; flex-wrap: wrap; }
 .doorPrimary, .doorGhost { font-family: var(--mono); font-size: 15px; padding: 14px 26px; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
 .doorPrimary { background: #1A3A4E; color: #fff; }
@@ -892,5 +892,13 @@ a.entryT:hover { color: #3A7CA5; }
 .menuPhone .phone { box-shadow: 0 14px 34px rgba(4,10,16,.35); transition: transform .3s ease; }
 .menuPhone:hover .phone { transform: translateY(-3px); }
 
-/* The nav on a page with no film behind it (Paul, 30 Sep): fixed to the top on the menus' navy. */
-.navBar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #1A3A4E; padding-top: 14px; padding-bottom: 14px; }
+/* The nav on a page with no film behind it (Paul, 30 Sep), fixed to the top. Second pass the same day:
+   "I don't love the blue bar... an ordinary white background with just like a navy blue font." So white,
+   a hairline under it, the logo and the four menu names in navy, Sign in a solid navy button. The menus
+   that drop from it keep their navy panels. */
+.navBar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--border); padding-top: 14px; padding-bottom: 14px; }
+.navBar > .logo { color: #1A3A4E; font-weight: 400; }
+.navBar .links > div > button:not([aria-expanded="true"]) { color: #1A3A4E; }
+.navBar .links > div > button:not([aria-expanded="true"]):hover { color: #3A7CA5; }
+.navBar .fullAccess { background: #1A3A4E; color: #fff; border: 1px solid #1A3A4E; box-shadow: none; }
+.navBar .fullAccess:hover { background: #3A7CA5; border-color: #3A7CA5; }
