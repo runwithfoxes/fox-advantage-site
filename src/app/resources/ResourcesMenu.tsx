@@ -42,7 +42,7 @@ const LEARN: { t: string; href: string }[] = [
 ];
 const CONNECT: { t: string; href: string }[] = [
   { t: "Get new research by email", href: "/#top" },
-  { t: "Talk to us", href: "/contact" },
+  { t: "Talk to us", href: "/about#contact" },
 ];
 
 function Tile({ g }: { g: Glyph }) {

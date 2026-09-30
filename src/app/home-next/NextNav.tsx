@@ -138,7 +138,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
                 consulting view on the homepage. */}
             <Link href="/#consulting" className={n.menuGo} onClick={door("consulting")}>How we work with you →</Link>
           </div>
-          <Link href="/contact" className={m.featured} onClick={close}>
+          <Link href="/about#contact" className={m.featured} onClick={close}>
             <span className={m.lab}>Talk to us</span>
             <span className={n.menuFace}>
               <img src="/Paul_photo.jpg" alt="" />

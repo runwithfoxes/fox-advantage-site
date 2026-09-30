@@ -25,7 +25,7 @@ export default function DoorButtons() {
         <button type="button" className={n.doorGhost} onClick={() => openDoor("training")}>
           Training
         </button>
-        <a className={n.doorGhost} href="/contact">
+        <a className={n.doorGhost} href="/about#contact">
           Contact
         </a>
       </div>

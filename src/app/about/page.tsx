@@ -7,7 +7,7 @@ import a from "./about.module.css";
 export const metadata = {
   title: "About - Run with Foxes",
   description:
-    "Paul Dervan and the team at Run with Foxes. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.",
+    "Paul Dervan and the team at Run with Foxes, and how to get in touch. We work with teams to bring twenty years of brand thinking together with AI, so they get faster without losing quality.",
 };
 
 export default async function AboutPage() {
@@ -35,7 +35,7 @@ export default async function AboutPage() {
             {/* Paul, 29 Sep: "we dont' need my name here as have it just below". Kept for search engines and
                 screen readers as the page's one heading, not shown. */}
             <h1 className={a.srOnly}>Paul Dervan</h1>
-            <div className={a.bio}>
+            <div className={a.bio} id="contact">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className={a.bioPhoto} src="/Paul_photo.jpg" alt="Paul Dervan" />
               <div className={a.prose}>
@@ -45,6 +45,39 @@ export default async function AboutPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Paul, 30 Sep 2026: contact had nothing about us and About had no way to reach us, so they are
+            one page. The contact page's own words, straight under the bio, so /about#contact (where "Talk to
+            us" and /contact land) shows who he is and how to reach him on one screen. */}
+        <div className={a.team}>
+          <div className={a.lab}>/get in touch</div>
+          <div className={a.touch}>
+            <div />
+            <div>
+              <a className={a.book} href="https://cal.com/paul-dervan-mjfd50" target="_blank" rel="noopener noreferrer">
+                Book a 30-minute strategy chat &rarr;
+              </a>
+            </div>
+          </div>
+          <ul className={a.people}>
+            <li>
+              <span className={a.role}>Email</span>
+              <a className={a.name} href="mailto:paul@runwithfoxes.com">paul@runwithfoxes.com</a>
+            </li>
+            <li>
+              <span className={a.role}>LinkedIn</span>
+              <a className={a.name} href="https://www.linkedin.com/in/pauldervan/" target="_blank" rel="noopener noreferrer">linkedin.com/in/pauldervan</a>
+            </li>
+            <li>
+              <span className={a.role}>Substack</span>
+              <a className={a.name} href="https://runwithfoxes.substack.com" target="_blank" rel="noopener noreferrer">runwithfoxes.substack.com</a>
+            </li>
+            <li>
+              <span className={a.role}>Chat</span>
+              <span className={a.name}>Talk to Isa, bottom right of any page</span>
+            </li>
+          </ul>
         </div>
 
         {/* Paul, 29 Sep 2026, later: the page text went ("detlete this from About us and make the page
@@ -91,6 +124,7 @@ export default async function AboutPage() {
             </li>
           </ul>
         </div>
+
       </main>
 
       {/* The old phone bar ("← back /agents get the book") came off with the old top bar: the

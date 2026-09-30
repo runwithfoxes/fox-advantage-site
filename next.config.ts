@@ -116,6 +116,8 @@ const nextConfig: NextConfig = {
          library band on the homepage. The resource-centre copy and the test page forward to it. */
       { source: "/resources/library", destination: "/course/everything", permanent: false },
       { source: "/for-library-test", destination: "/course/everything", permanent: false },
+      /* Paul, 30 Sep 2026: contact and About are one page; contact is its last section. */
+      { source: "/contact", destination: "/about#contact", permanent: false },
       /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
          in the code; these two lines are what keep them off the live site. Remove to release. */
       { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },
