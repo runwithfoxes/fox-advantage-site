@@ -883,8 +883,10 @@ a.entryT:hover { color: #3A7CA5; }
 
 /* The agents menu's right column (Paul, 30 Sep): the Klara phone, linking to the essay. Second pass the
    same morning: 15% smaller (0.75 to 0.6375) with the essay's headline under it. */
-.menuPhone { gap: 4px; }
-.menuPhoneBox { display: block; margin: 10px 0 14px; width: 125px; height: 260px; }
+.menuPhone { grid-template-columns: 125px minmax(0, 1fr); gap: 22px; align-items: start; }
+.menuPhoneBox { display: block; width: 125px; height: 260px; }
+.menuPhoneText { display: block; padding-top: 4px; }
+.menuPhoneText .menuGo { display: block; margin-top: 14px; }
 .menuPhone .phoneStage { background: none; width: 125px; height: 260px; }
 .menuPhone .phoneFrame { position: static; transform: scale(.6375); transform-origin: top left; }
 .menuPhone .phone { box-shadow: 0 14px 34px rgba(4,10,16,.35); transition: transform .3s ease; }

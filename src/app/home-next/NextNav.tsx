@@ -97,12 +97,16 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
           {/* Paul, 30 Sep: "See them work" made no sense. The Klara phone from the homepage feature,
               playing, and a click goes to the essay it sits beside. */}
           <Link href="/essays/why-i-gave-my-agents-email-addresses" className={`${m.featured} ${n.menuPhone}`} onClick={close} aria-label="Why I gave my agents email addresses, an essay by Paul Dervan">
-            <span className={m.lab}>Essay</span>
+            {/* Paul, 30 Sep, third pass: the headline under the phone "just looks random". The writing
+                sits beside the phone, and says plainly that it goes to another page. */}
             <span className={n.menuPhoneBox}>
               <PhoneDemo />
             </span>
-            {/* Paul, 30 Sep: 15% smaller, with the essay's headline under it, neat like the rest. */}
-            <span className={m.itemT}>Why I gave my agents email addresses</span>
+            <span className={n.menuPhoneText}>
+              <span className={m.lab}>Essay</span>
+              <span className={m.itemT}>Why I gave my agents email addresses</span>
+              <span className={n.menuGo}>Read the essay &rarr;</span>
+            </span>
           </Link>
         </div>
       );
@@ -157,10 +161,12 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
         <Link href="/course" className={m.featured} onClick={close}>
           <span className={m.lab}>Featured</span>
           <span className={m.featImg}>
-            {/* Paul, 30 Sep: not the fox on the bridge. Eight silent seconds of his module 2 opening
-                film (28.5s to 36.5s, no captions on screen), looping, until he records a new one. */}
+            {/* Paul, 30 Sep: not the fox on the bridge. Eleven silent seconds of the module 2 intro film
+                (17.0s to 28.2s), the stretch where "Not working well with the first prompt" is struck
+                through for "but getting the quality right", cropped in on him and the caption so the
+                words read at this size. Looping, until he records a new one. The "AI Fluency" overlay
+                came off: it sat on the caption, and the title under it says the same. */}
             <video src="/resources/nav-module-2-intro-loop.mp4" poster="/resources/nav-module-2-intro-loop-poster.jpg" autoPlay muted loop playsInline preload="auto" />
-            <span className={m.featOver}>AI Fluency</span>
           </span>
           <span className={m.itemT}>AI Fluency for Ambitious Marketers</span>
           <span className={m.itemD}>Six modules, free. Over 1,000 marketers signed up.</span>
