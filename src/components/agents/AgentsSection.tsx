@@ -409,6 +409,8 @@ export default function AgentsSection() {
   const [open, setOpen] = useState(false);
   // an agent has been picked: the new homepage keeps the reader hidden until then (30 Sep 2026)
   const [reading, setReading] = useState(false);
+  // the agent the pointer is on in the full-screen list: its own figure shows beside the list (30 Sep 2026)
+  const [peek, setPeek] = useState(0);
   // which door the surface is showing: the ten agents, the adoption grid,
   // or the course scroller. The hero's three buttons pick it.
   const [mode, setMode] = useState<Door>("agents");
@@ -421,6 +423,7 @@ export default function AgentsSection() {
     const onDoor = (e: Event) => {
       setMode((e as CustomEvent<Door>).detail);
       setOpen(true);
+      setPeek(0);
     };
     window.addEventListener("rwf:door", onDoor);
     return () => window.removeEventListener("rwf:door", onDoor);
@@ -583,22 +586,36 @@ export default function AgentsSection() {
 
         {mode === "training" ? <TrainingPanel /> : null}
 
-        <nav className="ag-overlay-list" hidden={mode !== "agents"}>
-          {AGENTS.map((ag, i) => (
-            <div className="ag-overlay-clip" key={ag.key}>
-              <button
-                type="button"
-                className={`ag-overlay-item${active === i ? " on" : ""}`}
-                style={{ transitionDelay: open ? `${0.15 + i * 0.05}s` : "0s" }}
-                onClick={() => pick(i)}
-              >
-                <span className="ag-overlay-n">{ag.num}</span>
-                <span className="ag-overlay-name">{ag.name}</span>
-                <span className="ag-overlay-short">{ag.short}</span>
-              </button>
-            </div>
-          ))}
-        </nav>
+        {/* Paul, 30 Sep 2026: the names were too big for the site ("does that feel a bit big and
+            bold?"), so they came down to 22px with the short line in the small mono; the list sits
+            in the middle of the screen, and the right side shows the figure of whichever agent the
+            pointer is on, from that agent's own piece. */}
+        <div className="ag-overlay-body" hidden={mode !== "agents"}>
+          <nav className="ag-overlay-list">
+            {AGENTS.map((ag, i) => (
+              <div className="ag-overlay-clip" key={ag.key}>
+                <button
+                  type="button"
+                  className={`ag-overlay-item${peek === i ? " on" : ""}`}
+                  style={{ transitionDelay: open ? `${0.15 + i * 0.05}s` : "0s" }}
+                  onClick={() => pick(i)}
+                  onMouseEnter={() => setPeek(i)}
+                  onFocus={() => setPeek(i)}
+                >
+                  <span className="ag-overlay-n">{ag.num}</span>
+                  <span className="ag-overlay-name">{ag.name}</span>
+                  <span className="ag-overlay-short">{ag.short}</span>
+                </button>
+              </div>
+            ))}
+          </nav>
+          <div className="ag-overlay-fig" aria-hidden>
+            {open && mode === "agents" ? (() => {
+              const f = AGENTS[peek].body.find((b) => "fig" in b);
+              return f && "fig" in f ? <div className="ag-overlay-fig-in" key={AGENTS[peek].key}>{f.fig()}</div> : null;
+            })() : null}
+          </div>
+        </div>
       </div>
     </section>
   );
