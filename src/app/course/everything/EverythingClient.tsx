@@ -6,7 +6,6 @@ import LibJoin from "./LibJoin";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import s from "./Everything.module.css";
-import { HERO } from "../courseCopy";
 
 /**
  * ⭐⭐ THE PAGE IS A FILE TREE, 3 Aug 2026. Paul named GitHub as the reference and named what
@@ -182,9 +181,6 @@ export default function EverythingClient({
     }
   };
 
-  const built = modules.filter((m) => m.has).length;
-  const lessonCount =
-    sections.find((sec) => sec.kind === "lessons")?.rows.length ?? 0;
 
   /* The search, the module filter and the boxes: the part of this page that IS the library.
      Pulled into one piece on 26 Sep 2026 so /resources/library can show the same browser
@@ -551,34 +547,7 @@ export default function EverythingClient({
               prompt from the course. The names and links are free. The prompts open when you
               sign up.
             </p>
-            <div className="mod-meta">
-              <span>
-                From the lessons<b>{lessonCount} things</b>
-              </span>
-              <span>
-                Modules<b>
-                  {built} of {modules.length} built
-                </b>
-              </span>
-              {/* ⭐⭐ "NO EMAIL NEEDED" IS GONE, PAUL 3 Aug 2026: "i want to remove 'no email
-                  needed' everywhere", and in the same breath the reason, "I want everybody
-                  that does the course must sign up through email."
-
-                  ⛔ IT WAS NOT A WORDING PREFERENCE. The line promised the opposite of how the
-                  course works, on the page holding the course's most useful material. It had
-                  been true of this page in isolation and was never true of the course.
-
-                  ⭐ THE REPLACEMENT IS HIS OWN APPROVED NOTE, IMPORTED NOT RETYPED.
-                  courseCopy.freeNote carries a standing rule with it: say free, never "free
-                  forever", because it must not bind his future pricing. Writing those words
-                  again here would have put a second copy of a pricing claim in the codebase. */}
-              <span>
-                Cost<b>{HERO.freeNote}</b>
-              </span>
-              <span>
-                Sharing<b>{locked ? "The prompts open when you sign up." : "Copy anything. Send it on."}</b>
-              </span>
-            </div>
+            {/* Paul, 30 Sep 2026: the details row (From the lessons, Modules, Cost, Sharing) deleted. */}
           </header>
 
           {/* 29 Sep 2026: for someone without an account the ask sits here, above the library, in

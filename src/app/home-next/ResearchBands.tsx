@@ -368,7 +368,7 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
               {/* Paul, 30 Sep: no count or modules open here, "too connected to the course". */}
               <span className="mod-wintitle">the library</span>
             </div>
-            <video className={`${n.scrollFilm} ${n.libFilm}`} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg?v=30sep" src="/resources/scroll/library-scroll.mp4?v=30sep" aria-label="The library page, scrolled top to bottom" />
+            <video className={`${n.scrollFilm} ${n.libFilm}`} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/library-scroll-poster.jpg?v=30sep2" src="/resources/scroll/library-scroll.mp4?v=30sep2" aria-label="The library page, scrolled top to bottom" />
           </article>
           </Link>
         </div>
