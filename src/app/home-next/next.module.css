@@ -912,3 +912,16 @@ a.entryT:hover { color: #3A7CA5; }
 .libInGo:hover { background: #3A7CA5; }
 .libWinLink { display: block; text-decoration: none; color: inherit; }
 .libWinLink:hover :global(.mod-win) { box-shadow: 0 16px 40px rgba(26,58,78,.14); }
+
+/* The phone menu (Paul, 30 Sep 2026: "I'd like a hamburger menu for mobile"). Only below 700px, where
+   the four drop-downs are hidden. White lines over the film, navy on the cream bar. */
+.burger { display: none; }
+@media (max-width: 700px) {
+  .links > .burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 36px; height: 34px; padding: 0 8px; background: none; border: 0; cursor: pointer; color: #fff; }
+  .burger span { display: block; height: 2px; width: 20px; background: currentColor; border-radius: 1px; }
+  .navBar .links > .burger { color: #1A3A4E; }
+  .mobPanel { grid-template-columns: 1fr !important; gap: 0; padding: 8px 22px 14px; }
+  .mobGroup { display: grid; padding: 14px 0 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .mobGroup:last-child { border-bottom: 0; }
+  .mobGroup :global(a) { padding: 8px 0; }
+}

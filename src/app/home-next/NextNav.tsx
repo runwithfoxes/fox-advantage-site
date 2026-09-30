@@ -24,13 +24,15 @@ type Door = "consulting" | "agents" | "training";
    with no film at the top (essays, diary, book, contact) pass `bar`: the same nav on a fixed navy bar. */
 export default function NextNav({ known = false, bar = false }: { known?: boolean; bar?: boolean } = {}) {
   const [open, setOpen] = useState<Door | null>(null);
+  // the phone menu (Paul, 30 Sep 2026: "I'd like a hamburger menu for mobile")
+  const [burger, setBurger] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const key = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(null); setBurger(false); } };
     const click = (e: MouseEvent) => {
-      if (wrap.current && !wrap.current.contains(e.target as Node)) setOpen(null);
+      if (wrap.current && !wrap.current.contains(e.target as Node)) { setOpen(null); setBurger(false); }
     };
     document.addEventListener("keydown", key);
     document.addEventListener("mousedown", click);
@@ -56,7 +58,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
     </div>
   );
 
-  const close = () => setOpen(null);
+  const close = () => { setOpen(null); setBurger(false); };
   /* Paul, 30 Sep: clicking agents should bring the big page down with every agent on it. A link to
      /#agents from the page it is already on raises no event, so the menu only closed. When this page
      carries the agents section, open its full-screen surface directly, the same signal the AI Agents
@@ -202,7 +204,40 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
         <a href={known ? "/course" : "/signin"} className={n.fullAccess}>
           {known ? "Your course" : "Sign in"}
         </a>
+        <button type="button" className={n.burger} aria-label={burger ? "Close menu" : "Open menu"} aria-expanded={burger} onClick={() => { setOpen(null); setBurger(!burger); }}>
+          <span /><span /><span />
+        </button>
       </nav>
+      {/* The phone menu: the same four doors as the desktop menus, as one list on the menus' navy. */}
+      {burger ? (
+        <div className={`${m.panel} ${n.mobPanel}`} role="menu">
+          <div className={n.mobGroup}>
+            <span className={m.lab}>Consulting</span>
+            <Link href="/#consulting" className={m.plain} onClick={door("consulting")}>Designing team AI adoption</Link>
+            <Link href="/millionaire-raffle" className={m.plain} onClick={close}>Mental availability in practice</Link>
+            <Link href="/48" className={m.plain} onClick={close}>Fame strategies</Link>
+            <Link href="/about#contact" className={m.plain} onClick={close}>Talk to us</Link>
+          </div>
+          <div className={n.mobGroup}>
+            <span className={m.lab}>Agents</span>
+            <Link href="/#agents" className={m.plain} onClick={door("agents")}>The ten agents we build and run</Link>
+            <Link href="/essays/why-i-gave-my-agents-email-addresses" className={m.plain} onClick={close}>Why I gave my agents email addresses</Link>
+          </div>
+          <div className={n.mobGroup}>
+            <span className={m.lab}>Training</span>
+            <Link href="/course" className={m.plain} onClick={close}>AI Fluency for Ambitious Marketers</Link>
+            <Link href="/#library" className={m.plain} onClick={close}>The library</Link>
+            <Link href="/book" className={m.plain} onClick={close}>The Fox Advantage, free book</Link>
+          </div>
+          <div className={n.mobGroup}>
+            <span className={m.lab}>Resources</span>
+            <Link href="/resources/the-ai-ask/2026-q3" className={m.plain} onClick={close}>The AI Ask, our new report</Link>
+            <Link href="/essays" className={m.plain} onClick={close}>Essays, by Paul</Link>
+            <Link href="/diary" className={m.plain} onClick={close}>Diary of an agent team, by Lena</Link>
+            <Link href="/about#contributors" className={m.plain} onClick={close}>Who writes here</Link>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
