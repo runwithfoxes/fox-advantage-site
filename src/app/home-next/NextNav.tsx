@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import m from "../resources/menu.module.css";
 import n from "./next.module.css";
 import ResourcesMenu from "../resources/ResourcesMenu";
 import { AGENTS } from "./content";
 import { MODULES } from "../course/courseModules";
+import { openDoor } from "@/components/AgentsHero";
 
 /**
  * THE FOUR-DOOR NAV. Paul, 25 Sep 2026: the main things are "agents, consulting, training,
@@ -53,6 +54,17 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
   );
 
   const close = () => setOpen(null);
+  /* Paul, 30 Sep: clicking agents should bring the big page down with every agent on it. A link to
+     /#agents from the page it is already on raises no event, so the menu only closed. When this page
+     carries the agents section, open its full-screen surface directly, the same signal the AI Agents
+     button under the hero sends; from any other page the link goes home and opens it there. */
+  const door = (d: Door) => (e: ReactMouseEvent) => {
+    close();
+    if (document.getElementById("agents")) {
+      e.preventDefault();
+      openDoor(d);
+    }
+  };
 
   const panel = (d: Door) => {
     if (d === "agents") {
@@ -62,7 +74,7 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
             <span className={m.lab}>Ten agents we build and run for marketing teams</span>
             <div className={n.agentCols}>
               {AGENTS.map((a) => (
-                <Link key={a.num} href="/#agents" className={n.agentItem} onClick={close}>
+                <Link key={a.num} href="/#agents" className={n.agentItem} onClick={door("agents")}>
                   <span className={n.agentNum}>{a.num}</span>
                   <span>
                     <span className={m.itemT}>{a.name}</span>
@@ -72,7 +84,7 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
               ))}
             </div>
           </div>
-          <Link href="/#agents" className={m.featured} onClick={close}>
+          <Link href="/#agents" className={m.featured} onClick={door("agents")}>
             <span className={m.lab}>See them work</span>
             <span className={m.itemT}>Every agent, working on a made-up insurer</span>
             <span className={m.itemD}>The research note, the outreach, the ads and the site, as they come out.</span>
@@ -99,7 +111,7 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
             </Link>
             {/* Paul, 29 Sep: consulting has no page of its own yet, so the best link today is the
                 consulting view on the homepage. */}
-            <Link href="/#consulting" className={n.menuGo} onClick={close}>How we work with you →</Link>
+            <Link href="/#consulting" className={n.menuGo} onClick={door("consulting")}>How we work with you →</Link>
           </div>
           <Link href="/contact" className={m.featured} onClick={close}>
             <span className={m.lab}>Talk to us</span>
