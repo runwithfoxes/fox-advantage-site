@@ -45,7 +45,7 @@ export default async function HomeNext() {
   const known = await hasAccess();
   /* Paul, 29 Sep: "add more essays here because it just looks like blank space". Ten rows. */
   /* The featured essay is drawn big on the left, so it stays out of the list beside it. */
-  const FEATURED = "how-i-build-proactive-agents";
+  const FEATURED = "why-i-gave-my-agents-email-addresses";
   const essays = getAllEssays().filter((e) => e.slug !== FEATURED).slice(0, 6);
   const diary = getAllDispatches().slice(0, 4);
   const openMod = MODULES.find((m) => m.built);
@@ -136,45 +136,45 @@ export default async function HomeNext() {
               opening, with the phone set into the text on the right. Smaller than the essay page,
               no fox. The text is the live essay's own opening, word for word. */}
           <article className={n.feature}>
-            <span className={n.kicker}>Essay &middot; 25 Sept 2026</span>
+            <span className={n.kicker}>Essay &middot; 28 Sept 2026</span>
             <h2 className={n.featTitle}>
-              <Link href="/essays/how-i-build-proactive-agents">How I build proactive agents</Link>
+              <Link href="/essays/why-i-gave-my-agents-email-addresses">Why I gave my agents email addresses</Link>
             </h2>
             <p className={n.featDek}>
-              The rules I give my inbox agent so it follows things through, instead of telling me once
-              and moving on.
+              Three of my agents now send email from their own addresses, and why that is more honest
+              than me clicking send.
             </p>
             {/* Paul, 25 Sep: a small photo and his name, editorial style. 29 Sep: both go to his bio on About. */}
             <Link href="/about" className={n.byline}>
               <img src="/Paul_photo.jpg" alt="" />
               <span>By <b>Paul Dervan</b></span>
             </Link>
+            {/* Paul, 30 Sep: this essay in place of How I build proactive agents, the Klara phone kept. */}
             <div className={n.featBody}>
               <div className={n.featPhone}>
                 <PhoneDemo />
               </div>
               <p>
-                I have an agent that owns my inbox. It has two jobs. My inbox gets to zero every day,
-                and nobody who wrote to me gets forgotten.
+                Three of my agents now have their own email addresses. Jo, my AI agent responsible for
+                new business, is jo@runwithfoxes.com. Klara, my project manager, has one too, and so does
+                Sam, who does a lot of research for me and with me. These three are autonomous and
+                proactive, so they do things on their own.
               </p>
               <p>
-                It never sends an email. Every reply it writes is a draft, and I review, edit and press
-                send. It never deletes anything either. Every email gets a label, so I can still search
-                for it.
+                A part of my business, and a part of everybody&rsquo;s business, is sending things to
+                people and emailing the things you said you would do. My agents could already write those
+                emails. It&rsquo;s usually quite functional stuff, like the information someone wanted,
+                something I said I&rsquo;d give them, an agreement to meet or a calendar invite. The last
+                step was always me. I&rsquo;d go in, edit and review it to make sure it didn&rsquo;t sound
+                crazy and wasn&rsquo;t incorrect, and then I&rsquo;d click send.
               </p>
               <p>
-                It used to be reactive. It would tell me about an email and then do nothing about it.
-                If I didn&rsquo;t answer, it was forgotten. So I gave it a few rules, and now it follows
-                things through. These are the rules.
+                But part of that feels slightly inauthentic. I&rsquo;d much rather have an agent send a
+                client the information from its own address, saying that Paul asked it to. To me,
+                that&rsquo;s a much more honest view of what&rsquo;s going on. Sam&rsquo;s signature says
+                Sam is an agent.
               </p>
-              <p>
-                If a person wrote to me and I haven&rsquo;t replied, it matters. The only emails it can
-                ignore are the ones a machine sent, like newsletters. If you let the agent decide
-                what&rsquo;s important, anything it doesn&rsquo;t recognise goes in a pile marked
-                &ldquo;unsure&rdquo;. Then you have to go through that pile yourself, which is the job
-                you gave it.
-              </p>
-              <Link href="/essays/how-i-build-proactive-agents" className={n.featMore}>
+              <Link href="/essays/why-i-gave-my-agents-email-addresses" className={n.featMore}>
                 Read the essay &rarr;
               </Link>
             </div>
