@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
-import MobileMenu from "@/components/MobileMenu";
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -114,60 +114,8 @@ function BookLandingContent({ parts }: Props) {
 
   return (
     <>
-      {/* NAV - same as homepage, always in scrolled state */}
-      <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
-        <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
-        <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  {/* ⭐ MIRRORS THE LIVE HOMEPAGE NAV (SF_MODS/SF_PAGES in HomePage.tsx),
-                      21 Jul. The old /tools -> MODULES list pointed at homepage anchors
-                      (#mod-effectiveness ...) that stopped existing when the homepage
-                      became the storefront, so all seven were dead links. This is a
-                      hand-copy of the products dropdown; if the storefront list changes,
-                      it must be updated here and in CourseClient.tsx too. The real fix is
-                      one shared <SiteNav>, on the backlog. */}
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  <a href="/products/module-campaign-manager.html">Campaign Manager</a>
-                  <a href="/products/module-advertising-agent.html">Advertising Agent</a>
-                  <a href="/products/module-outbound-agent.html">Outbound Agent</a>
-                  <a href="/products/module-lifecycle-agent.html">Lifecycle Agent</a>
-                  <a href="/products/module-brand-guardian.html">Brand Guardian</a>
-                  <a href="/products/module-brief-coach.html">Brief Coach</a>
-                  <a href="/products/module-copywriter.html">Copywriter</a>
-                  <a href="/products/module-ghostwriter.html">Ghostwriter</a>
-                  <a href="/products/module-ad-maker.html">Ad Resizer</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/previous &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-projects-dropdown">
-                <div className="hp-pd-label">CASE STUDIES</div>
-                <Link href="/millionaire-raffle">Millionaire Raffle</Link>
-                <Link href="/marketer-of-the-year">Marketer of the Year</Link>
-                <Link href="/48">48</Link>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/books &#9662;</span>
-            <div className="hp-mega hp-mega-end">
-              <div className="hp-projects-dropdown">
-                <Link href="/book">The Fox Advantage</Link>
-                <Link href="/run-with-foxes">Run with Foxes</Link>
-              </div>
-            </div>
-          </div>
-          <Link href="/contact" className="hp-nav-cta">/contact</Link>
-        </div>
-      <MobileMenu />
-      </nav>
+      {/* Paul, 30 Sep: the site's one nav, on its navy bar, in place of the old homepage nav. */}
+      <NextNav bar />
 
       {/* HERO */}
       <section className="hero">

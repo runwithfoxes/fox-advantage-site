@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import { getAllEssays, formatEssayDate } from "@/lib/essays";
@@ -22,14 +23,7 @@ export default function EssaysPage() {
 
   return (
     <div className="essay-page">
-      <header className="essay-nav">
-        <Link href="/" className="essay-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <div className="essay-nav-count">
-          {essays.length} {essays.length === 1 ? "essay" : "essays"}
-        </div>
-      </header>
+      <NextNav bar />
 
       <main className="essay-main">
         <div className="essay-inner">

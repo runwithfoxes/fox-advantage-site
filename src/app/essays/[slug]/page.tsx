@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import EssayJoin from "./EssayJoin";
 import j from "./essay-join.module.css";
 import { notFound } from "next/navigation";
@@ -75,20 +76,13 @@ export default async function EssayPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
-      <header className="essay-nav">
-        <Link href="/" className="essay-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <Link href="/essays" className="essay-nav-back">
-          &larr; essays
-        </Link>
-        <div className="essay-nav-count">{formatEssayDate(essay.date)}</div>
-      </header>
+      <NextNav bar />
 
       <main className="essay-main">
         <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-header">
+            <Link href="/essays" className="essay-nav-back essay-back">&larr; essays</Link>
             <div className="essay-meta">{formatEssayDate(essay.date)}</div>
             <h1 className="essay-heading">{essay.title}</h1>
             {essay.dek ? <p className="essay-dek">{essay.dek}</p> : null}

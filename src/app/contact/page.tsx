@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 
 export const metadata = {
   title: "Contact - Run with Foxes",
@@ -8,18 +9,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="contact-page">
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact" className="active">/contact</Link>
-          <Link href="/book" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      <NextNav bar />
 
       <main className="contact-main">
         <div className="contact-inner">

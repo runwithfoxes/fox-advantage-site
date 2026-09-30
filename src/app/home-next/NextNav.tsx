@@ -20,7 +20,9 @@ import PhoneDemo from "./PhoneDemo";
 type Door = "consulting" | "agents" | "training";
 
 
-export default function NextNav({ known = false }: { known?: boolean } = {}) {
+/* Paul, 30 Sep: "should we not have the same navigation across every page that people land on?" Pages
+   with no film at the top (essays, diary, book, contact) pass `bar`: the same nav on a fixed navy bar. */
+export default function NextNav({ known = false, bar = false }: { known?: boolean; bar?: boolean } = {}) {
   const [open, setOpen] = useState<Door | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -181,7 +183,7 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
   };
 
   return (
-    <header className={n.nav} ref={wrap}>
+    <header className={`${n.nav}${bar ? ` ${n.navBar}` : ""}`} ref={wrap}>
       <Link href="/" className={n.logo}>
         /Runwithfoxes
       </Link>

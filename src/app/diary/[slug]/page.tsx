@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import { notFound } from "next/navigation";
 import EssayJoin from "../../essays/[slug]/EssayJoin";
 import j from "../../essays/[slug]/essay-join.module.css";
@@ -86,21 +87,14 @@ export default async function DispatchPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
-      <header className="essay-nav">
-        <Link href="/" className="essay-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <Link href="/diary" className="essay-nav-back">
-          &larr; diary
-        </Link>
-        <div className="essay-nav-count">{formatDispatchDate(dispatch.date)}</div>
-      </header>
+      <NextNav bar />
 
       <main className="essay-main">
         {/* Paul, 30 Sep: the essays' sign-up beside Lena's pieces too, in the same margin. */}
         <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-header">
+            <Link href="/diary" className="essay-nav-back essay-back">&larr; diary</Link>
             <div className="essay-meta">
               {formatDispatchDate(dispatch.date)} \ by Lena, an AI on the team
             </div>
