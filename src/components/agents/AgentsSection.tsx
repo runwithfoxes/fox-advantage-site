@@ -407,6 +407,8 @@ function TrainingPanel() {
 export default function AgentsSection() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
+  // an agent has been picked: the new homepage keeps the reader hidden until then (30 Sep 2026)
+  const [reading, setReading] = useState(false);
   // which door the surface is showing: the ten agents, the adoption grid,
   // or the course scroller. The hero's three buttons pick it.
   const [mode, setMode] = useState<Door>("agents");
@@ -430,6 +432,13 @@ export default function AgentsSection() {
   // section has laid out before it is measured.
   useEffect(() => {
     const show = (h: string) => {
+      /* /#agent-06 (Paul, 30 Sep 2026): a link from another page that names one agent opens it. */
+      const one = /^agent-(\d\d)$/.exec(h);
+      if (one) {
+        const i = AGENTS.findIndex((x) => x.num === one[1]);
+        if (i >= 0) pick(i);
+        return;
+      }
       if (h !== "consulting" && h !== "training" && h !== "agents") return;
       setView(h as Door);
       const el = document.getElementById("agents");
@@ -472,19 +481,31 @@ export default function AgentsSection() {
     setActive(i);
     setView("agents");
     setOpen(false);
-    // bring the chosen agent's row to the top of the screen
-    requestAnimationFrame(() => {
+    setReading(true);
+    // bring the chosen agent's row to the top of the screen, once the reader has laid out
+    requestAnimationFrame(() => requestAnimationFrame(() => {
       const el = rowRef.current;
       if (!el) return;
       const y = el.getBoundingClientRect().top + window.scrollY - 96;
       window.scrollTo({ top: y, behavior: "smooth" });
-    });
+    }));
   };
+
+  /* Paul, 30 Sep 2026: "when I click on these agents... It doesn't bring me to the agent I've
+     clicked on." The nav names an agent by its number and this opens that agent's own piece. */
+  useEffect(() => {
+    const onAgent = (e: Event) => {
+      const i = AGENTS.findIndex((x) => x.num === (e as CustomEvent<string>).detail);
+      if (i >= 0) pick(i);
+    };
+    window.addEventListener("rwf:agent", onAgent);
+    return () => window.removeEventListener("rwf:agent", onAgent);
+  }, []);
 
   const a = AGENTS[active];
 
   return (
-    <section className="ag" id="agents">
+    <section className={`ag${reading ? " ag-reading" : ""}`} id="agents">
       {/* THE ONE SELECTOR ON THE PAGE (Paul, 5 Sep). Three boxed buttons in the
           hero's own style pick what the section shows. The hero's three doors
           open the surface; these swap the panel in place. */}

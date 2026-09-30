@@ -58,6 +58,15 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
      /#agents from the page it is already on raises no event, so the menu only closed. When this page
      carries the agents section, open its full-screen surface directly, the same signal the AI Agents
      button under the hero sends; from any other page the link goes home and opens it there. */
+  /* Paul, 30 Sep: each agent in the menu goes to that agent, not the list. On a page carrying the
+     agents section it opens that agent's piece; elsewhere /#agent-NN goes home and opens it there. */
+  const agent = (num: string) => (e: ReactMouseEvent) => {
+    close();
+    if (document.getElementById("agents")) {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent<string>("rwf:agent", { detail: num }));
+    }
+  };
   const door = (d: Door) => (e: ReactMouseEvent) => {
     close();
     if (document.getElementById("agents")) {
@@ -74,7 +83,7 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
             <span className={m.lab}>Ten agents we build and run for marketing teams</span>
             <div className={n.agentCols}>
               {AGENTS.map((a) => (
-                <Link key={a.num} href="/#agents" className={n.agentItem} onClick={door("agents")}>
+                <Link key={a.num} href={`/#agent-${a.num}`} className={n.agentItem} onClick={agent(a.num)}>
                   <span className={n.agentNum}>{a.num}</span>
                   <span>
                     <span className={m.itemT}>{a.name}</span>
