@@ -880,3 +880,10 @@ a.entryT:hover { color: #3A7CA5; }
 .hjGoMain { font-family: var(--mono); font-size: 13px; padding: 13px 18px; background: #3A7CA5; color: #fff; text-decoration: none; }
 .hjGoMain:hover { background: #2F6688; }
 .hjGoGhost { font-family: var(--mono); font-size: 13px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; }
+
+/* The agents menu's right column (Paul, 30 Sep): the Klara phone at three quarters, linking to the essay. */
+.menuPhone { display: flex; align-items: center; justify-content: center; padding: 22px 20px; }
+.menuPhone .phoneStage { height: auto; background: none; width: 147px; height: 306px; }
+.menuPhone .phoneFrame { position: static; transform: scale(.75); transform-origin: top left; }
+.menuPhone .phone { box-shadow: 0 14px 34px rgba(4,10,16,.35); transition: transform .3s ease; }
+.menuPhone:hover .phone { transform: translateY(-3px); }

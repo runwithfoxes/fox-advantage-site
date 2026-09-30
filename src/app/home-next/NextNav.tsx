@@ -8,6 +8,7 @@ import ResourcesMenu from "../resources/ResourcesMenu";
 import { AGENTS } from "./content";
 import { MODULES } from "../course/courseModules";
 import { openDoor } from "@/components/AgentsHero";
+import PhoneDemo from "./PhoneDemo";
 
 /**
  * THE FOUR-DOOR NAV. Paul, 25 Sep 2026: the main things are "agents, consulting, training,
@@ -93,11 +94,10 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
               ))}
             </div>
           </div>
-          <Link href="/#agents" className={m.featured} onClick={door("agents")}>
-            <span className={m.lab}>See them work</span>
-            <span className={m.itemT}>Every agent, working on a made-up insurer</span>
-            <span className={m.itemD}>The research note, the outreach, the ads and the site, as they come out.</span>
-            <span className={n.menuGo}>The agents page →</span>
+          {/* Paul, 30 Sep: "See them work" made no sense. The Klara phone from the homepage feature,
+              playing, and a click goes to the essay it sits beside. */}
+          <Link href="/essays/why-i-gave-my-agents-email-addresses" className={`${m.featured} ${n.menuPhone}`} onClick={close} aria-label="Why I gave my agents email addresses, an essay by Paul Dervan">
+            <PhoneDemo />
           </Link>
         </div>
       );
