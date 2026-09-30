@@ -29,7 +29,7 @@ type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "an
 const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts }[] = [
   { g: "report", t: "Reports", d: "The AI Ask, and the two on the way", href: "/#reports" },
   // The library band on the homepage, which carries the sign-up box (Paul, 29 Sep).
-  { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/#library" },
+  { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/resources/library" },
 ];
 const READ: { t: string; href: string }[] = [
   { t: "Essays, by Paul", href: "/essays" },
