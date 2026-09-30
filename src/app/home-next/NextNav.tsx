@@ -127,6 +127,11 @@ export default function NextNav({ known = false }: { known?: boolean } = {}) {
               <span className={m.itemT}>Fame strategies</span>
               <span className={m.itemD}>48, O2 Ireland</span>
             </Link>
+            {/* Paul, 30 Sep: a third link. It opens the consulting page of the same name, the method. */}
+            <Link href="/#consulting" className={n.workItem} onClick={door("consulting")}>
+              <span className={m.itemT}>Designing team AI adoption</span>
+              <span className={m.itemD}>Map the work, redesign it, build agents</span>
+            </Link>
             {/* Paul, 29 Sep: consulting has no page of its own yet, so the best link today is the
                 consulting view on the homepage. */}
             <Link href="/#consulting" className={n.menuGo} onClick={door("consulting")}>How we work with you →</Link>
