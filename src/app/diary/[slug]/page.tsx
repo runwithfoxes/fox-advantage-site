@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import EssayJoin from "../../essays/[slug]/EssayJoin";
+import j from "../../essays/[slug]/essay-join.module.css";
 import { COURSE_NOTE } from "@/lib/essays";
 import {
   getAllDispatches,
@@ -95,6 +97,8 @@ export default async function DispatchPage({
       </header>
 
       <main className="essay-main">
+        {/* Paul, 30 Sep: the essays' sign-up beside Lena's pieces too, in the same margin. */}
+        <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-header">
             <div className="essay-meta">
@@ -136,6 +140,10 @@ export default async function DispatchPage({
               <span />
             )}
           </div>
+        </div>
+        <aside className={j.side}>
+          <EssayJoin />
+        </aside>
         </div>
       </main>
     </div>
