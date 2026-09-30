@@ -13,9 +13,13 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/clients/softco/media")) {
-    if (req.cookies.get("softco_auth")?.value !== "1") {
-      return new NextResponse("Not authorised", { status: 401 });
+  // Every client's files are private (Paul, 30 Sep 2026: "lock them all"). Client pages moved to
+  // clients.runwithfoxes.com and this site serves proposals only, so nothing here needs these files.
+  // SoftCo keeps its cookie; every other client folder is closed to everyone.
+  if (/^\/clients\/[^/]+\/media(\/|$)/.test(pathname)) {
+    const softcoOk = pathname.startsWith("/clients/softco/media") && req.cookies.get("softco_auth")?.value === "1";
+    if (!softcoOk) {
+      return new NextResponse("Not found", { status: 404 });
     }
   }
 
@@ -104,7 +108,7 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/clients/softco/media/:path*",
+    "/clients/:client/media/:path*",
     "/presentation-app/:path*",
     "/proposals/ardan/:path*",
     "/proposals/kapture/:path*",
