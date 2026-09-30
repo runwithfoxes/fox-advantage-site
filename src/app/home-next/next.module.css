@@ -893,10 +893,12 @@ a.entryT:hover { color: #3A7CA5; }
 .menuPhone:hover .phone { transform: translateY(-3px); }
 
 /* The nav on a page with no film behind it (Paul, 30 Sep), fixed to the top. Second pass the same day:
-   "I don't love the blue bar... an ordinary white background with just like a navy blue font." So white,
-   a hairline under it, the logo and the four menu names in navy, Sign in a solid navy button. The menus
+   "I don't love the blue bar... an ordinary white background with just like a navy blue font." So the
+   logo and the four menu names in navy, Sign in a solid navy button. The menus
    that drop from it keep their navy panels. */
-.navBar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--border); padding-top: 14px; padding-bottom: 14px; }
+/* Third pass, same day: "Why can't it just be the colour of the page with no line at all?" So the page's
+   own cream, no line. It stays solid so the essay scrolling under it does not show through. */
+.navBar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg); padding-top: 14px; padding-bottom: 14px; }
 .navBar > .logo { color: #1A3A4E; font-weight: 400; }
 .navBar .links > div > button:not([aria-expanded="true"]) { color: #1A3A4E; }
 .navBar .links > div > button:not([aria-expanded="true"]):hover { color: #3A7CA5; }
