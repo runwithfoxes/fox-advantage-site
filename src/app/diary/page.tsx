@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
+import EssayJoin from "../essays/[slug]/EssayJoin";
+import j from "../essays/[slug]/essay-join.module.css";
 import {
   getAllDispatches,
   getDispatchContent,
@@ -55,6 +57,8 @@ export default async function DiaryPage() {
       </header>
 
       <main className="essay-main">
+        {/* Paul, 30 Sep: the sign-up beside Lena's pieces here as well, where they are read in full. */}
+        <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-index-head">
             <div className="essay-index-kick">\diary</div>
@@ -104,6 +108,10 @@ export default async function DiaryPage() {
               ))}
             </div>
           ) : null}
+        </div>
+        <aside className={j.side}>
+          <EssayJoin />
+        </aside>
         </div>
       </main>
 
