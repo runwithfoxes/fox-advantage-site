@@ -198,13 +198,6 @@ function BookLandingContent({ parts }: Props) {
       <div className="footer-spacer" />
 
       {/* BOTTOM BAR */}
-      <div className="hp-bottom-bar hp-bb-visible">
-        <a href="#">#top</a>
-        <Link href="/#about">#about</Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/book">/book</Link>
-        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
-      </div>
     </>
   );
 }

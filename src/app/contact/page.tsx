@@ -55,12 +55,6 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <div className="bottom-bar">
-        <Link href="/" className="active">← back</Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book" className="cta-bar">get the book</Link>
-      </div>
     </div>
   );
 }

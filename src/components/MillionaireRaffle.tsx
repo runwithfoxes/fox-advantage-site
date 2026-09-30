@@ -1,5 +1,6 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -142,18 +143,7 @@ export default function MillionaireRafflePage() {
   return (
     <>
       {/* TOP BAR */}
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact">/contact</Link>
-          <Link href="/book" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      <NextNav bar />
 
       {/* HERO */}
       <section className="proj-hero">
@@ -376,16 +366,6 @@ export default function MillionaireRafflePage() {
       <div className="footer-spacer" />
 
       {/* BOTTOM BAR */}
-      <div className="bottom-bar">
-        <Link href="/" className="active">
-          ← back
-        </Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book" className="cta-bar">
-          get the book
-        </Link>
-      </div>
     </>
   );
 }
