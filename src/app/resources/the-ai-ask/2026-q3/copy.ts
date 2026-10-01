@@ -46,7 +46,7 @@ export const INTRO: string[] = [
 /** Sam's six findings, verbatim, each pointing to its chapter. `big` is drawn from numbers.json in the page. */
 export const FINDINGS: { text: string; ch: number; big: "mkt" | "talk" | "digital" | "speed" | "tools" | "rules" }[] = [
   { text: `Asking for AI has become common in Irish marketing jobs within a year. On jobs.ie, marketing ads with a real AI ask went from none of 43 in late 2025 to 8 of 31 in September 2026, about one in four. On the same site, sales ads stayed under 2% all year.`, ch: 1, big: "mkt" },
-  { text: `Most of the AI in job ads is talk. 21% of September's ads mention AI, but only 9% ask the person to do anything with it. The rest is mostly technology companies describing themselves.`, ch: 2, big: "talk" },
+  { text: `Most mentions of AI in job ads ask nothing of the applicant. 21% of September's ads mention AI, but only 9% ask the person to do anything with it. The rest is mostly technology companies describing themselves.`, ch: 2, big: "talk" },
   { text: `At ordinary Irish employers, digital marketing is where the asks are: 11 of 46 digital marketing ads on the job boards asked for AI over the year, while brand, field sales and shop-floor sales jobs never did. At the big technology firms, sales jobs ask too: 10 of 33 account executive ads on their own careers pages.`, ch: 3, big: "digital" },
   { text: `When employers ask people to use AI, they mostly want speed. Writing comes well down the list, and the better ads ask for judgement over what the AI produces.`, ch: 4, big: "speed" },
   { text: `Employers name their other tools exactly and leave AI vague. Excel is named in 46 ads. Only 2 ads name an AI tool the person would actually use.`, ch: 5, big: "tools" },
@@ -91,7 +91,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch2",
     n: 2,
-    title: "Most of the AI in job ads is talk",
+    title: "Most mentions of AI in job ads ask nothing of the applicant",
     lede: [`If you search job ads for the letters "AI", you'll find a lot. Most of it isn't asking you for anything. It's a company telling you about itself.`],
     subs: [
       {
