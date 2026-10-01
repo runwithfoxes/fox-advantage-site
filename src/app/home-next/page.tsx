@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
-import { formatDay, getLibrary } from "../resources/library";
+import { formatDay } from "../resources/library";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
 import DoorButtons from "./DoorButtons";
@@ -17,7 +17,6 @@ import SectorPicker from "./SectorPicker";
 import ResearchBands from "./ResearchBands";
 import "@/components/agents/agents-section.css";
 import { MODULES } from "../course/courseModules";
-import { TRACKERS } from "./content";
 import { SERIES, editionsOf, seriesOf, reportHref } from "../resources/catalogue";
 import f from "../resources/front.module.css";
 import h from "../resources/hero.module.css";
@@ -61,29 +60,45 @@ export default async function HomeNext() {
   ]
     .sort((a, b) => b.iso.localeCompare(a.iso))
     .slice(0, 10);
-  const trackers = TRACKERS;
-  /* The card's lines, built the way the hub builds them: studies, trackers, then every
-     published piece. Invented studies and trackers say "example" in their label. */
-  const lines = [
-    /* Paul, 27 Sep: "users can click on them". Every row is the newest edition of a real series
-       from the catalogue, so every row has a page to open. (The old STUDIES list was the 25 Sep
-       placeholder set and half its rows went to "#".) */
+  /* ⭐ THE HERO CARD'S LINES. Paul, 1 Oct 2026: "let's have like two thirds at least of the essays
+     mine, and a third are Lena's and Sam's. Also, are you using all my essays? Because some of the
+     good essays are earlier ones about distinctive brand assets, etc. So don't just use the most
+     recent ones. Because the most recent ones are underneath the hero anyway."
+
+     Before this the card was everything published, newest first: 60 rows, and the first twenty
+     were mostly Lena's diary, with his earlier essays at the very bottom (Distinctive Brand
+     Assets was row 57). Now:
+      - every essay of his is in it, and they run the OTHER way to the list under the hero: the
+        earlier ones first, with the one he named leading, and the newest seven last, because
+        those are the ones already shown under the hero;
+      - for every two of his there is one from Sam or Lena (Sam's reports first, then Lena's
+        newest diary pieces), so his share never drops under two thirds however many she writes.
+     The Answer pages, the module and the trackers are no longer in the card: it is essays,
+     reports and the diary. */
+  const LEAD = ["distinctive-brand-assets-in-an-ai-world"];
+  const allEssays = getAllEssays();
+  const underHero = new Set([FEATURED, ...essays.map((e) => e.slug)]);
+  const essayLine = (e: (typeof allEssays)[number]) => ({ label: `Essay · Paul Dervan · ${formatDay(e.date)}`, title: e.title, href: `/essays/${e.slug}` });
+  const mine = [
+    ...LEAD.map((slug) => allEssays.find((e) => e.slug === slug)).filter((e): e is (typeof allEssays)[number] => Boolean(e)),
+    ...allEssays.filter((e) => !underHero.has(e.slug) && !LEAD.includes(e.slug)),
+    ...allEssays.filter((e) => underHero.has(e.slug) && !LEAD.includes(e.slug)),
+  ].map(essayLine);
+  const theirs = [
+    /* Every row is the newest edition of a real series from the catalogue, so every row has a
+       page to open (Paul, 27 Sep: "users can click on them"). */
     ...SERIES.map((se) => editionsOf(se).filter((r) => r.status !== "coming")[0])
       .filter((r): r is NonNullable<typeof r> => Boolean(r))
       .sort((a, b) => Number(a.example) - Number(b.example) || b.date.localeCompare(a.date))
       .map((r) => ({ label: `Report · ${seriesOf(r).name}${r.example ? " · example" : ""}`, title: r.title, href: reportHref(r) })),
-    ...trackers.map((t) => ({ label: `Tracker${t.example ? " · example" : ""}`, title: t.what, href: t.href })),
-    /* Paul, 29 Sep: "We should include Lena's essays in the scrolling card on hero." Her diary
-       dispatches join the published pieces, newest first, labelled as hers. */
-    ...[
-      ...getLibrary()
-        .filter((e) => !e.soon && e.type !== "Study")
-        .map((e) => ({ iso: e.date, label: `${e.type} · ${formatDay(e.date)}`, title: e.title, href: e.href })),
-      ...getAllDispatches().map((d) => ({ iso: d.date, label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` })),
-    ]
-      .sort((x, y) => y.iso.localeCompare(x.iso))
-      .map(({ label, title, href }) => ({ label, title, href })),
-  ];
+    /* Paul, 29 Sep: "We should include Lena's essays in the scrolling card on hero." */
+    ...getAllDispatches().map((d) => ({ label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` })),
+  ].slice(0, Math.floor(mine.length / 2));
+  const lines: { label: string; title: string; href: string }[] = [];
+  mine.forEach((l, i) => {
+    lines.push(l);
+    if (i % 2 === 1 && theirs.length) lines.push(theirs.shift()!);
+  });
 
   return (
     <div className={f.page}>
