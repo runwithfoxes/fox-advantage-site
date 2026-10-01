@@ -8,6 +8,9 @@
  * Approved by Paul for the live site on 29 Sep 2026. His changes that day: the headline (below), the
  * base counts put back into the caption of Figure 1.1, captions that read on paper as well as on
  * screen, and the fourth Cato review in the method.
+ * 1 Oct 2026, after Susan's proofread: the captions of Figures 3.1, 3.2 and 5.1 changed with the
+ * charts (rows on fewer than 15 ads sit faded below the rest; 5.1's AI bar is counted one way, 23).
+ * ⚠️ That 23 and the regrouped AI row have NOT been through Cato yet.
  */
 
 export type Block =
@@ -131,7 +134,7 @@ export const CHAPTERS: Chapter[] = [
         title: "By kind of role: the AI Ask Index",
         blocks: [
           { p: `To compare kinds of jobs, we use a simple measure we call ==the AI Ask Index==. It's the share of a group's ads with a real AI ask, divided by the share across all 636 ads on 24 September (8.8%). An index of 1 means the group asks for AI as often as the average job. Above 1 means more often.` },
-          { fig: "f31", title: "Digital marketing jobs ask for AI 4.9 times as often as the average job. Field and retail sales almost never do.", cap: "AI Ask Index by kind of role, 24 September 2026, all 636 ads and all 56 asks, job boards and careers pages together. Kind of role is read from the job title. Product marketing rests on 6 ads, and some of its asks are the same client (Dolby, through Cpl), so treat that row as a pointer only." },
+          { fig: "f31", title: "Digital marketing jobs ask for AI 4.9 times as often as the average job. Field and retail sales almost never do.", cap: "AI Ask Index by kind of role, 24 September 2026, all 636 ads and all 56 asks, job boards and careers pages together. Kind of role is read from the job title. Faded bars rest on fewer than 15 ads and sit below the others. Product marketing rests on 6 ads, and some of its asks are the same client (Dolby, through Cpl), so treat that row as a pointer only." },
           { p: `Brand, events and general marketing, the biggest marketing group with 55 ads, sits well below average, and so do content and social media jobs. The AI ask in marketing is concentrated in the digital, performance and ecommerce roles, where the work is already done on screens and measured in numbers. The marketing manager who looks after a brand across everything, and the person writing the social posts, are ==asked much less often==. I'd have guessed the opposite for content, since writing is where AI tools are best known.` },
         ],
       },
@@ -140,7 +143,7 @@ export const CHAPTERS: Chapter[] = [
         title: "Job by job: how often your kind of job asks",
         blocks: [
           { p: `If you work in marketing or sales, the useful question is how often ads for your kind of job ask for AI. Figure 3.2 splits every job-board ad in the study, 1,683 across the year, into about 25 specific job types and ranks them. We use the job boards here, not the tech firms' own careers pages, because they show what ordinary Irish employers ask for, and we use the whole year so each job type has as many ads behind it as possible. Job types with fewer than 15 ads are shown faded, because a single ad moves them a long way.` },
-          { fig: "f32", title: "On the job boards, digital marketing asks for AI most. Brand, field sales and shop-floor sales jobs never did.", cap: "Share of ads with a real AI ask, by job type, job boards only, all four periods, 1,683 ads. Faded bars rest on fewer than 15 ads. Job types with fewer than 5 ads are left out. The number of ads behind each bar is in brackets." },
+          { fig: "f32", title: "On the job boards, digital marketing asks for AI most. Brand, field sales and shop-floor sales jobs never did.", cap: "Share of ads with a real AI ask, by job type, job boards only, all four periods, 1,683 ads. Faded bars rest on fewer than 15 ads and sit below the others. Job types with fewer than 5 ads are left out. The number of ads behind each bar is in brackets." },
           { p: `For job types with enough ads to trust, digital marketing stands out: ==11 of 46 ads asked for AI==. After it come content and copywriting (2 of 21) and account executives (3 of 33); ecommerce (2 of 13) looks high too, but rests on fewer than 15 ads. PR and communications asked in 1 of 19, social media in 1 of 20, SDRs and BDRs in 1 of 31, business development in 3 of 104 and general marketing in 3 of 108. Brand jobs, 17 of them, never asked. Neither did 90 field sales jobs or 288 shop and showroom sales jobs.` },
           { p: `The technology firms' own careers pages tell a different story for sales. There, in September, account executives asked for AI in 10 of 33 ads, SDRs and BDRs in 8 of 19, sales and revenue operations in 5 of 8 and customer success in 3 of 10. So if you work in sales at a technology company, ==AI is already in the ads for your next job==. If you work in sales anywhere else, it mostly isn't yet. In marketing, digital roles ask everywhere; brand, PR and social media roles still rarely do, though I wouldn't read that as a promise it stays that way.` },
         ],
@@ -224,7 +227,7 @@ export const CHAPTERS: Chapter[] = [
         n: "5.1",
         title: "What gets named",
         blocks: [
-          { fig: "f51", title: "Office software and the CRM are named far more than anything else.", cap: "Ads naming at least one tool of each type, 24 September 2026, 636 ads. An ad can name tools of several types. \"Excel\" counts the software only, not the verb. The list shows the AI tools named; on the web page, pick a type to see the tools inside it." },
+          { fig: "f51", title: "Office software and the CRM are named far more than anything else.", cap: "Ads naming at least one tool of each type, 24 September 2026, 636 ads. An ad can name several tools, so the tools inside a type add to more than its bar: an ad naming Excel and PowerPoint counts once for Office and once for each tool. \"Excel\" counts the software only, not the verb. The AI bar is 23 ads: 17 ask for AI tools and name none, and 6 name one. On the web page, pick a type to see the tools inside it." },
           { p: `The old tools still run marketing and sales in Ireland. Microsoft Office alone is named in 60 ads, more than every marketing tool type in the table put together (58 ads). Salesforce is named in 52 ads, and the sales tools that sit around it, the prospecting and call-recording software that fills sales conferences, come up in 5 between them. Figma, the design tool product teams live in, isn't named in a single marketing or sales ad. Canva is named in 22.` },
         ],
       },
