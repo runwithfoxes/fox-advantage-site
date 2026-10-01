@@ -234,7 +234,7 @@
      "title": "What the advertisers set",
      "blocks": [
       {
-       "p": "Before we look at who the ads reached, here is what the advertisers asked for. Each bar is one advertiser's ads this quarter, split by the age setting on them: everyone, a higher minimum age only, or a range with a top limit. The point is how similar the settings are, whatever the reason."
+       "p": "Before we look at who the ads reached, here is what the advertisers asked for. Each bar is one advertiser's ads this quarter, split by the age setting on them: everyone, a higher minimum age only, or a range with a top limit. The settings vary a lot from one advertiser to the next."
       },
       {
        "fig": "f21",
@@ -253,7 +253,7 @@
      "title": "Who the platform found",
      "blocks": [
       {
-       "p": "Now who actually saw the ads, by age. The two groups are the three digital challengers and the seven Irish banks and lenders. Look at the two youngest bands and the two oldest, and at how different the shapes are for two groups working from similar settings."
+       "p": "Now who actually saw the ads, by age. The two groups are the three digital challengers and the seven Irish banks and lenders. Look at the two youngest bands and the two oldest, and at how different the two shapes are."
       },
       {
        "fig": "f22",
@@ -273,7 +273,7 @@
        "cap": "Category average 32.8%, median 28.0%, lowest 14.8%, highest 57.4%."
       },
       {
-       "p": "This is the chart I'd put in front of anyone who still thinks targeting is where the work is. Two of the challengers reached a country that is 57% and 56% under 35, and the seven Irish banks and lenders together reached one that is 29% under 35, on age settings that were broad for one of the two and mostly 22-plus for the other. (The third challenger reached 26% under 35, in line with the incumbents.) What most likely decided who saw those ads was how people responded to them, the product, the offer and where they ran, and Meta's own retrieval work points the same way. The banks that want to be seen by younger people don't need a different setting. They need a different ad, and it's fair to add that free accounts and app features pull younger on their own. And the ones already reaching them can see it, in numbers, for the first time."
+       "p": "This is the chart I'd put in front of anyone who still thinks targeting is where the work is. Two of the challengers reached a country that is 57% and 56% under 35, and the seven Irish banks and lenders together reached one that is 29% under 35, on age settings that were broad for one of the two and mostly 22-plus for the other. (The third challenger reached 26% under 35, in line with the incumbents.) Take only the ads set to everyone, the same setting on both sides, and the gap is still there: the challengers' 236 such ads reached 52.4% under 35 and the banks' 504 reached 29.8%. What most likely decided who saw those ads was how people responded to them, the product, the offer and where they ran, and Meta's own retrieval work points the same way. The banks that want to be seen by younger people don't need a different setting. They need a different ad, and it's fair to add that free accounts and app features pull younger on their own. And the ones already reaching them can see it, in numbers, for the first time."
       }
      ]
     },
@@ -763,14 +763,14 @@
        "cap": "A still that appears in several sizes counts once. Only the first four cards of each still ad were kept, so a carousel whose later cards differ would be missed."
       },
       {
-       "p": "How much of each advertiser's reach came from video. Most lean on it; a few don't."
+       "p": "How much of each advertiser's reach came from video. Half lean on it and half don't."
       },
       {
        "fig": "f72",
        "kind": "Figure",
        "no": "7.2",
        "title": "Share of each advertiser's reach from video",
-       "cap": "Category average 54.4%, median 51.2%, lowest 10.9%, highest 95.4%."
+       "cap": "Category average 54.4%, median 51.2%, lowest 10.9%, highest 95.4%. A creative is one set of words, and its format is read from its most-seen ad. 32 of the 601 creatives ran the same words as a video and in another format too, and all of that reach is filed under the one format, so read each bar as approximate."
       },
       {
        "p": "Video is 65% of creatives and 65% of reach. Then the interesting one. 173 creatives are one picture shown in several sizes, whether the advertiser's own resizes or the platform's placement versions of one upload, which can't be told apart from outside; 25 are real carousels with different cards; and 11 are a single still. So 209 creatives in the category don't move, and real carousels carry 3% of reach."
@@ -845,7 +845,7 @@
        "cap": "Numbers: Category average 21.0%, median 12.4%, lowest 0.0%, highest 66.7%. Questions: category average 17.6%. Emoji: category average 15.9%."
       },
       {
-       "p": "The call to action, reduced to its first word. Most ads that have one use the same word."
+       "p": "The call to action, reduced to its first word. One word leads by a long way."
       },
       {
        "fig": "f84",
@@ -855,7 +855,7 @@
        "cap": "204 creatives have no call to action in their words."
       },
       {
-       "p": "21% of creatives put a number in the ad, a rate, a cashback figure, a fee. On one advertiser it's 67%; on another, none. 18% of ads ask a question somewhere in the text. Emoji appear in 16%, from none on some advertisers to 71% on one. And the call to action, where there is one, is overwhelmingly \"apply\". None of these is a rule. Creative doesn't get rules. They're the priors your next test should start from."
+       "p": "21% of creatives put a number in the ad, a rate, a cashback figure, a fee. On one advertiser it's 67%; on another, none. 18% of ads ask a question somewhere in the text. Emoji appear in 16%, from none on some advertisers to 71% on one. And where a creative has a call to action, the first word is \"apply\" on 137 of 397, about a third, and nearly five times the next word. None of these is a rule. Creative doesn't get rules. They're the priors your next test should start from."
       }
      ]
     }
@@ -984,7 +984,7 @@
   },
   {
    "k": "What was read",
-   "t": "Words, headline and description for every ad. The picture or video for all but one creative: videos were downloaded and measured, and frames taken; still ads were read card by card with on-device text recognition to tell one picture in several sizes from a real carousel, with 100 unclear cases judged by eye. Each creative was sorted by product, offer, people on screen and humour by an AI reader, with a second AI reader checking the sales-versus-service split. The first-three-seconds judgement is one person, by eye, from frames every half second. Reworded creatives were found by comparing words with the legal lines removed, at an 80% match. Reading ease is the Flesch score, rough on texts this short."
+   "t": "Words, headline and description for every ad. The picture or video for all but one creative: videos were downloaded and measured, and frames taken; still ads were read card by card with on-device text recognition to tell one picture in several sizes from a real carousel, with 100 unclear cases judged by eye. A creative's format is the format of its most-seen ad; 32 creatives ran the same words in more than one format, and their reach is filed under that one. Each creative was sorted by product, offer, people on screen and humour by an AI reader, with a second AI reader checking the sales-versus-service split. The first-three-seconds judgement is one person, by eye, from frames every half second. Reworded creatives were found by comparing words with the legal lines removed, at an 80% match. Reading ease is the Flesch score, rough on texts this short."
   },
   {
    "k": "What we set it against",
