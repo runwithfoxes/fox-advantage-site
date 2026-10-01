@@ -929,7 +929,7 @@ a.entryT:hover { color: #3A7CA5; }
 /* The course, named in plain writing beside the four buttons (Paul, 1 Oct 2026). No box: it is a
    line of writing, not a fifth button. On a phone, where the buttons are a row of four, it takes a
    line of its own under them. */
-.doorCourse { align-self: center; margin-left: 14px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; color: #3A7CA5; text-decoration: none; }
+.doorCourse { align-self: center; margin-left: 36px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; color: #3A7CA5; text-decoration: none; }
 .doorCourse:hover { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 700px) { .doorCourse { grid-column: 1 / -1; margin: 6px 0 0; font-size: 11.5px; letter-spacing: 0; } }
 
