@@ -85,7 +85,7 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
       `What the ads rarely do is say which AI tools. Of the 20 that ask for "AI tools", ==17 name no tool==, which may suggest employers are still early in working out which ones they need. The tools will keep changing as well. Canva went from 2.2% to 6.4% of jobs.ie ads in a year, which suggests people want to be able to get things done themselves.`,
     ],
     seeker: `Get to know your tools, and know that one tool doesn't do everything. There may also be an opportunity to help an employer understand which tools would be useful to them.`,
-    hirer: `The clearest ad of the year named the tools and what they were for. It came from a small agency in Bray.`,
+    hirer: `If you know which AI tools your team uses, name them in the ad and say what they are for. If you're still working that out, say so, and ask candidates which tools they use and why. Their answers will show you who has a point of view.`,
     ch: [3],
   },
   {
