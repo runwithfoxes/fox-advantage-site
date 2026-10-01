@@ -119,6 +119,8 @@ const PRINT_CSS = `
   [class*="fGrid"] { grid-template-columns: 1fr 1fr !important; }
   [class*="thread"], [class*="rdrs"] { break-inside: avoid; page-break-inside: avoid; }
   [class*="insGo"] { break-before: avoid; page-break-before: avoid; }
+  /* the sign-off never sits alone on a page: it stays with the last method note (it did, on a page of its own, once the Checking note grew on 1 Oct) */
+  [class*="sign"] { break-before: avoid; page-break-before: avoid; }
   [class*="insItem"] { padding: 16px 0 18px !important; }
 `;
 

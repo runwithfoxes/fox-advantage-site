@@ -104,7 +104,7 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
     n: 3,
     title: "The ads ask for speed, and the bigger opportunity is ambition",
     body: [
-      `It's still early as we work out what AI is good for. Speed, cost and productivity are the natural things to look at first, and speed is what the ads show. Speed, efficiency or productivity comes up in ==27 of the 82 sentences== about AI in the ads that ask people to use it.`,
+      `It's still early as we work out what AI is good for. Speed, cost and productivity are the natural things to look at first, and speed is what the ads show. Speed, efficiency or productivity comes up in ==27 of the 82 sentences== about AI or automation in the ads that ask people to use it.`,
       `What interests us more at Run with Foxes is using AI to do things that couldn't be done before, for a whole team and a company as well as for one person. It's the idea of being wildly ambitious. That isn't coming through in the job ads yet. Of September's 56 asks, four are for someone to get the company found in AI search, and one is for someone to build agents. A job ad doesn't show everything an employer is thinking, but it does give a sense of where people are at the moment.`,
     ],
     seeker: `This could be a great opportunity. You can help an employer see what AI makes possible beyond speed and cost.`,
@@ -310,7 +310,7 @@ export const CHAPTERS: Chapter[] = [
         blocks: [
           { fig: "f41", title: "Half the asks are to use AI tools. Building agents came up once.", cap: "The 56 real AI asks on 24 September 2026, one square each, by kind. On the web page, pick a kind to see who asked." },
           { p: `The kinds split cleanly by employer. The AI search asks all come from smaller Irish firms or the recruiters working for them: Femtech Healthcare, Yuno Energy, Staffline and Excel Recruitment. They want someone to make sure the company turns up when a customer asks ChatGPT instead of Google. The sell asks come from technology companies, where AI is in the product. We count a sell ask only when the ad says the job itself involves selling or introducing AI, not when the company simply describes itself as an AI company. The lead asks are few and senior: Excel Recruitment for a luxury retailer, Datadog, Accenture and Mediolanum.` },
-          { p: `The AI search asks are worth a second look. None appear in our late 2025 ads, and it is the nearest thing in these ads to ==using AI for something that couldn't be done before==.` },
+          { p: `The AI search asks are worth a second look. None appear in our late 2025 ads, and this kind of ask is the nearest thing in these ads to ==using AI for something that couldn't be done before==.` },
           { p: `Agents, the word of the year in tech, show up mostly as a product someone else is selling. ==Only one marketing or sales job in Ireland asks the person to build them.== Wayflyer wants its Technical Revenue Operations Analyst to "build, deploy and continuously sharpen AI-native workflows and agents that augment how Sales, CS and the wider Revenue org work". The only other build ask is MongoDB's, for a sales operations analyst to build "statistical and machine learning models" for forecasting.` },
         ],
       },

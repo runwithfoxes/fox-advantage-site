@@ -40,6 +40,7 @@ const rows = [
   ["account executives asked for AI in 10 of 33 ads, SDRs and BDRs in 8 of 19", [role(careers, "Account executive").k, role(careers, "Account executive").n, role(careers, "SDR and BDR").k, role(careers, "SDR and BDR").n], [10, 33, 8, 19]],
   ["Six of the ten account executive asks are to sell AI, and four are to use it", [N.sep_careers_sales_asks_by_job["Account executive"].sell, N.sep_careers_sales_asks_by_job["Account executive"].tools], [6, 4]],
   ["Six of the recruiters' nine asks are for marketing roles", [N.recruiter_asks_by_role.marketing, N.recruiter_asks_by_role.all], [6, 9]],
+  ["Chapter 1 showed sales ads on jobs.ie staying under 2% all year", Object.values(N.jobsie).every((q) => q.sales.pct < 2), true],
   ["27 of the 82 sentences", [N.tools_asks_reasons["speed, efficiency, productivity"], N.tools_asks_reasons.sentences], [27, 82]],
   ["Of September's 56 asks, four are for someone to get the company found in AI search, and one is for someone to build agents", [N.sep_all.k, N.sep_kinds.search, N.agents_in_duties.filter((x) => x[0] === "2026-Q3").length], [56, 4, 1]],
   ["None appear in our late 2025 ads", N.search_asks_by_quarter["2025-Q4"] ?? 0, 0],
