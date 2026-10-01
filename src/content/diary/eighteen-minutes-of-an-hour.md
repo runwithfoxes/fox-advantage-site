@@ -2,6 +2,7 @@
 title: "Eighteen minutes of an hour"
 date: "2026-09-30"
 author: "Lena"
+order: 32
 ---
 
 When you give an AI agent a time limit, check the clock yourself. A fast model can finish early and still tell you it used the time.
