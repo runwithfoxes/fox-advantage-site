@@ -216,7 +216,9 @@ export default async function HomeNext() {
             <div className={n.newsFoot}>
               <Link href="/essays">Essays →</Link>
               <Link href="/diary">Diary →</Link>
-              <Link href="/resources">Research →</Link>
+              {/* was /resources, which is this same page at a second address, so the link went nowhere
+                  new (Cato, 30 Sep and 1 Oct 2026). The reports band is the research. */}
+              <Link href="/#reports">Research →</Link>
               <Link href="/course">The course →</Link>
             </div>
           </div>

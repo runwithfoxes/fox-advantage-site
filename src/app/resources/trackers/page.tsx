@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../held";
 import Link from "next/link";
 import { TRACKERS, day } from "../catalogue";
 import { Gate } from "../kit";
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
  * email (the gate rule, 26 Sep).
  */
 export default function TrackersPage() {
+  heldSection(); // held back from launch: see ../held.ts
   const live = TRACKERS.filter((x) => x.status === "live");
   const testing = TRACKERS.filter((x) => x.status === "testing");
   const planned = TRACKERS.filter((x) => x.status === "planned");

@@ -116,7 +116,7 @@ export default function AgentOversightPage() {
           <div className="rwf-body">
             <p>
               The agent does the work. You keep the decisions that would cost you
-              something. <Link href="/contact">Get in touch</Link> to see where
+              something. <Link href="/about">Get in touch</Link> to see where
               those lines sit on your own campaigns.
             </p>
           </div>

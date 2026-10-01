@@ -429,7 +429,7 @@ export default function AgentsHero({ courseOpen = false }: { courseOpen?: boolea
               {/* CONTACT (Paul, 7 Sep): on a phone the top nav links are hidden, so
                   this was the only page on the site with no way to reach him above
                   the fold. A fourth door, a plain link to /contact. */}
-              <a className="ah-ghost" href="/contact">Contact</a>
+              <a className="ah-ghost" href="/about">Contact</a>
             </div>
           </div>
 

@@ -127,7 +127,7 @@ export default function MarketingAgentCostPage() {
               costing you a full-time salary or an agency retainer today, a
               marketing agent is a fraction of that, built once and handed to you
               to run.{" "}
-              <Link href="/contact">Tell us what you'd want it to do</Link> and
+              <Link href="/about">Tell us what you'd want it to do</Link> and
               we'll tell you what it takes.
             </p>
           </div>

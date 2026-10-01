@@ -1,4 +1,4 @@
-import { getChapterContent, getChapterMeta, getAdjacentChapters, getAllChapters, isChapterGated } from "@/lib/chapters";
+import { getChapterContent, getChapterMeta, getAdjacentChapters, getAllChapters, isChapterGated, CHAPTER_COUNT } from "@/lib/chapters";
 import ChapterReader from "@/components/ChapterReader";
 import ChapterGate from "@/components/ChapterGate";
 import { notFound } from "next/navigation";
@@ -28,11 +28,14 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
   const { prev, next } = getAdjacentChapters(slug);
 
   if (isChapterGated(meta)) {
-    return <ChapterGate chapter={meta} prev={prev} next={next} />;
+    return <ChapterGate chapter={meta} prev={prev} next={next} total={CHAPTER_COUNT} />;
   }
 
   const chapter = await getChapterContent(slug);
   if (!chapter) notFound();
 
-  return <ChapterReader chapter={chapter} prev={prev} next={next} />;
+  /* The count and the "coming soon" label come from the same two things that decide the pages
+     themselves (1 Oct 2026, Cato's link check: the pages counted "55 / 54" while /book said 56, and
+     two readable chapters were labelled coming soon by a rule typed separately in the reader). */
+  return <ChapterReader chapter={chapter} prev={prev} next={next} total={CHAPTER_COUNT} nextSoon={next ? isChapterGated(next) : false} />;
 }

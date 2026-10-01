@@ -8,6 +8,11 @@ import { MODULES, isLive } from "../course/courseModules";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
+  /* The homepage this site had until 29 Sep 2026, kept whole as the fallback (see app/page.tsx).
+     It is a second homepage at a second address, so it is not offered to search engines
+     (Cato's link check, 1 Oct 2026: it was the one held-back page without noindex). */
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/" },
   description:
     "Run with Foxes builds marketing agents for your business. They make the ads, write the outreach, and run the campaigns, around the clock.",
 };

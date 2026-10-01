@@ -159,7 +159,7 @@ export default function AiMarketingIrelandPage() {
               If you run an Irish business and want to see what a marketing agent
               looks like when the fundamentals are already built in, we can show
               you one working on real campaigns.{" "}
-              <Link href="/contact">Get in touch</Link>.
+              <Link href="/about">Get in touch</Link>.
             </p>
           </div>
 

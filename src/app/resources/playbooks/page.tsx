@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../held";
 import SiteFooter from "@/components/SiteFooter";
 import { MODULES_BY_N } from "@/app/course/moduleData";
 import { PLAYBOOKS, AREA_LABEL, type Playbook, type PlaybookKind } from "../catalogue";
@@ -68,6 +69,7 @@ function shortVersion(p: Playbook): string {
  * - The gate, last.
  */
 export default function PlaybooksPage() {
+  heldSection(); // held back from launch: see ../held.ts
   const groups = KINDS.map((k) => ({ ...k, items: PLAYBOOKS.filter((p) => p.kind === k.kind) })).filter((g) => g.items.length);
   const files = PLAYBOOKS.reduce((n, p) => n + p.files.length, 0);
 

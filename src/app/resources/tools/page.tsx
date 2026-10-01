@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../held";
 import SiteFooter from "@/components/SiteFooter";
 import { TOOLS, AREA_LABEL, type Tool } from "../catalogue";
 import { Example, Gate } from "../kit";
@@ -28,6 +29,7 @@ const STATUS: Record<Tool["status"], string> = { live: "Live", beta: "Beta", com
  * - The gate, last.
  */
 export default function ToolsPage() {
+  heldSection(); // held back from launch: see ../held.ts
   const tools = [...TOOLS].sort((a, b) => ORDER.indexOf(a.status) - ORDER.indexOf(b.status));
   const counts = ORDER.map((s) => ({ s, n: TOOLS.filter((t) => t.status === s).length }));
   const featured = tools.find((t) => t.status === "live" && t.href) ?? tools[0];

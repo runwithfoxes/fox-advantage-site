@@ -199,7 +199,7 @@ export default function HomePage({
               </div>
             </div>
           </div>
-          <Link href="/contact" className="hp-nav-cta">/contact</Link>
+          <Link href="/about" className="hp-nav-cta">/contact</Link>
         </div>
       <MobileMenu />
       </nav>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../../held";
 import { hasAccess } from "@/lib/access";
 import ViewedPing from "../../kit/ViewedPing";
 import Link from "next/link";
@@ -49,6 +50,7 @@ function fileSize(p: string) {
  * typed in; the owner desk; and at the end the gate and the history as a CSV through it.
  */
 export default async function TrackerPage({ params }: { params: Promise<{ slug: string }> }) {
+  heldSection(); // held back from launch: see ../../held.ts
   const unlocked = await hasAccess();
   const { slug } = await params;
   const x = trackerBySlug(slug);

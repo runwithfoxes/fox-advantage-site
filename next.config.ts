@@ -119,6 +119,12 @@ const nextConfig: NextConfig = {
       /* Paul, 30 Sep 2026: contact and About are one page; contact is its last section. */
       /* 1 Oct 2026: to the top of the page, not #contact, so the film is seen (Paul). */
       { source: "/contact", destination: "/about", permanent: false },
+      /* Paul, 1 Oct 2026: "Whatever is the easiest thing to do on panel, chief and brand, do it." The Expert
+         Panel page still carried the old site's menu, eleven of its items pointed at sections that no longer
+         exist, and it was the only route to /chief and /brand. The pages stay in the code. */
+      { source: "/experts", destination: "/", permanent: false },
+      { source: "/chief", destination: "/", permanent: false },
+      { source: "/brand", destination: "/", permanent: false },
       /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
          in the code; these two lines are what keep them off the live site. Remove to release. */
       { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },

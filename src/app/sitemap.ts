@@ -23,7 +23,6 @@ const PUBLIC_ROUTES = [
   "/answers",
   "/book",
   "/books",
-  "/brand",
   "/brief-diagnostician",
   /* ⛔ "/coach" WAS HERE AND CAME OUT, 2 Aug 2026. It is not a page: the route is
      an 11-line `redirect()` that 307s to metrics-pyramid.vercel.app, where the
@@ -38,13 +37,15 @@ const PUBLIC_ROUTES = [
      How it stayed hidden: site_gaps.py follows redirects, so it was counting the
      DESTINATION's words, scoring 200+ and reporting "ok". Fixed the same day - it
      now tests for an off-domain hop BEFORE the word count. */
-  "/contact",
+  /* "/contact" came out on 1 Oct 2026: since 30 Sep it redirects to /about (contact is About's last
+     section), and a sitemap should not list an address that redirects. Same reasoning as /coach. */
   "/cookies",
   "/course",
+  "/course/everything", // the library: public, and it was missing (Cato, 30 Sep and 1 Oct)
   "/diary",
   "/essays",
   "/distinctive",
-  "/experts",
+  /* "/experts" and "/brand" came out on 1 Oct 2026: both now redirect to the homepage (next.config.ts). */
   "/info",
   "/marketer-of-the-year",
   "/millionaire-raffle",

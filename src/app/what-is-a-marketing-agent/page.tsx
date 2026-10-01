@@ -187,7 +187,7 @@ export default function WhatIsAMarketingAgentPage() {
               If you want to see what a marketing agent looks like when the
               fundamentals are already built in rather than left to chance, we can
               show you one working on real campaigns.{" "}
-              <Link href="/contact">Get in touch</Link>.
+              <Link href="/about">Get in touch</Link>.
             </p>
           </div>
 

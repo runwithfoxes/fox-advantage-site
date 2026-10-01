@@ -215,7 +215,7 @@ export default function AgentVsAgencyPage() {
             </p>
             <p>
               Twenty years went into ours. If you want to see what that looks like
-              against your own marketing, <Link href="/contact">get in touch</Link>.
+              against your own marketing, <Link href="/about">get in touch</Link>.
             </p>
           </div>
 

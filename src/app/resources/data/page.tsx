@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../held";
 import Link from "next/link";
 import { COUNTS, DATASETS, day } from "../catalogue";
 import { Gate } from "../kit";
@@ -22,6 +23,7 @@ const TYPES = ["text", "category", "number", "percent", "euro", "date", "url", "
  * comes with a free account.
  */
 export default function DataPage() {
+  heldSection(); // held back from launch: see ../held.ts
   const latest = DATASETS.map((x) => x.updated).sort().at(-1)!;
   const real = DATASETS.filter((x) => !x.example).length;
   const cols = DATASETS.reduce((a, x) => a + x.columns.length, 0);

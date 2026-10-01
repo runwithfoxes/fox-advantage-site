@@ -266,7 +266,7 @@ export default function ExpertsPage() {
               </div>
             </div>
           </div>
-          <Link href="/contact" className="hp-nav-cta">/contact</Link>
+          <Link href="/about" className="hp-nav-cta">/contact</Link>
         </div>
       <MobileMenu />
       </nav>
@@ -607,7 +607,7 @@ export default function ExpertsPage() {
         <Link href="/">#top</Link>
         <Link href="/#about">#about</Link>
         <Link href="/book">/book</Link>
-        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
+        <Link href="/about" className="hp-cta-bar">get in touch</Link>
       </div>
     </div>
   );

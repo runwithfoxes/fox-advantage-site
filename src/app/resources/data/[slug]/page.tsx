@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { heldSection } from "../../held";
 import DatasetChart from "../DatasetChart";
 import { hasAccess } from "@/lib/access";
 import ViewedPing from "../../kit/ViewedPing";
@@ -51,6 +52,7 @@ function fileSize(p: string) {
  * and at the end the gate, with the whole CSV through it.
  */
 export default async function DatasetPage({ params }: { params: Promise<{ slug: string }> }) {
+  heldSection(); // held back from launch: see ../../held.ts
   const unlocked = await hasAccess();
   const { slug } = await params;
   const x = datasetBySlug(slug);
