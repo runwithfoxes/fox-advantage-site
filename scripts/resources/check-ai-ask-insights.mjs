@@ -31,7 +31,6 @@ const rows = [
   ["two of the five ask the person to lead it", N.kinds_by_level.head.lead, 2],
   ["Of the 29 sales asks on their careers pages, 16 are to use AI in the job and 10 are to sell it", [N.sep_sales_asks_by_kind.careers.all, N.sep_sales_asks_by_kind.careers.tools, N.sep_sales_asks_by_kind.careers.sell], [29, 16, 10]],
   ["Of the 29 sales asks on their careers pages, ==16 are to use AI in the job== and 10 are to sell it", [N.sep_sales_asks_by_kind.careers.all, N.sep_sales_asks_by_kind.careers.tools, N.sep_sales_asks_by_kind.careers.sell], [29, 16, 10]],
-  ["Of the 20 ads in September that asked for \"AI tools\", 17 named none", [N.ai_tools_named.ads_generic_ai_tools, N.ai_tools_named.generic_without_any_name], [20, 17]],
   ["More than half of it isn't asking you for anything", N.talk_vs_ask.real_ask.k * 2 < N.talk_vs_ask.mention_ai.k, true],
   ["Of the 20 that ask for \"AI tools\", ==17 name no tool==", [N.ai_tools_named.ads_generic_ai_tools, N.ai_tools_named.generic_without_any_name], [20, 17]],
   ["Canva went from 2.2% to 6.4% of jobs.ie ads", [share("Canva", "2025-Q4"), share("Canva", "2026-Q3")], [2.2, 6.4]],
@@ -49,4 +48,30 @@ for (const [phrase, got, want] of rows) {
   console.log(`${inCopy && same ? "ok  " : "FAIL"}  ${phrase}${inCopy ? "" : "   <- phrase not found in copy.ts"}${same ? "" : `   <- numbers.json says ${JSON.stringify(got)}, the words say ${JSON.stringify(want)}`}`);
 }
 console.log(`\n${rows.length - bad} of ${rows.length} phrases match the numbers file.`);
+
+/* CROSS-REFERENCES. The chapters were regrouped on 1 Oct 2026, so every "Figure 3.2", "Chapter 5"
+   and section number typed into the prose could now point at the wrong thing, or at nothing. The
+   figure a reader sees is numbered by the chapter it sits in and its place there, exactly as
+   page.tsx does it. This fails on a reference to a figure, chapter or section that does not exist,
+   and it prints each figure reference beside the title of the figure it now lands on, so a wrong
+   but existing target can be seen by eye. */
+const chapters = [...copy.matchAll(/^ {2}\{\n {4}id: "ch(\d)",[\s\S]*?\n {2}\},\n/gm)].map((m) => ({ n: +m[1], src: m[0] }));
+const figs = {}, sections = new Set();
+for (const c of chapters) {
+  let k = 0;
+  for (const m of c.src.matchAll(/\{ fig: "(f\d\d)", title: "([^"]*)"/g)) figs[`${c.n}.${++k}`] = m[2];
+  for (const m of c.src.matchAll(/\n {8}n: "(\d\.\d)"/g)) sections.add(m[1]);
+}
+const prose = copy.split("\n").filter((l) => !/^\s*(\*|\/\*|\/\/)/.test(l)).join("\n");
+let badRefs = 0;
+for (const m of prose.matchAll(/Figure (\d\.\d)([^.`]{0,60})/g)) {
+  const ok = m[1] in figs;
+  if (!ok) badRefs++;
+  console.log(`${ok ? "ok  " : "FAIL"}  "Figure ${m[1]}${m[2].slice(0, 40)}..." -> ${ok ? figs[m[1]].slice(0, 70) : "NO SUCH FIGURE"}`);
+}
+for (const m of prose.matchAll(/Chapter (\d)(?!\d)/g)) if (!chapters.some((c) => c.n === +m[1])) { badRefs++; console.log(`FAIL  "Chapter ${m[1]}" does not exist`); }
+for (const m of prose.matchAll(/\b(?:in|section) (\d\.\d)\b/g)) if (!sections.has(m[1])) { badRefs++; console.log(`FAIL  section ${m[1]} does not exist`); }
+console.log(`${chapters.length} chapters, ${sections.size} sections, ${Object.keys(figs).length} figures; ${badRefs} broken cross-references.`);
+if (chapters.length !== 7 || sections.size !== 23 || Object.keys(figs).length !== 11) { console.log("FAIL  expected 7 chapters, 23 sections and 11 figures"); badRefs++; }
+bad += badRefs;
 process.exit(bad ? 1 : 0);
