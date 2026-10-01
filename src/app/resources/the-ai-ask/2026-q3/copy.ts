@@ -73,7 +73,7 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
     n: 1,
     title: "The ads ask for speed, and the bigger opportunity is ambition",
     body: [
-      `We think it is still early in working out what AI is good for. Speed, cost and productivity are the natural things to look at first, and that is what the ads show. When an ad says what AI is for, speed, efficiency or productivity comes up in ==27 of the 82 sentences== we read.`,
+      `It's still early as we work out what AI is good for. Speed, cost and productivity are the natural things to look at first, and that is what the ads show. When an ad says what AI is for, speed, efficiency or productivity comes up in ==27 of the 82 sentences== we read.`,
       `What interests us more at Run with Foxes is using AI to do things that couldn't be done before, for a whole team and a company as well as for one person. It's the idea of being wildly ambitious. That isn't coming through in the job ads yet. Four ask for someone to get the company found in AI search, and one asks for someone to build agents. A job ad doesn't show everything an employer is thinking, but it does give a sense of where people are at the moment.`,
     ],
     seeker: `This could be a great opportunity. You can help an employer see what AI makes possible beyond speed and cost.`,
