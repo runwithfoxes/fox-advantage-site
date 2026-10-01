@@ -21,6 +21,13 @@
  * [class*="mast"], [class*="about"], [class*="sign"], [class*="note"]...), so an innocent class
  * like "headline" (it contains "dl") or "masthead" is hidden or re-laid-out by them.
  *
+ * ⛔ NO WIDTH CAP ON ANY HEADLINE OR PARAGRAPH, AND NO FORCED LINE BREAK IN A HEADLINE. Paul, 1 Oct
+ * 2026, of the cover's headline broken onto two lines and its standfirst held to 140mm: "We don't
+ * ever want headlines and copy stopping halfway across the page. It just bunches all the sentences
+ * up. Can you remember this for the future? I feel like I'm always telling you this." He has said
+ * it since June (memory: feedback_consistent_text_width). Words run the full width of the page.
+ * build-pdfs.mjs refuses to print if a cap comes back into this file.
+ *
  * Type follows clients/rwf/memory/rwf-type-system.md: Space Grotesk 500 for headlines, Source
  * Serif 4 for anything read (17px, standfirst 20px), JetBrains Mono for labels, numerals and the
  * wordmark. The wordmark is navy on the page's cream, as the site's nav has been since 30 Sep.
@@ -99,8 +106,8 @@ export function coverHTML(d, base) {
       <span>${esc(d.issue)}</span><span>${esc(d.date)}</span>
     </div>
     ${d.photo ? `<img src="${base}${d.photo}" alt="" style="display:block;width:100%;height:98mm;object-fit:cover;object-position:${d.photoAt};margin:8mm 0 0;" />` : `<div style="height:98mm;margin:8mm 0 0;background:${NAVY};"></div>`}
-    <div style="font-family:${SANS};font-weight:500;font-size:42px;line-height:1.08;letter-spacing:-0.025em;margin:10mm 0 0;">${esc(d.titleLead)}<br/><span style="color:${SKY};">${esc(d.titleHl)}</span></div>
-    ${d.stand ? `<p style="font-family:${SERIF};font-size:18px;line-height:1.5;margin:6mm 0 0;max-width:140mm;color:${INK};">${esc(d.stand)}</p>` : ""}
+    <div style="font-family:${SANS};font-weight:500;font-size:40px;line-height:1.08;letter-spacing:-0.025em;margin:10mm 0 0;">${esc(d.titleLead)} <span style="color:${SKY};">${esc(d.titleHl)}</span></div>
+    ${d.stand ? `<p style="font-family:${SERIF};font-size:18px;line-height:1.5;margin:6mm 0 0;color:${INK};">${esc(d.stand)}</p>` : ""}
     <div style="margin-top:auto;border-top:1px solid #C9C9C3;padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end;font-family:${MONO};font-size:10.5px;line-height:1.6;color:#55554F;">
       <span>${d.credit.map(esc).join("<br/>")}</span>
       <span style="color:${NAVY};letter-spacing:.04em;">${esc(d.site)}</span>
@@ -116,7 +123,7 @@ export function endHTML(d, base) {
       <span style="${label}color:#6b6b66;">${esc(d.series)} · ${esc(d.issue)}</span>
     </div>
     <div style="height:2px;background:${NAVY};margin:8mm 0 12mm;"></div>
-    <div style="max-width:128mm;">
+    <div>
       ${d.end.map((e) => `<div style="margin:0 0 9mm;">
         <div style="${label}color:${SKY};margin:0 0 7px;">${esc(e.k)}</div>
         <p style="font-family:${SERIF};font-size:17px;line-height:1.6;margin:0;">${esc(e.t)}</p>
@@ -162,7 +169,7 @@ export const FURNITURE_CSS = `
   section[id^="ch"] [class*="chN"] { display: contents; }
   .pdfx-chword { grid-column: 1 / -1; display: block; margin-bottom: 10px; font-family: ${MONO}; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: ${SKY}; }
   .pdfx-chnum { grid-column: 1; font-family: ${MONO}; font-weight: 300; font-size: 56px; line-height: .9; letter-spacing: -0.04em; color: ${SKY}; text-transform: none; }
-  section[class*="chapter"] h2 { font-size: 32px !important; max-width: 140mm; }
+  section[class*="chapter"] h2 { font-size: 32px !important; }
   section[class*="chapter"] > div:first-child { margin-bottom: 22px !important; padding-bottom: 16px; border-bottom: 2px solid ${NAVY}; }
 `;
 
@@ -198,7 +205,7 @@ export async function dressBody(page, d, base) {
       const open = document.createElement("div");
       open.innerHTML = `
         <div style="${label}color:${SKY};margin:6mm 0 10px;">Introduction</div>
-        <div style="font-family:${SANS};font-weight:500;font-size:34px;letter-spacing:-0.025em;line-height:1.08;color:${INK};margin:0 0 7mm;max-width:150mm;">${esc(d.titleLead)} <span style="color:${SKY};">${esc(d.titleHl)}</span></div>`;
+        <div style="font-family:${SANS};font-weight:500;font-size:34px;letter-spacing:-0.025em;line-height:1.08;color:${INK};margin:0 0 7mm;">${esc(d.titleLead)} <span style="color:${SKY};">${esc(d.titleHl)}</span></div>`;
       who.parentElement.insertBefore(open, who);
     }
 

@@ -31,6 +31,18 @@ const pw = await import("playwright").catch(() => import(process.env.PLAYWRIGHT 
 const { chromium } = pw;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+/* ⛔ THE GATE FOR PAUL'S OLDEST LAYOUT RULE: words run the full width of the page. On 1 Oct 2026 the
+   cover shipped a headline broken in two and a standfirst capped at 140mm, written into
+   pdf-furniture.mjs, where the text-width hook (html only, Edit and Write only) never looked. So
+   the build reads its own furniture and stops if a width cap or a forced break is back. */
+{
+  const src = fs.readFileSync(path.join(__dirname, "pdf-furniture.mjs"), "utf8").split("\n");
+  const bad = src.map((l, i) => [i + 1, l]).filter(([, l]) => !/^\s*(\*|\/\*|\/\/)/.test(l) && (/max-width\s*:\s*\d/.test(l) || /<br\s*\/?>(?=<span|\$\{esc\(d\.title)/.test(l)));
+  if (bad.length) {
+    console.error("⛔ pdf-furniture.mjs caps a text width or forces a headline break. Paul's rule: headlines and copy never stop halfway across the page.\n" + bad.map(([n, l]) => `  line ${n}: ${l.trim().slice(0, 140)}`).join("\n"));
+    process.exit(1);
+  }
+}
 const ROOT = path.join(__dirname, "..", "..");
 const CAT = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/catalogue/catalogue.json"), "utf8"));
 const OUT_DIR = path.join(ROOT, "resource-files"); // behind api/resource-file, never public (29 Sep)

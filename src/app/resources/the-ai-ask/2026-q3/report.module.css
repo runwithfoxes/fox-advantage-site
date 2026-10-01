@@ -274,7 +274,9 @@
 .glanceHero { margin-top: 0 !important; }
 .glanceHero .glanceFox { display: none; }
 .mast { padding-top: 32px; }
-.heroInnerR h1.h1W { word-spacing: normal !important; font-size: clamp(30px, 3.1vw, 44px) !important; max-width: 20ch; }
+/* No width cap on the headline (Paul, 1 Oct 2026: "We don't ever want headlines and copy stopping halfway
+   across the page"). It was held to 20ch and broke onto two lines beside an empty half of the film. */
+.heroInnerR h1.h1W { word-spacing: normal !important; font-size: clamp(30px, 3.1vw, 44px) !important; max-width: none; text-wrap: pretty; }
 
 /* Phone (27 Sep, found on the Ad Audit, shared by every report on this stylesheet): the sign-up box
    was a two-column grid with no phone rule and ran 28px off the right edge. */
