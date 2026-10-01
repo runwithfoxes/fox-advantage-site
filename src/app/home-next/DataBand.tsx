@@ -178,7 +178,7 @@ export default function DataBand() {
         <Card
           bar="meta_campaign"
           kicker="Our own campaign · Meta"
-          title={`Our course ads held at ${Math.round(TOTALS.costPerView * 100)}c a visit for 21 days`}
+          title={`Our course ads averaged ${Math.round(TOTALS.costPerView * 100)}c a visit over 21 days`}
           stamp={`€5 a day, 30 Jul to 19 Aug 2026 · read from Meta 6 Sep`}
           deeper="The daily breakdown and every ad we tested"
           learn={{ t: "How we run ads with an agent →", href: "/#agents" }}
