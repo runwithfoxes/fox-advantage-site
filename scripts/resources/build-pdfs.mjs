@@ -48,6 +48,12 @@ const PRINT_CSS = `
   [class*="backs"], [class*="back"], [class*="note"], [class*="draft"], [class*="crumb"],
   [class*="banner"], .chat-bubble-wrap, [class*="ChatWidget"], [id*="chat"], nextjs-portal, [class*="hero"] [class*="film"], [class*="filmStill"] { display: none !important; }
   [class*="hero"] { min-height: 0 !important; background: #1A3A4E !important; }
+  /* The band on page one carries the report's own picture (Paul, 1 Oct 2026: "we have like a blue
+     border at the top. Why don't we use our photo from the top of the actual report?... there's no
+     reason why it doesn't feel like our branding"). The loop below reads the picture off the page's
+     own film and marks the band .pdf-photo; here the pieces inside it go clear so it shows through.
+     A report with no film keeps the plain navy band. */
+  .pdf-photo [class*="hero"] { background: transparent !important; }
   [class*="hero"] * { text-shadow: none !important; }
   html, body { background: #fff !important; }
   [class*="page"] { background: #fff !important; }
@@ -120,6 +126,20 @@ for (const r of jobs) {
   await page.goto(url, { waitUntil: "networkidle", timeout: 180000 });
   await page.emulateMedia({ media: "print" });
   await page.addStyleTag({ content: PRINT_CSS });
+  /* The film's poster becomes the band's picture. Read from the page, never typed here, so the PDF
+     and the web page cannot show different pictures. */
+  await page.evaluate(() => {
+    const film = document.querySelector('[class*="hero"] video[poster]');
+    const band = film && film.parentElement;
+    if (!band) return;
+    band.classList.add("pdf-photo");
+    const set = (k, v) => band.style.setProperty(k, v, "important");
+    set("background-image", `url("${film.poster}")`);
+    set("background-size", "cover");
+    set("background-position", "center 80%");
+    set("min-height", "300px");
+  });
+  await page.waitForLoadState("networkidle");
   // open every <details> so the method reads in full, and let the sweep-in highlights finish
   await page.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
   await page.evaluate(() => {
