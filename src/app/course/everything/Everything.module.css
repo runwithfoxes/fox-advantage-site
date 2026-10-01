@@ -504,3 +504,11 @@
 .libAsk :global(.lib-join) { display: flex; max-width: 560px; }
 .libAsk :global(.lib-join) input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 13px; padding: 13px 14px; border: 1px solid #E0E0DC; border-right: 0; background: #FAFAF8; color: #1D1B1B; }
 .libAsk :global(.lib-join) button { font-family: var(--mono); font-size: 13px; padding: 0 20px; border: 0; background: #3A7CA5; color: #fff; cursor: pointer; white-space: nowrap; }
+/* On a phone the box and the button stack (1 Oct 2026). Side by side, "Open the library, free" left
+   the email box about 80px wide, and it was this row that stretched the page past the screen. */
+@media (max-width: 560px) {
+  .libAsk { padding: 18px 16px; }
+  .libAsk :global(.lib-join) { flex-wrap: wrap; }
+  .libAsk :global(.lib-join) input { flex: 1 1 100%; border-right: 1px solid #E0E0DC; }
+  .libAsk :global(.lib-join) button { flex: 1 1 100%; padding: 13px 20px; }
+}

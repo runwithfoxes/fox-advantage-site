@@ -7830,7 +7830,10 @@ a.project-card {
 .mod-readerbody h2{font-family:var(--sans);font-weight:600;font-size:1.75rem;margin:0 0 20px;letter-spacing:-.02em;color:#1D1B1B;}
 
 @media (max-width:860px){
-  .mod-grid{grid-template-columns:1fr;gap:28px;}
+  /* minmax(0,1fr), not 1fr (1 Oct 2026). A bare 1fr column is never narrower than the widest thing
+     in it, so on a 390px phone the library's sign-up row (a box and a button that will not wrap)
+     pushed the whole column to 456px and the right of every line was cut off. */
+  .mod-grid{grid-template-columns:minmax(0,1fr);gap:28px;}
   /* The COLUMN must unstick too, not just the list inside it. Only .mod-rail was released,
      so on a phone the title and the ten items stayed pinned over the text. Fixed 19 Sep 2026. */
   .mod-railcol{position:static;max-height:none;}
