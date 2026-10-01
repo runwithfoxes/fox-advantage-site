@@ -1571,6 +1571,17 @@ export const MODULE_2: ModuleDef = {
   },
   opening:
     "Good marketing still requires doing the marketing. You will not get that from the click of a button. But it is worth thinking about appropriate speed. There are ways to speed up some of the steps. The way I think about this is if we spend the time upfront, and do proper thinking, we can then automate later, and get real speed benefits, without compromising quality.\n\nIn this module I take one example, building an AI Writer, and you will see that all the slow parts come first. It is one example. Every time you make anything, the marketing goes in at the beginning.",
+  /* ⚠️ A DRAFT FROM PAUL'S OWN WORDS, 1 Oct 2026, awaiting his look. Told the page never
+     lands "fast" and has no ending, he said: "I'd argue that fast comes because now it's
+     writing emails all the time", "Every time they want an email, it's there", and then:
+     "Why don't you add a line at the end about speed? But remember, it's always about
+     quality and speed. Get the quality going well first, then build speed and automation
+     into it... Maybe we just have a line into module 3 also."
+     The module 3 sentence is its card blurb in courseCopy.ts, shortened. Same shape as
+     module 1's closing, which he cut for being preachy, so keep it this short.
+     ⚠️ It names module 3's date, so it changes if that date does. */
+  closing:
+    "That's module 2. It is always about quality and speed. Get the quality going well first, then build speed and automation into it. You did the slow work once, and now every time you want an email, it's there.\n\nModule 3 is Create adjacent value. It shows that with the help of AI you can now do a lot of the work you used to pay a specialist or an agency for, like segmentation analysis, market research and building a website. It opens on Monday 19 October and we'll email you when it does.",
   items: [
     {
       /* ⭐ PAUL'S WORDS, VERBATIM, approved 26 Jul 2026. Five paragraphs, about 170 words,
@@ -1887,11 +1898,7 @@ export const MODULE_2: ModuleDef = {
          above the second window is mine, because his brief covered only the email.
          ✅ APPROVED BY PAUL, 1 Oct 2026, both readings included: "what you wrote is good." */
       t: "Watch it work",
-      text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}\n\nAnd this is where fast comes in. You did the slow work once, and now every time you want an email, it's there.",
-      /* ⚠️ THE CLOSING LINE IS A DRAFT FROM PAUL'S OWN WORDS, 1 Oct 2026, awaiting his look.
-         Told the page never lands "fast", he said: "I'd argue that fast comes because now
-         it's writing emails all the time" and "Every time they want an email, it's there."
-         It is the last line of the module, which had no ending. */
+      text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}",
       session: true,
     },
     /* ⛔ ITEM 05, THE INTERVIEWER, WAS CUT ON 1 Oct 2026. It had been the closing item since
