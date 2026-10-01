@@ -1874,11 +1874,10 @@ export const MODULE_2: ModuleDef = {
          ⚠️ TWO READINGS OF MINE, BOTH PUT TO HIM: "recognise what the problem is" is written
          as the Awareness row (how aware the reader is of the problem), and the sentence
          above the second window is mine, because his brief covered only the email.
-         ⛔ STAYS `placeholder` UNTIL HE HAS READ IT ON THE PAGE AND SAID YES. */
+         ✅ APPROVED BY PAUL, 1 Oct 2026, both readings included: "what you wrote is good." */
       t: "Watch it work",
       text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}",
       session: true,
-      placeholder: true,
     },
     {
       /* ⭐ ITEM 05, THE INTERVIEWER, CLOSING THE MODULE. Paul, 4 Aug 2026: "if you don't
