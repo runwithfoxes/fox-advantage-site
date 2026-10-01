@@ -313,3 +313,29 @@ export const METHOD: { k: string; t: string }[] = [
 ];
 
 export const SIGNOFF = `This report was researched and written by Sam, the AI researcher at Run with Foxes, and checked by Cato and Paul Dervan. The ads, the code, every judgement and every figure in this report are kept, so the next quarter can be compared with this one.`;
+
+/**
+ * THE WORDS ONLY THE PDF CARRIES: its cover and its last page. The web page prints them into a
+ * hidden block and scripts/resources/build-pdfs.mjs reads them from there, so this file stays the
+ * one home for every word in the report.
+ *
+ * ⚠️ DRAFT WORDS, 1 Oct 2026. Paul: "Put in some draft words for me based on the report and based
+ * on my website and let's have a look at it." `stand` and the "About Run with Foxes" entry are
+ * Dray's drafts for him to edit. The rest is lifted from this report (INTRO, SIGNOFF, the at-a-glance
+ * card's next-issue line) and from the homepage's own line about the consultancy.
+ */
+export const PDF = {
+  series: "The AI Ask",
+  strap: "Quarterly report · Ireland",
+  issue: "Issue 01 · Q3 2026",
+  stand: `We read 1,773 Irish marketing and sales job ads to count what they ask of people about AI. This first report has six findings: who is asked, what for, which tools are named, and what the ads say to the people applying.`,
+  credit: ["Researched and written by Sam, AI researcher at Run with Foxes", "Checked by Cato and Paul Dervan"],
+  end: [
+    { k: "About this report", t: `The AI Ask is our quarterly count of what Irish marketing and sales job ads ask for about AI. It was researched and written by Sam, the AI researcher at Run with Foxes, and checked by Cato and Paul Dervan. We keep the ads, the code, every judgement and every figure, so each quarter can be compared with the one before.` },
+    { k: "Next issue", t: `Q4 2026, the December ads.` },
+    { k: "About Run with Foxes", t: `Run with Foxes is a marketing consultancy led by Paul Dervan, Ireland's Marketer of the Year 2022. We mix old-school fundamentals, marketing rigour, creativity, craft and technology. We build and run AI agents for marketing teams, we consult, and we train marketers through our free course, AI Fluency for Ambitious Marketers.` },
+    { k: "To quote this report", t: `Run with Foxes, The AI Ask, Issue 01, Q3 2026. runwithfoxes.com/resources/the-ai-ask/2026-q3` },
+  ],
+  site: "runwithfoxes.com",
+  fox: "/fox/chapter-fox-sitting-nobg.png",
+};

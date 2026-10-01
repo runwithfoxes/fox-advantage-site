@@ -22,6 +22,9 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import os from "os";
+import { execFileSync } from "child_process";
+import { collect, coverHTML, endHTML, headerFor, footerFor as footFor, FURNITURE_CSS, dressBody, findStarts, fillContents } from "./pdf-furniture.mjs";
 /* playwright is not in this repo's node_modules on the mini; fall back to the copy the other
    build scripts use (metrics-pyramid), or set PLAYWRIGHT=/path/to/playwright/index.mjs */
 const pw = await import("playwright").catch(() => import(process.env.PLAYWRIGHT || `${process.env.HOME}/projects/metrics-pyramid/node_modules/playwright/index.mjs`));
@@ -48,12 +51,6 @@ const PRINT_CSS = `
   [class*="backs"], [class*="back"], [class*="note"], [class*="draft"], [class*="crumb"],
   [class*="banner"], .chat-bubble-wrap, [class*="ChatWidget"], [id*="chat"], nextjs-portal, [class*="hero"] [class*="film"], [class*="filmStill"] { display: none !important; }
   [class*="hero"] { min-height: 0 !important; background: #1A3A4E !important; }
-  /* The band on page one carries the report's own picture (Paul, 1 Oct 2026: "we have like a blue
-     border at the top. Why don't we use our photo from the top of the actual report?... there's no
-     reason why it doesn't feel like our branding"). The loop below reads the picture off the page's
-     own film and marks the band .pdf-photo; here the pieces inside it go clear so it shows through.
-     A report with no film keeps the plain navy band. */
-  .pdf-photo [class*="hero"] { background: transparent !important; }
   /* ⛔ THE PRINTED PAGE IS 688px WIDE, SO EVERY PHONE RULE ON THE SITE (max-width: 700px) FIRES IN
      THE PDF. The byline's phone rule stacks its pieces one per line, so on A4 it printed as four
      short lines in the left half of an empty page (Paul, 1 Oct 2026: "we don't have to shove all
@@ -98,16 +95,10 @@ const PRINT_CSS = `
   details:not([open]) > *:not(summary) { display: block !important; }
   details summary em { display: none !important; }
   a { color: inherit !important; text-decoration: none !important; }
+  /* Every highlight prints, whether or not the scroll reached it. They sweep in when they come on
+     screen, and one at the foot of chapter 6 printed bare once the pages were re-cut (1 Oct 2026). */
+  [class*="__hl"] { background-size: 100% 100% !important; transition: none !important; }
 `;
-
-function footerFor(r, se) {
-  const stamp = r.example ? "Example, made-up numbers" : r.status === "draft" ? "Draft, not approved" : "";
-  return `<div style="width:100%;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;color:#8A8A85;padding:0 14mm;display:flex;justify-content:space-between;">
-    <span>${se.name} · ${r.edition} · Run with Foxes</span>
-    <span style="color:${r.example ? "#F47521" : "#3A7CA5"}">${stamp || "runwithfoxes.com"}</span>
-    <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
-  </div>`;
-}
 
 /* the root of the page tree carries the total; a subtree carries its own, so take the largest */
 function pageCount(buf) {
@@ -134,29 +125,12 @@ for (const r of jobs) {
   await page.goto(url, { waitUntil: "networkidle", timeout: 180000 });
   await page.emulateMedia({ media: "print" });
   await page.addStyleTag({ content: PRINT_CSS });
-  /* The band's picture comes off the page, never typed here: the hero says which frame of its film
-     the PDF carries (data-pdf-photo), and without that it is the film's poster. PDF_PHOTO=/path
-     tries another picture without touching the page.
-     The wordmark goes top left of the picture, as it sits over the film on the web page (Paul,
-     1 Oct 2026: "could we have the Run with Foxes on the top left of the image like it is on the
-     website"). White, no orange Run, because that is the rule over photography. */
-  await page.evaluate((tryPhoto) => {
-    const film = document.querySelector('[class*="hero"] video[poster]');
-    const band = film && film.parentElement;
-    if (!band) return;
-    band.classList.add("pdf-photo");
-    const set = (k, v) => band.style.setProperty(k, v, "important");
-    set("background-image", `url("${tryPhoto || band.dataset.pdfPhoto || film.poster}")`);
-    set("background-size", "cover");
-    set("background-position", band.dataset.pdfPhotoAt || "center 80%");
-    set("min-height", "320px");
-    const title = band.querySelector("h1");
-    const left = title ? Math.round(title.getBoundingClientRect().left - band.getBoundingClientRect().left) : 48;
-    const mark = document.createElement("span");
-    mark.textContent = "/Runwithfoxes";
-    mark.setAttribute("style", `position:absolute;z-index:3;top:26px;left:${left}px;font-family:var(--mono),'JetBrains Mono',monospace;font-size:13px;font-weight:300;letter-spacing:2px;color:#fff;`);
-    band.appendChild(mark);
-  }, process.env.PDF_PHOTO || "");
+  /* The cover, the contents page, the chapter openers and the last page (pdf-furniture.mjs, 1 Oct
+     2026). Read what they need off the page first, then dress the body. */
+  await page.addStyleTag({ content: FURNITURE_CSS });
+  const d = await collect(page, r, se);
+  d.date = new Date(r.date + "T12:00:00Z").toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric" });
+  await dressBody(page, d, BASE);
   await page.waitForLoadState("networkidle");
   // open every <details> so the method reads in full, and let the sweep-in highlights finish
   await page.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
@@ -193,17 +167,41 @@ for (const r of jobs) {
       if (e.style.height && e.style.height !== "0px" && e.style.height !== "0") e.style.height = cs.height;
     });
   });
-  const buf = await page.pdf({
-    path: file,
+  const stamp = r.example ? "Example, made-up numbers" : r.status === "draft" ? "Draft, not approved" : "";
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "rwf-pdf-"));
+  const part = (name) => path.join(tmp, name);
+  const bodyOpts = {
     format: "A4",
     printBackground: true,
     preferCSSPageSize: false,
-    margin: { top: "16mm", bottom: "18mm", left: "14mm", right: "14mm" },
+    margin: { top: "19mm", bottom: "17mm", left: "14mm", right: "14mm" },
     displayHeaderFooter: true,
-    headerTemplate: "<span></span>",
-    footerTemplate: footerFor(r, se),
-  });
-  const n = pageCount(buf);
+    headerTemplate: headerFor(d),
+    footerTemplate: footFor(d, stamp, r.example ? "#F47521" : "#3A7CA5"),
+  };
+  const pagesOf = (f) => execFileSync("pdftotext", ["-layout", f, "-"], { maxBuffer: 64 * 1024 * 1024 }).toString("utf8").split("\f");
+  /* ⭐ PRINTED TWICE. The contents page quotes page numbers, and the only thing that knows where a
+     chapter falls on paper is a print. The first print finds the pages; the numbers go in; the
+     second print is the one kept, and it is read again to prove the numbers did not move anything. */
+  await page.pdf({ ...bodyOpts, path: part("body-1.pdf") });
+  const starts = findStarts(pagesOf(part("body-1.pdf")), d.sections);
+  await fillContents(page, starts);
+  await page.pdf({ ...bodyOpts, path: part("body.pdf") });
+  const again = findStarts(pagesOf(part("body.pdf")), d.sections);
+  if (JSON.stringify(again) !== JSON.stringify(starts)) throw new Error(`contents: page numbers moved between prints for ${r.slug}: ${JSON.stringify(starts)} then ${JSON.stringify(again)}`);
+
+  // the cover and the last page: the same browser page, its body swapped, no margins, no head or foot
+  const single = async (html, out) => {
+    await page.evaluate((h) => { document.body.innerHTML = h; }, html);
+    await page.waitForFunction(() => [...document.images].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 60000 });
+    await page.pdf({ path: out, width: "210mm", height: "297mm", printBackground: true, margin: { top: "0", bottom: "0", left: "0", right: "0" }, pageRanges: "1" });
+  };
+  await single(coverHTML(d, BASE), part("cover.pdf"));
+  await single(endHTML(d, BASE), part("end.pdf"));
+  execFileSync("qpdf", ["--empty", "--pages", part("cover.pdf"), part("body.pdf"), part("end.pdf"), "--", file]);
+  const buf = fs.readFileSync(file);
+  console.log(`  contents: ${d.sections.map((x) => `${x.k || x.t.slice(0, 12)} p${starts[x.id]}`).join(" · ")}`);
+  const n = Number(execFileSync("qpdf", ["--show-npages", file]).toString().trim()) || pageCount(buf); // qpdf packs the joined file, so ask it
   const kb = Math.round(buf.length / 1024);
   total += buf.length;
   pages[r.slug] = n;

@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import N from "./numbers.json";
-import { META, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, type Block } from "./copy";
+import { META, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
 import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from "./Charts";
 
 /* each chart imported by name: a map object exported from a client file arrives empty on the server */
@@ -145,6 +145,10 @@ export default async function AiAskQ3() {
         </div>
       </section>
 
+
+      {/* The PDF's cover and last page take their words from here (copy.ts, PDF). Nothing on the web
+          page shows it; scripts/resources/build-pdfs.mjs reads it. */}
+      <script type="application/json" id="pdf-words" dangerouslySetInnerHTML={{ __html: JSON.stringify(PDF).replace(/</g, "\\u003c") }} />
 
       <div className={r.body}>
         <aside className={r.railCol}>
