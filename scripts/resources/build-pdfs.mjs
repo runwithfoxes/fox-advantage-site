@@ -220,7 +220,20 @@ for (const r of jobs) {
   };
   await single(coverHTML(d, BASE), part("cover.pdf"));
   await single(endHTML(d, BASE), part("end.pdf"));
-  execFileSync("qpdf", ["--empty", "--pages", part("cover.pdf"), part("body.pdf"), part("end.pdf"), "--", file]);
+  /* The body is the PRIMARY file of the join, not --empty. The contents rows and the "Chapter N"
+     links inside the report are links to named places in the body, and those names live in the
+     body's own catalogue; joining onto an empty file dropped them, so all 21 links in The AI Ask
+     went nowhere (Cato, 1 Oct 2026). With the body as primary its names come through. */
+  execFileSync("qpdf", [part("body.pdf"), "--pages", part("cover.pdf"), part("body.pdf"), part("end.pdf"), "--", file]);
+  /* ⛔ and the build proves it: every link inside the PDF must point at a place the PDF defines. */
+  {
+    const dests = new Set(execFileSync("pdfinfo", ["-dests", file]).toString().split("\n").map((l) => (l.match(/"([^"]+)"\s*$/) || [])[1]).filter(Boolean));
+    const objs = JSON.parse(execFileSync("qpdf", ["--json", "--json-key=qpdf", file], { maxBuffer: 256 * 1024 * 1024 }).toString()).qpdf[1];
+    const targets = Object.values(objs).map((o) => o && o.value).filter((v) => v && v["/Subtype"] === "/Link").map((v) => v["/Dest"] ?? (v["/A"] && v["/A"]["/S"] === "/GoTo" ? v["/A"]["/D"] : null)).filter((d) => typeof d === "string");
+    const dangling = targets.map((d) => d.replace(/^(u:|\/)/, "")).filter((d) => !dests.has(d));
+    console.log(`  links inside the PDF: ${targets.length}, pointing at nothing: ${dangling.length}`);
+    if (dangling.length) throw new Error(`${r.slug}: ${dangling.length} links inside the PDF point at a place it does not define: ${[...new Set(dangling)].join(", ")}`);
+  }
   const buf = fs.readFileSync(file);
   console.log(`  contents: ${d.sections.map((x) => `${x.k || x.t.slice(0, 12)} p${starts[x.id]}`).join(" · ")}`);
   const n = Number(execFileSync("qpdf", ["--show-npages", file]).toString().trim()) || pageCount(buf); // qpdf packs the joined file, so ask it

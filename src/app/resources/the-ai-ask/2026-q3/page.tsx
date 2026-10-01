@@ -353,7 +353,7 @@ export default async function AiAskQ3() {
             </div>
             {/* The gate rule (Paul, 26 Sep): the finding is free, the files need an email. Listed once, at the end. */}
             <Gate want="report" item="the-ai-ask-2026-q3" adds={CAT?.withAccount ?? []} />
-            <Link href="/home-next" className={r.back}>
+            <Link href="/" className={r.back}>
               &larr; Back to the homepage
             </Link>
           </section>
