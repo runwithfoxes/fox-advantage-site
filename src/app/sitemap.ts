@@ -45,7 +45,8 @@ const PUBLIC_ROUTES = [
   "/diary",
   "/essays",
   "/distinctive",
-  /* "/experts" and "/brand" came out on 1 Oct 2026: both now redirect to the homepage (next.config.ts). */
+  "/experts",
+  "/brand",
   "/info",
   "/marketer-of-the-year",
   "/millionaire-raffle",
