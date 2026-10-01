@@ -101,7 +101,7 @@ const OUTBOUND_THREADS = [
   { name: "Ciara Lonergan", company: "Marketing Director · Lough Cover", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
   { name: "Aoife Brennan", company: "Growth Lead · Fenit Cover", message: "Hi Aoife - congratulations on the new role. If you are building the team, it is worth seeing what an agent does before you hire for it.", reply: "Happy to chat. Send an invite." },
-  { name: "Fintan Rowe", company: "CMO · Carrig Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
+  { name: "Fintan Rowe", company: "CMO · Carrig Life", message: "Hi Fintan - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
 ];
 
 const ILL = (what: React.ReactNode) => (
