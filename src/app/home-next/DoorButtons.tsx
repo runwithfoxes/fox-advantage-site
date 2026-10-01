@@ -28,6 +28,16 @@ export default function DoorButtons() {
         <a className={n.doorGhost} href="/about#contact">
           Contact
         </a>
+        {/* Paul, 1 Oct 2026: the site says "the course" in places before anyone has said which
+            course. "Beside the word contact, there's a blank space there. We could have in simple
+            text font writing but clear, free course AI fluency for ambitious marketers", as the
+            pill at the top of the old homepage did. Plain writing, no box, so it does not read as
+            a fifth button. */}
+        <a className={n.doorCourse} href="/course">
+          Free course: AI Fluency for Ambitious{" "}
+          {/* the arrow stays with the last word, so it never drops to a line of its own on a phone */}
+          <span style={{ whiteSpace: "nowrap" }}>Marketers <span aria-hidden>&rarr;</span></span>
+        </a>
       </div>
     </div>
   );
