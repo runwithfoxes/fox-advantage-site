@@ -74,8 +74,8 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
     n: 2,
     title: "Tools are now a permanent part of the job, and with AI it is still early",
     body: [
-      `There was a time when a marketer could do the job without needing to know the tools. The ads suggest that time has passed. Employers name their tools exactly: Excel in 46 ads, Salesforce in 52, Canva in 22. A working knowledge seems to be expected of senior people too. Five of the 23 ads for heads and directors ask for AI, and two of those ask the person to lead it.`,
-      `With AI the ads are at an earlier stage. Of the 20 that ask for "AI tools", ==17 name no tool==, which may suggest employers are still early in working out which ones they need. The tools will keep changing as well. Canva went from 2.2% to 6.4% of jobs.ie ads in a year, which suggests people want to be able to get things done themselves.`,
+      `There was a time when a marketer could do the job without needing to know the tools. The ads suggest that time has passed, and it seems to hold for senior people too. Five of the 23 ads for heads and directors ask for AI, and two of those ask the person to lead it.`,
+      `What the ads rarely do is say which AI tools. Of the 20 that ask for "AI tools", ==17 name no tool==, which may suggest employers are still early in working out which ones they need. The tools will keep changing as well. Canva went from 2.2% to 6.4% of jobs.ie ads in a year, which suggests people want to be able to get things done themselves.`,
     ],
     seeker: `Get to know your tools, and know that one tool doesn't do everything. There may also be an opportunity to help an employer understand which tools would be useful to them.`,
     hirer: `The clearest ad of the year named the tools and what they were for. It came from a small agency in Bray.`,

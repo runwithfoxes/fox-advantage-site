@@ -26,7 +26,6 @@ const rows = [
   ["27 of the 82 sentences", [N.tools_asks_reasons["speed, efficiency, productivity"], N.tools_asks_reasons.sentences], [27, 82]],
   ["Four ask for someone to get the company found in AI search", N.sep_kinds.search, 4],
   ["one asks for someone to build agents", N.agents_in_duties.filter((x) => x[0] === "2026-Q3").length >= 1, true],
-  ["Excel in 46 ads, Salesforce in 52, Canva in 22", [N.tools_sep.Office.Excel, N.tools_sep.CRM.Salesforce, N.tools_sep["Design and video"].Canva], [46, 52, 22]],
   ["Five of the 23 ads for heads and directors ask for AI", [N.levels.head.k, N.levels.head.n], [5, 23]],
   ["two of those ask the person to lead it", N.kinds_by_level.head.lead, 2],
   ["Of the 20 that ask for \"AI tools\", ==17 name no tool==", [N.ai_tools_named.ads_generic_ai_tools, N.ai_tools_named.generic_without_any_name], [20, 17]],
