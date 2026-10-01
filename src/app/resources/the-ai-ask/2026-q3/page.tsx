@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import N from "./numbers.json";
-import { META, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
+import { META, OPEN, INSIGHTS, CLOSE, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
 import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from "./Charts";
 
 /* each chart imported by name: a map object exported from a client file arrives empty on the server */
@@ -100,7 +100,7 @@ export default async function AiAskQ3() {
     let k = 0;
     c.subs.forEach((s) => s.blocks.forEach((b) => "fig" in b && (figNo[b.fig] = `${c.n}.${++k}`)));
   });
-  const words = [...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
+  const words = [...OPEN, ...INSIGHTS.flatMap((x) => [...x.body, x.seeker, x.hirer]), ...CLOSE.map((x) => x.text), ...CHAPTERS.map((c) => c.thread?.text ?? ""), ...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
   const mins = Math.round(words / 230);
   const mk = N.jobsie;
   const dm = N.fine_roles_boards_year.find((x) => x.role === "Digital marketing")!;
@@ -114,7 +114,9 @@ export default async function AiAskQ3() {
   };
   const rail = [
     { id: "intro", k: "", t: "Introduction" },
-    { id: "findings", k: "", t: "What we found" },
+    { id: "insights", k: "", t: "Three things that stood out" },
+    { id: "counted", k: "", t: "What we counted" },
+    { id: "findings", k: "", t: "The evidence, in six findings" },
     ...CHAPTERS.map((c) => ({ id: c.id, k: String(c.n), t: c.title.split(":")[0] })),
     { id: "discussion", k: "", t: "Discussion" },
     { id: "method", k: "", t: "How we did it" },
@@ -183,11 +185,10 @@ export default async function AiAskQ3() {
                   </span>
                 </span>
               </div>
-              <p className={r.standfirst}>
-                <Text s={INTRO[0]} />
-              </p>
-              {INTRO.slice(1).map((p, i) => (
-                <p key={i} className={r.p}>
+              {/* Paul, 1 Oct 2026, after Susan's proofread: the report opens on who it is for and how to
+                  read it, then the three insights. Sam's own introduction moved down to "What we counted". */}
+              {OPEN.map((p, i) => (
+                <p key={i} className={i === 0 ? r.standfirst : r.p}>
                   <Text s={p} />
                 </p>
               ))}
@@ -197,6 +198,57 @@ export default async function AiAskQ3() {
               </div>
             </div>
           </header>
+          {/* The three insights. Each one says what we found, then speaks to the two readers by name,
+              and the same two voices close the discussion. `ins` names only: the PDF's print rules
+              hide or re-lay any class containing "dl", "top", "note", "back", "about", "body". */}
+          <section className={r.ins} id="insights">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>Three things stood out</h2>
+              <span className={r.fSub}>Each one for two readers</span>
+            </div>
+            {INSIGHTS.map((x) => (
+              <article key={x.n} className={r.insItem}>
+                <h3 className={r.insTitle}>
+                  <span className={r.insN}>{x.n}</span>
+                  {x.title}
+                </h3>
+                {x.body.map((p, i) => (
+                  <p key={i} className={r.p}>
+                    <Text s={p} />
+                  </p>
+                ))}
+                <div className={r.rdrs}>
+                  <p className={r.rdr}>
+                    <span className={r.rdrLab}>If you&rsquo;re looking for a job</span>
+                    {x.seeker}
+                  </p>
+                  <p className={r.rdr}>
+                    <span className={r.rdrLab}>If you&rsquo;re hiring</span>
+                    {x.hirer}
+                  </p>
+                </div>
+                <span className={r.insGo}>
+                  The evidence:{" "}
+                  {x.ch.map((c, i) => (
+                    <a key={c} href={`#ch${c}`}>
+                      {i ? ", " : ""}Chapter {c}
+                    </a>
+                  ))}
+                </span>
+              </article>
+            ))}
+          </section>
+          <section className={r.counted} id="counted">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>What we counted</h2>
+              <span className={r.fSub}>1,773 ads, read one by one</span>
+            </div>
+            {INTRO.map((p, i) => (
+              <p key={i} className={r.p}>
+                <Text s={p} />
+              </p>
+            ))}
+          </section>
             <aside className={`mod-win ${r.glance}`}>
               <div className="mod-winbar">
                 <span className="mod-lights">
@@ -224,7 +276,7 @@ export default async function AiAskQ3() {
             </aside>
           <section className={r.findings} id="findings">
             <div className={r.fHead}>
-              <h2 className={r.h2s}>What we found</h2>
+              <h2 className={r.h2s}>The evidence, in six findings</h2>
               <span className={r.fSub}>Six findings, each one a chapter</span>
             </div>
             <ol className={r.fGrid}>
@@ -247,6 +299,12 @@ export default async function AiAskQ3() {
                 <span className={r.chN}>Chapter {c.n}</span>
                 <h2 className={r.h2}>{c.title}</h2>
               </div>
+              {c.thread && (
+                <p className={r.thread}>
+                  <span className={r.threadTag}>{c.thread.tag}</span>
+                  {c.thread.text}
+                </p>
+              )}
               {c.lede?.map((p, i) => (
                 <p key={i} className={r.lede}>
                   <Text s={p} />
@@ -276,6 +334,15 @@ export default async function AiAskQ3() {
                 <Text s={p} />
               </p>
             ))}
+            {/* the three insights again, once for each reader (Paul, 1 Oct: the two readers run all the way through) */}
+            <div className={r.rdrs}>
+              {CLOSE.map((x) => (
+                <p key={x.who} className={r.rdr}>
+                  <span className={r.rdrLab}>{x.who}</span>
+                  {x.text}
+                </p>
+              ))}
+            </div>
           </section>
 
           {/* data-ask (1 Oct 2026): not shown to someone already signed up, who has the PDF button

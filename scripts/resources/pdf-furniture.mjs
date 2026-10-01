@@ -50,7 +50,9 @@ export async function collect(page, r, se) {
     const sections = [];
     const push = (id, k, t, find) => document.getElementById(id) && sections.push({ id, k, t, find });
     push("intro", "", "Introduction", "INTRODUCTION");
-    push("findings", "", "What we found", "What we found");
+    push("insights", "", "Three things that stood out", "Three things stood out");
+    push("counted", "", "What we counted", "What we counted");
+    push("findings", "", "The evidence, in six findings", "The evidence, in six findings");
     document.querySelectorAll('section[id^="ch"]').forEach((sec) => {
       const n = (txt(sec.querySelector('[class*="chN"]')).match(/\d+/) || [""])[0];
       if (n) sections.push({ id: sec.id, k: n.padStart(2, "0"), t: txt(sec.querySelector("h2")), find: `CHAPTER\\s*${n.padStart(2, "0")}(?!\\d)` });

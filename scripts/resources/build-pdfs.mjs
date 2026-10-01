@@ -98,6 +98,16 @@ const PRINT_CSS = `
   /* Every highlight prints, whether or not the scroll reached it. They sweep in when they come on
      screen, and one at the foot of chapter 6 printed bare once the pages were re-cut (1 Oct 2026). */
   [class*="__hl"] { background-size: 100% 100% !important; transition: none !important; }
+  /* The printed page is 688px wide, so the phone rules stacked the two reader lines and the six
+     finding cards into one column each, and the report grew from 29 pages to 36 (1 Oct 2026). On
+     paper the two readers sit side by side, as on a desktop, and the findings run two across. The
+     pair of reader lines is never cut by a page break. An insight itself may be: holding each one
+     whole (first try) left half of pages 3, 4 and 5 empty. */
+  [class*="rdrs"] { grid-template-columns: 1fr 1fr !important; gap: 22px !important; }
+  [class*="fGrid"] { grid-template-columns: 1fr 1fr !important; }
+  [class*="thread"], [class*="rdrs"] { break-inside: avoid; page-break-inside: avoid; }
+  [class*="insGo"] { break-before: avoid; page-break-before: avoid; }
+  [class*="insItem"] { padding: 16px 0 18px !important; }
 `;
 
 /* the root of the page tree carries the total; a subtree carries its own, so take the largest */
