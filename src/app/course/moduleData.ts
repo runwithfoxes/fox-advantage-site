@@ -969,7 +969,7 @@ export const MODULE_1: ModuleDef = {
         {
           text: "I dropped it into Claude and asked for a prompt that would create this type of image. This is what came back.",
           promptHead: "The prompt Claude wrote from the still",
-          prompt: "A cinematic 3D-animated anthropomorphic fox walking directly toward the camera down the aisle of a bright, industrial gym. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression — visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.\n\nBackground: softly blurred gym interior with tall windows flooding hazy morning sunlight across the floor, out-of-focus human athletes lifting dumbbells and using machines, mirrored wall on the left, kettlebells and medicine balls lining the right wall. Shallow depth of field, warm volumetric light rays, long shadows on gray rubber flooring.\n\nStyle: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.",
+          prompt: "A cinematic 3D-animated anthropomorphic fox walking directly toward the camera down the aisle of a bright, industrial gym. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression - visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.\n\nBackground: softly blurred gym interior with tall windows flooding hazy morning sunlight across the floor, out-of-focus human athletes lifting dumbbells and using machines, mirrored wall on the left, kettlebells and medicine balls lining the right wall. Shallow depth of field, warm volumetric light rays, long shadows on gray rubber flooring.\n\nStyle: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.",
           placeholder: true,
         },
         /* ⭐⭐ THE COURT IMAGE IS PAUL'S OWN, made by him in ChatGPT on 20 Sep 2026 at 16:08, from
@@ -1862,8 +1862,21 @@ export const MODULE_2: ModuleDef = {
          show. Two windows, not one longer one: each is one recording with its own start
          plate, and the reader chooses to watch the second. Both recordings live in
          `writerSession.ts`; the hover source maps are part of the recordings. */
+      /* ⭐ DRAFTED FROM PAUL'S BRIEF, 1 Oct 2026, dictated: "very simply that here is how your
+         writer should write if you've followed the process properly. And I also want you to
+         point out some of the things that it does. For example, it plans before it writes.
+         It tries to recognise what the problem is. It tells you what framework it's using.
+         So problem, agitate, solution is one of those. It just recognises a checklist of
+         positioning and take away, and it has questions that ask you questions."
+         The first sentence is his. Every thing pointed at is in the first recording: "Plan,
+         before I write", the Awareness row, the Shape row, the Positioning and Length and
+         takeaway rows, and its two questions.
+         ⚠️ TWO READINGS OF MINE, BOTH PUT TO HIM: "recognise what the problem is" is written
+         as the Awareness row (how aware the reader is of the problem), and the sentence
+         above the second window is mine, because his brief covered only the email.
+         ⛔ STAYS `placeholder` UNTIL HE HAS READ IT ON THE PAGE AND SAID YES. */
       t: "Watch it work",
-      text: "AWAITING PAUL'S WORDS.\n\n{{SESSION}}\n\n{{SESSION_POST}}",
+      text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}",
       session: true,
       placeholder: true,
     },
