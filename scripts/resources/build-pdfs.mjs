@@ -96,7 +96,7 @@ function footerFor(r, se) {
   const stamp = r.example ? "Example, made-up numbers" : r.status === "draft" ? "Draft, not approved" : "";
   return `<div style="width:100%;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;color:#8A8A85;padding:0 14mm;display:flex;justify-content:space-between;">
     <span>${se.name} · ${r.edition} · Run with Foxes</span>
-    <span style="color:${r.example ? "#F47521" : "#3A7CA5"}">${stamp}</span>
+    <span style="color:${r.example ? "#F47521" : "#3A7CA5"}">${stamp || "runwithfoxes.com"}</span>
     <span><span class="pageNumber"></span> / <span class="totalPages"></span></span>
   </div>`;
 }
@@ -126,19 +126,29 @@ for (const r of jobs) {
   await page.goto(url, { waitUntil: "networkidle", timeout: 180000 });
   await page.emulateMedia({ media: "print" });
   await page.addStyleTag({ content: PRINT_CSS });
-  /* The film's poster becomes the band's picture. Read from the page, never typed here, so the PDF
-     and the web page cannot show different pictures. */
-  await page.evaluate(() => {
+  /* The band's picture comes off the page, never typed here: the hero says which frame of its film
+     the PDF carries (data-pdf-photo), and without that it is the film's poster. PDF_PHOTO=/path
+     tries another picture without touching the page.
+     The wordmark goes top left of the picture, as it sits over the film on the web page (Paul,
+     1 Oct 2026: "could we have the Run with Foxes on the top left of the image like it is on the
+     website"). White, no orange Run, because that is the rule over photography. */
+  await page.evaluate((tryPhoto) => {
     const film = document.querySelector('[class*="hero"] video[poster]');
     const band = film && film.parentElement;
     if (!band) return;
     band.classList.add("pdf-photo");
     const set = (k, v) => band.style.setProperty(k, v, "important");
-    set("background-image", `url("${film.poster}")`);
+    set("background-image", `url("${tryPhoto || band.dataset.pdfPhoto || film.poster}")`);
     set("background-size", "cover");
-    set("background-position", "center 80%");
-    set("min-height", "300px");
-  });
+    set("background-position", band.dataset.pdfPhotoAt || "center 80%");
+    set("min-height", "320px");
+    const title = band.querySelector("h1");
+    const left = title ? Math.round(title.getBoundingClientRect().left - band.getBoundingClientRect().left) : 48;
+    const mark = document.createElement("span");
+    mark.textContent = "/Runwithfoxes";
+    mark.setAttribute("style", `position:absolute;z-index:3;top:26px;left:${left}px;font-family:var(--mono),'JetBrains Mono',monospace;font-size:13px;font-weight:300;letter-spacing:2px;color:#fff;`);
+    band.appendChild(mark);
+  }, process.env.PDF_PHOTO || "");
   await page.waitForLoadState("networkidle");
   // open every <details> so the method reads in full, and let the sweep-in highlights finish
   await page.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
