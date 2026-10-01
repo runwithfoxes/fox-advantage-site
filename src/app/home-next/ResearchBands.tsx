@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Cover, { COVER_PHOTOS, seriesShelf } from "./Cover";
-import { INTRO as ASK_INTRO, META as ASK_META } from "../resources/the-ai-ask/2026-q3/copy";
+import { OPEN as ASK_OPEN, META as ASK_META } from "../resources/the-ai-ask/2026-q3/copy";
 import Publications, { type Pub } from "../resources/Publications";
 import {
   SERIES, PUBLISHED, COMING, COMING_SOON, COUNTS, AREA_LABEL, TOOLS, PLAYBOOKS, DATASETS, TRACKERS, CATALOGUE,
@@ -79,8 +79,9 @@ const SHOW_CALENDAR = false;
 const SHOW_TRACKERS = false;
 
 const FLAG_EXCERPT: Record<string, string[]> = {
-  /* The AI Ask: Sam's own opening, read from the report's copy so it can never drift from the page. */
-  "the-ai-ask": ASK_INTRO.slice(0, 2),
+  /* The AI Ask: the report's own opening, read from its copy so it can never drift from the page.
+     From 1 Oct 2026 that opening is who the report is for and how to read it (OPEN), not Sam's anecdote. */
+  "the-ai-ask": ASK_OPEN.map((p) => p.replace(/==/g, "")),
   "geo-ireland": [
     "We put the questions people in Ireland ask to Claude, ChatGPT, Perplexity and Google\u2019s AI Overviews, in 41 categories from tax to hotels, and counted which names came back and how often.",
     "In 17 of 41 categories the most-named name is a state body or a regulator. Some of those are natural, like Revenue for tax. The striking ones are markets where advertisers spend and the regulator still wins. The Health Insurance Authority, at 0.61, beats every insurer. The Charities Regulator is named more than four times as often as any charity.",

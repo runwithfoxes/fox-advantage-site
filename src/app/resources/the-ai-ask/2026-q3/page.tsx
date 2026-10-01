@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import N from "./numbers.json";
-import { META, OPEN, INSIGHTS, CLOSE, INTRO, FINDINGS, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
+import { META, OPEN, INSIGHTS, CLOSE, INTRO, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
 import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from "./Charts";
 
 /* each chart imported by name: a map object exported from a client file arrives empty on the server */
@@ -100,23 +100,13 @@ export default async function AiAskQ3() {
     let k = 0;
     c.subs.forEach((s) => s.blocks.forEach((b) => "fig" in b && (figNo[b.fig] = `${c.n}.${++k}`)));
   });
-  const words = [...OPEN, ...INSIGHTS.flatMap((x) => [...x.body, x.seeker, x.hirer]), ...CLOSE.map((x) => x.text), ...CHAPTERS.map((c) => c.thread?.text ?? ""), ...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
+  const words = [...OPEN, ...INSIGHTS.flatMap((x) => [...x.body, x.seeker, x.hirer]), ...CLOSE.map((x) => x.text), ...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
   const mins = Math.round(words / 230);
   const mk = N.jobsie;
-  const dm = N.fine_roles_boards_year.find((x) => x.role === "Digital marketing")!;
-  const big: Record<string, { v: string; l: string }> = {
-    mkt: { v: `${mk["2025-Q4"].marketing.pct}% → ${mk["2026-Q3"].marketing.pct}%`, l: "marketing ads asking for AI, a year apart" },
-    talk: { v: `${N.talk_vs_ask.mention_ai.pct}% · ${N.talk_vs_ask.real_ask.pct}%`, l: "mention AI · actually ask for it" },
-    digital: { v: `${dm.k} of ${dm.n}`, l: "digital marketing ads on the job boards asked for AI over the year" },
-    speed: { v: `${N.tools_asks_reasons["speed, efficiency, productivity"]}`, l: `sentences want speed, against ${N.tools_asks_reasons["writing, drafting, copy"]} about writing` },
-    tools: { v: `${N.ai_tools_named.generic_without_any_name} of ${N.ai_tools_named.ads_generic_ai_tools}`, l: "ads asking for AI tools name no tool at all" },
-    rules: { v: "0", l: `of ${N.total_ads.toLocaleString("en-IE")} ads tell you to keep AI out of your CV` },
-  };
   const rail = [
     { id: "intro", k: "", t: "Introduction" },
     { id: "insights", k: "", t: "Three things that stood out" },
     { id: "counted", k: "", t: "What we counted" },
-    { id: "findings", k: "", t: "The evidence, in six findings" },
     ...CHAPTERS.map((c) => ({ id: c.id, k: String(c.n), t: c.title.split(":")[0] })),
     { id: "discussion", k: "", t: "Discussion" },
     { id: "method", k: "", t: "How we did it" },
@@ -243,12 +233,7 @@ export default async function AiAskQ3() {
               <h2 className={r.h2s}>What we counted</h2>
               <span className={r.fSub}>1,773 ads, read one by one</span>
             </div>
-            {INTRO.map((p, i) => (
-              <p key={i} className={r.p}>
-                <Text s={p} />
-              </p>
-            ))}
-          </section>
+            {/* the four numbers first, then how they were counted: under the heading the card can never be left alone on a printed page */}
             <aside className={`mod-win ${r.glance}`}>
               <div className="mod-winbar">
                 <span className="mod-lights">
@@ -274,24 +259,11 @@ export default async function AiAskQ3() {
                 <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
               </div>
             </aside>
-          <section className={r.findings} id="findings">
-            <div className={r.fHead}>
-              <h2 className={r.h2s}>The evidence, in six findings</h2>
-              <span className={r.fSub}>Six findings, each one a chapter</span>
-            </div>
-            <ol className={r.fGrid}>
-              {FINDINGS.map((fd, i) => (
-                <li key={i}>
-                  <a href={`#ch${fd.ch}`} className={r.fCard}>
-                    <span className={r.fN}>0{i + 1}</span>
-                    <span className={r.fBig}>{big[fd.big].v}</span>
-                    <span className={r.fBigL}>{big[fd.big].l}</span>
-                    <span className={r.fText}>{fd.text}</span>
-                    <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
-                  </a>
-                </li>
-              ))}
-            </ol>
+            {INTRO.map((p, i) => (
+              <p key={i} className={r.p}>
+                <Text s={p} />
+              </p>
+            ))}
           </section>
           {CHAPTERS.map((c) => (
             <section key={c.id} id={c.id} className={r.chapter}>
@@ -299,12 +271,8 @@ export default async function AiAskQ3() {
                 <span className={r.chN}>Chapter {c.n}</span>
                 <h2 className={r.h2}>{c.title}</h2>
               </div>
-              {c.thread && (
-                <p className={r.thread}>
-                  <span className={r.threadTag}>{c.thread.tag}</span>
-                  {c.thread.text}
-                </p>
-              )}
+              {/* which insight this chapter is the evidence for; the sentence that says so is its lede */}
+              {c.tag && <span className={r.chTie}>{c.tag}</span>}
               {c.lede?.map((p, i) => (
                 <p key={i} className={r.lede}>
                   <Text s={p} />
@@ -327,14 +295,15 @@ export default async function AiAskQ3() {
           <section id="discussion" className={r.chapter}>
             <div className={r.chHead}>
               <span className={r.chN}>Discussion</span>
-              <h2 className={r.h2}>What it means, and what I still don&rsquo;t know</h2>
+              <h2 className={r.h2}>What it means, and what we still don&rsquo;t know</h2>
             </div>
-            {DISCUSSION.map((p, i) => (
+            {/* The discussion closes the three insights, then speaks to each reader once more (Paul, 1 Oct:
+                the two readers run all the way through), and ends on what we still can't say. */}
+            {DISCUSSION.slice(0, -1).map((p, i) => (
               <p key={i} className={i === 0 ? r.lede : r.p}>
                 <Text s={p} />
               </p>
             ))}
-            {/* the three insights again, once for each reader (Paul, 1 Oct: the two readers run all the way through) */}
             <div className={r.rdrs}>
               {CLOSE.map((x) => (
                 <p key={x.who} className={r.rdr}>
@@ -343,6 +312,9 @@ export default async function AiAskQ3() {
                 </p>
               ))}
             </div>
+            <p className={r.p}>
+              <Text s={DISCUSSION[DISCUSSION.length - 1]} />
+            </p>
           </section>
 
           {/* data-ask (1 Oct 2026): not shown to someone already signed up, who has the PDF button

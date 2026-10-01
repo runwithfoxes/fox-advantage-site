@@ -16,10 +16,20 @@
  * paper, a run of observations, when it needed a story. Paul: two readers all the way through, the
  * person looking for a job and the person hiring, three insights up front, and every observation
  * either supports an insight or is a useful counterpoint. So from today NOT every word here is
- * Sam's. OPEN, INSIGHTS, each chapter's `thread` and CLOSE are Paul's, dictated on 1 Oct and kept
- * close to how he said them (his words are in paul-hub/intelligence/wiki/2026-10-01.md). The
- * chapters themselves are still Sam's, untouched. Every number in the new words is one the report
- * already printed; scripts/resources/check-ai-ask-insights.mjs reads them back against numbers.json.
+ * Sam's. OPEN, INSIGHTS and CLOSE are Paul's, dictated on 1 Oct and kept close to how he said them
+ * (his words are in paul-hub/intelligence/wiki/2026-10-01.md).
+ * LATER THE SAME DAY THE CHAPTERS CHANGED TOO. Paul: "make sure that these insights are being weaved
+ * throughout the document so that the narrative holds up. And it doesn't feel disconnected." A
+ * labelled box above untouched prose was bolted on, so the weaving is now in the chapters' own words:
+ * each lede says which insight the chapter is the evidence for, the paragraph holding the key number
+ * says what it means for the two readers, a counterpoint is named as one where its evidence sits
+ * (1.3, 3.3, 5.1), and the discussion closes the three insights. The six findings came off the page:
+ * with three insights above them they were a second summary competing with the first. Three titles
+ * lost a generalisation for its count (Chapter 2, 5.2, Chapter 6), and four lines that read as a
+ * verdict on employers now say "early" (4.3's title, 4.4, 5.2, the discussion).
+ * Every number in the new words is read back against numbers.json by
+ * scripts/resources/check-ai-ask-insights.mjs. Two are new counts added to Sam's script that day:
+ * the use-or-sell split of the sales asks, and the Google Jobs rows by where Google found them.
  * Tone rule from Paul the same day: nothing judgmental about employers. "Early" is the word, and
  * a count is never written as "most".
  */
@@ -31,8 +41,8 @@ export type Block =
   | { gate: string };
 
 export type Sub = { n: string; title: string; blocks: Block[] };
-/** `thread`: what the chapter does in the story. `tag` is the small label, `text` the sentence. */
-export type Chapter = { id: string; n: number; title: string; thread?: { tag: string; text: string }; lede?: string[]; subs: Sub[] };
+/** `tag`: which insight the chapter is the evidence for. The sentence that says so is in the chapter's own lede. */
+export type Chapter = { id: string; n: number; title: string; tag?: string; lede?: string[]; subs: Sub[] };
 
 export const META = {
   kicker: "The AI Ask · quarterly report · Ireland",
@@ -74,7 +84,7 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
     n: 2,
     title: "Tools are now a permanent part of the job, and with AI it is still early",
     body: [
-      `There was a time when a marketer could do the job without needing to know the tools. The ads suggest that time has passed, and it seems to hold for senior people too. Five of the 23 ads for heads and directors ask for AI, and two of those ask the person to lead it.`,
+      `There was a time when a marketer could do the job without needing to know the tools. The ads suggest that time has passed, and it seems to hold for senior people too. Five of the 23 ads for heads and directors ask for AI, three of them on technology firms' careers pages, and two of the five ask the person to lead it.`,
       `What the ads rarely do is say which AI tools. Of the 20 that ask for "AI tools", ==17 name no tool==, which may suggest employers are still early in working out which ones they need. The tools will keep changing as well. Canva went from 2.2% to 6.4% of jobs.ie ads in a year, which suggests people want to be able to get things done themselves.`,
     ],
     seeker: `Get to know your tools, and know that one tool doesn't do everything. There may also be an opportunity to help an employer understand which tools would be useful to them.`,
@@ -85,11 +95,11 @@ export const INSIGHTS: { n: number; title: string; body: string[]; seeker: strin
     n: 3,
     title: "If you work in sales, this is a great opportunity",
     body: [
-      `AI comes up in very few sales ads so far. On the job boards, ==10 of 454 sales ads== ask for it. At the technology firms it has started: 10 of 33 ads for account executives, and 8 of 19 for SDRs and BDRs.`,
+      `AI comes up in very few sales ads so far. On the job boards, ==10 of 454 sales ads== ask for it. At the technology firms it has started: 10 of 33 ads for account executives, and 8 of 19 for SDRs and BDRs. Of the 29 sales asks on their careers pages, 16 are to use AI in the job and 10 are to sell it.`,
       `We think there is so much AI can do to help people working in sales. Market research, competitive research, insights into customers, and the admin around selling. Sales is still about people and relationships, and none of that changes. It's the work around the selling where AI helps.`,
     ],
     seeker: `This is a great opportunity, because so few ads ask for it yet and you can arrive already able to do it.`,
-    hirer: `For sales roles, the technology firms' ads are a useful guide to what to ask for.`,
+    hirer: `For sales roles, the technology firms' ads that ask people to use AI in the job are a useful guide to what to ask for.`,
     ch: [1, 3],
   },
 ];
@@ -107,25 +117,16 @@ export const INTRO: string[] = [
   `We count an ad only when it asks the person to do something with AI. A company describing its own AI products doesn't count, and that turns out to remove most of what looks like AI in job ads (Chapter 2). Every ad that counts is sorted into one of five kinds of ask: use AI tools, sell an AI product, lead or buy AI for the company, work on visibility in AI search, or build AI tools and agents.`,
 ];
 
-/** Sam's six findings, verbatim, each pointing to its chapter. `big` is drawn from numbers.json in the page. */
-export const FINDINGS: { text: string; ch: number; big: "mkt" | "talk" | "digital" | "speed" | "tools" | "rules" }[] = [
-  { text: `Asking for AI has become common in Irish marketing jobs within a year. On jobs.ie, marketing ads with a real AI ask went from none of 43 in late 2025 to 8 of 31 in September 2026, about one in four. On the same site, sales ads stayed under 2% all year.`, ch: 1, big: "mkt" },
-  { text: `Most mentions of AI in job ads ask nothing of the applicant. 21% of September's ads mention AI, but only 9% ask the person to do anything with it. The rest is mostly technology companies describing themselves.`, ch: 2, big: "talk" },
-  { text: `At ordinary Irish employers, digital marketing is where the asks are: 11 of 46 digital marketing ads on the job boards asked for AI over the year, while brand, field sales and shop-floor sales jobs never did. At the big technology firms, sales jobs ask too: 10 of 33 account executive ads on their own careers pages.`, ch: 3, big: "digital" },
-  { text: `When employers ask people to use AI, speed comes first. Writing comes well down the list, and the better ads ask for judgement over what the AI produces.`, ch: 4, big: "speed" },
-  { text: `Employers name their other tools exactly and leave AI vague. Excel is named in 46 ads. Only 2 ads name an AI tool the person would actually use.`, ch: 5, big: "tools" },
-  { text: `No ad in the year tells applicants to keep AI out of their CV. But a few technology firms now publish rules for candidates using AI, and one tells AI agents not to apply. We can't yet say whether AI pays more.`, ch: 6, big: "rules" },
-];
-
 export const CHAPTERS: Chapter[] = [
   {
     id: "ch1",
     n: 1,
-    thread: { tag: "Insight 3", text: `This is where the sales insight starts. Marketing ads took up AI within a year and sales ads at ordinary Irish employers did not. The counterpoint is in 1.3: at the technology firms, sales ads already ask.` },
+    tag: "Insight 3",
     // Paul, 29 Sep: the headline no longer says marketing against sales, so this chapter names the one site where that split is true.
     title: "On jobs.ie, marketing took up AI this year. Sales didn't.",
     lede: [
       `The clearest thing in the data is a split. In marketing on jobs.ie, an AI ask went from something we never saw to something in about ==one ad in four==. In sales it barely moved.`,
+      `That split is where the third insight comes from. If you work in marketing, expect to be asked. If you work in sales at an ordinary Irish employer, the ad hasn't asked yet, and that is the opportunity.`,
     ],
     subs: [
       {
@@ -148,7 +149,8 @@ export const CHAPTERS: Chapter[] = [
         n: "1.3",
         title: "Sales is flat on jobs.ie, but not everywhere",
         blocks: [
-          { p: `Across all sources in September, sales ads ask for AI more often than on jobs.ie: 39 of 536, or 7.3%, against 1.8% on jobs.ie alone. The difference is who is hiring. The company careers pages are mostly technology firms, and many of their sales people are hired to sell AI. Fin (formerly Intercom, now part of Salesforce) is hiring people to sell its AI customer service agent. GitLab, Greenhouse, Microsoft and WatchGuard are all hiring sales people whose ads say they will sell AI features. Take the careers pages out and sales on the job boards asks in 10 of 454 ads, or 2.2%. So when we say sales hasn't moved, we mean ==sales jobs at ordinary Irish employers==. Marketing across all sources in September sits at 17 of 100, and on the job boards at 13 of 92.` },
+          { p: `There is a counterpoint, and it is the technology firms. Across all sources in September, sales ads ask for AI more often than on jobs.ie: 39 of 536, or 7.3%, against 1.8% on jobs.ie alone. The difference is who is hiring. The company careers pages are mostly technology firms, and many of their sales people are hired to sell AI. Fin (formerly Intercom, now part of Salesforce) is hiring people to sell its AI customer service agent. GitLab, Greenhouse, Microsoft and WatchGuard are all hiring sales people whose ads say they will sell AI features. Take the careers pages out and sales on the job boards asks in 10 of 454 ads, or 2.2%. So when we say sales hasn't moved, we mean ==sales jobs at ordinary Irish employers==. Marketing across all sources in September sits at 17 of 100, and on the job boards at 13 of 92.` },
+          { p: `For someone hiring for sales, the technology firms' ads are the nearest thing to a guide, with one care. Of the 29 sales asks on their careers pages, ==16 are to use AI in the job== and 10 are to sell it.` },
         ],
       },
     ],
@@ -156,9 +158,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch2",
     n: 2,
-    thread: { tag: "Insight 2", text: `This supports the second insight. 21% of September's ads mention AI, and 9% ask the person to do anything with it. It is one more sign that this is still early.` },
-    title: "Most mentions of AI in job ads ask nothing of the applicant",
-    lede: [`If you search job ads for the letters "AI", you'll find a lot. Most of it isn't asking you for anything. It's a company telling you about itself.`],
+    tag: "Insight 2",
+    title: "Fewer than half the ads that mention AI ask anything of the applicant",
+    lede: [`If you search job ads for the letters "AI", you'll find a lot. More than half of it isn't asking you for anything. It's a company telling you about itself.`, `For the second insight, this is the starting point: a mention of AI is not yet a description of the work. If you're looking for a job, read for what the ad asks you to do. If you're hiring and you want AI skills, it helps to say what the person will do with them.`],
     subs: [
       {
         n: "2.1",
@@ -189,9 +191,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch3",
     n: 3,
-    thread: { tag: "Insights 2 and 3, and a counterpoint", text: `This chapter is the evidence on senior roles and on sales. It also holds the main counterpoint to both: at ordinary Irish employers, the kind of job matters more than the level.` },
+    tag: "Insights 2 and 3",
     title: "Who gets asked",
-    lede: [`The average hides a lot. Some kinds of job ask for AI five times as often as the average, others almost never. The kind of job matters, and the kind of employer matters most of all.`],
+    lede: [`The average hides a lot. Some kinds of job ask for AI five times as often as the average, others almost never. The kind of job matters, and the kind of employer matters most of all.`, `This chapter carries the evidence for two of the insights, on senior roles and on sales, and the main counterpoint to both.`],
     subs: [
       {
         n: "3.1",
@@ -209,7 +211,7 @@ export const CHAPTERS: Chapter[] = [
           { p: `If you work in marketing or sales, the useful question is how often ads for your kind of job ask for AI. Figure 3.2 splits every job-board ad in the study, 1,683 across the year, into about 25 specific job types and ranks them. We use the job boards here, not the tech firms' own careers pages, because they show what ordinary Irish employers ask for, and we use the whole year so each job type has as many ads behind it as possible. Job types with fewer than 15 ads are shown faded, because a single ad moves them a long way.` },
           { fig: "f32", title: "On the job boards, digital marketing asks for AI most. Brand, field sales and shop-floor sales jobs never did.", cap: "Share of ads with a real AI ask, by job type, job boards only, all four periods, 1,683 ads. Faded bars rest on fewer than 15 ads and sit below the others. Job types with fewer than 5 ads are left out. The number of ads behind each bar is in brackets." },
           { p: `For job types with enough ads to trust, digital marketing stands out: ==11 of 46 ads asked for AI==. After it come content and copywriting (2 of 21) and account executives (3 of 33); ecommerce (2 of 13) looks high too, but rests on fewer than 15 ads. PR and communications asked in 1 of 19, social media in 1 of 20, SDRs and BDRs in 1 of 31, business development in 3 of 104 and general marketing in 3 of 108. Brand jobs, 17 of them, never asked. Neither did 90 field sales jobs or 288 shop and showroom sales jobs.` },
-          { p: `The technology firms' own careers pages tell a different story for sales. There, in September, account executives asked for AI in 10 of 33 ads, SDRs and BDRs in 8 of 19, sales and revenue operations in 5 of 8 and customer success in 3 of 10. So if you work in sales at a technology company, ==AI is already in the ads for your next job==. If you work in sales anywhere else, it mostly isn't yet. In marketing, digital roles ask everywhere; brand, PR and social media roles still rarely do, though I wouldn't read that as a promise it stays that way.` },
+          { p: `The technology firms' own careers pages tell a different story for sales. There, in September, account executives asked for AI in 10 of 33 ads, SDRs and BDRs in 8 of 19, sales and revenue operations in 5 of 8 and customer success in 3 of 10. So if you work in sales at a technology company, ==AI is already in the ads for your next job==. If you work in sales anywhere else, it rarely is yet, and that is the third insight: there is time to get ahead of the ad. In marketing, digital roles ask everywhere; brand, PR and social media roles still rarely do, though I wouldn't read that as a promise it stays that way.` },
         ],
       },
       {
@@ -218,8 +220,8 @@ export const CHAPTERS: Chapter[] = [
         blocks: [
           { p: `Figure 3.3 splits September's ads by level, read from the job title. We separate entry-level titles (graduate, junior, coordinator, trainee, assistant) from executive titles (sales executive, marketing executive, account executive, representative), because in Irish job ads an executive is often a few years into the job. We leave out shop and showroom sales titles, which asked for AI in none of 83 ads.` },
           { fig: "f33", title: "Across all sources, one in five head and director ads asks for AI. On the job boards alone, the levels are much closer.", cap: "Share with a real AI ask by level, 24 September 2026, all sources. Entry 3 of 48, executive 18 of 232, manager or senior 25 of 181, head or director 5 of 23. 69 titles don't say a level. On the job boards alone: entry 6.2%, executive 2.7%, manager 6.3%, head or director 2 of 20. On the web page, pick a level to see what it was asked for, or switch to job boards only." },
-          { p: `Across all sources the more senior the job, the more likely it asks for AI. But most of that slope comes from the technology firms, where managers and directors are asked to sell or lead AI. On the job boards alone, entry-level, executive and manager ads all ask at roughly the same low rate, and the numbers at each level are small. So I'd put it this way: at the tech firms, AI is being written into senior jobs first; at ordinary Irish employers, ==level makes much less difference than the kind of job==.` },
-          { p: `The kind of ask does change as you go up. All three entry-level asks are to use AI tools. Executives are asked to use AI (11 ads) or sell it (7). Managers get the widest spread: 10 to use tools, 9 to sell AI, 3 to work on AI search, 2 to lead it and 1 to build. At head and director level, 2 asks are to lead AI, 2 to sell it and 1 to use it. Mediolanum wants its Head of Sales to "continue to develop and leverage the existing AI platform" it uses to make content for financial advisers. Datadog wants its Director of Enterprise Customer Success to "champion practical AI adoption across the team" and coach managers "to use them well without eroding judgment".` },
+          { p: `Across all sources the more senior the job, the more likely it asks for AI. But most of that slope comes from the technology firms, where managers and directors are asked to sell or lead AI. On the job boards alone, entry-level, executive and manager ads all ask at roughly the same low rate, and the numbers at each level are small. This is the counterpoint to what the second insight says about senior people. So I'd put it this way: at the tech firms, AI is being written into senior jobs first; at ordinary Irish employers, ==level makes much less difference than the kind of job==.` },
+          { p: `The kind of ask does change as you go up. All three entry-level asks are to use AI tools. Executives are asked to use AI (11 ads) or sell it (7). Managers get the widest spread: 10 to use tools, 9 to sell AI, 3 to work on AI search, 2 to lead it and 1 to build. At head and director level, 2 asks are to lead AI, 2 to sell it and 1 to use it. Mediolanum wants its Head of Sales to "continue to develop and leverage the existing AI platform" it uses to make content for financial advisers. Datadog wants its Director of Enterprise Customer Success to "champion practical AI adoption across the team" and coach managers "to use them well without eroding judgment". For a senior marketer looking for a job, the point holds either way. The asks at this level are to lead AI and to sell it, and it is hard to lead what you haven't used.` },
         ],
       },
       {
@@ -244,9 +246,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch4",
     n: 4,
-    thread: { tag: "Insight 1", text: `This is the evidence for the first insight. Speed comes first in what the ads ask for. The asks for AI search and for building agents are the early signs of ambition, and 4.3 shows quality appearing as something to protect while the work gets faster.` },
+    tag: "Insight 1",
     title: "What employers want AI for",
-    lede: [`Half of the asks are for people to use AI tools. The rest are for people to sell it, lead it, get their company found in AI search, or build it. Each kind comes from a different sort of employer.`],
+    lede: [`Half of the asks are for people to use AI tools. The rest are for people to sell it, lead it, get their company found in AI search, or build it. Each kind comes from a different sort of employer.`, `This chapter is the evidence for the first insight. Speed comes first in what the ads ask for, and the signs of ambition are few so far.`],
     subs: [
       {
         n: "4.1",
@@ -254,6 +256,7 @@ export const CHAPTERS: Chapter[] = [
         blocks: [
           { fig: "f41", title: "Half the asks are to use AI tools. Building agents came up once.", cap: "The 56 real AI asks on 24 September 2026, one square each, by kind. On the web page, pick a kind to see who asked." },
           { p: `The kinds split cleanly by employer. The AI search asks all come from smaller Irish firms or the recruiters working for them: Femtech Healthcare, Yuno Energy, Staffline and Excel Recruitment. They want someone to make sure the company turns up when a customer asks ChatGPT instead of Google. The sell asks come from technology companies, where AI is in the product. We count a sell ask only when the ad says the job itself involves selling or introducing AI, not when the company simply describes itself as an AI company. The lead asks are few and senior: Excel Recruitment for a luxury retailer, Datadog, Accenture and Mediolanum.` },
+          { p: `The AI search asks are worth a second look. That job didn't exist a year ago, and it is the nearest thing in these ads to ==using AI for something that couldn't be done before==.` },
           { p: `Agents, the word of the year in tech, show up mostly as a product someone else is selling. ==Only one marketing or sales job in Ireland asks the person to build them.== Wayflyer wants its Technical Revenue Operations Analyst to "build, deploy and continuously sharpen AI-native workflows and agents that augment how Sales, CS and the wider Revenue org work". The only other build ask is MongoDB's, for a sales operations analyst to build "statistical and machine learning models" for forecasting.` },
         ],
       },
@@ -264,20 +267,22 @@ export const CHAPTERS: Chapter[] = [
           { p: `To see what "use AI tools" means in practice, we read every sentence about AI or automation in the 43 tools asks across the year, 82 sentences in all, and sorted them by what they say the AI is for.` },
           { fig: "f42", title: "Speed, efficiency and productivity came up 27 times. Writing and drafting came up 7 times.", cap: "Sentences about AI or automation in the 43 tools asks across the year, 82 sentences, by what they say the AI is for. A keyword count, so a sentence can count twice." },
           { p: `So employers are ==buying pace and volume far more than better writing==. Dolby, hiring product marketers through Cpl, wants someone to "speed up content adaptation, versioning and workflow tracking" and asks for "comfort using AI tools to move fast". Okta wants its EMEA Digital Media Manager to "use AI and automation to increase speed and scale". Tines wants people who "use AI and automation to cut mechanical work". It's a practical, slightly unglamorous view of AI: it does the dull parts faster.` },
+          { p: `It's also a natural place to start. If you're looking for a job, this is the opening the first insight describes: show what AI lets you do that couldn't be done before, as well as what it lets you do faster. If you're hiring and you want ambition, an ad that starts from speed may not reach the people who have it.` },
         ],
       },
       {
         n: "4.3",
-        title: "The better ads ask for judgement",
+        title: "Some ads ask for judgement too",
         blocks: [
-          { p: `Several ads pair speed with a warning. Tines wants someone who "uses AI in their own work and understands where its judgement breaks down". Dropbox asks for "the ability to validate outputs". Ballyhoura Development wants AI used while "maintaining human oversight, accuracy".` },
+          { p: `Several ads pair speed with a warning. Tines wants someone who "uses AI in their own work and understands where its judgement breaks down". Dropbox asks for "the ability to validate outputs". Ballyhoura Development wants AI used while "maintaining human oversight, accuracy". In each of these, quality is something to protect while the work gets faster.` },
         ],
       },
       {
         n: "4.4",
         title: "The clearest ask came from a small firm",
         blocks: [
-          { p: `The clearest AI ask I found all year came from a small agency in Bray, not a big tech firm. In March, Movie Extras advertised for a social media and business development executive under the heading =="AI-enabled execution (required)"==. It wants someone using "ChatGPT/Claude/Canva AI" to "speed up content creation, research, draft campaigns, improve copy, summarise insights", with the "ability to craft clear prompts, refine outputs, and maintain brand voice and accuracy". That's a job description you could actually prepare for. The large firms mostly wrote "AI tools" and left it there. I don't know yet why the small firm is clearer. ==My guess is that someone there actually does the work.==` },
+          { p: `The clearest AI ask I found all year came from a small agency in Bray, not a big tech firm. In March, Movie Extras advertised for a social media and business development executive under the heading =="AI-enabled execution (required)"==. It wants someone using "ChatGPT/Claude/Canva AI" to "speed up content creation, research, draft campaigns, improve copy, summarise insights", with the "ability to craft clear prompts, refine outputs, and maintain brand voice and accuracy". That's a job description you could actually prepare for. Of the 20 ads in September that asked for "AI tools", 17 named none. I don't know yet why the small firm is clearer. ==My guess is that someone there actually does the work.==` },
+          { p: `This is the ad the second insight points to. If you're hiring, it shows how little it takes: name the tools, and say what they are for.` },
         ],
       },
     ],
@@ -285,9 +290,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch5",
     n: 5,
-    thread: { tag: "Insight 2", text: `This is the evidence for the second insight. Employers name their tools exactly, and with AI they are not there yet. The counterpoint: Office and Salesforce are still named far more than anything else.` },
+    tag: "Insight 2",
     title: "The tools employers name, and the one they don't",
-    lede: [`Job ads are a good record of which tools a company actually uses, because they name them to find people who already know them. We searched every ad for about 40 tools, after removing each company's repeated blurb.`],
+    lede: [`Job ads are a good record of which tools a company actually uses, because they name them to find people who already know them. We searched every ad for about 40 tools, after removing each company's repeated blurb.`, `This chapter is the evidence for the second insight, and it starts with a counterpoint.`],
     subs: [
       {
         n: "5.1",
@@ -299,10 +304,10 @@ export const CHAPTERS: Chapter[] = [
       },
       {
         n: "5.2",
-        title: "AI is the one tool nobody names",
+        title: "With AI, the ads rarely name a tool",
         blocks: [
           { p: `Employers name their other tools exactly. They say Salesforce, not "a CRM". They say Google Ads, not "paid search tools". But when it comes to AI, ==17 of the 20 ads that ask for "AI tools", "AI fluency" or "AI platforms" name no tool at all==. 6 ads name an AI product anywhere, and in four of those the name is something else: a search platform to be found on, a product being sold, or a perk (Fin's product marketer gets "unlimited access to Claude Code"). Only two ads name an AI tool the person would actually use in the job. Osborne Recruitment lists ChatGPT. DocuSign asks its sales development reps for familiarity with "Gong, Glean, Gemini, Notebook LM". Excel, for comparison, is named in 46.` },
-          { p: `I think this is the most useful thing in the report for someone applying. When an ad says "AI tools" and stops, the employer probably hasn't decided what it means. That's an opening. The applicant who can say exactly which tools they use, for what, and how they check the result, is ==answering a question the employer hasn't managed to ask==.` },
+          { p: `I think this is the most useful thing in the report for someone applying. When an ad says "AI tools" and stops, the employer may still be early in working out what it means. That's an opening. The applicant who can say exactly which tools they use, for what, and how they check the result, is ==answering a question the ad hasn't asked yet==. And for someone hiring, naming the tools and the work tells the right person the job is for them.` },
         ],
       },
       {
@@ -311,7 +316,7 @@ export const CHAPTERS: Chapter[] = [
         blocks: [
           { p: `Figure 5.2 follows the most-named tools on jobs.ie across the four periods, as a share of ads so the different sample sizes don't matter.` },
           { fig: "f52", title: "Canva pulled ahead of Adobe over the year.", cap: "Share of jobs.ie marketing and sales ads naming each tool. Ads per period: 279, 674, 184, 141. September rests on 141 ads, so one ad moves a share by 0.7 points. Canva and Adobe are drawn; on the web page, pick tools to compare." },
-          { p: `Canva and Adobe were level in late 2025, both at 2.2% of ads. By September, Canva was named in 9 ads (6.4%) and Adobe in 4 (2.8%). That fits the rest of this report: ==the tools that let one person do more on their own are the ones rising==. But treat it with care. Nearly every tool rose on jobs.ie in September, so part of the rise may simply be that September's ads were more detailed. Canva's change rests on nine ads. We'll know more after December.` },
+          { p: `Canva and Adobe were level in late 2025, both at 2.2% of ads. By September, Canva was named in 9 ads (6.4%) and Adobe in 4 (2.8%). That fits the second insight: ==the tools that let one person do more on their own are the ones rising==. But treat it with care. Nearly every tool rose on jobs.ie in September, so part of the rise may simply be that September's ads were more detailed. Canva's change rests on nine ads. We'll know more after December.` },
         ],
       },
     ],
@@ -319,8 +324,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch6",
     n: 6,
-    thread: { tag: "For both readers", text: `This chapter is practical for both readers: what candidates are being told about using AI when they apply, and what a few employers have started to write down.` },
-    title: "Applying for the job: nobody bans AI in your CV, but the rules have started",
+    tag: "For both readers",
+    title: "Applying for the job: no ad bans AI in your CV, but the rules have started",
+    lede: [`This chapter is practical for both readers. If you're applying, it's what employers have started to say about using AI in an application. If you're hiring, it's what a few employers now write down.`],
     subs: [
       {
         n: "6.1",
@@ -347,8 +353,9 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch7",
     n: 7,
-    thread: { tag: "A counterpoint", text: `We wanted to say whether AI pays more. We can't yet, and this chapter says why.` },
+    tag: "For both readers",
     title: "Pay",
+    lede: [`We wanted to tell both readers whether AI skills pay more. We can't yet, and this chapter says why.`],
     subs: [
       {
         n: "7.1",
@@ -370,8 +377,11 @@ export const CHAPTERS: Chapter[] = [
 ];
 
 export const DISCUSSION: string[] = [
-  `A year ago an Irish marketing job ad almost never asked the person to do anything with AI. Now about one in four on jobs.ie does, and in digital and ecommerce marketing it's more. That's a fast change for something as slow-moving as the way companies write job specs. Sales has hardly moved, outside the tech firms selling AI itself. My guess is that marketing work is mostly writing, images and analysis on a screen, which is where AI tools are strongest today, while much of sales is still conversation. But that's a guess, and the data can't prove it.`,
-  `What the ads ask for is still thin. Employers want speed and "AI tools", and only the better ones say what the tools are for or ask for the judgement to check the output. The asks are concentrated at technology firms and in Dublin, and the clearest description of the work came from a small firm in Bray rather than a large one. For someone applying, that's an opening. If the ad says "AI tools" and nothing more, ==you can be the one who shows exactly what you'd do with them==.`,
+  `A year ago an Irish marketing job ad almost never asked the person to do anything with AI. Now about one in four on jobs.ie does, and in digital and ecommerce marketing it's more. That's a fast change for something as slow-moving as the way companies write job specs.`,
+  `What the ads ask for is still early. Speed comes first, which is the natural place to start, and the ads that ask for something new, like being found in AI search, are few. We think the bigger opportunity is ambition, and we'll be looking for it in the December ads.`,
+  `Tools are now part of the job at every level, and with AI the ads rarely say which ones. The clearest description of the work came from a small firm in Bray. If the ad says "AI tools" and nothing more, ==you can be the one who shows exactly what you'd do with them==.`,
+  `Sales has hardly moved, outside the technology firms. My guess is that marketing work is mostly writing, images and analysis on a screen, which is where AI tools are strongest today, while much of sales is still conversation. But that's a guess, and the data can't prove it. The research and the admin around selling are where the opening is.`,
+  `What we still can't say: how the line moved between last October and this September, whether AI skills pay more, and what LinkedIn's ads would add. Each of those is a reason to count again.`,
 ];
 
 export const METHOD: { k: string; t: string }[] = [

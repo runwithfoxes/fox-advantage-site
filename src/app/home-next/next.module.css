@@ -827,12 +827,12 @@ a.entryT:hover { color: #3A7CA5; }
 /* Paul, 29 Sep: "We can't have words going across the face of the fox." The fox stands bottom centre
    in every cover, so the words sit top left, in the sky, and the shade comes from the top. */
 .coverWords { position: absolute; inset: 0; display: grid; align-content: start; justify-items: start; gap: 8px; padding: 18px 20px 20px; background: linear-gradient(180deg, rgba(10,30,45,.66) 0%, rgba(10,30,45,.25) 38%, rgba(10,30,45,0) 60%); color: #fff; }
-.coverHeadline { max-width: 68%; }
+/* no width cap on the cover headline (Paul, 1 Oct 2026: headlines never stop halfway across). The words are in the sky at the top; the fox is at the bottom, so a full line does not cross his face. */
 .coverKicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); }
 .coverHeadline { font-family: var(--sans); font-weight: 500; font-size: 26px; line-height: 1.12; letter-spacing: -0.02em; }
 .coverHeadline em { font-style: normal; color: #A6CDE8; }
 .flag .coverWords { padding: 24px 28px 26px; gap: 10px; }
-.flag .coverHeadline { font-size: 30px; max-width: 62%; }
+.flag .coverHeadline { font-size: 30px; }
 .flag .coverKicker { font-size: 10.5px; }
 .comingCard .coverWords { padding: 14px 16px 16px; gap: 6px; }
 .comingCard .coverHeadline { font-size: 20px; }

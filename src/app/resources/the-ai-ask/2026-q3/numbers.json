@@ -1954,6 +1954,21 @@
   "google:Kerry Group Jobs": 1,
   "google:Jobgether": 1
  },
+ "sep_sales_asks_by_kind": {
+  "careers": {
+   "lead": 1,
+   "tools": 16,
+   "sell": 10,
+   "build": 2,
+   "all": 29
+  },
+  "boards": {
+   "sell": 5,
+   "lead": 2,
+   "tools": 3,
+   "all": 10
+  }
+ },
  "sep_multi_site": 35,
  "judging": {
   "total": 172,
