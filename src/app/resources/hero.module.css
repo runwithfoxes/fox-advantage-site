@@ -113,3 +113,8 @@
   .still .lineT { text-shadow: none; }
   .inner { padding-bottom: 28px; }
 }
+
+/* Paul, 1 Oct 2026, on his phone the evening the site went live: "There is a bit of a shadow on the
+   headline on hero on the mobile that makes it look a bit cheap." At phone size the 24px blur reads
+   as a dark smudge behind the letters. The film's own shade from the top carries the contrast. */
+@media (max-width: 700px) { .title { text-shadow: none; } }
