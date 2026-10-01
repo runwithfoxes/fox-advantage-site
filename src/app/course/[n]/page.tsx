@@ -1,5 +1,5 @@
-import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { hasAccess } from "@/lib/access";
 import { MODULES, courseToday } from "../courseModules";
 import { MODULES_BY_N } from "../moduleData";
 import CourseDoor from "./CourseDoor";
@@ -67,11 +67,12 @@ export default async function ModulePage({
      him and the work every single time. `NODE_ENV` is "production" in every build Vercel
      ships, so this branch is unreachable in production by construction rather than by a flag
      somebody has to remember to turn off. ⛔ It does NOT weaken the real gate above it. */
-  const identified =
-    process.env.NODE_ENV === "development"
-      ? "dev@localhost"
-      : (await cookies()).get("rwf_course_id")?.value ?? "";
-  if (!identified.includes("@")) {
+  /* ⭐ 1 Oct 2026: EITHER COOKIE, through hasAccess(), the same check the file route and the
+     library use. Someone who signed up for a report or the library was asked for their email a
+     second time here. Since 27 Sep every sign-up sets the identity cookie too, so the lesson's
+     behaviour events still land on a named profile. */
+  const identified = process.env.NODE_ENV === "development" || (await hasAccess());
+  if (!identified) {
     return (
       <CourseDoor n={mod.n} title={mod.title} when={mod.when} live={!opens || today >= opens} />
     );

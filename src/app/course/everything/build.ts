@@ -192,7 +192,15 @@ export function buildLibrary({ locked = false }: { locked?: boolean } = {}): Lib
         name: set.title,
         desc: set.blurb,
         href: `/course/${m.n}#files`,
-        files: set.files.map<FileRow>((f) => ({
+        /* ⭐ 1 Oct 2026: A FILE IS A LINK ONLY FOR SOMEONE WHO CAN OPEN IT. These rows were links
+           for everybody, and `api/course-file` answers a bare "Not found" to a visitor with no
+           cookie, so the library handed a stranger a row of dead links. Signed out, the file is
+           named and the row goes to the sign-up box on this page, the same as a prompt's copy. */
+        files: set.files.map<FileRow>((f) => locked ? ({
+          kind: "locked",
+          name: f.name,
+          meta: "opens when you sign up",
+        }) : ({
           kind: "link",
           name: f.name,
           /* The readable page is what a row opens. The markdown sits beside it at the same

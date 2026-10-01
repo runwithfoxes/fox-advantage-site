@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { cookies } from "next/headers";
+import { hasAccess } from "@/lib/access";
 import { MODULES_BY_N } from "../../../course/moduleData";
 
 /**
@@ -75,10 +75,11 @@ export async function GET(
      one the module renders but every file it serves 404s, so a folder window on the page
      would come up empty and look like a broken component rather than a missing cookie.
      `NODE_ENV` is "production" in every build Vercel ships, so this cannot reach a member. */
-  const identified =
-    process.env.NODE_ENV === "development"
-      ? "dev@localhost"
-      : (await cookies()).get("rwf_course_id")?.value ?? "";
+  /* ⭐ 1 Oct 2026: EITHER COOKIE, through hasAccess() (src/lib/access.ts). This read only the
+     course's identity cookie, so someone who signed up at the library or for a report, and was
+     told on the page that everything was open, got "Not found" on every file. Paul, 27 Sep:
+     one sign-up opens everything. */
+  const identified = process.env.NODE_ENV === "development" || (await hasAccess());
   if (!identified) {
     return new Response("Not found", { status: 404 });
   }

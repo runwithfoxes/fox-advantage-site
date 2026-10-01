@@ -49,7 +49,7 @@ export type FileRow = {
    * and hiding the NAMES cost this page the one thing it exists for: being a public, ungated
    * list that search and the AI engines can read.
    */
-  kind: "prompt" | "link" | "pending";
+  kind: "prompt" | "link" | "pending" | "locked";
   name: string;
   /** Right-aligned machine text. The source for a link, the size for a prompt. */
   meta?: string;
@@ -358,6 +358,16 @@ export default function EverythingClient({
                               </span>
                               <span className={s.rwmeta}>{f.meta}</span>
                             </div>
+                          ) : f.kind === "locked" ? (
+                            /* A file the visitor cannot open yet: named, and the row goes to
+                               the sign-up box rather than to a link that answers Not found. */
+                            <a key={j} className={`${s.rw} ${s.child}`} href="#account">
+                              <span className={s.rwmain}>
+                                <FileIcon />
+                                <span className={s.rwname}>{f.name}</span>
+                              </span>
+                              <span className={s.rwmeta}>{f.meta}</span>
+                            </a>
                           ) : f.kind === "link" ? (
                             <a
                               key={j}
