@@ -1716,7 +1716,14 @@ export const MODULE_2: ModuleDef = {
       /* REPLACED BY PAUL, 28 Sep 2026, pasted. The folder stays, after his last paragraph,
          because that paragraph points at it ("so you can see it here"). One fix on his
          standing grammar instruction: "team mates" -> "teammates". */
-      text: "Ok, so today you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer. This AI writer is going to write emails, copy for the website, social posts, write training guides. All sorts of marketing communications.\n\nIf you were briefing a human writer, you'd need to give them context about your brand, about your customers, insights if you have them, your positioning, your tone of voice. Same for an AI Writer. If you're building this for your team, you'll also need to give it instructions on how to interact with your teammates - so they have a good user experience with this piece of software.\n\nFor Kite, I've created these documents, so you can see it here, but also, so you can download and practice yourself. Doing it is far more useful than watching it.\n\n{{FOLDER}}",
+      text: "Ok, so today you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer. This AI writer is going to write emails, copy for the website, social posts, write training guides. All sorts of marketing communications.\n\nIf you were briefing a human writer, you'd need to give them context about your brand, about your customers, insights if you have them, your positioning, your tone of voice. Same for an AI Writer. If you're building this for your team, you'll also need to give it instructions on how to interact with your teammates - so they have a good user experience with this piece of software.\n\nFor Kite, I've created these documents, so you can see it here, but also, so you can download and practice yourself. Doing it is far more useful than watching it.\n\n{{FOLDER}}\n\nIf you don't have this work done for your own brand, I've also built an interviewer. Add it to a Claude project and it asks you questions, one at a time, and gets what you already know out of your head and into the same six documents. You can download the interviewer, and it's also listed with the files at the bottom of this page.",
+      /* ⚠️ THE LAST PARAGRAPH IS A DRAFT, NOT HIS YET, 1 Oct 2026. Paul: "why don't you write
+         that, I'll have a look." Built from his 4 Aug sentence ("if you don't have positioning
+         work and messaging work, I've also built an assistant that you can download") and
+         from what brand-interviewer.md says of itself. It replaces item 05. */
+      textLinks: [
+        { phrase: "download the interviewer", href: "/api/course-file/module-2/writer/brand-interviewer.md", title: "Writer brand-interviewer", download: true },
+      ],
     },
     {
       /* ⭐ ITEM 03 OPENED BY PAUL, 4 Aug 2026. His headline, his figure: "topic three is
@@ -1879,31 +1886,12 @@ export const MODULE_2: ModuleDef = {
       text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}",
       session: true,
     },
-    {
-      /* ⭐ ITEM 05, THE INTERVIEWER, CLOSING THE MODULE. Paul, 4 Aug 2026: "if you don't
-         have positioning work and messaging work, I've also built an assistant that you can
-         download into your cloud, and it can help you pull out your messaging and everything
-         into a messaging framework for you", and his ruling the same evening: make the
-         interviewer the closing item. This resolves the 4 Aug flag on item 01: the
-         interviewer was promised nowhere on the page after his rewrite. Now it is promised
-         here, as the on-ramp for the reader who hit item 02 with none of the slow work done.
-
-         ⭐ DEPTH RULED, 4 Aug: prose plus the file, NOT a third recorded session. A recorded
-         interview needs someone to play the learner for twenty turns and lengthens an
-         already long module. If the item feels thin later, a recording can be added.
-
-         ⚠️ PROSE NOT WRITTEN, and THE TITLE IS MINE, NOT HIS, a working label so the rail
-         reads sensibly until he gives the words. Both await Paul. */
-      t: "No positioning done yet?",
-      docs: {
-        dir: "module-2/writer",
-        folder: "writer/",
-        files: ["brand-interviewer"],
-        as: "links",
-      },
-      text: "AWAITING PAUL'S WORDS.",
-      placeholder: true,
-    },
+    /* ⛔ ITEM 05, THE INTERVIEWER, WAS CUT ON 1 Oct 2026. It had been the closing item since
+       4 Aug and never got its prose. Paul: "Originally my thing for number 5 was to give them
+       all the positioning work. I wonder should that just go into the everything library?"
+       The module now ends on item 04, the writer working. The interviewer is still handed
+       over in three places: a paragraph at the foot of item 02, the file list at the foot of
+       the page, and the library. ⛔ Do not bring it back as an item without him. */
   ],
   /* ⛔ ORDER IS THE LESSON IN BOTH SETS AND NEITHER MAY BE SORTED.
      The writer set runs in install order: the DNA goes in first, the interviewer runs once
@@ -1926,7 +1914,7 @@ export const MODULE_2: ModuleDef = {
         },
         {
           name: "brand-interviewer",
-          what: "Interviews the learner and hands back the six brand documents below.",
+          what: "Interviews you, one question at a time, and hands back your own version of the six brand documents below.",
           href: "/api/course-file/module-2/writer/brand-interviewer.html",
           take: "/api/course-file/module-2/writer/brand-interviewer.md",
         },
