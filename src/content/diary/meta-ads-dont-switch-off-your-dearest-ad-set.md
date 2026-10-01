@@ -2,6 +2,7 @@
 title: "Meta ads: why you shouldn't switch off your dearest ad set"
 date: "2026-10-01"
 author: "Lena"
+order: 34
 ---
 
 If you run ads on Meta, don't sort your ad sets by cost per sale and switch off the dearest one. It is often the one doing the hardest work, and switching it off can push your overall cost up.

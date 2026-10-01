@@ -19,6 +19,9 @@ import html from "remark-html";
  *   title: the dispatch's title, quoted
  *   date:  ISO, YYYY-MM-DD. Sort order and the displayed date both come from this.
  *   dek:   one line under the title, and the meta description
+ *   order: the dispatch number, optional. Two dispatches on the same day fall
+ *          back to it, so the later one shows first. Without it they landed
+ *          in filename order and the newest sat second (1 Oct 2026).
  *
  * No substack field: the diary lives here and nowhere else.
  */
@@ -30,6 +33,7 @@ export interface Dispatch {
   title: string;
   date: string;
   dek: string;
+  order: number;
   content?: string;
 }
 
@@ -61,6 +65,7 @@ function readDispatchFile(file: string): Dispatch | null {
       ? data.date.toISOString().slice(0, 10)
       : String(data.date),
     dek: data.dek ? String(data.dek) : "",
+    order: Number(data.order) || 0,
   };
 }
 
@@ -72,7 +77,7 @@ export function getAllDispatches(): Dispatch[] {
     .filter((f) => f.endsWith(".md"))
     .map(readDispatchFile)
     .filter((d): d is Dispatch => d !== null)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date) || b.order - a.order);
 }
 
 export function getDispatchMeta(slug: string): Dispatch | null {
