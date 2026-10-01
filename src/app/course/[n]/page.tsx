@@ -18,6 +18,14 @@ import ModuleClient from "./ModuleClient";
  * link to here is revealed.
  */
 
+/* ⛔ THIS PAGE MUST BE RENDERED PER REQUEST, 1 Oct 2026. The date check below redirects
+   before `cookies()` is ever read, so a build made before a module's date found nothing
+   dynamic in modules 2 to 6 and baked the redirect to /course into a static page. It would
+   have stayed a redirect on the module's own date, until whatever deploy happened next.
+   Module 1 never showed it because it is exempt from the date check. Found by starting a
+   production build with COURSE_NOW=2026-10-05 and asking for /course/2. */
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
   return Object.keys(MODULES_BY_N).map((n) => ({ n }));
 }
