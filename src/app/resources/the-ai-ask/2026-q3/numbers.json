@@ -496,14 +496,9 @@
    "Gong": 1
   },
   "AI": {
-   "any": 21,
+   "any": 23,
    "\"AI tools\", no name": 17,
-   "Claude": 3,
-   "Gemini": 3,
-   "ChatGPT": 2,
-   "Copilot": 2,
-   "Perplexity": 1,
-   "Cursor": 1
+   "Names an AI tool": 6
   }
  },
  "ai_tools_named": {
@@ -535,7 +530,17 @@
     "Microsoft",
     "Digital Enterprise Solution Sales Specialist - AI Workforce- French speaking"
    ]
-  ]
+  ],
+  "tool_mentions": {
+   "Claude": 3,
+   "Gemini": 3,
+   "ChatGPT": 2,
+   "Copilot": 2,
+   "Perplexity": 1,
+   "Cursor": 1,
+   "NotebookLM": 1
+  },
+  "ads_generic_or_named": 23
  },
  "tools_jobsie_share": {
   "Excel": {

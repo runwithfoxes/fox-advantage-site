@@ -185,6 +185,12 @@ export function F21() {
   );
 }
 
+/* A row resting on fewer than this many ads is drawn faded and sits below the rows with enough ads
+   behind them. Sam's rule for Figure 3.2, applied to 3.1 as well on 1 Oct 2026 after Susan's proofread:
+   product marketing topped 3.1 on 4 of 6 ads, above the digital marketing row the title leads on. */
+const THIN = 15;
+const thinLast = (a: { n: number }, b: { n: number }) => Number(a.n < THIN) - Number(b.n < THIN);
+
 /* ── 3.1 The AI Ask Index by role ─────────────────────────────────────────────────── */
 export function F31() {
   const [ref, seen] = useSeen<HTMLDivElement>();
@@ -192,13 +198,16 @@ export function F31() {
   const [hover, setHover] = useState<string | null>(null);
   const groups = (["marketing", "sales"] as const).map((g) => ({
     g,
-    rows: N.roles.filter((x) => x.group === g).sort((a, b) => (sort === "index" ? b.index - a.index : b.n - a.n)),
+    rows: N.roles.filter((x) => x.group === g).sort((a, b) => thinLast(a, b) || (sort === "index" ? b.index - a.index : b.n - a.n)),
   }));
   const max = 8;
   return (
     <div ref={ref}>
       <div className={r.chartHead}>
         <Toggle opts={[{ k: "index", t: "By index" }, { k: "n", t: "By number of ads" }]} on={sort} set={setSort} />
+      </div>
+      <div className={r.pairKey}>
+        <span><i style={{ background: SKY, opacity: 0.3 }} /> Fewer than {THIN} ads</span>
       </div>
       <div className={r.idx}>
         <div className={r.idxAvg} style={{ left: `calc(var(--lab) + (100% - var(--lab) - var(--val)) * ${1 / max})` }}>
@@ -210,7 +219,7 @@ export function F31() {
           <div key={row.role} className={`${r.idxRow} ${hover === row.role ? r.idxHot : ""}`} onMouseEnter={() => setHover(row.role)} onMouseLeave={() => setHover(null)}>
             <span className={r.idxLab}>{row.role}</span>
             <span className={r.idxTrack}>
-              <i style={{ width: seen ? `${(row.index / max) * 100}%` : 0, background: row.index >= 1 ? SKY : GREY }} />
+              <i style={{ width: seen ? `${(row.index / max) * 100}%` : 0, background: row.index >= 1 ? SKY : GREY, opacity: row.n < THIN ? 0.3 : 1 }} />
             </span>
             <span className={r.idxVal}>
               <b>{row.index.toFixed(1)}</b>
@@ -233,7 +242,7 @@ export function F32() {
   const [hover, setHover] = useState<string | null>(null);
   const rows = (N.fine_roles_boards_year as { group: string; role: string; k: number; n: number; pct: number }[])
     .filter((x) => x.n >= 5 && (grp === "all" || x.group === grp))
-    .sort((a, b) => b.pct - a.pct);
+    .sort((a, b) => thinLast(a, b) || b.pct - a.pct);
   const max = Math.max(...rows.map((x) => x.pct), 1);
   return (
     <div ref={ref}>
@@ -243,14 +252,14 @@ export function F32() {
       <div className={r.pairKey}>
         <span><i style={{ background: SKY }} /> Marketing</span>
         <span><i style={{ background: DEEP }} /> Sales</span>
-        <span><i style={{ background: SKY, opacity: 0.3 }} /> Fewer than 15 ads</span>
+        <span><i style={{ background: SKY, opacity: 0.3 }} /> Fewer than {THIN} ads</span>
       </div>
       <div className={r.hbars}>
         {rows.map((x, i) => (
           <div key={x.role} className={r.fRow} onMouseEnter={() => setHover(x.role)} onMouseLeave={() => setHover(null)}>
             <span className={r.fLab}>{x.role} ({x.n})</span>
             <span className={r.fTrack}>
-              <i style={{ width: seen ? `${(x.pct / max) * 100}%` : 0, background: x.group === "marketing" ? SKY : DEEP, opacity: x.n < 15 ? 0.3 : 1, transitionDelay: `${i * 30}ms` }} />
+              <i style={{ width: seen ? `${(x.pct / max) * 100}%` : 0, background: x.group === "marketing" ? SKY : DEEP, opacity: x.n < THIN ? 0.3 : 1, transitionDelay: `${i * 30}ms` }} />
             </span>
             <span className={r.fVal}>
               <b>{x.pct}%</b> {hover === x.role ? <em>{x.k} of {x.n}</em> : null}
@@ -425,7 +434,9 @@ export function F42() {
   );
 }
 
-/* ── 5.1 Tool types, pick one to open it ──────────────────────────────────────────── */
+/* ── 5.1 Tool types, pick one to open it. The AI row is one count (1 Oct 2026): the bar is every ad
+   that asks for AI tools or names one, and it opens as the two groups that add up to it, with the
+   tools named listed under the second. Counted in build_numbers.py, never here. ─────────────── */
 export function F51() {
   const [ref, seen] = useSeen<HTMLDivElement>();
   const ts = N.tools_sep as Record<string, Record<string, number>>;
@@ -446,16 +457,37 @@ export function F51() {
         ))}
       </div>
       <div className={r.toolOpen}>
-        <span className={r.kick}>{open}: the tools named</span>
-        {Object.entries(ts[open])
-          .filter(([k]) => k !== "any")
-          .map(([k, v]) => (
-            <div key={k} className={r.tRow}>
-              <span className={k.includes("no name") ? r.tNoName : ""}>{k}</span>
-              <b>{v}</b>
+        <span className={r.kick}>{open === "AI" ? `AI: the ${ts.AI.any} ads, in two groups` : `${open}: the tools named`}</span>
+        {open === "AI" ? (
+          <>
+            <div className={r.tRow}>
+              <span className={r.tNoName}>Ask for AI tools, name none</span>
+              <b>{ts.AI['"AI tools", no name']}</b>
             </div>
-          ))}
-        {open === "AI" ? <p className={r.tNote}>{N.ai_tools_named.generic_without_any_name} of the {N.ai_tools_named.ads_generic_ai_tools} ads that ask for &ldquo;AI tools&rdquo;, &ldquo;AI fluency&rdquo; or &ldquo;AI platforms&rdquo; name no tool at all.</p> : null}
+            <div className={r.tRow}>
+              <span>Name an AI tool</span>
+              <b>{ts.AI["Names an AI tool"]}</b>
+            </div>
+            {Object.entries(N.ai_tools_named.tool_mentions as Record<string, number>).map(([k, v]) => (
+              <div key={k} className={`${r.tRow} ${r.tSub}`}>
+                <span>{k}</span>
+                <b>{v}</b>
+              </div>
+            ))}
+            <p className={r.tNote}>
+              One ad can name several tools, so the names add to more than {ts.AI["Names an AI tool"]}. {N.ai_tools_named.generic_without_any_name} of the {N.ai_tools_named.ads_generic_ai_tools} ads that ask for &ldquo;AI tools&rdquo;, &ldquo;AI fluency&rdquo; or &ldquo;AI platforms&rdquo; name no tool at all; the other {N.ai_tools_named.ads_generic_ai_tools - N.ai_tools_named.generic_without_any_name} are among the {ts.AI["Names an AI tool"]} that name one.
+            </p>
+          </>
+        ) : (
+          Object.entries(ts[open])
+            .filter(([k]) => k !== "any")
+            .map(([k, v]) => (
+              <div key={k} className={r.tRow}>
+                <span>{k}</span>
+                <b>{v}</b>
+              </div>
+            ))
+        )}
       </div>
     </div>
   );
