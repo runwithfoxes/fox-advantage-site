@@ -199,6 +199,8 @@ function ModuleCard({
 export default function CourseClient({ today }: { today: string }) {
   /* Launch day on: the top line says module 1 is open and both signup boxes take you in. */
   const m1Live = isLive(MODULES[0], today);
+  /* The modules open today, for the line a signed-in visitor gets in place of the sign-up pill. */
+  const liveMods = MODULES.filter((m) => isLive(m, today));
   const [openCard, setOpenCard] = useState<number | null>(null);
 
   /**
@@ -270,7 +272,28 @@ export default function CourseClient({ today }: { today: string }) {
 
           <p>{m1Live ? HERO.subOpen : HERO.sub}</p>
 
-          <div className="co-herojoin">
+          {/* ⭐ 1 Oct 2026: SOMEONE ALREADY SIGNED UP IS NOT ASKED AGAIN. This page was the same for a
+              member as for a stranger, pill and all. The pill is a sign-up ask (data-ask) and the
+              line under it is what a member gets instead (data-known-only): src/components/Known.tsx.
+              The page stays static; <html data-known> picks which one shows. The module cards keep
+              their own ask, because "email me when this one opens" is still a fair thing to ask
+              for. */}
+          {liveMods.length > 0 ? (
+            <div className="co-herojoin" data-known-only>
+              <div className="co-join co-join-done">
+                You&rsquo;re in. {liveMods.length === 1 ? `Module ${liveMods[0].n} is` : `Modules ${liveMods.map((m) => m.n).join(" and ")} are`} open to you now.
+                <span>
+                  {liveMods.map((m, i) => (
+                    <span key={m.n}>
+                      {i > 0 ? " \u00b7 " : ""}
+                      <a href={`/course/${m.n}`}>Open module {m.n} &rarr;</a>
+                    </span>
+                  ))}
+                </span>
+              </div>
+            </div>
+          ) : null}
+          <div className="co-herojoin" data-ask>
             <CourseSignup
               source="hero"
               goOnDone={m1Live ? "/course/1" : undefined}
@@ -335,7 +358,7 @@ export default function CourseClient({ today }: { today: string }) {
           </section>
 
           {/* THE PILL AGAIN. Paul's call, asked and answered. */}
-          <section className="co-footjoin">
+          <section className="co-footjoin" data-ask>
             <CourseSignup
               source="foot"
               goOnDone={m1Live ? "/course/1" : undefined}

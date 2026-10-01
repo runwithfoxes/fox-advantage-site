@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
+import KnownProbe from "@/components/Known";
+import { KNOWN_HEAD_SCRIPT } from "@/lib/known";
 import "./globals.css";
+import "./known.css";
 
 const mono = JetBrains_Mono({
   variable: "--font-mono",
@@ -38,11 +41,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    /* suppressHydrationWarning: the line in <head> sets data-known on this element before React
+       starts, for a visitor who is already signed up (src/components/Known.tsx). */
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: KNOWN_HEAD_SCRIPT }} />
+      </head>
       <body className={`${mono.variable} ${sans.variable} ${serif.variable} antialiased`}>
         <div className="page-wrapper">
           {children}
         </div>
+        <KnownProbe />
         <ChatWidgetLoader />
         <Analytics />
       </body>

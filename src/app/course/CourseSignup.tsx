@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { markKnown } from "@/components/Known";
 import { useState } from "react";
 import { ASK } from "./courseCopy";
 
@@ -190,13 +191,14 @@ export default function CourseSignup({
         ...(module !== undefined ? { signup_module: module, signup_module_lands: lands } : {}),
     });
     setState(result);
+    if (result.kind === "done") markKnown();
     /* A full load, not router.push: push reused the door page cached before the cookie existed. */
     if (result.kind === "done" && goOnDone) window.location.assign(goOnDone);
     else if (result.kind === "done" && refreshOnDone) router.refresh();
   }
 
   if (state.kind === "done") {
-    return <div className={"co-join co-join-done" + (compact ? " co-join-compact" : "")}>{doneText}</div>;
+    return <div className={"co-join co-join-done" + (compact ? " co-join-compact" : "")} data-done>{doneText}</div>;
   }
 
   return (

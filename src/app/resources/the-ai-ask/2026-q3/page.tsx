@@ -270,7 +270,9 @@ export default async function AiAskQ3() {
             ))}
           </section>
 
-          <section id="join" className={r.join}>
+          {/* data-ask (1 Oct 2026): not shown to someone already signed up, who has the PDF button
+              at the top of the report (src/components/Known.tsx). */}
+          <section id="join" className={r.join} data-ask>
             <div>
               {/* Paul, 30 Sep 2026: "less selling and more neutral", smaller, and only what is really
                   there: "just pdf download. Change any mention of ads and data sets." */}

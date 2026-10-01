@@ -10,7 +10,9 @@ import j from "./essay-join.module.css";
  */
 export default function EssayJoin() {
   return (
-    <div className={j.box}>
+    /* data-ask: the whole box is a sign-up ask, so it is not shown to someone already signed up
+       (1 Oct 2026, src/components/Known.tsx). */
+    <div className={j.box} data-ask>
       {/* Paul, 30 Sep: not "free account", which sounds too heavy, and no need to say the essays are
           free. Just sign up, and what that gets you. */}
       <span className={j.lab}>/sign up</span>

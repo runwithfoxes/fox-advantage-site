@@ -28,6 +28,11 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
   const [burger, setBurger] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /* 1 Oct 2026: hovering a word opened its menu and clicking the same word then closed it, so the
+     natural move (point, then click) shut the thing you had just asked for. A touch screen does the
+     same in one tap, because it sends the hover before the click. So a click on a menu that hover
+     opened keeps it open; only a click on a menu that a click opened closes it. */
+  const byHover = useRef(false);
 
   useEffect(() => {
     const key = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(null); setBurger(false); } };
@@ -44,14 +49,20 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
 
   const enter = (d: Door) => () => {
     if (timer.current) clearTimeout(timer.current);
+    if (open !== d) byHover.current = true;
     setOpen(d);
+  };
+  const press = (d: Door) => () => {
+    const keep = open !== d || byHover.current;
+    byHover.current = false;
+    setOpen(keep ? d : null);
   };
   const leave = () => {
     timer.current = setTimeout(() => setOpen(null), 180);
   };
   const trig = (d: Door, label: string) => (
     <div className={m.wrap} onMouseEnter={enter(d)} onMouseLeave={leave}>
-      <button type="button" className={m.trigger} aria-expanded={open === d} onClick={() => setOpen(open === d ? null : d)}>
+      <button type="button" className={m.trigger} aria-expanded={open === d} onClick={press(d)}>
         /{label} <span className={m.chev} aria-hidden>{open === d ? "▴" : "▾"}</span>
       </button>
       {open === d ? <div onMouseEnter={enter(d)}>{panel(d)}</div> : null}
@@ -200,10 +211,16 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
             the hero's own form beside it is the register ask. (25 Sep: no paid tier, so nothing
             says upgrade.) */}
         {/* Paul, 29 Sep 2026: a visitor this browser already knows gets "Your course" here, not
-            Sign in. Pages that know pass `known`; the rest show Sign in. */}
-        <a href={known ? "/course" : "/signin"} className={n.fullAccess}>
-          {known ? "Your course" : "Sign in"}
-        </a>
+            Sign in. A page that read the cookie itself passes `known`. Every other page (1 Oct) carries
+            both buttons and <html data-known> shows the right one: see src/components/Known.tsx. */}
+        {known ? (
+          <Link href="/course" className={n.fullAccess}>Your course</Link>
+        ) : (
+          <>
+            <a href="/signin" className={n.fullAccess} data-ask>Sign in</a>
+            <Link href="/course" className={n.fullAccess} data-known-only>Your course</Link>
+          </>
+        )}
         <button type="button" className={n.burger} aria-label={burger ? "Close menu" : "Open menu"} aria-expanded={burger} onClick={() => { setOpen(null); setBurger(!burger); }}>
           <span /><span /><span />
         </button>

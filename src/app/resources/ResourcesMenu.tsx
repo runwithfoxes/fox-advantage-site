@@ -73,6 +73,8 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
   const [open, setOpen] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // a click on a menu that hover opened keeps it open (see NextNav, 1 Oct 2026)
+  const byHover = useRef(false);
 
   useEffect(() => {
     const key = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -89,7 +91,13 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
 
   const enter = () => {
     if (timer.current) clearTimeout(timer.current);
+    if (!open) byHover.current = true;
     setOpen(true);
+  };
+  const press = () => {
+    const keep = !open || byHover.current;
+    byHover.current = false;
+    setOpen(keep);
   };
   const leave = () => {
     timer.current = setTimeout(() => setOpen(false), 180);
@@ -97,7 +105,7 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
 
   return (
     <div className={s.wrap} ref={wrap} onMouseEnter={enter} onMouseLeave={leave}>
-      <button type="button" className={s.trigger} aria-expanded={open} onClick={() => setOpen(!open)}>
+      <button type="button" className={s.trigger} aria-expanded={open} onClick={press}>
         /resources <span className={s.chev} aria-hidden>{open ? "▴" : "▾"}</span>
       </button>
 

@@ -1,0 +1,5 @@
+/* A visitor this browser already knows (src/components/Known.tsx, 1 Oct 2026). A sign-up ask hides
+   for them, unless it has just been filled in and is showing its own confirmation; what they get in
+   its place hides for everyone else. */
+html[data-known="1"] [data-ask]:not(:has([data-done])) { display: none !important; }
+html:not([data-known="1"]) [data-known-only] { display: none !important; }

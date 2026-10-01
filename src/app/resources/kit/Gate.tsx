@@ -18,7 +18,9 @@ import AccessForm, { type Want } from "./AccessForm";
 export default function Gate({ adds, head = "When you sign up", want = "account", item }: { adds: string[]; head?: string; want?: Want; item?: string }) {
   if (!adds.length) return null;
   return (
-    <aside className={k.gate} aria-label="What signing up adds">
+    /* data-ask (1 Oct 2026): "once they have it they are never asked again" was the rule above and
+       the gate still showed to someone signed in. It hides for them now: src/components/Known.tsx. */
+    <aside className={k.gate} aria-label="What signing up adds" data-ask>
       <div>
         <p className={k.gateHead}>{head}</p>
         <ul className={k.gateList}>

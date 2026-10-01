@@ -400,8 +400,18 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
                 </li>
               ))}
             </ol>
-            <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done="You're in. Module 1 is open to you now, and the rest arrive by email as they open." />
-            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}The same sign-up as everything else here. <Link href="/course">About the course</Link>.</span>
+            {/* 1 Oct 2026: a signed-in visitor was told "Welcome back" in the hero and then asked for
+                their email again here. They get the same shape as the library band above: told
+                they're in, and one button in. */}
+            {known ? (
+              <div className={n.libIn}>
+                <p className={n.libInLine}>You&rsquo;re in. Module 1 is open to you now.</p>
+                <Link href="/course" className={n.libInGo}>Continue the course &rarr;</Link>
+              </div>
+            ) : (
+              <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done="You're in. Module 1 is open to you now, and the rest arrive by email as they open." />
+            )}
+            <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}{known ? "" : "The same sign-up as everything else here. "}<Link href="/course">About the course</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">

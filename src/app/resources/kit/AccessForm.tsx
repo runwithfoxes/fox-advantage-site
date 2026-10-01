@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { markKnown } from "@/components/Known";
 
 export type Want = "library" | "report" | "dataset" | "tool" | "playbook" | "tracker" | "research" | "account" | "course";
 
@@ -41,7 +42,8 @@ export default function AccessForm({
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
   const [email, setEmail] = useState("");
 
-  if (state === "done") return <p className={doneClassName}>{done}</p>;
+  /* data-done keeps the ask this sits in on screen once the visitor counts as signed up (known.css) */
+  if (state === "done") return <p className={doneClassName} data-done>{done}</p>;
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,6 +65,7 @@ export default function AccessForm({
             });
       if (!res.ok) throw new Error(String(res.status));
       setState("done");
+      markKnown();
       onDone?.();
     } catch {
       setState("error");
