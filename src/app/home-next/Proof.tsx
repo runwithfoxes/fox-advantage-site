@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CHAPTER_COUNT } from "@/lib/chapters";
 import f from "../resources/front.module.css";
 import n from "./next.module.css";
 
@@ -42,7 +43,7 @@ const CARDS: Card[] = [
   {
     kicker: "Book · free",
     title: "The Fox Advantage",
-    line: "How teams collapse complexity to run faster. 54 short chapters, free to read here.",
+    line: `How teams collapse complexity to run faster. ${CHAPTER_COUNT} short chapters, free to read here.`,
     meta: "Paul Dervan",
     cta: "Read it free →",
     href: "/book",

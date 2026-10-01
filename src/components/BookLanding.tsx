@@ -104,6 +104,8 @@ function DownloadSection() {
 }
 
 function BookLandingContent({ parts }: Props) {
+  // counted from the parts on this page, so the number and the list can never disagree
+  const chapterCount = parts.reduce((t, p) => t + p.chapters.length, 0);
   const partLabels = ["what just collapsed", "better together", "behaviours", "marketing for leaders"];
   const partDescs = [
     "The marketing department autopsy. What broke, what’s gone, and why average is now invisible.",
@@ -123,9 +125,9 @@ function BookLandingContent({ parts }: Props) {
           <div className="hero-content">
             <div className="hero-label">// a book by paul dervan</div>
             <h1>The <span className="accent">Fox</span> Advantage</h1>
-            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
+            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. {chapterCount} short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> 54 chapters</div>
+              <div><span>\</span> {chapterCount} chapters</div>
               <div><span>\</span> 4 parts</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
@@ -151,7 +153,7 @@ function BookLandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <span className="stat-number">54</span>
+                <span className="stat-number">{chapterCount}</span>
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">

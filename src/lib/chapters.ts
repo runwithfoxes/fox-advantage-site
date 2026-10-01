@@ -106,6 +106,11 @@ const chapterMap: {
   { file: "ch64b-the-robot-stand-up.md", number: 56, title: "The robot stand-up", part: 4, partName: "Marketing for Leaders" },
 ];
 
+/* How many chapters the book has, counted off the list above. Every page that says the number
+   reads it from here (1 Oct 2026: the book page said 54 three times while its four parts added
+   to 56). public/llms.txt is a plain file and has to be typed by hand when this changes. */
+export const CHAPTER_COUNT = chapterMap.length;
+
 export function isChapterGated(chapter: Chapter): boolean {
   // Check the chapterMap for the released flag
   const mapping = chapterMap.find((ch) => ch.file.replace(".md", "") === chapter.slug);
