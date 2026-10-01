@@ -1887,7 +1887,11 @@ export const MODULE_2: ModuleDef = {
          above the second window is mine, because his brief covered only the email.
          ✅ APPROVED BY PAUL, 1 Oct 2026, both readings included: "what you wrote is good." */
       t: "Watch it work",
-      text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}",
+      text: "Here is how your writer should write if you've followed the process properly. I asked the Kite writer for a renewal email, and this is that chat.\n\nWatch what it does before it writes a word. It asks what it is writing from, and then it plans before it writes. In the plan it works out how aware the reader is of the problem, and it tells you which framework it is using, which here is problem, agitate, solution. It then goes through a checklist: who it is writing to, the positioning it is leaning on, the length, and what the reader should take away. And it asks you a question when it needs something from you.\n\n{{SESSION}}\n\nHere is a second one, a social post. I haven't given it a file for social posts, and it tells me so before it plans, rather than making the rules up.\n\n{{SESSION_POST}}\n\nAnd this is where fast comes in. You did the slow work once, and now every time you want an email, it's there.",
+      /* ⚠️ THE CLOSING LINE IS A DRAFT FROM PAUL'S OWN WORDS, 1 Oct 2026, awaiting his look.
+         Told the page never lands "fast", he said: "I'd argue that fast comes because now
+         it's writing emails all the time" and "Every time they want an email, it's there."
+         It is the last line of the module, which had no ending. */
       session: true,
     },
     /* ⛔ ITEM 05, THE INTERVIEWER, WAS CUT ON 1 Oct 2026. It had been the closing item since
