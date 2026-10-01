@@ -25,7 +25,6 @@ const rows = [
   ["1,773 Irish marketing and sales job ads", N.total_ads, 1773],
   ["1 in 6 marketing jobs", [N.sep_by_role_all_sources.marketing.k, N.sep_by_role_all_sources.marketing.n, Math.round(N.sep_by_role_all_sources.marketing.n / N.sep_by_role_all_sources.marketing.k)], [17, 100, 6]],
   ["about one ad in six now asks across every source", Math.round(N.sep_by_role_all_sources.marketing.n / N.sep_by_role_all_sources.marketing.k), 6],
-  ["43 of the 100 marketing ads name at least one tool", [N.marketing_ads_naming_a_tool.sep_all_sources.k, N.marketing_ads_naming_a_tool.sep_all_sources.n], [43, 100]],
   ["five of the 23 ads for heads and directors ask for AI", [N.levels.head.k, N.levels.head.n], [5, 23]],
   ["four of the five are sales jobs", [N.head_asks.by_role.sales, N.levels.head.k], [4, 5]],
   ["Four of those five asks are in sales jobs", [N.head_asks.by_role.sales, N.levels.head.k], [4, 5]],
