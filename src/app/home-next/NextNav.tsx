@@ -151,7 +151,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
                 consulting view on the homepage. */}
             <Link href="/#consulting" className={n.menuGo} onClick={door("consulting")}>How we work with you →</Link>
           </div>
-          <Link href="/about#contact" className={m.featured} onClick={close}>
+          <Link href="/about" className={m.featured} onClick={close}>
             <span className={m.lab}>Talk to us</span>
             <span className={n.menuFace}>
               <img src="/Paul_photo.jpg" alt="" />
@@ -233,7 +233,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
             <Link href="/#consulting" className={m.plain} onClick={door("consulting")}>Designing team AI adoption</Link>
             <Link href="/millionaire-raffle" className={m.plain} onClick={close}>Mental availability in practice</Link>
             <Link href="/48" className={m.plain} onClick={close}>Fame strategies</Link>
-            <Link href="/about#contact" className={m.plain} onClick={close}>Talk to us</Link>
+            <Link href="/about" className={m.plain} onClick={close}>Talk to us</Link>
           </div>
           <div className={n.mobGroup}>
             <span className={m.lab}>Agents</span>

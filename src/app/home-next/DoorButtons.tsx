@@ -25,7 +25,10 @@ export default function DoorButtons() {
         <button type="button" className={n.doorGhost} onClick={() => openDoor("training")}>
           Training
         </button>
-        <a className={n.doorGhost} href="/about#contact">
+        {/* Paul, 1 Oct 2026: this went to /about#contact, which lands under the film. "It skips the
+            heroes. You don't get to see the nice Quentin Tarantino piece of film." So it lands at
+            the top of the page; the bio and Get in touch are the next thing down. */}
+        <a className={n.doorGhost} href="/about">
           Contact
         </a>
         {/* Paul, 1 Oct 2026: the site says "the course" in places before anyone has said which
