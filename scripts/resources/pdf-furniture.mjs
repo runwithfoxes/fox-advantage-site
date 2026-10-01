@@ -57,7 +57,7 @@ export async function collect(page, r, se) {
     const sections = [];
     const push = (id, k, t, find) => document.getElementById(id) && sections.push({ id, k, t, find });
     push("intro", "", "Introduction", "INTRODUCTION");
-    push("insights", "", "Three things that stood out", "Three things stood out");
+    push("insights", "", "Three things stood out", "Three things stood out");
     push("counted", "", "What we counted", "What we counted");
     push("findings", "", "The evidence, in six findings", "The evidence, in six findings");
     document.querySelectorAll('section[id^="ch"]').forEach((sec) => {

@@ -105,7 +105,7 @@ export default async function AiAskQ3() {
   const mk = N.jobsie;
   const rail = [
     { id: "intro", k: "", t: "Introduction" },
-    { id: "insights", k: "", t: "Three things that stood out" },
+    { id: "insights", k: "", t: "Three things stood out" },
     { id: "counted", k: "", t: "What we counted" },
     ...CHAPTERS.map((c) => ({ id: c.id, k: String(c.n), t: c.title.split(":")[0] })),
     { id: "discussion", k: "", t: "Discussion" },
@@ -248,6 +248,8 @@ export default async function AiAskQ3() {
                 {[
                   { v: N.total_ads.toLocaleString("en-IE"), l: "Irish marketing and sales job ads read" },
                   { v: `${N.sep_all.pct}%`, l: `of September's ads ask for AI, ${N.sep_all.k} of ${N.sep_all.n}` },
+                  /* Cato, 1 Oct: the headline's "1 in 6" had no number near it; the card said 25.8% for marketing two screens below */
+                  { v: `${N.sep_by_role_all_sources.marketing.k} of ${N.sep_by_role_all_sources.marketing.n}`, l: "marketing ads across every source ask for AI, the 1 in 6 in the headline" },
                   { v: `${mk["2026-Q3"].marketing.pct}%`, l: `of marketing ads on jobs.ie ask, up from ${mk["2025-Q4"].marketing.pct}% a year ago` },
                   { v: `${N.talk_vs_ask_by_channel.careers_pages.real_ask.pct}%`, l: `of tech firms' careers-page ads ask, against ${N.talk_vs_ask_by_channel.job_boards.real_ask.pct}% on the job boards` },
                 ].map((s) => (

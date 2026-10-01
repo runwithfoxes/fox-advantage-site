@@ -496,14 +496,14 @@
    "Gong": 1
   },
   "AI": {
-   "any": 23,
-   "\"AI tools\", no name": 17,
+   "any": 21,
+   "\"AI tools\", no name": 15,
    "Names an AI tool": 6
   }
  },
  "ai_tools_named": {
-  "ads_generic_ai_tools": 20,
-  "generic_without_any_name": 17,
+  "ads_generic_ai_tools": 18,
+  "generic_without_any_name": 15,
   "ads_naming_ai_product": 6,
   "naming": [
    [
@@ -540,7 +540,7 @@
    "Cursor": 1,
    "NotebookLM": 1
   },
-  "ads_generic_or_named": 23
+  "ads_generic_or_named": 21
  },
  "tools_jobsie_share": {
   "Excel": {
@@ -1968,6 +1968,87 @@
    "tools": 3,
    "all": 10
   }
+ },
+ "sep_careers_sales_asks_by_job": {
+  "Account executive": {
+   "tools": 4,
+   "sell": 6
+  },
+  "SDR and BDR": {
+   "sell": 2,
+   "tools": 6
+  }
+ },
+ "head_asks": {
+  "by_role": {
+   "sales": 4,
+   "marketing": 1
+  },
+  "by_kind": {
+   "lead": 2,
+   "sell": 2,
+   "tools": 1
+  },
+  "on_careers_pages": 3,
+  "who": [
+   [
+    "datadog",
+    "Director, Enterprise Customer Success",
+    "sales",
+    "lead"
+   ],
+   [
+    "gitlab",
+    "Director, Customer Success, EMEA",
+    "sales",
+    "sell"
+   ],
+   [
+    "learnupon",
+    "Director, Partnerships",
+    "sales",
+    "tools"
+   ],
+   [
+    "Bentley Systems International Limited",
+    "Director, Technology Solution Marketing",
+    "marketing",
+    "sell"
+   ],
+   [
+    "Mediolanum International Funds Limited",
+    "Head of Sales",
+    "sales",
+    "lead"
+   ]
+  ]
+ },
+ "marketing_ads_naming_a_tool": {
+  "sep_all_sources": {
+   "k": 43,
+   "n": 100,
+   "pct": 43.0
+  },
+  "2025-Q4": {
+   "k": 21,
+   "n": 43,
+   "pct": 48.8
+  },
+  "2026-Q3": {
+   "k": 17,
+   "n": 31,
+   "pct": 54.8
+  }
+ },
+ "recruiter_asks_by_role": {
+  "marketing": 6,
+  "sales": 3,
+  "all": 9
+ },
+ "search_asks_by_quarter": {
+  "2026-Q2": 1,
+  "2026-Q1": 2,
+  "2026-Q3": 4
  },
  "sep_multi_site": 35,
  "judging": {
