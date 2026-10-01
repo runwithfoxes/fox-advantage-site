@@ -1717,8 +1717,9 @@ export const MODULE_2: ModuleDef = {
          because that paragraph points at it ("so you can see it here"). One fix on his
          standing grammar instruction: "team mates" -> "teammates". */
       text: "Ok, so today you are the marketing manager responsible for Kite, an insurance brand. And you want to build an AI writer. This AI writer is going to write emails, copy for the website, social posts, write training guides. All sorts of marketing communications.\n\nIf you were briefing a human writer, you'd need to give them context about your brand, about your customers, insights if you have them, your positioning, your tone of voice. Same for an AI Writer. If you're building this for your team, you'll also need to give it instructions on how to interact with your teammates - so they have a good user experience with this piece of software.\n\nFor Kite, I've created these documents, so you can see it here, but also, so you can download and practice yourself. Doing it is far more useful than watching it.\n\n{{FOLDER}}\n\nIf you don't have this work done for your own brand, I've also built an interviewer. Add it to a Claude project and it asks you questions, one at a time, and gets what you already know out of your head and into the same six documents. You can download the interviewer, and it's also listed with the files at the bottom of this page.",
-      /* ⚠️ THE LAST PARAGRAPH IS A DRAFT, NOT HIS YET, 1 Oct 2026. Paul: "why don't you write
-         that, I'll have a look." Built from his 4 Aug sentence ("if you don't have positioning
+      /* ✅ THE LAST PARAGRAPH WAS WRITTEN FOR PAUL AND APPROVED BY HIM, 1 Oct 2026. "why don't
+         you write that, I'll have a look", then "that webpage looks good." Built from his
+         4 Aug sentence ("if you don't have positioning
          work and messaging work, I've also built an assistant that you can download") and
          from what brand-interviewer.md says of itself. It replaces item 05. */
       textLinks: [
