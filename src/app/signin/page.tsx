@@ -24,7 +24,7 @@ export default function SignInPage() {
     <div className={f.page}>
       <Top crumbs={[{ href: "/", t: "Home" }, { t: "Sign in" }]} />
       <main className={f.wrap} style={{ maxWidth: 560, padding: "72px 24px 96px" }}>
-        <p className={f.meta}>Sign up once for everything here</p>
+        <p className={f.meta} data-ask>Sign up once for everything here</p>
         <h1 className={f.h2} style={{ marginBottom: 14 }}>Sign in</h1>
         {/* 1 Oct 2026: someone already signed in on this device is told so and shown the way in,
             rather than a box asking for the email again (src/components/Known.tsx). It is the same

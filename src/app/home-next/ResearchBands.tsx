@@ -337,9 +337,12 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
               <p>
                 And every prompt from the course, written out in full.
               </p>
-              <p>
-                Sign up and it is all yours. When we add something we think you would like, we will let you know.
-              </p>
+              {/* 1 Oct 2026: not said to someone already signed up, who is told "You're in" just below. */}
+              {known ? null : (
+                <p>
+                  Sign up and it is all yours. When we add something we think you would like, we will let you know.
+                </p>
+              )}
             </div>
             <ul className={n.tellLedger}>
               {lib.ledger.slice(0, 6).map((x) => (

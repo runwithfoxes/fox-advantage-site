@@ -70,7 +70,8 @@ export default async function ModulePage({
   /* ⭐ 1 Oct 2026: EITHER COOKIE, through hasAccess(), the same check the file route and the
      library use. Someone who signed up for a report or the library was asked for their email a
      second time here. Since 27 Sep every sign-up sets the identity cookie too, so the lesson's
-     behaviour events still land on a named profile. */
+     behaviour events land on a named profile. ⚠️ A browser holding only the older rwf_access
+     cookie has no email on it, so course-event records nothing for that visitor. */
   const identified = process.env.NODE_ENV === "development" || (await hasAccess());
   if (!identified) {
     return (

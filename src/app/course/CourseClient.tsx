@@ -127,6 +127,9 @@ function ModuleCard({
             window.location.href = MODULE_HREF;
             return;
           }
+          /* 1 Oct 2026: someone already signed up is not asked again, so a card that has not
+             opened yet does not open the ask for them (src/components/Known.tsx). */
+          if (document.documentElement.dataset.known === "1") return;
           onToggle();
         }}
       >
@@ -146,9 +149,20 @@ function ModuleCard({
               What&apos;s in it <span aria-hidden>→</span>
             </a>
           ) : (
-            <button className="co-cardaction" type="button" onClick={onToggle} aria-expanded={open}>
-              {CARD_ACTION} <span aria-hidden>→</span>
-            </button>
+            <>
+              {/* The button is a sign-up ask, so it goes for someone already signed up, and they get
+                  the line the ask shows once it has worked, in the course's own words. */}
+              <button className="co-cardaction" type="button" onClick={onToggle} aria-expanded={open} data-ask>
+                {CARD_ACTION} <span aria-hidden>→</span>
+              </button>
+              {/* not while the ask is open: someone who has just signed up from this card is already
+                  reading the same sentence in the panel under it */}
+              {open ? null : (
+                <span className="co-cardaction" data-known-only style={{ cursor: "default", color: "var(--muted)", textDecoration: "none" }}>
+                  {ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title.replace(/^\(\d\)\s*/, ""))}
+                </span>
+              )}
+            </>
           )}
         </div>
 
@@ -275,9 +289,9 @@ export default function CourseClient({ today }: { today: string }) {
           {/* ⭐ 1 Oct 2026: SOMEONE ALREADY SIGNED UP IS NOT ASKED AGAIN. This page was the same for a
               member as for a stranger, pill and all. The pill is a sign-up ask (data-ask) and the
               line under it is what a member gets instead (data-known-only): src/components/Known.tsx.
-              The page stays static; <html data-known> picks which one shows. The module cards keep
-              their own ask, because "email me when this one opens" is still a fair thing to ask
-              for. */}
+              The page stays static; <html data-known> picks which one shows. The cards of modules
+              not open yet do the same: the "sign up and we'll email you" button goes and the card
+              says they will be emailed. */}
           {liveMods.length > 0 ? (
             <div className="co-herojoin" data-known-only>
               <div className="co-join co-join-done">
