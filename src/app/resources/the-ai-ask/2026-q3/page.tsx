@@ -127,9 +127,9 @@ export default async function AiAskQ3() {
           report's title and byline sit in the film; the at-a-glance card went back under it (Paul, late 25 Sep) to give the film room, as the homepage's do. */}
       {/* data-pdf-photo: the frame of this film the PDF carries on page one (Paul, 1 Oct 2026: "I'd
           rather one of the brighter images, not this dark one on the front"). The film opens on a
-          dark Dublin street; this is the cliffs, the same frame the homepage is known by.
-          scripts/resources/build-pdfs.mjs reads it. */}
-      <section className={`${h.hero} ${r.heroR}`} id="top" data-pdf-photo="/resources/fox-hero-flip-cliffs-frame.jpg" data-pdf-photo-at="center 70%">
+          dark Dublin street and ends on the beach; shown the cliffs and the beach side by side he
+          said "go with the beach one". scripts/resources/build-pdfs.mjs reads it. */}
+      <section className={`${h.hero} ${r.heroR}`} id="top" data-pdf-photo="/resources/fox-hero-flip-last-frame.jpg" data-pdf-photo-at="center 70%">
         <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
         <NextNav known={unlocked} />
         <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>

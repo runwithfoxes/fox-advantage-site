@@ -54,6 +54,14 @@ const PRINT_CSS = `
      own film and marks the band .pdf-photo; here the pieces inside it go clear so it shows through.
      A report with no film keeps the plain navy band. */
   .pdf-photo [class*="hero"] { background: transparent !important; }
+  /* ⛔ THE PRINTED PAGE IS 688px WIDE, SO EVERY PHONE RULE ON THE SITE (max-width: 700px) FIRES IN
+     THE PDF. The byline's phone rule stacks its pieces one per line, so on A4 it printed as four
+     short lines in the left half of an empty page (Paul, 1 Oct 2026: "we don't have to shove all
+     these words into half the width of the page here. It looks really messy. We have an entire
+     width of the page"). Here it runs across: who wrote and checked it on one line, the issue
+     and the read time on the next. */
+  [class*="whoLine"] { flex-direction: row !important; flex-wrap: nowrap !important; }
+  [class*="whoLine"] [class*="byDot"] { display: inline !important; }
   [class*="hero"] * { text-shadow: none !important; }
   html, body { background: #fff !important; }
   [class*="page"] { background: #fff !important; }
