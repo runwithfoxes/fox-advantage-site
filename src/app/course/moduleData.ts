@@ -1564,9 +1564,14 @@ export const MODULE_2: ModuleDef = {
    * ⭐ "an AI Writer", capitalised, is his. It was "a writer" until this version.
    * ⛔ Do not rewrite, tighten or reorder it, and do not restore anything listed above.
    */
+  /* The third film, 2 Oct 2026. Paul recorded it wide in QuickTime that morning and said
+     "it's ready to go... put it into module 2 replacing the old one". 77 seconds, the warm
+     picture he chose, five ums and stray words cut. Built in ~/projects/video-pipeline as
+     IntroV3. The title is unchanged, so its plays count in the same line of the record as
+     the 24 Sep film's did. */
   openingVideo: {
-    src: "/course/module-2-intro.mp4",
-    poster: "/course/module-2-intro-poster.jpg",
+    src: "/course/module-2-intro-v3.mp4",
+    poster: "/course/module-2-intro-v3-poster.jpg",
     title: "Module 2 intro",
   },
   opening:
