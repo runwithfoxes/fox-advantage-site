@@ -181,12 +181,12 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
         <Link href="/course" className={m.featured} onClick={close}>
           <span className={m.lab}>Featured</span>
           <span className={m.featImg}>
-            {/* Paul, 30 Sep: not the fox on the bridge. Eleven silent seconds of the module 2 intro film
-                (17.0s to 28.2s), the stretch where "Not working well with the first prompt" is struck
-                through for "but getting the quality right", cropped in on him and the caption so the
-                words read at this size. Looping, until he records a new one. The "AI Fluency" overlay
-                came off: it sat on the caption, and the title under it says the same. */}
-            <video src="/resources/nav-module-2-intro-loop.mp4" poster="/resources/nav-module-2-intro-loop-poster.jpg" autoPlay muted loop playsInline preload="auto" />
+            {/* Paul, 30 Sep: not the fox on the bridge, a silent loop of the module 2 intro film. On 2 Oct
+                he recorded a new film and asked for it here too. Eleven seconds of it (15.4s to 26.6s),
+                the stretch where "Not about one prompt" is struck through for "but the quality of the
+                outputs", cropped in on him and the caption so the words read at this size. No overlay:
+                the title under it says what it is. */}
+            <video src="/resources/nav-module-2-intro-loop-v3.mp4" poster="/resources/nav-module-2-intro-loop-v3-poster.jpg" autoPlay muted loop playsInline preload="auto" />
           </span>
           <span className={m.itemT}>AI Fluency for Ambitious Marketers</span>
           <span className={m.itemD}>Six modules, free. Over 1,000 marketers signed up.</span>
