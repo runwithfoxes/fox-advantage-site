@@ -47,7 +47,7 @@ const WORDS_M1 = [
  * flat: people picked 7 of 16 words on average, so every word but two landed between 38% and
  * 54%. A wish list lets you pick everything. What somebody uses AI for most weeks is a fact
  * about them, and set beside module 1 it shows the gap between what people want and what
- * they do. AI Agents was picked by 80% in module 1; this is where we see how many use one.
+ * they do.
  *
  * ⛔ EACH QUESTION HAS ITS OWN EVENT NAME AND ITS OWN BROWSER KEY. The report keeps a person's
  * LAST answer per event (course_data.py, interests()), so a second question sent as
@@ -79,23 +79,31 @@ const ASKS: Record<number, Ask> = {
   2: {
     question: "What do you use AI for today?",
     hint: "pick the ones you use it for most weeks",
+    /* ⭐ JOBS, NOT TOOLS, AND SPECIFIC. Paul, 2 Oct, on the first cut (Writing, Editing, Ideas...
+       Agents): "We should be more specific. Agents isn't what you use something for. So deep
+       research, Advertising, email automation, outreach, these kind of things. Prototyping."
+       His five are in here as he said them. The rest are Dray's, in the same register: a
+       named piece of marketing work somebody could say they did with AI this week. */
     words: [
-      "Writing",
-      "Editing",
-      "Ideas",
-      "Research",
-      "Summaries",
+      "Deep research",
+      "Customer research",
       "Strategy",
-      "Data analysis",
-      "Reporting",
-      "Emails",
+      "Briefs",
+      "Copywriting",
+      "Advertising",
       "Social posts",
-      "Presentations",
       "Images",
       "Video",
+      "SEO and GEO",
+      "Email automation",
+      "Outreach",
+      "Reporting",
+      "Data analysis",
+      "Presentations",
+      "Proposals",
+      "Websites",
+      "Prototyping",
       "Meeting notes",
-      "Building tools",
-      "Agents",
       "Not much yet",
     ],
     thanks: "Thanks. That shows me where people are starting from.",
