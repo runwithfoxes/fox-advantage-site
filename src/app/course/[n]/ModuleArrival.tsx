@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import InterestPicker from "./InterestPicker";
+import InterestPicker, { ASKING_MODULES } from "./InterestPicker";
 
 /**
  * THE ARRIVAL BLOCK, 2 Aug 2026. EXPERIMENT, NOT A DECISION.
@@ -56,7 +56,10 @@ export default function ModuleArrival({ n }: { n: number }) {
      and 6. So on modules 2 to 5 the section had no content left and rendered as 50px of
      dead space between the masthead rule and item 01. An empty box with margins is still a
      box. If a third thing is ever added back for the middle modules, widen this guard. */
-  if (!asks) return null;
+  /* 2 Oct 2026: module 2 has a question of its own (InterestPicker's ASKS), so the guard
+     widens, as the note above said it would have to. */
+  const picks = ASKING_MODULES.includes(n);
+  if (!asks && !picks) return null;
 
   const label =
     v <= 1
@@ -142,7 +145,7 @@ export default function ModuleArrival({ n }: { n: number }) {
       {/* 18 Sep 2026, Paul: module 1 asks what they want to learn more about INSTEAD of the
           fluency slider. The slider stays on module 6 only, where it needs rethinking before
           30 Nov because its note promises an answer given at the start of module 1. */}
-      {n === 1 && <InterestPicker n={n} />}
+      {picks && <InterestPicker n={n} />}
 
       {asks && n !== 1 && (
       <div className="arr-rate">

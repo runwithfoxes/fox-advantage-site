@@ -45,6 +45,10 @@ export type CourseEventName =
   /** Picked what they want to learn more about, on module 1 (Paul, 18 Sep 2026). `detail`
       holds the picked words, comma separated; `item` holds their "anything else" line. */
   | "interests_picked"
+  /** Picked what they use AI for today, on module 2 (Paul, 2 Oct 2026). Same shape as
+      interests_picked: `detail` holds the picked words, `item` their own. A separate name
+      because the report keeps the last answer per event, and one name would overwrite. */
+  | "ai_use_picked"
   /** Reached for something in the library (/course/everything), 19 Sep 2026. `item` is the
       row's name, `detail` says what they did. Opening the folder of a module that is not out
       yet is logged as "opened, not out yet", which works as a pre-order for that module. */

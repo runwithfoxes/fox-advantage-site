@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
  *
  * ⚠️ THE WORD LIST IS A FIRST CUT, Paul's six plus Kit's additions. His to edit.
  */
-const WORDS = [
+const WORDS_M1 = [
   "AI Agents",
   "Email Agents",
   "Content",
@@ -36,9 +36,82 @@ const WORDS = [
   "Prompting",
 ];
 
-const KEY = "rwf-course-interests-sent";
+/**
+ * ⭐ ONE QUESTION PER MODULE, 2 Oct 2026. Paul, on module 1's answers: "those answers were
+ * useful. Would be useful for research later. It would be good to ask a question at the
+ * beginning of module two." Then: "can we ask what they use AI for now / generally?"
+ *
+ * So the picker takes its question from here, by module. Module 1's is unchanged.
+ *
+ * ⭐ WHY MODULE 2 ASKS WHAT THEY DO AND NOT WHAT THEY WANT. Module 1's 234 answers came back
+ * flat: people picked 7 of 16 words on average, so every word but two landed between 38% and
+ * 54%. A wish list lets you pick everything. What somebody uses AI for most weeks is a fact
+ * about them, and set beside module 1 it shows the gap between what people want and what
+ * they do. AI Agents was picked by 80% in module 1; this is where we see how many use one.
+ *
+ * ⛔ EACH QUESTION HAS ITS OWN EVENT NAME AND ITS OWN BROWSER KEY. The report keeps a person's
+ * LAST answer per event (course_data.py, interests()), so a second question sent as
+ * "interests_picked" would overwrite every module 1 answer from the same person.
+ *
+ * ⚠️ MODULE 2'S WORDS, ITS HINT AND ITS THANK-YOU ARE DRAY'S FIRST CUT, put to Paul 2 Oct.
+ * His to edit, as module 1's list was.
+ */
+type Ask = {
+  question: string;
+  hint: string;
+  words: string[];
+  thanks: string;
+  aria: string;
+  event: "interests_picked" | "ai_use_picked";
+  key: string;
+};
+
+const ASKS: Record<number, Ask> = {
+  1: {
+    question: "What would you like to learn more about?",
+    hint: "pick as many as you like",
+    words: WORDS_M1,
+    thanks: "Thanks. That helps me decide what to go deeper on.",
+    aria: "Anything else you would like to learn about",
+    event: "interests_picked",
+    key: "rwf-course-interests-sent",
+  },
+  2: {
+    question: "What do you use AI for today?",
+    hint: "pick the ones you use it for most weeks",
+    words: [
+      "Writing",
+      "Editing",
+      "Ideas",
+      "Research",
+      "Summaries",
+      "Strategy",
+      "Data analysis",
+      "Reporting",
+      "Emails",
+      "Social posts",
+      "Presentations",
+      "Images",
+      "Video",
+      "Meeting notes",
+      "Building tools",
+      "Agents",
+      "Not much yet",
+    ],
+    thanks: "Thanks. That shows me where people are starting from.",
+    aria: "Anything else you use AI for",
+    event: "ai_use_picked",
+    key: "rwf-course-ai-use-sent",
+  },
+};
+
+/** The modules that ask. ModuleArrival reads this, so the two cannot disagree. */
+export const ASKING_MODULES = Object.keys(ASKS).map(Number);
 
 export default function InterestPicker({ n }: { n: number }) {
+  const ask = ASKS[n] ?? ASKS[1];
+  const WORDS = ask.words;
+  const KEY = ask.key;
   const [picked, setPicked] = useState<Set<string>>(new Set());
   /* Words the person typed themselves. They become tiles, picked, and count like the rest
      (Paul, 18 Sep: "when I wrote growth, it doesn't add to it"). */
@@ -101,7 +174,7 @@ export default function InterestPicker({ n }: { n: number }) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        event: "interests_picked",
+        event: ask.event,
         module: n,
         detail: [...all].join(", "),
         /* Their own words, kept apart so they can be read as new ideas, not counted as ours. */
@@ -158,18 +231,18 @@ export default function InterestPicker({ n }: { n: number }) {
         .ip-change:hover{color:#3A7CA5;}
       `}</style>
 
-      <h2 className="ip-q">What would you like to learn more about?</h2>
+      <h2 className="ip-q">{ask.question}</h2>
       <div className="ip-win">
         <div className="ip-bar" aria-hidden>
           <i style={{ background: "#FF5F57" }} />
           <i style={{ background: "#FEBC2E" }} />
           <i style={{ background: "#28C840" }} />
-          <span>pick as many as you like</span>
+          <span>{ask.hint}</span>
         </div>
         <div className="ip-panel">
           {sent ? (
             <p className="ip-done">
-              Thanks. That helps me decide what to go deeper on.
+              {ask.thanks}
               {picked.size ? (
                 <>
                   <br />
@@ -209,7 +282,7 @@ export default function InterestPicker({ n }: { n: number }) {
                   }}
                   placeholder="add your own, press enter"
                   maxLength={300}
-                  aria-label="Anything else you would like to learn about"
+                  aria-label={ask.aria}
                 />
               </div>
               {/* The send stands on its own, not inside the "anything else" field: the words

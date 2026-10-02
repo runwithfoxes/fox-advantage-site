@@ -43,6 +43,7 @@ const ALLOWED: readonly CourseEventName[] = [
   "download_taken",
   "fluency_rated",
   "interests_picked",
+  "ai_use_picked",
   "library_clicked",
   "link_opened",
   "file_opened",
@@ -52,6 +53,9 @@ const ALLOWED: readonly CourseEventName[] = [
   "video_progress",
   "video_completed",
 ];
+
+/** The module questions: tiles picked, plus a line of the person's own. */
+const WORD_LISTS: readonly CourseEventName[] = ["interests_picked", "ai_use_picked"];
 
 /** Small, because everything here is attacker-controlled and lands in a durable record. */
 const MAX_DETAIL = 120;
@@ -109,9 +113,9 @@ export async function POST(req: NextRequest) {
     domain: domainOf(email),
     event,
     module: moduleN,
-    /* interests_picked carries a list of words and a free line, so it gets more room. */
-    item: clean(body.item, event === "interests_picked" ? 400 : MAX_ITEM),
-    detail: clean(body.detail, event === "interests_picked" ? 400 : MAX_DETAIL),
+    /* The two picker events carry a list of words and a free line, so they get more room. */
+    item: clean(body.item, WORD_LISTS.includes(event) ? 400 : MAX_ITEM),
+    detail: clean(body.detail, WORD_LISTS.includes(event) ? 400 : MAX_DETAIL),
   };
 
   await recordEvent(rec);
@@ -135,6 +139,7 @@ async function forwardToKlaviyo(rec: CourseEvent): Promise<void> {
     download_taken: "Course: download taken",
     fluency_rated: "Course: fluency rated",
     interests_picked: "Course: interests picked",
+    ai_use_picked: "Course: AI use picked",
     library_clicked: "Course: library clicked",
     link_opened: "Course: link opened",
     file_opened: "Course: file opened",
