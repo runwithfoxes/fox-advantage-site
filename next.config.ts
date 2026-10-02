@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
      ⚠️ THE PATH IS RELATIVE TO THE PROJECT ROOT and the glob must keep matching if a
      module 3 folder appears beside module-2. */
     "/api/course-file/[...path]": ["./course-files/**/*"],
+    /* The report PDFs and data files, behind the email door (29 Sep 2026). Same reason as above:
+       nothing imports them, so without this line the route 404s every file in production. */
+    "/api/resource-file/[file]": ["./resource-files/*"],
   },
   async rewrites() {
     return [
@@ -51,6 +54,12 @@ const nextConfig: NextConfig = {
       {
         source: "/info",
         destination: "/info/index.html",
+      },
+      /* The fox prompt slider, 22 Sep 2026, made for a LinkedIn post about the course.
+         A static page from /branded-page, linking to /course/everything. */
+      {
+        source: "/course/same-prompt",
+        destination: "/course/same-prompt/index.html",
       },
       {
         source: "/training",
@@ -90,6 +99,37 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      /* 29 Sep 2026, launch day. The jobs tracker page still headlines the September count that
+         Cato's reviews moved (660 and 47); the report carries the final one (636 and 56). Until the
+         tracker page is rebuilt from the report's numbers, the report is where that link goes. */
+      {
+        source: "/resources/jobs-ai",
+        destination: "/resources/the-ai-ask/2026-q3",
+        permanent: false,
+      },
+      /* The reports list page reads as a programme of thirteen with one report in it (29 Sep, Paul:
+         "we don't want that right?"). Until there are more, the reports band on the homepage is the
+         list. Only the list page itself; the report pages keep their own addresses. */
+      { source: "/resources/reports", destination: "/#reports", permanent: false },
+      /* Paul, 30 Sep 2026: "I don't want other library pages. We have one library, and one way in." The
+         library is /course/everything, where every module already sends people; the way in is the
+         library band on the homepage. The resource-centre copy and the test page forward to it. */
+      { source: "/resources/library", destination: "/course/everything", permanent: false },
+      { source: "/for-library-test", destination: "/course/everything", permanent: false },
+      /* Paul, 30 Sep 2026: contact and About are one page; contact is its last section. */
+      /* 1 Oct 2026: to the top of the page, not #contact, so the film is seen (Paul). */
+      { source: "/contact", destination: "/about", permanent: false },
+      /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
+         in the code; these two lines are what keep them off the live site. Remove to release. */
+      { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },
+      { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
+      /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
+      {
+        source: "/home-next/:path*",
+        destination: "/",
+        permanent: false,
+      },
+      { source: "/home-next", destination: "/", permanent: false },
       {
         source: "/clients",
         destination: "https://clients.runwithfoxes.com",

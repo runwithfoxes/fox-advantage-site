@@ -8,6 +8,10 @@ interface Props {
   chapter: Chapter;
   prev: Chapter | null;
   next: Chapter | null;
+  /** How many chapters the book has, from CHAPTER_COUNT in lib/chapters, the number /book shows. */
+  total: number;
+  /** True when the next chapter is not published yet, by the same rule that decides which page it gets. */
+  nextSoon: boolean;
 }
 
 function stripFirstHeading(html: string): string {
@@ -28,7 +32,7 @@ function getFoxPose(chapterNumber: number) {
   return FOX_POSES[chapterNumber % FOX_POSES.length];
 }
 
-export default function ChapterReader({ chapter, prev, next }: Props) {
+export default function ChapterReader({ chapter, prev, next, total, nextSoon }: Props) {
   const num = String(chapter.number).padStart(2, "0");
   const cleanContent = stripPartLine(stripFirstHeading(chapter.content || ""));
   const fox = getFoxPose(chapter.number);
@@ -40,11 +44,11 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
         <Link href="/" className="chapter-nav-logo">
           /<span>Run</span>withfoxes
         </Link>
-        <Link href="/book#chapters" className="chapter-nav-back">
+        <Link href="/book#parts" className="chapter-nav-back">
           ← chapters
         </Link>
         <div className="chapter-nav-count">
-          {num} / 54
+          {num} / {total}
         </div>
       </header>
 
@@ -82,7 +86,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
             )}
             {next ? (
               <Link href={`/chapter/${next.slug}`} className="chapter-footer-next">
-                <div className="chapter-footer-label">next{next.part >= 3 && next.slug !== 'ch16-fox-behaviours' ? " (coming soon)" : ""} →</div>
+                <div className="chapter-footer-label">next{nextSoon ? " (coming soon)" : ""} →</div>
                 <div className="chapter-footer-title">{next.title}</div>
               </Link>
             ) : (
@@ -95,7 +99,7 @@ export default function ChapterReader({ chapter, prev, next }: Props) {
       {/* Bottom bar */}
       <div className="chapter-bottom-bar">
         <Link href="/">#home</Link>
-        <Link href="/book#chapters" className="active">chapters.md</Link>
+        <Link href="/book#parts" className="active">chapters.md</Link>
         <Link href="/book#signup">/get_the_book</Link>
       </div>
     </div>

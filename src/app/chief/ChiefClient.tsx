@@ -1,5 +1,6 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
 import { useState, useTransition } from "react";
 import { verifyPassword } from "./actions";
 import PlanTab from "./tabs/PlanTab";
@@ -59,14 +60,7 @@ export default function ChiefClient({ initialAuth }: { initialAuth: boolean }) {
 
   return (
     <div className="chief-page">
-      <header className="top-bar">
-        <a href="/" className="logo">/<span>Run</span>withfoxes</a>
-        <nav>
-          <a href="/#agents">/agents</a>
-          <a href="/contact">/contact</a>
-          <a href="/book" className="cta-bar">/get_the_book</a>
-        </nav>
-      </header>
+      <NextNav bar />
       <div className="chief-container">
         <h1 className="page-title">chief of staff</h1>
         <p className="page-subtitle">

@@ -27,7 +27,7 @@ import { useEffect, useRef, useState } from "react";
 */
 
 /** date, spend in euro, impressions, clicks, landing page views */
-const DAILY: [string, number, number, number, number][] = [
+export const DAILY: [string, number, number, number, number][] = [
   ["30 Jul", 0.99, 382, 4, 0],
   ["31 Jul", 4.15, 1190, 21, 7],
   ["1 Aug", 4.06, 1160, 21, 15],
@@ -51,7 +51,12 @@ const DAILY: [string, number, number, number, number][] = [
   ["19 Aug", 3.48, 830, 16, 11],
 ];
 
-const TOTALS = { spend: 98.19, reach: 12561, clicks: 447, views: 281, costPerView: 0.35 };
+/* Spend, clicks and visits are added up from DAILY, so the tiles and the bars can never disagree
+   (1 Oct 2026: the tile said 281 visits where the 21 rows add to 280). Reach is Meta's own figure
+   for the whole run; it is people, not a sum of days, so it stays as read. */
+const sum = (i: 1 | 3 | 4) => DAILY.reduce((t, d) => t + d[i], 0);
+const SPEND = Math.round(sum(1) * 100) / 100;
+export const TOTALS = { spend: SPEND, reach: 12561, clicks: sum(3), views: sum(4), costPerView: SPEND / sum(4) };
 
 /** Counts from 0 to `to` over `ms`, eased, when `go` flips true. */
 function useCount(to: number, go: boolean, ms = 1400) {
@@ -179,7 +184,7 @@ export default function AdDeskWindow() {
             <span>19 Aug</span>
           </div>
           <p className="agw-ad2-note">
-            I put four headlines live on 30 July and kept one. It held at 35c a visit for all
+            I put four headlines live on 30 July and kept one. It averaged 35c a visit over the
             21 days.
           </p>
         </div>

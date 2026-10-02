@@ -60,7 +60,7 @@ export default function MobileMenu() {
           <Link href="/book" onClick={close}>The Fox Advantage</Link>
           <Link href="/run-with-foxes" onClick={close}>Run with Foxes</Link>
         </div>
-        <Link href="/contact" className="mm-cta" onClick={close}>/contact</Link>
+        <Link href="/about" className="mm-cta" onClick={close}>/contact</Link>
       </nav>
     </div>
   );

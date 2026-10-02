@@ -1,0 +1,254 @@
+/**
+ * BUILD THE REPORT PDFs. 26 Sep 2026.
+ *
+ *   node scripts/resources/build-pdfs.mjs                 every published or draft edition
+ *   node scripts/resources/build-pdfs.mjs --only <slug>   one
+ *   BASE=http://localhost:3094 node scripts/resources/build-pdfs.mjs
+ *
+ * The PDF IS THE PAGE (BUILD-NOTES, the PDF rule): Playwright opens the real edition page on a
+ * running dev server, hides the parts that belong to a screen (nav, rail, forms, the download
+ * button, the film), and prints it to A4. Nothing is laid out twice.
+ *
+ * Every page of every PDF carries a footer with the report name, a page number, and the mockup's
+ * own words: "Example, made-up numbers" for an example edition, "Draft, not approved" for an edition
+ * whose catalogue status is still "draft". A published edition carries no stamp (The AI Ask, Q3 2026,
+ * approved by Paul 29 Sep 2026).
+ *
+ * When it is done it writes scripts/resources/pdf-pages.json, the real page count per slug. The
+ * catalogue generator reads that file, so `node scripts/resources/build-catalogue.mjs` afterwards
+ * makes the catalogue's `pages` match the files. Nothing in catalogue.json is edited by hand.
+ */
+
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import os from "os";
+import { execFileSync } from "child_process";
+import { collect, coverHTML, endHTML, headerFor, footerFor as footFor, FURNITURE_CSS, dressBody, findStarts, fillContents } from "./pdf-furniture.mjs";
+/* playwright is not in this repo's node_modules on the mini; fall back to the copy the other
+   build scripts use (metrics-pyramid), or set PLAYWRIGHT=/path/to/playwright/index.mjs */
+const pw = await import("playwright").catch(() => import(process.env.PLAYWRIGHT || `${process.env.HOME}/projects/metrics-pyramid/node_modules/playwright/index.mjs`));
+const { chromium } = pw;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+/* ⛔ THE GATE FOR PAUL'S OLDEST LAYOUT RULE: words run the full width of the page. On 1 Oct 2026 the
+   cover shipped a headline broken in two and a standfirst capped at 140mm, written into
+   pdf-furniture.mjs, where the text-width hook (html only, Edit and Write only) never looked. So
+   the build reads its own furniture and stops if a width cap or a forced break is back. */
+{
+  const src = fs.readFileSync(path.join(__dirname, "pdf-furniture.mjs"), "utf8").split("\n");
+  const bad = src.map((l, i) => [i + 1, l]).filter(([, l]) => !/^\s*(\*|\/\*|\/\/)/.test(l) && (/max-width\s*:\s*\d/.test(l) || /<br\s*\/?>(?=<span|\$\{esc\(d\.title)/.test(l)));
+  if (bad.length) {
+    console.error("⛔ pdf-furniture.mjs caps a text width or forces a headline break. Paul's rule: headlines and copy never stop halfway across the page.\n" + bad.map(([n, l]) => `  line ${n}: ${l.trim().slice(0, 140)}`).join("\n"));
+    process.exit(1);
+  }
+}
+const ROOT = path.join(__dirname, "..", "..");
+const CAT = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/catalogue/catalogue.json"), "utf8"));
+const OUT_DIR = path.join(ROOT, "resource-files"); // behind api/resource-file, never public (29 Sep)
+const PAGES_FILE = path.join(__dirname, "pdf-pages.json");
+const BASE = process.env.BASE || "http://localhost:3094";
+const only = process.argv.includes("--only") ? process.argv[process.argv.indexOf("--only") + 1] : null;
+
+const exe = fs
+  .readdirSync(path.join(process.env.HOME, "Library/Caches/ms-playwright"))
+  .filter((d) => d.startsWith("chromium-"))
+  .map((d) => path.join(process.env.HOME, "Library/Caches/ms-playwright", d, "chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"))
+  .find((p) => fs.existsSync(p));
+
+/* What a screen has and a PDF does not. Attribute selectors, because the pages use CSS modules. */
+const PRINT_CSS = `
+  header[class*="nav"], [class*="NextNav"], [class*="top"] header, [class*="topInner"] header,
+  [class*="railCol"], [class*="gate"], [class*="dl"], [class*="join"], form, video, footer,
+  [class*="backs"], [class*="back"], [class*="note"], [class*="draft"], [class*="crumb"],
+  [class*="banner"], .chat-bubble-wrap, [class*="ChatWidget"], [id*="chat"], nextjs-portal, [class*="hero"] [class*="film"], [class*="filmStill"] { display: none !important; }
+  [class*="hero"] { min-height: 0 !important; background: #1A3A4E !important; }
+  /* ⛔ THE PRINTED PAGE IS 688px WIDE, SO EVERY PHONE RULE ON THE SITE (max-width: 700px) FIRES IN
+     THE PDF. The byline's phone rule stacks its pieces one per line, so on A4 it printed as four
+     short lines in the left half of an empty page (Paul, 1 Oct 2026: "we don't have to shove all
+     these words into half the width of the page here. It looks really messy. We have an entire
+     width of the page"). Here it runs across: who wrote and checked it on one line, the issue
+     and the read time on the next. */
+  [class*="whoLine"] { flex-direction: row !important; flex-wrap: nowrap !important; }
+  [class*="whoLine"] [class*="byDot"] { display: inline !important; }
+  [class*="hero"] * { text-shadow: none !important; }
+  html, body { background: #fff !important; }
+  [class*="page"] { background: #fff !important; }
+  [class*="wrap"], [class*="mast"], [class*="body"], [class*="findings"], [class*="bandInner"], [class*="topInner"] { max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+  /* the masthead keeps its two columns so the at-a-glance card sits beside the intro on page one,
+     not alone on page two (read on 27 Sep: page 2 of The AI Ask was one card and nothing else) */
+  [class*="body"], [class*="feature"], [class*="about"] { grid-template-columns: 1fr !important; }
+  [class*="mast"] { grid-template-columns: minmax(0, 1fr) 300px !important; gap: 32px !important; }
+  [class*="mast"] [class*="glance"] { align-self: start; }
+  /* the hero band, the masthead's first lines and the card share page one; the intro's later
+     paragraphs may run onto page two, the card itself never splits */
+  [class*="heroR"], [class*="hero"] { break-after: avoid; page-break-after: avoid; }
+  /* the 41 category chips on GEO Ireland stay on one page */
+  [class*="cats"], [class*="chipList"], [class*="catChips"] { break-inside: avoid; page-break-inside: avoid; }
+  [class*="main"] { max-width: none !important; }
+  /* a finding is its heading and its figure: they stay on one page together, or move together */
+  figure, [class*="fCard"], [class*="glance"], [class*="edRow"], details, [class*="sign"], [class*="frame"], .mod-win, [class*="chips"], [class*="key"] { break-inside: avoid; page-break-inside: avoid; }
+  h2, h3, [class*="chHead"], [class*="chN"], [class*="eyebrow"], .mod-itemtop, .mod-eyebrow, [class*="kick"]:not([class*="kicker"]) { break-after: avoid; page-break-after: avoid; }
+  /* a chapter's eyebrow, number and title never sit at the foot of a page (27 Sep: "METHOD" was
+     alone at the foot of page 29, "How we did it" on page 30; "02" and "04" the same on GEO Ireland) */
+  [class*="chHead"], .mod-itemtop { break-inside: avoid; page-break-inside: avoid; }
+  section[class*="chapter"], .mod-item { break-before: auto; }
+  /* a short finding (the generated editions: number, one sentence, one figure) stays on one page;
+     The AI Ask's long chapters break freely, and its chapter head is guarded above */
+  section[class*="chapter"].one-figure { break-inside: avoid; page-break-inside: avoid; }
+  /* screen-only lines inside the figures: hover prompts and the empty panel a pick fills */
+  [class*="readout"], [class*="wEx"], [class*="chartHead"] { display: none !important; }
+  /* the figures print at nine tenths so a heading, its paragraph and its figure share a page more
+     often; the text stays full size because that is what is read */
+  [class*="main"] .mod-win, [class*="main"] figure, .mod-item [class*="frame"] { zoom: 0.9; }
+  .mod-item { padding: 28px 0 !important; }
+  [class*="chapter"] { border-bottom: 0 !important; }
+  .mod-win { box-shadow: none !important; }
+  details:not([open]) > *:not(summary) { display: block !important; }
+  details summary em { display: none !important; }
+  a { color: inherit !important; text-decoration: none !important; }
+  /* Every highlight prints, whether or not the scroll reached it. They sweep in when they come on
+     screen, and one at the foot of chapter 6 printed bare once the pages were re-cut (1 Oct 2026). */
+  [class*="__hl"] { background-size: 100% 100% !important; transition: none !important; }
+  /* The printed page is 688px wide, so the phone rules stacked the two reader lines and the six
+     finding cards into one column each, and the report grew from 29 pages to 36 (1 Oct 2026). On
+     paper the two readers sit side by side, as on a desktop, and the findings run two across. The
+     pair of reader lines is never cut by a page break. An insight itself may be: holding each one
+     whole (first try) left half of pages 3, 4 and 5 empty. */
+  [class*="rdrs"] { grid-template-columns: 1fr 1fr !important; gap: 22px !important; }
+  [class*="fGrid"] { grid-template-columns: 1fr 1fr !important; }
+  [class*="thread"], [class*="rdrs"] { break-inside: avoid; page-break-inside: avoid; }
+  [class*="insGo"] { break-before: avoid; page-break-before: avoid; }
+  /* the sign-off never sits alone on a page: it stays with the last method note (it did, on a page of its own, once the Checking note grew on 1 Oct) */
+  [class*="sign"] { break-before: avoid; page-break-before: avoid; }
+  [class*="insItem"] { padding: 16px 0 18px !important; }
+`;
+
+/* the root of the page tree carries the total; a subtree carries its own, so take the largest */
+function pageCount(buf) {
+  const s = buf.toString("latin1");
+  const counts = [...s.matchAll(/\/Type\s*\/Pages[^>]*?\/Count\s+(\d+)/g)].map((m) => +m[1]);
+  if (counts.length) return Math.max(...counts);
+  return (s.match(/\/Type\s*\/Page[^s]/g) || []).length;
+}
+
+/* Examples are not built by default any more (29 Sep): they would land in resource-files/ and ship. --examples to see them. */
+const withExamples = process.argv.includes("--examples");
+const jobs = CAT.reports.filter((r) => r.status !== "coming" && (withExamples || !r.example) && (!only || r.slug === only));
+fs.mkdirSync(OUT_DIR, { recursive: true });
+const browser = await chromium.launch({ executablePath: exe });
+const page = await browser.newPage({ viewport: { width: 1000, height: 1400 } });
+const pages = fs.existsSync(PAGES_FILE) ? JSON.parse(fs.readFileSync(PAGES_FILE, "utf8")) : {};
+let total = 0;
+const mismatches = [];
+
+for (const r of jobs) {
+  const se = CAT.series.find((x) => x.slug === r.series);
+  const url = BASE + (r.href ?? `/resources/reports/${r.series}/${r.slug}`);
+  const file = path.join(OUT_DIR, path.basename(r.pdf));
+  await page.goto(url, { waitUntil: "networkidle", timeout: 180000 });
+  await page.emulateMedia({ media: "print" });
+  await page.addStyleTag({ content: PRINT_CSS });
+  /* The cover, the contents page, the chapter openers and the last page (pdf-furniture.mjs, 1 Oct
+     2026). Read what they need off the page first, then dress the body. */
+  await page.addStyleTag({ content: FURNITURE_CSS });
+  const d = await collect(page, r, se);
+  d.date = new Date(r.date + "T12:00:00Z").toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric" });
+  await dressBody(page, d, BASE);
+  await page.waitForLoadState("networkidle");
+  // open every <details> so the method reads in full, and let the sweep-in highlights finish
+  await page.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
+  await page.evaluate(() => {
+    document.querySelectorAll('section[class*="chapter"]').forEach((sec) => {
+      const figs = sec.querySelectorAll("figure, .mod-win").length;
+      const words = (sec.textContent || "").split(/\s+/).length;
+      if (figs <= 1 && words < 260) sec.classList.add("one-figure");
+    });
+  });
+  /* Every figure draws when it comes on screen (useSeen, threshold 0.3), and the bars then widen
+     over about a second. A single jump to the bottom skips the figures in the middle, so four bar
+     charts printed as empty tracks (read on 27 Sep). Scroll through in steps, then wait for the
+     last transition. */
+  await page.evaluate(async () => {
+    const step = 500;
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((res) => setTimeout(res, 120));
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+    await new Promise((res) => setTimeout(res, 300));
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(1600);
+  /* Figure 3.3's level bars are percentage heights set by a transition inside a flex wrapper, and
+     the print renderer drops them (27 Sep: four empty tracks). Freeze every transitioned inline
+     height to its final computed value before printing. Widths stay as set: freezing them in
+     pixels sent figure 3.1's bars past their track. */
+  await page.evaluate(() => {
+    document.querySelectorAll("[style]").forEach((el) => {
+      const e = el;
+      const cs = getComputedStyle(e);
+      if (e.style.height && e.style.height !== "0px" && e.style.height !== "0") e.style.height = cs.height;
+    });
+  });
+  const stamp = r.example ? "Example, made-up numbers" : r.status === "draft" ? "Draft, not approved" : "";
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "rwf-pdf-"));
+  const part = (name) => path.join(tmp, name);
+  const bodyOpts = {
+    format: "A4",
+    printBackground: true,
+    preferCSSPageSize: false,
+    margin: { top: "19mm", bottom: "17mm", left: "14mm", right: "14mm" },
+    displayHeaderFooter: true,
+    headerTemplate: headerFor(d),
+    footerTemplate: footFor(d, stamp, r.example ? "#F47521" : "#3A7CA5"),
+  };
+  const pagesOf = (f) => execFileSync("pdftotext", ["-layout", f, "-"], { maxBuffer: 64 * 1024 * 1024 }).toString("utf8").split("\f");
+  /* ⭐ PRINTED TWICE. The contents page quotes page numbers, and the only thing that knows where a
+     chapter falls on paper is a print. The first print finds the pages; the numbers go in; the
+     second print is the one kept, and it is read again to prove the numbers did not move anything. */
+  await page.pdf({ ...bodyOpts, path: part("body-1.pdf") });
+  const starts = findStarts(pagesOf(part("body-1.pdf")), d.sections);
+  await fillContents(page, starts);
+  await page.pdf({ ...bodyOpts, path: part("body.pdf") });
+  const again = findStarts(pagesOf(part("body.pdf")), d.sections);
+  if (JSON.stringify(again) !== JSON.stringify(starts)) throw new Error(`contents: page numbers moved between prints for ${r.slug}: ${JSON.stringify(starts)} then ${JSON.stringify(again)}`);
+
+  // the cover and the last page: the same browser page, its body swapped, no margins, no head or foot
+  const single = async (html, out) => {
+    await page.evaluate((h) => { document.body.innerHTML = h; }, html);
+    await page.waitForFunction(() => [...document.images].every((i) => i.complete && i.naturalWidth > 0), null, { timeout: 60000 });
+    await page.pdf({ path: out, width: "210mm", height: "297mm", printBackground: true, margin: { top: "0", bottom: "0", left: "0", right: "0" }, pageRanges: "1" });
+  };
+  await single(coverHTML(d, BASE), part("cover.pdf"));
+  await single(endHTML(d, BASE), part("end.pdf"));
+  /* The body is the PRIMARY file of the join, not --empty. The contents rows and the "Chapter N"
+     links inside the report are links to named places in the body, and those names live in the
+     body's own catalogue; joining onto an empty file dropped them, so all 21 links in The AI Ask
+     went nowhere (Cato, 1 Oct 2026). With the body as primary its names come through. */
+  execFileSync("qpdf", [part("body.pdf"), "--pages", part("cover.pdf"), part("body.pdf"), part("end.pdf"), "--", file]);
+  /* ⛔ and the build proves it: every link inside the PDF must point at a place the PDF defines. */
+  {
+    const dests = new Set(execFileSync("pdfinfo", ["-dests", file]).toString().split("\n").map((l) => (l.match(/"([^"]+)"\s*$/) || [])[1]).filter(Boolean));
+    const objs = JSON.parse(execFileSync("qpdf", ["--json", "--json-key=qpdf", file], { maxBuffer: 256 * 1024 * 1024 }).toString()).qpdf[1];
+    const targets = Object.values(objs).map((o) => o && o.value).filter((v) => v && v["/Subtype"] === "/Link").map((v) => v["/Dest"] ?? (v["/A"] && v["/A"]["/S"] === "/GoTo" ? v["/A"]["/D"] : null)).filter((d) => typeof d === "string");
+    const dangling = targets.map((d) => d.replace(/^(u:|\/)/, "")).filter((d) => !dests.has(d));
+    console.log(`  links inside the PDF: ${targets.length}, pointing at nothing: ${dangling.length}`);
+    if (dangling.length) throw new Error(`${r.slug}: ${dangling.length} links inside the PDF point at a place it does not define: ${[...new Set(dangling)].join(", ")}`);
+  }
+  const buf = fs.readFileSync(file);
+  console.log(`  contents: ${d.sections.map((x) => `${x.k || x.t.slice(0, 12)} p${starts[x.id]}`).join(" · ")}`);
+  const n = Number(execFileSync("qpdf", ["--show-npages", file]).toString().trim()) || pageCount(buf); // qpdf packs the joined file, so ask it
+  const kb = Math.round(buf.length / 1024);
+  total += buf.length;
+  pages[r.slug] = n;
+  if (n !== r.pages) mismatches.push(`${r.slug}: catalogue says ${r.pages}, file has ${n}`);
+  console.log(`${r.slug}  ${n} pp  ${kb} KB${kb > 5000 ? "  ⛔ over 5MB" : ""}`);
+}
+await browser.close();
+fs.writeFileSync(PAGES_FILE, JSON.stringify(pages, null, 1) + "\n");
+console.log(`\n${jobs.length} PDFs, ${(total / 1024 / 1024).toFixed(1)} MB in all, written to public/resources/pdf/`);
+if (mismatches.length) {
+  console.log(`\n${mismatches.length} page counts differ from the catalogue. Run node scripts/resources/build-catalogue.mjs to take the real counts from pdf-pages.json:`);
+  mismatches.forEach((m) => console.log("  " + m));
+}

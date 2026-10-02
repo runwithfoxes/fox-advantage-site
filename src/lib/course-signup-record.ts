@@ -36,6 +36,9 @@ export interface SignupRecord {
   signup_module_lands: string | null;
   door: "interest" | "member";
   klaviyo: "ok" | "failed";
+  /** 23 Sep 2026: the hidden trap field had something in it but the name looked human,
+      so the person was let in. Present only when true. See the honeypot block in the route. */
+  trap?: true;
 }
 
 const REDIS_KEY = "course:signups";

@@ -1,0 +1,516 @@
+{
+ "meta": {
+  "kicker": "The Ad Audit · quarterly report · Ireland",
+  "h1": "The Ad Audit, Q3 2026: Irish banks sell on social, and the newcomers reach the young",
+  "byline": "27 September 2026 · Sam · AI researcher, Run with Foxes"
+ },
+ "intro": [
+  "The single ad that reached the most people in this study isn't from an Irish bank. It's Graham Norton on an orange sofa in a silk dressing gown, eating chocolates, telling you to change the way you money. Revolut put it up on 1 June, showed it only in Ireland and took it down on 27 July. Its biggest copy reached 1,992,452 people in Ireland, more than any other single ad we found. I didn't expect the biggest face in Irish banking on Facebook this summer to be an Irish comedian selling for a bank that started in London. Then I counted everything else, and it made more sense than I thought.",
+  "Every ad a bank shows on Facebook and Instagram in the EU is kept in Meta's Ad Library, with its words, its pictures, its dates and how many people it reached, by age and sex. It's public. It's dated. Nobody at a bank writes an ad to impress a researcher. So if you want to know how Irish banks actually talk to people on social media, you can read their ads. All of them.",
+  "The Ad Audit is our quarterly count of what one Irish category shows people on Facebook and Instagram. This first issue is banking. We collected every ad that ten banks and lenders showed in Ireland between 1 July and 26 September 2026 and that Meta hasn't since removed: 1,814 ads. Once you merge copies that use the same words, that's 764 different ads. We looked at the picture or video of all but one of them, not just the words, and sorted each by what it's for, what it sells, whether it states an offer and who is on screen.",
+  "A word on what this isn't. We don't know what any bank spent, and we don't know which ads worked. The Ad Library doesn't say, and nobody outside the bank can know. So this report says what the banks put in front of people and who saw it. It doesn't say who got it right. Chapter 7 sets out exactly what the library can and can't tell us."
+ ],
+ "findings": [
+  {
+   "text": "On social media, Irish banking is mostly selling. 73% of the quarter's reach went to ads that only sell a product. 12% went to ads only about the bank, and 8% to ads that do both, most of that one PTSB film. On Facebook and Instagram, Avant Money and bunq showed no ads about the bank itself this quarter.",
+   "ch": 2
+  },
+  {
+   "text": "Bank of Ireland was seen most, with 21% of the category's reach, but not by much. PTSB had 17% and AIB 16%, and Monzo, whose ads say its free accounts \"have landed in Ireland\", had 13%.",
+   "ch": 1
+  },
+  {
+   "text": "Current accounts and mortgages are the two biggest things sold, and the mortgage fight is about cashback. Four lenders put a cashback percentage in their mortgage ads, from 1% to 3%, and AIB offers €3,000 to switch.",
+   "ch": 3
+  },
+  {
+   "text": "The newcomers reach a different country. 54% of the people Monzo, bunq and Revolut reached were under 35. For the Irish banks and lenders it was 29%.",
+   "ch": 4
+  },
+  {
+   "text": "The banks change their ads at very different speeds. Bank of Ireland started new ads in every one of the 13 weeks, and a quarter of its ads ran for two days or less, most of them pension ads. The credit unions started theirs in two big batches. Monzo kept putting the same words out again in new copies.",
+   "ch": 5
+  },
+  {
+   "text": "Well-known people carry AIB's brand ads: nearly all its brand reach comes from one series of them telling their own stories. Monzo leans on paid creators more than anyone.",
+   "ch": 6
+  }
+ ],
+ "gallery": [
+  {
+   "img": "1.jpg",
+   "adv": "PTSB",
+   "tags": "Brand and sales · Business banking",
+   "quote": "\"Supporting sustainable business growth\"",
+   "reach": "14 copies shown 5,212,333 times; biggest copy reached 1,334,750 people"
+  },
+  {
+   "img": "3.jpg",
+   "adv": "AIB",
+   "tags": "Sales · Pensions and investing",
+   "quote": "\"Get personalised investment advice today, in the AIB App.\"",
+   "reach": "6 copies shown 2,199,814 times; biggest copy reached 484,308 people"
+  },
+  {
+   "img": "5.jpg",
+   "adv": "Monzo",
+   "tags": "Sales · Current accounts",
+   "quote": "\"Free bank accounts for the whole family\"",
+   "reach": "13 copies shown 1,316,226 times; biggest copy reached 198,998 people"
+  },
+  {
+   "img": "10.jpg",
+   "adv": "bunq",
+   "tags": "Sales · Savings",
+   "quote": "\"Get up to 3.01%* interest paid weekly\"",
+   "reach": "17 copies shown 1,289,202 times; biggest copy reached 422,059 people"
+  },
+  {
+   "img": "14.jpg",
+   "adv": "Monzo",
+   "tags": "Sales · Money abroad",
+   "quote": "\"Pay abroad with no fees\"",
+   "reach": "2 copies shown 1,163,069 times; biggest copy reached 952,089 people"
+  },
+  {
+   "img": "6.jpg",
+   "adv": "Monzo",
+   "tags": "Sales · Current accounts",
+   "quote": "\"No monthly account fees. No messing.\"",
+   "reach": "5 copies shown 1,149,010 times; biggest copy reached 270,281 people"
+  },
+  {
+   "img": "15.jpg",
+   "adv": "PTSB",
+   "tags": "Sales · Mortgages",
+   "quote": "\"Join us in branch Monday 7 – Friday 11 September.\"",
+   "reach": "Reached 1,110,346 people in Ireland"
+  },
+  {
+   "img": "16.jpg",
+   "adv": "Bank of Ireland",
+   "tags": "Sales · Loans",
+   "quote": "\"Borrow from €2,000 to €75,000 with a Bank of Ireland Personal Loan\"",
+   "reach": "2 copies shown 1,063,454 times; biggest copy reached 565,940 people"
+  },
+  {
+   "img": "27.jpg",
+   "adv": "Bank of Ireland",
+   "tags": "Sales · Current accounts",
+   "quote": "\"Don't be like me, apply for a Bank of Ireland current account, and get organised ahead of the presale opening on 2 September.\"",
+   "reach": "Reached 922,389 people in Ireland"
+  },
+  {
+   "img": "23.jpg",
+   "adv": "An Post",
+   "tags": "Sales · Money abroad",
+   "quote": "\"Get sterling at the post office\"",
+   "reach": "6 copies shown 893,368 times; biggest copy reached 507,588 people"
+  },
+  {
+   "img": "31.jpg",
+   "adv": "PTSB",
+   "tags": "Sales · Savings",
+   "quote": "\"Fast track your interest with our Interest First Fixed Term Deposit Account.\"",
+   "reach": "Reached 888,743 people in Ireland"
+  },
+  {
+   "img": "32.jpg",
+   "adv": "AIB",
+   "tags": "Sales · Loans",
+   "quote": "\"Home energy upgrades at just 3.55% APR variable.\"",
+   "reach": "2 copies shown 869,634 times; biggest copy reached 750,233 people"
+  }
+ ],
+ "chapters": [
+  {
+   "n": 1,
+   "title": "Who was seen most",
+   "lede": [
+    {
+     "p": "Bank of Ireland was the loudest bank on social media this quarter. But the gap to the next two is small, and one of the top four is new to Ireland."
+    }
+   ],
+   "subs": [
+    {
+     "n": "1.1",
+     "title": "Share of reach",
+     "blocks": [
+      {
+       "p": "Figure 1.1 shows each advertiser's share of the category's reach in Ireland. Reach is Meta's count of the people an ad was shown to, counted up to the day we collected the data, 27 September. We add it up across all of a bank's ads, so one person who saw five ads counts five times. That makes the total (77.7 million) a measure of how much showing was done, not a count of people. We only count ads that started in the quarter, because Meta reports an ad's reach over its whole life, and an ad that started in May carries May's reach with it."
+      },
+      {
+       "no": "1.1",
+       "title": "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.",
+       "cap": "Share of the category's Irish reach, ads started 1 July to 26 September 2026. An Post counts only its financial ads.",
+       "fig": "f11"
+      },
+      {
+       "p": "Bank of Ireland's 21% came from the 301 of its ads that started in the quarter. PTSB got to 17% with 72, about a quarter as many. How? Mostly one film. Alan McCann, managing director of Morning Fresh, a lettuce grower, says PTSB is \"very quick to react\", and the ad asks you to find out about PTSB's Impact Lending Fund. PTSB ran it as 14 copies. Together they were shown to people 5.2 million times, and the biggest single copy reached 1,334,750 people, the most of any ad that started in the quarter."
+      }
+     ]
+    },
+    {
+     "n": "1.2",
+     "title": "Monzo, and a warning about Revolut and bunq",
+     "blocks": [
+      {
+       "p": "Monzo's ads tell people its free accounts \"have landed in Ireland\". It started 218 ads in the quarter and came fourth on reach, with 13%, ahead of An Post, Avant Money and EBS."
+      },
+      {
+       "p": "Revolut looks tiny in Figure 1.1, at 1.7%, and bunq small at 2.8%. That's the rule about start dates at work, and it hides something. The Graham Norton film started on 1 June, so it's left out, even though 27 of its 57 days were inside the quarter. Count every ad that ran in the quarter over its whole life instead, and Revolut's share rises to 7% and bunq's to 6%. The top four stay in the same order either way. So read Revolut's bar as \"started few new ads in the quarter, and those reached few people\": 29 ads from only 3 new wordings."
+      }
+     ]
+    },
+    {
+     "n": "1.3",
+     "title": "How much each bank put out",
+     "blocks": [
+      {
+       "p": "Figure 1.2 counts ads three ways: every ad in the library, the different ads once copies with the same words are merged, and how many of those were new in the quarter."
+      },
+      {
+       "no": "1.2",
+       "title": "Bank of Ireland put out the most different ads by a distance.",
+       "cap": "Ads in the library, different ads (same words merged) and different ads first seen in the quarter, 1 July to 26 September 2026.",
+       "fig": "f12"
+      },
+      {
+       "p": "Bank of Ireland ran 208 different ads, 127 of them new in the quarter. That's more than PTSB, AIB and EBS together. Monzo runs the most copies of each ad, about 5 per wording, then bunq and Revolut at about 4. AIB and PTSB mostly run each ad once. We come back to what those copies might mean in Chapter 5."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "title": "Mostly selling",
+   "lede": [
+    {
+     "p": "Every ad we read got one of five labels: it sells a product, it builds the brand, it does both, it's a notice to existing customers (fraud warnings, app changes), or it's something else, like a job ad. Brand means the ad is about the bank itself, its people, its place in Irish life or a sponsorship, with no product push. Sales means it names a product and asks you to act: apply, switch, open, book, download. Both means a real story about the bank and a named product with an ask, in the same ad."
+    }
+   ],
+   "subs": [
+    {
+     "n": "2.1",
+     "title": "Three quarters of the reach only sells",
+     "blocks": [
+      {
+       "p": "Across the category, 73% of reach went to ads that only sell, 12% to ads that are only about the bank, 8% to ads that do both and 6% to customer notices. Counted as ads rather than reach, selling is even more of it: 562 of the 688 different ads are sales ads."
+      },
+      {
+       "no": "2.1",
+       "title": "The credit unions put most of their reach behind the credit union itself.",
+       "cap": "Share of each advertiser's Irish reach by what the ad is for, ads started in the quarter.",
+       "fig": "f21"
+      },
+      {
+       "p": "One call matters more than any other here, so I'll say it plainly. PTSB's Morning Fresh film is a customer telling his own story and ending on PTSB's line, \"Altogether more human\", but it also names a product, the Impact Lending Fund, with \"Find out more\". Under our rules that's both. It's one ad, and it's 40% of PTSB's reach and most of the category's \"both\". Call it a sales ad and the category's sales share goes up by about six points and PTSB has no brand reach at all."
+      },
+      {
+       "p": "The credit unions are the most brand-led by far, with 82% of their reach on ads about the credit union itself. There are the \"For You. Not Profit.\" films: a family round a birthday cake, a toddler blowing a party horn, and the line at the end. And there are ads explaining that loan protection and life savings cover come free with membership, which describe what a credit union is and ask you to do nothing. Bank of Ireland put 26% behind brand, most of it sponsorship: rugby across all four provinces, and Club 83, where an ad invites you to \"Sing your heart out at the Karaoke Kan\". AIB put 23% behind brand alone, plus 5% on two mortgage ads that do both, and Chapter 6 looks at how."
+      },
+      {
+       "p": "Avant Money and bunq showed no brand ads on Facebook or Instagram in the quarter. Everything they showed sold something. I'd be careful with what that means, though. It's what these banks chose to show on two Meta apps. A bank can build its brand on TV, radio, outdoor and sponsorship and use social media for selling, and the Ad Library can't see any of that. An Post is a special case: its community work, such as its Making Better Happen awards, is real brand work, but it's about An Post, not An Post Money, so we count it on the post side and leave it out here."
+      }
+     ]
+    },
+    {
+     "n": "2.2",
+     "title": "Fraud warnings are a real share of the work",
+     "blocks": [
+      {
+       "p": "One label surprised me by its size. Customer notices, mostly fraud and scam warnings, took 6% of the category's reach, about half as much as the ads that are only about the bank. PTSB's \"Looks real? Look again.\" reached 824,637 people, more than the best sales ad from Avant Money, EBS, the credit unions or Revolut. AIB runs \"Wait a Sec, Double Check\", and one of its fraud ads warns about fake landlords asking for money to view a flat. The banks are using a real share of their social reach to tell people not to be robbed."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "title": "What they sell, and the offers",
+   "lede": [
+    {
+     "p": "If most of the reach is selling, the next question is what. The answer isn't the one I expected."
+    }
+   ],
+   "subs": [
+    {
+     "n": "3.1",
+     "title": "Current accounts first, mortgages second",
+     "blocks": [
+      {
+       "no": "3.1",
+       "title": "Current accounts took the biggest share of reach, just ahead of mortgages.",
+       "cap": "Share of the category's Irish reach by the main product in the ad, ads started in the quarter.",
+       "fig": "f31"
+      },
+      {
+       "p": "Current accounts took 17% of the reach and mortgages 15%. The current-account reach comes from two directions. Monzo spent 57% of its reach on its account (\"No monthly account fees. No messing.\"). Bank of Ireland spent 22% of its reach on current accounts, much of it tied to the Electric Picnic presale for its customers. Mortgages are spread more evenly. They're 92% of EBS's reach and 39% of Avant Money's."
+      },
+      {
+       "p": "Two smaller results stand out. Business banking took 10%, mostly because of PTSB's Morning Fresh film. And AIB is the only bank whose biggest product was pensions and investing, at 32% of its reach, mostly from one ad telling people to \"Get personalised investment advice today, in the AIB App\"."
+      }
+     ]
+    },
+    {
+     "n": "3.2",
+     "title": "The mortgage offers are cashback",
+     "blocks": [
+      {
+       "p": "We marked an ad as stating an offer when it gives a rate, a cashback or bonus figure, or something free. A \"best rate\" with no number doesn't count, and neither does a loan range, a loan floor (\"loans from €1,000\") or a fee. 206 of the 688 different ads state an offer, 30%."
+      },
+      {
+       "p": "In mortgages the offer is nearly always cashback, and five lenders name a figure. PTSB offers \"2% cashback on mortgage drawdown and monthly repayments\". Bank of Ireland offers \"up to 3% Cashback on qualifying fixed rates\". EBS says \"Get up to 3% cashback when you move to us\". Avant Money runs the most versions, \"1% back in cash\" in some and \"2% back in cash\" in others, often with \"the same rate for the entire lifetime of your mortgage\". AIB's mortgage offer is a flat sum: \"Low green mortgage rates and €3,000 when you switch\"."
+      },
+      {
+       "no": "3.2",
+       "title": "Monzo, Avant Money and bunq lead with an offer. Most banks mostly don't.",
+       "cap": "Share of each advertiser's different ads that state a rate, cashback, bonus or something free.",
+       "fig": "f32"
+      },
+      {
+       "p": "Monzo states an offer in 70% of its ads, Avant Money in 67% and bunq in 53%: free accounts, no fees abroad, 5% cashback on groceries, \"up to 3.01% interest paid weekly\". At AIB it's 2 of 83 ads, the 3.55% energy upgrade loan and the €3,000 mortgage switch, and at EBS 1 of 17. A bank that people don't already use has to give them a reason to try it, and a number is the quickest reason there is. That's my reading, not something the data proves."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "title": "Who sees the ads",
+   "lede": [
+    {
+     "p": "For ads shown in the EU, Meta reports reach by age and sex. So we can say who was shown each bank's ads. We can't say who the bank asked Meta to show them to, only who ended up seeing them."
+    }
+   ],
+   "subs": [
+    {
+     "n": "4.1",
+     "title": "Two different audiences",
+     "blocks": [
+      {
+       "no": "4.1",
+       "title": "The digital challengers reach people under 35. The Irish banks reach every age.",
+       "cap": "Share of Irish reach by age. Digital challengers are Monzo, bunq and Revolut. Irish banks and lenders are the other seven. Ads started in the quarter.",
+       "fig": "f41"
+      },
+      {
+       "p": "54% of the people the challengers reached were under 35, against 29% for the Irish banks and lenders. At the other end, only 8% of the challengers' reach was 55 or over, against 26% for the Irish banks. The challengers are talking to people setting up their first accounts. The Irish banks are talking to everyone."
+      },
+      {
+       "no": "4.2",
+       "title": "bunq and Monzo reach the youngest audiences, An Post Money and the credit unions the oldest.",
+       "cap": "Share of each advertiser's Irish reach under 35 and 55 or over. Ads started in the quarter.",
+       "fig": "f42"
+      },
+      {
+       "p": "Monzo (57% under 35) and bunq (56%) are far younger than anyone else. An Post's money ads (36% aged 55 or over) and the credit unions (34%) reach the oldest. Revolut, perhaps surprisingly, looks like an Irish bank here, with 26% under 35, but that's only the few ads it started in the quarter, most of them savings ads. Avant Money reached nobody under 25 at all, which fits a lender whose products, credit cards and mortgages, are for adults with a credit history. I assume that's a targeting choice. The library doesn't say."
+      }
+     ]
+    },
+    {
+     "n": "4.2",
+     "title": "Men and women",
+     "blocks": [
+      {
+       "p": "Bank of Ireland is the only advertiser whose reach is slightly more women than men (51% women). Every other one leans male, most of them a little, with between 42% and 49% women. Two lean further: bunq's reach is 35% women and the credit unions' 39%. I don't have a reason for either, and I'd want another quarter before looking for one."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "title": "How often the ads change",
+   "lede": [
+    {
+     "p": "This is the part of the data I find most interesting, because it's the closest the Ad Library gets to showing how a bank works. We can see when every ad started and stopped. So we can see who puts up new ads every week, who does it in batches, and who runs one ad for months."
+    }
+   ],
+   "subs": [
+    {
+     "n": "5.1",
+     "title": "Every week, or in batches",
+     "blocks": [
+      {
+       "no": "5.1",
+       "title": "Bank of Ireland started new ads every week. Others worked in bursts.",
+       "cap": "New different ads started each week, by advertiser, week beginning 29 June to week beginning 21 September 2026. The first week only counts 1 to 5 July.",
+       "fig": "t51"
+      },
+      {
+       "p": "Bank of Ireland started new ads in all 13 weeks, 127 in all, and its busiest week held only 28% of them. That's a steady flow, new ads every week. The credit unions are the opposite: two weeks, with 20 new ads in the week of 13 July and 19 in the week of 7 September, and nothing in between. PTSB was nearly silent through July and early August, then started 39 of its 40 new ads from 24 August on, around its mortgage and branch events."
+      }
+     ]
+    },
+    {
+     "n": "5.2",
+     "title": "Ads that run for a day or two",
+     "blocks": [
+      {
+       "p": "Run length is harder to measure than it looks. Many ads were still running when we collected the data, and an ad that started in September can only have run a few weeks. So we use a measure the cut-off can't bend: of the ads each advertiser started between 1 July and 23 September, what share ran for two days or less? Any ad that short had finished before we looked, so none is missed."
+      },
+      {
+       "no": "5.2",
+       "title": "A quarter of Bank of Ireland's ads ran for two days or less. Monzo, the credit unions and Revolut ran none that short.",
+       "cap": "Share of each advertiser's ads started 1 July to 23 September 2026 that ran two days or less.",
+       "fig": "f52"
+      },
+      {
+       "p": "75 of the 288 ads Bank of Ireland started ran for two days or less, 26%. Nobody else comes close. And they aren't event ads. 44 of the 75 are pension and investment ads: \"Pay less tax and boost your pension\", \"It's time to maximise your pension\", \"Ready to take control of your financial future?\", switched on for a day or two, then again, then again. The rest are credit card, loan, mortgage and Club 83 ads. Bank of Ireland runs its pension ads in short bursts, over and over. Monzo, the credit unions and Revolut ran none that short."
+      },
+      {
+       "p": "Monzo works a different way again. In September it started 102 ads, but they used only 38 different wordings, and only 7 of those were new. It keeps putting the same words out again in new copies, about 5 copies of each wording across the quarter."
+      },
+      {
+       "p": "What are the short bursts and the copies for? The Ad Library doesn't say, and I want to be careful. A copy can carry a different picture, go to a different audience or run on a different date. A burst can be a test, where versions run for a day and the ones that do worse aren't run again. Short runs and many copies are what testing looks like from the outside. But they're also what a lot of other things look like, like a budget spent a day at a time or a planned weekend push, and nothing in the library tells us which it is."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "title": "Faces, formats and the most-seen ads",
+   "lede": [],
+   "subs": [
+    {
+     "n": "6.1",
+     "title": "Video, mostly",
+     "blocks": [
+      {
+       "p": "445 of the 688 different ads are video, 65%. AIB is almost all video (92%). Avant Money and Revolut use far more still images and carousels, where the whole message is the offer in big type. Of all the ads we read, 37 are plainly trying to be funny, about one in twenty."
+      }
+     ]
+    },
+    {
+     "n": "6.2",
+     "title": "Well-known people, telling their own stories",
+     "blocks": [
+      {
+       "p": "AIB signs off many of its ads, sales ads included, with \"For The Life You're After\". Its brand ads are nearly all one series, in which well-known people tell their own stories: a footballer \"From local pitches to the global stage\", on \"the support that made all the difference\"; Rory O'Neill, \"Turning playground pain into power\"; and Aby Coulibaly on sharing a stage with Coldplay. There are 13 different ads in the series, 12 of them naming the person, and they carry 95% of AIB's brand reach. None of them sells a product. It's the only brand series in the category with a named person in nearly every ad."
+      }
+     ]
+    },
+    {
+     "n": "6.3",
+     "title": "Creators",
+     "blocks": [
+      {
+       "p": "We count an ad as a creator post when its words name a paid partner or tag the person's own account. By that test, Monzo used creators most, in 16 ads, every one of them marked \"Paid Partnership\". AIB had 3 and Bank of Ireland 3. Other ads look like creator posts but don't say so in their words, so these counts are a floor. The styles are very different. Monzo's creators talk straight to camera (\"Nice try lad, just get Monzo\"). AIB uses Kirsten Mate Maher for first-time buyer tips. Bank of Ireland's biggest creator ad is a sketch on a park bench about missing the Electric Picnic presale: \"Don't be like me, apply for a Bank of Ireland current account\"."
+      }
+     ]
+    },
+    {
+     "n": "6.4",
+     "title": "The most-seen ads of the quarter",
+     "blocks": [
+      {
+       "p": "These are the twelve different ads with the most Irish reach among ads that started in the quarter. Where an ad ran as several copies, we show how many times the copies were shown in total and how many people the biggest single copy reached. Eleven of the twelve are sales ads, and six of them state an offer or a rate."
+      },
+      {
+       "gallery": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "title": "What the Ad Library can and can't tell us",
+   "lede": [
+    {
+     "p": "Anyone can use the Ad Library, and I'd encourage people to. But it's easy to read more into it than it holds, so here is exactly what's in it and what isn't."
+    },
+    {
+     "no": "7.1",
+     "title": "What the Ad Library holds, and what it doesn't.",
+     "cap": "",
+     "fig": "t71",
+     "rows": [
+      [
+       "Every ad a page showed in the EU, with its words, pictures and video",
+       "What any ad cost, or what a bank spent in total (Meta only shows spend for political ads)"
+      ],
+      [
+       "When each ad started and stopped",
+       "Clicks, sign-ups, sales or any other result"
+      ],
+      [
+       "How many people in Ireland each ad reached, by age and sex",
+       "How often each person saw it, or how many different people saw any of a bank's ads"
+      ],
+      [
+       "Who paid for the ad",
+       "Which audience the bank asked for, beyond broad age, sex and location"
+      ],
+      [
+       "Which Meta apps it ran on",
+       "Anything outside Facebook and Instagram: TV, radio, outdoor, search, TikTok, YouTube"
+      ],
+      [
+       "How many copies of the same words a bank ran",
+       "Whether those copies were tests, and which one won"
+      ]
+     ],
+     "head": [
+      "It tells us",
+      "It doesn't tell us"
+     ]
+    },
+    {
+     "p": "So this report can describe what banks put in front of people and who saw it. It can't say which bank got its money's worth. Anyone who tells you otherwise from the Ad Library alone is guessing."
+    }
+   ],
+   "subs": [
+    {
+     "n": "7.1",
+     "title": "Removed ads, and pages that borrow a bank's name",
+     "blocks": [
+      {
+       "p": "Two things turned up that anyone using the library should know about. First, a page called \"Revolut Group\" showed 70 ads in Ireland between 25 August and 8 September, and Meta has since removed every one of them. The library now shows only \"This content was removed because it didn't follow our Advertising Standards\" or that the page was disabled. I can't tell from the library whether it's a real Revolut page whose ads came down or a lookalike, and in my first draft I counted them as Revolut's. They made Revolut look like a bank that ran dozens of ads for a day or two. They're out of every figure now."
+      },
+      {
+       "p": "Second, two other pages, \"Revolut Slots\" and \"Revolut Casino\", showed 132 ads in Ireland in September. Every one has since been taken down by Meta. Together they reached 1,648 people before they came down. It's a small number, and Meta caught them. But anyone searching the library for a bank's name will find pages like these, so it's worth checking the page ID before you count anything. The ones we found are listed in the method below."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "method": [
+  {
+   "k": "The ads",
+   "t": "We used Meta's Ad Library API to collect every ad delivered in Ireland between 1 July and 26 September 2026 by ten advertisers: AIB, Bank of Ireland, PTSB, EBS, Avant Money, An Post, the Credit Union page run for Ireland's credit unions, Monzo, bunq and Revolut (the Revolut and Revolut Business pages). We collected on 27 September. We left out 70 ads from the \"Revolut Group\" page that Meta had removed, which leaves 1,814 ads. We also checked N26, which showed five ads that reached 354 people in Ireland, and left it out. For An Post we count only financial ads (An Post Money, credit cards, loans, money abroad and insurance). Its 154 post, parcel, mobile, shop, community and job ads (76 different ads) are left out of every comparison. That leaves 1,660 ads and 688 different ads."
+  },
+  {
+   "k": "Ads and different ads",
+   "t": "Many ads in the library are copies with the same words. We count a different ad as one advertiser plus the same body text, headline and description. Ads with no words at all are each counted on their own."
+  },
+  {
+   "k": "Reach",
+   "t": "Reach is Meta's count of people in Ireland each ad was shown to, from its age and sex breakdown, over the ad's whole life up to 27 September. We add it up across ads, so a person reached by two ads, or two copies of one ad, counts twice. When we say how many people a single ad reached, we mean its biggest single copy. For any share of reach we use only ads that started in the quarter; 385 ads that started before 1 July are counted as ads but left out of reach shares. All age and sex figures use the same ads."
+  },
+  {
+   "k": "Reading the ads",
+   "t": "For every different ad we took the picture from Meta's preview of its most-seen copy. For a video we downloaded it and took four frames, near the start, a third in, two thirds in and near the end, so the reader could see the whole ad. 763 of 764 ads have a picture. Each ad was judged against one written rulebook: what it is for, its main product, whether it states an offer, who is on screen, and the most telling line in its own words. A second reader judged a sample of 80 ads blind, the 40 with the most reach and 40 at random. The two agreed on what the ad was for in 74 of 80, on the product in 73 and on the offer in 70. We then settled the rules they split on and applied each rule to every ad. A \"best rate\" with no number, a loan range, a loan floor and a fee are not offers. The credit unions' free cover ads are brand ads. An Post's community work is counted on the post side. A creator post is one whose words name a paid partner or tag the person. After the review by Cato, our red team agent, we also moved PTSB's Morning Fresh film from sales to both and checked the offer calls by hand where the rule and the reader disagreed. Agreement with the second reader after the rules is higher, but it's measured on the same 80 ads the rules were settled from, so the figures above are the honest measure."
+  },
+  {
+   "k": "Run length",
+   "t": "Run length counts days from an ad's start to its stop, or to 26 September if it was still running. Figure 5.2 counts, for ads started 1 July to 23 September, the share that ran two days or less. Any ad that short had stopped before we collected the data, so the measure isn't bent by ads still running."
+  },
+  {
+   "k": "Pages that borrow a bank's name",
+   "t": "\"Revolut Slots\" (page IDs 1362696313583261, 1245558305310803, 198911799966307) and \"Revolut Casino\" (page ID 108451722179263). The removed ads came from the page \"Revolut Group\" (page ID 1174366635770172)."
+  },
+  {
+   "k": "Checking",
+   "t": "Before publication Cato, the red team agent at Run with Foxes, rebuilt the numbers from the raw ads. He found the removed Revolut ads, that single ads were being given the reach of all their copies added together, that the offer rule counted loan floors and fees as offers, that some An Post community ads were counted as financial, and that I'd called Graham Norton British. We fixed each of these."
+  },
+  {
+   "k": "Limits",
+   "t": "The labels are judgements, and a different reader would move some ads. Reach is summed and is not a count of people. We don't know spend or results. This is one quarter, so nothing here is a trend yet. The next issue, in December, will be."
+  }
+ ]
+}

@@ -17,7 +17,7 @@ import {
   SHARE,
   STRIP,
 } from "./courseCopy";
-import MobileMenu from "@/components/MobileMenu";
+import NextNav from "@/app/home-next/NextNav";
 
 /**
  * /course - THE COURSE HOME PAGE.
@@ -127,6 +127,9 @@ function ModuleCard({
             window.location.href = MODULE_HREF;
             return;
           }
+          /* 1 Oct 2026: someone already signed up is not asked again, so a card that has not
+             opened yet does not open the ask for them (src/components/Known.tsx). */
+          if (document.documentElement.dataset.known === "1") return;
           onToggle();
         }}
       >
@@ -146,9 +149,20 @@ function ModuleCard({
               What&apos;s in it <span aria-hidden>→</span>
             </a>
           ) : (
-            <button className="co-cardaction" type="button" onClick={onToggle} aria-expanded={open}>
-              {CARD_ACTION} <span aria-hidden>→</span>
-            </button>
+            <>
+              {/* The button is a sign-up ask, so it goes for someone already signed up, and they get
+                  the line the ask shows once it has worked, in the course's own words. */}
+              <button className="co-cardaction" type="button" onClick={onToggle} aria-expanded={open} data-ask>
+                {CARD_ACTION} <span aria-hidden>→</span>
+              </button>
+              {/* not while the ask is open: someone who has just signed up from this card is already
+                  reading the same sentence in the panel under it */}
+              {open ? null : (
+                <span className="co-cardaction" data-known-only style={{ cursor: "default", color: "var(--muted)", textDecoration: "none" }}>
+                  {ASK.cardDone.replace("{when}", m.when).replace("{title}", m.title.replace(/^\(\d\)\s*/, ""))}
+                </span>
+              )}
+            </>
           )}
         </div>
 
@@ -199,6 +213,8 @@ function ModuleCard({
 export default function CourseClient({ today }: { today: string }) {
   /* Launch day on: the top line says module 1 is open and both signup boxes take you in. */
   const m1Live = isLive(MODULES[0], today);
+  /* The modules open today, for the line a signed-in visitor gets in place of the sign-up pill. */
+  const liveMods = MODULES.filter((m) => isLive(m, today));
   const [openCard, setOpenCard] = useState<number | null>(null);
 
   /**
@@ -252,63 +268,8 @@ export default function CourseClient({ today }: { today: string }) {
         the course CSS cannot reach it at all, which is a better fix than a
         counter-rule.
       */}
-      <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
-        <Link href="/" className="hp-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  {/* ⭐ MIRRORS THE LIVE HOMEPAGE NAV (SF_MODS/SF_PAGES in HomePage.tsx),
-                      21 Jul. The old /tools -> MODULES list pointed at homepage anchors
-                      (#mod-effectiveness ...) that stopped existing when the homepage
-                      became the storefront, so all seven were dead links. This is a
-                      hand-copy of the products dropdown; if the storefront list changes,
-                      it must be updated here and in BookLanding.tsx too. The real fix is
-                      one shared <SiteNav>, on the backlog. */}
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  <a href="/products/module-campaign-manager.html">Campaign Manager</a>
-                  <a href="/products/module-advertising-agent.html">Advertising Agent</a>
-                  <a href="/products/module-outbound-agent.html">Outbound Agent</a>
-                  <a href="/products/module-lifecycle-agent.html">Lifecycle Agent</a>
-                  <a href="/products/module-brand-guardian.html">Brand Guardian</a>
-                  <a href="/products/module-brief-coach.html">Brief Coach</a>
-                  <a href="/products/module-copywriter.html">Copywriter</a>
-                  <a href="/products/module-ghostwriter.html">Ghostwriter</a>
-                  <a href="/products/module-ad-maker.html">Ad Resizer</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/previous &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-projects-dropdown">
-                <div className="hp-pd-label">CASE STUDIES</div>
-                <Link href="/millionaire-raffle">Millionaire Raffle</Link>
-                <Link href="/marketer-of-the-year">Marketer of the Year</Link>
-                <Link href="/48">48</Link>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/books &#9662;</span>
-            <div className="hp-mega hp-mega-end">
-              <div className="hp-projects-dropdown">
-                <Link href="/book">The Fox Advantage</Link>
-                <Link href="/run-with-foxes">Run with Foxes</Link>
-              </div>
-            </div>
-          </div>
-          <Link href="/contact" className="hp-nav-cta">
-            /contact
-          </Link>
-        </div>
-      <MobileMenu />
-      </nav>
+      {/* Paul, 30 Sep: the site's one nav on the course page too, in place of the old homepage nav. */}
+      <NextNav bar />
 
       <div className="co-root">
 
@@ -325,7 +286,28 @@ export default function CourseClient({ today }: { today: string }) {
 
           <p>{m1Live ? HERO.subOpen : HERO.sub}</p>
 
-          <div className="co-herojoin">
+          {/* ⭐ 1 Oct 2026: SOMEONE ALREADY SIGNED UP IS NOT ASKED AGAIN. This page was the same for a
+              member as for a stranger, pill and all. The pill is a sign-up ask (data-ask) and the
+              line under it is what a member gets instead (data-known-only): src/components/Known.tsx.
+              The page stays static; <html data-known> picks which one shows. The cards of modules
+              not open yet do the same: the "sign up and we'll email you" button goes and the card
+              says they will be emailed. */}
+          {liveMods.length > 0 ? (
+            <div className="co-herojoin" data-known-only>
+              <div className="co-join co-join-done">
+                You&rsquo;re in. {liveMods.length === 1 ? `Module ${liveMods[0].n} is` : `Modules ${liveMods.map((m) => m.n).join(" and ")} are`} open to you now.
+                <span>
+                  {liveMods.map((m, i) => (
+                    <span key={m.n}>
+                      {i > 0 ? " \u00b7 " : ""}
+                      <a href={`/course/${m.n}`}>Open module {m.n} &rarr;</a>
+                    </span>
+                  ))}
+                </span>
+              </div>
+            </div>
+          ) : null}
+          <div className="co-herojoin" data-ask>
             <CourseSignup
               source="hero"
               goOnDone={m1Live ? "/course/1" : undefined}
@@ -390,7 +372,7 @@ export default function CourseClient({ today }: { today: string }) {
           </section>
 
           {/* THE PILL AGAIN. Paul's call, asked and answered. */}
-          <section className="co-footjoin">
+          <section className="co-footjoin" data-ask>
             <CourseSignup
               source="foot"
               goOnDone={m1Live ? "/course/1" : undefined}
@@ -431,14 +413,6 @@ export default function CourseClient({ today }: { today: string }) {
           <Link href="/cookies">Cookies</Link>
         </footer>
 
-        <div className="hp-bottom-bar hp-bb-visible">
-          <a href="#top">#top</a>
-          <a href="#about">#about</a>
-          <Link href="/book">/book</Link>
-          <Link href="/contact" className="hp-cta-bar">
-            get in touch
-          </Link>
-        </div>
       </div>
     </>
   );

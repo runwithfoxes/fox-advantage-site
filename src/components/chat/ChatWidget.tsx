@@ -60,7 +60,10 @@ const ZORRO_WELCOME: UIMessage = {
 
 export default function ChatWidget() {
   const pathname = usePathname();
-  const isContact = pathname === "/contact";
+  /* Paul, 1 Oct 2026: "She can appear on the About Us page for sure immediately." Contact has been the
+     last section of About since 30 Sep (/contact redirects there), so About now takes the contact
+     page's booking-led welcome and its own dismissal key, and she opens there without the wait. */
+  const isContact = pathname === "/contact" || pathname === "/about";
   const isZorro = pathname === "/zorro" || pathname?.startsWith("/zorro/");
   const welcome = isZorro ? ZORRO_WELCOME : isContact ? CONTACT_WELCOME : WELCOME;
   const [isOpen, setIsOpen] = useState(false);
@@ -153,7 +156,15 @@ export default function ChatWidget() {
       return () => { window.removeEventListener("scroll", onScroll); clearTimeout(delayId); };
     }
 
-    const id = setTimeout(() => setIsOpen(true), isContact ? 2000 : 5000);
+    /* Paul, 29 Sep 2026: "only have it turn on after someone has been on the site for 20 seconds."
+       Counted from arrival on the site, not from each page, so moving between pages does not
+       restart the clock. About (and the old contact address) opens straight away (his 1 Oct exception;
+       the widget itself mounts about two seconds after the page, so that is the wait a visitor sees). */
+    const ARRIVE = "isa-arrived";
+    let arrived = Number(sessionStorage.getItem(ARRIVE));
+    if (!arrived) { arrived = Date.now(); sessionStorage.setItem(ARRIVE, String(arrived)); }
+    const wait = isContact ? 0 : Math.max(0, 20000 - (Date.now() - arrived));
+    const id = setTimeout(() => setIsOpen(true), wait);
     return () => clearTimeout(id);
   }, [isContact]);
 

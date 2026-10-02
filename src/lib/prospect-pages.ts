@@ -209,6 +209,14 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "BROSNAN_PASSWORD",
     passwordFallback: "brosnan26",
   },
+  drinkaware: {
+    slug: "drinkaware",
+    client: "Drinkaware",
+    shortName: "Drinkaware",
+    tabTitle: "Run with Foxes for Drinkaware",
+    passwordEnv: "DRINKAWARE_PASSWORD",
+    passwordFallback: "drinkaware26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

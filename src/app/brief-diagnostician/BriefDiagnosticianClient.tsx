@@ -1,5 +1,6 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
 import { useState, useRef, useCallback, useId } from "react";
 
 const EXAMPLE_BRIEF = `Client: Mid-sized DTC skincare brand, £12m revenue, looking to grow to £20m next year.
@@ -190,18 +191,7 @@ export default function BriefDiagnosticianClient() {
       }}
     >
       {/* Nav */}
-      <header className="top-bar">
-        <a href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </a>
-        <nav>
-          <a href="/#agents">/agents</a>
-          <a href="/contact">/contact</a>
-          <a href="/book" className="cta-bar">
-            /get_the_book
-          </a>
-        </nav>
-      </header>
+      <NextNav bar />
 
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "100px 32px 80px" }}>
         {/* Hero */}

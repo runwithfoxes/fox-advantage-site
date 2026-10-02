@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import { GateProvider, useGate } from "./EmailGate";
 import EmailGateForm from "./EmailGate";
 import type { Chapter } from "@/lib/chapters";
-import MobileMenu from "@/components/MobileMenu";
 
 interface Props {
   parts: { part: number; partName: string; chapters: Chapter[] }[];
@@ -104,6 +104,8 @@ function DownloadSection() {
 }
 
 function BookLandingContent({ parts }: Props) {
+  // counted from the parts on this page, so the number and the list can never disagree
+  const chapterCount = parts.reduce((t, p) => t + p.chapters.length, 0);
   const partLabels = ["what just collapsed", "better together", "behaviours", "marketing for leaders"];
   const partDescs = [
     "The marketing department autopsy. What broke, what’s gone, and why average is now invisible.",
@@ -114,60 +116,8 @@ function BookLandingContent({ parts }: Props) {
 
   return (
     <>
-      {/* NAV - same as homepage, always in scrolled state */}
-      <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
-        <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
-        <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/products &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  {/* ⭐ MIRRORS THE LIVE HOMEPAGE NAV (SF_MODS/SF_PAGES in HomePage.tsx),
-                      21 Jul. The old /tools -> MODULES list pointed at homepage anchors
-                      (#mod-effectiveness ...) that stopped existing when the homepage
-                      became the storefront, so all seven were dead links. This is a
-                      hand-copy of the products dropdown; if the storefront list changes,
-                      it must be updated here and in CourseClient.tsx too. The real fix is
-                      one shared <SiteNav>, on the backlog. */}
-                  <div className="hp-mega-label">PRODUCTS</div>
-                  <a href="/products/module-campaign-manager.html">Campaign Manager</a>
-                  <a href="/products/module-advertising-agent.html">Advertising Agent</a>
-                  <a href="/products/module-outbound-agent.html">Outbound Agent</a>
-                  <a href="/products/module-lifecycle-agent.html">Lifecycle Agent</a>
-                  <a href="/products/module-brand-guardian.html">Brand Guardian</a>
-                  <a href="/products/module-brief-coach.html">Brief Coach</a>
-                  <a href="/products/module-copywriter.html">Copywriter</a>
-                  <a href="/products/module-ghostwriter.html">Ghostwriter</a>
-                  <a href="/products/module-ad-maker.html">Ad Resizer</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/previous &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-projects-dropdown">
-                <div className="hp-pd-label">CASE STUDIES</div>
-                <Link href="/millionaire-raffle">Millionaire Raffle</Link>
-                <Link href="/marketer-of-the-year">Marketer of the Year</Link>
-                <Link href="/48">48</Link>
-              </div>
-            </div>
-          </div>
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">/books &#9662;</span>
-            <div className="hp-mega hp-mega-end">
-              <div className="hp-projects-dropdown">
-                <Link href="/book">The Fox Advantage</Link>
-                <Link href="/run-with-foxes">Run with Foxes</Link>
-              </div>
-            </div>
-          </div>
-          <Link href="/contact" className="hp-nav-cta">/contact</Link>
-        </div>
-      <MobileMenu />
-      </nav>
+      {/* Paul, 30 Sep: the site's one nav, on its navy bar, in place of the old homepage nav. */}
+      <NextNav bar />
 
       {/* HERO */}
       <section className="hero">
@@ -175,9 +125,9 @@ function BookLandingContent({ parts }: Props) {
           <div className="hero-content">
             <div className="hero-label">// a book by paul dervan</div>
             <h1>The <span className="accent">Fox</span> Advantage</h1>
-            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. 54 short chapters. No jargon. No fluff.</p>
+            <p className="hero-sub">How to thrive in marketing because of AI, not despite it. {chapterCount} short chapters. No jargon. No fluff.</p>
             <div className="hero-meta">
-              <div><span>\</span> 54 chapters</div>
+              <div><span>\</span> {chapterCount} chapters</div>
               <div><span>\</span> 4 parts</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
             </div>
@@ -203,7 +153,7 @@ function BookLandingContent({ parts }: Props) {
             </div>
             <div className="about-aside">
               <div className="stat-block">
-                <span className="stat-number">54</span>
+                <span className="stat-number">{chapterCount}</span>
                 <div className="stat-label">short chapters</div>
               </div>
               <div className="stat-block">
@@ -250,13 +200,6 @@ function BookLandingContent({ parts }: Props) {
       <div className="footer-spacer" />
 
       {/* BOTTOM BAR */}
-      <div className="hp-bottom-bar hp-bb-visible">
-        <a href="#">#top</a>
-        <Link href="/#about">#about</Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/book">/book</Link>
-        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
-      </div>
     </>
   );
 }

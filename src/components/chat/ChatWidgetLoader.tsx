@@ -23,7 +23,12 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
 /* Routes with no floating Isa (the path and everything under it). /course: the home is
  * one signup pill and module pages had their own Isa in the rail (removed for launch, Paul,
  * 18 Sep 2026). /zorro: Isa sits in the rail there. /softco: SoftCo's brand only. */
-const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro"];
+/* /home-next and /resources/the-ai-ask: Paul, 25 Sep 2026, on the new homepage mockup: "we can
+   take the chatbot off except for certain places or certain times... we don't need to have it come
+   on in the beginning. There's too much going on." Off on the mockup only; the live site is unchanged.
+   26 Sep: the whole resource centre (/resources and everything under it), same reason, and on a
+   phone the bubble sat on top of the first reading on the trackers board. */
+const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro", "/home-next", "/resources"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();

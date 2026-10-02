@@ -1,3 +1,4 @@
+import NextNav from "@/app/home-next/NextNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
@@ -45,18 +46,7 @@ export default function MarketingAgentCostPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact">/contact</Link>
-          <Link href="/book" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      <NextNav bar />
 
       <main className="contact-main">
         <div className="avc-reading">
@@ -137,7 +127,7 @@ export default function MarketingAgentCostPage() {
               costing you a full-time salary or an agency retainer today, a
               marketing agent is a fraction of that, built once and handed to you
               to run.{" "}
-              <Link href="/contact">Tell us what you'd want it to do</Link> and
+              <Link href="/about">Tell us what you'd want it to do</Link> and
               we'll tell you what it takes.
             </p>
           </div>
@@ -158,16 +148,6 @@ export default function MarketingAgentCostPage() {
 
       <SiteFooter current="/what-does-a-marketing-agent-cost" />
 
-      <div className="bottom-bar">
-        <Link href="/" className="active">
-          ← back
-        </Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book" className="cta-bar">
-          get the book
-        </Link>
-      </div>
     </div>
   );
 }

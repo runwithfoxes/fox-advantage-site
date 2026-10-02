@@ -1,0 +1,1260 @@
+{
+ "_source": "Sam's final, paul-hub 024d205ce, intelligence/research/irish-ad-audit/reports/2026-q3 (numbers.json and charts.json). Copied by script, only the fields the page draws.",
+ "meta": {
+  "window": [
+   "2026-07-01",
+   "2026-09-26"
+  ],
+  "pulled": "2026-09-27"
+ },
+ "totals": {
+  "advertisers": 10,
+  "ads": 1814,
+  "creatives": 764,
+  "bank_creatives": 688,
+  "bank_ads": 1660,
+  "post_creatives": 76,
+  "post_ads": 154,
+  "new_creatives": 414,
+  "ads_started_before_q3": 385,
+  "q3_reach": 77652916,
+  "lifetime_reach": 139463706,
+  "with_picture": 763,
+  "formats": {
+   "video": 445,
+   "carousel": 230,
+   "image": 12,
+   "none": 1
+  }
+ },
+ "order": [
+  "Bank of Ireland",
+  "PTSB",
+  "AIB",
+  "Monzo",
+  "An Post",
+  "Avant Money",
+  "EBS",
+  "Credit Union",
+  "bunq",
+  "Revolut"
+ ],
+ "weeks": [
+  "2026-06-29",
+  "2026-07-06",
+  "2026-07-13",
+  "2026-07-20",
+  "2026-07-27",
+  "2026-08-03",
+  "2026-08-10",
+  "2026-08-17",
+  "2026-08-24",
+  "2026-08-31",
+  "2026-09-07",
+  "2026-09-14",
+  "2026-09-21"
+ ],
+ "advertisers": {
+  "Bank of Ireland": {
+   "ads": 421,
+   "creatives": 208,
+   "new_creatives": 127,
+   "q3_share": 20.6,
+   "under_35": 34.2,
+   "over_55": 26.6,
+   "female": 51.1,
+   "offer_creatives": 47,
+   "offer_share": 22.6,
+   "by23": 288,
+   "by23_ran_2_days_or_less": 75,
+   "by23_share_2_days_or_less": 26.0,
+   "age_share": {
+    "18-24": 12.9,
+    "25-34": 21.4,
+    "35-44": 19.9,
+    "45-54": 19.2,
+    "55-64": 14.9,
+    "65+": 11.7
+   },
+   "job_share_of_reach": {
+    "sales": 66.7,
+    "brand": 26.4,
+    "service": 5.5,
+    "other": 1.4
+   },
+   "new_creatives_by_week": [
+    1,
+    9,
+    3,
+    3,
+    14,
+    1,
+    10,
+    10,
+    10,
+    6,
+    14,
+    36,
+    10
+   ]
+  },
+  "PTSB": {
+   "ads": 104,
+   "creatives": 70,
+   "new_creatives": 40,
+   "q3_share": 16.6,
+   "under_35": 35.7,
+   "over_55": 21.4,
+   "female": 42.2,
+   "offer_creatives": 13,
+   "offer_share": 18.6,
+   "by23": 71,
+   "by23_ran_2_days_or_less": 3,
+   "by23_share_2_days_or_less": 4.2,
+   "age_share": {
+    "18-24": 6.2,
+    "25-34": 29.5,
+    "35-44": 23.9,
+    "45-54": 19.0,
+    "55-64": 12.4,
+    "65+": 9.0
+   },
+   "job_share_of_reach": {
+    "sales": 45.9,
+    "both": 40.4,
+    "service": 13.7
+   },
+   "new_creatives_by_week": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    7,
+    12,
+    16,
+    2
+   ]
+  },
+  "AIB": {
+   "ads": 114,
+   "creatives": 83,
+   "new_creatives": 50,
+   "q3_share": 15.9,
+   "under_35": 25.1,
+   "over_55": 21.2,
+   "female": 47.0,
+   "offer_creatives": 2,
+   "offer_share": 2.4,
+   "by23": 78,
+   "by23_ran_2_days_or_less": 3,
+   "by23_share_2_days_or_less": 3.8,
+   "age_share": {
+    "18-24": 4.2,
+    "25-34": 20.8,
+    "35-44": 34.5,
+    "45-54": 19.3,
+    "55-64": 11.4,
+    "65+": 9.8
+   },
+   "job_share_of_reach": {
+    "sales": 63.6,
+    "brand": 23.1,
+    "service": 8.3,
+    "both": 5.1
+   },
+   "new_creatives_by_week": [
+    0,
+    13,
+    13,
+    0,
+    7,
+    2,
+    1,
+    0,
+    0,
+    3,
+    2,
+    6,
+    3
+   ]
+  },
+  "Monzo": {
+   "ads": 259,
+   "creatives": 54,
+   "new_creatives": 24,
+   "q3_share": 13.3,
+   "under_35": 57.4,
+   "over_55": 5.6,
+   "female": 42.3,
+   "offer_creatives": 38,
+   "offer_share": 70.4,
+   "by23": 218,
+   "by23_ran_2_days_or_less": 0,
+   "by23_share_2_days_or_less": 0.0,
+   "age_share": {
+    "18-24": 21.8,
+    "25-34": 35.5,
+    "35-44": 26.5,
+    "45-54": 10.5,
+    "55-64": 4.2,
+    "65+": 1.4
+   },
+   "job_share_of_reach": {
+    "sales": 96.6,
+    "both": 2.2,
+    "brand": 1.2
+   },
+   "new_creatives_by_week": [
+    5,
+    8,
+    2,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    7,
+    0,
+    0,
+    0
+   ]
+  },
+  "An Post": {
+   "ads": 153,
+   "creatives": 68,
+   "new_creatives": 49,
+   "q3_share": 10.4,
+   "under_35": 14.8,
+   "over_55": 36.1,
+   "female": 45.6,
+   "offer_creatives": 12,
+   "offer_share": 17.6,
+   "by23": 129,
+   "by23_ran_2_days_or_less": 10,
+   "by23_share_2_days_or_less": 7.8,
+   "age_share": {
+    "18-24": 3.1,
+    "25-34": 11.7,
+    "35-44": 25.1,
+    "45-54": 24.0,
+    "55-64": 19.1,
+    "65+": 16.9
+   },
+   "job_share_of_reach": {
+    "sales": 84.6,
+    "service": 15.4
+   },
+   "new_creatives_by_week": [
+    9,
+    13,
+    1,
+    3,
+    0,
+    0,
+    0,
+    0,
+    11,
+    0,
+    5,
+    4,
+    3
+   ]
+  },
+  "Avant Money": {
+   "ads": 318,
+   "creatives": 102,
+   "new_creatives": 61,
+   "q3_share": 10.3,
+   "under_35": 26.5,
+   "over_55": 28.2,
+   "female": 42.8,
+   "offer_creatives": 68,
+   "offer_share": 66.7,
+   "by23": 260,
+   "by23_ran_2_days_or_less": 17,
+   "by23_share_2_days_or_less": 6.5,
+   "age_share": {
+    "18-24": 0.0,
+    "25-34": 26.5,
+    "35-44": 24.4,
+    "45-54": 21.0,
+    "55-64": 15.2,
+    "65+": 13.0
+   },
+   "job_share_of_reach": {
+    "sales": 100.0
+   },
+   "new_creatives_by_week": [
+    22,
+    2,
+    0,
+    7,
+    0,
+    14,
+    0,
+    5,
+    0,
+    2,
+    7,
+    0,
+    2
+   ]
+  },
+  "EBS": {
+   "ads": 27,
+   "creatives": 17,
+   "new_creatives": 10,
+   "q3_share": 5.0,
+   "under_35": 29.5,
+   "over_55": 30.8,
+   "female": 47.8,
+   "offer_creatives": 1,
+   "offer_share": 5.9,
+   "by23": 20,
+   "by23_ran_2_days_or_less": 2,
+   "by23_share_2_days_or_less": 10.0,
+   "age_share": {
+    "18-24": 8.9,
+    "25-34": 20.6,
+    "35-44": 21.5,
+    "45-54": 18.3,
+    "55-64": 14.7,
+    "65+": 16.1
+   },
+   "job_share_of_reach": {
+    "sales": 90.7,
+    "brand": 9.3
+   },
+   "new_creatives_by_week": [
+    1,
+    3,
+    0,
+    2,
+    0,
+    3,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "Credit Union": {
+   "ads": 137,
+   "creatives": 52,
+   "new_creatives": 39,
+   "q3_share": 3.3,
+   "under_35": 22.8,
+   "over_55": 33.7,
+   "female": 39.3,
+   "offer_creatives": 12,
+   "offer_share": 23.1,
+   "by23": 119,
+   "by23_ran_2_days_or_less": 0,
+   "by23_share_2_days_or_less": 0.0,
+   "age_share": {
+    "18-24": 4.8,
+    "25-34": 18.0,
+    "35-44": 21.4,
+    "45-54": 22.1,
+    "55-64": 18.0,
+    "65+": 15.8
+   },
+   "job_share_of_reach": {
+    "brand": 82.3,
+    "sales": 17.7
+   },
+   "new_creatives_by_week": [
+    0,
+    0,
+    20,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    19,
+    0,
+    0
+   ]
+  },
+  "bunq": {
+   "ads": 64,
+   "creatives": 17,
+   "new_creatives": 11,
+   "q3_share": 2.8,
+   "under_35": 56.4,
+   "over_55": 10.2,
+   "female": 34.6,
+   "offer_creatives": 9,
+   "offer_share": 52.9,
+   "by23": 42,
+   "by23_ran_2_days_or_less": 5,
+   "by23_share_2_days_or_less": 11.9,
+   "age_share": {
+    "18-24": 16.6,
+    "25-34": 39.8,
+    "35-44": 21.1,
+    "45-54": 12.4,
+    "55-64": 6.4,
+    "65+": 3.7
+   },
+   "job_share_of_reach": {
+    "sales": 100.0
+   },
+   "new_creatives_by_week": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    5,
+    0,
+    2,
+    2
+   ]
+  },
+  "Revolut": {
+   "ads": 63,
+   "creatives": 17,
+   "new_creatives": 3,
+   "q3_share": 1.7,
+   "under_35": 25.5,
+   "over_55": 22.1,
+   "female": 48.8,
+   "offer_creatives": 4,
+   "offer_share": 23.5,
+   "by23": 29,
+   "by23_ran_2_days_or_less": 0,
+   "by23_share_2_days_or_less": 0.0,
+   "age_share": {
+    "18-24": 3.3,
+    "25-34": 22.2,
+    "35-44": 30.1,
+    "45-54": 22.4,
+    "55-64": 13.1,
+    "65+": 8.9
+   },
+   "job_share_of_reach": {
+    "sales": 95.0,
+    "both": 5.0
+   },
+   "new_creatives_by_week": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ]
+  }
+ },
+ "category": {
+  "job_share_of_reach": {
+   "sales": 73.0,
+   "brand": 12.5,
+   "both": 7.9,
+   "service": 6.3,
+   "other": 0.3
+  },
+  "job_count": {
+   "sales": 562,
+   "both": 5,
+   "brand": 89,
+   "service": 29,
+   "other": 3
+  },
+  "product_share_of_reach": {
+   "current_account": 17.2,
+   "mortgage": 14.6,
+   "business": 10.5,
+   "loan": 8.4,
+   "credit_card": 7.2,
+   "savings": 7.1,
+   "fx_travel": 7.1,
+   "sponsorship_community": 5.3,
+   "pension_invest": 5.2,
+   "fraud_safety": 4.7,
+   "whole_bank": 4.1,
+   "app_features": 3.7,
+   "insurance": 2.0,
+   "young": 1.9,
+   "other": 0.6,
+   "recruitment": 0.3
+  },
+  "offer_creatives": 206
+ },
+ "groups": {
+  "Irish banks and lenders": {
+   "members": [
+    "Bank of Ireland",
+    "AIB",
+    "PTSB",
+    "EBS",
+    "Avant Money",
+    "An Post",
+    "Credit Union"
+   ],
+   "age_share": {
+    "18-24": 6.4,
+    "25-34": 22.1,
+    "35-44": 24.9,
+    "45-54": 20.1,
+    "55-64": 14.4,
+    "65+": 12.0
+   },
+   "under_35": 28.6,
+   "q3_reach": 63860365
+  },
+  "Digital challengers": {
+   "members": [
+    "Monzo",
+    "bunq",
+    "Revolut"
+   ],
+   "age_share": {
+    "18-24": 19.3,
+    "25-34": 34.9,
+    "35-44": 26.0,
+    "45-54": 11.9,
+    "55-64": 5.4,
+    "65+": 2.5
+   },
+   "under_35": 54.2,
+   "q3_reach": 13792551
+  }
+ },
+ "top_by_reach": [
+  {
+   "cid": 1,
+   "adv": "PTSB",
+   "q3_reach": 5212333,
+   "q3_copies": 14,
+   "biggest_copy_reach": 1334750,
+   "job": "both",
+   "product": "business",
+   "has_offer": false,
+   "quote": "Supporting sustainable business growth",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=3227050037481754",
+   "image": "img/1.jpg"
+  },
+  {
+   "cid": 3,
+   "adv": "AIB",
+   "q3_reach": 2199814,
+   "q3_copies": 6,
+   "biggest_copy_reach": 484308,
+   "job": "sales",
+   "product": "pension_invest",
+   "has_offer": false,
+   "quote": "Get personalised investment advice today, in the AIB App.",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=1024599869935655",
+   "image": "img/3.jpg"
+  },
+  {
+   "cid": 5,
+   "adv": "Monzo",
+   "q3_reach": 1316226,
+   "q3_copies": 13,
+   "biggest_copy_reach": 198998,
+   "job": "sales",
+   "product": "current_account",
+   "has_offer": true,
+   "quote": "Free bank accounts for the whole family",
+   "kind": "carousel",
+   "library": "https://www.facebook.com/ads/library/?id=2532504657189760",
+   "image": "img/5.jpg"
+  },
+  {
+   "cid": 10,
+   "adv": "bunq",
+   "q3_reach": 1289202,
+   "q3_copies": 17,
+   "biggest_copy_reach": 422059,
+   "job": "sales",
+   "product": "savings",
+   "has_offer": true,
+   "quote": "Get up to 3.01%* interest paid weekly",
+   "kind": "carousel",
+   "library": "https://www.facebook.com/ads/library/?id=27558376193792412",
+   "image": "img/10.jpg"
+  },
+  {
+   "cid": 14,
+   "adv": "Monzo",
+   "q3_reach": 1163069,
+   "q3_copies": 2,
+   "biggest_copy_reach": 952089,
+   "job": "sales",
+   "product": "fx_travel",
+   "has_offer": true,
+   "quote": "Pay abroad with no fees",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=2551242015338665",
+   "image": "img/14.jpg"
+  },
+  {
+   "cid": 6,
+   "adv": "Monzo",
+   "q3_reach": 1149010,
+   "q3_copies": 5,
+   "biggest_copy_reach": 270281,
+   "job": "sales",
+   "product": "current_account",
+   "has_offer": true,
+   "quote": "No monthly account fees. No messing.",
+   "kind": "carousel",
+   "library": "https://www.facebook.com/ads/library/?id=4393468397465745",
+   "image": "img/6.jpg"
+  },
+  {
+   "cid": 15,
+   "adv": "PTSB",
+   "q3_reach": 1110346,
+   "q3_copies": 1,
+   "biggest_copy_reach": 1110346,
+   "job": "sales",
+   "product": "mortgage",
+   "has_offer": true,
+   "quote": "Join us in branch Monday 7 – Friday 11 September.",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=1081480777697499",
+   "image": "img/15.jpg"
+  },
+  {
+   "cid": 16,
+   "adv": "Bank of Ireland",
+   "q3_reach": 1063454,
+   "q3_copies": 2,
+   "biggest_copy_reach": 565940,
+   "job": "sales",
+   "product": "loan",
+   "has_offer": false,
+   "quote": "Borrow from €2,000 to €75,000 with a Bank of Ireland Personal Loan",
+   "kind": "carousel",
+   "library": "https://www.facebook.com/ads/library/?id=1043711994809923",
+   "image": "img/16.jpg"
+  },
+  {
+   "cid": 27,
+   "adv": "Bank of Ireland",
+   "q3_reach": 922389,
+   "q3_copies": 1,
+   "biggest_copy_reach": 922389,
+   "job": "sales",
+   "product": "current_account",
+   "has_offer": false,
+   "quote": "Don't be like me, apply for a Bank of Ireland current account, and get organised ahead of the presale opening on 2 September.",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=1728692971668768",
+   "image": "img/27.jpg"
+  },
+  {
+   "cid": 23,
+   "adv": "An Post",
+   "q3_reach": 893368,
+   "q3_copies": 6,
+   "biggest_copy_reach": 507588,
+   "job": "sales",
+   "product": "fx_travel",
+   "has_offer": false,
+   "quote": "Get sterling at the post office",
+   "kind": "carousel",
+   "library": "https://www.facebook.com/ads/library/?id=2553502598419110",
+   "image": "img/23.jpg"
+  },
+  {
+   "cid": 31,
+   "adv": "PTSB",
+   "q3_reach": 888743,
+   "q3_copies": 1,
+   "biggest_copy_reach": 888743,
+   "job": "sales",
+   "product": "savings",
+   "has_offer": false,
+   "quote": "Fast track your interest with our Interest First Fixed Term Deposit Account.",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=2391243781404385",
+   "image": "img/31.jpg"
+  },
+  {
+   "cid": 32,
+   "adv": "AIB",
+   "q3_reach": 869634,
+   "q3_copies": 2,
+   "biggest_copy_reach": 750233,
+   "job": "sales",
+   "product": "loan",
+   "has_offer": true,
+   "quote": "Home energy upgrades at just 3.55% APR variable.",
+   "kind": "video",
+   "library": "https://www.facebook.com/ads/library/?id=1586788059630268",
+   "image": "img/32.jpg"
+  }
+ ],
+ "biggest_single_ad": {
+  "adv": "Revolut",
+  "reach": 1992452,
+  "start": "2026-06-01",
+  "stop": "2026-07-27"
+ },
+ "revolut_top": {
+  "cid": 0,
+  "first": "2026-06-01",
+  "stop": "2026-07-27",
+  "ads": 4,
+  "summed_reach": 6742148,
+  "biggest_copy": 1992452,
+  "countries": [
+   "IE"
+  ]
+ },
+ "lifetime_share": {
+  "Bank of Ireland": 22.4,
+  "PTSB": 15.5,
+  "AIB": 13.4,
+  "Monzo": 12.2,
+  "An Post": 7.6,
+  "Avant Money": 9.2,
+  "EBS": 4.2,
+  "Credit Union": 2.6,
+  "bunq": 5.5,
+  "Revolut": 7.4
+ },
+ "offer_share_all": 29.9,
+ "boi_short_ads": {
+  "n": 75,
+  "by_product": {
+   "pension_invest": 44,
+   "sponsorship_community": 10,
+   "credit_card": 6,
+   "loan": 5,
+   "mortgage": 5,
+   "business": 2,
+   "app_features": 1,
+   "recruitment": 1,
+   "current_account": 1
+  }
+ },
+ "monzo_september": {
+  "ads": 102,
+  "different_ads": 38,
+  "new_different_ads": 7
+ },
+ "aib_life_series": {
+  "creatives": 13,
+  "named_person_ads": 12,
+  "share_of_aib_brand_reach": 95.0
+ },
+ "creators_by_adv": {
+  "Bank of Ireland": 3,
+  "Monzo": 16,
+  "AIB": 3
+ },
+ "charts": {
+  "f11": {
+   "labels": [
+    "Bank of Ireland",
+    "PTSB",
+    "AIB",
+    "Monzo",
+    "An Post",
+    "Avant Money",
+    "EBS",
+    "Credit Union",
+    "bunq",
+    "Revolut"
+   ],
+   "data": [
+    20.6,
+    16.6,
+    15.9,
+    13.3,
+    10.4,
+    10.3,
+    5.0,
+    3.3,
+    2.8,
+    1.7
+   ]
+  },
+  "f12": {
+   "labels": [
+    "Bank of Ireland",
+    "Avant Money",
+    "Monzo",
+    "An Post",
+    "Credit Union",
+    "AIB",
+    "PTSB",
+    "bunq",
+    "Revolut",
+    "EBS"
+   ],
+   "ads": [
+    421,
+    318,
+    259,
+    153,
+    137,
+    114,
+    104,
+    64,
+    63,
+    27
+   ],
+   "cre": [
+    208,
+    102,
+    54,
+    68,
+    52,
+    83,
+    70,
+    17,
+    17,
+    17
+   ],
+   "new": [
+    127,
+    61,
+    24,
+    49,
+    39,
+    50,
+    40,
+    11,
+    3,
+    10
+   ]
+  },
+  "f21": {
+   "labels": [
+    "Credit Union",
+    "PTSB",
+    "AIB",
+    "Bank of Ireland",
+    "EBS",
+    "Revolut",
+    "Monzo",
+    "An Post",
+    "Avant Money",
+    "bunq"
+   ],
+   "series": {
+    "brand": [
+     82.3,
+     0,
+     23.1,
+     26.4,
+     9.3,
+     0,
+     1.2,
+     0,
+     0,
+     0
+    ],
+    "both": [
+     0,
+     40.4,
+     5.1,
+     0,
+     0,
+     5.0,
+     2.2,
+     0,
+     0,
+     0
+    ],
+    "sales": [
+     17.7,
+     45.9,
+     63.6,
+     66.7,
+     90.7,
+     95.0,
+     96.6,
+     84.6,
+     100.0,
+     100.0
+    ],
+    "service": [
+     0,
+     13.7,
+     8.3,
+     5.5,
+     0,
+     0,
+     0,
+     15.4,
+     0,
+     0
+    ],
+    "other": [
+     0,
+     0,
+     0,
+     1.4,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  "f31": {
+   "labels": [
+    "Current accounts",
+    "Mortgages",
+    "Business banking",
+    "Loans",
+    "Credit cards",
+    "Savings",
+    "Money abroad",
+    "Sponsorship and community",
+    "Pensions and investing",
+    "Fraud and scams",
+    "The bank in general",
+    "App and payments",
+    "Insurance",
+    "Students and young people"
+   ],
+   "data": [
+    17.2,
+    14.6,
+    10.5,
+    8.4,
+    7.2,
+    7.1,
+    7.1,
+    5.3,
+    5.2,
+    4.7,
+    4.1,
+    3.7,
+    2.0,
+    1.9
+   ]
+  },
+  "f32": {
+   "labels": [
+    "Monzo",
+    "Avant Money",
+    "bunq",
+    "Revolut",
+    "Credit Union",
+    "Bank of Ireland",
+    "PTSB",
+    "An Post",
+    "EBS",
+    "AIB"
+   ],
+   "data": [
+    70.4,
+    66.7,
+    52.9,
+    23.5,
+    23.1,
+    22.6,
+    18.6,
+    17.6,
+    5.9,
+    2.4
+   ]
+  },
+  "f41": {
+   "labels": [
+    "18-24",
+    "25-34",
+    "35-44",
+    "45-54",
+    "55-64",
+    "65+"
+   ],
+   "irish": [
+    6.4,
+    22.1,
+    24.9,
+    20.1,
+    14.4,
+    12.0
+   ],
+   "chall": [
+    19.3,
+    34.9,
+    26.0,
+    11.9,
+    5.4,
+    2.5
+   ]
+  },
+  "f42": {
+   "labels": [
+    "Monzo",
+    "bunq",
+    "PTSB",
+    "Bank of Ireland",
+    "EBS",
+    "Avant Money",
+    "Revolut",
+    "AIB",
+    "Credit Union",
+    "An Post"
+   ],
+   "u35": [
+    57.4,
+    56.4,
+    35.7,
+    34.2,
+    29.5,
+    26.5,
+    25.5,
+    25.1,
+    22.8,
+    14.8
+   ],
+   "o55": [
+    5.6,
+    10.2,
+    21.4,
+    26.6,
+    30.8,
+    28.2,
+    22.1,
+    21.2,
+    33.7,
+    36.1
+   ]
+  },
+  "t51": {
+   "weeks": [
+    "2026-06-29",
+    "2026-07-06",
+    "2026-07-13",
+    "2026-07-20",
+    "2026-07-27",
+    "2026-08-03",
+    "2026-08-10",
+    "2026-08-17",
+    "2026-08-24",
+    "2026-08-31",
+    "2026-09-07",
+    "2026-09-14",
+    "2026-09-21"
+   ],
+   "rows": [
+    [
+     "Bank of Ireland",
+     1,
+     9,
+     3,
+     3,
+     14,
+     1,
+     10,
+     10,
+     10,
+     6,
+     14,
+     36,
+     10
+    ],
+    [
+     "PTSB",
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     2,
+     7,
+     12,
+     16,
+     2
+    ],
+    [
+     "AIB",
+     0,
+     13,
+     13,
+     0,
+     7,
+     2,
+     1,
+     0,
+     0,
+     3,
+     2,
+     6,
+     3
+    ],
+    [
+     "Monzo",
+     5,
+     8,
+     2,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     7,
+     0,
+     0,
+     0
+    ],
+    [
+     "An Post",
+     9,
+     13,
+     1,
+     3,
+     0,
+     0,
+     0,
+     0,
+     11,
+     0,
+     5,
+     4,
+     3
+    ],
+    [
+     "Avant Money",
+     22,
+     2,
+     0,
+     7,
+     0,
+     14,
+     0,
+     5,
+     0,
+     2,
+     7,
+     0,
+     2
+    ],
+    [
+     "EBS",
+     1,
+     3,
+     0,
+     2,
+     0,
+     3,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "Credit Union",
+     0,
+     0,
+     20,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     19,
+     0,
+     0
+    ],
+    [
+     "bunq",
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     5,
+     0,
+     2,
+     2
+    ],
+    [
+     "Revolut",
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     0
+    ]
+   ]
+  },
+  "f52": {
+   "labels": [
+    "Bank of Ireland (75 of 288)",
+    "bunq (5 of 42)",
+    "EBS (2 of 20)",
+    "An Post (10 of 129)",
+    "Avant Money (17 of 260)",
+    "PTSB (3 of 71)",
+    "AIB (3 of 78)",
+    "Monzo (0 of 218)",
+    "Credit Union (0 of 119)",
+    "Revolut (0 of 29)"
+   ],
+   "data": [
+    26.0,
+    11.9,
+    10.0,
+    7.8,
+    6.5,
+    4.2,
+    3.8,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ }
+}

@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { cookies } from "next/headers";
 import JSZip from "jszip";
+import { hasAccess } from "@/lib/access";
 import { MODULES_BY_N } from "../../../course/moduleData";
 
 /**
@@ -79,11 +79,11 @@ export async function GET(
         (!want || want.some((w) => k.slice(dir.length) === (w.includes(".") ? w : `${w}.md`))),
     );
     if (!members.length) return new Response("Not found", { status: 404 });
-    const who =
-      process.env.NODE_ENV === "development"
-        ? "dev@localhost"
-        : (await cookies()).get("rwf_course_id")?.value ?? "";
-    if (!who) return new Response("Not found", { status: 404 });
+    /* 2 Oct 2026, at the merge with main: the zip takes the same door as a single file,
+       hasAccess(), so either cookie opens it. It read only the course cookie until then,
+       which is the fault main fixed for single files on 1 Oct. */
+    const mayZip = process.env.NODE_ENV === "development" || (await hasAccess());
+    if (!mayZip) return new Response("Not found", { status: 404 });
     const zip = new JSZip();
     const folder = zip.folder(path.basename(dir))!;
     try {
@@ -120,10 +120,11 @@ export async function GET(
      one the module renders but every file it serves 404s, so a folder window on the page
      would come up empty and look like a broken component rather than a missing cookie.
      `NODE_ENV` is "production" in every build Vercel ships, so this cannot reach a member. */
-  const identified =
-    process.env.NODE_ENV === "development"
-      ? "dev@localhost"
-      : (await cookies()).get("rwf_course_id")?.value ?? "";
+  /* ⭐ 1 Oct 2026: EITHER COOKIE, through hasAccess() (src/lib/access.ts). This read only the
+     course's identity cookie, so someone who signed up at the library or for a report, and was
+     told on the page that everything was open, got "Not found" on every file. Paul, 27 Sep:
+     one sign-up opens everything. */
+  const identified = process.env.NODE_ENV === "development" || (await hasAccess());
   if (!identified) {
     return new Response("Not found", { status: 404 });
   }

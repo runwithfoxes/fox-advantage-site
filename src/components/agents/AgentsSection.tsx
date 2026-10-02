@@ -101,7 +101,7 @@ const OUTBOUND_THREADS = [
   { name: "Ciara Lonergan", company: "Marketing Director · Lough Cover", message: "Hi Ciara - saw the performance marketing role has been open since May. We run that job as an agent for insurers, and I can show you what it does in twenty minutes. Worth a look?", reply: "Yes - send me a couple of times next week." },
   { name: "Tomás Keane", company: "Marketing Director · Slaney Mutual", message: "Hi Tomás - your renewal note is the same one you sent last year. We write those so they read like a person. Ten minutes on how?", reply: "Interesting. Thursday morning suits." },
   { name: "Aoife Brennan", company: "Growth Lead · Fenit Cover", message: "Hi Aoife - congratulations on the new role. If you are building the team, it is worth seeing what an agent does before you hire for it.", reply: "Happy to chat. Send an invite." },
-  { name: "Fintan Rowe", company: "CMO · Carrig Life", message: "Hi David - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
+  { name: "Fintan Rowe", company: "CMO · Carrig Life", message: "Hi Fintan - you wrote about lapsed policies last week. We built the agent that brings them back for a gym; the same shape works for cover. Half an hour?", reply: "Go on then. Next week." },
 ];
 
 const ILL = (what: React.ReactNode) => (
@@ -407,6 +407,10 @@ function TrainingPanel() {
 export default function AgentsSection() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
+  // an agent has been picked: the new homepage keeps the reader hidden until then (30 Sep 2026)
+  const [reading, setReading] = useState(false);
+  // the agent the pointer is on in the full-screen list: its own figure shows beside the list (30 Sep 2026)
+  const [peek, setPeek] = useState(0);
   // which door the surface is showing: the ten agents, the adoption grid,
   // or the course scroller. The hero's three buttons pick it.
   const [mode, setMode] = useState<Door>("agents");
@@ -419,6 +423,7 @@ export default function AgentsSection() {
     const onDoor = (e: Event) => {
       setMode((e as CustomEvent<Door>).detail);
       setOpen(true);
+      setPeek(0);
     };
     window.addEventListener("rwf:door", onDoor);
     return () => window.removeEventListener("rwf:door", onDoor);
@@ -430,10 +435,24 @@ export default function AgentsSection() {
   // section has laid out before it is measured.
   useEffect(() => {
     const show = (h: string) => {
+      /* /#agent-06 (Paul, 30 Sep 2026): a link from another page that names one agent opens it. */
+      const one = /^agent-(\d\d)$/.exec(h);
+      if (one) {
+        const i = AGENTS.findIndex((x) => x.num === one[1]);
+        if (i >= 0) pick(i);
+        return;
+      }
       if (h !== "consulting" && h !== "training" && h !== "agents") return;
       setView(h as Door);
       const el = document.getElementById("agents");
       if (!el) return;
+      /* The new homepage keeps this section collapsed and opens it full screen (29 Sep 2026), so a
+         link to /#agents has nothing to scroll to: open the surface instead. */
+      if (el.getBoundingClientRect().height < 40) {
+        setMode(h as Door);
+        setOpen(true);
+        return;
+      }
       const y = el.getBoundingClientRect().top + window.scrollY - 72;
       window.scrollTo({ top: y, behavior: "smooth" });
     };
@@ -465,19 +484,31 @@ export default function AgentsSection() {
     setActive(i);
     setView("agents");
     setOpen(false);
-    // bring the chosen agent's row to the top of the screen
-    requestAnimationFrame(() => {
+    setReading(true);
+    // bring the chosen agent's row to the top of the screen, once the reader has laid out
+    requestAnimationFrame(() => requestAnimationFrame(() => {
       const el = rowRef.current;
       if (!el) return;
       const y = el.getBoundingClientRect().top + window.scrollY - 96;
       window.scrollTo({ top: y, behavior: "smooth" });
-    });
+    }));
   };
+
+  /* Paul, 30 Sep 2026: "when I click on these agents... It doesn't bring me to the agent I've
+     clicked on." The nav names an agent by its number and this opens that agent's own piece. */
+  useEffect(() => {
+    const onAgent = (e: Event) => {
+      const i = AGENTS.findIndex((x) => x.num === (e as CustomEvent<string>).detail);
+      if (i >= 0) pick(i);
+    };
+    window.addEventListener("rwf:agent", onAgent);
+    return () => window.removeEventListener("rwf:agent", onAgent);
+  }, []);
 
   const a = AGENTS[active];
 
   return (
-    <section className="ag" id="agents">
+    <section className={`ag${reading ? " ag-reading" : ""}`} id="agents">
       {/* THE ONE SELECTOR ON THE PAGE (Paul, 5 Sep). Three boxed buttons in the
           hero's own style pick what the section shows. The hero's three doors
           open the surface; these swap the panel in place. */}
@@ -555,22 +586,36 @@ export default function AgentsSection() {
 
         {mode === "training" ? <TrainingPanel /> : null}
 
-        <nav className="ag-overlay-list" hidden={mode !== "agents"}>
-          {AGENTS.map((ag, i) => (
-            <div className="ag-overlay-clip" key={ag.key}>
-              <button
-                type="button"
-                className={`ag-overlay-item${active === i ? " on" : ""}`}
-                style={{ transitionDelay: open ? `${0.15 + i * 0.05}s` : "0s" }}
-                onClick={() => pick(i)}
-              >
-                <span className="ag-overlay-n">{ag.num}</span>
-                <span className="ag-overlay-name">{ag.name}</span>
-                <span className="ag-overlay-short">{ag.short}</span>
-              </button>
-            </div>
-          ))}
-        </nav>
+        {/* Paul, 30 Sep 2026: the names were too big for the site ("does that feel a bit big and
+            bold?"), so they came down to 22px with the short line in the small mono; the list sits
+            in the middle of the screen, and the right side shows the figure of whichever agent the
+            pointer is on, from that agent's own piece. */}
+        <div className="ag-overlay-body" hidden={mode !== "agents"}>
+          <nav className="ag-overlay-list">
+            {AGENTS.map((ag, i) => (
+              <div className="ag-overlay-clip" key={ag.key}>
+                <button
+                  type="button"
+                  className={`ag-overlay-item${peek === i ? " on" : ""}`}
+                  style={{ transitionDelay: open ? `${0.15 + i * 0.05}s` : "0s" }}
+                  onClick={() => pick(i)}
+                  onMouseEnter={() => setPeek(i)}
+                  onFocus={() => setPeek(i)}
+                >
+                  <span className="ag-overlay-n">{ag.num}</span>
+                  <span className="ag-overlay-name">{ag.name}</span>
+                  <span className="ag-overlay-short">{ag.short}</span>
+                </button>
+              </div>
+            ))}
+          </nav>
+          <div className="ag-overlay-fig" aria-hidden>
+            {open && mode === "agents" ? (() => {
+              const f = AGENTS[peek].body.find((b) => "fig" in b);
+              return f && "fig" in f ? <div className="ag-overlay-fig-in" key={AGENTS[peek].key}>{f.fig()}</div> : null;
+            })() : null}
+          </div>
+        </div>
       </div>
     </section>
   );

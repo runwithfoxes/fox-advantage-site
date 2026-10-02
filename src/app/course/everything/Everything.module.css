@@ -460,6 +460,22 @@
   .rwdesc {
     display: none;
   }
+  /* 26 Sep 2026: on a phone the name kept the 55% cap while the source ran at full width, so
+     "How I Plan, Build, and Run Loops" read as "H…" beside a byline. The name takes the row;
+     the source is the column that shortens. */
+  .rw {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto;
+  }
+  .rwname {
+    max-width: none;
+    flex: 1 1 auto;
+  }
+  .rwmeta {
+    justify-self: end;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .child {
     padding-left: 28px;
   }
@@ -476,4 +492,23 @@
     grid-column: 2;
     margin-top: 2px;
   }
+}
+
+/* The library browser on its own, under /resources/library's head (26 Sep 2026). The page
+   around it sets the measure; this only nulls the top margin the module shell gave .tools. */
+.embed .tools { margin-top: 0; }
+
+/* The ask for someone without an account (29 Sep 2026), above the search. */
+.libAsk { margin: 0 0 28px; padding: 22px 24px; background: #fff; border: 1px solid #E0E0DC; }
+.libAsk p { margin: 0 0 14px; font-family: var(--serif); font-size: 17px; line-height: 1.6; color: #1D1B1B; }
+.libAsk :global(.lib-join) { display: flex; max-width: 560px; }
+.libAsk :global(.lib-join) input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 13px; padding: 13px 14px; border: 1px solid #E0E0DC; border-right: 0; background: #FAFAF8; color: #1D1B1B; }
+.libAsk :global(.lib-join) button { font-family: var(--mono); font-size: 13px; padding: 0 20px; border: 0; background: #3A7CA5; color: #fff; cursor: pointer; white-space: nowrap; }
+/* On a phone the box and the button stack (1 Oct 2026). Side by side, "Open the library, free" left
+   the email box about 80px wide, and it was this row that stretched the page past the screen. */
+@media (max-width: 560px) {
+  .libAsk { padding: 18px 16px; }
+  .libAsk :global(.lib-join) { flex-wrap: wrap; }
+  .libAsk :global(.lib-join) input { flex: 1 1 100%; border-right: 1px solid #E0E0DC; }
+  .libAsk :global(.lib-join) button { flex: 1 1 100%; padding: 13px 20px; }
 }

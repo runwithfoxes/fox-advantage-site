@@ -1,0 +1,935 @@
+/* /home-next. Only what the hub's own CSS does not already carry. Same contract as
+   front.module.css: Space Grotesk 500 heads, Source Serif reading, JetBrains Mono labels,
+   hairlines, sky blue for what is clickable, colour through artwork, no cream fill. */
+
+/* ── Nav: four doors over the film ── */
+.hero { min-height: min(92vh, 880px); }
+.nav { position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; }
+.logo { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: #fff; text-decoration: none; }
+.links { display: flex; gap: 26px; align-items: center; }
+.signin, .cta { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255,255,255,.85); text-decoration: none; }
+.signin { border: 1px solid rgba(255,255,255,.6); padding: 6px 12px; }
+.cta { background: var(--orange); color: #fff; padding: 7px 13px; }
+.cta:hover { background: var(--orange-hover); }
+.menuEx { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #A9CBE4; border: 1px solid rgba(169,203,228,.45); padding: 1px 5px; margin-left: 6px; }
+.menuGo { font-family: var(--mono); font-size: 12px; color: #A9CBE4; margin-top: 10px; }
+.menuFace { display: block; width: 72px; height: 72px; overflow: hidden; margin-bottom: 12px; }
+.menuFace img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Agents: the big panel. Ten agents in two columns, numbered like the agents section. */
+.agentsPanel { grid-template-columns: 2.6fr 1fr; }
+.agentGrid { padding: 26px 30px 28px; }
+.agentCols { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 36px; }
+.agentItem { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding: 9px 0; text-decoration: none; border-top: 1px solid rgba(255,255,255,.08); }
+.agentNum { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.4); padding-top: 2px; }
+.agentItem:hover span span:first-child { color: #5A9CC5; }
+.threePanel { grid-template-columns: 1.3fr 1fr 1fr; }
+.twoPanel { grid-template-columns: 1fr 1fr; }
+.modRow { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; text-decoration: none; border-top: 1px solid rgba(255,255,255,.08); }
+.modWhen { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.45); white-space: nowrap; }
+.modRow:hover span:first-child { color: #5A9CC5; }
+
+/* ── The tape: every tracker's latest reading, under the nav ── */
+.tape { position: relative; z-index: 3; overflow: hidden; border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18);
+  background: rgba(8,16,24,.38); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.tapeInner { display: flex; width: max-content; animation: tape 90s linear infinite; }
+.tape:hover .tapeInner { animation-play-state: paused; }
+@keyframes tape { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@media (prefers-reduced-motion: reduce) { .tapeInner { animation: none } }
+.tapeItem { font-family: var(--mono); font-size: 11.5px; letter-spacing: .02em; color: rgba(255,255,255,.82); padding: 9px 26px; border-right: 1px solid rgba(255,255,255,.14); white-space: nowrap; }
+.tapeItem b { color: #fff; font-weight: 700; }
+.tapeName { color: #A9CBE4; margin-right: 10px; }
+.tapeWhen { color: rgba(255,255,255,.5); margin-left: 8px; }
+
+/* Placeholder headline: shows where it goes and how big, reads plainly as a placeholder. */
+.placeholder { color: rgba(255,255,255,.5); border: 1px dashed rgba(255,255,255,.45); padding: 6px 14px 10px; display: inline-block; }
+
+/* ── The latest move card ── */
+.move { display: block; text-decoration: none; color: #fff; }
+.moveBig { display: flex; align-items: baseline; gap: 12px; padding: 22px 0 6px; }
+.moveNum { font-family: var(--mono); font-weight: 700; font-size: 72px; letter-spacing: -0.05em; line-height: 1; }
+.moveOf { font-family: var(--mono); font-size: 18px; color: rgba(255,255,255,.7); }
+.moveLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; margin: 6px 0 18px; text-shadow: 0 1px 10px rgba(4,10,16,.45); }
+.moveBar { height: 8px; background: rgba(255,255,255,.16); }
+.moveBar i { display: block; height: 100%; background: #A9CBE4; }
+.moveFoot { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(255,255,255,.22); margin-top: 18px; padding-top: 12px;
+  font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.7); }
+.moveFoot span:last-child { color: #A9CBE4; }
+.move:hover .moveFoot span:last-child { color: #fff; }
+
+/* ── The four doors ── */
+.doors { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); margin: -40px 0 0; }
+.door { display: grid; align-content: start; gap: 10px; padding: 26px 26px 30px 0; text-decoration: none; color: inherit; }
+.door + .door { border-left: 1px solid var(--border); padding-left: 26px; }
+.doorNum { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.doorName { font-family: var(--sans); font-weight: 500; font-size: 28px; letter-spacing: -0.02em; }
+.doorLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; }
+.doorGo { font-family: var(--mono); font-size: 12px; color: #3A7CA5; margin-top: 6px; }
+.door:hover .doorName { color: #3A7CA5; }
+
+/* ── Writers at scale: four across, two rows ── */
+.writers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 32px; }
+.soonTitle { color: var(--text-muted); }
+
+/* ── The board ── */
+.board { border-top: 1px solid var(--text); }
+.bRow { display: grid; grid-template-columns: 2.3fr 1.6fr 1.1fr 1.3fr .6fr .6fr; gap: 20px; align-items: center; padding: 14px 0;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; font-family: var(--mono); font-size: 12px; }
+a.bRow:hover { background: rgba(58,124,165,.05); }
+.bHead { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); padding: 10px 0; }
+.bName { display: grid; grid-template-columns: 14px 1fr; gap: 10px; align-items: start; font-family: var(--sans); font-weight: 500; font-size: 16px; }
+.bWhat { display: block; font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.live { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--text-muted); margin-top: 6px; }
+.liveOn { background: #3A7CA5; border-color: #3A7CA5; box-shadow: 0 0 0 4px rgba(58,124,165,.15); }
+.bRead b { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; margin-right: 6px; }
+.bRead span { color: var(--text-muted); }
+.bSoon { color: var(--text-muted); }
+.bSpark i { display: block; height: 0; border-top: 1px dashed var(--border); width: 90%; }
+.firstRead { font-size: 10.5px; color: var(--text-muted); }
+.bCell { color: var(--text-muted); }
+.boardFoot { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 22px; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.boardJoin { display: flex; }
+.boardJoin input { font-family: var(--mono); font-size: 12px; padding: 11px 12px; border: 1px solid var(--border); width: 300px; background: #fff; }
+.boardJoin button { font-family: var(--mono); font-size: 12px; padding: 0 16px; border: 0; background: var(--text); color: #fff; cursor: pointer; }
+
+/* ── Studies ── */
+.studies { display: grid; grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
+.flag { display: grid; gap: 22px; text-decoration: none; color: inherit; }
+.flagTitle { display: block; font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; }
+.flagLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; margin: 10px 0 12px; }
+.covers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
+.coverCard { display: grid; gap: 12px; align-content: start; }
+.coverLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.5; margin: -4px 0 0; }
+.cover { border: 1px solid var(--border); background: #fff; display: grid; grid-template-rows: auto 1fr auto; aspect-ratio: 4 / 5; }
+.flag .cover { aspect-ratio: 5 / 4; }
+.coverTop { display: flex; justify-content: space-between; padding: 12px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.coverArt { position: relative; padding: 0 14px; display: flex; align-items: flex-end; }
+.coverSvg { width: 100%; height: auto; display: block; }
+.coverFox { position: absolute; right: 10px; top: -6px; width: 22%; max-width: 70px; opacity: .92; }
+.coverFoot { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: -0.01em; line-height: 1.2; padding: 14px; border-top: 1px solid var(--border); }
+.flag .coverFoot { font-size: 22px; }
+.cal { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--text); margin-top: 44px; }
+.calMonth { display: grid; gap: 8px; align-content: start; padding: 14px 16px 18px; border-right: 1px solid var(--border); }
+.calMonth:first-child { padding-left: 0; }
+.calMonth:last-child { border-right: 0; }
+.calName { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.calItem { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.4; }
+.calNote { display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+/* ── Tools: four across, two rows ── */
+.tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+/* ── Areas ── */
+.areas { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); margin-top: 8px; }
+.area { display: grid; gap: 8px; align-content: start; padding: 22px 18px 26px; }
+.area:first-child { padding-left: 0; }
+.area + .area { border-left: 1px solid var(--border); }
+.areaName { font-family: var(--sans); font-weight: 500; font-size: 19px; }
+.areaLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.45; }
+.areaGo { font-family: var(--mono); font-size: 11px; color: #3A7CA5; margin-top: 4px; }
+
+/* ── Proof ── */
+.proof { display: grid; grid-template-columns: 1.2fr 1.5fr; gap: 48px 56px; }
+.proofPerson { display: grid; grid-template-columns: 120px 1fr; gap: 22px; align-items: start; }
+.proofPerson img { width: 120px; height: 120px; object-fit: cover; }
+.proofName { display: block; font-family: var(--sans); font-weight: 500; font-size: 26px; letter-spacing: -0.02em; }
+.proofLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.55; margin: 8px 0 0; }
+.proofFacts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--text); }
+.proofFacts > div { padding: 18px 18px 0 0; display: grid; gap: 6px; align-content: start; }
+.proofFacts > div + div { border-left: 1px solid var(--border); padding-left: 18px; }
+.factBig { font-family: var(--mono); font-weight: 700; font-size: 38px; letter-spacing: -0.04em; }
+.factLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.45; }
+.logos { grid-column: 1 / -1; border-top: 1px solid var(--border); padding-top: 18px; }
+.logoRow { font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+
+/* ── Join ── */
+.join { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; padding: 48px 0 24px; margin-top: 72px; border-top: 2px solid var(--text); }
+.joinLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; margin: 12px 0 0; }
+.joinForm { display: grid; gap: 16px; }
+.picks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 18px; }
+.pick { font-family: var(--mono); font-size: 12px; display: flex; gap: 8px; align-items: center; }
+.pick input { accent-color: #3A7CA5; }
+.joinRow { display: flex; }
+.joinRow input { flex: 1; font-family: var(--mono); font-size: 13px; padding: 13px 14px; border: 1px solid var(--border); background: #fff; }
+.joinRow button { font-family: var(--mono); font-size: 13px; padding: 0 20px; border: 0; background: var(--orange); color: #fff; cursor: pointer; }
+
+/* ── Phone and tablet ── */
+@media (max-width: 1100px) {
+  .signin { display: none; }
+  .writers, .tools { grid-template-columns: repeat(2, 1fr); }
+  .doors { grid-template-columns: repeat(2, 1fr); }
+  .door:nth-child(3) { border-left: 0; padding-left: 0; }
+  .door:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .studies, .proof, .join { grid-template-columns: 1fr; }
+  .areas { grid-template-columns: repeat(3, 1fr); }
+  .area:nth-child(4) { border-left: 0; padding-left: 0; }
+  .area:nth-child(n+4) { border-top: 1px solid var(--border); }
+  .cal { grid-template-columns: repeat(3, 1fr); }
+  .bRow { grid-template-columns: 2fr 1.6fr 1fr; }
+  .bRow > :nth-child(n+4) { display: none; }
+  .bSpark { display: none; }
+  .bRow { grid-template-columns: 2fr 1.6fr; }
+}
+@media (max-width: 700px) {
+  .nav { padding: 16px; }
+  .links { gap: 14px; }
+  .links > :not(.cta) { display: none; }
+  .writers, .tools, .doors, .covers, .picks { grid-template-columns: 1fr; }
+  .door, .door + .door { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); }
+  .door:first-child { border-top: 0; }
+  .doors { margin-top: 0; }
+  .areas { grid-template-columns: 1fr 1fr; }
+  .area, .area + .area { border-left: 0; padding-left: 0; }
+  .area:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .cal { grid-template-columns: 1fr 1fr; }
+  .calMonth { padding-left: 0; }
+  .proofFacts { grid-template-columns: 1fr; }
+  .proofFacts > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); padding-top: 14px; }
+  .boardFoot { flex-direction: column; align-items: stretch; }
+  .boardJoin input { width: auto; flex: 1; }
+  .moveNum { font-size: 56px; }
+}
+
+/* Fixes after the first look: grid children must be allowed to shrink, or the flagship
+   cover pushes into the column beside it; a desk's not-yet-written title reads in the
+   same serif as a written one, only greyed. */
+.studies > *, .covers > *, .writers > * { min-width: 0; }
+.writers .soonTitle { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.4; color: var(--text-muted); }
+/* The cover's height comes from its drawing (4:3 viewBox); a fixed aspect-ratio on top of
+   that forced the flagship wider than its column. */
+.cover, .flag .cover { aspect-ratio: auto; width: 100%; }
+
+/* The tape moved under the film (Paul, 25 Sep 2026). On the page's own ground now: hairlines,
+   mono, sky blue for the names, ink for the numbers. No glass, no dark band. */
+.tape { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-top: 0; border-bottom: 1px solid var(--border); }
+.tapeItem { color: var(--text-muted); border-right: 1px solid var(--border); padding: 12px 26px; }
+.tapeItem b { color: var(--text); }
+.tapeName { color: #3A7CA5; }
+.tapeWhen { color: var(--text-muted); opacity: .8; }
+.doors { margin-top: -60px; }
+
+/* ── Contributors as a front page (Paul, 25 Sep: "too symmetrical") ── */
+.contrib { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; padding: 0 0 56px; border-bottom: 1px solid var(--border); margin-top: 56px; padding-top: 0; }
+.contrib > * { min-width: 0; }
+.contribHead { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 26px; }
+.leadBy { display: flex; gap: 14px; align-items: center; border-top: 2px solid var(--text); padding-top: 18px; margin-bottom: 22px; }
+.leadBy img { width: 48px; height: 48px; object-fit: cover; }
+.leadBy .meta, .leadBy span span { display: block; }
+.leadStory { display: grid; gap: 14px; text-decoration: none; color: inherit; }
+.leadImg { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border: 1px solid var(--border); }
+.leadTitle { font-family: var(--sans); font-weight: 500; font-size: 38px; letter-spacing: -0.02em; line-height: 1.1; }
+.leadStory:hover .leadTitle { color: #3A7CA5; }
+.leadDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; line-height: 1.55; }
+.leadMore { list-style: none; padding: 0; margin: 22px 0 18px; display: grid; }
+.leadMore li { display: grid; gap: 2px; padding: 12px 0; border-top: 1px solid var(--border); }
+.leadMore a { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.4; color: var(--text); text-decoration: none; }
+.leadMore a:hover { color: #3A7CA5; }
+.leadMore span { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.stream { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--text); align-self: start; margin-top: 62px; }
+.entry { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 16px 0 18px; border-bottom: 1px solid var(--border); }
+.entry > span:first-child { width: 40px; height: 40px; font-size: 13px; }
+.entryBody { display: grid; gap: 6px; }
+.entryWho { font-family: var(--sans); font-weight: 500; font-size: 16px; }
+.entryWho span { font-family: var(--mono); font-weight: 400; font-size: 10.5px; color: var(--text-muted); margin-left: 8px; }
+.entryWho span[class] { margin-left: 6px; }
+.entryT { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.4; color: var(--text); text-decoration: none; }
+a.entryT:hover { color: #3A7CA5; }
+.entrySoon { color: var(--text-muted); }
+.entryDay { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.doors { margin-top: 0; }
+@media (max-width: 1100px) { .contrib { grid-template-columns: 1fr; gap: 32px; } .stream { margin-top: 0; } }
+@media (max-width: 700px) { .leadTitle { font-size: 28px; } .contribHead { flex-direction: column; gap: 4px; } }
+
+/* The new film ends on a bright beach with the sun behind the card, and white glass lost
+   every label there. A dark tint holds the same white type on the street, the cliffs and
+   the sand. Measured on all three scenes, 25 Sep. */
+.darkGlass { background: rgba(10, 18, 28, 0.46) !important; border-color: rgba(255, 255, 255, 0.28) !important; }
+
+/* The fox walk film: anchored bottom centre so the fox is never cropped (approved handoff). */
+.film { object-position: center bottom; }
+.filmStill { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .film { display: none; }
+  .filmStill { display: block; position: absolute; inset: 0; background: url(/resources/fox-hero-flip-last-frame.jpg) center bottom / cover no-repeat; }
+}
+
+/* ── The front page: a feature on the left, what's new on the right (Paul, 25 Sep) ── */
+/* Paul, 29 Sep: no rules over the essay and the list ("I don't think these lines are necessary. We don't want too much extra space"). */
+.front { display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; margin-top: 36px; padding-bottom: 56px; border-bottom: 1px solid var(--border); }
+.front > * { min-width: 0; }
+.featureHead { display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; margin-bottom: 18px; }
+.kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.featureAll { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; }
+.featureTitle { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 22px; max-width: 26ch; }
+.featureFig :global(.agw) { margin: 0; max-width: none; }
+.featureCap { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.55; color: var(--text-muted); margin: 14px 0 0; max-width: 60ch; }
+.news { list-style: none; padding: 0; margin: 0; }
+.newsItem { display: grid; gap: 5px; padding: 14px 0 16px; border-bottom: 1px solid var(--border); }
+.newsItem:first-child { padding-top: 0; }
+.newsType { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; }
+.newsType span { color: var(--text-muted); text-transform: none; letter-spacing: .02em; }
+.newsT { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.4; color: var(--text); text-decoration: none; }
+.newsT:hover { color: #3A7CA5; }
+.newsDay { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.newsFoot { display: flex; flex-wrap: wrap; gap: 8px 18px; padding-top: 16px; font-family: var(--mono); font-size: 12px; }
+.newsFoot a { color: #3A7CA5; text-decoration: none; }
+@media (max-width: 1100px) { .front { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 700px) { .featureTitle { font-size: 24px; } .front { margin-top: 40px; } }
+
+/* The agent windows read their colours from .ag, which only the agents section has. Same values here. */
+.featureFig {
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  --ag-sans: 'Space Grotesk', ui-sans-serif, sans-serif;
+  color: var(--ag-text);
+}
+/* Give the window the width it was drawn for, so the four number tiles are not clipped. */
+.front { grid-template-columns: 1.9fr 1fr; gap: 48px; }
+
+/* ── The four buttons under the hero, as on the live homepage (Paul, 25 Sep): boxed, mono,
+   deep sky for the first, white with a hairline for the rest, on the site's dot grid. ── */
+.doorBand { background-color: var(--bg); border-bottom: 1px solid var(--border); } /* dots off, Paul 30 Sep */
+.doorRow { max-width: 1240px; margin: 0 auto; padding: 26px 48px; display: flex; gap: 11px; flex-wrap: wrap; }
+.doorPrimary, .doorGhost { font-family: var(--mono); font-size: 15px; padding: 14px 26px; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+.doorPrimary { background: #1A3A4E; color: #fff; }
+.doorPrimary:hover { background: #22495f; }
+.doorGhost { background: #fff; color: #1D1B1B; border-color: #E0E0DC; }
+.doorGhost:hover { border-color: #3A7CA5; color: #3A7CA5; }
+.agentsWrap { margin-top: 72px; }
+@media (max-width: 700px) { .doorRow { padding: 18px 16px; gap: 8px; } .doorPrimary, .doorGhost { font-size: 13px; padding: 10px 12px; } }
+.front { margin-top: 40px; }
+
+/* ── The phone (Paul, 25 Sep, second pass): the library's message parts in a small phone, sized
+   like the homepage figures. Restrained: light screen, thin dark bezel, the dotted figure ground. ── */
+.front { margin-top: 0; padding-top: 48px; grid-template-columns: 1fr 1fr; }
+.feature { align-self: start; }
+.phoneFrame { border: 1px solid var(--border); background-color: #F4F3EF; background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px); background-size: 28px 28px;
+  display: flex; justify-content: center; padding: 36px 24px; }
+.phone { width: 248px; height: 468px; border-radius: 36px; background: #fff; border: 6px solid #1b1b1f; box-shadow: 0 18px 40px rgba(26,58,78,.14), 0 4px 10px rgba(26,58,78,.06);
+  overflow: hidden; display: flex; flex-direction: column; }
+.phoneTop { display: flex; justify-content: space-between; align-items: center; height: 34px; padding: 0 20px; font-family: var(--ppw-sans, -apple-system, sans-serif); font-size: 11px; font-weight: 600; color: #1b1b1f; flex: none; }
+.phoneIsland { width: 72px; height: 20px; border-radius: 12px; background: #1b1b1f; }
+.phoneSig { width: 22px; height: 9px; border-radius: 3px; border: 1px solid #1b1b1f; position: relative; }
+.phoneSig::after { content: ""; position: absolute; inset: 1px 5px 1px 1px; background: #1b1b1f; border-radius: 1px; }
+.phoneIbx { flex: 1; display: flex; min-height: 0; border-top: 1px solid rgba(20,20,30,.07); }
+.phoneIbx :global(.ppw-conv) { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.phoneStream { display: flex; flex-direction: column; }
+.phoneStream :global(.ppw-b) { max-width: 82%; }
+.phoneStream :global(.ppw-type) { align-self: flex-start; }
+.phoneHome { width: 90px; height: 4px; border-radius: 2px; background: #1b1b1f; margin: 6px auto 8px; flex: none; }
+
+/* Third pass: no box. The hero's composition: a real window behind, the phone in front,
+   overlapping, on the page's own dot ground. Sizes match the live hero's windows. */
+.phoneStage { position: relative; height: 470px; background-image: radial-gradient(circle, rgba(208,208,204,0.55) 0.8px, transparent 0.8px); background-size: 28px 28px; }
+.stageWin { position: absolute; top: 18px; right: 0; width: 440px; }
+.phoneFrame { position: absolute; left: 14px; top: 44px; border: 0; background: none; padding: 0; display: block; z-index: 2; }
+.phone { width: 208px; height: 408px; border-radius: 30px; border-width: 5px; box-shadow: 0 24px 50px rgba(26,58,78,.22), 0 6px 14px rgba(26,58,78,.10); }
+.phoneTop { height: 28px; padding: 0 16px; font-size: 10px; }
+.phoneIsland { width: 58px; height: 16px; }
+.phoneSig { width: 18px; height: 8px; }
+.phoneStream :global(.ppw-b) { font-size: 10.5px; padding: 7px 10px; margin-bottom: 7px; max-width: 84%; }
+.phoneIbx :global(.ppw-chd) { padding: 8px 11px; }
+.phoneIbx :global(.ppw-stream) { padding: 11px; }
+@media (max-width: 700px) { .phoneStage { height: 440px; } .stageWin { width: 300px; top: 0; } .phoneFrame { left: 0; top: 70px; } }
+/* Fourth tune: the window behind readable (less scaling), the phone tall enough for the thread. */
+.front { grid-template-columns: 1.35fr 1fr; }
+.phoneStage { height: 500px; }
+.stageWin { width: 560px; top: 8px; right: 0; }
+.phoneFrame { left: 0; top: 56px; }
+.phone { height: 430px; }
+@media (max-width: 1100px) { .stageWin { width: min(560px, 80%); } }
+/* Fifth tune (Paul: "that black line doesn't work. We have this grey aesthetic"): the phone's
+   body is the windows' own frame, #edeef1 with its hairline, not a black bezel. */
+.phone { background: #fff; border: 7px solid #edeef1; outline: 1px solid rgba(20,20,30,.10); box-shadow: 0 1px 0 1px rgba(20,20,30,.06), 0 20px 44px rgba(26,58,78,.16), 0 5px 12px rgba(26,58,78,.07); }
+.phoneTop { color: #54545c; }
+.phoneIsland { background: #d9dade; }
+.phoneSig { border-color: #8a8a93; }
+.phoneSig::after { background: #8a8a93; }
+.phoneHome { background: #c9cacf; }
+/* The Campaign window came out (Paul, 25 Sep). The phone sits alone, centred in its column. */
+.phoneStage { height: 500px; }
+.phoneFrame { left: 50%; top: 30px; transform: translateX(-50%); }
+.phone { height: 452px; }
+/* Klara's thread is longer: wider bubbles, no "Today" line, so it fits without clipping. */
+.phoneStream :global(.ppw-b) { max-width: 90%; }
+.phoneStream :global(.ppw-day) { display: none; }
+.phone { width: 218px; }
+
+/* ── The feature piece (Paul, 25 Sep): headline and opening, phone set in on the right ── */
+.front { grid-template-columns: 1.55fr 1fr; gap: 56px; }
+.feature { padding-top: 14px; }
+.featTitle { font-family: var(--sans); font-weight: 500; font-size: 34px; letter-spacing: -0.02em; line-height: 1.1; margin: 12px 0 10px; }
+.featTitle a { color: var(--text); text-decoration: none; }
+.featTitle a:hover { color: #3A7CA5; }
+.featDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text-muted); margin: 0 0 22px; max-width: 44ch; }
+.featBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
+.featBody p { margin: 0 0 14px; }
+.featPhone { float: right; width: 240px; margin: 0 0 16px 32px; shape-outside: margin-box; }
+.featPhone .phoneStage { height: auto; background: none; }
+.featPhone .phoneFrame { position: static; transform: none; }
+.featMore { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; display: inline-block; margin-top: 4px; }
+.phoneStream { overflow-y: hidden; scroll-behavior: smooth; }
+@media (max-width: 700px) { .featPhone { float: none; margin: 0 auto 20px; } .featTitle { font-size: 27px; } }
+
+/* ── The numbers (Paul, 25 Sep): findings as titles, one chart each, the gate on every card ── */
+.data { padding: 64px 0 8px; }
+.dHead { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; border-top: 2px solid var(--text); padding-top: 16px; margin-bottom: 26px; }
+.dH2 { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; margin: 0; }
+.liveRow { display: flex; flex-wrap: wrap; gap: 6px 20px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.liveRow b { color: var(--text); font-weight: 600; }
+.liveDot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #3A7CA5; box-shadow: 0 0 0 3px rgba(58,124,165,.15); margin-right: 4px; animation: livePulse 2s ease-in-out infinite; }
+@keyframes livePulse { 50% { box-shadow: 0 0 0 5px rgba(58,124,165,.05); } }
+@media (prefers-reduced-motion: reduce) { .liveDot { animation: none; } }
+.dGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.dGrid > * { min-width: 0; }
+.dCard { background: #fff; border: 1px solid var(--border); padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 10px; }
+.dKick { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; display: flex; align-items: center; gap: 8px; }
+.dDraft { font-size: 9px; letter-spacing: .08em; color: #F47521; border: 1px dashed #F47521; padding: 1px 5px; }
+.dTitle { font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; margin: 0; }
+.dChart { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-height: 120px; }
+.dStamp { font-family: var(--mono); font-size: 10px; line-height: 1.5; color: var(--text-muted); }
+.dNote { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+.dFoot { display: grid; gap: 6px; border-top: 1px solid var(--border); padding-top: 10px; }
+.dLock { font-family: var(--mono); font-size: 11px; color: var(--text); text-decoration: none; display: flex; gap: 7px; align-items: center; }
+.dLock:hover { color: #3A7CA5; }
+.dLearn { font-family: var(--mono); font-size: 11px; color: #3A7CA5; text-decoration: none; }
+.stack { display: flex; height: 26px; gap: 2px; }
+.stack i { display: block; }
+.stackKey { display: grid; gap: 3px; font-family: var(--mono); font-size: 10.5px; color: var(--text); }
+.stackKey i { display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: -1px; }
+.hbars { display: grid; gap: 7px; }
+.hbar { display: grid; grid-template-columns: 1fr 1fr 28px; gap: 8px; align-items: center; font-family: var(--mono); font-size: 10.5px; }
+.hLab { color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hTrack { height: 8px; background: #EFEFEB; display: block; }
+.hTrack i { display: block; height: 100%; background: #3A7CA5; }
+.hVal { text-align: right; color: var(--text); font-variant-numeric: tabular-nums; }
+.spark { display: flex; align-items: flex-end; gap: 2px; height: 96px; border-bottom: 1px solid var(--text); }
+.spark i { flex: 1; background: #3A7CA5; display: block; }
+.sparkAxis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+
+/* ── Your sector ── */
+.sectors { padding: 56px 0 8px; }
+.secSub { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.secTabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.secTabs button { font-family: var(--mono); font-size: 13px; padding: 9px 16px; background: #fff; border: 1px solid #E0E0DC; color: #1D1B1B; cursor: pointer; }
+.secTabs button:hover { border-color: #3A7CA5; color: #3A7CA5; }
+.secTabs button.secOn { background: #1A3A4E; border-color: #1A3A4E; color: #fff; }
+.secPanel { display: grid; grid-template-columns: 1.7fr 1fr; gap: 20px; }
+.secPanel > * { min-width: 0; }
+.secMain { background: #fff; border: 1px solid var(--border); padding: 18px 20px; display: grid; gap: 4px; align-content: start; }
+.secRow { display: grid; grid-template-columns: 150px 1.3fr 1fr 40px; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.secCat { font-family: var(--sans); font-weight: 500; font-size: 15px; }
+.secTop { font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; display: grid; }
+.secTop em { font-style: normal; font-family: var(--mono); font-size: 10px; }
+.secRow .hVal { font-family: var(--mono); font-size: 12px; }
+.secSide { background: #fff; border: 1px solid var(--border); padding: 18px 20px; display: grid; gap: 4px; align-content: start; }
+.secLocked { font-family: var(--mono); font-size: 12px; color: var(--text); text-decoration: none; display: flex; gap: 8px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.secLocked:hover { color: #3A7CA5; }
+.secSide .dLearn { margin-top: 10px; }
+
+/* ── The account band ── */
+.account { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; padding: 48px 0 24px; margin-top: 72px; border-top: 2px solid var(--text); }
+.accCols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 20px; }
+.accList { list-style: none; padding: 0; margin: 10px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; }
+.accList li { padding: 7px 0; border-bottom: 1px solid var(--border); }
+.accSide { display: grid; gap: 12px; align-content: start; }
+.accFine { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.accFine a { color: #3A7CA5; }
+.accCourse { background: #fff; border: 1px solid var(--border); padding: 14px 16px; margin-top: 8px; }
+.accMods { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 0; }
+.accMods li { display: grid; grid-template-columns: 20px 1fr auto; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; color: var(--text-muted); }
+.accMods li span { font-family: var(--mono); font-size: 10.5px; }
+.accMods li em { font-style: normal; font-family: var(--mono); font-size: 10.5px; }
+.accMods li.accModOn { color: var(--text); }
+.accMods li.accModOn em { color: #3A7CA5; }
+
+@media (max-width: 1100px) {
+  .dGrid { grid-template-columns: 1fr 1fr; }
+  .secPanel, .account { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .dGrid, .accCols { grid-template-columns: 1fr; }
+  .secRow { grid-template-columns: 1fr 44px; }
+  .secRow .secTop { grid-column: 1 / -1; }
+  .secRow .hTrack { grid-column: 1; }
+}
+/* Fixes after the first look: the markers take the rest of the head row; bar labels get room. */
+.dHead .liveRow { flex: 1 1 420px; justify-content: flex-end; }
+.hbar { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) 28px; }
+
+/* The sector dropdown (Paul, 25 Sep): our boxed mono skin over a native select. */
+.secPick { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+.secSelect { position: relative; display: inline-block; }
+.secSelect select { appearance: none; -webkit-appearance: none; font-family: var(--mono); font-size: 14px; color: #fff; background: #1A3A4E; border: 1px solid #1A3A4E; border-radius: 0; padding: 11px 44px 11px 16px; cursor: pointer; min-width: 240px; }
+.secSelect::after { content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+.secSelect select:focus-visible { outline: 2px solid #3A7CA5; outline-offset: 2px; }
+
+/* Bylines (Paul, 25 Sep): small, editorial. A 22px photo or initial, the name, the date. */
+.byline { display: flex; align-items: center; gap: 9px; margin: -8px 0 22px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.byline img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+.byline b { color: var(--text); font-weight: 500; }
+.byline { width: fit-content; text-decoration: none; }
+.byline:hover b { color: var(--orange); }
+.newsBy { display: flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.newsBy img, .newsBy i { width: 18px; height: 18px; border-radius: 50%; flex: none; }
+.newsBy img { object-fit: cover; }
+.newsBy i { background: #1A3A4E; color: #fff; font-style: normal; font-size: 9px; display: inline-flex; align-items: center; justify-content: center; }
+.newsBy b { color: var(--text); font-weight: 500; }
+
+/* Paul, 25 Sep: "The fonts on the right hand side for the essays look like a different type of
+   font." Every heading on this page is Space Grotesk; the What's new titles were the one set in
+   the reading serif. Titles in the heading face, serif kept for reading text only. */
+.newsT { font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; }
+
+/* The bottom half moved to /home-next/more. The agents section stays mounted on the homepage
+   only for the full-screen panels the four buttons open; its inline reader is hidden here. */
+.agentsHidden { margin: 0; height: 0; overflow: visible; }
+.agentsHidden :global(.ag-switch), .agentsHidden :global(section.ag:not(.ag-reading) .ag-split), .agentsHidden :global(.ag-panel-solo) { display: none; }
+.agentsHidden :global(section.ag:not(.ag-reading)) { padding: 0; margin: 0; min-height: 0; }
+/* Paul, 30 Sep 2026: an agent picked from the nav or the big list opens its own piece here. */
+.agentsHidden:has(:global(.ag-reading)) { height: auto; margin: 56px 0 0; }
+.agentsHidden :global(section.ag.ag-reading .ag-split) { margin-top: 0; }
+.moreLink { padding: 40px 0 16px; border-top: 1px solid var(--border); margin-top: 56px; font-family: var(--mono); font-size: 13px; }
+.moreLink a { color: #3A7CA5; text-decoration: none; }
+
+/* The second page's header: a short band of the same film under the same nav. */
+.heroShort { min-height: 300px; }
+.shortInner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; width: 100%; padding: 60px 48px 44px; }
+.shortTitle { font-family: var(--mono); font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.04em; color: #fff; margin: 0; text-shadow: 0 2px 20px rgba(4,10,16,.45); }
+@media (max-width: 700px) { .shortInner { padding: 40px 16px 32px; } }
+.heroShort { min-height: 0 !important; height: 340px; }
+
+/* Windows, not boxes (Paul, 25 Sep: "it feels a bit flat because of flat edges. We solved for
+   this in our building of our modules"). The module rule: a depicted window is artwork and is
+   rounded (.mod-win, 15px, soft shadow, grey bar with lights); our own chrome stays square. */
+.dWin { margin-top: 0 !important; display: flex; flex-direction: column; }
+.dWin .dCard { border: 0; background: #fff; flex: 1; }
+.secMain, .secSide { padding: 0 !important; border: 0 !important; display: flex; flex-direction: column; }
+.winBody { padding: 16px 18px 14px; display: grid; gap: 4px; align-content: start; }
+.dGrid { gap: 18px; }
+
+/* Tidier (Paul, 25 Sep: the four buttons "feel too big... too fat"). Slimmer buttons, a
+   slimmer band, the same order and colours. */
+.doorRow { padding: 16px 48px; gap: 8px; }
+.doorPrimary, .doorGhost { font-size: 12.5px; padding: 8px 16px; letter-spacing: .02em; }
+.dH2 { font-size: 26px; }
+.data { padding-top: 56px; }
+@media (max-width: 700px) { .doorRow { padding: 12px 16px; gap: 6px; } .doorPrimary, .doorGhost { font-size: 12px; padding: 7px 11px; } }
+.secMain, .secSide { border: 1px solid #E0E0DC !important; }
+/* the dropdown matches the slimmer buttons */
+.secSelect select { font-size: 12.5px; padding: 8px 38px 8px 14px; min-width: 210px; }
+.secSelect::after { right: 14px; width: 6px; height: 6px; }
+
+/* Hero, 25 Sep evening (Paul): the card about 10% smaller, grabbable. Desktop only: this rule
+   had no media query, and in the production build it won over hero.module's phone rule (the CSS
+   chunks land in a different order there than in dev), so a phone got a 140px text column and a
+   360px card off the right edge. Found 27 Sep from Paul's phone screenshot of the AI Ask. */
+@media (min-width: 961px) { .heroInner { grid-template-columns: 1fr 360px; } }
+.heroInner [class*="panel"] { padding: 18px 22px 16px; }
+.heroInner [class*="scroll"]:not([class*="scrollInner"]) { height: 290px; } /* :not(scrollInner): the bare [class*="scroll"] also caught the moving list and pinned its height, so it crawled at 1px a second (found 27 Sep) */
+.heroInner [class*="lineT"] { font-size: 13.5px; }
+.heroInner [class*="lineLab"] { font-size: 9px; }
+.heroInner [class*="headLab"], .heroInner [class*="headSub"] { font-size: 10px; }
+.heroInner [class*="join"] input { font-size: 11px; padding: 9px 11px; }
+.grab { cursor: grab; touch-action: none; user-select: none; position: relative; z-index: 4; transition: box-shadow .2s ease; }
+.grabbing { cursor: grabbing; box-shadow: 0 18px 50px rgba(4,10,16,.35), 0 6px 16px rgba(4,10,16,.2) !important; }
+.grab input { cursor: text; }
+
+/* The phone about 10% smaller. */
+.phone { width: 196px; height: 407px; border-radius: 28px; }
+.featPhone { width: 214px; }
+.phoneStream :global(.ppw-b) { font-size: 10px; }
+
+/* Paul, 25 Sep: "get the word teams onto the same line as marketing", card nudged right; and
+   the subcopy font. The live homepage hero sets its line in Space Grotesk (.ah-sub) and its
+   mono headline with word-spacing -.16em (.ah h1); both carried over here. */
+.heroInner { max-width: 1320px; gap: 40px; }
+.heroInner h1 { font-size: clamp(2.6rem, 5.4vw, 4.8rem); word-spacing: -0.16em; text-wrap: balance; }
+/* On a phone the headline sits at 36px so "Giving marketing teams an edge" makes two lines, not three with "Giving" alone (27 Sep). */
+@media (max-width: 600px) { .heroInner h1 { font-size: 2.25rem; } }
+.heroInner h1 + p { font-family: var(--sans); font-size: 19px; line-height: 1.5; max-width: 40ch; }
+.heroInner { max-width: 1340px !important; padding-right: 40px !important; }
+/* the headline keeps the page's left edge (148px at 1440, the buttons' line) while the card sits further right */
+.heroInner { padding-left: max(48px, min(98px, calc((100vw - 1144px) / 2))) !important; }
+@media (max-width: 960px) { .heroInner { padding-left: 48px !important; padding-right: 48px !important; } }
+@media (max-width: 600px) { .heroInner { padding-left: 16px !important; padding-right: 16px !important; } }
+
+/* The hero sign-up (Paul, 25 Sep): under his line, slim, the site's blue button. */
+.hj { margin-top: 30px; max-width: 470px; }
+.hjForm { display: flex; }
+.hjForm input { flex: 1; min-width: 0; font-family: var(--mono); font-size: 12.5px; padding: 11px 13px; border: 1px solid rgba(255,255,255,.55); border-right: 0; background: rgba(250,250,248,.95); color: var(--text); }
+.hjForm button { font-family: var(--mono); font-size: 12.5px; padding: 0 16px; border: 0; background: #3A7CA5; color: #fff; cursor: pointer; white-space: nowrap; }
+.hjForm button:hover { background: #2F6688; }
+.hjFine { display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.8); text-shadow: 0 1px 8px rgba(4,10,16,.5); }
+.hjFine a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.hjDone { margin-top: 30px; font-family: var(--sans); font-size: 15px; color: #fff; }
+.heroInner [class*="scroll"]:not([class*="scrollInner"]) { height: 330px; }
+
+/* Nav, after Every (Paul, 25 Sep): a quiet sign-in and one light button offering full access. */
+.signinPlain { font-family: var(--mono); font-size: 13px; font-weight: 300; letter-spacing: 2px; color: rgba(255,255,255,.85); text-decoration: none; }
+.signinPlain:hover { color: #fff; }
+.fullAccess { font-family: var(--sans); font-size: 13.5px; font-weight: 500; color: #1D1B1B; text-decoration: none; padding: 8px 15px; border-radius: 6px;
+  background: linear-gradient(180deg, #fff 0%, #E9EAEC 100%); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 4px 14px rgba(4,10,16,.25); }
+.fullAccess:hover { background: #fff; }
+@media (max-width: 1100px) { .signinPlain { display: none; } }
+@media (max-width: 700px) { .links > .fullAccess { display: inline-block; font-size: 12px; padding: 7px 11px; } }
+
+/* What's new, after the live homepage's /recent essays (Paul, 25 Sep: "tidier and cleaner and
+   less pulling the attention"): mono titles at regular weight, one uppercase meta line, no bold,
+   no pictures, tighter rows. Values read off .hpx-nl-* on the live site. */
+.recentLab { font-family: var(--mono); font-size: 14px; letter-spacing: .06em; color: #3A7CA5; }
+.recentItem { display: grid; gap: 7px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+.recentItem:first-child { padding-top: 4px; }
+.recentT { font-family: var(--mono); font-weight: 400; font-size: 15px; line-height: 1.45; letter-spacing: .01em; color: var(--text); text-decoration: none; }
+.recentT:hover { color: #3A7CA5; }
+.recentMeta { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #8A8A85; }
+/* exact values from .hpx-nl-title / .hpx-nl-meta on the live homepage */
+.recentT { font-weight: 500; font-size: 14px; letter-spacing: -.2px; line-height: 1.3; }
+.recentMeta { font-size: 10px; letter-spacing: 1px; }
+/* Paul, 25 Sep: the hero sign-up "slightly too big... probably 10% too big" */
+.hj { max-width: 420px; margin-top: 26px; }
+.hjForm input { font-size: 11.5px; padding: 9px 12px; }
+.hjForm button { font-size: 11.5px; padding: 0 14px; }
+.hjFine { font-size: 10.5px; margin-top: 9px; }
+
+/* PHONE PASS, 26 Sep 2026. The .front column splits above are written without media queries, so
+   each later one undid the 1100px stack and the essay and what's new sat side by side on a phone,
+   half a screen each. This goes last so nothing after it can undo it again. The four buttons sit
+   in one row of equal widths on a phone, where before Contact wrapped onto a line of its own. */
+@media (max-width: 1100px) { .front { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 700px) {
+  .doorRow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .doorPrimary, .doorGhost { padding: 8px 2px; text-align: center; white-space: nowrap; }
+}
+
+/* The library card on a phone (Paul, 26 Sep 2026): off the hero, under the four buttons, still. */
+.phoneLib { display: none; }
+@media (max-width: 700px) {
+  .heroCardSlot { display: none; }
+  .phoneLib { display: block; padding: 24px 16px 0; }
+  .libStill { background: rgb(14, 26, 38) !important; backdrop-filter: none; box-shadow: none; }
+  .libStill [class*="scroll"]:not([class*="scrollInner"]) { height: auto; overflow: visible; mask-image: none; -webkit-mask-image: none; }
+  .libStill [class*="scrollInner"] { animation: none; }
+}
+
+/* Research bands under Your sector, 26 Sep 2026 (Paul: reports first, in the 25 Sep look). */
+.rbFeat { border-top: 2px solid var(--text); }
+.coversWide { grid-template-columns: repeat(4, 1fr); gap: 22px 18px; }
+.coverCard { text-decoration: none; color: inherit; }
+.rbList { margin-top: 44px; }
+.rbListBody { padding: 8px 22px 18px; }
+@media (max-width: 1100px) { .coversWide { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) {
+  .coversWide { grid-template-columns: repeat(2, 1fr); gap: 18px 12px; }
+  .studies { grid-template-columns: 1fr; gap: 28px; }
+  .rbListBody { padding: 6px 12px 14px; }
+}
+.coverTop span { white-space: nowrap; }
+.coversWide .coverTop { font-size: 9px; letter-spacing: .06em; padding: 10px 12px; }
+
+/* Band 3: the course and the library (Paul, 26 Sep: "the training course should be more prominent"). */
+.learnGrid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: start; }
+.learnWin { margin-top: 0; }
+.learnJoin { margin-top: 16px; }
+.learnJoin button { background: #3A7CA5; }
+.libCol { display: grid; gap: 18px; }
+.libBand { background: #1A3A4E; color: #fff; border-radius: 15px; padding: 22px 24px 20px; display: grid; gap: 16px; }
+.libHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.libLab { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -0.02em; }
+.libSub { font-family: var(--mono); font-size: 11px; color: #A9CBE4; }
+.libLedger { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 14px; font-family: var(--mono); font-size: 11.5px; color: rgba(255,255,255,.75); }
+.libLedger b { color: #fff; font-weight: 500; font-size: 15px; margin-right: 4px; }
+.libGo { font-family: var(--mono); font-size: 12.5px; color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.libPrompts { padding: 6px 18px 10px; }
+.libCol .mod-win, .libCol article { margin-top: 0; }
+@media (max-width: 1100px) { .learnGrid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .libBand { padding: 18px 16px; } .libLedger { grid-template-columns: repeat(2, 1fr); } }
+.learnHead { grid-template-columns: 1fr; }
+.learnHead h2 { white-space: nowrap; }
+@media (max-width: 700px) {
+  .learnHead h2 { white-space: normal; }
+  .learnJoin { flex-direction: column; gap: 8px; }
+  .learnJoin button { padding: 12px; }
+  .libBand [class*="shelf"] { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+  .libBand [class*="spineN"] { font-size: 15px; }
+}
+
+/* Band 3 the course alone, band 4 the library alone (Paul, 26 Sep: separate them; the library needs an email). */
+.courseSide { display: grid; gap: 14px; align-content: start; position: relative; padding-top: 6px; }
+.courseFox { width: 96px; justify-self: end; margin-bottom: -6px; }
+.courseStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; line-height: 1.4; margin: 0; }
+.courseLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.6; color: #55534f; margin: 0; }
+.libGrid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: start; }
+.libJoin { margin-top: 0; }
+.libJoin button { background: var(--orange); }
+.libRows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+.libRows li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.libRowName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+.libRowFrom { grid-column: 1; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.libRowLock { grid-column: 2; grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px; color: #3A7CA5; }
+@media (max-width: 1100px) { .libGrid { grid-template-columns: 1fr; } .courseFox { justify-self: start; } }
+
+/* Band 5 essays and the diary; band 6 things to use. */
+.writeGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.writeList { list-style: none; margin: 12px 0 18px; padding: 0; }
+.writeList li { display: grid; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.writeT { font-family: var(--mono); font-size: 14px; line-height: 1.45; color: var(--text); text-decoration: none; }
+.writeT:hover { color: #3A7CA5; }
+.writeDek { font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: #55534f; }
+.writeMeta { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.useGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+.useRows { list-style: none; margin: 8px 0 12px; padding: 0; }
+.useRows li { display: grid; gap: 2px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.useName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.useName:hover { color: #3A7CA5; }
+.useMeta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+@media (max-width: 1100px) { .useGrid { grid-template-columns: 1fr; } .writeGrid { gap: 32px; } }
+@media (max-width: 700px) { .writeGrid { grid-template-columns: 1fr; } }
+
+/* Band 7 trackers small; band 8 coming up; band 9 the account. */
+.trkBody { padding: 8px 18px 16px; display: grid; }
+.trkRow { display: grid; grid-template-columns: 1.6fr 120px 1fr 1.2fr; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); color: inherit; text-decoration: none; }
+.trkRow:hover .trkName { color: #3A7CA5; }
+.trkName { font-family: var(--sans); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; display: grid; gap: 2px; }
+.trkName em { font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); font-weight: 400; }
+.trkSpark { display: block; line-height: 0; }
+.trkRead { display: grid; gap: 1px; }
+.trkRead b { font-family: var(--mono); font-weight: 500; font-size: 18px; color: #3A7CA5; }
+.trkRead em { font-style: normal; font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+.trkMeta { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); text-align: right; }
+.trkBody > a:last-child { margin-top: 14px; }
+.cal .calItem { display: block; text-decoration: none; color: inherit; }
+.cal .calItem:hover { color: #3A7CA5; }
+.calCourse { color: #3A7CA5; }
+.account { margin-top: 24px; }
+@media (max-width: 1100px) { .cal { grid-template-columns: repeat(3, 1fr); } .calMonth { border-right: 0; padding-left: 0; } .account { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 700px) {
+  .trkRow { grid-template-columns: 1fr auto; gap: 6px 12px; }
+  .trkSpark { grid-column: 1; grid-row: 2; }
+  .trkRead { grid-column: 2; grid-row: 1 / span 2; text-align: right; }
+  .trkMeta { grid-column: 1 / -1; text-align: left; }
+  .cal { grid-template-columns: repeat(2, 1fr); }
+  .accCols { grid-template-columns: 1fr; }
+}
+.trkName { display: block; }
+.trkName em { display: block; margin-top: 2px; }
+@media (max-width: 700px) { .account .joinRow { flex-direction: column; gap: 8px; } .account .joinRow button { padding: 12px; } }
+
+/* Scene covers (Paul, 27 Sep): the picture on top, a deep navy plate under it with the number,
+   the cadence and the title. His rulings in order: the drawn charts lose to photos, the white
+   frame "feels flat", a title set in the picture "does not work" at card size, and then "too much
+   copy squeezed to the report covers... all thumbnails need to be even in size." So every card is
+   the same height: the picture 4:3, the plate a fixed two-line box, the line under it one row. */
+.coverScene { display: grid; grid-template-rows: auto auto; border: 0; background: #1A3A4E; }
+.coverPhoto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.coverPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+.coverPlate { padding: 9px 12px 11px; display: grid; gap: 5px; color: #fff; }
+.coverSceneTop { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.62); white-space: nowrap; }
+.coverPhotoTitle { font-family: var(--sans); font-weight: 500; font-size: 14.5px; letter-spacing: -0.01em; line-height: 1.2; color: #fff; height: calc(2 * 1.2em); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.flag .coverPhoto { aspect-ratio: 16 / 10; }
+.flag .coverPlate { padding: 14px 16px 16px; gap: 8px; }
+.flag .coverSceneTop { font-size: 10px; letter-spacing: .1em; }
+.flag .coverPhotoTitle { font-size: 26px; height: auto; display: block; }
+/* the row under a small card is ONE line, always: editions and the example tag, no date */
+.coverMeta { display: flex; align-items: center; gap: 8px; white-space: nowrap; overflow: hidden; min-height: 20px; }
+
+/* The big cover's excerpt (Paul, 27 Sep): the essay band's byline and body, under the title and line. */
+.flagBy { display: flex; align-items: center; gap: 9px; margin: 2px 0 16px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.flagBy b { color: var(--text); font-weight: 500; }
+.flagMark { width: 24px; height: 24px; border-radius: 50%; background: #1A3A4E; color: #fff; font-style: normal; font-family: var(--mono); font-size: 11px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.flagBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
+.flagBody p { margin: 0 0 14px; }
+.flag .doorGo { margin-top: 2px; }
+
+/* Scroll films of our own pages (Paul, 27 Sep): the page in a window, playing itself. */
+.scrollWin { overflow: hidden; }
+.scrollFilm { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: #1A3A4E; }
+.courseMods { margin: 14px 0 12px; }
+
+/* The library and the course bands in the essay's shape (Paul, 27 Sep): the words on the left, the
+   page itself scrolling in a window on the right. */
+.tellGrid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+.tellCol { min-width: 0; }
+/* Paul, 27 Sep: "remember we want fonts all same size, the smaller size." One body size, no big opener. */
+.tellStand { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); margin: 0 0 14px; }
+.tellBody { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.65; color: var(--text); }
+.tellBody p { margin: 0 0 14px; }
+.tellLedger { list-style: none; margin: 4px 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); }
+.tellLedger b { color: var(--text); font-weight: 500; font-size: 14px; margin-right: 4px; }
+.courseMods { margin: 6px 0 16px; }
+@media (max-width: 900px) { .tellGrid { grid-template-columns: 1fr; gap: 24px; } }
+.rbAll { display: inline-block; margin-top: 28px; }
+
+/* Phone (27 Sep, from the phone-width pass): a band heading at 38px runs "Free course: AI Fluency for
+   Ambitious Marketers" to four lines. 28px on a phone, and the line under it sits close. */
+@media (max-width: 600px) {
+  .learnHead { gap: 6px; margin-bottom: 22px; }
+}
+.tellLink { color: #3A7CA5; text-decoration: underline; text-decoration-color: rgba(58,124,165,.4); text-underline-offset: 3px; }
+/* Phone (27 Sep pass): the covers' number and cadence were 9px on a phone; 10.5px reads. */
+@media (max-width: 600px) { .coverSceneTop { font-size: 10.5px; } .coverPhotoTitle { font-size: 15px; } }
+
+/* ── Three pieces of work, and the two books (Proof.tsx, 29 Sep 2026) ── */
+.workGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.workCard { display: flex; flex-direction: column; gap: 10px; color: inherit; text-decoration: none; min-width: 0; }
+.workCard:hover .workTitle { color: var(--orange); }
+.workImg, .workPlate { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); background: #fff; margin-bottom: 8px; }
+.workPlate { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 24px; background: var(--text); color: #fff; border-color: var(--text); }
+.workPlate b { font-family: var(--sans); font-weight: 500; font-size: 64px; letter-spacing: -0.03em; line-height: 1; }
+.workPlate span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: rgba(255,255,255,.72); margin-top: 10px; }
+.workTitle { display: block; font-family: var(--sans); font-weight: 500; font-size: 24px; letter-spacing: -0.015em; line-height: 1.15; }
+.workLine { margin: 0; font-family: var(--sans); font-size: 16px; line-height: 1.5; color: var(--text); }
+.workNum { font-family: var(--sans); font-size: 15px; color: var(--text-muted); }
+.workNum b { font-weight: 500; color: var(--text); }
+.workWho { margin: 4px 0 0; }
+.bookGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.bookCard { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; color: inherit; text-decoration: none; min-width: 0; }
+.bookCard:hover .workTitle { color: var(--orange); }
+.bookCover { width: 150px; height: auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(20,16,40,.18), 0 1px 2px rgba(20,16,40,.1); }
+.bookSub { display: block; font-family: var(--sans); font-size: 15px; color: var(--text-muted); margin: 4px 0 10px; }
+@media (max-width: 1100px) { .workGrid { gap: 24px; } .bookGrid { gap: 32px; } }
+@media (max-width: 700px) {
+  .workGrid { grid-template-columns: 1fr; gap: 40px; }
+  .bookGrid { grid-template-columns: 1fr; gap: 40px; }
+  .bookCard { grid-template-columns: 110px 1fr; gap: 20px; }
+  .bookCover { width: 110px; }
+  .workPlate b { font-size: 56px; }
+}
+
+/* The reports band with one series: the flag alone, cover on the left and the words beside it. */
+.studiesOne { grid-template-columns: 1fr; }
+.studiesOne .flag { grid-template-columns: 1fr 1.5fr; gap: 44px; align-items: start; }
+.studiesOne .covers { display: none; }
+@media (max-width: 1100px) { .studiesOne .flag { grid-template-columns: 1fr; gap: 22px; } }
+
+/* Coming soon covers beside the one report out: two across, the box to be told sits under the line. */
+.coversComing { grid-template-columns: repeat(2, 1fr); gap: 26px 22px; align-content: start; }
+.comingCard .joinRow { margin-top: 4px; }
+.comingCard .joinRow input { font-size: 12px; padding: 10px 12px; }
+.comingCard .joinRow button { font-size: 12px; padding: 0 14px; white-space: nowrap; }
+@media (max-width: 700px) { .coversComing { grid-template-columns: 1fr; gap: 32px; } }
+.studies .coversComing { gap: 28px 24px; }
+.comingCard .joinRow input { min-width: 0; }
+/* The tell-me box must be allowed to shrink, or its natural width pushes the card past its column. */
+.comingCard { min-width: 0; }
+.comingCard .joinRow { min-width: 0; }
+.comingCard .joinRow input { min-width: 0; flex: 1 1 0; width: 0; }
+.comingCard .joinRow button { flex: 0 0 auto; }
+
+/* Words in the picture (Cover text prop). The AI Ask's header, at cover size. */
+.coverWordsScene { background: transparent; }
+.coverWordsScene .coverPhoto { aspect-ratio: 16 / 10; }
+/* Paul, 29 Sep: "We can't have words going across the face of the fox." The fox stands bottom centre
+   in every cover, so the words sit top left, in the sky, and the shade comes from the top. */
+.coverWords { position: absolute; inset: 0; display: grid; align-content: start; justify-items: start; gap: 8px; padding: 18px 20px 20px; background: linear-gradient(180deg, rgba(10,30,45,.66) 0%, rgba(10,30,45,.25) 38%, rgba(10,30,45,0) 60%); color: #fff; }
+/* no width cap on the cover headline (Paul, 1 Oct 2026: headlines never stop halfway across). The words are in the sky at the top; the fox is at the bottom, so a full line does not cross his face. */
+.coverKicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+.coverHeadline { font-family: var(--sans); font-weight: 500; font-size: 26px; line-height: 1.12; letter-spacing: -0.02em; }
+.coverHeadline em { font-style: normal; color: #A6CDE8; }
+.flag .coverWords { padding: 24px 28px 26px; gap: 10px; }
+.flag .coverHeadline { font-size: 30px; }
+.flag .coverKicker { font-size: 10.5px; }
+.comingCard .coverWords { padding: 14px 16px 16px; gap: 6px; }
+.comingCard .coverHeadline { font-size: 20px; }
+/* One out, two coming: the big one takes the wide column and the coming ones stack beside it. */
+.studiesComing { grid-template-columns: 1.75fr 1fr; gap: 48px; }
+.studiesComing .coversComing { grid-template-columns: 1fr; gap: 36px; }
+@media (max-width: 1100px) { .studiesComing { grid-template-columns: 1fr; gap: 40px; } .studiesComing .coversComing { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+@media (max-width: 700px) { .studiesComing .coversComing { grid-template-columns: 1fr; } .flag .coverHeadline { font-size: 26px; } }
+
+/* One row of four at the foot: two books, two case studies (Proof.tsx, 29 Sep). No heading. */
+.fourShelf { padding-top: 56px; }
+.fourGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.fourGrid .workTitle { font-size: 21px; }
+.fourGrid .workLine { font-size: 15px; }
+.workImgTop { object-position: center top; }
+/* Paul, 29 Sep: "all these images need to be the same size as each other." The plate is the same
+   4:3 box as the photos, and the cover sits inside it by absolute position, so a percentage height
+   resolves against the box rather than growing it. Both cover files share one shape (public/book/). */
+.bookPlate { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #F1F1EE; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.fourGrid .bookCover { position: absolute; top: 14%; left: 50%; transform: translateX(-50%); height: 72%; width: auto; border-radius: 3px; box-shadow: 0 10px 28px rgba(20,16,40,.22), 0 1px 2px rgba(20,16,40,.1); }
+@media (max-width: 1100px) { .fourGrid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; } }
+@media (max-width: 700px) { .fourGrid { grid-template-columns: 1fr; gap: 40px; } }
+
+.tellMid { align-items: center; }
+/* The four cards' words in the serif the rest of the page reads in; Space Grotesk stays for titles. */
+.fourGrid .workLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.5; }
+
+/* Paul, 29 Sep: "Can this card be longer in length." The library film is re-recorded at 1000x1050, so
+   the window stands as tall as the words beside it. */
+.libFilm { aspect-ratio: 20 / 21; object-position: top; }
+
+/* What's new with a writer beside each row (Paul, 29 Sep). Paul's photo; Lena and Sam a letter on
+   deep sky, the mark the report byline already uses. */
+.newsRow { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; }
+.whoMark { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; background: #1A3A4E; color: #fff; font-style: normal; font-family: var(--mono); font-size: 11px; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+.newsRow > span { display: grid; gap: 7px; min-width: 0; }
+.whoLink { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); }
+.whoLink:hover { color: #3A7CA5; }
+.workItem { display: grid; gap: 3px; padding: 8px 0; text-decoration: none; color: inherit; }
+.workItem:hover .itemT, .workItem:hover span:first-child { color: #A6CDE8; }
+
+/* Welcome back, for a visitor this browser already knows (29 Sep 2026). */
+.hjBack { margin: 0 0 14px; font-family: var(--sans); font-size: 18px; color: #fff; text-shadow: 0 1px 8px rgba(4,10,16,.5); }
+.hjGo { display: flex; gap: 10px; flex-wrap: wrap; }
+.hjGoMain { font-family: var(--mono); font-size: 13px; padding: 13px 18px; background: #3A7CA5; color: #fff; text-decoration: none; }
+.hjGoMain:hover { background: #2F6688; }
+.hjGoGhost { font-family: var(--mono); font-size: 13px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.7); color: #fff; text-decoration: none; }
+
+/* The agents menu's right column (Paul, 30 Sep): the Klara phone, linking to the essay. Second pass the
+   same morning: 15% smaller (0.75 to 0.6375) with the essay's headline under it. */
+.menuPhone { grid-template-columns: 125px minmax(0, 1fr); gap: 22px; align-items: start; }
+.menuPhoneBox { display: block; width: 125px; height: 260px; }
+.menuPhoneText { display: block; padding-top: 4px; }
+.menuPhoneText .menuGo { display: block; margin-top: 14px; }
+.menuPhone .phoneStage { background: none; width: 125px; height: 260px; }
+.menuPhone .phoneFrame { position: static; transform: scale(.6375); transform-origin: top left; }
+.menuPhone .phone { box-shadow: 0 14px 34px rgba(4,10,16,.35); transition: transform .3s ease; }
+.menuPhone:hover .phone { transform: translateY(-3px); }
+
+/* The nav on a page with no film behind it (Paul, 30 Sep), fixed to the top. Second pass the same day:
+   "I don't love the blue bar... an ordinary white background with just like a navy blue font." So the
+   logo and the four menu names in navy, Sign in a solid navy button. The menus
+   that drop from it keep their navy panels. */
+/* Third pass, same day: "Why can't it just be the colour of the page with no line at all?" So the page's
+   own cream, no line. It stays solid so the essay scrolling under it does not show through. */
+.navBar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg); padding-top: 14px; padding-bottom: 14px; }
+.navBar > .logo { color: #1A3A4E; font-weight: 400; }
+.navBar .links > div > button:not([aria-expanded="true"]) { color: #1A3A4E; }
+.navBar .links > div > button:not([aria-expanded="true"]):hover { color: #3A7CA5; }
+.navBar .fullAccess { background: #1A3A4E; color: #fff; border: 1px solid #1A3A4E; box-shadow: none; }
+.navBar .fullAccess:hover { background: #3A7CA5; border-color: #3A7CA5; }
+
+/* The library band for a signed-in visitor (Paul, 30 Sep): no form, told they're in, one button in. */
+.libIn { display: grid; gap: 12px; justify-items: start; margin-top: 22px; }
+.libInLine { margin: 0; font-family: var(--mono); font-size: 14px; color: #3A7CA5; }
+.libInGo { font-family: var(--mono); font-size: 14px; padding: 12px 20px; background: #1A3A4E; color: #fff; text-decoration: none; }
+.libInGo:hover { background: #3A7CA5; }
+.libWinLink { display: block; text-decoration: none; color: inherit; }
+.libWinLink:hover :global(.mod-win) { box-shadow: 0 16px 40px rgba(26,58,78,.14); }
+
+/* The phone menu (Paul, 30 Sep 2026: "I'd like a hamburger menu for mobile"). Only below 700px, where
+   the four drop-downs are hidden. White lines over the film, navy on the cream bar. */
+.burger { display: none; }
+@media (max-width: 700px) {
+  .links > .burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 36px; height: 34px; padding: 0 8px; background: none; border: 0; cursor: pointer; color: #fff; }
+  .burger span { display: block; height: 2px; width: 20px; background: currentColor; border-radius: 1px; }
+  .navBar .links > .burger { color: #1A3A4E; }
+  .mobPanel { grid-template-columns: 1fr !important; gap: 0; padding: 8px 22px 14px; }
+  .mobGroup { display: grid; padding: 14px 0 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .mobGroup:last-child { border-bottom: 0; }
+  .mobGroup :global(a) { padding: 8px 0; }
+}
+
+/* The course, named in plain writing beside the four buttons (Paul, 1 Oct 2026). No box: it is a
+   line of writing, not a fifth button. On a phone, where the buttons are a row of four, it takes a
+   line of its own under them. */
+.doorCourse { align-self: center; margin-left: 36px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; color: #3A7CA5; text-decoration: none; }
+.doorCourse:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px) { .doorCourse { grid-column: 1 / -1; margin: 6px 0 0; font-size: 11.5px; letter-spacing: 0; } }
+

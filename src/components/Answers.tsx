@@ -1,5 +1,6 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
 import { useState } from "react";
 import Link from "next/link";
 import { clusters } from "@/content/answers-data";
@@ -25,18 +26,7 @@ export default function AnswersPage() {
   return (
     <>
       {/* TOP BAR */}
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact">/contact</Link>
-          <Link href="/book#signup" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      <NextNav bar />
 
       {/* HERO */}
       <section className="answers-hero">
@@ -123,15 +113,6 @@ export default function AnswersPage() {
 
       {/* BOTTOM BAR */}
       <div className="footer-spacer" />
-      <div className="bottom-bar">
-        <Link href="/">#home</Link>
-        <Link href="/book#chapters">chapters.md</Link>
-        <Link href="/answers" className="active">/answers</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book#signup" className="cta-bar">
-          get the book
-        </Link>
-      </div>
 
       {/* FAQ SCHEMA */}
       <script

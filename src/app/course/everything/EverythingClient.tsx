@@ -1,9 +1,11 @@
 "use client";
 
+import NextNav from "@/app/home-next/NextNav";
+import LibJoin from "./LibJoin";
+
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import s from "./Everything.module.css";
-import { HERO } from "../courseCopy";
 
 /**
  * ⭐⭐ THE PAGE IS A FILE TREE, 3 Aug 2026. Paul named GitHub as the reference and named what
@@ -47,7 +49,7 @@ export type FileRow = {
    * and hiding the NAMES cost this page the one thing it exists for: being a public, ungated
    * list that search and the AI engines can read.
    */
-  kind: "prompt" | "link" | "pending";
+  kind: "prompt" | "link" | "pending" | "locked";
   name: string;
   /** Right-aligned machine text. The source for a link, the size for a prompt. */
   meta?: string;
@@ -109,11 +111,18 @@ export default function EverythingClient({
   modules,
   hidden,
   shelfCount,
+  embed = false,
+  locked = false,
 }: {
   sections: Section[];
   modules: ModuleRow[];
   hidden: number;
   shelfCount: number;
+  /** 26 Sep 2026: true renders only the search, filter and boxes, for /resources/library. */
+  embed?: boolean;
+  /** 26 Sep 2026, Paul: "Library requires email too." true keeps the prompt words out of the
+      HTML and turns copy into the lock line; names, lessons and links stay on the page. */
+  locked?: boolean;
 }) {
   const [q, setQ] = useState("");
   const [mod, setMod] = useState<number | null>(null);
@@ -172,129 +181,12 @@ export default function EverythingClient({
     }
   };
 
-  const built = modules.filter((m) => m.has).length;
-  const lessonCount =
-    sections.find((sec) => sec.kind === "lessons")?.rows.length ?? 0;
 
-  return (
-    <div className="mod-shell">
-      <header className="chapter-nav">
-        <Link href="/" className="chapter-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <Link href="/course" className="chapter-nav-back">
-          ← course
-        </Link>
-      </header>
-
-      {/* ⛔ NO BUILD BANNER ON THIS PAGE, Paul 3 Aug 2026: "Can you take off the build view
-          blue thing at the top?" The module page keeps its own. Here the banner sat above the
-          masthead and pushed the whole page down, so the one page whose top is supposed to
-          match a module page's top did not, which was his next sentence. ?build still works
-          and is still the only way to see the empty shelf sections; those sections ARE the
-          cue that you are in it. */}
-      {/* ⭐ THE SAME TWO-COLUMN GRID AS A MODULE PAGE, and the reason is measured rather than
-          felt. Paul, 3 Aug: "the fonts are too big". They were not. The h1 and the prose use
-          the identical classes on both pages; the module page indents them into a 748px
-          column and this page ran them across the full 1124px, so a 52px headline over a
-          50% wider measure read as shouting and the standfirst ran to about 120 characters
-          a line. Porting the grid fixes the type by fixing the column. */}
-      <div className="mod-grid">
-        <div className="mod-railcol">
-          <nav className="mod-rail">
-            <p>/the library</p>
-            {/* ⭐ NUMBERED OVER WHAT IS VISIBLE, NEVER OVER THE SOURCE ARRAY. Filtering first
-                and numbering second is the whole fix: numbering the source array printed
-                01 then 03 on the live page, because People I follow is empty and hidden but
-                still held position two. A rail that skips a number reads as a page with
-                something missing. */}
-            {sections
-              .filter(
-                (sec) =>
-                  sec.rows.length > 0 || (build && sec.kind === "shelf"),
-              )
-              .map((sec, i) => (
-                <a key={sec.slug} href={`#s-${sec.slug}`}>
-                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mod-dot" />
-                  <span>
-                    {sec.title}
-                    <em className={s.railn}>{sec.rows.length}</em>
-                  </span>
-                </a>
-              ))}
-          </nav>
-        </div>
-
-        <div className="mod-maincol">
-          <header className="mod-masthead">
-            {/* ⚠️ THE SLOT STAYS EVEN THOUGH THE WORDS CHANGED, and the two instructions are
-                connected. Paul, 3 Aug: "I don't want to say free nothing to sign up for. You
-                can take that off", and in the same breath, "I want to make sure that the
-                navigation of the page starts at the same place as my other ones." A module
-                page's eyebrow reads MODULE 1 OF 6 · OPENS MON 21 SEP and it is what sets the
-                height of everything under it. Deleting the element rather than its text lifts
-                this headline 29px above every module headline and breaks the second
-                instruction while obeying the first.
-                ⛔ SO THESE THREE WORDS ARE A PLACEHOLDER FOR HIS, not a decision. */}
-            <p className="mod-eyebrow">The library</p>
-            <h1 className="mod-h1">Everything from the course</h1>
-            {/* ⭐⭐ MODULE 1'S FOX, AT MODULE 1'S SIZE, Paul 3 Aug 2026: "The fox is too big
-                and it's pushing the page down. Look at the format for Module 1, the size of
-                the fox and how it indents into the text, and copy that."
-
-                ⭐ THE CAUSE WAS THE PICTURE, NOT THE CSS, and globals.css had already written
-                it down beside .mod-meta: the fox FLOATS and the metadata row CLEARS it, so
-                whenever the fox is taller than the prose beside it, the clear turns the
-                overhang into dead space. fox-book.png is portrait and stands about 235px at
-                180px wide; this page's standfirst is three lines. Every pixel of fox below
-                the last line of prose became a hole above the metadata.
-
-                ⛔ SO DO NOT SWAP THIS FOR A PORTRAIT ONE. chapter-fox-sitting-nobg.png is
-                module 1's own and is roughly square, which is what lets the same 180px width
-                and the same -60px gutter indent read identically on both pages. */}
-            <div className="chapter-fox-hero">
-              <img
-                className="chapter-fox-hero-img"
-                src="/fox/chapter-fox-sitting-nobg.png"
-                alt=""
-              />
-            </div>
-            <p className="mod-standfirst">
-              Every prompt and every link, from all six modules, on one page. It is here
-              so you can find the thing you half-remember without going back through a
-              lesson to look for it. Take whatever is useful.
-            </p>
-            <div className="mod-meta">
-              <span>
-                From the lessons<b>{lessonCount} things</b>
-              </span>
-              <span>
-                Modules<b>
-                  {built} of {modules.length} built
-                </b>
-              </span>
-              {/* ⭐⭐ "NO EMAIL NEEDED" IS GONE, PAUL 3 Aug 2026: "i want to remove 'no email
-                  needed' everywhere", and in the same breath the reason, "I want everybody
-                  that does the course must sign up through email."
-
-                  ⛔ IT WAS NOT A WORDING PREFERENCE. The line promised the opposite of how the
-                  course works, on the page holding the course's most useful material. It had
-                  been true of this page in isolation and was never true of the course.
-
-                  ⭐ THE REPLACEMENT IS HIS OWN APPROVED NOTE, IMPORTED NOT RETYPED.
-                  courseCopy.freeNote carries a standing rule with it: say free, never "free
-                  forever", because it must not bind his future pricing. Writing those words
-                  again here would have put a second copy of a pricing claim in the codebase. */}
-              <span>
-                Cost<b>{HERO.freeNote}</b>
-              </span>
-              <span>
-                Sharing<b>Copy anything. Send it on.</b>
-              </span>
-            </div>
-          </header>
-
+  /* The search, the module filter and the boxes: the part of this page that IS the library.
+     Pulled into one piece on 26 Sep 2026 so /resources/library can show the same browser
+     under its own head (embed), while this page keeps its module-page shell around it. */
+  const browser = (
+    <>
           <div className={s.tools}>
             <div className={s.searchwrap}>
               <input
@@ -466,6 +358,16 @@ export default function EverythingClient({
                               </span>
                               <span className={s.rwmeta}>{f.meta}</span>
                             </div>
+                          ) : f.kind === "locked" ? (
+                            /* A file the visitor cannot open yet: named, and the row goes to
+                               the sign-up box rather than to a link that answers Not found. */
+                            <a key={j} className={`${s.rw} ${s.child}`} href="#account">
+                              <span className={s.rwmain}>
+                                <FileIcon />
+                                <span className={s.rwname}>{f.name}</span>
+                              </span>
+                              <span className={s.rwmeta}>{f.meta}</span>
+                            </a>
                           ) : f.kind === "link" ? (
                             <a
                               key={j}
@@ -493,16 +395,20 @@ export default function EverythingClient({
                                 <span className={s.rwname}>{f.name}</span>
                               </button>
                               <span className={s.rwmeta}>{f.meta}</span>
-                              <button
-                                type="button"
-                                className={s.rwcopy}
-                                onClick={() => {
-                                  track(f.name, "copied prompt", r.modN);
-                                  copy(f.body as string, "Prompt copied");
-                                }}
-                              >
-                                copy
-                              </button>
+                              {locked ? (
+                                <a className={s.rwcopy} href="#account">copy</a>
+                              ) : (
+                                <button
+                                  type="button"
+                                  className={s.rwcopy}
+                                  onClick={() => {
+                                    track(f.name, "copied prompt", r.modN);
+                                    copy(f.body as string, "Prompt copied");
+                                  }}
+                                >
+                                  copy
+                                </button>
+                              )}
                             </div>
                           ),
                         )}
@@ -510,17 +416,19 @@ export default function EverythingClient({
                         {/* The prompt itself, opened from its own file row. Same rule as
                             above: in the DOM always, so it is copyable by a machine that
                             never clicks. */}
-                        {r.files
-                          .filter((f) => f.kind === "prompt")
-                          .map((f, j) => (
-                            <div
-                              key={j}
-                              className={s.promptwrap}
-                              hidden={!open.has(`${r.key}-p`)}
-                            >
-                              <pre className={s.prompt}>{f.body}</pre>
-                            </div>
-                          ))}
+                        {locked
+                          ? null
+                          : r.files
+                              .filter((f) => f.kind === "prompt")
+                              .map((f, j) => (
+                                <div
+                                  key={j}
+                                  className={s.promptwrap}
+                                  hidden={!open.has(`${r.key}-p`)}
+                                >
+                                  <pre className={s.prompt}>{f.body}</pre>
+                                </div>
+                              ))}
                       </div>
                     </div>
                   ) : (
@@ -562,6 +470,109 @@ export default function EverythingClient({
               </p>
             )}
           </main>
+    </>
+  );
+
+  if (embed) return <div className={s.embed}>{browser}</div>;
+
+  return (
+    <div className="mod-shell">
+      {/* Paul, 30 Sep 2026: "We have one library, and one way in." This is the one library, under the
+          site's one nav. */}
+      <NextNav bar known={!locked} />
+
+      {/* ⛔ NO BUILD BANNER ON THIS PAGE, Paul 3 Aug 2026: "Can you take off the build view
+          blue thing at the top?" The module page keeps its own. Here the banner sat above the
+          masthead and pushed the whole page down, so the one page whose top is supposed to
+          match a module page's top did not, which was his next sentence. ?build still works
+          and is still the only way to see the empty shelf sections; those sections ARE the
+          cue that you are in it. */}
+      {/* ⭐ THE SAME TWO-COLUMN GRID AS A MODULE PAGE, and the reason is measured rather than
+          felt. Paul, 3 Aug: "the fonts are too big". They were not. The h1 and the prose use
+          the identical classes on both pages; the module page indents them into a 748px
+          column and this page ran them across the full 1124px, so a 52px headline over a
+          50% wider measure read as shouting and the standfirst ran to about 120 characters
+          a line. Porting the grid fixes the type by fixing the column. */}
+      <div className="mod-grid">
+        <div className="mod-railcol">
+          <nav className="mod-rail">
+            <p>/the library</p>
+            {/* ⭐ NUMBERED OVER WHAT IS VISIBLE, NEVER OVER THE SOURCE ARRAY. Filtering first
+                and numbering second is the whole fix: numbering the source array printed
+                01 then 03 on the live page, because People I follow is empty and hidden but
+                still held position two. A rail that skips a number reads as a page with
+                something missing. */}
+            {sections
+              .filter(
+                (sec) =>
+                  sec.rows.length > 0 || (build && sec.kind === "shelf"),
+              )
+              .map((sec, i) => (
+                <a key={sec.slug} href={`#s-${sec.slug}`}>
+                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mod-dot" />
+                  <span>
+                    {sec.title}
+                    <em className={s.railn}>{sec.rows.length}</em>
+                  </span>
+                </a>
+              ))}
+          </nav>
+        </div>
+
+        <div className="mod-maincol">
+          <header className="mod-masthead">
+            {/* ⚠️ THE SLOT STAYS EVEN THOUGH THE WORDS CHANGED, and the two instructions are
+                connected. Paul, 3 Aug: "I don't want to say free nothing to sign up for. You
+                can take that off", and in the same breath, "I want to make sure that the
+                navigation of the page starts at the same place as my other ones." A module
+                page's eyebrow reads MODULE 1 OF 6 · OPENS MON 21 SEP and it is what sets the
+                height of everything under it. Deleting the element rather than its text lifts
+                this headline 29px above every module headline and breaks the second
+                instruction while obeying the first.
+                ⛔ SO THESE THREE WORDS ARE A PLACEHOLDER FOR HIS, not a decision. */}
+            <p className="mod-eyebrow">The library</p>
+            <h1 className="mod-h1">The things we use</h1>
+            {/* ⭐⭐ MODULE 1'S FOX, AT MODULE 1'S SIZE, Paul 3 Aug 2026: "The fox is too big
+                and it's pushing the page down. Look at the format for Module 1, the size of
+                the fox and how it indents into the text, and copy that."
+
+                ⭐ THE CAUSE WAS THE PICTURE, NOT THE CSS, and globals.css had already written
+                it down beside .mod-meta: the fox FLOATS and the metadata row CLEARS it, so
+                whenever the fox is taller than the prose beside it, the clear turns the
+                overhang into dead space. fox-book.png is portrait and stands about 235px at
+                180px wide; this page's standfirst is three lines. Every pixel of fox below
+                the last line of prose became a hole above the metadata.
+
+                ⛔ SO DO NOT SWAP THIS FOR A PORTRAIT ONE. chapter-fox-sitting-nobg.png is
+                module 1's own and is roughly square, which is what lets the same 180px width
+                and the same -60px gutter indent read identically on both pages. */}
+            {/* Paul, 30 Sep 2026: the fox came off this page ("that fox doesn't look good"). The note above
+                is kept for the day a fox comes back: module 1's square one, never a portrait. */}
+            {/* Paul, 29 Sep 2026: "the copy here is very connected to the course. Can we change it to
+                capture the essence of what we say on homepage". The homepage library band's own words. */}
+            <p className="mod-standfirst">
+              This is where we keep the things we use, and we add to it every week: the tools,
+              the people we read, the companies we watch, datasets to practise on, and every
+              prompt from the course. The names and links are free. The prompts open when you
+              sign up.
+            </p>
+            {/* Paul, 30 Sep 2026: the details row (From the lessons, Modules, Cost, Sharing) deleted. */}
+          </header>
+
+          {/* 29 Sep 2026: for someone without an account the ask sits here, above the library, in
+              the page's own column. The names and links below stay open; the prompt text does not. */}
+          {locked && !embed ? (
+            <div className={s.libAsk} id="account">
+              <p>
+                Every prompt opens when you sign up, with the same email as the course, and new ones come by
+                email the day a module opens.
+              </p>
+              <LibJoin />
+            </div>
+          ) : null}
+
+          {browser}
 
           {/* WHAT IS STILL COMING. The page says plainly that it grows, rather than
               implying six modules of material already sit here. */}

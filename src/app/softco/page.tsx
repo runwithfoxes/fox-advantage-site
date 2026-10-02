@@ -331,7 +331,7 @@ export default function SoftCoDemoPage() {
             the work can show where every value came from. The same method works
             for landing pages, campaign pages and client work.
           </p>
-          <a className="sft-btn" href="/contact">
+          <a className="sft-btn" href="/about">
             Talk to us
             <span className="sft-btn-arrow" aria-hidden="true">
               &rsaquo;

@@ -1,0 +1,112 @@
+/* The Ad Audit v2's own parts. Everything shared (the masthead, the rail, the windows, the bars)
+   comes from the AI Ask's report.module.css unchanged. Every class here is new, never an override
+   of one there, so nothing leans on which stylesheet loads last (DOCTRINE, 27 Sep). Class names
+   avoid the words the PDF script hides by (dl, note, back, gate, join, draft, banner, hero). */
+
+/* hbar: the track carries the bar and the average and median marks */
+.track { position: relative; height: 12px; background: #F2F2EE; display: block; }
+.track i { display: block; height: 100%; width: 0; transition: width .9s cubic-bezier(.22,1,.36,1); }
+.track b { position: absolute; top: -3px; bottom: -3px; width: 0; }
+.markAvg { border-left: 1.5px solid #1A3A4E; }
+.markMed { border-left: 1.5px dashed #F47521; }
+.marksKey { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 11px; color: #6b6b66; margin-bottom: 10px; }
+.marksKey i { display: inline-block; width: 0; height: 11px; margin-right: 6px; vertical-align: -1px; }
+
+/* grouped: thin bars per row, one per series */
+.thin { height: 8px; background: #F2F2EE; display: block; overflow: hidden; }
+.thin i { display: block; height: 100%; width: 0; transition: width .9s cubic-bezier(.22,1,.36,1); }
+.groups { display: grid; }
+.groupRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 12px; align-items: center; padding: 6px 0; border-top: 1px solid #F2F2EE; }
+.groupBars { display: grid; gap: 4px; }
+.groupLine { display: grid; grid-template-columns: minmax(0, 1fr) 64px; gap: 10px; align-items: center; }
+.groupVal { font-family: var(--mono); font-size: 11px; color: #1D1B1B; }
+
+/* two units side by side, each on its own scale */
+.multiples { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.multHead { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; margin-bottom: 10px; }
+.multRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 52px; gap: 10px; align-items: center; }
+
+/* stacked: one full-width bar per row */
+.stacks { display: grid; gap: 6px; }
+.stackRow { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: center; padding: 3px 0; border-radius: 4px; }
+.stackOn { background: rgba(58,124,165,.06); }
+.stackBar { display: flex; height: 16px; background: #F2F2EE; overflow: hidden; }
+.stackBar i { display: block; height: 100%; transition: width .9s cubic-bezier(.22,1,.36,1); }
+
+/* grouped_v: columns per band */
+.cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; height: 230px; padding-top: 6px; border-bottom: 1px solid #E0E0DC; margin-bottom: 30px; }
+.colGroup { position: relative; display: flex; flex-direction: column; }
+.colBars { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 4px; }
+.colOne { flex: 1; max-width: 34px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+.colOne i { display: block; width: 100%; height: 0; transition: height .9s cubic-bezier(.22,1,.36,1); }
+.colVal { font-family: var(--mono); font-size: 10px; color: #1D1B1B; margin-bottom: 3px; white-space: nowrap; }
+.colLab { position: absolute; left: 0; right: 0; bottom: -22px; text-align: center; font-family: var(--mono); font-size: 11px; color: #1D1B1B; }
+
+/* grouped_v draws columns on a laptop and pairs of bars on a phone */
+.narrowOnly { display: none; }
+@media (max-width: 700px) { .wideOnly { display: none; } .narrowOnly { display: block; } }
+
+/* line */
+.lineSvg { width: 100%; display: block; overflow: visible; }
+.linePath { stroke-dasharray: 1; transition: stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1); }
+.axis { font-family: var(--mono); font-size: 10.5px; fill: #8A8A85; }
+
+/* table */
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+.table th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; padding: 0 10px 8px 0; border-bottom: 1px solid #E0E0DC; }
+.table td { padding: 8px 10px 8px 0; border-bottom: 1px solid #F2F2EE; color: #1D1B1B; }
+
+/* the first three seconds: a frame every half second */
+.frames { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.frame { margin: 0; transition: opacity .5s, transform .5s cubic-bezier(.22,1,.36,1); }
+.framePic { display: block; border-radius: 6px; overflow: hidden; background: #F2F2EE; }
+.framePic img { width: 100%; height: auto; display: block; }
+.frameT { font-family: var(--mono); font-size: 10.5px; color: #6b6b66; text-align: center; margin-top: 5px; }
+
+/* the most-seen ads, Sam's lines as he wrote them */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 18px 0 8px; }
+.adCard { margin: 0; background: #fff; border: 1px solid #E0E0DC; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; break-inside: avoid; }
+.adPic { position: relative; aspect-ratio: 4 / 5; background: #F2F2EE; overflow: hidden; }
+.adPic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.adRank { position: absolute; top: 8px; left: 8px; z-index: 1; font-family: var(--mono); font-size: 10.5px; color: #fff; background: rgba(26,58,78,.82); padding: 2px 7px; border-radius: 999px; }
+.adCap { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px 14px; flex: 1; }
+.adAdv { font-family: var(--sans); font-weight: 500; font-size: 15px; color: #1D1B1B; }
+.adTags { font-family: var(--mono); font-size: 10.5px; color: #3A7CA5; }
+.adQuote { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.45; color: #1D1B1B; }
+.adReach { font-family: var(--mono); font-size: 10.5px; line-height: 1.5; color: #6b6b66; margin-top: auto; padding-top: 6px; border-top: 1px solid #EDEDE9; }
+
+/* a list inside a chapter */
+.list { margin: 0 0 18px; padding-left: 20px; }
+.list li { margin-bottom: 10px; }
+
+/* the Graham Norton film beside the opening paragraph */
+.opener { width: fit-content; max-width: 100%; padding-right: 22px !important; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: center; margin: 4px 0 20px; padding: 10px; background: #fff; border: 1px solid #E0E0DC; border-radius: 12px; }
+.opener img { width: 96px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 8px; display: block; }
+.openerText { display: grid; gap: 4px; font-family: var(--mono); font-size: 11px; line-height: 1.5; color: #6b6b66; }
+.openerText b { font-family: var(--sans); font-weight: 500; font-size: 14px; color: #1D1B1B; }
+.openerBig { font-size: 22px !important; color: #3A7CA5 !important; font-family: var(--mono) !important; font-weight: 400 !important; letter-spacing: -.02em; }
+
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .groupRow { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px; }
+  .groupLine { grid-template-columns: minmax(0, 1fr) 52px; gap: 6px; }
+  .multiples { grid-template-columns: 1fr; gap: 22px; }
+  .stackRow { grid-template-columns: 76px minmax(0, 1fr); gap: 8px; }
+  .cols { gap: 4px; height: 200px; }
+  .colBars { gap: 2px; }
+  .colVal { font-size: 8.5px; }
+  .colLab { font-size: 10px; }
+  .frames { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; row-gap: 12px; }
+  .gallery { gap: 10px; }
+  .adCap { padding: 10px 10px 12px; }
+  .adQuote { font-size: 13px; }
+}
+
+@media print {
+  .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .adCap { padding: 8px; gap: 3px; }
+  .adQuote { font-size: 11px; }
+}

@@ -1,6 +1,9 @@
 import Link from "next/link";
+import NextNav from "@/app/home-next/NextNav";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
+import EssayJoin from "../essays/[slug]/EssayJoin";
+import j from "../essays/[slug]/essay-join.module.css";
 import {
   getAllDispatches,
   getDispatchContent,
@@ -45,16 +48,11 @@ export default async function DiaryPage() {
 
   return (
     <div className="essay-page">
-      <header className="essay-nav">
-        <Link href="/" className="essay-nav-logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <div className="essay-nav-count">
-          {all.length} {all.length === 1 ? "dispatch" : "dispatches"}
-        </div>
-      </header>
+      <NextNav bar />
 
       <main className="essay-main">
+        {/* Paul, 30 Sep: the sign-up beside Lena's pieces here as well, where they are read in full. */}
+        <div className={j.layout}>
         <div className="essay-inner">
           <div className="essay-index-head">
             <div className="essay-index-kick">\diary</div>
@@ -104,6 +102,10 @@ export default async function DiaryPage() {
               ))}
             </div>
           ) : null}
+        </div>
+        <aside className={j.side}>
+          <EssayJoin />
+        </aside>
         </div>
       </main>
 

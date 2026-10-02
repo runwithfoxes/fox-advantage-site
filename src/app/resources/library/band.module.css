@@ -1,0 +1,36 @@
+/* The head band shared by the library, tools and playbooks (26 Sep 2026). Deep navy ground so
+   the four-door nav's white type reads; the site's faces: Space Grotesk 500 for the title,
+   Source Serif for the standfirst, JetBrains Mono for the kicker and every count. */
+
+/* padding: 0 is load-bearing: globals.css has a bare `section { padding: 120px 0 }` written for
+   the marketing pages, and it put 120px of empty navy above the nav (see Everything.module.css
+   for the same trap on .box). */
+.band { background: #1A3A4E; color: #fff; position: relative; padding: 0; }
+.inner { max-width: 1240px; margin: 0 auto; padding: 28px 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 64px; }
+.twoCol { grid-template-columns: minmax(0, 1fr) 400px; align-items: start; }
+.text { min-width: 0; }
+.aside { min-width: 0; }
+.below { grid-column: 1 / -1; }
+
+/* the module-page fox, floated into the gutter, drop-shadow so the shadow follows him */
+.fox { float: right; width: 170px; height: auto; margin: -8px -24px 12px 28px; shape-outside: margin-box; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35)); }
+
+.kicker { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #A9CBE4; margin: 8px 0 18px; }
+.h1 { font-family: var(--sans); font-weight: 500; font-size: 50px; line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 20px; color: #fff; text-wrap: pretty; }
+.h1 em { font-style: normal; color: #A9CBE4; }
+.stand { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.5; color: rgba(255, 255, 255, 0.86); margin: 0; max-width: 680px; }
+
+.mock { max-width: 1240px; margin: 0 auto; padding: 0 48px 14px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: #A9CBE4; }
+
+@media (max-width: 960px) {
+  .twoCol { grid-template-columns: 1fr; }
+  .h1 { font-size: 40px; }
+}
+@media (max-width: 700px) {
+  .inner { padding: 16px 16px 36px; gap: 28px; }
+  .mock { padding: 0 16px 12px; }
+  .fox { width: 104px; margin: 0 -6px 8px 16px; }
+  .h1 { font-size: 32px; }
+  .stand { font-size: 17px; }
+  .kicker { margin-top: 0; }
+}

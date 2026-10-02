@@ -1,0 +1,178 @@
+/* RESOURCES MOCKUP, 24 Sep 2026.
+   ⭐ Everything a page can borrow from the course module page it borrows verbatim through the
+   global classes (.chapter-nav, .mod-shell, .mod-grid, .mod-rail, .mod-masthead, .mod-item,
+   .mod-win, .mod-reading, .co-card, .essay-list-item). This file only holds the parts a
+   resources page has and a module does not: the data figures and the wording library.
+   Rules held: no radius outside the window component, cream never a fill, content never on
+   deep sky, tokens not literals where a token exists. */
+
+/* The figure frame the module figures sit in: hairline border, the site's dot grid. */
+.frame {
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, #d0d0cc 0.8px, transparent 0.8px);
+  background-size: 28px 28px;
+  padding: 36px 32px 28px;
+  margin: 4px 0 20px;
+}
+.frameInner {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 22px 22px 18px;
+}
+.figlabel {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* Who owns the 41 categories: one cell per category, grouped by owner. */
+.strip { display: flex; gap: 2px; height: 46px; }
+.strip i { flex: 1; display: block; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 14px; }
+.key span {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.6875rem; color: var(--text);
+}
+.key span::before { content: ""; width: 10px; height: 10px; background: var(--c); }
+
+.state { --c: #1A3A4E; background: #1A3A4E; }
+.middle { --c: #6CAAC8; background: #6CAAC8; }
+.other { --c: #D6D6D0; background: #D6D6D0; }
+
+/* The 41-row chart. */
+.bars { display: grid; gap: 3px; }
+.bar {
+  display: grid; grid-template-columns: 150px 1fr 40px; gap: 12px; align-items: center;
+  font-family: var(--mono); font-size: 0.6875rem; text-decoration: none; color: var(--text);
+}
+.bar .cat { color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+a.bar .cat { color: var(--orange); }
+a.bar:hover .cat { text-decoration: underline; }
+.track {
+  height: 17px;
+  background: linear-gradient(to right, var(--border) 1px, transparent 1px) 0 0 / 25% 100%;
+}
+.fill { height: 100%; display: flex; align-items: center; }
+.fill em { font-style: normal; font-size: 0.625rem; padding-left: 6px; white-space: nowrap; }
+.state .fill, .fill.state { color: var(--bg); }
+.fill.middle { color: #1A3A4E; }
+.fill.other { color: var(--text); }
+.v { text-align: right; font-variant-numeric: tabular-nums; }
+.axis {
+  display: grid; grid-template-columns: 150px 1fr 40px; gap: 12px; margin-top: 6px;
+  font-family: var(--mono); font-size: 0.625rem; color: var(--text-muted);
+}
+.axis div { display: flex; justify-content: space-between; }
+
+/* Engine by name grid (hotels). */
+.matrixWrap { overflow-x: auto; }
+.matrix { border-collapse: collapse; width: 100%; min-width: 560px; font-family: var(--mono); font-size: 0.75rem; }
+.matrix th {
+  background: #1A3A4E; color: var(--bg); font-weight: 400; font-size: 0.625rem;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 8px; text-align: center;
+}
+.matrix th:first-child { text-align: left; }
+.matrix td { border-bottom: 1px solid var(--border); padding: 4px; text-align: center; }
+.matrix td:first-child { text-align: left; padding: 4px 14px 4px 8px; white-space: nowrap; }
+.matrix td:first-child i { font-style: normal; color: var(--text-muted); margin-left: 8px; font-size: 0.625rem; }
+.cell { height: 38px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+
+/* Where the answers come from. */
+.sources { display: grid; gap: 7px; }
+.src { display: grid; grid-template-columns: 130px 1fr 28px; gap: 10px; align-items: center; font-family: var(--mono); font-size: 0.6875rem; }
+.src i { display: block; height: 9px; background: var(--orange); }
+.src.site i { background: #1A3A4E; }
+.src b { font-weight: 400; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* The one email ask, on a sector page, because the answer is about the reader. */
+.ask { display: grid; grid-template-columns: 1fr 1fr auto; margin-top: 18px; border: 1px solid var(--border); background: var(--bg); }
+.ask input {
+  font-family: var(--mono); font-size: 0.8125rem; padding: 14px 16px; border: 0;
+  border-right: 1px solid var(--border); background: transparent; color: var(--text); min-width: 0;
+}
+.ask button {
+  font-family: var(--mono); font-size: 0.8125rem; background: var(--orange); color: var(--bg);
+  border: 0; padding: 0 22px; cursor: pointer;
+}
+.ask button:hover { background: var(--orange-hover); }
+.asknote { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 12px; line-height: 1.6; }
+.done { font-family: var(--mono); font-size: 0.8125rem; color: var(--orange); margin-top: 18px; }
+
+/* Three sources, side by side, sharing almost nothing. */
+.overlap { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); background: var(--bg); }
+.overlap > div { padding: 20px 22px; border-right: 1px solid var(--border); display: grid; gap: 8px; align-content: start; }
+.overlap > div:last-child { border-right: 0; }
+.overlap b { font-family: var(--mono); font-weight: 400; font-size: 2.25rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.overlap p { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.9375rem; line-height: 1.55; margin: 0; }
+
+/* The wording library, inside a window. */
+.libtools { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; border-bottom: 1px solid var(--border); }
+.libtools input {
+  flex: 1 1 220px; min-width: 0; font-family: var(--mono); font-size: 0.8125rem;
+  padding: 10px 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
+}
+.chip {
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em; padding: 8px 12px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); cursor: pointer;
+}
+.chip[aria-pressed="true"] { border-color: var(--orange); color: var(--orange); }
+.quote { display: grid; grid-template-columns: 190px 1fr; gap: 24px; padding: 20px 22px; border-bottom: 1px solid var(--border); }
+.quote:last-child { border-bottom: 0; }
+.who { display: grid; gap: 3px; align-content: start; font-family: var(--mono); font-size: 0.6875rem; color: var(--text-muted); }
+.who b { font-weight: 400; color: var(--text); font-size: 0.75rem; }
+.who em { font-style: normal; color: var(--orange); margin-top: 4px; }
+.quote blockquote { margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1875rem; line-height: 1.5; color: var(--text); }
+.quote blockquote.described { color: var(--text-muted); font-size: 1rem; }
+.empty { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); padding: 20px 22px; }
+
+/* Trackers table (front door). Deep sky only as the header row, the brand's one sanctioned use. */
+.trk { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.75rem; }
+.trk th {
+  background: #1A3A4E; color: var(--bg); font-weight: 400; font-size: 0.625rem;
+  letter-spacing: 0.08em; text-transform: uppercase; text-align: left; padding: 10px 14px;
+}
+.trk td { padding: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.trk td.line { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.9375rem; line-height: 1.5; }
+.trk td.soon { color: var(--text-muted); }
+.trk a { color: var(--orange); text-decoration: none; }
+.trk a:hover { text-decoration: underline; }
+
+.essays { margin-top: 8px; }
+.cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.cats a, .cats span {
+  font-family: var(--mono); font-size: 0.6875rem; padding: 4px 9px; border: 1px solid var(--border);
+  color: var(--text-muted); text-decoration: none; background: var(--bg);
+}
+.cats a { color: var(--orange); border-color: var(--orange); }
+
+.banner {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 120;
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.03em;
+  background: #1A3A4E; color: var(--bg); text-align: center;
+  padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px));
+}
+
+.wide { grid-column: 1 / -1; }
+
+@media (max-width: 860px) {
+  .frame { padding: 20px 14px 16px; }
+  .bar, .axis { grid-template-columns: 96px 1fr 34px; gap: 8px; }
+  .fill em { display: none; }
+  .overlap { grid-template-columns: 1fr; }
+  .overlap > div { border-right: 0; border-bottom: 1px solid var(--border); }
+  .quote { grid-template-columns: 1fr; gap: 8px; }
+  .ask { grid-template-columns: 1fr; }
+  .ask input { border-right: 0; border-bottom: 1px solid var(--border); }
+  .ask button { padding: 14px; }
+}
+
+/* The course card, reused whole, sits in a narrower column than on /course, so its fixed
+   info height would crop the blurb and the LIVE badge. Let the words set the height. */
+.courseCard :global(.co-cardinfo) { height: auto; }
+.courseCard :global(.co-cardbody) { grid-template-rows: auto; }
+.wincount { margin-left: auto; font-family: var(--mono); font-size: 0.6875rem; color: var(--text-muted); }

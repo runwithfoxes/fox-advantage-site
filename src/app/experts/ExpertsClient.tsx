@@ -212,33 +212,9 @@ export default function ExpertsPage() {
       <nav className="hp-nav hp-nav-scrolled" style={{ position: "fixed" }}>
         <Link href="/" className="hp-nav-logo">/<span>Run</span>withfoxes</Link>
         <div className="hp-nav-links">
-          <div className="hp-dropdown-wrap">
-            <span className="hp-dropdown-trigger">#unfair_advantage &#9662;</span>
-            <div className="hp-mega">
-              <div className="hp-mega-inner">
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">HUMAN LEADS</div>
-                  <Link href="/#mod-strategy">Strategy</Link>
-                  <Link href="/#mod-positioning">Positioning</Link>
-                </div>
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">AI + HUMAN</div>
-                  <Link href="/#mod-messaging">Messaging</Link>
-                  <Link href="/#mod-research">Research</Link>
-                  <Link href="/#mod-advertising">Advertising</Link>
-                  <Link href="/#mod-effectiveness">Effectiveness</Link>
-                  <Link href="/#mod-brand-guardian">Brand guardian</Link>
-                  <Link href="/#mod-events">Events</Link>
-                </div>
-                <div className="hp-mega-col">
-                  <div className="hp-mega-label">AI DOES IT</div>
-                  <Link href="/#mod-ad-engine">Ad engine</Link>
-                  <Link href="/#mod-growth">Growth team</Link>
-                  <Link href="/#mod-pm">Project manager</Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* 1 Oct 2026: the #unfair_advantage menu came out. Its eleven items pointed at sections of the old
+              homepage (/#mod-...) that the new one does not have, so every one landed at the top (Cato's link
+              check). The page stays live because /ucd and /info both send people here to use the panel. */}
           <div className="hp-dropdown-wrap">
             <span className="hp-dropdown-trigger">/projects &#9662;</span>
             <div className="hp-mega">
@@ -266,7 +242,7 @@ export default function ExpertsPage() {
               </div>
             </div>
           </div>
-          <Link href="/contact" className="hp-nav-cta">/contact</Link>
+          <Link href="/about" className="hp-nav-cta">/contact</Link>
         </div>
       <MobileMenu />
       </nav>
@@ -605,9 +581,9 @@ export default function ExpertsPage() {
       {/* BOTTOM BAR */}
       <div className="hp-bottom-bar hp-bb-visible">
         <Link href="/">#top</Link>
-        <Link href="/#about">#about</Link>
+        <Link href="/about">#about</Link>
         <Link href="/book">/book</Link>
-        <Link href="/contact" className="hp-cta-bar">get in touch</Link>
+        <Link href="/about" className="hp-cta-bar">get in touch</Link>
       </div>
     </div>
   );

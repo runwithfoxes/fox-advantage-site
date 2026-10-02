@@ -7,20 +7,22 @@ interface Props {
   chapter: Chapter;
   prev: Chapter | null;
   next: Chapter | null;
+  /** How many chapters the book has, from CHAPTER_COUNT in lib/chapters, the number /book shows. */
+  total: number;
 }
 
-export default function ChapterGate({ chapter }: Props) {
+export default function ChapterGate({ chapter, total }: Props) {
   const num = String(chapter.number).padStart(2, "0");
 
   return (
     <div className="chapter-page">
       {/* Same nav as ChapterReader */}
       <header className="chapter-nav">
-        <Link href="/book#chapters" className="chapter-nav-back">
+        <Link href="/book#parts" className="chapter-nav-back">
           ← back to chapters
         </Link>
         <div className="chapter-nav-count">
-          {num} / 54
+          {num} / {total}
         </div>
       </header>
 
@@ -45,7 +47,7 @@ export default function ChapterGate({ chapter }: Props) {
       {/* Same bottom bar as ChapterReader */}
       <div className="chapter-bottom-bar">
         <Link href="/">#home</Link>
-        <Link href="/book#chapters" className="active">chapters.md</Link>
+        <Link href="/book#parts" className="active">chapters.md</Link>
         <Link href="/book#signup">/get_the_book</Link>
       </div>
     </div>

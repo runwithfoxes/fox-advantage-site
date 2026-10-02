@@ -1,0 +1,2061 @@
+{
+ "labels": {
+  "2025-Q4": "Oct to Dec 2025",
+  "2026-Q1": "Jan to Mar 2026",
+  "2026-Q2": "Apr 2026",
+  "2026-Q3": "24 Sep 2026"
+ },
+ "method": "rebuilt after Cato review; dedupe on company+title or first 300 chars of text; roles sorted sales-first; Irish locations only; every candidate judged by one rulebook",
+ "total_ads": 1773,
+ "archive_ads": 1137,
+ "sep_ads": 636,
+ "sep_all": {
+  "k": 56,
+  "n": 636,
+  "pct": 8.8
+ },
+ "sep_kinds": {
+  "search": 4,
+  "lead": 4,
+  "tools": 28,
+  "sell": 18,
+  "build": 2
+ },
+ "jobsie": {
+  "2025-Q4": {
+   "ads": 279,
+   "all": {
+    "k": 2,
+    "n": 279,
+    "pct": 0.7
+   },
+   "marketing": {
+    "k": 0,
+    "n": 43,
+    "pct": 0.0
+   },
+   "sales": {
+    "k": 2,
+    "n": 236,
+    "pct": 0.8
+   }
+  },
+  "2026-Q1": {
+   "ads": 674,
+   "all": {
+    "k": 24,
+    "n": 674,
+    "pct": 3.6
+   },
+   "marketing": {
+    "k": 14,
+    "n": 114,
+    "pct": 12.3
+   },
+   "sales": {
+    "k": 10,
+    "n": 560,
+    "pct": 1.8
+   }
+  },
+  "2026-Q2": {
+   "ads": 184,
+   "all": {
+    "k": 2,
+    "n": 184,
+    "pct": 1.1
+   },
+   "marketing": {
+    "k": 2,
+    "n": 25,
+    "pct": 8.0
+   },
+   "sales": {
+    "k": 0,
+    "n": 159,
+    "pct": 0.0
+   }
+  },
+  "2026-Q3": {
+   "ads": 141,
+   "all": {
+    "k": 10,
+    "n": 141,
+    "pct": 7.1
+   },
+   "marketing": {
+    "k": 8,
+    "n": 31,
+    "pct": 25.8
+   },
+   "sales": {
+    "k": 2,
+    "n": 110,
+    "pct": 1.8
+   }
+  }
+ },
+ "sep_by_role_all_sources": {
+  "marketing": {
+   "k": 17,
+   "n": 100,
+   "pct": 17.0
+  },
+  "sales": {
+   "k": 39,
+   "n": 536,
+   "pct": 7.3
+  }
+ },
+ "sep_by_role_boards": {
+  "marketing": {
+   "k": 13,
+   "n": 92,
+   "pct": 14.1
+  },
+  "sales": {
+   "k": 10,
+   "n": 454,
+   "pct": 2.2
+  }
+ },
+ "levels": {
+  "entry": {
+   "k": 3,
+   "n": 48,
+   "pct": 6.2
+  },
+  "executive": {
+   "k": 18,
+   "n": 232,
+   "pct": 7.8
+  },
+  "manager": {
+   "k": 25,
+   "n": 181,
+   "pct": 13.8
+  },
+  "head": {
+   "k": 5,
+   "n": 23,
+   "pct": 21.7
+  },
+  "retail": {
+   "k": 0,
+   "n": 83,
+   "pct": 0.0
+  },
+  "unclear": {
+   "k": 5,
+   "n": 69,
+   "pct": 7.2
+  }
+ },
+ "levels_boards": {
+  "entry": {
+   "k": 3,
+   "n": 48,
+   "pct": 6.2
+  },
+  "executive": {
+   "k": 5,
+   "n": 186,
+   "pct": 2.7
+  },
+  "manager": {
+   "k": 9,
+   "n": 143,
+   "pct": 6.3
+  },
+  "head": {
+   "k": 2,
+   "n": 20,
+   "pct": 10.0
+  },
+  "retail": {
+   "k": 0,
+   "n": 83,
+   "pct": 0.0
+  },
+  "unclear": {
+   "k": 4,
+   "n": 66,
+   "pct": 6.1
+  }
+ },
+ "kinds_by_level": {
+  "entry": {
+   "tools": 3
+  },
+  "executive": {
+   "sell": 7,
+   "tools": 11
+  },
+  "manager": {
+   "lead": 2,
+   "search": 3,
+   "sell": 9,
+   "tools": 10,
+   "build": 1
+  },
+  "head": {
+   "lead": 2,
+   "sell": 2,
+   "tools": 1
+  },
+  "retail": {},
+  "unclear": {
+   "search": 1,
+   "tools": 3,
+   "build": 1
+  }
+ },
+ "roles": [
+  {
+   "role": "Product marketing",
+   "group": "marketing",
+   "k": 4,
+   "n": 6,
+   "pct": 66.7,
+   "index": 7.6
+  },
+  {
+   "role": "Digital, performance and ecommerce marketing",
+   "group": "marketing",
+   "k": 9,
+   "n": 21,
+   "pct": 42.9,
+   "index": 4.9
+  },
+  {
+   "role": "Content, social and communications",
+   "group": "marketing",
+   "k": 1,
+   "n": 18,
+   "pct": 5.6,
+   "index": 0.6
+  },
+  {
+   "role": "Brand, events and general marketing",
+   "group": "marketing",
+   "k": 3,
+   "n": 55,
+   "pct": 5.5,
+   "index": 0.6
+  },
+  {
+   "role": "Business development, SDR and BDR",
+   "group": "sales",
+   "k": 10,
+   "n": 42,
+   "pct": 23.8,
+   "index": 2.7
+  },
+  {
+   "role": "Customer success and account management",
+   "group": "sales",
+   "k": 8,
+   "n": 55,
+   "pct": 14.5,
+   "index": 1.7
+  },
+  {
+   "role": "Account executives and enterprise sales",
+   "group": "sales",
+   "k": 13,
+   "n": 107,
+   "pct": 12.1,
+   "index": 1.4
+  },
+  {
+   "role": "Field, retail, inside and other sales",
+   "group": "sales",
+   "k": 8,
+   "n": 332,
+   "pct": 2.4,
+   "index": 0.3
+  }
+ ],
+ "talk_vs_ask": {
+  "mention_ai": {
+   "k": 133,
+   "n": 636,
+   "pct": 20.9
+  },
+  "real_ask": {
+   "k": 56,
+   "n": 636,
+   "pct": 8.8
+  }
+ },
+ "talk_vs_ask_jobsie": {
+  "2025-Q4": {
+   "mention_ai": {
+    "k": 3,
+    "n": 279,
+    "pct": 1.1
+   },
+   "real_ask": {
+    "k": 2,
+    "n": 279,
+    "pct": 0.7
+   }
+  },
+  "2026-Q1": {
+   "mention_ai": {
+    "k": 29,
+    "n": 674,
+    "pct": 4.3
+   },
+   "real_ask": {
+    "k": 24,
+    "n": 674,
+    "pct": 3.6
+   }
+  },
+  "2026-Q2": {
+   "mention_ai": {
+    "k": 2,
+    "n": 184,
+    "pct": 1.1
+   },
+   "real_ask": {
+    "k": 2,
+    "n": 184,
+    "pct": 1.1
+   }
+  },
+  "2026-Q3": {
+   "mention_ai": {
+    "k": 11,
+    "n": 141,
+    "pct": 7.8
+   },
+   "real_ask": {
+    "k": 10,
+    "n": 141,
+    "pct": 7.1
+   }
+  }
+ },
+ "talk_vs_ask_by_channel": {
+  "careers_pages": {
+   "mention_ai": {
+    "k": 68,
+    "n": 90,
+    "pct": 75.6
+   },
+   "real_ask": {
+    "k": 33,
+    "n": 90,
+    "pct": 36.7
+   }
+  },
+  "job_boards": {
+   "mention_ai": {
+    "k": 65,
+    "n": 546,
+    "pct": 11.9
+   },
+   "real_ask": {
+    "k": 23,
+    "n": 546,
+    "pct": 4.2
+   }
+  }
+ },
+ "recruiters_boards_only": {
+  "recruiter": {
+   "k": 9,
+   "n": 90,
+   "pct": 10.0
+  },
+  "direct": {
+   "k": 14,
+   "n": 456,
+   "pct": 3.1
+  }
+ },
+ "careers_pages": {
+  "companies_with_ads": 16,
+  "ads": 90,
+  "companies_checked": 33
+ },
+ "place_boards": {
+  "dublin": {
+   "k": 16,
+   "n": 252,
+   "pct": 6.3
+  },
+  "outside": {
+   "k": 5,
+   "n": 237,
+   "pct": 2.1
+  },
+  "unknown": {
+   "k": 2,
+   "n": 57,
+   "pct": 3.5
+  }
+ },
+ "place_boards_by_role": {
+  "marketing": {
+   "dublin": {
+    "k": 9,
+    "n": 49,
+    "pct": 18.4
+   },
+   "outside": {
+    "k": 2,
+    "n": 36,
+    "pct": 5.6
+   }
+  },
+  "sales": {
+   "dublin": {
+    "k": 7,
+    "n": 203,
+    "pct": 3.4
+   },
+   "outside": {
+    "k": 3,
+    "n": 201,
+    "pct": 1.5
+   }
+  }
+ },
+ "language_roles": {
+  "language": {
+   "k": 10,
+   "n": 63,
+   "pct": 15.9
+  },
+  "other": {
+   "k": 46,
+   "n": 573,
+   "pct": 8.0
+  }
+ },
+ "tools_sep": {
+  "Office": {
+   "any": 92,
+   "Excel": 46,
+   "Microsoft Office": 60,
+   "PowerPoint": 19,
+   "Google Workspace": 7
+  },
+  "CRM": {
+   "any": 62,
+   "Salesforce": 52,
+   "HubSpot": 9,
+   "Microsoft Dynamics": 2,
+   "Zoho": 0,
+   "Pipedrive": 0
+  },
+  "Analytics": {
+   "any": 24,
+   "Google Analytics": 10,
+   "Tableau": 8,
+   "SQL": 7,
+   "Google Tag Manager": 3,
+   "Looker": 3,
+   "Power BI": 2
+  },
+  "Paid ads": {
+   "any": 21,
+   "Google Ads": 17,
+   "Meta Ads Manager": 8,
+   "TikTok Ads": 2,
+   "LinkedIn Ads": 1
+  },
+  "Design and video": {
+   "any": 23,
+   "Canva": 22,
+   "Adobe": 14,
+   "Video editing": 10,
+   "Figma": 0
+  },
+  "Web and ecommerce": {
+   "any": 13,
+   "Shopify": 7,
+   "WordPress": 6,
+   "Webflow": 2
+  },
+  "Email and automation": {
+   "any": 7,
+   "Mailchimp": 3,
+   "Klaviyo": 2,
+   "Marketo": 2,
+   "Zapier": 1
+  },
+  "Sales tools": {
+   "any": 5,
+   "Apollo, Outreach, Salesloft": 2,
+   "LinkedIn Sales Navigator": 2,
+   "ZoomInfo": 2,
+   "Gong": 1
+  },
+  "AI": {
+   "any": 21,
+   "\"AI tools\", no name": 15,
+   "Names an AI tool": 6
+  }
+ },
+ "ai_tools_named": {
+  "ads_generic_ai_tools": 18,
+  "generic_without_any_name": 15,
+  "ads_naming_ai_product": 6,
+  "naming": [
+   [
+    "Femtech Healthcare Limited",
+    "Senior AI Search & SEO Specialist"
+   ],
+   [
+    "intercom",
+    "Senior Product Marketing Manager"
+   ],
+   [
+    "mongodb",
+    "Staff Technical Product Marketing Manager, Context Engineering"
+   ],
+   [
+    "Osborne Recruitment",
+    "Digital Marketing and Content Specialist"
+   ],
+   [
+    "DocuSign",
+    "Sales Development Representative (French Speaker)"
+   ],
+   [
+    "Microsoft",
+    "Digital Enterprise Solution Sales Specialist - AI Workforce- French speaking"
+   ]
+  ],
+  "tool_mentions": {
+   "Claude": 3,
+   "Gemini": 3,
+   "ChatGPT": 2,
+   "Copilot": 2,
+   "Perplexity": 1,
+   "Cursor": 1,
+   "NotebookLM": 1
+  },
+  "ads_generic_or_named": 21
+ },
+ "tools_jobsie_share": {
+  "Excel": {
+   "2025-Q4": {
+    "k": 24,
+    "n": 279,
+    "pct": 8.6
+   },
+   "2026-Q1": {
+    "k": 58,
+    "n": 674,
+    "pct": 8.6
+   },
+   "2026-Q2": {
+    "k": 16,
+    "n": 184,
+    "pct": 8.7
+   },
+   "2026-Q3": {
+    "k": 17,
+    "n": 141,
+    "pct": 12.1
+   }
+  },
+  "Salesforce": {
+   "2025-Q4": {
+    "k": 12,
+    "n": 279,
+    "pct": 4.3
+   },
+   "2026-Q1": {
+    "k": 37,
+    "n": 674,
+    "pct": 5.5
+   },
+   "2026-Q2": {
+    "k": 7,
+    "n": 184,
+    "pct": 3.8
+   },
+   "2026-Q3": {
+    "k": 6,
+    "n": 141,
+    "pct": 4.3
+   }
+  },
+  "HubSpot": {
+   "2025-Q4": {
+    "k": 4,
+    "n": 279,
+    "pct": 1.4
+   },
+   "2026-Q1": {
+    "k": 5,
+    "n": 674,
+    "pct": 0.7
+   },
+   "2026-Q2": {
+    "k": 4,
+    "n": 184,
+    "pct": 2.2
+   },
+   "2026-Q3": {
+    "k": 5,
+    "n": 141,
+    "pct": 3.5
+   }
+  },
+  "Canva": {
+   "2025-Q4": {
+    "k": 6,
+    "n": 279,
+    "pct": 2.2
+   },
+   "2026-Q1": {
+    "k": 15,
+    "n": 674,
+    "pct": 2.2
+   },
+   "2026-Q2": {
+    "k": 7,
+    "n": 184,
+    "pct": 3.8
+   },
+   "2026-Q3": {
+    "k": 9,
+    "n": 141,
+    "pct": 6.4
+   }
+  },
+  "Adobe": {
+   "2025-Q4": {
+    "k": 6,
+    "n": 279,
+    "pct": 2.2
+   },
+   "2026-Q1": {
+    "k": 18,
+    "n": 674,
+    "pct": 2.7
+   },
+   "2026-Q2": {
+    "k": 5,
+    "n": 184,
+    "pct": 2.7
+   },
+   "2026-Q3": {
+    "k": 4,
+    "n": 141,
+    "pct": 2.8
+   }
+  },
+  "Google Ads": {
+   "2025-Q4": {
+    "k": 7,
+    "n": 279,
+    "pct": 2.5
+   },
+   "2026-Q1": {
+    "k": 14,
+    "n": 674,
+    "pct": 2.1
+   },
+   "2026-Q2": {
+    "k": 6,
+    "n": 184,
+    "pct": 3.3
+   },
+   "2026-Q3": {
+    "k": 7,
+    "n": 141,
+    "pct": 5.0
+   }
+  },
+  "Meta Ads Manager": {
+   "2025-Q4": {
+    "k": 5,
+    "n": 279,
+    "pct": 1.8
+   },
+   "2026-Q1": {
+    "k": 7,
+    "n": 674,
+    "pct": 1.0
+   },
+   "2026-Q2": {
+    "k": 2,
+    "n": 184,
+    "pct": 1.1
+   },
+   "2026-Q3": {
+    "k": 6,
+    "n": 141,
+    "pct": 4.3
+   }
+  },
+  "Any AI tool": {
+   "2025-Q4": {
+    "k": 0,
+    "n": 279,
+    "pct": 0.0
+   },
+   "2026-Q1": {
+    "k": 10,
+    "n": 674,
+    "pct": 1.5
+   },
+   "2026-Q2": {
+    "k": 1,
+    "n": 184,
+    "pct": 0.5
+   },
+   "2026-Q3": {
+    "k": 5,
+    "n": 141,
+    "pct": 3.5
+   }
+  }
+ },
+ "pay_shown_jobsie": {
+  "2025-Q4": {
+   "k": 67,
+   "n": 279,
+   "pct": 24.0
+  },
+  "2026-Q1": {
+   "k": 185,
+   "n": 674,
+   "pct": 27.4
+  },
+  "2026-Q2": {
+   "k": 60,
+   "n": 184,
+   "pct": 32.6
+  },
+  "2026-Q3": {
+   "k": 40,
+   "n": 141,
+   "pct": 28.4
+  }
+ },
+ "pay_on_ai_asks": {
+  "with_pay": 17,
+  "of": 56,
+  "companies": [
+   "Staffline Recruitment Ireland",
+   "Excel Recruitment",
+   "Ballyhoura Development Limited",
+   "Femtech Healthcare Limited",
+   "dropbox",
+   "dropbox",
+   "notion",
+   "notion",
+   "notion",
+   "notion",
+   "notion",
+   "notion",
+   "squarespace",
+   "tines",
+   "Okta",
+   "Microsoft",
+   "Kearys Motor Group"
+  ]
+ },
+ "screening_notices": {
+  "2025-Q4": [],
+  "2026-Q1": [],
+  "2026-Q2": [],
+  "2026-Q3": [
+   [
+    "learnupon",
+    "Director, Partnerships",
+    "careers:learnupon"
+   ],
+   [
+    "okta",
+    "Associate Customer Success Enablement Manager - EMEA",
+    "careers:okta"
+   ],
+   [
+    "okta",
+    "Business Development Representative - Dutch",
+    "careers:okta"
+   ],
+   [
+    "okta",
+    "Sales Development Representative - German",
+    "careers:okta"
+   ],
+   [
+    "okta",
+    "Sales Development Representative - UK&I",
+    "careers:okta"
+   ],
+   [
+    "Salesforce",
+    "Customer Success Manager - Marketing cloud -Arabic speaker",
+    "indeed"
+   ],
+   [
+    "Clio",
+    "Senior Field Marketing Manager",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Renewals Account Manager - FR / IT / ES",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Renewals Account Manager - German",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Inside partner account manager - German",
+    "indeed"
+   ],
+   [
+    "Watchguard Technologies",
+    "Inside partner account manager",
+    "indeed"
+   ],
+   [
+    "Workday",
+    "Business Development Representative (Danish Speaker)",
+    "indeed"
+   ]
+  ]
+ },
+ "applicant_rules": [
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive (DACH)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive (Portugal)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Account Executive UKI/Nordics"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Customer Success Manager (DACH; German-Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Commercial Sales Engineer (Spanish-Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Customer Success Associate - Dublin (MENA ROSE - Turkish Speaker)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Customer Success Manager - Dublin"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Director, Enterprise Customer Success"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Enterprise Customer Success Manager (German Speaking)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Manager, Customer Success - Dublin (Israel/Iberia)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Mid-Market Account Executive (DACH)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Mid Market Account Executive (Italy)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Recruiter, Enterprise Sales"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Sales Development Representative (Africa)"
+  ],
+  [
+   "2026-Q3",
+   "datadog",
+   "Sales Development Representative (UKI)"
+  ],
+  [
+   "2026-Q3",
+   "squarespace",
+   "International Strategy and Marketing Lead"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Lead Analyst, Revenue"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Sales Compensation Manager"
+  ],
+  [
+   "2026-Q3",
+   "tines",
+   "Senior Performance Marketing Manager"
+  ]
+ ],
+ "agents_in_duties": [
+  [
+   "2026-Q3",
+   "wayflyer",
+   "Technical Revenue Operations Analyst"
+  ]
+ ],
+ "examples": {
+  "search": [
+   [
+    "Staffline Recruitment Ireland",
+    "Marketing Analyst"
+   ],
+   [
+    "Yuno Limited t/a Yuno Energy",
+    "Digital Marketing Manager"
+   ],
+   [
+    "Excel Recruitment",
+    "Senior Digital Marketing Manager"
+   ],
+   [
+    "Femtech Healthcare Limited",
+    "Senior AI Search & SEO Specialist"
+   ]
+  ],
+  "lead": [
+   [
+    "Excel Recruitment",
+    "Ecommerce & Digital Marketing Manager - Luxury Retail"
+   ],
+   [
+    "datadog",
+    "Director, Enterprise Customer Success"
+   ],
+   [
+    "Accenture",
+    "Senior Sales Manager - Strategic Partnerships & Digital Advertising (SBM) - AM (CL8)"
+   ],
+   [
+    "Mediolanum International Funds Limited",
+    "Head of Sales"
+   ]
+  ],
+  "sell": [
+   [
+    "Cpl",
+    "Ad Sales Team Lead - AI/SaaS"
+   ],
+   [
+    "Cpl",
+    "Sales Engineer/Solution Consultant"
+   ],
+   [
+    "gitlab",
+    "Business Development Representative"
+   ],
+   [
+    "gitlab",
+    "Business Development Representative, Turkish Speaking"
+   ],
+   [
+    "gitlab",
+    "Director, Customer Success, EMEA"
+   ],
+   [
+    "greenhouse",
+    "Growth Account Executive"
+   ],
+   [
+    "greenhouse",
+    "Senior Account Executive, Mid-Market"
+   ],
+   [
+    "intercom",
+    "Account Executive, Enterprise (German)"
+   ],
+   [
+    "intercom",
+    "Account Executive, Senior Small Business (German)"
+   ],
+   [
+    "intercom",
+    "Account Executive, Small Business (French Speaking)"
+   ],
+   [
+    "intercom",
+    "Manager, Account Executives (SMB)"
+   ],
+   [
+    "intercom",
+    "Senior Customer Success Manager"
+   ],
+   [
+    "intercom",
+    "Senior Product Marketing Manager"
+   ],
+   [
+    "mongodb",
+    "Staff Technical Product Marketing Manager, Context Engineering"
+   ],
+   [
+    "Bentley Systems International Limited",
+    "Director, Technology Solution Marketing"
+   ],
+   [
+    "Microsoft",
+    "Digital Enterprise Solution Sales Specialist - AI Workforce- French speaking"
+   ],
+   [
+    "Watchguard Technologies",
+    "Inside partner account manager - German"
+   ],
+   [
+    "Watchguard Technologies",
+    "Inside partner account manager"
+   ]
+  ],
+  "build": [
+   [
+    "mongodb",
+    "Senior Sales Operations Analyst"
+   ],
+   [
+    "wayflyer",
+    "Technical Revenue Operations Analyst"
+   ]
+  ]
+ },
+ "q1_marketing_asks_by_poster": [
+  [
+   "Cpl Resources - Marketing",
+   4
+  ],
+  [
+   "McSport",
+   3
+  ],
+  [
+   "Soho Bar and Venue",
+   1
+  ],
+  [
+   "O'Callaghan Collection",
+   1
+  ],
+  [
+   "Purcell O'Leary Recruitment",
+   1
+  ],
+  [
+   "Cpl Resources - Language Jobs",
+   1
+  ],
+  [
+   "TK Maxx TJX Europe Homesense",
+   1
+  ],
+  [
+   "EZ Living Furniture",
+   1
+  ],
+  [
+   "StayCity",
+   1
+  ]
+ ],
+ "q1_marketing_examples": [
+  [
+   "McSport",
+   "Digital Marketing Executive",
+   "tools"
+  ],
+  [
+   "McSport",
+   "Ecommerce Executive",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Product Marketing Manager - 12 month FTC",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Product Marketing Manager - Part time 12 month FTC",
+   "tools"
+  ],
+  [
+   "Soho Bar and Venue",
+   "Digital Marketing Manager",
+   "lead"
+  ],
+  [
+   "O'Callaghan Collection",
+   "Senior Digital Marketing Executive",
+   "search"
+  ],
+  [
+   "Purcell O'Leary Recruitment",
+   "Digital Marketing Manager",
+   "lead"
+  ],
+  [
+   "Cpl Resources - Language Jobs",
+   "German Speaking roles in Dublin (SaaS/Marketing)",
+   "tools"
+  ],
+  [
+   "TK Maxx TJX Europe Homesense",
+   "Communications Manager - 14 Months FTC",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Growth Regions Field Marketing Lead 12 Month FTC",
+   "tools"
+  ],
+  [
+   "McSport",
+   "Social Media & Content Creator",
+   "tools"
+  ],
+  [
+   "EZ Living Furniture",
+   "Social Media Executive (Maternity Cover)",
+   "tools"
+  ],
+  [
+   "Cpl Resources - Marketing",
+   "Marketing Coordinator - 6 Month Contract with possible extension Dublin",
+   "tools"
+  ],
+  [
+   "StayCity",
+   "SEO & Organic Growth Lead",
+   "search"
+  ]
+ ],
+ "q3_jobsie_marketing_examples": [
+  [
+   "Staffline Recruitment Ireland",
+   "Marketing Analyst",
+   "search"
+  ],
+  [
+   "Excel Recruitment",
+   "Ecommerce & Digital Marketing Manager - Luxury Retail",
+   "lead"
+  ],
+  [
+   "Cpl Resources - Cork",
+   "Product Marketing Communications Contractor - German",
+   "tools"
+  ],
+  [
+   "Yuno Limited t/a Yuno Energy",
+   "Digital Marketing Manager",
+   "search"
+  ],
+  [
+   "Cpl Resources - Cork",
+   "Product Marketing Communication DE/FR/ES",
+   "tools"
+  ],
+  [
+   "Ballyhoura Development Limited",
+   "Graduate Development Officer Digital Communications & Marketing",
+   "tools"
+  ],
+  [
+   "Excel Recruitment",
+   "Senior Digital Marketing Manager",
+   "search"
+  ],
+  [
+   "Femtech Healthcare Limited",
+   "Senior AI Search & SEO Specialist",
+   "search"
+  ]
+ ],
+ "tools_asks_reasons": {
+  "asks": 43,
+  "sentences": 82,
+  "speed, efficiency, productivity": 27,
+  "automating tasks, workflows": 22,
+  "analysing data, insight": 15,
+  "campaigns, targeting, personalisation": 10,
+  "images, video, design": 8,
+  "writing, drafting, copy": 7,
+  "research": 8,
+  "summarising": 2
+ },
+ "second_reader": {
+  "first_check": {
+   "sample": 40,
+   "real_vs_noise_agree": 39,
+   "kind_agree": 37
+  },
+  "full_rejudge": {
+   "candidates": 172,
+   "overruled_by_sam": 6
+  }
+ },
+ "fine_roles_year": [
+  {
+   "group": "marketing",
+   "role": "Product marketing",
+   "k": 6,
+   "n": 9,
+   "pct": 66.7
+  },
+  {
+   "group": "marketing",
+   "role": "SEO",
+   "k": 2,
+   "n": 3,
+   "pct": 66.7
+  },
+  {
+   "group": "marketing",
+   "role": "Marketing analytics and insight",
+   "k": 1,
+   "n": 2,
+   "pct": 50.0
+  },
+  {
+   "group": "marketing",
+   "role": "Performance and paid media",
+   "k": 2,
+   "n": 5,
+   "pct": 40.0
+  },
+  {
+   "group": "sales",
+   "role": "Sales and revenue operations",
+   "k": 6,
+   "n": 18,
+   "pct": 33.3
+  },
+  {
+   "group": "sales",
+   "role": "Partnerships and channel sales",
+   "k": 5,
+   "n": 17,
+   "pct": 29.4
+  },
+  {
+   "group": "marketing",
+   "role": "Digital marketing",
+   "k": 11,
+   "n": 46,
+   "pct": 23.9
+  },
+  {
+   "group": "sales",
+   "role": "Customer success",
+   "k": 3,
+   "n": 13,
+   "pct": 23.1
+  },
+  {
+   "group": "marketing",
+   "role": "Field, partner and channel marketing",
+   "k": 1,
+   "n": 5,
+   "pct": 20.0
+  },
+  {
+   "group": "sales",
+   "role": "Account executive",
+   "k": 13,
+   "n": 66,
+   "pct": 19.7
+  },
+  {
+   "group": "sales",
+   "role": "SDR and BDR",
+   "k": 9,
+   "n": 50,
+   "pct": 18.0
+  },
+  {
+   "group": "marketing",
+   "role": "Ecommerce",
+   "k": 2,
+   "n": 13,
+   "pct": 15.4
+  },
+  {
+   "group": "marketing",
+   "role": "Content and copywriting",
+   "k": 2,
+   "n": 21,
+   "pct": 9.5
+  },
+  {
+   "group": "sales",
+   "role": "Inside sales and telesales",
+   "k": 2,
+   "n": 24,
+   "pct": 8.3
+  },
+  {
+   "group": "sales",
+   "role": "Technical and solution sales",
+   "k": 3,
+   "n": 54,
+   "pct": 5.6
+  },
+  {
+   "group": "marketing",
+   "role": "PR and communications",
+   "k": 1,
+   "n": 19,
+   "pct": 5.3
+  },
+  {
+   "group": "marketing",
+   "role": "Social media",
+   "k": 1,
+   "n": 20,
+   "pct": 5.0
+  },
+  {
+   "group": "sales",
+   "role": "Business development",
+   "k": 4,
+   "n": 106,
+   "pct": 3.8
+  },
+  {
+   "group": "marketing",
+   "role": "General marketing",
+   "k": 4,
+   "n": 112,
+   "pct": 3.6
+  },
+  {
+   "group": "sales",
+   "role": "Account and key account management",
+   "k": 1,
+   "n": 76,
+   "pct": 1.3
+  },
+  {
+   "group": "sales",
+   "role": "Other sales",
+   "k": 4,
+   "n": 550,
+   "pct": 0.7
+  },
+  {
+   "group": "sales",
+   "role": "Sales leadership",
+   "k": 1,
+   "n": 139,
+   "pct": 0.7
+  },
+  {
+   "group": "sales",
+   "role": "Retail and showroom sales",
+   "k": 0,
+   "n": 288,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Field sales",
+   "k": 0,
+   "n": 90,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Brand",
+   "k": 0,
+   "n": 17,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "CRM, email and marketing operations",
+   "k": 0,
+   "n": 8,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Events",
+   "k": 0,
+   "n": 2,
+   "pct": 0.0
+  }
+ ],
+ "fine_roles_sep": [
+  {
+   "group": "marketing",
+   "role": "SEO",
+   "k": 1,
+   "n": 1,
+   "pct": 100.0
+  },
+  {
+   "group": "marketing",
+   "role": "Performance and paid media",
+   "k": 2,
+   "n": 3,
+   "pct": 66.7
+  },
+  {
+   "group": "marketing",
+   "role": "Product marketing",
+   "k": 4,
+   "n": 6,
+   "pct": 66.7
+  },
+  {
+   "group": "sales",
+   "role": "Partnerships and channel sales",
+   "k": 5,
+   "n": 9,
+   "pct": 55.6
+  },
+  {
+   "group": "marketing",
+   "role": "Marketing analytics and insight",
+   "k": 1,
+   "n": 2,
+   "pct": 50.0
+  },
+  {
+   "group": "marketing",
+   "role": "Ecommerce",
+   "k": 1,
+   "n": 2,
+   "pct": 50.0
+  },
+  {
+   "group": "marketing",
+   "role": "Digital marketing",
+   "k": 5,
+   "n": 12,
+   "pct": 41.7
+  },
+  {
+   "group": "sales",
+   "role": "Sales and revenue operations",
+   "k": 5,
+   "n": 13,
+   "pct": 38.5
+  },
+  {
+   "group": "sales",
+   "role": "SDR and BDR",
+   "k": 9,
+   "n": 32,
+   "pct": 28.1
+  },
+  {
+   "group": "sales",
+   "role": "Customer success",
+   "k": 3,
+   "n": 13,
+   "pct": 23.1
+  },
+  {
+   "group": "sales",
+   "role": "Account executive",
+   "k": 10,
+   "n": 44,
+   "pct": 22.7
+  },
+  {
+   "group": "sales",
+   "role": "Business development",
+   "k": 2,
+   "n": 15,
+   "pct": 13.3
+  },
+  {
+   "group": "marketing",
+   "role": "Content and copywriting",
+   "k": 1,
+   "n": 9,
+   "pct": 11.1
+  },
+  {
+   "group": "sales",
+   "role": "Technical and solution sales",
+   "k": 2,
+   "n": 27,
+   "pct": 7.4
+  },
+  {
+   "group": "marketing",
+   "role": "General marketing",
+   "k": 2,
+   "n": 41,
+   "pct": 4.9
+  },
+  {
+   "group": "sales",
+   "role": "Sales leadership",
+   "k": 1,
+   "n": 40,
+   "pct": 2.5
+  },
+  {
+   "group": "sales",
+   "role": "Other sales",
+   "k": 2,
+   "n": 181,
+   "pct": 1.1
+  },
+  {
+   "group": "sales",
+   "role": "Account and key account management",
+   "k": 0,
+   "n": 32,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Social media",
+   "k": 0,
+   "n": 4,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "CRM, email and marketing operations",
+   "k": 0,
+   "n": 4,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Field, partner and channel marketing",
+   "k": 0,
+   "n": 3,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Field sales",
+   "k": 0,
+   "n": 15,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Retail and showroom sales",
+   "k": 0,
+   "n": 108,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Brand",
+   "k": 0,
+   "n": 9,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "PR and communications",
+   "k": 0,
+   "n": 4,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Inside sales and telesales",
+   "k": 0,
+   "n": 7,
+   "pct": 0.0
+  }
+ ],
+ "fine_roles_boards_year": [
+  {
+   "group": "marketing",
+   "role": "SEO",
+   "k": 2,
+   "n": 3,
+   "pct": 66.7
+  },
+  {
+   "group": "marketing",
+   "role": "Product marketing",
+   "k": 4,
+   "n": 7,
+   "pct": 57.1
+  },
+  {
+   "group": "marketing",
+   "role": "Marketing analytics and insight",
+   "k": 1,
+   "n": 2,
+   "pct": 50.0
+  },
+  {
+   "group": "marketing",
+   "role": "Performance and paid media",
+   "k": 1,
+   "n": 4,
+   "pct": 25.0
+  },
+  {
+   "group": "marketing",
+   "role": "Field, partner and channel marketing",
+   "k": 1,
+   "n": 4,
+   "pct": 25.0
+  },
+  {
+   "group": "marketing",
+   "role": "Digital marketing",
+   "k": 11,
+   "n": 46,
+   "pct": 23.9
+  },
+  {
+   "group": "sales",
+   "role": "Partnerships and channel sales",
+   "k": 3,
+   "n": 13,
+   "pct": 23.1
+  },
+  {
+   "group": "marketing",
+   "role": "Ecommerce",
+   "k": 2,
+   "n": 13,
+   "pct": 15.4
+  },
+  {
+   "group": "sales",
+   "role": "Sales and revenue operations",
+   "k": 1,
+   "n": 10,
+   "pct": 10.0
+  },
+  {
+   "group": "marketing",
+   "role": "Content and copywriting",
+   "k": 2,
+   "n": 21,
+   "pct": 9.5
+  },
+  {
+   "group": "sales",
+   "role": "Account executive",
+   "k": 3,
+   "n": 33,
+   "pct": 9.1
+  },
+  {
+   "group": "sales",
+   "role": "Inside sales and telesales",
+   "k": 2,
+   "n": 24,
+   "pct": 8.3
+  },
+  {
+   "group": "sales",
+   "role": "Technical and solution sales",
+   "k": 3,
+   "n": 53,
+   "pct": 5.7
+  },
+  {
+   "group": "marketing",
+   "role": "PR and communications",
+   "k": 1,
+   "n": 19,
+   "pct": 5.3
+  },
+  {
+   "group": "marketing",
+   "role": "Social media",
+   "k": 1,
+   "n": 20,
+   "pct": 5.0
+  },
+  {
+   "group": "sales",
+   "role": "SDR and BDR",
+   "k": 1,
+   "n": 31,
+   "pct": 3.2
+  },
+  {
+   "group": "sales",
+   "role": "Business development",
+   "k": 3,
+   "n": 104,
+   "pct": 2.9
+  },
+  {
+   "group": "marketing",
+   "role": "General marketing",
+   "k": 3,
+   "n": 108,
+   "pct": 2.8
+  },
+  {
+   "group": "sales",
+   "role": "Account and key account management",
+   "k": 1,
+   "n": 75,
+   "pct": 1.3
+  },
+  {
+   "group": "sales",
+   "role": "Other sales",
+   "k": 4,
+   "n": 549,
+   "pct": 0.7
+  },
+  {
+   "group": "sales",
+   "role": "Sales leadership",
+   "k": 1,
+   "n": 136,
+   "pct": 0.7
+  },
+  {
+   "group": "sales",
+   "role": "Retail and showroom sales",
+   "k": 0,
+   "n": 288,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Field sales",
+   "k": 0,
+   "n": 90,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Brand",
+   "k": 0,
+   "n": 17,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "CRM, email and marketing operations",
+   "k": 0,
+   "n": 8,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Events",
+   "k": 0,
+   "n": 2,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Customer success",
+   "k": 0,
+   "n": 3,
+   "pct": 0.0
+  }
+ ],
+ "fine_roles_careers_sep": [
+  {
+   "group": "marketing",
+   "role": "Product marketing",
+   "k": 2,
+   "n": 2,
+   "pct": 100.0
+  },
+  {
+   "group": "marketing",
+   "role": "Performance and paid media",
+   "k": 1,
+   "n": 1,
+   "pct": 100.0
+  },
+  {
+   "group": "sales",
+   "role": "Sales and revenue operations",
+   "k": 5,
+   "n": 8,
+   "pct": 62.5
+  },
+  {
+   "group": "sales",
+   "role": "Business development",
+   "k": 1,
+   "n": 2,
+   "pct": 50.0
+  },
+  {
+   "group": "sales",
+   "role": "Partnerships and channel sales",
+   "k": 2,
+   "n": 4,
+   "pct": 50.0
+  },
+  {
+   "group": "sales",
+   "role": "SDR and BDR",
+   "k": 8,
+   "n": 19,
+   "pct": 42.1
+  },
+  {
+   "group": "sales",
+   "role": "Account executive",
+   "k": 10,
+   "n": 33,
+   "pct": 30.3
+  },
+  {
+   "group": "sales",
+   "role": "Customer success",
+   "k": 3,
+   "n": 10,
+   "pct": 30.0
+  },
+  {
+   "group": "marketing",
+   "role": "General marketing",
+   "k": 1,
+   "n": 4,
+   "pct": 25.0
+  },
+  {
+   "group": "sales",
+   "role": "Account and key account management",
+   "k": 0,
+   "n": 1,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Technical and solution sales",
+   "k": 0,
+   "n": 1,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Other sales",
+   "k": 0,
+   "n": 1,
+   "pct": 0.0
+  },
+  {
+   "group": "marketing",
+   "role": "Field, partner and channel marketing",
+   "k": 0,
+   "n": 1,
+   "pct": 0.0
+  },
+  {
+   "group": "sales",
+   "role": "Sales leadership",
+   "k": 0,
+   "n": 3,
+   "pct": 0.0
+  }
+ ],
+ "sep_sources": {
+  "Indeed": 245,
+  "jobs.ie": 141,
+  "IrishJobs": 119,
+  "the careers pages of technology companies": 90,
+  "Google Jobs": 36,
+  "Cpl": 4,
+  "Hays": 1
+ },
+ "sep_sources_detail": {
+  "indeed": 245,
+  "jobs.ie": 141,
+  "irishjobs": 119,
+  "careers:stripe": 22,
+  "careers:datadog": 15,
+  "careers:intercom": 12,
+  "careers:mongodb": 11,
+  "google:Indeed": 8,
+  "careers:notion": 6,
+  "cpl": 4,
+  "careers:gitlab": 4,
+  "careers:okta": 4,
+  "careers:tines": 3,
+  "google:LinkedIn Ireland": 3,
+  "careers:cartrawler": 2,
+  "careers:dropbox": 2,
+  "careers:greenhouse": 2,
+  "careers:udemy": 2,
+  "careers:wayflyer": 2,
+  "google:IrishJobs.ie": 2,
+  "google:JobLeads": 2,
+  "google:Workday": 2,
+  "google:ICE Jobs": 2,
+  "google:Cpl": 1,
+  "hays": 1,
+  "careers:learnupon": 1,
+  "careers:squarespace": 1,
+  "careers:workato": 1,
+  "google:Novartis": 1,
+  "google:Gumtree Ireland": 1,
+  "google:Aon Careers": 1,
+  "google:Jobs.ie": 1,
+  "google:Glassdoor": 1,
+  "google:Built In": 1,
+  "google:Jobs By Workable": 1,
+  "google:Built In Dublin": 1,
+  "google:Hitachi Careers - Hitachi Global": 1,
+  "google:Thermo Fisher Scientific": 1,
+  "google:Welcome To The Jungle": 1,
+  "google:ClimateTechList": 1,
+  "google:Pandora Careers": 1,
+  "google:Careers At Bouygues | Bouygues Jobs": 1,
+  "google:Kerry Group Jobs": 1,
+  "google:Jobgether": 1
+ },
+ "sep_sales_asks_by_kind": {
+  "careers": {
+   "lead": 1,
+   "tools": 16,
+   "sell": 10,
+   "build": 2,
+   "all": 29
+  },
+  "boards": {
+   "sell": 5,
+   "lead": 2,
+   "tools": 3,
+   "all": 10
+  }
+ },
+ "sep_careers_sales_asks_by_job": {
+  "Account executive": {
+   "tools": 4,
+   "sell": 6
+  },
+  "SDR and BDR": {
+   "sell": 2,
+   "tools": 6
+  }
+ },
+ "head_asks": {
+  "by_role": {
+   "sales": 4,
+   "marketing": 1
+  },
+  "by_kind": {
+   "lead": 2,
+   "sell": 2,
+   "tools": 1
+  },
+  "on_careers_pages": 3,
+  "who": [
+   [
+    "datadog",
+    "Director, Enterprise Customer Success",
+    "sales",
+    "lead"
+   ],
+   [
+    "gitlab",
+    "Director, Customer Success, EMEA",
+    "sales",
+    "sell"
+   ],
+   [
+    "learnupon",
+    "Director, Partnerships",
+    "sales",
+    "tools"
+   ],
+   [
+    "Bentley Systems International Limited",
+    "Director, Technology Solution Marketing",
+    "marketing",
+    "sell"
+   ],
+   [
+    "Mediolanum International Funds Limited",
+    "Head of Sales",
+    "sales",
+    "lead"
+   ]
+  ]
+ },
+ "marketing_ads_naming_a_tool": {
+  "sep_all_sources": {
+   "k": 43,
+   "n": 100,
+   "pct": 43.0
+  },
+  "2025-Q4": {
+   "k": 21,
+   "n": 43,
+   "pct": 48.8
+  },
+  "2026-Q3": {
+   "k": 17,
+   "n": 31,
+   "pct": 54.8
+  }
+ },
+ "recruiter_asks_by_role": {
+  "marketing": 6,
+  "sales": 3,
+  "all": 9
+ },
+ "search_asks_by_quarter": {
+  "2026-Q2": 1,
+  "2026-Q1": 2,
+  "2026-Q3": 4
+ },
+ "sep_multi_site": 35,
+ "judging": {
+  "total": 172,
+  "second_reader_unchanged": 109,
+  "overruled": 11,
+  "sam": 52
+ },
+ "marketing_tool_ads_sep": 58
+}

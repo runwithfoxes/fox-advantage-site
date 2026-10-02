@@ -155,42 +155,44 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
   }
 
-  /*
-    ⭐ THE HONEYPOT, CHECKED FIRST - before validation, before Redis, before
-    Klaviyo. `rwf_hp` is an off-screen field the page renders but no human
-    can see or tab into, so anything in it came from something filling the DOM
-    blind.
-
-    IT ANSWERS 200 OK, NOT AN ERROR, AND THAT IS THE WHOLE POINT. A 400 teaches
-    a bot which field gave it away and it comes back without that field. A
-    cheerful success teaches it nothing and it goes away happy. Nothing is
-    written anywhere: no profile, no list, no welcome email, no Upstash record.
-
-    This is the piece that actually stops the junk. The name check below only
-    counts, and the rate limit only slows.
-  */
-  /* ⛔ 21 Sep 2026: the trap used to be `company_url`, which Chrome autofilled for
-     real people. The old name is now IGNORED, not checked, so a module tab opened
-     before this deploy still lets its visitor in. See CourseSignup's SignupPayload. */
-  if (String(body.rwf_hp ?? "").trim() !== "") {
-    // Logged, not silent. This branch is the one place a real person could be
-    // wrongly turned away (a password manager filling the trap), and until now
-    // it left NO trace anywhere - the reply is a fake 200 and nothing is
-    // recorded. A visible line means a false positive is discoverable in the
-    // Vercel logs instead of being invisible, as it was when Maebh went missing
-    // on 24 Jul and could not be confirmed either way. The email is included on
-    // purpose so a human report can be matched to a rejection; the trap value is
-    // NOT logged (it is attacker-controlled and worthless).
-    console.warn(
-      "[course-signup] honeypot rejected",
-      String(body.email ?? "").trim().toLowerCase() || "(no email)",
-      clientIp(req),
-    );
-    return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
-  }
-
   const email = String(body.email ?? "").trim().toLowerCase();
   const firstName = String(body.first_name ?? "").trim();
+
+  /*
+    ⭐ THE HONEYPOT FLAGS. IT ONLY REJECTS WHEN THE NAME IS A MACHINE'S TOO.
+
+    `rwf_hp` is an off-screen field the page renders but no human can see or tab
+    into. The idea was that anything in it came from a bot filling the DOM blind.
+
+    ⛔ THAT WAS WRONG, TWICE. 21 Sep 2026: the field was `company_url`, Chrome
+    autofilled it, and 13 real people saw "You're in" and were thrown away. It was
+    renamed `rwf_hp` on the belief that a meaningless name matches no autofill in
+    any browser. It did not help: from 21 to 23 Sep another 20 or so real people
+    were thrown away the same way (Dan O'Doherty three times, two at Sabre). The
+    browser fills the trap because of WHERE it sits, not what it is called: it was
+    the first text box in the form, and the real name and email boxes carried no
+    name or autocomplete for autofill to aim at. So the name is not the fix and
+    never was.
+
+    So now, the same rule as the name check below: a false positive costs a
+    member, a false negative costs one row in a count. The trap on its own lets
+    the person in, marks the Klaviyo profile `signup_trap: filled` and the record
+    `trap: true`, and sends NO Meta conversion (a bot conversion teaches the
+    optimiser to find bots). Only trap AND a machine-shaped name gets the old fake
+    200 with nothing written, which is exactly the shape of the July bots.
+
+    The fake 200 still matters there: a 400 teaches a bot which field gave it
+    away. The trap value is never logged (attacker-controlled and worthless); the
+    email is, so a person who writes in can be matched to a line.
+  */
+  const trapFilled = String(body.rwf_hp ?? "").trim() !== "";
+  if (trapFilled && looksMachineGenerated(firstName)) {
+    console.warn("[course-signup] honeypot rejected", email || "(no email)", clientIp(req));
+    return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
+  }
+  if (trapFilled) {
+    console.warn("[course-signup] honeypot filled, let in", email || "(no email)", clientIp(req));
+  }
 
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ ok: false, error: "email" }, { status: 400 });
@@ -267,6 +269,20 @@ export async function POST(req: NextRequest) {
     // pulled the person in. Every touch is appended either way, so a repeat is
     // visible rather than silently lost.
     const properties: Record<string, unknown> = {};
+    /* 27 Sep 2026, the resource centre's tags (see /api/access). A course sign-up is a full-access
+       sign-up too, and the route the person took stays visible: rwf_first_want is set only when no
+       profile existed (someone who came in through a report and then joins the course keeps
+       "report" as their first want), rwf_last_want is "course" every time, and rwf_wants gets
+       "course" appended below. Paul, 27 Sep: "if I have registered for the course, do I get access
+       to all these things? The answer should be yes. And if I come in through a report, I can also
+       take on the course... And we can track those." */
+    properties.rwf_last_want = "course";
+    properties.rwf_last_page = pageUrl ?? null;
+    properties.rwf_last_ask_at = stamp;
+    if (!existing) {
+      properties.rwf_first_want = "course";
+      properties.rwf_first_ask_at = stamp;
+    }
     if (firstTouch) {
       properties.signup_source = source;
       properties.signup_door = door;
@@ -283,6 +299,10 @@ export async function POST(req: NextRequest) {
     /* Also every touch: the person may come back and type it correctly, and the
        second submission should not inherit the first one's verdict. */
     properties.signup_email_dns = undeliverable ? "no_mail_route" : "ok";
+
+    /* Every touch, like the two above. Only ever written when true, so a later clean
+       submission leaves an earlier flag in place rather than wiping it. */
+    if (trapFilled) properties.signup_trap = "filled";
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
@@ -305,7 +325,7 @@ export async function POST(req: NextRequest) {
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed",
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -371,7 +391,7 @@ export async function POST(req: NextRequest) {
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed",
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -379,8 +399,33 @@ export async function POST(req: NextRequest) {
     await recordSignup({
       ts: stamp, email, first_name: firstName, signup_source: source,
       signup_module: signupModule, signup_module_lands: lands,
-      door, klaviyo: "ok",
+      door, klaviyo: "ok", ...(trapFilled ? { trap: true as const } : {}),
     });
+
+    /* The resource centre's running list and its own metric (never `Joined`, see above). Both
+       best-effort: a failure here must not cost a signup that has already succeeded. */
+    if (profileId) {
+      await fetch(`${KLAVIYO}/profiles/${profileId}/`, {
+        method: "PATCH",
+        headers: headers(key, true),
+        body: JSON.stringify({ data: { type: "profile", id: profileId, attributes: {}, meta: { patch_properties: { append: { rwf_wants: "course" } } } } }),
+      }).catch(() => null);
+    }
+    await fetch(`${KLAVIYO}/events/`, {
+      method: "POST",
+      headers: headers(key, true),
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            properties: { want: "course", item: signupModule !== null ? `module-${signupModule}` : null, page: pageUrl ?? null, first: !existing },
+            metric: { data: { type: "metric", attributes: { name: "Resource Access" } } },
+            profile: { data: { type: "profile", attributes: { email } } },
+            time: stamp,
+          },
+        },
+      }),
+    }).catch(() => null);
 
     /*
       ⭐ META CONVERSIONS API - AFTER THE RESPONSE, NOT BEFORE IT.
@@ -391,7 +436,9 @@ export async function POST(req: NextRequest) {
 
       ⛔ IT ONLY RUNS ON THE SUCCESS PATH, DELIBERATELY. A honeypot bot (fake
       200, nothing written), a failed Klaviyo call and a rate-limited caller all
-      return earlier, so none of them reach here. Sending a conversion for a bot
+      return earlier, so none of them reach here. A person let in with the trap
+      filled (23 Sep 2026) does reach here and is skipped by `trapFilled`, since
+      we cannot be sure they are a person. Sending a conversion for a bot
       would teach the optimiser to go and find more bots, which is the single
       most expensive thing that can go wrong on a conversion campaign.
 
@@ -402,7 +449,7 @@ export async function POST(req: NextRequest) {
       Never throws - `sendCourseSignupEvent` returns its failures rather than
       raising, so nothing here can affect a signup that has already succeeded.
     */
-    after(async () => {
+    if (!trapFilled) after(async () => {
       const result = await sendCourseSignupEvent({
         email,
         firstName,
@@ -426,6 +473,7 @@ export async function POST(req: NextRequest) {
     // Someone who submits twice, or refreshes mid-submit, has done nothing
     // wrong. Both land here as a success with `already` set, not as an error.
     const res = NextResponse.json({ ok: true, door, already: !!existing });
+    res.cookies.set("rwf_access", "1", { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * 365 });
 
     /* ⭐⭐ THE IDENTITY COOKIE IS SET HERE AND NOWHERE ELSE, 3 Aug 2026. This is the moment
        the course gets a name to attach behaviour to, which is the entire reason Paul wants

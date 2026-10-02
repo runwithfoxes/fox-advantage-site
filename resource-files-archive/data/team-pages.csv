@@ -1,0 +1,549 @@
+sector,team_size,has_ops,has_content,read
+Energy,33,no,no,2026-08-04
+Tourism and hospitality,5,yes,yes,2026-07-30
+Tax and accounting,10,no,no,2026-07-26
+Food and drink,10,yes,no,2026-07-26
+Tax and accounting,9,yes,yes,2026-08-31
+Energy,38,yes,no,2026-07-29
+Professional services,48,no,yes,2026-08-18
+Energy,16,no,yes,2026-08-07
+Tourism and hospitality,45,yes,no,2026-05-25
+Energy,8,yes,yes,2026-06-21
+Energy,4,yes,yes,2026-07-01
+Energy,-1,yes,yes,2026-07-04
+Energy,4,no,no,2026-07-28
+Energy,49,no,yes,2026-07-07
+Tax and accounting,53,no,no,2026-07-28
+Professional services,12,yes,yes,2026-08-20
+Energy,21,yes,yes,2026-07-05
+Energy,17,no,yes,2026-05-14
+Food and drink,14,yes,yes,2026-05-24
+Tourism and hospitality,6,yes,yes,2026-05-05
+Tax and accounting,11,no,yes,2026-07-03
+Tax and accounting,49,no,no,2026-08-10
+Tax and accounting,43,yes,no,2026-05-23
+Tax and accounting,20,yes,no,2026-06-11
+Food and drink,40,no,yes,2026-05-31
+Energy,-1,yes,yes,2026-06-25
+Tax and accounting,7,no,yes,2026-06-20
+Tax and accounting,11,yes,yes,2026-05-19
+Food and drink,-4,no,yes,2026-06-06
+Food and drink,25,yes,yes,2026-08-15
+Tourism and hospitality,50,no,no,2026-08-23
+Energy,7,yes,no,2026-08-04
+Tax and accounting,21,yes,yes,2026-05-12
+Energy,8,no,no,2026-07-02
+Food and drink,3,no,yes,2026-06-27
+Energy,19,yes,no,2026-07-19
+Energy,3,no,no,2026-06-25
+Energy,34,yes,yes,2026-05-07
+Energy,57,yes,no,2026-05-19
+Tourism and hospitality,23,yes,yes,2026-08-03
+Tax and accounting,20,yes,yes,2026-08-15
+Energy,-4,yes,yes,2026-06-15
+Energy,7,yes,no,2026-06-02
+Energy,0,no,yes,2026-08-19
+Energy,14,yes,no,2026-06-25
+Tax and accounting,47,yes,yes,2026-06-11
+Professional services,42,no,no,2026-08-27
+Professional services,9,no,no,2026-06-07
+Tax and accounting,29,no,yes,2026-07-23
+Professional services,2,no,no,2026-06-18
+Tourism and hospitality,19,no,yes,2026-07-24
+Tax and accounting,22,yes,yes,2026-08-20
+Food and drink,5,yes,no,2026-05-07
+Tourism and hospitality,45,no,yes,2026-05-04
+Energy,50,yes,no,2026-07-25
+Energy,24,yes,yes,2026-08-03
+Energy,44,yes,yes,2026-07-03
+Energy,-5,yes,no,2026-07-26
+Energy,14,no,no,2026-06-12
+Professional services,10,no,no,2026-05-13
+Tax and accounting,14,yes,yes,2026-06-24
+Tax and accounting,30,no,no,2026-06-22
+Energy,43,no,no,2026-07-31
+Professional services,21,no,no,2026-06-10
+Tourism and hospitality,32,yes,no,2026-05-14
+Tax and accounting,14,yes,no,2026-08-11
+Tax and accounting,21,yes,yes,2026-08-25
+Tax and accounting,4,yes,yes,2026-08-26
+Professional services,10,no,yes,2026-05-31
+Tax and accounting,45,no,yes,2026-08-18
+Tax and accounting,41,no,no,2026-05-14
+Food and drink,13,no,no,2026-05-12
+Food and drink,37,no,yes,2026-05-23
+Tourism and hospitality,11,no,yes,2026-05-14
+Tourism and hospitality,6,no,no,2026-05-05
+Energy,-2,no,yes,2026-05-10
+Food and drink,15,no,yes,2026-08-27
+Professional services,28,yes,no,2026-06-17
+Energy,48,no,no,2026-08-29
+Energy,11,no,no,2026-06-01
+Tourism and hospitality,31,no,yes,2026-07-05
+Tax and accounting,17,no,no,2026-07-28
+Professional services,5,yes,yes,2026-07-03
+Professional services,22,yes,no,2026-05-13
+Tax and accounting,1,no,no,2026-05-13
+Tourism and hospitality,26,no,yes,2026-06-25
+Professional services,38,no,yes,2026-06-17
+Tourism and hospitality,13,no,no,2026-08-07
+Professional services,40,yes,yes,2026-06-08
+Tax and accounting,-5,yes,no,2026-08-02
+Energy,22,yes,yes,2026-08-08
+Energy,21,yes,yes,2026-06-15
+Food and drink,17,no,no,2026-07-09
+Tax and accounting,31,yes,no,2026-08-26
+Professional services,36,no,no,2026-08-02
+Energy,5,yes,yes,2026-06-24
+Energy,32,yes,no,2026-05-30
+Professional services,6,yes,no,2026-06-12
+Food and drink,15,no,no,2026-06-09
+Energy,1,no,yes,2026-07-01
+Tax and accounting,20,yes,yes,2026-07-05
+Food and drink,41,no,yes,2026-07-07
+Tax and accounting,58,no,no,2026-05-26
+Tourism and hospitality,5,no,yes,2026-06-21
+Tax and accounting,29,yes,yes,2026-08-12
+Energy,4,yes,yes,2026-08-13
+Tax and accounting,2,yes,yes,2026-07-19
+Energy,5,yes,no,2026-07-18
+Energy,19,no,no,2026-08-31
+Tourism and hospitality,50,yes,yes,2026-07-30
+Energy,53,yes,yes,2026-06-14
+Tax and accounting,15,no,yes,2026-08-24
+Tax and accounting,35,no,no,2026-08-31
+Tourism and hospitality,5,yes,yes,2026-08-15
+Energy,15,no,no,2026-08-11
+Professional services,12,no,yes,2026-06-22
+Tax and accounting,19,yes,no,2026-08-22
+Food and drink,33,no,no,2026-06-01
+Energy,41,no,no,2026-07-04
+Tourism and hospitality,13,no,yes,2026-06-07
+Tourism and hospitality,24,no,yes,2026-05-04
+Tax and accounting,-1,yes,no,2026-08-20
+Food and drink,1,yes,no,2026-07-03
+Tax and accounting,6,yes,no,2026-08-31
+Professional services,-3,yes,no,2026-05-05
+Food and drink,44,no,yes,2026-08-20
+Energy,40,yes,yes,2026-08-16
+Professional services,15,no,yes,2026-05-31
+Tourism and hospitality,46,no,no,2026-05-25
+Energy,-6,no,yes,2026-05-29
+Tax and accounting,-2,yes,no,2026-05-31
+Food and drink,7,yes,yes,2026-08-08
+Energy,20,no,no,2026-05-31
+Tax and accounting,45,yes,yes,2026-08-31
+Energy,39,no,no,2026-08-03
+Tax and accounting,22,yes,no,2026-07-27
+Energy,30,yes,yes,2026-07-16
+Tax and accounting,3,no,no,2026-06-10
+Energy,21,yes,yes,2026-08-23
+Food and drink,-1,yes,yes,2026-08-11
+Tax and accounting,6,no,no,2026-05-16
+Tax and accounting,35,yes,yes,2026-08-25
+Energy,60,yes,no,2026-08-09
+Tax and accounting,10,yes,no,2026-08-24
+Food and drink,45,yes,yes,2026-07-19
+Tourism and hospitality,-4,yes,no,2026-08-24
+Tourism and hospitality,6,yes,no,2026-07-08
+Tax and accounting,18,no,yes,2026-08-02
+Tax and accounting,-3,yes,no,2026-08-17
+Tourism and hospitality,36,no,yes,2026-08-07
+Energy,56,yes,no,2026-06-15
+Tourism and hospitality,23,yes,yes,2026-07-23
+Energy,45,no,yes,2026-08-09
+Energy,-6,yes,no,2026-08-15
+Energy,11,no,no,2026-08-04
+Energy,2,no,no,2026-08-21
+Energy,6,no,no,2026-08-15
+Tourism and hospitality,40,yes,yes,2026-05-11
+Energy,47,yes,no,2026-05-17
+Energy,9,no,no,2026-05-09
+Food and drink,30,yes,yes,2026-08-14
+Food and drink,-2,no,no,2026-08-04
+Tax and accounting,6,no,yes,2026-07-28
+Food and drink,8,yes,yes,2026-06-30
+Energy,9,yes,yes,2026-06-22
+Tourism and hospitality,42,yes,yes,2026-07-14
+Tax and accounting,50,yes,no,2026-05-31
+Tax and accounting,18,no,no,2026-06-12
+Energy,24,yes,no,2026-07-23
+Professional services,3,yes,yes,2026-06-16
+Energy,13,no,yes,2026-06-11
+Tourism and hospitality,16,no,no,2026-05-18
+Food and drink,1,yes,no,2026-08-12
+Energy,28,yes,yes,2026-05-23
+Professional services,46,yes,yes,2026-06-19
+Food and drink,5,no,no,2026-05-28
+Energy,37,no,no,2026-06-21
+Energy,17,yes,yes,2026-08-20
+Tourism and hospitality,1,yes,yes,2026-08-09
+Energy,-1,yes,yes,2026-05-20
+Professional services,12,no,no,2026-07-19
+Energy,39,no,yes,2026-06-13
+Energy,60,yes,no,2026-06-13
+Energy,7,no,yes,2026-08-24
+Tax and accounting,27,no,no,2026-07-20
+Tourism and hospitality,1,no,yes,2026-08-13
+Energy,0,no,yes,2026-08-26
+Tax and accounting,18,no,yes,2026-08-01
+Food and drink,16,yes,yes,2026-07-16
+Energy,47,yes,no,2026-05-21
+Energy,43,yes,no,2026-08-02
+Tax and accounting,9,yes,no,2026-06-12
+Energy,25,no,yes,2026-08-20
+Energy,14,yes,no,2026-08-05
+Energy,19,yes,yes,2026-08-22
+Food and drink,21,no,yes,2026-08-29
+Energy,8,no,yes,2026-06-26
+Tax and accounting,46,no,no,2026-07-26
+Food and drink,40,yes,no,2026-06-07
+Energy,20,yes,no,2026-07-10
+Energy,43,no,yes,2026-06-05
+Energy,7,yes,no,2026-08-12
+Tourism and hospitality,7,no,no,2026-05-23
+Tax and accounting,17,no,yes,2026-05-18
+Energy,13,yes,yes,2026-08-04
+Professional services,48,no,no,2026-06-12
+Energy,55,no,yes,2026-07-30
+Food and drink,26,no,yes,2026-06-05
+Tourism and hospitality,37,no,yes,2026-07-30
+Tourism and hospitality,4,yes,no,2026-07-31
+Energy,0,no,yes,2026-08-31
+Energy,5,no,no,2026-06-22
+Professional services,5,no,no,2026-08-19
+Tax and accounting,41,no,yes,2026-05-07
+Energy,45,yes,no,2026-05-08
+Tax and accounting,18,no,yes,2026-07-22
+Professional services,22,no,no,2026-07-04
+Energy,11,yes,no,2026-08-17
+Energy,13,yes,no,2026-06-27
+Food and drink,2,no,yes,2026-07-14
+Energy,18,no,no,2026-08-24
+Tourism and hospitality,36,no,yes,2026-07-24
+Energy,50,yes,yes,2026-05-08
+Tax and accounting,14,no,yes,2026-07-13
+Energy,21,yes,yes,2026-05-06
+Food and drink,-2,no,yes,2026-06-15
+Tourism and hospitality,2,no,no,2026-05-30
+Tax and accounting,10,no,no,2026-06-28
+Tax and accounting,21,no,no,2026-06-23
+Tourism and hospitality,48,yes,no,2026-07-22
+Energy,49,no,no,2026-06-21
+Food and drink,23,no,no,2026-05-21
+Energy,42,yes,no,2026-05-15
+Food and drink,6,yes,no,2026-05-18
+Energy,22,no,no,2026-07-27
+Energy,17,yes,no,2026-08-18
+Energy,7,no,no,2026-07-19
+Tourism and hospitality,35,no,no,2026-07-31
+Energy,38,no,no,2026-06-08
+Energy,16,no,no,2026-08-29
+Tax and accounting,31,yes,yes,2026-05-10
+Energy,4,no,no,2026-08-03
+Tourism and hospitality,18,no,yes,2026-07-11
+Energy,-2,no,yes,2026-08-25
+Professional services,17,yes,yes,2026-07-26
+Tax and accounting,40,yes,no,2026-06-13
+Tax and accounting,57,yes,yes,2026-05-15
+Tax and accounting,13,yes,yes,2026-05-30
+Tourism and hospitality,38,no,yes,2026-06-10
+Energy,8,yes,no,2026-08-01
+Professional services,2,no,no,2026-05-17
+Tax and accounting,10,yes,no,2026-08-07
+Tax and accounting,16,no,no,2026-07-21
+Energy,45,no,yes,2026-07-29
+Energy,55,no,no,2026-07-30
+Tourism and hospitality,27,no,no,2026-05-09
+Tourism and hospitality,30,yes,no,2026-07-11
+Energy,8,yes,yes,2026-08-22
+Food and drink,6,yes,yes,2026-08-14
+Professional services,19,yes,no,2026-06-16
+Food and drink,0,yes,yes,2026-06-28
+Professional services,25,no,no,2026-07-04
+Food and drink,57,yes,no,2026-07-12
+Professional services,18,no,no,2026-07-19
+Tax and accounting,24,no,yes,2026-05-23
+Energy,2,yes,yes,2026-07-09
+Energy,8,no,no,2026-05-14
+Energy,8,yes,no,2026-05-21
+Energy,4,no,no,2026-05-28
+Energy,40,no,yes,2026-06-09
+Professional services,51,yes,no,2026-05-11
+Energy,22,yes,yes,2026-06-26
+Food and drink,40,no,no,2026-06-07
+Tourism and hospitality,8,no,yes,2026-06-30
+Professional services,22,yes,yes,2026-07-14
+Energy,4,no,no,2026-08-17
+Energy,2,yes,yes,2026-07-26
+Tourism and hospitality,39,no,no,2026-05-06
+Professional services,54,yes,no,2026-05-08
+Professional services,6,yes,yes,2026-05-16
+Energy,39,no,yes,2026-06-04
+Tax and accounting,9,yes,yes,2026-05-18
+Energy,15,yes,yes,2026-05-29
+Energy,2,no,no,2026-08-01
+Energy,-1,no,yes,2026-06-12
+Energy,37,no,no,2026-07-31
+Tax and accounting,53,yes,no,2026-05-22
+Tax and accounting,4,yes,yes,2026-06-17
+Energy,35,yes,yes,2026-06-10
+Professional services,1,yes,no,2026-06-18
+Tourism and hospitality,19,no,no,2026-05-28
+Tax and accounting,22,yes,no,2026-05-28
+Energy,6,yes,yes,2026-05-09
+Tax and accounting,28,no,no,2026-05-11
+Tourism and hospitality,41,no,yes,2026-08-09
+Energy,17,no,yes,2026-07-02
+Energy,26,no,yes,2026-07-20
+Energy,11,no,yes,2026-05-16
+Tax and accounting,8,yes,no,2026-05-30
+Food and drink,1,yes,no,2026-07-11
+Professional services,17,no,no,2026-07-27
+Food and drink,32,no,yes,2026-08-30
+Energy,47,yes,yes,2026-08-02
+Food and drink,28,yes,yes,2026-05-09
+Professional services,34,no,no,2026-08-21
+Energy,15,yes,yes,2026-05-25
+Energy,12,yes,yes,2026-05-12
+Tax and accounting,18,no,yes,2026-07-01
+Tax and accounting,4,yes,no,2026-06-11
+Tourism and hospitality,36,no,no,2026-08-05
+Food and drink,53,no,no,2026-08-07
+Tax and accounting,12,no,no,2026-06-22
+Tax and accounting,28,no,no,2026-05-25
+Tax and accounting,-4,no,no,2026-05-14
+Tax and accounting,11,no,no,2026-08-03
+Professional services,6,no,yes,2026-07-04
+Tax and accounting,-2,yes,yes,2026-05-27
+Tourism and hospitality,33,no,no,2026-05-04
+Energy,53,yes,yes,2026-05-23
+Tax and accounting,13,no,yes,2026-05-22
+Tax and accounting,24,yes,yes,2026-07-21
+Professional services,5,no,yes,2026-08-01
+Tax and accounting,2,no,yes,2026-06-07
+Tax and accounting,17,yes,yes,2026-08-23
+Food and drink,15,no,no,2026-07-01
+Food and drink,37,yes,yes,2026-08-26
+Tax and accounting,53,yes,yes,2026-07-16
+Professional services,9,no,no,2026-07-17
+Food and drink,37,no,yes,2026-06-18
+Energy,8,yes,no,2026-06-10
+Energy,10,no,yes,2026-07-06
+Energy,13,yes,no,2026-08-18
+Food and drink,10,yes,no,2026-08-11
+Food and drink,39,no,yes,2026-07-14
+Energy,38,yes,no,2026-08-11
+Energy,20,yes,no,2026-05-24
+Professional services,45,no,yes,2026-05-08
+Tax and accounting,16,no,yes,2026-06-14
+Tax and accounting,15,yes,yes,2026-08-09
+Tourism and hospitality,22,yes,yes,2026-05-26
+Energy,15,yes,yes,2026-06-18
+Food and drink,34,yes,yes,2026-07-25
+Energy,49,no,yes,2026-06-27
+Professional services,8,yes,yes,2026-06-23
+Energy,33,no,no,2026-05-15
+Energy,17,no,yes,2026-08-23
+Tourism and hospitality,16,yes,yes,2026-07-04
+Food and drink,14,no,yes,2026-07-15
+Energy,18,yes,yes,2026-06-05
+Tax and accounting,41,yes,no,2026-05-21
+Food and drink,43,yes,yes,2026-05-14
+Energy,8,yes,yes,2026-05-16
+Energy,31,yes,yes,2026-08-04
+Energy,5,no,no,2026-06-06
+Energy,-2,no,no,2026-05-22
+Tax and accounting,10,no,yes,2026-08-28
+Energy,9,yes,yes,2026-08-14
+Energy,50,yes,yes,2026-07-15
+Energy,51,no,no,2026-05-14
+Professional services,5,no,yes,2026-07-19
+Food and drink,22,no,yes,2026-05-12
+Energy,13,no,no,2026-06-07
+Tourism and hospitality,14,no,no,2026-05-13
+Energy,11,yes,no,2026-07-14
+Tax and accounting,9,no,no,2026-07-14
+Tax and accounting,28,no,no,2026-05-11
+Tax and accounting,57,no,yes,2026-06-19
+Tourism and hospitality,11,no,yes,2026-08-19
+Professional services,36,no,yes,2026-07-07
+Professional services,11,no,no,2026-06-26
+Tax and accounting,19,yes,no,2026-05-19
+Energy,-3,yes,yes,2026-07-25
+Professional services,-1,yes,no,2026-07-17
+Energy,26,no,yes,2026-08-08
+Energy,38,yes,no,2026-08-18
+Energy,22,yes,yes,2026-05-30
+Tax and accounting,46,yes,yes,2026-08-31
+Energy,17,yes,yes,2026-06-10
+Tax and accounting,6,yes,no,2026-07-31
+Energy,18,no,yes,2026-08-21
+Energy,-3,yes,yes,2026-05-10
+Energy,27,no,yes,2026-08-16
+Energy,41,no,yes,2026-05-13
+Energy,4,no,yes,2026-07-07
+Professional services,31,yes,yes,2026-07-29
+Food and drink,16,no,no,2026-08-04
+Food and drink,11,yes,no,2026-07-27
+Tax and accounting,11,no,yes,2026-08-28
+Tax and accounting,0,yes,no,2026-05-28
+Tax and accounting,37,yes,no,2026-06-19
+Energy,60,no,no,2026-07-03
+Professional services,9,yes,no,2026-06-20
+Tax and accounting,25,yes,no,2026-06-23
+Professional services,0,no,yes,2026-07-05
+Energy,6,yes,no,2026-07-20
+Energy,6,no,yes,2026-07-07
+Tourism and hospitality,-1,no,no,2026-05-26
+Energy,35,no,yes,2026-05-11
+Energy,45,yes,yes,2026-05-13
+Food and drink,4,no,no,2026-05-27
+Tourism and hospitality,21,no,no,2026-05-05
+Energy,17,no,no,2026-08-17
+Energy,21,no,no,2026-06-02
+Food and drink,13,yes,no,2026-05-20
+Energy,-2,yes,no,2026-07-01
+Tax and accounting,49,no,yes,2026-05-20
+Professional services,39,yes,yes,2026-06-02
+Professional services,17,yes,yes,2026-08-31
+Tax and accounting,31,yes,no,2026-07-18
+Professional services,-2,no,no,2026-06-02
+Tax and accounting,20,no,no,2026-08-26
+Food and drink,-2,yes,yes,2026-07-22
+Tax and accounting,9,no,yes,2026-07-06
+Energy,33,yes,yes,2026-07-21
+Tax and accounting,38,yes,no,2026-06-06
+Tax and accounting,27,no,yes,2026-08-07
+Tax and accounting,37,yes,yes,2026-06-27
+Energy,6,yes,no,2026-08-27
+Food and drink,15,no,yes,2026-07-13
+Professional services,11,yes,no,2026-08-16
+Tax and accounting,11,yes,yes,2026-06-11
+Tax and accounting,41,yes,no,2026-06-03
+Professional services,48,no,no,2026-05-24
+Energy,11,no,yes,2026-08-02
+Tax and accounting,27,yes,no,2026-06-11
+Professional services,16,no,yes,2026-05-18
+Energy,-3,no,yes,2026-08-01
+Tax and accounting,10,yes,no,2026-05-26
+Tourism and hospitality,18,yes,no,2026-07-31
+Energy,29,yes,no,2026-08-29
+Professional services,58,no,yes,2026-06-12
+Tax and accounting,20,yes,yes,2026-07-02
+Energy,24,no,no,2026-07-12
+Professional services,12,no,no,2026-07-03
+Energy,20,yes,yes,2026-08-30
+Energy,6,no,no,2026-05-09
+Tax and accounting,-4,yes,no,2026-08-25
+Food and drink,46,yes,no,2026-07-24
+Tourism and hospitality,46,yes,yes,2026-08-19
+Professional services,24,yes,no,2026-05-12
+Tourism and hospitality,30,no,yes,2026-08-18
+Energy,7,no,yes,2026-06-10
+Tourism and hospitality,6,no,no,2026-06-04
+Energy,22,yes,yes,2026-08-16
+Energy,-3,yes,yes,2026-06-27
+Energy,49,no,no,2026-06-18
+Professional services,57,yes,no,2026-05-08
+Tax and accounting,12,no,yes,2026-05-15
+Tourism and hospitality,36,yes,no,2026-06-10
+Energy,15,yes,no,2026-07-29
+Food and drink,18,yes,no,2026-07-12
+Energy,19,yes,no,2026-05-13
+Tourism and hospitality,20,no,yes,2026-06-04
+Energy,34,no,yes,2026-08-13
+Tourism and hospitality,39,no,yes,2026-05-13
+Food and drink,4,yes,no,2026-06-03
+Tourism and hospitality,21,no,no,2026-08-20
+Professional services,-7,no,yes,2026-08-15
+Tax and accounting,1,no,no,2026-07-04
+Energy,13,yes,yes,2026-05-11
+Tourism and hospitality,-3,no,yes,2026-07-03
+Professional services,38,no,yes,2026-06-15
+Tourism and hospitality,37,yes,no,2026-07-16
+Professional services,21,yes,yes,2026-07-23
+Food and drink,32,no,no,2026-07-20
+Energy,6,no,no,2026-08-05
+Tax and accounting,1,no,yes,2026-07-29
+Tourism and hospitality,20,no,yes,2026-05-21
+Food and drink,3,yes,yes,2026-05-21
+Professional services,28,yes,no,2026-05-26
+Professional services,58,yes,yes,2026-08-10
+Tax and accounting,10,no,no,2026-07-31
+Professional services,22,no,no,2026-07-20
+Energy,9,no,yes,2026-08-17
+Tax and accounting,-3,no,no,2026-06-19
+Tourism and hospitality,2,no,no,2026-08-13
+Tourism and hospitality,10,yes,no,2026-05-10
+Tax and accounting,43,no,no,2026-05-10
+Professional services,40,no,no,2026-06-27
+Professional services,29,yes,yes,2026-07-10
+Professional services,29,no,yes,2026-07-27
+Tax and accounting,4,no,no,2026-06-11
+Tax and accounting,9,no,yes,2026-07-06
+Tax and accounting,11,no,no,2026-05-26
+Tourism and hospitality,17,no,yes,2026-05-30
+Tax and accounting,43,no,no,2026-07-07
+Professional services,49,no,yes,2026-08-27
+Energy,28,yes,yes,2026-07-14
+Energy,33,no,no,2026-06-14
+Energy,3,no,yes,2026-06-28
+Energy,11,yes,no,2026-06-24
+Tax and accounting,3,no,no,2026-08-21
+Tourism and hospitality,0,no,yes,2026-05-13
+Tax and accounting,35,no,yes,2026-07-25
+Tourism and hospitality,52,no,yes,2026-05-30
+Professional services,6,yes,yes,2026-06-19
+Tax and accounting,29,no,no,2026-06-12
+Tax and accounting,7,no,no,2026-08-31
+Energy,2,yes,yes,2026-05-21
+Energy,8,no,yes,2026-08-17
+Energy,3,no,no,2026-08-23
+Energy,32,yes,no,2026-05-17
+Tourism and hospitality,47,yes,no,2026-08-16
+Energy,25,no,yes,2026-08-08
+Energy,45,no,yes,2026-05-29
+Tax and accounting,14,no,no,2026-05-27
+Energy,22,no,yes,2026-07-21
+Energy,12,yes,no,2026-07-04
+Professional services,8,no,no,2026-08-30
+Energy,34,no,yes,2026-08-24
+Energy,36,yes,yes,2026-07-20
+Energy,28,no,yes,2026-07-17
+Tax and accounting,42,no,yes,2026-07-31
+Energy,2,yes,yes,2026-07-27
+Energy,11,yes,no,2026-08-26
+Professional services,21,yes,yes,2026-07-09
+Food and drink,21,yes,yes,2026-05-27
+Energy,36,no,no,2026-07-04
+Tax and accounting,38,yes,yes,2026-05-27
+Food and drink,12,yes,no,2026-06-16
+Tax and accounting,27,yes,no,2026-07-07
+Professional services,11,no,no,2026-07-22
+Energy,3,no,yes,2026-07-17
+Food and drink,20,no,yes,2026-06-30
+Energy,1,no,no,2026-05-09
+Energy,37,yes,yes,2026-05-13
+Tax and accounting,54,yes,yes,2026-07-26
+Tax and accounting,18,no,no,2026-06-25
+Energy,40,no,no,2026-05-18
+Food and drink,1,yes,no,2026-05-16
+Energy,8,no,yes,2026-07-05
+Tax and accounting,12,no,yes,2026-08-12
+Tax and accounting,-4,yes,yes,2026-08-10
+Energy,28,no,yes,2026-06-02
+Energy,55,yes,no,2026-06-27
+Energy,23,yes,no,2026-05-23
+Tourism and hospitality,31,yes,no,2026-05-10
+Tax and accounting,17,yes,no,2026-08-30
+Food and drink,17,yes,no,2026-05-15
+Tax and accounting,22,no,no,2026-07-26
+Energy,9,no,yes,2026-06-13
+Tax and accounting,51,no,yes,2026-05-21
+Tax and accounting,36,yes,no,2026-05-23
+Energy,8,no,no,2026-08-20
+Tax and accounting,29,yes,no,2026-06-20
+Energy,13,yes,no,2026-07-12
+Professional services,16,no,yes,2026-05-12
+Energy,10,yes,no,2026-06-28

@@ -1,0 +1,82 @@
+/* /resources/library (26 Sep 2026). Site rules held: no radius on our own chrome, sky #3A7CA5
+   means clickable, mono for machine text, serif for reading, orange only on the Example tag. */
+
+.wrap { padding-top: 0 !important; }
+
+/* ── the ledger under the standfirst, on the band ── */
+.ledger { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 14px 32px; clear: right; }
+.ledger li { display: grid; gap: 4px; }
+.ledger b { font-family: var(--mono); font-weight: 400; font-size: 26px; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
+.ledger span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #A9CBE4; }
+
+/* ── the shelf: six module spines ── */
+.shelfWrap { border-top: 1px solid rgba(255, 255, 255, 0.18); padding-top: 18px; }
+.shelfHead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; font-family: var(--mono); }
+.shelfLab { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #A9CBE4; }
+.shelfSub { font-size: 11.5px; color: rgba(255, 255, 255, 0.7); }
+.shelf { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; align-items: end; }
+.spine { display: grid; gap: 6px; align-content: end; justify-items: start; min-width: 0; }
+.spineN { font-family: var(--mono); font-size: 20px; line-height: 1; color: rgba(255, 255, 255, 0.55); font-variant-numeric: tabular-nums; }
+.spineOn .spineN { color: #fff; }
+.spineBar { display: block; width: 100%; background: rgba(255, 255, 255, 0.12); border-top: 1px solid rgba(255, 255, 255, 0.22); }
+.spineOn .spineBar { background: #6CAAC8; border-top-color: #A9CBE4; }
+.spineMod { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: #A9CBE4; margin-top: 8px; }
+.spineT { font-family: var(--sans); font-weight: 500; font-size: 14px; line-height: 1.3; color: #fff; }
+.spine:not(.spineOn) .spineT { color: rgba(255, 255, 255, 0.6); }
+.spineWhen { font-family: var(--mono); font-size: 10.5px; color: rgba(255, 255, 255, 0.55); }
+
+/* ── sections on the cream page ── */
+.sec { padding: 56px 0 8px; }
+.sec + .sec { border-top: 1px solid var(--border); margin-top: 48px; }
+.secHead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 64px; align-items: start; margin-bottom: 26px; }
+.h2 { font-family: var(--sans); font-weight: 500; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1; margin: 0; text-wrap: pretty; }
+.secLine { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; color: var(--text); margin: 0; }
+
+/* ── the prompts: one line each, opens to the words ── */
+.prompts { list-style: none; margin: 0; padding: 0; border-top: 1px solid #1A3A4E; }
+.prompt { border-bottom: 1px solid var(--border); }
+.promptRow { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 72px 52px; gap: 18px; align-items: center; min-height: 48px; }
+.promptName { all: unset; cursor: pointer; display: flex; gap: 12px; align-items: baseline; font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--text); padding: 12px 0; min-width: 0; }
+.promptName:hover { color: #3A7CA5; }
+.promptMark { font-family: var(--mono); font-size: 14px; color: #3A7CA5; width: 12px; flex: none; }
+.promptFrom { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.promptFrom:hover { color: #3A7CA5; }
+.promptMeta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-align: right; }
+.promptCopy { all: unset; cursor: pointer; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #3A7CA5; text-align: right; border-bottom: 1px solid transparent; }
+.promptCopy:hover { border-bottom-color: #3A7CA5; }
+.promptBody { margin: 0 0 18px 24px; padding: 16px 18px; background: #fff; border: 1px solid var(--border); font-family: var(--mono); font-size: 12.5px; line-height: 1.65; color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ── the six doors ── */
+.doors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; border-top: 1px solid #1A3A4E; }
+.door { display: grid; grid-template-columns: 34px minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 4px 12px; padding: 18px 0 20px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
+.doorN { grid-row: 1 / span 3; font-family: var(--mono); font-size: 12px; color: #3A7CA5; padding-top: 4px; }
+.doorSoon .doorN { color: var(--text-muted); }
+.doorT { font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.3; }
+.door:hover .doorT { color: #3A7CA5; }
+.doorMeta { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.doorGo { font-family: var(--mono); font-size: 11px; color: #3A7CA5; margin-top: 6px; }
+.doorSoon .doorT { color: #6b6b66; }
+
+/* ── the download and the gate ── */
+.dlRow { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.dlNote { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+@media (max-width: 960px) {
+  .secHead { grid-template-columns: 1fr; gap: 10px; }
+  .doors { grid-template-columns: 1fr 1fr; gap: 0 28px; }
+  .shelf { gap: 10px; }
+}
+@media (max-width: 700px) {
+  .sec { padding-top: 40px; }
+  .sec + .sec { margin-top: 32px; }
+  .h2 { font-size: 24px; }
+  .ledger { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; }
+  .ledger b { font-size: 22px; }
+  .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 12px; }
+  .spineT { font-size: 12.5px; }
+  .promptRow { grid-template-columns: minmax(0, 1fr) 52px; row-gap: 0; }
+  .promptFrom { grid-column: 1 / -1; padding-bottom: 10px; white-space: normal; }
+  .promptMeta { display: none; }
+  .promptBody { margin-left: 0; }
+  .doors { grid-template-columns: 1fr; }
+}

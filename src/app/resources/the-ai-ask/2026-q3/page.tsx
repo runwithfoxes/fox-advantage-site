@@ -1,0 +1,366 @@
+import Link from "next/link";
+import { hasAccess } from "@/lib/access";
+import ViewedPing from "../../kit/ViewedPing";
+import AccessForm from "../../kit/AccessForm";
+import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
+import NextNav from "../../../home-next/NextNav";
+import N from "./numbers.json";
+import { META, OPEN, INSIGHTS, CLOSE, INTRO, CHAPTERS, DISCUSSION, METHOD, SIGNOFF, PDF, type Block } from "./copy";
+import { FigWin, F11, F21, F31, F32, F33, F34, F41, F42, F51, F52, F71 } from "./Charts";
+
+/* each chart imported by name: a map object exported from a client file arrives empty on the server */
+const FIGS = { f11: F11, f21: F21, f31: F31, f32: F32, f33: F33, f34: F34, f41: F41, f42: F42, f51: F51, f52: F52, f71: F71 };
+import { Hl, Rail } from "./Parts";
+import { Gate, DownloadPdf } from "../../kit";
+import { reportBySlug } from "../../catalogue";
+import f from "../../front.module.css";
+import h from "../../hero.module.css";
+import n from "../../../home-next/next.module.css";
+import r from "./report.module.css";
+
+export const metadata: Metadata = {
+  title: "The AI Ask, Q3 2026 | Run with Foxes",
+};
+
+/** Sam's ==phrase== marks become the module highlight. The words are never touched. */
+function Text({ s }: { s: string }) {
+  const parts = s.split("==");
+  return <>{parts.map((p, i) => (i % 2 ? <Hl key={i}>{p}</Hl> : <span key={i}>{p}</span>))}</>;
+}
+
+function Lock() {
+  return (
+    <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden>
+      <rect x="2" y="5.5" width="8" height="5.5" rx="1" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M4 5.5V4a2 2 0 014 0v1.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+/* this edition's row in the resource centre catalogue: the PDF path, page count and what an account adds */
+const CAT = reportBySlug("the-ai-ask-2026-q3");
+
+let figNo: Record<string, string> = {};
+
+function BlockView({ b, ch }: { b: Block; ch: number }) {
+  if ("p" in b)
+    return (
+      <p className={r.p}>
+        <Text s={b.p} />
+      </p>
+    );
+  if ("q" in b)
+    return (
+      <blockquote className={`mod-win ${r.quote}`}>
+        <div className="mod-winbar">
+          <span className="mod-lights">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="mod-wintitle">job_ad</span>
+        </div>
+        <p>
+          &ldquo;<Text s={b.q} />&rdquo;
+        </p>
+        <cite>{b.cite}</cite>
+      </blockquote>
+    );
+  if ("gate" in b)
+    return (
+      <a href="#join" className={r.gate}>
+        <Lock />
+        <span>{b.gate}</span>
+        <em>Sign up &rarr;</em>
+      </a>
+    );
+  const Fig = FIGS[b.fig];
+  return (
+    <FigWin id={b.fig} n={figNo[b.fig]} title={b.title} cap={b.cap}>
+      <Fig />
+    </FigWin>
+  );
+}
+
+/**
+ * THE AI ASK, Q3 2026, the reading template. Paul, 25 Sep 2026: "give the report the full dray
+ * works. Make me joyful. Use the tricks we use in our modules for highlighting stuff, interactive
+ * charts, make it full really compact and modern day consulting feel while staying on brand."
+ *
+ * Built so each quarter drops in: copy.ts holds Sam's words, numbers.json every figure. The
+ * shell is the module page's (masthead, sticky contents rail with dots, numbered sections,
+ * figures in module windows). Approved by Paul for the live site, 29 Sep 2026.
+ */
+export default async function AiAskQ3() {
+  const unlocked = await hasAccess();
+  // figure numbers follow Sam's chapter.section order: first figure in chapter 3 is 3.1, etc.
+  figNo = {};
+  CHAPTERS.forEach((c) => {
+    let k = 0;
+    c.subs.forEach((s) => s.blocks.forEach((b) => "fig" in b && (figNo[b.fig] = `${c.n}.${++k}`)));
+  });
+  const words = [...OPEN, ...INSIGHTS.flatMap((x) => [...x.body, x.seeker, x.hirer]), ...CLOSE.map((x) => x.text), ...INTRO, ...DISCUSSION, ...CHAPTERS.flatMap((c) => [...(c.lede ?? []), ...c.subs.flatMap((s) => s.blocks.map((b) => ("p" in b ? b.p : "")))])].join(" ").split(/\s+/).length;
+  const mins = Math.round(words / 230);
+  const mk = N.jobsie;
+  const rail = [
+    { id: "intro", k: "", t: "Introduction" },
+    { id: "insights", k: "", t: "Three things stood out" },
+    { id: "counted", k: "", t: "What we counted" },
+    ...CHAPTERS.map((c) => ({ id: c.id, k: String(c.n), t: c.title.split(":")[0] })),
+    { id: "discussion", k: "", t: "Discussion" },
+    { id: "method", k: "", t: "How we did it" },
+  ];
+
+  return (
+    <div className={`${f.page} ${r.page}`}>
+      <ViewedPing want="report" item="the-ai-ask-2026-q3" />
+      {/* Paul, 25 Sep: the band "same size as hero in homepage and put headline into photo". The
+          report's title and byline sit in the film; the at-a-glance card went back under it (Paul, late 25 Sep) to give the film room, as the homepage's do. */}
+      {/* data-pdf-photo: the frame of this film the PDF carries on page one (Paul, 1 Oct 2026: "I'd
+          rather one of the brighter images, not this dark one on the front"). The film opens on a
+          dark Dublin street and ends on the beach; shown the cliffs and the beach side by side he
+          said "go with the beach one". scripts/resources/build-pdfs.mjs reads it. */}
+      <section className={`${h.hero} ${r.heroR}`} id="top" data-pdf-photo="/resources/fox-hero-flip-last-frame.jpg" data-pdf-photo-at="center 70%">
+        <video className={`${h.film} ${n.film}`} autoPlay muted playsInline preload="auto" poster="/resources/fox-hero-flip-poster-first-frame.jpg" src="/resources/fox-hero-flip-dublin-cliffs-beach-2206x946.mp4" />
+        <NextNav known={unlocked} />
+        <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>
+          <div className={h.text}>
+            {/* Paul, 27 Sep, on his phone: "I can see five pieces of information on that hero. That's
+                not good." So the film carries two: the report's name and the headline. The issue, the
+                byline, the date and the read time moved to the top of the article. */}
+            <span className={r.eyebrowW}>{META.kicker}</span>
+            <h1 className={r.h1W}>
+              {META.heroTitle} <span className={r.hlW}>{META.titleHl}</span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+
+      {/* The PDF's cover and last page take their words from here (copy.ts, PDF). Nothing on the web
+          page shows it; scripts/resources/build-pdfs.mjs reads it. */}
+      <script type="application/json" id="pdf-words" dangerouslySetInnerHTML={{ __html: JSON.stringify(PDF).replace(/</g, "\\u003c") }} />
+
+      <div className={r.body}>
+        <aside className={r.railCol}>
+          <Rail items={rail} />
+        </aside>
+
+        <main className={r.main} id="report-main">
+        {/* Paul, 27 Sep: "the rail on the left. I'd like that to be at the top. At the moment it doesn't
+            come down until you pass a couple of screens... We'd have to move this [at a glance] down the
+            page, but that's okay." So the two-column article starts at the introduction, the rail beside
+            it from the first line, and the at-a-glance window sits in the flow after the intro. */}
+          <header className={r.mast} id="intro">
+            <div className={r.mastMain}>
+              {/* The byline, editorial style: Sam's mark and Paul's photo, then who wrote and checked it. */}
+              <div className={r.who}>
+                <span className={r.whoFaces}>
+                  <i className={r.byMark}>S</i>
+                  <img className={r.whoImg} src="/Paul_photo.jpg" alt="Paul Dervan" />
+                </span>
+                <span className={r.whoText}>
+                  {/* each piece stays whole; on a phone the line breaks between pieces, never mid-piece
+                      or after a lone dot */}
+                  <span className={r.whoLine}>
+                    <span>{META.byline}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{META.checked}</span>
+                  </span>
+                  <span className={`${r.whoLine} ${r.whoMeta}`}>
+                    <span>Issue 01 · Q3 2026 · {META.date}</span>
+                    <span className={r.byDot}>·</span>
+                    <span>{mins} min read</span>
+                  </span>
+                </span>
+              </div>
+              {/* Paul, 1 Oct 2026, after Susan's proofread: the report opens on who it is for and how to
+                  read it, then the three insights. Sam's own introduction moved down to "What we counted". */}
+              {OPEN.map((p, i) => (
+                <p key={i} className={i === 0 ? r.standfirst : r.p}>
+                  <Text s={p} />
+                </p>
+              ))}
+              {/* The PDF is the page (BUILD-NOTES, the PDF rule), built by scripts/resources/build-pdfs.mjs. */}
+              <div id="download" style={{ marginTop: 8 }}>
+                <DownloadPdf want="report" item="the-ai-ask-2026-q3" unlocked={unlocked} href={CAT?.pdf ?? "/api/resource-file/the-ai-ask-q3-2026.pdf"} pages={CAT?.pages} />
+              </div>
+            </div>
+          </header>
+          {/* The three insights. Each one says what we found, then speaks to the two readers by name,
+              and the same two voices close the discussion. `ins` names only: the PDF's print rules
+              hide or re-lay any class containing "dl", "top", "note", "back", "about", "body". */}
+          <section className={r.ins} id="insights">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>Three things stood out</h2>
+              <span className={r.fSub}>Each one for two readers</span>
+            </div>
+            {INSIGHTS.map((x) => (
+              <article key={x.n} className={r.insItem}>
+                <h3 className={r.insTitle}>
+                  <span className={r.insN}>{x.n}</span>
+                  {x.title}
+                </h3>
+                {x.body.map((p, i) => (
+                  <p key={i} className={r.p}>
+                    <Text s={p} />
+                  </p>
+                ))}
+                <div className={r.rdrs}>
+                  <p className={r.rdr}>
+                    <span className={r.rdrLab}>If you&rsquo;re looking for a job</span>
+                    {x.seeker}
+                  </p>
+                  <p className={r.rdr}>
+                    <span className={r.rdrLab}>If you&rsquo;re hiring</span>
+                    {x.hirer}
+                  </p>
+                </div>
+                <span className={r.insGo}>
+                  The evidence:{" "}
+                  {x.ch.map((c, i) => (
+                    <a key={c} href={`#ch${c}`}>
+                      {i ? ", " : ""}Chapter {c}
+                    </a>
+                  ))}
+                </span>
+              </article>
+            ))}
+          </section>
+          <section className={r.counted} id="counted">
+            <div className={r.fHead}>
+              <h2 className={r.h2s}>What we counted</h2>
+              <span className={r.fSub}>1,773 ads, read one by one</span>
+            </div>
+            {/* the four numbers first, then how they were counted: under the heading the card can never be left alone on a printed page */}
+            <aside className={`mod-win ${r.glance}`}>
+              <div className="mod-winbar">
+                <span className="mod-lights">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className="mod-wintitle">at_a_glance</span>
+              </div>
+              <div className={r.glanceBody}>
+                <img className={r.glanceFox} src="/fox/chapter-fox-sitting-nobg.png" alt="" />
+                {[
+                  { v: N.total_ads.toLocaleString("en-IE"), l: "Irish marketing and sales job ads read" },
+                  { v: `${N.sep_all.pct}%`, l: `of September's ads ask for AI, ${N.sep_all.k} of ${N.sep_all.n}` },
+                  /* Cato, 1 Oct: the headline's "1 in 6" had no number near it; the card said 25.8% for marketing two screens below */
+                  { v: `${N.sep_by_role_all_sources.marketing.k} of ${N.sep_by_role_all_sources.marketing.n}`, l: "marketing ads across every source ask for AI, the 1 in 6 in the headline" },
+                  { v: `${mk["2026-Q3"].marketing.pct}%`, l: `of marketing ads on jobs.ie ask, up from ${mk["2025-Q4"].marketing.pct}% a year ago` },
+                  { v: `${N.talk_vs_ask_by_channel.careers_pages.real_ask.pct}%`, l: `of tech firms' careers-page ads ask, against ${N.talk_vs_ask_by_channel.job_boards.real_ask.pct}% on the job boards` },
+                ].map((s) => (
+                  <div key={s.l} className={r.glanceRow}>
+                    <span className="mod-num">{s.v}</span>
+                    <span className="mod-lbl">{s.l}</span>
+                  </div>
+                ))}
+                <span className={r.glanceNext}>Next issue: Q4 2026, the December ads</span>
+              </div>
+            </aside>
+            {INTRO.map((p, i) => (
+              <p key={i} className={r.p}>
+                <Text s={p} />
+              </p>
+            ))}
+          </section>
+          {CHAPTERS.map((c) => (
+            <section key={c.id} id={c.id} className={r.chapter}>
+              <div className={r.chHead}>
+                <span className={r.chN}>Chapter {c.n}</span>
+                <h2 className={r.h2}>{c.title}</h2>
+              </div>
+              {/* which insight this chapter is the evidence for; the sentence that says so is its lede */}
+              {c.tag && <span className={r.chTie}>{c.tag}</span>}
+              {c.lede?.map((p, i) => (
+                <p key={i} className={r.lede}>
+                  <Text s={p} />
+                </p>
+              ))}
+              {c.subs.map((s) => (
+                <div key={s.n} className={r.sub} id={`s${s.n.replace(".", "-")}`}>
+                  <h3 className={r.h3}>
+                    <span className={r.subN}>{s.n}</span>
+                    {s.title}
+                  </h3>
+                  {s.blocks.map((b, i) => (
+                    <BlockView key={i} b={b} ch={c.n} />
+                  ))}
+                </div>
+              ))}
+            </section>
+          ))}
+
+          <section id="discussion" className={r.chapter}>
+            <div className={r.chHead}>
+              <span className={r.chN}>Discussion</span>
+              <h2 className={r.h2}>What it means, and what we still don&rsquo;t know</h2>
+            </div>
+            {/* The discussion closes the three insights, then speaks to each reader once more (Paul, 1 Oct:
+                the two readers run all the way through), and ends on what we still can't say. */}
+            {DISCUSSION.slice(0, -1).map((p, i) => (
+              <p key={i} className={i === 0 ? r.lede : r.p}>
+                <Text s={p} />
+              </p>
+            ))}
+            <div className={r.rdrs}>
+              {CLOSE.map((x) => (
+                <p key={x.who} className={r.rdr}>
+                  <span className={r.rdrLab}>{x.who}</span>
+                  {x.text}
+                </p>
+              ))}
+            </div>
+            <p className={r.p}>
+              <Text s={DISCUSSION[DISCUSSION.length - 1]} />
+            </p>
+          </section>
+
+          {/* data-ask (1 Oct 2026): not shown to someone already signed up, who has the PDF button
+              at the top of the report (src/components/Known.tsx). */}
+          <section id="join" className={r.join} data-ask>
+            <div>
+              {/* Paul, 30 Sep 2026: "less selling and more neutral", smaller, and only what is really
+                  there: "just pdf download. Change any mention of ads and data sets." */}
+              <span className={r.eyebrow}>Sign up</span>
+              <p className={r.p}>
+                Sign up for this report as a PDF, and we&rsquo;ll send you the next issue when it&rsquo;s ready.
+              </p>
+            </div>
+            <AccessForm want="report" item="the-ai-ask-2026-q3" className={r.joinForm} doneClassName={r.p} done="You're in. The PDF is yours, and the next issue comes to you when it's ready." />
+          </section>
+
+          <section id="method" className={r.chapter}>
+            <div className={r.chHead}>
+              <span className={r.chN}>Method</span>
+              <h2 className={r.h2}>How we did it</h2>
+            </div>
+            {METHOD.map((m, i) => (
+              <details key={m.k} className={r.meth} open={i === 0}>
+                <summary>
+                  <span>{m.k}</span>
+                  <em>open</em>
+                </summary>
+                <p className={r.small}>{m.t}</p>
+              </details>
+            ))}
+            <div className={r.sign}>
+              <i className={r.byMark}>S</i>
+              <p className={r.small}>{SIGNOFF}</p>
+            </div>
+            {/* The gate rule (Paul, 26 Sep): the finding is free, the files need an email. Listed once, at the end. */}
+            <Gate want="report" item="the-ai-ask-2026-q3" adds={CAT?.withAccount ?? []} />
+            <Link href="/" className={r.back}>
+              &larr; Back to the homepage
+            </Link>
+          </section>
+        </main>
+      </div>
+
+      <SiteFooter current="/resources" wide />
+    </div>
+  );
+}

@@ -338,23 +338,37 @@
 .ag-overlay-kick { font-family: var(--mono); font-size: 13px; letter-spacing: 1px; color: rgba(255,255,255,.6); }
 .ag-overlay-close { font-family: var(--mono); font-size: 13px; color: #fff; background: none; border: 1px solid rgba(255,255,255,.3); padding: 8px 14px; cursor: pointer; }
 .ag-overlay-list { margin-top: 26px; max-width: 1104px; }
+/* Paul, 30 Sep 2026: the list in the middle of the screen, the hovered agent's figure beside it. */
+.ag-overlay.open { display: flex; flex-direction: column; }
+.ag-overlay-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; margin: auto 0; padding: 24px 0; width: 100%; max-width: 1344px; }
+.ag-overlay-body[hidden] { display: none; }
+.ag-overlay-body .ag-overlay-list { margin-top: 0; }
+/* Paul, 30 Sep: the figure 15% smaller. It is drawn at 125% of the column and scaled to .68, so it
+   takes 85% of the column's width and has the room it was designed for (at the column's own width the
+   Advertising Agent's numbers were cut off). Held to the right edge, level with the close button. */
+.ag-overlay-fig { height: 470px; overflow: hidden; position: relative; -webkit-mask-image: linear-gradient(#000 90%, transparent); mask-image: linear-gradient(#000 90%, transparent); }
+.ag-overlay-fig-in { width: 125%; margin-left: -25%; transform: scale(.68); transform-origin: top right; animation: agFigIn .35s ease both; }
+@keyframes agFigIn { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ag-overlay-fig-in { animation: none; } }
 .ag-overlay-clip { overflow: hidden; }
 .ag-overlay-item {
   display: grid; grid-template-columns: 44px auto 1fr; align-items: baseline; gap: 18px; width: 100%; text-align: left;
-  background: none; border: none; border-bottom: 1px solid rgba(255,255,255,.12); padding: 12px 0; cursor: pointer; color: #fff;
+  background: none; border: none; border-bottom: 1px solid rgba(255,255,255,.12); padding: 14px 0; cursor: pointer; color: #fff;
   transform: translateY(110%); opacity: 0; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s;
 }
 .ag-overlay.open .ag-overlay-item { transform: translateY(0); opacity: 1; }
 .ag-overlay-item:hover .ag-overlay-name, .ag-overlay-item.on .ag-overlay-name { color: #9cc7e2; }
 .ag-overlay-n { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.5); }
-.ag-overlay-name { font-family: var(--ag-sans); font-weight: 500; font-size: clamp(26px, 3.4vw, 40px); letter-spacing: -.02em; line-height: 1.1; transition: color .2s; }
-.ag-overlay-short { font-family: var(--serif); font-size: 16px; color: rgba(255,255,255,.62); }
+.ag-overlay-name { font-family: var(--ag-sans); font-weight: 400; font-size: 22px; letter-spacing: -.01em; line-height: 1.2; transition: color .2s; }
+.ag-overlay-short { font-family: var(--mono); font-size: 13px; color: rgba(255,255,255,.5); }
 
 @media (max-width: 860px) {
   .ag-overlay { padding: 20px 20px 40px; }
   .ag-overlay-item { grid-template-columns: 34px 1fr; }
   .ag-overlay-short { grid-column: 2; }
-  .ag-overlay-name { font-size: 24px; }
+  .ag-overlay-name { font-size: 20px; }
+  .ag-overlay-body { grid-template-columns: minmax(0, 1fr); margin: 0; }
+  .ag-overlay-fig { display: none; }
   .ag-menu-btn { padding: 10px 12px; }
 }
 

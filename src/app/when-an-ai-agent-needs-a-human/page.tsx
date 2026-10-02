@@ -1,3 +1,4 @@
+import NextNav from "@/app/home-next/NextNav";
 import Link from "next/link";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
@@ -45,18 +46,7 @@ export default function AgentOversightPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <header className="top-bar">
-        <Link href="/" className="logo">
-          /<span>Run</span>withfoxes
-        </Link>
-        <nav>
-          <Link href="/#agents">/agents</Link>
-          <Link href="/contact">/contact</Link>
-          <Link href="/book" className="cta-bar">
-            /get_the_book
-          </Link>
-        </nav>
-      </header>
+      <NextNav bar />
 
       <main className="contact-main">
         <div className="avc-reading">
@@ -126,7 +116,7 @@ export default function AgentOversightPage() {
           <div className="rwf-body">
             <p>
               The agent does the work. You keep the decisions that would cost you
-              something. <Link href="/contact">Get in touch</Link> to see where
+              something. <Link href="/about">Get in touch</Link> to see where
               those lines sit on your own campaigns.
             </p>
           </div>
@@ -147,16 +137,6 @@ export default function AgentOversightPage() {
 
       <SiteFooter current="/when-an-ai-agent-needs-a-human" />
 
-      <div className="bottom-bar">
-        <Link href="/" className="active">
-          ← back
-        </Link>
-        <Link href="/#agents">/agents</Link>
-        <Link href="/contact">/contact</Link>
-        <Link href="/book" className="cta-bar">
-          get the book
-        </Link>
-      </div>
     </div>
   );
 }

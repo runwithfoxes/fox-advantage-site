@@ -1,0 +1,121 @@
+/* The Ad Audit's own parts. Everything shared (the masthead, the rail, the windows, the bars)
+   comes from the AI Ask's report.module.css unchanged. Every class here is new, never an override
+   of one there, so nothing leans on which stylesheet loads last (DOCTRINE, 27 Sep: the production
+   build orders CSS chunks differently from dev). Class names avoid the words the PDF script hides
+   by (dl, note, back, gate, join, draft, banner, hero). */
+
+/* thin bars: 1.2 three per bank, 4.2 either side */
+.line3 { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 10px; align-items: center; }
+.thin { height: 8px; background: #F2F2EE; display: block; overflow: hidden; }
+.thin i { display: block; height: 100%; width: 0; transition: width .9s cubic-bezier(.22,1,.36,1); }
+
+/* 1.2 three counts nested in one bar */
+.nest { display: grid; gap: 7px; }
+.nestRow { display: grid; grid-template-columns: 130px minmax(0, 1fr) 118px; gap: 12px; align-items: center; }
+.nestBar { position: relative; height: 16px; background: #F2F2EE; }
+.nestBar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; transition: width .9s cubic-bezier(.22,1,.36,1); }
+.nestVal { display: grid; grid-template-columns: repeat(3, 1fr); font-family: var(--mono); font-size: 11.5px; text-align: right; }
+
+/* 2.1 one full-width bar per bank */
+.stacks { display: grid; gap: 6px; }
+.stackRow { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; align-items: center; padding: 3px 0; border-radius: 4px; }
+.stackAll { padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid #EDEDE9; }
+.stackAll > span:first-child { color: #3A7CA5; }
+.stackOn { background: rgba(58,124,165,.06); }
+.stackBar { display: flex; height: 16px; background: #F2F2EE; overflow: hidden; }
+.stackBar i { display: block; height: 100%; transition: width .9s cubic-bezier(.22,1,.36,1); }
+
+/* 4.1 a pair of bars per age band */
+.ageRow { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 12px; align-items: center; padding: 4px 0; border-top: 1px solid #F2F2EE; }
+.ageLine { display: grid; grid-template-columns: minmax(0, 1fr) 52px; gap: 10px; align-items: center; }
+
+/* 4.2 under 35 to the left, 55 or over to the right */
+.dvHead, .dvRow { display: grid; grid-template-columns: 120px minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: center; }
+.dvHead { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; margin-bottom: 6px; }
+.dvHead span:nth-child(2) { text-align: right; }
+.dv { display: grid; gap: 7px; }
+.dvL, .dvR { display: flex; align-items: center; gap: 6px; height: 14px; background: none; overflow: visible; }
+.dvL { justify-content: flex-end; }
+.dvL i, .dvR i { height: 12px; }
+.dvL b, .dvR b { font-family: var(--mono); font-size: 11px; font-weight: 400; color: #1D1B1B; min-width: 38px; }
+.dvL b { text-align: right; }
+
+/* 5.1 the weekly heat table */
+.heat { --heat-lab: 112px; --heat-sum: 34px; display: grid; gap: 2px; font-family: var(--mono); }
+.heatTop { font-size: 9.5px; color: #8A8A85; text-align: center; padding-bottom: 4px; white-space: nowrap; }
+.heatTop:first-child { text-align: left; overflow: hidden; }
+.heatLab { font-size: 11px; color: #1D1B1B; align-self: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 6px; }
+.heatHot { color: #3A7CA5; }
+.cell { font-size: 10.5px; text-align: center; padding: 6px 0; border-radius: 3px; transition: background .5s, opacity .2s; }
+.cellDim { opacity: .3; }
+.heatSum { font-size: 11px; text-align: right; align-self: center; color: #1D1B1B; }
+
+/* 6.4 the most-seen ads */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 18px 0 8px; }
+.adCard { margin: 0; background: #fff; border: 1px solid #E0E0DC; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; break-inside: avoid; }
+.adCardOn { grid-column: span 3; flex-direction: row; }
+.adPic { position: relative; aspect-ratio: 4 / 5; background: #F2F2EE; overflow: hidden; }
+.adCardOn .adPic { aspect-ratio: auto; flex: 1.8; }
+.adPic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.adPic img.adSheet { object-fit: contain; background: #1D1B1B; }
+.adRank { position: absolute; top: 8px; left: 8px; z-index: 1; font-family: var(--mono); font-size: 10.5px; color: #fff; background: rgba(26,58,78,.82); padding: 2px 7px; border-radius: 999px; }
+.adCap { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px 14px; flex: 1; }
+.adAdv { font-family: var(--sans); font-weight: 500; font-size: 15px; color: #1D1B1B; }
+.adTags { font-family: var(--mono); font-size: 10.5px; color: #3A7CA5; }
+.adQuote { font-family: 'Source Serif 4', Georgia, serif; font-size: 14px; line-height: 1.45; color: #1D1B1B; }
+.adReach { font-family: var(--mono); font-size: 10.5px; line-height: 1.5; color: #6b6b66; margin-top: auto; padding-top: 6px; border-top: 1px solid #EDEDE9; }
+.adLinks { display: flex; flex-wrap: wrap; gap: 4px 14px; font-family: var(--mono); font-size: 11px; }
+.adLinks a, .adLinks button { white-space: nowrap; text-align: left; color: #3A7CA5; text-decoration: none; background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.adLinks a:hover, .adLinks button:hover { text-decoration: underline; }
+
+/* the Graham Norton film beside the opening paragraph */
+.opener { width: fit-content; max-width: 100%; padding-right: 22px !important; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: center; margin: 4px 0 20px; padding: 10px; background: #fff; border: 1px solid #E0E0DC; border-radius: 12px; }
+.opener img { width: 96px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 8px; display: block; }
+.openerText { display: grid; gap: 4px; font-family: var(--mono); font-size: 11px; line-height: 1.5; color: #6b6b66; }
+.openerText b { font-family: var(--sans); font-weight: 500; font-size: 14px; color: #1D1B1B; }
+.openerBig { font-size: 22px !important; color: #3A7CA5 !important; font-family: var(--mono) !important; font-weight: 400 !important; letter-spacing: -.02em; }
+
+/* 7.1 the table, a row a pair */
+.holds { display: grid; }
+.holdsRow { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 9px 0; border-top: 1px solid #EDEDE9; font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.5; color: #1D1B1B; }
+.holdsRow span { display: grid; grid-template-columns: 12px 1fr; gap: 8px; }
+.holdsRow i { width: 7px; height: 7px; border-radius: 50%; margin-top: 8px; display: block; }
+.holdsHead { border-top: 0; padding-top: 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+.holdsHead span { display: block; }
+
+@media (max-width: 900px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .adCardOn { grid-column: span 2; flex-direction: column; }
+  .adCardOn .adPic { aspect-ratio: 20 / 9; flex: none; }
+}
+@media (max-width: 700px) {
+  .stackRow { grid-template-columns: 100px minmax(0, 1fr); }
+  .nestRow { grid-template-columns: 92px minmax(0, 1fr) 96px; gap: 8px; }
+  .nestVal { font-size: 10.5px; }
+  .dvHead, .dvRow { grid-template-columns: 92px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; }
+  .ageRow { grid-template-columns: 52px minmax(0, 1fr); gap: 8px; }
+  .heat { --heat-lab: 54px; --heat-sum: 22px; gap: 1px; }
+  .heatLab { white-space: normal; line-height: 1.1; overflow: visible; font-size: 8.5px !important; }
+  .heatSum { font-size: 9px; }
+  .heatTop { font-size: 7.5px; }
+  .heatTop:first-child { visibility: hidden; }
+  /* every other week's date, so the labels never run into each other at 390 */
+  .heatTop:nth-child(2n+3):nth-child(-n+14) { color: transparent; }
+  .heatTop { font-size: 8px; overflow: visible; }
+  .heatLab { font-size: 9.5px; }
+  .cell { font-size: 9px; padding: 5px 0; border-radius: 2px; }
+  .holdsRow { grid-template-columns: 1fr; gap: 6px; }
+  .holdsRow span:last-child { color: #6b6b66; }
+  .gallery { gap: 10px; }
+  .adCap { padding: 10px 10px 12px; }
+  .adQuote { font-size: 13px; }
+}
+
+/* The PDF (build-pdfs.mjs prints at a phone-ish width): the twelve ads four to a row, so the
+   gallery takes about two pages, not five. The frames button is for a screen. */
+@media print {
+  .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .adCap { padding: 8px; gap: 3px; }
+  .adQuote { font-size: 11px; }
+  .adLinks { display: none; }
+}

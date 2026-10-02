@@ -1,0 +1,113 @@
+/* THE DATASETS (/resources/data) and one dataset's page. The index is a catalogue table; the
+   thing drawn for it is the schema strip, one small block per column coloured by its type, so
+   the shape of a file is read before its name. A dataset page is the file opened: the columns
+   as a schema table, the first eight rows as a real table in the window chrome, then the gate
+   and the whole CSV through it. */
+
+/* ── Column types: one colour each, used in the strip and the schema table ── */
+.tText { background: #D8D6CF; }
+.tCategory { background: #B9D3E2; }
+.tNumber { background: #3A7CA5; }
+.tPercent { background: #6CAAC8; }
+.tEuro { background: #1A3A4E; }
+.tDate { background: #8A8A85; }
+.tUrl { background: #fff; border: 1px solid #8A8A85; }
+.tBoolean { background: #F7EAD9; border: 1px solid #D8D6CF; }
+
+/* ── Index head ── */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: end; padding: 8px 0 26px; border-bottom: 2px solid #1A3A4E; }
+.stamp { font-family: var(--mono); font-size: 11.5px; line-height: 1.8; color: #4a4a46; text-align: right; }
+.stamp b { font-weight: 400; color: #1D1B1B; }
+.key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-family: var(--mono); font-size: 10.5px; color: #4a4a46; padding: 4px 0 0; }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.key i { width: 10px; height: 10px; display: inline-block; box-sizing: border-box; }
+
+/* ── The catalogue rows ── */
+.list { list-style: none; margin: 0; padding: 0; }
+.cols, .row { display: grid; grid-template-columns: minmax(0, 1fr) 150px 84px 64px 96px 84px 72px; gap: 0 16px; align-items: center; }
+.cols { padding: 10px 0 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8A85; border-bottom: 1px solid #1A3A4E; }
+.row { padding: 13px 0; border-bottom: 1px solid #EDEDE9; text-decoration: none; color: inherit; transition: background .12s; }
+.row:hover { background: rgba(58,124,165,.05); }
+.name { min-width: 0; }
+.nameT { display: block; font-family: var(--sans); font-weight: 500; font-size: 15.5px; line-height: 1.25; letter-spacing: -0.01em; }
+.row:hover .nameT { color: #3A7CA5; }
+.nameL { display: block; font-family: var(--mono); font-size: 11px; color: #8A8A85; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.strip { display: flex; gap: 3px; align-items: center; }
+.strip i { width: 12px; height: 12px; display: block; box-sizing: border-box; }
+.num { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; color: #1D1B1B; }
+.meta { font-family: var(--mono); font-size: 11px; color: #4a4a46; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.right { text-align: right; }
+.metaRow { display: none; }
+.empty { font-family: var(--mono); font-size: 12px; color: #8A8A85; padding: 28px 0; }
+.group { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: #3A7CA5; padding: 22px 0 6px; margin: 0; }
+
+/* ── Under the catalogue: the licence, in three plain rows ── */
+.terms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 36px 0 8px; }
+.termN { font-family: var(--mono); font-size: 11px; color: #3A7CA5; margin-bottom: 8px; display: block; }
+.termT { font-family: var(--sans); font-weight: 500; font-size: 16px; margin: 0 0 6px; }
+.termP { font-family: var(--serif); font-size: 15px; line-height: 1.55; margin: 0; color: #4a4a46; }
+
+/* ── One dataset ── */
+.mast { padding: 8px 0 28px; border-bottom: 2px solid #1A3A4E; }
+.eyebrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #3A7CA5; }
+.facts { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 26px; clear: right; border-top: 1px solid #E0E0DC; padding-top: 16px; }
+.fact { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #8A8A85; }
+.fact b { display: block; font-weight: 400; font-size: 20px; letter-spacing: -0.01em; text-transform: none; color: #1D1B1B; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.fact b small { font-size: 11px; color: #8A8A85; letter-spacing: 0; margin-left: 4px; }
+
+.body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; padding: 36px 0 24px; }
+.main { min-width: 0; }
+.side { font-family: var(--mono); font-size: 12px; }
+.sideBlock { border-top: 1px solid #1A3A4E; padding: 14px 0 22px; }
+.sideBlock p { margin: 0 0 6px; line-height: 1.65; color: #4a4a46; }
+.sideBlock a { color: #3A7CA5; text-decoration: none; display: block; padding: 6px 0; border-bottom: 1px solid #EDEDE9; }
+.sideBlock a:hover { color: #1A3A4E; }
+.sideBlock a span { color: #8A8A85; float: right; }
+/* globals.css pads every section 120px for the marketing pages; these are reading sections */
+.sec { margin-top: 34px; padding: 0; scroll-margin-top: 24px; }
+.secFirst { margin-top: 0; }
+
+/* The schema: one row per column, the type as its coloured block and name. */
+.schema { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
+.schema th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8A85; padding: 0 12px 8px 0; border-bottom: 1px solid #1A3A4E; }
+.schema td { padding: 9px 12px 9px 0; border-bottom: 1px solid #EDEDE9; vertical-align: top; }
+.schema td:first-child { color: #1D1B1B; white-space: nowrap; }
+.schema td:last-child { color: #4a4a46; font-family: var(--serif); font-size: 14.5px; }
+.type { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.type i { width: 10px; height: 10px; display: inline-block; box-sizing: border-box; }
+
+/* The sample: the file opened, in the window chrome, eight rows, every column. */
+.sampleWrap { overflow-x: auto; }
+.sample { border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; min-width: 100%; }
+.sample th { text-align: left; font-weight: 400; font-size: 10px; letter-spacing: .06em; color: #8A8A85; padding: 0 14px 8px 0; border-bottom: 1px solid #1A3A4E; white-space: nowrap; }
+.sample th i { width: 8px; height: 8px; display: inline-block; margin-right: 6px; vertical-align: 0; box-sizing: border-box; }
+.sample td { padding: 7px 14px 7px 0; border-bottom: 1px solid #EDEDE9; color: #1D1B1B; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sample td.n { text-align: right; }
+.sample tr:first-child td { padding-top: 10px; }
+.sampleFoot { font-family: var(--mono); font-size: 10.5px; color: #8A8A85; margin-top: 10px; }
+.sampleFoot b { font-weight: 400; color: #3A7CA5; }
+.rowsLeft td { color: #C9C9C3; border-bottom: 0; padding-top: 4px; letter-spacing: .2em; }
+
+.dl { margin-top: 18px; }
+
+@media (max-width: 1100px) {
+  .cols, .row { grid-template-columns: minmax(0, 1fr) 130px 80px 96px; }
+  .hideMid { display: none; }
+  .body { grid-template-columns: 1fr; gap: 28px; }
+  .head { grid-template-columns: 1fr; gap: 16px; }
+  .stamp { text-align: left; }
+  .facts { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .cols { display: none; }
+  .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name rows" "strip strip" "meta meta"; gap: 6px 12px; padding: 14px 0; }
+  .name { grid-area: name; }
+  .strip { grid-area: strip; }
+  .num { grid-area: rows; }
+  .metaRow { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px 14px; font-family: var(--mono); font-size: 10.5px; color: #8A8A85; }
+  .hideMid, .hideSmall { display: none; }
+  .nameL { white-space: normal; }
+  .terms { grid-template-columns: 1fr; gap: 20px; }
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  .schema td:last-child { font-size: 13.5px; }
+}

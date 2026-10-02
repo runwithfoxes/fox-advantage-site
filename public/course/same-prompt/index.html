@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same Prompt, Two Foxes | Run with Foxes</title>
+<meta name="description" content="The same image prompt run twice, once on its own and once with a picture of the fox. From module 1 of AI Fluency for Ambitious Marketers, the free course.">
+<link rel="canonical" href="https://runwithfoxes.com/course/same-prompt">
+<meta property="og:title" content="The same prompt, with and without a picture of my fox">
+<meta property="og:description" content="From module 1 of AI Fluency for Ambitious Marketers, the free course.">
+<meta property="og:image" content="https://runwithfoxes.com/course/same-prompt/with-picture.jpg">
+<meta property="og:url" content="https://runwithfoxes.com/course/same-prompt">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF8; --text:#1D1B1B; --muted:#8A8A85; --sky-blue:#3A7CA5; --sky-blue-hover:#2F6688;
+    --deep-sky:#1A3A4E; --border:#E0E0DC; --card-hover:#F5F5F0; --run:#F47521;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;font-weight:300;font-size:0.9375rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:16px;top:16px;background:var(--bg);padding:8px 12px;z-index:200}
+  .container{max-width:1200px;margin:0 auto;padding:0 48px}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s ease-out}
+  nav.scrolled{background:rgba(250,250,248,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  nav .container{display:flex;justify-content:space-between;align-items:center;height:72px}
+  .nav-brand,.footer-brand{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:300;letter-spacing:2px;color:var(--muted);text-decoration:none}
+  .nav-brand span,.footer-brand span{color:#F47521}
+  .nav-links{display:flex;gap:28px;overflow-x:auto;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s ease-out}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--sky-blue)}
+
+  .hero{position:relative;padding:150px 0 72px;overflow:hidden}
+  .dots{position:absolute;inset:0;pointer-events:none;opacity:.4;background-image:radial-gradient(circle,#d0d0cc 0.8px,transparent 0.8px);background-size:28px 28px}
+  .hero .container{position:relative}
+  .label{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--sky-blue);margin:0 0 20px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(25px,3.2vw,41px);font-weight:300;letter-spacing:-1px;line-height:1.15;margin:0 0 28px}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:300;letter-spacing:-1px;line-height:1.2;margin:0 0 24px}
+  .fox-section{width:160px;float:right;margin:-12px 0 16px 32px;shape-outside:margin-box;filter:drop-shadow(0 12px 24px rgba(29,27,27,.1));pointer-events:none;user-select:none}
+  .lede{margin:0}
+
+  section{padding:0 0 110px}
+  .slider{position:relative;width:100%;aspect-ratio:1400/787;overflow:hidden;cursor:ew-resize;user-select:none;-webkit-user-select:none;background:var(--deep-sky);touch-action:pan-y;border:1px solid var(--border)}
+  .slider:focus-visible{outline:2px solid var(--sky-blue);outline-offset:4px}
+  .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .slider .s-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+  .s-handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;margin-left:-1px;background:var(--bg);pointer-events:none}
+  .s-handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--sky-blue);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:15px;font-weight:400;letter-spacing:-1px}
+  .s-lab{position:absolute;top:14px;padding:6px 12px;background:rgba(26,58,78,.9);color:var(--bg);font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;pointer-events:none;max-width:44%}
+  .s-lab-l{left:14px} .s-lab-r{right:14px;text-align:right}
+  .hint{font-size:11px;letter-spacing:1px;color:var(--muted);margin:14px 0 0}
+
+  .grid{display:grid;grid-template-columns:1.35fr 1fr;gap:32px}
+  .card{border:1px solid var(--border);background:var(--bg);padding:28px;transition:background .3s ease-out}
+  .card:hover{background:var(--card-hover)}
+  .card .label{margin-bottom:14px}
+  .prompt{font-family:'JetBrains Mono',monospace;font-size:0.8125rem;line-height:1.75;white-space:pre-wrap;margin:0;border-left:2px solid var(--sky-blue);padding-left:18px}
+  .card img{width:100%;display:block;border:1px solid var(--border)}
+  .card p{margin:16px 0 0;font-size:0.875rem}
+  .note{color:var(--muted);font-size:0.875rem;margin:32px 0 0}
+
+  footer{border-top:1px solid var(--border);padding:40px 0 56px}
+  footer .container{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .cta{display:inline-block;background:var(--sky-blue);color:var(--bg);font-size:12px;font-weight:400;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:14px 22px;transition:background .3s ease-out}
+  .cta:hover,.cta:focus-visible{background:var(--sky-blue-hover)}
+  .lib{margin-top:56px;border:1px solid var(--border);padding:28px}
+  .lib p{margin:0 0 20px;font-size:0.875rem}
+  .cta-outline{background:transparent;color:var(--sky-blue);border:1px solid var(--sky-blue)}
+  .cta-outline:hover,.cta-outline:focus-visible{background:var(--sky-blue);color:var(--bg)}
+
+  @media (max-width:768px){
+    .container{padding:0 24px}
+    .nav-links{display:none}
+    .hero{padding:118px 0 48px}
+    section{padding:0 0 80px}
+    .grid{grid-template-columns:1fr}
+    .fox-section{width:110px;margin:0 0 12px 16px}
+    .s-lab{font-size:9px;letter-spacing:1px;padding:4px 7px;top:8px} .s-lab-l{left:8px} .s-lab-r{right:8px}
+    .s-handle span{width:36px;height:36px}
+    .card{padding:20px}
+  }
+  @media (max-width:380px){.container{padding:0 16px}}
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#compare">Skip to the comparison</a>
+<nav id="nav">
+  <div class="container">
+    <a class="nav-brand" href="/">/<span>Run</span>withfoxes</a>
+    <div class="nav-links"><a href="#compare">/compare</a><a href="#prompt">/the_prompt</a><a href="/course/everything">/library</a><a href="/course">/course</a></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="dots"></div>
+  <div class="container">
+    <p class="label">From module 1 of the course · Break down and rebuild</p>
+    <h1>The same prompt, with and without a picture of my fox</h1>
+    <img src="/fox/fox-sideeye-right-nobg.png" alt="" class="fox-section">
+    <p class="lede">I gave Claude a still of my fox walking through a gym and asked it to write a very descriptive prompt for that image. Then I asked it to change the gym to a basketball court. On the left is what that prompt made on its own. On the right is the same prompt again, this time with the gym still uploaded beside it. Drag the line across to compare them.</p>
+  </div>
+</header>
+
+<main>
+  <section id="compare">
+    <div class="container">
+      <div class="slider" data-start="50" tabindex="0" role="slider" aria-label="Drag to compare the two images" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img class="s-after" src="/course/same-prompt/with-picture.jpg" alt="Paul's grumpy fox, round head and short muzzle, in a navy tracksuit on a basketball court">
+        <img class="s-before" src="/course/same-prompt/prompt-only.jpg" alt="A slimmer fox with a long muzzle and a long tail in a navy tracksuit on a basketball court">
+        <div class="s-handle"><span>‹ ›</span></div>
+        <div class="s-lab s-lab-l">The prompt on its own</div>
+        <div class="s-lab s-lab-r">The prompt and my picture</div>
+      </div>
+      <p class="hint">Drag or tap the image to move the line. The arrow keys work too.</p>
+    </div>
+  </section>
+
+  <section id="prompt">
+    <div class="container">
+      <h2>What each side was given</h2>
+      <div class="grid">
+        <div class="card">
+          <p class="label">The prompt, word for word, on both sides</p>
+          <pre class="prompt">A cinematic 3D-animated anthropomorphic fox walking directly toward the camera across the polished hardwood of an indoor basketball court. The fox has plush, detailed orange fur, a white muzzle and chest ruff, large expressive amber-yellow eyes with heavy, half-lidded lids and a deadpan, unimpressed expression - visibly exhausted and unenthusiastic about being there. It wears a navy blue zip-up tracksuit with white side stripes on the jacket sleeves and track pants, crisp white sneakers, and a white towel draped over one shoulder. Its bushy tail sways behind it.
+
+Background: softly blurred gymnasium interior with tall windows flooding hazy morning sunlight across the court, out-of-focus human players shooting and dribbling, a hoop and backboard on the left, retracted bleachers and a rack of basketballs along the right wall. Shallow depth of field, warm volumetric light rays, long shadows and reflections on the glossy painted court lines.
+
+Style: Pixar/DreamWorks-quality character rendering, photorealistic environment, 16:9 cinematic framing, subtle film grain.</pre>
+        </div>
+        <div class="card">
+          <p class="label">The picture I added on the right</p>
+          <img src="/course/same-prompt/gym-still.jpg" alt="The original still: Paul's fox in a navy tracksuit walking through a gym">
+          <p>A still from a short film of my fox. The prompt describes his fur, his eyes and his tracksuit well. It never says his head is big and round, his muzzle is short or his paws are dark brown mittens, so on its own it got a fox, but not my fox.</p>
+        </div>
+      </div>
+      <p class="note">The left image was made in Seedream and the right in ChatGPT. Both were given the prompt above word for word, and only the right was given the picture.</p>
+      <div class="lib">
+        <p class="label">The library of everything</p>
+        <p>Every prompt, file and reading link from the course sits in one place, so you can take what you need without going through the modules in order.</p>
+        <a class="cta cta-outline" href="/course/everything">Open the library of everything</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <a class="footer-brand" href="/">/<span>Run</span>withfoxes</a>
+    <a class="cta" href="/course">Join AI Fluency for Ambitious Marketers, free</a>
+  </div>
+</footer>
+
+<script>
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>20);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.querySelectorAll('.slider').forEach(function(el){
+    function set(p){p=Math.max(0,Math.min(100,p));el.style.setProperty('--pos',p+'%');el.setAttribute('aria-valuenow',Math.round(p));el._p=p;}
+    set(+(el.getAttribute('data-start')||50));
+    function move(x){var r=el.getBoundingClientRect();set((x-r.left)/r.width*100);}
+    var down=false;
+    el.addEventListener('pointerdown',function(e){down=true;move(e.clientX);});
+    window.addEventListener('pointerup',function(){down=false;});
+    el.addEventListener('pointermove',function(e){if(down)move(e.clientX);});
+    el.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
+    el.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){set(el._p-5);e.preventDefault();}if(e.key==='ArrowRight'){set(el._p+5);e.preventDefault();}});
+  });
+</script>
+</body>
+</html>

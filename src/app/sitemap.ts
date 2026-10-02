@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllChapters, isChapterGated } from "@/lib/chapters";
 import { getAllEssays } from "@/lib/essays";
+import { REPORTS, reportHref } from "./resources/catalogue";
 import { getAllDispatches } from "@/lib/diary";
 import { toolBuckets } from "./students/toolData";
 
@@ -22,7 +23,6 @@ const PUBLIC_ROUTES = [
   "/answers",
   "/book",
   "/books",
-  "/brand",
   "/brief-diagnostician",
   /* ⛔ "/coach" WAS HERE AND CAME OUT, 2 Aug 2026. It is not a page: the route is
      an 11-line `redirect()` that 307s to metrics-pyramid.vercel.app, where the
@@ -37,13 +37,16 @@ const PUBLIC_ROUTES = [
      How it stayed hidden: site_gaps.py follows redirects, so it was counting the
      DESTINATION's words, scoring 200+ and reporting "ok". Fixed the same day - it
      now tests for an off-domain hop BEFORE the word count. */
-  "/contact",
+  /* "/contact" came out on 1 Oct 2026: since 30 Sep it redirects to /about (contact is About's last
+     section), and a sitemap should not list an address that redirects. Same reasoning as /coach. */
   "/cookies",
   "/course",
+  "/course/everything", // the library: public, and it was missing (Cato, 30 Sep and 1 Oct)
   "/diary",
   "/essays",
   "/distinctive",
   "/experts",
+  "/brand",
   "/info",
   "/marketer-of-the-year",
   "/millionaire-raffle",
@@ -74,7 +77,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   /* same again for the diary: the loader is the list */
   const dispatches = getAllDispatches().map((d) => `/diary/${d.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches];
+  /* Published reports only, read from the filtered catalogue, so no example or held report is ever
+     offered to a search engine (29 Sep 2026, launch day). */
+  const reports = REPORTS.filter((r) => r.status === "published").map(reportHref);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...reports];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }
