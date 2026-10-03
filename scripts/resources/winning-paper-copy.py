@@ -22,6 +22,13 @@ SITE = Path(__file__).resolve().parents[2]
 OUT = SITE / "src/app/resources/the-winning-paper/2026-10"
 
 
+# Paul, 3 Oct: "use the orange highlight for this line". Matched by its words until Sam marks it
+# in his own page with <mark>; if the words change and nothing is marked, the run says so.
+HIGHLIGHT = [
+    "I did all of that because I wanted to know one thing. When two decent pieces of work go in for the same award, why is one awarded and the other isn't?",
+]
+
+
 def text(el):
     """The element's words as Sam wrote them, whitespace folded, <br> kept as a line break."""
     for br in el.find_all("br"):
@@ -77,7 +84,7 @@ def main():
     ch = sub = None
     where = "intro"
     pending = None  # a chapter's number, waiting for its h2
-    used, held, figs = set(), 0, []
+    used, held, figs, marked = set(), 0, [], []
 
     def add(block):
         if where == "intro":
@@ -136,7 +143,16 @@ def main():
                 findings.append({"text": t, "ch": int(m.group(1))})
             continue
         if el.name == "p":
-            add({"p": text(el)})
+            # a marked line: Sam's own <mark>, or one of the lines Paul asked to have marked
+            m = el.find("mark")
+            hl = text(m) if m else None
+            t = text(el)
+            hl = hl or next((h for h in HIGHLIGHT if h in t), None)
+            if hl:
+                marked.append(hl)
+                add({"p": t, "hl": hl})
+            else:
+                add({"p": t})
             continue
         if el.name == "div" and "held" in cls:
             b = el.find("b")
@@ -192,6 +208,7 @@ def main():
             if holder and ("fig" in holder[0] or "stats" in holder[0]):
                 bare.append(holder[0]["no"])
     print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(findings)} findings, {len(method)} method notes, {held} held boxes")
+    print(f"highlighted lines: {len(marked)}" + ("" if marked else "  <-- NONE: Paul's marked line is no longer on the page word for word"))
     print("figures with no lead-in before them: " + (", ".join(bare) if bare else "none"))
 
 

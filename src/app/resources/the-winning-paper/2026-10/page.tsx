@@ -3,7 +3,7 @@ import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import C from "./copy.json";
 import { FigWin, Fig, Stats } from "./Charts";
-import { Rail } from "../../the-ai-ask/2026-q3/Parts";
+import { Hl, Rail } from "../../the-ai-ask/2026-q3/Parts";
 import fr from "../../front.module.css";
 import h from "../../hero.module.css";
 import n from "../../../home-next/next.module.css";
@@ -27,10 +27,26 @@ export const metadata: Metadata = {
  */
 
 type FigBase = { kind: string; no: string; title: string; cap: string };
-type Block = { p: string } | ({ held: string; label: string }) | ({ fig: string; alt: string } & FigBase) | ({ stats: { v: string; l: string }[] } & FigBase);
+type Block = { p: string; hl?: string } | ({ held: string; label: string }) | ({ fig: string; alt: string } & FigBase) | ({ stats: { v: string; l: string }[] } & FigBase);
 
 function BlockView({ b, lede }: { b: Block; lede?: boolean }) {
-  if ("p" in b) return <p className={lede ? r.lede : r.p}>{b.p}</p>;
+  if ("p" in b) {
+    // a marked line gets the AI Ask's marker, swept in behind the words the first time it is seen
+    const at = b.hl ? b.p.indexOf(b.hl) : -1;
+    return (
+      <p className={lede ? r.lede : r.p}>
+        {at < 0 || !b.hl ? (
+          b.p
+        ) : (
+          <>
+            {b.p.slice(0, at)}
+            <Hl>{b.hl}</Hl>
+            {b.p.slice(at + b.hl.length)}
+          </>
+        )}
+      </p>
+    );
+  }
   if ("held" in b)
     return (
       <div className={w.held}>
