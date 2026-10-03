@@ -1,0 +1,47 @@
+/* The Winning Paper's own parts. Everything shared (the masthead, the rail, the windows) comes from
+   the AI Ask's report.module.css unchanged. Every class here is new, never an override of one
+   there, so nothing leans on which stylesheet loads last (DOCTRINE, 27 Sep). */
+
+/* a pair of thin bars per row, on a 0 to 100 scale */
+.rows { display: grid; margin-top: 8px; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 14px; align-items: center; padding: 8px 0; border-top: 1px solid #F2F2EE; }
+.lab { font-family: var(--mono); font-size: 11.5px; line-height: 1.45; color: #1D1B1B; }
+.bars { display: grid; gap: 4px; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 10px; align-items: center; }
+.track { height: 9px; background: #F2F2EE; display: block; overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; transition: width .9s cubic-bezier(.22,1,.36,1); }
+.val { font-family: var(--mono); font-size: 11.5px; color: #1D1B1B; font-variant-numeric: tabular-nums; }
+
+/* Figure 0.1: twelve counts, three across */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; margin-top: 6px; }
+.stat { padding: 14px 0 14px; border-top: 1px solid #EDEDE9; }
+.stat :global(.mod-num) { font-size: 1.6rem; display: block; }
+.stat :global(.mod-lbl) { display: block; text-transform: none; letter-spacing: .02em; font-size: .72rem; line-height: 1.45; margin-top: 6px; }
+
+/* Figure 6.1: Sam's table, the long column in the reading face */
+.tableWrap { overflow-x: auto; margin-top: 8px; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; padding: 0 14px 8px 0; border-bottom: 1px solid #E0E0DC; white-space: nowrap; }
+.table td { padding: 12px 14px 12px 0; border-bottom: 1px solid #F2F2EE; vertical-align: top; font-family: 'Source Serif 4', Georgia, serif; font-size: 14.5px; line-height: 1.55; color: #1D1B1B; }
+.table td:first-child { font-family: var(--sans); font-weight: 500; font-size: 14px; min-width: 150px; }
+.table td:last-child { font-family: var(--mono); font-size: 11.5px; color: #4a4a46; min-width: 110px; padding-right: 0; }
+
+/* a place kept for Paul's own words */
+.held { margin: 20px 0 22px; padding: 16px 18px 18px; border: 1.5px dashed #F47521; border-radius: 10px; background: rgba(244,117,33,.04); font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.6; color: #4a4a46; }
+.heldLab { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #F47521; margin-bottom: 8px; }
+
+.introGap { margin-bottom: 36px; }
+
+@media (max-width: 700px) {
+  .row { grid-template-columns: 1fr; gap: 6px; padding: 10px 0; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+  .stat :global(.mod-num) { font-size: 1.35rem; }
+  /* on a phone each award is a block: its name, how it is scored, then the length. Nothing scrolls sideways. */
+  .tableWrap { overflow-x: visible; }
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; }
+  .table tr { padding: 12px 0; border-bottom: 1px solid #F2F2EE; }
+  .table td { padding: 0; border: 0; }
+  .table td:first-child { min-width: 0; margin-bottom: 4px; }
+  .table td:last-child { min-width: 0; margin-top: 6px; }
+}
