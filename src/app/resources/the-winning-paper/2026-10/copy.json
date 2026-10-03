@@ -1,6 +1,6 @@
 {
  "meta": {
-  "kicker": "The Winning Paper · research report · draft 7, not published",
+  "kicker": "Research report · draft 8, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "3 October 2026 · Sam · AI researcher, Run with Foxes"
  },
@@ -173,6 +173,9 @@
      "title": "What would have happened anyway",
      "blocks": [
       {
+       "p": "Figure 2.1 takes five ways a paper can show that the work caused the result. For each one it gives the share of awarded papers that do it and the share of the others. Look at the distance between the two bars in each row. These are the widest gaps in the report."
+      },
+      {
        "fig": "f21",
        "alt": "Bar chart. A figure for what would have happened anyway: 84% and 53%; Headline is what the activity added: 61% and 39%; A model or a control test: 83% and 46%; Rules out 3+ other causes with a figure: 78% and 45%; A number at each step, work to sale: 95% and 68%",
        "kind": "Figure",
@@ -230,6 +233,9 @@
      "title": "Did the thing you diagnosed change?",
      "blocks": [
       {
+       "p": "Figure 3.1 puts two things side by side. The first is whether a paper says what was wrong. The second is whether its results show that same thing changing. Look at how close the two groups are on the first row, and how they part on the second."
+      },
+      {
        "fig": "f31",
        "alt": "Bar chart. States a diagnosis that names a cause: 96% and 98%; Results show the diagnosed problem changed: 92% and 80%",
        "kind": "Figure",
@@ -266,6 +272,9 @@
      "title": "What the result is compared with",
      "blocks": [
       {
+       "p": "Figure 4.1 looks at what a paper compares its result with, and how far back it looks. The first two rows are the stronger comparisons, and the rows below them are weaker. Look for the rows where the awarded bar is the longer one, and the rows where it is the shorter."
+      },
+      {
        "fig": "f41",
        "alt": "Bar chart. Shows the measure over 3+ years: 81% and 56%; Compares with a forecast, model or control: 48% and 33%; Compares with the previous year: 28% and 36%; Compares with a target, the market or nothing: 9% and 18%; Shows no history before the activity: 10% and 21%; Compares with the previous 6 months or less: 2% and 8%",
        "kind": "Figure",
@@ -279,6 +288,9 @@
      "n": "4.2",
      "title": "How long the results run",
      "blocks": [
+      {
+       "p": "Figure 4.2 counts how long the results run after the activity began. Each row is a longer stretch than the one above it. Look at how the gap between the two groups holds as the stretch gets longer."
+      },
       {
        "fig": "f42",
        "alt": "Bar chart. A year or more: 78% and 61%; Two years or more: 48% and 30%; Three years or more: 36% and 20%; Five years or more: 16% and 8%",
@@ -321,6 +333,9 @@
      "n": "5.1",
      "title": "Profit, revenue, or nothing",
      "blocks": [
+      {
+       "p": "Figure 5.1 sorts the papers by how they say what the work earned. The first two rows are profit. The third is revenue on its own. The last is no payback at all. Look at the last row first."
+      },
       {
        "fig": "f51",
        "alt": "Bar chart. Makes a profit claim: 69% and 41%; Shows net profit with the sum: 42% and 23%; Gives a revenue return only: 18% and 33%; Gives no payback at all: 0% and 14%",
@@ -368,6 +383,9 @@
      "n": "6.1",
      "title": "Where the points are",
      "blocks": [
+      {
+       "p": "Figure 6.1 sets out how four award bodies score an entry, in the words of their own guides. Look at which part of the entry carries the most points in each one."
+      },
       {
        "fig": "t61",
        "alt": "",
