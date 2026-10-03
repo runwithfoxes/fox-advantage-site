@@ -1,16 +1,22 @@
 {
  "meta": {
-  "kicker": "Research report · draft 8, not published",
+  "kicker": "Research report · draft 9, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "3 October 2026 · Sam · AI researcher, Run with Foxes"
  },
  "intro": [
   {
-   "p": "I've spent this week inside other people's award papers. We read 470 of them, each one from start to end. The largest set runs to 1.6 million words, and we read most of it more than once, which made 1,032 full readings and 4.4 million words. We put the same questions to every paper, up to 67 of them. Does it state an insight? Does it say what would have happened without the campaign? Does it show profit, or only revenue? That gave us 23,902 answers, and for most of them we copied out the sentence in the paper that the answer rests on, which came to 5,713 passages. We counted 969 objectives and 6,320 charts. And we logged 1,599 separate times that an author named something else that might have caused their own result. I did all of that because I wanted to know one thing. When two decent pieces of work go in for the same award, why is one awarded and the other isn't?",
+   "p": "I've spent this week inside other people's award papers. With a team of AI agents I read 470 of them, each one from start to end. The largest set runs to 1.6 million words, and we read most of it more than once. That made 1,032 full readings and 4.4 million words."
+  },
+  {
+   "p": "We put the same questions to every paper, up to 67 of them. Does it state an insight? Does it say what would have happened without the campaign? Does it show profit, or only revenue? That gave us 23,902 answers. For most of them we copied out the sentence in the paper that the answer rests on, which came to 5,713 passages. We counted 969 objectives and 6,320 charts. And we logged 1,599 separate times that an author named something else that might have caused their own result."
+  },
+  {
+   "p": "I did all of that because I wanted to know one thing. When two decent pieces of work go in for the same award, why is one awarded and the other isn't?",
    "hl": "I did all of that because I wanted to know one thing. When two decent pieces of work go in for the same award, why is one awarded and the other isn't?"
   },
   {
-   "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the others to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. What the awarded papers add is proof that the work caused the result."
+   "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the others to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. Sales rising while a campaign runs is correlation. What the awarded papers add is proof of causation: that the work caused the result."
   },
   {
    "p": "So if you've been asked to write an award entry, this report is for you. It shows what the awarded papers do on top of the basics, with the counts, so you can take your own entry from good to great."
@@ -72,7 +78,7 @@
    "kind": "Figure",
    "no": "0.1",
    "title": "What we read",
-   "cap": "Every paper was read start to end against a written list of questions. The readers were not told which papers had been awarded."
+   "cap": "Every paper was read from start to end by an AI agent working to a written list of questions. The agents were not told which papers had been awarded."
   },
   {
    "p": "The comparison at the centre of this report uses 190 of those papers. They come from one long-running effectiveness award, in the nine years where the archive holds both sides: 103 papers that were awarded and 87 that were entered and not awarded. Same award, same years, same rules."
@@ -90,7 +96,7 @@
    "ch": 1
   },
   {
-   "text": "Great starts with proof. 84% of awarded papers give a figure for what would have happened anyway, against 53% of the others (87 of 103 and 46 of 87). 83% use a model or a control test, against 46% (85 and 40). These are two of the three widest gaps we found, and the third is about proof too (Chapter 2).",
+   "text": "Great starts with proof of causation. 84% of awarded papers give a figure for what would have happened anyway, against 53% of the others (87 of 103 and 46 of 87). 83% use a model or a control test, against 46% (85 and 40). These are two of the three widest gaps we found, and the third is about proof too (Chapter 2).",
    "ch": 2
   },
   {
@@ -102,11 +108,11 @@
    "ch": 4
   },
   {
-   "text": "They say what it earned. 69% make a profit claim, against 41% (71 of 103 and 36 of 87). No awarded paper left payback out, and 14% of the others did (12 of 87) (Chapter 5).",
+   "text": "They show the payback. 69% make a profit claim, against 41% (71 of 103 and 36 of 87). No awarded paper left payback out, and 14% of the others did (12 of 87) (Chapter 5).",
    "ch": 5
   },
   {
-   "text": "The scoring says the same thing in advance. Wherever an award body publishes its weights, results carry the most (Chapter 6).",
+   "text": "The scoring says the same thing in advance. Wherever an award body publishes its weights, results get the most points (Chapter 6).",
    "ch": 6
   },
   {
@@ -153,7 +159,7 @@
        "p": "Since an insight is something you can't enter without, it's worth being sure yours is one. The forms ask for it, and only one award body says what it means. The Effie entry kit asks for \"INSIGHTS- not just facts or observations, but what came out from the data points/research\". Its jury tips add that a data point isn't an insight, and neither is your objective said again."
       },
       {
-       "p": "We gave that definition to two readers and asked them to judge the 40 public Effie Ireland winners separately. They agreed on 30. If two careful readers with the definition in front of them part ways on a quarter of the papers, a writer on a deadline will too. So use a test you can apply: is it about people, is it about these people and this brand, and did the idea come from it?"
+       "p": "We gave that definition to two AI agents and asked each one to judge the 40 public Effie Ireland winners on its own. They agreed on 30. If two agents with the definition in front of them disagree on a quarter of the papers, a writer on a deadline will too. So use a test you can apply: is it about people, is it about these people and this brand, and did the idea come from it?"
       }
      ]
     }
@@ -162,10 +168,10 @@
   {
    "id": "c2",
    "n": 2,
-   "title": "Great starts with proof: a rise is not a cause",
+   "title": "Correlation is not causation",
    "lede": [
     {
-     "p": "Sales went up while the campaign ran. That's where a case starts. It isn't where one ends, and this chapter is the widest difference in everything we read."
+     "p": "Sales went up while the campaign ran. That is correlation. It tells you the two things happened together. It doesn't tell you the campaign caused the rise, because a price cut, wider distribution, good weather or a rival's bad year could have done the same. Showing causation is the widest difference in everything we read."
     }
    ],
    "subs": [
@@ -174,7 +180,7 @@
      "title": "What would have happened anyway",
      "blocks": [
       {
-       "p": "Figure 2.1 takes five ways a paper can show that the work caused the result. For each one it gives the share of awarded papers that do it and the share of the others. Look at the distance between the two bars in each row. These are the widest gaps in the report."
+       "p": "Figure 2.1 takes five ways a paper can show causation. For each one it gives the share of awarded papers that do it and the share of the others. Look at the distance between the two bars in each row. These are the widest gaps in the report."
       },
       {
        "fig": "f21",
@@ -185,7 +191,7 @@
        "cap": "Share of papers. Gives a figure for what would have happened anyway: 87 of 103 awarded, 46 of 87 not awarded. Headline result is what the activity added, not the total rise: 63 of 103 awarded, 34 of 87 not awarded. Uses a model or a control test: 85 of 103 awarded, 40 of 87 not awarded. Rules out three or more other causes with a figure: 80 of 103 awarded, 39 of 87 not awarded. Shows each step from the work to the sale with a number: 98 of 103 awarded, 59 of 87 not awarded."
       },
       {
-       "p": "Nearly half of the papers that weren't awarded never say what sales would have been without the activity. More than half lead with the total rise and credit the campaign for all of it. The awarded papers lead with the part the campaign added."
+       "p": "Nearly half of the papers that weren't awarded never say what sales would have been without the activity. That figure has a name, the counterfactual, and it is the plainest test of causation there is. More than half of those papers lead with the total rise and credit the campaign for all of it. The awarded papers lead with the incremental part, which is what the campaign added."
       }
      ]
     },
@@ -197,7 +203,7 @@
        "p": "Across the 389 archive papers, the authors named another possible cause of their own result 1,599 times. They named price, promotions, distribution, the market, competitors, the season, the weather and product changes. In 1,023 of those they answered with a figure, a chart or a named source. In 576 they answered with a sentence."
       },
       {
-       "p": "The middle awarded paper names 6 other causes and rules out 4 with data. The middle paper that wasn't awarded names 4 and rules out 2. That gap is closed with data most teams already hold."
+       "p": "The middle awarded paper names 6 other causes and rules out 4 with data. The middle paper that wasn't awarded names 4 and rules out 2. Most teams already hold the data to close that gap."
       }
      ]
     },
@@ -206,10 +212,10 @@
      "title": "What you can still fix, and what you can't",
      "blocks": [
       {
-       "p": "Two rows in Figure 2.1 are decided long before anyone writes. If no model was built and no region was held back, no paragraph can supply one. Say so early, plainly, and build the best comparison you do have: a forecast made before the activity, the market, a close rival, a period or a place without the work."
+       "p": "Two rows in Figure 2.1 are decided long before anyone writes. If nobody built an econometric model and no region was held back as a control, no paragraph can supply one. Say so early and plainly. Then build the best comparison you have. That could be a forecast made before the activity, the market, a close rival, or a period or a place without the work."
       },
       {
-       "p": "The other three are within any writer's reach. Put a figure against each other cause. State what the activity added and not the total. Show the number at each step: people saw it, it changed what they thought or did, sales moved."
+       "p": "The other three are within any writer's reach. Put a figure against each other cause. State what the activity added and not the total. Show the number at each step: people saw it, it changed what they thought or did, and sales moved."
       },
       {
        "held": "A public Irish paper that does this well, named by brand and year, once it has been opened and checked. Two candidates from the Effie Ireland booklets: the paper that says plainly it cannot separate the campaign's effect, and the one that credits the public.",
@@ -245,7 +251,7 @@
        "cap": "Share of papers. States a diagnosis that names a cause: 99 of 103 awarded, 85 of 87 not awarded. The results show that the diagnosed problem changed: 95 of 103 awarded, 70 of 87 not awarded."
       },
       {
-       "p": "The usual gap looks like this. A paper says the problem was how people saw the brand. Then its results report sales. Sales may well have risen. But the paper said the cause was a belief, so the reader wants to see the belief move."
+       "p": "The usual gap looks like this. A paper says the problem was how people saw the brand. Then its results report sales. Sales may well have risen. But the paper said the cause was a belief, so a judge will want to see the belief move."
       },
       {
        "p": "The test takes two minutes. Write your diagnosis in one sentence. Then find the chart in your results that shows that exact thing changing. If it isn't there, find it, or say that you couldn't measure it."
@@ -264,7 +270,7 @@
    "title": "Give it time",
    "lede": [
     {
-     "p": "A result measured against last year tells the reader little, because last year might have been a bad one. A line that runs back several years tells them whether this is a change or a wobble."
+     "p": "A result measured against last year tells a judge little, because last year might have been a bad one. A line that runs back several years shows whether this is a real change or an ordinary wobble."
     }
    ],
    "subs": [
@@ -280,7 +286,7 @@
        "alt": "Bar chart. Shows the measure over 3+ years: 81% and 56%; Compares with a forecast, model or control: 48% and 33%; Compares with the previous year: 28% and 36%; Compares with a target, the market or nothing: 9% and 18%; Shows no history before the activity: 10% and 21%; Compares with the previous 6 months or less: 2% and 8%",
        "kind": "Figure",
        "no": "4.1",
-       "title": "Awarded papers show a longer line and compare against a base, not last year",
+       "title": "Awarded papers show a longer line and compare against a baseline",
        "cap": "Share of papers. Shows the measure over three years or more: 83 of 103 awarded, 49 of 87 not awarded. Shows no history before the activity: 10 of 103 awarded, 18 of 87 not awarded. Main comparison is a forecast, a model or a control: 49 of 103 awarded, 29 of 87 not awarded. Main comparison is the previous year: 29 of 103 awarded, 31 of 87 not awarded. Main comparison is a target, the market alone, or nothing: 9 of 103 awarded, 16 of 87 not awarded. Main comparison is the previous six months or less: 2 of 103 awarded, 7 of 87 not awarded."
       }
      ]
@@ -310,7 +316,7 @@
      "title": "Where the papers run out",
      "blocks": [
       {
-       "p": "I'd like to tell you that five years of history is the mark of an awarded paper. I can't. 29 of 103 awarded papers show five years or more before the activity, and so do 23 of 87 of the others. The middle paper in both groups shows three. What separates them is showing a long line at all, and comparing against a base instead of against last year."
+       "p": "I'd like to tell you that five years of history is the mark of an awarded paper. I can't. 29 of 103 awarded papers show five years or more before the activity, and so do 23 of 87 of the others. The middle paper in both groups shows three. What separates them is showing a long line at all, and comparing against a baseline such as a forecast or a control."
       },
       {
        "held": "Paul's view, from judging, that a comparison over five years is stronger than one over six months or a year. The papers support the direction. They can't prove the five.",
@@ -323,7 +329,7 @@
   {
    "id": "c5",
    "n": 5,
-   "title": "Say what it earned",
+   "title": "Show the payback",
    "lede": [
     {
      "p": "Revenue isn't profit. A return worked out on revenue isn't a return on investment. It's the oldest note in the judges' guides, and it still separates the papers."
@@ -335,7 +341,7 @@
      "title": "Profit, revenue, or nothing",
      "blocks": [
       {
-       "p": "Figure 5.1 sorts the papers by how they say what the work earned. The first two rows are profit. The third is revenue on its own. The last is no payback at all. Look at the last row first."
+       "p": "Figure 5.1 sorts the papers by how they report payback. The first two rows are profit. The third is revenue on its own. The last is no payback at all. Look at the last row first."
       },
       {
        "fig": "f51",
@@ -352,10 +358,10 @@
     },
     {
      "n": "5.2",
-     "title": "The room in the Irish papers",
+     "title": "Payback in the public Irish papers",
      "blocks": [
       {
-       "p": "The public Irish papers show how much room there is. Of 41 ADFX papers, 6 state payback as profit. Of 40 Effie Ireland winners, about 8 or 9 claim a return and none states profit."
+       "p": "In the public Irish papers, payback stated as profit is rare. Of 41 ADFX papers, 6 state payback as profit. Of 40 Effie Ireland winners, about 8 or 9 claim a return and none states profit."
       }
      ]
     },
@@ -385,14 +391,14 @@
      "title": "Where the points are",
      "blocks": [
       {
-       "p": "Figure 6.1 sets out how four award bodies score an entry, in the words of their own guides. Look at which part of the entry carries the most points in each one."
+       "p": "Figure 6.1 sets out how four award bodies score an entry, in the words of their own guides. Look at which part of the entry gets the most points in each one."
       },
       {
        "fig": "t61",
        "alt": "",
        "kind": "Figure",
        "no": "6.1",
-       "title": "Wherever weights are published, results carry the most",
+       "title": "Wherever weights are published, results get the most points",
        "cap": "From each body's own published guide. We read 94 entry questions and judging criteria across 9 bodies. ADFX is left out: the guides we could reach are archived, from 2014 to 2018, and the current kit should be read before anything is said about it."
       }
      ]
@@ -417,7 +423,7 @@
    "title": "What the best papers teach about thinking",
    "lede": [
     {
-     "p": "This is the chapter I didn't plan. I expected the strongest papers to claim the most. They claim less, and then they make it stick. We asked every reader to write one line on what each paper teaches about clear thinking. 389 lines. I read all of them, and the same habits kept coming back."
+     "p": "This is the chapter I didn't plan. I expected the strongest papers to claim the most. They claim less, and then they make it stick. We asked the agents to write one line on what each paper teaches about clear thinking. That gave me 389 lines. I read all of them, and the same habits kept coming back."
     },
     {
      "p": "They rule out the other causes one at a time, each with its own answer."
@@ -435,7 +441,7 @@
      "p": "They separate the real problem from the brief. They show the routes that failed, and what each one changed. They build their sums to be cautious: the lowest margin, a low and a high figure, and in one paper a return the authors cut by 60% themselves."
     },
     {
-     "p": "None of this needs a bigger budget. It's a way of thinking about your own work. A team that can write down what was wrong, why this was the answer, what would have happened anyway and what it earned understands its work better than a team that can't. That's true whether or not the paper is ever entered. I think it's the best reason to write one."
+     "p": "None of this needs a bigger budget. It's a way of thinking about your own work. A team that can write down what was wrong, why this was the answer, what would have happened anyway and what it paid back understands its work better than a team that can't. That's true whether or not the paper is ever entered. I think it's the best reason to write one."
     },
     {
      "held": "Paul on what he has learned from reading brilliant cases: their clarity of thinking and their rigour, in his own words. And what the papers can't show: what he saw in the judging room.",
@@ -453,15 +459,15 @@
   },
   {
    "k": "The reading",
-   "t": "Each paper was read start to end against a written list of questions: 32 questions on how the paper is built and proved, 16 on diagnosis, cause and time frames, and 19 on the strategy. That made 1,032 full readings and 23,902 recorded answers. For most answers the reader copied out the sentence it rests on, 5,713 passages in all, so any answer can be checked against the paper."
+   "t": "Each paper was read from start to end by an AI agent working to a written list of questions: 32 questions on how the paper is built and proved, 16 on diagnosis, cause and time frames, and 19 on the strategy. That made 1,032 full readings and 23,902 recorded answers. For most answers the agent copied out the sentence it rests on, 5,713 passages in all, so any answer can be checked against the paper."
   },
   {
    "k": "Blind",
-   "t": "For the comparison, the prize was taken off each paper before it was read. 11 papers name their own prize in their opening lines, so the reader was not blind on those."
+   "t": "For the comparison, the prize was taken off each paper before it was read. 11 papers name their own prize in their opening lines, so the agent was not blind on those."
   },
   {
    "k": "Read twice",
-   "t": "In each of the first two passes, 32 papers were read a second time by a different reader working apart. On every count used in this report the two readers agreed on 27 to 32 of the 32. One question was dropped because readers took it two ways."
+   "t": "In each of the first two passes, 32 papers were read a second time by a different agent working on its own. On every count used in this report the two agents agreed on 27 to 32 of the 32. One question was dropped because the agents took it two ways."
   },
   {
    "k": "The comparison",
@@ -469,7 +475,7 @@
   },
   {
    "k": "Text, not charts",
-   "t": "The readers saw each paper's text and not its chart images. Anything that sits only in a chart was missed. For that reason we don't report which result a paper leads with, or whether its objective carried a target number."
+   "t": "The agents saw each paper's text and not its chart images. Anything that sits only in a chart was missed. For that reason we don't report which result a paper leads with, or whether its objective had a target number."
   },
   {
    "k": "Edited and unedited",
