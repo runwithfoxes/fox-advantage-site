@@ -90,6 +90,16 @@ export default function PrivacyPage() {
           </a>{" "}
           to ask us to stop, or to delete what we hold.
         </p>
+        {/* 3 Oct 2026. The record now covers the rest of the site for someone who is signed in
+            (src/app/api/site-view). Same basis, same way out. If what is recorded changes,
+            change this in the same commit. */}
+        <p style={p}>
+          Once you are signed up, the same applies to the rest of this site. While you are
+          signed in we record which pages you open, such as an essay, a report or the library,
+          for the same reason: so that what we send you is relevant to what you read. If you
+          are not signed up, we do not record what you read against your name. Unsubscribing
+          stops this too.
+        </p>
 
         <h2 style={h2}>How long we keep it</h2>
         <p style={p}>

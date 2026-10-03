@@ -6,6 +6,8 @@ import { useEffect } from "react";
  *  the identity cookie, so an anonymous reader sends a request that learns nothing. */
 export default function ViewedPing({ want, item }: { want: "library" | "report" | "dataset" | "tool" | "playbook" | "tracker"; item?: string }) {
   useEffect(() => {
+    /* Tells SiteViewPing (root layout) that this page reports itself, so it is not counted twice. */
+    (window as unknown as { __rwfViewed?: string }).__rwfViewed = window.location.pathname;
     const t = window.setTimeout(() => {
       fetch("/api/viewed", {
         method: "POST",

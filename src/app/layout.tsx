@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import SiteViewPing from "@/components/SiteViewPing";
 import ChatWidgetLoader from "@/components/chat/ChatWidgetLoader";
 import KnownProbe from "@/components/Known";
 import { KNOWN_HEAD_SCRIPT } from "@/lib/known";
@@ -52,6 +53,7 @@ export default function RootLayout({
           {children}
         </div>
         <KnownProbe />
+        <SiteViewPing />
         <ChatWidgetLoader />
         <Analytics />
       </body>
