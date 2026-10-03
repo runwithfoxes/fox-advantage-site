@@ -67,6 +67,23 @@ def page_charts(html):
     return out
 
 
+# The papers' own addresses on adfx.ie no longer answer (410 on 3 Oct 2026), so each "Read the paper"
+# link goes to the web archive's copy of the same address.
+ARCHIVE = "https://web.archive.org/web/2/"
+
+
+def shares(evidence):
+    """The two shares a checklist line gives, awarded first, read from its own words and never typed:
+    "84% of awarded papers ..., and 53% of the papers that weren't awarded". "No awarded paper" is 0."""
+    b = re.search(r"(\d+)% of the papers that weren't awarded", evidence)
+    a = re.search(r"(\d+)% of awarded papers", evidence)
+    if b and a and a.start() < b.start():
+        return int(a.group(1)), int(b.group(1))
+    if b and re.search(r"\bNo awarded paper\b", evidence[: b.start()]):
+        return 0, int(b.group(1))
+    return None
+
+
 def counts(chart, cap):
     """The counts behind each bar, read out of Sam's own caption ("87 of 103 awarded, 46 of 87 not
     awarded", or "49 and 26" once the totals have been given). A pair of counts is given to a row
@@ -104,12 +121,13 @@ def main():
         "byline": text(page.select_one(".byline")),
     }
 
-    intro, findings, chapters, method = [], [], [], []
+    intro, chapters, method = [], [], []
+    check = {"title": "", "lead": [], "heads": [], "do": [], "never": [], "close": []}
     method_title = ""
     ch = sub = None
     where = "intro"
     pending = None  # a chapter's number, waiting for its h2
-    used, held, figs, marked, nocount = set(), 0, [], [], []
+    used, held, figs, marked, nocount, undrawn, cases = set(), 0, [], [], [], [], []
 
     def add(block):
         if where == "intro":
@@ -132,6 +150,8 @@ def main():
             hid = el.get("id")
             if hid == "intro":
                 where = "intro"
+            elif hid == "checklist":
+                where, check["title"] = "checklist", text(el)
             elif hid == "how":
                 where, method_title = "method", text(el)
             elif pending:
@@ -141,6 +161,31 @@ def main():
                 sub, pending = None, None
             else:
                 sys.exit(f"an h2 with no chapter line before it: {text(el)!r}")
+            continue
+        if where == "checklist":
+            if el.name == "p" and not cls:
+                (check["close"] if check["do"] else check["lead"]).append(text(el))
+            elif el.name == "div" and "listhead" in cls:
+                check["heads"].append(text(el))
+            elif el.name in ("ol", "ul") and "checklist" in cls:
+                never = "never" in cls
+                for li in el.find_all("li", recursive=False):
+                    a = li.find("a")
+                    m = re.match(r"#c(\d+)$", a["href"]) if a else None
+                    if not m:
+                        sys.exit(f"a checklist line with no chapter link: {text(li)!r}")
+                    a.extract()
+                    line = {"t": text(li.find("b")), "e": text(li.find("span")), "ch": int(m.group(1))}
+                    if never:  # Sam's page puts the word in front with CSS; here it is in the words
+                        line["t"] = "Never " + line["t"]
+                    pair = shares(line["e"])
+                    if pair:
+                        line["a"], line["b"] = pair
+                    else:
+                        undrawn.append(line["t"])
+                    check["never" if never else "do"].append(line)
+            else:
+                sys.exit(f"in the checklist, an element the script does not know: <{el.name} class={sorted(cls)}>")
             continue
         if where == "method":
             if not (el.name == "div" and "small" in cls):
@@ -159,13 +204,36 @@ def main():
             sub = {"n": n, "title": text(el), "blocks": []}
             ch["subs"].append(sub)
             continue
-        if el.name == "ul" and "findings" in cls:
+        if el.name == "p" and "do" in cls:
+            b = el.find("b")
+            label = text(b).rstrip(".")
+            b.extract()
+            add({"do": text(el), "label": label})
+            continue
+        if el.name == "blockquote" and "case" in cls:
+            cite = el.find("cite")
+            a = cite.find("a")
+            href, link = a["href"], text(a)
+            a.extract()
+            c = text(cite)
+            cite.extract()
+            m = re.match(r"^([^,]+),\s*([^.]+)\.\s*(.*)$", c)
+            if not m:
+                sys.exit(f"a case line not in the 'Brand, award. why.' shape: {c!r}")
+            key = el["data-case"]
+            cases.append(key)
+            add({"case": key, "quote": text(el), "brand": m.group(1), "award": m.group(2), "why": m.group(3),
+                 "href": ARCHIVE + href, "link": link})
+            continue
+        if el.name == "div" and "named" in cls:
+            items = []
             for li in el.find_all("li"):
-                t = text(li)
-                m = re.search(r"\(Chapter (\d+)\)\.?$", t)
-                if not m:
-                    sys.exit(f"a finding with no chapter at its end: {t!r}")
-                findings.append({"text": t, "ch": int(m.group(1))})
+                b, aw = li.find("b"), li.select_one(".aw")
+                brand, award = text(b), text(aw)
+                b.extract()
+                aw.extract()
+                items.append({"brand": brand, "award": award, "text": text(li)})
+            add({"named": items, "title": text(el.select_one(".named-h"))})
             continue
         if el.name == "p":
             # a marked line: Sam's own <mark>, or one of the lines Paul asked to have marked
@@ -219,12 +287,12 @@ def main():
     missing = set(charts) - used
     if missing:
         sys.exit(f"in the page's CHARTS list but on no figure: {sorted(missing)}")
-    if len(findings) != len(chapters):
-        sys.exit(f"{len(findings)} findings and {len(chapters)} chapters")
+    if not (check["do"] and check["never"] and len(check["heads"]) == 2):
+        sys.exit("the checklist is not on the page in the shape the script knows: a Do list and a Never list, each under its own head")
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "copy.json").write_text(json.dumps(
-        {"meta": meta, "intro": intro, "findings": findings, "chapters": chapters, "methodTitle": method_title, "method": method},
+        {"meta": meta, "intro": intro, "checklist": check, "chapters": chapters, "methodTitle": method_title, "method": method},
         ensure_ascii=False, indent=1) + "\n")
     (OUT / "charts.json").write_text(json.dumps(charts, ensure_ascii=False, indent=1) + "\n")
 
@@ -234,7 +302,8 @@ def main():
         for holder in [c["lede"]] + [s["blocks"] for s in c["subs"]]:
             if holder and ("fig" in holder[0] or "stats" in holder[0]):
                 bare.append(holder[0]["no"])
-    print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(findings)} findings, {len(method)} method notes, {held} held boxes")
+    print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(check['do'])} do and {len(check['never'])} never lines, {len(method)} method notes, {held} held boxes, {len(cases)} case quotes")
+    print("checklist lines with no pair of shares to draw: " + ("; ".join(undrawn) if undrawn else "none"))
     print(f"highlighted lines: {len(marked)}" + ("" if marked else "  <-- NONE: Paul's marked line is no longer on the page word for word"))
     print("charts whose counts could not be read from the caption: " + (", ".join(nocount) if nocount else "none"))
     print("figures with no lead-in before them: " + (", ".join(bare) if bare else "none"))

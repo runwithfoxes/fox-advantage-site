@@ -1,6 +1,6 @@
 {
  "meta": {
-  "kicker": "Research report · draft 10, not published",
+  "kicker": "Research report · draft 13, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "3 October 2026 · Sam · AI researcher, Run with Foxes"
  },
@@ -16,10 +16,10 @@
    "hl": "I did all of that because I wanted to know one thing. When two decent pieces of work go in for the same award, why is one awarded and the other isn't?"
   },
   {
-   "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the others to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. Sales rising while a campaign runs is correlation. What the awarded papers add is proof of causation: that the work caused the result."
+   "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the papers that weren't awarded to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. Sales rising while a campaign runs is correlation. What the awarded papers add is proof of causation: that the work caused the result."
   },
   {
-   "p": "So if you've been asked to write an award entry, this report is for you. It shows what the awarded papers do on top of the basics, with the counts, so you can take your own entry from good to great."
+   "p": "So if you've been asked to write an award entry, this report is for you. It starts with a checklist: what to do, what never to do, and the evidence behind each line. The chapters after it show how, with papers you can open and read. Use it to take your own entry from good to great."
   },
   {
    "p": "Of the 470 papers, 389 are from Paul Dervan's own archive, collected over the past 20 years and reaching back to 1980. The other 81 are Irish winners that anyone can open: 40 from the Effie Awards Ireland and 41 from ADFX. We also read the entry rules of 9 award bodies, in their own published guides."
@@ -85,47 +85,145 @@
   },
   {
    "p": "Anything entered for an award like this is already decent work. So the differences below are differences in how the paper was written."
-  },
-  {
-   "p": "What we found:"
   }
  ],
- "findings": [
-  {
-   "text": "Insight is table stakes. 99% of awarded papers state one, and so do 93% of the others (102 of 103 and 81 of 87). The same goes for a diagnosis, a strategy that answers it and a story told in order. You need them, and a paper without them stands out for the wrong reason. They get you to good (Chapter 1).",
-   "ch": 1
-  },
-  {
-   "text": "Great starts with proof of causation. 84% of awarded papers give a figure for what would have happened anyway, against 53% of the others (87 of 103 and 46 of 87). 83% use a model or a control test, against 46% (85 and 40). These are two of the three widest gaps we found, and the third is about proof too (Chapter 2).",
-   "ch": 2
-  },
-  {
-   "text": "Awarded papers come back to where they started. 92% show that the thing they said was wrong has changed, against 80% (95 of 103 and 70 of 87) (Chapter 3).",
-   "ch": 3
-  },
-  {
-   "text": "They give it time. 81% show their measure over three years or more, against 56% (83 of 103 and 49 of 87) (Chapter 4).",
-   "ch": 4
-  },
-  {
-   "text": "They show the payback. 69% make a profit claim, against 41% (71 of 103 and 36 of 87). No awarded paper left payback out, and 14% of the others did (12 of 87) (Chapter 5).",
-   "ch": 5
-  },
-  {
-   "text": "The scoring says the same thing in advance. Wherever an award body publishes its weights, results get the most points (Chapter 6).",
-   "ch": 6
-  },
-  {
-   "text": "The best papers teach a way of thinking, and none of it needs a bigger budget (Chapter 7).",
-   "ch": 7
-  }
- ],
+ "checklist": {
+  "title": "Your checklist",
+  "lead": [
+   "Sixteen lines. The numbers come from one comparison: 103 papers that were awarded, set against 87 papers that were entered for the same award in the same years and weren't awarded. Each line is something the awarded papers do more often, or something the award bodies ask for in their own guides, or both."
+  ],
+  "heads": [
+   "Do",
+   "Never"
+  ],
+  "do": [
+   {
+    "t": "Start with the table stakes: an insight, a diagnosis and an objective.",
+    "e": "99% of awarded papers state an insight, and 93% of the papers that weren't awarded. A paper without one stands out for the wrong reason.",
+    "ch": 1,
+    "a": 99,
+    "b": 93
+   },
+   {
+    "t": "Put your whole case in the first 300 words.",
+    "e": "87% of awarded papers do this, and 83% of the papers that weren't awarded, so it is another of the table stakes. The IPA's pack asks you to be able to say it \"in one paragraph, or better yet, in one sentence\".",
+    "ch": 1,
+    "a": 87,
+    "b": 83
+   },
+   {
+    "t": "Give about half your words to results and proof.",
+    "e": "The IPA allows 4,000 words and says results \"should take up about 50% of the paper if not more\". The middle awarded paper gives 45%. The middle paper among those that weren't awarded gives 35%.",
+    "ch": 6
+   },
+   {
+    "t": "Say what would have happened anyway.",
+    "e": "84% of awarded papers do this, and 53% of the papers that weren't awarded. This is the counterfactual, and it is the plainest test of causation.",
+    "ch": 2,
+    "a": 84,
+    "b": 53
+   },
+   {
+    "t": "Lead with what the campaign added.",
+    "e": "61% of awarded papers state their main result as the incremental part, and 39% of the papers that weren't awarded.",
+    "ch": 2,
+    "a": 61,
+    "b": 39
+   },
+   {
+    "t": "Name every other cause, and put a figure against each one.",
+    "e": "78% of awarded papers rule out three or more other causes with a figure, and 45% of the papers that weren't awarded. The middle awarded paper names 6 and rules out 4 with data.",
+    "ch": 2,
+    "a": 78,
+    "b": 45
+   },
+   {
+    "t": "Show a number at each step from the work to the sale.",
+    "e": "95% of awarded papers do this, and 68% of the papers that weren't awarded. People saw it, it changed what they thought or did, and sales moved.",
+    "ch": 2,
+    "a": 95,
+    "b": 68
+   },
+   {
+    "t": "Come back to your diagnosis and show that it changed.",
+    "e": "92% of awarded papers do this, and 80% of the papers that weren't awarded.",
+    "ch": 3,
+    "a": 92,
+    "b": 80
+   },
+   {
+    "t": "Show three years or more of your measure.",
+    "e": "81% of awarded papers do this, and 56% of the papers that weren't awarded. Report at least a year of results after the work began too: 78% of awarded papers do, and 61% of the papers that weren't awarded.",
+    "ch": 4,
+    "a": 81,
+    "b": 56
+   },
+   {
+    "t": "State the payback as profit, with the margin and the sum.",
+    "e": "69% of awarded papers make a profit claim, and 41% of the papers that weren't awarded.",
+    "ch": 5,
+    "a": 69,
+    "b": 41
+   },
+   {
+    "t": "Put a source on every figure.",
+    "e": "Figures with no source appear in 10% of awarded papers and 37% of the papers that weren't awarded. The Effie rules disqualify unsourced data.",
+    "ch": 5,
+    "a": 10,
+    "b": 37
+   },
+   {
+    "t": "Say what you cannot prove.",
+    "e": "89% of awarded papers admit a limit or something that did not work, and 78% of the papers that weren't awarded.",
+    "ch": 7,
+    "a": 89,
+    "b": 78
+   }
+  ],
+  "never": [
+   {
+    "t": "Never offer a sales rise as proof.",
+    "e": "A rise while the campaign ran is correlation. 39% of awarded papers lead with the total rise, and 61% of the papers that weren't awarded.",
+    "ch": 2,
+    "a": 39,
+    "b": 61
+   },
+   {
+    "t": "Never report revenue as your return on investment.",
+    "e": "18% of awarded papers give revenue only, and 33% of the papers that weren't awarded.",
+    "ch": 5,
+    "a": 18,
+    "b": 33
+   },
+   {
+    "t": "Never leave the payback out.",
+    "e": "No awarded paper did. 14% of the papers that weren't awarded did.",
+    "ch": 5,
+    "a": 0,
+    "b": 14
+   },
+   {
+    "t": "Never compare only with the last six months.",
+    "e": "2% of awarded papers do this, and 8% of the papers that weren't awarded.",
+    "ch": 4,
+    "a": 2,
+    "b": 8
+   }
+  ],
+  "close": [
+   "One caution, and it is the report's own lesson. These counts show what awarded papers do more often. That is correlation too. The reason to trust the list is that the judges' own guides ask for the same things."
+  ]
+ },
  "chapters": [
   {
    "id": "c1",
    "n": 1,
    "title": "The table stakes",
    "lede": [
+    {
+     "do": "State an insight about people, a diagnosis that names a cause, and an objective with a number in it. Put the whole case in your first 300 words.",
+     "label": "Do this"
+    },
     {
      "p": "Insights matter. So does a diagnosis, and a strategy that follows from it, and a story that runs in order. They matter so much that nearly every paper in the archive has them, awarded or not. That is what table stakes means. You can't sit down without them."
     }
@@ -148,6 +246,15 @@
       },
       {
        "p": "Read that chart the right way round. It doesn't say these things are unimportant. It says they are so important that almost nobody enters without them. Only 1 awarded paper in 103 has no stated insight. If yours is missing one of these, a judge will notice, and it's a flag. So start here, and get them right. Then go on, because having them puts you level with everyone else. The rest of this report is about what takes a paper from there to great."
+      },
+      {
+       "case": "lowlow",
+       "quote": "“Bring New Consumers to the Category: Target 30,000”",
+       "brand": "LowLow",
+       "award": "ADFX 2014, Gold",
+       "why": "It sets a target for each product line before the results, then reports against each one.",
+       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
+       "link": "Read the paper"
       }
      ]
     },
@@ -171,6 +278,10 @@
    "title": "Correlation is not causation",
    "lede": [
     {
+     "do": "Give a figure for what would have happened without the campaign. Lead with what the campaign added. Name every other cause and put a figure against each.",
+     "label": "Do this"
+    },
+    {
      "p": "Sales went up while the campaign ran. That is correlation. It tells you the two things happened together. It doesn't tell you the campaign caused the rise, because a price cut, wider distribution, good weather or a rival's bad year could have done the same. Showing causation is the widest difference in everything we read."
     }
    ],
@@ -180,7 +291,7 @@
      "title": "What would have happened anyway",
      "blocks": [
       {
-       "p": "Figure 2.1 takes five ways a paper can show causation. For each one it gives the share of awarded papers that do it and the share of the others. Look at the gap between the two groups in each row. These are the widest gaps in the report."
+       "p": "Figure 2.1 takes five ways a paper can show causation. For each one it gives the share of awarded papers that do it and the share of the papers that weren't awarded. Look at the gap between the two groups in each row. These are the widest gaps in the report."
       },
       {
        "fig": "f21",
@@ -192,6 +303,24 @@
       },
       {
        "p": "Nearly half of the papers that weren't awarded never say what sales would have been without the activity. That figure has a name, the counterfactual, and it is the plainest test of causation there is. More than half of those papers lead with the total rise and credit the campaign for all of it. The awarded papers lead with the incremental part, which is what the campaign added."
+      },
+      {
+       "case": "ibts",
+       "quote": "“the IBTS were expecting a 15% decrease on clinic attendees from the 2015 results ... we removed a baseline of an average of 2000 donations per week”",
+       "brand": "Irish Blood Transfusion Service",
+       "award": "ADFX 2018, Gold",
+       "why": "It expected a fall, set that as the base, and took out the donations that would have come anyway.",
+       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
+       "link": "Read the paper"
+      },
+      {
+       "case": "nissan",
+       "quote": "“the Irish incremental sales growth far exceeded other European countries”",
+       "brand": "Nissan Micra",
+       "award": "ADFX 2018, Grand Prix",
+       "why": "It uses the same car's launch in other countries as its comparison.",
+       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
+       "link": "Read the paper"
       }
      ]
     },
@@ -204,6 +333,24 @@
       },
       {
        "p": "The middle awarded paper names 6 other causes and rules out 4 with data. The middle paper that wasn't awarded names 4 and rules out 2. Most teams already hold the data to close that gap."
+      },
+      {
+       "case": "gathering",
+       "quote": "“Was the weather an influencing factor in the success of The Gathering? ... were registered an average of 4-6 months before the good weather arrived in Ireland”",
+       "brand": "The Gathering",
+       "award": "ADFX 2014, Grand Prix",
+       "why": "It asks whether the weather did it, and answers with a date.",
+       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
+       "link": "Read the paper"
+      },
+      {
+       "case": "irishtimes",
+       "quote": "“The market for print newspaper sales was in decline before and during the campaign, and is currently still in decline.”",
+       "brand": "The Irish Times",
+       "award": "ADFX 2016, Gold",
+       "why": "It opens its results with a section headed Discounting Factors, and starts with the one that works against it.",
+       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
+       "link": "Read the paper"
       }
      ]
     },
@@ -218,8 +365,39 @@
        "p": "The other three are within any writer's reach. Put a figure against each other cause. State what the activity added and not the total. Show the number at each step: people saw it, it changed what they thought or did, and sales moved."
       },
       {
-       "held": "A public Irish paper that does this well, named by brand and year, once it has been opened and checked. Two candidates from the Effie Ireland booklets: the paper that says plainly it cannot separate the campaign's effect, and the one that credits the public.",
-       "label": "Held for Paul"
+       "named": [
+        {
+         "brand": "Direct Line",
+         "award": "IPA Gold, 2016",
+         "text": "A brand in a market run by price comparison sites. The paper counts quotes as well as sales and reports a net profit return of £1.22 for every £1."
+        },
+        {
+         "brand": "BT",
+         "award": "IPA Grand Prix, 1996",
+         "text": "It held one television region back as a control area, which gave direct evidence of what the advertising did."
+        },
+        {
+         "brand": "Marmite",
+         "award": "IPA Gold, 1998",
+         "text": "The south had seen about three times the advertising of the north for 25 years, and the paper uses that as its test."
+        },
+        {
+         "brand": "Uvistat",
+         "award": "IPA Gold, 1990",
+         "text": "A small brand. It shows sales moved in May when the advertising began, and not in March when distribution grew."
+        },
+        {
+         "brand": "IAG Cargo",
+         "award": "IPA Bronze, 2018",
+         "text": "A B2B case. It compares members of its programme with similar firms that were not members, and says it chose that over a model."
+        },
+        {
+         "brand": "IBM",
+         "award": "IPA Silver, 2012",
+         "text": "A B2B case. It uses Western Europe as the comparison for what happened in the United States."
+        }
+       ],
+       "title": "Cases worth reading"
       }
      ]
     }
@@ -230,6 +408,10 @@
    "n": 3,
    "title": "Close the loop",
    "lede": [
+    {
+     "do": "Write your diagnosis in one sentence. Then show, in your results, that the thing you diagnosed has changed.",
+     "label": "Do this"
+    },
     {
      "p": "Here is where the story itself goes from good to great. Every paper starts well. The great ones come back to where they started."
     }
@@ -270,6 +452,10 @@
    "title": "Give it time",
    "lede": [
     {
+     "do": "Show your measure over three years or more. Compare against a baseline such as a forecast or a control. Report at least a year of results.",
+     "label": "Do this"
+    },
+    {
      "p": "A result measured against last year tells a judge little, because last year might have been a bad one. A line that runs back several years shows whether this is a real change or an ordinary wobble."
     }
    ],
@@ -308,6 +494,15 @@
       },
       {
        "p": "The middle awarded paper reports 20 months of results. The middle paper that wasn't awarded reports 12."
+      },
+      {
+       "case": "vodafone",
+       "quote": "“We began estimating incremental sales from April 2013 and finished in June 2017, a period of approximately 4 years.”",
+       "brand": "Vodafone",
+       "award": "ADFX 2018, Gold",
+       "why": "Four years of results, measured against a forecast built from the three years before.",
+       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538048514_grey-wave-voda.pdf",
+       "link": "Read the paper"
       }
      ]
     },
@@ -316,7 +511,7 @@
      "title": "Where the papers run out",
      "blocks": [
       {
-       "p": "I'd like to tell you that five years of history is the mark of an awarded paper. I can't. 29 of 103 awarded papers show five years or more before the activity, and so do 23 of 87 of the others. The middle paper in both groups shows three. What separates them is showing a long line at all, and comparing against a baseline such as a forecast or a control."
+       "p": "I'd like to tell you that five years of history is the mark of an awarded paper. I can't. 29 of 103 awarded papers show five years or more before the activity, and so do 23 of the 87 that weren't awarded. The middle paper in both groups shows three. What separates them is showing a long line at all, and comparing against a baseline such as a forecast or a control."
       },
       {
        "held": "Paul's view, from judging, that a comparison over five years is stronger than one over six months or a year. The papers support the direction. They can't prove the five.",
@@ -331,6 +526,10 @@
    "n": 5,
    "title": "Show the payback",
    "lede": [
+    {
+     "do": "State the payback as profit. Say what margin you used, take the cost of the activity off, and show the sum. Put a source on every figure.",
+     "label": "Do this"
+    },
     {
      "p": "Revenue isn't profit. A return worked out on revenue isn't a return on investment. It's the oldest note in the judges' guides, and it still separates the papers."
     }
@@ -353,6 +552,35 @@
       },
       {
        "p": "Say what margin you used and where it came from. Take the cost of the activity off. Show the sum. If the figures are confidential, both the IPA and the Effies let you show them as an index."
+      },
+      {
+       "case": "btni",
+       "quote": "“the campaign delivered an incremental profit of around £1 million for a marketing investment of £500,000”",
+       "brand": "BT Northern Ireland",
+       "award": "ADFX 2012, Bronze",
+       "why": "Profit, the spend and the period, in one sentence.",
+       "href": "https://web.archive.org/web/2/http://adfx.ie/book/bt-everywhere-getting-to-the-essence-of-a-local-brand.html",
+       "link": "Read the paper"
+      },
+      {
+       "named": [
+        {
+         "brand": "Stella Artois",
+         "award": "IPA, 1998",
+         "text": "It builds a conservative estimate of the return and says so."
+        },
+        {
+         "brand": "Marie Curie Cancer Care",
+         "award": "IPA Gold, 2011",
+         "text": "A small budget and no tracking research. It works out the return three ways and uses the most cautious one."
+        },
+        {
+         "brand": "Depaul UK",
+         "award": "IPA Gold, 2011",
+         "text": "A small charity. It shows what the same reach would have cost in ordinary advertising."
+        }
+       ],
+       "title": "Cases worth reading"
       }
      ]
     },
@@ -370,7 +598,7 @@
      "title": "Put a source on every figure",
      "blocks": [
       {
-       "p": "Result figures with no source appear in 10 of the 103 awarded papers and 32 of the 87 others. Awarded papers are edited before they're printed, which may explain part of that. The Effie rules disqualify unsourced data. It's the cheapest thing in this report to fix."
+       "p": "Result figures with no source appear in 10 of the 103 awarded papers and 32 of the 87 that weren't awarded. Awarded papers are edited before they're printed, which may explain part of that. The Effie rules disqualify unsourced data. It's the cheapest thing in this report to fix."
       }
      ]
     }
@@ -381,6 +609,10 @@
    "n": 6,
    "title": "Read the scoring before you write",
    "lede": [
+    {
+     "do": "Count the points before you count your words. Give the most words to the part with the most points.",
+     "label": "Do this"
+    },
     {
      "p": "Everything above is in the entry guides, if you read them as a judge would. Count the points before you count your words."
     }
@@ -423,13 +655,17 @@
    "title": "What the best papers teach about thinking",
    "lede": [
     {
+     "do": "Claim what you can prove, and say plainly what you can't.",
+     "label": "Do this"
+    },
+    {
      "p": "This is the chapter I didn't plan. I expected the strongest papers to claim the most. They claim less, and then they make it stick. We asked the agents to write one line on what each paper teaches about clear thinking. That gave me 389 lines. I read all of them, and the same habits kept coming back."
     },
     {
      "p": "They rule out the other causes one at a time, each with its own answer."
     },
     {
-     "p": "They say what they can't prove, and narrow the claim to what they can. One paper campaigned for a change in the law, and the law changed. The authors could have claimed it. They wrote that the law might have passed anyway, claimed only that it came sooner, and built their payback on that smaller claim. One limits its claim to the weeks when the advertising was the only reason anyone had to call. One says plainly that it has no model, and asks only how small a share of the rise would have to be the campaign's for it to pay for itself. In the comparison, 92 of 103 awarded papers admit a limit or something that didn't work, and 68 of 87 of the others do too. It's common. It's safe. Judges read it as strength."
+     "p": "They say what they can't prove, and narrow the claim to what they can. One paper campaigned for a change in the law, and the law changed. The authors could have claimed it. They wrote that the law might have passed anyway, claimed only that it came sooner, and built their payback on that smaller claim. One limits its claim to the weeks when the advertising was the only reason anyone had to call. One says plainly that it has no model, and asks only how small a share of the rise would have to be the campaign's for it to pay for itself. In the comparison, 92 of 103 awarded papers admit a limit or something that didn't work, and 68 of the 87 that weren't awarded do too. It's common. It's safe. Judges read it as strength."
     },
     {
      "p": "They set the targets first and report against each one, including the ones they missed."
@@ -442,6 +678,26 @@
     },
     {
      "p": "None of this needs a bigger budget. It's a way of thinking about your own work. A team that can write down what was wrong, why this was the answer, what would have happened anyway and what it paid back understands its work better than a team that can't. That's true whether or not the paper is ever entered. I think it's the best reason to write one."
+    },
+    {
+     "named": [
+      {
+       "brand": "Halifax",
+       "award": "IPA Gold, 2009",
+       "text": "A small budget. It says it had no regional test and no model, sets cautious targets as its base, and claims only what it gained above them."
+      },
+      {
+       "brand": "Winalot Prime",
+       "award": "IPA Grand Prix, 1988",
+       "text": "It says the first campaign's effect could not be told apart from price and distribution, and builds its case on what came after."
+      },
+      {
+       "brand": "Direct Line Group",
+       "award": "IPA Gold, 2018",
+       "text": "Three brands, measured over the short and the long term, with the limits of its own data set out in the notes."
+      }
+     ],
+     "title": "Cases worth reading"
     },
     {
      "held": "Paul on what he has learned from reading brilliant cases: their clarity of thinking and their rigour, in his own words. And what the papers can't show: what he saw in the judging room.",
@@ -483,7 +739,7 @@
   },
   {
    "k": "Edited and unedited",
-   "t": "Awarded papers are edited before they're printed. The others are closer to what was submitted. That may explain some of the difference in sourcing. It can't add a model or a control test, and the main differences hold when papers in the same printed form are compared."
+   "t": "Awarded papers are edited before they're printed. The papers that weren't awarded are closer to what was submitted. That may explain some of the difference in sourcing. It can't add a model or a control test, and the main differences hold when papers in the same printed form are compared."
   },
   {
    "k": "What this is not",

@@ -3,6 +3,8 @@ import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
 import C from "./copy.json";
 import { FigWin, Fig, Stats } from "./Charts";
+import Checklist, { type Check } from "./Checklist";
+import PICS from "../../../../../public/resources/the-winning-paper/2026-10/cases/SOURCES.json";
 import { Hl, Rail } from "../../the-ai-ask/2026-q3/Parts";
 import fr from "../../front.module.css";
 import h from "../../hero.module.css";
@@ -18,7 +20,10 @@ export const metadata: Metadata = {
 /**
  * THE WINNING PAPER, OCTOBER 2026. A PREVIEW FOR PAUL, NOT FOR THE LIVE SITE. Paul, 3 Oct: "Can
  * dray put this onto our website so i can see in situ but not pushed live?" Sam's report in the AI
- * Ask's shape: the hero, the byline, the rail, findings as cards, numbered figures in windows.
+ * Ask's shape: the hero, the byline, the rail, numbered figures in windows. Then, at Paul's word the
+ * same night ("Make it more active... here is your checklist... Let's move this from dry academic to
+ * the colourful run with foxes feel"), a checklist sheet up front, a Do this line on each chapter,
+ * public Irish cases quoted with their campaign pictures, and named cases worth reading.
  *
  * copy.json and charts.json are written by scripts/resources/winning-paper-copy.py from Sam's page,
  * never typed, because Sam is still rebuilding it. The page is on no list: not in the catalogue,
@@ -27,9 +32,65 @@ export const metadata: Metadata = {
  */
 
 type FigBase = { kind: string; no: string; title: string; cap: string };
-type Block = { p: string; hl?: string } | ({ held: string; label: string }) | ({ fig: string; alt: string } & FigBase) | ({ stats: { v: string; l: string }[] } & FigBase);
+type Block =
+  | { do: string; label: string }
+  | { case: string; quote: string; brand: string; award: string; why: string; href: string; link: string }
+  | { named: { brand: string; award: string; text: string }[]; title: string }
+  | { p: string; hl?: string } | ({ held: string; label: string }) | ({ fig: string; alt: string } & FigBase) | ({ stats: { v: string; l: string }[] } & FigBase);
+
+const PIC = Object.fromEntries((PICS.pictures as { case: string; file: string; size: number[] }[]).map((x) => [x.case, x]));
 
 function BlockView({ b, lede }: { b: Block; lede?: boolean }) {
+  if ("do" in b)
+    return (
+      <p className={w.doThis}>
+        <span className={w.doLab}>{b.label}</span>
+        {b.do}
+      </p>
+    );
+  if ("case" in b) {
+    const pic = PIC[b.case];
+    const quote = b.quote.replace(/^[\u201C"]|[\u201D"]$/g, "");
+    return (
+      <figure className={`${w.caseCard} ${pic ? (pic.size[1] > pic.size[0] ? w.caseTall : w.caseWide) : w.caseWords}`}>
+        {pic ? (
+          <span className={w.casePic}>
+            <img src={`/resources/the-winning-paper/2026-10/cases/${pic.file}`} alt={`${b.brand} campaign`} width={pic.size[0]} height={pic.size[1]} loading="lazy" />
+          </span>
+        ) : null}
+        <div className={w.caseBody}>
+          <span className={w.caseTag}>
+            <b>{b.brand}</b>
+            <em>{b.award}</em>
+          </span>
+          <blockquote className={w.caseQuote}>{quote}</blockquote>
+          <figcaption className={w.caseWhy}>
+            {b.why}{" "}
+            <a href={b.href} target="_blank" rel="noopener noreferrer" className={w.caseLink}>
+              {b.link} &rarr;
+            </a>
+          </figcaption>
+        </div>
+      </figure>
+    );
+  }
+  if ("named" in b)
+    return (
+      <aside className={w.named}>
+        <span className={w.namedHead}>{b.title}</span>
+        <ul>
+          {b.named.map((c) => (
+            <li key={c.brand + c.award}>
+              <span className={w.namedWho}>
+                <b>{c.brand}</b>
+                <em>{c.award}</em>
+              </span>
+              <span className={w.namedText}>{c.text}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    );
   if ("p" in b) {
     // a marked line gets the AI Ask's marker, swept in behind the words the first time it is seen
     const at = b.hl ? b.p.indexOf(b.hl) : -1;
@@ -69,9 +130,8 @@ function BlockView({ b, lede }: { b: Block; lede?: boolean }) {
 
 export default function WinningPaper() {
   const chapters = C.chapters as { id: string; n: number; title: string; lede: Block[]; subs: { n: string; title: string; blocks: Block[] }[] }[];
-  // Sam's "What we found:" line is the findings heading here, so it is not printed twice.
-  const intro = (C.intro as Block[]).filter((b) => !("p" in b && /^What we found:?$/.test(b.p)));
-  const findings = C.findings.map((f) => ({ ch: f.ch, text: f.text.replace(/\s*\(Chapter \d+\)\.?$/, ".") }));
+  const intro = C.intro as Block[];
+  const check = C.checklist as Check;
   const [date, ...who] = C.meta.byline.split(" · ");
   const author = who.join(" · ");
   const words = [...intro, ...chapters.flatMap((c) => [...c.lede, ...c.subs.flatMap((s) => s.blocks)])].map((b) => ("p" in b ? b.p : "")).join(" ");
@@ -83,7 +143,7 @@ export default function WinningPaper() {
   const methodTitle = C.methodTitle.split(" · ").pop() as string;
   const rail = [
     { id: "intro", k: "", t: "Introduction" },
-    { id: "findings", k: "", t: "What we found" },
+    { id: "checklist", k: "", t: check.title },
     ...chapters.map((c) => ({ id: c.id, k: String(c.n), t: c.title })),
     { id: "how", k: "", t: methodTitle },
   ];
@@ -135,23 +195,7 @@ export default function WinningPaper() {
             </div>
           </header>
 
-          <section className={r.findings} id="findings">
-            <div className={r.fHead}>
-              <h2 className={r.h2s}>What we found</h2>
-              <span className={r.fSub}>{findings.length} findings, each one a chapter</span>
-            </div>
-            <ol className={r.fGrid}>
-              {findings.map((fd, i) => (
-                <li key={i}>
-                  <a href={`#c${fd.ch}`} className={r.fCard}>
-                    <span className={r.fN}>{String(i + 1).padStart(2, "0")}</span>
-                    <span className={r.fText}>{fd.text}</span>
-                    <span className={r.fGo}>Chapter {fd.ch} &rarr;</span>
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <Checklist c={check} />
 
           {chapters.map((c) => (
             <section key={c.id} id={c.id} className={r.chapter}>

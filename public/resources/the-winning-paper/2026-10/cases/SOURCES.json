@@ -1,0 +1,53 @@
+{
+ "note": "Campaign pictures for the public Irish cases. Each one was cut from the public ADFX paper named here, fetched from the web archive on 3 Oct 2026. Nothing comes from the private archive copies. Paul, 3 Oct: \"I do want pictures. if cases have been mentioned in public, i am ok.\" Cases with no clean picture in their public paper (irishtimes, vodafone, btni) are shown as words.",
+ "pictures": [
+  {
+   "case": "ibts",
+   "file": "ibts.jpg",
+   "size": [
+    491,
+    455
+   ],
+   "source": "https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
+   "fetched_from": "https://web.archive.org/web/2id_/https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
+   "page": 16,
+   "crop": "the poster, cropped above the small print so no name, phone number or email shows"
+  },
+  {
+   "case": "gathering",
+   "file": "gathering.jpg",
+   "size": [
+    440,
+    758
+   ],
+   "source": "http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
+   "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
+   "page": 27,
+   "crop": "the first panel of the media gallery"
+  },
+  {
+   "case": "nissan",
+   "file": "nissan.jpg",
+   "size": [
+    804,
+    502
+   ],
+   "source": "https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
+   "fetched_from": "https://web.archive.org/web/2id_/https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
+   "page": 24,
+   "crop": "the press ad, whole"
+  },
+  {
+   "case": "lowlow",
+   "file": "lowlow.jpg",
+   "size": [
+    775,
+    360
+   ],
+   "source": "http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
+   "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
+   "page": 22,
+   "crop": "a still from the film in the creative gallery, whole"
+  }
+ ]
+}
