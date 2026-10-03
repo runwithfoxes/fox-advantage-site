@@ -3,6 +3,7 @@ import { recordSignup } from "@/lib/course-signup-record";
 import { getSignupRateLimiter } from "@/lib/rate-limit";
 import { looksUndeliverable } from "@/lib/email-dns";
 import { sendCourseSignupEvent } from "@/lib/meta-capi";
+import { looksLikeTrapBot } from "@/lib/course-bot-rule";
 
 /*
   Course signup capture. The page posts here; this route talks to Klaviyo.
@@ -104,6 +105,24 @@ function looksMachineGenerated(name: string): boolean {
   return /[bcdfghjklmnpqrstvwxz]{6,}/i.test(t);
 }
 
+/*
+  ⭐ THE HOLD, 28 Sep 2026. ONLY EVER ASKED WHEN THE TRAP IS ALREADY FILLED.
+
+  From 23 Sep a wave of bots got past the check above: the trap filled, a short invented
+  first name (Ofto, Mpzil, Qlmjwl, Blwbdy) and a real person's address, often a German
+  firm's, a gmail with dots scattered through it, or a phone company's text gateway
+  (txt.att.net, tmomail.net). 28 in five days, each one sent the welcome email. The names
+  are too short for the case-flip test, and no name test is safe enough to REJECT on.
+
+  The rule itself is in src/lib/course-bot-rule.ts. Improved 1 Oct and 3 Oct 2026 and run
+  over the whole roll on 3 Oct: of 104 trap-filled sign-ups it holds 71 of 73 bots (it
+  misses Zyoct and Faorya) and none of the 31 real people.
+
+  So a match does not reject. It HOLDS: the person is let in, gets the cookie and lands
+  in module 1 exactly as before, but is not put on the list, so no welcome email and no
+  later campaign. A real person arrives, which the course check sees and reports so Kit
+  can add them to the list. A bot never arrives. Arrival is the proof, not the name.
+*/
 /* Vercel puts the caller's address in x-forwarded-for, first entry. */
 function clientIp(req: NextRequest): string {
   const fwd = req.headers.get("x-forwarded-for");
@@ -190,7 +209,10 @@ export async function POST(req: NextRequest) {
     console.warn("[course-signup] honeypot rejected", email || "(no email)", clientIp(req));
     return NextResponse.json({ ok: true, door: doorFor(Date.now()), already: false });
   }
-  if (trapFilled) {
+  const held = trapFilled && looksLikeTrapBot(firstName, email);
+  if (held) {
+    console.warn("[course-signup] honeypot filled, held off the list", email || "(no email)", clientIp(req));
+  } else if (trapFilled) {
     console.warn("[course-signup] honeypot filled, let in", email || "(no email)", clientIp(req));
   }
 
@@ -302,7 +324,7 @@ export async function POST(req: NextRequest) {
 
     /* Every touch, like the two above. Only ever written when true, so a later clean
        submission leaves an earlier flag in place rather than wiping it. */
-    if (trapFilled) properties.signup_trap = "filled";
+    if (trapFilled) properties.signup_trap = held ? "held" : "filled";
 
     const importRes = await fetch(`${KLAVIYO}/profile-import/`, {
       method: "POST",
@@ -325,7 +347,7 @@ export async function POST(req: NextRequest) {
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}), ...(held ? { held: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -357,7 +379,8 @@ export async function POST(req: NextRequest) {
 
     // Step 2: consent and the list. The list is single opt-in, so this
     // subscribes outright rather than sending a confirmation request.
-    const subRes = await fetch(`${KLAVIYO}/profile-subscription-bulk-create-jobs/`, {
+    // ⛔ A held signup skips this step and nothing else. See looksLikeTrapBot.
+    const subRes = held ? null : await fetch(`${KLAVIYO}/profile-subscription-bulk-create-jobs/`, {
       method: "POST",
       headers: headers(key, true),
       body: JSON.stringify({
@@ -385,13 +408,13 @@ export async function POST(req: NextRequest) {
     });
 
     // This endpoint is a job: it answers 202, not 200.
-    if (!subRes.ok) {
+    if (subRes && !subRes.ok) {
       const detail = await subRes.text().catch(() => "");
       console.error("[course-signup] subscribe failed", subRes.status, detail);
       await recordSignup({
         ts: stamp, email, first_name: firstName, signup_source: source,
         signup_module: signupModule, signup_module_lands: lands,
-        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}),
+        door, klaviyo: "failed", ...(trapFilled ? { trap: true as const } : {}), ...(held ? { held: true as const } : {}),
       });
       return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
     }
@@ -399,7 +422,7 @@ export async function POST(req: NextRequest) {
     await recordSignup({
       ts: stamp, email, first_name: firstName, signup_source: source,
       signup_module: signupModule, signup_module_lands: lands,
-      door, klaviyo: "ok", ...(trapFilled ? { trap: true as const } : {}),
+      door, klaviyo: "ok", ...(trapFilled ? { trap: true as const } : {}), ...(held ? { held: true as const } : {}),
     });
 
     /* The resource centre's running list and its own metric (never `Joined`, see above). Both

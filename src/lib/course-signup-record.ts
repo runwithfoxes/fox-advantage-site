@@ -39,6 +39,9 @@ export interface SignupRecord {
   /** 23 Sep 2026: the hidden trap field had something in it but the name looked human,
       so the person was let in. Present only when true. See the honeypot block in the route. */
   trap?: true;
+  /** 28 Sep 2026: trap filled AND a bot shape, so the person was let in but NOT put on the
+      list (no welcome email). Present only when true. See looksLikeTrapBot in the route. */
+  held?: true;
 }
 
 const REDIS_KEY = "course:signups";
