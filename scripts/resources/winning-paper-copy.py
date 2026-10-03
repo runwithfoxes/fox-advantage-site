@@ -56,20 +56,31 @@ def page_charts(html):
         sys.exit("the CHARTS list was not found in the page's script")
     out = {}
     for c in json.loads(m.group(1)):
-        if not (len(c["labels"]) == len(c["a"]) == len(c["b"])):
+        if not (len(c["labels"]) == len(c["a"]) and (c.get("b") is None or len(c["b"]) == len(c["a"]))):
             sys.exit(f"{c['id']}: labels and values are not the same length")
-        out[c["id"]] = {
-            "type": "pair",
-            "labels": c["labels"],
-            "series": [{"label": c["la"], "data": c["a"]}, {"label": c["lb"], "data": c["b"]}],
-            "max": c["mx"],
-        }
+        series = [{"label": c["la"], "data": c["a"]}]
+        if c.get("b") is not None:
+            series.append({"label": c["lb"], "data": c["b"]})
+        out[c["id"]] = {"type": "pair", "unit": c.get("unit", "%"), "labels": c["labels"], "series": series, "max": c["mx"]}
     return out
 
 
 # The papers' own addresses on adfx.ie no longer answer (410 on 3 Oct 2026), so each "Read the paper"
 # link goes to the web archive's copy of the same address.
 ARCHIVE = "https://web.archive.org/web/2/"
+
+
+def who(line):
+    """'Brand, IPA Gold, 2016. why' into brand, award, why. The brand may hold a comma ('Dove, China'),
+    so the award is taken to start at the awarding body's name."""
+    m = re.match(r"^(.*?),\s*((?:IPA|ADFX|Effie)[^.]*)(?:\.\s*(.*))?$", line, re.S)
+    if not m:
+        sys.exit(f"a credit line not in the 'Brand, award, year. why' shape: {line!r}")
+    return m.group(1).strip(), m.group(2).strip(), (m.group(3) or "").strip()
+
+
+def unquote(s):
+    return re.sub(r'^[\u201C"]|[\u201D"]$', "", s.strip())
 
 
 def shares(evidence):
@@ -127,7 +138,7 @@ def main():
     ch = sub = None
     where = "intro"
     pending = None  # a chapter's number, waiting for its h2
-    used, held, figs, marked, nocount, undrawn, cases = set(), 0, [], [], [], [], []
+    used, held, figs, marked, nocount, undrawn, cases, quotes, pulls = set(), 0, [], [], [], [], [], [], []
 
     def add(block):
         if where == "intro":
@@ -213,17 +224,30 @@ def main():
         if el.name == "blockquote" and "case" in cls:
             cite = el.find("cite")
             a = cite.find("a")
+            if a is None:  # a line from a paper that is not free to read: no link
+                c = text(cite)
+                cite.extract()
+                brand, award, why = who(c)
+                quotes.append(el["data-quote"])
+                add({"case": el["data-quote"], "quote": unquote(text(el)), "brand": brand, "award": award, "why": why})
+                continue
             href, link = a["href"], text(a)
             a.extract()
             c = text(cite)
             cite.extract()
-            m = re.match(r"^([^,]+),\s*([^.]+)\.\s*(.*)$", c)
-            if not m:
-                sys.exit(f"a case line not in the 'Brand, award. why.' shape: {c!r}")
+            brand, award, why = who(c)
             key = el["data-case"]
             cases.append(key)
-            add({"case": key, "quote": text(el), "brand": m.group(1), "award": m.group(2), "why": m.group(3),
-                 "href": ARCHIVE + href, "link": link})
+            add({"case": key, "quote": unquote(text(el)), "brand": brand, "award": award, "why": why,
+                 "href": href if href.startswith("https://web.archive.org/") else ARCHIVE + href, "link": link})
+            continue
+        if el.name == "ul" and "lines" in cls:
+            items = []
+            for li in el.find_all("li", recursive=False):
+                brand, award, _ = who(text(li.find("span")))
+                quotes.append(li["data-quote"])
+                items.append({"key": li["data-quote"], "q": unquote(text(li.find("q"))), "brand": brand, "award": award})
+            add({"lines": items})
             continue
         if el.name == "div" and "named" in cls:
             items = []
@@ -239,7 +263,15 @@ def main():
             # a marked line: Sam's own <mark>, or one of the lines Paul asked to have marked
             m = el.find("mark")
             hl = text(m) if m else None
+            pl = el.select_one("span.pull")
+            pull = text(pl) if pl else None
             t = text(el)
+            if pull:
+                if pull not in t:
+                    sys.exit(f"a pull line that is not in its paragraph word for word: {pull!r}")
+                pulls.append(pull)
+                add({"p": t, "pull": pull})
+                continue
             hl = hl or next((h for h in HIGHLIGHT if h in t), None)
             if hl:
                 marked.append(hl)
@@ -267,8 +299,12 @@ def main():
                 if fid not in charts:
                     sys.exit(f"{fid} is on the page but not in the page's CHARTS list")
                 used.add(fid)
-                if not counts(charts[fid], cap):
+                ch_ = charts[fid]
+                if ch_["unit"] == "%" and len(ch_["series"]) == 2 and len(ch_["labels"]) > 1 and not counts(ch_, cap):
                     nocount.append(no)
+                m50 = re.search(r"about (\d+)%", cap)
+                if m50 and ch_["unit"] == "%" and len(ch_["labels"]) == 1:
+                    ch_["mark"] = int(m50.group(1))  # a share a guide asks for, named in Sam's caption
                 add({"fig": fid, "alt": canvas.get("aria-label", ""), **base})
             elif table is not None:
                 fid = "t" + no.replace(".", "")
@@ -302,7 +338,7 @@ def main():
         for holder in [c["lede"]] + [s["blocks"] for s in c["subs"]]:
             if holder and ("fig" in holder[0] or "stats" in holder[0]):
                 bare.append(holder[0]["no"])
-    print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(check['do'])} do and {len(check['never'])} never lines, {len(method)} method notes, {held} held boxes, {len(cases)} case quotes")
+    print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(check['do'])} do and {len(check['never'])} never lines, {len(method)} method notes, {held} held boxes, {len(cases)} public case quotes, {len(quotes)} archive quotes, {len(pulls)} pull lines")
     print("checklist lines with no pair of shares to draw: " + ("; ".join(undrawn) if undrawn else "none"))
     print(f"highlighted lines: {len(marked)}" + ("" if marked else "  <-- NONE: Paul's marked line is no longer on the page word for word"))
     print("charts whose counts could not be read from the caption: " + (", ".join(nocount) if nocount else "none"))

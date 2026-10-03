@@ -1,8 +1,7 @@
 {
- "note": "Campaign pictures for the public Irish cases. Each one was cut from the public ADFX paper named here, fetched from the web archive on 3 Oct 2026. Nothing comes from the private archive copies. Paul, 3 Oct: \"I do want pictures. if cases have been mentioned in public, i am ok.\" Cases with no clean picture in their public paper (irishtimes, vodafone, btni) are shown as words.",
+ "note": "Campaign pictures for the public Irish cases. Each one was cut from the public ADFX paper named here, fetched from the web archive on 3 Oct 2026. Nothing comes from the private archive copies. Paul, 3 Oct: \"I do want pictures. if cases have been mentioned in public, i am ok.\" Cases with no clean picture in their public paper (irishtimes, vodafone, btni) are shown as words. Pictures of the UK campaigns are stills cut from public videos of the ads themselves (the page each came from is listed), chosen only where the ad is from the campaign and the years the quoted paper is about. Found and not used, because the ad is from the wrong years or could not be confirmed: Guinness, John Smith's, PG Tips, Haagen-Dazs, Stella Artois, Dave, Walkers, Marie Curie, IAG Cargo, IBM, Halifax, Vodafone Ireland, BT Northern Ireland.",
  "pictures": [
   {
-   "case": "ibts",
    "file": "ibts.jpg",
    "size": [
     491,
@@ -11,22 +10,28 @@
    "source": "https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
    "fetched_from": "https://web.archive.org/web/2id_/https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
    "page": 16,
-   "crop": "the poster, cropped above the small print so no name, phone number or email shows"
+   "crop": "the poster, cropped above the small print so no name, phone number or email shows",
+   "id": "ibts",
+   "brand": "Irish Blood Transfusion Service",
+   "label": "Irish Blood Transfusion Service, the Skerries poster",
+   "fit": "contain"
   },
   {
-   "case": "gathering",
    "file": "gathering.jpg",
    "size": [
     440,
-    758
+    740
    ],
    "source": "http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
    "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
    "page": 27,
-   "crop": "the first panel of the media gallery"
+   "crop": "the first panel of the media gallery",
+   "id": "gathering",
+   "brand": "The Gathering",
+   "label": "The Gathering, Ireland 2013",
+   "fit": "contain"
   },
   {
-   "case": "nissan",
    "file": "nissan.jpg",
    "size": [
     804,
@@ -35,10 +40,13 @@
    "source": "https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
    "fetched_from": "https://web.archive.org/web/2id_/https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
    "page": 24,
-   "crop": "the press ad, whole"
+   "crop": "the press ad, whole",
+   "id": "nissan",
+   "brand": "Nissan Micra",
+   "label": "Nissan Micra, the launch press ad",
+   "fit": "contain"
   },
   {
-   "case": "lowlow",
    "file": "lowlow.jpg",
    "size": [
     775,
@@ -47,7 +55,180 @@
    "source": "http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
    "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
    "page": 22,
-   "crop": "a still from the film in the creative gallery, whole"
+   "crop": "a still from the film in the creative gallery, whole",
+   "id": "lowlow",
+   "brand": "LowLow",
+   "label": "LowLow, a still from the campaign film"
+  },
+  {
+   "id": "directline",
+   "brand": "Direct Line",
+   "aliases": [
+    "Direct Line Group"
+   ],
+   "file": "directline.jpg",
+   "size": [
+    1440,
+    615
+   ],
+   "label": "Direct Line, the Fixer, TV ad, 2014",
+   "source": "https://www.youtube.com/watch?v=7hwSuDKTI-g",
+   "fetched_from": "https://www.youtube.com/watch?v=7hwSuDKTI-g",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; Harvey Keitel as Winston Wolf shakes hands with a man in a scrapyard."
+  },
+  {
+   "id": "bt",
+   "brand": "BT",
+   "aliases": [],
+   "file": "bt.jpg",
+   "size": [
+    1442,
+    1080
+   ],
+   "label": "BT, It's Good to Talk, TV ad, 1995",
+   "source": "https://www.youtube.com/watch?v=2W8qy4eJfYg",
+   "fetched_from": "https://www.youtube.com/watch?v=2W8qy4eJfYg",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; Bob Hoskins looks on as a woman at a computer picks up a red phone."
+  },
+  {
+   "id": "marmite",
+   "brand": "Marmite",
+   "aliases": [],
+   "file": "marmite.jpg",
+   "size": [
+    950,
+    718
+   ],
+   "label": "Marmite, My Mate, TV ad, 1993",
+   "source": "https://www.youtube.com/watch?v=t9PW7H99aAI",
+   "fetched_from": "https://www.youtube.com/watch?v=t9PW7H99aAI",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; A Marmite jar ringed by standing toast soldiers on a stage."
+  },
+  {
+   "id": "honda",
+   "brand": "Honda",
+   "aliases": [],
+   "file": "honda.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Honda, Cog, TV ad, 2003",
+   "source": "https://www.youtube.com/watch?v=BYsHFos9kHE",
+   "fetched_from": "https://www.youtube.com/watch?v=BYsHFos9kHE",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; A grey Honda Accord Tourer rolls into the empty room at the end of Cog."
+  },
+  {
+   "id": "boddingtons",
+   "brand": "Boddingtons",
+   "aliases": [],
+   "file": "boddingtons.jpg",
+   "size": [
+    1333,
+    1080
+   ],
+   "label": "Boddingtons, The Cream of Manchester, TV ad",
+   "source": "https://www.youtube.com/watch?v=i5GjDBLW_Tg",
+   "fetched_from": "https://www.youtube.com/watch?v=i5GjDBLW_Tg",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; A pint of Boddingtons topped like ice cream with the endline The Cream of Manchester.",
+   "fit": "contain"
+  },
+  {
+   "id": "tfl",
+   "brand": "Transport for London",
+   "aliases": [],
+   "file": "tfl.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Transport for London, the awareness test, 2008",
+   "source": "https://www.youtube.com/watch?v=xNSgmm9FX2s",
+   "fetched_from": "https://www.youtube.com/watch?v=xNSgmm9FX2s",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; Players pass basketballs under a flyover in the awareness test."
+  },
+  {
+   "id": "irishtimes",
+   "brand": "The Irish Times",
+   "aliases": [],
+   "file": "irishtimes.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "The Irish Times, The Story of Why, 2015",
+   "source": "https://www.youtube.com/watch?v=zQMCvzCuFMQ",
+   "fetched_from": "https://www.youtube.com/watch?v=zQMCvzCuFMQ",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; A journalist in a cluttered office in the Story of Why film."
+  },
+  {
+   "id": "directline2",
+   "brand": "Direct Line",
+   "aliases": [
+    "Direct Line Group"
+   ],
+   "file": "directline2.jpg",
+   "size": [
+    1440,
+    615
+   ],
+   "label": "Direct Line, the Fixer, TV ad, 2014",
+   "source": "https://www.youtube.com/watch?v=7hwSuDKTI-g",
+   "fetched_from": "https://www.youtube.com/watch?v=7hwSuDKTI-g",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; Winston Wolf leans into a car window in the scrapyard."
+  },
+  {
+   "id": "honda2",
+   "brand": "Honda",
+   "aliases": [],
+   "file": "honda2.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Honda, Cog, TV ad, 2003",
+   "source": "https://www.youtube.com/watch?v=BYsHFos9kHE",
+   "fetched_from": "https://www.youtube.com/watch?v=BYsHFos9kHE",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; A glass table of car speakers and a rolling rubber part mid chain reaction in Cog."
+  },
+  {
+   "id": "boddingtons2",
+   "brand": "Boddingtons",
+   "aliases": [],
+   "file": "boddingtons2.jpg",
+   "size": [
+    1333,
+    1080
+   ],
+   "label": "Boddingtons, The Cream of Manchester, TV ad",
+   "source": "https://www.youtube.com/watch?v=i5GjDBLW_Tg",
+   "fetched_from": "https://www.youtube.com/watch?v=i5GjDBLW_Tg",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; An ice cream van stranded in a desert."
+  },
+  {
+   "id": "tfl2",
+   "brand": "Transport for London",
+   "aliases": [],
+   "file": "tfl2.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Transport for London, the awareness test, 2008",
+   "source": "https://www.youtube.com/watch?v=xNSgmm9FX2s",
+   "fetched_from": "https://www.youtube.com/watch?v=xNSgmm9FX2s",
+   "page": null,
+   "crop": "a still cut from the public video of the ad; Another still from the basketball passing game."
   }
  ]
 }

@@ -29,7 +29,7 @@ const COLS = [SKY, MUTED];
 const EASE = "cubic-bezier(.22,1,.36,1)";
 
 type Series = { label: string; data: number[]; k?: number[]; n?: number };
-type PairChart = { type: "pair"; labels: string[]; series: Series[]; max: number };
+type PairChart = { type: "pair"; unit?: string; mark?: number; labels: string[]; series: Series[]; max: number };
 type TableChart = { type: "table"; head: string[]; rows: string[][] };
 const ALL = CH as unknown as Record<string, PairChart | TableChart>;
 
@@ -435,11 +435,156 @@ function Table({ c }: { c: TableChart }) {
   );
 }
 
+const num = (v: number) => v.toLocaleString("en-IE");
+
+/* ── 2.2: one count split in two. The whole bar is every time a paper named another cause; the
+   sky part is the times it answered with evidence. ── */
+function Split({ c, alt }: { c: PairChart; alt: string }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const d = c.series[0].data;
+  const total = d.reduce((a, b) => a + b, 0);
+  return (
+    <div ref={ref} role="img" aria-label={alt} className={w.split}>
+      <div className={w.splitBar}>
+        {d.map((v, i) => (
+          <span key={i} style={{ flexGrow: seen ? v : i === 0 ? 0.0001 : total, background: i === 0 ? SKY : "#CFCFC9", color: i === 0 ? "#fff" : "#1D1B1B", transitionDelay: `${i * 120}ms` }}>
+            <b>{num(v)}</b>
+            <em>{Math.round((v / total) * 100)}%</em>
+          </span>
+        ))}
+      </div>
+      <div className={w.splitLabs}>
+        {c.labels.map((l, i) => (
+          <span key={i} style={{ flexGrow: d[i], textAlign: i === 0 ? "left" : "right" }}>
+            {l}
+          </span>
+        ))}
+      </div>
+      <p className={w.splitTot}>
+        <b>{num(total)}</b> in all
+      </p>
+    </div>
+  );
+}
+
+/* ── 2.3: small whole numbers, drawn as the things themselves. A square for each other cause the
+   middle paper names; the filled ones are the causes it rules out with data. ── */
+function Units({ c, alt }: { c: PairChart; alt: string }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const top = Math.max(...c.series.map((s) => s.data[0]));
+  return (
+    <div ref={ref} role="img" aria-label={alt}>
+      <div className={r.pairKey}>
+        <span>
+          <i style={{ background: "#1A3A4E" }} /> {c.labels[1]}
+        </span>
+        <span>
+          <i style={{ background: "#fff", boxShadow: "inset 0 0 0 2px #1A3A4E" }} /> {c.labels[0]}
+        </span>
+      </div>
+      <div className={w.units}>
+        {c.series.map((s, j) => (
+          <div key={s.label} className={w.unitRow}>
+            <span className={w.unitLab}>{s.label}</span>
+            <span className={w.unitCells} style={{ gridTemplateColumns: `repeat(${top}, minmax(0, 1fr))` }}>
+              {Array.from({ length: s.data[0] }, (_, i) => (
+                <i key={i} className={i < s.data[1] ? w.unitOn : undefined} style={{ opacity: seen ? 1 : 0, transform: seen ? "none" : "scale(.6)", background: i < s.data[1] ? COLS[j] : undefined, borderColor: COLS[j], transitionDelay: `${j * 200 + i * 70}ms` }} />
+              ))}
+            </span>
+            <span className={w.unitVal}>
+              <b style={{ color: COLS[j] }}>{s.data[1]}</b> of {s.data[0]}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── 4.3: months, one cell each, with the year marked. ── */
+function Months({ c, alt }: { c: PairChart; alt: string }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const n = c.max;
+  return (
+    <div ref={ref} role="img" aria-label={alt} className={w.months}>
+      {c.series.map((s, j) => (
+        <div key={s.label} className={w.monthRow}>
+          <span className={w.unitLab}>{s.label}</span>
+          <span className={w.monthCells} style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}>
+            {Array.from({ length: n }, (_, i) => (
+              <i
+                key={i}
+                data-year={(i + 1) % 12 === 0 ? 1 : undefined}
+                style={{
+                  // a part of a month fills that part of its cell
+                  background: !seen || i >= s.data[0] ? undefined : s.data[0] - i >= 1 ? COLS[j] : `linear-gradient(90deg, ${COLS[j]} ${(s.data[0] - i) * 100}%, #F2F2EE 0)`,
+                  transitionDelay: `${j * 150 + i * 28}ms`,
+                }}
+              />
+            ))}
+          </span>
+          <span className={w.unitVal}>
+            <b style={{ color: COLS[j] }}>{s.data[0]}</b>
+          </span>
+        </div>
+      ))}
+      <div className={w.monthRow} aria-hidden>
+        <span />
+        <span className={w.monthAxis} style={{ gridTemplateColumns: `repeat(${n / 12}, minmax(0, 1fr))` }}>
+          {Array.from({ length: n / 12 }, (_, y) => (
+            <em key={y}>
+              {y + 1} {y === 0 ? "year" : "years"}
+            </em>
+          ))}
+        </span>
+        <span />
+      </div>
+    </div>
+  );
+}
+
+/* ── 6.2: a share of one whole, for each group, with the share a guide asks for marked across both. ── */
+function Share({ c, alt }: { c: PairChart; alt: string }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  return (
+    <div ref={ref} role="img" aria-label={alt} className={w.share}>
+      <div className={w.shareRows}>
+        {c.mark != null ? (
+          <span className={w.shareMark} style={{ left: `${c.mark}%` }}>
+            <em>{c.mark}%</em>
+          </span>
+        ) : null}
+        {c.series.map((s, j) => (
+          <div key={s.label} className={w.shareRow}>
+            <span className={w.shareBar}>
+              <i style={{ width: seen ? `${s.data[0]}%` : 0, background: COLS[j], transitionDelay: `${j * 160}ms` }}>
+                <b>{s.data[0]}%</b>
+              </i>
+            </span>
+            <span className={w.shareLab}>{s.label}</span>
+          </div>
+        ))}
+      </div>
+      <div className={w.shareAxis} aria-hidden>
+        <em>0</em>
+        <em>{c.labels[0]}</em>
+        <em>100%</em>
+      </div>
+    </div>
+  );
+}
+
 /** One figure by its id in charts.json. */
 export function Fig({ id, alt }: { id: string; alt: string }) {
   const c = ALL[id];
   if (!c) throw new Error(`${id} is not in charts.json`);
   if (c.type === "table") return <Table c={c} />;
+  // the four figures whose values are not a pair of shares down a list: chosen by what the values are
+  if (c.series.length === 1) return <Split c={c} alt={alt} />;
+  const whole = c.series.every((s) => s.data.every(Number.isInteger));
+  if (c.unit === "" && c.labels.length === 2 && whole && c.series.every((s) => s.data[1] <= s.data[0] && s.data[0] <= 12)) return <Units c={c} alt={alt} />;
+  if (c.unit === "" && c.labels.length === 1 && c.series.length === 2 && c.max % 12 === 0 && c.max <= 48) return <Months c={c} alt={alt} />;
+  if (c.unit === "%" && c.labels.length === 1) return <Share c={c} alt={alt} />;
   if (id === "f11" || id === "f21") return <Gap c={c} alt={alt} />;
   if (id === "f31" && c.labels.length === 2) return <Slope c={c} alt={alt} />;
   if (id === "f41") return <Diverge c={c} alt={alt} />;

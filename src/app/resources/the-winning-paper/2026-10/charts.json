@@ -1,9 +1,9 @@
 {
  "f11": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "States an insight",
-   "Whole case in the first 300 words",
    "States a commercial objective",
    "Diagnosis names a cause",
    "Says why the strategy answers it",
@@ -14,27 +14,24 @@
     "label": "Awarded",
     "data": [
      99,
-     87,
-     85,
+     89,
      96,
      97,
      86
     ],
     "k": [
-     102,
-     90,
-     88,
-     99,
-     100,
-     89
+     95,
+     85,
+     92,
+     93,
+     83
     ],
-    "n": 103
+    "n": 96
    },
    {
     "label": "Not awarded",
     "data": [
      93,
-     83,
      86,
      98,
      98,
@@ -42,7 +39,6 @@
     ],
     "k": [
      81,
-     72,
      75,
      85,
      85,
@@ -55,6 +51,7 @@
  },
  "f21": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "A figure for what would have happened anyway",
    "Headline is what the activity added",
@@ -66,20 +63,20 @@
    {
     "label": "Awarded",
     "data": [
-     84,
-     61,
      83,
+     58,
+     81,
      78,
      95
     ],
     "k": [
-     87,
-     63,
-     85,
      80,
-     98
+     56,
+     78,
+     75,
+     91
     ],
-    "n": 103
+    "n": 96
    },
    {
     "label": "Not awarded",
@@ -102,8 +99,52 @@
   ],
   "max": 100
  },
+ "f22": {
+  "type": "pair",
+  "unit": "",
+  "labels": [
+   "Answered with a figure, a chart or a source",
+   "Answered with a sentence"
+  ],
+  "series": [
+   {
+    "label": "Times",
+    "data": [
+     1023,
+     576
+    ]
+   }
+  ],
+  "max": 1200
+ },
+ "f23": {
+  "type": "pair",
+  "unit": "",
+  "labels": [
+   "Other causes named",
+   "Ruled out with data"
+  ],
+  "series": [
+   {
+    "label": "Awarded",
+    "data": [
+     6.0,
+     4.0
+    ]
+   },
+   {
+    "label": "Not awarded",
+    "data": [
+     4,
+     2
+    ]
+   }
+  ],
+  "max": 8
+ },
  "f31": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "States a diagnosis that names a cause",
    "Results show the diagnosed problem changed"
@@ -116,10 +157,10 @@
      92
     ],
     "k": [
-     99,
-     95
+     92,
+     88
     ],
-    "n": 103
+    "n": 96
    },
    {
     "label": "Not awarded",
@@ -138,6 +179,7 @@
  },
  "f41": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "Shows the measure over 3+ years",
    "Compares with a forecast, model or control",
@@ -150,22 +192,22 @@
    {
     "label": "Awarded",
     "data": [
-     81,
-     48,
-     28,
-     9,
-     10,
-     2
-    ],
-    "k": [
-     83,
-     49,
+     82,
+     45,
      29,
      9,
      10,
      2
     ],
-    "n": 103
+    "k": [
+     79,
+     43,
+     28,
+     9,
+     10,
+     2
+    ],
+    "n": 96
    },
    {
     "label": "Not awarded",
@@ -192,6 +234,7 @@
  },
  "f42": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "A year or more",
    "Two years or more",
@@ -203,17 +246,17 @@
     "label": "Awarded",
     "data": [
      78,
-     48,
-     36,
-     16
+     50,
+     39,
+     17
     ],
     "k": [
-     80,
-     49,
+     75,
+     48,
      37,
      16
     ],
-    "n": 103
+    "n": 96
    },
    {
     "label": "Not awarded",
@@ -234,8 +277,31 @@
   ],
   "max": 100
  },
+ "f43": {
+  "type": "pair",
+  "unit": "",
+  "labels": [
+   "Months of results reported"
+  ],
+  "series": [
+   {
+    "label": "Awarded",
+    "data": [
+     22.5
+    ]
+   },
+   {
+    "label": "Not awarded",
+    "data": [
+     12.0
+    ]
+   }
+  ],
+  "max": 24
+ },
  "f51": {
   "type": "pair",
+  "unit": "%",
   "labels": [
    "Makes a profit claim",
    "Shows net profit with the sum",
@@ -247,17 +313,17 @@
     "label": "Awarded",
     "data": [
      69,
-     42,
-     18,
-     0
-    ],
-    "k": [
-     71,
-     43,
+     41,
      19,
      0
     ],
-    "n": 103
+    "k": [
+     66,
+     39,
+     18,
+     0
+    ],
+    "n": 96
    },
    {
     "label": "Not awarded",
@@ -278,6 +344,29 @@
   ],
   "max": 100
  },
+ "f62": {
+  "type": "pair",
+  "unit": "%",
+  "labels": [
+   "Share of words on results and proof"
+  ],
+  "series": [
+   {
+    "label": "Awarded",
+    "data": [
+     45
+    ]
+   },
+   {
+    "label": "Not awarded",
+    "data": [
+     35
+    ]
+   }
+  ],
+  "max": 100,
+  "mark": 50
+ },
  "t61": {
   "type": "table",
   "head": [
@@ -288,7 +377,7 @@
   "rows": [
    [
     "IPA Effectiveness, 2026 pack",
-    "Eight criteria, no weights. \"The most important are the value contribution and strength of proof.\"",
+    "Eight criteria, no weights. Of these, \"the most important are the value contribution and strength of proof\".",
     "4,000 words"
    ],
    [
@@ -303,7 +392,7 @@
    ],
    [
     "APG Creative Strategy, 2025",
-    "Two stages, each out of 50.",
+    "A strategy award. Two stages, each out of 50, with no points for results.",
     "2,000 words"
    ]
   ]

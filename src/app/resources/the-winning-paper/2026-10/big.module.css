@@ -1,0 +1,109 @@
+/* The big parts: sections that run the full width of the window. Own file, own class names, every
+   phone rule inside its own media query (DOCTRINE, 27 Sep). Colours: sky #3A7CA5, deep navy
+   #1A3A4E, orange #F47521, pale #A9CBE4, ink #1D1B1B. One accent per band, no gradients. */
+
+/* Out of the reading column to both edges of the window. The column starts after the page's side
+   padding (48px), the rail (220px) and the gap (56px), inside a page centred at --wrap. The band is
+   20px wider than the window and the page clips the spare, so a scrollbar never leaves a sliver. */
+.bleed { position: relative; z-index: 3; width: calc(100vw + 20px); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); margin-top: 44px; margin-bottom: 44px; }
+@media (max-width: 1100px) { .bleed { margin-left: -58px; } }
+@media (max-width: 700px) { .bleed { margin-left: -26px; margin-top: 32px; margin-bottom: 32px; } }
+
+.navy { background: #1A3A4E; color: #fff; --accent: #F47521; --soft: #A9CBE4; --rule: rgba(255,255,255,.22); }
+.sky { background: #3A7CA5; color: #fff; --accent: #1A3A4E; --soft: #E4EFF7; --rule: rgba(255,255,255,.3); }
+.orange { background: #F47521; color: #1D1B1B; --accent: #1A3A4E; --soft: #1D1B1B; --rule: rgba(29,27,27,.25); }
+.white { background: #fff; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; border-top: 1px solid #1A3A4E; border-bottom: 1px solid #1A3A4E; }
+
+.kick { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+/* a picture and the line that says what it is */
+.pic { position: relative; display: block; background: #0F2530; min-height: 100%; }
+.pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.picCap { position: absolute; left: 0; bottom: 0; padding: 6px 12px; background: rgba(15,37,48,.82); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; }
+
+/* ── a chapter opens ── */
+.opener { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); min-height: 540px; scroll-margin-top: 0; margin-top: 64px; }
+.openerBare { grid-template-columns: minmax(0, 1fr); min-height: 420px; }
+.openerWords { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 56px 56px 52px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.openerN { position: absolute; right: 18px; top: -50px; font-family: var(--sans); font-weight: 500; font-size: 420px; line-height: 1; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 2px var(--rule); pointer-events: none; user-select: none; }
+.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(40px, 5.2vw, 76px); line-height: 1.02; letter-spacing: -.03em; margin: 0; max-width: 11em; }
+.openerDo { position: relative; margin: 10px 0 0; padding-top: 18px; border-top: 2px solid var(--accent); font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 34em; }
+.openerDo span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+.opener .pic img { position: absolute; inset: 0; }
+/* an ad with its own words on it is shown whole, never cropped */
+.opener .picWhole img { object-fit: contain; }
+.openerBare .openerWords { padding-right: max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.openerBare .openerTitle { max-width: 16em; }
+
+/* ── one line, very large ── */
+.pull { padding: 84px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.pullText { margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.03em; max-width: 15em; }
+.pullText span { display: block; }
+.pullTurn { color: var(--accent); }
+.sky .pullTurn { color: #1A3A4E; }
+.navy .pullTurn { color: #F47521; }
+.orange .pullTurn { color: #fff; }
+.white .pullTurn { color: #F47521; }
+
+/* ── a quoted case with its campaign ── */
+.caseBand { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
+.caseBand .pic img { object-fit: contain; height: auto; max-height: 640px; }
+.caseBand .pic { display: flex; align-items: center; justify-content: center; }
+.caseTall { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.caseTall .pic img { width: auto; max-width: 100%; max-height: 560px; }
+.flip .pic { order: 2; }
+.caseWords { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; }
+.flip .caseWords { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.caseWho { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.caseWho b { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -.01em; }
+.caseWho em { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.caseQuote { margin: 0; padding-left: 20px; border-left: 4px solid var(--accent); font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.3; }
+.caseWhy { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; max-width: 32em; }
+.caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
+
+/* ── a wall of lines ── */
+.wall { padding: 64px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.wallIn { columns: 3; column-gap: 18px; }
+.wallFew .wallIn { columns: 2; }
+.tile { break-inside: avoid; margin: 0 0 18px; padding: 26px 26px 22px; border-radius: 4px; display: flex; flex-direction: column; gap: 18px; }
+.tile blockquote { margin: 0; }
+.tile figcaption { display: flex; flex-direction: column; gap: 3px; padding-top: 12px; border-top: 1px solid currentColor; }
+.tile figcaption b { font-family: var(--sans); font-weight: 500; font-size: 14.5px; }
+.tile figcaption em { font-style: normal; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+.tBig blockquote { font-family: var(--sans); font-weight: 500; font-size: 34px; line-height: 1.08; letter-spacing: -.025em; }
+.tMid blockquote { font-family: var(--sans); font-weight: 500; font-size: 24px; line-height: 1.18; letter-spacing: -.015em; }
+.tSmall blockquote { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.45; }
+.t_white { background: #fff; color: #1D1B1B; }
+.t_navy { background: #1A3A4E; color: #fff; }
+.t_sky { background: #3A7CA5; color: #fff; }
+.t_orange { background: #F47521; color: #1D1B1B; }
+.white .t_white { border: 1px solid #1A3A4E; }
+.tilePic { display: block; margin: -26px -26px 4px; border-radius: 4px 4px 0 0; overflow: hidden; background: #0F2530; }
+.tilePic img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 1100px) {
+  .caseBand { margin-left: -58px; }
+  .opener { min-height: 440px; }
+  .openerN { font-size: 300px; top: -40px; }
+  .wallIn { columns: 2; }
+}
+@media (max-width: 700px) {
+  .caseBand { margin-left: -26px; }
+  .opener, .openerBare { grid-template-columns: minmax(0, 1fr); min-height: 0; margin-top: 44px; }
+  .opener .pic { order: -1; aspect-ratio: 16 / 10; min-height: 0; }
+  .openerWords { padding: 34px 26px 32px; }
+  .openerBare .openerWords { padding-right: 26px; }
+  .openerN { font-size: 220px; top: -20px; right: -6px; }
+  .openerDo { font-size: 17px; }
+  .pull { padding: 52px 26px; }
+  .caseBand, .caseTall { grid-template-columns: minmax(0, 1fr); }
+  .flip .pic { order: 0; }
+  .caseBand .pic img { max-height: 420px; }
+  .caseWords, .flip .caseWords { padding: 28px 26px 34px; gap: 14px; }
+  .wall { padding: 36px 26px; }
+  .wallIn, .wallFew .wallIn { columns: 1; }
+  .tile { padding: 22px 20px 18px; }
+  .tilePic { margin: -22px -20px 4px; }
+  .tBig blockquote { font-size: 30px; }
+  .tMid blockquote { font-size: 22px; }
+}
