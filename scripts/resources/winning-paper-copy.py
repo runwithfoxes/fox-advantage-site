@@ -67,6 +67,31 @@ def page_charts(html):
     return out
 
 
+def counts(chart, cap):
+    """The counts behind each bar, read out of Sam's own caption ("87 of 103 awarded, 46 of 87 not
+    awarded", or "49 and 26" once the totals have been given). A pair of counts is given to a row
+    only when it is the one pair in the caption that rounds to that row's two percentages. If any
+    row is left without one, the figure gets no counts at all and the run names it."""
+    tot = re.search(r"(\d+) of (\d+) awarded, (\d+) of (\d+) not awarded", cap)
+    if not tot:
+        return False
+    na, nb = int(tot.group(2)), int(tot.group(4))
+    pairs = [(int(a), int(b)) for a, b in re.findall(rf"(\d+) of {na} awarded, (\d+) of {nb} not awarded", cap)]
+    pairs += [(int(a), int(b)) for a, b in re.findall(r"(\d+) and (\d+)", cap)]
+    near = lambda k, n, pct: abs(100 * k / n - pct) <= 0.5 + 1e-9
+    A, B = chart["series"][0], chart["series"][1]
+    ka, kb = [], []
+    for pa, pb in zip(A["data"], B["data"]):
+        hits = {(a, b) for a, b in pairs if near(a, na, pa) and near(b, nb, pb)}
+        if len(hits) != 1:
+            return False
+        a, b = hits.pop()
+        ka.append(a)
+        kb.append(b)
+    A["k"], A["n"], B["k"], B["n"] = ka, na, kb, nb
+    return True
+
+
 def main():
     html = SRC.read_text()
     soup = BeautifulSoup(html, "html.parser")
@@ -84,7 +109,7 @@ def main():
     ch = sub = None
     where = "intro"
     pending = None  # a chapter's number, waiting for its h2
-    used, held, figs, marked = set(), 0, [], []
+    used, held, figs, marked, nocount = set(), 0, [], [], []
 
     def add(block):
         if where == "intro":
@@ -174,6 +199,8 @@ def main():
                 if fid not in charts:
                     sys.exit(f"{fid} is on the page but not in the page's CHARTS list")
                 used.add(fid)
+                if not counts(charts[fid], cap):
+                    nocount.append(no)
                 add({"fig": fid, "alt": canvas.get("aria-label", ""), **base})
             elif table is not None:
                 fid = "t" + no.replace(".", "")
@@ -209,6 +236,7 @@ def main():
                 bare.append(holder[0]["no"])
     print(f"{len(chapters)} chapters, {len(figs)} figures ({', '.join(figs)}), {len(findings)} findings, {len(method)} method notes, {held} held boxes")
     print(f"highlighted lines: {len(marked)}" + ("" if marked else "  <-- NONE: Paul's marked line is no longer on the page word for word"))
+    print("charts whose counts could not be read from the caption: " + (", ".join(nocount) if nocount else "none"))
     print("figures with no lead-in before them: " + (", ".join(bare) if bare else "none"))
 
 

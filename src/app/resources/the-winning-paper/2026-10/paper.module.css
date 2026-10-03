@@ -32,7 +32,86 @@
 
 .introGap { margin-bottom: 36px; }
 
+/* the counts line keeps its height, so touching a row never moves the page */
+.read { min-height: 24px; }
+
+/* a row that answers when touched */
+.hot { background: rgba(58,124,165,.06); }
+
+/* 1.1 and 2.1: two dots on one rule */
+.gap { display: grid; margin-top: 10px; }
+.gRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) 62px; gap: 18px; align-items: center; padding: 9px 6px; margin: 0 -6px; border-top: 1px solid #F2F2EE; border-radius: 4px; cursor: default; }
+.gAxis { border-top: 0; padding-top: 0; padding-bottom: 6px; }
+.gScale { position: relative; height: 14px; display: block; }
+.gScale em { position: absolute; transform: translateX(-50%); font-style: normal; font-family: var(--mono); font-size: 10.5px; color: #8A8A85; }
+.gScale em:last-child { transform: translateX(-100%); }
+.gScale em:first-child { transform: none; }
+.gHead { font-family: var(--mono); font-size: 10.5px; color: #8A8A85; text-align: right; }
+.gTrack { position: relative; height: 16px; display: block; background: linear-gradient(#E0E0DC, #E0E0DC) 0 50% / 100% 1px no-repeat; }
+.gFill { position: absolute; top: 5px; height: 6px; opacity: .28; transition: width .7s cubic-bezier(.22,1,.36,1); }
+.gDot { position: absolute; top: 2px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; box-shadow: 0 0 0 2px #fff; transition: left .9s cubic-bezier(.22,1,.36,1); }
+.gRing { background: #fff; box-shadow: inset 0 0 0 2.5px #8A8A85, 0 0 0 2px #fff; }
+.gVal { font-family: var(--mono); font-size: 11px; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gVal b { font-weight: 500; font-size: 13px; }
+
+/* drawings whose type stays its own size */
+.svg { display: block; width: 100%; overflow: visible; margin-top: 8px; }
+.ax { font-family: var(--mono); font-size: 10.5px; fill: #8A8A85; }
+.pt { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+.end { font-family: var(--mono); font-size: 11.5px; }
+.endV { font-size: 13px; font-weight: 500; }
+.draw { stroke-dasharray: 1; transition: stroke-dashoffset 1.3s cubic-bezier(.22,1,.36,1); }
+
+/* 3.1: the two steps, named above the drawing */
+.slopeHeads { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; }
+.slopeHead { all: unset; cursor: pointer; flex: 0 1 44%; font-family: var(--mono); font-size: 11.5px; line-height: 1.45; color: #1D1B1B; padding: 6px 8px; border-radius: 4px; }
+.slopeHead span { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; margin-bottom: 2px; }
+.slopeOn { background: rgba(58,124,165,.06); }
+
+/* 4.1: who does it more, either side of a centre line */
+.div { display: grid; margin-top: 12px; }
+.dRow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) 132px; gap: 18px; align-items: center; padding: 9px 6px; margin: 0 -6px; border-top: 1px solid #F2F2EE; border-radius: 4px; }
+.dAxis { border-top: 0; padding-top: 0; align-items: end; }
+.dSides { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dSides em { font-style: normal; font-family: var(--mono); font-size: 10.5px; line-height: 1.4; color: #6b6b66; }
+.dSides em:first-child { text-align: right; }
+.dTrack { position: relative; height: 16px; display: block; background: linear-gradient(#1A3A4E, #1A3A4E) 50% 0 / 1px 100% no-repeat; }
+.dTrack i { position: absolute; top: 2px; height: 12px; transition: width .9s cubic-bezier(.22,1,.36,1); }
+.dTrack b { position: absolute; top: 0; line-height: 16px; font-family: var(--mono); font-weight: 500; font-size: 11.5px; opacity: 0; transition: opacity .4s .7s; white-space: nowrap; }
+.dTrack b.dOn { opacity: 1; }
+.dShares { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: right; font-family: var(--mono); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.dShares b { font-weight: 400; color: #6b6b66; }
+.dShares em { font-style: normal; font-size: 10.5px; color: #6b6b66; }
+
+/* 5.1: columns in pairs, the nought marked */
+.cols { display: grid; gap: 10px; margin-top: 14px; }
+.col { all: unset; cursor: pointer; display: flex; flex-direction: column; border-radius: 6px; padding: 8px 4px 8px; }
+.colOn { background: rgba(58,124,165,.06); }
+.colBars { height: 190px; display: flex; align-items: flex-end; justify-content: center; gap: 6px; border-bottom: 1px solid #C9C9C3; }
+.colOne { flex: 0 1 42px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+.colOne b { font-family: var(--mono); font-weight: 500; font-size: 11.5px; margin-bottom: 4px; }
+.colOne i { display: block; width: 100%; height: 0; transition: height .9s cubic-bezier(.22,1,.36,1); }
+.colOne i.nought { height: 0; border-top: 3px solid #F47521; }
+.colLab { display: block; text-align: center; font-family: var(--mono); font-size: 11px; line-height: 1.4; color: #1D1B1B; margin-top: 8px; }
+
+/* 6.1: the published weights as one bar */
+.wBar { display: flex; height: 22px; margin-top: 10px; gap: 2px; max-width: 420px; }
+.wBar i { flex: 0.0001 1 0; min-width: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 10.5px; transition: flex-grow .9s cubic-bezier(.22,1,.36,1); }
+
 @media (max-width: 700px) {
+  .gRow { grid-template-columns: minmax(0, 1fr) 56px; gap: 6px 10px; padding: 10px 6px; }
+  .gRow .lab { grid-column: 1 / -1; }
+  .gAxis > span:first-child { display: none; }
+  .dRow { grid-template-columns: minmax(0, 1fr) 96px; gap: 6px 10px; padding: 10px 6px; }
+  .dRow .lab { grid-column: 1 / -1; }
+  .dAxis > span:first-child { display: none; }
+  .dSides em { font-size: 9.5px; }
+  .slopeHead { flex-basis: 48%; font-size: 11px; }
+  .read { min-height: 76px; align-content: flex-start; }
+  .cols { gap: 4px; }
+  .colBars { height: 170px; gap: 3px; }
+  .colOne b { font-size: 10.5px; }
+  .colLab { font-size: 10px; }
   .row { grid-template-columns: 1fr; gap: 6px; padding: 10px 0; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
   .stat :global(.mod-num) { font-size: 1.35rem; }
