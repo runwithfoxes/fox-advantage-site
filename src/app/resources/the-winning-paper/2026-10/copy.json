@@ -1,6 +1,6 @@
 {
  "meta": {
-  "kicker": "Research report · draft 9, not published",
+  "kicker": "Research report · draft 10, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "3 October 2026 · Sam · AI researcher, Run with Foxes"
  },
@@ -180,7 +180,7 @@
      "title": "What would have happened anyway",
      "blocks": [
       {
-       "p": "Figure 2.1 takes five ways a paper can show causation. For each one it gives the share of awarded papers that do it and the share of the others. Look at the distance between the two bars in each row. These are the widest gaps in the report."
+       "p": "Figure 2.1 takes five ways a paper can show causation. For each one it gives the share of awarded papers that do it and the share of the others. Look at the gap between the two groups in each row. These are the widest gaps in the report."
       },
       {
        "fig": "f21",
@@ -240,7 +240,7 @@
      "title": "Did the thing you diagnosed change?",
      "blocks": [
       {
-       "p": "Figure 3.1 puts two things side by side. The first is whether a paper says what was wrong. The second is whether its results show that same thing changing. Look at how close the two groups are on the first row, and how they part on the second."
+       "p": "Figure 3.1 puts two things side by side. The first is whether a paper says what was wrong. The second is whether its results show that same thing changing. Look at how close the two groups are on the first, and how they part on the second."
       },
       {
        "fig": "f31",
@@ -279,7 +279,7 @@
      "title": "What the result is compared with",
      "blocks": [
       {
-       "p": "Figure 4.1 looks at what a paper compares its result with, and how far back it looks. The first two rows are the stronger comparisons, and the rows below them are weaker. Look for the rows where the awarded bar is the longer one, and the rows where it is the shorter."
+       "p": "Figure 4.1 looks at what a paper compares its result with, and how far back it looks. The first two rows are the stronger comparisons, and the rows below them are weaker. Look at which group does each one more often."
       },
       {
        "fig": "f41",
@@ -296,7 +296,7 @@
      "title": "How long the results run",
      "blocks": [
       {
-       "p": "Figure 4.2 counts how long the results run after the activity began. Each row is a longer stretch than the one above it. Look at how the gap between the two groups holds as the stretch gets longer."
+       "p": "Figure 4.2 counts how long the results run after the activity began. It runs from one year to five. Look at how the gap between the two groups holds as the stretch gets longer."
       },
       {
        "fig": "f42",
@@ -341,7 +341,7 @@
      "title": "Profit, revenue, or nothing",
      "blocks": [
       {
-       "p": "Figure 5.1 sorts the papers by how they report payback. The first two rows are profit. The third is revenue on its own. The last is no payback at all. Look at the last row first."
+       "p": "Figure 5.1 sorts the papers by how they report payback. The first two are profit. The third is revenue on its own. The last is no payback at all. Look at the last one first."
       },
       {
        "fig": "f51",
@@ -476,6 +476,10 @@
   {
    "k": "Text, not charts",
    "t": "The agents saw each paper's text and not its chart images. Anything that sits only in a chart was missed. For that reason we don't report which result a paper leads with, or whether its objective had a target number."
+  },
+  {
+   "k": "Rounding",
+   "t": "Percentages are rounded to the nearest whole number. Where a chart prints a gap in points, it is the difference between the two rounded percentages, so it matches what you see on the chart. Worked out from the counts, six of those gaps would be one point different."
   },
   {
    "k": "Edited and unedited",
