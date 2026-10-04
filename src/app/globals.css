@@ -8683,3 +8683,14 @@ a.about-contrib-name:hover { color: var(--orange); }
 
 /* The way back on an essay or diary piece, now the site nav has replaced the essay bar (30 Sep 2026). */
 .essay-back { display: inline-block; margin-bottom: 28px; }
+
+/* A held research piece on a preview: one plain line above the text. Never on the live site (src/lib/notes.ts). */
+.note-hold {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px 14px;
+  margin: 0 0 28px;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+}

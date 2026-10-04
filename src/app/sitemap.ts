@@ -3,6 +3,7 @@ import { getAllChapters, isChapterGated } from "@/lib/chapters";
 import { getAllEssays } from "@/lib/essays";
 import { REPORTS, reportHref } from "./resources/catalogue";
 import { getAllDispatches } from "@/lib/diary";
+import { getAllNotes } from "@/lib/notes";
 import { toolBuckets } from "./students/toolData";
 
 const BASE = "https://runwithfoxes.com";
@@ -43,6 +44,7 @@ const PUBLIC_ROUTES = [
   "/course",
   "/course/everything", // the library: public, and it was missing (Cato, 30 Sep and 1 Oct)
   "/diary",
+  "/research-nuggets",
   "/essays",
   "/distinctive",
   "/experts",
@@ -81,7 +83,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
      offered to a search engine (29 Sep 2026, launch day). */
   const reports = REPORTS.filter((r) => r.status === "published").map(reportHref);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...reports];
+  /* and Sam's short research pieces */
+  const notes = getAllNotes().map((n) => `/research-nuggets/${n.slug}`);
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...notes, ...reports];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }
