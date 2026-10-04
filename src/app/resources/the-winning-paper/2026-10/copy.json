@@ -1,6 +1,6 @@
 {
  "meta": {
-  "kicker": "Research report · draft 20, not published",
+  "kicker": "Research report · draft 22, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "4 October 2026 · Sam · AI researcher, Run with Foxes"
  },
@@ -287,6 +287,15 @@
         },
         {
          "p": "Then the paper shows its result the plain way, with no model. It compares members with similar firms that didn't join, grouped by how much they spend. Members' spend rose 18% in the year, 11 percentage points more than the others. The paper puts the extra revenue at €14 million, on a budget of €272,000."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipaeffectivenessawards.awardsengine.com/winners/view_awards_entry.cfm?id_entry=100112"
+          }
+         ]
         }
        ]
       }
@@ -361,6 +370,15 @@
         },
         {
          "p": "Any team can do what this paper does with its server sales. Find the nearest thing you have to your market without your campaign. Show that the two moved together before. Take out what else differs. Then claim the gap, or less."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipa.co.uk/knowledge/case-studies/ibm-watson"
+          }
+         ]
         }
        ]
       }
@@ -413,16 +431,25 @@
          "p": "Collectors went from 13,774 to over 20,000. Then the paper has to show that the advertising did it, and it starts with what it doesn't have. “Due to the low investment in the campaign, we do not have any tracking research at our disposal.”"
         },
         {
-         "p": "It has other evidence, and it gives that first. New recruits rose most in the regions where the radio weight was heaviest. And every new recruit signed up through the advertised phone number, Facebook or the web address, where collectors normally register with their local branch. Any small team can do both of those: count sign-ups by the route they came in, and set them against where the advertising ran."
+         "p": "It has other evidence, and it gives that first. Across six regions, the more radio a region had, the more new recruits it had, with one region out of line. And every new recruit signed up through the advertised phone number, Facebook or the web address, where collectors normally register with their local branch. Any small team can do both of those: count sign-ups by the route they came in, and set them against where the advertising ran."
         },
         {
-         "p": "Then comes a list. The paper names six other things that could have brought the collectors in, and answers each one. The usual recruitment by local fundraisers hadn't changed. The main appeal advertising ran in March, and collectors had to register by the end of February. Its rivals outspent it: the two larger cancer charities had 79% and 13% of the advertising in those two months, and Marie Curie had 8%. It had no reason to think cancer deaths had risen. Nobody well known had died of cancer in those weeks. And the weather: March 2010 was colder, less sunny and equally wet, so a fine month didn't bring the collectors out."
+         "p": "Then comes a list. The paper names six other things that could have brought the collectors in, and answers each one. The usual recruitment by local fundraisers hadn't changed. The main appeal advertising ran in March, and collectors had to register by the end of February. Its rivals outspent it: of the three cancer charities' advertising in those two months, the two larger ones had 79% and 13%, and Marie Curie had 8%. It had no reason to think cancer deaths had risen. Nobody well known had died of cancer in those weeks. And the weather: March 2010 was colder, less sunny and equally wet, so a fine month didn't bring the collectors out."
         },
         {
          "p": "One of those answers came from the Met Office."
         },
         {
-         "p": "It is as careful with the return. Collector numbers were already rising a little each year, so the paper works its return out three ways: against the year before, against the five-year average, and against a trend line fitted to the five years before. That gives £2.75, £3.01 and £2.45 for every £1. It uses the £2.45, the most conservative, from there on."
+         "p": "It is as careful with the return. Collector numbers were already on a rising trend, so the paper works its return out three ways: against the year before, against the five-year average, and against a trend line fitted to the five years before. That gives £2.75, £3.01 and £2.45 for every £1. Those are returns over two years, and they count on 46% of the new collectors coming back for a second year, which is what the charity believes happens. The paper uses the £2.45, the most conservative, from there on."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipa.co.uk/knowledge/case-studies/marie-curie-cancer-care-how-marie-curie-cancer-care-benefited-from-using-advertising-to-ask-people-to-collect-money-rather-than-simply-give-money"
+          }
+         ]
         }
        ]
       },
@@ -507,6 +534,15 @@
         },
         {
          "p": "The thing it said was broken is the thing it shows mended. That is the loop."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipa.co.uk/knowledge/case-studies/direct-line-direct-line-we-solve-problems"
+          }
+         ]
         }
        ]
       },
@@ -607,10 +643,19 @@
          "p": "That matters, because Lidl was already growing. A paper that set 2017 against 2013 could have claimed the lot. This one tells you sales grew 9.5% a year from 2009 to 2013, and 15.5% a year from 2014 to 2017. So you can see the growth that was already there."
         },
         {
-         "p": "Then it uses a model to divide that growth between the advertising, the new stores and everything else. Sales grew by £2.56 billion between 2013 and 2017, and the model gives advertising 24.5% of it. The paper says so near the top: “We will show that advertising is responsible for a quarter of Lidl's sales growth.” A quarter, from a brand that could have pointed at the chart and claimed all of it."
+         "p": "Then it uses a model to divide that growth between the advertising, the new stores and everything else. Sales grew by £2.56 billion between 2013 and 2017, and the model gives advertising 24.5% of it. The paper claims a lot for the advertising: £2.7 billion of sales over the four years. On growth, though, it claims a share and not the whole. “We will show that advertising is responsible for a quarter of Lidl's sales growth.” A quarter, where the chart on its own would have suggested all of it."
         },
         {
          "p": "A line that starts long before the work, the growth rate from before it, four years after it, and a baseline from a model. That is each of the stronger rows in this chapter's first chart, in one paper."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipa.co.uk/knowledge/case-studies/how-lidl-grew-a-lot"
+          }
+         ]
         }
        ]
       }
@@ -683,6 +728,15 @@
         },
         {
          "p": "The base is the paper's own choice, and you could argue for a different one. Every step is on the page, so you can."
+        },
+        {
+         "p": "The paper's page on the IPA's site",
+         "links": [
+          {
+           "t": "The paper's page on the IPA's site",
+           "href": "https://ipa.co.uk/knowledge/case-studies/art-fund-the-art-of-framing"
+          }
+         ]
         }
        ]
       },
@@ -811,10 +865,19 @@
        "p": "Then it sets out what it can show. A survey found that 27% of UK adults recognised the campaign. Of those who did, 43% said they knew more about the symptoms than 6 months before, against 16% of people who didn't remember seeing it. The paper asks whether anything else could have caused that, names a television storyline and the death of a well-known actor in the weeks before, and answers in a sentence."
       },
       {
-       "p": "Its return is a projection, and the paper calls it one. It builds what it calls an assumptive model from the published results of earlier cancer campaigns, and it says \"let's assume\" twice in the working. It takes one of the earlier figures out, because the figure looked like an outlier and leaving it in might have biased the result in the paper's favour. Its top figure is a return of 10,243%. It ends on a floor, which is its own worst case divided by 2."
+       "p": "Its return is a projection, and the paper calls it one. It builds what it calls an assumptive model from the published results of earlier cancer campaigns, and it says \"let's assume\" twice in the working. It takes one of the earlier figures out, because the figure looked like an outlier and leaving it in might have biased the result in the paper's favour. Its top figure is a return of 10,243%. It ends on a floor of 4,032%, which is its own worst case divided by 2."
       },
       {
        "p": "It won Gold. I can't tell you the disclaimer is why, and this is not a paper that proves its return. What it does is label its guesses as guesses, so you can see which of its numbers were counted and which were assumed. A paper with £78,000 and no model can still do that."
+      },
+      {
+       "p": "The paper's page on the IPA's site",
+       "links": [
+        {
+         "t": "The paper's page on the IPA's site",
+         "href": "https://ipa.co.uk/knowledge/case-studies/pancreatic-cancer-action-giving-a-voice-to-silent-killer"
+        }
+       ]
       }
      ]
     },
@@ -870,7 +933,7 @@
   },
   {
    "k": "Quotes and cases",
-   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. Seven cases are told in full. Each was read from the paper itself, and every figure in a telling comes from a sentence in that paper. They were chosen to show the point of their chapter and to be a mix: two sell to businesses, four spent under a million a year with the figure in the paper, and two led with television advertising. The archive is mostly consumer brands: the agents filed 5 of its 389 papers as business-to-business. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. No author or judge is named."
+   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. Seven cases are told in full. Each was read from the paper itself, and every figure in a telling comes from a sentence in that paper. They were chosen to show the point of their chapter and to be a mix: two sell to businesses, four spent under a million a year with the figure in the paper, and two led with television advertising. The archive is mostly consumer brands: the agents filed 5 of its 389 papers as business-to-business. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. Each told case links to its public page on the IPA's site. Six of the seven pages have a free summary, and all seven sell the full paper. The detail in the tellings is from the full papers. No author or judge is named."
   },
   {
    "k": "Rounding",
