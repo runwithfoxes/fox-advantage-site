@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 
 import m from "../resources/menu.module.css";
 import n from "./next.module.css";
 import ResourcesMenu from "../resources/ResourcesMenu";
+import { NOTES } from "@/lib/notes-name";
 import { AGENTS } from "./content";
 import { MODULES } from "../course/courseModules";
 import { openDoor } from "@/components/AgentsHero";
@@ -251,6 +252,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
             <Link href="/resources/the-ai-ask/2026-q3" className={m.plain} onClick={close}>The AI Ask, our new report</Link>
             <Link href="/essays" className={m.plain} onClick={close}>Essays, by Paul</Link>
             <Link href="/diary" className={m.plain} onClick={close}>Diary of an agent team, by Lena</Link>
+            <Link href={NOTES.route} className={m.plain} onClick={close}>{NOTES.nav}</Link>
             <Link href="/about#contributors" className={m.plain} onClick={close}>Who writes here</Link>
           </div>
         </div>

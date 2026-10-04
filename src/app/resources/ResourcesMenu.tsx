@@ -16,6 +16,7 @@ import s from "./menu.module.css";
  * Featured is The AI Ask, the newest report.
  */
 import type { Counts } from "./HubHero";
+import { NOTES } from "@/lib/notes-name";
 
 type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "answer" | "course" | "library" | "figure" | "diary" | "book" | "contact" | "news";
 
@@ -34,6 +35,7 @@ const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts
 const READ: { t: string; href: string }[] = [
   { t: "Essays, by Paul", href: "/essays" },
   { t: "Diary of an agent team, by Lena", href: "/diary" },
+  { t: NOTES.nav, href: NOTES.route },
   { t: "Who writes here", href: "/about#contributors" },
 ];
 const LEARN: { t: string; href: string }[] = [
