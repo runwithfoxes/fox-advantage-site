@@ -78,7 +78,7 @@ export function PullBand({ text, tone, pic, flip }: { text: string; tone: Tone; 
  *  needs a file about 1,200 wide, not one that can fill a window, so far more of the real ads qualify. */
 export function ColumnArt({ pic, eager, where }: { pic: Pic; eager?: boolean; where?: { n: string; href: string } }) {
   return (
-    <figure className={b.colArt}>
+    <figure className={`${b.colArt} ${pic.size[1] > pic.size[0] * 1.15 ? b.colArtTall : ""}`}>
       <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading={eager ? "eager" : "lazy"} />
       <figcaption>
         {pic.label}

@@ -231,86 +231,6 @@
    "crop": "a still cut from the public video of the ad; Another still from the basketball passing game."
   },
   {
-   "id": "art-guinness-sapeurs",
-   "brand": "Guinness",
-   "file": "art-guinness-sapeurs.jpg",
-   "size": [
-    1280,
-    720
-   ],
-   "label": "Guinness, Sapeurs, TV film, 2014",
-   "source": "https://www.youtube.com/watch?v=66HuFrMZWMo",
-   "fetched_from": "https://www.youtube.com/watch?v=66HuFrMZWMo",
-   "page": null,
-   "crop": "a still cut from the public video of the ad",
-   "source_kind": "official (the agency AMV BBDO's own channel, posted 18 Mar 2014)",
-   "added": "2026-10-04"
-  },
-  {
-   "id": "art-boddingtons-cone",
-   "brand": "Boddingtons",
-   "file": "art-boddingtons-cone.jpg",
-   "size": [
-    1344,
-    1900
-   ],
-   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999",
-   "source": "https://davedye.com/2022/05/10/boddingtons-the-cream-of-advertising/",
-   "fetched_from": "https://davedye.com/2022/05/10/boddingtons-the-cream-of-advertising/",
-   "page": null,
-   "crop": "the press ad, whole; the campaign ran 1991 to 1999 and this ad carries no date of its own",
-   "source_kind": "a private blog about the campaign, not the brand or agency",
-   "added": "2026-10-04"
-  },
-  {
-   "id": "art-lidl-billboard",
-   "brand": "Lidl",
-   "file": "art-lidl-billboard.jpg",
-   "size": [
-    1024,
-    998
-   ],
-   "label": "Lidl, Deluxe mince pies, billboard, 2018",
-   "source": "https://talkingpoints.72point.com/2018/12/lidl-takes-a-swipe-at-rival-supermarkets-",
-   "fetched_from": "https://talkingpoints.72point.com/2018/12/lidl-takes-a-swipe-at-rival-supermarkets-",
-   "page": null,
-   "crop": "the press picture of the billboard, whole",
-   "source_kind": "official (the press release picture)",
-   "added": "2026-10-04"
-  },
-  {
-   "id": "art-ibm-smarter-planet",
-   "brand": "IBM",
-   "file": "art-ibm-smarter-planet.jpg",
-   "size": [
-    1796,
-    773
-   ],
-   "label": "IBM, Smarter Planet, three press ads, 2010",
-   "source": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
-   "fetched_from": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
-   "page": null,
-   "crop": "three press ads from the campaign set side by side, each whole",
-   "source_kind": "an ad archive (Ads of the World, campaign listed October 2010, Ogilvy Paris)",
-   "added": "2026-10-04"
-  },
-  {
-   "id": "art-irish-times-election",
-   "brand": "The Irish Times",
-   "file": "art-irish-times-election.jpg",
-   "size": [
-    800,
-    1120
-   ],
-   "label": "The Irish Times, What's going on inside?, Election 2016 poster",
-   "source": "http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
-   "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
-   "page": 24,
-   "crop": "the poster from the paper's gallery, cropped above the web address",
-   "source_kind": "the public ADFX paper",
-   "added": "2026-10-04"
-  },
-  {
    "id": "art-pancreatic-cancer-action",
    "brand": "Pancreatic Cancer Action",
    "file": "art-pancreatic-cancer-action.jpg",
@@ -325,8 +245,71 @@
    "crop": "the press ad, whole",
    "source_kind": "a trade press article dated February 2014, the month the ad ran",
    "added": "2026-10-04"
+  },
+  {
+   "id": "art-iag-cargo",
+   "brand": "IAG Cargo",
+   "file": "art-iag-cargo.jpg",
+   "size": [
+    1920,
+    904
+   ],
+   "label": "IAG Cargo, a film from 2018. Not the loyalty scheme the paper is about.",
+   "source": "https://www.youtube.com/watch?v=QRQU_ktcGCA",
+   "fetched_from": "https://www.youtube.com/watch?v=QRQU_ktcGCA",
+   "page": null,
+   "crop": "a still cut from the public video",
+   "source_kind": "official",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-ibm-smarter-planet",
+   "brand": "IBM",
+   "file": "art-ibm-smarter-planet.jpg",
+   "size": [
+    1796,
+    773
+   ],
+   "label": "IBM, Smarter Planet, three press ads, 2010. Not the Watson work the paper is about.",
+   "source": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
+   "fetched_from": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
+   "page": null,
+   "crop": "three press ads set side by side, each whole",
+   "source_kind": "an ad archive (Ads of the World, campaign listed October 2010)",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-art-fund",
+   "brand": "Art Fund",
+   "file": "art-art-fund.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Art Fund, National Art Pass, film, 2011",
+   "source": "https://www.youtube.com/watch?v=D_5twGr9l_0",
+   "fetched_from": "https://www.youtube.com/watch?v=D_5twGr9l_0",
+   "page": null,
+   "crop": "a still cut from the public video",
+   "source_kind": "official",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-lidl-press",
+   "brand": "Lidl",
+   "file": "art-lidl-press.jpg",
+   "size": [
+    625,
+    1024
+   ],
+   "label": "Lidl, \"Big on quality, Lidl on price\", press, 2017",
+   "source": "https://fabnews.live/lidl-goes-for-the-jugular-of-rivals-with-big-on-quality-lidl-on-price",
+   "fetched_from": "https://fabnews.live/lidl-goes-for-the-jugular-of-rivals-with-big-on-quality-lidl-on-price",
+   "page": null,
+   "crop": "the press ad, whole",
+   "source_kind": "official",
+   "added": "2026-10-04"
   }
  ],
- "note_4_oct": "From 4 Oct the page shows only the pictures named in art.json beside page.tsx: one at the top and one at the top of a chapter, each from a campaign that chapter quotes. Paul, 4 Oct: \"be selective... Curate\" and \"The artwork should be there for impact not explanation\". The other files in this folder are no longer shown. Of the seven shown, one is from a private blog (Boddingtons) and Direct Line is a still from a public upload of the ad (source_kind); whether those are fine for the live page is still Paul's call.",
- "note_4_oct_range": "Paul, 4 Oct: \"We also need to be rounded and have b2b and small budget and not always TV.\" The seven are five press, poster or outdoor (Boddingtons, IBM, The Irish Times, Lidl, Pancreatic Cancer Action) and two film stills (Guinness, Direct Line). IBM is the B2B case, Pancreatic Cancer Action the small-budget one (its paper says it had no econometric model), The Irish Times the Irish one. Honda Grrr was in chapter 7 first and is kept in fox-ads dray/output/winning-paper-art/uk1 if Paul wants it back."
+ "note_4_oct": "Draft 18 (4 Oct, Sam's new shape): the page shows only the pictures named in art.json beside page.tsx, one per chapter at most, each sitting with the case that chapter tells. Chapter 2 tells two cases and shows one (IBM). Chapter 6 tells none. The fox is at the top (Paul: \"the fox is always going to be at the top\"). Direct Line is a still from a fan upload of the ad; the rest are from the brand, the agency, an ad archive or trade press. Two captions say plainly that the picture is not the work the paper is about (IAG Cargo, IBM)."
 }

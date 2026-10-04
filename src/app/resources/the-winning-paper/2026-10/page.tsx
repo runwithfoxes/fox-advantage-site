@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../../../home-next/NextNav";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
  */
 
 type FigBase = { kind: string; no: string; title: string; cap: string };
+type Link = { t: string; href: string };
 type Line = { key: string; q: string; brand: string; award: string };
 type CaseB = { case: string; quote: string; brand: string; award: string; why: string; href?: string; link?: string };
 type Block =
@@ -40,7 +42,8 @@ type Block =
   | CaseB
   | { lines: Line[] }
   | { named: { brand: string; award: string; text: string }[]; title: string }
-  | { p: string; hl?: string; pull?: string }
+  | { p: string; hl?: string; pull?: string; links?: Link[] }
+  | { told: string; brand: string; award: string; tags: string[]; paras: { p: string; links?: Link[] }[] }
   | { held: string; label: string }
   | ({ fig: string; alt: string } & FigBase)
   | ({ stats: { v: string; l: string }[] } & FigBase);
@@ -79,14 +82,34 @@ function quotedIn(c: Chapter, brand?: string) {
 }
 type Plan = ReturnType<typeof plan>;
 
-function Para({ b, lede }: { b: { p: string; hl?: string }; lede?: boolean }) {
+/* A paragraph's words, with any public paper it names as a plain link inside the sentence. */
+function Words({ t, links }: { t: string; links?: Link[] }) {
+  if (!links?.length) return <>{t}</>;
+  const out: React.ReactNode[] = [];
+  let rest = t;
+  links.forEach((l, i) => {
+    const at = rest.indexOf(l.t);
+    if (at < 0) return;
+    out.push(rest.slice(0, at));
+    out.push(
+      <a key={i} href={l.href} target="_blank" rel="noopener noreferrer" className={w.inlineLink}>
+        {l.t}
+      </a>,
+    );
+    rest = rest.slice(at + l.t.length);
+  });
+  out.push(rest);
+  return <>{out}</>;
+}
+
+function Para({ b, lede }: { b: { p: string; hl?: string; links?: Link[] }; lede?: boolean }) {
   // a marked line gets the AI Ask's marker, swept in behind the words the first time it is seen
   const at = b.hl ? b.p.indexOf(b.hl) : -1;
   if (!b.p.trim()) return null;
   return (
     <p className={lede ? r.lede : r.p}>
       {at < 0 || !b.hl ? (
-        b.p
+        <Words t={b.p} links={b.links} />
       ) : (
         <>
           {b.p.slice(0, at)}
@@ -99,6 +122,25 @@ function Para({ b, lede }: { b: { p: string; hl?: string }; lede?: boolean }) {
 }
 
 function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: number }) {
+  if ("told" in b) {
+    // A case told properly (Paul, 4 Oct: "you can't do a report talking about brilliant case studies
+    // without talking about some of the case studies for illumination"). No box: a rule, the brand,
+    // its ad where there is a good one, and the telling in the report's own type.
+    const pic = A.bands[b.told];
+    return (
+      <section className={w.told}>
+        <header className={w.toldHead}>
+          <span className={w.toldKick}>The case</span>
+          <h4 className={w.toldBrand}>{b.brand}</h4>
+          <span className={w.toldTags}>{[b.award, ...b.tags].join(" · ")}</span>
+        </header>
+        {pic ? <ColumnArt pic={pic} /> : null}
+        {b.paras.map((x, k) => (
+          <Para key={k} b={x} />
+        ))}
+      </section>
+    );
+  }
   if ("do" in b)
     return (
       <p className={w.doThis}>
@@ -160,7 +202,7 @@ function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: 
       <>
         <Para b={{ p: b.p.slice(0, at) }} lede={lede} />
         <PullBand text={b.pull} tone={TONES[(i + 1) % 3]} pic={pl.pull.get(b)} flip={i % 2 === 0} />
-        <Para b={{ p: b.p.slice(at + b.pull.length) }} lede={lede} />
+        <Para b={{ p: b.p.slice(at + b.pull.length), links: b.links }} lede={lede} />
       </>
     );
   }

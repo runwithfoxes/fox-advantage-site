@@ -33,8 +33,21 @@ def text(el):
     """The element's words as Sam wrote them, whitespace folded, <br> kept as a line break."""
     for br in el.find_all("br"):
         br.replace_with("\n")
+    for q in el.find_all("q"):  # a line quoted from a paper, inside a sentence: its inverted commas are words here
+        q.insert_before("\u201C")
+        q.insert_after("\u201D")
+        q.unwrap()
     s = el.get_text()
     return "\n".join(re.sub(r"\s+", " ", line).strip() for line in s.split("\n")).strip()
+
+
+def para(el):
+    """A paragraph as a block: its words, and any links inside it (a public paper named in a sentence)."""
+    links = [{"t": text(a), "href": a["href"]} for a in el.find_all("a")]
+    b = {"p": text(el)}
+    if links:
+        b["links"] = links
+    return b
 
 
 def caption(fig):
@@ -221,6 +234,20 @@ def main():
             b.extract()
             add({"do": text(el), "label": label})
             continue
+        if el.name == "section" and "told" in cls:
+            # draft 18 (Paul, 4 Oct: cases told "for illumination", a quote only to back a sentence): one
+            # heading with the brand, its award and a short tag, then plain paragraphs
+            h = el.find("h4")
+            tags = [text(x) for x in h.select(".aw")]
+            for x in h.select(".aw"):
+                x.extract()
+            kids = [k for k in el.children if isinstance(k, Tag)]
+            if [k.name for k in kids] != ["h4"] + ["p"] * (len(kids) - 1) or not tags:
+                sys.exit(f"a told case not in the 'one h4 with its award, then paragraphs' shape: {el.get('data-case')!r}")
+            quotes += [q.get("data-case-quote") or q.get("data-quote") or "?" for q in el.find_all("q")]
+            cases.append(el["data-case"])
+            add({"told": el["data-case"], "brand": text(h), "award": tags[0], "tags": tags[1:], "paras": [para(k) for k in kids[1:]]})
+            continue
         if el.name == "blockquote" and "case" in cls:
             cite = el.find("cite")
             a = cite.find("a")
@@ -260,6 +287,8 @@ def main():
             add({"named": items, "title": text(el.select_one(".named-h"))})
             continue
         if el.name == "p":
+            quotes += [q.get("data-case-quote") or q.get("data-quote") or "?" for q in el.find_all("q")]
+            links = [{"t": text(a), "href": a["href"]} for a in el.find_all("a")]
             # a marked line: Sam's own <mark>, or one of the lines Paul asked to have marked
             m = el.find("mark")
             hl = text(m) if m else None
@@ -270,14 +299,14 @@ def main():
                 if pull not in t:
                     sys.exit(f"a pull line that is not in its paragraph word for word: {pull!r}")
                 pulls.append(pull)
-                add({"p": t, "pull": pull})
+                add({"p": t, "pull": pull, **({"links": links} if links else {})})
                 continue
             hl = hl or next((h for h in HIGHLIGHT if h in t), None)
+            blk = {"p": t, **({"links": links} if links else {})}
             if hl:
                 marked.append(hl)
-                add({"p": t, "hl": hl})
-            else:
-                add({"p": t})
+                blk["hl"] = hl
+            add(blk)
             continue
         if el.name == "div" and "held" in cls:
             b = el.find("b")

@@ -60,6 +60,8 @@
 /* ── one ad in the reading column, as an essay carries its picture ── */
 .colArt { margin: 30px 0 34px; }
 .colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+/* a tall ad keeps its own shape and does not fill the column */
+.colArtTall img { width: auto; max-width: 100%; max-height: 620px; }
 .colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
 .colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
 
@@ -147,6 +149,8 @@
 /* ── one ad in the reading column, as an essay carries its picture ── */
 .colArt { margin: 30px 0 34px; }
 .colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+/* a tall ad keeps its own shape and does not fill the column */
+.colArtTall img { width: auto; max-width: 100%; max-height: 620px; }
 .colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
 .colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
 
@@ -226,6 +230,8 @@
 /* ── one ad in the reading column, as an essay carries its picture ── */
 .colArt { margin: 30px 0 34px; }
 .colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+/* a tall ad keeps its own shape and does not fill the column */
+.colArtTall img { width: auto; max-width: 100%; max-height: 620px; }
 .colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
 .colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
 
@@ -313,6 +319,8 @@
 /* ── one ad in the reading column, as an essay carries its picture ── */
 .colArt { margin: 30px 0 34px; }
 .colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+/* a tall ad keeps its own shape and does not fill the column */
+.colArtTall img { width: auto; max-width: 100%; max-height: 620px; }
 .colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
 .colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
 

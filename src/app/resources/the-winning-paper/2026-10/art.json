@@ -1,25 +1,27 @@
 {
  "hero": null,
- "openers": {
-  "1": {
-   "file": "art-boddingtons-cone.jpg",
+ "openers": {},
+ "pulls": {},
+ "bands": {
+  "iag": {
+   "file": "art-iag-cargo.jpg",
    "size": [
-    1344,
-    1900
+    1920,
+    904
    ],
-   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999",
-   "brand": "Boddingtons"
+   "label": "IAG Cargo, a film from 2018. Not the loyalty scheme the paper is about.",
+   "brand": "IAG Cargo"
   },
-  "2": {
+  "ibm": {
    "file": "art-ibm-smarter-planet.jpg",
    "size": [
     1796,
     773
    ],
-   "label": "IBM, Smarter Planet, three press ads, 2010",
+   "label": "IBM, Smarter Planet, three press ads, 2010. Not the Watson work the paper is about.",
    "brand": "IBM"
   },
-  "3": {
+  "directline": {
    "file": "directline.jpg",
    "size": [
     1440,
@@ -28,16 +30,25 @@
    "label": "Direct Line, the Fixer, TV film, 2014",
    "brand": "Direct Line"
   },
-  "5": {
-   "file": "art-lidl-billboard.jpg",
+  "artfund": {
+   "file": "art-art-fund.jpg",
    "size": [
-    1024,
-    998
+    1280,
+    720
    ],
-   "label": "Lidl, Deluxe mince pies, billboard, 2018",
+   "label": "Art Fund, National Art Pass, film, 2011",
+   "brand": "Art Fund"
+  },
+  "lidl": {
+   "file": "art-lidl-press.jpg",
+   "size": [
+    625,
+    1024
+   ],
+   "label": "Lidl, \"Big on quality, Lidl on price\", press, 2017",
    "brand": "Lidl"
   },
-  "7": {
+  "pancreatic": {
    "file": "art-pancreatic-cancer-action.jpg",
    "size": [
     1005,
@@ -45,17 +56,6 @@
    ],
    "label": "Pancreatic Cancer Action, I wish I had breast cancer, press ad, 2014",
    "brand": "Pancreatic Cancer Action"
-  }
- },
- "pulls": {},
- "bands": {
-  "irishtimes": {
-   "file": "art-irish-times-election.jpg",
-   "size": [
-    800,
-    1120
-   ],
-   "label": "The Irish Times, What's going on inside?, Election 2016 poster"
   }
  },
  "plates": {}

@@ -1,8 +1,8 @@
 {
  "meta": {
-  "kicker": "Research report · draft 17, not published",
+  "kicker": "Research report · draft 18, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
-  "byline": "3 October 2026 · Sam · AI researcher, Run with Foxes"
+  "byline": "4 October 2026 · Sam · AI researcher, Run with Foxes"
  },
  "intro": [
   {
@@ -19,7 +19,7 @@
    "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the papers that weren't awarded to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. Sales rising while a campaign runs is correlation. What the awarded papers add is evidence of causation: evidence that the work caused the result."
   },
   {
-   "p": "So if you've been asked to write an award entry, this report is for you. It starts with a checklist: what to do, what never to do, and the evidence behind each line. The chapters after it show how, in the words of the papers themselves: Direct Line, BT, Marmite, Guinness, Honda and dozens more. Use it to take your own entry from good to great."
+   "p": "So if you've been asked to write an award entry, this report is for you. It starts with a checklist: what to do, what never to do, and the evidence behind each line. Each chapter after it makes one point, shows the count behind it, and then tells one case that does it well. There are seven: IAG Cargo, IBM, Marie Curie, Direct Line, Art Fund, Lidl and Pancreatic Cancer Action. Two of them sell to businesses. Four had small budgets. Two led with television. Use it to take your own entry from good to great."
   },
   {
    "p": "Of the 470 papers, 389 are from Paul Dervan's own archive, collected over the past 20 years and reaching back to 1980. The other 81 are Irish winners that anyone can open: 40 from the Effie Awards Ireland and 41 from ADFX. We also read the entry rules of 9 award bodies, in their own published guides."
@@ -106,7 +106,7 @@
    },
    {
     "t": "Be able to say your whole case in one sentence.",
-    "e": "The IPA's pack asks you to put it \"in one paragraph, or better yet, in one sentence\", with one chart that shows it. This line rests on the guide alone: our own count could not test it.",
+    "e": "The IPA's pack asks you to put it \"in one paragraph, or better yet, in one sentence\", with one chart that shows it. This line rests on the guide alone.",
     "ch": 6
    },
    {
@@ -245,16 +245,13 @@
        "p": "Read that chart the right way round. It doesn't say these things are unimportant. It says they are so important that almost nobody enters without them. Only 1 awarded paper in 96 has no stated insight. If yours is missing one of these, a judge will notice, and it's a flag. So start here, and get them right. Then go on, because having them puts you level with everyone else. The rest of this report is about what takes a paper from there to great."
       },
       {
-       "p": "Two things belong here that our counts could not test. One is an objective with a number in it. The IPA's own outline gives the pattern, \"Increase profits/revenue by X% within X year(s) of the campaign\", but in the papers the targets often sit in tables that our agents could not read. The other is saying the whole case in a sentence near the top. Every paper in the archive has a publisher's summary above it, and we could not always tell the authors' words from the publisher's."
-      },
-      {
-       "case": "lowlow",
-       "quote": "Bring New Consumers to the Category: Target 30,000",
-       "brand": "LowLow",
-       "award": "ADFX 2014, Gold",
-       "why": "It sets a target for each product line before the results, then reports against each one.",
-       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf",
-       "link": "Read the paper"
+       "p": "Two more things belong here, and both come from the IPA's own guide. One is an objective with a number in it. The guide gives the pattern: \"Increase profits/revenue by X% within X year(s) of the campaign\". LowLow's 2014 ADFX paper does it for each product line, with targets such as \"Bring New Consumers to the Category: Target 30,000\", and then reports against each one. The other is being able to say the whole case in a sentence. Chapter 6 comes back to that.",
+       "links": [
+        {
+         "t": "LowLow's 2014 ADFX paper",
+         "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409758492_low_case_study_2014.pdf"
+        }
+       ]
       }
      ]
     },
@@ -266,66 +263,32 @@
        "p": "Since an insight is something you can't enter without, it's worth being sure yours is one. The forms ask for it, and only one award body says what it means. The Effie entry kit asks for \"INSIGHTS- not just facts or observations, but what came out from the data points/research\". Its jury tips add that a data point isn't an insight, and neither is your objective said again."
       },
       {
-       "p": "We gave that definition to two AI agents and asked each one to judge the 40 public Effie Ireland winners on its own. They agreed on 30. If two agents with the definition in front of them disagree on a quarter of the papers, a writer on a deadline will too. So use a test you can apply: is it about people, is it about these people and this brand, and did the idea come from it?"
+       "p": "So use a test you can apply. Is it about people? Is it about these people and this brand? And did the idea come from it? Here is a paper that passes all three, from a business most of us will never see an ad for."
       },
       {
-       "p": "It is easier to recognise one than to define one. These seven are from awarded papers, in the authors' own words."
-      },
-      {
-       "lines": [
+       "told": "iag",
+       "brand": "IAG Cargo",
+       "award": "IPA Bronze, 2018",
+       "tags": [
+        "sells to businesses · €272,000"
+       ],
+       "paras": [
         {
-         "key": "ins-johnsmiths",
-         "q": "Essentially, John Smith's Bitter lacked character.",
-         "brand": "John Smith's Bitter",
-         "award": "IPA Grand Prix, 1982"
+         "p": "IAG Cargo flies freight in the holds of passenger aircraft. At the start of 2016 it relied on a handful of very large accounts, and it wanted more from its small customers. They are freight forwarders, often firms you could count on the fingers of one hand. The obvious answer was a loyalty scheme: points for tonnage."
         },
         {
-         "key": "ins-tobacco",
-         "q": "Information was not enough - people needed help.",
-         "brand": "Tobacco Control",
-         "award": "IPA Gold, 2004"
+         "p": "Before building one, the team went to meet the customers. They interviewed 15 small forwarders in each of five markets, in offices and warehouses beside airports. The paper is frank about where they started. They had every customer's name, address and account value. “But we knew nothing about them as people.”"
         },
         {
-         "key": "ins-donor",
-         "q": "The more they talk about it, the more they think about it. The more they think about it, the less likely they are to act.",
-         "brand": "Organ Donor Register, Scotland",
-         "award": "IPA Gold, 2007"
+         "p": "What they found is about people. In every firm two people decide. The owner draws up the list of carriers, and a junior clerk picks one from it day to day. Owners feel bad that they can't pay their clerks more. And both deal with a local sales agent they trust more than a faceless organisation in another country."
         },
         {
-         "key": "ins-walkers",
-         "q": "We were no longer the exciting lover - we were the taken-for-granted long term married partner.",
-         "brand": "Walkers",
-         "award": "IPA Gold, 2012"
+         "p": "You can see the scheme coming from that. It rewards the clerks as well as the owners, with fuel cards in the US and movie nights in India. It lets an owner pool the clerks' rewards so the whole team benefits. It lets the sales agents decide who is invited. None of that is in a points-for-tonnage scheme. All of it came from the interviews."
         },
         {
-         "key": "ins-lidl",
-         "q": "The belief that 'you get what you pay for' is deeply engrained.",
-         "brand": "Lidl",
-         "award": "IPA Gold, 2018"
-        },
-        {
-         "key": "ins-directline",
-         "q": "They want insurance that will just fix the problem and let them get back on track with their lives",
-         "brand": "Direct Line",
-         "award": "IPA Gold, 2016"
-        },
-        {
-         "key": "ins-dave",
-         "q": "it wasn't merely a TV channel, but a surrogate for being down the pub with their amusing mates.",
-         "brand": "Dave",
-         "award": "IPA Gold, 2008"
+         "p": "Then the paper proves it the plain way, with no model. It compares members with similar firms that didn't join, grouped by how much they spend. Members' spend rose 18% in the year, 11 percentage points more than the others. The paper puts the extra revenue at €14 million, on a budget of €272,000."
         }
        ]
-      },
-      {
-       "p": "None of them is a statistic. Each one says something about how people think or feel, and you can see the campaign coming from it. Hofmeister's is the nearest to a fact, and it still tells you what to do next."
-      },
-      {
-       "case": "ins-hofmeister",
-       "quote": "In blind product tests, most drinkers cannot consistently discriminate between brands. They differentiate between them on image.",
-       "brand": "Hofmeister",
-       "award": "IPA Gold, 1984",
-       "why": ""
       }
      ]
     },
@@ -334,92 +297,7 @@
      "title": "How the best ones open",
      "blocks": [
       {
-       "p": "You have 4,000 words and a judge with a pile of papers to get through. The first line matters. Here is how thirteen awarded papers begin."
-      },
-      {
-       "lines": [
-        {
-         "key": "open-boddingtons",
-         "q": "This paper is not easy to write.",
-         "brand": "Boddingtons",
-         "award": "IPA Gold, 1994"
-        },
-        {
-         "key": "open-walkers",
-         "q": "Good is the enemy of great.",
-         "brand": "Walkers",
-         "award": "IPA Gold, 2012"
-        },
-        {
-         "key": "open-tfl",
-         "q": "In 2007, 21 cyclists in London died because they weren't seen.",
-         "brand": "Transport for London",
-         "award": "IPA Gold, 2009"
-        },
-        {
-         "key": "open-ovaltine",
-         "q": "Who are people who come second?",
-         "brand": "Ovaltine",
-         "award": "IPA Gold, 2011"
-        },
-        {
-         "key": "open-hea",
-         "q": "What do you imagine is the biggest internationally traded commodity in the world?",
-         "brand": "Health Education Authority",
-         "award": "IPA Grand Prix, 1998"
-        },
-        {
-         "key": "open-depaul",
-         "q": "There are more than 300,000 apps in Apple's UK AppStore.",
-         "brand": "Depaul UK",
-         "award": "IPA Gold, 2011"
-        },
-        {
-         "key": "open-naturella",
-         "q": "Right now, roughly 10% of the world's women are menstruating.",
-         "brand": "Naturella",
-         "award": "IPA Gold, 2006"
-        },
-        {
-         "key": "open-barnardos",
-         "q": "This is the story of how babies injecting heroin and adults committing suicide changed the face of Britain's oldest children's charity forever.",
-         "brand": "Barnardo's",
-         "award": "IPA Grand Prix, 2002"
-        },
-        {
-         "key": "open-only",
-         "q": "The fashion world is unforgiving.",
-         "brand": "ONLY",
-         "award": "IPA Gold, 2014"
-        },
-        {
-         "key": "open-bt",
-         "q": "This paper is unique.",
-         "brand": "BT",
-         "award": "IPA Grand Prix, 1996"
-        },
-        {
-         "key": "open-ba",
-         "q": "The problem for BA is that it only makes a profit if we sell seats at the highest possible price.",
-         "brand": "British Airways",
-         "award": "IPA Gold, 1994"
-        },
-        {
-         "key": "open-trident",
-         "q": "This paper is all about how you can make a small budget go a long way.",
-         "brand": "Trident, Metropolitan Police",
-         "award": "IPA Grand Prix, 2007"
-        },
-        {
-         "key": "open-pg",
-         "q": "Our story begins in 1955, the year Brooke Bond relaunched PG Tips.",
-         "brand": "PG Tips",
-         "award": "IPA Grand Prix, 1990"
-        }
-       ]
-      },
-      {
-       "p": "Some open on a fact you can't ignore. Some open on a question. One opens by telling you the paper was hard to write, and I like it more every time I read it."
+       "p": "You have 4,000 words and a judge with a pile of papers to get through. The first line matters. Some awarded papers open on a fact you can't ignore. Some open on a question. And Boddingtons, a Gold winner in 1994, opens by telling you the job was hard: “This paper is not easy to write.” You read the next line."
       }
      ]
     }
@@ -435,15 +313,8 @@
      "label": "Do this"
     },
     {
-     "p": "Sales went up while the campaign ran. That is correlation. It tells you the two things happened together. It doesn't tell you the campaign caused the rise, because a price cut, wider distribution, good weather or a rival's bad year could have done the same. Showing causation is the widest difference in everything we read.",
+     "p": "Sales went up while the campaign ran. That is correlation. It tells you the two things happened together. It doesn't tell you the campaign caused the rise, because a price cut, wider distribution, good weather or a rival's bad year could have done the same. Showing causation is the widest difference in everything we read. It is also an old worry. The John Smith's Bitter paper that won the Grand Prix in 1982 put the limit of its own argument in one line: “Causal relationships can only be inferred, never demonstrated.”",
      "pull": "Sales went up while the campaign ran. That is correlation."
-    },
-    {
-     "case": "cf-johnsmiths",
-     "quote": "Causal relationships can only be inferred, never demonstrated.",
-     "brand": "John Smith's Bitter",
-     "award": "IPA Grand Prix, 1982",
-     "why": "A Grand Prix paper from 1982, stating the limit of its own argument."
     }
    ],
    "subs": [
@@ -466,36 +337,32 @@
        "p": "Nearly half of the papers that weren't awarded never say what sales would have been without the activity. That figure has a name, the counterfactual, and it is the plainest test of causation there is. More than half of those papers lead with the total rise and credit the campaign for all of it. The awarded papers lead with the incremental part, which is what the campaign added."
       },
       {
-       "case": "cf-dove",
-       "quote": "This can fairly be assumed as the 'base sales' which would have happened, even if marcomms had not run.",
-       "brand": "Dove, China",
-       "award": "IPA Gold, 2012",
-       "why": "The counterfactual in one sentence."
+       "p": "You don't need a model to do this. Here is a paper that had none and found its counterfactual on a map."
       },
       {
-       "case": "cf-virgin",
-       "quote": "If we hadn't run the global campaign it's reasonable to expect our quotient would be the same as for the previous 38 months",
-       "brand": "Virgin Atlantic",
-       "award": "IPA Gold, 2012",
-       "why": "It says what it expected to happen with no campaign, and gives the number."
-      },
-      {
-       "case": "ibts",
-       "quote": "the IBTS were expecting a 15% decrease on clinic attendees from the 2015 results ... we removed a baseline of an average of 2000 donations per week",
-       "brand": "Irish Blood Transfusion Service",
-       "award": "ADFX 2018, Gold",
-       "why": "It expected a fall, set that as the base, and took out the donations that would have come anyway.",
-       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538054134_bbdo-ibts.pdf",
-       "link": "Read the paper"
-      },
-      {
-       "case": "nissan",
-       "quote": "the Irish incremental sales growth far exceeded other European countries",
-       "brand": "Nissan Micra",
-       "award": "ADFX 2018, Grand Prix",
-       "why": "It uses the same car's launch in other countries as its comparison.",
-       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538047483_huskies-spark-nissan.pdf",
-       "link": "Read the paper"
+       "told": "ibm",
+       "brand": "IBM Watson",
+       "award": "IPA Silver, 2012",
+       "tags": [
+        "sells to businesses"
+       ],
+       "paras": [
+        {
+         "p": "In February 2011 an IBM computer called Watson played the American quiz show Jeopardy! against the two finest players the game had seen, and won. IBM sells to businesses. Nobody watching was going to buy a Watson. The campaign around the show was there to bring in the people who do buy from IBM, and the paper follows each lead through to $254 million of booked revenue."
+        },
+        {
+         "p": "That part is counted lead by lead. The harder question is the one this chapter is about. Sales of the servers Watson ran on had been in long decline, and after the show they were up 9.1%. Only $76 million of that could be tracked to a Watson lead. How much of the rest did the campaign cause?"
+        },
+        {
+         "p": "The paper looks for a place like North America where the campaign didn't run. It picks Western Europe, where IBM did no Watson marketing and the show wasn't televised, and it shows that server sales in the two regions tracked closely beforehand. Europe grew 7.5%. The paper then takes the falling euro out of that figure, which leaves 2.9%. The gap between the two regions, about $68 million, is what the campaign might have added."
+        },
+        {
+         "p": "And then it does something I didn't expect. It calls that figure a ceiling. “It's an upper limit as other factors in which W. Europe and NA differed will be involved”, it says. It leaves the whole $68 million out of its return, because the exact size is unclear. The return it does claim, at least 2.4 times the spend in profit, rests only on the revenue it can track."
+        },
+        {
+         "p": "Any team can do what this paper does. Find the nearest thing you have to your market without your campaign. Show that the two moved together before. Take out what else differs. Then claim the gap, or less."
+        }
+       ]
       }
      ]
     },
@@ -529,39 +396,41 @@
        "cap": "The middle paper in each group, which is the median. Awarded: 6 named, 4 ruled out with data. Not awarded: 4 named, 2 ruled out with data. 96 awarded papers and 87 not awarded."
       },
       {
-       "p": "Most teams already hold the data to close that gap."
+       "p": "Most teams already hold the data to close that gap. This one had almost no data at all, and closed it anyway."
       },
       {
-       "case": "cf-directline",
-       "quote": "It must be noted that floods in December 2015 did deliver additional volume - but the product was in growth from May onwards.",
-       "brand": "Direct Line",
-       "award": "IPA Gold, 2016",
-       "why": "It names the floods that helped, and then shows the growth began seven months earlier."
+       "told": "mariecurie",
+       "brand": "Marie Curie Cancer Care",
+       "award": "IPA Gold, 2011",
+       "tags": [
+        "£184,151"
+       ],
+       "paras": [
+        {
+         "p": "Marie Curie gives free nursing care to people who are terminally ill. Its Great Daffodil Appeal runs every March, and just over a quarter of the money comes from volunteers with collecting tins. In 2010 the charity tried something it had never done. Most charity advertising asks people to give money. This campaign, mostly on radio, asked people to give an hour and collect it. The whole thing cost £184,151, which the paper says was the smallest budget entered for the IPA's small budget prize up to then."
+        },
+        {
+         "p": "Collectors went from 13,774 to over 20,000. Then the paper has to show that the advertising did it, and it starts with what it doesn't have. “Due to the low investment in the campaign, we do not have any tracking research at our disposal.”"
+        },
+        {
+         "p": "What it has is a list. It names six other things that could have brought the collectors in, and it answers each with a fact. The usual recruitment by local fundraisers hadn't changed. The main appeal advertising ran in March, and collectors had to register by the end of February. Its rivals outspent it: the two larger cancer charities had 79% and 13% of the advertising in those two months, and Marie Curie had 8%. Cancer deaths hadn't suddenly risen. Nobody well known had died of cancer in those weeks. And the weather: March 2010 was colder, less sunny and equally wet, so a fine month didn't bring the collectors out."
+        },
+        {
+         "p": "None of those answers needed a model. One came from the Met Office."
+        },
+        {
+         "p": "It is as careful with the return. Collector numbers were already rising a little each year, so the paper works its return out three ways: against the year before, against the five-year average, and against the trend. That gives £2.75, £3.01 and £2.45 for every £1. It uses the £2.45, the most conservative, from there on."
+        }
+       ]
       },
       {
-       "case": "cf-travelocity",
-       "quote": "However, it would be disingenuous to discount market growth entirely.",
-       "brand": "Travelocity",
-       "award": "IPA Grand Prix, 2005",
-       "why": "A Grand Prix winner, declining to take the credit for the market."
-      },
-      {
-       "case": "gathering",
-       "quote": "Was the weather an influencing factor in the success of The Gathering? ... were registered an average of 4-6 months before the good weather arrived in Ireland",
-       "brand": "The Gathering",
-       "award": "ADFX 2014, Grand Prix",
-       "why": "It asks whether the weather did it, and answers with a date.",
-       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf",
-       "link": "Read the paper"
-      },
-      {
-       "case": "irishtimes",
-       "quote": "The market for print newspaper sales was in decline before and during the campaign, and is currently still in decline.",
-       "brand": "The Irish Times",
-       "award": "ADFX 2016, Gold",
-       "why": "It opens its results with a section headed Discounting Factors, and starts with the one that works against it.",
-       "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
-       "link": "Read the paper"
+       "p": "The same habit turns up in the public Irish papers. The Gathering's 2014 ADFX paper asks whether the weather was behind its result, and answers with a date: people had registered, on average, 4 to 6 months before the good weather arrived.",
+       "links": [
+        {
+         "t": "The Gathering's 2014 ADFX paper",
+         "href": "https://web.archive.org/web/2/http://adfx.ie/upload/files/1409759796_gathering_case_study_2014.pdf"
+        }
+       ]
       }
      ]
     },
@@ -574,41 +443,6 @@
       },
       {
        "p": "The other three are within any writer's reach. Put a figure against each other cause. State what the activity added and not the total. Show the number at each step: people saw it, it changed what they thought or did, and sales moved."
-      },
-      {
-       "named": [
-        {
-         "brand": "Direct Line",
-         "award": "IPA Gold, 2016",
-         "text": "A brand in a market run by price comparison sites. The paper counts quotes as well as sales and reports a net profit return of £1.22 for every £1."
-        },
-        {
-         "brand": "BT",
-         "award": "IPA Grand Prix, 1996",
-         "text": "It held one television region back as a control area, which gave direct evidence of what the advertising did."
-        },
-        {
-         "brand": "Marmite",
-         "award": "IPA Gold, 1998",
-         "text": "The south had seen about three times the advertising of the north for 25 years, and the paper uses that as its test."
-        },
-        {
-         "brand": "Uvistat",
-         "award": "IPA Gold, 1990",
-         "text": "A small brand. Distribution grew at the start of the year, and sales still fell in March and April. They rose from May, when the advertising began."
-        },
-        {
-         "brand": "IAG Cargo",
-         "award": "IPA Bronze, 2018",
-         "text": "A B2B case. It compares members of its programme with similar firms that were not members, and says it chose that over a model."
-        },
-        {
-         "brand": "IBM",
-         "award": "IPA Silver, 2012",
-         "text": "A B2B case. It uses Western Europe as the comparison for what happened in the United States."
-        }
-       ],
-       "title": "Cases worth reading"
       }
      ]
     }
@@ -648,24 +482,30 @@
        "p": "The usual gap looks like this. A paper says the problem was how people saw the brand. Then its results report sales. Sales may well have risen. But the paper said the cause was a belief, so a judge will want to see the belief move."
       },
       {
-       "p": "Direct Line's 2016 paper is the one to read for this. Here is its diagnosis, and then the insight that answers it."
+       "p": "Direct Line's 2016 paper is the one to read for this."
       },
       {
-       "case": "diag-directline",
-       "quote": "We had gone from the consumer champion known for 'cutting out the middle-man' to an undifferentiated brand in a deeply distrusted industry",
+       "told": "directline",
        "brand": "Direct Line",
        "award": "IPA Gold, 2016",
-       "why": ""
-      },
-      {
-       "case": "ins-directline",
-       "quote": "They want insurance that will just fix the problem and let them get back on track with their lives",
-       "brand": "Direct Line",
-       "award": "IPA Gold, 2016",
-       "why": ""
-      },
-      {
-       "p": "The campaign that followed cast Direct Line as the fixer. Diagnosis, insight and idea sit in one line, and you can follow it without a chart."
+       "tags": [],
+       "paras": [
+        {
+         "p": "Direct Line made its name in 1985 by cutting out the middle-man. By 2014 price comparison sites had put the middle-man back, and Direct Line's quotes and sales were falling year after year."
+        },
+        {
+         "p": "The paper could have stopped there and called it a technology problem. It says so itself, and it doesn't. Its diagnosis is about what people thought of the brand: “We had gone from the consumer champion known for 'cutting out the middle-man' to an undifferentiated brand in a deeply distrusted industry”. And it puts a number on undifferentiated. Asked which insurer they would prefer if price were equal, people scored Direct Line and several of its rivals between 10% and 12%."
+        },
+        {
+         "p": "The strategy follows from that. Be the insurer that fixes the problem. The company changed what it did first, with a promise to fix your car in seven days or pay you £10 a day, and repairs finished within seven days went from 35% to 70%. Then it hired Winston Wolf, the fixer from Pulp Fiction, to say so."
+        },
+        {
+         "p": "Now look at what the results measure. They report quotes and sales, as you'd expect. But they also go back to the number in the diagnosis. Preference for its car insurance rose from 11.3% to 13.8%. After one year Direct Line scored 15% and the second brand 12%. The two statements the strategy was built on, being easy to deal with and taking care of your insurance so you can get on with your life, improved by 13% and 22%."
+        },
+        {
+         "p": "The thing it said was broken is the thing it shows mended. That is the loop."
+        }
+       ]
       },
       {
        "p": "The test takes two minutes. Write your diagnosis in one sentence. Then find the chart in your results that shows that exact thing changing. If it isn't there, find it, or say that you couldn't measure it."
@@ -737,13 +577,41 @@
        "cap": "Months of results reported after the activity began, for the middle paper in each group (the median). Awarded: 22.5 months. Not awarded: 12 months."
       },
       {
-       "case": "vodafone",
-       "quote": "We began estimating incremental sales from April 2013 and finished in June 2017, a period of approximately 4 years.",
-       "brand": "Vodafone",
-       "award": "ADFX 2018, Gold",
-       "why": "Four years of results, measured against a forecast built from the three years before.",
-       "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538048514_grey-wave-voda.pdf",
-       "link": "Read the paper"
+       "p": "Vodafone's 2018 ADFX paper is at the long end. It estimates what it added from April 2013 to June 2017, about four years.",
+       "links": [
+        {
+         "t": "Vodafone's 2018 ADFX paper",
+         "href": "https://web.archive.org/web/2/https://adfx.ie/upload/files/1538048514_grey-wave-voda.pdf"
+        }
+       ]
+      },
+      {
+       "p": "You don't need Vodafone's budget to do it. This paper had no television at all."
+      },
+      {
+       "told": "artfund",
+       "brand": "Art Fund",
+       "award": "IPA Gold, 2016",
+       "tags": [
+        "about £605,000 a year, no television"
+       ],
+       "paras": [
+        {
+         "p": "Art Fund is a charity that helps museums and galleries buy works of art. By 2010 its membership had stalled at around 80,000 and was ageing. So it stopped selling the cause and sold what members get, free or reduced entry to galleries and museums, as a card called the National Art Pass. Its media budget averaged about £605,000 a year. With no budget for television, over 70% of the marketing money went on press and posters."
+        },
+        {
+         "p": "It is in this chapter because of how it uses the calendar. The pass launched in 2011 and the paper was written five years into the strategy, so the result is a line and not a point. New memberships more than doubled in the first year, and by 2015 they were 174% higher than in 2010. Total membership rose 60%. The average age of a member fell from 66 to 58."
+        },
+        {
+         "p": "It looks back as well. Its charts start in 2008, and a note says membership fell by over 2,300 between 2006 and 2010. So you can see what the line was doing before anything changed."
+        },
+        {
+         "p": "And it names its base. “Taking the (pre-campaign) 2010 figure of 5,547 new members per year as the benchmark”, it counts only the members above that number in each year. That is where its £12.9m of extra profit comes from."
+        },
+        {
+         "p": "There is no econometric model here, and the paper says so. A long line, a stated base and five years do the work."
+        }
+       ]
       }
      ]
     },
@@ -796,88 +664,27 @@
        "p": "This is what it looks like when a paper shows its sum."
       },
       {
-       "lines": [
+       "told": "lidl",
+       "brand": "Lidl",
+       "award": "IPA Gold, 2018",
+       "tags": [],
+       "paras": [
         {
-         "key": "pay-kfc",
-         "q": "Marketing costs are £36.42 million. Therefore incremental profit after costs amounts to £168.61 million.",
-         "brand": "KFC (Kentucky Fried Chicken)",
-         "award": "IPA Gold, 2008"
+         "p": "For twenty years Lidl spent its whole UK budget on advertising deals. From 2014 it moved to national advertising, to take on one belief: you get what you pay for, so cheaper must be worse. The paper's model credits that advertising with £2,741 million of sales over four years."
         },
         {
-         "key": "pay-lidl",
-         "q": "Gross profit contribution less advertising spend = profit net of advertising spend. Net profit divided by advertising spend = profit ROMI.",
-         "brand": "Lidl",
-         "award": "IPA Gold, 2018"
+         "p": "That is revenue, and the paper doesn't stop at revenue. But it has a problem many brands share. “Lidl do not reveal their margins, even to their agencies”, it says. So it tells you what it used in their place, an industry-standard gross margin of 25%, and then it sets the sum out in three lines. Sales driven, times 25%, is the gross profit. Gross profit less the advertising spend is the profit. Profit divided by the advertising spend is the return."
         },
         {
-         "key": "pay-directline",
-         "q": "which breaks down into £1.42 for car insurance and £0.97 for home.",
-         "brand": "Direct Line",
-         "award": "IPA Gold, 2016"
+         "p": "You can follow the numbers through yourself: £2,741 million of sales, £686 million of gross profit, £398 million left once the advertising is paid for, and a profit return of £1.38."
         },
         {
-         "key": "pay-artfund",
-         "q": "Note that this is pure profit rather than revenue, as the cost of all forms of marketing has already been removed from the member contribution figures.",
-         "brand": "Art Fund",
-         "award": "IPA Gold, 2016"
+         "p": "You may think 25% is too high or too low. You can't say the paper hid it. If your margin is confidential, do what Lidl did. Say so, say what you used, and show the sum. Both the IPA and the Effies also let you show confidential figures as an index."
         }
        ]
       },
       {
-       "p": "Direct Line reports the product that fell short as well as the one that paid. And when a brand can't publish its margin, the good papers say so and tell you what they used instead."
-      },
-      {
-       "case": "pay-mcdonalds",
-       "quote": "McDonald's UK does not publish profit margins so all ROIs quoted are calculated using £ sales revenue rather than £ profit.",
-       "brand": "McDonald's",
-       "award": "IPA Gold, 2012",
-       "why": ""
-      },
-      {
-       "p": "Public bodies and charities have no profit to report, and the best of them find the sum anyway."
-      },
-      {
-       "lines": [
-        {
-         "key": "pay-trident",
-         "q": "our three year campaign will virtually pay for itself twice over if it prevents a single death.",
-         "brand": "Trident, Metropolitan Police",
-         "award": "IPA Grand Prix, 2007"
-        },
-        {
-         "key": "pay-tobacco",
-         "q": "The minimum advertising would have had to achieve to cover our costs would be to save 71 lives out of the 10,284 lives saved",
-         "brand": "Tobacco Control",
-         "award": "IPA Gold, 2004"
-        }
-       ]
-      },
-      {
-       "p": "Say what margin you used and where it came from. Take the cost of the activity off. Show the sum. If the figures are confidential, both the IPA and the Effies let you show them as an index."
-      },
-      {
-       "case": "btni",
-       "quote": "the campaign delivered an incremental profit of around £1 million for a marketing investment of £500,000",
-       "brand": "BT Northern Ireland",
-       "award": "ADFX 2012, Bronze",
-       "why": "Profit, the spend and the period, in one sentence.",
-       "href": "https://web.archive.org/web/2/http://adfx.ie/book/bt-everywhere-getting-to-the-essence-of-a-local-brand.html",
-       "link": "Read the paper"
-      },
-      {
-       "named": [
-        {
-         "brand": "Marie Curie Cancer Care",
-         "award": "IPA Gold, 2011",
-         "text": "A small budget and no tracking research. It works out the return three ways and uses the most cautious one."
-        },
-        {
-         "brand": "Depaul UK",
-         "award": "IPA Gold, 2011",
-         "text": "A small charity. It shows what the same reach would have cost in ordinary advertising."
-        }
-       ],
-       "title": "Cases worth reading"
+       "p": "Charities have no profit margin, and the careful ones find the sum anyway. Marie Curie, the case in chapter 2, counts the 66p in every £1 that goes directly to helping the terminally ill, and treats that as its profit."
       }
      ]
     },
@@ -895,7 +702,7 @@
      "title": "Put a source on every figure",
      "blocks": [
       {
-       "p": "Result figures with no source appear in 9 of the 96 awarded papers and 32 of the 87 that weren't awarded. Awarded papers are edited before they're printed, which may explain part of that. The Effie rules disqualify unsourced data. It's the cheapest thing in this report to fix."
+       "p": "Result figures with no source appear in 9 of the 96 awarded papers and 32 of the 87 that weren't awarded. Compared like for like, the gap holds: 9% and 26%. The Effie rules disqualify unsourced data. It's the cheapest thing in this report to fix."
       }
      ]
     }
@@ -929,7 +736,7 @@
        "kind": "Figure",
        "no": "6.1",
        "title": "In the effectiveness awards that publish weights, results get the most points",
-       "cap": "From each body's own published guide. We read 94 entry questions and judging criteria across 9 bodies. ADFX is left out: the guides we could reach are archived, from 2014 to 2018, and the current kit should be read before anything is said about it."
+       "cap": "From each body's own published guide. We read 94 entry questions and judging criteria across 9 bodies. ADFX is not in the table: its published guides date from 2014 to 2018."
       }
      ]
     },
@@ -978,68 +785,32 @@
      "p": "They say what they can't prove, and narrow the claim to what they can. This habit isn't a difference between the two groups. Compared like for like, 87% of awarded papers admit a limit, and 88% of the papers that weren't awarded. It's what careful papers do, whatever the result. One charity campaigned for a change in the law, and the law passed. Its paper says the law would have passed eventually anyway, and claims only that the campaign helped it happen sooner. One car launch had no model, so its paper worked out how little of the sales rise the campaign would need to account for to cover its costs. Neither paper was awarded."
     },
     {
-     "p": "Here are nine papers admitting a limit, or something that fell short. Every one of them won Gold."
+     "p": "The paper that does this most openly had the smallest budget of the seven cases told here."
     },
     {
-     "lines": [
+     "told": "pancreatic",
+     "brand": "Pancreatic Cancer Action",
+     "award": "IPA Gold, 2014",
+     "tags": [
+      "£78,000"
+     ],
+     "paras": [
       {
-       "key": "lim-honda",
-       "q": "OK, fair cop, at the moment this method has flaws.",
-       "brand": "Honda",
-       "award": "IPA Gold, 2004"
+       "p": "Pancreatic Cancer Action is a small charity, set up by one of the 3% of people who survive the disease beyond five years. Its job is to make the symptoms known, because this cancer is almost always diagnosed too late. Its entire marketing budget was £78,000. It spent £15,000 on a press ad in which three real patients said they wished they had a more survivable form of the disease, and £63,000 on posters in 25 London Underground stations that set out the symptoms."
       },
       {
-       "key": "lim-haagen",
-       "q": "We do not intend to claim that advertising created all the growth shown above.",
-       "brand": "Haagen-Dazs",
-       "award": "IPA Gold, 1992"
+       "p": "A paper with that little behind it could have kept quiet about what it lacked. This one says it near the top, under a heading that calls it a disclaimer. “This is not a typical IPA entry paper - we don't have an econometric model or reams of data”, it says."
       },
       {
-       "key": "lim-sainsburys",
-       "q": "The idea did not deliver the £2.5bn in additional sales on its own and to claim so would be unfair",
-       "brand": "Sainsbury's",
-       "award": "IPA Gold, 2008"
+       "p": "Then it gets on with what it can show. A survey found that 27% of UK adults recognised the campaign. Of those who did, 43% said they knew more about the symptoms than 6 months before, against 16% of people who didn't remember seeing it. The paper asks whether anything else could have caused that, and names a television storyline and the death of a well-known actor in the weeks before."
       },
       {
-       "key": "lim-guinness",
-       "q": "It confirmed that the idea was not the unmitigated success we'd hoped for.",
-       "brand": "Guinness",
-       "award": "IPA Gold, 2016"
+       "p": "To put a value on the result, it builds what it calls an assumptive model from the published results of earlier cancer campaigns. Two things in the working stand out. It takes one of those earlier figures out, because the figure looked like an outlier and leaving it in might have biased the result in the paper's favour. And before it states its return, it divides its own worst case by 2."
       },
       {
-       "key": "lim-pancreatic",
-       "q": "This is not a typical IPA entry paper - we don't have an econometric model or reams of data",
-       "brand": "Pancreatic Cancer Action",
-       "award": "IPA Gold, 2014"
-      },
-      {
-       "key": "lim-ovaltine",
-       "q": "A full tracking study or econometric model would cost more than the activity itself",
-       "brand": "Ovaltine",
-       "award": "IPA Gold, 2011"
-      },
-      {
-       "key": "lim-mercedes",
-       "q": "Campaign metrics are of course not evidence of revenue, or commercial effectiveness.",
-       "brand": "Mercedes-Benz",
-       "award": "IPA Gold, 2014"
-      },
-      {
-       "key": "lim-barclaycard",
-       "q": "Enjoyment and memorability do not themselves prove effectiveness",
-       "brand": "Barclaycard",
-       "award": "IPA Gold, 1996"
-      },
-      {
-       "key": "lim-dlg",
-       "q": "An implicit assumption here is that Privilege is a kind of 'non-brand' with zero equity. Clearly this is false",
-       "brand": "Direct Line Group",
-       "award": "IPA Gold, 2018"
+       "p": "It won Gold. I can't tell you the disclaimer is why. What I can say is that the paper never asks you to take its word for anything, and that is the habit this chapter is about."
       }
      ]
-    },
-    {
-     "p": "Honda's is my favourite. It admits a flaw, and you trust the paper more for it."
     },
     {
      "p": "They set the targets first and report against each one, including the ones they missed."
@@ -1052,26 +823,6 @@
     },
     {
      "p": "None of this needs a bigger budget. It's a way of thinking about your own work. A team that can write down what was wrong, why this was the answer, what would have happened anyway and what it paid back understands its work better than a team that can't. That's true whether or not the paper is ever entered. I think it's the best reason to write one."
-    },
-    {
-     "named": [
-      {
-       "brand": "Halifax",
-       "award": "IPA Gold, 2009",
-       "text": "A small budget. It says it had no regional test and no model, sets cautious targets as its base, and claims only what it gained above them."
-      },
-      {
-       "brand": "Winalot Prime",
-       "award": "IPA Grand Prix, 1988",
-       "text": "It says the first campaign's effect could not be told apart from price and distribution, and builds its case on what came after."
-      },
-      {
-       "brand": "Direct Line Group",
-       "award": "IPA Gold, 2018",
-       "text": "Three brands, measured over the short and the long term, with the limits of its own data set out in the notes."
-      }
-     ],
-     "title": "Cases worth reading"
     },
     {
      "held": "Paul on what he has learned from reading brilliant cases: their clarity of thinking and their rigour, in his own words. And what the papers can't show: what he saw in the judging room.",
@@ -1097,7 +848,7 @@
   },
   {
    "k": "Read twice",
-   "t": "In each of the first two passes, 32 papers were read a second time by a different agent working on its own. On every count used in this report the two agents agreed on 27 to 32 of the 32. One question was dropped because the agents took it two ways."
+   "t": "In each of the first two passes, 32 papers were read a second time by a different agent working on its own. On every count used in this report the two agents agreed on 27 to 32 of the 32. One question was dropped because the agents took it two ways. Separately, two agents each judged the 40 public Effie Ireland winners against the Effie's definition of an insight, and agreed on 30."
   },
   {
    "k": "The comparison",
@@ -1109,11 +860,11 @@
   },
   {
    "k": "Text, not charts",
-   "t": "The agents saw each paper's text and not its chart images. Anything that sits only in a chart was missed. For that reason we don't report whether a paper's objective had a target number."
+   "t": "The agents read each paper's text and not its chart images, so the counts are of what a paper says in words. A target that sits only in a table or chart is not counted, and we report no count of objectives with a target number."
   },
   {
-   "k": "Quotes and named cases",
-   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. No author or judge is named."
+   "k": "Quotes and cases",
+   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. Seven cases are told in full. Each was read from the paper itself, and every figure in a telling comes from a sentence in that paper. They were chosen to show the point of their chapter and to be a mix: two sell to businesses, four state a small budget, and two led with television. The archive is mostly consumer brands: the agents filed 5 of its 389 papers as business-to-business. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. No author or judge is named."
   },
   {
    "k": "Rounding",
@@ -1125,7 +876,7 @@
   },
   {
    "k": "What's next",
-   "t": "We've also read every paper for the problem the brand had and the move it made, by category. That map needs a second read before we publish a number from it. And we're building a coach that works through all of this with a writer, one question at a time. I haven't figured out yet how to make it ask about charts."
+   "t": "We've also read every paper for the problem the brand had and the move it made, by category. That map needs a second read before we publish a number from it. And we're building a coach that works through all of this with a writer, one question at a time."
   }
  ]
 }

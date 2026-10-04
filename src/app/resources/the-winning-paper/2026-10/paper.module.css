@@ -220,3 +220,13 @@
   .table td:first-child { min-width: 0; margin-bottom: 4px; }
   .table td:last-child { min-width: 0; margin-top: 6px; }
 }
+
+/* A case told (draft 18). No box and no colour: a rule above, the brand, its ad, the telling, a rule below. */
+.told { margin: 34px 0 34px; padding: 22px 0 6px; border-top: 1px solid #1D1B1B; border-bottom: 1px solid #1D1B1B; }
+.toldHead { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.toldKick { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #F47521; }
+.toldBrand { margin: 2px 0 0; font-family: var(--sans); font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: -.02em; color: #1D1B1B; }
+.toldTags { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #3A7CA5; }
+.told figure { margin-top: 18px; margin-bottom: 22px; }
+.inlineLink { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
+@media (max-width: 700px) { .toldBrand { font-size: 25px; } }
