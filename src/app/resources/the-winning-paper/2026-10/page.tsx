@@ -264,7 +264,7 @@ export default function WinningPaper() {
         </div>
       </section>
 
-      <div className={r.draft}>Preview for Paul. Sam&rsquo;s text, still changing, no second check yet. Not approved for the live site.</div>
+      <div className={r.draft}>Preview for Paul. Sam&rsquo;s text, checked by Cato. Not approved for the live site.</div>
 
       <div className={r.body}>
         <aside className={r.railCol}>
