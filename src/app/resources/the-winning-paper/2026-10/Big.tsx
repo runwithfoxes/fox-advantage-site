@@ -8,12 +8,18 @@ import b from "./big.module.css";
  * a photograph, put one claim on a page in very large type, and show the work they talk about as
  * big stills. These are that, in our colours: sky, deep navy, orange, white.
  *
- * Every part here runs the full width of the window, over the rail. Words never sit on a picture:
- * the picture has its own half and the words have a flat colour. A picture is only ever a campaign
- * the report quotes or names at that point, and it carries a line saying what it is.
+ * Every part here runs the full width of the window, over the rail.
+ *
+ * Paul, 4 Oct, on the first night's build: "I see lots of colour blocks but I wanted to see artwork
+ * from advertising", then "I don't want big block colours if they make this feel off brand", then "be
+ * an art director here. Crop and make them look brilliant, go for impact but also be selective and
+ * not throw them all there on top of each other. Curate." So there are no slabs of colour, and the
+ * pictures are few, large and placed by hand in art.json, each with its crop and focal point. A
+ * picture is only ever a campaign the report quotes or names in that chapter, and it carries a line
+ * saying what it is. Nothing here fills a slot by rule.
  */
 
-export type Pic = { id: string; brand: string; aliases?: string[]; file: string; size: number[]; label: string; fit?: string };
+export type Pic = { file: string; size: number[]; label: string; fit?: string; pos?: string };
 export type Tone = "navy" | "sky" | "orange" | "white";
 
 const BASE = "/resources/the-winning-paper/2026-10/cases/";
@@ -21,7 +27,7 @@ const BASE = "/resources/the-winning-paper/2026-10/cases/";
 function Picture({ pic, eager }: { pic: Pic; eager?: boolean }) {
   return (
     <span className={`${b.pic} ${pic.fit === "contain" ? b.picWhole : ""}`}>
-      <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading={eager ? "eager" : "lazy"} />
+      <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading={eager ? "eager" : "lazy"} style={pic.pos ? { objectPosition: pic.pos } : undefined} />
       <span className={b.picCap}>{pic.label}</span>
     </span>
   );
@@ -49,12 +55,13 @@ export function Opener({ id, n, title, label, doThis, pic, tone }: { id: string;
   );
 }
 
-/** One line of the chapter, set as large as the window allows, on a flat colour. */
-export function PullBand({ text, tone }: { text: string; tone: Tone }) {
+/** One line of the chapter, set large beside an ad from the chapter. With no ad to show it is a flat band. */
+export function PullBand({ text, tone, pic, flip }: { text: string; tone: Tone; pic?: Pic; flip?: boolean }) {
   // a line of two sentences breaks after the first, so the turn in it lands at the start of a line
   const parts = text.match(/[^.?!]+[.?!]+/g) ?? [text];
   return (
-    <aside className={`${b.bleed} ${b.pull} ${b[tone]}`}>
+    <aside className={`${b.bleed} ${b.pull} ${b[tone]} ${pic ? b.pullPic : ""} ${flip ? b.flip : ""}`}>
+      {pic ? <Picture pic={pic} /> : null}
       <p className={b.pullText}>
         {parts.map((s, i) => (
           <span key={i} className={i === parts.length - 1 && parts.length > 1 ? b.pullTurn : undefined}>
@@ -63,6 +70,28 @@ export function PullBand({ text, tone }: { text: string; tone: Tone }) {
         ))}
       </p>
     </aside>
+  );
+}
+
+/** One ad in the reading column at the column's full width, the way an essay carries its picture
+ *  (Paul, 4 Oct: "can they fit as big square in content of page like I do essays sometimes"). It
+ *  needs a file about 1,200 wide, not one that can fill a window, so far more of the real ads qualify. */
+export function ColumnArt({ pic, eager }: { pic: Pic; eager?: boolean }) {
+  return (
+    <figure className={b.colArt}>
+      <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading={eager ? "eager" : "lazy"} />
+      <figcaption>{pic.label}</figcaption>
+    </figure>
+  );
+}
+
+/** One ad on its own, across the whole window, with its line. Placed by hand where the chapter earns it. */
+export function Plate({ pic }: { pic: Pic }) {
+  return (
+    <figure className={`${b.bleed} ${b.plate} ${pic.fit === "contain" ? b.plateWhole : ""}`}>
+      <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading="lazy" style={pic.pos ? { objectPosition: pic.pos } : undefined} />
+      <figcaption>{pic.label}</figcaption>
+    </figure>
   );
 }
 
@@ -91,25 +120,15 @@ export function CaseBand({ pic, brand, award, quote, why, href, link, tone, flip
   );
 }
 
-/** A wall of lines from the papers. Short lines are set big, long ones smaller; the tiles take turns in colour. */
-export function Wall({ items, pics, tone }: { items: { key: string; q: string; brand: string; award: string }[]; pics: (key: string) => Pic | undefined; tone: Tone }) {
-  const tiles: Tone[] = tone === "navy" ? ["white", "sky", "orange", "white", "sky"] : ["navy", "sky", "white", "orange", "white"];
-  let shown = 0;
+/** A wall of lines from the papers, as plain cards. No pictures here: the ads have their own places. */
+export function Wall({ items, tone }: { items: { key: string; q: string; brand: string; award: string }[]; tone: Tone }) {
   return (
     <section className={`${b.bleed} ${b.wall} ${b[tone]} ${items.length <= 4 ? b.wallFew : ""}`}>
       <div className={b.wallIn}>
-        {items.map((it, i) => {
+        {items.map((it) => {
           const size = it.q.length < 48 ? b.tBig : it.q.length < 110 ? b.tMid : b.tSmall;
-          // a picture on at most three tiles of a wall, so the words stay the point
-          const pic = shown < 3 ? pics(it.key) : undefined;
-          if (pic) shown++;
           return (
-            <figure key={it.key} className={`${b.tile} ${b["t_" + tiles[i % tiles.length]]} ${size}`}>
-              {pic ? (
-                <span className={b.tilePic}>
-                  <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading="lazy" />
-                </span>
-              ) : null}
+            <figure key={it.key} className={`${b.tile} ${b.t_white} ${size}`}>
               <blockquote>{it.q}</blockquote>
               <figcaption>
                 <b>{it.brand}</b>

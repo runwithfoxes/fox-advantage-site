@@ -229,6 +229,104 @@
    "fetched_from": "https://www.youtube.com/watch?v=xNSgmm9FX2s",
    "page": null,
    "crop": "a still cut from the public video of the ad; Another still from the basketball passing game."
+  },
+  {
+   "id": "art-guinness-sapeurs",
+   "brand": "Guinness",
+   "file": "art-guinness-sapeurs.jpg",
+   "size": [
+    1280,
+    720
+   ],
+   "label": "Guinness, Sapeurs, TV film, 2014",
+   "source": "https://www.youtube.com/watch?v=66HuFrMZWMo",
+   "fetched_from": "https://www.youtube.com/watch?v=66HuFrMZWMo",
+   "page": null,
+   "crop": "a still cut from the public video of the ad",
+   "source_kind": "official (the agency AMV BBDO's own channel, posted 18 Mar 2014)",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-boddingtons-cone",
+   "brand": "Boddingtons",
+   "file": "art-boddingtons-cone.jpg",
+   "size": [
+    1344,
+    1900
+   ],
+   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999",
+   "source": "https://davedye.com/2022/05/10/boddingtons-the-cream-of-advertising/",
+   "fetched_from": "https://davedye.com/2022/05/10/boddingtons-the-cream-of-advertising/",
+   "page": null,
+   "crop": "the press ad, whole; the campaign ran 1991 to 1999 and this ad carries no date of its own",
+   "source_kind": "a private blog about the campaign, not the brand or agency",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-lidl-billboard",
+   "brand": "Lidl",
+   "file": "art-lidl-billboard.jpg",
+   "size": [
+    1024,
+    998
+   ],
+   "label": "Lidl, Deluxe mince pies, billboard, 2018",
+   "source": "https://talkingpoints.72point.com/2018/12/lidl-takes-a-swipe-at-rival-supermarkets-",
+   "fetched_from": "https://talkingpoints.72point.com/2018/12/lidl-takes-a-swipe-at-rival-supermarkets-",
+   "page": null,
+   "crop": "the press picture of the billboard, whole",
+   "source_kind": "official (the press release picture)",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-honda-grrr",
+   "brand": "Honda",
+   "file": "art-honda-grrr.jpg",
+   "size": [
+    1220,
+    672
+   ],
+   "label": "Honda, Grrr, TV film, 2004",
+   "source": "https://www.youtube.com/watch?v=lYtANGkdSxQ",
+   "fetched_from": "https://www.youtube.com/watch?v=lYtANGkdSxQ",
+   "page": null,
+   "crop": "a still cut from the public video of the ad",
+   "source_kind": "fan upload",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-ibm-smarter-planet",
+   "brand": "IBM",
+   "file": "art-ibm-smarter-planet.jpg",
+   "size": [
+    1796,
+    773
+   ],
+   "label": "IBM, Smarter Planet, three press ads, 2010",
+   "source": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
+   "fetched_from": "https://www.adsoftheworld.com/campaigns/smarter-planet-cases",
+   "page": null,
+   "crop": "three press ads from the campaign set side by side, each whole",
+   "source_kind": "an ad archive (Ads of the World, campaign listed October 2010, Ogilvy Paris)",
+   "added": "2026-10-04"
+  },
+  {
+   "id": "art-irish-times-election",
+   "brand": "The Irish Times",
+   "file": "art-irish-times-election.jpg",
+   "size": [
+    800,
+    1120
+   ],
+   "label": "The Irish Times, What's going on inside?, Election 2016 poster",
+   "source": "http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
+   "fetched_from": "https://web.archive.org/web/2id_/http://adfx.ie/upload/files/1473372999_lme_irish_times.pdf",
+   "page": 24,
+   "crop": "the poster from the paper's gallery, cropped above the web address",
+   "source_kind": "the public ADFX paper",
+   "added": "2026-10-04"
   }
- ]
+ ],
+ "note_4_oct": "From 4 Oct the page shows only the pictures named in art.json beside page.tsx: one at the top and one at the top of a chapter, each from a campaign that chapter quotes. Paul, 4 Oct: \"be selective... Curate\" and \"The artwork should be there for impact not explanation\". The other files in this folder are no longer shown. Of the seven shown, two are from a fan upload or a private blog (Honda, Boddingtons) and Direct Line is a still from a public upload of the ad (source_kind); whether those are fine for the live page is still Paul's call.",
+ "note_4_oct_range": "Paul, 4 Oct: \"We also need to be rounded and have b2b and small budget and not always TV.\" The seven are four press, poster or outdoor (Boddingtons, IBM, The Irish Times, Lidl) and three film stills (Guinness, Direct Line, Honda); IBM is the B2B case and The Irish Times the Irish one. No small-budget case is shown yet: the strongest public picture is Pancreatic Cancer Action 2014, which shows a named patient, and that is left for Paul to decide."
 }

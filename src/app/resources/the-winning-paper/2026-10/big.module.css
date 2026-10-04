@@ -1,6 +1,7 @@
 /* The big parts: sections that run the full width of the window. Own file, own class names, every
    phone rule inside its own media query (DOCTRINE, 27 Sep). Colours: sky #3A7CA5, deep navy
-   #1A3A4E, orange #F47521, pale #A9CBE4, ink #1D1B1B. One accent per band, no gradients. */
+   #1A3A4E, orange #F47521, pale #A9CBE4, ink #1D1B1B. One accent per band, no gradients.
+   The ad is the content and colour frames it (Paul, 4 Oct). */
 
 /* Out of the reading column to both edges of the window. The column starts after the page's side
    padding (48px), the rail (220px) and the gap (56px), inside a page centred at --wrap. The band is
@@ -9,45 +10,68 @@
 @media (max-width: 1100px) { .bleed { margin-left: -58px; } }
 @media (max-width: 700px) { .bleed { margin-left: -26px; margin-top: 32px; margin-bottom: 32px; } }
 
-.navy { background: #1A3A4E; color: #fff; --accent: #F47521; --soft: #A9CBE4; --rule: rgba(255,255,255,.22); }
-.sky { background: #3A7CA5; color: #fff; --accent: #1A3A4E; --soft: #E4EFF7; --rule: rgba(255,255,255,.3); }
-.orange { background: #F47521; color: #1D1B1B; --accent: #1A3A4E; --soft: #1D1B1B; --rule: rgba(29,27,27,.25); }
-.white { background: #fff; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; border-top: 1px solid #1A3A4E; border-bottom: 1px solid #1A3A4E; }
+/* Paul, 4 Oct: "I don't want big block colours if they make this feel off brand for me... I wanted
+   big images from ads that make this feel big and iconic." So the three tones no longer paint a
+   band. Every band is the page's own paper with ink type and one orange accent, and the only thing
+   that runs edge to edge is the ad. The class names stay so the page's code does not change. */
+.navy, .sky, .orange, .white { background: transparent; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; }
 
 .kick { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
 
 /* a picture and the line that says what it is */
-.pic { position: relative; display: block; background: #0F2530; min-height: 100%; }
+.pic { position: relative; display: block; background: #EFEDE6; min-height: 100%; }
 .pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .picCap { position: absolute; left: 0; bottom: 0; padding: 6px 12px; background: rgba(15,37,48,.82); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; }
 
-/* ── a chapter opens ── */
-.opener { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); min-height: 540px; scroll-margin-top: 0; margin-top: 64px; }
-.openerBare { grid-template-columns: minmax(0, 1fr); min-height: 420px; }
-.openerWords { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 56px 56px 52px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
-.openerN { position: absolute; right: 18px; top: -50px; font-family: var(--sans); font-weight: 500; font-size: 420px; line-height: 1; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 2px var(--rule); pointer-events: none; user-select: none; }
-.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(40px, 5.2vw, 76px); line-height: 1.02; letter-spacing: -.03em; margin: 0; max-width: 11em; }
-.openerDo { position: relative; margin: 10px 0 0; padding-top: 18px; border-top: 2px solid var(--accent); font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 34em; }
+/* ── a chapter opens the way the report does: one picture edge to edge, the page's own dark veil,
+   the chapter's name in white over it. Paul, 4 Oct: "The artwork should be there for impact not
+   explanation, in same way we use our images and video for top of the AI ask research docs." With
+   no picture set, the chapter opens on the paper with a rule above it. ── */
+.opener { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: min(84vh, 800px); margin-top: 80px; overflow: hidden; background: #101a28; color: #fff; --soft: rgba(255,255,255,.78); --rule: rgba(255,255,255,.2); scroll-margin-top: 0; }
+.opener .pic { position: absolute; inset: 0; min-height: 0; background: #101a28; }
+.opener .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opener .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(8,16,24,0) 30%, rgba(8,16,24,.5) 62%, rgba(8,16,24,.86) 100%), linear-gradient(100deg, rgba(8,16,24,.55) 0%, rgba(8,16,24,.2) 42%, rgba(8,16,24,0) 66%); }
+.opener .picCap { left: auto; right: 0; bottom: 0; z-index: 2; background: none; color: rgba(255,255,255,.6); font-size: 10px; padding: 10px 16px; }
+.openerWords { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 60px; }
+.openerN { display: none; }
+.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(42px, 6vw, 92px); line-height: 1; letter-spacing: -.03em; margin: 0; max-width: 12em; }
+.openerDo { position: relative; margin: 8px 0 0; padding-top: 18px; border-top: 2px solid #F47521; font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 36em; }
 .openerDo span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
-.opener .pic img { position: absolute; inset: 0; }
-/* an ad with its own words on it is shown whole, never cropped */
-.opener .picWhole img { object-fit: contain; }
-.openerBare .openerWords { padding-right: max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
-.openerBare .openerTitle { max-width: 16em; }
+/* with the picture in the column, the opener stays in the column too, so the rail keeps its place */
+.openerBare { width: auto; margin-left: 0; min-height: 0; overflow: visible; background: transparent; color: #1D1B1B; --soft: #3A7CA5; border-top: 1px solid #1D1B1B; }
+.openerBare .openerWords { padding: 44px 0 0; }
+.openerBare .openerTitle { font-size: clamp(38px, 4.4vw, 64px); }
 
 /* ── one line, very large ── */
-.pull { padding: 84px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.pull:not(.pullPic) { width: auto; margin-left: 0; padding: 34px 0 36px; border-top: 1px solid #1D1B1B; border-bottom: 1px solid #1D1B1B; }
+.pull:not(.pullPic) .pullText { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.08; max-width: none; }
+.pull { padding: 72px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
 .pullText { margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.03em; max-width: 15em; }
 .pullText span { display: block; }
 .pullTurn { color: var(--accent); }
-.sky .pullTurn { color: #1A3A4E; }
-.navy .pullTurn { color: #F47521; }
-.orange .pullTurn { color: #fff; }
-.white .pullTurn { color: #F47521; }
+
+/* one line beside an ad from the chapter */
+.pullPic { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); padding: 0; min-height: min(72vh, 680px); }
+.pullPic .pic img { position: absolute; inset: 0; }
+.pullPic .picWhole img { object-fit: contain; }
+.pullPic .pullText { align-self: center; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; font-size: clamp(30px, 3.5vw, 56px); line-height: 1.08; max-width: none; }
+.pullPic.flip .pullText { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+
+/* ── one ad in the reading column, as an essay carries its picture ── */
+.colArt { margin: 30px 0 34px; }
+.colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
+
+/* ── one ad on its own, across the whole window ── */
+.plate { margin-top: 64px; margin-bottom: 56px; }
+.plate img { display: block; width: 100%; height: min(86vh, 860px); object-fit: cover; }
+.plateWhole { background: #EFEDE6; }
+.plateWhole img { object-fit: contain; height: auto; max-height: min(92vh, 940px); margin: 0 auto; }
+.plate figcaption { padding: 10px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 0; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: #62625d; }
 
 /* ── a quoted case with its campaign ── */
-.caseBand { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
-.caseBand .pic img { object-fit: contain; height: auto; max-height: 640px; }
+.caseBand { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
+.caseBand .pic img { object-fit: contain; height: auto; max-height: 720px; }
 .caseBand .pic { display: flex; align-items: center; justify-content: center; }
 .caseTall { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
 .caseTall .pic img { width: auto; max-width: 100%; max-height: 560px; }
@@ -62,6 +86,8 @@
 .caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
 
 /* ── a wall of lines ── */
+/* the wall runs wide, so it paints the page's own paper over the rail */
+.wall { background: var(--bg, #FAFAF8); }
 .wall { padding: 64px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
 .wallIn { columns: 3; column-gap: 18px; }
 .wallFew .wallIn { columns: 2; }
@@ -73,29 +99,32 @@
 .tBig blockquote { font-family: var(--sans); font-weight: 500; font-size: 34px; line-height: 1.08; letter-spacing: -.025em; }
 .tMid blockquote { font-family: var(--sans); font-weight: 500; font-size: 24px; line-height: 1.18; letter-spacing: -.015em; }
 .tSmall blockquote { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.45; }
-.t_white { background: #fff; color: #1D1B1B; }
-.t_navy { background: #1A3A4E; color: #fff; }
-.t_sky { background: #3A7CA5; color: #fff; }
-.t_orange { background: #F47521; color: #1D1B1B; }
-.white .t_white { border: 1px solid #1A3A4E; }
-.tilePic { display: block; margin: -26px -26px 4px; border-radius: 4px 4px 0 0; overflow: hidden; background: #0F2530; }
-.tilePic img { display: block; width: 100%; height: auto; }
+.t_white, .t_navy, .t_sky, .t_orange { background: #fff; color: #1D1B1B; border: 1px solid #E0E0DC; }
+.tile figcaption { border-top-color: #E0E0DC; }
+.tile figcaption em { color: #3A7CA5; opacity: 1; }
 
 @media (max-width: 1100px) {
   .caseBand { margin-left: -58px; }
-  .opener { min-height: 440px; }
-  .openerN { font-size: 300px; top: -40px; }
   .wallIn { columns: 2; }
 }
 @media (max-width: 700px) {
   .caseBand { margin-left: -26px; }
-  .opener, .openerBare { grid-template-columns: minmax(0, 1fr); min-height: 0; margin-top: 44px; }
-  .opener .pic { order: -1; aspect-ratio: 16 / 10; min-height: 0; }
-  .openerWords { padding: 34px 26px 32px; }
-  .openerBare .openerWords { padding-right: 26px; }
-  .openerN { font-size: 220px; top: -20px; right: -6px; }
+  .opener { margin-top: 48px; min-height: 78vh; }
+  .openerBare { min-height: 0; }
+  .openerWords { padding: 32px 26px 40px; }
+  .openerBare .openerWords { padding: 30px 0 0; }
+  .pull:not(.pullPic) { padding: 26px 0 28px; }
+  .opener .picCap { right: auto; left: 0; top: 0; bottom: auto; padding: 10px 26px; }
   .openerDo { font-size: 17px; }
   .pull { padding: 52px 26px; }
+  .pullPic { grid-template-columns: minmax(0, 1fr); padding: 0; min-height: 0; }
+  .pullPic .pic { aspect-ratio: 4 / 3; min-height: 0; }
+  .pullPic.flip .pic { order: 0; }
+  .pullPic .pullText, .pullPic.flip .pullText { padding: 30px 26px 36px; font-size: 30px; }
+  .plate { margin-top: 40px; margin-bottom: 36px; }
+  .plate img { height: auto; aspect-ratio: 4 / 5; }
+  .plateWhole img { aspect-ratio: auto; }
+  .plate figcaption { padding: 8px 26px 0; }
   .caseBand, .caseTall { grid-template-columns: minmax(0, 1fr); }
   .flip .pic { order: 0; }
   .caseBand .pic img { max-height: 420px; }
@@ -103,7 +132,6 @@
   .wall { padding: 36px 26px; }
   .wallIn, .wallFew .wallIn { columns: 1; }
   .tile { padding: 22px 20px 18px; }
-  .tilePic { margin: -22px -20px 4px; }
   .tBig blockquote { font-size: 30px; }
   .tMid blockquote { font-size: 22px; }
 }

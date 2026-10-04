@@ -4,8 +4,8 @@ import NextNav from "../../../home-next/NextNav";
 import C from "./copy.json";
 import { FigWin, Fig, Stats } from "./Charts";
 import Checklist, { type Check } from "./Checklist";
-import { Opener, PullBand, CaseBand, Wall, type Pic, type Tone } from "./Big";
-import PICS from "../../../../../public/resources/the-winning-paper/2026-10/cases/SOURCES.json";
+import { Opener, PullBand, Wall, Plate, ColumnArt, type Pic, type Tone } from "./Big";
+import ART from "./art.json";
 import { Hl, Rail } from "../../the-ai-ask/2026-q3/Parts";
 import fr from "../../front.module.css";
 import h from "../../hero.module.css";
@@ -46,62 +46,26 @@ type Block =
   | ({ stats: { v: string; l: string }[] } & FigBase);
 type Chapter = { id: string; n: number; title: string; lede: Block[]; subs: { n: string; title: string; blocks: Block[] }[] };
 
-/* THE PICTURES. Each one is a campaign the report quotes or names, from a public source listed in
-   cases/SOURCES.json. A picture is matched to a case by the case's key, or by the brand's name. */
-const PICTURES = PICS.pictures as unknown as Pic[];
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-const picsFor = (key: string, brand: string) => PICTURES.filter((x) => x.id === key || norm(x.brand) === norm(brand) || (x.aliases ?? []).some((al) => norm(al) === norm(brand)));
-const wide = (x: Pic) => x.size[0] / x.size[1] >= 1.25;
-
-/* Where each picture goes, worked out once so no picture is shown twice. First every chapter's
-   opener takes a wide picture of a campaign that chapter quotes or names. Then a quoted case with a
-   picture left gets a band of its own, a named case gets its picture beside its line, and a wall of
-   lines takes what remains. A brand can hold more than one still, so it can open one chapter and
-   sit on a tile in another. */
+/* THE PICTURES. Chosen and placed by hand in art.json (Paul, 4 Oct: "be an art director... be
+   selective... Curate"). Nothing fills a slot by rule. Each entry names the file, its crop's focal
+   point and the line under it; where each file came from is in cases/SOURCES.json beside the files.
+   hero: the top of the page. openers: by chapter number. pulls: by chapter number, the ad beside
+   that chapter's pull line. bands: by case key, a quoted case shown with its ad. plates: by
+   sub-section number, one ad across the window before that sub-section opens. */
+const A = ART as unknown as { hero?: Pic | null; openers: Record<string, Pic>; pulls: Record<string, Pic>; bands: Record<string, Pic>; plates: Record<string, Pic> };
 const TONES: Tone[] = ["navy", "sky", "orange"];
 function plan(chapters: Chapter[]) {
-  const used = new Set<string>();
   const opener = new Map<number, Pic>();
+  const pull = new Map<Block, Pic>();
   const band = new Map<Block, Pic>();
-  const tile = new Map<string, Pic>();
-  const take = (xs: Pic[], ok: (x: Pic) => boolean = () => true) => {
-    const x = xs.find((c) => !used.has(c.id) && ok(c));
-    if (x) used.add(x.id);
-    return x;
-  };
-  const all = (c: Chapter) => [...c.lede, ...c.subs.flatMap((s) => s.blocks)];
   for (const c of chapters) {
-    for (const bl of all(c)) {
-      const cands = "case" in bl ? [picsFor(bl.case, bl.brand)] : "lines" in bl ? bl.lines.map((l) => picsFor(l.key, l.brand)) : "named" in bl ? bl.named.map((x) => picsFor("", x.brand)) : [];
-      const got = cands.map((xs) => xs.find((x) => !used.has(x.id) && wide(x))).find(Boolean);
-      if (got) {
-        used.add(got.id);
-        opener.set(c.n, got);
-        break;
-      }
+    if (A.openers[c.n]) opener.set(c.n, A.openers[c.n]);
+    for (const bl of [...c.lede, ...c.subs.flatMap((s) => s.blocks)]) {
+      if ("p" in bl && bl.pull && A.pulls[c.n] && ![...pull.values()].includes(A.pulls[c.n])) pull.set(bl, A.pulls[c.n]);
+      if ("case" in bl && A.bands[bl.case]) band.set(bl, A.bands[bl.case]);
     }
   }
-  for (const c of chapters)
-    for (const bl of all(c))
-      if ("case" in bl) {
-        const got = take(picsFor(bl.case, bl.brand));
-        if (got) band.set(bl, got);
-      }
-  for (const c of chapters)
-    for (const bl of all(c))
-      if ("named" in bl)
-        for (const x of bl.named) {
-          const got = take(picsFor("", x.brand));
-          if (got) tile.set("named:" + x.brand + x.award, got);
-        }
-  for (const c of chapters)
-    for (const bl of all(c))
-      if ("lines" in bl)
-        for (const l of bl.lines) {
-          const got = take(picsFor(l.key, l.brand));
-          if (got) tile.set(l.key, got);
-        }
-  return { opener, band, tile };
+  return { opener, pull, band };
 }
 type Plan = ReturnType<typeof plan>;
 
@@ -132,11 +96,13 @@ function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: 
         {b.do}
       </p>
     );
-  if ("lines" in b) return <Wall items={b.lines} pics={(key) => pl.tile.get(key)} tone={b.lines.length > 9 ? "navy" : b.lines.length > 4 ? "white" : "sky"} />;
+  if ("lines" in b) return <Wall items={b.lines} tone={b.lines.length > 9 ? "navy" : b.lines.length > 4 ? "white" : "sky"} />;
   if ("case" in b) {
     const pic = pl.band.get(b);
-    if (pic) return <CaseBand pic={pic} brand={b.brand} award={b.award} quote={b.quote} why={b.why} href={b.href} link={b.link} tone={TONES[i % 3]} flip={i % 2 === 1} />;
+    // the ad sits with the case the report is quoting, in the column, and the case is named under it
     return (
+      <>
+      {pic ? <ColumnArt pic={pic} /> : null}
       <figure className={`${w.caseCard} ${w.caseWords}`}>
         <div className={w.caseBody}>
           <blockquote className={w.caseQuote}>{b.quote}</blockquote>
@@ -154,6 +120,7 @@ function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: 
           </figcaption>
         </div>
       </figure>
+      </>
     );
   }
   if ("named" in b)
@@ -162,10 +129,8 @@ function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: 
         <span className={w.namedHead}>{b.title}</span>
         <ul>
           {b.named.map((c) => {
-            const pic = pl.tile.get("named:" + c.brand + c.award);
             return (
-            <li key={c.brand + c.award} className={pic ? w.namedPic : undefined}>
-              {pic ? <img src={`/resources/the-winning-paper/2026-10/cases/${pic.file}`} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading="lazy" /> : null}
+            <li key={c.brand + c.award}>
               <span className={w.namedWho}>
                 <b>{c.brand}</b>
                 <em>{c.award}</em>
@@ -184,7 +149,7 @@ function BlockView({ b, lede, pl, i }: { b: Block; lede?: boolean; pl: Plan; i: 
     return (
       <>
         <Para b={{ p: b.p.slice(0, at) }} lede={lede} />
-        <PullBand text={b.pull} tone={TONES[(i + 1) % 3]} />
+        <PullBand text={b.pull} tone={TONES[(i + 1) % 3]} pic={pl.pull.get(b)} flip={i % 2 === 0} />
         <Para b={{ p: b.p.slice(at + b.pull.length) }} lede={lede} />
       </>
     );
@@ -233,7 +198,9 @@ export default function WinningPaper() {
   return (
     <div className={`${fr.page} ${r.page} ${w.clip}`}>
       <section className={`${h.hero} ${r.heroR}`} id="top">
-        <img className={h.film} src="/resources/fox-hero-flip-last-frame.jpg" alt="" style={{ objectPosition: "50% 70%" }} />
+        {/* one ad from the papers, chosen by hand; the fox on the beach stands in when none is set */}
+        <img className={h.film} src={A.hero ? `/resources/the-winning-paper/2026-10/cases/${A.hero.file}` : "/resources/fox-hero-flip-last-frame.jpg"} alt={A.hero?.label ?? ""} style={{ objectPosition: A.hero?.pos ?? "50% 70%" }} />
+        {A.hero ? <span style={{ position: "absolute", right: 16, bottom: 10, zIndex: 2, fontFamily: "var(--mono)", fontSize: 10, letterSpacing: ".04em", color: "rgba(255,255,255,.62)" }}>{A.hero.label}</span> : null}
         <NextNav />
         <div className={`${h.inner} ${n.heroInner} ${r.heroInnerR}`}>
           <div className={h.text}>
@@ -283,7 +250,8 @@ export default function WinningPaper() {
             const doB = c.lede.find((b) => "do" in b) as { do: string; label: string } | undefined;
             return (
               <section key={c.id} className={w.chap}>
-                <Opener id={c.id} n={c.n} title={c.title} label={doB?.label} doThis={doB?.do} pic={pl.opener.get(c.n)} tone={TONES[ci % 3]} />
+                <Opener id={c.id} n={c.n} title={c.title} label={doB?.label} doThis={doB?.do} pic={pl.opener.get(c.n)?.fit === "bleed" ? pl.opener.get(c.n) : undefined} tone={TONES[ci % 3]} />
+                {pl.opener.get(c.n) && pl.opener.get(c.n)?.fit !== "bleed" ? <ColumnArt pic={pl.opener.get(c.n) as Pic} eager={c.n === 1} /> : null}
                 {c.lede
                   .filter((b) => !("do" in b))
                   .map((b, i) => (
@@ -291,6 +259,7 @@ export default function WinningPaper() {
                   ))}
                 {c.subs.map((s, si) => (
                   <div key={s.n} className={r.sub} id={`s${s.n.replace(".", "-")}`}>
+                    {A.plates[s.n] ? <Plate pic={A.plates[s.n]} /> : null}
                     <h3 className={r.h3}>
                       <span className={r.subN}>{s.n}</span>
                       {s.title}

@@ -1,0 +1,65 @@
+{
+ "hero": {
+  "file": "art-guinness-sapeurs.jpg",
+  "size": [
+   1280,
+   720
+  ],
+  "label": "Guinness, Sapeurs, TV film, 2014",
+  "pos": "72% 30%"
+ },
+ "openers": {
+  "1": {
+   "file": "art-boddingtons-cone.jpg",
+   "size": [
+    1344,
+    1900
+   ],
+   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999"
+  },
+  "2": {
+   "file": "art-ibm-smarter-planet.jpg",
+   "size": [
+    1796,
+    773
+   ],
+   "label": "IBM, Smarter Planet, three press ads, 2010"
+  },
+  "3": {
+   "file": "directline.jpg",
+   "size": [
+    1440,
+    615
+   ],
+   "label": "Direct Line, the Fixer, TV film, 2014"
+  },
+  "5": {
+   "file": "art-lidl-billboard.jpg",
+   "size": [
+    1024,
+    998
+   ],
+   "label": "Lidl, Deluxe mince pies, billboard, 2018"
+  },
+  "7": {
+   "file": "art-honda-grrr.jpg",
+   "size": [
+    1220,
+    672
+   ],
+   "label": "Honda, Grrr, TV film, 2004"
+  }
+ },
+ "pulls": {},
+ "bands": {
+  "irishtimes": {
+   "file": "art-irish-times-election.jpg",
+   "size": [
+    800,
+    1120
+   ],
+   "label": "The Irish Times, What's going on inside?, Election 2016 poster"
+  }
+ },
+ "plates": {}
+}
