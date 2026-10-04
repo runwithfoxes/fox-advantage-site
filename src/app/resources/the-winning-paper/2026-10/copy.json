@@ -1,6 +1,6 @@
 {
  "meta": {
-  "kicker": "Research report · draft 18, not published",
+  "kicker": "Research report · draft 19, not published",
   "h1": "The Winning Paper: what takes an award entry from good to great",
   "byline": "4 October 2026 · Sam · AI researcher, Run with Foxes"
  },
@@ -19,7 +19,7 @@
    "p": "I thought the answer would be the story. I expected the awarded papers to have the insight and the papers that weren't awarded to be missing it. That isn't what the counts show. Nearly every paper has an insight, a diagnosis and a strategy that follows from it. Those are table stakes. Sales rising while a campaign runs is correlation. What the awarded papers add is evidence of causation: evidence that the work caused the result."
   },
   {
-   "p": "So if you've been asked to write an award entry, this report is for you. It starts with a checklist: what to do, what never to do, and the evidence behind each line. Each chapter after it makes one point, shows the count behind it, and then tells one case that does it well. There are seven: IAG Cargo, IBM, Marie Curie, Direct Line, Art Fund, Lidl and Pancreatic Cancer Action. Two of them sell to businesses. Four had small budgets. Two led with television. Use it to take your own entry from good to great."
+   "p": "So if you've been asked to write an award entry, this report is for you. It starts with a checklist: what to do, what never to do, and the evidence behind each line. Each chapter after it makes one point, shows the count behind it, and then tells one case that does it well. There are seven: IAG Cargo, IBM, Marie Curie, Direct Line, Lidl, Art Fund and Pancreatic Cancer Action. Two of them sell to businesses. Four spent under a million a year. Two led with television advertising. Use it to take your own entry from good to great."
   },
   {
    "p": "Of the 470 papers, 389 are from Paul Dervan's own archive, collected over the past 20 years and reaching back to 1980. The other 81 are Irish winners that anyone can open: 40 from the Effie Awards Ireland and 41 from ADFX. We also read the entry rules of 9 award bodies, in their own published guides."
@@ -280,13 +280,13 @@
          "p": "Before building one, the team went to meet the customers. They interviewed 15 small forwarders in each of five markets, in offices and warehouses beside airports. The paper is frank about where they started. They had every customer's name, address and account value. “But we knew nothing about them as people.”"
         },
         {
-         "p": "What they found is about people. In every firm two people decide. The owner draws up the list of carriers, and a junior clerk picks one from it day to day. Owners feel bad that they can't pay their clerks more. And both deal with a local sales agent they trust more than a faceless organisation in another country."
+         "p": "What they found is about people. In every firm two people decide. The owner draws up the list of carriers, and a junior clerk picks one from it day to day. Some owners told them they felt bad that they couldn't pay their clerks more. And both deal with a local sales agent they trust more than a faceless organisation in another country."
         },
         {
-         "p": "You can see the scheme coming from that. It rewards the clerks as well as the owners, with fuel cards in the US and movie nights in India. It lets an owner pool the clerks' rewards so the whole team benefits. It lets the sales agents decide who is invited. None of that is in a points-for-tonnage scheme. All of it came from the interviews."
+         "p": "You can see the scheme coming from that. It rewards the clerks as well as the owners, with fuel cards in the US and movie nights in India. It lets an owner pool the clerks' rewards so the whole team benefits. It lets the sales agents decide who is invited. The points for tonnage stayed. Those three things were added to them, and all three came from the interviews."
         },
         {
-         "p": "Then the paper proves it the plain way, with no model. It compares members with similar firms that didn't join, grouped by how much they spend. Members' spend rose 18% in the year, 11 percentage points more than the others. The paper puts the extra revenue at €14 million, on a budget of €272,000."
+         "p": "Then the paper shows its result the plain way, with no model. It compares members with similar firms that didn't join, grouped by how much they spend. Members' spend rose 18% in the year, 11 percentage points more than the others. The paper puts the extra revenue at €14 million, on a budget of €272,000."
         }
        ]
       }
@@ -337,7 +337,7 @@
        "p": "Nearly half of the papers that weren't awarded never say what sales would have been without the activity. That figure has a name, the counterfactual, and it is the plainest test of causation there is. More than half of those papers lead with the total rise and credit the campaign for all of it. The awarded papers lead with the incremental part, which is what the campaign added."
       },
       {
-       "p": "You don't need a model to do this. Here is a paper that had none and found its counterfactual on a map."
+       "p": "You don't need a model to do this. Here is a paper that had none. For one part of its result, it found its counterfactual on a map."
       },
       {
        "told": "ibm",
@@ -348,19 +348,19 @@
        ],
        "paras": [
         {
-         "p": "In February 2011 an IBM computer called Watson played the American quiz show Jeopardy! against the two finest players the game had seen, and won. IBM sells to businesses. Nobody watching was going to buy a Watson. The campaign around the show was there to bring in the people who do buy from IBM, and the paper follows each lead through to $254 million of booked revenue."
+         "p": "In February 2011 an IBM computer called Watson played the American quiz show Jeopardy! against the two finest players the game had seen, and won. IBM sells to businesses. Nobody watching was going to buy a Watson. The campaign around the show was there to bring in the people who do buy from IBM, and the paper counts $254 million of booked revenue from leads that came in through Watson events and materials."
         },
         {
-         "p": "That part is counted lead by lead. The harder question is the one this chapter is about. Sales of the servers Watson ran on had been in long decline, and after the show they were up 9.1%. Only $76 million of that could be tracked to a Watson lead. How much of the rest did the campaign cause?"
+         "p": "For that figure the paper doesn't estimate what IBM would have won anyway. It raises the question itself, calls it a valid one, and says it isn't how IBM judges a campaign. Where it does ask what the campaign added, it is careful. Sales of the servers Watson ran on had been in long decline, and after the show they were up 9.1%. Only $76 million of that could be tracked to a Watson lead. How much of the rest did the campaign cause?"
         },
         {
-         "p": "The paper looks for a place like North America where the campaign didn't run. It picks Western Europe, where IBM did no Watson marketing and the show wasn't televised, and it shows that server sales in the two regions tracked closely beforehand. Europe grew 7.5%. The paper then takes the falling euro out of that figure, which leaves 2.9%. The gap between the two regions, about $68 million, is what the campaign might have added."
+         "p": "The paper looks for a place like North America that saw far less of the campaign. It picks Western Europe, where IBM did no Watson marketing and the show wasn't televised, though the news travelled. Server sales in the two regions tracked closely beforehand. Take the tracked $76 million out of North America's 9.1%, and 5.8% is left to explain. Europe grew 7.5%, or 2.9% once the falling euro is taken out. The difference between the 5.8% and the 2.9%, about $68 million, is what the campaign might have added."
         },
         {
-         "p": "And then it does something I didn't expect. It calls that figure a ceiling. “It's an upper limit as other factors in which W. Europe and NA differed will be involved”, it says. It leaves the whole $68 million out of its return, because the exact size is unclear. The return it does claim, at least 2.4 times the spend in profit, rests only on the revenue it can track."
+         "p": "And then it does something I didn't expect. It calls that figure a ceiling. “It's an upper limit as other factors in which W. Europe and NA differed will be involved”, it says. It leaves the whole $68 million out of its return, because the exact size is unclear. The return it does claim, at least 2.4 times the spend in profit, is worked out on the tracked revenue alone."
         },
         {
-         "p": "Any team can do what this paper does. Find the nearest thing you have to your market without your campaign. Show that the two moved together before. Take out what else differs. Then claim the gap, or less."
+         "p": "Any team can do what this paper does with its server sales. Find the nearest thing you have to your market without your campaign. Show that the two moved together before. Take out what else differs. Then claim the gap, or less."
         }
        ]
       }
@@ -396,7 +396,7 @@
        "cap": "The middle paper in each group, which is the median. Awarded: 6 named, 4 ruled out with data. Not awarded: 4 named, 2 ruled out with data. 96 awarded papers and 87 not awarded."
       },
       {
-       "p": "Most teams already hold the data to close that gap. This one had almost no data at all, and closed it anyway."
+       "p": "Most teams already hold the data to close that gap. This one had no tracking research, and closed it anyway."
       },
       {
        "told": "mariecurie",
@@ -413,13 +413,16 @@
          "p": "Collectors went from 13,774 to over 20,000. Then the paper has to show that the advertising did it, and it starts with what it doesn't have. “Due to the low investment in the campaign, we do not have any tracking research at our disposal.”"
         },
         {
-         "p": "What it has is a list. It names six other things that could have brought the collectors in, and it answers each with a fact. The usual recruitment by local fundraisers hadn't changed. The main appeal advertising ran in March, and collectors had to register by the end of February. Its rivals outspent it: the two larger cancer charities had 79% and 13% of the advertising in those two months, and Marie Curie had 8%. Cancer deaths hadn't suddenly risen. Nobody well known had died of cancer in those weeks. And the weather: March 2010 was colder, less sunny and equally wet, so a fine month didn't bring the collectors out."
+         "p": "It has other evidence, and it gives that first. New recruits rose most in the regions where the radio weight was heaviest. And every new recruit signed up through the advertised phone number, Facebook or the web address, where collectors normally register with their local branch. Any small team can do both of those: count sign-ups by the route they came in, and set them against where the advertising ran."
         },
         {
-         "p": "None of those answers needed a model. One came from the Met Office."
+         "p": "Then comes a list. The paper names six other things that could have brought the collectors in, and answers each one. The usual recruitment by local fundraisers hadn't changed. The main appeal advertising ran in March, and collectors had to register by the end of February. Its rivals outspent it: the two larger cancer charities had 79% and 13% of the advertising in those two months, and Marie Curie had 8%. It had no reason to think cancer deaths had risen. Nobody well known had died of cancer in those weeks. And the weather: March 2010 was colder, less sunny and equally wet, so a fine month didn't bring the collectors out."
         },
         {
-         "p": "It is as careful with the return. Collector numbers were already rising a little each year, so the paper works its return out three ways: against the year before, against the five-year average, and against the trend. That gives £2.75, £3.01 and £2.45 for every £1. It uses the £2.45, the most conservative, from there on."
+         "p": "One of those answers came from the Met Office."
+        },
+        {
+         "p": "It is as careful with the return. Collector numbers were already rising a little each year, so the paper works its return out three ways: against the year before, against the five-year average, and against a trend line fitted to the five years before. That gives £2.75, £3.01 and £2.45 for every £1. It uses the £2.45, the most conservative, from there on."
         }
        ]
       },
@@ -586,30 +589,28 @@
        ]
       },
       {
-       "p": "You don't need Vodafone's budget to do it. This paper had no television at all."
+       "p": "Lidl's 2018 paper shows what a long line does for a claim."
       },
       {
-       "told": "artfund",
-       "brand": "Art Fund",
-       "award": "IPA Gold, 2016",
-       "tags": [
-        "about £605,000 a year, no television"
-       ],
+       "told": "lidl",
+       "brand": "Lidl",
+       "award": "IPA Gold, 2018",
+       "tags": [],
        "paras": [
         {
-         "p": "Art Fund is a charity that helps museums and galleries buy works of art. By 2010 its membership had stalled at around 80,000 and was ageing. So it stopped selling the cause and sold what members get, free or reduced entry to galleries and museums, as a card called the National Art Pass. Its media budget averaged about £605,000 a year. With no budget for television, over 70% of the marketing money went on press and posters."
+         "p": "Lidl opened its first UK store in 1994. For twenty years it spent its whole budget on short-term deals and offers. From 2014 it moved to national advertising, to take on one belief: you get what you pay for, so cheaper must be worse."
         },
         {
-         "p": "It is in this chapter because of how it uses the calendar. The pass launched in 2011 and the paper was written five years into the strategy, so the result is a line and not a point. New memberships more than doubled in the first year, and by 2015 they were 174% higher than in 2010. Total membership rose 60%. The average age of a member fell from 66 to 58."
+         "p": "The paper was written four years later, and its first chart runs from 1994 to the end of 2017. So before it claims anything, you can see the whole line."
         },
         {
-         "p": "It looks back as well. Its charts start in 2008, and a note says membership fell by over 2,300 between 2006 and 2010. So you can see what the line was doing before anything changed."
+         "p": "That matters, because Lidl was already growing. A paper that set 2017 against 2013 could have claimed the lot. This one tells you sales grew 9.5% a year from 2009 to 2013, and 15.5% a year from 2014 to 2017. The claim is the difference."
         },
         {
-         "p": "And it names its base. “Taking the (pre-campaign) 2010 figure of 5,547 new members per year as the benchmark”, it counts only the members above that number in each year. That is where its £12.9m of extra profit comes from."
+         "p": "Then it uses a model to divide that growth between the advertising, the new stores and everything else. Sales grew by £2.56 billion between 2013 and 2017, and the model gives advertising 24.5% of it. The paper says so near the top: “We will show that advertising is responsible for a quarter of Lidl's sales growth.” A quarter, from a brand that could have pointed at the chart and claimed all of it."
         },
         {
-         "p": "There is no econometric model here, and the paper says so. A long line, a stated base and five years do the work."
+         "p": "A line that starts long before the work, the growth rate from before it, four years after it, and a baseline from a model. That is each of the stronger rows in this chapter's first chart, in one paper."
         }
        ]
       }
@@ -664,24 +665,29 @@
        "p": "This is what it looks like when a paper shows its sum."
       },
       {
-       "told": "lidl",
-       "brand": "Lidl",
-       "award": "IPA Gold, 2018",
-       "tags": [],
+       "told": "artfund",
+       "brand": "Art Fund",
+       "award": "IPA Gold, 2016",
+       "tags": [
+        "about £605,000 a year from 2012, no television"
+       ],
        "paras": [
         {
-         "p": "For twenty years Lidl spent its whole UK budget on advertising deals. From 2014 it moved to national advertising, to take on one belief: you get what you pay for, so cheaper must be worse. The paper's model credits that advertising with £2,741 million of sales over four years."
+         "p": "Art Fund is a charity that helps museums and galleries buy works of art. By 2010 its membership had stalled at around 80,000 and was ageing. So it stopped selling the cause and sold what members get, free or reduced entry to galleries and museums, as a card called the National Art Pass. From 2012 its media budget averaged about £605,000 a year. With no budget for television, over 70% of the marketing money went on press and posters. By 2015 new memberships were 174% higher than in 2010."
         },
         {
-         "p": "That is revenue, and the paper doesn't stop at revenue. But it has a problem many brands share. “Lidl do not reveal their margins, even to their agencies”, it says. So it tells you what it used in their place, an industry-standard gross margin of 25%, and then it sets the sum out in three lines. Sales driven, times 25%, is the gross profit. Gross profit less the advertising spend is the profit. Profit divided by the advertising spend is the return."
+         "p": "The paper has no econometric model, and says so. What it has is a sum you can follow. It names its base: the 5,547 new members who joined in 2010, the year before the launch. It counts only the members above that number in each year. It multiplies them by the average lifetime profit each member brings. That gives £12.9m."
         },
         {
-         "p": "You can follow the numbers through yourself: £2,741 million of sales, £686 million of gross profit, £398 million left once the advertising is paid for, and a profit return of £1.38."
+         "p": "Then it heads off the usual mistake. “Note that this is pure profit rather than revenue, as the cost of all forms of marketing has already been removed from the member contribution figures.” So the £12.9m is what is left after the marketing is paid for. Against a total media cost of £3,166,285, that is £4.07 for every £1 spent."
         },
         {
-         "p": "You may think 25% is too high or too low. You can't say the paper hid it. If your margin is confidential, do what Lidl did. Say so, say what you used, and show the sum. Both the IPA and the Effies also let you show confidential figures as an index."
+         "p": "The base is the paper's own choice, and you could argue for a different one. Every step is on the page, so you can."
         }
        ]
+      },
+      {
+       "p": "If your margin is confidential, say so and say what you used. Lidl's paper, the case in chapter 4, says Lidl doesn't reveal its margins even to its agencies, uses an industry-standard gross margin of 25%, and sets the sum out in three lines. Both the IPA and the Effies also let you show confidential figures as an index."
       },
       {
        "p": "Charities have no profit margin, and the careful ones find the sum anyway. Marie Curie, the case in chapter 2, counts the 66p in every £1 that goes directly to helping the terminally ill, and treats that as its profit."
@@ -799,16 +805,16 @@
        "p": "Pancreatic Cancer Action is a small charity, set up by one of the 3% of people who survive the disease beyond five years. Its job is to make the symptoms known, because this cancer is almost always diagnosed too late. Its entire marketing budget was £78,000. It spent £15,000 on a press ad in which three real patients said they wished they had a more survivable form of the disease, and £63,000 on posters in 25 London Underground stations that set out the symptoms."
       },
       {
-       "p": "A paper with that little behind it could have kept quiet about what it lacked. This one says it near the top, under a heading that calls it a disclaimer. “This is not a typical IPA entry paper - we don't have an econometric model or reams of data”, it says."
+       "p": "A paper with that little behind it could have kept quiet about what it lacked. This one says it near the top, under a heading that calls it a disclaimer. “This is not a typical IPA entry paper - we don't have an econometric model or reams of data to demonstrate that our campaign (and not the media budget) was responsible for the effect.”"
       },
       {
-       "p": "Then it gets on with what it can show. A survey found that 27% of UK adults recognised the campaign. Of those who did, 43% said they knew more about the symptoms than 6 months before, against 16% of people who didn't remember seeing it. The paper asks whether anything else could have caused that, and names a television storyline and the death of a well-known actor in the weeks before."
+       "p": "Then it sets out what it can show. A survey found that 27% of UK adults recognised the campaign. Of those who did, 43% said they knew more about the symptoms than 6 months before, against 16% of people who didn't remember seeing it. The paper asks whether anything else could have caused that, names a television storyline and the death of a well-known actor in the weeks before, and answers in a sentence."
       },
       {
-       "p": "To put a value on the result, it builds what it calls an assumptive model from the published results of earlier cancer campaigns. Two things in the working stand out. It takes one of those earlier figures out, because the figure looked like an outlier and leaving it in might have biased the result in the paper's favour. And before it states its return, it divides its own worst case by 2."
+       "p": "Its return is a projection, and the paper calls it one. It builds what it calls an assumptive model from the published results of earlier cancer campaigns, and it says \"let's assume\" twice in the working. It takes one of the earlier figures out, because the figure looked like an outlier and leaving it in might have biased the result in the paper's favour. Its top figure is a return of 10,243%. It ends on a floor, which is its own worst case divided by 2."
       },
       {
-       "p": "It won Gold. I can't tell you the disclaimer is why. What I can say is that the paper never asks you to take its word for anything, and that is the habit this chapter is about."
+       "p": "It won Gold. I can't tell you the disclaimer is why, and this is not a paper that proves its return. What it does is label its guesses as guesses, so you can see which of its numbers were counted and which were assumed. A paper with £78,000 and no model can still do that."
       }
      ]
     },
@@ -864,7 +870,7 @@
   },
   {
    "k": "Quotes and cases",
-   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. Seven cases are told in full. Each was read from the paper itself, and every figure in a telling comes from a sentence in that paper. They were chosen to show the point of their chapter and to be a mix: two sell to businesses, four state a small budget, and two led with television. The archive is mostly consumer brands: the agents filed 5 of its 389 papers as business-to-business. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. No author or judge is named."
+   "t": "Every quotation in this report was checked word for word against the paper it comes from. Dashes inside a quotation are shown as hyphens. Seven cases are told in full. Each was read from the paper itself, and every figure in a telling comes from a sentence in that paper. They were chosen to show the point of their chapter and to be a mix: two sell to businesses, four spent under a million a year with the figure in the paper, and two led with television advertising. The archive is mostly consumer brands: the agents filed 5 of its 389 papers as business-to-business. The Irish papers are public and linked. The others are published award papers, named by brand, award, prize and year. No author or judge is named."
   },
   {
    "k": "Rounding",
