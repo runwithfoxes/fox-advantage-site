@@ -48,6 +48,11 @@ export default async function NotesPage() {
             <p className="essay-index-intro">{NOTES.intro}</p>
           </div>
 
+          {/* nothing published yet: say so, so the nav never lands on a bare page */}
+          {all.length === 0 ? (
+            <p className="essay-index-intro">The first piece is on its way.</p>
+          ) : null}
+
           {full.map((d) => (
             <article key={d.slug} id={d.slug} className="diary-entry">
               <div className="essay-header">

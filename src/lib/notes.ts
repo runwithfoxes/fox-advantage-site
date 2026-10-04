@@ -7,7 +7,7 @@ import html from "remark-html";
 /**
  * SAM'S SHORT RESEARCH PIECES. A copy of diary.ts with its own folder, made 4 Oct 2026, so Lena's
  * live section is not touched by anything done here. Drop a markdown file into
- * src/content/research-notes and it appears on the list page, its own page and the sitemap.
+ * src/content/research-nuggets and it appears on the list page, its own page and the sitemap.
  *
  * FRONTMATTER: title, date (YYYY-MM-DD), dek (one line under the title, and the meta description),
  * order (optional, for two pieces on one day), hold (optional, see below).
@@ -16,14 +16,14 @@ import html from "remark-html";
  * a preview with that line above it, and is left out of every list, page and sitemap on the
  * production build. Taking the hold line out is the act of publishing.
  *
- * OWED BEFORE ANYTHING HERE GOES LIVE: a publish script like publish_dispatch.py that runs the
- * gates and strips private notes. The first piece was copied in by hand for a preview only.
+ * Pieces arrive through ~/paul-hub/scripts/publish_nugget.py (Sam's), which runs the gates and
+ * strips the private notes. Never copy a draft in by hand.
  */
 
 /* true only on the live site's own build */
 const LIVE = process.env.VERCEL_ENV === "production";
 
-const notesDirectory = path.join(process.cwd(), "src/content/research-notes");
+const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 export interface Note {
   slug: string;

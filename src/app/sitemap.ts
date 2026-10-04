@@ -44,7 +44,7 @@ const PUBLIC_ROUTES = [
   "/course",
   "/course/everything", // the library: public, and it was missing (Cato, 30 Sep and 1 Oct)
   "/diary",
-  "/research-notes",
+  "/research-nuggets",
   "/essays",
   "/distinctive",
   "/experts",
@@ -84,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const reports = REPORTS.filter((r) => r.status === "published").map(reportHref);
 
   /* and Sam's short research pieces */
-  const notes = getAllNotes().map((n) => `/research-notes/${n.slug}`);
+  const notes = getAllNotes().map((n) => `/research-nuggets/${n.slug}`);
 
   const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...notes, ...reports];
 
