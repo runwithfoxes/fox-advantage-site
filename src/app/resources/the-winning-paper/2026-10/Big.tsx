@@ -19,7 +19,7 @@ import b from "./big.module.css";
  * saying what it is. Nothing here fills a slot by rule.
  */
 
-export type Pic = { file: string; size: number[]; label: string; fit?: string; pos?: string };
+export type Pic = { brand?: string; file: string; size: number[]; label: string; fit?: string; pos?: string };
 export type Tone = "navy" | "sky" | "orange" | "white";
 
 const BASE = "/resources/the-winning-paper/2026-10/cases/";
@@ -76,11 +76,19 @@ export function PullBand({ text, tone, pic, flip }: { text: string; tone: Tone; 
 /** One ad in the reading column at the column's full width, the way an essay carries its picture
  *  (Paul, 4 Oct: "can they fit as big square in content of page like I do essays sometimes"). It
  *  needs a file about 1,200 wide, not one that can fill a window, so far more of the real ads qualify. */
-export function ColumnArt({ pic, eager }: { pic: Pic; eager?: boolean }) {
+export function ColumnArt({ pic, eager, where }: { pic: Pic; eager?: boolean; where?: { n: string; href: string } }) {
   return (
     <figure className={b.colArt}>
       <img src={BASE + pic.file} alt={pic.label} width={pic.size[0]} height={pic.size[1]} loading={eager ? "eager" : "lazy"} />
-      <figcaption>{pic.label}</figcaption>
+      <figcaption>
+        {pic.label}
+        {where ? (
+          <>
+            {" · "}
+            <a href={where.href}>quoted in {where.n}</a>
+          </>
+        ) : null}
+      </figcaption>
     </figure>
   );
 }

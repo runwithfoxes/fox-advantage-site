@@ -15,7 +15,8 @@
     1344,
     1900
    ],
-   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999"
+   "label": "Boddingtons, The Cream of Manchester, press ad, 1991 to 1999",
+   "brand": "Boddingtons"
   },
   "2": {
    "file": "art-ibm-smarter-planet.jpg",
@@ -23,7 +24,8 @@
     1796,
     773
    ],
-   "label": "IBM, Smarter Planet, three press ads, 2010"
+   "label": "IBM, Smarter Planet, three press ads, 2010",
+   "brand": "IBM"
   },
   "3": {
    "file": "directline.jpg",
@@ -31,7 +33,8 @@
     1440,
     615
    ],
-   "label": "Direct Line, the Fixer, TV film, 2014"
+   "label": "Direct Line, the Fixer, TV film, 2014",
+   "brand": "Direct Line"
   },
   "5": {
    "file": "art-lidl-billboard.jpg",
@@ -39,15 +42,17 @@
     1024,
     998
    ],
-   "label": "Lidl, Deluxe mince pies, billboard, 2018"
+   "label": "Lidl, Deluxe mince pies, billboard, 2018",
+   "brand": "Lidl"
   },
   "7": {
-   "file": "art-honda-grrr.jpg",
+   "file": "art-pancreatic-cancer-action.jpg",
    "size": [
-    1220,
-    672
+    1005,
+    615
    ],
-   "label": "Honda, Grrr, TV film, 2004"
+   "label": "Pancreatic Cancer Action, I wish I had breast cancer, press ad, 2014",
+   "brand": "Pancreatic Cancer Action"
   }
  },
  "pulls": {},

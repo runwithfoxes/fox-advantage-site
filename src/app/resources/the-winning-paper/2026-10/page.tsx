@@ -53,6 +53,7 @@ type Chapter = { id: string; n: number; title: string; lede: Block[]; subs: { n:
    that chapter's pull line. bands: by case key, a quoted case shown with its ad. plates: by
    sub-section number, one ad across the window before that sub-section opens. */
 const A = ART as unknown as { hero?: Pic | null; openers: Record<string, Pic>; pulls: Record<string, Pic>; bands: Record<string, Pic>; plates: Record<string, Pic> };
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 const TONES: Tone[] = ["navy", "sky", "orange"];
 function plan(chapters: Chapter[]) {
   const opener = new Map<number, Pic>();
@@ -66,6 +67,15 @@ function plan(chapters: Chapter[]) {
     }
   }
   return { opener, pull, band };
+}
+/* Where in a chapter a campaign is quoted or named, so the picture at the top of the chapter can
+   point to it (Paul, 4 Oct: "It's odd to talk about cases and not talk about them"). */
+function quotedIn(c: Chapter, brand?: string) {
+  if (!brand) return undefined;
+  const has = (bl: Block) => ("case" in bl && norm(bl.brand) === norm(brand)) || ("lines" in bl && bl.lines.some((l) => norm(l.brand) === norm(brand))) || ("named" in bl && bl.named.some((x) => norm(x.brand) === norm(brand)));
+  const s = c.subs.find((x) => x.blocks.some(has));
+  if (s) return { n: s.n, href: `#s${s.n.replace(".", "-")}` };
+  return c.lede.some(has) ? { n: "this chapter", href: `#${c.id}` } : undefined;
 }
 type Plan = ReturnType<typeof plan>;
 
@@ -251,7 +261,7 @@ export default function WinningPaper() {
             return (
               <section key={c.id} className={w.chap}>
                 <Opener id={c.id} n={c.n} title={c.title} label={doB?.label} doThis={doB?.do} pic={pl.opener.get(c.n)?.fit === "bleed" ? pl.opener.get(c.n) : undefined} tone={TONES[ci % 3]} />
-                {pl.opener.get(c.n) && pl.opener.get(c.n)?.fit !== "bleed" ? <ColumnArt pic={pl.opener.get(c.n) as Pic} eager={c.n === 1} /> : null}
+                {pl.opener.get(c.n) && pl.opener.get(c.n)?.fit !== "bleed" ? <ColumnArt pic={pl.opener.get(c.n) as Pic} eager={c.n === 1} where={quotedIn(c, pl.opener.get(c.n)?.brand)} /> : null}
                 {c.lede
                   .filter((b) => !("do" in b))
                   .map((b, i) => (

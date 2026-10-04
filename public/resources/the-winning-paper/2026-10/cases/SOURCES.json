@@ -279,22 +279,6 @@
    "added": "2026-10-04"
   },
   {
-   "id": "art-honda-grrr",
-   "brand": "Honda",
-   "file": "art-honda-grrr.jpg",
-   "size": [
-    1220,
-    672
-   ],
-   "label": "Honda, Grrr, TV film, 2004",
-   "source": "https://www.youtube.com/watch?v=lYtANGkdSxQ",
-   "fetched_from": "https://www.youtube.com/watch?v=lYtANGkdSxQ",
-   "page": null,
-   "crop": "a still cut from the public video of the ad",
-   "source_kind": "fan upload",
-   "added": "2026-10-04"
-  },
-  {
    "id": "art-ibm-smarter-planet",
    "brand": "IBM",
    "file": "art-ibm-smarter-planet.jpg",
@@ -325,8 +309,24 @@
    "crop": "the poster from the paper's gallery, cropped above the web address",
    "source_kind": "the public ADFX paper",
    "added": "2026-10-04"
+  },
+  {
+   "id": "art-pancreatic-cancer-action",
+   "brand": "Pancreatic Cancer Action",
+   "file": "art-pancreatic-cancer-action.jpg",
+   "size": [
+    1005,
+    615
+   ],
+   "label": "Pancreatic Cancer Action, I wish I had breast cancer, press ad, 2014",
+   "source": "https://advertising-health.com/shock-wish-breast-cancer-ads-save-nhs-3-1m/",
+   "fetched_from": "https://advertising-health.com/shock-wish-breast-cancer-ads-save-nhs-3-1m/",
+   "page": null,
+   "crop": "the press ad, whole",
+   "source_kind": "a trade press article dated February 2014, the month the ad ran",
+   "added": "2026-10-04"
   }
  ],
- "note_4_oct": "From 4 Oct the page shows only the pictures named in art.json beside page.tsx: one at the top and one at the top of a chapter, each from a campaign that chapter quotes. Paul, 4 Oct: \"be selective... Curate\" and \"The artwork should be there for impact not explanation\". The other files in this folder are no longer shown. Of the seven shown, two are from a fan upload or a private blog (Honda, Boddingtons) and Direct Line is a still from a public upload of the ad (source_kind); whether those are fine for the live page is still Paul's call.",
- "note_4_oct_range": "Paul, 4 Oct: \"We also need to be rounded and have b2b and small budget and not always TV.\" The seven are four press, poster or outdoor (Boddingtons, IBM, The Irish Times, Lidl) and three film stills (Guinness, Direct Line, Honda); IBM is the B2B case and The Irish Times the Irish one. No small-budget case is shown yet: the strongest public picture is Pancreatic Cancer Action 2014, which shows a named patient, and that is left for Paul to decide."
+ "note_4_oct": "From 4 Oct the page shows only the pictures named in art.json beside page.tsx: one at the top and one at the top of a chapter, each from a campaign that chapter quotes. Paul, 4 Oct: \"be selective... Curate\" and \"The artwork should be there for impact not explanation\". The other files in this folder are no longer shown. Of the seven shown, one is from a private blog (Boddingtons) and Direct Line is a still from a public upload of the ad (source_kind); whether those are fine for the live page is still Paul's call.",
+ "note_4_oct_range": "Paul, 4 Oct: \"We also need to be rounded and have b2b and small budget and not always TV.\" The seven are five press, poster or outdoor (Boddingtons, IBM, The Irish Times, Lidl, Pancreatic Cancer Action) and two film stills (Guinness, Direct Line). IBM is the B2B case, Pancreatic Cancer Action the small-budget one (its paper says it had no econometric model), The Irish Times the Irish one. Honda Grrr was in chapter 7 first and is kept in fox-ads dray/output/winning-paper-art/uk1 if Paul wants it back."
 }
