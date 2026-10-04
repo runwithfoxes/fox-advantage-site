@@ -19,22 +19,20 @@ First, it looked at the route people came in by. Collectors normally sign up thr
 
 Second, it set the results against where the ads ran. The radio was heavier in some regions than in others. The paper puts the radio weight in each of six regions beside the new recruits there. The more radio a region had, the more new recruits it had. One region is out of line: Wales and the West had more radio than Scotland or the North and fewer recruits.
 
-Third, it wrote down everything else that could explain the rise, and answered each one. There are six on its list. Here are four.
+Third, it wrote down everything else that could explain the rise, and answered each one. There are six on its list. Here are two.
 
-- The usual recruitment by local fundraisers hadn't changed.
-- The main appeal advertising ran in March, and collectors had to register by the end of February.
-- Of the three cancer charities' advertising in those two months, the two larger ones had 79% and 13%. Marie Curie had 8%.
+- The main appeal advertising ran in March, and collectors had to register by the end of February. So the bigger campaign couldn't have recruited them.
 - Compared with the March before, March 2010 was colder, less sunny and equally wet. So a fine month didn't bring the collectors out.
 
 That last answer came from the Met Office, and it was free.
 
-The paper is just as careful with what the campaign paid back. Collector numbers were on a rising trend anyway, about 758 a year, though they didn't rise every year. So it works the return out three ways: against the year before, against the average of the five years before, and against a trend line through those five years. The three answers are £2.75, £3.01 and £2.45 for every £1 spent, after the cost of the campaign is taken off. It uses the £2.45, the lowest, from there on.
+The paper is just as careful with what the campaign paid back. Collector numbers were on a rising trend anyway, though they didn't rise every year. So it works the return out three ways, each against a different base, and uses the lowest of the three from there on: £2.45 for every £1 spent, after the cost of the campaign is taken off.
 
 Read that figure with one thing in mind. It covers two years, and the second year is an assumption: the charity believes 46% of new collectors come back the next year. On the first year alone, by my own sum from the paper's figures, the return is about £1.39 for every £1.
 
 One limit. This is one paper, and I can't tell you which part of it the judges liked. It also won the prize for Best New Learning, and the paper's own section on what it learned is about asking people to collect, not about the proof. So the idea may have counted for as much as the rigour.
 
-You can read the IPA's summary of the paper, and buy the full paper, [on the IPA's site](https://ipa.co.uk/knowledge/case-studies/marie-curie-cancer-care-how-marie-curie-cancer-care-benefited-from-using-advertising-to-ask-people-to-collect-money-rather-than-simply-give-money).
+The paper holds a good deal more than this: the other four causes, the media plan, the charts and the full working of the return. It is worth reading in full. You can read the IPA's summary, and buy the paper, [on the IPA's site](https://ipa.co.uk/knowledge/case-studies/marie-curie-cancer-care-how-marie-curie-cancer-care-benefited-from-using-advertising-to-ask-people-to-collect-money-rather-than-simply-give-money).
 
 Here is what to take from it before your next campaign.
 
