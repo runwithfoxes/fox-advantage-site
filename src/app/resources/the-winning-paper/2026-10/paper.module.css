@@ -107,27 +107,30 @@
 .doLab { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #F47521; margin-bottom: 6px; }
 
 /* a public case: its campaign picture, its own words, why it is here */
-.caseCard { margin: 22px 0 24px; background: #fff; border: 1px solid #E0E0DC; border-radius: 12px; overflow: hidden; display: grid; break-inside: avoid; box-shadow: 0 10px 24px -18px rgba(26,58,78,.45); }
+/* A quoted case: an inverted comma, the paper's words, who wrote it. No box (Paul, 4 Oct: "they could
+   be like those inverted commas you see for quotes... I've just seen boxes everywhere"). */
+.caseCard { position: relative; margin: 26px 0 28px; padding-left: 44px; break-inside: avoid; }
+.caseCard::before { content: "\201C"; position: absolute; left: 0; top: -14px; font-family: 'Source Serif 4', Georgia, serif; font-size: 76px; line-height: 1; color: #F47521; }
 /* the picture keeps its own shape and is never cropped: it sits beside the words, a wide one in a
    wider column than a tall one */
 .caseWide { grid-template-columns: 300px minmax(0, 1fr); align-items: center; }
 .caseTall { grid-template-columns: 180px minmax(0, 1fr); align-items: center; }
 .casePic { display: block; align-self: stretch; background: #F4F4F0; display: flex; align-items: center; }
 .casePic img { display: block; width: 100%; height: auto; }
-.caseBody { padding: 18px 22px 18px; display: flex; flex-direction: column; gap: 10px; }
-.caseWords { border-left: 6px solid #3A7CA5; }
+.caseBody { padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.caseWords { border-left: 0; }
 .caseTag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
-.caseTag b { font-family: var(--sans); font-weight: 500; font-size: 16px; color: #1D1B1B; }
+.caseTag b { font-family: var(--sans); font-weight: 500; font-size: 14px; color: #1D1B1B; }
 .caseTag em { font-style: normal; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; }
-.caseQuote { margin: 0; padding: 0 0 0 18px; border-left: 4px solid #F47521; font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; line-height: 1.36; color: #1A3A4E; }
-.caseWhy { display: flex; flex-direction: column; gap: 6px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.6; color: #4a4a46; }
+.caseQuote { margin: 0; padding: 0; border: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; line-height: 1.42; color: #1D1B1B; }
+.caseWhy { display: flex; flex-direction: column; gap: 4px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.6; color: #62625d; }
 .caseLink { font-family: var(--mono); font-size: 11px; color: #3A7CA5; text-decoration: none; white-space: nowrap; }
 .caseLink:hover { text-decoration: underline; }
 
 /* named cases worth reading */
-.named { margin: 24px 0 8px; border: 1px solid #1A3A4E; border-radius: 12px; overflow: hidden; background: #fff; }
-.namedHead { display: block; padding: 10px 20px; background: #1A3A4E; color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
-.named ul { list-style: none; margin: 0; padding: 0 20px; }
+.named { margin: 26px 0 14px; border-top: 1px solid #1D1B1B; }
+.namedHead { display: block; padding: 12px 0 2px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #3A7CA5; }
+.named ul { list-style: none; margin: 0; padding: 0; }
 .named li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 4px 18px; padding: 13px 0; border-bottom: 1px solid #EDEDE9; }
 .named li:last-child { border-bottom: 0; }
 .namedWho b { display: block; font-family: var(--sans); font-weight: 500; font-size: 15.5px; color: #1D1B1B; }
@@ -188,10 +191,10 @@
   .doThis { font-size: 16px; padding: 14px 16px 16px 16px; }
   .caseWide { grid-template-columns: minmax(0, 1fr); }
   .caseTall { grid-template-columns: 120px minmax(0, 1fr); align-items: start; }
-  .caseBody { padding: 14px 14px 16px; }
-  .caseQuote { font-size: 17px; padding-left: 12px; }
+  .caseCard { padding-left: 30px; }
+  .caseCard::before { font-size: 56px; top: -10px; }
+  .caseQuote { font-size: 18px; }
   .named li { grid-template-columns: 1fr; }
-  .named ul { padding: 0 14px; }
   .gRow { grid-template-columns: minmax(0, 1fr) 56px; gap: 6px 10px; padding: 10px 6px; }
   .gRow .lab { grid-column: 1 / -1; }
   .gAxis > span:first-child { display: none; }

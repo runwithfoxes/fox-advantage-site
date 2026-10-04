@@ -86,6 +86,259 @@
 .caseWhy { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; max-width: 32em; }
 .caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
 
+/* ── lines quoted from the papers: a plain list in the column, no boxes ── */
+.quotes { list-style: none; margin: 26px 0 30px; padding: 0; border-top: 1px solid #E0E0DC; }
+.quotes li { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 6px 28px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid #E0E0DC; }
+.quotes q { quotes: "\201C" "\201D"; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.5; color: #1D1B1B; }
+.quotes span { display: flex; flex-direction: column; gap: 2px; }
+.quotes b { font-family: var(--sans); font-weight: 500; font-size: 13.5px; }
+.quotes em { font-style: normal; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; }
+
+@media (max-width: 1100px) { .bleed { margin-left: -58px; } }
+@media (max-width: 700px) { .bleed { margin-left: -26px; margin-top: 32px; margin-bottom: 32px; } }
+
+/* Paul, 4 Oct: "I don't want big block colours if they make this feel off brand for me... I wanted
+   big images from ads that make this feel big and iconic." So the three tones no longer paint a
+   band. Every band is the page's own paper with ink type and one orange accent, and the only thing
+   that runs edge to edge is the ad. The class names stay so the page's code does not change. */
+.navy, .sky, .orange, .white { background: transparent; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; }
+
+.kick { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+/* a picture and the line that says what it is */
+.pic { position: relative; display: block; background: #EFEDE6; min-height: 100%; }
+.pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.picCap { position: absolute; left: 0; bottom: 0; padding: 6px 12px; background: rgba(15,37,48,.82); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; }
+
+/* ── a chapter opens the way the report does: one picture edge to edge, the page's own dark veil,
+   the chapter's name in white over it. Paul, 4 Oct: "The artwork should be there for impact not
+   explanation, in same way we use our images and video for top of the AI ask research docs." With
+   no picture set, the chapter opens on the paper with a rule above it. ── */
+.opener { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: min(84vh, 800px); margin-top: 80px; overflow: hidden; background: #101a28; color: #fff; --soft: rgba(255,255,255,.78); --rule: rgba(255,255,255,.2); scroll-margin-top: 0; }
+.opener .pic { position: absolute; inset: 0; min-height: 0; background: #101a28; }
+.opener .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opener .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(8,16,24,0) 30%, rgba(8,16,24,.5) 62%, rgba(8,16,24,.86) 100%), linear-gradient(100deg, rgba(8,16,24,.55) 0%, rgba(8,16,24,.2) 42%, rgba(8,16,24,0) 66%); }
+.opener .picCap { left: auto; right: 0; bottom: 0; z-index: 2; background: none; color: rgba(255,255,255,.6); font-size: 10px; padding: 10px 16px; }
+.openerWords { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 60px; }
+.openerN { display: none; }
+.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(42px, 6vw, 92px); line-height: 1; letter-spacing: -.03em; margin: 0; max-width: 12em; }
+.openerDo { position: relative; margin: 8px 0 0; padding-top: 18px; border-top: 2px solid #F47521; font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 36em; }
+.openerDo span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+/* with the picture in the column, the opener stays in the column too, so the rail keeps its place */
+.openerBare { width: auto; margin-left: 0; min-height: 0; overflow: visible; background: transparent; color: #1D1B1B; --soft: #3A7CA5; border-top: 1px solid #1D1B1B; }
+.openerBare .openerWords { padding: 44px 0 0; }
+.openerBare .openerTitle { font-size: clamp(38px, 4.4vw, 64px); }
+
+/* ── one line, very large ── */
+.pull:not(.pullPic) { width: auto; margin-left: 0; padding: 34px 0 36px; border-top: 1px solid #1D1B1B; border-bottom: 1px solid #1D1B1B; }
+.pull:not(.pullPic) .pullText { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.08; max-width: none; }
+.pull { padding: 72px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.pullText { margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.03em; max-width: 15em; }
+.pullText span { display: block; }
+.pullTurn { color: var(--accent); }
+
+/* one line beside an ad from the chapter */
+.pullPic { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); padding: 0; min-height: min(72vh, 680px); }
+.pullPic .pic img { position: absolute; inset: 0; }
+.pullPic .picWhole img { object-fit: contain; }
+.pullPic .pullText { align-self: center; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; font-size: clamp(30px, 3.5vw, 56px); line-height: 1.08; max-width: none; }
+.pullPic.flip .pullText { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+
+/* ── one ad in the reading column, as an essay carries its picture ── */
+.colArt { margin: 30px 0 34px; }
+.colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
+.colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
+
+/* ── one ad on its own, across the whole window ── */
+.plate { margin-top: 64px; margin-bottom: 56px; }
+.plate img { display: block; width: 100%; height: min(86vh, 860px); object-fit: cover; }
+.plateWhole { background: #EFEDE6; }
+.plateWhole img { object-fit: contain; height: auto; max-height: min(92vh, 940px); margin: 0 auto; }
+.plate figcaption { padding: 10px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 0; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: #62625d; }
+
+/* ── a quoted case with its campaign ── */
+.caseBand { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
+.caseBand .pic img { object-fit: contain; height: auto; max-height: 720px; }
+.caseBand .pic { display: flex; align-items: center; justify-content: center; }
+.caseTall { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.caseTall .pic img { width: auto; max-width: 100%; max-height: 560px; }
+.flip .pic { order: 2; }
+.caseWords { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; }
+.flip .caseWords { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.caseWho { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.caseWho b { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -.01em; }
+.caseWho em { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.caseQuote { margin: 0; padding-left: 20px; border-left: 4px solid var(--accent); font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.3; }
+.caseWhy { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; max-width: 32em; }
+.caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
+
+@media (max-width: 1100px) { .bleed { margin-left: -58px; } }
+@media (max-width: 700px) { .bleed { margin-left: -26px; margin-top: 32px; margin-bottom: 32px; } }
+
+/* Paul, 4 Oct: "I don't want big block colours if they make this feel off brand for me... I wanted
+   big images from ads that make this feel big and iconic." So the three tones no longer paint a
+   band. Every band is the page's own paper with ink type and one orange accent, and the only thing
+   that runs edge to edge is the ad. The class names stay so the page's code does not change. */
+.navy, .sky, .orange, .white { background: transparent; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; }
+
+.kick { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+/* a picture and the line that says what it is */
+.pic { position: relative; display: block; background: #EFEDE6; min-height: 100%; }
+.pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.picCap { position: absolute; left: 0; bottom: 0; padding: 6px 12px; background: rgba(15,37,48,.82); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; }
+
+/* ── a chapter opens the way the report does: one picture edge to edge, the page's own dark veil,
+   the chapter's name in white over it. Paul, 4 Oct: "The artwork should be there for impact not
+   explanation, in same way we use our images and video for top of the AI ask research docs." With
+   no picture set, the chapter opens on the paper with a rule above it. ── */
+.opener { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: min(84vh, 800px); margin-top: 80px; overflow: hidden; background: #101a28; color: #fff; --soft: rgba(255,255,255,.78); --rule: rgba(255,255,255,.2); scroll-margin-top: 0; }
+.opener .pic { position: absolute; inset: 0; min-height: 0; background: #101a28; }
+.opener .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opener .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(8,16,24,0) 30%, rgba(8,16,24,.5) 62%, rgba(8,16,24,.86) 100%), linear-gradient(100deg, rgba(8,16,24,.55) 0%, rgba(8,16,24,.2) 42%, rgba(8,16,24,0) 66%); }
+.opener .picCap { left: auto; right: 0; bottom: 0; z-index: 2; background: none; color: rgba(255,255,255,.6); font-size: 10px; padding: 10px 16px; }
+.openerWords { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 60px; }
+.openerN { display: none; }
+.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(42px, 6vw, 92px); line-height: 1; letter-spacing: -.03em; margin: 0; max-width: 12em; }
+.openerDo { position: relative; margin: 8px 0 0; padding-top: 18px; border-top: 2px solid #F47521; font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 36em; }
+.openerDo span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+/* with the picture in the column, the opener stays in the column too, so the rail keeps its place */
+.openerBare { width: auto; margin-left: 0; min-height: 0; overflow: visible; background: transparent; color: #1D1B1B; --soft: #3A7CA5; border-top: 1px solid #1D1B1B; }
+.openerBare .openerWords { padding: 44px 0 0; }
+.openerBare .openerTitle { font-size: clamp(38px, 4.4vw, 64px); }
+
+/* ── one line, very large ── */
+.pull:not(.pullPic) { width: auto; margin-left: 0; padding: 34px 0 36px; border-top: 1px solid #1D1B1B; border-bottom: 1px solid #1D1B1B; }
+.pull:not(.pullPic) .pullText { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.08; max-width: none; }
+.pull { padding: 72px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.pullText { margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.03em; max-width: 15em; }
+.pullText span { display: block; }
+.pullTurn { color: var(--accent); }
+
+/* one line beside an ad from the chapter */
+.pullPic { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); padding: 0; min-height: min(72vh, 680px); }
+.pullPic .pic img { position: absolute; inset: 0; }
+.pullPic .picWhole img { object-fit: contain; }
+.pullPic .pullText { align-self: center; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; font-size: clamp(30px, 3.5vw, 56px); line-height: 1.08; max-width: none; }
+.pullPic.flip .pullText { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+
+/* ── one ad in the reading column, as an essay carries its picture ── */
+.colArt { margin: 30px 0 34px; }
+.colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
+.colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
+
+/* ── one ad on its own, across the whole window ── */
+.plate { margin-top: 64px; margin-bottom: 56px; }
+.plate img { display: block; width: 100%; height: min(86vh, 860px); object-fit: cover; }
+.plateWhole { background: #EFEDE6; }
+.plateWhole img { object-fit: contain; height: auto; max-height: min(92vh, 940px); margin: 0 auto; }
+.plate figcaption { padding: 10px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 0; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: #62625d; }
+
+/* ── a quoted case with its campaign ── */
+.caseBand { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
+.caseBand .pic img { object-fit: contain; height: auto; max-height: 720px; }
+.caseBand .pic { display: flex; align-items: center; justify-content: center; }
+.caseTall { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.caseTall .pic img { width: auto; max-width: 100%; max-height: 560px; }
+.flip .pic { order: 2; }
+.caseWords { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; }
+.flip .caseWords { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.caseWho { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.caseWho b { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -.01em; }
+.caseWho em { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.caseQuote { margin: 0; padding-left: 20px; border-left: 4px solid var(--accent); font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.3; }
+.caseWhy { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; max-width: 32em; }
+.caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
+
+/* ── lines quoted from the papers: a plain list in the column, no boxes ── */
+.quotes { list-style: none; margin: 26px 0 30px; padding: 0; border-top: 1px solid #E0E0DC; }
+.quotes li { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 6px 28px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid #E0E0DC; }
+.quotes q { quotes: "\201C" "\201D"; font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; line-height: 1.5; color: #1D1B1B; }
+.quotes span { display: flex; flex-direction: column; gap: 2px; }
+.quotes b { font-family: var(--sans); font-weight: 500; font-size: 13.5px; }
+.quotes em { font-style: normal; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: #3A7CA5; }
+
+@media (max-width: 1100px) { .bleed { margin-left: -58px; } }
+@media (max-width: 700px) { .bleed { margin-left: -26px; margin-top: 32px; margin-bottom: 32px; } }
+
+/* Paul, 4 Oct: "I don't want big block colours if they make this feel off brand for me... I wanted
+   big images from ads that make this feel big and iconic." So the three tones no longer paint a
+   band. Every band is the page's own paper with ink type and one orange accent, and the only thing
+   that runs edge to edge is the ad. The class names stay so the page's code does not change. */
+.navy, .sky, .orange, .white { background: transparent; color: #1D1B1B; --accent: #F47521; --soft: #3A7CA5; --rule: #E0E0DC; }
+
+.kick { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+/* a picture and the line that says what it is */
+.pic { position: relative; display: block; background: #EFEDE6; min-height: 100%; }
+.pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.picCap { position: absolute; left: 0; bottom: 0; padding: 6px 12px; background: rgba(15,37,48,.82); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; }
+
+/* ── a chapter opens the way the report does: one picture edge to edge, the page's own dark veil,
+   the chapter's name in white over it. Paul, 4 Oct: "The artwork should be there for impact not
+   explanation, in same way we use our images and video for top of the AI ask research docs." With
+   no picture set, the chapter opens on the paper with a rule above it. ── */
+.opener { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: min(84vh, 800px); margin-top: 80px; overflow: hidden; background: #101a28; color: #fff; --soft: rgba(255,255,255,.78); --rule: rgba(255,255,255,.2); scroll-margin-top: 0; }
+.opener .pic { position: absolute; inset: 0; min-height: 0; background: #101a28; }
+.opener .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.opener .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(8,16,24,0) 30%, rgba(8,16,24,.5) 62%, rgba(8,16,24,.86) 100%), linear-gradient(100deg, rgba(8,16,24,.55) 0%, rgba(8,16,24,.2) 42%, rgba(8,16,24,0) 66%); }
+.opener .picCap { left: auto; right: 0; bottom: 0; z-index: 2; background: none; color: rgba(255,255,255,.6); font-size: 10px; padding: 10px 16px; }
+.openerWords { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 60px; }
+.openerN { display: none; }
+.openerTitle { position: relative; font-family: var(--sans); font-weight: 500; font-size: clamp(42px, 6vw, 92px); line-height: 1; letter-spacing: -.03em; margin: 0; max-width: 12em; }
+.openerDo { position: relative; margin: 8px 0 0; padding-top: 18px; border-top: 2px solid #F47521; font-family: var(--sans); font-size: 19px; line-height: 1.45; max-width: 36em; }
+.openerDo span { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin-bottom: 6px; }
+/* with the picture in the column, the opener stays in the column too, so the rail keeps its place */
+.openerBare { width: auto; margin-left: 0; min-height: 0; overflow: visible; background: transparent; color: #1D1B1B; --soft: #3A7CA5; border-top: 1px solid #1D1B1B; }
+.openerBare .openerWords { padding: 44px 0 0; }
+.openerBare .openerTitle { font-size: clamp(38px, 4.4vw, 64px); }
+
+/* ── one line, very large ── */
+.pull:not(.pullPic) { width: auto; margin-left: 0; padding: 34px 0 36px; border-top: 1px solid #1D1B1B; border-bottom: 1px solid #1D1B1B; }
+.pull:not(.pullPic) .pullText { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.08; max-width: none; }
+.pull { padding: 72px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.pullText { margin: 0; font-family: var(--sans); font-weight: 500; font-size: clamp(34px, 5.4vw, 80px); line-height: 1.04; letter-spacing: -.03em; max-width: 15em; }
+.pullText span { display: block; }
+.pullTurn { color: var(--accent); }
+
+/* one line beside an ad from the chapter */
+.pullPic { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); padding: 0; min-height: min(72vh, 680px); }
+.pullPic .pic img { position: absolute; inset: 0; }
+.pullPic .picWhole img { object-fit: contain; }
+.pullPic .pullText { align-self: center; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; font-size: clamp(30px, 3.5vw, 56px); line-height: 1.08; max-width: none; }
+.pullPic.flip .pullText { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+
+/* ── one ad in the reading column, as an essay carries its picture ── */
+.colArt { margin: 30px 0 34px; }
+.colArt img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.colArt figcaption a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid currentColor; }
+.colArt figcaption { margin-top: 9px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; color: #8A8A85; }
+
+/* ── one ad on its own, across the whole window ── */
+.plate { margin-top: 64px; margin-bottom: 56px; }
+.plate img { display: block; width: 100%; height: min(86vh, 860px); object-fit: cover; }
+.plateWhole { background: #EFEDE6; }
+.plateWhole img { object-fit: contain; height: auto; max-height: min(92vh, 940px); margin: 0 auto; }
+.plate figcaption { padding: 10px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 0; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: #62625d; }
+
+/* ── a quoted case with its campaign ── */
+.caseBand { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + 334px)); }
+.caseBand .pic img { object-fit: contain; height: auto; max-height: 720px; }
+.caseBand .pic { display: flex; align-items: center; justify-content: center; }
+.caseTall { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.caseTall .pic img { width: auto; max-width: 100%; max-height: 560px; }
+.flip .pic { order: 2; }
+.caseWords { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)) 56px 56px; }
+.flip .caseWords { padding: 56px 56px 56px max(58px, calc((100vw - var(--wrap)) / 2 + 58px)); }
+.caseWho { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.caseWho b { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -.01em; }
+.caseWho em { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.caseQuote { margin: 0; padding-left: 20px; border-left: 4px solid var(--accent); font-family: 'Source Serif 4', Georgia, serif; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.3; }
+.caseWhy { font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.6; max-width: 32em; }
+.caseWhy a { font-family: var(--mono); font-size: 11.5px; color: inherit; white-space: nowrap; }
+
 /* ── a wall of lines ── */
 /* the wall runs wide, so it paints the page's own paper over the rail */
 .wall { background: var(--bg, #FAFAF8); }
@@ -106,7 +359,6 @@
 
 @media (max-width: 1100px) {
   .caseBand { margin-left: -58px; }
-  .wallIn { columns: 2; }
 }
 @media (max-width: 700px) {
   .caseBand { margin-left: -26px; }
@@ -118,6 +370,8 @@
   .opener .picCap { right: auto; left: 0; top: 0; bottom: auto; padding: 10px 26px; }
   .openerDo { font-size: 17px; }
   .pull { padding: 52px 26px; }
+  .quotes li { grid-template-columns: minmax(0, 1fr); padding: 14px 0; }
+  .quotes span { flex-direction: row; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
   .pullPic { grid-template-columns: minmax(0, 1fr); padding: 0; min-height: 0; }
   .pullPic .pic { aspect-ratio: 4 / 3; min-height: 0; }
   .pullPic.flip .pic { order: 0; }
@@ -130,9 +384,4 @@
   .flip .pic { order: 0; }
   .caseBand .pic img { max-height: 420px; }
   .caseWords, .flip .caseWords { padding: 28px 26px 34px; gap: 14px; }
-  .wall { padding: 36px 26px; }
-  .wallIn, .wallFew .wallIn { columns: 1; }
-  .tile { padding: 22px 20px 18px; }
-  .tBig blockquote { font-size: 30px; }
-  .tMid blockquote { font-size: 22px; }
 }

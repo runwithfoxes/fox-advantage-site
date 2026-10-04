@@ -128,24 +128,22 @@ export function CaseBand({ pic, brand, award, quote, why, href, link, tone, flip
   );
 }
 
-/** A wall of lines from the papers, as plain cards. No pictures here: the ads have their own places. */
-export function Wall({ items, tone }: { items: { key: string; q: string; brand: string; award: string }[]; tone: Tone }) {
+/** Lines quoted from the papers, as a plain list in the reading column: the line, then who wrote it.
+ *  Paul, 4 Oct, on these as a wall of big cards: "where's the restraint that we get when we look at
+ *  the beginning of the report?... we've just chucked a load of big boxes everywhere". So no boxes,
+ *  no big type, no full width. It reads as part of the text. */
+export function Wall({ items }: { items: { key: string; q: string; brand: string; award: string }[]; tone?: Tone }) {
   return (
-    <section className={`${b.bleed} ${b.wall} ${b[tone]} ${items.length <= 4 ? b.wallFew : ""}`}>
-      <div className={b.wallIn}>
-        {items.map((it) => {
-          const size = it.q.length < 48 ? b.tBig : it.q.length < 110 ? b.tMid : b.tSmall;
-          return (
-            <figure key={it.key} className={`${b.tile} ${b.t_white} ${size}`}>
-              <blockquote>{it.q}</blockquote>
-              <figcaption>
-                <b>{it.brand}</b>
-                <em>{it.award}</em>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </div>
-    </section>
+    <ul className={b.quotes}>
+      {items.map((it) => (
+        <li key={it.key}>
+          <q>{it.q}</q>
+          <span>
+            <b>{it.brand}</b>
+            <em>{it.award}</em>
+          </span>
+        </li>
+      ))}
+    </ul>
   );
 }
