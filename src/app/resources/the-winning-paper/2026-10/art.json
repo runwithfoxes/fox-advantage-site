@@ -1,13 +1,5 @@
 {
- "hero": {
-  "file": "art-guinness-sapeurs.jpg",
-  "size": [
-   1280,
-   720
-  ],
-  "label": "Guinness, Sapeurs, TV film, 2014",
-  "pos": "72% 30%"
- },
+ "hero": null,
  "openers": {
   "1": {
    "file": "art-boddingtons-cone.jpg",
