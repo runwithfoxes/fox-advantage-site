@@ -1,8 +1,8 @@
 /* /diary, 5 Oct 2026. Paul: "your page could have a big visual image for full page. The two ways I work with agents
    essay from me is the style I had in mind but a full width of page like our AI ask report or homepage... At top of
    diary page only. Once off. But wondering if we need a rail on left for this page as it grows?" */
-.hero { padding: 0; margin: 72px 0 0; background: #FCF6EC; border-bottom: 1px solid var(--border); }
-.hero img { display: block; margin: 0 !important; max-width: none; border-radius: 0; width: 100%; height: min(72vh, 46vw); object-fit: cover; object-position: center 40%; }
+.hero { padding: 0; margin: 72px 0 0; background: #FBF6EE; border-bottom: 1px solid var(--border); }
+.hero img { display: block; margin: 0 !important; max-width: none; border-radius: 0; width: 100%; height: min(72vh, 46vw); object-fit: cover; object-position: center 55%; }
 .main { padding-top: 72px !important; }
 
 /* the rail: every dispatch by month, newest first. It sits in the left margin and stays in view. */
@@ -25,6 +25,6 @@
   .rail { display: none; }
   .jump { display: block; }
   .hero { margin-top: 64px; }
-  .hero img { height: 56vw; }
+  .hero img { height: auto; }   /* the whole drawing, uncropped, so no label is cut on a phone */
   .main { padding-top: 48px !important; }
 }

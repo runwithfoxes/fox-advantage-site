@@ -76,7 +76,7 @@ export default async function DiaryPage() {
       {/* Paul, 5 Oct: one big picture, at the top of the diary page only. */}
       <section className={dp.hero}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/diary/hero-stand-in.jpg" alt="The fox at a laptop, pegging pages on a line" />
+        <img src="/diary/hero.jpg" alt="The fox at a desk writing in a big diary, day 40, while four small figures wait to tell him what broke" />
       </section>
 
       <main className={`essay-main ${dp.main}`}>
