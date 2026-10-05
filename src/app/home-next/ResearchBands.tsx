@@ -11,7 +11,7 @@ import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
 import { formatDay } from "../resources/library";
 import { Chart, FigureWindow, DownloadPdf, Example, Sparkline } from "../resources/kit";
-import { MODULES } from "../course/courseModules";
+import { MODULES, isLive } from "../course/courseModules";
 import { librarySummary } from "../resources/library/summary";
 import AccessForm from "../resources/kit/AccessForm";
 import L from "../resources/library/library.module.css";
@@ -42,7 +42,7 @@ import n from "./next.module.css";
  * Band 3, the course and the library, together and big. Paul, 26 Sep, on bands 1 and 2: "the
  * training course should be more prominent. And where would people find the library, for
  * example? I think they're all important parts." The course is his 25 Sep your_course window
- * (six modules, module 1 open, the sign-up); the library is its shelf on a deep band, counted
+ * (six modules, the open ones said by number, the sign-up); the library is its shelf on a deep band, counted
  * live off the course's own sources, with the first prompts to copy right here and the door
  * to the whole library.
  */
@@ -121,6 +121,13 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
   const WORDS = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty"];
   const toolCount = toolsN <= 20 ? WORDS[toolsN] : String(toolsN);
   const nextModule = MODULES.find((m) => !m.built);
+  /* 5 Oct 2026: the band said "Module 1 is open" on the morning module 2 went live, because the
+     words were typed in. They are built from the live modules now, the way /course builds its own. */
+  const liveNs = MODULES.filter((m) => isLive(m)).map((m) => m.n);
+  const openLine = liveNs.length < 2
+    ? `Module ${liveNs[0] ?? 1} is open to you now`
+    : `Modules ${liveNs.slice(0, -1).join(", ")} and ${liveNs[liveNs.length - 1]} are open to you now`;
+  const m2 = MODULES[1];
   const essays = getAllEssays().slice(0, 7);
   const diary = getAllDispatches().slice(0, 7);
   const essayCount = getAllEssays().length;
@@ -409,18 +416,18 @@ export default function ResearchBands({ part, tail, known = false }: { part?: "r
                 they're in, and one button in. */}
             {known ? (
               <div className={n.libIn}>
-                <p className={n.libInLine}>You&rsquo;re in. Module 1 is open to you now.</p>
+                <p className={n.libInLine}>You&rsquo;re in. {openLine}.</p>
                 <Link href="/course" className={n.libInGo}>Continue the course &rarr;</Link>
               </div>
             ) : (
-              <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done="You're in. Module 1 is open to you now, and the rest arrive by email as they open." />
+              <AccessForm want="course" label="Start module 1, free" className={`${n.joinRow} ${n.learnJoin}`} doneClassName={n.accFine} done={`You're in. ${openLine}, and the rest arrive by email as they open.`} />
             )}
             <span className={n.accFine}>{nextModule ? `Module ${nextModule.n} opens ${nextModule.when}. ` : ""}{known ? "" : "The same sign-up as everything else here. "}<Link href="/course">About the course</Link>.</span>
           </div>
           <article className={`mod-win ${n.dWin} ${n.scrollWin}`}>
             <div className="mod-winbar">
               <span className="mod-lights"><i /><i /><i /></span>
-              <span className="mod-wintitle">module 2 · Slow, then fast · opens Mon 5 Oct</span>
+              <span className="mod-wintitle">module 2 · Slow, then fast · {isLive(m2) ? "open now" : `opens ${m2.when}`}</span>
             </div>
             <video className={n.scrollFilm} autoPlay muted loop playsInline preload="metadata" poster="/resources/scroll/course-module-2-scroll-poster.jpg" src="/resources/scroll/course-module-2-scroll.mp4" aria-label="Module 2 of the course, scrolled top to bottom" />
           </article>
