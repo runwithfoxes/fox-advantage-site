@@ -58,7 +58,7 @@ export const MODULES: Module[] = [
     title: "(2) Slow, then fast",
     when: "Mon 5 Oct",
     on: "2026-10-05",
-    built: false,
+    built: true, /* 5 Oct 2026: module 2 is written and on the live site. Paul: "Make module 2 page live. It says coming soon." */
     /* The Ladder of marketing metrics, ported from Paul's brief-coach module with
        its tier widths and colours verbatim. The lit rung walks Activity ->
        Commercial and holds: think at the top of the ladder before you spend.

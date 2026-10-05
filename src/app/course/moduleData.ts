@@ -1538,7 +1538,7 @@ export const MODULE_2: ModuleDef = {
   title: "Slow, then fast",
   when: "Mon 5 Oct",
   on: "2026-10-05",
-  built: false,
+  built: true,
   blurb: MODULE_BLURBS[2],
   /**
    * ⭐⭐ THE OPENING, MOVED HERE 3 Aug 2026. Paul: "this information is meant to be the top
