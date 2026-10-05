@@ -5,6 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import EssayJoin from "../essays/[slug]/EssayJoin";
 import j from "../essays/[slug]/essay-join.module.css";
 import dp from "./diary-page.module.css";
+import OverHero from "./OverHero";
 import {
   getAllDispatches,
   getDispatchContent,
@@ -70,11 +71,12 @@ export default async function DiaryPage() {
   ));
 
   return (
-    <div className="essay-page">
+    <div className={`essay-page ${dp.page}`} data-diary-root data-over="1">
+      <OverHero />
       <NextNav bar />
 
       {/* Paul, 5 Oct: one big picture, at the top of the diary page only. */}
-      <section className={dp.hero}>
+      <section className={dp.hero} data-diary-hero>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/diary/hero.jpg" alt="The fox at a desk writing in a big diary, day 40, while four small figures wait to tell him what broke" />
       </section>
