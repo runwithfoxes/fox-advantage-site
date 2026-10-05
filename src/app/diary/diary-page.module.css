@@ -1,0 +1,32 @@
+/* /diary, 5 Oct 2026. Paul: "your page could have a big visual image for full page. The two ways I work with agents
+   essay from me is the style I had in mind but a full width of page like our AI ask report or homepage... At top of
+   diary page only. Once off. But wondering if we need a rail on left for this page as it grows?" */
+.page > :global(header) { transition: background-color .25s ease; }
+.page[data-over="1"] > :global(header) { background: transparent !important; }
+.hero { padding: 0; margin: 0; background: #FBF6EE; border-bottom: 1px solid var(--border); }
+.hero img { display: block; margin: 0 !important; max-width: none; border-radius: 0; width: 100%; height: auto; aspect-ratio: 3024 / 1296; object-fit: cover; }
+.main { padding-top: 72px !important; }
+
+/* the rail: every dispatch by month, newest first. It sits in the left margin and stays in view. */
+.rail { grid-column: 1; justify-self: end; align-self: start; position: sticky; top: 104px; width: 100%; max-width: 250px;
+  max-height: calc(100vh - 136px); overflow-y: auto; padding: 150px 4px 24px 0; scrollbar-width: thin; }
+.railLab { font-family: var(--mono); font-size: 14px; letter-spacing: .06em; color: #3A7CA5; padding-top: 16px; border-top: 1px solid var(--border); margin-bottom: 14px; }
+.month { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #8A8A85; margin: 18px 0 8px; }
+.rail a, .jump a { display: block; font-family: var(--mono); font-size: 12.5px; line-height: 1.45; color: var(--text); text-decoration: none; padding: 5px 0; }
+.rail a:hover, .jump a:hover { color: #3A7CA5; }
+.rail a span, .jump a span { color: #8A8A85; margin-right: 8px; }
+
+/* on a phone or a narrow window there is no margin for a rail: a "jump to" list above the first dispatch */
+.jump { display: none; margin: 0 0 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.jump summary { font-family: var(--mono); font-size: 14px; letter-spacing: .04em; color: #3A7CA5; padding: 14px 0; cursor: pointer; list-style: none; }
+.jump summary::after { content: " +"; }
+.jump[open] summary::after { content: " \2212"; }
+.jump .month { margin-top: 10px; }
+.jump > div { padding-bottom: 14px; max-height: 60vh; overflow-y: auto; }
+@media (max-width: 1180px) {
+  .rail { display: none; }
+  .jump { display: block; }
+  .hero { margin-top: 0; padding-top: 60px; }   /* a phone: the whole drawing sits under the menu bar, uncropped */
+  .hero img { height: auto; }   /* the whole drawing, uncropped, so no label is cut on a phone */
+  .main { padding-top: 48px !important; }
+}

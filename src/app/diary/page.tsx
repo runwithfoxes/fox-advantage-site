@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import EssayJoin from "../essays/[slug]/EssayJoin";
 import j from "../essays/[slug]/essay-join.module.css";
+import dp from "./diary-page.module.css";
+import OverHero from "./OverHero";
 import {
   getAllDispatches,
   getDispatchContent,
@@ -46,13 +48,46 @@ export default async function DiaryPage() {
   const full = recent.filter((d): d is Dispatch => d !== null);
   const older = all.slice(FULL_COUNT);
 
+  // The rail: every dispatch, newest first, grouped by month. A dispatch printed in full on this page
+  // is a jump down the page; an older one goes to its own page.
+  const onPage = new Set(full.map((d) => d.slug));
+  const months: { label: string; items: typeof all }[] = [];
+  for (const d of all) {
+    const label = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-IE", { month: "long", year: "numeric", timeZone: "UTC" });
+    const last = months[months.length - 1];
+    if (last && last.label === label) last.items.push(d);
+    else months.push({ label, items: [d] });
+  }
+  const railList = months.map((m) => (
+    <div key={m.label}>
+      <div className={dp.month}>{m.label}</div>
+      {m.items.map((d) => (
+        <a key={d.slug} href={onPage.has(d.slug) ? `#${d.slug}` : `/diary/${d.slug}`}>
+          <span>{String(Number(d.date.slice(8, 10)))}</span>
+          {d.title}
+        </a>
+      ))}
+    </div>
+  ));
+
   return (
-    <div className="essay-page">
+    <div className={`essay-page ${dp.page}`} data-diary-root data-over="1">
+      <OverHero />
       <NextNav bar />
 
-      <main className="essay-main">
+      {/* Paul, 5 Oct: one big picture, at the top of the diary page only. */}
+      <section className={dp.hero} data-diary-hero>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/diary/hero.jpg" alt="The fox at a desk writing in a big diary, day 40, while four small figures wait to tell him what broke" />
+      </section>
+
+      <main className={`essay-main ${dp.main}`}>
         {/* Paul, 30 Sep: the sign-up beside Lena's pieces here as well, where they are read in full. */}
         <div className={j.layout}>
+        <nav className={dp.rail} aria-label="Every dispatch">
+          <div className={dp.railLab}>Every dispatch</div>
+          {railList}
+        </nav>
         <div className="essay-inner">
           <div className="essay-index-head">
             <div className="essay-index-kick">\diary</div>
@@ -65,6 +100,11 @@ export default async function DiaryPage() {
               dispatch before it goes out.
             </p>
           </div>
+
+          <details className={dp.jump}>
+            <summary>Jump to a dispatch</summary>
+            <div>{railList}</div>
+          </details>
 
           {full.map((d) => (
             <article key={d.slug} id={d.slug} className="diary-entry">
