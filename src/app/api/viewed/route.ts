@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { domainOf, isOptedOut } from "@/lib/course-event-record";
+import { recordSiteEvent } from "@/lib/site-event-record";
 
 /*
   RESOURCE VIEWED. A signed-in reader opening a report, dataset, tracker or the library.
@@ -14,10 +16,8 @@ const REVISION = "2024-10-15";
 const WANTS = new Set(["library", "report", "dataset", "tool", "playbook", "tracker"]);
 
 export async function POST(req: NextRequest) {
-  const email = req.cookies.get("rwf_course_id")?.value ?? "";
+  const email = (req.cookies.get("rwf_course_id")?.value ?? "").trim().toLowerCase();
   if (!email.includes("@")) return new NextResponse(null, { status: 204 });
-  const key = process.env.KLAVIYO_PRIVATE_KEY;
-  if (!key) return new NextResponse(null, { status: 204 });
 
   let body: Record<string, unknown> = {};
   try {
@@ -30,6 +30,16 @@ export async function POST(req: NextRequest) {
   const item = String(body.item ?? "").slice(0, 120) || null;
   const page = String(body.page ?? "").slice(0, 200) || null;
 
+  /* 3 Oct 2026, two gaps closed. Someone who has unsubscribed was still sending their views to
+     Klaviyo, because only /api/course-event checked. And the view went to Klaviyo alone, so
+     Paul's own record never held it; it now goes to site:events first (site-event-record.ts). */
+  if (await isOptedOut(email)) return new NextResponse(null, { status: 204 });
+  const ts = new Date().toISOString();
+  await recordSiteEvent({ ts, email, domain: domainOf(email), event: "resource_viewed", page, want: wantRaw, item });
+
+  const key = process.env.KLAVIYO_PRIVATE_KEY;
+  if (!key) return new NextResponse(null, { status: 204 });
+
   await fetch(`${KLAVIYO}/events/`, {
     method: "POST",
     headers: { Authorization: `Klaviyo-API-Key ${key}`, revision: REVISION, accept: "application/vnd.api+json", "content-type": "application/vnd.api+json" },
@@ -40,7 +50,7 @@ export async function POST(req: NextRequest) {
           properties: { want: wantRaw, item, page },
           metric: { data: { type: "metric", attributes: { name: "Resource Viewed" } } },
           profile: { data: { type: "profile", attributes: { email } } },
-          time: new Date().toISOString(),
+          time: ts,
         },
       },
     }),
