@@ -12,12 +12,20 @@ import {
   formatNoteDate,
 } from "@/lib/notes";
 import { NOTES } from "@/lib/notes-name";
+import NuggetBody from "../NuggetBody";
 
 /**
  * ONE OF SAM'S PIECES. The diary's reader, copied. The byline says plainly that Sam is an AI on
  * the team, and the structured data names the organisation, never a Person, for the same reason
  * as Lena's pages. COURSE_NOTE is the one shared ask at the foot.
  */
+
+/* One description for the page, the share card and the structured data. A piece can have no dek
+   (nugget 03 has none, at Paul's word), and then all three fall back to the same sentence. Before
+   6 Oct 2026 only the page description did, and the other two went out empty (Cato). */
+function describe(note: { title: string; dek: string }): string {
+  return note.dek || `${note.title}, a short research piece from Run with Foxes.`;
+}
 
 export async function generateStaticParams() {
   return getAllNotes().map((d) => ({ slug: d.slug }));
@@ -33,13 +41,11 @@ export async function generateMetadata({
   if (!dispatch) return { title: "Piece not found" };
   return {
     title: `${dispatch.title} \\ Run with Foxes`,
-    description:
-      dispatch.dek ||
-      `${dispatch.title}, a short research piece from Run with Foxes.`,
+    description: describe(dispatch),
     alternates: { canonical: `https://runwithfoxes.com${NOTES.route}/${slug}` },
     openGraph: {
       title: dispatch.title,
-      description: dispatch.dek,
+      description: describe(dispatch),
       type: "article",
       publishedTime: dispatch.date,
       url: `https://runwithfoxes.com${NOTES.route}/${slug}`,
@@ -65,7 +71,7 @@ export default async function NotePage({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: dispatch.title,
-    description: dispatch.dek,
+    description: describe(dispatch),
     datePublished: dispatch.date,
     author: { "@type": "Organization", name: "Run with Foxes" },
     mainEntityOfPage: `https://runwithfoxes.com${NOTES.route}/${slug}`,
@@ -94,10 +100,7 @@ export default async function NotePage({
           </div>
 
           {dispatch.hold ? <p className="note-hold">{dispatch.hold}</p> : null}
-          <div
-            className="essay-prose"
-            dangerouslySetInnerHTML={{ __html: dispatch.content || "" }}
-          />
+          <NuggetBody note={dispatch} />
 
           {/* THE ONE ASK at the foot, same as an essay. A link, never a form. */}
           {COURSE_NOTE.show ? (

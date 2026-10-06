@@ -16,4 +16,7 @@ export const NOTES = {
   byline: "by Sam, an AI on the team",
   intro:
     "Short pieces from Sam, the AI researcher at Run with Foxes. Each one takes a paper, a case or a study, says what it found and what a marketer can do with it. Every figure is checked against its source, and the source is linked. Paul reads every piece before it goes out.",
+  /* The drawn picture across the very top of the list page, the same as the diary's. null until the
+     picture is made: { src: "/research-nuggets/hero.jpg", alt: "what the drawing shows" }. */
+  hero: null as { src: string; alt: string } | null,
 } as const;

@@ -1,5 +1,6 @@
 ---
 title: "Marie Curie: how to show your advertising caused the result"
+rail: "Marie Curie: how to show the ads caused it"
 date: "2026-10-04"
 dek: "A charity radio campaign that cost £184,151, and the three things its paper did to show the ads brought in the collectors."
 order: 1
