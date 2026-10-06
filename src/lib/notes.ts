@@ -18,12 +18,48 @@ import html from "remark-html";
  *
  * Pieces arrive through ~/paul-hub/scripts/publish_nugget.py (Sam's), which runs the gates and
  * strips the private notes. Never copy a draft in by hand.
+ *
+ * A CHART INSIDE A PIECE (Paul, 6 Oct 2026: "show an animated chart in your essays where possible,
+ * to make it more visual"). Put <slug>.chart.json beside the piece and the chart is drawn inside it,
+ * on the list page and on the piece's own page. The shape of that file is NoteChart below. Every
+ * word and figure in it is Sam's, checked by Cato, the same as the piece.
+ *
+ * rail (optional frontmatter): a short title for the rail on the list page, 45 characters or fewer.
  */
 
 /* true only on the live site's own build */
 const LIVE = process.env.VERCEL_ENV === "production";
 
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
+
+/** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked. */
+export interface NoteChart {
+  /** The chart sits straight after the paragraph that holds these words. */
+  after: string;
+  title: string;
+  /** What is measured, shown small above the title. */
+  unit: string;
+  /** The right-hand end of the scale. */
+  max: number;
+  /** Printed around each value: "$" before, " million" or "%" after. */
+  prefix?: string;
+  suffix?: string;
+  /** Faint lines on the scale and the label under each: [[0, "0"], [50, "50%"]]. */
+  ticks?: [number, string][];
+  bars: {
+    label: string;
+    value: number;
+    /** Printed small after the value, such as "(80 of 96)". */
+    note?: string;
+    /** "main" is the solid bar. "other" is the comparison, in grey. "limit" is an estimate that is
+        only an upper limit: drawn as a dashed outline, never solid, and it steps back once shown. */
+    kind?: "main" | "other" | "limit";
+  }[];
+  /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
+  closing?: string;
+  footnote?: string;
+  source?: string;
+}
 
 export interface Note {
   slug: string;
@@ -33,7 +69,10 @@ export interface Note {
   order: number;
   /** Set while a piece waits on Cato or Paul. Shown on previews, and the piece is left out of the live site. */
   hold: string;
+  /** A short title for the rail on the list page. Empty means the title is used. */
+  rail: string;
   content?: string;
+  chart?: NoteChart | null;
 }
 
 /* Same hand-written month table as essays.ts, so the output does not change
@@ -67,6 +106,7 @@ function readNoteFile(file: string): Note | null {
     dek: data.dek ? String(data.dek) : "",
     order: Number(data.order) || 0,
     hold: data.hold ? String(data.hold) : "",
+    rail: data.rail ? String(data.rail) : "",
   };
 }
 
@@ -94,7 +134,24 @@ export async function getNoteContent(slug: string): Promise<Note | null> {
   );
   const processed = await remark().use(html, { sanitize: false }).process(content);
 
-  return { ...meta, content: processed.toString() };
+  const chartPath = path.join(notesDirectory, `${slug}.chart.json`);
+  const chart: NoteChart | null = fs.existsSync(chartPath)
+    ? JSON.parse(fs.readFileSync(chartPath, "utf8"))
+    : null;
+
+  return { ...meta, content: processed.toString(), chart };
+}
+
+/** The piece's HTML cut in two at the end of the paragraph that holds the chart's `after` words.
+    If the words are not found (the piece was edited), the chart goes at the foot and the build says so. */
+export function splitAtChart(html: string, after: string): [string, string] {
+  const at = after ? html.indexOf(after) : -1;
+  const end = at === -1 ? -1 : html.indexOf("</p>", at);
+  if (end === -1) {
+    console.warn(`research nuggets: no paragraph holds "${after}", so the chart sits at the foot of the piece`);
+    return [html, ""];
+  }
+  return [html.slice(0, end + 4), html.slice(end + 4)];
 }
 
 /** Newer and older neighbours, for the foot of a piece. */

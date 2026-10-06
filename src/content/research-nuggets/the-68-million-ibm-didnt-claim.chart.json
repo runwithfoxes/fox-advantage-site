@@ -1,0 +1,40 @@
+{
+ "after": "The gap that is left is $68 million of revenue.",
+ "title": "IBM worked out its return on the $254 million it could count, and left out the $68 million it could only estimate.",
+ "unit": "US dollars, millions, revenue",
+ "max": 300,
+ "prefix": "$",
+ "suffix": " million",
+ "ticks": [
+  [
+   0,
+   "0"
+  ],
+  [
+   100,
+   "$100m"
+  ],
+  [
+   200,
+   "$200m"
+  ],
+  [
+   300,
+   "$300m"
+  ]
+ ],
+ "bars": [
+  {
+   "label": "Counted: booked revenue in North America from Watson leads, everything IBM sold",
+   "value": 254,
+   "kind": "main"
+  },
+  {
+   "label": "Estimated: the most the campaign could also have brought in, POWER servers only, North America",
+   "value": 68,
+   "kind": "limit"
+  }
+ ],
+ "closing": "The return, profit of at least 2.4 times what the campaign cost, is worked out on the $254 million alone.",
+ "source": "IBM: Watson, IPA Effectiveness Awards 2012, pages 11, 17 and 18."
+}

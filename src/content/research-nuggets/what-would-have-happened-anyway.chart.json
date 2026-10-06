@@ -1,0 +1,36 @@
+{
+ "after": "53% of the others do (46 of 87).",
+ "title": "Awarded papers give a figure for what would have happened anyway far more often than the others.",
+ "unit": "percent of papers",
+ "max": 100,
+ "suffix": "%",
+ "ticks": [
+  [
+   0,
+   "0"
+  ],
+  [
+   50,
+   "50%"
+  ],
+  [
+   100,
+   "100%"
+  ]
+ ],
+ "bars": [
+  {
+   "label": "Awarded papers that give the figure",
+   "value": 83,
+   "note": "(80 of 96)",
+   "kind": "main"
+  },
+  {
+   "label": "Papers not awarded that give the figure",
+   "value": 53,
+   "note": "(46 of 87)",
+   "kind": "other"
+  }
+ ],
+ "footnote": "183 papers from five effectiveness award competitions, 2011 to 2018, read by AI agents on our team. Among papers printed in the same form the gap is smaller: 87% and 64%."
+}
