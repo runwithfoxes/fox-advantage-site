@@ -132,7 +132,7 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
           {chart.ticks ? (
             <div className={c.axis} aria-hidden="true">
               {chart.ticks.map(([at, label]) => (
-                <span key={at} style={{ left: pct(at) }}>
+                <span key={at} className={at === chart.max ? c.end : undefined} style={{ left: pct(at) }}>
                   {label}
                 </span>
               ))}

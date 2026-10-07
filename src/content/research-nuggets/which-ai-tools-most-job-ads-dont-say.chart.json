@@ -1,0 +1,55 @@
+{
+ "after": "So we looked in every ad for nine well-known AI tools",
+ "title": "Of 636 job ads, 51 name Salesforce and 6 name a well-known AI tool.",
+ "unit": "job ads that name the tool, out of 636",
+ "max": 51,
+ "ticks": [
+  [
+   0,
+   "0"
+  ],
+  [
+   10,
+   "10"
+  ],
+  [
+   20,
+   "20"
+  ],
+  [
+   30,
+   "30"
+  ],
+  [
+   40,
+   "40"
+  ],
+  [
+   50,
+   "50"
+  ]
+ ],
+ "bars": [
+  {
+   "label": "Salesforce",
+   "value": 51,
+   "kind": "other"
+  },
+  {
+   "label": "Excel",
+   "value": 43,
+   "kind": "other"
+  },
+  {
+   "label": "Canva",
+   "value": 22,
+   "kind": "other"
+  },
+  {
+   "label": "One of nine well-known AI tools",
+   "value": 6,
+   "kind": "main"
+  }
+ ],
+ "footnote": "636 Irish marketing and sales job ads live on 24 September 2026. Each bar counts ads that mention the name anywhere, and one ad can name several tools. The nine AI tools are ChatGPT, Claude, Gemini, Copilot, Perplexity, Cursor, NotebookLM, Midjourney and Jasper. 3 of the 6 ads ask the applicant for one of them."
+}
