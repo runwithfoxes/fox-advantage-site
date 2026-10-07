@@ -1,0 +1,40 @@
+{
+ "after": "Late in 2025 we read 37 marketing ads",
+ "title": "On one job site, none of 37 marketing ads asked for AI. Months later 8 of 31 did.",
+ "unit": "share of marketing job ads on one Irish job site that ask the person to do something with AI",
+ "max": 30,
+ "suffix": "%",
+ "ticks": [
+  [
+   0,
+   "0%"
+  ],
+  [
+   10,
+   "10%"
+  ],
+  [
+   20,
+   "20%"
+  ],
+  [
+   30,
+   "30%"
+  ]
+ ],
+ "bars": [
+  {
+   "label": "Late 2025",
+   "value": 0.0,
+   "note": "(0 of 37 ads)",
+   "kind": "other"
+  },
+  {
+   "label": "24 September 2026",
+   "value": 25.8,
+   "note": "(8 of 31 ads)",
+   "kind": "main"
+  }
+ ],
+ "footnote": "Marketing job ads on one Irish job site. Late 2025 is 37 ads posted from October to December 2025, most of them in October. 24 September 2026 is the 31 ads live on that day. An ad counts as marketing when its title has a marketing word and no sales word, so a Sales and Marketing Manager is counted with sales. One ad more or fewer in September moves its share by about 3 points. Across every place we read on 24 September, 17 of 100 marketing ads asked."
+}
