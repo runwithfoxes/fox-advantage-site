@@ -231,7 +231,7 @@ export default async function AiAskQ3() {
           <section className={r.counted} id="counted">
             <div className={r.fHead}>
               <h2 className={r.h2s}>What we counted</h2>
-              <span className={r.fSub}>1,773 ads, read one by one</span>
+              <span className={r.fSub}>1,762 ads, read one by one</span>
             </div>
             {/* the four numbers first, then how they were counted: under the heading the card can never be left alone on a printed page */}
             <aside className={`mod-win ${r.glance}`}>

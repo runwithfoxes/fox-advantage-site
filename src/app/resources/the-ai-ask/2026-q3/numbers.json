@@ -6,8 +6,8 @@
   "2026-Q3": "24 Sep 2026"
  },
  "method": "rebuilt after Cato review; dedupe on company+title or first 300 chars of text; roles sorted sales-first; Irish locations only; every candidate judged by one rulebook",
- "total_ads": 1773,
- "archive_ads": 1137,
+ "total_ads": 1762,
+ "archive_ads": 1126,
  "sep_ads": 636,
  "sep_all": {
   "k": 56,
@@ -23,15 +23,15 @@
  },
  "jobsie": {
   "2025-Q4": {
-   "ads": 279,
+   "ads": 273,
    "all": {
     "k": 2,
-    "n": 279,
+    "n": 273,
     "pct": 0.7
    },
    "marketing": {
     "k": 0,
-    "n": 43,
+    "n": 37,
     "pct": 0.0
    },
    "sales": {
@@ -41,16 +41,16 @@
    }
   },
   "2026-Q1": {
-   "ads": 674,
+   "ads": 669,
    "all": {
     "k": 24,
-    "n": 674,
+    "n": 669,
     "pct": 3.6
    },
    "marketing": {
     "k": 14,
-    "n": 114,
-    "pct": 12.3
+    "n": 109,
+    "pct": 12.8
    },
    "sales": {
     "k": 10,
@@ -292,24 +292,24 @@
   "2025-Q4": {
    "mention_ai": {
     "k": 3,
-    "n": 279,
+    "n": 273,
     "pct": 1.1
    },
    "real_ask": {
     "k": 2,
-    "n": 279,
+    "n": 273,
     "pct": 0.7
    }
   },
   "2026-Q1": {
    "mention_ai": {
-    "k": 29,
-    "n": 674,
-    "pct": 4.3
+    "k": 27,
+    "n": 669,
+    "pct": 4.0
    },
    "real_ask": {
     "k": 24,
-    "n": 674,
+    "n": 669,
     "pct": 3.6
    }
   },
@@ -546,13 +546,13 @@
   "Excel": {
    "2025-Q4": {
     "k": 23,
-    "n": 279,
-    "pct": 8.2
+    "n": 273,
+    "pct": 8.4
    },
    "2026-Q1": {
     "k": 56,
-    "n": 674,
-    "pct": 8.3
+    "n": 669,
+    "pct": 8.4
    },
    "2026-Q2": {
     "k": 16,
@@ -568,12 +568,12 @@
   "Salesforce": {
    "2025-Q4": {
     "k": 12,
-    "n": 279,
-    "pct": 4.3
+    "n": 273,
+    "pct": 4.4
    },
    "2026-Q1": {
     "k": 37,
-    "n": 674,
+    "n": 669,
     "pct": 5.5
    },
    "2026-Q2": {
@@ -590,12 +590,12 @@
   "HubSpot": {
    "2025-Q4": {
     "k": 4,
-    "n": 279,
-    "pct": 1.4
+    "n": 273,
+    "pct": 1.5
    },
    "2026-Q1": {
     "k": 5,
-    "n": 674,
+    "n": 669,
     "pct": 0.7
    },
    "2026-Q2": {
@@ -612,12 +612,12 @@
   "Canva": {
    "2025-Q4": {
     "k": 6,
-    "n": 279,
+    "n": 273,
     "pct": 2.2
    },
    "2026-Q1": {
     "k": 15,
-    "n": 674,
+    "n": 669,
     "pct": 2.2
    },
    "2026-Q2": {
@@ -634,12 +634,12 @@
   "Adobe": {
    "2025-Q4": {
     "k": 6,
-    "n": 279,
+    "n": 273,
     "pct": 2.2
    },
    "2026-Q1": {
     "k": 18,
-    "n": 674,
+    "n": 669,
     "pct": 2.7
    },
    "2026-Q2": {
@@ -656,12 +656,12 @@
   "Google Ads": {
    "2025-Q4": {
     "k": 7,
-    "n": 279,
-    "pct": 2.5
+    "n": 273,
+    "pct": 2.6
    },
    "2026-Q1": {
     "k": 14,
-    "n": 674,
+    "n": 669,
     "pct": 2.1
    },
    "2026-Q2": {
@@ -678,12 +678,12 @@
   "Meta Ads Manager": {
    "2025-Q4": {
     "k": 5,
-    "n": 279,
+    "n": 273,
     "pct": 1.8
    },
    "2026-Q1": {
     "k": 7,
-    "n": 674,
+    "n": 669,
     "pct": 1.0
    },
    "2026-Q2": {
@@ -700,12 +700,12 @@
   "Any AI tool": {
    "2025-Q4": {
     "k": 0,
-    "n": 279,
+    "n": 273,
     "pct": 0.0
    },
    "2026-Q1": {
     "k": 10,
-    "n": 674,
+    "n": 669,
     "pct": 1.5
    },
    "2026-Q2": {
@@ -722,13 +722,13 @@
  },
  "pay_shown_jobsie": {
   "2025-Q4": {
-   "k": 67,
-   "n": 279,
-   "pct": 24.0
+   "k": 62,
+   "n": 273,
+   "pct": 22.7
   },
   "2026-Q1": {
-   "k": 185,
-   "n": 674,
+   "k": 183,
+   "n": 669,
    "pct": 27.4
   },
   "2026-Q2": {
@@ -1322,8 +1322,8 @@
    "group": "marketing",
    "role": "Content and copywriting",
    "k": 2,
-   "n": 21,
-   "pct": 9.5
+   "n": 16,
+   "pct": 12.5
   },
   {
    "group": "sales",
@@ -1331,6 +1331,13 @@
    "k": 2,
    "n": 24,
    "pct": 8.3
+  },
+  {
+   "group": "marketing",
+   "role": "Social media",
+   "k": 1,
+   "n": 14,
+   "pct": 7.1
   },
   {
    "group": "sales",
@@ -1345,13 +1352,6 @@
    "k": 1,
    "n": 19,
    "pct": 5.3
-  },
-  {
-   "group": "marketing",
-   "role": "Social media",
-   "k": 1,
-   "n": 20,
-   "pct": 5.0
   },
   {
    "group": "sales",
@@ -1666,18 +1666,18 @@
    "pct": 15.4
   },
   {
+   "group": "marketing",
+   "role": "Content and copywriting",
+   "k": 2,
+   "n": 16,
+   "pct": 12.5
+  },
+  {
    "group": "sales",
    "role": "Sales and revenue operations",
    "k": 1,
    "n": 10,
    "pct": 10.0
-  },
-  {
-   "group": "marketing",
-   "role": "Content and copywriting",
-   "k": 2,
-   "n": 21,
-   "pct": 9.5
   },
   {
    "group": "sales",
@@ -1694,6 +1694,13 @@
    "pct": 8.3
   },
   {
+   "group": "marketing",
+   "role": "Social media",
+   "k": 1,
+   "n": 14,
+   "pct": 7.1
+  },
+  {
    "group": "sales",
    "role": "Technical and solution sales",
    "k": 3,
@@ -1706,13 +1713,6 @@
    "k": 1,
    "n": 19,
    "pct": 5.3
-  },
-  {
-   "group": "marketing",
-   "role": "Social media",
-   "k": 1,
-   "n": 20,
-   "pct": 5.0
   },
   {
    "group": "sales",
@@ -2031,8 +2031,8 @@
   },
   "2025-Q4": {
    "k": 21,
-   "n": 43,
-   "pct": 48.8
+   "n": 37,
+   "pct": 56.8
   },
   "2026-Q3": {
    "k": 17,
@@ -2052,8 +2052,8 @@
  },
  "sep_multi_site": 35,
  "judging": {
-  "total": 172,
-  "second_reader_unchanged": 109,
+  "total": 166,
+  "second_reader_unchanged": 103,
   "overruled": 11,
   "sam": 52
  },

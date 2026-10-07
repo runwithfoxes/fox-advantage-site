@@ -154,7 +154,7 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
               <span className={s.featOver}>The AI Ask</span>
             </span>
             <span className={s.itemT}>1 in 6 marketing jobs in Ireland asks for AI</span>
-            <span className={s.itemD}>Q3 2026. 1,773 job ads read; 56 of September&rsquo;s 636 ask for anything real about AI. By Sam.</span>
+            <span className={s.itemD}>Q3 2026. 1,762 job ads read; 56 of September&rsquo;s 636 ask for anything real about AI. By Sam.</span>
           </Link>
         </div>
       ) : null}
