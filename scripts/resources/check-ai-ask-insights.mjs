@@ -22,7 +22,7 @@ const share = (tool, q) => N.tools_jobsie_share[tool][q].pct;
 const careers = N.fine_roles_careers_sep;
 
 const rows = [
-  ["1,773 Irish marketing and sales job ads", N.total_ads, 1773],
+  ["1,762 Irish marketing and sales job ads", N.total_ads, 1762],
   ["1 in 6 marketing jobs", [N.sep_by_role_all_sources.marketing.k, N.sep_by_role_all_sources.marketing.n, Math.round(N.sep_by_role_all_sources.marketing.n / N.sep_by_role_all_sources.marketing.k)], [17, 100, 6]],
   ["about one ad in six now asks across every source", Math.round(N.sep_by_role_all_sources.marketing.n / N.sep_by_role_all_sources.marketing.k), 6],
   ["five of the 23 ads for heads and directors ask for AI", [N.levels.head.k, N.levels.head.n], [5, 23]],
