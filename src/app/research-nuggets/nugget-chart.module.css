@@ -29,7 +29,8 @@
 .axis { position: relative; height: 14px; margin-top: -10px; font-family: var(--mono); font-size: 10px; color: #8A8A85; }
 .axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
 .axis span:first-child { transform: none; }
-.axis span:last-child { transform: translateX(-100%); }
+/* only a label at the very end of the scale is pulled back inside it */
+.axis span.end { transform: translateX(-100%); }
 
 .closing { font-family: var(--serif); font-size: 16.5px; line-height: 1.5; color: #1D1B1B; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #EDEDE9; text-wrap: pretty; transition: opacity .7s ease .5s, transform .7s ease .5s; }
 .foot { font-family: var(--mono); font-size: 10.5px; line-height: 1.6; color: #8A8A85; margin: 14px 0 0; padding-top: 10px; border-top: 1px solid #EDEDE9; }
