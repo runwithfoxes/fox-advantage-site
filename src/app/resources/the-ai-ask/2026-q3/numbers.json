@@ -438,15 +438,15 @@
  },
  "tools_sep": {
   "Office": {
-   "any": 92,
-   "Excel": 46,
+   "any": 89,
+   "Excel": 43,
    "Microsoft Office": 60,
    "PowerPoint": 19,
    "Google Workspace": 7
   },
   "CRM": {
-   "any": 62,
-   "Salesforce": 52,
+   "any": 61,
+   "Salesforce": 51,
    "HubSpot": 9,
    "Microsoft Dynamics": 2,
    "Zoho": 0,
@@ -496,14 +496,14 @@
    "Gong": 1
   },
   "AI": {
-   "any": 21,
-   "\"AI tools\", no name": 15,
+   "any": 22,
+   "\"AI tools\", no name": 16,
    "Names an AI tool": 6
   }
  },
  "ai_tools_named": {
-  "ads_generic_ai_tools": 18,
-  "generic_without_any_name": 15,
+  "ads_generic_ai_tools": 19,
+  "generic_without_any_name": 16,
   "ads_naming_ai_product": 6,
   "naming": [
    [
@@ -540,19 +540,19 @@
    "Cursor": 1,
    "NotebookLM": 1
   },
-  "ads_generic_or_named": 21
+  "ads_generic_or_named": 22
  },
  "tools_jobsie_share": {
   "Excel": {
    "2025-Q4": {
-    "k": 24,
+    "k": 23,
     "n": 279,
-    "pct": 8.6
+    "pct": 8.2
    },
    "2026-Q1": {
-    "k": 58,
+    "k": 56,
     "n": 674,
-    "pct": 8.6
+    "pct": 8.3
    },
    "2026-Q2": {
     "k": 16,
