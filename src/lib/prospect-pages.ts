@@ -223,9 +223,9 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
   // only ("we're not selling agents"), then one price.
   "unknown-group": {
     slug: "unknown-group",
-    client: "Unknown",
-    shortName: "Unknown",
-    tabTitle: "Run with Foxes for Unknown",
+    client: "Unknown group",
+    shortName: "the Unknown group",
+    tabTitle: "Run with Foxes for the Unknown group",
     passwordEnv: "UNKNOWN_GROUP_PASSWORD",
     passwordFallback: "unknown26",
   },

@@ -237,10 +237,10 @@ export default function MolocoGuardian() {
         and measures it against Moloco&rsquo;s brand rules: the size and shape
         of the symbol, the colours, the grid lines. Anything it cannot measure
         from the file, such as how a photograph is used, it hands to a person
-        with the rule quoted. Four of the other five had one small fault built in, such as a colour
-        three steps off or a logo stretched by four per cent, and the guardian
-        failed all four. On the fifth, a logo too small to measure accurately,
-        it asked a person.
+        with the rule quoted. Each of the other five had one small fault built in, such as a colour
+        three steps off or a logo stretched by four per cent. The guardian
+        failed four of them. The fifth was a logo too small to measure
+        accurately, and it passed that one to a person.
       </p>
     </div>
   );

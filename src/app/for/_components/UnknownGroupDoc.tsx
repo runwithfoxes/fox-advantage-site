@@ -27,6 +27,7 @@
 // Nothing of Nova's unreleased site sits at a guessable address in public/.
 
 import { useState } from "react";
+import type { StaticImageData } from "next/image";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
 import { ScaledWindow, TerminalWindow } from "./library/AgentWindows";
@@ -82,8 +83,7 @@ const RAIL_GROUPS = [
     label: "/the proposal",
     entries: [
       { id: "heard", title: "What we propose", num: "01" },
-      { id: "howitworks", title: "How it would work", num: "10" },
-      { id: "pricing", title: "The price", num: "11" },
+      { id: "howiwork", title: "What we do", num: "02" },
     ],
   },
   {
@@ -96,6 +96,13 @@ const RAIL_GROUPS = [
       { id: "system", title: "One connected system", num: "07" },
       { id: "websites", title: "Two websites", num: "08" },
       { id: "hub", title: "A content hub", num: "09" },
+    ],
+  },
+  {
+    label: "/how and how much",
+    entries: [
+      { id: "howitworks", title: "How it would work", num: "10" },
+      { id: "pricing", title: "The price", num: "11" },
     ],
   },
 ];
@@ -265,14 +272,14 @@ function Shot({
   pill,
   href,
 }: {
-  src: string;
+  src: StaticImageData;
   alt: string;
   label: string;
   pill: string;
   href?: string;
 }) {
   // eslint-disable-next-line @next/next/no-img-element
-  const img = <img src={src} alt={alt} loading="lazy" />;
+  const img = <img src={src.src} width={src.width} height={src.height} alt={alt} loading="lazy" />;
   return (
     <div className="ppug-shot">
       <ScaledWindow width={940}>
@@ -299,12 +306,12 @@ function Shot({
   );
 }
 
-function Three({ items }: { items: { src: string; alt: string }[] }) {
+function Three({ items }: { items: { src: StaticImageData; alt: string }[] }) {
   return (
     <div className="ppug-three">
       {items.map((it) => (
         // eslint-disable-next-line @next/next/no-img-element
-        <img key={it.src} src={it.src} alt={it.alt} loading="lazy" />
+        <img key={it.src.src} src={it.src.src} width={it.src.width} height={it.src.height} alt={it.alt} loading="lazy" />
       ))}
     </div>
   );
@@ -312,25 +319,25 @@ function Three({ items }: { items: { src: string; alt: string }[] }) {
 
 const HUB = [
   {
-    src: rwfReports.src,
+    src: rwfReports,
     href: "https://runwithfoxes.com/resources/reports",
     title: "Research reports",
-    text: "Large reports, at least one a month. The latest counts how many Irish marketing and sales job ads ask for AI.",
+    text: "The first large report is out. It counts how many Irish marketing and sales job ads ask for AI. Two more are on the way, and the plan is at least one a month.",
   },
   {
-    src: rwfNuggets.src,
+    src: rwfNuggets,
     href: "https://runwithfoxes.com/research-nuggets",
     title: "Research nuggets",
     text: "A research agent writes a short piece every day on one paper, case or study, with the source checked.",
   },
   {
-    src: rwfDiary.src,
+    src: rwfDiary,
     href: "https://runwithfoxes.com/diary",
     title: "The diary",
     text: "One of the agents writes about how the team of agents works, what went wrong and what was changed.",
   },
   {
-    src: rwfEssays.src,
+    src: rwfEssays,
     href: "https://runwithfoxes.com/essays",
     title: "Essays",
     text: "Paul's own essays on marketing and AI, every few days.",
@@ -340,7 +347,7 @@ const HUB = [
 export default function UnknownGroupDoc() {
   return (
     <ProspectShell
-      clientName="Unknown"
+      clientName="Unknown group"
       eyebrow="Prepared for Declan O'Reilly"
       title="What would you do with ten more marketers?"
       titleHl="ten more marketers"
@@ -714,7 +721,7 @@ export default function UnknownGroupDoc() {
             while Paul is talking to his laptop.
           </p>
           <Shot
-            src={rwfCourse.src}
+            src={rwfCourse}
             alt="The free course on runwithfoxes.com"
             label="runwithfoxes.com/course"
             pill="live"
@@ -733,10 +740,10 @@ export default function UnknownGroupDoc() {
         <PPSection id="websites" k="08" title="Two websites, and how each was made">
           <p className="pps-standfirst">
             These are two sites we have built in code for other companies. In
-            both cases we first wrote down how the brand should look and
-            sound, and then built the site from those rules. That is why a
-            change made months later, by someone on their own team, still
-            looks like the same company.
+            both cases the look is written down as rules: the colours, the
+            type, the spacing and the parts each page is made from. Those
+            rules are what keep a change made months later, by someone on
+            their own team, looking like the same company.
           </p>
 
           <h3 className="ppug-h3">Data Intelligence</h3>
@@ -749,14 +756,14 @@ export default function UnknownGroupDoc() {
             and someone on his own team does it.
           </p>
           <Shot
-            src={diHome.src}
+            src={diHome}
             alt="The Data Intelligence home page"
             label="dataintelligence.com"
             pill="live"
             href="https://www.dataintelligence.com"
           />
           <Shot
-            src={diProduct.src}
+            src={diProduct}
             alt="The Data Intelligence product page"
             label="dataintelligence.com/product"
             pill="live"
@@ -765,14 +772,14 @@ export default function UnknownGroupDoc() {
           <p className="ppug-k">How it was made: the written rules</p>
           <Three
             items={[
-              { src: diCover.src, alt: "The cover of the Data Intelligence guidelines for product and web" },
-              { src: diColour.src, alt: "The colour page of the Data Intelligence guidelines" },
-              { src: diParts.src, alt: "The components page of the Data Intelligence guidelines" },
+              { src: diCover, alt: "The cover of the Data Intelligence guidelines for product and web" },
+              { src: diColour, alt: "The colour page of the Data Intelligence guidelines" },
+              { src: diParts, alt: "The components page of the Data Intelligence guidelines" },
             ]}
           />
           <p className="ppug-cap">
-            Three pages from the 47 page guidelines for the site: the colours,
-            the type, the spacing and the parts each page is made from.
+            Three pages from the 47 page guidelines for the site, with every
+            value measured off the live site.
           </p>
 
           <h3 className="ppug-h3">Nova</h3>
@@ -784,13 +791,13 @@ export default function UnknownGroupDoc() {
             over every city they work in.
           </p>
           <Shot
-            src={novaHome.src}
+            src={novaHome}
             alt="The new Nova home page"
             label="Nova, the new home page"
             pill="not yet public"
           />
           <Shot
-            src={novaSelection.src}
+            src={novaSelection}
             alt="The Selection page on the new Nova site"
             label="Nova, the Selection page"
             pill="not yet public"
@@ -798,9 +805,9 @@ export default function UnknownGroupDoc() {
           <p className="ppug-k">How it was made: the written rules</p>
           <Three
             items={[
-              { src: novaLook.src, alt: "Nova's rules for the look: one sky, the same everywhere" },
-              { src: novaPhoto.src, alt: "Nova's photography: the same star over each city" },
-              { src: novaSystem.src, alt: "Nova's rules for type and colour" },
+              { src: novaLook, alt: "Nova's rules for the look: one sky, the same everywhere" },
+              { src: novaPhoto, alt: "Nova's photography: the same star over each city" },
+              { src: novaSystem, alt: "Nova's rules for type and colour" },
             ]}
           />
           <p className="ppug-cap">
@@ -816,8 +823,8 @@ export default function UnknownGroupDoc() {
             Our own site is an example of a content hub. We have a research
             agent that writes a case study every day. We have a diary agent
             that writes about how the team of agents works. Paul writes an
-            essay every few days, and there is a large research report at
-            least once a month. None of this takes much of his time, and the
+            essay every few days, and the large research reports have started,
+            with at least one a month planned. None of this takes much of his time, and the
             quality is good.
           </p>
           <div className="ppug-four">
@@ -830,7 +837,7 @@ export default function UnknownGroupDoc() {
                 rel="noopener noreferrer"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={h.src} alt={`${h.title} on runwithfoxes.com`} loading="lazy" />
+                <img src={h.src.src} width={h.src.width} height={h.src.height} alt={`${h.title} on runwithfoxes.com`} loading="lazy" />
                 <p className="ppug-card-t">{h.title}</p>
                 <p className="ppug-card-d">{h.text}</p>
               </a>
@@ -883,7 +890,7 @@ export default function UnknownGroupDoc() {
             to help build new things, it would be €3,000 a month. That part
             is optional.
           </p>
-          <CloseBox clientName="Unknown" />
+          <CloseBox clientName="Unknown group" />
         </PPSection>
       </div>
     </ProspectShell>
