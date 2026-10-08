@@ -82,4 +82,10 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // call: Paddy's character sprint, then the creative director agent and
   // training, one price.
   drinkaware: dynamic(() => import("./DrinkawareDoc"), { ssr: false }),
+  // Declan O'Reilly, Group MD of Empathy, part of the Unknown group. Built
+  // 8 Oct 2026 from the brief Paul agreed that evening: the ten agents as
+  // examples, the Moloco brand guardian, a writer, a project manager and
+  // proactive agents, one connected system, the Nova and Data Intelligence
+  // sites with their design systems, our own site as a content hub, one price.
+  "unknown-group": dynamic(() => import("./UnknownGroupDoc"), { ssr: false }),
 };

@@ -217,6 +217,18 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "DRINKAWARE_PASSWORD",
     passwordFallback: "drinkaware26",
   },
+  // Declan O'Reilly, Group MD of Empathy, part of the Unknown group. Built
+  // 8 Oct 2026 off that day's call and the brief Paul agreed the same evening.
+  // A group role with no brand put first, so the slug is the group's. Examples
+  // only ("we're not selling agents"), then one price.
+  "unknown-group": {
+    slug: "unknown-group",
+    client: "Unknown",
+    shortName: "Unknown",
+    tabTitle: "Run with Foxes for Unknown",
+    passwordEnv: "UNKNOWN_GROUP_PASSWORD",
+    passwordFallback: "unknown26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

@@ -1,0 +1,309 @@
+/* The page for Declan O'Reilly and the Unknown group, ppug- prefix throughout.
+   Three things the shell does not have: a picker for the ten example agents,
+   a picture in a window frame, and a short joined-up row for the one system.
+   Our own surfaces stay square; only a window drawn inside a figure rounds. */
+
+.ppug {
+  /* the agent windows read these from the homepage section they were built for */
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  --ag-sans: "Space Grotesk", ui-sans-serif, sans-serif;
+}
+
+/* ---------- the ten agents ---------- */
+.ppug-list {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-row {
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-btn {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  width: 100%;
+  padding: 15px 4px;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--pps-text);
+  text-decoration: none;
+  transition: background 0.3s ease-out;
+}
+.ppug-btn:hover {
+  background: #f5f5f0;
+}
+.ppug-btn:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: 2px;
+}
+.ppug-n {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--pps-sky);
+}
+.ppug-name {
+  font-family: var(--pps-sans);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.ppug-short {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-go {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+  white-space: nowrap;
+}
+.ppug-row[data-open="1"] .ppug-name {
+  color: var(--pps-sky);
+}
+.ppug-open {
+  padding: 6px 4px 34px 52px;
+}
+.ppug-open .pps-standfirst + .pps-standfirst {
+  margin-top: 18px;
+}
+.ppug-open .ag-fig {
+  margin: 26px 0 0;
+}
+.ppug-note {
+  margin: 22px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-note .ppug-slash {
+  color: var(--pps-sky);
+}
+
+/* ---------- a picture in a window ---------- */
+.ppug-shot {
+  margin: 30px 0 0;
+}
+.ppug-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.ppug-shot a {
+  display: block;
+}
+.ppug-cap {
+  margin: 14px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-cap a,
+.ppug-link {
+  color: var(--pps-sky);
+  text-decoration: underline;
+}
+.ppug-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0 0;
+}
+.ppug-three img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-h3 {
+  margin: 54px 0 0;
+  font-family: var(--pps-sans);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: var(--pps-text);
+}
+.ppug-h3 + .pps-standfirst {
+  margin-top: 16px;
+}
+.ppug-k {
+  margin: 34px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+}
+
+/* ---------- the content hub: four real pages ---------- */
+.ppug-four {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
+  margin: 34px 0 0;
+}
+.ppug-card {
+  display: block;
+  color: var(--pps-text);
+  text-decoration: none;
+}
+.ppug-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+  transition: opacity 0.3s ease-out;
+}
+.ppug-card:hover img {
+  opacity: 0.86;
+}
+.ppug-card-t {
+  margin: 14px 0 0;
+  font-family: var(--pps-sans);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.ppug-card:hover .ppug-card-t {
+  color: var(--pps-sky);
+}
+.ppug-card-d {
+  margin: 6px 0 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--pps-text);
+}
+
+/* ---------- the rules of a proactive agent ---------- */
+.ppug-rules {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-rules li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-rules b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+.ppug-rules span.ppug-rule-d {
+  display: block;
+  margin-top: 5px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* ---------- one system ---------- */
+.ppug-sys {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 34px 0 0;
+  border: 1px solid var(--pps-border);
+}
+.ppug-sys div {
+  padding: 18px 18px 20px;
+  border-right: 1px solid var(--pps-border);
+}
+.ppug-sys div:last-child {
+  border-right: 0;
+}
+.ppug-sys b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 17px;
+  font-weight: 400;
+}
+.ppug-sys span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-sys-foot {
+  margin: 0;
+  padding: 13px 18px;
+  border: 1px solid var(--pps-border);
+  border-top: 0;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.ppug-found {
+  margin: 26px 0 0;
+  padding: 0 0 0 20px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.ppug-found li + li {
+  margin-top: 8px;
+}
+.ppug-term {
+  margin: 30px 0 0;
+  max-width: 520px;
+}
+
+/* the guardian's test ad is upright, so the stage is held narrower than the window */
+.ppug-mg .ppbg-stage {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .ppug-btn {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+  .ppug-go {
+    grid-column: 2;
+  }
+  .ppug-open {
+    padding-left: 4px;
+  }
+  .ppug-three,
+  .ppug-four,
+  .ppug-sys {
+    grid-template-columns: 1fr;
+  }
+  .ppug-sys div {
+    border-right: 0;
+    border-bottom: 1px solid var(--pps-border);
+  }
+  .ppug-sys div:last-child {
+    border-bottom: 0;
+  }
+}
