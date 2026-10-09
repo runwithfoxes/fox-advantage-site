@@ -44,7 +44,7 @@ import { PricingCards, CloseBox } from "./Pricing";
 import { WriterEmail } from "./library/WriterPiece";
 import { PipelineBoard, JoNote } from "./library/GrowthManager";
 import UnknownSearchWindow from "./library/UnknownSearchWindow";
-import { CourseChat, MailDrafts, SegSheet, SplitBars, SentChart, ConnectedSystem, LIST_TOTAL } from "./UnknownEmailAgent";
+import { CourseChat, MailDrafts, SegSheet, ConnectedSystem, LIST_TOTAL } from "./UnknownEmailAgent";
 import TypedNote from "@/components/agents/TypedNote";
 import AdDeskWindow from "@/components/agents/AdDeskWindow";
 import {
@@ -989,21 +989,6 @@ export default function UnknownGroupDoc() {
           </P>
           <SegSheet />
 
-          <p className="ppug-k">How the list splits on each of the ten columns</p>
-          <SplitBars />
-
-          <p className="ppug-k">This has already gone out once</p>
-          <P>
-            On 5 October the email for module 2 went out as eight versions,
-            picked by what each person had done on the course. The more a
-            person had done, the more they opened and clicked.
-          </P>
-          <SentChart />
-          <Note k="/how to read it.">
-            The clicks include the security software some companies run,
-            which opens every link, so read the order of the groups and not
-            the exact rate.
-          </Note>
           <P>
             That is the point of all of it. Once the site, the data and the
             email tool are joined up, you can build layer on layer of what
