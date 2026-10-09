@@ -1,0 +1,28 @@
+{
+ "after": "20 of the 43 ads say it is for working faster",
+ "title": "What the ad says the AI is for: speed in 20 of 43 ads, writing in 7",
+ "unit": "number of ads, out of the 43 Irish marketing and sales job ads that ask the person to use AI tools in the job",
+ "max": 43,
+ "ticks": [
+  [0, "0"],
+  [10, "10"],
+  [20, "20"],
+  [30, "30"],
+  [43, "43 ads"]
+ ],
+ "bars": [
+  {
+   "label": "Working faster, or cutting manual work",
+   "value": 20,
+   "note": "of 43 ads",
+   "kind": "main"
+  },
+  {
+   "label": "Writing or making content",
+   "value": 7,
+   "note": "of 43 ads",
+   "kind": "other"
+  }
+ ],
+ "footnote": "43 Irish marketing and sales job ads that ask the person to use AI tools in the job, read in full by one reader. 28 of the 43 were live on 24 September 2026 and the other 15 were posted from December 2025 to April 2026. The 20 ads come from about 16 employers. An ad is in a bar when a sentence about the job says that is what the AI is for. 3 ads are in both bars. 8 more ads sit on the line for speed and are left out; with them the first bar would be 28."
+}
