@@ -152,6 +152,19 @@
   min-width: 0;
 }
 
+.pps-top-picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 34px;
+  /* the drawing's paper is a shade warmer than the page, so its edges fade out */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 95%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 95%, transparent);
+  mask-composite: intersect;
+}
 .pps-masthead {
   padding: 0 0 30px;
   border-bottom: 2px solid var(--pps-deep);

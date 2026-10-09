@@ -689,6 +689,12 @@ export default function UnknownGroupDoc() {
       standfirst={[]}
       sections={SECTIONS}
       railGroups={RAIL_GROUPS}
+      topPicture={{
+        src: "/for/unknown-group/fox-whiteboard.jpg",
+        alt: "The fox standing on a box at a whiteboard, pointing a marker at the word Unknown",
+        width: 2400,
+        height: 1029,
+      }}
     >
       <div className="ppug">
         <PPSection id="heard" k="01" title="What we propose">

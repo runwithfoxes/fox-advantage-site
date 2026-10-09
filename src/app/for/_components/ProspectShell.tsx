@@ -48,6 +48,7 @@ export default function ProspectShell({
   bio,
   railLinks,
   pdfHref,
+  topPicture,
   children,
 }: {
   clientName: string;
@@ -73,6 +74,10 @@ export default function ProspectShell({
    *  It goes in the nav rather than the rail because the rail is the four
    *  things and has been cut three times for busyness. */
   pdfHref?: string;
+  /** One wide drawn picture above the masthead. OPTIONAL and off by default
+   *  (Paul, 9 Oct, the Unknown group page: a grumpy fox at a whiteboard
+   *  across the top). */
+  topPicture?: { src: string; alt: string; width: number; height: number };
   children: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -258,6 +263,16 @@ export default function ProspectShell({
           </div>
 
           <div className="pps-maincol">
+            {topPicture && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className="pps-top-picture"
+                src={topPicture.src}
+                alt={topPicture.alt}
+                width={topPicture.width}
+                height={topPicture.height}
+              />
+            )}
             <header className="pps-masthead">
               <p className="pps-eyebrow">{eyebrow}</p>
               <h1 className="pps-h1">{heading}</h1>
