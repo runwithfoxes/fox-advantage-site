@@ -993,6 +993,16 @@ export const SHELF: ShelfSection[] = [
         url: "https://github.com/ggml-org/whisper.cpp",
         note: "Turns audio into text on your laptop. Nothing is uploaded.",
       },
+      /* ⭐ ADDED 9 Oct 2026 on Paul's word to Dray, after the first chart film was drawn in code on
+         the mini: "we should include that in our library, that tool, if that's what it is, in
+         our library that we give access to our people for our AI fluency course". The address
+         returned 200 that day. The note is the neutral line, written by Dray, not a reason. */
+      {
+        name: "HyperFrames",
+        by: "github.com/heygen-com",
+        url: "https://github.com/heygen-com/hyperframes",
+        note: "Turns a web page Claude has written into a video file, frame by frame, on your laptop.",
+      },
     ],
   },
 ];
