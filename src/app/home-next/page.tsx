@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import SiteFooter from "@/components/SiteFooter";
 import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
+import { getAllNotes } from "@/lib/notes";
+import { NOTES } from "@/lib/notes-name";
 import { formatDay } from "../resources/library";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
@@ -46,7 +48,11 @@ export default async function HomeNext() {
   /* The featured essay is drawn big on the left, so it stays out of the list beside it. */
   const FEATURED = "why-i-gave-my-agents-email-addresses";
   const essays = getAllEssays().filter((e) => e.slug !== FEATURED).slice(0, 6);
-  const diary = getAllDispatches().slice(0, 4);
+  /* Paul, 9 Oct 2026: "have your nuggets get captured on home page too, in the card on hero and
+     also the what's new section. Currently it is just Lena and me." So Sam's research nuggets come
+     in beside the diary: three of each, which leaves four of the ten rows for Paul's essays. */
+  const diary = getAllDispatches().slice(0, 3);
+  const nuggets = getAllNotes().slice(0, 3);
   const openMod = MODULES.find((m) => m.built);
   /* What's new. Paul, 29 Sep: "all the essays on the right should be a mix of mine and Lena's and
      Sam's. And we want names and circle icon beside each." So three writers, newest first, each row
@@ -56,6 +62,7 @@ export default async function HomeNext() {
     { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 6 marketing jobs in Ireland asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
     ...essays.slice(0, 5).map((e) => ({ type: "Essay", who: "Paul Dervan" as Who, t: e.title, href: `/essays/${e.slug}`, iso: e.date })),
     ...diary.map((d) => ({ type: "Diary", who: "Lena" as Who, t: d.title, href: `/diary/${d.slug}`, iso: d.date })),
+    ...nuggets.map((x) => ({ type: "Research nugget", who: "Sam" as Who, t: x.title, href: `${NOTES.route}/${x.slug}`, iso: x.date })),
     ...(openMod ? [{ type: "Course", who: "Paul Dervan" as Who, t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, iso: openMod.on }] : []),
   ]
     .sort((a, b) => b.iso.localeCompare(a.iso))
@@ -71,10 +78,11 @@ export default async function HomeNext() {
       - every essay of his is in it, and they run the OTHER way to the list under the hero: the
         earlier ones first, with the one he named leading, and the newest seven last, because
         those are the ones already shown under the hero;
-      - for every two of his there is one from Sam or Lena (Sam's reports first, then Lena's
-        newest diary pieces), so his share never drops under two thirds however many she writes.
+      - for every two of his there is one from Sam or Lena (Sam's reports first, then Sam's
+        research nuggets and Lena's diary pieces turn about, newest first), so his share never
+        drops under two thirds however many they write.
      The Answer pages, the module and the trackers are no longer in the card: it is essays,
-     reports and the diary. */
+     reports, research nuggets and the diary. The nuggets came in on 9 Oct 2026. */
   const LEAD = ["distinctive-brand-assets-in-an-ai-world"];
   const allEssays = getAllEssays();
   const underHero = new Set([FEATURED, ...essays.map((e) => e.slug)]);
@@ -84,6 +92,13 @@ export default async function HomeNext() {
     ...allEssays.filter((e) => !underHero.has(e.slug) && !LEAD.includes(e.slug)),
     ...allEssays.filter((e) => underHero.has(e.slug) && !LEAD.includes(e.slug)),
   ].map(essayLine);
+  const nuggetLines = getAllNotes().map((x) => ({ label: `Research nugget · Sam · ${formatDay(x.date)}`, title: x.title, href: `${NOTES.route}/${x.slug}` }));
+  const diaryLines = getAllDispatches().map((d) => ({ label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` }));
+  const turnAbout: { label: string; title: string; href: string }[] = [];
+  for (let i = 0; i < Math.max(nuggetLines.length, diaryLines.length); i++) {
+    if (nuggetLines[i]) turnAbout.push(nuggetLines[i]);
+    if (diaryLines[i]) turnAbout.push(diaryLines[i]);
+  }
   const theirs = [
     /* Every row is the newest edition of a real series from the catalogue, so every row has a
        page to open (Paul, 27 Sep: "users can click on them"). */
@@ -92,7 +107,7 @@ export default async function HomeNext() {
       .sort((a, b) => Number(a.example) - Number(b.example) || b.date.localeCompare(a.date))
       .map((r) => ({ label: `Report · ${seriesOf(r).name}${r.example ? " · example" : ""}`, title: r.title, href: reportHref(r) })),
     /* Paul, 29 Sep: "We should include Lena's essays in the scrolling card on hero." */
-    ...getAllDispatches().map((d) => ({ label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` })),
+    ...turnAbout,
   ].slice(0, Math.floor(mine.length / 2));
   const lines: { label: string; title: string; href: string }[] = [];
   mine.forEach((l, i) => {
@@ -216,6 +231,7 @@ export default async function HomeNext() {
             <div className={n.newsFoot}>
               <Link href="/essays">Essays →</Link>
               <Link href="/diary">Diary →</Link>
+              <Link href={NOTES.route}>{NOTES.name} →</Link>
               {/* was /resources, which is this same page at a second address, so the link went nowhere
                   new (Cato, 30 Sep and 1 Oct 2026). The reports band is the research. */}
               <Link href="/#reports">Research →</Link>
