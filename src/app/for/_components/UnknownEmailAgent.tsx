@@ -194,7 +194,7 @@ export const TRIGGERS: Trigger[] = [
     count: "230 people",
     num: 230,
     to: "230 people who said they want AI agents",
-    why: "They are waiting for the module they came for.",
+    why: "They are waiting for the module they asked for.",
     fact: "278 people have answered the question about what they want to learn. 222 picked AI Agents and 110 picked Email Agents, which is 230 people in all. The module on building marketing agents opens on 16 November, so they are waiting for the thing they came for.",
     versions: [
       {

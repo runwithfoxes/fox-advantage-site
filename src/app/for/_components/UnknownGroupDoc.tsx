@@ -968,15 +968,16 @@ export default function UnknownGroupDoc() {
           </P>
           <CourseChat />
           <Note k="/real counts.">
-            There are {LIST_TOTAL} people on the course and every count is
-            real, read from the course on 9 October.
+            There are {LIST_TOTAL} people on the course. The five triggers
+            and the number of people in each are real, read from the course
+            on 9 October.
           </Note>
 
           <p className="ppug-k">The five emails it drafted</p>
           <MailDrafts />
           <Note k="/drafts.">
             Press a draft on the left and a version across the top. The agent
-            picks the version from what each person has done. The first names
+            picks the version from what each person has done or told us. The first names
             are made up and none of these has been sent.
           </Note>
 
