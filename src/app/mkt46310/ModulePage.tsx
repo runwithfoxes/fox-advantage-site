@@ -38,7 +38,7 @@ const FINDINGS: { n: number; of?: number; t: string; text: string }[] = [
   {
     n: 21,
     t: "About 1 in 4 of these ads ask for AI.",
-    text: "15 of the 21 say what the person will do with AI or name a tool, and 6 of those 15 are about being found in AI search. Two of the 21 ask for “agent-led growth” and do not say what they mean by it. Without those two it is 19 of 85.",
+    text: "15 of the 21 say what the person will do with AI or name a tool, and 6 of those 15 are about being found in AI search. Two of the 21 are ads from one company that mention “agent-led growth” and do not say what they mean by it. Without those two it is 19 of 85.",
   },
   {
     n: 0,
@@ -171,7 +171,7 @@ export default function ModulePage() {
               <figure className="mk-fig">
                 <Bars rows={WORK} total={ADS} label="The kinds of work the 85 job ads ask for, most common first." />
                 <figcaption className="mk-cap">
-                  / how many of the 85 ads ask for each kind of work. The typical ad asks for 6 of them.
+                  / how many of the 85 ads ask for each kind of work. The typical ad asks for 6 kinds of work.
                 </figcaption>
               </figure>
 

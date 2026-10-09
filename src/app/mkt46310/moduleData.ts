@@ -12,7 +12,7 @@ export const ADS = 85;
 export const WORK: [string, number][] = [
   ["Reporting on results", 73],
   ["Content and copywriting", 59],
-  ["Social media", 54],
+  ["Social media, unpaid", 54],
   ["The website", 42],
   ["Paid advertising of any kind", 40],
   ["Email", 34],
@@ -102,7 +102,7 @@ export const CLASSES: Klass[] = [
     pillar: "All three",
     rows: [
       ["In this class", "What Irish employers ask for in digital marketing job ads, and what a digital marketing job is today. The three pillars the module is built on. The five behaviours of successful marketers."],
-      ["For your agency", "The project is explained and teams of four or five are formed. Nobody needs a laptop in this class."],
+      ["For your agency", "The project is explained and teams of four or five are formed."],
     ],
   },
   {
