@@ -15,18 +15,34 @@
 // The five emails are drafts written for this page and have not been sent; the
 // eight versions of the 5 Oct email did go, and their figures are Klaviyo's.
 
+//
+// ROUND 4 (Paul, 9 Oct): "It's just a wall of text... You need to figure out
+// how to do this visually." And: "shouldn't the answer be in the actual
+// figure? So this should look like a proper conversation." And: "Even the
+// emails don't look like emails... They look like websites or something."
+// So: ONE light conversation window holds both asks and both answers, whole
+// at rest. The five emails sit in one mail window as drafts. The sheet is
+// kept ("The actual table is pretty good"). The splits and the sent email
+// are drawn as bars. No dark window, no button in an email.
+
 import { useState } from "react";
+import "./library/chat-window.css";
 
 export const LIST_TOTAL = "1,158";
 
 type Version = { label: string; subject: string; body: string[]; button: string };
-type Trigger = { n: string; name: string; count: string; fact: string; versions: Version[] };
+// `fact` is the long reason Cato read on 9 Oct. It is kept as the record and
+// is not printed; `why` is the short line the page shows.
+type Trigger = { n: string; name: string; count: string; num: number; why: string; to: string; fact: string; versions: Version[] };
 
 export const TRIGGERS: Trigger[] = [
   {
     n: "01",
     name: "Worked through module 1 and has not opened module 2",
     count: "102 people",
+    num: 102,
+    to: "102 people who worked through module 1 and have not opened module 2",
+    why: "The keenest people on the list, and they are drifting.",
     fact: "155 people did the real work in module 1. They ticked things done, copied prompts and took files. Four days after module 2 opened, 102 of them had not been into it. These are the keenest people on the list, and they are the ones drifting.",
     versions: [
       {
@@ -68,6 +84,9 @@ export const TRIGGERS: Trigger[] = [
     n: "02",
     name: "Copied a prompt and has not been back in a week",
     count: "64 people",
+    num: 64,
+    to: "64 people who copied a prompt and have not been back in a week",
+    why: "They took a prompt away to use, so the email asks how it went.",
     fact: "132 people copied at least one prompt, which means they took it away to use. 64 of them have not been back for seven days or more. So the email asks how that one prompt went.",
     versions: [
       {
@@ -109,6 +128,9 @@ export const TRIGGERS: Trigger[] = [
     n: "03",
     name: "Signed up and never came in, while a colleague has",
     count: "94 people",
+    num: 94,
+    to: "94 people who signed up and never came in, while a colleague has",
+    why: "Someone at the same company is already inside.",
     fact: "These people signed up and have not opened the course, and someone at the same company is already inside. That is a better reason to write than telling them they have not started.",
     versions: [
       {
@@ -139,6 +161,9 @@ export const TRIGGERS: Trigger[] = [
     n: "04",
     name: "Opened the page and touched nothing",
     count: "237 people",
+    num: 237,
+    to: "237 people who opened the page and touched nothing",
+    why: "Curious enough to come. One version makes it easy, the other asks why.",
     fact: "The module page loaded for these people and they did not click a single thing on it. They were curious enough to come, and we do not know what stopped them. So one version makes it easy and the other asks.",
     versions: [
       {
@@ -167,6 +192,9 @@ export const TRIGGERS: Trigger[] = [
     n: "05",
     name: "Said they want AI agents, and the agents module is not out yet",
     count: "230 people",
+    num: 230,
+    to: "230 people who said they want AI agents",
+    why: "They are waiting for the module they came for.",
     fact: "278 people have answered the question about what they want to learn. 222 picked AI Agents and 110 picked Email Agents, which is 230 people in all. The module on building marketing agents opens on 16 November, so they are waiting for the thing they came for.",
     versions: [
       {
@@ -195,71 +223,154 @@ export const TRIGGERS: Trigger[] = [
 
 export const VERSION_COUNT = TRIGGERS.reduce((n, t) => n + t.versions.length, 0);
 
-export function TriggerList() {
+const MAX_TRIG = Math.max(...TRIGGERS.map((t) => t.num));
+
+function Dots() {
   return (
-    <ol className="ppug-trig">
-      {TRIGGERS.map((t) => (
-        <li key={t.n}>
-          <span className="ppug-n">{t.n}</span>
-          <span>
-            <b>{t.name}</b>
-            <span className="ppug-trig-d">{t.fact}</span>
-          </span>
-          <span className="ppug-trig-c">{t.count}</span>
-        </li>
-      ))}
-    </ol>
+    <>
+      <i className="ppchat-dot ppchat-dot-r" />
+      <i className="ppchat-dot ppchat-dot-a" />
+      <i className="ppchat-dot ppchat-dot-g" />
+    </>
   );
 }
 
-function EmailCard({ t }: { t: Trigger }) {
-  const [i, setI] = useState(0);
-  const v = t.versions[i];
+function AgentSays({ children }: { children: React.ReactNode }) {
   return (
-    <div className="ppug-mail">
-      <div className="ppug-mail-bar">
-        <span className="ppug-mail-n">Email {t.n}</span>
-        <span className="ppug-mail-to">
-          to {t.count}: {t.name.charAt(0).toLowerCase() + t.name.slice(1)}
-        </span>
-        <span className="ppug-site-pill">drafted</span>
-      </div>
-      <div className="ppug-site-tabs" role="tablist" aria-label={`Email ${t.n}, versions`}>
-        {t.versions.map((x, n) => (
-          <button key={x.label} type="button" role="tab" aria-selected={n === i} data-on={n === i ? "1" : "0"} onClick={() => setI(n)}>
-            {x.label}
-          </button>
-        ))}
-      </div>
-      <div className="ppug-mail-body">
-        <p className="ppug-mail-sub">
-          <span>Subject</span>
-          {v.subject}
-        </p>
-        {v.body.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-        <p className="ppug-mail-btn">
-          <span>{v.button}</span>
-        </p>
-        <p>Paul</p>
-      </div>
-      <p className="ppug-site-foot">
-        <span>
-          version {i + 1} of {t.versions.length}, picked by what each person has done
-        </span>
-        <span>not sent</span>
+    <div className="ppug-chat-a">
+      <p className="ppug-chat-who">
+        <span>E</span>Email marketing agent
       </p>
+      {children}
     </div>
   );
 }
 
-export function FiveEmails() {
+// The whole conversation in one light window, complete at rest: the question
+// and its answer, then the job and what came back.
+export function CourseChat() {
   return (
-    <div className="ppug-mails">
-      {TRIGGERS.map((t) => (
-        <EmailCard key={t.n} t={t} />
-      ))}
+    <div className="ppchat ppug-chat">
+      <div className="ppchat-bar">
+        <Dots />
+        <span className="ppchat-title">Paul and the email marketing agent</span>
+      </div>
+      <div className="ppchat-body">
+        <div className="ppchat-you">
+          <p>Tell me five surprising things about the people on the course.</p>
+        </div>
+        <AgentSays>
+          <p className="ppug-chat-p">Here are three of the five.</p>
+          <ol className="ppug-chat-finds">
+            <li>
+              <span>1</span>
+              One person has opened the first module at 7.40 on nearly every working morning for three weeks.
+            </li>
+            <li>
+              <span>2</span>
+              Six people came in for the first time within the same forty hours. Every one of them came back once, and none has
+              clicked on anything.
+            </li>
+            <li>
+              <span>3</span>
+              Ninety people have copied the same prompt, the one that builds a red team.
+            </li>
+          </ol>
+        </AgentSays>
+        <div className="ppchat-you">
+          <p>
+            Now pick the five most interesting triggers from what you have seen. Write an email for each, with versions for the
+            kinds of people in it, and show me the segmentation as a sheet.
+          </p>
+        </div>
+        <AgentSays>
+          <p className="ppug-chat-p">Five triggers, from what the {LIST_TOTAL} people on the course have done.</p>
+          <ol className="ppug-chat-trigs">
+            {TRIGGERS.map((t) => (
+              <li key={t.n}>
+                <span className="ppug-chat-n">{t.n}</span>
+                <span className="ppug-chat-t">
+                  <b>{t.name}</b>
+                  <em>{t.why}</em>
+                </span>
+                <span className="ppug-chat-bar" aria-hidden="true">
+                  <i style={{ width: `${(t.num / MAX_TRIG) * 100}%` }} />
+                </span>
+                <span className="ppug-chat-c">{t.count}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="ppug-chat-p">
+            I have drafted an email for each one, {VERSION_COUNT} versions in all, and the sheet is up to date. Nothing goes until
+            you say send.
+          </p>
+        </AgentSays>
+      </div>
+    </div>
+  );
+}
+
+// The five drafts in one mail window: the drafts down the left, the open
+// email on the right with who it is from, who it goes to and its subject.
+export function MailDrafts() {
+  const [d, setD] = useState(0);
+  const [vs, setVs] = useState<number[]>(TRIGGERS.map(() => 0));
+  const t = TRIGGERS[d];
+  const i = vs[d];
+  const v = t.versions[i];
+  const pick = (n: number) => setVs((old) => old.map((x, k) => (k === d ? n : x)));
+  return (
+    <div className="ppug-mc">
+      <div className="ppug-mc-bar">
+        <Dots />
+        <span className="ppug-mc-title">Mail</span>
+      </div>
+      <div className="ppug-mc-grid">
+        <div className="ppug-mc-list" role="tablist" aria-label="The five drafts">
+          <p className="ppug-mc-folder">
+            Drafts <span>{TRIGGERS.length}</span>
+          </p>
+          {TRIGGERS.map((x, n) => (
+            <button key={x.n} type="button" role="tab" aria-selected={n === d} data-on={n === d ? "1" : "0"} onClick={() => setD(n)}>
+              <span className="ppug-mc-to">To {x.count}</span>
+              <b>{x.versions[vs[n]].subject}</b>
+              <span className="ppug-mc-snip">{x.versions[vs[n]].body[1]}</span>
+            </button>
+          ))}
+        </div>
+        <div className="ppug-mc-open">
+          <div className="ppug-mc-head">
+            <p className="ppug-mc-subj">{v.subject}</p>
+            <div className="ppug-mc-addr">
+              <span className="ppug-mc-av">PD</span>
+              <span>
+                <b>Paul Dervan</b>
+                <span>
+                  To: {t.to}
+                </span>
+              </span>
+              <span className="ppug-mc-draft">Draft</span>
+            </div>
+          </div>
+          <div className="ppug-mc-vers" role="tablist" aria-label="Versions of this email">
+            <span>Version for</span>
+            {t.versions.map((x, n) => (
+              <button key={x.label} type="button" role="tab" aria-selected={n === i} data-on={n === i ? "1" : "0"} onClick={() => pick(n)}>
+                {x.label}
+              </button>
+            ))}
+          </div>
+          <div className="ppug-mc-body">
+            {v.body.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+            <p>
+              <span className="ppug-mc-link">{v.button}</span>
+            </p>
+            <p>Paul</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -347,74 +458,125 @@ export function SegSheet() {
   );
 }
 
-// What is in each column, with the count in every group, 9 Oct 2026.
-const SPLITS: [string, string][] = [
-  ["How far they got", "Never came in 561. Opened the page only 237. Did a little 205. Worked through it 155."],
-  ["Modules they have been into", "None 561. Module 1 only 484. Modules 1 and 2, 101. Module 2 only 12."],
-  ["When they signed up", "July 601. August 286. 1 to 19 September 92. 20 September to 4 October 153. From 5 October 26."],
-  ["Work address or personal", "Work 606. Personal 552. Of all of them, 252 end in .ie."],
-  ["Where on the site they signed up", "The main sign-up 1,029. A module card 129."],
-  ["When they were last in", "Last 3 days 152. 4 to 7 days ago 68. 8 to 14 days ago 138. 15 days or more 239. Never 561."],
-  ["Time of day they mostly use it", "Morning 184. Afternoon 209. Evening 151. Night 53. Never came in 561."],
-  ["How many days they have been in", "None 561. One 333. Two 140. Three or more 124."],
-  ["What they have done at least once", "Watched a session 194. Opened a lesson 168. Opened a link 137. Ticked one done 135. Copied a prompt 132. Took a download 120. Opened a file 72. One person can be in several."],
-  ["What they want to learn", "278 people have answered. AI Agents 222, Strategy 187, Brand 152, Reporting 150, Prompting 148, and eleven more subjects. The other 880 have not answered yet."],
+// What is in each column, with the count in every group, 9 Oct 2026. A
+// "parts" row adds up to the whole list and is drawn as one bar cut into its
+// groups. An "each" row is groups a person can be in several of, so each
+// group gets its own bar. `z` marks the group that never came in.
+type Part = { l: string; n: number; z?: boolean };
+type Split = { name: string; kind: "parts" | "each"; parts: Part[]; note?: string };
+const TOTAL = 1158;
+const SPLITS: Split[] = [
+  { name: "How far they got", kind: "parts", parts: [{ l: "Worked through it", n: 155 }, { l: "Did a little", n: 205 }, { l: "Opened the page only", n: 237 }, { l: "Never came in", n: 561, z: true }] },
+  { name: "Modules they have been into", kind: "parts", parts: [{ l: "Modules 1 and 2", n: 101 }, { l: "Module 2 only", n: 12 }, { l: "Module 1 only", n: 484 }, { l: "None", n: 561, z: true }] },
+  { name: "When they signed up", kind: "parts", parts: [{ l: "July", n: 601 }, { l: "August", n: 286 }, { l: "1 to 19 Sep", n: 92 }, { l: "20 Sep to 4 Oct", n: 153 }, { l: "From 5 Oct", n: 26 }] },
+  { name: "Work address or personal", kind: "parts", parts: [{ l: "Work", n: 606 }, { l: "Personal", n: 552 }], note: "Of all of them, 252 end in .ie." },
+  { name: "Where on the site they signed up", kind: "parts", parts: [{ l: "The main sign-up", n: 1029 }, { l: "A module card", n: 129 }] },
+  { name: "When they were last in", kind: "parts", parts: [{ l: "Last 3 days", n: 152 }, { l: "4 to 7 days ago", n: 68 }, { l: "8 to 14 days ago", n: 138 }, { l: "15 days or more", n: 239 }, { l: "Never", n: 561, z: true }] },
+  { name: "Time of day they mostly use it", kind: "parts", parts: [{ l: "Morning", n: 184 }, { l: "Afternoon", n: 209 }, { l: "Evening", n: 151 }, { l: "Night", n: 53 }, { l: "Never came in", n: 561, z: true }] },
+  { name: "How many days they have been in", kind: "parts", parts: [{ l: "Three or more", n: 124 }, { l: "Two", n: 140 }, { l: "One", n: 333 }, { l: "None", n: 561, z: true }] },
+  { name: "What they have done at least once", kind: "each", parts: [{ l: "Watched a session", n: 194 }, { l: "Opened a lesson", n: 168 }, { l: "Opened a link", n: 137 }, { l: "Ticked one done", n: 135 }, { l: "Copied a prompt", n: 132 }, { l: "Took a download", n: 120 }, { l: "Opened a file", n: 72 }], note: "One person can be in several." },
+  { name: "What they want to learn", kind: "each", parts: [{ l: "AI Agents", n: 222 }, { l: "Strategy", n: 187 }, { l: "Brand", n: 152 }, { l: "Reporting", n: 150 }, { l: "Prompting", n: 148 }], note: "278 people have answered, and there are eleven more subjects. The other 880 have not answered yet." },
 ];
 
-export function SplitList() {
+const fmt = (n: number) => n.toLocaleString("en-IE");
+
+export function SplitBars() {
   return (
-    <ol className="ppug-trig ppug-splits">
-      {SPLITS.map(([name, groups], n) => (
-        <li key={name}>
-          <span className="ppug-n">{String(n + 1).padStart(2, "0")}</span>
-          <span>
-            <b>{name}</b>
-            <span className="ppug-trig-d">{groups}</span>
-          </span>
-        </li>
-      ))}
-    </ol>
+    <div className="ppug-sb">
+      {SPLITS.map((s, n) => {
+        const max = Math.max(...s.parts.map((p) => p.n));
+        return (
+          <div className="ppug-sb-row" key={s.name}>
+            <p className="ppug-sb-name">
+              <i>{String(n + 1).padStart(2, "0")}</i>
+              {s.name}
+            </p>
+            <div className="ppug-sb-draw">
+              {s.kind === "parts" ? (
+                <>
+                  <div className="ppug-sb-bar" aria-hidden="true">
+                    {s.parts.map((p, k) => (
+                      <i key={p.l} data-k={p.z ? "z" : k} style={{ width: `${(p.n / TOTAL) * 100}%` }} />
+                    ))}
+                  </div>
+                  <ul className="ppug-sb-key">
+                    {s.parts.map((p, k) => (
+                      <li key={p.l}>
+                        <i data-k={p.z ? "z" : k} />
+                        {p.l} <b>{fmt(p.n)}</b>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <ul className="ppug-sb-each">
+                  {s.parts.map((p) => (
+                    <li key={p.l}>
+                      <span>{p.l}</span>
+                      <span className="ppug-sb-ebar" aria-hidden="true">
+                        <i style={{ width: `${(p.n / max) * 100}%` }} />
+                      </span>
+                      <b>{fmt(p.n)}</b>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.note && <p className="ppug-sb-note">{s.note}</p>}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
 // The email that did go, 5 Oct 2026: eight versions picked by behaviour.
-const SENT: [string, string, string, string, string][] = [
-  ["Never came in", "1", "589", "44%", "3%"],
-  ["Opened the page only", "1", "232", "49%", "9%"],
-  ["Did a little", "3", "182", "63%", "16%"],
-  ["Worked through it", "3", "129", "66%", "21%"],
+// [what they had done, versions, delivered, opened %, clicked %]
+const SENT: [string, number, number, number, number][] = [
+  ["Never came in", 1, 589, 44, 3],
+  ["Opened the page only", 1, 232, 49, 9],
+  ["Did a little", 3, 182, 63, 16],
+  ["Worked through it", 3, 129, 66, 21],
 ];
 
-export function SentTable() {
+export function SentChart() {
   return (
-    <div className="ppug-table-wrap">
-      <table className="ppug-table ppug-sent">
-        <thead>
-          <tr>
-            <th>What they had done</th>
-            <th>Versions</th>
-            <th>Delivered</th>
-            <th>Opened</th>
-            <th>Clicked</th>
-          </tr>
-        </thead>
-        <tbody>
-          {SENT.map((r) => (
-            <tr key={r[0]}>
-              {r.map((c, n) => (
-                <td key={n}>{c}</td>
-              ))}
-            </tr>
-          ))}
-          <tr className="ppug-sent-all">
-            <td>All eight versions</td>
-            <td>8</td>
-            <td>1,132</td>
-            <td>51%</td>
-            <td>9%</td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="ppug-sc">
+      <p className="ppug-sc-key">
+        <span>
+          <i data-k="o" />
+          opened
+        </span>
+        <span>
+          <i data-k="c" />
+          clicked
+        </span>
+      </p>
+      {SENT.map(([name, vers, del, op, cl]) => (
+        <div className="ppug-sc-row" key={name}>
+          <p className="ppug-sc-name">
+            {name}
+            <span>
+              {vers} {vers === 1 ? "version" : "versions"}, {fmt(del)} delivered
+            </span>
+          </p>
+          <div className="ppug-sc-bars">
+            <p>
+              <span className="ppug-sc-bar" aria-hidden="true">
+                <i data-k="o" style={{ width: `${op}%` }} />
+              </span>
+              <b>{op}%</b>
+            </p>
+            <p>
+              <span className="ppug-sc-bar" aria-hidden="true">
+                <i data-k="c" style={{ width: `${cl}%` }} />
+              </span>
+              <b>{cl}%</b>
+            </p>
+          </div>
+        </div>
+      ))}
+      <p className="ppug-sc-all">All eight versions: 1,132 delivered, 51% opened, 9% clicked.</p>
     </div>
   );
 }

@@ -41,11 +41,10 @@
 import { useRef, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
-import { TerminalWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import { PipelineBoard, JoNote } from "./library/GrowthManager";
 import UnknownSearchWindow from "./library/UnknownSearchWindow";
-import { TriggerList, FiveEmails, SegSheet, SplitList, SentTable, ConnectedSystem, LIST_TOTAL, VERSION_COUNT } from "./UnknownEmailAgent";
+import { CourseChat, MailDrafts, SegSheet, SplitBars, SentChart, ConnectedSystem, LIST_TOTAL } from "./UnknownEmailAgent";
 import TypedNote from "@/components/agents/TypedNote";
 import AdDeskWindow from "@/components/agents/AdDeskWindow";
 import {
@@ -775,9 +774,9 @@ export default function UnknownGroupDoc() {
             work.
           </p>
           <p className="pps-standfirst">
-            What excites me is how ambitious we could be. We could build a few
-            agents to make things more efficient, and that would be worth
-            having. But what if we tried to build a proper agent-led marketing
+            What excites me is how ambitious we could be. Yes, we could build
+            a few agents to make things more efficient, and that would be
+            worth having. But what if we tried to build a proper agent-led marketing
             function, with the equivalent of ten different agents? If you had
             ten more marketers, what would you get them to do?
           </p>
@@ -785,9 +784,6 @@ export default function UnknownGroupDoc() {
             The work goes into the quality and the craft first, which means
             agreeing what good looks like for each brand. Then it goes into
             building a team of agents that can work together to that standard.
-            You can start from nothing. You do need one person with good
-            judgment who sets the bar, and for these three months that would
-            be me.
           </p>
           <p className="pps-standfirst">
             Everything below is an example. They are agents, websites and
@@ -967,92 +963,46 @@ export default function UnknownGroupDoc() {
             bottleneck.
           </P>
           <P>
-            You saw ours on the call. I asked it for five surprising things
-            about the people taking our course, and the five emails that
-            would follow, and both came back while we talked.
+            You saw ours on the call. I asked it a question about the people
+            taking our course, and then I gave it the job.
           </P>
-          <div className="ppug-term">
-            <TerminalWindow
-              title="Paul"
-              liveLabel="the course"
-              instruction="tell me five surprising things about the people on the course, and the five emails that would follow"
-              response="five findings and five emails, drafted. Nothing goes until you say send."
-            />
-          </div>
-          <p className="ppug-k">Four of the five it found</p>
-          <ul className="ppug-found">
-            <li>
-              One person had opened the first module at 7.40 on nearly every
-              working morning for three weeks.
-            </li>
-            <li>
-              Six people came in for the first time within the same forty
-              hours. Every one of them came back once, and none had clicked on
-              anything.
-            </li>
-            <li>
-              Ninety people had copied the same prompt, the one that builds a
-              red team.
-            </li>
-            <li>
-              A small group were doing the course at three in the morning,
-              Irish time, because they are in New Zealand.
-            </li>
-          </ul>
-          <h3 className="ppug-h3">Then I give it the job</h3>
-          <P>
-            Asking a question is the first stage. The second is handing over
-            the work. The agent is set up to trigger campaigns for my whole
-            database, so this is the one instruction I give it.
-          </P>
-          <div className="ppug-term ppug-term-wide">
-            <TerminalWindow
-              title="Paul"
-              liveLabel="the course"
-              instruction="pick the five most interesting triggers from what you have seen so far. Write five different emails, with versions of each for the kinds of people in it. Show me the segmentation as a sheet."
-              response={`five triggers, five emails in ${VERSION_COUNT} versions, and the sheet. Nothing goes until you say send.`}
-            />
-          </div>
-          <P>
-            Everything from here to the end of this part is what came back.
-            There are {LIST_TOTAL} people on the course, and every count is
-            real, read from the course on 9 October. Only the first names are
-            made up.
-          </P>
+          <CourseChat />
+          <Note k="/real counts.">
+            There are {LIST_TOTAL} people on the course and every count is
+            real, read from the course on 9 October.
+          </Note>
 
-          <p className="ppug-k">The five triggers it picked</p>
-          <TriggerList />
-
-          <p className="ppug-k">The five emails, in {VERSION_COUNT} versions</p>
-          <P>
-            Each trigger gets its own email, and each email has a version for
-            each kind of person in the group. Press a version to read it. The
-            agent picks the version from what a person has done or told us,
-            so nobody on the list gets an email written for somebody else.
-          </P>
-          <FiveEmails />
+          <p className="ppug-k">The five emails it drafted</p>
+          <MailDrafts />
+          <Note k="/drafts.">
+            Press a draft on the left and a version across the top. The agent
+            picks the version from what each person has done. The first names
+            are made up and none of these has been sent.
+          </Note>
 
           <p className="ppug-k">The sheet behind it: ten columns of segmentation</p>
           <P>
-            This is what makes the targeting possible. Every person on the
-            list is a row, and the agent keeps ten columns about each of them
-            up to date. Nobody fills this in. It comes from what people do on
-            the site.
+            Every person is a row, and the agent keeps ten columns about each
+            of them up to date from what they do on the site. Nobody fills it
+            in.
           </P>
           <SegSheet />
-          <p className="ppug-k">What is in each column, with the count in every group</p>
-          <SplitList />
+
+          <p className="ppug-k">How the list splits on each of the ten columns</p>
+          <SplitBars />
 
           <p className="ppug-k">This has already gone out once</p>
           <P>
             On 5 October the email for module 2 went out as eight versions,
             picked by what each person had done on the course. The more a
-            person had done, the more they opened and clicked. The clicks
-            include the security software some companies run, which opens
-            every link, so the order of the groups is what to read here and
-            not the exact rate.
+            person had done, the more they opened and clicked.
           </P>
-          <SentTable />
+          <SentChart />
+          <Note k="/how to read it.">
+            The clicks include the security software some companies run,
+            which opens every link, so read the order of the groups and not
+            the exact rate.
+          </Note>
           <P>
             That is the point of all of it. Once the site, the data and the
             email tool are joined up, you can build layer on layer of what
