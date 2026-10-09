@@ -721,3 +721,303 @@
   font-size: 1.0625rem;
   font-weight: 400;
 }
+
+/* ---------- the email agent, stage two: triggers, emails, the sheet ---------- */
+.ppug-term-wide {
+  max-width: 680px;
+}
+.ppug-trig {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-trig li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-splits li {
+  grid-template-columns: 34px minmax(0, 1fr);
+}
+.ppug-trig b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+.ppug-trig-d {
+  display: block;
+  margin-top: 5px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.ppug-trig-c {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--pps-sky);
+  white-space: nowrap;
+}
+.ppug-mails {
+  display: grid;
+  gap: 26px;
+  margin: 22px 0 0;
+}
+.ppug-mail {
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ppug-mail-bar {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #f1f1ec;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-mail-n {
+  flex: none;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  color: var(--pps-text);
+}
+.ppug-mail-to {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+.ppug-mail-body {
+  max-width: 620px;
+  padding: 26px 28px 22px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+.ppug-mail-body p {
+  margin: 0 0 14px;
+}
+.ppug-mail-body p:last-child {
+  margin-bottom: 0;
+}
+.ppug-mail-sub {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--pps-border);
+  font-family: var(--pps-sans);
+  letter-spacing: -0.2px;
+}
+.ppug-mail-sub span {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppug-mail-btn span {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-sans);
+  font-size: 15px;
+}
+.ppug-sheet {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ppug-sheet-wrap {
+  overflow-x: auto;
+}
+.ppug-sheet table {
+  border-collapse: collapse;
+  font-family: var(--pps-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.ppug-sheet th,
+.ppug-sheet td {
+  padding: 10px 14px;
+  text-align: left;
+  border-right: 1px solid var(--pps-border);
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-sheet th {
+  position: sticky;
+  top: 0;
+  background: #fafaf8;
+  font-weight: 400;
+  color: var(--pps-text);
+  vertical-align: bottom;
+}
+.ppug-sheet th i {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  font-style: normal;
+  color: var(--pps-sky);
+}
+.ppug-sheet td[data-empty="1"] {
+  color: #c4c4be;
+}
+.ppug-sheet-r {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  color: var(--pps-muted);
+  background: #fafaf8;
+}
+.ppug-sheet td:nth-child(2),
+.ppug-sheet th:nth-child(2) {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  box-shadow: 1px 0 0 var(--pps-border);
+}
+.ppug-sheet th:nth-child(2) {
+  background: #fafaf8;
+}
+.ppug-sheet-out {
+  background: #eef5f9 !important;
+  color: var(--pps-deep);
+  border-right: 0 !important;
+}
+.ppug-sent td:first-child {
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  color: var(--pps-text);
+}
+.ppug-sent td {
+  font-size: 14px;
+}
+.ppug-sent-all td {
+  background: #fafaf8;
+}
+
+/* ---------- one connected system, beside the usual way ---------- */
+.ppug-cs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 30px 0 0;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+}
+.ppug-cs-side {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 24px;
+}
+.ppug-cs-one {
+  border-left: 1px solid var(--pps-border);
+  background: #f3f8fb;
+}
+.ppug-cs-k {
+  margin: 0 0 22px;
+  font-family: var(--pps-sans);
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: var(--pps-text);
+}
+.ppug-cs-box {
+  padding: 14px 16px 15px;
+  border: 1px solid #cfcfc8;
+  background: #fff;
+}
+.ppug-cs-box b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+.ppug-cs-box span {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+.ppug-cs-gap {
+  margin: 0 0 0 26px;
+  padding: 13px 0 13px 16px;
+  border-left: 1px dashed #b3401f;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: #b3401f;
+}
+.ppug-cs-ask {
+  margin: 0 0 0 26px;
+  padding: 0 0 16px 16px;
+  border-left: 2px solid var(--pps-sky);
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+}
+.ppug-cs-join {
+  border: 2px solid var(--pps-sky);
+  background: #fff;
+}
+.ppug-cs-join .ppug-cs-box {
+  border: 0;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-cs-agent {
+  padding: 12px 16px;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.ppug-cs-foot {
+  margin: auto 0 0;
+  padding-top: 22px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+@media (max-width: 768px) {
+  .ppug-cs {
+    grid-template-columns: 1fr;
+  }
+  .ppug-cs-one {
+    border-left: 0;
+    border-top: 1px solid var(--pps-border);
+  }
+  .ppug-trig li {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+  .ppug-trig-c {
+    grid-column: 2;
+  }
+  .ppug-mail-bar {
+    flex-wrap: wrap;
+  }
+  .ppug-mail-body {
+    padding: 20px 18px 18px;
+  }
+}
+@media (min-width: 1280px) {
+  .ppug-sheet,
+  .ppug-cs {
+    width: calc(100% + min(150px, (100vw - 1180px) / 2 - 12px));
+  }
+}

@@ -45,6 +45,7 @@ import { TerminalWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import { PipelineBoard, JoNote } from "./library/GrowthManager";
 import UnknownSearchWindow from "./library/UnknownSearchWindow";
+import { TriggerList, FiveEmails, SegSheet, SplitList, SentTable, ConnectedSystem, LIST_TOTAL, VERSION_COUNT } from "./UnknownEmailAgent";
 import TypedNote from "@/components/agents/TypedNote";
 import AdDeskWindow from "@/components/agents/AdDeskWindow";
 import {
@@ -997,12 +998,66 @@ export default function UnknownGroupDoc() {
               Irish time, because they are in New Zealand.
             </li>
           </ul>
+          <h3 className="ppug-h3">Then I give it the job</h3>
           <P>
-            Each finding came with an email written for the people it applied
-            to. There are more than 1,100 people on the course, and every one
-            of them can be sent an email written for what they have done,
-            while I am talking to my laptop.
+            Asking a question is the first stage. The second is handing over
+            the work. The agent is set up to trigger campaigns for my whole
+            database, so this is the one instruction I give it.
           </P>
+          <div className="ppug-term ppug-term-wide">
+            <TerminalWindow
+              title="Paul"
+              liveLabel="the course"
+              instruction="pick the five most interesting triggers from what you have seen so far. Write five different emails, with versions of each for the kinds of people in it. Show me the segmentation as a sheet."
+              response={`five triggers, five emails in ${VERSION_COUNT} versions, and the sheet. Nothing goes until you say send.`}
+            />
+          </div>
+          <P>
+            Everything from here to the end of this part is what came back.
+            There are {LIST_TOTAL} people on the course, and every count is
+            real, read from the course on 9 October. Only the first names are
+            made up.
+          </P>
+
+          <p className="ppug-k">The five triggers it picked</p>
+          <TriggerList />
+
+          <p className="ppug-k">The five emails, in {VERSION_COUNT} versions</p>
+          <P>
+            Each trigger gets its own email, and each email has a version for
+            each kind of person in the group. Press a version to read it. The
+            agent picks the version from what a person has done or told us,
+            so nobody on the list gets an email written for somebody else.
+          </P>
+          <FiveEmails />
+
+          <p className="ppug-k">The sheet behind it: ten columns of segmentation</p>
+          <P>
+            This is what makes the targeting possible. Every person on the
+            list is a row, and the agent keeps ten columns about each of them
+            up to date. Nobody fills this in. It comes from what people do on
+            the site.
+          </P>
+          <SegSheet />
+          <p className="ppug-k">What is in each column, with the count in every group</p>
+          <SplitList />
+
+          <p className="ppug-k">This has already gone out once</p>
+          <P>
+            On 5 October the email for module 2 went out as eight versions,
+            picked by what each person had done on the course. The more a
+            person had done, the more they opened and clicked. The clicks
+            include the security software some companies run, which opens
+            every link, so the order of the groups is what to read here and
+            not the exact rate.
+          </P>
+          <SentTable />
+          <P>
+            That is the point of all of it. Once the site, the data and the
+            email tool are joined up, you can build layer on layer of what
+            you know about people, and target them well, with hardly any work.
+          </P>
+
           <h3 className="ppug-h3">Why it can do that: one connected system</h3>
           <P>
             Our own website is built in code, through Claude Code. The course
@@ -1010,23 +1065,7 @@ export default function UnknownGroupDoc() {
             data and the email are one system. Everything is easy to see, and
             one person can ask it for something in plain words.
           </P>
-          <div className="ppug-sys">
-            <div>
-              <b>The website</b>
-              <span>the pages and the course, built in code</span>
-            </div>
-            <div>
-              <b>The data</b>
-              <span>who came, what they opened, what they clicked</span>
-            </div>
-            <div>
-              <b>The email tool</b>
-              <span>the agent works inside it</span>
-            </div>
-          </div>
-          <p className="ppug-sys-foot">
-            one system, and one person asking it in plain words
-          </p>
+          <ConnectedSystem />
           <SiteScroller pages={COURSE_PAGES} pill="live" what="The free course on runwithfoxes.com" />
           <P>
             This is the reason to build a website this way. When the website,
