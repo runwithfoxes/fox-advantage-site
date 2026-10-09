@@ -265,6 +265,61 @@ function PageDeck({ count, prefix, what }: { count: number; prefix: string; what
   );
 }
 
+// A row of pictures shown large, one after another, moved through sideways.
+// Paul, 9 Oct: "These small thumbnails of things don't work for me. They
+// don't really showcase anything properly." So nothing on this page is a grid
+// of small pictures. "natural" shows each ad at its real size in pixels.
+type RowItem = { pic: string; alt: string; cap?: React.ReactNode; w?: number };
+function BigRow({ items, what, unit }: { items: RowItem[]; what: string; unit: string }) {
+  const row = useRef<HTMLDivElement>(null);
+  const move = (d: number) => {
+    const el = row.current;
+    if (el) el.scrollBy({ left: d * el.clientWidth * 0.85, behavior: "smooth" });
+  };
+  return (
+    <div className="ppug-deck">
+      <div className="ppug-deck-row ppug-row" ref={row} tabIndex={0} aria-label={`${what}, ${items.length} ${unit}, scroll sideways`}>
+        {items.map((it, n) => {
+          const p = PICS[it.pic];
+          return (
+            <figure key={it.pic}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={p.src} width={p.width} height={p.height} alt={it.alt} loading="lazy" style={it.w ? { width: it.w } : undefined} />
+              <figcaption>
+                <span className="ppug-row-n">
+                  {n + 1} / {items.length}
+                </span>
+                {it.cap}
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+      <div className="ppug-deck-foot">
+        <span>
+          all {items.length} {unit}, scroll sideways
+        </span>
+        <span>
+          <button type="button" onClick={() => move(-1)} aria-label="Earlier">
+            &larr;
+          </button>
+          <button type="button" onClick={() => move(1)} aria-label="Later">
+            &rarr;
+          </button>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function Who({ who }: { who: "theirs" | "ours" }) {
+  return (
+    <span className="ppug-tag" data-who={who}>
+      {who === "theirs" ? "Moloco’s own" : "Made by us"}
+    </span>
+  );
+}
+
 // A piece of artwork with a plain label saying whose it is.
 function Art({
   name,
@@ -377,25 +432,25 @@ const RECEIPT: [string, string, string][] = [
   ["Nothing touches the outer edge but the grid lines", "clear", "clear"],
 ];
 
-const ADS: { pic: string; size: string; wide?: boolean }[] = [
-  { pic: "mol-ad-performs-1200x628", size: "1200 x 628", wide: true },
-  { pic: "mol-ad-convert-1200x628", size: "1200 x 628", wide: true },
-  { pic: "mol-ad-outcomes-1200x628", size: "1200 x 628", wide: true },
-  { pic: "mol-ad-performs-970x250", size: "970 x 250", wide: true },
-  { pic: "mol-ad-convert-970x250", size: "970 x 250", wide: true },
-  { pic: "mol-ad-outcomes-970x250", size: "970 x 250", wide: true },
-  { pic: "mol-ad-performs-728x90", size: "728 x 90", wide: true },
-  { pic: "mol-ad-email-performs", size: "600 x 200, email", wide: true },
-  { pic: "mol-ad-email-convert", size: "600 x 200, email", wide: true },
-  { pic: "mol-ad-email-outcomes", size: "600 x 200, email", wide: true },
-  { pic: "mol-ad-performs-1080x1080", size: "1080 x 1080" },
-  { pic: "mol-ad-convert-1080x1080", size: "1080 x 1080" },
-  { pic: "mol-ad-outcomes-1080x1080", size: "1080 x 1080" },
-  { pic: "mol-ad-performs-300x250", size: "300 x 250" },
-  { pic: "mol-ad-convert-300x250", size: "300 x 250" },
-  { pic: "mol-ad-outcomes-300x250", size: "300 x 250" },
-  { pic: "mol-ad-performs-300x600", size: "300 x 600" },
-  { pic: "mol-ad-performs-160x600", size: "160 x 600" },
+const ADS: { pic: string; size: string; w: number }[] = [
+  { pic: "mol-ad-performs-1200x628", size: "1200 x 628", w: 1200 },
+  { pic: "mol-ad-convert-1200x628", size: "1200 x 628", w: 1200 },
+  { pic: "mol-ad-outcomes-1200x628", size: "1200 x 628", w: 1200 },
+  { pic: "mol-ad-performs-970x250", size: "970 x 250", w: 970 },
+  { pic: "mol-ad-convert-970x250", size: "970 x 250", w: 970 },
+  { pic: "mol-ad-outcomes-970x250", size: "970 x 250", w: 970 },
+  { pic: "mol-ad-performs-728x90", size: "728 x 90", w: 728 },
+  { pic: "mol-ad-email-performs", size: "600 x 200, email", w: 600 },
+  { pic: "mol-ad-email-convert", size: "600 x 200, email", w: 600 },
+  { pic: "mol-ad-email-outcomes", size: "600 x 200, email", w: 600 },
+  { pic: "mol-ad-performs-1080x1080", size: "1080 x 1080", w: 1080 },
+  { pic: "mol-ad-convert-1080x1080", size: "1080 x 1080", w: 1080 },
+  { pic: "mol-ad-outcomes-1080x1080", size: "1080 x 1080", w: 1080 },
+  { pic: "mol-ad-performs-300x250", size: "300 x 250", w: 300 },
+  { pic: "mol-ad-convert-300x250", size: "300 x 250", w: 300 },
+  { pic: "mol-ad-outcomes-300x250", size: "300 x 250", w: 300 },
+  { pic: "mol-ad-performs-300x600", size: "300 x 600", w: 300 },
+  { pic: "mol-ad-performs-160x600", size: "160 x 600", w: 160 },
 ];
 
 // Sixteen photographs. The eight with "r4" in the name were made by us on
@@ -506,11 +561,14 @@ function Guardian() {
           each have one small thing wrong, close enough to right that you would
           pass them at a glance. It caught all five.
         </P>
-        <div className="ppug-tests">
-          {TESTS.map((t) => (
-            <figure key={t.pic} className="ppug-test" data-v={t.verdict}>
-              <Pic name={t.pic} alt={`Test file: ${t.title}`} />
-              <figcaption>
+        <BigRow
+          what="The six test files"
+          unit="files"
+          items={TESTS.map((t) => ({
+            pic: t.pic,
+            alt: `Test file: ${t.title}`,
+            cap: (
+              <span className="ppug-test-cap">
                 <span className="ppug-verdict" data-ok={t.verdict === "Pass" ? "pass" : "fail"}>
                   {t.verdict}
                 </span>
@@ -519,10 +577,10 @@ function Guardian() {
                 <span>{t.planted}</span>
                 <span className="ppug-test-l">What the guardian said</span>
                 <span>{t.said}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+              </span>
+            ),
+          }))}
+        />
         <Note k="/whose work.">
           All six files were made by us, for the test. None of them is an ad
           Moloco has run.
@@ -588,15 +646,17 @@ function Guardian() {
           <Art name="mol-post-wide-A-vellum" alt="Our wide post made to the same layout, on Vellum" who="ours" line="The same layout, made by the machine." />
         </div>
         <p className="ppug-k">The same post in the brand&rsquo;s other tints</p>
-        <div className="ppug-grid4">
-          <Art name="mol-post-vertical-A-light-teal" alt="Our upright post on Light Teal" who="ours" line="Light Teal" />
-          <Art name="mol-post-vertical-A-light-yellow" alt="Our upright post on Light Yellow" who="ours" line="Light Yellow" />
-          <Art name="mol-post-vertical-A-parchment" alt="Our upright post on Parchment" who="ours" line="Parchment" />
-          <Art name="mol-post-square-A-light-yellow" alt="Our square post on Light Yellow" who="ours" line="Square. The portal has no square, so this one is our own extension." />
-        </div>
-        <div className="ppug-pair ppug-pair-wide ppug-pair-one">
-          <Art name="mol-post-wide-A-light-green" alt="Our wide post on Light Green" who="ours" line="The wide post on Light Green." />
-        </div>
+        <BigRow
+          what="The same post in the brand's other tints"
+          unit="posts"
+          items={[
+            { pic: "mol-post-vertical-A-light-teal", alt: "Our upright post on Light Teal", cap: <><Who who="ours" /><span className="ppug-art-line">Light Teal</span></> },
+            { pic: "mol-post-vertical-A-light-yellow", alt: "Our upright post on Light Yellow", cap: <><Who who="ours" /><span className="ppug-art-line">Light Yellow</span></> },
+            { pic: "mol-post-vertical-A-parchment", alt: "Our upright post on Parchment", cap: <><Who who="ours" /><span className="ppug-art-line">Parchment</span></> },
+            { pic: "mol-post-square-A-light-yellow", alt: "Our square post on Light Yellow", cap: <><Who who="ours" /><span className="ppug-art-line">Square. The portal has no square, so this one is our own extension.</span></> },
+            { pic: "mol-post-wide-A-light-green", alt: "Our wide post on Light Green", cap: <><Who who="ours" /><span className="ppug-art-line">The wide post on Light Green.</span></> },
+          ]}
+        />
 
         <p className="ppug-k">Display ads</p>
         <P>
@@ -605,19 +665,21 @@ function Guardian() {
           of these in the new identity, and each one went through the guardian
           before it was sent to Moloco.
         </P>
-        <div className="ppug-ads">
-          {ADS.map((a) => (
-            <figure key={a.pic} className="ppug-art" data-wide={a.wide ? "1" : "0"}>
-              <Pic name={a.pic} alt={`A Moloco display ad made by us, ${a.size}`} />
-              <figcaption>
-                <span className="ppug-tag" data-who="ours">
-                  Made by us
-                </span>
+        <BigRow
+          what="Moloco display ads made by us"
+          unit="ads, each at its real size"
+          items={ADS.map((a) => ({
+            pic: a.pic,
+            alt: `A Moloco display ad made by us, ${a.size}`,
+            w: a.w,
+            cap: (
+              <>
+                <Who who="ours" />
                 <span className="ppug-art-line">{a.size}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+              </>
+            ),
+          }))}
+        />
 
         <p className="ppug-k">Photographs: eight are theirs and eight are ours</p>
         <P>
@@ -626,16 +688,15 @@ function Guardian() {
           the written description alone. The guardian measures each new one
           against the library, and then a person looks at it at full size.
         </P>
-        <div className="ppug-photos">
-          {PHOTOS.map(([name, who]) => (
-            <Art
-              key={name}
-              name={name}
-              alt={who === "theirs" ? "A photograph from Moloco's own library" : "A photograph made by us in Moloco's style"}
-              who={who}
-            />
-          ))}
-        </div>
+        <BigRow
+          what="Photographs, Moloco's own and ours"
+          unit="photographs"
+          items={PHOTOS.map(([name, who]) => ({
+            pic: name,
+            alt: who === "theirs" ? "A photograph from Moloco's own library" : "A photograph made by us in Moloco's style",
+            cap: <Who who={who} />,
+          }))}
+        />
       </div>
     </>
   );
@@ -647,6 +708,13 @@ const DI_PAGES: SitePage[] = [
   { label: "Prices", pic: "full-di-prices", url: "dataintelligence.com/prices", href: "https://www.dataintelligence.com/prices" },
   { label: "About", pic: "full-di-about", url: "dataintelligence.com/about", href: "https://www.dataintelligence.com/about" },
   { label: "An essay", pic: "full-di-essay", url: "dataintelligence.com/essays", href: "https://www.dataintelligence.com/essays/announcing-dataintelligence" },
+];
+
+const PAINTINGS = [
+  "01-hammock", "02-freewheel", "03-sail", "04-balloon-sandbags", "05-balloon-safe",
+  "06-cloud-on-a-lead", "07-lemon-drawer", "08-umbrella-sunlight", "09-piggy-deckchair", "10-tailored",
+  "11-brim", "12-shed-wall", "13-scales", "14-compass", "15-door-meadow",
+  "16-lighthouse-day", "17-high-board", "18-worn-path", "19-goldfish-pond", "20-sprinkler-sea",
 ];
 
 const NOVA_PAGES: SitePage[] = [
@@ -1096,6 +1164,18 @@ export default function UnknownGroupDoc() {
             </P>
             <p className="ppug-k">The site, live now</p>
             <SiteScroller pages={DI_PAGES} pill="live" what="The Data Intelligence website" />
+            <p className="ppug-k">The artwork: all 20 paintings</p>
+            <P>
+              Every picture on the site and in the decks is a painting from
+              one family. There are twenty so far. They are made to one
+              written description, so a new one made next year by someone on
+              the team will sit beside these and look like the same company.
+            </P>
+            <BigRow
+              what="The Data Intelligence paintings"
+              unit="paintings"
+              items={PAINTINGS.map((n) => ({ pic: `di-paint-${n}`, alt: "A painting made for Data Intelligence" }))}
+            />
             <p className="ppug-k">How it was made: the written rules, all 47 pages</p>
             <P>
               These are the guidelines for the site and the product. Every
