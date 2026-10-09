@@ -991,7 +991,8 @@ export default function UnknownGroupDoc() {
               anything.
             </li>
             <li>
-              Ninety people had copied one of the prompts in the course.
+              Ninety people had copied the same prompt, the one that builds a
+              red team.
             </li>
             <li>
               A small group were doing the course at three in the morning,
