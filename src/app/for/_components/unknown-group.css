@@ -1,6 +1,8 @@
 /* The page for Declan O'Reilly and the Unknown group, ppug- prefix throughout.
-   Three things the shell does not have: a picker for the ten example agents,
-   a picture in a window frame, and a short joined-up row for the one system.
+   What the shell does not have: the ten agents each open as a section, a
+   whole website scrolled inside a window, the written rules as a row of full
+   pages, the guardian's checks and artwork, and a joined-up row for the one
+   system.
    Our own surfaces stay square; only a window drawn inside a figure rounds. */
 
 .ppug {
@@ -15,76 +17,35 @@
   --ag-sans: "Space Grotesk", ui-sans-serif, sans-serif;
 }
 
-/* ---------- the ten agents ---------- */
-.ppug-list {
-  list-style: none;
-  margin: 30px 0 0;
-  padding: 0;
-  border-top: 1px solid var(--pps-border);
+/* ---------- the ten agents, each open as its own section ---------- */
+.ppug-agent .ppug-dek {
+  font-family: var(--pps-sans);
+  font-size: 1.25rem;
+  line-height: 1.45;
+  letter-spacing: -0.2px;
 }
-.ppug-row {
-  border-bottom: 1px solid var(--pps-border);
+.ppug-agent .pps-standfirst + .pps-standfirst {
+  margin-top: 18px;
 }
-.ppug-btn {
-  display: grid;
-  grid-template-columns: 34px minmax(0, 1fr) auto;
-  gap: 14px;
-  align-items: baseline;
-  width: 100%;
-  padding: 15px 4px;
-  background: none;
-  border: 0;
-  text-align: left;
-  cursor: pointer;
-  color: var(--pps-text);
-  text-decoration: none;
-  transition: background 0.3s ease-out;
+.ppug-agent .ag-fig {
+  margin: 26px 0 0;
 }
-.ppug-btn:hover {
-  background: #f5f5f0;
+.ppug-agent .ppug-note + .pps-standfirst,
+.ppug-agent .ag-fig + .pps-standfirst,
+.ppug-agent .ppug-site + .pps-standfirst,
+.ppug-agent .ppug-rules + .pps-standfirst,
+.ppug-agent .ppug-found + .pps-standfirst,
+.ppug-agent .ppug-part + .pps-standfirst {
+  margin-top: 30px;
 }
-.ppug-btn:focus-visible {
-  outline: 2px solid var(--pps-sky);
-  outline-offset: 2px;
+.ppug-part {
+  scroll-margin-top: 90px;
 }
 .ppug-n {
   font-family: var(--pps-mono);
   font-size: 12px;
   letter-spacing: 1px;
   color: var(--pps-sky);
-}
-.ppug-name {
-  font-family: var(--pps-sans);
-  font-size: 19px;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-}
-.ppug-short {
-  display: block;
-  margin-top: 3px;
-  font-family: var(--pps-mono);
-  font-size: 12px;
-  color: var(--pps-muted);
-}
-.ppug-go {
-  font-family: var(--pps-mono);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--pps-sky);
-  white-space: nowrap;
-}
-.ppug-row[data-open="1"] .ppug-name {
-  color: var(--pps-sky);
-}
-.ppug-open {
-  padding: 6px 4px 34px 52px;
-}
-.ppug-open .pps-standfirst + .pps-standfirst {
-  margin-top: 18px;
-}
-.ppug-open .ag-fig {
-  margin: 26px 0 0;
 }
 .ppug-note {
   margin: 22px 0 0;
@@ -277,22 +238,428 @@
   max-width: 520px;
 }
 
-/* the guardian's test ad is upright, so the stage is held narrower than the window */
-.ppug-mg .ppbg-stage {
-  max-width: 620px;
-  margin-left: auto;
-  margin-right: auto;
+/* ---------- a whole website in a window, scrolled inside ---------- */
+.ppug-site {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ppug-site-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f1f1ec;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-dots {
+  display: inline-flex;
+  gap: 6px;
+  flex: none;
+}
+.ppug-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cfcfc8;
+}
+.ppug-site-url {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: #fff;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ppug-site-pill {
+  flex: none;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--pps-sky);
+}
+.ppug-site-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--pps-border);
+  background: #fafaf8;
+}
+.ppug-site-tabs button {
+  flex: none;
+  padding: 11px 16px;
+  border: 0;
+  border-right: 1px solid var(--pps-border);
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--pps-sans);
+  font-size: 14px;
+  color: var(--pps-muted);
+  cursor: pointer;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
+}
+.ppug-site-tabs button:hover {
+  color: var(--pps-text);
+  background: #f5f5f0;
+}
+.ppug-site-tabs button[data-on="1"] {
+  color: var(--pps-text);
+  border-bottom-color: var(--pps-sky);
+  background: #fff;
+}
+.ppug-site-tabs button:focus-visible,
+.ppug-site-view:focus-visible,
+.ppug-deck-row:focus-visible,
+.ppug-deck-foot button:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: -2px;
+}
+.ppug-site-view {
+  height: min(74vh, 680px);
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  background: #fff;
+}
+.ppug-site-view img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-site-foot,
+.ppug-deck-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--pps-border);
+  background: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-site-foot a {
+  color: var(--pps-sky);
+  text-decoration: underline;
+}
+
+/* ---------- the written rules as a row of full pages ---------- */
+.ppug-deck {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  background: #f1f1ec;
+}
+.ppug-deck-row {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+.ppug-deck-row figure {
+  flex: none;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.ppug-deck-row img {
+  display: block;
+  height: min(70vh, 640px);
+  width: auto;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+}
+.ppug-deck-row figcaption {
+  margin-top: 8px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  color: var(--pps-muted);
+}
+.ppug-deck-foot button {
+  width: 38px;
+  height: 32px;
+  margin-left: 6px;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  font-size: 16px;
+  color: var(--pps-text);
+  cursor: pointer;
+  transition: background 0.3s ease-out;
+}
+.ppug-deck-foot button:hover {
+  background: #f5f5f0;
+}
+
+/* ---------- the guardian: the file, the checks, the tests, the artwork ---------- */
+.ppug-g-top {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 30px;
+  align-items: start;
+  margin: 30px 0 0;
+}
+.ppug-g-ad {
+  margin: 0;
+  position: sticky;
+  top: 96px;
+}
+.ppug-g-ad img,
+.ppug-art img,
+.ppug-test img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-g-ad figcaption,
+.ppug-art figcaption {
+  display: block;
+  margin-top: 10px;
+}
+.ppug-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+.ppug-tag[data-who="theirs"] {
+  background: var(--pps-deep);
+  color: #fafaf8;
+}
+.ppug-tag[data-who="ours"] {
+  background: #fff;
+  color: var(--pps-deep);
+  box-shadow: inset 0 0 0 1px var(--pps-deep);
+}
+.ppug-art-line {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-k-first {
+  margin-top: 0;
+}
+.ppug-checks {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-checks li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-checks b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+.ppug-check-got {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-verdict {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ppug-verdict[data-ok="pass"],
+.ppug-verdict[data-ok="none"] {
+  color: #2e7d4f;
+}
+.ppug-verdict[data-ok="ask"] {
+  color: var(--pps-sky);
+}
+.ppug-verdict[data-ok="fail"] {
+  color: #b3401f;
+}
+.ppug-tests {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 22px;
+  margin: 30px 0 0;
+}
+.ppug-test {
+  margin: 0;
+}
+.ppug-test figcaption {
+  display: block;
+  margin-top: 12px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+.ppug-test figcaption > * {
+  display: block;
+}
+.ppug-test b {
+  margin-top: 4px;
+  font-family: var(--pps-sans);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.ppug-test-l {
+  margin-top: 10px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppug-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin: 26px 0 0;
+}
+.ppug-pair-one {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 50%;
+}
+.ppug-art {
+  margin: 0;
+}
+.ppug-grid4,
+.ppug-photos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 16px;
+  margin: 22px 0 0;
+  align-items: start;
+}
+.ppug-ads {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 26px 18px;
+  margin: 26px 0 0;
+  align-items: start;
+}
+.ppug-ads .ppug-art {
+  grid-column: span 2;
+}
+.ppug-ads .ppug-art[data-wide="1"] {
+  grid-column: span 3;
+}
+.ppug-table-wrap {
+  margin: 22px 0 0;
+  overflow-x: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ppug-table th,
+.ppug-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-table tr:last-child td {
+  border-bottom: 0;
+}
+.ppug-table th {
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--pps-muted);
+  background: #fafaf8;
+}
+.ppug-table td:nth-child(2) {
+  font-family: var(--pps-sans);
+  font-size: 15px;
+  color: var(--pps-text);
+}
+.ppug-k + .pps-standfirst {
+  margin-top: 12px;
+}
+/* the showpieces run wider than the text on a wide screen */
+@media (min-width: 1280px) {
+  .ppug-site,
+  .ppug-deck,
+  .ppug-tests,
+  .ppug-ads,
+  .ppug-photos,
+  .ppug-grid4,
+  .ppug-g-top,
+  .ppug-pair:not(.ppug-pair-one) {
+    width: calc(100% + min(150px, (100vw - 1180px) / 2 - 12px));
+  }
+}
+.ppug-hub-list {
+  margin-top: 30px;
 }
 
 @media (max-width: 768px) {
-  .ppug-btn {
-    grid-template-columns: 28px minmax(0, 1fr);
+  .ppug-g-top,
+  .ppug-pair,
+  .ppug-tests {
+    grid-template-columns: 1fr;
   }
-  .ppug-go {
-    grid-column: 2;
+  .ppug-g-ad {
+    position: static;
+    max-width: 420px;
   }
-  .ppug-open {
-    padding-left: 4px;
+  .ppug-pair-one {
+    max-width: none;
+  }
+  .ppug-grid4,
+  .ppug-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ppug-ads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ppug-ads .ppug-art {
+    grid-column: span 1;
+  }
+  .ppug-ads .ppug-art[data-wide="1"] {
+    grid-column: span 2;
+  }
+  .ppug-site-view {
+    height: 62vh;
+    overflow-x: auto;
+  }
+  .ppug-site-view img {
+    width: 620px;
+    max-width: none;
+  }
+  .ppug-deck-row img {
+    height: 58vh;
+  }
+  .ppug-site-foot span:first-child {
+    display: none;
   }
   .ppug-three,
   .ppug-four,

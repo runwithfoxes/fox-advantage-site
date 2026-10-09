@@ -1,73 +1,80 @@
 // The notes and the board that sit inside the example agent windows on the
-// Unknown group page. Copied word for word from the homepage agents section
-// (src/components/agents/AgentsSection.tsx) on 8 Oct 2026, so that file, which
-// drives the live homepage, is not touched. One change: an invented person on
-// the board shared a first name with the reader and was renamed. Every firm
-// and person here is invented.
+// Unknown group page. They began as word for word copies of the homepage
+// agents section (Kite Insurance). Paul, 9 Oct 2026, after his first look:
+// "personalise the examples for unknown from based on what you've heard versus
+// kite in the figures."
+//
+// So each one is now written as it could look for the group. What is real is
+// only what Declan said on the 8 Oct call: the group is Unknown, Empathy and
+// Salience are two of its four brands, the work is insight, brand, strategy
+// and futures, growth planning for next year is starting, and his own account
+// of the name. Every client company, person, number and finding below is
+// invented, and the note under the examples says so. The other two brands are
+// not named because nobody here has their names.
 import type { NoteItem } from "@/components/agents/TypedNote";
 
 export const RESEARCH: NoteItem[] = [
-  { kind: "lead", text: "Hi Paul," },
-  { kind: "p", text: "Here's today's research. Five companies, all filed to the CRM. The one to look at first is **Kite Insurance**." },
-  { kind: "p", text: "They've been hiring a performance marketing manager since May and the role is still open. Renewal price rises were in the news last week and their own site says nothing about it. The person to ask is **Órla Kavanagh**, Head of Marketing, confirmed in a press release in June." },
-  { kind: "li", text: "Two of her team registered for the course in August, so there is a **warm way in**." },
-  { kind: "li", text: "“Kite insurance renewal” gets **2,400 searches a month** and they rank fourth. “Car insurance quote” gets 33,100 and they are not in the top 20." },
-  { kind: "li", text: "**Three ads live**, all the same offer since March." },
+  { kind: "lead", text: "Hi Declan," },
+  { kind: "p", text: "Here's today's research. Five companies, all filed to the CRM. The one to look at first is **Harbour Foods**." },
+  { kind: "p", text: "They have been advertising for a Head of Insight since June and the role is still open. Their brand tracker goes out to tender in January, according to the notice on their site. The person to ask is **Gráinne Mulhall**, Marketing Director, confirmed in a press release in June." },
+  { kind: "li", text: "Two of her team read the last Empathy report, so there is a **warm way in**." },
+  { kind: "li", text: "They changed their pack design in March and have said nothing in public about how it went. That is a question **Salience** could help with as well as Empathy." },
+  { kind: "li", text: "**Three ads live**, all the same offer since the spring." },
   { kind: "p", text: "The other four are on their cards, every fact with its source beside it. I've handed all five to the **Growth Agent**." },
-  { kind: "att", text: "kite-insurance-card.pdf · 2 pages" },
+  { kind: "att", text: "harbour-foods-card.pdf · 2 pages" },
 ];
 
 export const REDTEAM: NoteItem[] = [
-  { kind: "lead", text: "Hi Paul," },
+  { kind: "lead", text: "Hi Declan," },
   { kind: "p", text: "I attacked the six claims that would cost the most if they were wrong today. Two broke." },
-  { kind: "li", text: "The Kite card says **Órla Kavanagh** was confirmed Head of Marketing in a June press release. The release is June last year. Fix: the Research Agent finds a source inside twelve months, or the card says the date is unconfirmed." },
-  { kind: "li", text: "The renewal email says customers saved **€187 on average**. I recomputed it from the renewal sheet and get €163. Fix: the Email Agent takes the number from the sheet and names the sheet." },
-  { kind: "p", text: "Four held. I tried the Growth Agent's meeting count against the calendar, the ad set's sizes against the brand book, the Search Agent's bid cap against the account, and the ghostwriter's seven in ten against the renewal data. None of them moved." },
+  { kind: "li", text: "The Harbour Foods card says **Gráinne Mulhall** was confirmed Marketing Director in a June press release. The release is June last year. Fix: the Research Agent finds a source inside twelve months, or the card says the date is unconfirmed." },
+  { kind: "li", text: "The client email says the finding showed up in **three of the last four waves**. I counted again from the data file and get two. Fix: the writer takes the number from the file and names the file." },
+  { kind: "p", text: "Four held. I tried the Growth Agent's meeting count against the calendar, the ad sizes against the brand rules, the Search Agent's bid cap against the account, and the post about the group's name against what was said on the call. None of them moved." },
   { kind: "p", text: "One gap in the process. The Search Agent's Friday report lands in a folder that no other agent's spec tells it to read. Fix: the **Campaign Manager's** spec names the file." },
 ];
 
 export const PM: NoteItem[] = [
-  { kind: "lead", text: "Hi Paul," },
+  { kind: "lead", text: "Hi Declan," },
   { kind: "p", text: "Where everything stands this morning. Three projects moved, one is waiting on you, nothing is late." },
-  { kind: "li", text: "**Kite renewal campaign.** The emails passed the guardian yesterday and go out Thursday. Nothing needed from you." },
-  { kind: "li", text: "**The website.** Two pages changed overnight from what you said on Tuesday. The third needs a photograph only you can pick. That is the one waiting on you." },
-  { kind: "li", text: "**Harbour Cover proposal.** Drafted from Friday's call, priced, and in your drafts folder to read. It does not go anywhere until you press send." },
-  { kind: "p", text: "The board is current. If you do one thing today, pick the photograph." },
+  { kind: "li", text: "**Empathy's monthly report.** The draft passed the red team yesterday and goes out on Thursday. Nothing needed from you." },
+  { kind: "li", text: "**The growth plan for next year.** Two sections changed overnight from what was said on Tuesday. The third needs a number only you can give. That is the one waiting on you." },
+  { kind: "li", text: "**Salience proposal for Harbour Foods.** Drafted from Friday's call, priced, and in your drafts folder to read. It does not go anywhere until you press send." },
+  { kind: "p", text: "The board is current. If you do one thing today, give me the number." },
 ];
 
-/* THE GROWTH AGENT'S WORLD. Paul, 5 Sep: "Growth Agent, I want to show Growth
-   Agent", pasting the section from the AXA page. The morning note, the board
-   and the copy come across as they are there. Every firm and person is
-   invented; the note is task-shaped and carries no numbers on purpose. */
+/* The growth agent's morning note and board. Task-shaped, and it carries no
+   revenue numbers on purpose. Every firm and person is invented. */
 export const GROWTH_NOTE = [
-  "Morning. Overnight: two replies came in and one meeting landed, Thursday at two with Behan Financial Planning.",
-  "Three things need you today. The Kilbrannan terms are waiting on your yes. This week's partner list is built and ready for you to prune. And one broker has asked a pricing question I will not answer for you.",
+  "Morning. Overnight: two replies came in and one meeting landed, Thursday at two with Corrib Energy, for Empathy.",
+  "Three things need you today. The Tolka Retail terms are waiting on your yes. This week's list of brands to approach is built and ready for you to prune. And one prospect has asked a pricing question I will not answer for you.",
   "Everything else is handled. Follow-ups sent, the board is current, the forecast is unchanged.",
 ];
 
 export const GROWTH_PIPELINE = [
   [
-    { firm: "Hyland Mortgage Advisers", person: "Cormac Hyland · Principal", note: "intro sent, two new advisers" },
-    { firm: "Ballagh Group", person: "Donal Moore · Reward Manager", note: "benefits review in October" },
+    { firm: "Harbour Foods", person: "Gráinne Mulhall · Marketing Director", note: "intro sent, tracker out to tender in January" },
+    { firm: "Ballagh Group", person: "Donal Moore · Head of Strategy", note: "planning for next year starts in November" },
     { firm: "Barrow Credit Union", person: "Áine Ronan · Head of Member Services", note: "detail sent, follow-up due" },
   ],
   [
-    { firm: "Foyle Comparison", person: "Sinéad Crotty · Partnerships Lead", note: "Tuesday 11am, panel terms" },
-    { firm: "Behan Financial Planning", person: "Ruairí Behan · Director", note: "Thursday 2pm, retention data prepared" },
+    { firm: "Corrib Energy", person: "Sinéad Crotty · Brand Director", note: "Thursday 2pm, for Empathy" },
+    { firm: "Slaney Drinks", person: "Ruairí Behan · Insight Lead", note: "Tuesday 11am, for Salience" },
   ],
   [
-    { firm: "Kilbrannan Brokers", person: "Maeve Tobin · Managing Director", note: "waiting on your yes" },
-    { firm: "Slaney Union", person: "Peter Rafferty · CEO", note: "follow-up Friday" },
+    { firm: "Tolka Retail", person: "Maeve Tobin · Chief Customer Officer", note: "waiting on your yes" },
+    { firm: "Foyle Travel", person: "Peter Rafferty · CEO", note: "follow-up Friday" },
   ],
   [
-    { firm: "Tolka Employee Benefits", person: "Onboarding", note: "terms agreed, launch date set" },
-    { firm: "Ashfield Brokers", person: "Live", note: "first month, 41 policies written" },
+    { firm: "Ashfield Health", person: "Onboarding", note: "terms agreed, first workshop booked" },
+    { firm: "Kilbrannan Dairy", person: "Live", note: "first wave of the tracker in field" },
   ],
 ];
 
+/* The ghostwriter's post. This one is not invented: it is written from what
+   Declan said on the call about the name (24:00 to 24:20), in his words. */
 export const GHOST_POST: NoteItem[] = [
-  { kind: "p", text: "I spent last week going through what our customers did at renewal time last year, and I want to share what I found, because I think it says something about how this industry works.", note: "voice" },
-  { kind: "p", text: "About seven in ten of the people we insure paid the renewal price we sent them without shopping around. When I first saw that number I assumed it meant they were happy with us. I don't think it does. I think it means the alternative was a fortnight of filling in forms on four different websites, answering the same eleven questions each time, and most people have better things to do with their evenings.", note: "proof" },
-  { kind: "p", text: "So we've started doing the shopping around for them. About three weeks before a renewal is due, we check what everyone else would charge for the same cover. If someone is cheaper, we tell the customer and move them, and we do the paperwork. If nobody is, they stay where they are. Either way they get a note saying what we found.", note: "positioning" },
-  { kind: "p", text: "I know how that sounds coming from an insurer, and it will cost us customers some years. I'd rather that than a business that depends on people not getting around to checking. If you're with an insurer that won't do this for you, it's worth asking them why.", note: "messaging" },
+  { kind: "p", text: "People ask why we called the group Unknown. The honest answer is that we stumbled on it a little, like a lot of good things.", note: "voice" },
+  { kind: "p", text: "But it fits. When a client comes to us they have an unknown. There is a gap, or a problem that needs solving. Our work is to take away the “un” and show what is known.", note: "positioning" },
+  { kind: "p", text: "A lot of the time the answer is hiding in plain sight. It is unseen, or unheard, or unimagined, and nobody has gone looking in the right place.", note: "messaging" },
+  { kind: "p", text: "It is a bit playful as well. The first thing people say is “why are you unknown?”, and that is a good way to start a conversation.", note: "voice" },
 ];

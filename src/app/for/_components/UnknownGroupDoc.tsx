@@ -5,37 +5,47 @@
 // Built from the brief Paul agreed the same evening:
 // paul-hub/clients/unknown-group/builds/2026-10-08-proposal-declan/brief.md.
 //
-// What Paul ruled, in his words:
+// What Paul ruled on 8 Oct, in his words:
 // - "they could build an agent-led marketing team ... what if we could hire 10
 //   more marketers? What would we get them to do?"
 // - "we're not selling agents ... What's on the page is just examples."
 // - No brand book is offered. No brand of theirs is put first. A group role.
-// - All ten agents from the homepage go in, with more room for the brand
-//   guardian (Moloco's, laid out the way the Sabre one was), a writer, and a
-//   project manager, then a short part on proactive agents from his essay.
-// - System thinking, with the course as the example. No course member named.
-// - The new Nova site and the live Data Intelligence site, with the design
-//   system for each shown as how the site was made.
-// - His own site as a content hub.
 // - EUR 15,000 plus VAT for about three months, then EUR 3,000 a month, optional.
 //
-// The ten agents' words are Paul's own from the homepage (AgentsSection.tsx,
-// dictated 6 Sep 2026): the line under each name and its first paragraph. The
-// rest of the prose on this page is a draft for his pass.
+// What he changed on 9 Oct after his first look, in his words:
+// - The section is headed "Examples of agents" with nothing written under it.
+// - "I want the accordion open with every example, so we don't need an
+//   accordion. Just have all the examples, and then on the left on the rail we
+//   can just have the agents." So each of the ten is its own section and the
+//   rail lists them. The longer parts (the guardian, the writer, the project
+//   manager, the one system, the two websites) now sit inside the agent they
+//   belong to, so nothing sends the reader to another part of the page.
+// - "personalise the examples for unknown ... versus kite in the figures."
+// - "We should make a scroller for each of the websites and we're hiding away
+//   the design system in little thumbnails. This needs to be brilliant and not
+//   hidden away."
+// - On the Moloco guardian: "If it's a banner ad, it's not a banner ad shape.
+//   It shouldn't be in a figure frame. But also we have 11 different checks
+//   that we do. We also have a library of artwork for Moloco and you can't
+//   tell which ones are the real ones, which ones we recreated."
+// - "Don't hold back ... This is not trying to be concise because we can have
+//   each one as a rail ... I want people to be open and explore."
 //
-// The pictures are imported from ./unknown-group so they get hashed names.
+// The line under each agent's name and its first paragraph are Paul's own
+// words from the homepage (AgentsSection.tsx, dictated 6 Sep 2026). The rest of
+// the prose is a draft for his pass.
+//
+// Every picture is imported from ./unknown-group so it gets a hashed name.
 // Nothing of Nova's unreleased site sits at a guessable address in public/.
 
-import { useState } from "react";
-import type { StaticImageData } from "next/image";
+import { useRef, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
-import { ScaledWindow, TerminalWindow } from "./library/AgentWindows";
+import { TerminalWindow } from "./library/AgentWindows";
 import { WriterEmail } from "./library/WriterPiece";
 import { PipelineBoard, JoNote } from "./library/GrowthManager";
-import MolocoGuardian from "./library/MolocoGuardian";
+import UnknownSearchWindow from "./library/UnknownSearchWindow";
 import TypedNote from "@/components/agents/TypedNote";
-import SearchAgentWindow from "@/components/agents/SearchAgentWindow";
 import AdDeskWindow from "@/components/agents/AdDeskWindow";
 import {
   RESEARCH,
@@ -45,34 +55,43 @@ import {
   GROWTH_PIPELINE,
   GHOST_POST,
 } from "./unknown-group-data";
-import novaHome from "./unknown-group/nova-home.jpg";
-import novaSelection from "./unknown-group/nova-selection.jpg";
-import novaLook from "./unknown-group/nova-brand-look.jpg";
-import novaPhoto from "./unknown-group/nova-brand-photography-2.jpg";
-import novaSystem from "./unknown-group/nova-brand-system-2.jpg";
-import diHome from "./unknown-group/di-home.jpg";
-import diProduct from "./unknown-group/di-product.jpg";
-import diCover from "./unknown-group/di-guide-cover.jpg";
-import diColour from "./unknown-group/di-guide-colour.jpg";
-import diParts from "./unknown-group/di-guide-components.jpg";
-import rwfReports from "./unknown-group/rwf-reports.jpg";
-import rwfNuggets from "./unknown-group/rwf-nuggets.jpg";
-import rwfDiary from "./unknown-group/rwf-diary.jpg";
-import rwfEssays from "./unknown-group/rwf-essays.jpg";
-import rwfCourse from "./unknown-group/rwf-course.jpg";
+import { PICS } from "./unknown-group/pics";
 import "@/components/agents/agents-section.css";
 import "./pricing.css";
 import "./unknown-group.css";
 
+// The ten, in the homepage's order. The rail lists every one by name.
+const AGENTS = [
+  { id: "ag-research", num: "01", name: "Research Agents" },
+  { id: "ag-growth", num: "02", name: "Growth Agent Team" },
+  { id: "ag-email", num: "03", name: "Email Marketing Agents" },
+  { id: "ag-ghost", num: "04", name: "Ghostwriters" },
+  { id: "ag-search", num: "05", name: "Search Agents" },
+  { id: "ag-ads", num: "06", name: "Advertising Agents" },
+  { id: "ag-web", num: "07", name: "Website Agent Team" },
+  { id: "ag-guardian", num: "08", name: "Brand Guardians" },
+  { id: "ag-manager", num: "09", name: "Campaign Managers" },
+  { id: "ag-red", num: "10", name: "Red Team" },
+];
+
+// Parts inside an agent that get their own line in the rail.
+const WEB_PARTS = [
+  { id: "web-di", title: "Data Intelligence" },
+  { id: "web-nova", title: "Nova" },
+];
+const GUARDIAN_PARTS = [
+  { id: "g-checks", title: "What it checks" },
+  { id: "g-tests", title: "Six test files" },
+  { id: "g-art", title: "The artwork" },
+];
+
 const SECTIONS = [
   { id: "heard", title: "What we propose" },
   { id: "howiwork", title: "What we do" },
-  { id: "agents", title: "Ten agents we have built" },
-  { id: "guardian", title: "A brand guardian" },
-  { id: "writer", title: "A writer" },
-  { id: "manager", title: "A project manager, and agents that follow things through" },
-  { id: "system", title: "One connected system" },
-  { id: "websites", title: "Two websites, and how each was made" },
+  { id: "agents", title: "Examples of agents" },
+  ...AGENTS.map((a) => ({ id: a.id, title: a.name })),
+  ...WEB_PARTS,
+  ...GUARDIAN_PARTS,
   { id: "hub", title: "A content hub" },
   { id: "howitworks", title: "How it would work" },
   { id: "pricing", title: "The price" },
@@ -87,261 +106,577 @@ const RAIL_GROUPS = [
     ],
   },
   {
-    label: "/examples",
-    entries: [
-      { id: "agents", title: "Ten agents we have built", num: "03" },
-      { id: "guardian", title: "A brand guardian", num: "04" },
-      { id: "writer", title: "A writer", num: "05" },
-      { id: "manager", title: "A project manager", num: "06" },
-      { id: "system", title: "One connected system", num: "07" },
-      { id: "websites", title: "Two websites", num: "08" },
-      { id: "hub", title: "A content hub", num: "09" },
-    ],
+    label: "/examples of agents",
+    entries: AGENTS.map((a) => ({
+      id: a.id,
+      title: a.name,
+      num: a.num,
+      children:
+        a.id === "ag-web" ? WEB_PARTS : a.id === "ag-guardian" ? GUARDIAN_PARTS : undefined,
+    })),
+  },
+  {
+    label: "/more examples",
+    entries: [{ id: "hub", title: "A content hub", num: "11" }],
   },
   {
     label: "/how and how much",
     entries: [
-      { id: "howitworks", title: "How it would work", num: "10" },
-      { id: "pricing", title: "The price", num: "11" },
+      { id: "howitworks", title: "How it would work", num: "12" },
+      { id: "pricing", title: "The price", num: "13" },
     ],
   },
 ];
 
-// The ten, in the homepage's order. `dek` and `first` are Paul's own words
-// from the homepage. `jump` sends the reader to the section on this page that
-// shows that agent at more length.
-type Row = {
-  num: string;
-  name: string;
-  short: string;
+// One agent: its number and name, Paul's line about it, then everything we
+// have to show for it. Open, never folded away.
+function Agent({
+  n,
+  dek,
+  children,
+}: {
+  n: number;
   dek: string;
-  first?: string;
-  fig?: () => React.ReactNode;
-  jump?: { id: string; label: string };
-};
+  children: React.ReactNode;
+}) {
+  const a = AGENTS[n];
+  return (
+    <section id={a.id} data-track-section={a.id} className="pps-section pps-sub ppug-agent">
+      <div className="pps-section-head">
+        <span className="pps-section-k">{a.num}</span>
+        <h2 className="pps-section-h2">{a.name}</h2>
+      </div>
+      <p className="pps-standfirst ppug-dek">{dek}</p>
+      {children}
+    </section>
+  );
+}
 
-const ROWS: Row[] = [
+function P({ children }: { children: React.ReactNode }) {
+  return <p className="pps-standfirst">{children}</p>;
+}
+
+function Note({ k = "/example.", children }: { k?: string; children: React.ReactNode }) {
+  return (
+    <p className="ppug-note">
+      <span className="ppug-slash">{k}</span> {children}
+    </p>
+  );
+}
+
+function Pic({ name, alt, className }: { name: string; alt: string; className?: string }) {
+  const p = PICS[name];
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img className={className} src={p.src} width={p.width} height={p.height} alt={alt} loading="lazy" />;
+}
+
+// A whole website in a browser window. Each tab is one real page, photographed
+// from top to bottom, and the reader scrolls it inside the window.
+type SitePage = { label: string; pic: string; url: string; href?: string };
+function SiteScroller({ pages, pill, what }: { pages: SitePage[]; pill: string; what: string }) {
+  const [i, setI] = useState(0);
+  const view = useRef<HTMLDivElement>(null);
+  const pg = pages[i];
+  const go = (n: number) => {
+    setI(n);
+    if (view.current) view.current.scrollTop = 0;
+  };
+  return (
+    <div className="ppug-site">
+      <div className="ppug-site-bar">
+        <span className="ppug-dots">
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className="ppug-site-url">{pg.url}</span>
+        <span className="ppug-site-pill">{pill}</span>
+      </div>
+      <div className="ppug-site-tabs" role="tablist" aria-label={what}>
+        {pages.map((p, n) => (
+          <button
+            key={p.pic}
+            type="button"
+            role="tab"
+            aria-selected={n === i}
+            data-on={n === i ? "1" : "0"}
+            onClick={() => go(n)}
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+      <div className="ppug-site-view" ref={view} tabIndex={0} aria-label={`${what}: ${pg.label}, scroll to read`}>
+        <Pic name={pg.pic} alt={`${what}: ${pg.label}`} />
+      </div>
+      <p className="ppug-site-foot">
+        <span>scroll inside the window &darr;</span>
+        <span>
+          {i + 1} of {pages.length} pages
+          {pg.href && (
+            <>
+              {" "}
+              &middot;{" "}
+              <a href={pg.href} target="_blank" rel="noopener noreferrer">
+                open the live page
+              </a>
+            </>
+          )}
+        </span>
+      </p>
+    </div>
+  );
+}
+
+// The written rules as a row of full pages the reader moves along sideways.
+function PageDeck({ count, prefix, what }: { count: number; prefix: string; what: string }) {
+  const row = useRef<HTMLDivElement>(null);
+  const move = (d: number) => {
+    const el = row.current;
+    if (el) el.scrollBy({ left: d * el.clientWidth * 0.8, behavior: "smooth" });
+  };
+  return (
+    <div className="ppug-deck">
+      <div className="ppug-deck-row" ref={row} tabIndex={0} aria-label={`${what}, ${count} pages, scroll sideways`}>
+        {Array.from({ length: count }, (_, n) => {
+          const k = String(n + 1).padStart(2, "0");
+          return (
+            <figure key={k}>
+              <Pic name={`${prefix}${k}`} alt={`${what}, page ${n + 1}`} />
+              <figcaption>
+                {n + 1} / {count}
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+      <div className="ppug-deck-foot">
+        <span>all {count} pages, scroll sideways</span>
+        <span>
+          <button type="button" onClick={() => move(-1)} aria-label="Earlier pages">
+            &larr;
+          </button>
+          <button type="button" onClick={() => move(1)} aria-label="Later pages">
+            &rarr;
+          </button>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// A piece of artwork with a plain label saying whose it is.
+function Art({
+  name,
+  alt,
+  who,
+  line,
+}: {
+  name: string;
+  alt: string;
+  who: "theirs" | "ours";
+  line?: string;
+}) {
+  return (
+    <figure className="ppug-art">
+      <Pic name={name} alt={alt} />
+      <figcaption>
+        <span className="ppug-tag" data-who={who}>
+          {who === "theirs" ? "Moloco’s own" : "Made by us"}
+        </span>
+        {line && <span className="ppug-art-line">{line}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
+// ---------- the Moloco guardian: every figure here is from its own run ----------
+
+// What it measured on the honest test file, run again on 9 Oct 2026.
+const MEASURED: { rule: string; got: string; ok: "pass" | "none" | "ask" }[] = [
+  { rule: "The flat colours are brand colours", got: "#E9FFD1 is 34.9% of the file and is Light Green. The two smaller fields are Vellum and Parchment.", ok: "pass" },
+  { rule: "No blue from the old identity", got: "None found. The identity from before August 2026 is retired and is never used.", ok: "none" },
+  { rule: "There is a logo and it can be read", got: "Symbol found at 44, 424 in the file.", ok: "pass" },
+  { rule: "The logo is not stretched", got: "74 by 67 pixels, 0.5% off the real file. The limit is 1.5%.", ok: "pass" },
+  { rule: "The logo is at or above its smallest size", got: "67 pixels high. The rule is never under 30.", ok: "pass" },
+  { rule: "The symbol sits with its wordmark", got: "The full logo is used, symbol and name together.", ok: "none" },
+  { rule: "Nothing sits in the space around the logo", got: "24 pixels clear on each side, which is the rule for a logo this size.", ok: "pass" },
+  { rule: "The glow inside the symbol is there", got: "87% of the inside of the symbol carries colour.", ok: "pass" },
+  { rule: "The grid lines are hairlines", got: "Two across and one down, all at or under 3.2 pixels.", ok: "pass" },
+  { rule: "The corners are square", got: "The corner pixel matches its edge, #E9FFD1.", ok: "pass" },
+  { rule: "The photograph is in the brand's style", got: "The photograph in this file is too small a part of it to measure, so it asked a person.", ok: "ask" },
+];
+
+const ASKED: { rule: string; why: string }[] = [
+  { rule: "One gradient in each section, teal to green to yellow", why: "It cannot be counted from a flat picture." },
+  { rule: "The serif is never used for body text, and the mono never for sentences", why: "A typeface cannot be read reliably from pixels below headline size." },
+  { rule: "No type or logo over the photograph", why: "It quotes the rule and asks a person to look." },
+  { rule: "The photograph has the brand's qualities, and nobody looks at the camera", why: "That is a judgment. It cannot be measured from pixels." },
+  { rule: "Any number or claim in the copy matches the approved wording", why: "That is about the words, so a person checks it." },
+];
+
+const TESTS: { pic: string; title: string; planted: string; verdict: "Pass" | "Fail"; said: string }[] = [
   {
-    num: "01",
-    name: "Research Agents",
-    short: "the morning research note",
-    dek: "We build research agents for marketing and sales, working every day, so you're not the bottleneck.",
-    first:
-      "We build a team of research agents that find that information for you on their own, every day. They work as a team, and you are not the bottleneck in it. They can research competitors. They can research prices. They can watch the things that change on a regular basis and tell you when they do.",
-    fig: () => (
-      <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" avatar="R" items={RESEARCH} />
-    ),
+    pic: "mol-test-00",
+    title: "The honest file",
+    planted: "Nothing wrong with it. Saved as a JPEG, the way a file arrives from someone outside the team.",
+    verdict: "Pass",
+    said: "Passed on what it can measure, and listed what it could not.",
   },
   {
-    num: "02",
-    name: "Growth Agent Team",
-    short: "the pipeline, the outbound, the meetings",
-    dek: "We build growth agent teams whose job is to get meetings with prospects in your calendar.",
-    first:
-      "We build the Growth Agent Team to get meetings with prospects booked in your calendar. That is the end game, and every task the team does is in service of it. Once we have built it, and built it carefully, the team works away every day without you being the bottleneck.",
-    fig: () => (
-      <>
-        <JoNote note={GROWTH_NOTE} title="Growth Agent Team" />
-        <div style={{ marginTop: 22 }} />
-        <PipelineBoard deals={GROWTH_PIPELINE} width={806} pill="kept current every morning" />
-      </>
-    ),
+    pic: "mol-test-01",
+    title: "The green is three off",
+    planted: "The background was set to #EDFFCE. The brand's Light Green is #EAFFD1.",
+    verdict: "Fail",
+    said: "“#EDFFCE, 38.8% of the file, nearest Light Green #EAFFD1, off by 3.”",
   },
   {
-    num: "03",
-    name: "Email Marketing Agents",
-    short: "the emails that keep customers",
-    dek: "We build email marketing agents that do the whole of lifecycle email, from writing to improving the journeys, every day.",
-    jump: { id: "system", label: "shown working below" },
+    pic: "mol-test-02",
+    title: "The logo is stretched",
+    planted: "The symbol was made about 4% wider.",
+    verdict: "Fail",
+    said: "“Symbol 77 by 67 pixels, 3.6% off the real file.” It also saw the wider symbol push into the clear space.",
   },
   {
-    num: "04",
-    name: "Ghostwriters",
-    short: "posts and articles in your voice",
-    dek: "We build ghostwriters that get a founder's point of view onto LinkedIn and into longer articles, every week, in their own words.",
-    first:
-      "We build ghostwriters that let a founder or a senior exec get their opinion and their point of view across on LinkedIn, or in deeper articles, on an ongoing basis. It finds the material, structures it and writes it. What the founder does is open their laptop and find a handful of pieces that are ninety percent written. Usually it is a small bit of editing, then approve, and depending on how it is set up, the piece goes live.",
-    fig: () => (
-      <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Aoife Mulcair" role="Founder, Kite Insurance" avatar="AM" subject="" items={GHOST_POST} />
-    ),
+    pic: "mol-test-03",
+    title: "A grid line is too heavy",
+    planted: "One grid line was drawn 7 pixels thick.",
+    verdict: "Fail",
+    said: "“A line 7 pixels thick, limit 3.2.”",
   },
   {
-    num: "05",
-    name: "Search Agents",
-    short: "paid search, run every day",
-    dek: "We build search agents that run paid search every day, the terms, the ads and the bids, without you.",
-    first:
-      "We build search agents that take the daily work of paid search off you. Finding the terms, writing the ads, putting them live, reading the numbers and improving the account. Once we have built it, it works away every day without you being the bottleneck.",
-    fig: () => <SearchAgentWindow />,
+    pic: "mol-test-04",
+    title: "A panel in the old blue",
+    planted: "A small panel was added in the blue from the old identity.",
+    verdict: "Fail",
+    said: "“#1F5AF6, 5.5% of the file. The identity from before August 2026 is retired and is never used.”",
   },
   {
-    num: "06",
-    name: "Advertising Agents",
-    short: "ads written, made, live and remade",
-    dek: "We build advertising agents that write, make, put live, read and remake ads, inside Meta or whichever tool you use, without you.",
-    first:
-      "We build advertising agents that do the work inside Meta, or another advertising tool, that used to be a full-time role or an agency. Once we have set it up properly, it works away every day without you being the bottleneck.",
-    fig: () => <AdDeskWindow />,
-  },
-  {
-    num: "07",
-    name: "Website Agent Team",
-    short: "a site built with craft, changed by asking",
-    dek: "We build well crafted websites and set them up so you can make on-brand changes in a moment, without any design, UX or development knowledge.",
-    jump: { id: "websites", label: "two real sites below" },
-  },
-  {
-    num: "08",
-    name: "Brand Guardians",
-    short: "every file measured against the book",
-    dek: "We build brand guardians for brand teams whose stakeholders want speed, so the work stays on brand as it gets faster.",
-    jump: { id: "guardian", label: "shown at more length below" },
-  },
-  {
-    num: "09",
-    name: "Campaign Managers",
-    short: "where everything stands",
-    dek: "We build campaign managers that keep the marketing on track, either beside you every day or running a team of agents.",
-    jump: { id: "manager", label: "shown at more length below" },
-  },
-  {
-    num: "10",
-    name: "Red Team",
-    short: "the mistakes, caught before you see them",
-    dek: "We build a red team into every team of agents, with one job, to find the mistakes before you do.",
-    first:
-      "Nobody asks for a red team, so we build one into every team of agents we make. Its only job is to find the holes, the gaps and the mistakes in everything the other agents do. In their role specs, in the quality of what they produce, and in the processes themselves.",
-    fig: () => (
-      <TypedNote title="Red Team" subject="Six attacks, two broke, one gap" from="Red Team" avatar="RT" items={REDTEAM} />
-    ),
+    pic: "mol-test-05",
+    title: "The logo is too small",
+    planted: "The logo was shrunk to 24 pixels high. The rule is never under 30.",
+    verdict: "Fail",
+    said: "It could not find a logo it could read, and said that a person should check.",
   },
 ];
 
-function TenAgents() {
-  const [open, setOpen] = useState(0);
-  return (
-    <ul className="ppug-list">
-      {ROWS.map((r, i) => {
-        const isOpen = !r.jump && open === i;
-        return (
-          <li key={r.num} className="ppug-row" data-open={isOpen ? "1" : "0"}>
-            {r.jump ? (
-              <a className="ppug-btn" href={`#${r.jump.id}`}>
-                <span className="ppug-n">{r.num}</span>
-                <span>
-                  <span className="ppug-name">{r.name}</span>
-                  <span className="ppug-short">{r.short}</span>
-                </span>
-                <span className="ppug-go">{r.jump.label} &darr;</span>
-              </a>
-            ) : (
-              <button
-                type="button"
-                className="ppug-btn"
-                aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? -1 : i)}
-              >
-                <span className="ppug-n">{r.num}</span>
-                <span>
-                  <span className="ppug-name">{r.name}</span>
-                  <span className="ppug-short">{r.short}</span>
-                </span>
-                <span className="ppug-go">{isOpen ? "close" : "see it"}</span>
-              </button>
-            )}
-            {isOpen && (
-              <div className="ppug-open">
-                <p className="pps-standfirst">{r.dek}</p>
-                {r.first && <p className="pps-standfirst">{r.first}</p>}
-                {r.fig && <figure className="ag-fig">{r.fig()}</figure>}
-              </div>
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
+// The eleven measurements on a post the machine makes, from its receipt for
+// the upright post (out/review, sha 8941053d6a). Positions are in the brand
+// portal's own unit: the shorter side of the post divided by 20.
+const RECEIPT: [string, string, string][] = [
+  ["The upright grid line", "19.0", "19.009"],
+  ["The thickness of that line", "hairline", "hairline"],
+  ["The top grid line", "1.0", "1.0"],
+  ["The middle grid line", "10.0", "9.991"],
+  ["The edges of the photograph", "0, 10.0, 19.0, 25.0", "0, 10.0, 19.0, 25.0"],
+  ["Where the headline sits and its size", "0.85, 1.82, 13.7, 5.88", "0.852, 1.815, 13.722, 5.87"],
+  ["Where the logo symbol sits and its size", "0.82, 7.86, 2.2, 9.11", "0.815, 7.852, 2.185, 9.093"],
+  ["Where the logo name sits and its size", "2.51, 8.03, 6.53, 8.98", "2.519, 8.019, 6.519, 8.963"],
+  ["The glow inside the symbol", "there", "there"],
+  ["The colour of the tint", "#EAFFD1", "#EAFFD1"],
+  ["Nothing touches the outer edge but the grid lines", "clear", "clear"],
+];
 
-// A picture of a real page inside the same window frame the other exhibits
-// use. With an href the whole picture opens the live page in a new tab.
-function Shot({
-  src,
-  alt,
-  label,
-  pill,
-  href,
-}: {
-  src: StaticImageData;
-  alt: string;
-  label: string;
-  pill: string;
-  href?: string;
-}) {
-  // eslint-disable-next-line @next/next/no-img-element
-  const img = <img src={src.src} width={src.width} height={src.height} alt={alt} loading="lazy" />;
+const ADS: { pic: string; size: string; wide?: boolean }[] = [
+  { pic: "mol-ad-performs-1200x628", size: "1200 x 628", wide: true },
+  { pic: "mol-ad-convert-1200x628", size: "1200 x 628", wide: true },
+  { pic: "mol-ad-outcomes-1200x628", size: "1200 x 628", wide: true },
+  { pic: "mol-ad-performs-970x250", size: "970 x 250", wide: true },
+  { pic: "mol-ad-convert-970x250", size: "970 x 250", wide: true },
+  { pic: "mol-ad-outcomes-970x250", size: "970 x 250", wide: true },
+  { pic: "mol-ad-performs-728x90", size: "728 x 90", wide: true },
+  { pic: "mol-ad-email-performs", size: "600 x 200, email", wide: true },
+  { pic: "mol-ad-email-convert", size: "600 x 200, email", wide: true },
+  { pic: "mol-ad-email-outcomes", size: "600 x 200, email", wide: true },
+  { pic: "mol-ad-performs-1080x1080", size: "1080 x 1080" },
+  { pic: "mol-ad-convert-1080x1080", size: "1080 x 1080" },
+  { pic: "mol-ad-outcomes-1080x1080", size: "1080 x 1080" },
+  { pic: "mol-ad-performs-300x250", size: "300 x 250" },
+  { pic: "mol-ad-convert-300x250", size: "300 x 250" },
+  { pic: "mol-ad-outcomes-300x250", size: "300 x 250" },
+  { pic: "mol-ad-performs-300x600", size: "300 x 600" },
+  { pic: "mol-ad-performs-160x600", size: "160 x 600" },
+];
+
+// Sixteen photographs. The eight with "r4" in the name were made by us on
+// 9 Sep 2026; the other eight are from the library Pentagram made for Moloco.
+const PHOTOS: [string, "theirs" | "ours"][] = [
+  ["mol-photo-05", "theirs"],
+  ["mol-photo-02-r4-v1", "ours"],
+  ["mol-photo-18", "theirs"],
+  ["mol-photo-03-r4-v0", "ours"],
+  ["mol-photo-19", "theirs"],
+  ["mol-photo-04-r4-v1", "ours"],
+  ["mol-photo-22", "theirs"],
+  ["mol-photo-16-r4-v1", "ours"],
+  ["mol-photo-24", "theirs"],
+  ["mol-photo-17-r4-v1", "ours"],
+  ["mol-photo-30", "theirs"],
+  ["mol-photo-21-r4-v0", "ours"],
+  ["mol-photo-36", "theirs"],
+  ["mol-photo-23-r4-v1", "ours"],
+  ["mol-photo-42", "theirs"],
+  ["mol-photo-38-r4-v1", "ours"],
+];
+
+function Guardian() {
   return (
-    <div className="ppug-shot">
-      <ScaledWindow width={940}>
-        <div className="ppw-blueprint">
-          <div className="ppw-frame-win">
-            <div className="ppw-tl">
-              <i />
-              <i />
-              <i />
-              <span className="ppw-t">{label}</span>
-              <span className="ppw-live-pill">{pill}</span>
-            </div>
-            {href ? (
-              <a href={href} target="_blank" rel="noopener noreferrer">
-                {img}
-              </a>
-            ) : (
-              img
-            )}
+    <>
+      <P>
+        We build brand guardians, often for larger brands whose stakeholders
+        want speed. The goal is speed and quality together. Without the
+        quality, stakeholders start creating their own marketing materials,
+        and things begin to look generic.
+      </P>
+      <P>
+        This one is Moloco&rsquo;s. Moloco got a new identity in August 2026,
+        made by Pentagram, with its rules set out in a brand portal. We built
+        two things from that portal. One makes posts and ads to the
+        portal&rsquo;s rules. The other, the guardian, reads any finished file
+        and checks it against those rules. We use a guardian on our own work
+        too, so that everything we make goes through it. It is here as an
+        example of how the quality is kept.
+      </P>
+
+      <div id="g-checks" className="ppug-part">
+        <h3 className="ppug-h3">What it checks</h3>
+        <P>
+          It measures eleven things and it asks a person about five more. It
+          never says pass about the words, the claims or whether a photograph
+          is a good one. Every line it writes names the rule it used and where
+          that rule is in the portal.
+        </P>
+        <div className="ppug-g-top">
+          <figure className="ppug-g-ad">
+            <Pic name="mol-test-00" alt="A Moloco post, upright, with the headline Acquire more users. Spend smarter. Grow faster." />
+            <figcaption>
+              <span className="ppug-tag" data-who="ours">
+                Made by us
+              </span>
+              <span className="ppug-art-line">
+                The file it read. An upright social post, 1080 by 1350 pixels,
+                in Moloco&rsquo;s identity.
+              </span>
+            </figcaption>
+          </figure>
+          <div>
+            <p className="ppug-k ppug-k-first">Eleven things it measures</p>
+            <ol className="ppug-checks">
+              {MEASURED.map((m, i) => (
+                <li key={m.rule} data-ok={m.ok}>
+                  <span className="ppug-n">{String(i + 1).padStart(2, "0")}</span>
+                  <span>
+                    <b>{m.rule}</b>
+                    <span className="ppug-check-got">{m.got}</span>
+                  </span>
+                  <span className="ppug-verdict" data-ok={m.ok}>
+                    {m.ok === "ask" ? "asked" : "pass"}
+                  </span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
-      </ScaledWindow>
-    </div>
+        <p className="ppug-k">Five things it asks a person</p>
+        <ol className="ppug-checks ppug-checks-ask">
+          {ASKED.map((m, i) => (
+            <li key={m.rule} data-ok="ask">
+              <span className="ppug-n">{String(i + 12).padStart(2, "0")}</span>
+              <span>
+                <b>{m.rule}</b>
+                <span className="ppug-check-got">{m.why}</span>
+              </span>
+              <span className="ppug-verdict" data-ok="ask">
+                asked
+              </span>
+            </li>
+          ))}
+        </ol>
+        <Note k="/the run.">
+          These are the guardian&rsquo;s own results on this file, run again on
+          9 October 2026. Verdict: pass on what it can measure.
+        </Note>
+      </div>
+
+      <div id="g-tests" className="ppug-part">
+        <h3 className="ppug-h3">Six test files</h3>
+        <P>
+          A guardian is only useful if it catches the mistakes a person would
+          miss. So we made six files to test it. One is honest. The other five
+          each have one small thing wrong, close enough to right that you would
+          pass them at a glance. It caught all five.
+        </P>
+        <div className="ppug-tests">
+          {TESTS.map((t) => (
+            <figure key={t.pic} className="ppug-test" data-v={t.verdict}>
+              <Pic name={t.pic} alt={`Test file: ${t.title}`} />
+              <figcaption>
+                <span className="ppug-verdict" data-ok={t.verdict === "Pass" ? "pass" : "fail"}>
+                  {t.verdict}
+                </span>
+                <b>{t.title}</b>
+                <span className="ppug-test-l">What we changed</span>
+                <span>{t.planted}</span>
+                <span className="ppug-test-l">What the guardian said</span>
+                <span>{t.said}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <Note k="/whose work.">
+          All six files were made by us, for the test. None of them is an ad
+          Moloco has run.
+        </Note>
+      </div>
+
+      <div id="g-art" className="ppug-part">
+        <h3 className="ppug-h3">The artwork</h3>
+        <P>
+          Every piece below is marked. &ldquo;Moloco&rsquo;s own&rdquo; means
+          it came from Moloco&rsquo;s brand portal or its photo library.
+          &ldquo;Made by us&rdquo; means our agents made it to the
+          portal&rsquo;s rules.
+        </P>
+
+        <p className="ppug-k">Social posts: theirs beside ours</p>
+        <P>
+          The portal draws three sample posts. We read the layout off those
+          drawings and built a machine that makes the same post from a
+          headline and a photograph. The copy in ours is the portal&rsquo;s own
+          sample copy, so the two can be laid side by side.
+        </P>
+        <div className="ppug-pair">
+          <Art name="mol-post-ref-vertical-A-post1" alt="Moloco's own sample post, upright, headline at the top" who="theirs" line="The portal's sample post, headline at the top." />
+          <Art name="mol-post-vertical-A-light-green" alt="Our post made to the same layout, on Light Green" who="ours" line="The same layout, made by the machine." />
+        </div>
+        <p className="ppug-k">The eleven measurements on that post</p>
+        <P>
+          Each post the machine makes is measured against Moloco&rsquo;s own
+          drawing before anyone sees it. These are the eleven measurements for
+          the pair above. All eleven passed. Positions are in the
+          portal&rsquo;s own unit, which is the shorter side of the post
+          divided by 20.
+        </P>
+        <div className="ppug-table-wrap">
+          <table className="ppug-table">
+            <thead>
+              <tr>
+                <th />
+                <th>What is measured</th>
+                <th>Moloco&rsquo;s drawing</th>
+                <th>Ours</th>
+              </tr>
+            </thead>
+            <tbody>
+              {RECEIPT.map(([what, theirs, ours], i) => (
+                <tr key={what}>
+                  <td className="ppug-n">{String(i + 1).padStart(2, "0")}</td>
+                  <td>{what}</td>
+                  <td>{theirs}</td>
+                  <td>{ours}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="ppug-pair">
+          <Art name="mol-post-ref-vertical-B-post4" alt="Moloco's own sample post, upright, photograph at the top" who="theirs" line="The portal's sample post, photograph at the top." />
+          <Art name="mol-post-vertical-B-light-teal" alt="Our post made to the same layout, on Light Teal" who="ours" line="The same layout, made by the machine." />
+        </div>
+        <div className="ppug-pair ppug-pair-wide">
+          <Art name="mol-post-ref-wide-attachment" alt="Moloco's own wide sample post" who="theirs" line="The portal's wide post." />
+          <Art name="mol-post-wide-A-vellum" alt="Our wide post made to the same layout, on Vellum" who="ours" line="The same layout, made by the machine." />
+        </div>
+        <p className="ppug-k">The same post in the brand&rsquo;s other tints</p>
+        <div className="ppug-grid4">
+          <Art name="mol-post-vertical-A-light-teal" alt="Our upright post on Light Teal" who="ours" line="Light Teal" />
+          <Art name="mol-post-vertical-A-light-yellow" alt="Our upright post on Light Yellow" who="ours" line="Light Yellow" />
+          <Art name="mol-post-vertical-A-parchment" alt="Our upright post on Parchment" who="ours" line="Parchment" />
+          <Art name="mol-post-square-A-light-yellow" alt="Our square post on Light Yellow" who="ours" line="Square. The portal has no square, so this one is our own extension." />
+        </div>
+        <div className="ppug-pair ppug-pair-wide ppug-pair-one">
+          <Art name="mol-post-wide-A-light-green" alt="Our wide post on Light Green" who="ours" line="The wide post on Light Green." />
+        </div>
+
+        <p className="ppug-k">Display ads</p>
+        <P>
+          Three messages for Moloco&rsquo;s connected TV product, each in the
+          sizes an ad campaign needs, and three banners for email. We made all
+          of these in the new identity, and each one went through the guardian
+          before it was sent to Moloco.
+        </P>
+        <div className="ppug-ads">
+          {ADS.map((a) => (
+            <figure key={a.pic} className="ppug-art" data-wide={a.wide ? "1" : "0"}>
+              <Pic name={a.pic} alt={`A Moloco display ad made by us, ${a.size}`} />
+              <figcaption>
+                <span className="ppug-tag" data-who="ours">
+                  Made by us
+                </span>
+                <span className="ppug-art-line">{a.size}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="ppug-k">Photographs: eight are theirs and eight are ours</p>
+        <P>
+          Pentagram made Moloco a library of photographs. We wrote down what
+          makes those photographs look the way they do, and made new ones from
+          the written description alone. The guardian measures each new one
+          against the library, and then a person looks at it at full size.
+        </P>
+        <div className="ppug-photos">
+          {PHOTOS.map(([name, who]) => (
+            <Art
+              key={name}
+              name={name}
+              alt={who === "theirs" ? "A photograph from Moloco's own library" : "A photograph made by us in Moloco's style"}
+              who={who}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
-function Three({ items }: { items: { src: StaticImageData; alt: string }[] }) {
-  return (
-    <div className="ppug-three">
-      {items.map((it) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img key={it.src.src} src={it.src.src} width={it.src.width} height={it.src.height} alt={it.alt} loading="lazy" />
-      ))}
-    </div>
-  );
-}
+const DI_PAGES: SitePage[] = [
+  { label: "Home", pic: "full-di-home", url: "dataintelligence.com", href: "https://www.dataintelligence.com" },
+  { label: "Product", pic: "full-di-product", url: "dataintelligence.com/product", href: "https://www.dataintelligence.com/product" },
+  { label: "Prices", pic: "full-di-prices", url: "dataintelligence.com/prices", href: "https://www.dataintelligence.com/prices" },
+  { label: "About", pic: "full-di-about", url: "dataintelligence.com/about", href: "https://www.dataintelligence.com/about" },
+  { label: "An essay", pic: "full-di-essay", url: "dataintelligence.com/essays", href: "https://www.dataintelligence.com/essays/announcing-dataintelligence" },
+];
 
-const HUB = [
-  {
-    src: rwfReports,
-    href: "https://runwithfoxes.com/resources/reports",
-    title: "Research reports",
-    text: "The first large report is out. It counts how many Irish marketing and sales job ads ask for AI. Two more are on the way, and the plan is at least one a month.",
-  },
-  {
-    src: rwfNuggets,
-    href: "https://runwithfoxes.com/research-nuggets",
-    title: "Research nuggets",
-    text: "A research agent writes a short piece every day on one paper, case or study, with the source checked.",
-  },
-  {
-    src: rwfDiary,
-    href: "https://runwithfoxes.com/diary",
-    title: "The diary",
-    text: "One of the agents writes about how the team of agents works, what went wrong and what was changed.",
-  },
-  {
-    src: rwfEssays,
-    href: "https://runwithfoxes.com/essays",
-    title: "Essays",
-    text: "Paul's own essays on marketing and AI, every few days.",
-  },
+const NOVA_PAGES: SitePage[] = [
+  { label: "Home", pic: "full-nova-home", url: "Nova, the new site" },
+  { label: "Selection", pic: "full-nova-selection", url: "Nova, the new site / selection" },
+  { label: "Delivery", pic: "full-nova-delivery", url: "Nova, the new site / delivery" },
+  { label: "About", pic: "full-nova-about", url: "Nova, the new site / about" },
+  { label: "Clients", pic: "full-nova-clients", url: "Nova, the new site / clients" },
+  { label: "Insights", pic: "full-nova-insights", url: "Nova, the new site / insights" },
+];
+
+const NOVA_BRAND: SitePage[] = [
+  { label: "Start", pic: "full-nova-brand", url: "Nova, the new site / brand" },
+  { label: "The look", pic: "full-nova-brand-look", url: "Nova, the new site / brand / look" },
+  { label: "Photography", pic: "full-nova-brand-photography", url: "Nova, the new site / brand / photography" },
+  { label: "Type, colour and parts", pic: "full-nova-brand-system", url: "Nova, the new site / brand / system" },
+  { label: "Language", pic: "full-nova-brand-language", url: "Nova, the new site / brand / language" },
+  { label: "People", pic: "full-nova-brand-people", url: "Nova, the new site / brand / people" },
+];
+
+const HUB_PAGES: SitePage[] = [
+  { label: "A research report", pic: "full-rwf-report-ai-ask", url: "runwithfoxes.com/resources/the-ai-ask/2026-q3", href: "https://runwithfoxes.com/resources/the-ai-ask/2026-q3" },
+  { label: "Research nuggets", pic: "full-rwf-nuggets", url: "runwithfoxes.com/research-nuggets", href: "https://runwithfoxes.com/research-nuggets" },
+  { label: "One nugget", pic: "full-rwf-nugget", url: "runwithfoxes.com/research-nuggets", href: "https://runwithfoxes.com/research-nuggets/job-ads-want-ai-for-speed" },
+  { label: "The diary", pic: "full-rwf-diary", url: "runwithfoxes.com/diary", href: "https://runwithfoxes.com/diary" },
+  { label: "Essays", pic: "full-rwf-essays", url: "runwithfoxes.com/essays", href: "https://runwithfoxes.com/essays" },
+];
+
+const COURSE_PAGES: SitePage[] = [
+  { label: "The free course", pic: "full-rwf-course", url: "runwithfoxes.com/course", href: "https://runwithfoxes.com/course" },
 ];
 
 export default function UnknownGroupDoc() {
@@ -372,10 +707,6 @@ export default function UnknownGroupDoc() {
             he is happy with the quality. You can start from nothing. You do
             need one person with good judgment who sets the bar, and for these
             three months that would be Paul.
-          </p>
-          <p className="pps-standfirst">
-            This is a role for the group. You may decide to start with one
-            brand or with all four, and that is yours to decide.
           </p>
           <p className="pps-standfirst">
             Everything below is an example. They are agents, websites and
@@ -506,106 +837,320 @@ export default function UnknownGroupDoc() {
           </div>
         </PPSection>
 
-        <PPSection id="agents" k="03" title="Ten agents we have built">
-          <p className="pps-standfirst">
-            These are the ten kinds of agent on our own site. Each one does
-            work that used to need a person, a team or an agency. Four are
-            shown at more length further down the page.
-          </p>
-          <TenAgents />
-          <p className="ppug-note">
-            <span className="ppug-slash">/examples.</span> The companies and
-            people inside these windows are invented. The advertising figures
-            are from our own course campaign.
-          </p>
-        </PPSection>
+        <PPSection id="agents" k="03" title="Examples of agents" />
 
-        <PPSection id="guardian" k="04" title="A brand guardian">
-          <p className="pps-standfirst">
-            A brand guardian checks a finished piece of work against the
-            brand&rsquo;s rules before it goes anywhere. We built this one for
-            Moloco. We have built them partly because some larger clients want
-            one, and partly because we use one ourselves, so that all of our
-            work goes through it. It is here as an example of how the quality
-            is kept.
-          </p>
-          <div className="ppug-mg" style={{ marginTop: 26 }}>
-            <MolocoGuardian />
+        <Agent n={0} dek="We build research agents for marketing and sales, working every day, so you're not the bottleneck.">
+          <P>
+            We build a team of research agents that find that information for
+            you on their own, every day. They work as a team, and you are not
+            the bottleneck in it. They can research competitors. They can
+            research prices. They can watch the things that change on a
+            regular basis and tell you when they do.
+          </P>
+          <figure className="ag-fig">
+            <TypedNote title="Research Agent" subject="Your research for Monday" from="Research Agent" to="Declan" avatar="R" items={RESEARCH} />
+          </figure>
+          <Note>
+            This is how the morning note could read for the group. Harbour
+            Foods and the people in it are invented.
+          </Note>
+        </Agent>
+
+        <Agent n={1} dek="We build growth agent teams whose job is to get meetings with prospects in your calendar.">
+          <P>
+            We build the Growth Agent Team to get meetings with prospects
+            booked in your calendar. That is the end game, and every task the
+            team does is in service of it. Once we have built it, and built it
+            carefully, the team works away every day without you being the
+            bottleneck.
+          </P>
+          <figure className="ag-fig">
+            <JoNote note={GROWTH_NOTE} title="Growth Agent Team" />
+            <div style={{ marginTop: 22 }} />
+            <PipelineBoard deals={GROWTH_PIPELINE} width={806} pill="kept current every morning" />
+          </figure>
+          <Note>
+            You said on the call that the group helps when there is a chance
+            for Empathy to bring Salience to a client, or the other way round.
+            One board for all four brands is where that shows up. The
+            companies and people on this board are invented.
+          </Note>
+        </Agent>
+
+        <Agent n={2} dek="We build email marketing agents that do the whole of lifecycle email, from writing to improving the journeys, every day.">
+          <P>
+            We build email marketing agents that do everything in lifecycle
+            email. The writing, the scheduling, the sequencing, the tracking,
+            the reporting, and improving the journeys as it goes. Once we have
+            built it, it works away every day without you being the
+            bottleneck.
+          </P>
+          <P>
+            You saw ours on the call. Paul asked it for five surprising
+            things about the people taking our course, and the five emails
+            that would follow, and both came back while we talked.
+          </P>
+          <div className="ppug-term">
+            <TerminalWindow
+              title="Paul"
+              liveLabel="the course"
+              instruction="tell me five surprising things about the people on the course, and the five emails that would follow"
+              response="five findings and five emails, drafted. Nothing goes until you say send."
+            />
           </div>
-        </PPSection>
+          <p className="ppug-k">Four of the five it found</p>
+          <ul className="ppug-found">
+            <li>
+              One person had opened the first module at 7.40 on nearly every
+              working morning for three weeks.
+            </li>
+            <li>
+              Six people came in for the first time within the same forty
+              hours. Every one of them came back once, and none had clicked on
+              anything.
+            </li>
+            <li>
+              Ninety people had copied one of the prompts in the course.
+            </li>
+            <li>
+              A small group were doing the course at three in the morning,
+              Irish time, because they are in New Zealand.
+            </li>
+          </ul>
+          <P>
+            Each finding came with an email written for the people it applied
+            to. There are more than 1,100 people on the course, and every one
+            of them can be sent an email written for what they have done,
+            while Paul is talking to his laptop.
+          </P>
+          <h3 className="ppug-h3">Why it can do that: one connected system</h3>
+          <P>
+            Our own website is built in code, through Claude Code. The course
+            sits on it and the email tool is joined to it, so the site, the
+            data and the email are one system. Everything is easy to see, and
+            one person can ask it for something in plain words.
+          </P>
+          <div className="ppug-sys">
+            <div>
+              <b>The website</b>
+              <span>the pages and the course, built in code</span>
+            </div>
+            <div>
+              <b>The data</b>
+              <span>who came, what they opened, what they clicked</span>
+            </div>
+            <div>
+              <b>The email tool</b>
+              <span>the agent works inside it</span>
+            </div>
+          </div>
+          <p className="ppug-sys-foot">
+            one system, and one person asking it in plain words
+          </p>
+          <SiteScroller pages={COURSE_PAGES} pill="live" what="The free course on runwithfoxes.com" />
+          <P>
+            This is the reason to build a website this way. When the website,
+            the customer records and the email tool are separate products
+            stacked on top of each other, somebody has to work between them.
+            When they are one system, you build the agent and the agent is in
+            the tool. It is worth looking at this before any money goes on a
+            new website or a new CRM.
+          </P>
+        </Agent>
 
-        <PPSection id="writer" k="05" title="A writer">
-          <p className="pps-standfirst">
+        <Agent n={3} dek="We build ghostwriters that get a founder's point of view onto LinkedIn and into longer articles, every week, in their own words.">
+          <P>
+            We build ghostwriters that let a founder or a senior exec get
+            their opinion and their point of view across on LinkedIn, or in
+            deeper articles, on an ongoing basis. It finds the material,
+            structures it and writes it. What the founder does is open their
+            laptop and find a handful of pieces that are ninety percent
+            written. Usually it is a small bit of editing, then approve, and
+            depending on how it is set up, the piece goes live.
+          </P>
+          <figure className="ag-fig">
+            <TypedNote variant="post" title="Ghostwriter" pill="drafted" from="Declan O'Reilly" role="Group MD, Empathy" avatar="DO" subject="" items={GHOST_POST} />
+          </figure>
+          <Note>
+            This post is written from what you said on our call about the
+            name. The words are yours. The ghostwriter put them in order.
+          </Note>
+
+          <h3 className="ppug-h3">A writer for a brand</h3>
+          <P>
             I read a lot about how AI writes slop. It does. But it does not have to,
             if you spend the time up front. Writers need to know the brand&rsquo;s
             positioning, the target audience, the insights and pain points in that
             category, the messaging and the tone of voice. Hover a dotted line below
             and it shows you which document that line came from.
-          </p>
+          </P>
           <div style={{ marginTop: 26 }}>
             <WriterEmail
-              subject={{ text: "Your renewal is due on 14 September", note: "voice" }}
+              subject={{ text: "One thing in your results that nobody asked us about", note: "voice" }}
               body={[
                 { text: "Hi Sarah," },
-                { text: "Before it renews, we'll quote the market for you.", note: "positioning" },
+                { text: "You asked us one question in the spring, and the answer is in the report you have." },
+                { text: "There was a second answer in the same data, to a question nobody asked.", note: "positioning" },
                 {
-                  text: "Last year most people in your position paid the price they were sent. It was a bit higher than the year before, and paying it beat a fortnight of forms and four websites asking the same eleven questions.",
+                  text: "The people who stopped buying from you last year did not go to a competitor. Most of them still rate you above everyone else. They stopped buying the category.",
                 },
-                { text: "That increase was never compulsory. It was the cost of staying put.", note: "messaging" },
-                {
-                  text: "So about three weeks before your date we'll check what everyone else would charge for the same cover. If someone is cheaper, we move you and do the paperwork. If nobody is, you stay where you are. Either way you'll get a note saying what we found and what we chose.",
-                  note: "messaging",
-                },
-                { text: "The first time we did this, customers saved €187 on average.", note: "proof" },
-                { text: "Nothing for you to do.", note: "voice" },
+                { text: "It was in plain sight in the numbers. Nobody saw it because the brief was about your competitors.", note: "messaging" },
+                { text: "It shows up in three of the last four waves.", note: "proof" },
+                { text: "I'd like twenty minutes to show you. No slides.", note: "voice" },
               ]}
-              sign={["Aoife", "Kite"]}
+              sign={["Declan", "Empathy"]}
             />
           </div>
-          <p className="ppug-note">
-            <span className="ppug-slash">/example.</span> Kite Insurance is an
-            invented company.
-          </p>
-          <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          <Note>
+            The client and the finding in this email are invented. The idea
+            of an answer hiding in plain sight is yours, from the call.
+          </Note>
+          <P>
             You asked on the call how the work stays different when everyone
             has the same tools. This is the answer. Two companies can use the
             same tool, and what each one gets out of it depends on what its
             writer was built on. A writer built on your audience, your
             positioning, your proof, your tone of voice and your messaging
             writes like you, and it shows which of those each line came from.
-          </p>
-          <p className="pps-standfirst">
+          </P>
+          <P>
             Writers are the agents we have been building for longest. For a
             group with four brands it helps that once one writer is working,
             building the next one for a second brand is much less than twice
             the work.
-          </p>
-        </PPSection>
+          </P>
+        </Agent>
 
-        <PPSection
-          id="manager"
-          k="06"
-          title="A project manager, and agents that follow things through"
-        >
-          <p className="pps-standfirst">
-            We build campaign managers in two ways. The first is an AI you work with day to day. It tracks the delivery of the marketing tasks and keeps you on track each day. It captures your call transcripts, reads your emails and looks at your documents, so it knows what was agreed and what is due. It writes emails and puts them in your drafts. It creates invoices and sends status updates. Each morning it tells you what moved, what is late, and what is waiting on you.
-          </p>
-          <figure className="ag-fig" style={{ margin: "26px 0 0" }}>
-            <TypedNote title="Campaign Manager" subject="Where everything stands, Monday" from="Campaign Manager" avatar="CM" items={PM} />
+        <Agent n={4} dek="We build search agents that run paid search every day, the terms, the ads and the bids, without you.">
+          <P>
+            We build search agents that take the daily work of paid search off
+            you. Finding the terms, writing the ads, putting them live,
+            reading the numbers and improving the account. Once we have built
+            it, it works away every day without you being the bottleneck.
+          </P>
+          <figure className="ag-fig">
+            <UnknownSearchWindow />
           </figure>
-          <p className="ppug-note">
-            <span className="ppug-slash">/example.</span> The projects in this
-            note are invented.
-          </p>
-          <p className="pps-standfirst" style={{ marginTop: 30 }}>
+          <Note>
+            This is how a morning could look for Empathy. Every search term,
+            number and ad in it is invented.
+          </Note>
+        </Agent>
+
+        <Agent n={5} dek="We build advertising agents that write, make, put live, read and remake ads, inside Meta or whichever tool you use, without you.">
+          <P>
+            We build advertising agents that do the work inside Meta, or
+            another advertising tool, that used to be a full-time role or an
+            agency. Once we have set it up properly, it works away every day
+            without you being the bottleneck.
+          </P>
+          <figure className="ag-fig">
+            <AdDeskWindow />
+          </figure>
+          <Note k="/real figures.">
+            This one is not an example written for you. These are the figures
+            from our own campaign for the free course.
+          </Note>
+        </Agent>
+
+        <Agent n={6} dek="We build well crafted websites and set them up so you can make on-brand changes in a moment, without any design, UX or development knowledge.">
+          <P>
+            There was a time when building and maintaining a website took a
+            team of people, and it took time. Someone had to coordinate the
+            copywriting, the UX, the design, the imagery, the artwork, the
+            motion, the building and the deploying. You still need all of
+            those things. You no longer need all of those people to do them.
+          </P>
+          <P>
+            These are two sites we have built in code for other companies.
+            Each one is here in full, page by page, so scroll inside the
+            windows. In both cases the look is written down as rules: the
+            colours, the type, the spacing and the parts each page is made
+            from. Those rules are what keep a change made months later, by
+            someone on their own team, looking like the same company. The
+            rules are here in full too.
+          </P>
+
+          <div id="web-di" className="ppug-part">
+            <h3 className="ppug-h3">Data Intelligence</h3>
+            <P>
+              Data Intelligence is Dave Hackett&rsquo;s company. He had no
+              senior marketer and wanted to move quickly, so Paul worked out
+              the marketing with him and then built it. The old site was in
+              Framer. We rebuilt it in code so that his team can change it by
+              asking. Adding a pricing page, for example, is about ten minutes
+              of work, and someone on his own team does it.
+            </P>
+            <p className="ppug-k">The site, live now</p>
+            <SiteScroller pages={DI_PAGES} pill="live" what="The Data Intelligence website" />
+            <p className="ppug-k">How it was made: the written rules, all 47 pages</p>
+            <P>
+              These are the guidelines for the site and the product. Every
+              value in them was measured off the live site, so what is
+              written down is what is built.
+            </P>
+            <PageDeck count={47} prefix="di-guide-" what="The Data Intelligence guidelines" />
+          </div>
+
+          <div id="web-nova" className="ppug-part">
+            <h3 className="ppug-h3">Nova</h3>
+            <P>
+              Nova is an HR technology advisory firm led by Cian Collins. This
+              is their new site. It is not public yet, so these are pictures
+              of every page. The look started from the name, which gave us a
+              north star: one sky, one point of light in every picture, and
+              the same star over every city they work in.
+            </P>
+            <p className="ppug-k">The new site</p>
+            <SiteScroller pages={NOVA_PAGES} pill="not yet public" what="The new Nova website" />
+            <p className="ppug-k">How it was made: the written rules, inside the site</p>
+            <P>
+              Nova&rsquo;s rules are pages of the site itself, so the team
+              can open them like any other page. They set out the look, the
+              photography, the exact type and colours, the parts every page is
+              built from, the language and how people are shown. The site is
+              set up so that Nova&rsquo;s own team can make changes by asking,
+              and these rules keep the changes on brand.
+            </P>
+            <SiteScroller pages={NOVA_BRAND} pill="not yet public" what="Nova's brand rules" />
+          </div>
+
+          <P>
+            The Website Agent Team is not five agents. It is the five parts of
+            the work, which are the positioning and messaging framework, the
+            UX and the navigation, the copywriting, the artwork, and then the
+            design, the building and the deploying. The most important thing
+            we do comes after the build. We set the site up so that anyone on
+            your team, with no expertise, can make changes. Those changes are
+            fast, they are on brand, and they look good.
+          </P>
+        </Agent>
+
+        <Agent n={7} dek="We build brand guardians for brand teams whose stakeholders want speed, so the work stays on brand as it gets faster.">
+          <Guardian />
+        </Agent>
+
+        <Agent n={8} dek="We build campaign managers that keep the marketing on track, either beside you every day or running a team of agents.">
+          <P>
+            We build campaign managers in two ways. The first is an AI you work with day to day. It tracks the delivery of the marketing tasks and keeps you on track each day. It captures your call transcripts, reads your emails and looks at your documents, so it knows what was agreed and what is due. It writes emails and puts them in your drafts. It creates invoices and sends status updates. Each morning it tells you what moved, what is late, and what is waiting on you.
+          </P>
+          <figure className="ag-fig">
+            <TypedNote title="Campaign Manager" subject="Where everything stands, Monday" from="Campaign Manager" to="Declan" avatar="CM" items={PM} />
+          </figure>
+          <Note>
+            This is how a Monday note could read for the group. The projects
+            in it are invented.
+          </Note>
+          <h3 className="ppug-h3">Agents that follow things through</h3>
+          <P>
             Paul has a project manager like this, and an agent that owns his
             inbox. What makes them useful is that they are proactive. An agent
             that tells you something once and then waits is a tool on a
             laptop. A proactive one follows things through, and it reaches you
             wherever you are. About half of Paul&rsquo;s own work with his
             agents now happens from his phone.
-          </p>
-          <p className="pps-standfirst">
+          </P>
+          <P>
             These are four of the rules he gave his inbox agent, in his own
             words from{" "}
             <a
@@ -617,7 +1162,7 @@ export default function UnknownGroupDoc() {
               How I build proactive agents
             </a>
             .
-          </p>
+          </P>
           <ul className="ppug-rules">
             <li>
               <span className="ppug-n">01</span>
@@ -661,164 +1206,26 @@ export default function UnknownGroupDoc() {
               </span>
             </li>
           </ul>
-        </PPSection>
+        </Agent>
 
-        <PPSection id="system" k="07" title="One connected system">
-          <p className="pps-standfirst">
-            Our own website is built in code, through Claude Code. The course
-            sits on it and the email tool is joined to it, so the site, the
-            data and the email are one system. Everything is easy to see, and
-            one person can ask it for something in plain words.
-          </p>
-          <div className="ppug-sys">
-            <div>
-              <b>The website</b>
-              <span>the pages and the course, built in code</span>
-            </div>
-            <div>
-              <b>The data</b>
-              <span>who came, what they opened, what they clicked</span>
-            </div>
-            <div>
-              <b>The email tool</b>
-              <span>the agent works inside it</span>
-            </div>
-          </div>
-          <p className="ppug-sys-foot">
-            one system, and one person asking it in plain words
-          </p>
-          <p className="pps-standfirst" style={{ marginTop: 30 }}>
-            You saw this on our call. Paul asked for five surprising things
-            about the people taking the course, and the five emails that
-            would follow, and both came back while we talked.
-          </p>
-          <div className="ppug-term">
-            <TerminalWindow
-              title="Paul"
-              liveLabel="the course"
-              instruction="tell me five surprising things about the people on the course, and the five emails that would follow"
-              response="five findings and five emails, drafted. Nothing goes until you say send."
-            />
-          </div>
-          <p className="ppug-k">Three of the five it found</p>
-          <ul className="ppug-found">
-            <li>
-              One person had opened the first module at 7.40 on nearly every
-              working morning for three weeks.
-            </li>
-            <li>
-              A small group were doing the course at three in the morning,
-              Irish time, because they are in New Zealand.
-            </li>
-            <li>
-              Ninety people had copied one of the prompts in the course.
-            </li>
-          </ul>
-          <p className="pps-standfirst" style={{ marginTop: 30 }}>
-            Each finding came with an email written for the people it applied
-            to. There are more than 1,100 people on the course, and every one
-            of them can be sent an email written for what they have done,
-            while Paul is talking to his laptop.
-          </p>
-          <Shot
-            src={rwfCourse}
-            alt="The free course on runwithfoxes.com"
-            label="runwithfoxes.com/course"
-            pill="live"
-            href="https://runwithfoxes.com/course"
-          />
-          <p className="pps-standfirst" style={{ marginTop: 30 }}>
-            This is the reason to build a website this way. When the website,
-            the customer records and the email tool are separate products
-            stacked on top of each other, somebody has to work between them.
-            When they are one system, you build the agent and the agent is in
-            the tool. It is worth looking at this before any money goes on a
-            new website or a new CRM.
-          </p>
-        </PPSection>
+        <Agent n={9} dek="We build a red team into every team of agents, with one job, to find the mistakes before you do.">
+          <P>
+            Nobody asks for a red team, so we build one into every team of
+            agents we make. Its only job is to find the holes, the gaps and
+            the mistakes in everything the other agents do. In their role
+            specs, in the quality of what they produce, and in the processes
+            themselves.
+          </P>
+          <figure className="ag-fig">
+            <TypedNote title="Red Team" subject="Six attacks, two broke, one gap" from="Red Team" to="Declan" avatar="RT" items={REDTEAM} />
+          </figure>
+          <Note>
+            The red team here is checking the other examples on this page. The
+            mistakes it found were put there for it to find.
+          </Note>
+        </Agent>
 
-        <PPSection id="websites" k="08" title="Two websites, and how each was made">
-          <p className="pps-standfirst">
-            These are two sites we have built in code for other companies. In
-            both cases the look is written down as rules: the colours, the
-            type, the spacing and the parts each page is made from. Those
-            rules are what keep a change made months later, by someone on
-            their own team, looking like the same company.
-          </p>
-
-          <h3 className="ppug-h3">Data Intelligence</h3>
-          <p className="pps-standfirst">
-            Data Intelligence is Dave Hackett&rsquo;s company. He had no senior
-            marketer and wanted to move quickly, so Paul worked out the
-            marketing with him and then built it. The old site was in Framer.
-            We rebuilt it in code so that his team can change it by asking.
-            Adding a pricing page, for example, is about ten minutes of work,
-            and someone on his own team does it.
-          </p>
-          <Shot
-            src={diHome}
-            alt="The Data Intelligence home page"
-            label="dataintelligence.com"
-            pill="live"
-            href="https://www.dataintelligence.com"
-          />
-          <Shot
-            src={diProduct}
-            alt="The Data Intelligence product page"
-            label="dataintelligence.com/product"
-            pill="live"
-            href="https://www.dataintelligence.com/product"
-          />
-          <p className="ppug-k">How it was made: the written rules</p>
-          <Three
-            items={[
-              { src: diCover, alt: "The cover of the Data Intelligence guidelines for product and web" },
-              { src: diColour, alt: "The colour page of the Data Intelligence guidelines" },
-              { src: diParts, alt: "The components page of the Data Intelligence guidelines" },
-            ]}
-          />
-          <p className="ppug-cap">
-            Three pages from the 47 page guidelines for the site, with every
-            value measured off the live site.
-          </p>
-
-          <h3 className="ppug-h3">Nova</h3>
-          <p className="pps-standfirst">
-            Nova is an HR technology advisory firm led by Cian Collins. This
-            is their new site. It is not public yet, so these are pictures of
-            it. The look started from the name, which gave us a north star:
-            one sky, one point of light in every picture, and the same star
-            over every city they work in.
-          </p>
-          <Shot
-            src={novaHome}
-            alt="The new Nova home page"
-            label="Nova, the new home page"
-            pill="not yet public"
-          />
-          <Shot
-            src={novaSelection}
-            alt="The Selection page on the new Nova site"
-            label="Nova, the Selection page"
-            pill="not yet public"
-          />
-          <p className="ppug-k">How it was made: the written rules</p>
-          <Three
-            items={[
-              { src: novaLook, alt: "Nova's rules for the look: one sky, the same everywhere" },
-              { src: novaPhoto, alt: "Nova's photography: the same star over each city" },
-              { src: novaSystem, alt: "Nova's rules for type and colour" },
-            ]}
-          />
-          <p className="ppug-cap">
-            Three of the pages that set out Nova&rsquo;s look, its photography
-            and its exact type and colours. The site is set up so that
-            Nova&rsquo;s own team can make changes by asking, and these rules
-            keep the changes on brand.
-          </p>
-        </PPSection>
-
-        <PPSection id="hub" k="09" title="A content hub">
+        <PPSection id="hub" k="11" title="A content hub">
           <p className="pps-standfirst">
             Our own site is an example of a content hub. We have a research
             agent that writes a case study every day. We have a diary agent
@@ -827,22 +1234,49 @@ export default function UnknownGroupDoc() {
             with at least one a month planned. None of this takes much of his time, and the
             quality is good.
           </p>
-          <div className="ppug-four">
-            {HUB.map((h) => (
-              <a
-                key={h.href}
-                className="ppug-card"
-                href={h.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={h.src.src} width={h.src.width} height={h.src.height} alt={`${h.title} on runwithfoxes.com`} loading="lazy" />
-                <p className="ppug-card-t">{h.title}</p>
-                <p className="ppug-card-d">{h.text}</p>
-              </a>
-            ))}
-          </div>
+          <SiteScroller pages={HUB_PAGES} pill="live" what="runwithfoxes.com" />
+          <ul className="ppug-rules ppug-hub-list">
+            <li>
+              <span className="ppug-n">01</span>
+              <span>
+                <b>Research reports</b>
+                <span className="ppug-rule-d">
+                  The first large report is out. It counts how many Irish
+                  marketing and sales job ads ask for AI. Two more are on the
+                  way, and the plan is at least one a month.
+                </span>
+              </span>
+            </li>
+            <li>
+              <span className="ppug-n">02</span>
+              <span>
+                <b>Research nuggets</b>
+                <span className="ppug-rule-d">
+                  A research agent writes a short piece every day on one
+                  paper, case or study, with the source checked.
+                </span>
+              </span>
+            </li>
+            <li>
+              <span className="ppug-n">03</span>
+              <span>
+                <b>The diary</b>
+                <span className="ppug-rule-d">
+                  One of the agents writes about how the team of agents works,
+                  what went wrong and what was changed.
+                </span>
+              </span>
+            </li>
+            <li>
+              <span className="ppug-n">04</span>
+              <span>
+                <b>Essays</b>
+                <span className="ppug-rule-d">
+                  Paul&rsquo;s own essays on marketing and AI, every few days.
+                </span>
+              </span>
+            </li>
+          </ul>
           <p className="pps-standfirst" style={{ marginTop: 34 }}>
             For a group whose business is what it knows, this is where the
             ambition comes in. The question to ask is what you would bring to
@@ -851,7 +1285,7 @@ export default function UnknownGroupDoc() {
           </p>
         </PPSection>
 
-        <PPSection id="howitworks" k="10" title="How it would work">
+        <PPSection id="howitworks" k="12" title="How it would work">
           <p className="pps-standfirst">
             The upfront work would take about three months. We would start
             from the marketing plan you already have, and agree with you what
@@ -869,7 +1303,7 @@ export default function UnknownGroupDoc() {
           </p>
         </PPSection>
 
-        <PPSection id="pricing" k="11" title="The price">
+        <PPSection id="pricing" k="13" title="The price">
           <PricingCards
             cards={[
               {
