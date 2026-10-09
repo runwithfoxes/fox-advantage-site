@@ -74,7 +74,8 @@ export default function ProspectShell({
    *  It goes in the nav rather than the rail because the rail is the four
    *  things and has been cut three times for busyness. */
   pdfHref?: string;
-  /** One wide drawn picture above the masthead. OPTIONAL and off by default
+  /** One wide drawn picture across the very top, above the rail and the
+   *  main column, so it is the first thing on a phone too. OPTIONAL and off by default
    *  (Paul, 9 Oct, the Unknown group page: a grumpy fox at a whiteboard
    *  across the top). */
   topPicture?: { src: string; alt: string; width: number; height: number };
@@ -163,7 +164,17 @@ export default function ProspectShell({
         </span>
       </header>
 
-      <div className="pps-shell" id="top">
+      <div className={topPicture ? "pps-shell pps-shell-pic" : "pps-shell"} id="top">
+        {topPicture && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="pps-top-picture"
+            src={topPicture.src}
+            alt={topPicture.alt}
+            width={topPicture.width}
+            height={topPicture.height}
+          />
+        )}
         <div className="pps-grid">
           <div className="pps-railcol">
             {railNote && <p className="pps-railnote">{railNote}</p>}
@@ -263,16 +274,6 @@ export default function ProspectShell({
           </div>
 
           <div className="pps-maincol">
-            {topPicture && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className="pps-top-picture"
-                src={topPicture.src}
-                alt={topPicture.alt}
-                width={topPicture.width}
-                height={topPicture.height}
-              />
-            )}
             <header className="pps-masthead">
               <p className="pps-eyebrow">{eyebrow}</p>
               <h1 className="pps-h1">{heading}</h1>

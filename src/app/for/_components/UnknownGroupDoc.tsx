@@ -86,7 +86,7 @@ const GUARDIAN_PARTS = [
 ];
 
 const SECTIONS = [
-  { id: "heard", title: "What we propose" },
+  { id: "heard", title: "What I propose" },
   { id: "howiwork", title: "What we do" },
   { id: "agents", title: "Examples of agents" },
   ...AGENTS.map((a) => ({ id: a.id, title: a.name })),
@@ -101,7 +101,7 @@ const RAIL_GROUPS = [
   {
     label: "/the proposal",
     entries: [
-      { id: "heard", title: "What we propose", num: "01" },
+      { id: "heard", title: "What I propose", num: "01" },
       { id: "howiwork", title: "What we do", num: "02" },
     ],
   },
@@ -697,22 +697,28 @@ export default function UnknownGroupDoc() {
       }}
     >
       <div className="ppug">
-        <PPSection id="heard" k="01" title="What we propose">
+        <PPSection id="heard" k="01" title="What I propose">
           <p className="pps-standfirst">
-            We propose to work with the group for about three months, to help
-            you build a marketing team led by agents. Agents save time and
-            money, and that matters. We think the more useful way to look at
-            them is to be ambitious and ask a different question. If you could
-            hire ten more marketers, what would you get them to do? That is
-            the work we would build agents to do.
+            My proposal is that I become your fractional CMO for about three
+            months. It is part time, and I would work alongside you and your
+            team. You already have a marketing plan. In those three months I
+            would build out how it gets executed, with agents leading the
+            work.
           </p>
           <p className="pps-standfirst">
-            Paul&rsquo;s part is the fundamentals of marketing and the craft.
-            He would work out with you what good looks like for each brand,
-            build the agents to that standard, and keep working on them until
-            he is happy with the quality. You can start from nothing. You do
-            need one person with good judgment who sets the bar, and for these
-            three months that would be Paul.
+            What excites me is how ambitious we could be. We could build a few
+            agents to make things more efficient, and that would be worth
+            having. But what if we tried to build a proper agent-led marketing
+            function, with the equivalent of ten different agents? If you had
+            ten more marketers, what would you get them to do?
+          </p>
+          <p className="pps-standfirst">
+            The work goes into the quality and the craft first, which means
+            agreeing what good looks like for each brand. Then it goes into
+            building a team of agents that can work together to that standard.
+            You can start from nothing. You do need one person with good
+            judgment who sets the bar, and for these three months that would
+            be me.
           </p>
           <p className="pps-standfirst">
             Everything below is an example. They are agents, websites and
@@ -892,9 +898,9 @@ export default function UnknownGroupDoc() {
             bottleneck.
           </P>
           <P>
-            You saw ours on the call. Paul asked it for five surprising
-            things about the people taking our course, and the five emails
-            that would follow, and both came back while we talked.
+            You saw ours on the call. I asked it for five surprising things
+            about the people taking our course, and the five emails that
+            would follow, and both came back while we talked.
           </P>
           <div className="ppug-term">
             <TerminalWindow
@@ -927,7 +933,7 @@ export default function UnknownGroupDoc() {
             Each finding came with an email written for the people it applied
             to. There are more than 1,100 people on the course, and every one
             of them can be sent an email written for what they have done,
-            while Paul is talking to his laptop.
+            while I am talking to my laptop.
           </P>
           <h3 className="ppug-h3">Why it can do that: one connected system</h3>
           <P>
@@ -1067,6 +1073,7 @@ export default function UnknownGroupDoc() {
             motion, the building and the deploying. You still need all of
             those things. You no longer need all of those people to do them.
           </P>
+          <h3 className="ppug-h3">Examples of systems we&rsquo;re building</h3>
           <P>
             These are two sites we have built in code for other companies.
             Each one is here in full, page by page, so scroll inside the
@@ -1081,11 +1088,11 @@ export default function UnknownGroupDoc() {
             <h3 className="ppug-h3">Data Intelligence</h3>
             <P>
               Data Intelligence is Dave Hackett&rsquo;s company. He had no
-              senior marketer and wanted to move quickly, so Paul worked out
+              senior marketer and wanted to move quickly, so I worked out
               the marketing with him and then built it. The old site was in
               Framer. We rebuilt it in code so that his team can change it by
               asking. Adding a pricing page, for example, is about ten minutes
-              of work, and someone on his own team does it.
+              of work that doesn&rsquo;t need a designer.
             </P>
             <p className="ppug-k">The site, live now</p>
             <SiteScroller pages={DI_PAGES} pill="live" what="The Data Intelligence website" />
@@ -1149,16 +1156,15 @@ export default function UnknownGroupDoc() {
           </Note>
           <h3 className="ppug-h3">Agents that follow things through</h3>
           <P>
-            Paul has a project manager like this, and an agent that owns his
+            I have a project manager like this, and an agent that owns my
             inbox. What makes them useful is that they are proactive. An agent
             that tells you something once and then waits is a tool on a
             laptop. A proactive one follows things through, and it reaches you
-            wherever you are. About half of Paul&rsquo;s own work with his
-            agents now happens from his phone.
+            wherever you are. About half of my own work with my agents now
+            happens from my phone.
           </P>
           <P>
-            These are four of the rules he gave his inbox agent, in his own
-            words from{" "}
+            These are four of the rules I gave my inbox agent, from{" "}
             <a
               className="ppug-link"
               href="https://runwithfoxes.com/essays/how-i-build-proactive-agents"
@@ -1235,9 +1241,9 @@ export default function UnknownGroupDoc() {
           <p className="pps-standfirst">
             Our own site is an example of a content hub. We have a research
             agent that writes a case study every day. We have a diary agent
-            that writes about how the team of agents works. Paul writes an
+            that writes about how the team of agents works. I write an
             essay every few days, and the large research reports have started,
-            with at least one a month planned. None of this takes much of his time, and the
+            with at least one a month planned. None of this takes much of my time, and the
             quality is good.
           </p>
           <SiteScroller pages={HUB_PAGES} pill="live" what="runwithfoxes.com" />
@@ -1278,7 +1284,7 @@ export default function UnknownGroupDoc() {
               <span>
                 <b>Essays</b>
                 <span className="ppug-rule-d">
-                  Paul&rsquo;s own essays on marketing and AI, every few days.
+                  My own essays on marketing and AI, every few days.
                 </span>
               </span>
             </li>
@@ -1295,7 +1301,7 @@ export default function UnknownGroupDoc() {
           <p className="pps-standfirst">
             The upfront work would take about three months. We would start
             from the marketing plan you already have, and agree with you what
-            to build first, for one brand or for all four. Paul would then
+            to build first, for one brand or for all four. I would then
             build it, test it with whoever makes the decisions on your side
             until the work is right, and train the people who will use it.
           </p>
@@ -1304,7 +1310,7 @@ export default function UnknownGroupDoc() {
             would have the agents behind them from their first day.
           </p>
           <p className="pps-standfirst">
-            After the three months you may want Paul to stay on, for project
+            After the three months you may want me to stay on, for project
             work or to help build new things. That part is optional.
           </p>
         </PPSection>
@@ -1315,7 +1321,7 @@ export default function UnknownGroupDoc() {
               {
                 title: "Three months with the group",
                 bullets: [
-                  "Paul working with the group for about three months",
+                  "Paul as your fractional CMO for about three months",
                   "Agreeing with you what to build, for one brand or all four",
                   "Building the agents and testing them with you",
                   "Training the people who will use them",
@@ -1326,7 +1332,7 @@ export default function UnknownGroupDoc() {
             ]}
           />
           <p className="pps-standfirst" style={{ marginTop: 30, marginBottom: 34 }}>
-            After that, if you would like Paul to stay on for project work or
+            After that, if you would like me to stay on for project work or
             to help build new things, it would be €3,000 a month. That part
             is optional.
           </p>

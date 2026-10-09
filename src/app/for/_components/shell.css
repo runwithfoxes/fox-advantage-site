@@ -152,11 +152,14 @@
   min-width: 0;
 }
 
+.pps-shell-pic {
+  padding-top: 84px;
+}
 .pps-top-picture {
   display: block;
   width: 100%;
   height: auto;
-  margin: 0 0 34px;
+  margin: 0 0 48px;
   /* the drawing's paper is a shade warmer than the page, so its edges fade out */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
     linear-gradient(to bottom, transparent, #000 8%, #000 95%, transparent);
