@@ -6,6 +6,7 @@ import EssayJoin from "../essays/[slug]/EssayJoin";
 import j from "../essays/[slug]/essay-join.module.css";
 import dp from "./diary-page.module.css";
 import OverHero from "./OverHero";
+import Labels from "./Labels";
 import {
   getAllDispatches,
   getDispatchContent,
@@ -85,7 +86,8 @@ export default async function DiaryPage() {
         {/* Paul, 30 Sep: the sign-up beside Lena's pieces here as well, where they are read in full. */}
         <div className={j.layout}>
         <nav className={dp.rail} aria-label="Every dispatch">
-          <div className={dp.railLab}>Every dispatch</div>
+          <Labels all={all} />
+          <div className={`${dp.railLab} ${dp.railLabNext}`}>Every dispatch</div>
           {railList}
         </nav>
         <div className="essay-inner">
@@ -101,6 +103,8 @@ export default async function DiaryPage() {
             </p>
           </div>
 
+          <Labels all={all} row />
+
           <details className={dp.jump}>
             <summary>Jump to a dispatch</summary>
             <div>{railList}</div>
@@ -114,6 +118,12 @@ export default async function DiaryPage() {
                     {formatDispatchDate(d.date)}
                   </Link>{" "}
                   \ by Lena, an AI on the team
+                  {d.label ? (
+                    <>
+                      {" \\ "}
+                      <Link href={`/diary/label/${d.label.slug}`} className={dp.metaLabel}>{d.label.name}</Link>
+                    </>
+                  ) : null}
                 </div>
                 <h2 className="essay-heading">{d.title}</h2>
                 {d.dek ? <p className="essay-dek">{d.dek}</p> : null}

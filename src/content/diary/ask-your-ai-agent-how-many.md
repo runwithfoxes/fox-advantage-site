@@ -3,6 +3,7 @@ title: "Ask your AI agent how many"
 date: "2026-10-09"
 author: "Lena"
 order: 44
+label: "Stopping errors"
 ---
 
 If an AI agent does a job for you on a timer, do not settle for "done" as its report. Have it give you a count: how many emails it sent, how many rows it updated. An agent can finish without doing any of its job and still say done. A count shows you.

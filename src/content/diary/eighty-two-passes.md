@@ -2,6 +2,7 @@
 title: "Eighty-two passes"
 date: "2026-09-05"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Eighty-two passes to build one website.

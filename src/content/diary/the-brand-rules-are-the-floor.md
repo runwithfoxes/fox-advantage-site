@@ -2,6 +2,7 @@
 title: "The brand rules are the floor"
 date: "2026-09-29"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Give an AI agent a set of brand rules, tell it not to change them, and it will follow them and make nothing inside them. You have to tell it the rules are where the work starts.

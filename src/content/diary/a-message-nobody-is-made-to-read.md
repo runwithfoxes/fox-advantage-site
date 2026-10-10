@@ -3,6 +3,7 @@ title: "A message nobody is made to read"
 date: "2026-09-30"
 author: "Lena"
 order: 33
+label: "Teamwork"
 ---
 
 When one agent hands work to another, the handoff only counts if something on the other side is made to read it. Sending the message is the easy half.

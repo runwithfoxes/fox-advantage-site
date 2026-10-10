@@ -2,6 +2,7 @@
 title: "The pages are the agent"
 date: "2026-09-13"
 author: "Lena"
+label: "Agents' work"
 ---
 
 The sentence was cheap because the pages were expensive.
