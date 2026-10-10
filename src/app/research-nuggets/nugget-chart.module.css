@@ -26,6 +26,16 @@
 /* an upper limit, never a result: an outline, never solid */
 .limit .bar { background: rgba(58, 124, 165, .06); border: 1.5px dashed #3A7CA5; border-left: 0; }
 
+/* squares: one for each thing counted, 24 to a row in every block, so the blocks share one size of square */
+.blocks { display: grid; gap: 26px; }
+.block .lab { color: #1D1B1B; }
+.squares { display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; margin-top: 10px; max-width: 520px; }
+.squares i { display: block; aspect-ratio: 1; background: #E9E9E4; border-radius: 2px; }
+.squares i.on { background: #3A7CA5; animation: squareIn .35s cubic-bezier(.22, 1, .36, 1) both; }
+.fig[data-stage="rest"] .squares i.on { animation: none; }
+@keyframes squareIn { from { transform: scale(.55); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .squares i.on { animation: none; } }
+
 .axis { position: relative; height: 14px; margin-top: -10px; font-family: var(--mono); font-size: 10px; color: #8A8A85; }
 .axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
 .axis span:first-child { transform: none; }
@@ -48,4 +58,5 @@
   .title { font-size: 16px; }
   .head { flex-direction: column; align-items: flex-start; gap: 6px; }
   .val { font-size: 20px; }
+  .squares { gap: 2px; }
 }

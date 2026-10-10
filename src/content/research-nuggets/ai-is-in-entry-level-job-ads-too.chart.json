@@ -1,0 +1,20 @@
+{
+ "after": "9 of 143 put AI in the job",
+ "title": "Job ads that put AI in the job: 3 of 48 entry-level, 9 of 143 manager and senior",
+ "unit": "number of ads, out of the Irish marketing and sales job ads at that level that were live on job sites on 24 September 2026",
+ "squares": [
+  {
+   "label": "Entry-level ads",
+   "value": 3,
+   "out_of": 48,
+   "note": "of 48 ads"
+  },
+  {
+   "label": "Manager and senior ads",
+   "value": 9,
+   "out_of": 143,
+   "note": "of 143 ads"
+  }
+ ],
+ "footnote": "Irish marketing and sales job ads live on job sites on 24 September 2026, with the level read from the job title. Entry-level titles hold graduate, junior, trainee, intern, apprentice, assistant or coordinator. Manager and senior titles hold manager, senior, lead or principal. An ad is filled in when it asks the person to use, sell, lead or build AI in the job. On the same job sites 5 of 186 executive-level ads and 2 of 20 head and director ads did the same. 3 ads is very few. Technology firms' own careers pages are counted separately in the report; they had no entry-level ads."
+}

@@ -12,6 +12,10 @@ import c from "./nugget-chart.module.css";
  * What the server prints is the finished chart, so a reader with no script, or who has asked for
  * less motion, sees every figure standing still.
  *
+ * A file can give `squares` in place of bars (Paul, 9 Oct 2026: not the same bar chart every time):
+ * a count out of a small total, one square for each thing counted, the same size of square in every
+ * block. The filled squares come in one at a time as the count goes up.
+ *
  * Three rules from Sam's chart files, built in so they cannot be broken by a new file:
  *  - bars are never stacked or added: each has its own row on the same scale;
  *  - a "limit" bar (an estimate that is only an upper limit) is a dashed outline, never solid,
@@ -76,7 +80,8 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
     };
   }, [play]);
 
-  const pct = (v: number) => `${(v / chart.max) * 100}%`;
+  const max = chart.max || 1;
+  const pct = (v: number) => `${(v / max) * 100}%`;
   const show = (v: number) => `${chart.prefix || ""}${Math.round(v * n)}${chart.suffix || ""}`;
 
   return (
@@ -98,6 +103,33 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
           {chart.title}
         </figcaption>
 
+        {chart.squares ? (
+          <div className={c.blocks}>
+            {chart.squares.map((b) => (
+              <div key={b.label} className={c.block}>
+                <div className={c.head}>
+                  <span className={c.lab}>{b.label}</span>
+                  <span className={c.val}>
+                    {show(b.value)}
+                    {b.note ? <em>{b.note}</em> : null}
+                  </span>
+                </div>
+                <div
+                  className={c.squares}
+                  role="img"
+                  aria-label={`${b.value} of ${b.out_of} squares filled in`}
+                >
+                  {/* a square fills in when the count reaches it, so the squares and the number never disagree */}
+                  {Array.from({ length: b.out_of }, (_, i) => (
+                    <i key={i} className={i < Math.round(b.value * n) ? c.on : undefined} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {chart.bars ? (
         <div className={c.plot}>
           {chart.bars.map((b) => {
             const kind = b.kind || "main";
@@ -132,13 +164,14 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
           {chart.ticks ? (
             <div className={c.axis} aria-hidden="true">
               {chart.ticks.map(([at, label]) => (
-                <span key={at} className={at === chart.max ? c.end : undefined} style={{ left: pct(at) }}>
+                <span key={at} className={at === max ? c.end : undefined} style={{ left: pct(at) }}>
                   {label}
                 </span>
               ))}
             </div>
           ) : null}
         </div>
+        ) : null}
 
         {chart.closing ? <p className={c.closing}>{chart.closing}</p> : null}
         {chart.footnote || chart.source ? (

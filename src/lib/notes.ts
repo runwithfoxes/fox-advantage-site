@@ -32,21 +32,22 @@ const LIVE = process.env.VERCEL_ENV === "production";
 
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
-/** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked. */
+/** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
+    A file gives `bars` (with `max`) or `squares`, never both. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
   title: string;
   /** What is measured, shown small above the title. */
   unit: string;
-  /** The right-hand end of the scale. */
-  max: number;
+  /** The right-hand end of the scale. Bars only. */
+  max?: number;
   /** Printed around each value: "$" before, " million" or "%" after. */
   prefix?: string;
   suffix?: string;
   /** Faint lines on the scale and the label under each: [[0, "0"], [50, "50%"]]. */
   ticks?: [number, string][];
-  bars: {
+  bars?: {
     label: string;
     value: number;
     /** Printed small after the value, such as "(80 of 96)". */
@@ -54,6 +55,16 @@ export interface NoteChart {
     /** "main" is the solid bar. "other" is the comparison, in grey. "limit" is an estimate that is
         only an upper limit: drawn as a dashed outline, never solid, and it steps back once shown. */
     kind?: "main" | "other" | "limit";
+  }[];
+  /** A count out of a small total, drawn as one square for each thing counted, with `value` of them
+      filled in. Every block uses the same size of square, so a block three times the size is three
+      times the total. Counts, never percentages. */
+  squares?: {
+    label: string;
+    value: number;
+    out_of: number;
+    /** Printed small after the value, such as "of 48 ads". */
+    note?: string;
   }[];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
