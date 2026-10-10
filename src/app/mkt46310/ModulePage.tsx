@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Bars from "./Bars";
 import Rail from "./Rail";
-import { ADS, WORK, TOOLS, QUOTES, PILLARS, BEHAVIOURS, MAKE, PROJECT_DATES, CLASSES } from "./moduleData";
+import { ADS, WORK, TOOLS, QUOTES, PILLARS, BEHAVIOURS, MAKE, GYM_AGENTS, PROJECT_DATES, CLASSES } from "./moduleData";
 
 /* The page behind the door. The same bones as /zorro and a course module: the rail on the
    left, the masthead and the numbered items on the right. Every heading is a full sentence
@@ -235,6 +235,17 @@ export default function ModulePage() {
                       Open
                     </a>
                   </li>
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="/resources/library" target="_blank" rel="noopener">
+                      The library
+                    </a>
+                    <span className="mod-fwhat">
+                      Every prompt, link and file from our free AI course for marketers. It is free when you sign up.
+                    </span>
+                    <a className="mod-readinglink" href="/resources/library" target="_blank" rel="noopener">
+                      Open
+                    </a>
+                  </li>
                 </ul>
               </div>
 
@@ -263,19 +274,58 @@ export default function ModulePage() {
 
               <Part j={3} />
               <p className="mod-body">
-                You work in a team of four or five. Your agency sells digital marketing services to
-                other companies. You do this work using Claude, and we show you how in class.
+                You work in a team of four or five. Your team creates a digital marketing agency and
+                builds what an agency needs: a website, a list of clients, emails and a plan to win
+                work.
+              </p>
+              <p className="mod-body">
+                The agency is not a real business. It has no real clients, it spends no money, and
+                nothing is sent to a real person.
               </p>
 
-              <h3 className="mk-sub">Your team has to make six things.</h3>
-              <ol className="mk-rows mk-rows-plain">
-                {MAKE.map((m, i) => (
-                  <li key={i}>
+              <h3 className="mk-sub">Your team decides what kind of agency it is.</h3>
+              <p className="mod-body">
+                It can be any kind of agency, as long as it sells digital services. Your team also
+                decides who its clients are. Do the research before you decide. Look at who buys
+                these services, what they pay for now, and which agencies already sell to them.
+              </p>
+
+              <h3 className="mk-sub">Your agency needs nine things.</h3>
+              <ol className="mk-rows">
+                {MAKE.map(([name, text], i) => (
+                  <li key={name}>
                     <span className="mk-rk">{i + 1}</span>
-                    <span className="mk-rtext">{m}</span>
+                    <span className="mk-rname">{name}</span>
+                    <span className="mk-rtext">{text}</span>
                   </li>
                 ))}
               </ol>
+
+              <h3 className="mk-sub">Agents do the work of your agency.</h3>
+              <p className="mod-body">
+                This is the rule that makes this project different. Your agency does not have to
+                sell agents to its clients. But your team must use agents to run the agency.
+              </p>
+              <p className="mod-body">
+                A marketing agent is an AI that does one marketing job for you. Asking Claude a
+                question in a chat window is not an agent. An agent has a name and one job, and the
+                job is written down: what it reads, what it does, and where it puts its work.
+              </p>
+              <p className="mod-body">
+                Here is an example. We built four agents for a gym that was losing members.
+              </p>
+              <ol className="mk-rows mk-rows-dates" style={{ marginTop: 18 }}>
+                {GYM_AGENTS.map(([name, text]) => (
+                  <li key={name}>
+                    <span className="mk-rname">{name}</span>
+                    <span className="mk-rtext">{text}</span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mod-body mk-after">
+                Each agent has one job, and one agent checks the others. Your agency&rsquo;s agents
+                work the same way. We build the first ones together in class 4.
+              </p>
 
               <h3 className="mk-sub">You use everything you learn twice.</h3>
               <p className="mod-body">

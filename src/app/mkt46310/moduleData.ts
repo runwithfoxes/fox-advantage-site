@@ -74,13 +74,27 @@ export const BEHAVIOURS: [string, string][] = [
   ["Become a multi-tool marketer", "Be able to do enough different jobs that you can finish a piece of work without waiting on a line of other people."],
 ];
 
-export const MAKE: string[] = [
-  "A clear answer to two questions: who does your agency sell to, and what do you say to them?",
-  "A plan that explains how your agency will get customers.",
-  "A website for your agency. You design it, write the words and make the pictures.",
-  "Work that helps your agency show up when people ask an AI tool such as ChatGPT for a recommendation. This is called GEO.",
-  "Messages to companies that could become your customers. This is called outbound. The companies are made up and you will not send the messages to anyone.",
-  "At least three marketing agents that work for your agency. A marketing agent is an AI that does a marketing job for you. Your team chooses which jobs.",
+/* The nine things, in Paul's order and from his words of 10 Oct 2026: "I expect them to have clear idea
+   of target audience, commercial goals, positioning, messaging, a website, a crm set up, email set up,
+   marketing plans to get clients, agents working for them." */
+export const MAKE: [name: string, text: string][] = [
+  ["A target audience", "The kind of company your agency sells to, and the person in that company who decides. You research this before you choose."],
+  ["Commercial goals", "What your agency charges, and how many clients and how much money it wants in its first year."],
+  ["Positioning", "What your agency does, who it is for, and why a client would pick you and not another agency."],
+  ["Messaging", "What you say to that client, in words they would use themselves."],
+  ["A website", "You design it, write the words and make the pictures."],
+  ["A CRM", "The tool that holds your clients and the companies you want as clients. We use Attio."],
+  ["Email", "The tool that sends your emails, and the emails you would send. We use Klaviyo."],
+  ["A plan to get clients", "How companies find you and how you reach them: search, AI tools such as ChatGPT, ads, posts and messages you write to companies."],
+  ["Agents working for you", "At least three marketing agents that do the work of your agency. Your team chooses which jobs."],
+];
+
+/* The gym example Paul named: "they must use agents like in our Zorro gym example." */
+export const GYM_AGENTS: [name: string, text: string][] = [
+  ["Carlos", "He counts. He reads the door check-ins and finds the members who have stopped coming."],
+  ["Enrique", "He writes. He writes an email to each of those members."],
+  ["Cato", "He checks. He assumes the other two are wrong and tries to prove it."],
+  ["Rosa", "She measures. Two weeks later she counts who came back."],
 ];
 
 export const PROJECT_DATES: [string, string][] = [
