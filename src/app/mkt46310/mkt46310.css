@@ -110,3 +110,10 @@
   .mk-parttop{margin-top:52px;}
 }
 @media (prefers-reduced-motion:reduce){.mk-bartrack i{transition:none;}}
+
+/* the job ads page */
+.mk-dl{margin:26px 0 0;}
+.mk .mk-adlbl{margin:30px 0 12px;}
+.mk-adtext{border:1px solid #C9C9C3;background:#fff;padding:26px 28px;white-space:pre-line;font-family:var(--mk-serif);font-size:1.0625rem;line-height:1.7;color:var(--mk-ink);overflow-wrap:anywhere;}
+.mk .mk-links{margin-top:26px;}
+@media (max-width:860px){.mk-adtext{padding:18px 16px;}}

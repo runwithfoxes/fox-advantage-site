@@ -207,6 +207,34 @@ export default function ModulePage() {
                 one job site, and ads with a general marketing job title were not included.
               </p>
 
+              <div className="mod-reading mk-links">
+                <span className="mod-readinglbl">Read more</span>
+                <ul className="mod-frows">
+                  <li className="mod-frow">
+                    <Link className="mod-fname" href="/mkt46310/job-ads">
+                      The job ads
+                    </Link>
+                    <span className="mod-fwhat">
+                      Read twelve of the 85 ads in full, and download all 85 as one file.
+                    </span>
+                    <Link className="mod-readinglink" href="/mkt46310/job-ads">
+                      Open
+                    </Link>
+                  </li>
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="/resources/the-ai-ask/2026-q3" target="_blank" rel="noopener">
+                      The AI Ask
+                    </a>
+                    <span className="mod-fwhat">
+                      Our report on what Irish job ads for marketing jobs ask for when they ask for AI.
+                    </span>
+                    <a className="mod-readinglink" href="/resources/the-ai-ask/2026-q3" target="_blank" rel="noopener">
+                      Open
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <Part j={2} />
               <div className="mk-pillars">
                 {PILLARS.map((p, i) => (
@@ -320,6 +348,15 @@ export default function ModulePage() {
                     </a>
                     <span className="mod-fwhat">One page. What your team makes, the data, the marks and the dates.</span>
                     <a className="mod-readinglink" href="/mkt46310/team-project-brief.pdf" download>
+                      Download
+                    </a>
+                  </li>
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="/mkt46310/job-ads/download">
+                      The 85 job ads
+                    </a>
+                    <span className="mod-fwhat">Every ad from class 1, word for word, as a CSV file.</span>
+                    <a className="mod-readinglink" href="/mkt46310/job-ads/download">
                       Download
                     </a>
                   </li>
