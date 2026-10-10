@@ -225,6 +225,17 @@ export default function ModulePage() {
                     </Link>
                   </li>
                   <li className="mod-frow">
+                    <Link className="mod-fname" href="/mkt46310/how-to-question-a-finding">
+                      How to question a finding
+                    </Link>
+                    <span className="mod-fwhat">
+                      Reporting on results is in 73 of the 85 ads, more than any other kind of work. This is how to work out what happened and why.
+                    </span>
+                    <Link className="mod-readinglink" href="/mkt46310/how-to-question-a-finding">
+                      Open
+                    </Link>
+                  </li>
+                  <li className="mod-frow">
                     <a className="mod-fname" href="/resources/the-ai-ask/2026-q3" target="_blank" rel="noopener">
                       The AI Ask
                     </a>
