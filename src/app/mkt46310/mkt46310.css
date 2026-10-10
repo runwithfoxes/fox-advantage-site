@@ -62,19 +62,28 @@
 .mk-markkey span{display:block;font-family:var(--mk-serif);font-size:1.0625rem;line-height:1.7;color:var(--mk-ink);padding:12px 0;border-bottom:1px solid var(--mk-line);}
 .mk-markkey b{font-family:var(--sans);font-weight:600;}
 
-/* the twelve classes */
-.mk-classes{margin-top:30px;border-top:1px solid #C9C9C3;}
-.mk-class{padding:26px 0;border-bottom:1px solid var(--mk-line);scroll-margin-top:28px;}
-.mk-class:last-child{border-bottom:0;padding-bottom:0;}
-.mk-class header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
-.mk-cn{font-family:var(--mono);font-size:1.125rem;color:var(--mk-blue);font-variant-numeric:tabular-nums;}
-.mk-class h3{font-family:var(--sans);font-weight:500;font-size:1.375rem;letter-spacing:-.01em;margin:0;color:var(--mk-ink);flex:1 1 auto;}
-.mk-ctag{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;color:var(--mk-grey);border:1px solid #C9C9C3;}
-.mk-cwhen{font-family:var(--mono);font-size:.75rem;color:var(--mk-blue);margin:8px 0 16px;padding-left:32px;}
-.mk-class dl{margin:0;padding-left:32px;}
-.mk-class dl div{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #EDEDE9;}
-.mk-class dt{font-family:var(--mono);font-size:.75rem;color:var(--mk-grey);}
-.mk-class dd{margin:0;font-family:var(--mk-serif);font-size:1.0625rem;line-height:1.7;color:var(--mk-ink);}
+/* the rail: one item for every class, the one on screen marked */
+.mk-rail .mk-railitem a{padding:6px 0;}
+.mk-rail .mk-railitem[data-here="1"] > a{color:var(--mk-ink);}
+.mk-rail .mk-railitem[data-here="1"] > a .mod-k{color:var(--mk-blue);}
+.mk-rail .mk-railitem[data-here="1"] > a .mod-dot{background:var(--mk-blue);border-color:var(--mk-blue);}
+.mk-rail .mk-railparts{padding:0 0 8px 39px;}
+.mk-rail .mk-railparts a{display:block;border-top:0;padding:3px 0 3px 10px;border-left:1px solid var(--mk-line);}
+.mk-rail .mk-railparts a[data-here="1"]{color:var(--mk-blue);border-left-color:var(--mk-blue);}
+
+/* a class is a section */
+.mk .mk-classitem{padding:64px 0 56px;}
+.mk-ctop{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:end;margin-bottom:24px;}
+.mk-cmeta{grid-column:1 / -1;font-family:var(--mono);font-size:.75rem;letter-spacing:.02em;color:var(--mk-blue);margin:0;}
+.mk-cname{font-family:var(--sans);font-weight:500;font-size:2.25rem;line-height:1.12;letter-spacing:-.02em;color:var(--mk-ink);margin:0;}
+.mk-ctag{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;color:var(--mk-grey);border:1px solid #C9C9C3;margin-bottom:8px;}
+.mk-crows{margin:0;border-top:1px solid #C9C9C3;}
+.mk-crows div{display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--mk-line);}
+.mk-crows dt{font-family:var(--mono);font-size:.75rem;color:var(--mk-grey);}
+.mk-crows dd{margin:0;font-family:var(--mk-serif);font-size:1.0625rem;line-height:1.7;color:var(--mk-ink);}
+/* a part of a class */
+.mk-parttop{display:flex;align-items:baseline;gap:12px;margin:72px 0 20px;padding-top:28px;border-top:1px solid #1A3A4E;scroll-margin-top:28px;}
+.mk-parttop .mod-n{color:var(--mk-blue);}
 
 .mk .mod-fwhat{font-size:1.0625rem;line-height:1.7;}
 .mk-soon{font-family:var(--mono);font-size:.75rem;color:#A8A8A2;white-space:nowrap;}
@@ -95,7 +104,9 @@
   .mk-quotes{grid-template-columns:1fr;}
   .mk-quotes blockquote{border-right:0;border-bottom:1px solid var(--mk-line)!important;padding:20px 16px;}
   .mk-quotes blockquote:last-child{border-bottom:0!important;}
-  .mk-cwhen,.mk-class dl{padding-left:0;}
-  .mk-class dl div{grid-template-columns:1fr;gap:2px;}
+  .mk-crows div{grid-template-columns:1fr;gap:2px;}
+  .mk-cname{font-size:1.75rem;}
+  .mk .mk-classitem{padding:44px 0 40px;}
+  .mk-parttop{margin-top:52px;}
 }
 @media (prefers-reduced-motion:reduce){.mk-bartrack i{transition:none;}}

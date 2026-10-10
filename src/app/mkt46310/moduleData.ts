@@ -92,11 +92,12 @@ export const PROJECT_DATES: [string, string][] = [
 ];
 
 export type Row = [label: string, text: string];
-export type Klass = { name: string; when: string; where?: string; pillar: string; rows: Row[] };
+export type Klass = { name: string; short: string; when: string; where?: string; pillar: string; rows: Row[] };
 
 export const CLASSES: Klass[] = [
   {
     name: "What Employers Want",
+    short: "What employers want",
     when: "Monday 12 October, 13:30 to 15:30",
     where: "Room N304",
     pillar: "All three",
@@ -107,6 +108,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Marketing Fundamentals, Part 1",
+    short: "Fundamentals, part 1",
     when: "Monday 19 October, 10:30 to 12:30",
     where: "Room N304",
     pillar: "Knowledge",
@@ -117,6 +119,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Marketing Fundamentals, Part 2",
+    short: "Fundamentals, part 2",
     when: "Monday 19 October, 13:30 to 15:30",
     pillar: "Knowledge",
     rows: [
@@ -126,6 +129,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Building Your Agent Team",
+    short: "Your agent team",
     when: "Monday 19 October, 16:00 to 18:00",
     pillar: "Tools",
     rows: [
@@ -135,6 +139,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Websites",
+    short: "Websites",
     when: "Monday 2 November, 13:30 to 15:30",
     pillar: "Tools",
     rows: [
@@ -146,6 +151,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "SEO and AI Search (GEO)",
+    short: "SEO and AI search",
     when: "Monday 2 November, 16:00 to 18:00",
     pillar: "Tools",
     rows: [
@@ -157,6 +163,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Paid Search",
+    short: "Paid search",
     when: "Monday 9 November, 13:30 to 15:30",
     pillar: "Tools",
     rows: [
@@ -168,6 +175,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Paid Social and Content",
+    short: "Paid social and content",
     when: "Monday 9 November, 16:00 to 18:00",
     pillar: "Tools",
     rows: [
@@ -179,6 +187,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "CRM",
+    short: "CRM",
     when: "Week of 16 November, date to be confirmed",
     pillar: "Tools",
     rows: [
@@ -190,6 +199,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Outbound",
+    short: "Outbound",
     when: "Week of 16 November, date to be confirmed",
     pillar: "Tools",
     rows: [
@@ -201,6 +211,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Email",
+    short: "Email",
     when: "Week of 23 November, date to be confirmed",
     pillar: "Tools",
     rows: [
@@ -212,6 +223,7 @@ export const CLASSES: Klass[] = [
   },
   {
     name: "Agency Presentations and Exam Preparation",
+    short: "Presentations and exam prep",
     when: "Date to be confirmed",
     pillar: "All three",
     rows: [

@@ -1,18 +1,22 @@
 import Link from "next/link";
 import Bars from "./Bars";
+import Rail from "./Rail";
 import { ADS, WORK, TOOLS, QUOTES, PILLARS, BEHAVIOURS, MAKE, PROJECT_DATES, CLASSES } from "./moduleData";
 
 /* The page behind the door. The same bones as /zorro and a course module: the rail on the
    left, the masthead and the numbered items on the right. Every heading is a full sentence
    and the copy is one size (Paul's rules for anything students read). */
 
-const ITEMS = [
+/* Class 1 is taught from this page, so it has parts. The order is the running order in
+   class-1-content-draft-5.docx. A class gets its parts when its material is written. */
+const PARTS_1 = [
   { rail: "What the module is for", t: "The aim is that you leave as a marketer who is very good at digital." },
-  { rail: "Class 1: what employers want", t: "In class 1 we look at what employers ask for in 85 Irish job ads." },
+  { rail: "What employers want", t: "We read 85 Irish job ads to see what employers ask for." },
+  { rail: "Pillars and behaviours", t: "The module is built on three pillars: tools, knowledge and behaviour." },
   { rail: "The team project", t: "Your team creates a digital marketing agency." },
-  { rail: "The twelve classes", t: "The module has twelve classes." },
-  { rail: "Downloads", t: "You download the files for the module here." },
 ];
+
+const RAIL = CLASSES.map((c, i) => ({ short: c.short, parts: i === 0 ? PARTS_1.map((p) => p.rail) : undefined }));
 
 const FINDINGS: { n: number; of?: number; t: string; text: string }[] = [
   {
@@ -47,11 +51,38 @@ const FINDINGS: { n: number; of?: number; t: string; text: string }[] = [
   },
 ];
 
-function Top({ i }: { i: number }) {
+function ClassTop({ i }: { i: number }) {
+  const c = CLASSES[i];
   return (
-    <div className="mod-itemtop">
-      <span className="mod-n">{String(i + 1).padStart(2, "0")}</span>
-      <h2 className="mod-h3">{ITEMS[i].t}</h2>
+    <header className="mk-ctop">
+      <p className="mk-cmeta">
+        Class {String(i + 1).padStart(2, "0")} &middot; {c.when}
+        {c.where ? ` · ${c.where}` : ""}
+      </p>
+      <h2 className="mk-cname">{c.name}</h2>
+      <span className="mk-ctag">{c.pillar}</span>
+    </header>
+  );
+}
+
+function ClassRows({ i }: { i: number }) {
+  return (
+    <dl className="mk-crows">
+      {CLASSES[i].rows.map(([k, v]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function Part({ j }: { j: number }) {
+  return (
+    <div className="mk-parttop" id={`c1p${j + 1}`}>
+      <span className="mod-n">{String(j + 1).padStart(2, "0")}</span>
+      <h3 className="mod-h3">{PARTS_1[j].t}</h3>
     </div>
   );
 }
@@ -68,19 +99,7 @@ export default function ModulePage() {
 
       <div className="mod-grid">
         <div className="mod-railcol">
-          <nav className="mod-rail">
-            <p>/the module</p>
-            {ITEMS.map((it, i) => (
-              <a key={i} href={`#i${i + 1}`}>
-                <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
-                <span className="mod-dot" />
-                <span>{it.rail}</span>
-              </a>
-            ))}
-            <a className="mod-rail-lib" href="#i5">
-              /the files
-            </a>
-          </nav>
+          <Rail classes={RAIL} />
         </div>
 
         <div className="mod-maincol">
@@ -93,9 +112,9 @@ export default function ModulePage() {
               <img className="chapter-fox-hero-img" src="/fox/fox-monday-nobg.png" alt="" />
             </div>
             <p className="mod-standfirst">
-              This is the page for the module, and it stays here for the whole term. It has what
-              the module is for, what we found when we read 85 Irish job ads, the team project,
-              the twelve classes and the files you download.
+              This is the page for the module, and it stays here for the whole term. It has the
+              twelve classes, one after the other, and the files you download. We work through it
+              in class.
             </p>
             <p className="mod-standfirst">
               I&rsquo;m Paul Dervan. I run a marketing consultancy that mixes old-school
@@ -118,9 +137,12 @@ export default function ModulePage() {
           </header>
 
           <main>
-            {/* 01 */}
-            <article className="mod-item" id="i1">
-              <Top i={0} />
+            {/* Class 1, written out in full because it is taught from this page */}
+            <article className="mod-item mk-classitem" id="c1">
+              <ClassTop i={0} />
+              <ClassRows i={0} />
+
+              <Part j={0} />
               <p className="mod-body">
                 First, you will learn what digital marketers do today and what employers ask for.
                 Every employer expects this.
@@ -134,35 +156,10 @@ export default function ModulePage() {
                 never learn them.
               </p>
 
-              <h3 className="mk-sub">The module is built on three pillars: tools, knowledge and behaviour.</h3>
-              <div className="mk-pillars">
-                {PILLARS.map((p, i) => (
-                  <div className="mk-pillar" key={p.name}>
-                    <span className="mk-pk">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="mk-pname">{p.name}</span>
-                    <p>{p.what}</p>
-                    <span className="mk-pads">{p.ads}</span>
-                  </div>
-                ))}
-              </div>
 
-              <h3 className="mk-sub">There are five behaviours of marketers who do well.</h3>
-              <ol className="mk-rows">
-                {BEHAVIOURS.map(([name, what], i) => (
-                  <li key={name}>
-                    <span className="mk-rk">{i + 1}</span>
-                    <span className="mk-rname">{name}</span>
-                    <span className="mk-rtext">{what}</span>
-                  </li>
-                ))}
-              </ol>
-            </article>
-
-            {/* 02 */}
-            <article className="mod-item" id="i2">
-              <Top i={1} />
+              <Part j={1} />
               <p className="mod-body">
-                The ads were posted between October 2025 and September 2026. We read 108 ads with
+                In this class we look at what they ask for. The ads were posted between October 2025 and September 2026. We read 108 ads with
                 a digital, social media or content job title, and kept the 85 that are digital
                 marketing jobs in an employer&rsquo;s marketing, communications or ecommerce team.
               </p>
@@ -209,11 +206,31 @@ export default function ModulePage() {
                 / word for word from four of the ads. One person read all the ads, most of them came from
                 one job site, and ads with a general marketing job title were not included.
               </p>
-            </article>
 
-            {/* 03 */}
-            <article className="mod-item" id="i3">
-              <Top i={2} />
+              <Part j={2} />
+              <div className="mk-pillars">
+                {PILLARS.map((p, i) => (
+                  <div className="mk-pillar" key={p.name}>
+                    <span className="mk-pk">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="mk-pname">{p.name}</span>
+                    <p>{p.what}</p>
+                    <span className="mk-pads">{p.ads}</span>
+                  </div>
+                ))}
+              </div>
+
+              <h3 className="mk-sub">There are five behaviours of marketers who do well.</h3>
+              <ol className="mk-rows">
+                {BEHAVIOURS.map(([name, what], i) => (
+                  <li key={name}>
+                    <span className="mk-rk">{i + 1}</span>
+                    <span className="mk-rname">{name}</span>
+                    <span className="mk-rtext">{what}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <Part j={3} />
               <p className="mod-body">
                 You work in a team of four or five. Your agency sells digital marketing services to
                 other companies. You do this work using Claude, and we show you how in class.
@@ -277,41 +294,19 @@ export default function ModulePage() {
               </p>
             </article>
 
-            {/* 04 */}
-            <article className="mod-item" id="i4">
-              <Top i={3} />
-              <p className="mod-body">
-                Analytics is part of every tools class. For each tool we cover what you measure and
-                what the number tells you.
-              </p>
-              <div className="mk-classes">
-                {CLASSES.map((c, i) => (
-                  <section className="mk-class" key={c.name} id={`c${i + 1}`}>
-                    <header>
-                      <span className="mk-cn">{String(i + 1).padStart(2, "0")}</span>
-                      <h3>{c.name}</h3>
-                      <span className="mk-ctag">{c.pillar}</span>
-                    </header>
-                    <p className="mk-cwhen">
-                      {c.when}
-                      {c.where ? ` · ${c.where}` : ""}
-                    </p>
-                    <dl>
-                      {c.rows.map(([k, v]) => (
-                        <div key={k}>
-                          <dt>{k}</dt>
-                          <dd>{v}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </section>
-                ))}
-              </div>
-            </article>
+            {/* Classes 2 to 12. Each gets its parts when its material is written. */}
+            {CLASSES.slice(1).map((c, k) => (
+              <article className="mod-item mk-classitem" id={`c${k + 2}`} key={c.name}>
+                <ClassTop i={k + 1} />
+                <ClassRows i={k + 1} />
+              </article>
+            ))}
 
-            {/* 05 */}
-            <article className="mod-item" id="i5">
-              <Top i={4} />
+            {/* The files */}
+            <article className="mod-item" id="files">
+              <div className="mod-itemtop">
+                <h2 className="mod-h3">You download the files for the module here.</h2>
+              </div>
               <p className="mod-body">
                 The project brief is here now. The made-up data for Attio and Klaviyo goes here in
                 November, before the classes that use it.
