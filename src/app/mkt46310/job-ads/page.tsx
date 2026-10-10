@@ -3,6 +3,7 @@ import Link from "next/link";
 import { checkAuth } from "../actions";
 import ModuleDoor from "../ModuleDoor";
 import data from "./jobAds.json";
+import AdReader, { type Ad } from "./AdReader";
 import "../../zorro/zorro.css";
 import "../mkt46310.css";
 
@@ -17,15 +18,6 @@ export const metadata: Metadata = {
    build_job_ads_for_page.py in paul-hub (clients/ucd/courses/mkt46310-harriet). The job site
    and the link to each ad are left out: we never name where the ads were found. */
 
-type Ad = (typeof data.ads)[number];
-const LEVEL: Record<string, string> = {
-  "graduate or assistant": "Graduate or assistant",
-  executive: "Executive",
-  manager: "Manager",
-  senior: "Senior",
-  "not stated": "Level not stated",
-};
-
 export default async function Page({
   searchParams,
 }: {
@@ -36,7 +28,7 @@ export default async function Page({
   const authed = dev || (await checkAuth());
   if (!authed) return <ModuleDoor />;
 
-  const shown = data.show.map((id) => data.ads.find((a) => a.id === id) as Ad);
+  const shown = data.show.map((id) => data.ads.find((a) => a.id === id)) as unknown as Ad[];
 
   return (
     <div className="mod-shell mk">
@@ -49,80 +41,23 @@ export default async function Page({
         </Link>
       </header>
 
-      <div className="mod-grid">
-        <div className="mod-railcol">
-          <nav className="mod-rail mk-rail" aria-label="The job ads">
-            <p>/twelve job ads</p>
-            {shown.map((a, i) => (
-              <div key={a.id} className="mk-railitem">
-                <a href={`#ad${a.id}`}>
-                  <span className="mod-k">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mod-dot" />
-                  <span>{a.title}</span>
-                </a>
-              </div>
-            ))}
-            <a className="mod-rail-lib" href="/mkt46310/job-ads/download">
-              /download all 85
-            </a>
-          </nav>
-        </div>
+      <header className="mk-adshead">
+        <p className="mod-eyebrow">UCD Smurfit &middot; MKT46310 &middot; Class 1</p>
+        <h1 className="mod-h1">
+          The job <span className="mod-hl">ads</span>
+        </h1>
+        <p className="mod-standfirst">
+          In class 1 we look at what employers ask for in {data.ads.length} Irish job ads for
+          digital marketing jobs. Here are {shown.length} of them to read in full. Ten are ads we
+          quote in class, and two are ads for junior jobs. Pick an ad from the list.
+        </p>
+        <p className="mod-standfirst">
+          The words are the employer&rsquo;s own. We changed none of them. We only set out the
+          headings and the lists so the ad is easy to read.
+        </p>
+      </header>
 
-        <div className="mod-maincol">
-          <header className="mod-masthead">
-            <p className="mod-eyebrow">UCD Smurfit &middot; MKT46310 &middot; Class 1</p>
-            <h1 className="mod-h1">
-              The job <span className="mod-hl">ads</span>
-            </h1>
-            <p className="mod-standfirst">
-              In class 1 we look at what employers ask for in {data.ads.length} Irish job ads for
-              digital marketing jobs. Here are {shown.length} of them to read in full. They are
-              the ads we quote in class, and two ads for junior jobs.
-            </p>
-            <p className="mod-standfirst">
-              You can also download all {data.ads.length} ads as one file. It opens in Excel or
-              Google Sheets, and you can give it to Claude and ask it questions.
-            </p>
-            <p className="mk-dl">
-              <a className="mod-readinglink" href="/mkt46310/job-ads/download">
-                Download all {data.ads.length} job ads (CSV)
-              </a>
-            </p>
-          </header>
-
-          <main>
-            {shown.map((a, i) => (
-              <article className="mod-item mk-classitem mk-ad" id={`ad${a.id}`} key={a.id}>
-                <header className="mk-ctop">
-                  <p className="mk-cmeta">
-                    Ad {String(i + 1).padStart(2, "0")} &middot; Posted {a.posted}
-                  </p>
-                  <h2 className="mk-cname">{a.title}</h2>
-                  <span className="mk-ctag">{LEVEL[a.level] || a.level}</span>
-                </header>
-                <dl className="mk-crows">
-                  <div>
-                    <dt>Who posted it</dt>
-                    <dd>{a.employer}</dd>
-                  </div>
-                  <div>
-                    <dt>The work it asks for</dt>
-                    <dd>{a.work.join(", ")}.</dd>
-                  </div>
-                  {a.tools ? (
-                    <div>
-                      <dt>The tools it names</dt>
-                      <dd>{a.tools.replace(/; /g, ", ")}.</dd>
-                    </div>
-                  ) : null}
-                </dl>
-                <p className="mk-cap mk-adlbl">/ the ad, word for word</p>
-                <div className="mk-adtext">{a.text}</div>
-              </article>
-            ))}
-          </main>
-        </div>
-      </div>
+      <AdReader ads={shown} total={data.ads.length} />
     </div>
   );
 }
