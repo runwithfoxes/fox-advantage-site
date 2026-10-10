@@ -55,7 +55,7 @@ const STEPS: [string, ReactNode][] = [
   ],
   [
     "Work out the problem before you suggest a fix.",
-    "The question is “what is going on here?” (Richard Rumelt’s question in Good Strategy Bad Strategy). Your answer is one view, with the facts behind it, what you have ruled out, and what would change your mind. In search, ask where in a person’s decision this company meets them, and where it is missing.",
+    "The question is “what is going on here?” (Richard Rumelt’s question in Good Strategy Bad Strategy). Your answer is one view, with the facts behind it, what you have ruled out, and what would change your mind. For search, ask at which points a person who is deciding what to buy comes across this company, and at which points they do not.",
   ],
 ];
 
@@ -70,7 +70,7 @@ const CHECKS = [
 
 const HABITS = [
   "Keep a list of what you said and then took back, and why. It shows you your own pattern.",
-  "When someone challenges you, go and check before you either give in or dig in. Sometimes the check shows you were right.",
+  "When someone challenges you, go and check before you either agree or argue back. Sometimes the check shows you were right.",
   "Show the numbers that go against your view as well as the ones that support it.",
 ];
 
@@ -117,7 +117,8 @@ export default async function Page({
         <p className="mod-body">
           Go back to the original. Open the real report or the real data and build your own table
           from it, month by month, before you write anything. Your notes and summaries are things
-          you said earlier, and some of them will be wrong.
+          you said earlier, and some of them will be wrong. In the steps below, &ldquo;they&rdquo; is
+          the company you are working for.
         </p>
 
         <h2 className="mk-sub">Seven steps to work out what is going on.</h2>
@@ -143,12 +144,12 @@ export default async function Page({
           ))}
         </ol>
         <p className="mod-body mk-after">
-          Send only what is still standing. If you already told someone the wrong version, tell them
-          plainly.
+          Send only the claims that passed these checks. If you already told someone the wrong
+          version, tell them plainly.
         </p>
         <p className="mod-body">
-          The last test: can you name the ways you tried to break your answer, and what held? If you
-          can&rsquo;t name them, you didn&rsquo;t do it.
+          The last test: can you name the ways you tried to prove your answer wrong, and which parts
+          were still true afterwards? If you can&rsquo;t name them, you didn&rsquo;t do it.
         </p>
 
         <h2 className="mk-sub">Three habits to keep.</h2>
