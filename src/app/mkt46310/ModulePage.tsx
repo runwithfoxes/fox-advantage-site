@@ -97,6 +97,12 @@ export default function ModulePage() {
         <span className="chapter-nav-back">UCD Smurfit &middot; MKT46310</span>
       </header>
 
+      {/* Paul, 10 Oct: "a fox looking sharp in a modern agency boardroom for a digital agency. Blue skies out
+          the window." Then: "a crisp white shirt and suit. Think Mad Men." Take 3 of three. */}
+      <div className="mk-top">
+        <img src="/mkt46310/top.jpg" alt="The fox in a dark suit, white shirt and narrow tie, standing at the head of a long table in an agency boardroom, with blue sky and a city through the windows" />
+      </div>
+
       <div className="mod-grid">
         <div className="mod-railcol">
           <Rail classes={RAIL} />
@@ -108,9 +114,6 @@ export default function ModulePage() {
             <h1 className="mod-h1">
               AI and Digital Marketing <span className="mod-hl">Strategy</span>
             </h1>
-            <div className="chapter-fox-hero">
-              <img className="chapter-fox-hero-img" src="/fox/fox-monday-nobg.png" alt="" />
-            </div>
             <p className="mod-standfirst">
               This is the page for the module, and it stays here for the whole term. It has the
               twelve classes, one after the other, and the files you download. We work through it
