@@ -79,7 +79,7 @@ export const BEHAVIOURS: [string, string][] = [
    marketing plans to get clients, agents working for them." */
 export const MAKE: [name: string, text: string][] = [
   ["A target audience", "The kind of company your agency sells to, and the person in that company who decides. You research this before you choose."],
-  ["Commercial goals", "What your agency charges, and how many clients and how much money it wants in its first year."],
+  ["Commercial goals", "The revenue and the profit your agency is aiming for."],
   ["Positioning", "What your agency does, who it is for, and why a client would pick you and not another agency."],
   ["Messaging", "What you say to that client, in words they would use themselves."],
   ["A website", "You design it, write the words and make the pictures."],
@@ -102,7 +102,7 @@ export const PROJECT_DATES: [string, string][] = [
   ["Monday 19 October", "Your team chooses its marketing agents. You set up Claude on your laptop in class."],
   ["2 and 9 November", "You build the website and do the GEO, the paid search plan, the ads and the posts."],
   ["Later in November", "You set up your customers in Attio, write your outbound messages and write your emails in Klaviyo. The days are to be confirmed."],
-  ["The last class", "Each team presents its agency to the class. The day is to be confirmed."],
+  ["The last class", "Each team presents its agency to Paul and shows the practical work it has done. The day is to be confirmed."],
 ];
 
 export type Row = [label: string, text: string];
