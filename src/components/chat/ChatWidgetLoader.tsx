@@ -28,7 +28,7 @@ const ChatWidget = dynamic(() => import("./ChatWidget"), { ssr: false });
    on in the beginning. There's too much going on." Off on the mockup only; the live site is unchanged.
    26 Sep: the whole resource centre (/resources and everything under it), same reason, and on a
    phone the bubble sat on top of the first reading on the trackers board. */
-const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro", "/home-next", "/resources"];
+const NO_CHAT_ROUTES = ["/course", "/softco", "/for", "/proposals", "/zorro", "/mkt46310", "/home-next", "/resources"];
 
 export default function ChatWidgetLoader() {
   const pathname = usePathname();
