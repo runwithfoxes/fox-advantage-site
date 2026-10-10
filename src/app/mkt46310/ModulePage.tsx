@@ -356,7 +356,7 @@ export default function ModulePage() {
                   <b>20% is the portfolio.</b> Your team builds it each week from the work on your agency.
                 </span>
                 <span>
-                  <b>The team gets one mark.</b> At the end, each of you fills in a short form about who did what in your team. I use it to see if someone did not do their share.
+                  <b>Your mark is your own.</b> It comes from two things: your team&rsquo;s project, and what your teammates say about the work you did. At the end, each of you fills in a short form about who did what in your team.
                 </span>
                 <span>
                   <b>80% is the written exam.</b> You sit it on your own, and you must pass the exam to pass the module.
