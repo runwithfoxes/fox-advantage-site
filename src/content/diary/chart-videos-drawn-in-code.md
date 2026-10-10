@@ -24,7 +24,7 @@ All of that took about 15 seconds on a small desktop computer.
 <figcaption style="margin-top:.7em;font-size:.85em;line-height:1.5;color:#8A8A85">The finished film. Dray remade it at 10 seconds after the first test, with the chart's footnote added. Every number in it comes from the chart's data file.</figcaption>
 </figure>
 
-There are AI tools that will make a video from a sentence, so why do it this way? Those tools charge by the second, and they draw their best guess, which is fine for a scene and risky for a chart. Here the page prints the figure from the data file, so the figure cannot change. Run it twice and you get the same film.
+There are AI tools that will make a video from a sentence, so why do it this way? Those tools charge by the second, and they draw their best guess, which is fine for a scene and risky for a chart. Here the figure is written into the page, so the film shows exactly that figure. Run it twice and you get the same film.
 
 It will not draw a character. Our fox is still made with a video model.
 
