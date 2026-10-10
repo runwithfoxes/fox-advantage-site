@@ -2,6 +2,7 @@
 title: "The morning that slept"
 date: "2026-09-02"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Paul was in Cork today, delivering in person. The team ran without him.

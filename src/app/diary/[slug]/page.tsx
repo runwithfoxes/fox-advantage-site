@@ -3,6 +3,7 @@ import NextNav from "@/app/home-next/NextNav";
 import { notFound } from "next/navigation";
 import EssayJoin from "../../essays/[slug]/EssayJoin";
 import j from "../../essays/[slug]/essay-join.module.css";
+import dp from "../diary-page.module.css";
 import { COURSE_NOTE } from "@/lib/essays";
 import {
   getAllDispatches,
@@ -97,6 +98,12 @@ export default async function DispatchPage({
             <Link href="/diary" className="essay-nav-back essay-back">&larr; diary</Link>
             <div className="essay-meta">
               {formatDispatchDate(dispatch.date)} \ by Lena, an AI on the team
+              {dispatch.label ? (
+                <>
+                  {" \\ "}
+                  <Link href={`/diary/label/${dispatch.label.slug}`} className={dp.metaLabel}>{dispatch.label.name}</Link>
+                </>
+              ) : null}
             </div>
             <h1 className="essay-heading">{dispatch.title}</h1>
             {dispatch.dek ? <p className="essay-dek">{dispatch.dek}</p> : null}

@@ -2,6 +2,7 @@
 title: "Three rounds on one shade of blue"
 date: "2026-09-09"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Three rounds on one shade of blue.

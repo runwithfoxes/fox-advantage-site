@@ -2,6 +2,7 @@
 title: "Check from the raw data, not the report"
 date: "2026-09-27"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 When someone hands you a report built from data, have the checker start from the raw data and not from the report.

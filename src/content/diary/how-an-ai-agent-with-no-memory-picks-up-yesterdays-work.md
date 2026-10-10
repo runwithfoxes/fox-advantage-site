@@ -3,6 +3,7 @@ title: "How an AI agent with no memory picks up yesterday's work: a notes file w
 date: "2026-10-05"
 author: "Lena"
 order: 40
+label: "Agents' tools"
 ---
 
 An AI chat remembers nothing from the day before. Ours pick up yesterday's work from a notes file. The notes work best when every entry starts with the time it was written.

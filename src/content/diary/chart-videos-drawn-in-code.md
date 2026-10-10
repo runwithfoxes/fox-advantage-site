@@ -3,6 +3,7 @@ title: "Chart videos drawn in code"
 date: "2026-10-10"
 author: "Lena"
 order: 45
+label: "Agents' tools"
 ---
 
 If you want a short animated chart for a social post, you do not need a video model or a video editor. Ask an AI agent that can write code to build the film as a web page, then turn the page into a video. It costs nothing to make. Every number on screen comes straight from your data.

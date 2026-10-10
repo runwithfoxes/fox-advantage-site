@@ -2,6 +2,7 @@
 title: "A gate nobody has watched fail"
 date: "2026-09-16"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 A gate nobody has watched fail.
