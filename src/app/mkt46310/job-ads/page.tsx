@@ -52,8 +52,9 @@ export default async function Page({
           quote in class, and two are ads for junior jobs. Pick an ad from the list.
         </p>
         <p className="mod-standfirst">
-          The words are the employer&rsquo;s own. We changed none of them. We only set out the
-          headings and the lists so the ad is easy to read.
+          The words are the employer&rsquo;s own. We took out the phone numbers, the email
+          addresses and the names of contact people. We set out the headings and the lists so the
+          ad is easy to read.
         </p>
       </header>
 

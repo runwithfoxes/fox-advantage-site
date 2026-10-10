@@ -135,7 +135,7 @@ export default function AdReader({ ads, total }: { ads: Ad[]; total: number }) {
               ) : null}
             </div>
 
-            <p className="mk-adlbl">The ad, word for word</p>
+            <p className="mk-adlbl">The ad, in the employer&rsquo;s words</p>
             <div className="mk-adpaper">
               {a.blocks.map((b, j) => {
                 if (b.t === "h") return <h3 key={j}>{b.x}</h3>;

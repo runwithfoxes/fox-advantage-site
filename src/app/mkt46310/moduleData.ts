@@ -91,8 +91,8 @@ export const MAKE: [name: string, text: string][] = [
 
 /* The gym example Paul named: "they must use agents like in our Zorro gym example." */
 export const GYM_AGENTS: [name: string, text: string][] = [
-  ["Carlos", "He counts. He reads the door check-ins and finds the members who have stopped coming."],
-  ["Enrique", "He writes. He writes an email to each of those members."],
+  ["Carlos", "He counts. He reads the door check-ins and finds the members who are coming less than usual."],
+  ["Enrique", "He writes. He decides which of those members to write to, and writes each one an email."],
   ["Cato", "He checks. He assumes the other two are wrong and tries to prove it."],
   ["Rosa", "She measures. Two weeks later she counts who came back."],
 ];
@@ -147,7 +147,7 @@ export const CLASSES: Klass[] = [
     when: "Monday 19 October, 16:00 to 18:00",
     pillar: "Tools",
     rows: [
-      ["In this class", "What a marketing agent is, how to write a job an agent can do, and where a person has to stay in charge. We look at a real team of four agents built for a gym in Madrid, and how work passes from one to the next."],
+      ["In this class", "What a marketing agent is, how to write a job an agent can do, and where a person has to stay in charge. We look at a team of four agents we built for a made-up gym in Madrid, and how work passes from one to the next."],
       ["For your agency", "Your team chooses at least three marketing agents and says what job each one has. We set up Claude in class, so bring a laptop."],
     ],
   },
