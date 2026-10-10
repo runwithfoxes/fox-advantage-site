@@ -18,7 +18,7 @@ export async function GET() {
     return new Response("Open the module page and enter the password first.", { status: 401 });
   }
   const head = ["Ad", "Job title", "Who posted it", "Posted", "Level", "Fewest years asked", "Pay, as the ad gives it",
-    ...WORK, "Tools named", "Asks for AI", "The ad, word for word"];
+    ...WORK, "Tools named", "Asks for AI", "The ad, in the employer's words"];
   const lines = [head.map(cell).join(",")];
   data.ads.forEach((a, i) => {
     lines.push([i + 1, a.title, a.employer, a.posted, a.level, a.years, a.pay,

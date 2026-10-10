@@ -225,6 +225,17 @@ export default function ModulePage() {
                     </Link>
                   </li>
                   <li className="mod-frow">
+                    <Link className="mod-fname" href="/mkt46310/how-to-question-a-finding">
+                      How to question a finding
+                    </Link>
+                    <span className="mod-fwhat">
+                      Reporting on results is in 73 of the 85 ads, more than any other kind of work. This is how to work out what happened and why.
+                    </span>
+                    <Link className="mod-readinglink" href="/mkt46310/how-to-question-a-finding">
+                      Open
+                    </Link>
+                  </li>
+                  <li className="mod-frow">
                     <a className="mod-fname" href="/resources/the-ai-ask/2026-q3" target="_blank" rel="noopener">
                       The AI Ask
                     </a>
@@ -285,7 +296,7 @@ export default function ModulePage() {
 
               <h3 className="mk-sub">Your team decides what kind of agency it is.</h3>
               <p className="mod-body">
-                It can be any kind of agency, as long as it sells digital services. Your team also
+                It can be any kind of agency, as long as it sells digital marketing services. Your team also
                 decides who its clients are. Do the research before you decide. Look at who buys
                 these services, what they pay for now, and which agencies already sell to them.
               </p>
@@ -312,7 +323,7 @@ export default function ModulePage() {
                 job is written down: what it reads, what it does, and where it puts its work.
               </p>
               <p className="mod-body">
-                Here is an example. We built four agents for a gym that was losing members.
+                Here is an example. We built four agents for a made-up gym in Madrid that was losing members.
               </p>
               <ol className="mk-rows mk-rows-dates" style={{ marginTop: 18 }}>
                 {GYM_AGENTS.map(([name, text]) => (
@@ -411,7 +422,7 @@ export default function ModulePage() {
                     <a className="mod-fname" href="/mkt46310/job-ads/download">
                       The 85 job ads
                     </a>
-                    <span className="mod-fwhat">Every ad from class 1, word for word, as a CSV file.</span>
+                    <span className="mod-fwhat">Every ad from class 1, in full, as a CSV file.</span>
                     <a className="mod-readinglink" href="/mkt46310/job-ads/download">
                       Download
                     </a>

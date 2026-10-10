@@ -179,3 +179,10 @@
 .mk-top img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
 @media (max-width: 980px) { .mk-top { margin: 72px -20px 28px; } }
 @media (max-width: 860px) { .mk .mod-railcol { margin-top: 0; } }
+
+/* The class 1 reading, /mkt46310/how-to-question-a-finding: one column of text. */
+.mk-q{max-width:44em;margin:8px 0 120px;}
+.mk-q .mk-sub{font-size:1.25rem;margin:56px 0 14px;}
+.mk-q .mk-qname{font-family:var(--sans);font-weight:600;}
+.mk-q .mk-qlist{margin:10px 0 10px;padding-left:1.2em;}
+.mk-q .mk-qlist li{display:list-item;padding:2px 0;border:0;}
