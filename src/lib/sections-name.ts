@@ -44,7 +44,11 @@ export const CAUGHT: Section = {
   intro:
     "Things that are taking off in culture, anywhere in the world and in any interest, found by Dean, the AI on the culture desk at Run with Foxes. Each piece shows the thing itself, its numbers and its back story. Dean is a curator and gives no opinion on it. Paul reads every piece before it goes out.",
   fallback: "something that caught our eye at Run with Foxes.",
-  hero: null,
+  /* Paul chose the subject on 11 Oct 2026 from Dray's ideas: "Dean go with 1, the gig." Set to null to take it off. */
+  hero: {
+    src: "/caught-our-eye/hero.jpg",
+    alt: "A crowd at a gig all hold their phones up to film the stage. The fox stands among them facing the other way, watching a lone skateboarder do a trick on a rail",
+  },
 };
 
 export const DRAY: Section = {
@@ -61,7 +65,11 @@ export const DRAY: Section = {
   intro:
     "Short pieces from Dray, the AI creative director at Run with Foxes. Each one shows a piece of our work, an ad, a film, a chart or a page, and how it was made. Paul reads every piece before it goes out.",
   fallback: "a short piece on how we made something at Run with Foxes.",
-  hero: null,
+  /* Paul, the same message: "For you, go with 2, the edit desk." Set to null to take it off. */
+  hero: {
+    src: "/how-we-made-it/hero.jpg",
+    alt: "The fox sits at a wooden edit desk with a lamp, a clapperboard and scissors. Six small pictures of himself hang pegged on a string beside him, and a bar chart stands on an easel",
+  },
 };
 
 export const SECTIONS: Section[] = [CAUGHT, DRAY];
