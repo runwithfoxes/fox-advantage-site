@@ -32,7 +32,7 @@
    "ch": 3
   },
   {
-   "text": "34% of the category's creatives are a rewording of another one. The people who make the most ads say the platform doesn't care about new words, only a new opening. So the next round of production should be angles, not edits (Chapter 4).",
+   "text": "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601). The people who make the most ads say the platform doesn't care about new words, only a new opening. So the next round of production should be angles, not edits (Chapter 4).",
    "ch": 4
   },
   {
@@ -85,7 +85,7 @@
        "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means first seen on or after 1 July."
       },
       {
-       "p": "The spread is the first surprise. The most active advertiser ran 421 ads. The quietest ran 27. The median is 125. Same category, same ninety days, same platform, and one advertiser is running social at 16 times the tempo of another, and both are reaching millions of people. There's a range, and now you can see where you sit in it."
+       "p": "The spread is the first surprise. The most active advertiser ran 421 ads. The quietest ran 27. The median is 125.5. Same category, same ninety days, same platform, and one advertiser is running social at 16 times the tempo of another, and both are reaching millions of people. There's a range, and now you can see where you sit in it."
       }
      ]
     },
@@ -417,17 +417,17 @@
      "title": "How much of the category's creative is a rewording",
      "blocks": [
       {
-       "p": "The share of each advertiser's creatives that are a rewording of another one of its own. The comparison is on words only, so a new picture under the same words doesn't show. Look at how wide the range is."
+       "p": "The share of each advertiser's creatives that share most of their words with another one of its own. The comparison is on words only, so a new picture under the same words doesn't show. Look at how wide the range is."
       },
       {
        "fig": "f41",
        "kind": "Figure",
        "no": "4.1",
-       "title": "Share of each advertiser's creatives that are a rewording of another one of its own",
+       "title": "Share of each advertiser's creatives that share most of their words with another one of its own",
        "cap": "Two creatives count as one family when their words, with the required legal lines taken out, are at least 80% the same. Category average 33.9%, median 37.3%, lowest 11.8%, highest 58.3%."
       },
       {
-       "p": "34% of the category's creatives are a rewording of another, from 12% to 58%. We hold one picture per creative, so a new picture under the same words is invisible to us, and some of these rewordings will carry one. Even so, the pattern is clear enough to act on. \"Fast, flexible, and transparent personal loans\" and \"Fast, flexible, and transparent student loans\" sell to different people, and they're two ads to a spreadsheet; to the platform, on the practitioner rule, they're very likely one. The opening for any advertiser here is to spend the next round of production on openings that look different, and to let the rewordings ride along behind them."
+       "p": "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601). By advertiser it runs from 12% to 58%. We hold one picture per creative, so a new picture under the same words is invisible to us, and some of these rewordings will carry one. Even so, the pattern is clear enough to act on. \"Fast, flexible, and transparent personal loans\" and \"Fast, flexible, and transparent student loans\" sell to different people, and they're two ads to a spreadsheet; to the platform, on the practitioner rule, they're very likely one. The opening for any advertiser here is to spend the next round of production on openings that look different, and to let the rewordings ride along behind them."
       }
      ]
     },
@@ -732,7 +732,7 @@
        "cap": "As read by our reader. People: Category average 60.1%, median 65.9%, lowest 6.1%, highest 100.0%. Famous or creator: category average 13.1%. Humour: category average 8.2%."
       },
       {
-       "p": "60% of creatives show a person, from 6% to 100%. Famous faces and paid creators appear in 13% on average and humour in 8%. Humour is the thin one, and the advertiser that uses it most does so in a third of its creatives. There's room."
+       "p": "61% of creatives show a person (368 of 601). By advertiser it runs from 6% to 100%. Famous faces and paid creators appear in 10% (62 of 601) and humour in 6% (35 of 601). Humour is the thin one, and the advertiser that uses it most does so in a third of its creatives. There's room."
       }
      ]
     }
@@ -855,7 +855,7 @@
        "cap": "204 creatives have no call to action in their words."
       },
       {
-       "p": "21% of creatives put a number in the ad, a rate, a cashback figure, a fee. On one advertiser it's 67%; on another, none. 18% of ads ask a question somewhere in the text. Emoji appear in 16%, from none on some advertisers to 71% on one. And where a creative has a call to action, the first word is \"apply\" on 137 of 397, about a third, and nearly five times the next word. None of these is a rule. Creative doesn't get rules. They're the priors your next test should start from."
+       "p": "21% of creatives put a number in the ad (126 of 601), a rate, a cashback figure, a fee. On one advertiser it's 67%; on another, none. 21% of creatives ask a question somewhere in the text (126 of 601). Emoji appear in 16% of creatives (99 of 601), from none on some advertisers to 71% on one. And where a creative has a call to action, the first word is \"apply\" on 137 of 397, about a third, and nearly five times the next word. None of these is a rule. Creative doesn't get rules. They're the priors your next test should start from."
       }
      ]
     }
