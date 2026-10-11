@@ -60,8 +60,7 @@ export default async function HomeNext() {
      Sam's. And we want names and circle icon beside each." So three writers, newest first, each row
      carrying who wrote it (the circles came off the same afternoon: too busy). Jeff's tracker row came out: it repeated the report above it. */
   /* Paul to Dean, 9 Oct 2026: "Our homepage needs to pick up on yours." So Dean's and Dray's two
-     newest pieces each join this list. The hero card is left as it is: his 1 Oct ruling on that card
-     is two thirds his own essays. */
+     newest pieces each join this list, and all of their pieces join the hero card further down. */
   type Who = "Paul Dervan" | "Lena" | "Sam" | "Dean" | "Dray";
   const news: { type: string; who: Who; t: string; href: string; iso: string }[] = [
     { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 6 marketing jobs in Ireland asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
@@ -100,10 +99,16 @@ export default async function HomeNext() {
   ].map(essayLine);
   const nuggetLines = getAllNotes().map((x) => ({ label: `Research nugget · Sam · ${formatDay(x.date)}`, title: x.title, href: `${NOTES.route}/${x.slug}` }));
   const diaryLines = getAllDispatches().map((d) => ({ label: `Diary · Lena · ${formatDay(d.date)}`, title: d.title, href: `/diary/${d.slug}` }));
+  /* Paul, 11 Oct 2026, on Dean's and Dray's pages: "both need to be featured on homepage in nav bar,
+     the card on hero and in what's new." So their pieces take turns with Sam's and Lena's here. His
+     two thirds holds, because it is set below by one of theirs for every two of his. */
+  const sectionLines = SECTIONS.map((sec) =>
+    getAllPieces(sec).map((x) => ({ label: `${sec.type} · ${sec.who} · ${formatDay(x.date)}`, title: x.title, href: `${sec.route}/${x.slug}` }))
+  );
+  const turns = [...sectionLines, nuggetLines, diaryLines];
   const turnAbout: { label: string; title: string; href: string }[] = [];
-  for (let i = 0; i < Math.max(nuggetLines.length, diaryLines.length); i++) {
-    if (nuggetLines[i]) turnAbout.push(nuggetLines[i]);
-    if (diaryLines[i]) turnAbout.push(diaryLines[i]);
+  for (let i = 0; i < Math.max(...turns.map((t) => t.length)); i++) {
+    for (const t of turns) if (t[i]) turnAbout.push(t[i]);
   }
   const theirs = [
     /* Every row is the newest edition of a real series from the catalogue, so every row has a
