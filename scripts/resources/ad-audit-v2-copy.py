@@ -5,10 +5,10 @@ the draft; nothing it writes is ever edited by hand.
 
 Reads   ~/paul-hub/intelligence/research/irish-ad-audit/reports/2026-q3/v2/{index.html,charts.json,img/}
         and the parent folder's numbers.json.
-Writes  src/app/resources/the-ad-audit/2026-q3-v2/copy.json    Sam's words, in page order
-        src/app/resources/the-ad-audit/2026-q3-v2/charts.json  Sam's series, as he wrote them
-        src/app/resources/the-ad-audit/2026-q3-v2/facts.json   the few category totals the page prints
-        public/resources/the-ad-audit/2026-q3-v2/              the ad stills and the frame strips
+Writes  src/app/resources/the-ad-audit/2026-q3/copy.json    Sam's words, in page order
+        src/app/resources/the-ad-audit/2026-q3/charts.json  Sam's series, as he wrote them
+        src/app/resources/the-ad-audit/2026-q3/facts.json   the few category totals the page prints
+        public/resources/the-ad-audit/2026-q3/              the ad stills and the frame strips
 
 Two rules it enforces. letters-private.json is never read. And facts.json carries category totals
 only, nothing keyed by a bank's name, because charts.json is lettered and a bank-named file shipped
@@ -21,8 +21,8 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 SRC = Path.home() / "paul-hub/intelligence/research/irish-ad-audit/reports/2026-q3"
 V2 = SRC / "v2"
 SITE = Path(__file__).resolve().parents[2]
-OUT = SITE / "src/app/resources/the-ad-audit/2026-q3-v2"
-PUB = SITE / "public/resources/the-ad-audit/2026-q3-v2"
+OUT = SITE / "src/app/resources/the-ad-audit/2026-q3"
+PUB = SITE / "public/resources/the-ad-audit/2026-q3"
 
 
 def text(el):

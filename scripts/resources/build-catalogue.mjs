@@ -143,7 +143,11 @@ function baseEdition(s, label, date, extra) {
    from the page's numbers.json, which is Sam's file copied by script. Added 27 Sep 2026 by Dray 2. */
 {
   const AD = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/numbers.json"), "utf8"));
-  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: "Research on Meta advertising in Irish banking: 1,814 ads from 10 advertisers this summer, read through the lens of best practice.", cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
+  /* dray-3 (Cato, 7 Oct): the cover said 1,814 ads, the raw count with An Post's post and parcel ads in it, while
+     the report's first paragraph says 1,660. The count the cover and the edition print is now read from the
+     report page's own facts.json (bank_ads, bank_creatives), which ad-audit-v2-copy.py writes from Sam's file. */
+  const FACTS = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/facts.json"), "utf8"));
+  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: `Research on Meta advertising in Irish banking: ${fmt(FACTS.bank_ads)} ads from ${FACTS.advertisers} advertisers this summer, read through the lens of best practice.`, cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
   const cat = AD.category, t = AD.totals, g = AD.groups;
   const sales = cat.job_share_of_reach.sales;
   const offer = kofn(cat.offer_creatives, t.bank_creatives);
@@ -152,9 +156,9 @@ function baseEdition(s, label, date, extra) {
       ...baseEdition(s, "Q3 2026", "2026-09-27", {}),
       slug: "the-ad-audit-2026-q3", edition: "Q3 2026", n: 1,
       title: "Irish banks sell on social, and the newcomers reach the young",
-      standfirst: `${fmt(t.ads)} Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. ${sales}% of the reach went to ads that only sell.`,
+      standfirst: `${fmt(FACTS.bank_ads)} Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. ${sales}% of the reach went to ads that only sell.`,
       author: A.sam, checkedBy: "Cato and Paul Dervan", sectors: ["Financial services"],
-      sample: `${fmt(t.ads)} ads, ${fmt(t.creatives)} different`,
+      sample: `${fmt(FACTS.bank_ads)} ads, ${fmt(FACTS.bank_creatives)} different`,
       findings: [
         { big: `${sales}%`, label: "of the reach went to ads that only sell", text: `On Facebook and Instagram, Irish banking is mostly selling: ${sales}% of the quarter's reach went to ads that only sell a product.` },
         { big: `${g["Digital challengers"].under_35}%`, label: "of the challengers' reach was under 35", text: `The newcomers reach the young: ${g["Digital challengers"].under_35}% of Monzo, bunq and Revolut's reach was under 35, against ${g["Irish banks and lenders"].under_35}% for the Irish banks.` },

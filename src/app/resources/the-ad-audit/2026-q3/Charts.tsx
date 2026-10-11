@@ -1,28 +1,52 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import N from "./numbers.json";
+import CH from "./charts.json";
 import r from "../../the-ai-ask/2026-q3/report.module.css";
 import a from "./audit.module.css";
 
 /**
- * The Ad Audit's figures, in the AI Ask's language (module windows, the site's blues, one thing to
- * touch per figure). Every value comes from numbers.json, which is Sam's numbers.json and
- * charts.json copied by script (paul-hub 024d205ce). Nothing is typed, and nothing that sits beside
- * Sam's words is rounded here: a share prints as the file has it, to one decimal.
+ * The Ad Audit v2's figures. Sam writes each one as a type (hbar, grouped, stacked, grouped_v,
+ * line, table) with its series in charts.json, and this file draws each type once, in the AI
+ * Ask's language: module windows, the site's blues, bars that grow when the figure comes on screen.
+ * Every value is the file's, printed to the file's own decimals. charts.json is lettered (Brand A
+ * to J), and it is the only data this client file imports, so no bank's name reaches the browser
+ * from here.
  */
 const SKY = "#3A7CA5";
 const DEEP = "#1A3A4E";
-const MID = "#6CAAC8";
 const PALE = "#A9CBE4";
 const GREY = "#CFCFC9";
-const ORANGE = "#F47521";
+const COLS = [SKY, DEEP, PALE, GREY];
 
-const CH = N.charts;
-type Adv = keyof typeof N.advertisers;
-const ADV = N.advertisers as Record<string, (typeof N.advertisers)[Adv]>;
-const CHALL = new Set(N.groups["Digital challengers"].members);
-const pc = (x: number) => `${x}%`;
+type Series = { label: string; data: number[] };
+type Chart = {
+  type: "hbar" | "grouped" | "stacked" | "grouped_v" | "line" | "table";
+  fmt?: "num" | "pct" | "sec";
+  labels?: string[];
+  data?: number[];
+  series?: Series[];
+  average?: number;
+  median?: number;
+  max?: number;
+  head?: string[];
+  rows?: (string | number)[][];
+};
+const ALL = CH as unknown as Record<string, Chart>;
+const dpOf = (c: Chart) => {
+  const vals = [...(c.data ?? []), ...(c.series ?? []).flatMap((x) => x.data)];
+  return Math.max(0, ...vals.map((v) => (String(v).split(".")[1] ?? "").length));
+};
+
+/* JSON drops a trailing .0 (Sam's 26.0 arrives as 26), so each chart prints every value to the
+   most decimals any of its values carries: 26.0% beside 24.9%, never 26% beside it. Shares only. */
+function fmtOf(f: Chart["fmt"], dp = 0) {
+  // shares line up to one decimal; counts and seconds print exactly as the file has them (127, 78.1)
+  const n = (v: number) => v.toLocaleString("en-IE", { minimumFractionDigits: f === "pct" ? dp : 0, maximumFractionDigits: Math.max(dp, 2) });
+  if (f === "pct") return (v: number) => `${n(v)}%`;
+  if (f === "sec") return (v: number) => `${n(v)}s`;
+  return n;
+}
 
 /** Starts drawing when the figure comes on screen, once. */
 function useSeen<T extends Element>() {
@@ -32,14 +56,15 @@ function useSeen<T extends Element>() {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return setSeen(true);
-    const io = new IntersectionObserver((es) => es[0].isIntersecting && (setSeen(true), io.disconnect()), { threshold: 0.2 });
+    const io = new IntersectionObserver((es) => es[0].isIntersecting && (setSeen(true), io.disconnect()), { threshold: 0.15 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
   return [ref, seen] as const;
 }
 
-export function FigWin({ id, n, title, cap, children, win }: { id: string; n: string; title: string; cap: string; children: ReactNode; win?: string }) {
+/** The module window. No source line under each figure: Sam keeps sources to the method note. */
+export function FigWin({ id, kind, n, title, cap, children }: { id: string; kind: string; n: string; title: string; cap: string; children: ReactNode }) {
   return (
     <figure className={`mod-win ${r.fig}`} id={id}>
       <div className="mod-winbar">
@@ -48,31 +73,19 @@ export function FigWin({ id, n, title, cap, children, win }: { id: string; n: st
           <i />
           <i />
         </span>
-        <span className="mod-wintitle">{win ?? `figure_${n.replace(".", "_")}`}</span>
+        <span className="mod-wintitle">{`${kind.toLowerCase()}_${n.replace(".", "_")}`}</span>
       </div>
       <div className={r.figBody}>
         <figcaption className={r.figTitle}>
-          <span className={r.figN}>Figure {n}</span>
+          <span className={r.figN}>
+            {kind} {n}
+          </span>
           {title}
         </figcaption>
         {children}
-        <p className={r.figCap}>
-          {cap ? `${cap} ` : ""}Source: The Ad Audit, Run with Foxes, from Meta&rsquo;s Ad Library.
-        </p>
+        {cap ? <p className={r.figCap}>{cap}</p> : null}
       </div>
     </figure>
-  );
-}
-
-function Toggle<T extends string>({ opts, on, set }: { opts: { k: T; t: string }[]; on: T; set: (k: T) => void }) {
-  return (
-    <span className={r.toggle} role="group">
-      {opts.map((o) => (
-        <button key={o.k} type="button" aria-pressed={on === o.k} className={on === o.k ? r.tOn : ""} onClick={() => set(o.k)}>
-          {o.t}
-        </button>
-      ))}
-    </span>
   );
 }
 
@@ -88,220 +101,39 @@ function Key({ items }: { items: { c: string; t: string }[] }) {
   );
 }
 
-/** One labelled bar: the site's funnel row. */
-function Bar({ label, v, max, c, seen, delay = 0, extra, dim }: { label: string; v: number; max: number; c: string; seen: boolean; delay?: number; extra?: ReactNode; dim?: boolean }) {
-  return (
-    <div className={r.fRow} style={dim ? { opacity: 0.35 } : undefined}>
-      <span className={r.fLab}>{label}</span>
-      <span className={r.fTrack}>
-        <i style={{ width: seen ? `${(v / max) * 100}%` : 0, background: c, transitionDelay: `${delay}ms` }} />
-      </span>
-      <span className={r.fVal}>
-        <b>{pc(v)}</b> {extra}
-      </span>
-    </div>
-  );
-}
-
-/* ── 1.1 Share of reach. Sam's figure is ads started in the quarter; 1.2 gives the other count,
-   every ad over its whole life, so the toggle shows both. ─────────────────────────────── */
-export function F11() {
+/* ── hbar: one bar per row, with the category average and median marked where Sam gives them ── */
+function HBar({ c }: { c: Chart }) {
   const [ref, seen] = useSeen<HTMLDivElement>();
-  const [view, setView] = useState<"q3" | "life">("q3");
-  const life = N.lifetime_share as Record<string, number>;
-  const rows = CH.f11.labels.map((l, i) => ({ l, v: view === "q3" ? CH.f11.data[i] : life[l] }));
-  const max = Math.max(...rows.map((x) => x.v));
+  const f = fmtOf(c.fmt, dpOf(c));
+  const data = c.data ?? [];
+  const max = c.max ?? Math.max(...data, c.average ?? 0, c.median ?? 0);
+  const marks = [
+    c.average != null ? { k: "avg", v: c.average, t: "Average" } : null,
+    c.median != null ? { k: "med", v: c.median, t: "Median" } : null,
+  ].filter(Boolean) as { k: string; v: number; t: string }[];
   return (
     <div ref={ref}>
-      <div className={r.chartHead}>
-        <Toggle opts={[{ k: "q3", t: "Ads started in the quarter" }, { k: "life", t: "Every ad, whole life" }]} on={view} set={setView} />
-      </div>
-      <Key items={[{ c: SKY, t: "Irish banks and lenders" }, { c: DEEP, t: "Digital challengers" }]} />
-      <div className={r.hbars}>
-        {rows.map((x, i) => (
-          <Bar key={x.l} label={x.l} v={x.v} max={max} c={CHALL.has(x.l) ? DEEP : SKY} seen={seen} delay={i * 40} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ── 1.2 Ads three ways. The three counts nest (new ads are among the different ads, which are
-   among all the ads), so each bank is one bar with the three drawn inside each other. ───── */
-export function F12() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const f = CH.f12;
-  const max = Math.max(...f.ads);
-  const parts = [
-    { k: "ads" as const, c: GREY, t: "Ads in the library" },
-    { k: "cre" as const, c: SKY, t: "Different ads" },
-    { k: "new" as const, c: DEEP, t: "New in the quarter" },
-  ];
-  return (
-    <div ref={ref}>
-      <Key items={parts} />
-      <div className={a.nest}>
-        {f.labels.map((l, i) => (
-          <div key={l} className={a.nestRow}>
-            <span className={r.fLab}>{l}</span>
-            <span className={a.nestBar}>
-              {parts.map((p, j) => (
-                <i key={p.k} style={{ width: seen ? `${(f[p.k][i] / max) * 100}%` : 0, background: p.c, transitionDelay: `${i * 50 + j * 120}ms` }} />
-              ))}
+      {marks.length ? (
+        <div className={a.marksKey}>
+          {marks.map((m) => (
+            <span key={m.k}>
+              <i className={m.k === "avg" ? a.markAvg : a.markMed} /> {m.t} {f(m.v)}
             </span>
-            <span className={a.nestVal}>
-              {parts.map((p, j) => (
-                <span key={p.k} style={{ color: j === 0 ? "#8A8A85" : p.c }}>{f[p.k][i]}</span>
-              ))}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ── 2.1 What the reach is for, by advertiser: one full-width bar each ─────────────── */
-const JOBS = [
-  { k: "brand" as const, t: "Brand", c: DEEP },
-  { k: "both" as const, t: "Both", c: MID },
-  { k: "sales" as const, t: "Sales", c: SKY },
-  { k: "service" as const, t: "Customer notices", c: PALE },
-  { k: "other" as const, t: "Other", c: GREY },
-];
-export function F21() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const [hover, setHover] = useState<string | null>(null);
-  const cat = N.category.job_share_of_reach as Record<string, number>;
-  const rows = [{ l: "All ten", v: JOBS.map((j) => cat[j.k] ?? 0) }, ...CH.f21.labels.map((l, i) => ({ l, v: JOBS.map((j) => CH.f21.series[j.k][i]) }))];
-  const show = rows.find((x) => x.l === hover);
-  return (
-    <div ref={ref}>
-      <Key items={JOBS} />
-      <div className={a.stacks} onMouseLeave={() => setHover(null)}>
-        {rows.map((row, i) => (
-          <div key={row.l} className={`${a.stackRow} ${i === 0 ? a.stackAll : ""} ${hover === row.l ? a.stackOn : ""}`} onMouseEnter={() => setHover(row.l)}>
-            <span className={r.fLab}>{row.l}</span>
-            <span className={a.stackBar}>
-              {row.v.map((v, j) =>
-                v ? <i key={j} style={{ width: seen ? `${v}%` : 0, background: JOBS[j].c, transitionDelay: `${i * 50}ms` }} title={`${JOBS[j].t}: ${v}%`} /> : null,
-              )}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className={r.readout} aria-live="polite">
-        {show ? (
-          <>
-            <b>{show.l}</b>
-            {JOBS.map((j, k) => (show.v[k] ? <span key={j.k}><i style={{ background: j.c }} /> {j.t} {pc(show.v[k])}</span> : null))}
-          </>
-        ) : (
-          <span>Hover a bank for its split.</span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ── 3.1 What the reach sells ───────────────────────────────────────────────────── */
-export function F31() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const max = Math.max(...CH.f31.data);
-  return (
-    <div ref={ref} className={r.hbars}>
-      {CH.f31.labels.map((l, i) => (
-        <Bar key={l} label={l} v={CH.f31.data[i]} max={max} c={i < 2 ? SKY : PALE} seen={seen} delay={i * 35} />
-      ))}
-    </div>
-  );
-}
-
-/* ── 3.2 Share of each advertiser's different ads that state an offer ─────────────── */
-export function F32() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const [hover, setHover] = useState<string | null>(null);
-  return (
-    <div ref={ref}>
-      <Key items={[{ c: SKY, t: "Irish banks and lenders" }, { c: DEEP, t: "Digital challengers" }]} />
-      <div className={r.hbars} onMouseLeave={() => setHover(null)}>
-        {CH.f32.labels.map((l, i) => (
-          <div key={l} onMouseEnter={() => setHover(l)}>
-            <Bar label={l} v={CH.f32.data[i]} max={100} c={CHALL.has(l) ? DEEP : SKY} seen={seen} delay={i * 40} extra={hover === l ? <em>{ADV[l].offer_creatives} of {ADV[l].creatives}</em> : null} />
-          </div>
-        ))}
-      </div>
-      <div className={r.readout}>
-        <span>Across all ten, {N.category.offer_creatives} of {N.totals.bank_creatives} different ads state an offer ({N.offer_share_all}%). Hover a bank for its count.</span>
-      </div>
-    </div>
-  );
-}
-
-/* ── 4.1 Age, the challengers against the Irish banks: a pair of bars per age band ──── */
-export function F41() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const f = CH.f41;
-  const max = Math.max(...f.irish, ...f.chall);
-  const G = N.groups;
-  return (
-    <div ref={ref} className={r.funnel}>
-      <Key items={[{ c: DEEP, t: `Digital challengers (${G["Digital challengers"].members.join(", ")})` }, { c: SKY, t: "Irish banks and lenders (the other seven)" }]} />
-      {f.labels.map((l, i) => (
-        <div key={l} className={a.ageRow}>
-          <span className={r.fLab}>{l}</span>
-          <div className={r.pairBars}>
-            {[
-              { v: f.chall[i], c: DEEP },
-              { v: f.irish[i], c: SKY },
-            ].map((b, j) => (
-              <div key={j} className={a.ageLine}>
-                <span className={a.thin}>
-                  <i style={{ width: seen ? `${(b.v / max) * 100}%` : 0, background: b.c, transitionDelay: `${i * 70 + j * 40}ms` }} />
-                </span>
-                <span className={r.fVal}>{pc(b.v)}</span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
-      ))}
-      <div className={r.readout}>
-        <span>
-          Under 35: <b>{G["Digital challengers"].under_35}%</b> of the challengers&rsquo; reach, <b>{G["Irish banks and lenders"].under_35}%</b> of the Irish banks&rsquo;.
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ── 4.2 Under 35 and 55 or over, each advertiser ──────────────────────────────────── */
-export function F42() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const [sort, setSort] = useState<"u35" | "o55">("u35");
-  const f = CH.f42;
-  const rows = f.labels.map((l, i) => ({ l, u: f.u35[i], o: f.o55[i] })).sort((x, y) => (sort === "u35" ? y.u - x.u : y.o - x.o));
-  const max = Math.max(...f.u35, ...f.o55);
-  return (
-    <div ref={ref}>
-      <div className={r.chartHead}>
-        <Toggle opts={[{ k: "u35", t: "Youngest first" }, { k: "o55", t: "Oldest first" }]} on={sort} set={setSort} />
-      </div>
-      <div className={a.dvHead}>
-        <span />
-        <span>Under 35</span>
-        <span>55 or over</span>
-      </div>
-      <div className={a.dv}>
-        {rows.map((x, i) => (
-          <div key={x.l} className={a.dvRow}>
-            <span className={r.fLab}>{x.l}</span>
-            <span className={`${a.dvL} ${a.thin}`}>
-              <b>{pc(x.u)}</b>
-              <i style={{ width: seen ? `${(x.u / max) * 100}%` : 0, background: CHALL.has(x.l) ? DEEP : SKY, transitionDelay: `${i * 40}ms` }} />
+      ) : null}
+      <div className={r.hbars}>
+        {(c.labels ?? []).map((l, i) => (
+          <div key={i} className={r.fRow}>
+            <span className={r.fLab}>{l}</span>
+            <span className={a.track}>
+              <i style={{ width: seen ? `${(data[i] / max) * 100}%` : 0, background: SKY, transitionDelay: `${i * 35}ms` }} />
+              {marks.map((m) => (
+                <b key={m.k} className={m.k === "avg" ? a.markAvg : a.markMed} style={{ left: `${(m.v / max) * 100}%` }} />
+              ))}
             </span>
-            <span className={`${a.dvR} ${a.thin}`}>
-              <i style={{ width: seen ? `${(x.o / max) * 100}%` : 0, background: GREY, transitionDelay: `${i * 40}ms` }} />
-              <b>{pc(x.o)}</b>
+            <span className={r.fVal}>
+              <b>{f(data[i])}</b>
             </span>
           </div>
         ))}
@@ -310,136 +142,285 @@ export function F42() {
   );
 }
 
-/* ── 5.1 New different ads each week: a heat table, the way Sam drew it ────────────── */
-export function T51() {
+/* A series whose label says % in a chart whose unit is a count is a different unit. Those are
+   drawn side by side, each on its own scale, never on one axis (5.4 is counts beside shares). */
+const isPctSeries = (c: Chart, s: Series) => c.fmt !== "pct" && /%/.test(s.label);
+
+/* ── grouped: thin bars per row, one per series, on one scale ─────────────────────────── */
+function Grouped({ c }: { c: Chart }) {
   const [ref, seen] = useSeen<HTMLDivElement>();
-  const [hot, setHot] = useState<string | null>(null);
-  const t = CH.t51;
-  const mx = Math.max(...t.rows.flatMap((row) => row.slice(1) as number[]));
-  const wk = (w: string) => {
-    const d = new Date(w + "T12:00:00Z");
-    return `${d.getUTCDate()}/${d.getUTCMonth() + 1}`;
-  };
+  const series = c.series ?? [];
+  if (series.some((s) => isPctSeries(c, s))) return <Multiples c={c} />;
+  const f = fmtOf(c.fmt, dpOf(c));
+  const max = Math.max(...series.flatMap((s) => s.data));
   return (
     <div ref={ref}>
-      <div className={a.heat} style={{ gridTemplateColumns: `var(--heat-lab) repeat(${t.weeks.length}, minmax(0, 1fr)) var(--heat-sum)` }} onMouseLeave={() => setHot(null)}>
-        <span className={a.heatTop}>Week of</span>
-        {t.weeks.map((w) => (
-          <span key={w} className={a.heatTop}>{wk(w)}</span>
-        ))}
-        <span className={a.heatTop}>All</span>
-        {t.rows.map((row, i) => {
-          const name = row[0] as string;
-          const vals = row.slice(1) as number[];
-          return [
-            <span key={name} className={`${a.heatLab} ${hot === name ? a.heatHot : ""}`} onMouseEnter={() => setHot(name)}>{name}</span>,
-            ...vals.map((v, j) => {
-              const al = v ? 0.15 + (0.85 * v) / mx : 0;
-              return (
-                <span
-                  key={`${name}${j}`}
-                  className={`${a.cell} ${hot && hot !== name ? a.cellDim : ""}`}
-                  onMouseEnter={() => setHot(name)}
-                  style={{ background: v ? `rgba(58,124,165,${seen ? al.toFixed(2) : 0})` : "#F6F6F3", color: al > 0.55 ? "#fff" : "#1D1B1B", transitionDelay: `${(i + j) * 18}ms` }}
-                >
-                  {v || ""}
-                </span>
-              );
-            }),
-            <span key={`${name}-t`} className={a.heatSum}>{vals.reduce((x, y) => x + y, 0)}</span>,
-          ];
-        })}
-      </div>
-      <div className={r.readout} aria-live="polite">
-        {hot ? (
-          <span>
-            <b>{hot}</b> started new different ads in {(CH.t51.rows.find((x) => x[0] === hot)!.slice(1) as number[]).filter(Boolean).length} of the {t.weeks.length} weeks.
-          </span>
-        ) : (
-          <span>Hover a bank to follow its row.</span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ── 5.2 Ads that ran two days or less ───────────────────────────────────────────── */
-export function F52() {
-  const [ref, seen] = useSeen<HTMLDivElement>();
-  const max = Math.max(...CH.f52.data);
-  return (
-    <div ref={ref} className={r.hbars}>
-      {CH.f52.labels.map((l, i) => {
-        const name = l.replace(/ \(.*\)$/, "");
-        const count = l.match(/\((.*)\)$/)?.[1];
-        return <Bar key={l} label={name} v={CH.f52.data[i]} max={max} c={i === 0 ? SKY : PALE} seen={seen} delay={i * 40} extra={<em>{count}</em>} />;
-      })}
-    </div>
-  );
-}
-
-/* ── 6.4 The most-seen ads: Sam's twelve, his captions word for word. A video ad opens its four
-   frames (start, a third, two thirds, end), the way Sam read it. ───────────────────── */
-export function Gallery({ items }: { items: { img: string; adv: string; tags: string; quote: string; reach: string }[] }) {
-  const [open, setOpen] = useState<string | null>(null);
-  const top = N.top_by_reach as { image: string; kind: string; library: string }[];
-  const base = "/resources/the-ad-audit/2026-q3/";
-  return (
-    <div className={a.gallery}>
-      {items.map((g, i) => {
-        const rec = top.find((t) => t.image === `img/${g.img}`);
-        const isVideo = rec?.kind === "video";
-        const on = open === g.img;
-        return (
-          <figure key={g.img} className={`${a.adCard} ${on ? a.adCardOn : ""}`}>
-            <div className={a.adPic}>
-              <span className={a.adRank}>{String(i + 1).padStart(2, "0")}</span>
-              <img src={`${base}${on ? `sheet-${g.img}` : g.img}`} alt={`${g.adv} ad`} loading="lazy" className={on ? a.adSheet : ""} />
+      <Key items={series.map((s, j) => ({ c: COLS[j % COLS.length], t: s.label }))} />
+      <div className={a.groups}>
+        {(c.labels ?? []).map((l, i) => (
+          <div key={i} className={a.groupRow}>
+            <span className={r.fLab}>{l}</span>
+            <div className={a.groupBars}>
+              {series.map((s, j) => (
+                <div key={j} className={a.groupLine}>
+                  <span className={a.thin}>
+                    <i style={{ width: seen ? `${(s.data[i] / max) * 100}%` : 0, background: COLS[j % COLS.length], transitionDelay: `${i * 40 + j * 60}ms` }} />
+                  </span>
+                  <span className={a.groupVal}>{f(s.data[i])}</span>
+                </div>
+              ))}
             </div>
-            <figcaption className={a.adCap}>
-              <span className={a.adAdv}>{g.adv}</span>
-              <span className={a.adTags}>{g.tags}</span>
-              <span className={a.adQuote}>{g.quote}</span>
-              <span className={a.adReach}>{g.reach}</span>
-              <span className={a.adLinks}>
-                {isVideo ? (
-                  <button type="button" onClick={() => setOpen(on ? null : g.img)}>
-                    {on ? "Back to the still" : "See four frames"}
-                  </button>
-                ) : null}
-                {rec?.library ? (
-                  <a href={rec.library} target="_blank" rel="noreferrer">
-                    Ad Library &#8599;
-                  </a>
-                ) : null}
-              </span>
-            </figcaption>
-          </figure>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* the same rows, one panel per series, each on its own scale */
+function Multiples({ c }: { c: Chart }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const series = c.series ?? [];
+  return (
+    <div ref={ref} className={a.multiples}>
+      {series.map((s, j) => {
+        const pct = isPctSeries(c, s);
+        const f = pct ? fmtOf("pct", dpOf({ ...c, fmt: "pct", series: [s] })) : fmtOf(c.fmt, dpOf({ ...c, series: [s] }));
+        const max = Math.max(...s.data);
+        return (
+          <div key={j}>
+            <div className={a.multHead}>{s.label.replace(/,\s*%$/, "")}</div>
+            <div className={r.hbars}>
+              {(c.labels ?? []).map((l, i) => (
+                <div key={i} className={a.multRow}>
+                  <span className={r.fLab}>{l}</span>
+                  <span className={a.track}>
+                    <i style={{ width: seen ? `${(s.data[i] / max) * 100}%` : 0, background: COLS[j % COLS.length], transitionDelay: `${i * 40}ms` }} />
+                  </span>
+                  <span className={r.fVal}>
+                    <b>{f(s.data[i])}</b>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         );
       })}
     </div>
   );
 }
 
-/* ── 7.1 What the library holds, and what it doesn't: Sam's table, each row a pair ───── */
-export function T71({ head, rows }: { head: string[]; rows: string[][] }) {
+/* ── stacked: one full-width bar per row, the parts adding to 100 ──────────────────────── */
+function Stacked({ c }: { c: Chart }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const [hover, setHover] = useState<number | null>(null);
+  const series = c.series ?? [];
+  const f = fmtOf(c.fmt ?? "pct", dpOf(c));
   return (
-    <div className={a.holds}>
-      <div className={`${a.holdsRow} ${a.holdsHead}`}>
-        <span style={{ color: SKY }}>{head[0]}</span>
-        <span style={{ color: ORANGE }}>{head[1]}</span>
+    <div ref={ref}>
+      <Key items={series.map((s, j) => ({ c: COLS[j % COLS.length], t: s.label }))} />
+      <div className={a.stacks} onMouseLeave={() => setHover(null)}>
+        {(c.labels ?? []).map((l, i) => (
+          <div key={i} className={`${a.stackRow} ${hover === i ? a.stackOn : ""}`} onMouseEnter={() => setHover(i)}>
+            <span className={r.fLab}>{l}</span>
+            <span className={a.stackBar}>
+              {series.map((s, j) =>
+                s.data[i] ? <i key={j} style={{ width: seen ? `${s.data[i]}%` : 0, background: COLS[j % COLS.length], transitionDelay: `${i * 45}ms` }} title={`${s.label}: ${f(s.data[i])}`} /> : null,
+              )}
+            </span>
+          </div>
+        ))}
       </div>
-      {rows.map((row) => (
-        <div key={row[0]} className={a.holdsRow}>
-          <span>
-            <i style={{ background: SKY }} />
-            {row[0]}
+      <div className={r.readout} aria-live="polite">
+        {hover != null ? (
+          <>
+            <b>{c.labels?.[hover]}</b>
+            {series.map((s, j) => (
+              <span key={j}>
+                <i style={{ background: COLS[j % COLS.length] }} /> {s.label} {f(s.data[hover])}
+              </span>
+            ))}
+          </>
+        ) : (
+          <span>Hover a row for its split.</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── grouped_v: columns side by side for each band ────────────────────────────────────── */
+function GroupedV({ c }: { c: Chart }) {
+  return (
+    <>
+      <div className={a.wideOnly}>
+        <Columns c={c} />
+      </div>
+      <div className={a.narrowOnly}>
+        <Grouped c={c} />
+      </div>
+    </>
+  );
+}
+function Columns({ c }: { c: Chart }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const series = c.series ?? [];
+  const f = fmtOf(c.fmt, dpOf(c));
+  const max = Math.max(...series.flatMap((s) => s.data));
+  return (
+    <div ref={ref}>
+      <Key items={series.map((s, j) => ({ c: COLS[j % COLS.length], t: s.label }))} />
+      <div className={a.cols}>
+        {(c.labels ?? []).map((l, i) => (
+          <div key={i} className={a.colGroup}>
+            <div className={a.colBars}>
+              {series.map((s, j) => (
+                <div key={j} className={a.colOne}>
+                  <span className={a.colVal}>{f(s.data[i])}</span>
+                  <i style={{ height: seen ? `${(s.data[i] / max) * 100}%` : 0, background: COLS[j % COLS.length], transitionDelay: `${i * 50 + j * 60}ms` }} />
+                </div>
+              ))}
+            </div>
+            <span className={a.colLab}>{l}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── line: the weeks along the bottom, one line per series, drawn in on sight ─────────── */
+function Line({ c }: { c: Chart }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  const [hover, setHover] = useState<number | null>(null);
+  const series = c.series ?? [];
+  const labels = c.labels ?? [];
+  const f = fmtOf(c.fmt, dpOf(c));
+  const [W, setW] = useState(640);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setW(Math.max(280, Math.round(el.clientWidth))));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+  const H = W < 500 ? 200 : 240,
+    L = 34,
+    R = 8,
+    T = 10,
+    B = 26;
+  const top = Math.max(...series.flatMap((s) => s.data));
+  const step = top > 100 ? 50 : top > 40 ? 20 : 10;
+  const yMax = Math.ceil(top / step) * step;
+  const x = (i: number) => L + ((W - L - R) * i) / Math.max(1, labels.length - 1);
+  const y = (v: number) => T + (H - T - B) * (1 - v / yMax);
+  const ticks = Array.from({ length: yMax / step + 1 }, (_, k) => k * step);
+  const short = (s: string) => s.replace(/ (January|February|March|April|May|June|July|August|September|October|November|December)$/, (m) => " " + m.trim().slice(0, 3));
+  return (
+    <div ref={ref}>
+      <Key items={series.map((s, j) => ({ c: COLS[j % COLS.length], t: s.label }))} />
+      <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className={a.lineSvg} onMouseLeave={() => setHover(null)} role="img" aria-label={series.map((s) => s.label).join(" and ")}>
+        {ticks.map((t) => (
+          <g key={t}>
+            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="#EDEDE9" />
+            <text x={L - 6} y={y(t) + 3.5} textAnchor="end" className={a.axis}>
+              {t}
+            </text>
+          </g>
+        ))}
+        {labels.map((l, i) =>
+          i % (W < 500 ? 4 : 2) === 0 || i === labels.length - 1 ? (
+            <text key={i} x={x(i)} y={H - 8} textAnchor="middle" className={a.axis}>
+              {short(l)}
+            </text>
+          ) : null,
+        )}
+        {hover != null ? <line x1={x(hover)} x2={x(hover)} y1={T} y2={H - B} stroke="#1A3A4E" strokeDasharray="3 3" /> : null}
+        {series.map((s, j) => {
+          const d = s.data.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+          return (
+            <g key={j}>
+              <path d={d} fill="none" stroke={COLS[j % COLS.length]} strokeWidth={2} pathLength={1} className={a.linePath} style={{ strokeDashoffset: seen ? 0 : 1, transitionDelay: `${j * 250}ms` }} />
+              {s.data.map((v, i) => (
+                <circle key={i} cx={x(i)} cy={y(v)} r={hover === i ? 4 : 2.5} fill={COLS[j % COLS.length]} style={{ opacity: seen ? 1 : 0, transition: "opacity .4s", transitionDelay: `${700 + j * 250}ms` }} />
+              ))}
+            </g>
+          );
+        })}
+        {labels.map((_, i) => (
+          <rect key={i} x={x(i) - (W - L - R) / labels.length / 2} y={T} width={(W - L - R) / labels.length} height={H - T - B} fill="transparent" onMouseEnter={() => setHover(i)} />
+        ))}
+      </svg>
+      <div className={r.readout} aria-live="polite">
+        {hover != null ? (
+          <>
+            <b>Week of {labels[hover]}</b>
+            {series.map((s, j) => (
+              <span key={j}>
+                <i style={{ background: COLS[j % COLS.length] }} /> {s.label} {f(s.data[hover])}
+              </span>
+            ))}
+          </>
+        ) : (
+          <span>Hover a week for its numbers.</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── table: Sam's rows as he wrote them ───────────────────────────────────────────────── */
+function Table({ c }: { c: Chart }) {
+  return (
+    <div className={a.tableWrap}>
+      <table className={a.table}>
+        <thead>
+          <tr>
+            {(c.head ?? []).map((h, i) => (
+              <th key={i}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {(c.rows ?? []).map((row, i) => (
+            <tr key={i}>
+              {row.map((v, j) => (
+                <td key={j}>{typeof v === "number" ? v.toLocaleString("en-IE") : v}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** One figure by its id in charts.json. */
+export function Fig({ id }: { id: string }) {
+  const c = ALL[id];
+  if (!c) throw new Error(`${id} is not in charts.json`);
+  if (c.type === "hbar") return <HBar c={c} />;
+  if (c.type === "grouped") return <Grouped c={c} />;
+  if (c.type === "stacked") return <Stacked c={c} />;
+  if (c.type === "grouped_v") return <GroupedV c={c} />;
+  if (c.type === "line") return <Line c={c} />;
+  return <Table c={c} />;
+}
+
+/* ── the first three seconds: Sam's single frames, a frame every half second, the time
+   written under each one rather than drawn into the picture. Seven across on a laptop, four
+   and three on a phone, so every frame stays big enough to read. ──────────────────────── */
+export function Frames({ frames, base, alt }: { frames: { t: number; img: string }[]; base: string; alt: string }) {
+  const [ref, seen] = useSeen<HTMLDivElement>();
+  return (
+    <div ref={ref} className={a.frames}>
+      {frames.map((fr, i) => (
+        <figure key={fr.img} className={a.frame} style={{ opacity: seen ? 1 : 0, transform: seen ? "none" : "translateY(6px)", transitionDelay: `${i * 70}ms` }}>
+          <span className={a.framePic}>
+            <img src={`${base}${fr.img}`} alt={i === 0 ? alt : ""} loading="lazy" />
           </span>
-          <span>
-            <i style={{ background: ORANGE }} />
-            {row[1]}
-          </span>
-        </div>
+          <figcaption className={a.frameT}>{fr.t % 1 ? fr.t.toFixed(1) : fr.t}s</figcaption>
+        </figure>
       ))}
     </div>
   );

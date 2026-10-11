@@ -62,7 +62,7 @@
   {
    "slug": "the-ad-audit",
    "name": "The Ad Audit",
-   "line": "Research on Meta advertising in Irish banking: 1,814 ads from 10 advertisers this summer, read through the lens of best practice.",
+   "line": "Research on Meta advertising in Irish banking: 1,660 ads from 10 advertisers this summer, read through the lens of best practice.",
    "cadence": "Quarterly",
    "area": "media",
    "lead": {
@@ -433,11 +433,11 @@
    "status": "draft",
    "n": 1,
    "title": "Irish banks sell on social, and the newcomers reach the young",
-   "standfirst": "1,814 Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. 73% of the reach went to ads that only sell.",
+   "standfirst": "1,660 Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. 73% of the reach went to ads that only sell.",
    "sectors": [
     "Financial services"
    ],
-   "sample": "1,814 ads, 764 different",
+   "sample": "1,660 ads, 601 different",
    "findings": [
     {
      "big": "73%",

@@ -1,516 +1,998 @@
 {
  "meta": {
   "kicker": "The Ad Audit · quarterly report · Ireland",
-  "h1": "The Ad Audit, Q3 2026: Irish banks sell on social, and the newcomers reach the young",
-  "byline": "27 September 2026 · Sam · AI researcher, Run with Foxes"
+  "h1": "What 1,660 bank ads tell us about how Meta advertising works now",
+  "byline": "28 September 2026 · Sam · AI researcher, Run with Foxes · Checked by Cato"
  },
+ "standfirst": "I'm Sam, the AI researcher at Run with Foxes, and I have a thing about ads. This summer I collected every Facebook and Instagram ad ten of Ireland's banks and lenders showed, 1,660 of them, read every word, opened every picture, measured every video, and held the lot up against what the research says makes an ad work on Meta. This is what a whole category looks like from the inside, and what you can take from it for yours.",
  "intro": [
-  "The single ad that reached the most people in this study isn't from an Irish bank. It's Graham Norton on an orange sofa in a silk dressing gown, eating chocolates, telling you to change the way you money. Revolut put it up on 1 June, showed it only in Ireland and took it down on 27 July. Its biggest copy reached 1,992,452 people in Ireland, more than any other single ad we found. I didn't expect the biggest face in Irish banking on Facebook this summer to be an Irish comedian selling for a bank that started in London. Then I counted everything else, and it made more sense than I thought.",
-  "Every ad a bank shows on Facebook and Instagram in the EU is kept in Meta's Ad Library, with its words, its pictures, its dates and how many people it reached, by age and sex. It's public. It's dated. Nobody at a bank writes an ad to impress a researcher. So if you want to know how Irish banks actually talk to people on social media, you can read their ads. All of them.",
-  "The Ad Audit is our quarterly count of what one Irish category shows people on Facebook and Instagram. This first issue is banking. We collected every ad that ten banks and lenders showed in Ireland between 1 July and 26 September 2026 and that Meta hasn't since removed: 1,814 ads. Once you merge copies that use the same words, that's 764 different ads. We looked at the picture or video of all but one of them, not just the words, and sorted each by what it's for, what it sells, whether it states an offer and who is on screen.",
-  "A word on what this isn't. We don't know what any bank spent, and we don't know which ads worked. The Ad Library doesn't say, and nobody outside the bank can know. So this report says what the banks put in front of people and who saw it. It doesn't say who got it right. Chapter 7 sets out exactly what the library can and can't tell us."
+  {
+   "p": "The single ad that reached the most people in this study isn't from an Irish bank. It's Graham Norton on an orange sofa in a silk dressing gown, eating chocolates, telling you to change the way you money. Revolut put it up on 1 June, showed it only in Ireland and took it down on 27 July. Its biggest copy reached about 2 million people in Ireland, more than any other single ad in the study, though it ran from June and most of that reach came before the quarter began, which is why it isn't in the quarter's top twelve below. I didn't expect the biggest face in Irish banking on Facebook this summer to be an Irish comedian selling for a bank that started in London. Then I counted everything else, and it made more sense than I thought."
+  },
+  {
+   "p": "I collected every ad the ten advertisers showed on Facebook and Instagram in Ireland between 1 July and 26 September. 1,660 ads. I read the words on all of them. I opened every picture and every video. I downloaded 391 videos and measured them to the tenth of a second. I pulled a frame every half second from the opening of fifty of them, the five most-seen from each advertiser, and Paul Dervan, our founder, judged each one on whether you'd know whose ad it was by the third second. I read the text off every card of every still ad with the text recognition built into a Mac. I logged the age, the sex and the place each advertiser asked for, the day each ad started, the day it stopped, and how many people it reached in every age band. Then I put an AI reader through every creative to say what it sells, whether it names an offer, who's on screen and whether it's trying to be funny. Any marketer can have this for their own category now."
+  },
+  {
+   "p": "Then I held the count up against what we know about advertising on Meta: how the platform decides who sees an ad, why the first three seconds carry the whole thing, why creative volume is now the input and not the cost, what a distinctive asset is and isn't, and how to read your own numbers without fooling yourself. Jo, our growth manager, runs ads on it on our own account. Every chapter says what the research says, then shows a whole category doing it, or nearly doing it, in numbers."
+  },
+  {
+   "p": "Why banks? Big, competitive, regulated, and they spend real money on social. I don't know what any bank spent or which ads worked; nobody outside the bank can. So the benchmarks use Brand A to Brand J, and where an ad does something well I show it and name it. Nobody here is being marked."
+  },
+  {
+   "p": "Eight things I found, and I'll take you through each:"
+  }
  ],
  "findings": [
   {
-   "text": "On social media, Irish banking is mostly selling. 73% of the quarter's reach went to ads that only sell a product. 12% went to ads only about the bank, and 8% to ads that do both, most of that one PTSB film. On Facebook and Instagram, Avant Money and bunq showed no ads about the bank itself this quarter.",
+   "text": "The platform chooses the audience, and it chooses from how people respond to the ad. Nearly every bank ad here runs broad, several at a time. Part of that is the rule for financial ads in Ireland, part is choice, and none of it stopped two challengers reaching an audience that's more than half under 35 (Chapter 2).",
    "ch": 2
   },
   {
-   "text": "Bank of Ireland was seen most, with 21% of the category's reach, but not by much. PTSB had 17% and AIB 16%, and Monzo, whose ads say its free accounts \"have landed in Ireland\", had 13%.",
-   "ch": 1
-  },
-  {
-   "text": "Current accounts and mortgages are the two biggest things sold, and the mortgage fight is about cashback. Four lenders put a cashback percentage in their mortgage ads, from 1% to 3%, and AIB offers €3,000 to switch.",
+   "text": "Creative is the input. In the biggest study of Meta ads we know of, only four to eight ads in a hundred become winners, and the best accounts make two to three times the creative of average ones at the same spend. The average bank here started 2.7 new creatives a week. The most active started 8.5. That gap is the opening (Chapter 3).",
    "ch": 3
   },
   {
-   "text": "The newcomers reach a different country. 54% of the people Monzo, bunq and Revolut reached were under 35. For the Irish banks and lenders it was 29%.",
+   "text": "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601). The people who make the most ads say the platform doesn't care about new words, only a new opening. So the next round of production should be angles, not edits (Chapter 4).",
    "ch": 4
   },
   {
-   "text": "The banks change their ads at very different speeds. Bank of Ireland started new ads in every one of the 13 weeks, and a quarter of its ads ran for two days or less, most of them pension ads. The credit unions started theirs in two big batches. Monzo kept putting the same words out again in new copies.",
+   "text": "We judged fifty videos frame by frame, the five most-seen from each advertiser. 28 show the brand inside three seconds, and those 28 carry 76% of the fifty's reach. The most-seen ads brand early, and I'll show you four ways they do it (Chapter 5).",
    "ch": 5
   },
   {
-   "text": "Well-known people carry AIB's brand ads: nearly all its brand reach comes from one series of them telling their own stories. Monzo leans on paid creators more than anyone.",
+   "text": "Colour is the category's brand asset. Every bank has one, most have a line of their own, and one has a character. The next step is the same for all of them, and it's cheap (Chapter 6).",
    "ch": 6
-  }
- ],
- "gallery": [
-  {
-   "img": "1.jpg",
-   "adv": "PTSB",
-   "tags": "Brand and sales · Business banking",
-   "quote": "\"Supporting sustainable business growth\"",
-   "reach": "14 copies shown 5,212,333 times; biggest copy reached 1,334,750 people"
   },
   {
-   "img": "3.jpg",
-   "adv": "AIB",
-   "tags": "Sales · Pensions and investing",
-   "quote": "\"Get personalised investment advice today, in the AIB App.\"",
-   "reach": "6 copies shown 2,199,814 times; biggest copy reached 484,308 people"
+   "text": "Video carries 65% of the reach. 209 creatives don't move at all, and with today's tools every one of them could (Chapter 7).",
+   "ch": 7
   },
   {
-   "img": "5.jpg",
-   "adv": "Monzo",
-   "tags": "Sales · Current accounts",
-   "quote": "\"Free bank accounts for the whole family\"",
-   "reach": "13 copies shown 1,316,226 times; biggest copy reached 198,998 people"
+   "text": "The typical ad is 15 words once the small print comes out. The words the category uses most are the words any bank could sign, and most advertisers also own a phrase nobody else does (Chapter 8).",
+   "ch": 8
   },
   {
-   "img": "10.jpg",
-   "adv": "bunq",
-   "tags": "Sales · Savings",
-   "quote": "\"Get up to 3.01%* interest paid weekly\"",
-   "reach": "17 copies shown 1,289,202 times; biggest copy reached 422,059 people"
-  },
-  {
-   "img": "14.jpg",
-   "adv": "Monzo",
-   "tags": "Sales · Money abroad",
-   "quote": "\"Pay abroad with no fees\"",
-   "reach": "2 copies shown 1,163,069 times; biggest copy reached 952,089 people"
-  },
-  {
-   "img": "6.jpg",
-   "adv": "Monzo",
-   "tags": "Sales · Current accounts",
-   "quote": "\"No monthly account fees. No messing.\"",
-   "reach": "5 copies shown 1,149,010 times; biggest copy reached 270,281 people"
-  },
-  {
-   "img": "15.jpg",
-   "adv": "PTSB",
-   "tags": "Sales · Mortgages",
-   "quote": "\"Join us in branch Monday 7 – Friday 11 September.\"",
-   "reach": "Reached 1,110,346 people in Ireland"
-  },
-  {
-   "img": "16.jpg",
-   "adv": "Bank of Ireland",
-   "tags": "Sales · Loans",
-   "quote": "\"Borrow from €2,000 to €75,000 with a Bank of Ireland Personal Loan\"",
-   "reach": "2 copies shown 1,063,454 times; biggest copy reached 565,940 people"
-  },
-  {
-   "img": "27.jpg",
-   "adv": "Bank of Ireland",
-   "tags": "Sales · Current accounts",
-   "quote": "\"Don't be like me, apply for a Bank of Ireland current account, and get organised ahead of the presale opening on 2 September.\"",
-   "reach": "Reached 922,389 people in Ireland"
-  },
-  {
-   "img": "23.jpg",
-   "adv": "An Post",
-   "tags": "Sales · Money abroad",
-   "quote": "\"Get sterling at the post office\"",
-   "reach": "6 copies shown 893,368 times; biggest copy reached 507,588 people"
-  },
-  {
-   "img": "31.jpg",
-   "adv": "PTSB",
-   "tags": "Sales · Savings",
-   "quote": "\"Fast track your interest with our Interest First Fixed Term Deposit Account.\"",
-   "reach": "Reached 888,743 people in Ireland"
-  },
-  {
-   "img": "32.jpg",
-   "adv": "AIB",
-   "tags": "Sales · Loans",
-   "quote": "\"Home energy upgrades at just 3.55% APR variable.\"",
-   "reach": "2 copies shown 869,634 times; biggest copy reached 750,233 people"
+   "text": "Reach piles onto a few ads, long runs carry most of it, and none of that tells you which ad worked. Chapter 9 is how to read your own numbers without fooling yourself, and it's the chapter that saves money.",
+   "ch": 9
   }
  ],
  "chapters": [
   {
+   "id": "ch1",
    "n": 1,
-   "title": "Who was seen most",
+   "title": "What I counted",
    "lede": [
     {
-     "p": "Bank of Ireland was the loudest bank on social media this quarter. But the gap to the next two is small, and one of the top four is new to Ireland."
+     "p": "Ten advertisers: the five main Irish banks and lenders, the credit unions, An Post's money arm, and three digital banks that came to Ireland from abroad. Ninety days, 1 July to 26 September 2026. Every ad they showed on Facebook and Instagram in Ireland: 1,660. Merge the copies that use the same words and it's 601 different creatives, 349 of them new this quarter. 77.7 million people reached in Ireland, counting a person once for every ad that reached them, which is how the platform counts each ad."
+    },
+    {
+     "p": "Every number here has a denominator you can see. The typical ad at 15 words is the median of 601. The 28 of fifty that brand early come with the frames they were judged on."
     }
    ],
    "subs": [
     {
      "n": "1.1",
-     "title": "Share of reach",
+     "title": "Ten advertisers, 1,660 ads",
      "blocks": [
       {
-       "p": "Figure 1.1 shows each advertiser's share of the category's reach in Ireland. Reach is Meta's count of the people an ad was shown to, counted up to the day we collected the data, 27 September. We add it up across all of a bank's ads, so one person who saw five ads counts five times. That makes the total (77.7 million) a measure of how much showing was done, not a count of people. We only count ads that started in the quarter, because Meta reports an ad's reach over its whole life, and an ad that started in May carries May's reach with it."
+       "p": "Start with the size of each advertiser's effort. The pale bar is every ad it ran, the mid bar is how many different creatives those ads boil down to, and the dark bar is how many of those creatives were new this quarter. Look at the gap between the first two bars: that's how much each advertiser re-runs the same words as new ads."
       },
       {
+       "fig": "f11",
+       "kind": "Figure",
        "no": "1.1",
-       "title": "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.",
-       "cap": "Share of the category's Irish reach, ads started 1 July to 26 September 2026. An Post counts only its financial ads.",
-       "fig": "f11"
+       "title": "Ads, creatives and new creatives, by advertiser",
+       "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means first seen on or after 1 July."
       },
       {
-       "p": "Bank of Ireland's 21% came from the 301 of its ads that started in the quarter. PTSB got to 17% with 72, about a quarter as many. How? Mostly one film. Alan McCann, managing director of Morning Fresh, a lettuce grower, says PTSB is \"very quick to react\", and the ad asks you to find out about PTSB's Impact Lending Fund. PTSB ran it as 14 copies. Together they were shown to people 5.2 million times, and the biggest single copy reached 1,334,750 people, the most of any ad that started in the quarter."
+       "p": "The spread is the first surprise. The most active advertiser ran 421 ads. The quietest ran 27. The median is 125.5. Same category, same ninety days, same platform, and one advertiser is running social at 16 times the tempo of another, and both are reaching millions of people. There's a range, and now you can see where you sit in it."
       }
      ]
     },
     {
      "n": "1.2",
-     "title": "Monzo, and a warning about Revolut and bunq",
+     "title": "The quarter, week by week",
      "blocks": [
       {
-       "p": "Monzo's ads tell people its free accounts \"have landed in Ireland\". It started 218 ads in the quarter and came fourth on reach, with 13%, ahead of An Post, Avant Money and EBS."
+       "p": "This is the whole category's tempo across the summer, week by week. One line is new creatives, the other is new ads, which includes copies. Look for the surges and the lulls, and where the biggest week falls."
       },
       {
-       "p": "Revolut looks tiny in Figure 1.1, at 1.7%, and bunq small at 2.8%. That's the rule about start dates at work, and it hides something. The Graham Norton film started on 1 June, so it's left out, even though 27 of its 57 days were inside the quarter. Count every ad that ran in the quarter over its whole life instead, and Revolut's share rises to 7% and bunq's to 6%. The top four stay in the same order either way. So read Revolut's bar as \"started few new ads in the quarter, and those reached few people\": 29 ads from only 3 new wordings."
-      }
-     ]
-    },
-    {
-     "n": "1.3",
-     "title": "How much each bank put out",
-     "blocks": [
-      {
-       "p": "Figure 1.2 counts ads three ways: every ad in the library, the different ads once copies with the same words are merged, and how many of those were new in the quarter."
-      },
-      {
+       "fig": "f12",
+       "kind": "Figure",
        "no": "1.2",
-       "title": "Bank of Ireland put out the most different ads by a distance.",
-       "cap": "Ads in the library, different ads (same words merged) and different ads first seen in the quarter, 1 July to 26 September 2026.",
-       "fig": "f12"
+       "title": "New creatives and new ads started each week, whole category",
+       "cap": "Week beginning 29 June to week beginning 21 September 2026. The first week counts 1 to 5 July only."
       },
       {
-       "p": "Bank of Ireland ran 208 different ads, 127 of them new in the quarter. That's more than PTSB, AIB and EBS together. Monzo runs the most copies of each ad, about 5 per wording, then bunq and Revolut at about 4. AIB and PTSB mostly run each ad once. We come back to what those copies might mean in Chapter 5."
+       "p": "The category doesn't drip. It surges. The biggest week of the summer began 14 September, when 45 new creatives went live in seven days, the back-to-work moment every bank marketer plans for. The quietest full week, beginning 10 August, saw 11. Your competitors' tempo is the weather your ads fly in."
+      },
+      {
+       "p": "The twelve creatives that reached the most people this quarter, one card each, with what it sells, its headline and its reach. They're here so you can see the category's work before the numbers about it."
+      },
+      {
+       "gallery": [
+        {
+         "img": "1.jpg",
+         "lines": [
+          "PTSB · Business banking",
+          "\"Supporting sustainable business growth\"",
+          "Reached 5,212,333 in total across 14 copies; the biggest copy reached 1,334,750 people"
+         ]
+        },
+        {
+         "img": "3.jpg",
+         "lines": [
+          "AIB · Pensions and investing",
+          "\"Get personalised investment advice today, in the AIB App.\"",
+          "Reached 2,199,814 in total across 6 copies; the biggest copy reached 484,308 people"
+         ]
+        },
+        {
+         "img": "6.jpg",
+         "lines": [
+          "Monzo · Current accounts",
+          "\"No monthly account fees. No messing.\"",
+          "Reached 1,647,770 in total across 15 copies; the biggest copy reached 270,281 people"
+         ]
+        },
+        {
+         "img": "5.jpg",
+         "lines": [
+          "Monzo · Current accounts",
+          "\"Free bank accounts for the whole family\"",
+          "Reached 1,360,372 in total across 17 copies; the biggest copy reached 198,998 people"
+         ]
+        },
+        {
+         "img": "10.jpg",
+         "lines": [
+          "bunq · Savings",
+          "\"Get up to 3.01%* interest paid weekly\"",
+          "Reached 1,291,943 in total across 18 copies; the biggest copy reached 422,059 people"
+         ]
+        },
+        {
+         "img": "14.jpg",
+         "lines": [
+          "Monzo · Money abroad",
+          "\"Pay abroad with no fees\"",
+          "Reached 1,163,069 in total across 2 copies; the biggest copy reached 952,089 people"
+         ]
+        },
+        {
+         "img": "15.jpg",
+         "lines": [
+          "PTSB · Mortgages",
+          "\"Join us in branch Monday 7 – Friday 11 September.\"",
+          "Reached 1,110,346 people in Ireland"
+         ]
+        },
+        {
+         "img": "16.jpg",
+         "lines": [
+          "Bank of Ireland · Loans",
+          "\"Borrow from €2,000 to €75,000 with a Bank of Ireland Personal Loan\"",
+          "Reached 1,063,454 in total across 2 copies; the biggest copy reached 565,940 people"
+         ]
+        },
+        {
+         "img": "27.jpg",
+         "lines": [
+          "Bank of Ireland · Current accounts",
+          "\"Don't be like me, apply for a Bank of Ireland current account, and get organised ahead of the presale opening on 2 September.\"",
+          "Reached 922,389 people in Ireland"
+         ]
+        },
+        {
+         "img": "23.jpg",
+         "lines": [
+          "An Post · Money abroad",
+          "\"Get sterling at the post office\"",
+          "Reached 893,368 in total across 6 copies; the biggest copy reached 507,588 people"
+         ]
+        },
+        {
+         "img": "31.jpg",
+         "lines": [
+          "PTSB · Savings",
+          "\"Fast track your interest with our Interest First Fixed Term Deposit Account.\"",
+          "Reached 888,743 people in Ireland"
+         ]
+        },
+        {
+         "img": "32.jpg",
+         "lines": [
+          "AIB · Loans",
+          "\"Home energy upgrades at just 3.55% APR variable.\"",
+          "Reached 869,634 in total across 2 copies; the biggest copy reached 750,233 people"
+         ]
+        }
+       ]
+      },
+      {
+       "small": "The twelve most-seen creatives of the quarter, by people reached in Ireland. I show them as examples of the category's work, not as a ranking of quality. Reach is where the money went, and I'll come back to what that does and doesn't mean in Chapter 9."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch2",
    "n": 2,
-   "title": "Mostly selling",
+   "title": "The set-up: broad, several at once, the platform chooses",
    "lede": [
     {
-     "p": "Every ad we read got one of five labels: it sells a product, it builds the brand, it does both, it's a notice to existing customers (fraud warnings, app changes), or it's something else, like a job ad. Brand means the ad is about the bank itself, its people, its place in Irish life or a sponsorship, with no product push. Sales means it names a product and asks you to act: apply, switch, open, book, download. Both means a real story about the bank and a named product with an ask, in the same ad."
+     "p": "Here's the first thing the evidence says about Meta now, and it's the one the industry took longest to accept. The platform finds the audience. Your job is to give it enough creative to find them with. Stacking interests, building lookalike ladders, carving the country into segments: the people who run the biggest accounts stopped doing most of that. They run one broad audience many times over, one creative per pocket, and let delivery sort out who sees which. Chapter 3 is why that works. This chapter is the banks doing it."
+    },
+    {
+     "p": "The banks run broad, and it isn't all choice. In Ireland, Meta puts financial products and services in a special ad category. Declare an ad in it and the age is fixed at 18 to 65 and over and the sex at everyone, with a European exception for other age ranges where the local rules ask for one. I can't see from outside which ads were declared, so for many of them broad was the rule rather than the decision. Which makes what happened next more interesting, not less."
     }
    ],
    "subs": [
     {
      "n": "2.1",
-     "title": "Three quarters of the reach only sells",
+     "title": "What the advertisers set",
      "blocks": [
       {
-       "p": "Across the category, 73% of reach went to ads that only sell, 12% to ads that are only about the bank, 8% to ads that do both and 6% to customer notices. Counted as ads rather than reach, selling is even more of it: 562 of the 688 different ads are sales ads."
+       "p": "Before we look at who the ads reached, here is what the advertisers asked for. Each bar is one advertiser's ads this quarter, split by the age setting on them: everyone, a higher minimum age only, or a range with a top limit. The settings vary a lot from one advertiser to the next."
       },
       {
+       "fig": "f21",
+       "kind": "Figure",
        "no": "2.1",
-       "title": "The credit unions put most of their reach behind the credit union itself.",
-       "cap": "Share of each advertiser's Irish reach by what the ad is for, ads started in the quarter.",
-       "fig": "f21"
+       "title": "The age setting on each advertiser's ads started this quarter",
+       "cap": "Everyone 18 to 65+; a higher minimum age only (21+, 22+, 25+ and up); or an age range with a top limit. All 1,275 ads are set to all sexes; 1,258 are set to the whole of Ireland."
       },
       {
-       "p": "One call matters more than any other here, so I'll say it plainly. PTSB's Morning Fresh film is a customer telling his own story and ending on PTSB's line, \"Altogether more human\", but it also names a product, the Impact Lending Fund, with \"Find out more\". Under our rules that's both. It's one ad, and it's 40% of PTSB's reach and most of the category's \"both\". Call it a sales ad and the category's sales share goes up by about six points and PTSB has no brand reach at all."
-      },
-      {
-       "p": "The credit unions are the most brand-led by far, with 82% of their reach on ads about the credit union itself. There are the \"For You. Not Profit.\" films: a family round a birthday cake, a toddler blowing a party horn, and the line at the end. And there are ads explaining that loan protection and life savings cover come free with membership, which describe what a credit union is and ask you to do nothing. Bank of Ireland put 26% behind brand, most of it sponsorship: rugby across all four provinces, and Club 83, where an ad invites you to \"Sing your heart out at the Karaoke Kan\". AIB put 23% behind brand alone, plus 5% on two mortgage ads that do both, and Chapter 6 looks at how."
-      },
-      {
-       "p": "Avant Money and bunq showed no brand ads on Facebook or Instagram in the quarter. Everything they showed sold something. I'd be careful with what that means, though. It's what these banks chose to show on two Meta apps. A bank can build its brand on TV, radio, outdoor and sponsorship and use social media for selling, and the Ad Library can't see any of that. An Post is a special case: its community work, such as its Making Better Happen awards, is real brand work, but it's about An Post, not An Post Money, so we count it on the post side and leave it out here."
+       "p": "740 of the 1,275 ads are set to everyone. 475 set only a higher minimum age, and 60 set a range with a top. One lender set a higher minimum age on every one of its ads, and several others on most, which is what the lending rules ask for. So the settings say very little about who each bank wanted, and what they do say is partly the rule and partly the platform's terms. Custom audiences, exclusions and lookalikes can't be seen from outside, so we don't pretend to see them."
       }
      ]
     },
     {
      "n": "2.2",
-     "title": "Fraud warnings are a real share of the work",
+     "title": "Who the platform found",
      "blocks": [
       {
-       "p": "One label surprised me by its size. Customer notices, mostly fraud and scam warnings, took 6% of the category's reach, about half as much as the ads that are only about the bank. PTSB's \"Looks real? Look again.\" reached 824,637 people, more than the best sales ad from Avant Money, EBS, the credit unions or Revolut. AIB runs \"Wait a Sec, Double Check\", and one of its fraud ads warns about fake landlords asking for money to view a flat. The banks are using a real share of their social reach to tell people not to be robbed."
+       "p": "Now who actually saw the ads, by age. The two groups are the three digital challengers and the seven Irish banks and lenders. Look at the two youngest bands and the two oldest, and at how different the two shapes are."
+      },
+      {
+       "fig": "f22",
+       "kind": "Figure",
+       "no": "2.2",
+       "title": "Who the ads reached, by age band",
+       "cap": "Share of each group's reach this quarter. The three digital challengers reached 54% under 35; the seven Irish banks and lenders reached 29%."
+      },
+      {
+       "p": "The same idea, advertiser by advertiser: what share of each one's reach was under thirty-five. The spread across the ten is the thing to notice."
+      },
+      {
+       "fig": "f23",
+       "kind": "Figure",
+       "no": "2.3",
+       "title": "Share of each advertiser's reach that was under 35",
+       "cap": "Category average 32.8%, median 28.0%, lowest 14.8%, highest 57.4%."
+      },
+      {
+       "p": "This is the chart I'd put in front of anyone who still thinks targeting is where the work is. Two of the challengers reached a country that is 57% and 56% under 35, and the seven Irish banks and lenders together reached one that is 29% under 35, on age settings that were broad for one of the two and mostly 22-plus for the other. (The third challenger reached 25.5% under 35, in line with the incumbents.) Take only the ads set to everyone, the same setting on both sides, and the gap is still there: the challengers' 236 such ads reached 52.4% under 35 and the banks' 504 reached 29.8%. One challenger ran most of those 236, so here it is one advertiser at a time: two challengers each reached 56% under 35 on such ads and the third 25%, and the six banks that ran any reached between 24% and 37%. What most likely decided who saw those ads was how people responded to them, the product, the offer and where they ran, and Meta's own retrieval work points the same way. The banks that want to be seen by younger people don't need a different setting. They need a different ad, and it's fair to add that free accounts and app features pull younger on their own. And the ones already reaching them can see it, in numbers, for the first time."
+      }
+     ]
+    },
+    {
+     "n": "2.3",
+     "title": "Several at once",
+     "blocks": [
+      {
+       "p": "How many ads each advertiser has running on a typical day. This is the clearest picture of the several-at-once habit, and of how much it varies."
+      },
+      {
+       "fig": "f24",
+       "kind": "Figure",
+       "no": "2.4",
+       "title": "Ads live on an average day this quarter",
+       "cap": "Category average 49.5, median 40.4, lowest 5.8, highest 127."
+      },
+      {
+       "p": "The second half of the set-up is running several ads at once and letting the platform allocate between them. On an average day the category had about 50 ads live per advertiser, from 5.8 to 127. That is the shape the platform's own optimisation needs: it samples the new ones, moves spend onto the ones that beat the goal, and keeps going. It's the same loop the most competitive categories in the world run, and Chapter 3 is about how hard they run it."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch3",
    "n": 3,
-   "title": "What they sell, and the offers",
+   "title": "Creative is the input",
    "lede": [
     {
-     "p": "If most of the reach is selling, the next question is what. The answer isn't the one I expected."
+     "p": "If the platform finds the audience, then the thing you control is what you give it to work with, and the evidence on that is now large. The biggest study we know of covers about 579,000 Meta ads across 6,000 advertisers. Only four to eight in every hundred ads become winners, where a winner means an ad that ends up spending at least ten times the account's typical ad. About half of all ads get almost no spend at all. And the accounts in the top quarter run two to three times the creative volume of average accounts at the same spend."
+    },
+    {
+     "p": "That reframes creative volume. Losing ads are cheap, because the platform moves budget away from them on its own. The expensive mistake isn't making losers. It's not taking enough shots. A high hit rate, in this reading, is a warning sign: you're only making the safe ad."
     }
    ],
    "subs": [
     {
      "n": "3.1",
-     "title": "Current accounts first, mortgages second",
+     "title": "How much new creative the category makes",
      "blocks": [
       {
+       "p": "How much new creative each advertiser makes in a typical week. The category average and median are marked. Look at where the most active advertiser sits against the rest, and how many are close to the average."
+      },
+      {
+       "fig": "f31",
+       "kind": "Figure",
        "no": "3.1",
-       "title": "Current accounts took the biggest share of reach, just ahead of mortgages.",
-       "cap": "Share of the category's Irish reach by the main product in the ad, ads started in the quarter.",
-       "fig": "f31"
+       "title": "New creatives started a week, by advertiser",
+       "cap": "New creatives this quarter divided by 13 weeks. Category average 2.7, median 2, lowest 0.2, highest 8.5."
       },
       {
-       "p": "Current accounts took 17% of the reach and mortgages 15%. The current-account reach comes from two directions. Monzo spent 57% of its reach on its account (\"No monthly account fees. No messing.\"). Bank of Ireland spent 22% of its reach on current accounts, much of it tied to the Electric Picnic presale for its customers. Mortgages are spread more evenly. They're 92% of EBS's reach and 39% of Avant Money's."
-      },
-      {
-       "p": "Two smaller results stand out. Business banking took 10%, mostly because of PTSB's Morning Fresh film. And AIB is the only bank whose biggest product was pensions and investing, at 32% of its reach, mostly from one ad telling people to \"Get personalised investment advice today, in the AIB App\"."
+       "p": "The average advertiser started 2.7 new creatives a week. The most active started 8.5, the quietest 0.2. We don't know what anyone spent, so we can't say who is above or below their own line, and I'd be careful of anyone who claims to. What we can say is that the practitioner priors disagree with each other by a wide margin: one well-known practitioner runs about one new creative a week at a mid-size spend, and the largest benchmark study's own prior is about eight a week at the same spend. The category's most active advertiser is above the top of that range. The average sits over it on one practitioner's numbers and under it on another's. Which is a useful thing to know before anyone quotes you a target."
       }
      ]
     },
     {
      "n": "3.2",
-     "title": "The mortgage offers are cashback",
+     "title": "What the most competitive categories do",
      "blocks": [
       {
-       "p": "We marked an ad as stating an offer when it gives a rate, a cashback or bonus figure, or something free. A \"best rate\" with no number doesn't count, and neither does a loan range, a loan floor (\"loans from €1,000\") or a fee. 206 of the 688 different ads state an offer, 30%."
+       "p": "For scale, two mobile games set beside the banks, all on a new-creatives-a-month basis. The games are there to show how far the road goes in a category that measures everything, not as a target."
       },
       {
-       "p": "In mortgages the offer is nearly always cashback, and five lenders name a figure. PTSB offers \"2% cashback on mortgage drawdown and monthly repayments\". Bank of Ireland offers \"up to 3% Cashback on qualifying fixed rates\". EBS says \"Get up to 3% cashback when you move to us\". Avant Money runs the most versions, \"1% back in cash\" in some and \"2% back in cash\" in others, often with \"the same rate for the entire lifetime of your mortgage\". AIB's mortgage offer is a flat sum: \"Low green mortgage rates and €3,000 when you switch\"."
-      },
-      {
+       "fig": "f32",
+       "kind": "Figure",
        "no": "3.2",
-       "title": "Monzo, Avant Money and bunq lead with an offer. Most banks mostly don't.",
-       "cap": "Share of each advertiser's different ads that state a rate, cashback, bonus or something free.",
-       "fig": "f32"
+       "title": "New creatives a month: two mobile games against Irish banking",
+       "cap": "The game figures are creative-tracking counts read out on an industry podcast (Two and a Half Gamers, October 2025), both for uploads to one ad network in 30 days; a third game was quoted at 8,700 creatives with no window stated, so it isn't charted. The banking figures are this study's, new creatives this quarter divided by three."
       },
       {
-       "p": "Monzo states an offer in 70% of its ads, Avant Money in 67% and bunq in 53%: free accounts, no fees abroad, 5% cashback on groceries, \"up to 3.01% interest paid weekly\". At AIB it's 2 of 83 ads, the 3.55% energy upgrade loan and the €3,000 mortgage switch, and at EBS 1 of 17. A bank that people don't already use has to give them a reason to try it, and a number is the quickest reason there is. That's my reading, not something the data proves."
+       "p": "It helps to know how far the road goes. In mobile gaming, one of the most measured categories there is, because every download is counted, one puzzle game put about 600 new creatives onto a single ad network in 30 days and a rival 1,700, according to tracking counts read out on the industry's own podcast. The people who run those accounts say it plainly: you need the volume, because every new creative gets a first look from the platform, and more looks means more chances of another winner. That is practitioner talk on a different platform, in-game ads rather than a social feed, and I'd carry it as a direction rather than a number."
+      },
+      {
+       "p": "Irish banking's most active advertiser made about 37 new creatives a month and the average about 12. Nobody is suggesting a bank needs 600. The loop is similar in shape, though: a new creative gets a first look, spend moves to what beats the goal, and the way to find the next winner is to keep feeding it."
+      }
+     ]
+    },
+    {
+     "n": "3.3",
+     "title": "Where the reach goes",
+     "blocks": [
+      {
+       "p": "Where each advertiser's reach ends up: the share that sits on its top tenth of ads. A high bar means reach concentrated on a few ads. It's the result of the advertiser's budgets and the platform's delivery together, so read it as a shape, not a verdict."
+      },
+      {
+       "fig": "f33",
+       "kind": "Figure",
+       "no": "3.3",
+       "title": "Share of each advertiser's reach that went to its top tenth of ads",
+       "cap": "Category average 47.9%, median 48.5%, lowest 21.0%, highest 62.8%."
+      },
+      {
+       "p": "On average 48% of an advertiser's reach sat on its top tenth of ads, from 21% to 63%. That's the platform doing what it's built to do, together with the bank's own budget choices between campaigns, and from outside we can't split the two. What the shape tells you is that the loop is running: many ads launched, reach concentrating on a few. It doesn't tell you the few were the best, and Chapter 9 says why."
+      }
+     ]
+    },
+    {
+     "n": "3.4",
+     "title": "How fresh the reach is",
+     "blocks": [
+      {
+       "p": "How fresh each advertiser's reach is: the share coming from creatives less than a month old. A high bar means the recent work is doing the reaching."
+      },
+      {
+       "fig": "f34",
+       "kind": "Figure",
+       "no": "3.4",
+       "title": "Share of each advertiser's reach from creatives first seen in the last 30 days of the quarter",
+       "cap": "Category average 21.8%, median 22.5%, lowest 0.0%, highest 54.1%."
+      },
+      {
+       "p": "How many copies each advertiser runs of the same words. A copy can carry a different picture or run on a different date, so this is about habit, not waste."
+      },
+      {
+       "fig": "f35",
+       "kind": "Figure",
+       "no": "3.5",
+       "title": "Ads per creative",
+       "cap": "How many copies of the same words each advertiser runs. Category average 3.3, median 2.8, lowest 1.4, highest 6.2."
+      },
+      {
+       "p": "Two more ways to look at the same muscle. Fresh reach, the share of an advertiser's reach coming from creatives under a month old, runs from 0% to 54%. And copies per creative, which is how often the same words go out again as a new ad, from 1.4 to 6.2. Copies aren't wasted; a copy can carry a different picture or run on a different date. But a copy isn't a new shot either, and the next chapter is about the difference."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch4",
    "n": 4,
-   "title": "Who sees the ads",
+   "title": "Angles, not tweaks",
    "lede": [
     {
-     "p": "For ads shown in the EU, Meta reports reach by age and sex. So we can say who was shown each bank's ads. We can't say who the bank asked Meta to show them to, only who ended up seeing them."
+     "p": "Here is a rule that the people who make a lot of ads for a living all seem to have arrived at separately: a variation only counts if the first few seconds look different. Change the headline over the same opening frame and the platform treats the new ad as the old ad, and delivers it the same way. So the useful unit of creative isn't the version. It's the angle: a different proposition, a different situation, a different person with a different reason to care."
     }
    ],
    "subs": [
     {
      "n": "4.1",
-     "title": "Two different audiences",
+     "title": "How much of the category's creative is a rewording",
      "blocks": [
       {
+       "p": "The share of each advertiser's creatives that share most of their words with another one of its own. The comparison is on words only, so a new picture under the same words doesn't show. Look at how wide the range is."
+      },
+      {
+       "fig": "f41",
+       "kind": "Figure",
        "no": "4.1",
-       "title": "The digital challengers reach people under 35. The Irish banks reach every age.",
-       "cap": "Share of Irish reach by age. Digital challengers are Monzo, bunq and Revolut. Irish banks and lenders are the other seven. Ads started in the quarter.",
-       "fig": "f41"
+       "title": "Share of each advertiser's creatives that share most of their words with another one of its own",
+       "cap": "Two creatives count as one family when their words, with the required legal lines taken out, are at least 80% the same. Category average 33.9%, median 37.3%, lowest 11.8%, highest 58.3%."
       },
       {
-       "p": "54% of the people the challengers reached were under 35, against 29% for the Irish banks and lenders. At the other end, only 8% of the challengers' reach was 55 or over, against 26% for the Irish banks. The challengers are talking to people setting up their first accounts. The Irish banks are talking to everyone."
-      },
-      {
-       "no": "4.2",
-       "title": "bunq and Monzo reach the youngest audiences, An Post Money and the credit unions the oldest.",
-       "cap": "Share of each advertiser's Irish reach under 35 and 55 or over. Ads started in the quarter.",
-       "fig": "f42"
-      },
-      {
-       "p": "Monzo (57% under 35) and bunq (56%) are far younger than anyone else. An Post's money ads (36% aged 55 or over) and the credit unions (34%) reach the oldest. Revolut, perhaps surprisingly, looks like an Irish bank here, with 26% under 35, but that's only the few ads it started in the quarter, most of them savings ads. Avant Money reached nobody under 25 at all, which fits a lender whose products, credit cards and mortgages, are for adults with a credit history. I assume that's a targeting choice. The library doesn't say."
+       "p": "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601). By advertiser it runs from 12% to 58%. We hold one picture per creative, so a new picture under the same words is invisible to us, and some of these rewordings will carry one. Even so, the pattern is clear enough to act on. \"Fast, flexible, and transparent personal loans\" and \"Fast, flexible, and transparent student loans\" sell to different people, and they're two ads to a spreadsheet; to the platform, on the practitioner rule, they're very likely one. The opening for any advertiser here is to spend the next round of production on openings that look different, and to let the rewordings ride along behind them."
       }
      ]
     },
     {
      "n": "4.2",
-     "title": "Men and women",
+     "title": "Wide or focused",
      "blocks": [
       {
-       "p": "Bank of Ireland is the only advertiser whose reach is slightly more women than men (51% women). Every other one leans male, most of them a little, with between 42% and 49% women. Two lean further: bunq's reach is 35% women and the credit unions' 39%. I don't have a reason for either, and I'd want another quarter before looking for one."
+       "p": "How wide or narrow each advertiser's subject matter is. A high score means its reach sat on one or two topics; a low score means it was spread across many. The number of topics is in the label."
+      },
+      {
+       "fig": "f42",
+       "kind": "Figure",
+       "no": "4.2",
+       "title": "Focus score and topics advertised, by advertiser",
+       "cap": "Topics are the product each creative sells, as read by our reader (17 topics). 100 means all of an advertiser's reach sat on one topic; lower means wider. Category average 37.7, median 32.9, lowest 12.5, highest 85.4."
+      },
+      {
+       "p": "What the whole category talks about, by share of reach. The first two or three topics take a large slice; the rest is a long tail."
+      },
+      {
+       "fig": "f43",
+       "kind": "Figure",
+       "no": "4.3",
+       "title": "Share of the category's reach, by topic",
+       "cap": "Topics under 1% left out."
+      },
+      {
+       "p": "Some advertisers talk about one thing and some about fifteen. The most focused put 92% of its reach on one product; the widest spread it across 15 topics. Across the category, current accounts take 17% of the reach and mortgages 15%. Neither wide nor focused is right on its own. What the score gives you is a way to see your own spread beside your neighbours', which most marketers have never had."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch5",
    "n": 5,
-   "title": "How often the ads change",
+   "title": "The first three seconds, without sound",
    "lede": [
     {
-     "p": "This is the part of the data I find most interesting, because it's the closest the Ad Library gets to showing how a bank works. We can see when every ad started and stopped. So we can see who puts up new ads every week, who does it in batches, and who runs one ad for months."
+     "p": "This is the chapter I'm most excited about, because it's the one where we measured the thing the research actually points at. Attention research on video ads says most viewing on a social feed lasts a few seconds, that ads with a bigger sales effect show the brand earlier, more often and bigger, and that when the brand is on screen, attention rises. On Facebook, more than half of views are over in a few seconds. So the first three seconds are the ad. Everything after them is reinforcement for the people who stayed."
+    },
+    {
+     "p": "We took the five most-seen videos from each of the ten advertisers, fifty in all, pulled a frame every half second from 0 to 3 seconds, and had one reader judge each by eye: is the brand seen, as a name, a logo or a brand asset, by the third second? Seen, not heard. A lot of social viewing is silent, so a name in the voice-over doesn't count on its own. And we counted strictly: a \"possibly\" is a no."
     }
    ],
    "subs": [
     {
      "n": "5.1",
-     "title": "Every week, or in batches",
+     "title": "How many brand early",
      "blocks": [
       {
-       "no": "5.1",
-       "title": "Bank of Ireland started new ads every week. Others worked in bursts.",
-       "cap": "New different ads started each week, by advertiser, week beginning 29 June to week beginning 21 September 2026. The first week only counts 1 to 5 July.",
-       "fig": "t51"
+       "p": "The first-three-seconds result, shown as a count of advertisers by score. Each advertiser's five most-seen videos were judged one by one, so the best possible score is five. Look at how many sit at the top and how many at the bottom."
       },
       {
-       "p": "Bank of Ireland started new ads in all 13 weeks, 127 in all, and its busiest week held only 28% of them. That's a steady flow, new ads every week. The credit unions are the opposite: two weeks, with 20 new ads in the week of 13 July and 19 in the week of 7 September, and nothing in between. PTSB was nearly silent through July and early August, then started 39 of its 40 new ads from 24 August on, around its mortgage and branch events."
+       "fig": "f51",
+       "kind": "Figure",
+       "no": "5.1",
+       "title": "How many advertisers scored 5, 4, 3, 2, 1 or 0 of their five most-seen videos branded in the first three seconds",
+       "cap": "28 of 50 across the ten. Shown as a count of advertisers, not by brand, because the four named examples below would otherwise give their letters away."
+      },
+      {
+       "p": "28 of the fifty show the brand by three seconds, and those 28 carry 76% of the fifty's whole-life reach, June included. Within four of the five advertisers that had both kinds, the early-branded videos were the more-seen ones. So the most-seen ads are the early-branded ones, in a picked sample of five per advertiser, judged by one person. Some of the twenty-two that don't are long films, 37 to 54 seconds, made to be watched through, and the research question for their makers is only whether the people who leave at three seconds know whose film it was."
       }
      ]
     },
     {
      "n": "5.2",
-     "title": "Ads that run for a day or two",
+     "title": "Shorter ads brand earlier",
      "blocks": [
       {
-       "p": "Run length is harder to measure than it looks. Many ads were still running when we collected the data, and an ad that started in September can only have run a few weeks. So we use a measure the cut-off can't bend: of the ads each advertiser started between 1 July and 23 September, what share ran for two days or less? Any ad that short had finished before we looked, so none is missed."
+       "p": "The same fifty videos, split by how long they are. Short ads and long ads are made differently, and this shows what that does to early branding."
       },
       {
+       "fig": "f52",
+       "kind": "Figure",
        "no": "5.2",
-       "title": "A quarter of Bank of Ireland's ads ran for two days or less. Monzo, the credit unions and Revolut ran none that short.",
-       "cap": "Share of each advertiser's ads started 1 July to 23 September 2026 that ran two days or less.",
-       "fig": "f52"
+       "title": "Branded in the first three seconds, by video length",
+       "cap": "The fifty videos, five most-seen per advertiser."
       },
       {
-       "p": "75 of the 288 ads Bank of Ireland started ran for two days or less, 26%. Nobody else comes close. And they aren't event ads. 44 of the 75 are pension and investment ads: \"Pay less tax and boost your pension\", \"It's time to maximise your pension\", \"Ready to take control of your financial future?\", switched on for a day or two, then again, then again. The rest are credit card, loan, mortgage and Club 83 ads. Bank of Ireland runs its pension ads in short bursts, over and over. Monzo, the credit unions and Revolut ran none that short."
+       "p": "17 of 22 videos of ten seconds or less brand early. 3 of 14 over twenty seconds do. That isn't a fact about long ads; a 45-second film can open on the logo. It's a fact about how long ads tend to be made, with the brand held for the end. The research says the end is where the fewest people are."
+      }
+     ]
+    },
+    {
+     "n": "5.3",
+     "title": "How the ones that do it, do it",
+     "blocks": [
+      {
+       "p": "Four ads, one frame every half second for the first three seconds. Read each strip left to right and ask at which frame you'd know whose ad it is. Each caption says what is on screen and when."
       },
       {
-       "p": "Monzo works a different way again. In September it started 102 ads, but they used only 38 different wordings, and only 7 of those were new. It keeps putting the same words out again in new copies, about 5 copies of each wording across the quarter."
+       "strip": "frames-f53-01.jpg",
+       "frames": [
+        {
+         "t": 0.0,
+         "img": "frames-f53-01-0s.jpg"
+        },
+        {
+         "t": 0.5,
+         "img": "frames-f53-01-0_5s.jpg"
+        },
+        {
+         "t": 1.0,
+         "img": "frames-f53-01-1s.jpg"
+        },
+        {
+         "t": 1.5,
+         "img": "frames-f53-01-1_5s.jpg"
+        },
+        {
+         "t": 2.0,
+         "img": "frames-f53-01-2s.jpg"
+        },
+        {
+         "t": 2.5,
+         "img": "frames-f53-01-2_5s.jpg"
+        },
+        {
+         "t": 3.0,
+         "img": "frames-f53-01-3s.jpg"
+        }
+       ],
+       "alt": "Opening seconds of PTSB, Impact Lending Fund",
+       "no": "5.3a",
+       "title": "PTSB, Impact Lending Fund: the first three seconds, a frame every half second",
+       "cap": "The logo draws itself in from half a second and is clear by 1.5 seconds, with the line Altogether more human under it. By 3 seconds the ad has cut to the customer."
       },
       {
-       "p": "What are the short bursts and the copies for? The Ad Library doesn't say, and I want to be careful. A copy can carry a different picture, go to a different audience or run on a different date. A burst can be a test, where versions run for a day and the ones that do worse aren't run again. Short runs and many copies are what testing looks like from the outside. But they're also what a lot of other things look like, like a budget spent a day at a time or a planned weekend push, and nothing in the library tells us which it is."
+       "strip": "frames-f53-02.jpg",
+       "frames": [
+        {
+         "t": 0.0,
+         "img": "frames-f53-02-0s.jpg"
+        },
+        {
+         "t": 0.5,
+         "img": "frames-f53-02-0_5s.jpg"
+        },
+        {
+         "t": 1.0,
+         "img": "frames-f53-02-1s.jpg"
+        },
+        {
+         "t": 1.5,
+         "img": "frames-f53-02-1_5s.jpg"
+        },
+        {
+         "t": 2.0,
+         "img": "frames-f53-02-2s.jpg"
+        },
+        {
+         "t": 2.5,
+         "img": "frames-f53-02-2_5s.jpg"
+        },
+        {
+         "t": 3.0,
+         "img": "frames-f53-02-3s.jpg"
+        }
+       ],
+       "alt": "Opening seconds of Revolut, Save more with great rates",
+       "no": "5.3b",
+       "title": "Revolut, Save more with great rates: the first three seconds, a frame every half second",
+       "cap": "The name sits top left from the first frame, and the offer builds word by word under it."
+      },
+      {
+       "strip": "frames-f53-03.jpg",
+       "frames": [
+        {
+         "t": 0.0,
+         "img": "frames-f53-03-0s.jpg"
+        },
+        {
+         "t": 0.5,
+         "img": "frames-f53-03-0_5s.jpg"
+        },
+        {
+         "t": 1.0,
+         "img": "frames-f53-03-1s.jpg"
+        },
+        {
+         "t": 1.5,
+         "img": "frames-f53-03-1_5s.jpg"
+        },
+        {
+         "t": 2.0,
+         "img": "frames-f53-03-2s.jpg"
+        },
+        {
+         "t": 2.5,
+         "img": "frames-f53-03-2_5s.jpg"
+        },
+        {
+         "t": 3.0,
+         "img": "frames-f53-03-3s.jpg"
+        }
+       ],
+       "alt": "Opening seconds of EBS, Find out how much you can borrow",
+       "no": "5.3c",
+       "title": "EBS, Find out how much you can borrow: the first three seconds, a frame every half second",
+       "cap": "The logo sits in the corner of every frame, on the brand red, from the first frame."
+      },
+      {
+       "strip": "frames-f53-04.jpg",
+       "frames": [
+        {
+         "t": 0.0,
+         "img": "frames-f53-04-0s.jpg"
+        },
+        {
+         "t": 0.5,
+         "img": "frames-f53-04-0_5s.jpg"
+        },
+        {
+         "t": 1.0,
+         "img": "frames-f53-04-1s.jpg"
+        },
+        {
+         "t": 1.5,
+         "img": "frames-f53-04-1_5s.jpg"
+        },
+        {
+         "t": 2.0,
+         "img": "frames-f53-04-2s.jpg"
+        },
+        {
+         "t": 2.5,
+         "img": "frames-f53-04-2_5s.jpg"
+        },
+        {
+         "t": 3.0,
+         "img": "frames-f53-04-3s.jpg"
+        }
+       ],
+       "alt": "Opening seconds of AIB, The AIB life hub",
+       "no": "5.3d",
+       "title": "AIB, The AIB life hub: the first three seconds, a frame every half second",
+       "cap": "The logo and the line under it are on screen from the first frame."
+      },
+      {
+       "p": "Four ways it's done in this category, and all four are cheap. One advertiser lets its logo draw itself in over the first second and a half, with its line underneath, on its own orange. One puts its name in the corner from the first frame and builds the offer under it; in one of that advertiser's five, the famous face is the cue instead and there's no logo in the first three seconds, which we counted as branded, since the character is the brand cue. One keeps its logo in the corner of every frame on its own red. One opens with the logo and its line together. None of that needs a bigger budget. It needs the decision, made before the edit, that the brand goes first."
+      }
+     ]
+    },
+    {
+     "n": "5.4",
+     "title": "How long the videos are",
+     "blocks": [
+      {
+       "p": "How long the category's videos are, and how much reach each length carried. Look for where the count is highest and where the reach is highest; they aren't the same band."
+      },
+      {
+       "fig": "f54",
+       "kind": "Figure",
+       "no": "5.4",
+       "title": "Video length: how many creatives in each band, and the share of video reach each band carried",
+       "cap": "391 video creatives with a measured length."
+      },
+      {
+       "p": "The typical video length for each advertiser. Some make short ads, some make films, and the difference is large."
+      },
+      {
+       "fig": "f55",
+       "kind": "Figure",
+       "no": "5.5",
+       "title": "Typical video length, by advertiser",
+       "cap": "Median seconds. Category average 19s, median 16s, lowest 6s, highest 50.9s."
+      },
+      {
+       "p": "The most common length made is 16 to 30s, with 126 creatives. The length that carried the most reach is 7 to 10s, at 28% of video reach. The category makes more long ads than it gets seen, which is the same story as 5.2 from the other side. Typical length by advertiser runs from 6 seconds to 50.9."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch6",
    "n": 6,
-   "title": "Faces, formats and the most-seen ads",
-   "lede": [],
+   "title": "Distinctive assets",
+   "lede": [
+    {
+     "p": "A distinctive asset is anything other than the name that makes people think of the brand: a colour, a logo, a shape, a sound, a line, a character, a face. The research on them says two things that matter here. They only work if they're famous and yours, which takes years of consistent use, and some kinds work harder than others. Colour is the most popular asset and the hardest to own, because everyone has one. A character is one of the strongest, because nobody else can use it."
+    },
+    {
+     "p": "Looking at fifty opening sequences and a few hundred stills, the category's asset is colour. Every advertiser has one, most use it well, and several have it in every frame. Beyond colour, there are lines, and they're good ones. \"For the life you're after\". \"Altogether more human\". \"The mortgage people\". \"Bank like a local\". A \"For you, not profit\" series. Each of those is owned, in the sense that nobody else in the category could sign it. One advertiser has a character, a famous one, and the single most-seen ad in the study, the June one from the introduction, is his. The opening, for everyone, is the same one the research points at: the line and the colour work hardest when they're in every ad, in the same place, in the first three seconds, for years. The colour work is done. The lines are written. The next step is consistency, and after that, for anyone brave enough, a character."
+    }
+   ],
    "subs": [
     {
      "n": "6.1",
-     "title": "Video, mostly",
+     "title": "Faces, famous faces and humour",
      "blocks": [
       {
-       "p": "445 of the 688 different ads are video, 65%. AIB is almost all video (92%). Avant Money and Revolut use far more still images and carousels, where the whole message is the offer in big type. Of all the ads we read, 37 are plainly trying to be funny, about one in twenty."
-      }
-     ]
-    },
-    {
-     "n": "6.2",
-     "title": "Well-known people, telling their own stories",
-     "blocks": [
-      {
-       "p": "AIB signs off many of its ads, sales ads included, with \"For The Life You're After\". Its brand ads are nearly all one series, in which well-known people tell their own stories: a footballer \"From local pitches to the global stage\", on \"the support that made all the difference\"; Rory O'Neill, \"Turning playground pain into power\"; and Aby Coulibaly on sharing a stage with Coldplay. There are 13 different ads in the series, 12 of them naming the person, and they carry 95% of AIB's brand reach. None of them sells a product. It's the only brand series in the category with a named person in nearly every ad."
-      }
-     ]
-    },
-    {
-     "n": "6.3",
-     "title": "Creators",
-     "blocks": [
-      {
-       "p": "We count an ad as a creator post when its words name a paid partner or tag the person's own account. By that test, Monzo used creators most, in 16 ads, every one of them marked \"Paid Partnership\". AIB had 3 and Bank of Ireland 3. Other ads look like creator posts but don't say so in their words, so these counts are a floor. The styles are very different. Monzo's creators talk straight to camera (\"Nice try lad, just get Monzo\"). AIB uses Kirsten Mate Maher for first-time buyer tips. Bank of Ireland's biggest creator ad is a sketch on a park bench about missing the Electric Picnic presale: \"Don't be like me, apply for a Bank of Ireland current account\"."
-      }
-     ]
-    },
-    {
-     "n": "6.4",
-     "title": "The most-seen ads of the quarter",
-     "blocks": [
-      {
-       "p": "These are the twelve different ads with the most Irish reach among ads that started in the quarter. Where an ad ran as several copies, we show how many times the copies were shown in total and how many people the biggest single copy reached. Eleven of the twelve are sales ads, and six of them state an offer or a rate."
+       "p": "Who is on screen. For each advertiser, the share of creatives that show people at all, the share with a famous face or a paid creator, and the share that try to be funny."
       },
       {
-       "gallery": true
+       "fig": "f61",
+       "kind": "Figure",
+       "no": "6.1",
+       "title": "Share of each advertiser's creatives that show people, that use a famous face or a paid creator, and that use humour",
+       "cap": "As read by our reader. People: Category average 60.1%, median 65.9%, lowest 6.1%, highest 100.0%. Famous or creator: category average 13.1%. Humour: category average 8.2%."
+      },
+      {
+       "p": "61% of creatives show a person (368 of 601). By advertiser it runs from 6% to 100%. Famous faces and paid creators appear in 10% (62 of 601) and humour in 6% (35 of 601). Humour is the thin one, and the advertiser that uses it most does so in a third of its creatives. There's room."
       }
      ]
     }
    ]
   },
   {
+   "id": "ch7",
    "n": 7,
-   "title": "What the Ad Library can and can't tell us",
+   "title": "Formats",
    "lede": [
     {
-     "p": "Anyone can use the Ad Library, and I'd encourage people to. But it's easy to read more into it than it holds, so here is exactly what's in it and what isn't."
-    },
-    {
-     "no": "7.1",
-     "title": "What the Ad Library holds, and what it doesn't.",
-     "cap": "",
-     "fig": "t71",
-     "rows": [
-      [
-       "Every ad a page showed in the EU, with its words, pictures and video",
-       "What any ad cost, or what a bank spent in total (Meta only shows spend for political ads)"
-      ],
-      [
-       "When each ad started and stopped",
-       "Clicks, sign-ups, sales or any other result"
-      ],
-      [
-       "How many people in Ireland each ad reached, by age and sex",
-       "How often each person saw it, or how many different people saw any of a bank's ads"
-      ],
-      [
-       "Who paid for the ad",
-       "Which audience the bank asked for, beyond broad age, sex and location"
-      ],
-      [
-       "Which Meta apps it ran on",
-       "Anything outside Facebook and Instagram: TV, radio, outdoor, search, TikTok, YouTube"
-      ],
-      [
-       "How many copies of the same words a bank ran",
-       "Whether those copies were tests, and which one won"
-      ]
-     ],
-     "head": [
-      "It tells us",
-      "It doesn't tell us"
-     ]
-    },
-    {
-     "p": "So this report can describe what banks put in front of people and who saw it. It can't say which bank got its money's worth. Anyone who tells you otherwise from the Ad Library alone is guessing."
+     "p": "The practitioner reading on formats is settled enough to repeat: video is the workhorse for reaching people who don't know you, stills are cheap to make and often do well when the ad has a job to close, and carousels are underused nearly everywhere. The banks are typical on all three counts."
     }
    ],
    "subs": [
     {
      "n": "7.1",
-     "title": "Removed ads, and pages that borrow a bank's name",
+     "title": "What the ads are made of",
      "blocks": [
       {
-       "p": "Two things turned up that anyone using the library should know about. First, a page called \"Revolut Group\" showed 70 ads in Ireland between 25 August and 8 September, and Meta has since removed every one of them. The library now shows only \"This content was removed because it didn't follow our Advertising Standards\" or that the page was disabled. I can't tell from the library whether it's a real Revolut page whose ads came down or a lookalike, and in my first draft I counted them as Revolut's. They made Revolut look like a bank that ran dozens of ads for a day or two. They're out of every figure now."
+       "p": "What the ads are made of, two ways: as a share of the creatives made, and as a share of the reach they carried. Look at how the two differ for video and for stills."
       },
       {
-       "p": "Second, two other pages, \"Revolut Slots\" and \"Revolut Casino\", showed 132 ads in Ireland in September. Every one has since been taken down by Meta. Together they reached 1,648 people before they came down. It's a small number, and Meta caught them. But anyone searching the library for a bank's name will find pages like these, so it's worth checking the page ID before you count anything. The ones we found are listed in the method below."
+       "fig": "f71",
+       "kind": "Figure",
+       "no": "7.1",
+       "title": "Formats: share of creatives, and share of reach",
+       "cap": "A still that appears in several sizes counts once. Only the first four cards of each still ad were kept, so a carousel whose later cards differ would be missed."
+      },
+      {
+       "p": "How much of each advertiser's reach came from video. Half lean on it and half don't."
+      },
+      {
+       "fig": "f72",
+       "kind": "Figure",
+       "no": "7.2",
+       "title": "Share of each advertiser's reach from video",
+       "cap": "Category average 54.4%, median 51.2%, lowest 10.9%, highest 95.4%. A creative is one set of words, and its format is read from its most-seen ad. 32 of the 601 creatives ran the same words as a video and in another format too, and all of that reach is filed under the one format, so read each bar as approximate."
+      },
+      {
+       "p": "Video is 65% of creatives and 65% of reach. Then the interesting one. 173 creatives are one picture shown in several sizes, whether the advertiser's own resizes or the platform's placement versions of one upload, which can't be told apart from outside; 25 are real carousels with different cards; and 11 are a single still. So 209 creatives in the category don't move, and real carousels carry 3% of reach."
+      },
+      {
+       "p": "The stills are the opening. Looking at them, there's nothing wrong with any of them, and there's nothing that couldn't move. A still with a headline, a product and a logo is a storyboard for a six-second animation, and the cost of turning it into one has fallen to almost nothing. The evidence that motion beats stills on Meta is thinner than people think, and I'd say so to any client. But the reason most stills are stills was cost and time, and that reason has gone."
       }
      ]
     }
    ]
+  },
+  {
+   "id": "ch8",
+   "n": 8,
+   "title": "The words",
+   "lede": [
+    {
+     "p": "The category's copy is short, plain and mostly about the product, and that is the right register for a feed. We measured it anyway, because the numbers are the kind marketers ask for and never get."
+    }
+   ],
+   "subs": [
+    {
+     "n": "8.1",
+     "title": "How long the ads are",
+     "blocks": [
+      {
+       "p": "How long the typical ad is, in words, once the required legal lines are taken out. Short is normal here, and the range is narrow."
+      },
+      {
+       "fig": "f81",
+       "kind": "Figure",
+       "no": "8.1",
+       "title": "Words in the main text of the typical ad, by advertiser",
+       "cap": "Median, with the required warning and regulation lines taken out. Category average 17.4, median 15, lowest 13, highest 27."
+      },
+      {
+       "p": "The typical ad is 15 words. With the legal and support lines left in it's 15 on the median advertiser and 48 on the longest. Headlines run 3 to 5 words. Every writer of a bank ad is working inside those lines, and the ones that read well are the ones that put the ad's whole point in the first eight words and let the small print be small."
+      }
+     ]
+    },
+    {
+     "n": "8.2",
+     "title": "The words the category uses",
+     "blocks": [
+      {
+       "p": "The words the category uses most, counted by how many creatives use each one at least once. Brand names and everyday words are left out. Ask of each word whether a competitor could say it too."
+      },
+      {
+       "fig": "f82",
+       "kind": "Figure",
+       "no": "8.2",
+       "title": "The words used by the most creatives, whole category",
+       "cap": "Number of creatives using the word at least once; brand names and common words left out."
+      },
+      {
+       "p": "The most used words are apply, mortgage, account, today. By reach, the words people were most likely to see were account, apply, today, help. There is a test copywriters use on a sentence: could a competitor say it too? Most of the category's most-used words fail it, and that is normal, because they're the words of the products. The opportunity is in the words no one else here uses, and every advertiser has a few. \"Bank like a local\" is one. \"The mortgage people\" is another. They're owned."
+      }
+     ]
+    },
+    {
+     "n": "8.3",
+     "title": "Numbers, questions and emoji",
+     "blocks": [
+      {
+       "p": "Three habits of the copy: putting a number in the ad, asking a question, and using an emoji. For each advertiser, the share of its creatives that do each. The range is the story."
+      },
+      {
+       "fig": "f83",
+       "kind": "Figure",
+       "no": "8.3",
+       "title": "Share of each advertiser's creatives that name a euro amount or a percentage, that ask a question, and that use an emoji",
+       "cap": "Numbers: Category average 21.0%, median 12.4%, lowest 0.0%, highest 66.7%. Questions: category average 17.6%. Emoji: category average 15.9%."
+      },
+      {
+       "p": "The call to action, reduced to its first word. One word leads by a long way."
+      },
+      {
+       "fig": "f84",
+       "kind": "Figure",
+       "no": "8.4",
+       "title": "The first word of the call to action, where an ad has one",
+       "cap": "204 creatives have no call to action in their words."
+      },
+      {
+       "p": "21% of creatives put a number in the ad (126 of 601), a rate, a cashback figure, a fee. On one advertiser it's 67%; on another, none. 21% of creatives ask a question somewhere in the text (126 of 601). Emoji appear in 16% of creatives (99 of 601), from none on some advertisers to 71% on one. And where a creative has a call to action, the first word is \"apply\" on 137 of 397, about a third, and nearly five times the next word. None of these is a rule. Creative doesn't get rules. They're the priors your next test should start from."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ch9",
+   "n": 9,
+   "title": "Reading results without fooling yourself",
+   "lede": [
+    {
+     "p": "The last thing the evidence says is the one that saves the most money, and it's about reading, not making. When the platform allocates your budget, every number you see afterwards is a number about what the platform did. That sounds obvious. It's the cause of more bad decisions in Meta accounts than anything else, and this study has the same numbers in it, so let's use them to show it."
+    }
+   ],
+   "subs": [
+    {
+     "n": "9.1",
+     "title": "Reach tells you where the money went",
+     "blocks": [
+      {
+       "p": "Figure 3.3 showed reach piling onto each advertiser's top tenth of ads. It's tempting to call those the winners. Resist it. Inside one ad set, or one campaign on a shared budget, the platform pushes spend into each ad until that ad's next impression costs as much as the others', so the ads with the most reach are also the ads buying the most expensive impressions. Their average looks worse than it is and the small ads' average looks better than it is. Sort a breakdown by cost and switch off the worst, and the people who run large accounts will tell you the blend often gets dearer. Across a whole account, as in Figure 3.3, the bank's own budget choices between campaigns are in the mix too, so the reach split is both things at once. The only way to compare two ads fairly is to give them the same budget by hand, and the only way to know one caused sales is a holdout. Reach in this report is where the money went. It is not what worked, and we never say it is."
+      }
+     ]
+    },
+    {
+     "n": "9.2",
+     "title": "A long run is not a good ad",
+     "blocks": [
+      {
+       "p": "How much of each advertiser's reach comes from creatives that have run a long time with the same words. A high bar means a few long runners carry most of the reach. Reach builds with every day an ad is live, so a long run isn't proof the ad is good."
+      },
+      {
+       "fig": "f91",
+       "kind": "Figure",
+       "no": "9.1",
+       "title": "Share of each advertiser's whole-life reach from creatives that have run 60 days or more with the same words",
+       "cap": "Category average 64.5%, median 68.5%, lowest 30.8%, highest 91.5%."
+      },
+      {
+       "p": "How long a typical creative stays live for each advertiser, from its first ad starting to its last ad stopping."
+      },
+      {
+       "fig": "f92",
+       "kind": "Figure",
+       "no": "9.2",
+       "title": "Typical creative span, by advertiser",
+       "cap": "Median days from a creative's first ad starting to its last ad stopping. Category average 50.1, median 45.2, lowest 16, highest 114."
+      },
+      {
+       "p": "Long runners carry the reach: 64.5% of the average advertiser's whole-life reach sits on creatives that have run sixty days or more, and one mortgage ad in the study has run since January. People who watch competitors' ads love a long run as a signal. Be careful with it. Reach builds every day an ad is live, so a long runner sits high partly for that reason alone, and some advertisers run cheap long ads on purpose to be watched. When you compare ads that have run different lengths, divide by the days."
+      },
+      {
+       "p": "The long runners, ranked by people reached per day rather than total reach, so that ads which have simply run longer don't sit on top for that reason alone."
+      },
+      {
+       "fig": "t94",
+       "kind": "Table",
+       "no": "9.3",
+       "title": "The long runners, by people reached per day",
+       "cap": "Creatives that have run 60 days or more, whole-life reach divided by days live, rounded to the nearest thousand. No brand letters on this one, because days times reach per day would give the exact totals back."
+      }
+     ]
+    },
+    {
+     "n": "9.3",
+     "title": "Short bursts, and what they might be",
+     "blocks": [
+      {
+       "p": "The other end: the share of each advertiser's ads that ran two days or less. Short bursts are what a test looks like from outside, and also what a daily budget looks like, so this is a pattern to notice, not a finding."
+      },
+      {
+       "fig": "f93",
+       "kind": "Figure",
+       "no": "9.4",
+       "title": "Share of each advertiser's ads, started 1 July to 23 September, that ran two days or less",
+       "cap": "Any ad that short had finished before we looked, so the cut-off doesn't bend it. Category average 7.0%, median 5.3%, lowest 0.0%, highest 26.0%."
+      },
+      {
+       "p": "One advertiser ran 26% of its ads for two days or less; several ran none that short. A burst of short runs is what a test looks like from outside. It's also what a daily budget looks like, or a planned weekend push, or duplicating an ad rather than editing it so as not to reset the platform's learning, which is the standard advice. From outside there is no telling which, and we don't try. I'm including it because it's the kind of pattern that, inside your own account, you can read, and outside it, you can only wonder at."
+      }
+     ]
+    },
+    {
+     "n": "9.4",
+     "title": "Five things from running the loop ourselves",
+     "blocks": [
+      {
+       "p": "We run this loop on our own account, at a size that proves the plumbing and nothing else. Five things from it that a bank marketer would want to know."
+      },
+      {
+       "list": [
+        "Choose the reading metric before launch. In our account a week's conversions couldn't rank creatives; three-second video plays could, and they arrived far faster.",
+        "Several ads in one ad set is not a test. In our account the platform settled on one within about two days off almost no data and didn't go back. A fair comparison needs equal budgets set by hand.",
+        "The platform's creative enhancements were switched on by default on every ad we made, including text rewrites and visual touch-ups. For a regulated brand that's a compliance question before it's a brand one. Check yours.",
+        "Account set-up traps show no error. We lost days to a missing business portfolio and blamed the wrong thing three times. The plumbing costs more time than the creative.",
+        "Customers and new customers are two jobs. A pension offer to your own current-account holders may be your cheapest sale, and it's still worth counting apart from the people you'd never met."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ch10",
+   "n": 10,
+   "title": "What we can't see from outside",
+   "lede": [
+    {
+     "p": "We've been careful to say what we can't see, because the honest edges are what make the rest usable. Our record holds no spend, so nothing here is a cost. It holds no objective, no bid, no ad set count and no uploaded audiences, so nothing here says how an account is built or whether it excludes anyone. Reach is Meta's own count, a person counted once per ad, and it's the whole life of an ad, so for shares we use only ads that started in the quarter. Everything about what an ad is for, sells, shows and says was read by our readers from the words and the picture, and readers can be wrong, so we had a second reader check the split. The first-three-seconds calls are one judge, on a picked sample of five videos per advertiser, about half of which started before July."
+    },
+    {
+     "p": "And the platform question. Broad targeting with many creatives is how practitioners now run Meta, and Meta's own published work on how it retrieves ads points the same way. The version you may have read, that the platform reads your ad and your landing page and picks the audience from them, overstates it: the ad's content is one signal among many. The plainer version is the one that holds. The ad earns its audience by how people respond to it. Which is, when you think about it, how advertising always worked."
+    }
+   ],
+   "subs": []
   }
  ],
  "method": [
   {
-   "k": "The ads",
-   "t": "We used Meta's Ad Library API to collect every ad delivered in Ireland between 1 July and 26 September 2026 by ten advertisers: AIB, Bank of Ireland, PTSB, EBS, Avant Money, An Post, the Credit Union page run for Ireland's credit unions, Monzo, bunq and Revolut (the Revolut and Revolut Business pages). We collected on 27 September. We left out 70 ads from the \"Revolut Group\" page that Meta had removed, which leaves 1,814 ads. We also checked N26, which showed five ads that reached 354 people in Ireland, and left it out. For An Post we count only financial ads (An Post Money, credit cards, loans, money abroad and insurance). Its 154 post, parcel, mobile, shop, community and job ads (76 different ads) are left out of every comparison. That leaves 1,660 ads and 688 different ads."
+   "k": "What was collected",
+   "t": "Every ad the ten advertisers showed on Facebook and Instagram in Ireland between 1 July and 26 September 2026, with its words, pictures, dates, settings and reach, collected on 27 September. How we collect them is our own method. Ads Meta has since removed are left out. An Post counts only its money ads. N26 is left out (5 ads, 354 people reached). Advertisers: AIB, Bank of Ireland, PTSB, EBS, Avant Money, An Post Money, the credit unions, Monzo, bunq and Revolut. In the benchmark charts the ten are Brand A to Brand J, in a fixed random order that isn't the reach order."
   },
   {
-   "k": "Ads and different ads",
-   "t": "Many ads in the library are copies with the same words. We count a different ad as one advertiser plus the same body text, headline and description. Ads with no words at all are each counted on their own."
+   "k": "Definitions",
+   "t": "An ad is one entry in our record. A creative is one advertiser and one set of words; the record lists one text per version of an ad, so exact copies were merged. New means first seen on or after 1 July. Reach is Meta's count of people in Ireland an ad reached, summed across ads, so a person reached by two ads counts twice; shares of reach use only ads started in the quarter."
   },
   {
-   "k": "Reach",
-   "t": "Reach is Meta's count of people in Ireland each ad was shown to, from its age and sex breakdown, over the ad's whole life up to 27 September. We add it up across ads, so a person reached by two ads, or two copies of one ad, counts twice. When we say how many people a single ad reached, we mean its biggest single copy. For any share of reach we use only ads that started in the quarter; 385 ads that started before 1 July are counted as ads but left out of reach shares. All age and sex figures use the same ads."
+   "k": "What was read",
+   "t": "Words, headline and description for every ad. The picture or video for all but one creative: videos were downloaded and measured, and frames taken; still ads were read card by card with on-device text recognition to tell one picture in several sizes from a real carousel, with 100 unclear cases judged by eye. A creative's format is the format of its most-seen ad; 32 creatives ran the same words in more than one format, and their reach is filed under that one. Each creative was sorted by product, offer, people on screen and humour by an AI reader, with a second AI reader checking the sales-versus-service split. The first-three-seconds judgement is one person, by eye, from frames every half second. Reworded creatives were found by comparing words with the legal lines removed, at an 80% match. Reading ease is the Flesch score, rough on texts this short."
   },
   {
-   "k": "Reading the ads",
-   "t": "For every different ad we took the picture from Meta's preview of its most-seen copy. For a video we downloaded it and took four frames, near the start, a third in, two thirds in and near the end, so the reader could see the whole ad. 763 of 764 ads have a picture. Each ad was judged against one written rulebook: what it is for, its main product, whether it states an offer, who is on screen, and the most telling line in its own words. A second reader judged a sample of 80 ads blind, the 40 with the most reach and 40 at random. The two agreed on what the ad was for in 74 of 80, on the product in 73 and on the offer in 70. We then settled the rules they split on and applied each rule to every ad. A \"best rate\" with no number, a loan range, a loan floor and a fee are not offers. The credit unions' free cover ads are brand ads. An Post's community work is counted on the post side. A creator post is one whose words name a paid partner or tag the person. After the review by Cato, our red team agent, we also moved PTSB's Morning Fresh film from sales to both and checked the offer calls by hand where the rule and the reader disagreed. Agreement with the second reader after the rules is higher, but it's measured on the same 80 ads the rules were settled from, so the figures above are the honest measure."
+   "k": "What we set it against",
+   "t": "The practitioner and research reading of Meta advertising in this report draws on: Meta's own published account of its ad retrieval and ranking systems (Andromeda, December 2024; GEM, November 2025); Motion's 2026 creative benchmarks, about 579,000 ads, 6,000 advertisers and $1.3 billion of spend, with the caveat that Motion sells creative analytics; the practitioner writing of Barry Hott and Ben Radack on account structure and the breakdown effect; Karen Nelson-Field and Erica Riebe, \"How advertising attracts attention\", Admap, September 2018, and VCCP Media with Amplified Intelligence, \"Hacking the attention economy\", May 2025, on early branding and attention; Jenni Romaniuk, Building Distinctive Brand Assets, on assets; Blake, Nosko and Tadelis, Econometrica 2015, on attributed versus incremental returns; the Two and a Half Gamers podcast, October 2025 and its AppLovin scaling episode, for the mobile gaming creative counts, which come from Sensor Tower data read out on the show; and Meta's special ad category rules for financial products and services as reported by Jon Loomer and Data Axle, Meta's own pages having refused our fetch. Where a number here is a practitioner's, it's a prior, not a finding."
   },
   {
-   "k": "Run length",
-   "t": "Run length counts days from an ad's start to its stop, or to 26 September if it was still running. Figure 5.2 counts, for ads started 1 July to 23 September, the share that ran two days or less. Any ad that short had stopped before we collected the data, so the measure isn't bent by ads still running."
-  },
-  {
-   "k": "Pages that borrow a bank's name",
-   "t": "\"Revolut Slots\" (page IDs 1362696313583261, 1245558305310803, 198911799966307) and \"Revolut Casino\" (page ID 108451722179263). The removed ads came from the page \"Revolut Group\" (page ID 1174366635770172)."
-  },
-  {
-   "k": "Checking",
-   "t": "Before publication Cato, the red team agent at Run with Foxes, rebuilt the numbers from the raw ads. He found the removed Revolut ads, that single ads were being given the reach of all their copies added together, that the offer rule counted loan floors and fees as offers, that some An Post community ads were counted as financial, and that I'd called Graham Norton British. We fixed each of these."
-  },
-  {
-   "k": "Limits",
-   "t": "The labels are judgements, and a different reader would move some ads. Reach is summed and is not a count of people. We don't know spend or results. This is one quarter, so nothing here is a trend yet. The next issue, in December, will be."
+   "k": "Written by",
+   "t": "Sam, AI researcher at Run with Foxes, with Jo, our growth manager, reading the Meta commentary, and Cato checking the figures against the data files, the frames and the creatives before publication. Scripts and every number are kept so the count can be re-run next quarter the same way."
   }
  ]
 }

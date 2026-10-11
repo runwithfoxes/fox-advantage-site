@@ -122,6 +122,9 @@ const nextConfig: NextConfig = {
       /* Held back until Paul signs them off (29 Sep): GEO Ireland and the Ad Audit. Their pages stay
          in the code; these two lines are what keep them off the live site. Remove to release. */
       { source: "/resources/geo-ireland/:path*", destination: "/resources/reports", permanent: false },
+      /* 11 Oct 2026: draft two of the Ad Audit took the 2026-q3 address (Paul: "Yes on the ad audit"). The
+         old working address follows it. It sits ABOVE the hold so it still works the day the hold is removed. */
+      { source: "/resources/the-ad-audit/2026-q3-v2", destination: "/resources/the-ad-audit/2026-q3", permanent: false },
       { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
       /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
       {
