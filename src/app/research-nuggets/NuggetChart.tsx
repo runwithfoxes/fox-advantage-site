@@ -16,6 +16,10 @@ import c from "./nugget-chart.module.css";
  * a count out of a small total, one square for each thing counted, the same size of square in every
  * block. The filled squares come in one at a time as the count goes up.
  *
+ * Or a `strip`: one whole thing cut into its parts, in the order the file gives them, each piece as
+ * wide as its share of the whole. The widths come from the counts, and no percentage is printed.
+ * On a phone the strip stands upright with the labels beside it, in the same order.
+ *
  * Three rules from Sam's chart files, built in so they cannot be broken by a new file:
  *  - bars are never stacked or added: each has its own row on the same scale;
  *  - a "limit" bar (an estimate that is only an upper limit) is a dashed outline, never solid,
@@ -82,7 +86,9 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
 
   const max = chart.max || 1;
   const pct = (v: number) => `${(v / max) * 100}%`;
-  const show = (v: number) => `${chart.prefix || ""}${Math.round(v * n)}${chart.suffix || ""}`;
+  // commas by hand, so the server and the reader's browser print the same figure whatever their locale
+  const commas = (v: number) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const show = (v: number) => `${chart.prefix || ""}${commas(Math.round(v * n))}${chart.suffix || ""}`;
 
   return (
     <figure ref={ref} className={`mod-win ${c.fig}`} data-stage={stage}>
@@ -124,6 +130,25 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
                     <i key={i} className={i < Math.round(b.value * n) ? c.on : undefined} />
                   ))}
                 </div>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {chart.strip ? (
+          <div className={c.strip}>
+            {chart.strip.map((b, i) => (
+              <div
+                key={b.label}
+                className={`${c.piece} ${b.kind === "main" ? c.lead : ""}`}
+                style={{ flexGrow: b.value, ["--i" as string]: i }}
+              >
+                <span className={c.age}>{b.label}</span>
+                <span className={c.cut} aria-hidden="true" />
+                <span className={c.count}>
+                  {show(b.value)}
+                  {b.note ? <em>{b.note}</em> : null}
+                </span>
               </div>
             ))}
           </div>

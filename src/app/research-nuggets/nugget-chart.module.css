@@ -36,6 +36,18 @@
 @keyframes squareIn { from { transform: scale(.55); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .squares i.on { animation: none; } }
 
+/* a strip: one whole thing cut into its parts. Each piece grows by its count (flex-grow is set on the piece),
+   so the widths are the shares and nothing is worked out as a percentage. */
+.strip { display: flex; gap: 3px; align-items: stretch; }
+.piece { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; }
+.age { font-family: var(--mono); font-size: 11px; line-height: 1.4; color: #6b6b66; white-space: nowrap; }
+.cut { display: block; height: 54px; margin: 7px 0 9px; background: #A8A8A2; transform-origin: left center; transition: transform .7s cubic-bezier(.22, 1, .36, 1); transition-delay: calc(var(--i) * 110ms); }
+.count { font-family: var(--mono); font-size: 15px; line-height: 1.15; letter-spacing: -.02em; color: #1D1B1B; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.count em { display: block; font-style: normal; font-size: 10.5px; letter-spacing: 0; color: #8A8A85; margin-top: 3px; }
+.lead .cut { background: #3A7CA5; }
+.lead .age { color: #1D1B1B; }
+.fig[data-stage="armed"] .cut { transform: scaleX(0); transition: none; }
+
 .axis { position: relative; height: 14px; margin-top: -10px; font-family: var(--mono); font-size: 10px; color: #8A8A85; }
 .axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
 .axis span:first-child { transform: none; }
@@ -59,4 +71,12 @@
   .head { flex-direction: column; align-items: flex-start; gap: 6px; }
   .val { font-size: 20px; }
   .squares { gap: 2px; }
+  /* upright on a phone: the pieces keep their order and their shares, top to bottom, labels beside them */
+  .strip { flex-direction: column; height: 380px; }
+  .piece { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: 1fr auto auto 1fr; column-gap: 14px; min-height: 0; }
+  .cut { grid-column: 1; grid-row: 1 / -1; height: auto; margin: 0; transform-origin: center top; }
+  .age { grid-column: 2; grid-row: 2; }
+  .count { grid-column: 2; grid-row: 3; font-size: 16px; }
+  .count em { display: inline; margin: 0 0 0 7px; }
+  .fig[data-stage="armed"] .cut { transform: scaleY(0); }
 }

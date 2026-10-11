@@ -1,0 +1,34 @@
+{
+ "after": "with 69,295 people",
+ "title": "One Flahavan's ad: the 558,741 people it reached in Ireland, by age",
+ "unit": "number of people in Ireland the ad reached, as Meta's Ad Library gave it on 11 October 2026",
+ "strip": [
+  {
+   "label": "25 to 34",
+   "value": 112688,
+   "note": "people"
+  },
+  {
+   "label": "35 to 44",
+   "value": 145962,
+   "note": "people",
+   "kind": "main"
+  },
+  {
+   "label": "45 to 54",
+   "value": 135171,
+   "note": "people"
+  },
+  {
+   "label": "55 to 64",
+   "value": 95618,
+   "note": "people"
+  },
+  {
+   "label": "65 and over",
+   "value": 69295,
+   "note": "people"
+  }
+ ],
+ "footnote": "One ad from the Flahavans page for Salted Caramel Flapjacks, Library ID 1481256290703842, which ran from 17 August to 1 October 2026 and was aimed at people aged 25 and over in Ireland. The figures are Meta's, read from its Ad Library on 11 October 2026. The five groups add up to 558,734; Meta gives no age for 7 more people."
+}

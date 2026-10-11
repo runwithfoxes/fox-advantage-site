@@ -33,7 +33,7 @@ const LIVE = process.env.VERCEL_ENV === "production";
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 /** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
-    A file gives `bars` (with `max`) or `squares`, never both. */
+    A file gives `bars` (with `max`), `squares` or `strip`, only ever one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
@@ -65,6 +65,16 @@ export interface NoteChart {
     out_of: number;
     /** Printed small after the value, such as "of 48 ads". */
     note?: string;
+  }[];
+  /** One whole thing cut into its parts: a strip, each piece as wide as its share of the total of
+      the values, in the order given here. Counts are printed, never percentages. */
+  strip?: {
+    label: string;
+    value: number;
+    /** Printed small after the count, such as "people". */
+    note?: string;
+    /** "main" is the one piece in the accent colour. The rest are grey. */
+    kind?: "main" | "other";
   }[];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
