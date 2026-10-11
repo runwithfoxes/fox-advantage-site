@@ -4,6 +4,8 @@ import { getAllEssays } from "@/lib/essays";
 import { REPORTS, reportHref } from "./resources/catalogue";
 import { getAllDispatches, LABELS } from "@/lib/diary";
 import { getAllNotes } from "@/lib/notes";
+import { getAllPieces } from "@/lib/sections";
+import { SECTIONS } from "@/lib/sections-name";
 import { toolBuckets } from "./students/toolData";
 
 const BASE = "https://runwithfoxes.com";
@@ -45,6 +47,8 @@ const PUBLIC_ROUTES = [
   "/course/everything", // the library: public, and it was missing (Cato, 30 Sep and 1 Oct)
   "/diary",
   "/research-nuggets",
+  "/caught-our-eye",
+  "/how-we-made-it",
   "/essays",
   "/distinctive",
   "/experts",
@@ -91,7 +95,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   /* and Sam's short research pieces */
   const notes = getAllNotes().map((n) => `/research-nuggets/${n.slug}`);
 
-  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...notes, ...reports];
+  /* and the pieces in Dean's and Dray's sections */
+  const pieces = SECTIONS.flatMap((s) => getAllPieces(s).map((p) => `${s.route}/${p.slug}`));
+
+  const paths = [...PUBLIC_ROUTES, ...chapters, ...tools, ...essays, ...dispatches, ...notes, ...pieces, ...reports];
 
   return paths.map((path) => ({ url: `${BASE}${path}` }));
 }

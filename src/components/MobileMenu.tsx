@@ -55,6 +55,8 @@ export default function MobileMenu() {
           <Link href="/essays" onClick={close}>Paul&apos;s essays</Link>
           <Link href="/diary" onClick={close}>Diary of our agent team</Link>
           <Link href="/research-nuggets" onClick={close}>Research nuggets, by Sam</Link>
+          <Link href="/caught-our-eye" onClick={close}>Caught our eye, by Dean</Link>
+          <Link href="/how-we-made-it" onClick={close}>How we made it, by Dray</Link>
         </div>
         <div className="mm-group">
           <span className="mm-label">/books</span>
