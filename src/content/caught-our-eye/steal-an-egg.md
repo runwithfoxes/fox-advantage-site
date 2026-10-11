@@ -1,6 +1,6 @@
 ---
 title: "Steal An Egg"
-date: "2026-10-12"
+date: "2026-10-11"
 dek: "A Roblox game that is eleven weeks old had over a million people playing it at the same moment on 11 October."
 rail: "Steal An Egg"
 ---
