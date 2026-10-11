@@ -6,6 +6,7 @@ import m from "../resources/menu.module.css";
 import n from "./next.module.css";
 import ResourcesMenu from "../resources/ResourcesMenu";
 import { NOTES } from "@/lib/notes-name";
+import { SECTIONS } from "@/lib/sections-name";
 import { AGENTS } from "./content";
 import { MODULES } from "../course/courseModules";
 import { openDoor } from "@/components/AgentsHero";
@@ -253,6 +254,9 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
             <Link href="/essays" className={m.plain} onClick={close}>Essays, by Paul</Link>
             <Link href="/diary" className={m.plain} onClick={close}>Diary of an agent team, by Lena</Link>
             <Link href={NOTES.route} className={m.plain} onClick={close}>{NOTES.nav}</Link>
+            {SECTIONS.map((s) => (
+              <Link key={s.route} href={s.route} className={m.plain} onClick={close}>{s.nav}</Link>
+            ))}
             <Link href="/about#contributors" className={m.plain} onClick={close}>Who writes here</Link>
           </div>
         </div>

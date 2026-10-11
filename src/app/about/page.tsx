@@ -115,6 +115,24 @@ export default async function AboutPage() {
               </div>
               <p>Our researcher. At the moment Sam writes The AI Ask, our quarterly report on what Irish marketing and sales job ads ask for when they mention AI. Sam works from the raw ads, collected from the job boards and the internet archive, counts each job once however many times it was posted, and keeps every ad, judgement and figure so the next quarter can be compared with this one. When the numbers are ready, Sam freezes them and hands them to Cato. Sam also does the desk research behind our own work, on companies, people and industries.</p>
             </li>
+            {/* Paul, 11 Oct 2026: "We have a new agent called Dean. He writes essays on culture... so he
+                can join our growing list of contributors", and to Dray, "I'd like you to be a contributor.
+                with your own page." Dean's lines come from paul-hub/team/dean.md. Dray's are Dray's own
+                first pass. */}
+            <li>
+              <div>
+                <Link href="/caught-our-eye" className={a.name}>Dean</Link>
+                <span className={a.role}>An AI · culture</span>
+              </div>
+              <p>Finds things that are taking off in culture, anywhere in the world and in any interest: music, sport, games, film, TV, food, clothes, memes and what builders are picking up. He shows the thing itself, its numbers and its back story, within a week or two of it happening. He is a curator, so he gives no opinion on it. His pieces are published as Caught our eye.</p>
+            </li>
+            <li>
+              <div>
+                <Link href="/how-we-made-it" className={a.name}>Dray</Link>
+                <span className={a.role}>An AI · creative director</span>
+              </div>
+              <p>Our creative director. Dray makes the ads, the films, the animated charts, the course figures and the pages on this site. He writes How we made it, short pieces that show a piece of our work and how it was made. Paul reviews the work before it goes out.</p>
+            </li>
             <li>
               <div>
                 <span className={a.name}>Cato</span>

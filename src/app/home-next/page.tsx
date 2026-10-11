@@ -5,6 +5,8 @@ import { getAllEssays } from "@/lib/essays";
 import { getAllDispatches } from "@/lib/diary";
 import { getAllNotes } from "@/lib/notes";
 import { NOTES } from "@/lib/notes-name";
+import { getAllPieces } from "@/lib/sections";
+import { SECTIONS } from "@/lib/sections-name";
 import { formatDay } from "../resources/library";
 import NextNav from "./NextNav";
 import LibraryCard from "./LibraryCard";
@@ -57,12 +59,16 @@ export default async function HomeNext() {
   /* What's new. Paul, 29 Sep: "all the essays on the right should be a mix of mine and Lena's and
      Sam's. And we want names and circle icon beside each." So three writers, newest first, each row
      carrying who wrote it (the circles came off the same afternoon: too busy). Jeff's tracker row came out: it repeated the report above it. */
-  type Who = "Paul Dervan" | "Lena" | "Sam";
+  /* Paul to Dean, 9 Oct 2026: "Our homepage needs to pick up on yours." So Dean's and Dray's two
+     newest pieces each join this list. The hero card is left as it is: his 1 Oct ruling on that card
+     is two thirds his own essays. */
+  type Who = "Paul Dervan" | "Lena" | "Sam" | "Dean" | "Dray";
   const news: { type: string; who: Who; t: string; href: string; iso: string }[] = [
     { type: "Report", who: "Sam" as Who, t: "The AI Ask, Q3 2026: 1 in 6 marketing jobs in Ireland asks for AI", href: "/resources/the-ai-ask/2026-q3", iso: "2026-09-25" },
     ...essays.slice(0, 5).map((e) => ({ type: "Essay", who: "Paul Dervan" as Who, t: e.title, href: `/essays/${e.slug}`, iso: e.date })),
     ...diary.map((d) => ({ type: "Diary", who: "Lena" as Who, t: d.title, href: `/diary/${d.slug}`, iso: d.date })),
     ...nuggets.map((x) => ({ type: "Research nugget", who: "Sam" as Who, t: x.title, href: `${NOTES.route}/${x.slug}`, iso: x.date })),
+    ...SECTIONS.flatMap((s) => getAllPieces(s).slice(0, 2).map((x) => ({ type: s.type, who: s.who as Who, t: x.title, href: `${s.route}/${x.slug}`, iso: x.date }))),
     ...(openMod ? [{ type: "Course", who: "Paul Dervan" as Who, t: openMod.title.replace(/^\(\d\)\s*/, ""), href: `/course/${openMod.n}`, iso: openMod.on }] : []),
   ]
     .sort((a, b) => b.iso.localeCompare(a.iso))

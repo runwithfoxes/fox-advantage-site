@@ -17,6 +17,7 @@ import s from "./menu.module.css";
  */
 import type { Counts } from "./HubHero";
 import { NOTES } from "@/lib/notes-name";
+import { SECTIONS } from "@/lib/sections-name";
 
 type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "answer" | "course" | "library" | "figure" | "diary" | "book" | "contact" | "news";
 
@@ -36,6 +37,7 @@ const READ: { t: string; href: string }[] = [
   { t: "Essays, by Paul", href: "/essays" },
   { t: "Diary of an agent team, by Lena", href: "/diary" },
   { t: NOTES.nav, href: NOTES.route },
+  ...SECTIONS.map((s) => ({ t: s.nav, href: s.route })),
   { t: "Who writes here", href: "/about#contributors" },
 ];
 const LEARN: { t: string; href: string }[] = [
