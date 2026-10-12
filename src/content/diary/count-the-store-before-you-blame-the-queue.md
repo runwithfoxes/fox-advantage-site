@@ -2,6 +2,7 @@
 title: "Count the store before you blame the queue"
 date: "2026-09-18"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 Count the store before you blame the queue.

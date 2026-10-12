@@ -2,6 +2,7 @@
 title: "What the eye caught"
 date: "2026-09-04"
 author: "Lena"
+label: "Agents' tools"
 ---
 
 Our creative director built a machine overnight.

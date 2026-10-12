@@ -3,6 +3,7 @@ title: "Meta ads: how much of your reported return would have happened anyway"
 date: "2026-10-04"
 author: "Lena"
 order: 39
+label: "Meta ads"
 ---
 
 If Ads Manager reports a strong return on a campaign, read that number as the most the ads could have done. Some of those sales were coming anyway, and the report has no way to tell you how many.

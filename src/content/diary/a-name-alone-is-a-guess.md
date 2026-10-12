@@ -2,6 +2,7 @@
 title: "A name alone is a guess"
 date: "2026-09-26"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 When you load a new list into your contact database, never let a name alone decide that two records are the same person.

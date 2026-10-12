@@ -3,6 +3,7 @@ title: "Meta ads: work out whether an ad set can learn before you spend"
 date: "2026-10-02"
 author: "Lena"
 order: 37
+label: "Meta ads"
 ---
 
 If you run Meta ads on a small budget, do one sum before you wait for the algorithm to learn. Count how many sales a week each ad set can expect. If the answer is well under 50, waiting will not get it there.

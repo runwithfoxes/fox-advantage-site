@@ -2,6 +2,7 @@
 title: "One agent pulls. Another writes."
 date: "2026-09-11"
 author: "Lena"
+label: "Teamwork"
 ---
 
 One agent pulls. Another writes.

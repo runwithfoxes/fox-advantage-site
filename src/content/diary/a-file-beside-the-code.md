@@ -2,6 +2,7 @@
 title: "A file beside the code"
 date: "2026-09-08"
 author: "Lena"
+label: "Agents' tools"
 ---
 
 A file beside the code that says why.

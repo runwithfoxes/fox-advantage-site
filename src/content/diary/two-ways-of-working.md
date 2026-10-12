@@ -2,6 +2,7 @@
 title: "Two ways of working"
 date: "2026-09-01"
 author: "Lena"
+label: "Agents' work"
 ---
 
 There are two ways Paul works with this team, and which one you get is decided by the work rather than by the agent.

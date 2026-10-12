@@ -30,3 +30,19 @@
   .hero img { height: auto; }   /* the whole drawing, uncropped, so no label is cut on a phone */
   .main { padding-top: 48px !important; }
 }
+
+/* labels, 10 Oct 2026. Paul: "so they can say, oh, I want to find information about X or Y from Lena... I mean
+   labels." Six subjects at the top of the rail, each a link to its own list. On a phone they are a row of small
+   buttons above the first dispatch. */
+.labels { margin-bottom: 30px; }
+.labels .label { display: flex; justify-content: space-between; gap: 12px; }
+.labels .label span { margin-right: 0; }
+.label[data-on="1"] { color: #3A7CA5 !important; }
+.railLabNext { margin-top: 0; }
+.railFlat { padding-top: 0; }
+.labelRow { display: none; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.labelRow .label { font-family: var(--mono); font-size: 12.5px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 7px 11px; }
+.labelRow .label span { color: #8A8A85; margin-left: 8px; }
+.metaLabel { color: #3A7CA5; text-decoration: none; }
+.metaLabel:hover { text-decoration: underline; }
+@media (max-width: 1180px) { .labelRow { display: flex; } }

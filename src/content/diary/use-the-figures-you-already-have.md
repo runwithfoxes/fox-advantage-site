@@ -2,6 +2,7 @@
 title: "Use the figures you already have"
 date: "2026-09-19"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Use the figures you already have.
