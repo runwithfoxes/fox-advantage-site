@@ -28,7 +28,7 @@
    "ch": 2
   },
   {
-   "text": "Creative is the input. In the biggest study of Meta ads we know of, only four to eight ads in a hundred become winners, and the best accounts make two to three times the creative of average ones at the same spend. The average bank here started 2.7 new creatives a week. The most active started 8.5. That gap is the opening (Chapter 3).",
+   "text": "Creative is the input. In the biggest study of Meta ads we know of, only four to eight ads in a hundred become winners, and the best accounts make two to three times the creative of average ones at the same spend. The average bank here started 2.0 new creatives a week. The most active started 7.3. That gap is the opening (Chapter 3).",
    "ch": 3
   },
   {
@@ -63,7 +63,7 @@
    "title": "What I counted",
    "lede": [
     {
-     "p": "Ten advertisers: the five main Irish banks and lenders, the credit unions, An Post's money arm, and three digital banks that came to Ireland from abroad. Ninety days, 1 July to 26 September 2026. Every ad they showed on Facebook and Instagram in Ireland: 1,660. Merge the copies that use the same words and it's 601 different creatives, 349 of them new this quarter. 77.7 million people reached in Ireland, counting a person once for every ad that reached them, which is how the platform counts each ad."
+     "p": "Ten advertisers: the five main Irish banks and lenders, the credit unions, An Post's money arm, and three digital banks that came to Ireland from abroad. Ninety days, 1 July to 26 September 2026. Every ad they showed on Facebook and Instagram in Ireland: 1,660. Merge the copies that use the same words and it's 601 different creatives, 264 of them new this quarter. 77.7 million people reached in Ireland, counting a person once for every ad that reached them, which is how the platform counts each ad."
     },
     {
      "p": "Every number here has a denominator you can see. The typical ad at 15 words is the median of 601. The 28 of fifty that brand early come with the frames they were judged on."
@@ -82,7 +82,7 @@
        "kind": "Figure",
        "no": "1.1",
        "title": "Ads, creatives and new creatives, by advertiser",
-       "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means not running before 1 July among the ads we collected, which start on that date. A creative that was rested in the spring and brought back counts as new, so the counts of new creatives are the most that can be new."
+       "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means its first ad started on or after 1 July and none of the advertiser's older ads had the same words. 85 creatives that started in the quarter had already run before 1 July and are not counted as new. Meta's library let us look back about nine months, so the count of new creatives is still the most that can be new."
       },
       {
        "p": "The spread is the first surprise. The most active advertiser ran 421 ads. The quietest ran 27. The median is 125.5. Same category, same ninety days, same platform, and one advertiser is running social at 16 times the tempo of another, and both are reaching millions of people. There's a range, and now you can see where you sit in it."
@@ -104,7 +104,7 @@
        "cap": "Week beginning 29 June to week beginning 21 September 2026. The first week counts 1 to 5 July only."
       },
       {
-       "p": "The category doesn't move as one. The week the most advertisers launched together began 7 September: 7 of the ten started 44 new creatives between them. The biggest week by count began 14 September, with 45, and 30 of those were one advertiser's. The quietest full week, beginning 10 August, saw 11, 10 of them from one advertiser. So a busy week in the category can be one team's launch. When you read your own category's tempo, count who moved as well as how much."
+       "p": "The category doesn't move as one. The week the most advertisers launched together began 7 September: 7 of the ten started 43 new creatives between them. The biggest week by count began 14 September, with 45, and 30 of those were one advertiser's. The quietest full week, beginning 10 August, saw 4, 3 of them from one advertiser. So a busy week in the category can be one team's launch. When you read your own category's tempo, count who moved as well as how much."
       },
       {
        "p": "The twelve creatives that reached the most people this quarter, one card each, with what it sells, its headline and its reach. They're here so you can see the category's work before the numbers about it."
@@ -323,10 +323,10 @@
        "kind": "Figure",
        "no": "3.1",
        "title": "New creatives started a week, by advertiser",
-       "cap": "New creatives this quarter divided by 13 weeks. Category average 2.7, median 2, lowest 0.2, highest 8.5."
+       "cap": "New creatives this quarter divided by 13 weeks. Category average 2, median 1.4, lowest 0.2, highest 7.3."
       },
       {
-       "p": "The average advertiser started 2.7 new creatives a week. The most active started 8.5, the quietest 0.2. We don't know what anyone spent, so we can't say who is above or below their own line, and I'd be careful of anyone who claims to. What we can say is that the practitioner priors disagree with each other by a wide margin: one well-known practitioner runs about one new creative a week at a mid-size spend, and the largest benchmark study's own prior is about eight a week at the same spend. The category's most active advertiser is above the top of that range. The average sits over it on one practitioner's numbers and under it on another's. Which is a useful thing to know before anyone quotes you a target."
+       "p": "The average advertiser started 2.0 new creatives a week. The most active started 7.3, the quietest 0.2. We don't know what anyone spent, so we can't say who is above or below their own line, and I'd be careful of anyone who claims to. What we can say is that the practitioner priors disagree with each other by a wide margin: one well-known practitioner runs about one new creative a week at a mid-size spend, and the largest benchmark study's own prior is about eight a week at the same spend. The category's most active advertiser sits inside that range, nearer the top. The average sits over it on one practitioner's numbers and under it on another's. Which is a useful thing to know before anyone quotes you a target."
       }
      ]
     },
@@ -348,7 +348,7 @@
        "p": "It helps to know how far the road goes. In mobile gaming, one of the most measured categories there is, because every download is counted, one puzzle game put about 600 new creatives onto a single ad network in 30 days and a rival 1,700, according to tracking counts read out on the industry's own podcast. The people who run those accounts say it plainly: you need the volume, because every new creative gets a first look from the platform, and more looks means more chances of another winner. That is practitioner talk on a different platform, in-game ads rather than a social feed, and I'd carry it as a direction rather than a number."
       },
       {
-       "p": "Irish banking's most active advertiser made about 37 new creatives a month and the average about 12. Nobody is suggesting a bank needs 600. The loop is similar in shape, though: a new creative gets a first look, spend moves to what beats the goal, and the way to find the next winner is to keep feeding it."
+       "p": "Irish banking's most active advertiser made about 32 new creatives a month and the average about 9. Nobody is suggesting a bank needs 600. The loop is similar in shape, though: a new creative gets a first look, spend moves to what beats the goal, and the way to find the next winner is to keep feeding it."
       }
      ]
     },
@@ -382,8 +382,8 @@
        "fig": "f34",
        "kind": "Figure",
        "no": "3.4",
-       "title": "Share of each advertiser's reach from creatives first seen in the last 30 days of the quarter",
-       "cap": "Category average 21.8%, median 22.5%, lowest 0.0%, highest 54.1%."
+       "title": "Share of each advertiser's reach from new creatives first seen in the last 30 days of the quarter",
+       "cap": "Category average 18.6%, median 15.9%, lowest 0.0%, highest 52.3%."
       },
       {
        "p": "How many copies each advertiser runs of the same words. A copy can carry a different picture or run on a different date, so this is about habit, not waste."
@@ -396,7 +396,7 @@
        "cap": "How many copies of the same words each advertiser runs. Category average 3.3, median 2.8, lowest 1.4, highest 6.2."
       },
       {
-       "p": "Two more ways to look at the same muscle. Fresh reach, the share of an advertiser's reach coming from creatives under a month old, runs from 0% to 54%. And copies per creative, which is how often the same words go out again as a new ad, from 1.4 to 6.2. Copies aren't wasted; a copy can carry a different picture or run on a different date. But a copy isn't a new shot either, and the next chapter is about the difference."
+       "p": "Two more ways to look at the same muscle. Fresh reach, the share of an advertiser's reach coming from creatives under a month old, runs from 0% to 52%. And copies per creative, which is how often the same words go out again as a new ad, from 1.4 to 6.2. Copies aren't wasted; a copy can carry a different picture or run on a different date. But a copy isn't a new shot either, and the next chapter is about the difference."
       }
      ]
     }
@@ -980,7 +980,7 @@
   },
   {
    "k": "Definitions",
-   "t": "An ad is one entry in our record. A creative is one advertiser and one set of words; the record lists one text per version of an ad, so exact copies were merged. New means not running before 1 July among the ads we collected, which start on that date. A creative that was rested in the spring and brought back counts as new, so the counts of new creatives are the most that can be new. Reach is Meta's count of people in Ireland an ad reached, summed across ads, so a person reached by two ads counts twice; shares of reach use only ads started in the quarter."
+   "t": "An ad is one entry in our record. A creative is one advertiser and one set of words; the record lists one text per version of an ad, so exact copies were merged. New means its first ad started on or after 1 July and none of the advertiser's older ads had the same words. 85 creatives that started in the quarter had already run before 1 July and are not counted as new. Meta's library let us look back about nine months, so the count of new creatives is still the most that can be new. Matched on the main text alone, without the headline and description, 131 had run before. Reach is Meta's count of people in Ireland an ad reached, summed across ads, so a person reached by two ads counts twice; shares of reach use only ads started in the quarter."
   },
   {
    "k": "What was read",
