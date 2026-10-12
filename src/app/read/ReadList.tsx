@@ -13,15 +13,20 @@ export type Card = { label: string; title: string; dek: string; day: string; hre
 
 const STEP = 16;
 
-export default function ReadList({ cards }: { cards: Card[] }) {
-  const [n, setN] = useState(STEP);
-  const leads = cards.filter((c) => c.img).slice(0, 3);
+export default function ReadList({ cards, total }: { cards: Card[]; total: number }) {
+  const pics = cards.filter((c) => c.img).slice(0, 9);
+  /* nine pictures in three rows, as Substack shows them, then one link to everything else (Paul, 12 Oct:
+     "substack show 9, not 3, and then link off to see all after"). A view with fewer than three pictures
+     of its own (the diary, today) is a list of type from the start. */
+  const leads = pics.length >= 3 ? pics : [];
   const rows = cards.filter((c) => !leads.includes(c));
+  const [open, setOpen] = useState(leads.length === 0);
+  const [n, setN] = useState(STEP);
 
   return (
     <>
       {leads.length ? (
-        <ul className={`${r.leads} ${leads.length < 3 ? r.leadsFew : ""}`}>
+        <ul className={r.leads}>
           {leads.map((c) => (
             <li key={c.href}>
               <Link href={c.href} className={r.card}>
@@ -37,19 +42,27 @@ export default function ReadList({ cards }: { cards: Card[] }) {
         </ul>
       ) : null}
 
-      <ul className={r.rows}>
-        {rows.slice(0, n).map((c) => (
-          <li key={c.href}>
-            <Link href={c.href} className={r.row}>
-              <span className={r.label}>{c.label}</span>
-              <span className={r.rowTitle}>{c.title}</span>
-              <span className={r.day}>{c.day}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {!open && rows.length ? (
+        <button type="button" className={r.moreBtn} onClick={() => setOpen(true)}>
+          See all {total} →
+        </button>
+      ) : null}
 
-      {rows.length > n ? (
+      {open ? (
+        <ul className={r.rows}>
+          {rows.slice(0, n).map((c) => (
+            <li key={c.href}>
+              <Link href={c.href} className={r.row}>
+                <span className={r.label}>{c.label}</span>
+                <span className={r.rowTitle}>{c.title}</span>
+                <span className={r.day}>{c.day}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {open && rows.length > n ? (
         <button type="button" className={r.moreBtn} onClick={() => setN(n + STEP)}>
           Show more ({rows.length - n} left)
         </button>

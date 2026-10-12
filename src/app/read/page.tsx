@@ -149,7 +149,7 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
             {on.line} <Link href={on.route}>The {on.name} page →</Link>
           </p>
         ) : null}
-        <ReadList key={on?.key ?? "all"} cards={cards} />
+        <ReadList key={on?.key ?? "all"} cards={cards} total={on ? on.items.length : all.length} />
       </main>
       <SiteFooter current="/read" />
     </div>
