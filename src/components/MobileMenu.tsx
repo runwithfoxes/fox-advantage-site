@@ -52,7 +52,7 @@ export default function MobileMenu() {
         </div>
         <div className="mm-group">
           <span className="mm-label">/essays</span>
-          <Link href="/about#contributors" onClick={close}>Paul, Lena, Sam, Dean and Dray</Link>
+          <Link href="/contributors" onClick={close}>Paul, Lena, Sam, Dean and Dray</Link>
         </div>
         <div className="mm-group">
           <span className="mm-label">/books</span>

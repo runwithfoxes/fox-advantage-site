@@ -32,7 +32,7 @@ const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts
   { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/#library" },
   /* Paul, 12 Oct 2026: the six reading rows become one. The names stay as a grey line; the page is the
      contributors list on About, where each writer links to their own page and their newest piece. */
-  { g: "essay", t: "Essays", d: "Paul, Lena, Sam, Dean and Dray", href: "/about#contributors" },
+  { g: "essay", t: "Essays", d: "Paul, Lena, Sam, Dean and Dray", href: "/contributors" },
   /* Both books: The Fox Advantage (free, /book) and Run with Foxes (/run-with-foxes), which /book links to. */
   { g: "book", t: "Books", d: "The Fox Advantage and Run with Foxes", href: "/book" },
 ];
