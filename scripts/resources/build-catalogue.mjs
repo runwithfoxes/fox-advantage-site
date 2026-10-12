@@ -186,7 +186,7 @@ function baseEdition(s, label, date, extra) {
         { id: "f2", title: f22cap, caption: "Share of each group's reach that was under 35, ads started in the quarter.", data: { kind: "bars", unit: "%", rows: [{ label: "Three digital challengers", value: Math.round(u35.ch), highlight: true }, { label: "Seven Irish banks and lenders", value: Math.round(u35.ir + 1e-9) }] } },
       ],
       free: ["The whole report, every chapter and figure", "The twelve most-seen ads", "The method and its limits"],
-      withAccount: ["Every ad behind the numbers, by bank, product, offer and week", "The next issue by email when it lands"],
+      withAccount: ["The next issue by email when it lands"],
       pages: 24, minutes: 22, href: "/resources/the-ad-audit/2026-q3", example: false, status: "draft",
     },
     {
