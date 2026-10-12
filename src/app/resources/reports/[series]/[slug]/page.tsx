@@ -109,7 +109,7 @@ export default async function EditionPage({ params }: { params: Promise<{ series
             <Byline r={r} />
             <p className={s.stand}>{r.standfirst}</p>
             <div id="download">
-              <DownloadPdf want="report" item={r.slug} unlocked={unlocked} href={r.pdf} pages={r.pages} />
+              {r.pdf ? <DownloadPdf want="report" item={r.slug} unlocked={unlocked} href={r.pdf} pages={r.pages} /> : null}
             </div>
           </div>
           <aside className={`mod-win ${s.glance}`} aria-label="At a glance">
