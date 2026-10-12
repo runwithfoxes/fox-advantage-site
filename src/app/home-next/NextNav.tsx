@@ -247,7 +247,7 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
           <div className={n.mobGroup}>
             <span className={m.lab}>Resources</span>
             <Link href="/resources/the-ai-ask/2026-q3" className={m.plain} onClick={close}>The AI Ask, our new report</Link>
-            <Link href="/contributors" className={m.plain} onClick={close}>Essays: Paul, Lena, Sam, Dean and Dray</Link>
+            <Link href="/read" className={m.plain} onClick={close}>Essays: Paul, Lena, Sam, Dean and Dray</Link>
             <Link href="/book" className={m.plain} onClick={close}>Books: The Fox Advantage and Run with Foxes</Link>
           </div>
         </div>

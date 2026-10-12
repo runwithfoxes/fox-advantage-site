@@ -7,7 +7,7 @@ import { getAllPieces } from "@/lib/sections";
 import { CAUGHT, DRAY } from "@/lib/sections-name";
 import a from "@/app/about/about.module.css";
 
-/* The contributors list. One component so the About page and /contributors cannot drift apart.
+/* The contributors list. One component so the About page keeps one list.
    Each writer: name, role, the paragraph, a link to their own page, and their newest piece. */
 export default function Contributors({ label = true }: { label?: boolean }) {
   /* The newest piece from each writer, so this list works as the hub for all of them. */
