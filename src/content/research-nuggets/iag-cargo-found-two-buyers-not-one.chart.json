@@ -1,0 +1,24 @@
+{
+ "after": "11 points more than the others",
+ "title": "Spend by firms that joined the scheme rose 18% in a year, 11 points more than similar firms that did not join",
+ "unit": "growth in spend with IAG Cargo over one year, in percentage points",
+ "split": {
+  "label": "Firms that joined",
+  "count": "up 18%",
+  "parts": [
+   {
+    "label": "The same growth as similar firms that did not join",
+    "value": 7,
+    "on_bar": "about 7 points",
+    "kind": "pale"
+   },
+   {
+    "label": "Extra growth among firms that joined",
+    "value": 11,
+    "on_bar": "11 points more",
+    "kind": "main"
+   }
+  ]
+ },
+ "footnote": "IAG Cargo compared small freight firms that joined its loyalty scheme with firms of similar spend that had not, for the year after the scheme launched in March 2017. The about 7 points is our sum, 18 less 11. The result is for the whole scheme, and the biggest rewards were aimed at firms with more room to grow. Source: the IPA Effectiveness Awards paper, 2018."
+}

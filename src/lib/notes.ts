@@ -33,7 +33,7 @@ const LIVE = process.env.VERCEL_ENV === "production";
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 /** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
-    A file gives `bars` (with `max`), `squares` or `pairs`, only one of them. */
+    A file gives `bars` (with `max`), `squares`, `pairs` or `split`, only one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
@@ -74,6 +74,14 @@ export interface NoteChart {
   }[];
   pairs_unit?: string;
   pairs_key?: [string, string];
+  /** One bar cut into parts that add up to it: a whole, and what it is made of. `count` is printed for
+      the whole bar, each part's `on_bar` words are printed on that part, and its `label` under it. A
+      "pale" part is the share that would have happened anyway; "main" is the part the eye should go to. */
+  split?: {
+    label: string;
+    count: string;
+    parts: { label: string; value: number; on_bar: string; kind?: "main" | "pale" }[];
+  };
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
   footnote?: string;

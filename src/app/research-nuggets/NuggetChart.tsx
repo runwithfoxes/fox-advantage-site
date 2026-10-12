@@ -20,6 +20,9 @@ import c from "./nugget-chart.module.css";
  * 12 Oct 2026: every firm had an owner and a clerk deciding). The total is printed once and the count by
  * each group.
  *
+ * A file can give `split`: one bar cut into the parts that add up to it (nugget 09: growth of 18, of which
+ * about 7 the other firms also grew and 11 is the difference). The words on each part are the file's.
+ *
  * Three rules from Sam's chart files, built in so they cannot be broken by a new file:
  *  - bars are never stacked or added: each has its own row on the same scale;
  *  - a "limit" bar (an estimate that is only an upper limit) is a dashed outline, never solid,
@@ -85,6 +88,7 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
   }, [play]);
 
   const max = chart.max || 1;
+  const splitTotal = (chart.split?.parts || []).reduce((a, p) => a + p.value, 0);
   const pairTotal = (chart.pairs || []).reduce((a, g) => a + g.value, 0);
   const pct = (v: number) => `${(v / max) * 100}%`;
   const show = (v: number) => `${chart.prefix || ""}${Math.round(v * n)}${chart.suffix || ""}`;
@@ -167,6 +171,33 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
                 </div>
               );
             })}
+          </div>
+        ) : null}
+
+        {chart.split ? (
+          <div className={c.split}>
+            <div className={c.head}>
+              <span className={c.lab}>{chart.split.label}</span>
+              <span className={`${c.val} ${c.late}`}>{chart.split.count}</span>
+            </div>
+            {/* the parts grow one after the other, left to right, as one bar */}
+            <div className={c.splitBar} style={{ gridTemplateColumns: chart.split.parts.map((p) => `${p.value}fr`).join(" ") }}>
+              {chart.split.parts.map((p, i) => {
+                const before = chart.split!.parts.slice(0, i).reduce((a, x) => a + x.value, 0);
+                const grown = Math.max(0, Math.min(1, (splitTotal * n - before) / p.value));
+                return (
+                  <span key={p.label} className={c.splitCell}>
+                    <span className={`${c.splitPart} ${c[p.kind || "main"]}`} style={{ width: `${grown * 100}%` }} />
+                    <span className={`${c.onBar} ${c[p.kind || "main"]} ${c.late}`}>{p.on_bar}</span>
+                  </span>
+                );
+              })}
+            </div>
+            <div className={c.splitLabs} style={{ gridTemplateColumns: chart.split.parts.map((p) => `${p.value}fr`).join(" ") }}>
+              {chart.split.parts.map((p) => (
+                <span key={p.label} className={`${c.lab} ${c[p.kind || "main"]}`}>{p.label}</span>
+              ))}
+            </div>
           </div>
         ) : null}
 
