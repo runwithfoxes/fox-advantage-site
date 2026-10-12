@@ -1,6 +1,8 @@
 /* /read: the front of the magazine. Type and colours from the essay index and the About list. */
 .main { padding: 128px 32px 24px; }
-.inner { max-width: 1040px; margin: 0 auto; }
+.inner { max-width: 1316px; margin: 0 auto; }
+.layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 56px; align-items: start; }
+.col { min-width: 0; max-width: 1040px; }
 .head { margin-bottom: 40px; }
 .kick { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
 .h1 { font-family: var(--sans); font-size: clamp(32px, 5vw, 48px); font-weight: 300; letter-spacing: -1px; line-height: 1.15; margin: 0; }
@@ -57,3 +59,30 @@
 .opening p:last-child { margin-bottom: 0; }
 .lead .gFoot, .topText .gFoot { margin-top: 12px; }
 .leadImg + .leadTitle, .lead > a:first-child { display: block; }
+
+/* the band at the top: series, writer, role, and the site's own line, with thin rules between */
+.band { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 0 0 64px; }
+.bandItem { display: flex; flex-direction: column; gap: 4px; padding: 22px 22px 24px; text-decoration: none; color: inherit; border-left: 1px solid var(--border); }
+.bandItem:first-child { border-left: 0; padding-left: 0; }
+.bandName { font-family: var(--sans); font-size: 21px; font-weight: 300; letter-spacing: -0.4px; line-height: 1.2; transition: color .3s; }
+.bandItem:hover .bandName { color: var(--orange); }
+.bandWho { font-family: var(--mono); font-size: 13px; color: var(--text); margin-top: 6px; }
+.bandRole { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #8A8A85; }
+.bandLine { font-family: var(--mono); font-size: 12px; font-weight: 300; line-height: 1.65; color: var(--text-muted); margin-top: 10px; }
+
+/* the rail, in the diary's styles: no hero to clear here, and the section on screen is marked */
+.rail { padding-top: 0 !important; }
+.rail a.here { color: #3A7CA5; }
+.top, .group { scroll-margin-top: 96px; }
+@media (max-width: 1180px) {
+  .layout { display: block; }
+}
+@media (max-width: 760px) {
+  /* a tidy list, one entry to a row, with the one-line description dropped to keep it short */
+  .band { grid-template-columns: 1fr; margin-bottom: 40px; }
+  .bandItem, .bandItem:first-child { border-left: 0; padding: 14px 0; border-top: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+  .bandItem:first-child { border-top: 0; }
+  .bandName { font-size: 18px; flex: 1 1 100%; }
+  .bandWho { margin-top: 0; font-size: 12px; }
+  .bandLine { display: none; }
+}
