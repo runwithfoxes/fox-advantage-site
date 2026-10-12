@@ -3,28 +3,38 @@ import type { Metadata } from "next";
 import NextNav from "@/app/home-next/NextNav";
 import SiteFooter from "@/components/SiteFooter";
 import { hasAccess } from "@/lib/access";
-import { getAllEssays, getEssayContent } from "@/lib/essays";
-import { getAllDispatches, getDispatchContent } from "@/lib/diary";
-import { getAllNotes, getNoteContent } from "@/lib/notes";
+import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
+import { getAllNotes } from "@/lib/notes";
 import { NOTES } from "@/lib/notes-name";
-import { getAllPieces, getPieceContent } from "@/lib/sections";
+import { getAllPieces } from "@/lib/sections";
 import { CAUGHT, DRAY } from "@/lib/sections-name";
 import { formatDay } from "../resources/library";
 import { WRITERS } from "@/lib/contributors-data";
-import NuggetBody from "../research-nuggets/NuggetBody";
-import ReadList, { type Card, type Sec } from "./ReadList";
+import ReadList, { type Card } from "./ReadList";
+import path from "path";
+import sharp from "sharp";
+import h from "../resources/hero.module.css";
+import f from "../resources/front.module.css";
 import r from "./read.module.css";
 
 /**
  * /read - THE FRONT OF THE MAGAZINE, in the shape of a Substack home page. Paul, 12 Oct 2026: "if I click,
  * i'm brought down the page to read some stuff, and then have to click again. It is confusing... My best
- * example to learn from is the substack structure." So: the newest piece from anyone, printed whole at the
- * top, nothing to click. Under it one small row of the five sections that FILTERS the cards where they sit
- * (it never jumps down the page), and every card opens its piece in one click.
+ * example to learn from is the substack structure." And on the first two tries: "They don't even look like
+ * the same website", "where's the art direction?", "I need for people to know when they arrive here that
+ * there's contributors and there's different things they write about", "You haven't even got images taken
+ * over the full page."
  *
- * Nothing is typed in by hand; it reads the content folders. A piece's card shows its own picture (an
- * essay's first picture, or `image:` in the frontmatter of any other piece) and takes its section's
- * picture when it has none. Two pieces on one day: the section listed first below wins the top.
+ * So it is built from the homepage's own parts. The newest piece's picture fills the page edge to edge
+ * with the menu on it and its title on the dark veil (no words go into a picture). Along the foot of the
+ * picture, on the first screen, is who writes here: five sections, each with its writer. A click on one
+ * filters the list under it. The list is a few pictures at their own shape, then type on hairlines, and
+ * every piece opens in one click.
+ *
+ * Nothing is typed in by hand; it reads the content folders. A piece's own picture is an essay's first
+ * picture, or `image:` in the frontmatter of any other piece. Two pieces on one day: the section listed
+ * first below wins the top.
  */
 export const metadata: Metadata = {
   title: "Read \\ Run with Foxes",
@@ -72,64 +82,82 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
     .map((s) => ({ s, i: s.items[0] }))
     .sort((a, b) => b.i.date.localeCompare(a.i.date))[0];
 
-  /* The whole piece, through its own section's reader, so a nugget keeps its chart and an essay its pictures. */
-  let body: React.ReactNode = null;
-  if (newest) {
-    const { s, i } = newest;
-    if (s.key === "notes") {
-      const n = await getNoteContent(i.slug);
-      body = n ? <NuggetBody note={n} /> : null;
-    } else {
-      const html =
-        s.key === "essays" ? (await getEssayContent(i.slug))?.content
-        : s.key === "diary" ? (await getDispatchContent(i.slug))?.content
-        : (await getPieceContent(s.key === "caught" ? CAUGHT : DRAY, i.slug))?.content;
-      body = html ? <div className="essay-prose" dangerouslySetInnerHTML={{ __html: html }} /> : null;
-    }
-  }
+  const who = (s: Series) => Object.values(WRITERS).find((x) => x.key === s.key);
+  const on = series.find((s) => s.key === asked) ?? null;
 
-  const secs: Sec[] = series.map((s) => {
-    const w = Object.values(WRITERS).find((x) => x.key === s.key);
-    return { key: s.key, name: s.name, who: w?.name ?? s.who, role: w?.role ?? "", line: s.line, route: s.route };
-  });
-  const cards: Card[] = series
-    .flatMap((s) => s.items.map((i) => ({ key: s.key, title: i.title, dek: i.dek, date: i.date, day: formatDay(i.date), href: i.href, img: i.img ?? s.hero })))
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .map((c) => ({ key: c.key, title: c.title, dek: c.dek, day: c.day, href: c.href, img: c.img }));
+  /* A picture is only shown where it can sit at its own shape: wide, about 16 by 9. A square or a tall
+     one would be cut by the frame, and a section's picture has handwritten words a crop slices through. */
+  const wide = async (src: string | null) => {
+    if (!src) return false;
+    try {
+      const m = await sharp(path.join(process.cwd(), "public", src)).metadata();
+      const k = (m.width ?? 0) / (m.height ?? 1);
+      return k >= 1.6 && k <= 2.4;
+    } catch {
+      return false;
+    }
+  };
+
+  const all = series
+    .flatMap((s) => s.items.map((i) => ({ s, i })))
+    .sort((a, b) => b.i.date.localeCompare(a.i.date));
+  /* the piece in the hero is left out of Latest, and kept in its own section's list */
+  const shown = on ? all.filter((x) => x.s.key === on.key) : all.filter((x) => x.i.href !== newest?.i.href);
+  const cards: Card[] = await Promise.all(
+    shown.map(async ({ s, i }) => ({
+      label: `${s.name} · ${who(s)?.name ?? s.who}`,
+      title: i.title, dek: i.dek, day: formatDay(i.date), href: i.href,
+      img: (await wide(i.img)) ? i.img : null,
+    })),
+  );
+  const heroImg = newest ? ((await wide(newest.i.img)) ? newest.i.img : newest.s.hero) : null;
 
   return (
-    <div className="essay-page">
-      <NextNav bar known={known} />
-      <main className={r.main}>
-        <div className={r.inner}>
-          <h1 className={r.h1}>Read</h1>
+    <div className={f.page}>
+      <section className={`${h.hero} ${r.hero}`}>
+        {heroImg ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img className={h.film} src={heroImg} alt="" />
+        ) : null}
+        <NextNav known={known} />
+        {newest ? (
+          <div className={r.heroBody}>
+            <div className={r.heroText}>
+              <p className={r.heroMeta}>The latest · {newest.s.name} · {who(newest.s)?.name ?? newest.s.who} · {formatDay(newest.i.date)}</p>
+              <h2 className={`${h.title} ${r.heroTitle}`}><Link href={newest.i.href}>{newest.i.title}</Link></h2>
+              {newest.i.dek ? <p className={h.sub}>{newest.i.dek}</p> : null}
+              <Link href={newest.i.href} className={r.heroGo}>Read the latest →</Link>
+            </div>
+          </div>
+        ) : null}
 
-          {newest ? (
-            <article className={r.top}>
-              <header className={r.topHead}>
-                <div className={r.kick}>\read \ the newest</div>
-                <div className="essay-meta">
-                  {newest.s.name} \ {secs.find((x) => x.key === newest.s.key)?.who} \ {formatDay(newest.i.date)}
-                </div>
-                <h2 className="essay-heading">
-                  <Link href={newest.i.href} className={r.topTitle}>{newest.i.title}</Link>
-                </h2>
-                {newest.i.dek ? <p className="essay-dek">{newest.i.dek}</p> : null}
-              </header>
-              {/* an essay carries its picture inside its own words; any other piece takes its own or its section's here */}
-              {newest.s.key !== "essays" && (newest.i.img ?? newest.s.hero) ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img className={r.topImg} src={(newest.i.img ?? newest.s.hero)!} alt="" />
-              ) : null}
-              {body}
-              <div className={r.topFoot}>
-                <Link href={newest.i.href}>This piece on its own page, to share →</Link>
-              </div>
-            </article>
-          ) : null}
+        {/* Who writes here and what each covers, on the first screen. Names and role tags come from the one
+            shared list the About page also reads. A click filters the list under it. */}
+        <nav className={r.who} id="who" aria-label="Who writes here">
+          <div className={r.whoInner}>
+            <Link href="/read#who" className={`${r.whoItem} ${on ? "" : r.whoOn}`} aria-current={on ? undefined : "true"}>
+              <span className={r.whoName}>Latest</span>
+              <span className={r.whoBy}>{all.length} pieces</span>
+            </Link>
+            {series.map((s) => (
+              <Link key={s.key} href={`/read?s=${s.key}#who`} className={`${r.whoItem} ${on?.key === s.key ? r.whoOn : ""}`} aria-current={on?.key === s.key ? "true" : undefined}>
+                <span className={r.whoName}>{s.name}</span>
+                <span className={r.whoBy}>{who(s)?.name ?? s.who} · {s.items.length}</span>
+                {who(s) ? <span className={r.whoRole}>{who(s)!.role}</span> : null}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </section>
 
-          <ReadList secs={secs} cards={cards} topHref={newest?.i.href ?? ""} start={secs.some((x) => x.key === asked) ? asked! : "all"} />
-        </div>
+      <main className={r.wrap}>
+        <h1 className={r.h1}>Read</h1>
+        {on ? (
+          <p className={r.about}>
+            {on.line} <Link href={on.route}>The {on.name} page →</Link>
+          </p>
+        ) : null}
+        <ReadList key={on?.key ?? "all"} cards={cards} />
       </main>
       <SiteFooter current="/read" />
     </div>

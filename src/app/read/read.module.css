@@ -1,60 +1,72 @@
-/* /read: the newest piece printed whole, then one row of sections that filters the cards under it.
-   Type and colours from the essay pages and the About list. */
-.main { padding: 128px 32px 24px; }
-.inner { max-width: 1180px; margin: 0 auto; }
+/* /read, in the homepage's language (src/app/resources/hero.module.css and home-next/next.module.css):
+   a picture across the whole page with the menu on it, white type on the page's own dark veil, a strip of
+   dark glass along its foot, then type on hairlines. Nothing here invents a colour or a face of type. */
+
+/* the hero: the newest piece. Its picture fills the page edge to edge. */
+.hero { min-height: min(84vh, 780px); }
+/* our pictures are pale drawings, so the veil is deeper than the homepage film needs: white type must hold */
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(96deg, rgba(8, 16, 24, .9) 0%, rgba(8, 16, 24, .78) 30%, rgba(8, 16, 24, .3) 52%, rgba(8, 16, 24, 0) 68%),
+    linear-gradient(rgba(8, 16, 24, .5), rgba(8, 16, 24, 0) 20%); }
+.heroBody { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; width: 100%; max-width: 1240px; margin: 0 auto; padding: 24px 48px 40px; }
+.heroText { max-width: 520px; display: flex; flex-direction: column; align-items: flex-start; }
+.heroMeta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .78); margin: 0 0 20px; }
+.heroTitle { font-size: clamp(2.2rem, 4.2vw, 3.8rem) !important; text-wrap: balance; }
+.heroTitle a { color: inherit; text-decoration: none; }
+.heroGo { display: inline-block; margin-top: 30px; font-family: var(--mono); font-size: 13px; padding: 13px 18px; background: var(--orange); color: #fff; text-decoration: none; }
+.heroGo:hover { background: var(--orange-hover); }
+
+/* who writes here: the strip along the foot of the hero, so it is seen on arriving. Each one filters. */
+.who { position: relative; z-index: 2; border-top: 1px solid rgba(255, 255, 255, .2); background: rgba(8, 16, 24, .52); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); scroll-margin-top: 0; }
+.whoInner { max-width: 1240px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: .55fr repeat(5, minmax(0, 1fr)); }
+.whoItem { display: flex; flex-direction: column; gap: 5px; padding: 18px 18px 20px; text-decoration: none; color: #fff; border-left: 1px solid rgba(255, 255, 255, .14); border-top: 2px solid transparent; margin-top: -1px; }
+.whoItem:first-child { border-left: 0; padding-left: 0; }
+.whoName { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: -0.01em; line-height: 1.2; }
+.whoBy { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, .86); margin-top: 3px; }
+.whoRole { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: #A9CBE4; }
+.whoItem:hover .whoName { color: #A9CBE4; }
+.whoOn { border-top-color: #fff; background: rgba(255, 255, 255, .07); }
+
+/* the list */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 48px 96px; }
+.about { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--text); margin: 0 0 44px; max-width: 720px; }
+.about a { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; white-space: nowrap; margin-left: 6px; }
 .h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.meta { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
-.date { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-top: 10px; }
+.label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; }
+.day { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
 
-/* the newest piece, whole, in the essay page's own reading column */
-.top { max-width: 680px; margin: 0 auto 96px; }
-.kick { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
-.topHead { margin-bottom: 48px; }
-.topTitle { text-decoration: none; color: inherit; transition: color .3s; }
-.topTitle:hover { color: var(--orange); }
-.topImg { display: block; width: 100%; height: auto; background: var(--border); margin-bottom: 40px; }
-.topFoot { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 12px; }
-.topFoot a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid var(--border); }
-.topFoot a:hover { opacity: .7; }
+/* a few pictures, each at its own shape: only pieces whose own picture is this wide get one */
+.leads { list-style: none; margin: 0 0 64px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.leadsFew { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 820px; }
+.card { display: grid; gap: 8px; text-decoration: none; color: inherit; align-content: start; }
+.cardImg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--border); margin-bottom: 10px; }
+.cardTitle { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1.22; }
+.card:hover .cardTitle, .row:hover .rowTitle { color: #3A7CA5; }
+.cardDek { font-family: var(--serif); font-size: 15.5px; line-height: 1.5; color: #55534F; }
 
-/* the row of sections: name, and the writer in small type under it. It filters; it does not jump. */
-.list { scroll-margin-top: 96px; padding-bottom: 72px; }
-.band { display: grid; grid-template-columns: .6fr repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.bandItem { display: flex; flex-direction: column; gap: 6px; padding: 16px 16px 15px; margin: -1px 0; text-align: left; background: none; border: 0; border-left: 1px solid var(--border); border-top: 2px solid transparent; color: inherit; cursor: pointer; font: inherit; }
-.bandItem:first-child { border-left: 0; padding-left: 0; }
-.bandName { font-family: var(--sans); font-size: 17px; font-weight: 300; letter-spacing: -0.3px; line-height: 1.2; transition: color .3s; }
-.bandWho { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #8A8A85; line-height: 1.5; }
-.bandWho i { font-style: normal; }
-.bandItem:hover .bandName { color: var(--orange); }
-.bandOn { border-top-color: var(--orange); }
-.bandOn .bandName { color: var(--orange); }
-.bandItem:focus-visible { outline: 2px solid #3A7CA5; outline-offset: -2px; }
+/* everything else: type on hairlines, two columns */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 72px; border-top: 1px solid var(--border); }
+.row { display: grid; gap: 6px; padding: 18px 0 20px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; height: 100%; align-content: start; }
+.rowTitle { font-family: var(--sans); font-weight: 500; font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; }
+.moreBtn { display: block; margin: 48px 0 0; padding: 13px 18px; background: none; border: 1px solid var(--border); font-family: var(--mono); font-size: 13px; color: #3A7CA5; cursor: pointer; }
+.moreBtn:hover { border-color: #3A7CA5; }
 
-.about { font-family: var(--mono); font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--text-muted); margin: 24px 0 0; max-width: 760px; }
-.about a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid var(--border); white-space: nowrap; }
-
-/* the cards: one click opens the piece */
-.grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 40px; }
-.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
-.cardImg { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--border); margin-bottom: 16px; }
-.cardTitle { font-family: var(--sans); font-size: 21px; font-weight: 300; letter-spacing: -0.4px; line-height: 1.25; margin-top: 8px; transition: color .3s; }
-.card:hover .cardTitle { color: var(--orange); }
-.cardDek { font-family: var(--mono); font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--text-muted); margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.moreBtn { display: block; margin: 56px auto 0; padding: 14px 24px; background: none; border: 1px solid var(--border); font-family: var(--mono); font-size: 12px; letter-spacing: 1px; color: var(--text); cursor: pointer; }
-.moreBtn:hover { border-color: var(--orange); color: var(--orange); }
-
-@media (max-width: 980px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .bandWho i { display: none; }
+@media (max-width: 1000px) {
+  .whoRole { display: none; }
+  .whoItem { padding: 14px 12px 16px; }
+  .whoName { font-size: 15px; }
 }
 @media (max-width: 760px) {
-  .main { padding: 96px 16px 16px; }
-  .top { margin-bottom: 64px; }
-  /* one row that slides sideways under a thumb, so the filter stays one line tall */
-  .band { display: flex; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px; }
-  .band::-webkit-scrollbar { display: none; }
-  .bandItem, .bandItem:first-child { flex: 0 0 auto; padding: 14px 16px 13px 0; border-left: 0; }
-  .bandName { font-size: 15px; white-space: nowrap; }
-  .grid { grid-template-columns: 1fr; gap: 40px; margin-top: 28px; }
+  .hero { min-height: 0; }
+  .hero::after { background: rgba(8, 16, 24, .72); }
+  .heroBody { padding: 40px 20px 36px; }
+  /* the strip slides sideways under a thumb, one line of names */
+  .whoInner { display: flex; overflow-x: auto; padding: 0 20px; scrollbar-width: none; }
+  .whoInner::-webkit-scrollbar { display: none; }
+  .whoItem, .whoItem:first-child { flex: 0 0 auto; padding: 14px 18px 16px 0; border-left: 0; }
+  .whoName { white-space: nowrap; }
+  .wrap { padding: 36px 20px 64px; }
+  .leads, .leadsFew { grid-template-columns: 1fr; gap: 36px; margin-bottom: 44px; }
+  .rows { grid-template-columns: 1fr; }
 }
