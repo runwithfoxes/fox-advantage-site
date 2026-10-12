@@ -474,6 +474,33 @@ export default function ModulePage() {
                 </ul>
               </div>
             </article>
+
+            <article className="mod-item" id="claude-code">
+              <div className="mod-itemtop">
+                <h2 className="mod-h3">Start here: get Claude Code working on your laptop.</h2>
+              </div>
+              <p className="mod-body">
+                You build your agents in Claude Code. This guide is written for your Claude, not for you.
+                Download it, give the file to Claude in a normal chat, and type: Read this guide and help me
+                set up Claude Code, one step at a time.
+              </p>
+              <div className="mod-reading">
+                <span className="mod-readinglbl">Claude Code</span>
+                <ul className="mod-frows">
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Claude Code set-up guide
+                    </a>
+                    <span className="mod-fwhat">
+                      Takes you from using Claude in a chat to Claude Code on your laptop, with a project folder and a first practice agent. You need a paid Claude plan.
+                    </span>
+                    <a className="mod-readinglink" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Download
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </article>
           </main>
         </div>
       </div>
