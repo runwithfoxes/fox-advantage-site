@@ -64,3 +64,8 @@ a.name:hover { color: #3A7CA5; }
 .book:hover { background: #3A7CA5; }
 .people li > .role { margin-top: 3px; }
 @media (max-width: 700px) { .touch { grid-template-columns: 1fr; gap: 0; } .touch > div:first-child { display: none; } }
+
+/* The newest piece under each contributor, so the list works as the hub for the writers. */
+.latest { display: block; margin-top: 10px; font-family: var(--mono); font-size: 12px; line-height: 1.6; color: #8A8A85; }
+.latest a { color: #3A7CA5; text-decoration: none; border-bottom: 1px solid var(--border); }
+.latest a:hover { opacity: .7; }

@@ -52,16 +52,11 @@ export default function MobileMenu() {
         </div>
         <div className="mm-group">
           <span className="mm-label">/essays</span>
-          <Link href="/essays" onClick={close}>Paul&apos;s essays</Link>
-          <Link href="/diary" onClick={close}>Diary of our agent team</Link>
-          <Link href="/research-nuggets" onClick={close}>Research nuggets, by Sam</Link>
-          <Link href="/caught-our-eye" onClick={close}>Caught our eye, by Dean</Link>
-          <Link href="/how-we-made-it" onClick={close}>How we made it, by Dray</Link>
+          <Link href="/read" onClick={close}>Paul, Lena, Sam, Dean and Dray</Link>
         </div>
         <div className="mm-group">
           <span className="mm-label">/books</span>
-          <Link href="/book" onClick={close}>The Fox Advantage</Link>
-          <Link href="/run-with-foxes" onClick={close}>Run with Foxes</Link>
+          <Link href="/book" onClick={close}>The Fox Advantage and Run with Foxes</Link>
         </div>
         <Link href="/about" className="mm-cta" onClick={close}>/contact</Link>
       </nav>

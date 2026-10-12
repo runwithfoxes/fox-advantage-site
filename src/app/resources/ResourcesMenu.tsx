@@ -16,8 +16,6 @@ import s from "./menu.module.css";
  * Featured is The AI Ask, the newest report.
  */
 import type { Counts } from "./HubHero";
-import { NOTES } from "@/lib/notes-name";
-import { SECTIONS } from "@/lib/sections-name";
 
 type Glyph = "report" | "tracker" | "data" | "tool" | "playbook" | "essay" | "answer" | "course" | "library" | "figure" | "diary" | "book" | "contact" | "news";
 
@@ -32,17 +30,14 @@ const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts
   { g: "report", t: "Reports", d: "The AI Ask, and the two on the way", href: "/#reports" },
   // The library band on the homepage, which carries the sign-up box (Paul, 29 Sep).
   { g: "library", t: "The Library", d: "Every prompt, link and file from the course", href: "/#library" },
-];
-const READ: { t: string; href: string }[] = [
-  { t: "Essays, by Paul", href: "/essays" },
-  { t: "Diary of an agent team, by Lena", href: "/diary" },
-  { t: NOTES.nav, href: NOTES.route },
-  ...SECTIONS.map((s) => ({ t: s.nav, href: s.route })),
-  { t: "Who writes here", href: "/about#contributors" },
+  /* Paul, 12 Oct 2026: the six reading rows become one. The names stay as a grey line; the page is the
+     contributors list on About, where each writer links to their own page and their newest piece. */
+  { g: "essay", t: "Essays", d: "Paul, Lena, Sam, Dean and Dray", href: "/read" },
+  /* Both books: The Fox Advantage (free, /book) and Run with Foxes (/run-with-foxes), which /book links to. */
+  { g: "book", t: "Books", d: "The Fox Advantage and Run with Foxes", href: "/book" },
 ];
 const LEARN: { t: string; href: string }[] = [
   { t: "AI Fluency for Ambitious Marketers", href: "/course" },
-  { t: "The Fox Advantage, free book", href: "/book" },
 ];
 const CONNECT: { t: string; href: string }[] = [
   { t: "Get new research by email", href: "/#top" },
@@ -128,13 +123,7 @@ export default function ResourcesMenu({ counts }: { counts?: Counts }) {
             ))}
           </div>
           <div className={`${s.col} ${s.rule}`}>
-            <span className={s.lab}>Read</span>
-            {READ.map((i) => (
-              <Link key={i.t} href={i.href} className={s.plain} onClick={() => setOpen(false)}>
-                {i.t}
-              </Link>
-            ))}
-            <span className={s.lab} style={{ marginTop: 18 }}>Learn</span>
+            <span className={s.lab}>Learn</span>
             {LEARN.map((i) => (
               <Link key={i.t} href={i.href} className={s.plain} onClick={() => setOpen(false)}>
                 {i.t}

@@ -5,8 +5,6 @@ import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 
 import m from "../resources/menu.module.css";
 import n from "./next.module.css";
 import ResourcesMenu from "../resources/ResourcesMenu";
-import { NOTES } from "@/lib/notes-name";
-import { SECTIONS } from "@/lib/sections-name";
 import { AGENTS } from "./content";
 import { MODULES } from "../course/courseModules";
 import { openDoor } from "@/components/AgentsHero";
@@ -177,7 +175,6 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
         </div>
         <div className={`${m.col} ${m.rule}`}>
           <span className={m.lab}>Read</span>
-          <Link href="/book" className={m.plain} onClick={close}>The Fox Advantage, free book</Link>
           <Link href="/#library" className={m.plain} onClick={close}>Library of everything</Link>
         </div>
         <Link href="/course" className={m.featured} onClick={close}>
@@ -246,18 +243,12 @@ export default function NextNav({ known = false, bar = false }: { known?: boolea
             <span className={m.lab}>Training</span>
             <Link href="/course" className={m.plain} onClick={close}>AI Fluency for Ambitious Marketers</Link>
             <Link href="/#library" className={m.plain} onClick={close}>The library</Link>
-            <Link href="/book" className={m.plain} onClick={close}>The Fox Advantage, free book</Link>
           </div>
           <div className={n.mobGroup}>
             <span className={m.lab}>Resources</span>
             <Link href="/resources/the-ai-ask/2026-q3" className={m.plain} onClick={close}>The AI Ask, our new report</Link>
-            <Link href="/essays" className={m.plain} onClick={close}>Essays, by Paul</Link>
-            <Link href="/diary" className={m.plain} onClick={close}>Diary of an agent team, by Lena</Link>
-            <Link href={NOTES.route} className={m.plain} onClick={close}>{NOTES.nav}</Link>
-            {SECTIONS.map((s) => (
-              <Link key={s.route} href={s.route} className={m.plain} onClick={close}>{s.nav}</Link>
-            ))}
-            <Link href="/about#contributors" className={m.plain} onClick={close}>Who writes here</Link>
+            <Link href="/read" className={m.plain} onClick={close}>Essays: Paul, Lena, Sam, Dean and Dray</Link>
+            <Link href="/book" className={m.plain} onClick={close}>Books: The Fox Advantage and Run with Foxes</Link>
           </div>
         </div>
       ) : null}

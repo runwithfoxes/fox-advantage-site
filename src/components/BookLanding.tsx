@@ -130,6 +130,7 @@ function BookLandingContent({ parts }: Props) {
               <div><span>\</span> {chapterCount} chapters</div>
               <div><span>\</span> 4 parts</div>
               <a href="#signup" className="hero-meta-link"><span>\</span> get_the_book</a>
+              <Link href="/run-with-foxes" className="hero-meta-link"><span>\</span> first_book</Link>
             </div>
           </div>
           <div className="hero-book">
