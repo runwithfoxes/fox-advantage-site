@@ -10,6 +10,7 @@ import { NOTES } from "@/lib/notes-name";
 import { getAllPieces } from "@/lib/sections";
 import { CAUGHT, DRAY } from "@/lib/sections-name";
 import { formatDay } from "../resources/library";
+import { getOpening } from "@/lib/opening";
 import r from "./read.module.css";
 
 /**
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 type Item = { title: string; dek: string; date: string; href: string; img: string | null };
-type Series = { key: string; name: string; who: string; route: string; line: string; hero: string | null; items: Item[] };
+type Series = { key: string; dir: string; name: string; who: string; route: string; line: string; hero: string | null; items: Item[] };
 
 /* the first sentence of a series' own intro, so the line is the site's wording and not a new one */
 const first = (t: string) => t.split(/(?<=\.)\s/)[0];
@@ -39,22 +40,22 @@ export default async function ReadPage() {
   const known = await hasAccess();
   const series: Series[] = [
     {
-      key: "essays", name: "Essays", who: "Paul", route: "/essays", hero: null,
+      key: "essays", dir: "essays", name: "Essays", who: "Paul", route: "/essays", hero: null,
       line: "Marketing and AI, written up as I go.",
       items: byNewest(getAllEssays()).map((e) => ({ title: e.title, dek: e.dek, date: e.date, href: `/essays/${e.slug}`, img: e.image ?? null })),
     },
     {
-      key: "diary", name: "Diary of an agent team", who: "Lena", route: "/diary", hero: "/diary/hero.jpg",
+      key: "diary", dir: "diary", name: "Diary of an agent team", who: "Lena", route: "/diary", hero: "/diary/hero.jpg",
       line: "This is the diary of the AI team at Run with Foxes, written by Lena, one of the agents.",
       items: byNewest(getAllDispatches()).map((d) => ({ title: d.title, dek: d.dek, date: d.date, href: `/diary/${d.slug}`, img: null })),
     },
     {
-      key: "notes", name: NOTES.name, who: "Sam", route: NOTES.route, hero: NOTES.hero?.src ?? null,
+      key: "notes", dir: "research-nuggets", name: NOTES.name, who: "Sam", route: NOTES.route, hero: NOTES.hero?.src ?? null,
       line: first(NOTES.intro),
       items: byNewest(getAllNotes()).map((n) => ({ title: n.title, dek: n.dek, date: n.date, href: `${NOTES.route}/${n.slug}`, img: null })),
     },
     ...[CAUGHT, DRAY].map((s) => ({
-      key: s.key, name: s.name, who: s.who, route: s.route, hero: s.hero?.src ?? null,
+      key: s.key, dir: s.dir, name: s.name, who: s.who, route: s.route, hero: s.hero?.src ?? null,
       line: first(s.intro),
       items: byNewest(getAllPieces(s)).map((p) => ({ title: p.title, dek: p.dek, date: p.date, href: `${s.route}/${p.slug}`, img: null })),
     })),
@@ -64,6 +65,25 @@ export default async function ReadPage() {
   const newest = series
     .map((s) => ({ s, i: s.items[0] }))
     .sort((a, b) => b.i.date.localeCompare(a.i.date))[0];
+
+  /* The real opening of each lead piece, read from its content file. The top piece may take three paragraphs. */
+  const slugOf = (i: Item) => i.href.split("/").pop() ?? "";
+  const leadOf = (s: Series) => s.items.filter((i) => i.href !== newest?.i.href)[0];
+  const opening = new Map<string, string>();
+  if (newest) opening.set(newest.i.href, await getOpening(newest.s.dir, slugOf(newest.i), 3));
+  for (const s of series) {
+    const l = leadOf(s);
+    if (l) opening.set(l.href, await getOpening(s.dir, slugOf(l), 3));
+  }
+  const Opening = ({ i }: { i: Item }) => {
+    const h = opening.get(i.href);
+    return h ? (
+      <>
+        <div className={`essay-prose ${r.opening}`} dangerouslySetInnerHTML={{ __html: h }} />
+        <div className={r.gFoot}><Link href={i.href}>Keep reading →</Link></div>
+      </>
+    ) : null;
+  };
 
   return (
     <div className="essay-page">
@@ -76,17 +96,20 @@ export default async function ReadPage() {
           </header>
 
           {newest ? (
-            <Link href={newest.i.href} className={r.top}>
+            <div className={r.top}>
               {pic(newest.s, newest.i) ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img className={r.topImg} src={pic(newest.s, newest.i)!} alt="" />
+                <Link href={newest.i.href} tabIndex={-1} aria-hidden>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className={r.topImg} src={pic(newest.s, newest.i)!} alt="" />
+                </Link>
               ) : null}
               <div className={r.topText}>
                 <span className={r.meta}>{newest.s.name} · {newest.s.who} · {formatDay(newest.i.date)}</span>
-                <span className={r.topTitle}>{newest.i.title}</span>
+                <Link href={newest.i.href} className={r.topTitle}>{newest.i.title}</Link>
                 {newest.i.dek ? <span className={r.dek}>{newest.i.dek}</span> : null}
+                <Opening i={newest.i} />
               </div>
-            </Link>
+            </div>
           ) : null}
 
           {series.map((s) => {
@@ -122,11 +145,12 @@ export default async function ReadPage() {
                     ) : null}
                     <div className={r.soloText}>
                       {head}
-                      <Link href={lead.href} className={r.lead}>
-                        <span className={r.leadTitle}>{lead.title}</span>
+                      <div className={r.lead}>
+                        <Link href={lead.href} className={r.leadTitle}>{lead.title}</Link>
                         {lead.dek ? <span className={r.dek}>{lead.dek}</span> : null}
                         <span className={r.date}>{formatDay(lead.date)}</span>
-                      </Link>
+                        <Opening i={lead} />
+                      </div>
                       {foot}
                     </div>
                   </div>
@@ -137,15 +161,18 @@ export default async function ReadPage() {
               <section key={s.key} className={r.group} aria-labelledby={`g-${s.key}`}>
                 {head}
                 <div className={r.gBody}>
-                  <Link href={lead.href} className={r.lead}>
+                  <div className={r.lead}>
                     {img ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img className={r.leadImg} src={img} alt="" />
+                      <Link href={lead.href} tabIndex={-1} aria-hidden>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img className={r.leadImg} src={img} alt="" />
+                      </Link>
                     ) : null}
-                    <span className={r.leadTitle}>{lead.title}</span>
+                    <Link href={lead.href} className={r.leadTitle}>{lead.title}</Link>
                     {lead.dek ? <span className={r.dek}>{lead.dek}</span> : null}
                     <span className={r.date}>{formatDay(lead.date)}</span>
-                  </Link>
+                    <Opening i={lead} />
+                  </div>
                   <ul className={r.more}>
                     {more.map((i) => (
                       <li key={i.href}>
