@@ -205,7 +205,7 @@ export default function CentreBands() {
             </p>
             <div className={s.featActs}>
               <Link href={reportHref(featured)} className={s.link}>Read the report →</Link>
-              <DownloadPdf href={featured.pdf} pages={featured.pages} />
+              {featured.pdf ? <DownloadPdf href={featured.pdf} pages={featured.pages} /> : null}
             </div>
           </div>
         </section>

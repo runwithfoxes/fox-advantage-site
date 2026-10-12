@@ -420,103 +420,73 @@
   {
    "slug": "the-ad-audit-2026-q3",
    "edition": "Q3 2026",
-   "date": "2026-09-27",
+   "date": "2026-09-28",
    "area": "media",
    "author": {
     "name": "Sam",
     "role": "AI researcher, an agent",
     "kind": "agent"
    },
-   "checkedBy": "Cato and Paul Dervan",
-   "pdf": "/resources/pdf/the-ad-audit-q3-2026.pdf",
+   "checkedBy": "Cato",
+   "pdf": "",
    "example": false,
    "status": "draft",
    "n": 1,
-   "title": "Irish banks sell on social, and the newcomers reach the young",
-   "standfirst": "1,660 Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. 73% of the reach went to ads that only sell.",
+   "title": "What 1,660 bank ads tell us about how Meta advertising works now",
+   "standfirst": "1,660 Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026, held up against what the research says makes an ad work on Meta.",
    "sectors": [
     "Financial services"
    ],
-   "sample": "1,660 ads, 601 different",
+   "sample": "1,660 ads, 601 different creatives",
    "findings": [
     {
-     "big": "73%",
-     "label": "of the reach went to ads that only sell",
-     "text": "On Facebook and Instagram, Irish banking is mostly selling: 73% of the quarter's reach went to ads that only sell a product."
+     "big": "39%",
+     "label": "of creatives share most of their words with another from the same advertiser",
+     "text": "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601)."
     },
     {
-     "big": "54.2%",
-     "label": "of the challengers' reach was under 35",
-     "text": "The newcomers reach the young: 54.2% of Monzo, bunq and Revolut's reach was under 35, against 28.6% for the Irish banks."
+     "big": "28 of 50",
+     "label": "most-seen videos show the brand inside three seconds",
+     "text": "We judged fifty videos frame by frame, the five most-seen from each advertiser. 28 show the brand inside three seconds, and those 28 have 76% of the fifty's whole-life reach, June and earlier included."
     },
     {
-     "big": "29.9%",
-     "label": "of different ads state an offer",
-     "text": "206 of 688 different bank ads state a rate, a cashback, a bonus or something free.",
-     "count": {
-      "k": 206,
-      "n": 688,
-      "pct": 29.9
-     }
+     "big": "65%",
+     "label": "of the reach went to video",
+     "text": "Video is 65% of creatives and 65% of reach. 209 creatives don't move at all."
     }
    ],
    "figures": [
     {
      "id": "f1",
-     "title": "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.",
-     "caption": "Share of the category's Irish reach, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.",
+     "title": "Video is 65% of creatives and 65% of reach.",
+     "caption": "Share of the category's reach by format, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.",
      "data": {
       "kind": "bars",
       "unit": "%",
       "rows": [
        {
-        "label": "Bank of Ireland",
-        "value": 20.6,
+        "label": "Video",
+        "value": 65.4,
         "highlight": true
        },
        {
-        "label": "PTSB",
-        "value": 16.6,
+        "label": "One image, several sizes",
+        "value": 30.5,
         "highlight": false
        },
        {
-        "label": "AIB",
-        "value": 15.9,
+        "label": "Real carousel",
+        "value": 3.2,
         "highlight": false
        },
        {
-        "label": "Monzo",
-        "value": 13.3,
+        "label": "Still",
+        "value": 0.9,
         "highlight": false
        },
        {
-        "label": "An Post",
-        "value": 10.4,
-        "highlight": false
-       },
-       {
-        "label": "Avant Money",
-        "value": 10.3,
-        "highlight": false
-       },
-       {
-        "label": "EBS",
-        "value": 5,
-        "highlight": false
-       },
-       {
-        "label": "Credit Union",
-        "value": 3.3,
-        "highlight": false
-       },
-       {
-        "label": "bunq",
-        "value": 2.8,
-        "highlight": false
-       },
-       {
-        "label": "Revolut",
-        "value": 1.7,
+        "label": "No picture",
+        "value": 0.1,
         "highlight": false
        }
       ]
@@ -524,20 +494,20 @@
     },
     {
      "id": "f2",
-     "title": "The digital challengers reach people under 35.",
-     "caption": "Share of Irish reach under 35, ads started in the quarter.",
+     "title": "The three digital challengers reached 54% under 35; the seven Irish banks and lenders reached 29%.",
+     "caption": "Share of each group's reach that was under 35, ads started in the quarter.",
      "data": {
       "kind": "bars",
       "unit": "%",
       "rows": [
        {
-        "label": "Digital challengers",
-        "value": 54.2,
+        "label": "Three digital challengers",
+        "value": 54,
         "highlight": true
        },
        {
-        "label": "Irish banks and lenders",
-        "value": 28.6
+        "label": "Seven Irish banks and lenders",
+        "value": 29
        }
       ]
      }
@@ -550,7 +520,6 @@
    ],
    "withAccount": [
     "Every ad behind the numbers, by bank, product, offer and week",
-    "The report as a PDF",
     "The next issue by email when it lands"
    ],
    "pages": 21,

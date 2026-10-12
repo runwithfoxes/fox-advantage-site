@@ -125,6 +125,8 @@ const nextConfig: NextConfig = {
       /* 11 Oct 2026: draft two of the Ad Audit took the 2026-q3 address (Paul: "Yes on the ad audit"). The
          old working address follows it. It sits ABOVE the hold so it still works the day the hold is removed. */
       { source: "/resources/the-ad-audit/2026-q3-v2", destination: "/resources/the-ad-audit/2026-q3", permanent: false },
+      /* THE HOLD. Do not remove before the listing is rebuilt (scripts/resources/build-catalogue.mjs) and
+         Cato has read it (dray-10, 12 Oct 2026). */
       { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
       /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
       {
