@@ -29,6 +29,8 @@ export interface Piece {
   order: number;
   hold: string;
   rail: string;
+  /** the piece's own picture for a card on /read, optional: a path under /public */
+  image: string | null;
   content?: string;
 }
 
@@ -51,6 +53,7 @@ function readPiece(s: Section, file: string): Piece | null {
     order: Number(data.order) || 0,
     hold: data.hold ? String(data.hold) : "",
     rail: data.rail ? String(data.rail) : "",
+    image: data.image ? String(data.image) : null,
   };
 }
 

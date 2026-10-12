@@ -26,6 +26,8 @@ import html from "remark-html";
  *          (Paul, 10 Oct 2026: "so they can say, oh, I want to find information
  *          about X or Y from Lena"). One label a dispatch. A dispatch with no
  *          label, or one that is not in the list, shows none and breaks nothing.
+ *   image: the dispatch's own picture, optional, a path under /public. It is the
+ *          picture on its card on /read. Without one the card takes the diary's picture.
  *
  * No substack field: the diary lives here and nowhere else.
  */
@@ -62,6 +64,8 @@ export interface Dispatch {
   dek: string;
   order: number;
   label: Label | null;
+  /** the piece's own picture for a card on /read, optional: a path under /public */
+  image: string | null;
   content?: string;
 }
 
@@ -95,6 +99,7 @@ function readDispatchFile(file: string): Dispatch | null {
     dek: data.dek ? String(data.dek) : "",
     order: Number(data.order) || 0,
     label: readLabel(data.label),
+    image: data.image ? String(data.image) : null,
   };
 }
 
