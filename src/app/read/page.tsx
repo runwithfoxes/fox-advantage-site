@@ -96,12 +96,46 @@ export default async function ReadPage() {
             const [lead, ...rest] = items;
             const more = rest.slice(0, 4);
             const img = pic(s, lead);
+            const head = (
+              <div className={r.gHead}>
+                <h2 id={`g-${s.key}`} className={r.gName}>{s.name} <span>by {s.who}</span></h2>
+                <p className={r.gLine}>{s.line}</p>
+              </div>
+            );
+            const foot = (
+              <div className={r.gFoot}>
+                <Link href={s.route}>All of {s.name} →</Link>
+                <Link href="/about#contributors">{s.who} on the contributors list →</Link>
+              </div>
+            );
+            /* A group with one piece fills the row: picture one side, words and links the other. When a
+               second piece is published it goes back to the normal layout by itself. */
+            if (!more.length) {
+              return (
+                <section key={s.key} className={r.group} aria-labelledby={`g-${s.key}`}>
+                  <div className={`${r.gBody} ${img ? "" : r.soloNoImg}`}>
+                    {img ? (
+                      <Link href={lead.href} tabIndex={-1} aria-hidden>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img className={r.leadImg} style={{ marginBottom: 0 }} src={img} alt="" />
+                      </Link>
+                    ) : null}
+                    <div className={r.soloText}>
+                      {head}
+                      <Link href={lead.href} className={r.lead}>
+                        <span className={r.leadTitle}>{lead.title}</span>
+                        {lead.dek ? <span className={r.dek}>{lead.dek}</span> : null}
+                        <span className={r.date}>{formatDay(lead.date)}</span>
+                      </Link>
+                      {foot}
+                    </div>
+                  </div>
+                </section>
+              );
+            }
             return (
               <section key={s.key} className={r.group} aria-labelledby={`g-${s.key}`}>
-                <div className={r.gHead}>
-                  <h2 id={`g-${s.key}`} className={r.gName}>{s.name} <span>by {s.who}</span></h2>
-                  <p className={r.gLine}>{s.line}</p>
-                </div>
+                {head}
                 <div className={r.gBody}>
                   <Link href={lead.href} className={r.lead}>
                     {img ? (
@@ -112,21 +146,16 @@ export default async function ReadPage() {
                     {lead.dek ? <span className={r.dek}>{lead.dek}</span> : null}
                     <span className={r.date}>{formatDay(lead.date)}</span>
                   </Link>
-                  {more.length ? (
-                    <ul className={r.more}>
-                      {more.map((i) => (
-                        <li key={i.href}>
-                          <Link href={i.href}>{i.title}</Link>
-                          <span className={r.date}>{formatDay(i.date)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
+                  <ul className={r.more}>
+                    {more.map((i) => (
+                      <li key={i.href}>
+                        <Link href={i.href}>{i.title}</Link>
+                        <span className={r.date}>{formatDay(i.date)}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className={r.gFoot}>
-                  <Link href={s.route}>All of {s.name} →</Link>
-                  <Link href="/about#contributors">{s.who} on the contributors list →</Link>
-                </div>
+                {foot}
               </section>
             );
           })}
