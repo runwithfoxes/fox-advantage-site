@@ -12,8 +12,7 @@ import { CAUGHT, DRAY } from "@/lib/sections-name";
 import { formatDay } from "../resources/library";
 import { WRITERS } from "@/lib/contributors-data";
 import ReadList, { type Card } from "./ReadList";
-import path from "path";
-import sharp from "sharp";
+import SHAPES from "@/lib/picture-shapes.json";
 import h from "../resources/hero.module.css";
 import f from "../resources/front.module.css";
 import r from "./read.module.css";
@@ -86,16 +85,11 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
   const on = series.find((s) => s.key === asked) ?? null;
 
   /* A picture is only shown where it can sit at its own shape: wide, about 16 by 9. A square or a tall
-     one would be cut by the frame, and a section's picture has handwritten words a crop slices through. */
-  const wide = async (src: string | null) => {
-    if (!src) return false;
-    try {
-      const m = await sharp(path.join(process.cwd(), "public", src)).metadata();
-      const k = (m.width ?? 0) / (m.height ?? 1);
-      return k >= 1.6 && k <= 2.4;
-    } catch {
-      return false;
-    }
+     one would be cut by the frame, and a section's picture has handwritten words a crop slices through.
+     The shapes are measured before the build by scripts/picture-shapes.mjs, never here. */
+  const wide = (src: string | null) => {
+    const k = src ? (SHAPES as Record<string, number>)[src] : undefined;
+    return k !== undefined && k >= 1.6 && k <= 2.4;
   };
 
   const all = series
@@ -103,14 +97,12 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
     .sort((a, b) => b.i.date.localeCompare(a.i.date));
   /* the piece in the hero is left out of Latest, and kept in its own section's list */
   const shown = on ? all.filter((x) => x.s.key === on.key) : all.filter((x) => x.i.href !== newest?.i.href);
-  const cards: Card[] = await Promise.all(
-    shown.map(async ({ s, i }) => ({
-      label: `${s.name} · ${who(s)?.name ?? s.who}`,
-      title: i.title, dek: i.dek, day: formatDay(i.date), href: i.href,
-      img: (await wide(i.img)) ? i.img : null,
-    })),
-  );
-  const heroImg = newest ? ((await wide(newest.i.img)) ? newest.i.img : newest.s.hero) : null;
+  const cards: Card[] = shown.map(({ s, i }) => ({
+    label: `${s.name} · ${who(s)?.name ?? s.who}`,
+    title: i.title, dek: i.dek, day: formatDay(i.date), href: i.href,
+    img: wide(i.img) ? i.img : null,
+  }));
+  const heroImg = newest ? (wide(newest.i.img) ? newest.i.img : newest.s.hero) : null;
 
   return (
     <div className={f.page}>
