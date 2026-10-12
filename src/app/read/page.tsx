@@ -11,6 +11,8 @@ import { getAllPieces } from "@/lib/sections";
 import { CAUGHT, DRAY } from "@/lib/sections-name";
 import { formatDay } from "../resources/library";
 import { getOpening } from "@/lib/opening";
+import { WRITERS } from "@/lib/contributors-data";
+import ReadRail from "./ReadRail";
 import r from "./read.module.css";
 
 /**
@@ -95,8 +97,27 @@ export default async function ReadPage() {
             <h1 className={r.h1}>Read</h1>
           </header>
 
+          {/* Who writes here and what each covers, like the section bar on a magazine's front. Names and
+              role tags come from the one shared list the About page also reads. */}
+          <nav className={r.band} aria-label="Who writes here">
+            {series.map((s) => {
+              const w = Object.values(WRITERS).find((x) => x.key === s.key);
+              return (
+                <a key={s.key} href={`#s-${s.key}`} className={r.bandItem}>
+                  <span className={r.bandName}>{s.name}</span>
+                  <span className={r.bandWho}>{w?.name ?? s.who}</span>
+                  {w ? <span className={r.bandRole}>{w.role}</span> : null}
+                  <span className={r.bandLine}>{s.line}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          <div className={r.layout}>
+            <ReadRail items={[{ id: "newest", label: "Newest" }, ...series.map((s) => ({ id: `s-${s.key}`, label: s.name }))]} />
+            <div className={r.col}>
           {newest ? (
-            <div className={r.top}>
+            <div className={r.top} id="newest">
               {pic(newest.s, newest.i) ? (
                 <Link href={newest.i.href} tabIndex={-1} aria-hidden>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -135,7 +156,7 @@ export default async function ReadPage() {
                second piece is published it goes back to the normal layout by itself. */
             if (!more.length) {
               return (
-                <section key={s.key} className={r.group} aria-labelledby={`g-${s.key}`}>
+                <section key={s.key} id={`s-${s.key}`} className={r.group} aria-labelledby={`g-${s.key}`}>
                   <div className={`${r.gBody} ${img ? "" : r.soloNoImg}`}>
                     {img ? (
                       <Link href={lead.href} tabIndex={-1} aria-hidden>
@@ -158,7 +179,7 @@ export default async function ReadPage() {
               );
             }
             return (
-              <section key={s.key} className={r.group} aria-labelledby={`g-${s.key}`}>
+              <section key={s.key} id={`s-${s.key}`} className={r.group} aria-labelledby={`g-${s.key}`}>
                 {head}
                 <div className={r.gBody}>
                   <div className={r.lead}>
@@ -186,6 +207,8 @@ export default async function ReadPage() {
               </section>
             );
           })}
+            </div>
+          </div>
         </div>
       </main>
       <SiteFooter current="/read" />
