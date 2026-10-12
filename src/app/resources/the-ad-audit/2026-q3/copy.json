@@ -36,7 +36,7 @@
    "ch": 4
   },
   {
-   "text": "We judged fifty videos frame by frame, the five most-seen from each advertiser. 28 show the brand inside three seconds, and those 28 carry 76% of the fifty's reach. The most-seen ads brand early, and I'll show you four ways they do it (Chapter 5).",
+   "text": "We judged fifty videos frame by frame, the five most-seen from each advertiser. 28 show the brand inside three seconds, and those 28 have 76% of the fifty's whole-life reach, June included. The most-seen ads brand early, and I'll show you four ways they do it (Chapter 5).",
    "ch": 5
   },
   {
@@ -82,7 +82,7 @@
        "kind": "Figure",
        "no": "1.1",
        "title": "Ads, creatives and new creatives, by advertiser",
-       "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means first seen on or after 1 July."
+       "cap": "An ad is one entry in our record. A creative is one set of words; the same words running as several ads count once. New means not running before 1 July among the ads we collected, which start on that date. A creative that was rested in the spring and brought back counts as new, so the counts of new creatives are the most that can be new."
       },
       {
        "p": "The spread is the first surprise. The most active advertiser ran 421 ads. The quietest ran 27. The median is 125.5. Same category, same ninety days, same platform, and one advertiser is running social at 16 times the tempo of another, and both are reaching millions of people. There's a range, and now you can see where you sit in it."
@@ -104,7 +104,7 @@
        "cap": "Week beginning 29 June to week beginning 21 September 2026. The first week counts 1 to 5 July only."
       },
       {
-       "p": "The category doesn't drip. It surges. The biggest week of the summer began 14 September, when 45 new creatives went live in seven days, the back-to-work moment every bank marketer plans for. The quietest full week, beginning 10 August, saw 11. Your competitors' tempo is the weather your ads fly in."
+       "p": "The category doesn't move as one. The week the most advertisers launched together began 7 September: 7 of the ten started 44 new creatives between them. The biggest week by count began 14 September, with 45, and 30 of those were one advertiser's. The quietest full week, beginning 10 August, saw 11, 10 of them from one advertiser. So a busy week in the category can be one team's launch. When you read your own category's tempo, count who moved as well as how much."
       },
       {
        "p": "The twelve creatives that reached the most people this quarter, one card each, with what it sells, its headline and its reach. They're here so you can see the category's work before the numbers about it."
@@ -980,7 +980,7 @@
   },
   {
    "k": "Definitions",
-   "t": "An ad is one entry in our record. A creative is one advertiser and one set of words; the record lists one text per version of an ad, so exact copies were merged. New means first seen on or after 1 July. Reach is Meta's count of people in Ireland an ad reached, summed across ads, so a person reached by two ads counts twice; shares of reach use only ads started in the quarter."
+   "t": "An ad is one entry in our record. A creative is one advertiser and one set of words; the record lists one text per version of an ad, so exact copies were merged. New means not running before 1 July among the ads we collected, which start on that date. A creative that was rested in the spring and brought back counts as new, so the counts of new creatives are the most that can be new. Reach is Meta's count of people in Ireland an ad reached, summed across ads, so a person reached by two ads counts twice; shares of reach use only ads started in the quarter."
   },
   {
    "k": "What was read",
