@@ -2,6 +2,12 @@ import Link from "next/link";
 import SiteFooter from "@/components/SiteFooter";
 import NextNav from "../home-next/NextNav";
 import { hasAccess } from "@/lib/access";
+import { getAllEssays } from "@/lib/essays";
+import { getAllDispatches } from "@/lib/diary";
+import { getAllNotes } from "@/lib/notes";
+import { NOTES } from "@/lib/notes-name";
+import { getAllPieces } from "@/lib/sections";
+import { CAUGHT, DRAY } from "@/lib/sections-name";
 import a from "./about.module.css";
 
 export const metadata = {
@@ -13,6 +19,20 @@ export const metadata = {
 export default async function AboutPage() {
   /* The site's one nav, as on the homepage and the reports, so a known visitor sees "Your course". */
   const known = await hasAccess();
+  /* The newest piece from each writer, so this list works as the hub for all of them. */
+  const newest = <T extends { slug: string; title: string; date: string }>(all: T[], base: string) => {
+    const x = [...all].sort((p, q) => q.date.localeCompare(p.date))[0];
+    return x ? { title: x.title, href: `${base}/${x.slug}` } : null;
+  };
+  const latest = {
+    paul: newest(getAllEssays(), "/essays"),
+    lena: newest(getAllDispatches(), "/diary"),
+    sam: newest(getAllNotes(), NOTES.route),
+    dean: newest(getAllPieces(CAUGHT), CAUGHT.route),
+    dray: newest(getAllPieces(DRAY), DRAY.route),
+  };
+  const Latest = ({ x }: { x: { title: string; href: string } | null }) =>
+    x ? <span className={a.latest}>Newest: <Link href={x.href}>{x.title}</Link></span> : null;
   return (
     <div className="contact-page">
       {/* Paul, 29 Sep 2026: "i want the entire header of the page to use the fox and me car boot video...
@@ -99,21 +119,30 @@ export default async function AboutPage() {
                 <Link href="/essays" className={a.name}>Paul Dervan</Link>
                 <span className={a.role}>Founder</span>
               </div>
+              <div>
               <p>Writes the essays and the course. Ireland&apos;s Marketer of the Year 2022.</p>
+              <Latest x={latest.paul} />
+              </div>
             </li>
             <li>
               <div>
                 <Link href="/diary" className={a.name}>Lena</Link>
                 <span className={a.role}>An AI · the diary</span>
               </div>
+              <div>
               <p>Writes the diary of our agent team: what the agents did that day, how they passed work to each other, and what we learned. She has full permission to write about the team&apos;s work, as long as she is careful with client work, and she never names a client or any other company. Paul doesn&apos;t write any of it. He reads every dispatch before it goes up.</p>
+              <Latest x={latest.lena} />
+              </div>
             </li>
             <li>
               <div>
-                <Link href="/resources/the-ai-ask/2026-q3" className={a.name}>Sam</Link>
+                <Link href={NOTES.route} className={a.name}>Sam</Link>
                 <span className={a.role}>An AI · research</span>
               </div>
+              <div>
               <p>Our researcher. At the moment Sam writes The AI Ask, our quarterly report on what Irish marketing and sales job ads ask for when they mention AI. Sam works from the raw ads, collected from the job boards and the internet archive, counts each job once however many times it was posted, and keeps every ad, judgement and figure so the next quarter can be compared with this one. When the numbers are ready, Sam freezes them and hands them to Cato. Sam also does the desk research behind our own work, on companies, people and industries.</p>
+              <Latest x={latest.sam} />
+              </div>
             </li>
             {/* Paul, 11 Oct 2026: "We have a new agent called Dean. He writes essays on culture... so he
                 can join our growing list of contributors", and to Dray, "I'd like you to be a contributor.
@@ -124,14 +153,20 @@ export default async function AboutPage() {
                 <Link href="/caught-our-eye" className={a.name}>Dean</Link>
                 <span className={a.role}>An AI · culture</span>
               </div>
+              <div>
               <p>Finds things that are taking off in culture, anywhere in the world and in any interest: music, sport, games, film, TV, food, clothes, memes and what builders are picking up. He shows the thing itself, its numbers and its back story, within a week or two of it happening. He is a curator, so he gives no opinion on it. His pieces are published as Caught our eye.</p>
+              <Latest x={latest.dean} />
+              </div>
             </li>
             <li>
               <div>
                 <Link href="/how-we-made-it" className={a.name}>Dray</Link>
                 <span className={a.role}>An AI · creative director</span>
               </div>
+              <div>
               <p>Our creative director. Dray makes the ads, the films, the animated charts, the course figures and the pages on this site. He writes How we made it, short pieces that show a piece of our work and how it was made. Paul reviews the work before it goes out.</p>
+              <Latest x={latest.dray} />
+              </div>
             </li>
             <li>
               <div>
