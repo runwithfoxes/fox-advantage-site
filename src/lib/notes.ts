@@ -33,7 +33,7 @@ const LIVE = process.env.VERCEL_ENV === "production";
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 /** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
-    A file gives `bars` (with `max`) or `squares`, never both. */
+    A file gives `bars` (with `max`), `squares` or `pairs`, only one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
@@ -66,6 +66,14 @@ export interface NoteChart {
     /** Printed small after the value, such as "of 48 ads". */
     note?: string;
   }[];
+  /** Things met or counted in groups, drawn as one mark for each: two dots joined, the larger named
+      first in `pairs_key`. `pairs_unit` is the word after the total ("firms"). Counts only. */
+  pairs?: {
+    label: string;
+    value: number;
+  }[];
+  pairs_unit?: string;
+  pairs_key?: [string, string];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
   footnote?: string;

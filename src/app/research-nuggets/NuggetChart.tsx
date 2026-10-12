@@ -16,6 +16,10 @@ import c from "./nugget-chart.module.css";
  * a count out of a small total, one square for each thing counted, the same size of square in every
  * block. The filled squares come in one at a time as the count goes up.
  *
+ * A file can give `pairs`: one mark for each thing met, in groups, each mark two dots joined (nugget 09,
+ * 12 Oct 2026: every firm had an owner and a clerk deciding). The total is printed once and the count by
+ * each group.
+ *
  * Three rules from Sam's chart files, built in so they cannot be broken by a new file:
  *  - bars are never stacked or added: each has its own row on the same scale;
  *  - a "limit" bar (an estimate that is only an upper limit) is a dashed outline, never solid,
@@ -81,6 +85,7 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
   }, [play]);
 
   const max = chart.max || 1;
+  const pairTotal = (chart.pairs || []).reduce((a, g) => a + g.value, 0);
   const pct = (v: number) => `${(v / max) * 100}%`;
   const show = (v: number) => `${chart.prefix || ""}${Math.round(v * n)}${chart.suffix || ""}`;
 
@@ -126,6 +131,42 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
                 </div>
               </div>
             ))}
+          </div>
+        ) : null}
+
+        {chart.pairs ? (
+          <div className={c.pairsWrap}>
+            <div className={c.pairsTop}>
+              <span className={c.val}>
+                {Math.round(pairTotal * n)}
+                <em>{chart.pairs_unit}</em>
+              </span>
+              {chart.pairs_key ? (
+                <span className={c.key} aria-hidden="true">
+                  <span className={c.pair}><i className={c.big} /><i className={c.link} /><i className={c.small} /></span>
+                  <span className={c.keyWords}>
+                    <span>{chart.pairs_key[0]}</span>
+                    <span>{chart.pairs_key[1]}</span>
+                  </span>
+                </span>
+              ) : null}
+            </div>
+            {chart.pairs.map((g, gi) => {
+              const before = chart.pairs!.slice(0, gi).reduce((a, x) => a + x.value, 0);
+              const shown = Math.max(0, Math.min(g.value, Math.round(pairTotal * n) - before));
+              return (
+                <div key={g.label} className={c.group}>
+                  <span className={c.lab}>{g.label}</span>
+                  <div className={c.pairs} role="img" aria-label={`${g.value} marks, one for each of ${g.value} ${chart.pairs_unit || ""}`}>
+                    {/* a mark comes in when the count reaches it, so the marks and the number never disagree */}
+                    {Array.from({ length: g.value }, (_, i) => (
+                      <span key={i} className={`${c.pair} ${i < shown ? c.in : c.out}`}><i className={c.big} /><i className={c.link} /><i className={c.small} /></span>
+                    ))}
+                  </div>
+                  <span className={c.groupVal}>{shown}</span>
+                </div>
+              );
+            })}
           </div>
         ) : null}
 
