@@ -182,7 +182,7 @@ function baseEdition(s, label, date, extra) {
         { big: "65%", label: "of the reach went to video", text: "Video is 65% of creatives and 65% of reach. 209 creatives don't move at all." },
       ],
       figures: [
-        { id: "f1", title: "Video is 65% of creatives and 65% of reach.", caption: "Share of the category's reach by format, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.", data: { kind: "bars", unit: "%", rows: f71.labels.map((l, i) => ({ label: cap(l), value: reach[i], highlight: i === 0 })) } },
+        { id: "f1", title: "Video had 65% of the reach.", caption: "Share of the category's reach by format, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.", data: { kind: "bars", unit: "%", rows: f71.labels.map((l, i) => ({ label: cap(l), value: reach[i], highlight: i === 0 })) } },
         { id: "f2", title: f22cap, caption: "Share of each group's reach that was under 35, ads started in the quarter.", data: { kind: "bars", unit: "%", rows: [{ label: "Three digital challengers", value: Math.round(u35.ch), highlight: true }, { label: "Seven Irish banks and lenders", value: Math.round(u35.ir + 1e-9) }] } },
       ],
       free: ["The whole report, every chapter and figure", "The twelve most-seen ads", "The method and its limits"],
