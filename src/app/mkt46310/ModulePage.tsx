@@ -460,6 +460,17 @@ export default function ModulePage() {
                       Open
                     </a>
                   </li>
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="https://www.amazon.ie/Marketing-Bottom-Line-Prof-Ambler/dp/0273661949" target="_blank" rel="noopener">
+                      Marketing and the Bottom Line
+                    </a>
+                    <span className="mod-fwhat">
+                      A book by Professor Tim Ambler about how to measure what marketing does for a business. The link goes to Amazon.
+                    </span>
+                    <a className="mod-readinglink" href="https://www.amazon.ie/Marketing-Bottom-Line-Prof-Ambler/dp/0273661949" target="_blank" rel="noopener">
+                      Open
+                    </a>
+                  </li>
                 </ul>
               </div>
             </article>
