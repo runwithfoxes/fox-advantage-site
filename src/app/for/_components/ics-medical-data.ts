@@ -41,13 +41,14 @@ export const PM: NoteItem[] = [
   { kind: "p", text: "The board is current. If you do one thing today, give me the number." },
 ];
 
-/* The copywriter's post. Written from what Brendan said on the 28 Aug call,
-   in his own account of what ICS does and why being known matters. */
+/* The copywriter's post. A made-up food company and a made-up person, the same
+   Fennick Foods as the other windows. It was a post in Brendan's name, written
+   from the 28 Aug call; Paul had it made neutral on 13 Oct 2026. */
 export const GHOST_POST: NoteItem[] = [
-  { kind: "p", text: "We are the quiet partner behind a lot of medical device startups.", note: "positioning" },
-  { kind: "p", text: "A startup has an idea and needs a partner to help it make the device real, and quickly. We design and develop catheter delivery systems, and we stay with them from development through to manufacture.", note: "messaging" },
-  { kind: "p", text: "Our aim is to take risk out of their journey.", note: "voice" },
-  { kind: "p", text: "Some of our customers are bought by bigger companies. The buyer checks their suppliers too, and a supplier they have never heard of is a risk. So we want to be known.", note: "messaging" },
+  { kind: "p", text: "We make soup for people who don't have time to make soup.", note: "positioning" },
+  { kind: "p", text: "Every pot starts with vegetables from growers we know by name. We cook in small batches, and it is in the shop two days later.", note: "messaging" },
+  { kind: "p", text: "We would rather sell out than make it last longer.", note: "voice" },
+  { kind: "p", text: "That is why you will find us in the chilled aisle and not on the shelf.", note: "messaging" },
 ];
 
 /* The case study writer's draft. A placeholder device and a placeholder client:

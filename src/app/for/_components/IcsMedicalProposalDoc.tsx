@@ -257,8 +257,8 @@ const TEAM: TeamItem[] = [
   {
     id: "ag-copy", num: "06", name: "Copywriters", short: "copy written from your own documents",
     dek: "We build copywriters that know the brand's positioning, its audience, its messaging and its tone of voice before they write a word.",
-    fig: () => <TypedNote variant="post" title="Copywriter" pill="drafted" from="Brendan Marrinan" role="ICS Medical Devices" avatar="BM" subject="" items={GHOST_POST} />,
-    note: "This post is written from what you said on our first call. The words are yours. The copywriter put them in order.",
+    fig: () => <TypedNote variant="post" title="Copywriter" pill="drafted" from="Gráinne Mulhall" role="Fennick Foods" avatar="GM" subject="" items={GHOST_POST} />,
+    note: "This is how a post could read for a made-up food company called Fennick Foods. The company, the person and the words are invented.",
   },
   {
     id: "ag-cd", num: "07", name: "Creative Directors", short: "the look of the work, held to a standard",
