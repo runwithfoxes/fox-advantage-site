@@ -31,8 +31,8 @@
 //
 // ⛔ NO TARGET NUMBERS ON THE MEASUREMENT SECTION. Every figure in the table is
 // either Paul's own price or arithmetic off it: 8 posts x 3 people = 24 a
-// month, EUR 99/month once built, and EUR 3,797 over three months = about
-// EUR 1,266 a month. Nothing about followers, impressions or accounts is
+// month. (13 Oct 2026: the offer became EUR 3,000 once, they run it in their
+// own Claude, so the cost row now names their subscription and no figure.) Nothing about followers, impressions or accounts is
 // promised, and the honest line about what the writer will not do stays in.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
@@ -368,7 +368,7 @@ export default function AceExpressExamplesDoc() {
             <tr>
               <td>What that content costs</td>
               <td className="pae-blank">&nbsp;</td>
-              <td>&euro;99 a month once it is built</td>
+              <td>Your Claude subscription, about &euro;20 a month, once it is built</td>
             </tr>
           </tbody>
         </table>
