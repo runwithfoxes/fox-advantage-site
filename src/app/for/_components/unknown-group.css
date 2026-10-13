@@ -17,83 +17,264 @@
   --ag-sans: "Space Grotesk", ui-sans-serif, sans-serif;
 }
 
-/* ---------- the ten agents: ten rows on hairlines, each closed until pressed
-   (Paul, 13 Oct 2026: "can you make these an accordion? ... neat so they can
-   discover the different agents", with /read as the reference, whose list of
-   titles is type on hairlines). No pictures in the rows: no small thumbnails
-   on this page (Paul, 9 Oct). No height animation, a height of auto cannot
-   animate. ---------- */
-.ppug-agent.pps-sub,
-#agents + .ppug-agent {
-  padding-top: 0;
-  border-top: 1px solid var(--pps-border);
-  scroll-margin-top: 80px;
+/* ---------- the agents as one panel (Paul, 13 Oct 2026, with a picture of
+   the homepage's "/the team": "could you have a section like this? The copy
+   would need to be smaller so you can fit the image in ... basically I can
+   just scroll over each one and see the agent", and "It doesn't need to be in
+   blue and probably shouldn't be in blue"). Names on the left on hairlines,
+   the window of the one under the pointer on the right, all on the page's
+   cream. The list stays put while a tall window is read. ---------- */
+/* With no rail the page is one column 1124 wide. Reading text keeps the
+   measure it had beside the rail; the panel and the pictures use the width. */
+.pps-norail .pps-masthead,
+.ppug > .pps-section > .pps-standfirst:not(.ppug-lede),
+.ppug > .pps-section > .pps-hiw-grid,
+.ppug #howiwork,
+.ppug #howitworks,
+.ppug #pricing {
+  max-width: 748px;
 }
-#agents + .ppug-agent {
-  margin-top: 4px;
+.ppug-lede {
+  max-width: 748px;
 }
-.ppug-agent:has(+ :not(.ppug-agent)) {
-  border-bottom: 1px solid var(--pps-border);
-}
-.ppug-acc-h {
-  margin: 0;
-  font: inherit;
-}
-.ppug-acc-btn {
+.ppug-team {
   display: grid;
-  grid-template-columns: 26px minmax(0, 1fr) auto;
-  column-gap: 14px;
+  grid-template-columns: 372px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  margin-top: 30px;
+}
+.ppug-team-list {
+  position: sticky;
+  top: 84px;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-team-row {
+  scroll-margin-top: 90px;
+}
+.ppug-team-item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 3px;
   align-items: baseline;
   width: 100%;
-  padding: 22px 0 24px;
+  padding: 12px 0 13px;
   background: none;
   border: 0;
+  border-bottom: 1px solid var(--pps-border);
   text-align: left;
-  color: inherit;
+  color: var(--pps-text);
   cursor: pointer;
 }
-.ppug-acc-text {
-  display: grid;
-  gap: 8px;
-}
-.ppug-acc-btn .pps-section-h2 {
-  font-size: 1.125rem;
-}
-.ppug-acc-btn .ppug-dek {
-  display: block;
-  max-width: 62ch;
-}
-.ppug-acc-mark {
+.ppug-team-n {
   font-family: var(--pps-mono);
   font-size: 12px;
-  color: var(--pps-sky);
-  white-space: nowrap;
+  color: #a8a8a2;
+  font-variant-numeric: tabular-nums;
 }
-.ppug-acc-btn:hover .pps-section-h2,
-.ppug-acc-btn:focus-visible .pps-section-h2 {
+.ppug-team-name {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  transition: color 0.15s;
+}
+.ppug-team-short {
+  grid-column: 2;
+  font-family: var(--pps-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+.ppug-team-item:hover .ppug-team-name,
+.ppug-team-item.on .ppug-team-name {
   color: var(--pps-sky);
 }
-.ppug-acc-btn:focus-visible {
+.ppug-team-item.on .ppug-team-n {
+  color: var(--pps-orange);
+}
+.ppug-team-item:focus-visible {
   outline: 2px solid var(--pps-sky);
-  outline-offset: 4px;
+  outline-offset: 2px;
 }
-.ppug-acc-body {
-  padding: 4px 0 56px;
+/* The column is as tall as the tallest window, and the browser is told not
+   to hold its place by anything in here. Without both, a shorter window coming
+   in moved the page under the pointer and the pointer landed on another name
+   (measured 13 Oct: pointing at Search Agents showed Red Team). */
+.ppug-team {
+  overflow-anchor: none;
 }
-.ppug-acc-body[hidden] {
-  display: none;
+.ppug-team-fig {
+  min-width: 0;
+  min-height: 900px;
+}
+.ppug-team-fig-in {
+  animation: ppugTeamIn 0.3s ease both;
+}
+@keyframes ppugTeamIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ppug-team-fig-in {
+    animation: none;
+  }
+}
+.ppug-team-win {
+  margin: 22px 0 0;
+}
+/* The search and advertising windows were drawn for about 900px and the
+   column is 696: at the column's width the ad figures were cut off and the
+   search table wrapped a word a line (photographed 13 Oct). So they are drawn
+   at 900 and shown at .77. zoom, not transform, so the space they take
+   shrinks with them. */
+.ppug-team-fig .ppug-roomy > * {
+  width: 900px;
+  max-width: none;
+  zoom: 0.773;
+}
+.ppug-team-under {
+  padding: 18px 0 30px;
+  border-bottom: 1px solid var(--pps-border);
+}
+@media (max-width: 999px) {
+  .ppug-team {
+    display: block;
+  }
+  .ppug-team-list {
+    position: static;
+  }
+}
+
+/* the creative director's window */
+.ppug-cd,
+.ppug-siteshot {
+  margin: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.ppug-siteshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-cd-title {
+  flex: 1;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-cd-body {
+  padding: 20px;
+}
+.ppug-cd-frames {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.ppug-cd-frames figure,
+.ppug-cd-band {
+  margin: 0;
+}
+.ppug-cd-band {
+  margin-top: 18px;
+}
+.ppug-cd img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-cd figcaption {
+  margin-top: 8px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-cd-notes {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-cd-notes li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--pps-border);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.ppug-cd-notes li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.ppug-cd-notes b {
+  font-family: var(--pps-sans);
+  font-weight: 500;
 }
 @media (max-width: 600px) {
-  .ppug-acc-btn {
-    grid-template-columns: 22px minmax(0, 1fr);
-  }
-  .ppug-acc-mark {
-    grid-column: 2;
-    margin-top: 10px;
+  .ppug-cd-frames {
+    grid-template-columns: 1fr;
   }
 }
-/* The line under an agent's name is copy like any other: one size for all
-   copy on the page (Paul, 9 Oct: "I don't want big copy and small copy"). */
+
+/* the two websites: words beside one picture of the live site */
+.ppug-web {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px;
+  align-items: start;
+  margin-top: 54px;
+}
+.ppug-web .ppug-h3 {
+  margin-top: 0;
+}
+.ppug-open {
+  margin: 18px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 13px;
+}
+.ppug-paints {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+.ppug-paints img,
+.ppug-wideshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-wideshot {
+  margin-top: 22px;
+  border: 1px solid var(--pps-border);
+}
+.ppug-k + .ppug-lede {
+  margin-top: 14px;
+}
+.ppug-after {
+  margin-top: 54px;
+}
+@media (max-width: 899px) {
+  .ppug-web {
+    display: block;
+  }
+  .ppug-web .ppug-siteshot {
+    margin-top: 22px;
+  }
+  .ppug-paints {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .ppug-agent .pps-standfirst + .pps-standfirst {
   margin-top: 18px;
 }

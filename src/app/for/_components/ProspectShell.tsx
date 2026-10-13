@@ -49,6 +49,7 @@ export default function ProspectShell({
   railLinks,
   pdfHref,
   topPicture,
+  noRail,
   children,
 }: {
   clientName: string;
@@ -62,6 +63,10 @@ export default function ProspectShell({
    *  sections prop still drives the observer, so every body section must be
    *  listed there even if the rail shows it inside a group. */
   railGroups?: RailGroup[];
+  /** No rail at all: one column the full width of the shell. For a page whose
+   *  own list is the way round it (the Unknown group page, Paul, 13 Oct 2026:
+   *  "we could take the rail out altogether"). */
+  noRail?: boolean;
   railNote?: string;
   /** A bare /about link at the top of the rail, no bio text (Paul, 8 Aug:
    *  "it is getting too busy"). The photo is OPTIONAL and off by default
@@ -175,8 +180,8 @@ export default function ProspectShell({
             height={topPicture.height}
           />
         )}
-        <div className="pps-grid">
-          <div className="pps-railcol">
+        <div className={noRail ? "pps-grid pps-norail" : "pps-grid"}>
+          <div className="pps-railcol" hidden={noRail}>
             {railNote && <p className="pps-railnote">{railNote}</p>}
             {bio && (
               <div className="pps-bio">

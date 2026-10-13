@@ -546,3 +546,11 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* No rail: one column the full width of the shell (the Unknown group page). */
+.pps-grid.pps-norail {
+  display: block;
+}
+.pps-norail .pps-railcol {
+  display: none;
+}

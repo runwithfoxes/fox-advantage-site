@@ -158,6 +158,10 @@ import p154 from "./rwf-diary.jpg";
 import p155 from "./rwf-essays.jpg";
 import p156 from "./rwf-nuggets.jpg";
 import p157 from "./rwf-reports.jpg";
+import q0 from "./fox-6040-1.jpg";
+import q1 from "./fox-6040-2.jpg";
+import q2 from "./fox-6040-3.jpg";
+import q3 from "./fox-6040-band.jpg";
 
 export const PICS: Record<string, StaticImageData> = {
   "di-guide-01": p000,
@@ -318,4 +322,8 @@ export const PICS: Record<string, StaticImageData> = {
   "rwf-essays": p155,
   "rwf-nuggets": p156,
   "rwf-reports": p157,
+  "fox-6040-1": q0,
+  "fox-6040-2": q1,
+  "fox-6040-3": q2,
+  "fox-6040-band": q3,
 };
