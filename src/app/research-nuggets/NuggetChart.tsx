@@ -90,6 +90,7 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
   const max = chart.max || 1;
   const splitTotal = (chart.split?.parts || []).reduce((a, p) => a + p.value, 0);
   const pairTotal = (chart.pairs || []).reduce((a, g) => a + g.value, 0);
+  const ringTotal = (chart.ring?.parts || []).reduce((a, p) => a + p.value, 0);
   const pct = (v: number) => `${(v / max) * 100}%`;
   const show = (v: number) => `${chart.prefix || ""}${Math.round(v * n)}${chart.suffix || ""}`;
 
@@ -196,6 +197,49 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
             <div className={c.splitLabs} style={{ gridTemplateColumns: chart.split.parts.map((p) => `${p.value}fr`).join(" ") }}>
               {chart.split.parts.map((p) => (
                 <span key={p.label} className={`${c.lab} ${c[p.kind || "main"]}`}>{p.label}</span>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        {chart.ring ? (
+          <div className={c.ringWrap}>
+            <div className={c.ring}>
+              {/* pathLength is the total, so a part's dash is its own figure. The parts draw one after
+                  the other, round from the top, as one line. */}
+              <svg viewBox="0 0 200 200" role="img" aria-label={chart.ring.parts.map((p) => `${p.value}% ${p.label}`).join(", ")}>
+                <circle className={c.ringTrack} cx="100" cy="100" r="78" />
+                {chart.ring.parts.map((p, i) => {
+                  const before = chart.ring!.parts.slice(0, i).reduce((a, x) => a + x.value, 0);
+                  const grown = Math.max(0, Math.min(p.value, ringTotal * n - before));
+                  return (
+                    <circle
+                      key={p.label}
+                      className={`${c.ringPart} ${c[p.kind || "main"]}`}
+                      cx="100"
+                      cy="100"
+                      r="78"
+                      pathLength={ringTotal}
+                      strokeDasharray={`${grown} ${ringTotal}`}
+                      strokeDashoffset={-before}
+                    />
+                  );
+                })}
+              </svg>
+              <span className={`${c.ringHole} ${c.late}`}>
+                <b>{chart.ring.centre}</b>
+                {chart.ring.centre_label ? <span>{chart.ring.centre_label}</span> : null}
+              </span>
+            </div>
+            <div className={c.ringKey}>
+              {chart.ring.parts.map((p) => (
+                <div key={p.label} className={`${c.ringRow} ${c[p.kind || "main"]}`}>
+                  <i />
+                  <span className={c.val}>
+                    {p.value}%{p.note ? <em>{p.note}</em> : null}
+                  </span>
+                  <span className={c.lab}>{p.label}</span>
+                </div>
               ))}
             </div>
           </div>

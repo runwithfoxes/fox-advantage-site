@@ -1,0 +1,24 @@
+{
+ "after": "got a sentence and nothing more (576 of 1,599)",
+ "title": "Authors answered 64% of the other causes they named with a figure, and 36% with a sentence only",
+ "unit": "percent of the 1,599 times an author named another possible cause of their own result",
+ "ring": {
+  "parts": [
+   {
+    "label": "Answered with a figure, a chart or a named source",
+    "value": 64,
+    "note": "(1,023 of 1,599)",
+    "kind": "main"
+   },
+   {
+    "label": "Answered with a sentence only",
+    "value": 36,
+    "note": "(576 of 1,599)",
+    "kind": "pale"
+   }
+  ],
+  "centre": "36%",
+  "centre_label": "a sentence only"
+ },
+ "footnote": "389 papers entered for advertising effectiveness awards, 1980 to 2024. In 309 of them the authors named another possible cause of the result. Each time, we recorded whether the answer pointed to a number, a chart, a model or a source, or was words only. Some of the answers counted as a figure have no number beside them, so 64% is the most it can be and 36% the least."
+}
