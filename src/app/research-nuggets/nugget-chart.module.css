@@ -73,27 +73,20 @@
 .late { transition: opacity .6s ease .1s; }
 .fig[data-stage="armed"] .late, .fig[data-stage="draw"] .late { opacity: 0; transition: none; }
 
-/* ring: a whole and its parts as one circle with a hole. The figure in the hole is the part the eye should go to. */
-.ringWrap { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: center; gap: 34px; }
-.ring { position: relative; width: 220px; aspect-ratio: 1; }
+/* rings: two or more shares to compare, each its own circle with a hole, the same size, side by side */
+.rings { display: grid; grid-auto-flow: column; grid-auto-columns: 200px; justify-content: center; align-items: start; gap: 56px; }
+.ringItem { display: grid; justify-items: center; gap: 12px; min-width: 0; }
+.ring { position: relative; width: 100%; aspect-ratio: 1; }
 .ring svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
 .ringTrack, .ringPart { fill: none; stroke-width: 30; }
-.ringTrack { stroke: #F6F6F3; }
-.ringPart.main { stroke: #3A7CA5; }
-.ringPart.pale { stroke: #C9DCE8; }
-.ringHole { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 6px; text-align: center; }
-.ringHole b { font-family: var(--mono); font-weight: 500; font-size: 38px; line-height: 1; letter-spacing: -.03em; color: #1D1B1B; }
-.ringHole span { font-family: var(--mono); font-size: 11px; line-height: 1.3; color: #6b6b66; white-space: nowrap; }
-.ringKey { display: grid; gap: 20px; }
-.ringRow { display: grid; grid-template-columns: 12px minmax(0, 1fr); column-gap: 10px; align-items: baseline; }
-.ringRow i { display: block; width: 12px; height: 12px; border-radius: 2px; }
-.ringRow.main i { background: #3A7CA5; }
-.ringRow.pale i { background: #C9DCE8; }
-.ringRow p { margin: 0; font-family: var(--mono); font-size: 13.5px; line-height: 1.5; color: #1D1B1B; text-wrap: balance; }
-.ringRow .val { margin-right: 4px; }
-.ringRow em { font-style: normal; color: #8A8A85; white-space: nowrap; }
-/* a ring's top line is a plain phrase, so it is printed as typed, never in capitals */
-.fig:has(.ringWrap) .unit { text-transform: none; letter-spacing: .02em; font-size: 12px; }
+.ringTrack { stroke: #F1F1ED; }
+.main .ringPart { stroke: #3A7CA5; }
+.other .ringPart { stroke: #A8A8A2; }
+.ringHole { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--mono); font-weight: 500; font-size: 36px; letter-spacing: -.03em; color: #1D1B1B; font-variant-numeric: tabular-nums; }
+.ringLab { margin: 0; text-align: center; font-family: var(--mono); font-size: 13px; line-height: 1.5; color: #1D1B1B; }
+.ringLab em { display: block; font-style: normal; color: #8A8A85; }
+/* a rings chart's top line is a plain phrase, so it is printed as typed, never in capitals */
+.fig:has(.rings) .unit { text-transform: none; letter-spacing: .02em; font-size: 12px; }
 
 .axis { position: relative; height: 14px; margin-top: -10px; font-family: var(--mono); font-size: 10px; color: #8A8A85; }
 .axis span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
@@ -129,7 +122,9 @@
   .pair .big { width: 9px; height: 9px; }
   .pair .small { width: 5px; height: 5px; }
   .pairsTop .val { font-size: 28px; }
-  .ringWrap { grid-template-columns: 1fr; justify-items: center; gap: 22px; }
-  .ring { width: 200px; }
-  .ringKey { width: 100%; }
+  /* equal columns, so the rings stay the same size whatever the words under them */
+  .rings { grid-auto-columns: minmax(0, 1fr); justify-content: stretch; gap: 18px; }
+  .ringTrack, .ringPart { stroke-width: 28; }
+  .ringHole { font-size: 28px; }
+  .ringLab { font-size: 12px; }
 }

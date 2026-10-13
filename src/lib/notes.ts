@@ -33,7 +33,7 @@ const LIVE = process.env.VERCEL_ENV === "production";
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 /** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
-    A file gives `bars` (with `max`), `squares`, `pairs`, `split` or `ring`, only one of them. */
+    A file gives `bars` (with `max`), `squares`, `pairs`, `split` or `rings`, only one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
@@ -82,15 +82,11 @@ export interface NoteChart {
     count: string;
     parts: { label: string; value: number; on_bar: string; kind?: "main" | "pale" }[];
   };
-  /** A whole of 100 and its parts, drawn as one circle with a hole, round from the top in the order
-      given. Percentages. Each part's `note` is its count, printed small after the figure. `centre` is
-      printed large in the hole with `centre_label` under it, and arrives once the ring is drawn. "main"
-      is the strong colour and "pale" the light one; the part the eye should go to is named in the hole. */
-  ring?: {
-    parts: { label: string; value: number; note?: string; kind?: "main" | "pale" }[];
-    centre: string;
-    centre_label?: string;
-  };
+  /** Two or more shares to compare, each drawn as its own circle with a hole, side by side and the
+      same size. A ring's arc is its `value` out of 100, drawn round from the top, and the figure is
+      printed in its hole. `label` goes under the ring and `note` (its count) after it. "main" is the
+      strong colour, "other" the grey of a comparison. Percentages. */
+  rings?: { label: string; value: number; note?: string; kind?: "main" | "other" }[];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
   footnote?: string;
