@@ -1791,3 +1791,26 @@
     white-space: nowrap;
   }
 }
+
+/* the creative director's film: the fox on a chart, square, with its line under it */
+.ppug-cd-film {
+  margin: 0;
+  padding: 22px 22px 18px;
+  background: #fff;
+}
+.ppug-cd-film video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-cd-film figcaption {
+  max-width: 560px;
+  margin: 12px auto 0;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}

@@ -75,7 +75,7 @@ import { useEffect, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
 import { WriterEmail } from "./library/WriterPiece";
-import { PipelineBoard } from "./library/GrowthManager";
+import { JoNote } from "./library/GrowthManager";
 import UnknownSearchWindow from "./library/UnknownSearchWindow";
 import TypedNote from "@/components/agents/TypedNote";
 import AdDeskWindow from "@/components/agents/AdDeskWindow";
@@ -84,7 +84,6 @@ import {
   RESEARCH,
   REDTEAM,
   PM,
-  GROWTH_PIPELINE,
   GHOST_POST,
 } from "./unknown-group-data";
 import { PICS } from "./unknown-group/pics";
@@ -214,12 +213,11 @@ function SiteShot({ pic, url, href, alt }: { pic: string; url: string; href: str
 // was held to. The rules are the ones written down for this ad in the fox-ads
 // CONTEXT.md ("Key Decisions"): one thought a frame, the number sized with
 // room round it, and the chart becoming one split bar on a thin strip.
+// The creative director shows the newest work, the fox acting on a chart
+// (Paul, 13 Oct: "I wanted to show the new stuff we've made with the Fox Moves
+// - the video with this line under it: Three clips: carry, climb and push").
+// The film and the line are the ones on /how-we-made-it.
 function CreativeWindow() {
-  const frames: [string, string, string][] = [
-    ["fox-6040-1", "01", "The line"],
-    ["fox-6040-2", "02", "The proof"],
-    ["fox-6040-3", "03", "The ask"],
-  ];
   return (
     <div className="ppug-site ppug-cd">
       <div className="ppug-site-bar">
@@ -228,50 +226,39 @@ function CreativeWindow() {
           <i />
           <i />
         </span>
-        <span className="ppug-cd-title">Creative Director · the 60:40 ad</span>
-        <span className="ppug-site-pill">approved</span>
+        <span className="ppug-cd-title">Creative Director · the fox on a chart</span>
+        <span className="ppug-site-pill">our own film</span>
       </div>
-      <div className="ppug-cd-body">
-        <div className="ppug-cd-frames">
-          {frames.map(([pic, n, what]) => (
-            <figure key={pic}>
-              <Pic name={pic} alt={`Frame ${n} of the ad: ${what.toLowerCase()}`} />
-              <figcaption>
-                <span className="ppug-n">{n}</span> {what}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <figure className="ppug-cd-band">
-          <Pic name="fox-6040-band" alt="The same ad laid out again as a wide banner" />
-          <figcaption>
-            <span className="ppug-n">04</span> The same ad as a banner, 970 by 250
-          </figcaption>
-        </figure>
-        <ul className="ppug-cd-notes">
-          <li>
-            <b>One thought a frame.</b> The line, then the chart that proves
-            it, then the ask.
-          </li>
-          <li>
-            <b>Room round the number.</b> 60:40 is sized to have space about
-            it and never runs edge to edge.
-          </li>
-          <li>
-            <b>Laid out again for every size.</b> On a thin strip the chart
-            becomes one bar split 60 to 40. It is never just made smaller.
-          </li>
-        </ul>
-      </div>
+      <figure className="ppug-cd-film">
+        <video
+          src="/how-we-made-it/fox-moves-carry.mp4"
+          poster="/how-we-made-it/fox-moves-carry-poster.jpg"
+          width={1080}
+          height={1080}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          aria-label="A chart. The fox carries in a grey bar marked 7 of 43 ads and stands it down. He climbs onto it. A taller blue bar marked 20 of 43 ads grows beside him and he pushes against it."
+        />
+        <figcaption>Three clips: carry, climb and push.</figcaption>
+      </figure>
     </div>
   );
 }
 
-// The eleven, in the homepage's order with two added. The line under each
-// name is Paul's own from the homepage (AgentsSection.tsx, dictated 6 Sep
-// 2026), except the copywriter's and the creative director's, which are
-// Dray's drafts for his pass. The few words beside each name are the
-// homepage's, and Dray's for the same two.
+// The growth note and the renewal email are the ones on our own homepage,
+// word for word (AgentsSection.tsx), for the made-up insurer Kite. Paul, 13
+// Oct: "The growth agent is just a static image of some cards. Use the one from
+// the reference point I gave you. So take the actual one. And do the same with
+// the email marketer. Find the files we use for our website."
+const SITE_GROWTH_NOTE = [
+  "Morning. Overnight: two replies came in and one meeting landed, Thursday at two with Behan Financial Planning.",
+  "Three things need you today. The Kilbrannan terms are waiting on your yes. This week's partner list is built and ready for you to prune. And one broker has asked a pricing question I will not answer for you.",
+  "Everything else is handled. Follow-ups sent, the board is current, the forecast is unchanged.",
+];
+
 const TEAM: TeamItem[] = [
   {
     id: "ag-research", num: "01", name: "Research Agents", short: "the morning research note",
@@ -282,30 +269,28 @@ const TEAM: TeamItem[] = [
   {
     id: "ag-growth", num: "02", name: "Growth Agent Team", short: "the pipeline, the outbound, the meetings",
     dek: "We build growth agent teams whose job is to get meetings with prospects in your calendar.",
-    fig: () => <PipelineBoard deals={GROWTH_PIPELINE} width={806} pill="kept current every morning" />,
-    note: "One board for all four brands is where a chance for Empathy to bring Salience to a client shows up. The companies and people on this board are invented.",
+    fig: () => <JoNote note={SITE_GROWTH_NOTE} title="Growth Agent Team" />,
+    note: "This is the growth team's morning note from our own site. The firms and people in it are invented.",
   },
   {
     id: "ag-email", num: "03", name: "Email Marketing Agents", short: "the emails that keep customers",
     dek: "We build email marketing agents that do the whole of lifecycle email, from writing to improving the journeys, every day.",
     fig: () => (
       <WriterEmail
-        subject={{ text: "One thing in your results that nobody asked us about", note: "voice" }}
+        subject={{ text: "Your renewal is due on 14 September", note: "voice" }}
         body={[
           { text: "Hi Sarah," },
-          { text: "You asked us one question in the spring, and the answer is in the report you have." },
-          { text: "There was a second answer in the same data, to a question nobody asked.", note: "positioning" },
-          {
-            text: "The people who stopped buying from you last year did not go to a competitor. Most of them still rate you above everyone else. They stopped buying the category.",
-          },
-          { text: "It was in plain sight in the numbers. Nobody saw it because the brief was about your competitors.", note: "messaging" },
-          { text: "It shows up in three of the last four waves.", note: "proof" },
-          { text: "I'd like twenty minutes to show you. No slides.", note: "voice" },
+          { text: "Before it renews, we'll quote the market for you.", note: "positioning" },
+          { text: "Last year most people in your position paid the price they were sent. It was a bit higher than the year before, and paying it beat a fortnight of forms and four websites asking the same eleven questions." },
+          { text: "That increase was never compulsory. It was the cost of staying put.", note: "messaging" },
+          { text: "So about three weeks before your date we'll check what everyone else would charge for the same cover. If someone is cheaper, we move you and do the paperwork. If nobody is, you stay where you are. Either way you'll get a note saying what we found and what we chose.", note: "messaging" },
+          { text: "The first time we did this, customers saved €187 on average.", note: "proof" },
+          { text: "Nothing for you to do.", note: "voice" },
         ]}
-        sign={["Declan", "Empathy"]}
+        sign={["Aoife", "Kite"]}
       />
     ),
-    note: "The client and the finding in this email are invented. The idea of an answer hiding in plain sight is yours, from the call. Move over a dotted line and it shows which document that line came from.",
+    note: "This is the renewal email from our own site, written for a made-up insurer called Kite. Move over a dotted line and it shows which document that line came from.",
   },
   {
     id: "ag-copy", num: "04", name: "Copywriters", short: "copy written from your own documents",
@@ -317,8 +302,16 @@ const TEAM: TeamItem[] = [
     id: "ag-cd", num: "05", name: "Creative Directors", short: "the look of the work, held to a standard",
     dek: "We build creative directors that hold every ad, page and picture to the brand's rules and to a standard of craft.",
     fig: () => <CreativeWindow />,
-    k: "/our own ad.",
-    note: "This is an ad for Run with Foxes, on the 60:40 split between brand building and sales activation. The frames are from the approved film.",
+    k: "/our own film.",
+    note: (
+      <>
+        The fox is one filmed clip for each move, cut out and laid on a chart
+        drawn in code.{" "}
+        <a className="ppug-link" href="https://runwithfoxes.com/how-we-made-it/a-cartoon-fox-that-acts-on-a-chart" target="_blank" rel="noopener noreferrer">
+          How we made it
+        </a>
+      </>
+    ),
   },
   {
     id: "ag-search", num: "06", name: "Search Agents", short: "new terms, new ads, live by morning",
