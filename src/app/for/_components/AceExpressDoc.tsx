@@ -21,9 +21,15 @@
 // ⭐ WHAT PAUL IS SELLING (his brief, 25 Aug): one agent that writes LinkedIn
 // posts for three profiles, Tony, Eamon and Philip. It does the research, the
 // content ideas and the writing. Their people pick and paste. Two weeks of
-// build, two sessions with them to get their knowledge into it. Then either
-// Paul runs it on Managed Agents for EUR 99 a month, or he hands it over and
-// they run it in their own Claude. Three months, then they decide.
+// build, two sessions with them to get their knowledge into it.
+//
+// ⭐ THE OFFER CHANGED ON 13 OCT 2026. Tony, 6 Oct: "Eamon will not go beyond
+// € 3k." Paul, 13 Oct: "I'll build with them, train them on it and they run
+// it. They get a subscription to Claude, which they can use for other things
+// too and gives them an opportunity to dip toes into water. 3k plus vat."
+// So: build it with them, train them, hand it over. They run it in their own
+// Claude. No monthly fee to us, no three month review, and Paul does NOT run
+// it for them. The old shape (Managed Agents, EUR 99 a month) is gone.
 //
 // ⛔ RADIO AND GOOGLE ADS ARE DELIBERATELY OFF THE PAGE. Their new business is
 // running at roughly 22 accounts a month with no marketing at all, so a radio
@@ -49,15 +55,17 @@
 // both "20 minutes a month" and a weekly reading of the same thing, and
 // neither is ours to promise.
 //
-// ⚠️ PRICES ARE PAUL'S, named 25 Aug 2026: EUR 3,500 for the build, then
-// EUR 99 a month, three months to the review, footed at EUR 3,797.
+// ⚠️ THE PRICE IS PAUL'S, named 13 Oct 2026: EUR 3,000 plus VAT, once.
+// (It was EUR 3,500 then EUR 99 a month from 25 Aug to 13 Oct.)
+// ⛔ NO PRICE FOR THE CLAUDE SUBSCRIPTION ON THE PAGE. Paul gave none and it
+// is Anthropic's to set. They pay Anthropic directly.
 //
 // ⛔ Gates: no unsourced numbers, every demonstration is our own work and
 // labelled illustrative, and no security claim beyond what Sam confirmed
-// against Anthropic primary sources on 24 Aug (draft at
-// intelligence/jo-knowledge/research-drafts/claude-managed-agents-security.md).
-// In particular: NO claim of EU data residency and NO claim of zero data
-// retention. Neither is true of Managed Agents.
+// against Anthropic primary sources on 24 Aug. Since 13 Oct the writer runs
+// in THEIR OWN Claude subscription, so the Managed Agents security lines are
+// off the page. Do not add security claims about their plan: nobody has
+// checked which plan they will buy.
 
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CoversGrid, CloseBox } from "./Pricing";
@@ -135,7 +143,7 @@ const SECTIONS = [
   { id: "writeragent", title: "My recommendation: The AI writer" },
   { id: "writeragent-use", title: "How you would use it" },
   { id: "writeragent-weeks", title: "The first two weeks" },
-  { id: "writeragent-infra", title: "Nobody needs a Claude licence" },
+  { id: "writeragent-infra", title: "It runs in your own Claude" },
   { id: "writeragent-after", title: "What we would build after it" },
   { id: "recommend", title: "What we’d recommend" },
   { id: "pricing", title: "The price" },
@@ -179,7 +187,7 @@ const RAIL_GROUPS = [
         children: [
           { id: "writeragent-use", title: "How you would use it" },
           { id: "writeragent-weeks", title: "The first two weeks" },
-          { id: "writeragent-infra", title: "No Claude licence needed" },
+          { id: "writeragent-infra", title: "Your own Claude" },
           { id: "writeragent-after", title: "What comes after it" },
         ],
       },
@@ -529,18 +537,24 @@ export default function AceExpressDoc() {
           ours to promise. */}
       <PPSection id="writeragent" k="08" title="My recommendation: The AI writer">
         <p className="pps-standfirst">
-          We would build one agent that writes LinkedIn posts for Tony,
-          Eamon and Philip. It researches topics, comes up with the ideas,
-          and writes the posts. You read what it has written, choose the
-          ones you want to use, and paste them into LinkedIn from your own
-          profiles.
+          I would build one agent with you that writes LinkedIn posts for
+          Tony, Eamon and Philip. It researches topics, comes up with the
+          ideas, and writes the posts. You read what it has written, choose
+          the ones you want to use, and paste them into LinkedIn from your
+          own profiles.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          There are three parts to it. I build the writer with you. I train
+          you to run it. Then it is yours, and you run it yourselves.
         </p>
       </PPSection>
 
       <PPSection id="writeragent-use" sub title="How you would use it">
         <p className="pps-standfirst">
-          Once a month you would get a month&rsquo;s worth of posts in one
-          go. You pick the ones you like and post them.
+          You run it whenever you want a new batch of posts. You open
+          Claude, ask the writer for them, and it does the research and
+          writes them for each of you. You pick the ones you like and post
+          them.
         </p>
       </PPSection>
 
@@ -559,23 +573,24 @@ export default function AceExpressDoc() {
           it and review the output with you. You sign off the writing before
           anything is published.
         </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          Then I train you. I set the writer up in your Claude account and
+          show you how to run it, how to ask it for something different, and
+          how to correct it when a post does not sound like you. After that
+          you do not need me to keep it going.
+        </p>
       </PPSection>
 
-      <PPSection id="writeragent-infra" sub title="Nobody needs a Claude licence">
+      <PPSection id="writeragent-infra" sub title="It runs in your own Claude">
         <p className="pps-standfirst">
-          The agent runs on Claude Managed Agents, which is Anthropic&rsquo;s
-          own hosted service. You reach it through our page, so there is no
-          software to install and no per-person licence to buy.
-          Anthropic does not use data sent through its commercial API to
-          train its models, and that is a contractual commitment rather than
-          a setting we switch on. Anthropic holds SOC 2 Type I and Type II,
-          ISO 27001:2022 and ISO 42001:2023, and each session runs in an
-          isolated container.
+          The writer runs in your own Claude subscription, which you take
+          out with Anthropic directly. It is yours, so you are not tied to
+          me to keep it running.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          If you would rather run it in your own Claude account, we can move
-          the whole thing across and show you how to run and extend it
-          yourselves.
+          The subscription is not only for the writer. You can use Claude
+          for other work as well, so it is a low risk way to dip your toes
+          in the water and see what else it could do for the business.
         </p>
       </PPSection>
 
@@ -599,14 +614,11 @@ export default function AceExpressDoc() {
         <p className="pps-standfirst">
           We would start with the writer. It is the smallest piece of work
           that gives you something useful, and it is what you asked for on
-          the call. You would see posts going out from your own profiles
-          within about a month of it going live.
+          the call.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
-          Three months is long enough for you to judge whether it is worth
-          continuing. At that point you either carry on with us running it,
-          or you take it in-house and run it yourselves. We will hand it
-          over whenever you want it.
+          I build it with you, train you on it and hand it over. You run it
+          from there. There is one price and no monthly fee to us.
         </p>
       </PPSection>
 
@@ -615,19 +627,16 @@ export default function AceExpressDoc() {
           cards={[
             {
               label: "The AI writer",
-              title: "LinkedIn posts, written for you",
+              title: "Built with you, then yours to run",
               bullets: [
                 "One agent, calibrated to your positioning, messaging and tone of voice",
                 "Two sessions with you, to get what is in your heads",
                 "Research, ideas and finished posts for three profiles",
-                "A month of posts at a time, for you to read and choose from",
+                "Training, so you can run it yourselves",
+                "Handed over in your own Claude account",
               ],
-              price: "€3,500 plus VAT",
-              note: "Then €99 a month, reviewed together after three months.",
-              total: {
-                label: "First three months, to the review",
-                value: "€3,797 plus VAT",
-              },
+              price: "€3,000 plus VAT",
+              note: "One price. No monthly fee to us.",
               featured: true,
             },
           ]}
@@ -636,19 +645,15 @@ export default function AceExpressDoc() {
           covers={[
             "All build and calibration work",
             "The two sessions with you",
-            "Running the agent for three months",
-            "A named point of contact, Paul",
+            "Training you to run it",
+            "The handover into your own Claude account",
           ]}
           notCovered={[
-            "Any tool subscriptions on your side",
+            "Your Claude subscription, which you pay Anthropic for directly",
+            "Running the writer for you after the handover",
             "LinkedIn advertising or any media spend",
           ]}
         />
-        <p className="pps-standfirst" style={{ marginTop: 30 }}>
-          If you would rather run it yourselves at any point, we will hand it
-          over. You would run it in your own Claude account and the monthly
-          stops.
-        </p>
         <CloseBox clientName="Ace Express" />
       </PPSection>
 
