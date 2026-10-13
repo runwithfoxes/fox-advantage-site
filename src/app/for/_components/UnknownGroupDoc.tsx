@@ -767,30 +767,31 @@ export default function UnknownGroupDoc() {
       <div className="ppug">
         <PPSection id="heard" k="01" title="What I propose">
           <p className="pps-standfirst">
-            My proposal is that I become your fractional CMO for about three
-            months. It is part time, and I would work alongside you and your
-            team. You already have a marketing plan. In those three months I
-            would build out how it gets executed, with agents leading the
-            work.
+            My proposal is this. I take on a fractional-CMO role for about
+            three months. It is part time, and I would work alongside you and
+            your team. We&apos;d focus on outcomes. Essentially, I&apos;d do
+            what I&apos;d done many times before - figure out what needs to be
+            done based on a strategy or plan, resource this, put measures in
+            place and execute.
           </p>
           <p className="pps-standfirst">
-            What excites me is how ambitious we could be. Yes, we could build
-            a few agents to make things more efficient, and that would be
-            worth having. But what if we tried to build a proper agent-led marketing
-            function, with the equivalent of ten different agents? If you had
-            ten more marketers, what would you get them to do?
+            The only difference versus the past two decades, is using AI
+            Agents instead of hires for as much as possible. And it is a lot.
+            I&apos;ve spent the past three years training AI and now agents to
+            create high quality marketing communications, and I hold them to
+            the same bar I do when I ran teams and worked with agencies.
           </p>
           <p className="pps-standfirst">
-            The work goes into the quality and the craft first, which means
-            agreeing what good looks like for each brand. Then it goes into
-            building a team of agents that can work together to that standard.
+            We should be very ambitious. Getting a couple of agents to do what
+            a small team could do is table stakes. I&apos;m interested in
+            building proper agent-led marketing functions, with the equivalent
+            of 10 or 20 different agents? If you had 10-20 more marketers,
+            what would you get them to do?
           </p>
           <p className="pps-standfirst">
-            Everything below is an example. They are agents, websites and
-            content we have built for ourselves and for other companies, here
-            so that you can see what is possible and the standard of it. None
-            of it is a list of things to buy. What we would build for the
-            group is something we would work out together.
+            Below is a list of examples. They are agents, websites and content
+            we have built for ourselves and for other companies, here so that
+            you can see what is possible and the standard of it.
           </p>
         </PPSection>
 
