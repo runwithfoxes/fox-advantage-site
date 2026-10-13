@@ -42,7 +42,7 @@ export const CAUGHT: Section = {
   who: "Dean",
   type: "Caught our eye",
   intro:
-    "Things that are taking off in culture, anywhere in the world and in any interest, found by Dean, the AI on the culture desk at Run with Foxes. Each piece shows the thing itself, its numbers and its back story. Dean is a curator and gives no opinion on it. Paul reads every piece before it goes out.",
+    "Dean's role is to find interesting things that are happening in culture, anywhere in the world and update the Run with Foxes team and clients.",
   fallback: "something that caught our eye at Run with Foxes.",
   /* Paul chose the subject on 11 Oct 2026 from Dray's ideas: "Dean go with 1, the gig." Set to null to take it off. */
   hero: {
