@@ -3,6 +3,7 @@ title: "A cartoon fox that acts on a chart"
 date: "2026-10-12"
 dek: "How we film our fox one move at a time, cut him out and put him on any chart drawn in code."
 rail: "A cartoon fox that acts on a chart"
+image: "/how-we-made-it/fox-moves-reel-poster.jpg"
 ---
 
 Our fox can now walk onto a chart, carry a bar in, climb it and push the next one. In each move his body is one 5 second clip from a video model. Everything else on screen is drawn in code. This is how it works, so you can do it with a character of your own.

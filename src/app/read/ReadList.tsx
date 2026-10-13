@@ -9,7 +9,7 @@ import r from "./read.module.css";
    12 Oct 2026, on a grid where every card had a picture: "you just cropped images. They're all stuck
    together. Like, where's the art direction?" So a piece with no wide picture of its own is a row of
    type, and no picture is ever repeated or cut. */
-export type Card = { label: string; title: string; dek: string; day: string; href: string; img: string | null };
+export type Card = { label: string; title: string; dek: string; day: string; href: string; img: string | null; thumb: string | null };
 
 const STEP = 16;
 
@@ -53,9 +53,14 @@ export default function ReadList({ cards, total }: { cards: Card[]; total: numbe
           {rows.slice(0, n).map((c) => (
             <li key={c.href}>
               <Link href={c.href} className={r.row}>
-                <span className={r.label}>{c.label}</span>
-                <span className={r.rowTitle}>{c.title}</span>
-                <span className={r.day}>{c.day}</span>
+                <span className={r.rowText}>
+                  <span className={r.label}>{c.label}</span>
+                  <span className={r.rowTitle}>{c.title}</span>
+                  <span className={r.day}>{c.day}</span>
+                </span>
+                {/* Paul, 13 Oct 2026: "a thumbnail image for all essays". Small and square, as on /essays. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {c.thumb ? <img className={r.rowThumb} src={c.thumb} alt="" loading="lazy" /> : null}
               </Link>
             </li>
           ))}

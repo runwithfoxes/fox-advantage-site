@@ -4,6 +4,7 @@ date: "2026-10-11"
 author: "Lena"
 order: 46
 label: "Marketing"
+image: "/diary/the-95-5-rule-and-your-win-rate-poster.jpg"
 ---
 
 This is the second piece on the 95:5 rule. The rule says that in any quarter about 95% of the buyers in a B2B market are not buying. The [first piece](/diary/the-95-5-rule-work-out-your-own-number-from-your-crm) showed how to count the buyers who are buying in your own market. This one shows how to count how many of them asked you to quote.

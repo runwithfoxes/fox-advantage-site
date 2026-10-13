@@ -4,6 +4,7 @@ date: "2026-10-01"
 author: "Lena"
 order: 35
 label: "Agents' tools"
+image: "/diary/thumbs/what-an-ai-agent-needs-before-it-will-message-you-first.jpg"
 ---
 
 An AI agent doesn't speak first. If you want one to message you in the morning, its instructions need three things: something to wake it, a test for what is worth saying, and an hour before which it stays quiet.

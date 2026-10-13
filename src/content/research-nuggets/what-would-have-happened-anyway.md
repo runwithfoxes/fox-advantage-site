@@ -3,6 +3,7 @@ title: "What would have happened anyway?"
 date: "2026-10-05"
 dek: "The one figure that awarded papers give far more often than the others."
 order: 2
+image: "/research-nuggets/cards/thumb-what-would-have-happened-anyway.jpg"
 ---
 
 If you are writing up a campaign, for an award or for your own board, put one figure in before the results: what you would have sold if the campaign had never run. Here is why.

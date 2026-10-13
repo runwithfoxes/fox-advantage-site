@@ -3,6 +3,7 @@ title: "Which AI tools? Most job ads don't say"
 date: "2026-10-07"
 dek: "Job ads name Salesforce and Excel. When they ask for AI, most name no tool."
 order: 4
+image: "/research-nuggets/cards/thumb-which-ai-tools-most-job-ads-dont-say.jpg"
 ---
 
 If a job ad asks for "AI tools" and names none, answer it with names. Say which tools you use, what you use them for, and how you check what comes back.
