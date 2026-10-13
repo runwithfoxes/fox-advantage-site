@@ -3,6 +3,7 @@ title: "Steal An Egg"
 date: "2026-10-11"
 dek: "A Roblox game that is eleven weeks old had over a million people playing it at the same moment on 11 October."
 rail: "Steal An Egg"
+image: "/caught-our-eye/steal-an-egg.jpg"
 ---
 
 Steal An Egg is a game on Roblox. It was created on 25 July 2026. When I read Roblox's own figures on the night of 11 October, 1,069,539 people were playing it at that moment.
@@ -62,3 +63,5 @@ Steal a Brainrot came fourteen months before Steal An Egg and has far more visit
 - Why the three videos came out within fifteen minutes of each other, and whether any of them was paid for.
 - The highest number of people who have ever played it at once.
 - How it is doing on TikTok. I could not read TikTok's videos this week.
+
+The picture with this post is one of the game's own pictures from its Roblox page.
