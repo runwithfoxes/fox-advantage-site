@@ -17,7 +17,81 @@
   --ag-sans: "Space Grotesk", ui-sans-serif, sans-serif;
 }
 
-/* ---------- the ten agents, each open as its own section ---------- */
+/* ---------- the ten agents: ten rows on hairlines, each closed until pressed
+   (Paul, 13 Oct 2026: "can you make these an accordion? ... neat so they can
+   discover the different agents", with /read as the reference, whose list of
+   titles is type on hairlines). No pictures in the rows: no small thumbnails
+   on this page (Paul, 9 Oct). No height animation, a height of auto cannot
+   animate. ---------- */
+.ppug-agent.pps-sub,
+#agents + .ppug-agent {
+  padding-top: 0;
+  border-top: 1px solid var(--pps-border);
+  scroll-margin-top: 80px;
+}
+#agents + .ppug-agent {
+  margin-top: 4px;
+}
+.ppug-agent:has(+ :not(.ppug-agent)) {
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-acc-h {
+  margin: 0;
+  font: inherit;
+}
+.ppug-acc-btn {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  column-gap: 14px;
+  align-items: baseline;
+  width: 100%;
+  padding: 22px 0 24px;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.ppug-acc-text {
+  display: grid;
+  gap: 8px;
+}
+.ppug-acc-btn .pps-section-h2 {
+  font-size: 1.125rem;
+}
+.ppug-acc-btn .ppug-dek {
+  display: block;
+  max-width: 62ch;
+}
+.ppug-acc-mark {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+  white-space: nowrap;
+}
+.ppug-acc-btn:hover .pps-section-h2,
+.ppug-acc-btn:focus-visible .pps-section-h2 {
+  color: var(--pps-sky);
+}
+.ppug-acc-btn:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: 4px;
+}
+.ppug-acc-body {
+  padding: 4px 0 56px;
+}
+.ppug-acc-body[hidden] {
+  display: none;
+}
+@media (max-width: 600px) {
+  .ppug-acc-btn {
+    grid-template-columns: 22px minmax(0, 1fr);
+  }
+  .ppug-acc-mark {
+    grid-column: 2;
+    margin-top: 10px;
+  }
+}
 /* The line under an agent's name is copy like any other: one size for all
    copy on the page (Paul, 9 Oct: "I don't want big copy and small copy"). */
 .ppug-agent .pps-standfirst + .pps-standfirst {
@@ -906,9 +980,6 @@
    (Paul, 9 Oct: "This padding looks so strange.") ---------- */
 #agents .pps-section-head {
   margin-bottom: 0;
-}
-#agents + .ppug-agent {
-  padding-top: 30px;
 }
 
 /* ---------- the email agent, round 4: one conversation, one mail window,

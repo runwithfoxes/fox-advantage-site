@@ -31,6 +31,17 @@
 // - "Don't hold back ... This is not trying to be concise because we can have
 //   each one as a rail ... I want people to be open and explore."
 //
+// What he changed on 13 Oct, in his words. This REVERSES the 9 Oct "we don't
+// need an accordion" above, so do not open the ten agents back up:
+// - "I know I said something different before, but can you make these an
+//   accordion? I need to find a way to make it neat so they can discover the
+//   different agents. The rail still works on the left, but at the moment I
+//   find it really hard to look at. One inspiration might be this.
+//   https://runwithfoxes.com/read"
+//   So the ten agents are ten rows on hairlines (the shape of /read's list of
+//   titles), each closed until pressed. Everything inside an agent is as it
+//   was. A rail link opens the agent it points into before it scrolls.
+//
 // The line under each agent's name and its first paragraph are Paul's own
 // words from the homepage (AgentsSection.tsx, dictated 6 Sep 2026). The rest of
 // the prose is a draft for his pass.
@@ -38,7 +49,7 @@
 // Every picture is imported from ./unknown-group so it gets a hashed name.
 // Nothing of Nova's unreleased site sits at a guessable address in public/.
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
 import { WriterEmail } from "./library/WriterPiece";
@@ -128,8 +139,13 @@ const RAIL_GROUPS = [
   },
 ];
 
-// One agent: its number and name, Paul's line about it, then everything we
-// have to show for it. Open, never folded away.
+// One agent: a row on a hairline with its number, its name and Paul's line
+// about it, closed until pressed (Paul, 13 Oct 2026: "can you make these an
+// accordion? ... neat so they can discover the different agents"). Each row
+// opens and closes on its own, so opening one never moves the others. What is
+// inside stays mounted while closed, so a website scroller or the mail window
+// keeps its place. A link to this agent, or to a part inside it (the rail's
+// "The checks", "Data Intelligence"), opens it first and then scrolls there.
 function Agent({
   n,
   dek,
@@ -140,14 +156,69 @@ function Agent({
   children: React.ReactNode;
 }) {
   const a = AGENTS[n];
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const go = (id: string) => {
+      const el = id ? document.getElementById(id) : null;
+      if (!el || !ref.current || !ref.current.contains(el)) return;
+      setOpen(true);
+      // Two frames: one for React to show the body, one for it to be laid
+      // out. Then again a few times, because the pictures above the target
+      // load as they come into view and push it down the page (measured 13
+      // Oct: "The checks" landed 930px low on one scroll). It stops the
+      // moment the reader scrolls for themselves.
+      let mine = true;
+      const stop = () => (mine = false);
+      const land = () => mine && el.scrollIntoView({ block: "start" });
+      ["wheel", "touchstart", "keydown", "pointerdown"].forEach((t) =>
+        window.addEventListener(t, stop, { once: true, passive: true })
+      );
+      requestAnimationFrame(() => requestAnimationFrame(land));
+      [250, 600, 1200, 2000].forEach((ms) => window.setTimeout(land, ms));
+    };
+    const onHash = () => go(decodeURIComponent(window.location.hash.slice(1)));
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.('a[href^="#"]');
+      if (link) go((link.getAttribute("href") || "").slice(1));
+    };
+    onHash();
+    window.addEventListener("hashchange", onHash);
+    document.addEventListener("click", onClick);
+    return () => {
+      window.removeEventListener("hashchange", onHash);
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
   return (
-    <section id={a.id} data-track-section={a.id} className="pps-section pps-sub ppug-agent">
-      <div className="pps-section-head">
-        <span className="pps-section-k">{a.num}</span>
-        <h2 className="pps-section-h2">{a.name}</h2>
+    <section
+      ref={ref}
+      id={a.id}
+      data-track-section={a.id}
+      data-open={open ? "1" : "0"}
+      className="pps-section pps-sub ppug-agent"
+    >
+      <h2 className="ppug-acc-h">
+        <button
+          type="button"
+          className="ppug-acc-btn"
+          aria-expanded={open}
+          aria-controls={`${a.id}-body`}
+          onClick={() => setOpen(!open)}
+        >
+          <span className="pps-section-k">{a.num}</span>
+          <span className="ppug-acc-text">
+            <span className="pps-section-h2">{a.name}</span>
+            <span className="pps-standfirst ppug-dek">{dek}</span>
+          </span>
+          <span className="ppug-acc-mark" aria-hidden="true">
+            {open ? "Close \u2212" : "Open +"}
+          </span>
+        </button>
+      </h2>
+      <div id={`${a.id}-body`} className="ppug-acc-body" hidden={!open}>
+        {children}
       </div>
-      <p className="pps-standfirst ppug-dek">{dek}</p>
-      {children}
     </section>
   );
 }
