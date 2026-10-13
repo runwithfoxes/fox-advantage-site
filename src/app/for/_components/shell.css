@@ -152,6 +152,17 @@
   min-width: 0;
 }
 
+.pps-shell-pic {
+  padding-top: 84px;
+}
+.pps-top-picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 48px;
+  /* a photograph, so it keeps its own square edges. The whiteboard drawing it
+     replaced on 13 Oct faded out at the edges with a mask. */
+}
 .pps-masthead {
   padding: 0 0 30px;
   border-bottom: 2px solid var(--pps-deep);
@@ -529,4 +540,12 @@
   color: var(--pps-sky);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* No rail: one column the full width of the shell (the Unknown group page). */
+.pps-grid.pps-norail {
+  display: block;
+}
+.pps-norail .pps-railcol {
+  display: none;
 }

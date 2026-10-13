@@ -1,0 +1,1823 @@
+/* The page for Declan O'Reilly and the Unknown group, ppug- prefix throughout.
+   What the shell does not have: the ten agents each open as a section, a
+   whole website scrolled inside a window, the written rules as a row of full
+   pages, the guardian's checks and artwork, and a joined-up row for the one
+   system.
+   Our own surfaces stay square; only a window drawn inside a figure rounds. */
+
+.ppug {
+  /* the agent windows read these from the homepage section they were built for */
+  --ag-cream: #fafaf8;
+  --ag-sky: #3a7ca5;
+  --ag-deep: #1a3a4e;
+  --ag-border: #e0e0dc;
+  --ag-text: #1d1b1b;
+  --ag-muted: #8a8a85;
+  --ag-orange: #f47521;
+  --ag-sans: "Space Grotesk", ui-sans-serif, sans-serif;
+}
+
+/* ---------- the agents as one panel (Paul, 13 Oct 2026, with a picture of
+   the homepage's "/the team": "could you have a section like this? The copy
+   would need to be smaller so you can fit the image in ... basically I can
+   just scroll over each one and see the agent", and "It doesn't need to be in
+   blue and probably shouldn't be in blue"). Names on the left on hairlines,
+   the window of the one under the pointer on the right, all on the page's
+   cream. The list stays put while a tall window is read. ---------- */
+/* With no rail the page is one column 1124 wide. Reading text keeps the
+   measure it had beside the rail; the panel and the pictures use the width. */
+.ppug > .pps-section > .pps-standfirst:not(.ppug-lede),
+.ppug > .pps-section > .pps-hiw-grid,
+.ppug #howiwork,
+.ppug #howitworks,
+.ppug #pricing {
+  max-width: 748px;
+}
+.ppug-lede {
+  max-width: 748px;
+}
+.ppug-team {
+  display: grid;
+  grid-template-columns: 372px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  margin-top: 30px;
+}
+.ppug-team-list {
+  position: sticky;
+  top: 84px;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-team-row {
+  scroll-margin-top: 90px;
+}
+.ppug-team-item {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 3px;
+  align-items: baseline;
+  width: 100%;
+  padding: 12px 0 13px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--pps-border);
+  text-align: left;
+  color: var(--pps-text);
+  cursor: pointer;
+}
+.ppug-team-n {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: #a8a8a2;
+  font-variant-numeric: tabular-nums;
+}
+.ppug-team-name {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  transition: color 0.15s;
+}
+.ppug-team-short {
+  grid-column: 2;
+  font-family: var(--pps-mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+.ppug-team-item:hover .ppug-team-name,
+.ppug-team-item.on .ppug-team-name {
+  color: var(--pps-sky);
+}
+.ppug-team-item.on .ppug-team-n {
+  color: var(--pps-orange);
+}
+.ppug-team-item:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: 2px;
+}
+/* The column is as tall as the tallest window, and the browser is told not
+   to hold its place by anything in here. Without both, a shorter window coming
+   in moved the page under the pointer and the pointer landed on another name
+   (measured 13 Oct: pointing at Search Agents showed Red Team). */
+.ppug-team {
+  overflow-anchor: none;
+}
+.ppug-team-fig {
+  min-width: 0;
+  min-height: 900px;
+}
+.ppug-team-fig-in {
+  animation: ppugTeamIn 0.3s ease both;
+}
+@keyframes ppugTeamIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ppug-team-fig-in {
+    animation: none;
+  }
+}
+.ppug-team-win {
+  margin: 22px 0 0;
+}
+/* The search and advertising windows were drawn for about 900px and the
+   column is 696: at the column's width the ad figures were cut off and the
+   search table wrapped a word a line (photographed 13 Oct). So they are drawn
+   at 900 and shown at .77. zoom, not transform, so the space they take
+   shrinks with them. */
+.ppug-team-fig .ppug-roomy > * {
+  width: 900px;
+  max-width: none;
+  zoom: 0.773;
+}
+.ppug-team-under {
+  padding: 18px 0 30px;
+  border-bottom: 1px solid var(--pps-border);
+}
+@media (max-width: 999px) {
+  .ppug-team {
+    display: block;
+  }
+  .ppug-team-list {
+    position: static;
+  }
+}
+
+/* the creative director's window */
+.ppug-cd,
+.ppug-siteshot {
+  margin: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.ppug-siteshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-cd-title {
+  flex: 1;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-cd-body {
+  padding: 20px;
+}
+.ppug-cd-frames {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.ppug-cd-frames figure,
+.ppug-cd-band {
+  margin: 0;
+}
+.ppug-cd-band {
+  margin-top: 18px;
+}
+.ppug-cd img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-cd figcaption {
+  margin-top: 8px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-cd-notes {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-cd-notes li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--pps-border);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.ppug-cd-notes li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.ppug-cd-notes b {
+  font-family: var(--pps-sans);
+  font-weight: 500;
+}
+@media (max-width: 600px) {
+  .ppug-cd-frames {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* the two websites: words beside one picture of the live site */
+.ppug-web {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px;
+  align-items: start;
+  margin-top: 54px;
+}
+.ppug-web .ppug-h3 {
+  margin-top: 0;
+}
+.ppug-open {
+  margin: 18px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 13px;
+}
+.ppug-paints {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+.ppug-paints img,
+.ppug-wideshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-wideshot {
+  margin-top: 22px;
+  border: 1px solid var(--pps-border);
+}
+.ppug-k + .ppug-lede {
+  margin-top: 14px;
+}
+.ppug-after {
+  margin-top: 54px;
+}
+@media (max-width: 899px) {
+  .ppug-web {
+    display: block;
+  }
+  .ppug-web .ppug-siteshot {
+    margin-top: 22px;
+  }
+  .ppug-paints {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ppug-agent .pps-standfirst + .pps-standfirst {
+  margin-top: 18px;
+}
+.ppug-agent .ag-fig {
+  margin: 26px 0 0;
+}
+.ppug-agent .ppug-note + .pps-standfirst,
+.ppug-agent .ag-fig + .pps-standfirst,
+.ppug-agent .ppug-site + .pps-standfirst,
+.ppug-agent .ppug-rules + .pps-standfirst,
+.ppug-agent .ppug-found + .pps-standfirst,
+.ppug-agent .ppug-part + .pps-standfirst {
+  margin-top: 30px;
+}
+.ppug-part {
+  scroll-margin-top: 90px;
+}
+.ppug-n {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--pps-sky);
+}
+/* The line under a figure is a caption, all of it at the tag's size (Paul,
+   9 Oct, round 4: "Make this entire font the same size as the one in the
+   /example... And the same for everything under the other figures."). Copy
+   stays one size; a caption is not copy. */
+.ppug-note {
+  margin: 20px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-note .ppug-slash {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+}
+
+/* ---------- a picture in a window ---------- */
+.ppug-shot {
+  margin: 30px 0 0;
+}
+.ppug-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.ppug-shot a {
+  display: block;
+}
+.ppug-cap {
+  margin: 14px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-cap a,
+.ppug-link {
+  color: var(--pps-sky);
+  text-decoration: underline;
+}
+.ppug-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0 0;
+}
+.ppug-three img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-h3 {
+  margin: 54px 0 0;
+  font-family: var(--pps-sans);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: var(--pps-text);
+}
+.ppug-h3 + .pps-standfirst {
+  margin-top: 16px;
+}
+.ppug-k {
+  margin: 34px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pps-sky);
+}
+
+/* ---------- the content hub: four real pages ---------- */
+.ppug-four {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
+  margin: 34px 0 0;
+}
+.ppug-card {
+  display: block;
+  color: var(--pps-text);
+  text-decoration: none;
+}
+.ppug-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+  transition: opacity 0.3s ease-out;
+}
+.ppug-card:hover img {
+  opacity: 0.86;
+}
+.ppug-card-t {
+  margin: 14px 0 0;
+  font-family: var(--pps-sans);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.ppug-card:hover .ppug-card-t {
+  color: var(--pps-sky);
+}
+.ppug-card-d {
+  margin: 6px 0 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--pps-text);
+}
+
+/* ---------- the rules of a proactive agent ---------- */
+.ppug-rules {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-rules li {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-rules b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+.ppug-rules span.ppug-rule-d {
+  display: block;
+  margin-top: 5px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* ---------- one system ---------- */
+.ppug-sys {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 34px 0 0;
+  border: 1px solid var(--pps-border);
+}
+.ppug-sys div {
+  padding: 18px 18px 20px;
+  border-right: 1px solid var(--pps-border);
+}
+.ppug-sys div:last-child {
+  border-right: 0;
+}
+.ppug-sys b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 17px;
+  font-weight: 400;
+}
+.ppug-sys span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-sys-foot {
+  margin: 0;
+  padding: 13px 18px;
+  border: 1px solid var(--pps-border);
+  border-top: 0;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.ppug-found {
+  margin: 26px 0 0;
+  padding: 0 0 0 20px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.ppug-found li + li {
+  margin-top: 8px;
+}
+.ppug-term {
+  margin: 30px 0 0;
+  max-width: 520px;
+}
+
+/* ---------- a whole website in a window, scrolled inside ---------- */
+.ppug-site {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ppug-site-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f1f1ec;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-dots {
+  display: inline-flex;
+  gap: 6px;
+  flex: none;
+}
+.ppug-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cfcfc8;
+}
+.ppug-site-url {
+  flex: 1;
+  min-width: 0;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: #fff;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ppug-site-pill {
+  flex: none;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--pps-sky);
+}
+.ppug-site-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--pps-border);
+  background: #fafaf8;
+}
+.ppug-site-tabs button {
+  flex: none;
+  padding: 11px 16px;
+  border: 0;
+  border-right: 1px solid var(--pps-border);
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--pps-sans);
+  font-size: 14px;
+  color: var(--pps-muted);
+  cursor: pointer;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
+}
+.ppug-site-tabs button:hover {
+  color: var(--pps-text);
+  background: #f5f5f0;
+}
+.ppug-site-tabs button[data-on="1"] {
+  color: var(--pps-text);
+  border-bottom-color: var(--pps-sky);
+  background: #fff;
+}
+.ppug-site-tabs button:focus-visible,
+.ppug-site-view:focus-visible,
+.ppug-deck-row:focus-visible,
+.ppug-deck-foot button:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: -2px;
+}
+.ppug-site-view {
+  height: min(74vh, 680px);
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  background: #fff;
+}
+.ppug-site-view img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ppug-site-foot,
+.ppug-deck-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--pps-border);
+  background: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-site-foot a {
+  color: var(--pps-sky);
+  text-decoration: underline;
+}
+
+/* ---------- the written rules as a row of full pages ---------- */
+.ppug-deck {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  background: #f1f1ec;
+}
+.ppug-deck-row {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+.ppug-deck-row figure {
+  flex: none;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.ppug-deck-row img {
+  display: block;
+  height: min(70vh, 640px);
+  width: auto;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+}
+.ppug-deck-row figcaption {
+  margin-top: 8px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  color: var(--pps-muted);
+}
+.ppug-deck-foot button {
+  width: 38px;
+  height: 32px;
+  margin-left: 6px;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  font-size: 16px;
+  color: var(--pps-text);
+  cursor: pointer;
+  transition: background 0.3s ease-out;
+}
+.ppug-deck-foot button:hover {
+  background: #f5f5f0;
+}
+
+/* ---------- the guardian: the file, the checks, the tests, the artwork ---------- */
+.ppug-g-top {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 30px;
+  align-items: start;
+  margin: 30px 0 0;
+}
+.ppug-g-ad {
+  margin: 0;
+  position: sticky;
+  top: 96px;
+}
+.ppug-g-ad img,
+.ppug-art img,
+.ppug-test img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-g-ad figcaption,
+.ppug-art figcaption {
+  display: block;
+  margin-top: 10px;
+}
+.ppug-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+.ppug-tag[data-who="theirs"] {
+  background: var(--pps-deep);
+  color: #fafaf8;
+}
+.ppug-tag[data-who="ours"] {
+  background: #fff;
+  color: var(--pps-deep);
+  box-shadow: inset 0 0 0 1px var(--pps-deep);
+}
+.ppug-art-line {
+  display: block;
+  margin-top: 6px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-k-first {
+  margin-top: 0;
+}
+.ppug-checks {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-checks li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-checks b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+.ppug-check-got {
+  display: block;
+  margin-top: 4px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-muted);
+}
+.ppug-verdict {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ppug-verdict[data-ok="pass"],
+.ppug-verdict[data-ok="none"] {
+  color: #2e7d4f;
+}
+.ppug-verdict[data-ok="ask"] {
+  color: var(--pps-sky);
+}
+.ppug-verdict[data-ok="fail"] {
+  color: #b3401f;
+}
+.ppug-tests {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 22px;
+  margin: 30px 0 0;
+}
+.ppug-test {
+  margin: 0;
+}
+.ppug-test figcaption {
+  display: block;
+  margin-top: 12px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.ppug-test figcaption > * {
+  display: block;
+}
+.ppug-test b {
+  margin-top: 4px;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+.ppug-test-l {
+  margin-top: 10px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppug-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin: 26px 0 0;
+}
+.ppug-pair-one {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 50%;
+}
+.ppug-art {
+  margin: 0;
+}
+.ppug-grid4,
+.ppug-photos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 16px;
+  margin: 22px 0 0;
+  align-items: start;
+}
+.ppug-ads {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 26px 18px;
+  margin: 26px 0 0;
+  align-items: start;
+}
+.ppug-ads .ppug-art {
+  grid-column: span 2;
+}
+.ppug-ads .ppug-art[data-wide="1"] {
+  grid-column: span 3;
+}
+.ppug-table-wrap {
+  margin: 22px 0 0;
+  overflow-x: auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.ppug-table th,
+.ppug-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-table tr:last-child td {
+  border-bottom: 0;
+}
+.ppug-table th {
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--pps-muted);
+  background: #fafaf8;
+}
+.ppug-table td:nth-child(2) {
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  color: var(--pps-text);
+}
+.ppug-k + .pps-standfirst {
+  margin-top: 12px;
+}
+/* the showpieces run wider than the text on a wide screen */
+@media (min-width: 1280px) {
+  .ppug-site,
+  .ppug-deck,
+  .ppug-tests,
+  .ppug-ads,
+  .ppug-photos,
+  .ppug-grid4,
+  .ppug-g-top,
+  .ppug-pair:not(.ppug-pair-one) {
+    width: calc(100% + min(150px, (100vw - 1180px) / 2 - 12px));
+  }
+}
+.ppug-hub-list {
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .ppug-g-top,
+  .ppug-pair,
+  .ppug-tests {
+    grid-template-columns: 1fr;
+  }
+  .ppug-g-ad {
+    position: static;
+    max-width: 420px;
+  }
+  .ppug-pair-one {
+    max-width: none;
+  }
+  .ppug-grid4,
+  .ppug-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ppug-ads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ppug-ads .ppug-art {
+    grid-column: span 1;
+  }
+  .ppug-ads .ppug-art[data-wide="1"] {
+    grid-column: span 2;
+  }
+  .ppug-site-view {
+    height: 62vh;
+    overflow-x: auto;
+  }
+  .ppug-site-view img {
+    width: 620px;
+    max-width: none;
+  }
+  .ppug-deck-row img {
+    height: 58vh;
+  }
+  .ppug-site-foot span:first-child {
+    display: none;
+  }
+  .ppug-three,
+  .ppug-four,
+  .ppug-sys {
+    grid-template-columns: 1fr;
+  }
+  .ppug-sys div {
+    border-right: 0;
+    border-bottom: 1px solid var(--pps-border);
+  }
+  .ppug-sys div:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* ---------- a row of pictures shown large (nothing here is a thumbnail) ---------- */
+.ppug-deck {
+  container-type: inline-size;
+}
+.ppug-deck-row {
+  scroll-padding-left: 18px;
+}
+.ppug-deck-row.ppug-row {
+  align-items: flex-start;
+}
+.ppug-row figure {
+  display: flex;
+  flex-direction: column;
+}
+.ppug-deck-row.ppug-row img {
+  width: auto;
+  height: auto;
+  max-height: min(70vh, 640px);
+  max-width: calc(100cqw - 38px);
+}
+.ppug-row figcaption {
+  width: 0;
+  min-width: 100%;
+  margin-top: 10px;
+}
+.ppug-row-n {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  color: var(--pps-muted);
+}
+.ppug-test-cap {
+  display: block;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+.ppug-test-cap > * {
+  display: block;
+}
+.ppug-test-cap b {
+  margin-top: 4px;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+
+/* ---------- the email agent, stage two: triggers, emails, the sheet ---------- */
+.ppug-sheet {
+  margin: 22px 0 0;
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ppug-sheet-wrap {
+  overflow-x: auto;
+}
+.ppug-sheet table {
+  border-collapse: collapse;
+  font-family: var(--pps-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.ppug-sheet th,
+.ppug-sheet td {
+  padding: 10px 14px;
+  text-align: left;
+  border-right: 1px solid var(--pps-border);
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-sheet th {
+  position: sticky;
+  top: 0;
+  background: #fafaf8;
+  font-weight: 400;
+  color: var(--pps-text);
+  vertical-align: bottom;
+}
+.ppug-sheet th i {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  font-style: normal;
+  color: var(--pps-sky);
+}
+.ppug-sheet td[data-empty="1"] {
+  color: #c4c4be;
+}
+.ppug-sheet-r {
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  color: var(--pps-muted);
+  background: #fafaf8;
+}
+.ppug-sheet td:nth-child(2),
+.ppug-sheet th:nth-child(2) {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  box-shadow: 1px 0 0 var(--pps-border);
+}
+.ppug-sheet th:nth-child(2) {
+  background: #fafaf8;
+}
+.ppug-sheet-out {
+  background: #eef5f9 !important;
+  color: var(--pps-deep);
+  border-right: 0 !important;
+}
+.ppug-cs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 30px 0 0;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+}
+.ppug-cs-side {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 24px;
+}
+.ppug-cs-one {
+  border-left: 1px solid var(--pps-border);
+  background: #f3f8fb;
+}
+.ppug-cs-k {
+  margin: 0 0 22px;
+  font-family: var(--pps-sans);
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: var(--pps-text);
+}
+.ppug-cs-box {
+  padding: 14px 16px 15px;
+  border: 1px solid #cfcfc8;
+  background: #fff;
+}
+.ppug-cs-box b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+.ppug-cs-box span {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+.ppug-cs-gap {
+  margin: 0 0 0 26px;
+  padding: 13px 0 13px 16px;
+  border-left: 1px dashed #b3401f;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: #b3401f;
+}
+.ppug-cs-ask {
+  margin: 0 0 0 26px;
+  padding: 0 0 16px 16px;
+  border-left: 2px solid var(--pps-sky);
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+}
+.ppug-cs-join {
+  border: 2px solid var(--pps-sky);
+  background: #fff;
+}
+.ppug-cs-join .ppug-cs-box {
+  border: 0;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-cs-agent {
+  padding: 12px 16px;
+  background: var(--pps-deep);
+  color: #fafaf8;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.ppug-cs-foot {
+  margin: auto 0 0;
+  padding-top: 22px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+@media (max-width: 768px) {
+  .ppug-cs {
+    grid-template-columns: 1fr;
+  }
+  .ppug-cs-one {
+    border-left: 0;
+    border-top: 1px solid var(--pps-border);
+  }
+  .ppug-trig li {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+  .ppug-trig-c {
+    grid-column: 2;
+  }
+  .ppug-mail-bar {
+    flex-wrap: wrap;
+  }
+  .ppug-mail-body {
+    padding: 20px 18px 18px;
+  }
+}
+@media (min-width: 1280px) {
+  .ppug-sheet,
+  .ppug-cs {
+    width: calc(100% + min(150px, (100vw - 1180px) / 2 - 12px));
+  }
+}
+
+/* ---------- the heading with nothing under it sits close to its first agent
+   (Paul, 9 Oct: "This padding looks so strange.") ---------- */
+#agents .pps-section-head {
+  margin-bottom: 0;
+}
+
+/* ---------- the email agent, round 4: one conversation, one mail window,
+   the splits and the sent email drawn ---------- */
+.ppug-chat {
+  margin: 30px 0 0;
+}
+.ppug-chat .ppchat-body {
+  padding: 30px 30px 8px;
+}
+.ppug-chat .ppchat-you {
+  margin-bottom: 24px;
+}
+.ppug-chat-a {
+  margin: 0 0 30px;
+}
+.ppug-chat-who {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  font-family: var(--pps-mono);
+  font-size: 11.5px;
+  color: var(--pps-muted);
+}
+.ppug-chat-who span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--pps-deep);
+  color: #fff;
+  font-family: var(--pps-sans);
+  font-size: 11px;
+  font-weight: 600;
+}
+.ppug-chat-p,
+.ppug-chat-finds {
+  margin: 0 0 12px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #1d1b1b;
+}
+.ppug-chat-finds {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.ppug-chat-finds li {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #ebebe6;
+  border-radius: 9px;
+}
+.ppug-chat-finds li span {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 2;
+  color: var(--pps-sky);
+}
+.ppug-chat-trigs {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #ebebe6;
+  border-radius: 9px;
+}
+.ppug-chat-trigs li {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 150px 84px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+}
+.ppug-chat-trigs li + li {
+  border-top: 1px solid #f0f0ec;
+}
+.ppug-chat-n {
+  align-self: start;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--pps-sky);
+}
+.ppug-chat-t b {
+  display: block;
+  font-family: var(--pps-sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  color: var(--pps-text);
+}
+.ppug-chat-t em {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--pps-sans);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.45;
+  color: var(--pps-muted);
+}
+.ppug-chat-bar,
+.ppug-sb-ebar,
+.ppug-sc-bar {
+  display: block;
+  height: 10px;
+  background: #f1f1ec;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.ppug-chat-bar i,
+.ppug-sb-ebar i,
+.ppug-sc-bar i {
+  display: block;
+  height: 100%;
+  background: var(--pps-sky);
+  border-radius: 2px;
+}
+.ppug-chat-c {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--pps-text);
+}
+
+/* the mail window */
+.ppug-mc {
+  margin: 22px 0 0;
+  border: 1px solid #e3e3de;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(26, 58, 78, 0.05), 0 20px 42px -14px rgba(26, 58, 78, 0.16);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.ppug-mc-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  background: #f4f4f1;
+  border-bottom: 1px solid #e3e3de;
+}
+.ppug-mc-title {
+  margin: 0 auto;
+  padding-right: 47px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #54545c;
+}
+.ppug-mc-grid {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+.ppug-mc-list {
+  background: #fafaf8;
+  border-right: 1px solid #ebebe6;
+}
+.ppug-mc-folder {
+  margin: 0;
+  padding: 12px 16px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1b1b1f;
+}
+.ppug-mc-folder span {
+  margin-left: 6px;
+  font-weight: 400;
+  color: #8a8a85;
+}
+.ppug-mc-list button {
+  display: block;
+  width: 100%;
+  padding: 11px 16px 12px;
+  border: 0;
+  border-top: 1px solid #ebebe6;
+  border-left: 3px solid transparent;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.ppug-mc-list button[data-on="1"] {
+  background: #e9f1f6;
+  border-left-color: var(--pps-deep);
+}
+.ppug-mc-list button:focus-visible,
+.ppug-mc-vers button:focus-visible {
+  outline: 2px solid var(--pps-sky);
+  outline-offset: -2px;
+}
+.ppug-mc-to {
+  display: block;
+  font-size: 11.5px;
+  color: #8a8a85;
+}
+.ppug-mc-list b {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1b1b1f;
+}
+.ppug-mc-snip {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12.5px;
+  color: #8a8a85;
+}
+.ppug-mc-head {
+  padding: 20px 26px 16px;
+  border-bottom: 1px solid #f0f0ec;
+}
+.ppug-mc-subj {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #1b1b1f;
+}
+.ppug-mc-addr {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #8a8a85;
+}
+.ppug-mc-addr b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1b1b1f;
+}
+.ppug-mc-av {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--pps-deep);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ppug-mc-draft {
+  margin-left: auto;
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c0532b;
+}
+.ppug-mc-vers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 26px;
+  border-bottom: 1px solid #f0f0ec;
+  background: #fcfcfb;
+}
+.ppug-mc-vers > span {
+  margin-right: 4px;
+  font-size: 11.5px;
+  color: #8a8a85;
+}
+.ppug-mc-vers button {
+  padding: 4px 11px;
+  border: 1px solid #dcdcd6;
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  color: #54545c;
+  cursor: pointer;
+}
+.ppug-mc-vers button[data-on="1"] {
+  background: var(--pps-deep);
+  border-color: var(--pps-deep);
+  color: #fff;
+}
+.ppug-mc-body {
+  min-height: 292px;
+  max-width: 62ch;
+  padding: 22px 26px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #33322f;
+}
+.ppug-mc-body p {
+  margin: 0 0 13px;
+}
+.ppug-mc-body p:last-child {
+  margin-bottom: 0;
+}
+.ppug-mc-link {
+  color: #1558b0;
+  text-decoration: underline;
+}
+
+/* how the list splits, column by column */
+.ppug-sb {
+  margin: 20px 0 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-sb-row {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 22px;
+  padding: 16px 0 15px;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-sb-name {
+  margin: 0;
+  font-family: var(--pps-sans);
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: -0.1px;
+  color: var(--pps-text);
+}
+.ppug-sb-name i {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--pps-mono);
+  font-size: 11px;
+  font-style: normal;
+  color: var(--pps-sky);
+}
+.ppug-sb-bar {
+  display: flex;
+  gap: 2px;
+  height: 16px;
+  margin-top: 4px;
+}
+.ppug-sb-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+}
+.ppug-sb [data-k="0"] { background: #1e3a4e; }
+.ppug-sb [data-k="1"] { background: #3f7396; }
+.ppug-sb [data-k="2"] { background: #7fabc6; }
+.ppug-sb [data-k="3"] { background: #b9d2e0; }
+.ppug-sb [data-k="4"] { background: #dbe7ee; }
+.ppug-sb [data-k="z"] { background: #e2e2dc; }
+.ppug-sb-key {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 9px 0 0;
+  padding: 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-sb-key i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+.ppug-sb-key b,
+.ppug-sb-each b {
+  font-weight: 400;
+  color: var(--pps-text);
+}
+.ppug-sb-each {
+  list-style: none;
+  margin: 3px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-sb-each li {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) 36px;
+  gap: 12px;
+  align-items: center;
+}
+.ppug-sb-each b {
+  text-align: right;
+}
+.ppug-sb-note {
+  margin: 9px 0 0;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+
+/* the email that went on 5 October */
+.ppug-sc {
+  margin: 20px 0 0;
+  padding: 20px 24px 18px;
+  background: #fff;
+  border: 1px solid var(--pps-border);
+  border-radius: 10px;
+}
+.ppug-sc-key {
+  display: flex;
+  gap: 20px;
+  margin: 0 0 6px;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+.ppug-sc-key i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+.ppug-sc [data-k="o"] { background: var(--pps-deep); }
+.ppug-sc [data-k="c"] { background: var(--pps-sky); }
+.ppug-sc-row {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  padding: 13px 0;
+  border-top: 1px solid #f0f0ec;
+}
+.ppug-sc-name {
+  margin: 0;
+  font-family: var(--pps-sans);
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--pps-text);
+}
+.ppug-sc-name span {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--pps-mono);
+  font-size: 11.5px;
+  color: var(--pps-muted);
+}
+.ppug-sc-bars p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40px;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+}
+.ppug-sc-bars p + p {
+  margin-top: 6px;
+}
+.ppug-sc-bars b {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: right;
+  color: var(--pps-text);
+}
+.ppug-sc-all {
+  margin: 0;
+  padding-top: 13px;
+  border-top: 1px solid #f0f0ec;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-muted);
+}
+
+@media (max-width: 720px) {
+  .ppug-chat .ppchat-body {
+    padding: 22px 16px 4px;
+  }
+  .ppug-chat .ppchat-you p {
+    max-width: 90%;
+  }
+  .ppug-chat-trigs li {
+    grid-template-columns: 22px minmax(0, 1fr) 76px;
+    gap: 8px 10px;
+  }
+  .ppug-chat-bar {
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+  .ppug-chat-c {
+    grid-row: 1 / 3;
+    grid-column: 3;
+    align-self: start;
+    line-height: 1.9;
+  }
+  .ppug-mc-grid {
+    grid-template-columns: 1fr;
+  }
+  .ppug-mc-list {
+    border-right: 0;
+    border-bottom: 1px solid #ebebe6;
+  }
+  .ppug-mc-snip {
+    display: none;
+  }
+  .ppug-mc-head,
+  .ppug-mc-body {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .ppug-mc-vers {
+    padding: 10px 18px;
+  }
+  .ppug-sb-row,
+  .ppug-sc-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .ppug-sb-each li {
+    grid-template-columns: 124px minmax(0, 1fr) 34px;
+  }
+  .ppug-sc {
+    padding: 16px 16px 14px;
+  }
+}
+
+/* ---------- the bio's facts and quotes, compact (Paul, 13 Oct 2026, over a
+   picture of the clients, links and quotes: "can you clean this up, it is
+   very bulky and not good looking"). One small table, a label beside each
+   row, and the two quotes at reading size with no bar. ---------- */
+.ppug-facts {
+  clear: both;
+  margin: 30px 0 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-facts > div {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 18px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-facts dt {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppug-facts dd {
+  margin: 0;
+  text-wrap: balance;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+.ppug-facts dd > * {
+  display: inline-block;
+  margin-right: 20px;
+}
+.ppug-facts a {
+  color: var(--pps-sky);
+  text-decoration: none;
+}
+.ppug-facts a:hover {
+  text-decoration: underline;
+}
+.ppug-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 26px;
+}
+.ppug-quotes figure {
+  margin: 0;
+}
+.ppug-quotes blockquote {
+  margin: 0 0 8px;
+  font-family: var(--pps-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--pps-text);
+}
+.ppug-quotes figcaption {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-quotes figcaption b {
+  color: var(--pps-text);
+  font-weight: 500;
+  margin-right: 6px;
+}
+.ppug-end {
+  margin-top: 64px;
+}
+@media (max-width: 700px) {
+  .ppug-facts > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .ppug-quotes {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* The headline and its rule run the full width under the picture, on one line
+   where there is room (Paul, 13 Oct: "This headline should go across the
+   entire page now"). */
+@media (min-width: 1240px) {
+  .pps-norail .pps-h1 {
+    font-size: 3.1rem;
+    white-space: nowrap;
+  }
+}
+
+/* the creative director's film: the fox on a chart, square, with its line under it */
+.ppug-cd-film {
+  margin: 0;
+  padding: 22px 22px 18px;
+  background: #fff;
+}
+.ppug-cd-film video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--pps-border);
+}
+.ppug-cd-film figcaption {
+  max-width: 560px;
+  margin: 12px auto 0;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--pps-muted);
+}
+
+/* a site shown as a film of it being scrolled */
+.ppug-siteshot video {
+  display: block;
+  width: 100%;
+  height: auto;
+}

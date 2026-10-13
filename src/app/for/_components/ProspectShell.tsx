@@ -48,6 +48,8 @@ export default function ProspectShell({
   bio,
   railLinks,
   pdfHref,
+  topPicture,
+  noRail,
   children,
 }: {
   clientName: string;
@@ -61,6 +63,10 @@ export default function ProspectShell({
    *  sections prop still drives the observer, so every body section must be
    *  listed there even if the rail shows it inside a group. */
   railGroups?: RailGroup[];
+  /** No rail at all: one column the full width of the shell. For a page whose
+   *  own list is the way round it (the Unknown group page, Paul, 13 Oct 2026:
+   *  "we could take the rail out altogether"). */
+  noRail?: boolean;
   railNote?: string;
   /** A bare /about link at the top of the rail, no bio text (Paul, 8 Aug:
    *  "it is getting too busy"). The photo is OPTIONAL and off by default
@@ -73,6 +79,11 @@ export default function ProspectShell({
    *  It goes in the nav rather than the rail because the rail is the four
    *  things and has been cut three times for busyness. */
   pdfHref?: string;
+  /** One wide drawn picture across the very top, above the rail and the
+   *  main column, so it is the first thing on a phone too. OPTIONAL and off by default
+   *  (Paul, 9 Oct, the Unknown group page. Since 13 Oct it is the fox at
+   *  a desk, a generated photograph). */
+  topPicture?: { src: string; alt: string; width: number; height: number };
   children: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -158,9 +169,19 @@ export default function ProspectShell({
         </span>
       </header>
 
-      <div className="pps-shell" id="top">
-        <div className="pps-grid">
-          <div className="pps-railcol">
+      <div className={topPicture ? "pps-shell pps-shell-pic" : "pps-shell"} id="top">
+        {topPicture && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="pps-top-picture"
+            src={topPicture.src}
+            alt={topPicture.alt}
+            width={topPicture.width}
+            height={topPicture.height}
+          />
+        )}
+        <div className={noRail ? "pps-grid pps-norail" : "pps-grid"}>
+          <div className="pps-railcol" hidden={noRail}>
             {railNote && <p className="pps-railnote">{railNote}</p>}
             {bio && (
               <div className="pps-bio">
