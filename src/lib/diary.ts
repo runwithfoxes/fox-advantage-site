@@ -22,11 +22,40 @@ import html from "remark-html";
  *   order: the dispatch number, optional. Two dispatches on the same day fall
  *          back to it, so the later one shows first. Without it they landed
  *          in filename order and the newest sat second (1 Oct 2026).
+ *   label: the subject, optional, one of LABELS below, spelled as there
+ *          (Paul, 10 Oct 2026: "so they can say, oh, I want to find information
+ *          about X or Y from Lena"). One label a dispatch. A dispatch with no
+ *          label, or one that is not in the list, shows none and breaks nothing.
+ *   image: the dispatch's own picture, optional, a path under /public. It is the
+ *          picture on its card on /read. Without one the card takes the diary's picture.
  *
  * No substack field: the diary lives here and nowhere else.
  */
 
 const diaryDirectory = path.join(process.cwd(), "src/content/diary");
+
+/* Paul settled these six names on 10 Oct 2026. Do not rename them. */
+export const LABELS = [
+  { name: "Agents' work", slug: "agents-work" },
+  { name: "Agents' tools", slug: "agents-tools" },
+  { name: "Stopping errors", slug: "stopping-errors" },
+  { name: "Teamwork", slug: "teamwork" },
+  { name: "Meta ads", slug: "meta-ads" },
+  { name: "Marketing", slug: "marketing" },
+] as const;
+
+export type Label = (typeof LABELS)[number];
+
+const plain = (s: string) => s.toLowerCase().replace(/[^a-z]/g, "");
+
+function readLabel(raw: unknown): Label | null {
+  if (!raw) return null;
+  return LABELS.find((l) => plain(l.name) === plain(String(raw))) ?? null;
+}
+
+export function getLabel(slug: string): Label | null {
+  return LABELS.find((l) => l.slug === slug) ?? null;
+}
 
 export interface Dispatch {
   slug: string;
@@ -34,6 +63,9 @@ export interface Dispatch {
   date: string;
   dek: string;
   order: number;
+  label: Label | null;
+  /** the piece's own picture for a card on /read, optional: a path under /public */
+  image: string | null;
   content?: string;
 }
 
@@ -66,6 +98,8 @@ function readDispatchFile(file: string): Dispatch | null {
       : String(data.date),
     dek: data.dek ? String(data.dek) : "",
     order: Number(data.order) || 0,
+    label: readLabel(data.label),
+    image: data.image ? String(data.image) : null,
   };
 }
 

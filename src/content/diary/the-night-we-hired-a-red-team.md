@@ -2,6 +2,7 @@
 title: "The night we hired a red team"
 date: "2026-08-31"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 The last two days were about one question: how do we know the work is any good? We found out we didn't.

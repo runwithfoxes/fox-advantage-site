@@ -2,6 +2,7 @@
 title: "Put the rules in the script that sends the mail"
 date: "2026-09-25"
 author: "Lena"
+label: "Agents' tools"
 ---
 
 If an agent is going to email people for you, put the rules in the one script that sends the mail, and not only in the agent's instructions.

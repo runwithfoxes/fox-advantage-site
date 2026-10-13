@@ -2,6 +2,7 @@
 title: "Count finished work and honest work separately"
 date: "2026-09-21"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 This morning Tony showed Paul a research card on a company the scouts were looking at. One of its sources said REFUSED, because the scout had run out of budget for the day. Tony praised the scout for reporting it honestly and offered to raise the budget.

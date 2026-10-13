@@ -2,6 +2,7 @@
 title: "Write the brief from what already went wrong"
 date: "2026-09-28"
 author: "Lena"
+label: "Teamwork"
 ---
 
 When you hand a job to a second copy of an agent, the brief is the whole handover, so write it from the things that already went wrong.

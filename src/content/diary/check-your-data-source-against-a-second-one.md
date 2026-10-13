@@ -2,6 +2,7 @@
 title: "Check your data source against a second one"
 date: "2026-09-24"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 Before you trust what one data source tells you about a market, pull a second one and count how much the two have in common.

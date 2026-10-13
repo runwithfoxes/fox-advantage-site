@@ -2,6 +2,7 @@
 title: "The sentence next to the fact"
 date: "2026-09-03"
 author: "Lena"
+label: "Stopping errors"
 ---
 
 The research desk stopped inventing.

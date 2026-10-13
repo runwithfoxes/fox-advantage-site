@@ -1,0 +1,72 @@
+/* /read, in the homepage's language (src/app/resources/hero.module.css and home-next/next.module.css):
+   a picture across the whole page with the menu on it, white type on the page's own dark veil, a strip of
+   dark glass along its foot, then type on hairlines. Nothing here invents a colour or a face of type. */
+
+/* the hero: the newest piece. Its picture fills the page edge to edge. */
+.hero { min-height: min(84vh, 780px); }
+/* our pictures are pale drawings, so the veil is deeper than the homepage film needs: white type must hold */
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(96deg, rgba(8, 16, 24, .9) 0%, rgba(8, 16, 24, .78) 30%, rgba(8, 16, 24, .3) 52%, rgba(8, 16, 24, 0) 68%),
+    linear-gradient(rgba(8, 16, 24, .5), rgba(8, 16, 24, 0) 20%); }
+.heroBody { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; width: 100%; max-width: 1240px; margin: 0 auto; padding: 24px 48px 40px; }
+.heroText { max-width: 520px; display: flex; flex-direction: column; align-items: flex-start; }
+.heroMeta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .78); margin: 0 0 20px; }
+.heroTitle { font-size: clamp(2.2rem, 4.2vw, 3.8rem) !important; text-wrap: balance; }
+.heroTitle a { color: inherit; text-decoration: none; }
+.heroGo { display: inline-block; margin-top: 30px; font-family: var(--mono); font-size: 13px; padding: 13px 18px; background: var(--orange); color: #fff; text-decoration: none; }
+.heroGo:hover { background: var(--orange-hover); }
+
+/* who writes here: the strip along the foot of the hero, so it is seen on arriving. Each one filters. */
+.who { position: relative; z-index: 2; border-top: 1px solid rgba(255, 255, 255, .2); background: rgba(8, 16, 24, .52); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); scroll-margin-top: 0; }
+.whoInner { max-width: 1240px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: .55fr repeat(5, minmax(0, 1fr)); }
+.whoItem { display: flex; flex-direction: column; gap: 5px; padding: 18px 18px 20px; text-decoration: none; color: #fff; border-left: 1px solid rgba(255, 255, 255, .14); border-top: 2px solid transparent; margin-top: -1px; }
+.whoItem:first-child { border-left: 0; padding-left: 0; }
+.whoName { font-family: var(--sans); font-weight: 500; font-size: 17px; letter-spacing: -0.01em; line-height: 1.2; }
+.whoBy { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, .86); margin-top: 3px; }
+.whoRole { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: #A9CBE4; }
+.whoItem:hover .whoName { color: #A9CBE4; }
+.whoOn { border-top-color: #fff; background: rgba(255, 255, 255, .07); }
+
+/* the list */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 48px 96px; }
+.about { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--text); margin: 0 0 44px; max-width: 720px; }
+.about a { font-family: var(--mono); font-size: 12px; color: #3A7CA5; text-decoration: none; white-space: nowrap; margin-left: 6px; }
+.h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #3A7CA5; }
+.day { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); }
+
+/* a few pictures, each at its own shape: only pieces whose own picture is this wide get one */
+.leads { list-style: none; margin: 0 0 8px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 40px; }
+.card { display: grid; gap: 8px; text-decoration: none; color: inherit; align-content: start; }
+.cardImg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--border); margin-bottom: 10px; }
+.cardTitle { font-family: var(--sans); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; line-height: 1.22; }
+.card:hover .cardTitle, .row:hover .rowTitle { color: #3A7CA5; }
+.cardDek { font-family: var(--serif); font-size: 15.5px; line-height: 1.5; color: #55534F; }
+
+/* everything else: type on hairlines, two columns */
+.rows { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 72px; border-top: 1px solid var(--border); }
+.row { display: grid; gap: 6px; padding: 18px 0 20px; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; height: 100%; align-content: start; }
+.rowTitle { font-family: var(--sans); font-weight: 500; font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; }
+.moreBtn { display: block; margin: 48px 0 0; padding: 13px 18px; background: none; border: 1px solid var(--border); font-family: var(--mono); font-size: 13px; color: #3A7CA5; cursor: pointer; }
+.moreBtn:hover { border-color: #3A7CA5; }
+
+@media (max-width: 1000px) {
+  .leads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .whoRole { display: none; }
+  .whoItem { padding: 14px 12px 16px; }
+  .whoName { font-size: 15px; }
+}
+@media (max-width: 760px) {
+  .hero { min-height: 0; }
+  .hero::after { background: rgba(8, 16, 24, .72); }
+  .heroBody { padding: 40px 20px 36px; }
+  /* the strip slides sideways under a thumb, one line of names */
+  .whoInner { display: flex; overflow-x: auto; padding: 0 20px; scrollbar-width: none; }
+  .whoInner::-webkit-scrollbar { display: none; }
+  .whoItem, .whoItem:first-child { flex: 0 0 auto; padding: 14px 18px 16px 0; border-left: 0; }
+  .whoName { white-space: nowrap; }
+  .wrap { padding: 36px 20px 64px; }
+  .leads { grid-template-columns: 1fr; gap: 36px; }
+  .rows { grid-template-columns: 1fr; }
+}

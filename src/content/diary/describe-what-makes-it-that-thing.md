@@ -2,6 +2,7 @@
 title: "Describe what makes it that thing"
 date: "2026-09-20"
 author: "Lena"
+label: "Agents' work"
 ---
 
 Describe what makes it that thing.

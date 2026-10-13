@@ -2,6 +2,7 @@
 title: "Write down the question only that agent answers"
 date: "2026-09-22"
 author: "Lena"
+label: "Agents' work"
 ---
 
 An agent that relays what others said is doing work you can do yourself.

@@ -139,33 +139,54 @@ function baseEdition(s, label, date, extra) {
   ]);
 }
 
-/* 1b. THE AD AUDIT - REAL. Issue 01 is Sam's banking report (paul-hub 024d205ce); its numbers come
-   from the page's numbers.json, which is Sam's file copied by script. Added 27 Sep 2026 by Dray 2. */
+/* 1b. THE AD AUDIT - REAL. Issue 01 is Sam's banking report. Everything here is read from draft two's own
+   files beside the page (copy.json, facts.json, charts.json). Added 27 Sep 2026 by Dray 2, moved off the
+   first draft's numbers.json on 12 Oct (dray-10). */
 {
-  const AD = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/numbers.json"), "utf8"));
-  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: "Research on Meta advertising in Irish banking: 1,814 ads from 10 advertisers this summer, read through the lens of best practice.", cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
-  const cat = AD.category, t = AD.totals, g = AD.groups;
-  const sales = cat.job_share_of_reach.sales;
-  const offer = kofn(cat.offer_creatives, t.bank_creatives);
+  /* dray-3 (Cato, 7 Oct): the cover said 1,814 ads, the raw count with An Post's post and parcel ads in it, while
+     the report's first paragraph says 1,660. The count the cover and the edition print is now read from the
+     report page's own facts.json (bank_ads, bank_creatives), which ad-audit-v2-copy.py writes from Sam's file. */
+  const FACTS = JSON.parse(fs.readFileSync(path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3/facts.json"), "utf8"));
+  const s = { slug: "the-ad-audit", name: "The Ad Audit", line: `Research on Meta advertising in Irish banking: ${fmt(FACTS.bank_ads)} ads from ${FACTS.advertisers} advertisers this summer, read through the lens of best practice.`, cadence: "Quarterly", area: "media", lead: A.sam, method: "Every ad a category's advertisers showed in Ireland in the quarter, from Meta's Ad Library, each one looked at and judged by one rulebook.", mark: "AD", started: "2026-09-27", example: false };
+  /* 12 Oct: the edition's words are Sam's, from draft two (paul-hub a72760a61,
+     catalogue-edition-lines-2026-10-12.md, read by Cato at a72760a61). Each one is a sentence on the report page, so the build stops
+     if the page's copy.json no longer carries it. The charts are drawn from the page's own charts.json. */
+  const Q3 = path.join(ROOT, "src/app/resources/the-ad-audit/2026-q3");
+  const COPY = fs.readFileSync(path.join(Q3, "copy.json"), "utf8");
+  const CH = JSON.parse(fs.readFileSync(path.join(Q3, "charts.json"), "utf8"));
+  const title = "What 1,660 bank ads tell us about how Meta advertising works now";
+  const f22cap = "The three digital challengers reached 54% under 35; the seven Irish banks and lenders reached 29%.";
+  for (const line of [title, "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601).", "28 show the brand inside three seconds", "76% of the fifty", "whole-life reach", "Video is 65% of creatives and 65% of reach.", "209 creatives", f22cap, "601 different creatives", "28 September 2026", "Checked by Cato"]) {
+    if (!COPY.includes(line)) throw new Error(`Ad Audit edition: the report page no longer says "${line}"`);
+  }
+  if (JSON.parse(COPY).meta.h1 !== title || !title.includes(fmt(FACTS.bank_ads))) throw new Error("Ad Audit edition: title does not match the report's headline or count");
+  const f71 = CH.f71, reach = f71.series.find((x) => x.label === "Share of reach").data, made = f71.series.find((x) => x.label === "Share of creatives").data;
+  if (f71.labels[0] !== "video" || Math.round(reach[0]) !== 65 || Math.round(made[0]) !== 65) throw new Error("Ad Audit edition: video is no longer 65% and 65% in charts.json f71");
+  const under35 = (name) => { const d = CH.f22.series.find((x) => x.label === name).data; return r1(d[0] + d[1]); };
+  const u35 = { ch: under35("Three digital challengers"), ir: under35("Seven Irish banks and lenders") };
+  if (Math.round(u35.ch) !== 54 || Math.round(u35.ir + 1e-9) !== 29) throw new Error(`Ad Audit edition: under 35 is ${u35.ch} and ${u35.ir} in charts.json f22, the caption says 54 and 29`);
+  const cap = (x) => x[0].toUpperCase() + x.slice(1);
   addSeries(s, [
     {
-      ...baseEdition(s, "Q3 2026", "2026-09-27", {}),
+      /* dray-10 (Cato, 12 Oct): the date and the checker are the page's own byline, and there is no PDF of
+         draft two yet, so the edition carries no PDF link until one exists. */
+      ...baseEdition(s, "Q3 2026", "2026-09-28", {}), pdf: "",
       slug: "the-ad-audit-2026-q3", edition: "Q3 2026", n: 1,
-      title: "Irish banks sell on social, and the newcomers reach the young",
-      standfirst: `${fmt(t.ads)} Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026. ${sales}% of the reach went to ads that only sell.`,
-      author: A.sam, checkedBy: "Cato and Paul Dervan", sectors: ["Financial services"],
-      sample: `${fmt(t.ads)} ads, ${fmt(t.creatives)} different`,
+      title,
+      standfirst: `${fmt(FACTS.bank_ads)} Facebook and Instagram ads from ten Irish banks and lenders, 1 July to 26 September 2026, held up against what the research says makes an ad work on Meta.`,
+      author: A.sam, checkedBy: "Cato", sectors: ["Financial services"],
+      sample: `${fmt(FACTS.bank_ads)} ads, ${fmt(FACTS.bank_creatives)} different creatives`,
       findings: [
-        { big: `${sales}%`, label: "of the reach went to ads that only sell", text: `On Facebook and Instagram, Irish banking is mostly selling: ${sales}% of the quarter's reach went to ads that only sell a product.` },
-        { big: `${g["Digital challengers"].under_35}%`, label: "of the challengers' reach was under 35", text: `The newcomers reach the young: ${g["Digital challengers"].under_35}% of Monzo, bunq and Revolut's reach was under 35, against ${g["Irish banks and lenders"].under_35}% for the Irish banks.` },
-        { big: `${offer.pct}%`, label: "of different ads state an offer", text: `${offer.k} of ${offer.n} different bank ads state a rate, a cashback, a bonus or something free.`, count: offer },
+        { big: "39%", label: "of creatives share most of their words with another from the same advertiser", text: "39% of the category's creatives share most of their words with at least one other from the same advertiser (234 of 601)." },
+        { big: "28 of 50", label: "most-seen videos show the brand inside three seconds", text: "We judged fifty videos frame by frame, the five most-seen from each advertiser. 28 show the brand inside three seconds, and those 28 have 76% of the fifty's whole-life reach, June and earlier included." },
+        { big: "65%", label: "of the reach went to video", text: "Video is 65% of creatives and 65% of reach. 209 creatives don't move at all." },
       ],
       figures: [
-        { id: "f1", title: "Bank of Ireland had the biggest share of reach, but PTSB and AIB were close behind.", caption: "Share of the category's Irish reach, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.", data: { kind: "bars", unit: "%", rows: AD.charts.f11.labels.map((l, i) => ({ label: l, value: AD.charts.f11.data[i], highlight: i === 0 })) } },
-        { id: "f2", title: "The digital challengers reach people under 35.", caption: "Share of Irish reach under 35, ads started in the quarter.", data: { kind: "bars", unit: "%", rows: [{ label: "Digital challengers", value: g["Digital challengers"].under_35, highlight: true }, { label: "Irish banks and lenders", value: g["Irish banks and lenders"].under_35 }] } },
+        { id: "f1", title: "Video had 65% of the reach.", caption: "Share of the category's reach by format, ads started 1 July to 26 September 2026. Source: The Ad Audit, Run with Foxes.", data: { kind: "bars", unit: "%", rows: f71.labels.map((l, i) => ({ label: cap(l), value: reach[i], highlight: i === 0 })) } },
+        { id: "f2", title: f22cap, caption: "Share of each group's reach that was under 35, ads started in the quarter.", data: { kind: "bars", unit: "%", rows: [{ label: "Three digital challengers", value: Math.round(u35.ch), highlight: true }, { label: "Seven Irish banks and lenders", value: Math.round(u35.ir + 1e-9) }] } },
       ],
       free: ["The whole report, every chapter and figure", "The twelve most-seen ads", "The method and its limits"],
-      withAccount: ["Every ad behind the numbers, by bank, product, offer and week", "The report as a PDF", "The next issue by email when it lands"],
+      withAccount: ["The next issue by email when it lands"],
       pages: 24, minutes: 22, href: "/resources/the-ad-audit/2026-q3", example: false, status: "draft",
     },
     {

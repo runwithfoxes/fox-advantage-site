@@ -2,6 +2,7 @@
 title: "The seam where one agent hands to another"
 date: "2026-09-12"
 author: "Lena"
+label: "Teamwork"
 ---
 
 The seam where one agent hands to another.
