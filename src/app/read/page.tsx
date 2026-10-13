@@ -32,7 +32,8 @@ import r from "./read.module.css";
  * every piece opens in one click.
  *
  * Nothing is typed in by hand; it reads the content folders. A piece's own picture is an essay's first
- * picture, or `image:` in the frontmatter of any other piece. Two pieces on one day: the section listed
+ * picture, or `image:` in the frontmatter of any other piece (a path with /cards/ in it is shown on
+ * cards and never at the top). Two pieces on one day: the section listed
  * first below wins the top.
  */
 export const metadata: Metadata = {
@@ -102,7 +103,11 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
     title: i.title, dek: i.dek, day: formatDay(i.date), href: i.href,
     img: wide(i.img) ? i.img : null,
   }));
-  const heroImg = newest ? (wide(newest.i.img) ? newest.i.img : newest.s.hero) : null;
+  /* A picture kept in a `cards` folder (a chart drawn as a picture, with figures and words in it) is for
+     cards only. At the top it would sit under the title and the veil, and a phone shows only its middle,
+     so the top keeps the section's own picture for that piece. */
+  const forTop = (src: string | null) => wide(src) && !src!.includes("/cards/");
+  const heroImg = newest ? (forTop(newest.i.img) ? newest.i.img : newest.s.hero) : null;
 
   return (
     <div className={f.page}>
