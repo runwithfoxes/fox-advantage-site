@@ -32,21 +32,22 @@ const LIVE = process.env.VERCEL_ENV === "production";
 
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
-/** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked. */
+/** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
+    A file gives `bars` (with `max`), `squares`, `pairs`, `split` or `rings`, only one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
   title: string;
   /** What is measured, shown small above the title. */
   unit: string;
-  /** The right-hand end of the scale. */
-  max: number;
+  /** The right-hand end of the scale. Bars only. */
+  max?: number;
   /** Printed around each value: "$" before, " million" or "%" after. */
   prefix?: string;
   suffix?: string;
   /** Faint lines on the scale and the label under each: [[0, "0"], [50, "50%"]]. */
   ticks?: [number, string][];
-  bars: {
+  bars?: {
     label: string;
     value: number;
     /** Printed small after the value, such as "(80 of 96)". */
@@ -55,6 +56,37 @@ export interface NoteChart {
         only an upper limit: drawn as a dashed outline, never solid, and it steps back once shown. */
     kind?: "main" | "other" | "limit";
   }[];
+  /** A count out of a small total, drawn as one square for each thing counted, with `value` of them
+      filled in. Every block uses the same size of square, so a block three times the size is three
+      times the total. Counts, never percentages. */
+  squares?: {
+    label: string;
+    value: number;
+    out_of: number;
+    /** Printed small after the value, such as "of 48 ads". */
+    note?: string;
+  }[];
+  /** Things met or counted in groups, drawn as one mark for each: two dots joined, the larger named
+      first in `pairs_key`. `pairs_unit` is the word after the total ("firms"). Counts only. */
+  pairs?: {
+    label: string;
+    value: number;
+  }[];
+  pairs_unit?: string;
+  pairs_key?: [string, string];
+  /** One bar cut into parts that add up to it: a whole, and what it is made of. `count` is printed for
+      the whole bar, each part's `on_bar` words are printed on that part, and its `label` under it. A
+      "pale" part is the share that would have happened anyway; "main" is the part the eye should go to. */
+  split?: {
+    label: string;
+    count: string;
+    parts: { label: string; value: number; on_bar: string; kind?: "main" | "pale" }[];
+  };
+  /** Two or more shares to compare, each drawn as its own circle with a hole, side by side and the
+      same size. A ring's arc is its `value` out of 100, drawn round from the top, and the figure is
+      printed in its hole. `label` goes under the ring and `note` (its count) after it. "main" is the
+      strong colour, "other" the grey of a comparison. Percentages. */
+  rings?: { label: string; value: number; note?: string; kind?: "main" | "other" }[];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
   footnote?: string;
