@@ -368,7 +368,7 @@ export default function AceExpressExamplesDoc() {
             <tr>
               <td>What that content costs</td>
               <td className="pae-blank">&nbsp;</td>
-              <td>Your Claude subscription, once it is built</td>
+              <td>Your Claude subscription, about &euro;20 a month, once it is built</td>
             </tr>
           </tbody>
         </table>

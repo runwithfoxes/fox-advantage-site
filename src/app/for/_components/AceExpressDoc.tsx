@@ -57,8 +57,11 @@
 //
 // ⚠️ THE PRICE IS PAUL'S, named 13 Oct 2026: EUR 3,000 plus VAT, once.
 // (It was EUR 3,500 then EUR 99 a month from 25 Aug to 13 Oct.)
-// ⛔ NO PRICE FOR THE CLAUDE SUBSCRIPTION ON THE PAGE. Paul gave none and it
-// is Anthropic's to set. They pay Anthropic directly.
+// The Claude subscription is "about €20 a month, not through me" (Paul,
+// 13 Oct). His figure. No number of seats is given; he named none.
+// ⭐ SECTION 01 was rewritten 13 Oct on his word: the old opening ("Good
+// chatting to you both on Tuesday") was dated. It now says this is the
+// revised proposal and why: simplest, cleanest, lowest cost, no bottlenecks.
 //
 // ⛔ Gates: no unsourced numbers, every demonstration is our own work and
 // labelled illustrative, and no security claim beyond what Sam confirmed
@@ -229,11 +232,16 @@ export default function AceExpressDoc() {
           narrow use case." */}
       <PPSection id="heard" k="01" title="What this is">
         <p className="pps-standfirst">
-          Good chatting to you both on Tuesday. Below is a list of the things
-          I build. You would likely get use out of a lot of them in time, but
-          you said you wanted to start narrow and see something working
-          first. So I am recommending one thing to begin with, the LinkedIn
-          writer, and it is in section eight.
+          Below is the revised proposal. It is the simplest and cleanest way
+          to do this. I build the LinkedIn writer with you and train you to
+          run it. You take out your own Claude subscription, so you can keep
+          going yourselves. It is the lowest cost way to do it, and there are
+          no bottlenecks.
+        </p>
+        <p className="pps-standfirst" style={{ marginTop: 22 }}>
+          The writer is in section eight and the price is in section ten.
+          The sections before them show the other things I build, which you
+          might get use out of in time.
         </p>
       </PPSection>
       <PPSection id="howiwork" k="02" title="What we do">
@@ -583,9 +591,10 @@ export default function AceExpressDoc() {
 
       <PPSection id="writeragent-infra" sub title="It runs in your own Claude">
         <p className="pps-standfirst">
-          The writer runs in your own Claude subscription, which you take
-          out with Anthropic directly. It is yours, so you are not tied to
-          me to keep it running.
+          The writer runs in your own Claude subscription. That is about
+          &euro;20 a month, and you pay Anthropic for it directly, not
+          through me. It is yours, so you are not tied to me to keep it
+          running.
         </p>
         <p className="pps-standfirst" style={{ marginTop: 22 }}>
           The subscription is not only for the writer. You can use Claude
@@ -649,7 +658,7 @@ export default function AceExpressDoc() {
             "The handover into your own Claude account",
           ]}
           notCovered={[
-            "Your Claude subscription, which you pay Anthropic for directly",
+            "Your Claude subscription, about €20 a month, paid to Anthropic directly",
             "Running the writer for you after the handover",
             "LinkedIn advertising or any media spend",
           ]}
