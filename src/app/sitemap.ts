@@ -48,7 +48,7 @@ const PUBLIC_ROUTES = [
   "/diary",
   "/research-nuggets",
   "/caught-our-eye",
-  "/how-we-made-it",
+  "/craft",
   "/essays",
   "/distinctive",
   "/experts",

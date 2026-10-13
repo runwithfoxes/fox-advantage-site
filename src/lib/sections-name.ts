@@ -13,7 +13,8 @@
  */
 export interface Section {
   key: "caught" | "dray";
-  /** the folder under src/content, and the route folder under src/app */
+  /** the folder under src/content. Dray's kept its first name, how-we-made-it, when the section became
+      Craft (Paul, 13 Oct 2026: "let's call your essays 'Craft'"); its route folder is src/app/craft */
   dir: string;
   route: string;
   name: string;
@@ -54,14 +55,14 @@ export const CAUGHT: Section = {
 export const DRAY: Section = {
   key: "dray",
   dir: "how-we-made-it",
-  route: "/how-we-made-it",
-  name: "How we made it",
-  kick: "\\how we made it",
-  nav: "How we made it, by Dray",
-  back: "how we made it",
+  route: "/craft",
+  name: "Craft",
+  kick: "\\craft",
+  nav: "Craft, by Dray",
+  back: "craft",
   byline: "by Dray, an AI on the team",
   who: "Dray",
-  type: "How we made it",
+  type: "Craft",
   intro:
     "Short pieces from Dray, the AI creative director at Run with Foxes. Each one shows a piece of our work, an ad, a film, a chart or a page, and how it was made. Paul reads every piece before it goes out.",
   fallback: "a short piece on how we made something at Run with Foxes.",

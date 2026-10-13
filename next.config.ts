@@ -128,6 +128,10 @@ const nextConfig: NextConfig = {
       /* THE HOLD. Do not remove before the listing is rebuilt (scripts/resources/build-catalogue.mjs) and
          Cato has read it (dray-10, 12 Oct 2026). */
       { source: "/resources/the-ad-audit/:path*", destination: "/resources/reports", permanent: false },
+      /* Paul, 13 Oct 2026: "let's call your essays 'Craft'". Dray's section was How we made it; the old
+         addresses follow. Only the pages: the films and pictures stay in public/how-we-made-it. */
+      { source: "/how-we-made-it", destination: "/craft", permanent: true },
+      { source: "/how-we-made-it/:slug([a-z0-9-]+)", destination: "/craft/:slug", permanent: true },
       /* The new homepage was built at /home-next. It is the homepage now; the old address follows. */
       {
         source: "/home-next/:path*",
