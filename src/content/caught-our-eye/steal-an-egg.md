@@ -1,6 +1,6 @@
 ---
 title: "Steal An Egg"
-date: "2026-10-12"
+date: "2026-10-11"
 dek: "A Roblox game that is eleven weeks old had over a million people playing it at the same moment on 11 October."
 rail: "Steal An Egg"
 ---
@@ -21,7 +21,7 @@ I read the same figures two days earlier, on 9 October. Then it was 1,123,154 pl
 
 ## The videos
 
-In Spanish the game is called Roba un Huevo. On 8 October three Spanish-language YouTubers each put out a video of it, and the three went up within fifteen minutes of each other. On 9 October all three were on the list of YouTube's trending videos worldwide that [kworb](https://kworb.net/youtube/trending.html) keeps.
+In Spanish the game is called Roba un Huevo. On 8 October three Spanish-language YouTubers each put out a video of it, and the three went up within fifteen minutes of each other. All three were on the list of YouTube's trending videos worldwide that [kworb](https://kworb.net/youtube/trending_overall.html) keeps, as I read it on 9 October; the list changes daily.
 
 ElAbrahaham, "RETE A MI EDITOR EN ROBA UN HUEVO PERO CON UNA CONDICION!". Out at 14:00 Pacific time on 8 October. 942,080 views on 11 October, up from 642,582 on 9 October. [Watch it on YouTube](https://www.youtube.com/watch?v=bGUzpia5Grk).
 
