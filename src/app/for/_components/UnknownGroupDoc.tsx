@@ -71,7 +71,7 @@
 // Every picture is imported from ./unknown-group so it gets a hashed name.
 // Nothing of Nova's unreleased site sits at a guessable address in public/.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
 import { WriterEmail } from "./library/WriterPiece";
@@ -95,11 +95,8 @@ import "./unknown-group.css";
 const SECTIONS = [
   { id: "heard", title: "What I propose" },
   { id: "howiwork", title: "What we do" },
-  { id: "agents", title: "Examples of agents" },
-  { id: "websites", title: "Two websites we built" },
-  { id: "hub", title: "A content hub" },
-  { id: "howitworks", title: "How it would work" },
   { id: "pricing", title: "The price" },
+  { id: "agents", title: "Examples of agents" },
 ];
 
 // One agent in the panel: its number, its name, a few words in the small type,
@@ -179,10 +176,6 @@ function TeamPanel({ items }: { items: TeamItem[] }) {
   );
 }
 
-function P({ children }: { children: React.ReactNode }) {
-  return <p className="pps-standfirst">{children}</p>;
-}
-
 function Note({ k = "/example.", children }: { k?: string; children: React.ReactNode }) {
   return (
     <p className="ppug-note">
@@ -199,81 +192,6 @@ function Pic({ name, alt, className }: { name: string; alt: string; className?: 
 
 // A whole website in a browser window. Each tab is one real page, photographed
 // from top to bottom, and the reader scrolls it inside the window.
-type SitePage = { label: string; pic: string; url: string; href?: string };
-function SiteScroller({ pages, pill, what }: { pages: SitePage[]; pill: string; what: string }) {
-  const [i, setI] = useState(0);
-  const view = useRef<HTMLDivElement>(null);
-  const pg = pages[i];
-  const go = (n: number) => {
-    setI(n);
-    if (view.current) view.current.scrollTop = 0;
-  };
-  return (
-    <div className="ppug-site">
-      <div className="ppug-site-bar">
-        <span className="ppug-dots">
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="ppug-site-url">{pg.url}</span>
-        <span className="ppug-site-pill">{pill}</span>
-      </div>
-      <div className="ppug-site-tabs" role="tablist" aria-label={what}>
-        {pages.map((p, n) => (
-          <button
-            key={p.pic}
-            type="button"
-            role="tab"
-            aria-selected={n === i}
-            data-on={n === i ? "1" : "0"}
-            onClick={() => go(n)}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
-      <div className="ppug-site-view" ref={view} tabIndex={0} aria-label={`${what}: ${pg.label}, scroll to read`}>
-        <Pic name={pg.pic} alt={`${what}: ${pg.label}`} />
-      </div>
-      <p className="ppug-site-foot">
-        <span>scroll inside the window &darr;</span>
-        <span>
-          {i + 1} of {pages.length} pages
-          {pg.href && (
-            <>
-              {" "}
-              &middot;{" "}
-              <a href={pg.href} target="_blank" rel="noopener noreferrer">
-                open the live page
-              </a>
-            </>
-          )}
-        </span>
-      </p>
-    </div>
-  );
-}
-
-
-
-
-
-const HUB_PAGES: SitePage[] = [
-  { label: "A research report", pic: "full-rwf-report-ai-ask", url: "runwithfoxes.com/resources/the-ai-ask/2026-q3", href: "https://runwithfoxes.com/resources/the-ai-ask/2026-q3" },
-  { label: "Research nuggets", pic: "full-rwf-nuggets", url: "runwithfoxes.com/research-nuggets", href: "https://runwithfoxes.com/research-nuggets" },
-  { label: "One nugget", pic: "full-rwf-nugget", url: "runwithfoxes.com/research-nuggets", href: "https://runwithfoxes.com/research-nuggets/job-ads-want-ai-for-speed" },
-  { label: "The diary", pic: "full-rwf-diary", url: "runwithfoxes.com/diary", href: "https://runwithfoxes.com/diary" },
-  { label: "Essays", pic: "full-rwf-essays", url: "runwithfoxes.com/essays", href: "https://runwithfoxes.com/essays" },
-];
-
-
-const PAINTS_SHOWN = [
-  "01-hammock", "03-sail", "06-cloud-on-a-lead", "09-piggy-deckchair",
-  "14-compass", "16-lighthouse-day", "17-high-board", "19-goldfish-pond",
-];
-
-// One page of a live site in a browser window, the whole window a link to it.
 function SiteShot({ pic, url, href, alt }: { pic: string; url: string; href: string; alt: string }) {
   return (
     <a className="ppug-site ppug-siteshot" href={href} target="_blank" rel="noopener noreferrer">
@@ -524,253 +442,86 @@ export default function UnknownGroupDoc() {
               Miro, both global roles. Positioning, messaging and tone written
               first, then built into everything the agents make.
             </p>
-            <div className="pps-hiw-cli">
-              <p className="pps-hiw-cli-k">Who I work with</p>
-              <div className="pps-hiw-cli-l">
-                {[
-                  "Moloco",
-                  "Heineken",
-                  "Norcros",
-                  "Alltech",
-                  "Smurfit",
-                  "Hostelworld",
-                  "Eaton Square",
-                  "Weatherbys",
-                ].map((c) => (
-                  <span key={c}>{c}</span>
-                ))}
-              </div>
-            </div>
-            <div className="pps-hiw-links">
+            <dl className="ppug-facts">
               <div>
-                <p className="pps-hiw-cli-k">Essays</p>
-                <ul className="pps-hiw-ll">
+                <dt>Who I work with</dt>
+                <dd>
+                  {[
+                    "Moloco",
+                    "Heineken",
+                    "Norcros",
+                    "Alltech",
+                    "Smurfit",
+                    "Hostelworld",
+                    "Eaton Square",
+                    "Weatherbys",
+                  ].map((c) => (
+                    <span key={c}>{c}</span>
+                  ))}
+                </dd>
+              </div>
+              <div>
+                <dt>Essays</dt>
+                <dd>
                   {[
                     ["how-i-build-proactive-agents", "How I build proactive agents"],
                     ["how-i-build-an-ai-writer", "How I build an AI writer"],
                     ["build-a-system", "Build a system"],
                   ].map(([slug, title]) => (
-                    <li key={slug}>
-                      <a
-                        href={`/essays/${slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {title}
-                      </a>
-                    </li>
+                    <a key={slug} href={`/essays/${slug}`} target="_blank" rel="noopener noreferrer">
+                      {title}
+                    </a>
                   ))}
-                </ul>
+                </dd>
               </div>
               <div>
-                <p className="pps-hiw-cli-k">Free course</p>
-                <ul className="pps-hiw-ll">
-                  <li>
-                    <a href="/course" target="_blank" rel="noopener noreferrer">
-                      AI Fluency for Ambitious Marketers
-                    </a>
-                  </li>
-                </ul>
-                <p className="pps-hiw-cli-k" style={{ marginTop: 18 }}>
-                  The book
-                </p>
-                <ul className="pps-hiw-ll">
-                  <li>
-                    <a href="/book" target="_blank" rel="noopener noreferrer">
-                      The Fox Advantage
-                    </a>
-                  </li>
-                </ul>
+                <dt>Free course</dt>
+                <dd>
+                  <a href="/course" target="_blank" rel="noopener noreferrer">
+                    AI Fluency for Ambitious Marketers
+                  </a>
+                </dd>
               </div>
-            </div>
+              <div>
+                <dt>The book</dt>
+                <dd>
+                  <a href="/book" target="_blank" rel="noopener noreferrer">
+                    The Fox Advantage
+                  </a>
+                </dd>
+              </div>
+            </dl>
           </div>
-          <div className="pps-hiw-quotes">
-            <div className="pps-hiw-q">
-              <p>
+          <div className="ppug-quotes">
+            <figure>
+              <blockquote>
                 &ldquo;His command of marketing science as well as his instincts
                 for great thinking and ideas are, in my opinion, superb.&rdquo;
-              </p>
-              <div className="pps-hiw-who">
-                <b>Peter Field</b>
-                <br />
-                The Godfather of Effectiveness, author of The Long and the Short
-                of It
-              </div>
-            </div>
-            <div className="pps-hiw-q">
-              <p>
+              </blockquote>
+              <figcaption>
+                <b>Peter Field</b> The Godfather of Effectiveness, author of
+                The Long and the Short of It
+              </figcaption>
+            </figure>
+            <figure>
+              <blockquote>
                 &ldquo;Paul reported into me as Head of Brand when I was at
                 Indeed. I have learned more from him than anyone else in my
                 career.&rdquo;
-              </p>
-              <div className="pps-hiw-who">
-                <b>Paul D&rsquo;Arcy</b>
-                <br />
-                CMO, Moloco. Former CMO at Miro and Indeed
-              </div>
-            </div>
+              </blockquote>
+              <figcaption>
+                <b>Paul D&rsquo;Arcy</b> CMO, Moloco. Former CMO at Miro and
+                Indeed
+              </figcaption>
+            </figure>
           </div>
         </PPSection>
 
-        <PPSection id="agents" k="03" title="Examples of agents">
-          <p className="pps-standfirst ppug-lede">
-            Eleven of them. Move over a name to see that agent at work.
-          </p>
-        </PPSection>
-        <TeamPanel items={TEAM} />
-
-        <PPSection id="websites" k="04" title="Two websites we built">
-          <p className="pps-standfirst ppug-lede">
-            These are two sites we built in code for other companies. Both are
-            live. In both, the look is written down as rules, and those rules
-            are what keep a change made months later, by someone on their own
-            team, looking like the same company.
-          </p>
-
-          <div className="ppug-web">
-            <div className="ppug-web-text">
-              <h3 className="ppug-h3">Data Intelligence</h3>
-              <P>
-                Data Intelligence is Dave Hackett&rsquo;s company. He had no
-                senior marketer and wanted to move quickly, so I worked out
-                the marketing with him and then built it. The old site was in
-                Framer. We rebuilt it in code so that his team can change it
-                by asking. Adding a pricing page, for example, is about ten
-                minutes of work that doesn&rsquo;t need a designer.
-              </P>
-              <p className="ppug-open">
-                <a className="ppug-link" href="https://www.dataintelligence.com" target="_blank" rel="noopener noreferrer">
-                  Open dataintelligence.com
-                </a>
-              </p>
-            </div>
-            <SiteShot pic="di-home" url="dataintelligence.com" href="https://www.dataintelligence.com" alt="The Data Intelligence home page" />
-          </div>
-          <p className="ppug-k">The artwork: eight of the twenty paintings</p>
-          <p className="pps-standfirst ppug-lede">
-            Every picture on the site and in the decks is a painting from one
-            family. There are twenty so far. They are made to one written
-            description, so a new one made next year by someone on the team
-            will sit beside these and look like the same company.
-          </p>
-          <div className="ppug-paints">
-            {PAINTS_SHOWN.map((n) => (
-              <Pic key={n} name={`di-paint-${n}`} alt="A painting made for Data Intelligence" />
-            ))}
-          </div>
-
-          <div className="ppug-web">
-            <div className="ppug-web-text">
-              <h3 className="ppug-h3">Nova</h3>
-              <P>
-                Nova is an HR technology advisory firm led by Cian Collins.
-                This is their new site. The look started from the name, which
-                gave us a north star: one sky, one point of light in every
-                picture, and the same star over every city they work in.
-              </P>
-              <p className="ppug-open">
-                <a className="ppug-link" href="https://novahcm.ie" target="_blank" rel="noopener noreferrer">
-                  Open novahcm.ie
-                </a>
-              </p>
-            </div>
-            <SiteShot pic="nova-home" url="novahcm.ie" href="https://novahcm.ie" alt="The Nova home page" />
-          </div>
-          <p className="ppug-k">The pictures: made for Nova, one for each city</p>
-          <div className="ppug-wideshot">
-            <Pic name="nova-brand-photography-2" alt="Six city skylines made for Nova, each under the same blue sky with one point of light" />
-          </div>
-
-          <p className="pps-standfirst ppug-lede ppug-after">
-            The Website Agent Team is not five agents. It is the five parts of
-            the work, which are the positioning and messaging framework, the
-            UX and the navigation, the copywriting, the artwork, and then the
-            design, the building and the deploying. The most important thing
-            we do comes after the build. We set the site up so that anyone on
-            your team, with no expertise, can make changes. Those changes are
-            fast, they are on brand, and they look good.
-          </p>
-        </PPSection>
-
-        <PPSection id="hub" k="05" title="A content hub">
-          <p className="pps-standfirst">
-            Our own site is an example of a content hub. We have a research
-            agent that writes a case study every day. We have a diary agent
-            that writes about how the team of agents works. I write an
-            essay every few days, and the large research reports have started,
-            with at least one a month planned. None of this takes much of my time, and the
-            quality is good.
-          </p>
-          <SiteScroller pages={HUB_PAGES} pill="live" what="runwithfoxes.com" />
-          <ul className="ppug-rules ppug-hub-list">
-            <li>
-              <span className="ppug-n">01</span>
-              <span>
-                <b>Research reports</b>
-                <span className="ppug-rule-d">
-                  The first large report is out. It counts how many Irish
-                  marketing and sales job ads ask for AI. Two more are on the
-                  way, and the plan is at least one a month.
-                </span>
-              </span>
-            </li>
-            <li>
-              <span className="ppug-n">02</span>
-              <span>
-                <b>Research nuggets</b>
-                <span className="ppug-rule-d">
-                  A research agent writes a short piece every day on one
-                  paper, case or study, with the source checked.
-                </span>
-              </span>
-            </li>
-            <li>
-              <span className="ppug-n">03</span>
-              <span>
-                <b>The diary</b>
-                <span className="ppug-rule-d">
-                  One of the agents writes about how the team of agents works,
-                  what went wrong and what was changed.
-                </span>
-              </span>
-            </li>
-            <li>
-              <span className="ppug-n">04</span>
-              <span>
-                <b>Essays</b>
-                <span className="ppug-rule-d">
-                  My own essays on marketing and AI, every few days.
-                </span>
-              </span>
-            </li>
-          </ul>
-          <p className="pps-standfirst" style={{ marginTop: 34 }}>
-            For a group whose business is what it knows, this is where the
-            ambition comes in. The question to ask is what you would bring to
-            the market if you had a team of twenty-five analysts and
-            researchers creating content all day.
-          </p>
-        </PPSection>
-
-        <PPSection id="howitworks" k="06" title="How it would work">
-          <p className="pps-standfirst">
-            The upfront work would take about three months. We would start
-            from the marketing plan you already have, and agree with you what
-            to build first, for one brand or for all four. I would then
-            build it, test it with whoever makes the decisions on your side
-            until the work is right, and train the people who will use it.
-          </p>
-          <p className="pps-standfirst">
-            You said you will probably hire a marketer as well. Whoever joins
-            would have the agents behind them from their first day.
-          </p>
-          <p className="pps-standfirst">
-            After the three months you may want me to stay on, for project
-            work or to help build new things. That part is optional.
-          </p>
-        </PPSection>
-
-        <PPSection id="pricing" k="07" title="The price">
+        {/* The price sits straight after the bio, and the agents close the
+            page (Paul, 13 Oct: "after the agents take off everything and put
+            the price at top after my bio"). The two websites, the content hub
+            and "How it would work" came off with that. */}
+        <PPSection id="pricing" k="03" title="The price">
           <PricingCards
             cards={[
               {
@@ -786,13 +537,22 @@ export default function UnknownGroupDoc() {
               },
             ]}
           />
-          <p className="pps-standfirst" style={{ marginTop: 30, marginBottom: 34 }}>
+          <p className="pps-standfirst" style={{ marginTop: 30 }}>
             After that, if you would like me to stay on for project work or
             to help build new things, it would be €3,000 a month. That part
             is optional.
           </p>
-          <CloseBox clientName="Unknown group" />
         </PPSection>
+
+        <PPSection id="agents" k="04" title="Examples of agents">
+          <p className="pps-standfirst ppug-lede">
+            Eleven of them. Move over a name to see that agent at work.
+          </p>
+        </PPSection>
+        <TeamPanel items={TEAM} />
+        <div className="ppug-end">
+          <CloseBox clientName="Unknown group" />
+        </div>
       </div>
     </ProspectShell>
   );

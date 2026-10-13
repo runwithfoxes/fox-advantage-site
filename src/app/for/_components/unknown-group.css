@@ -1698,3 +1698,87 @@
     padding: 16px 16px 14px;
   }
 }
+
+/* ---------- the bio's facts and quotes, compact (Paul, 13 Oct 2026, over a
+   picture of the clients, links and quotes: "can you clean this up, it is
+   very bulky and not good looking"). One small table, a label beside each
+   row, and the two quotes at reading size with no bar. ---------- */
+.ppug-facts {
+  clear: both;
+  margin: 30px 0 0;
+  border-top: 1px solid var(--pps-border);
+}
+.ppug-facts > div {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 18px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--pps-border);
+}
+.ppug-facts dt {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pps-muted);
+}
+.ppug-facts dd {
+  margin: 0;
+  text-wrap: balance;
+  font-family: var(--pps-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+.ppug-facts dd > * {
+  display: inline-block;
+  margin-right: 20px;
+}
+.ppug-facts a {
+  color: var(--pps-sky);
+  text-decoration: none;
+}
+.ppug-facts a:hover {
+  text-decoration: underline;
+}
+.ppug-quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 26px;
+}
+.ppug-quotes figure {
+  margin: 0;
+}
+.ppug-quotes blockquote {
+  margin: 0 0 8px;
+  font-family: var(--pps-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--pps-text);
+}
+.ppug-quotes figcaption {
+  font-family: var(--pps-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--pps-muted);
+}
+.ppug-quotes figcaption b {
+  color: var(--pps-text);
+  font-weight: 500;
+  margin-right: 6px;
+}
+.ppug-end {
+  margin-top: 64px;
+}
+@media (max-width: 700px) {
+  .ppug-facts > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .ppug-quotes {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
