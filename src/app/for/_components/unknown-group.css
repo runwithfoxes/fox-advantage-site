@@ -1814,3 +1814,10 @@
   line-height: 1.5;
   color: var(--pps-muted);
 }
+
+/* a site shown as a film of it being scrolled */
+.ppug-siteshot video {
+  display: block;
+  width: 100%;
+  height: auto;
+}

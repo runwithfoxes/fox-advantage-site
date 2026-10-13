@@ -86,7 +86,6 @@ import {
   PM,
   GHOST_POST,
 } from "./unknown-group-data";
-import { PICS } from "./unknown-group/pics";
 import "@/components/agents/agents-section.css";
 import "./pricing.css";
 import "./unknown-group.css";
@@ -183,15 +182,14 @@ function Note({ k = "/example.", children }: { k?: string; children: React.React
   );
 }
 
-function Pic({ name, alt, className }: { name: string; alt: string; className?: string }) {
-  const p = PICS[name];
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img className={className} src={p.src} width={p.width} height={p.height} alt={alt} loading="lazy" />;
-}
 
 // A whole website in a browser window. Each tab is one real page, photographed
 // from top to bottom, and the reader scrolls it inside the window.
-function SiteShot({ pic, url, href, alt }: { pic: string; url: string; href: string; alt: string }) {
+// A live site as a film of it being scrolled, in a browser window that links
+// to the site (Paul, 13 Oct, on the still picture of a site: "The website one
+// is really flat ... Maybe it should be an MPEG scroller", then "don't do data
+// intelligence, do Nova"). The film is a recording of novahcm.ie on 13 Oct.
+function SiteFilm({ src, poster, url, href, label }: { src: string; poster: string; url: string; href: string; label: string }) {
   return (
     <a className="ppug-site ppug-siteshot" href={href} target="_blank" rel="noopener noreferrer">
       <span className="ppug-site-bar">
@@ -203,7 +201,7 @@ function SiteShot({ pic, url, href, alt }: { pic: string; url: string; href: str
         <span className="ppug-site-url">{url}</span>
         <span className="ppug-site-pill">live</span>
       </span>
-      <Pic name={pic} alt={alt} />
+      <video src={src} poster={poster} width={1120} height={700} autoPlay muted loop playsInline aria-label={label} />
     </a>
   );
 }
@@ -331,9 +329,17 @@ const TEAM: TeamItem[] = [
   {
     id: "ag-web", num: "08", name: "Website Agent Team", short: "a site built with craft, changed by asking",
     dek: "We build well crafted websites and set them up so you can make on-brand changes in a moment, without any design, UX or development knowledge.",
-    fig: () => <SiteShot pic="di-home" url="dataintelligence.com" href="https://www.dataintelligence.com" alt="The Data Intelligence home page" />,
+    fig: () => (
+      <SiteFilm
+        src="/for/unknown-group/nova-scroll.mp4"
+        poster="/for/unknown-group/nova-scroll-poster.jpg"
+        url="novahcm.ie"
+        href="https://novahcm.ie"
+        label="The Nova home page being scrolled from top to bottom"
+      />
+    ),
     k: "/live.",
-    note: "The Data Intelligence site. It and Nova's are both below, with the paintings and pictures made for them.",
+    note: "Nova is an HR technology advisory firm. This is their new site, which we built. Press the window to open it.",
   },
   {
     id: "ag-guardian", num: "09", name: "Brand Guardians", short: "every file measured against the book",
