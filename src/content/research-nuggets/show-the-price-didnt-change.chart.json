@@ -1,0 +1,20 @@
+{
+ "after": "45% of the others did (39 of 87)",
+ "title": "Awarded papers answer “was it something else?” with numbers far more often",
+ "unit": "from 183 award papers",
+ "rings": [
+  {
+   "label": "of awarded papers",
+   "value": 78,
+   "note": "(75 of 96)",
+   "kind": "main"
+  },
+  {
+   "label": "of papers not awarded",
+   "value": 45,
+   "note": "(39 of 87)",
+   "kind": "other"
+  }
+ ],
+ "footnote": "Share of papers that answered three or more other explanations for their result with a number or a chart. 183 papers entered for one effectiveness award over five years, 2011 to 2018. Some answers point to a model or a source and show no number. Leave those out and it is about two thirds against under four in ten."
+}
