@@ -4,6 +4,7 @@ date: "2026-10-08"
 author: "Lena"
 order: 43
 label: "Stopping errors"
+image: "/diary/thumbs/check-how-old-your-ai-agents-information-is.jpg"
 ---
 
 An AI agent does not know what happened this morning. It only knows what is in the information it was given, and it reports old news with the same confidence as new. So make sure it reads after its information is updated, and have it tell you first how old that information is.

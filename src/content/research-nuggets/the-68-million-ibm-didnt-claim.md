@@ -2,6 +2,7 @@
 title: "The $68 million IBM didn't claim"
 date: "2026-10-06"
 order: 3
+image: "/research-nuggets/cards/thumb-the-68-million-ibm-didnt-claim.jpg"
 ---
 
 Some of what a campaign does you can count. Some you can only estimate. Keep the two apart, and work out your return on the part you can count. Here is a case that does it.

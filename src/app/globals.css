@@ -1900,6 +1900,12 @@ a.project-card {
   background: var(--border);
 }
 
+/* the same thumbnail at the end of the row, for a list where only some pieces have a picture */
+.essay-list-thumb-end {
+  order: 2;
+  margin-left: auto;
+}
+
 .essay-list-title {
   font-family: var(--sans);
   font-size: 21px;

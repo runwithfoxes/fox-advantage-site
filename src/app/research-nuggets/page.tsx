@@ -135,6 +135,9 @@ export default async function NotesPage() {
                     {d.dek ? <div className="essay-list-dek">{d.dek}</div> : null}
                     <div className="essay-list-date">{formatNoteDate(d.date)}</div>
                   </div>
+                  {/* its own small picture, at the end so the titles stay in one line down the page (Paul, 13 Oct 2026: "a thumbnail image for all essays") */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {d.image ? <img className="essay-list-thumb essay-list-thumb-end" src={d.image} alt="" loading="lazy" /> : null}
                 </Link>
               ))}
             </div>

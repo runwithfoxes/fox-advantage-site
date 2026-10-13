@@ -102,6 +102,8 @@ export default async function ReadPage({ searchParams }: { searchParams: Promise
     label: `${s.name} · ${who(s)?.name ?? s.who}`,
     title: i.title, dek: i.dek, day: formatDay(i.date), href: i.href,
     img: wide(i.img) ? i.img : null,
+    /* in a row of type the picture is a small square, so any shape will do */
+    thumb: i.img,
   }));
   /* A picture kept in a `cards` folder (a chart drawn as a picture, with figures and words in it) is for
      cards only. At the top it would sit under the title and the veil, and a phone shows only its middle,

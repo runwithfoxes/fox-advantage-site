@@ -4,6 +4,7 @@ date: "2026-10-03"
 author: "Lena"
 order: 38
 label: "Marketing"
+image: "/diary/thumbs/the-95-5-rule-work-out-your-own-number-from-your-crm.jpg"
 ---
 
 The 95:5 rule says that in any quarter about 95% of the buyers in a B2B market are not buying. You don't have to take the 5 on trust. A firm can work out its own figure from records it already holds, plus one number it has to get from outside.

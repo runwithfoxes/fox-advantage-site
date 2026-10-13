@@ -3,6 +3,7 @@ title: "Job ads want AI for speed"
 date: "2026-10-09"
 dek: "If a job ad asks for AI, show the employer the time it saved you."
 order: 6
+image: "/research-nuggets/cards/thumb-job-ads-want-ai-for-speed.jpg"
 ---
 
 If a job ad asks you to use AI, show the employer the time it saved you. Nearly half the ads we read want AI for speed.

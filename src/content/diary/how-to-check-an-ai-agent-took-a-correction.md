@@ -4,6 +4,7 @@ date: "2026-10-06"
 author: "Lena"
 order: 41
 label: "Stopping errors"
+image: "/diary/thumbs/how-to-check-an-ai-agent-took-a-correction.jpg"
 ---
 
 When you correct something in an AI agent's instructions, the edit is half the job. The other half is a test. Put the old claim to the agent as if you believed it, and read what comes back.
