@@ -1,0 +1,20 @@
+/* Small additions for the ICS Medical proposal page. The rest is the shared
+   unknown-group.css (ppug-). The Unknown group page forces its headline onto
+   one line from 1240px wide, which is right for a short headline and cuts this
+   one off, so on this page it wraps. */
+.pps-root:has(.ppics) .pps-h1 {
+  white-space: normal;
+  font-size: clamp(2.25rem, 4vw, 3.1rem);
+}
+/* The lead finder keeps its funding stage column on a phone. */
+.ppics .agw-terms th:nth-child(3),
+.ppics .agw-terms td:nth-child(3) {
+  display: table-cell;
+}
+.ppics .agw-leads .agw-sa {
+  grid-template-columns: 1fr;
+}
+.ppics .agw-leads .agw-sa-side {
+  border-left: none;
+  border-top: 1px solid var(--agw-line-soft);
+}

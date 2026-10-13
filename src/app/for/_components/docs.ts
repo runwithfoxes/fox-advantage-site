@@ -88,4 +88,9 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // proactive agents, one connected system, the Nova and Data Intelligence
   // sites with their design systems, our own site as a content hub, one price.
   "unknown-group": dynamic(() => import("./UnknownGroupDoc"), { ssr: false }),
+  // Brendan Marrinan and Laura Fuvessy, ICS Medical. Built 13 Oct 2026 from the
+  // Unknown group page: a lead finder and a training day as two ways to start,
+  // then thirteen examples of agents. The slug is not "ics-medical" because the
+  // capabilities page sent on 31 Aug already lives there.
+  "ics-medical-proposal": dynamic(() => import("./IcsMedicalProposalDoc"), { ssr: false }),
 };

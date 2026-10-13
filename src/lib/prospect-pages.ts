@@ -229,6 +229,19 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "UNKNOWN_GROUP_PASSWORD",
     passwordFallback: "unknown26",
   },
+  // Brendan Marrinan and Laura Fuvessy, ICS Medical. Built 13 Oct 2026 off the
+  // 8 Oct call, on the Unknown group page's format. Two ways to start, a lead
+  // finder (EUR 5,000 plus VAT) and a training day (EUR 1,000 plus VAT), then
+  // examples only. The slug is separate from "ics-medical", the capabilities
+  // page sent on 31 Aug, which stays as it is.
+  "ics-medical-proposal": {
+    slug: "ics-medical-proposal",
+    client: "ICS Medical",
+    shortName: "ICS Medical",
+    tabTitle: "Run with Foxes for ICS Medical",
+    passwordEnv: "ICS_MEDICAL_PROPOSAL_PASSWORD",
+    passwordFallback: "icsproposal26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {
