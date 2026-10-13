@@ -43,6 +43,9 @@ export default function Rail({ classes }: { classes: RailClass[] }) {
 
   return (
     <nav className="mod-rail mk-rail" aria-label="The classes">
+      <a className="mod-rail-lib" href="#new" style={{ marginTop: 0, marginBottom: 14 }}>
+        /new from Paul
+      </a>
       <p>/the classes</p>
       {classes.map((c, i) => (
         <div key={i} className="mk-railitem" data-here={i === here ? "1" : "0"}>
