@@ -400,7 +400,7 @@ const TEAM: TeamItem[] = [
     dek: "We build creative directors that hold every ad, page and picture to the brand's rules and to a standard of craft.",
     fig: () => <CreativeWindow />,
     k: "/our own ad.",
-    note: "This is an ad for Run with Foxes, on Les Binet and Peter Field's 60:40 finding. The frames are from the approved film.",
+    note: "This is an ad for Run with Foxes, on the 60:40 split between brand building and sales activation. The frames are from the approved film.",
   },
   {
     id: "ag-search", num: "06", name: "Search Agents", short: "new terms, new ads, live by morning",
