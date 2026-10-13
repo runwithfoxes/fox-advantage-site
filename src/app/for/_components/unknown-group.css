@@ -26,7 +26,6 @@
    cream. The list stays put while a tall window is read. ---------- */
 /* With no rail the page is one column 1124 wide. Reading text keeps the
    measure it had beside the rail; the panel and the pictures use the width. */
-.pps-norail .pps-masthead,
 .ppug > .pps-section > .pps-standfirst:not(.ppug-lede),
 .ppug > .pps-section > .pps-hiw-grid,
 .ppug #howiwork,
@@ -1780,5 +1779,15 @@
   .ppug-quotes {
     grid-template-columns: 1fr;
     gap: 22px;
+  }
+}
+
+/* The headline and its rule run the full width under the picture, on one line
+   where there is room (Paul, 13 Oct: "This headline should go across the
+   entire page now"). */
+@media (min-width: 1240px) {
+  .pps-norail .pps-h1 {
+    font-size: 3.1rem;
+    white-space: nowrap;
   }
 }

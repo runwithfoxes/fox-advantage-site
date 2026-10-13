@@ -81,8 +81,8 @@ export default function ProspectShell({
   pdfHref?: string;
   /** One wide drawn picture across the very top, above the rail and the
    *  main column, so it is the first thing on a phone too. OPTIONAL and off by default
-   *  (Paul, 9 Oct, the Unknown group page: a grumpy fox at a whiteboard
-   *  across the top). */
+   *  (Paul, 9 Oct, the Unknown group page. Since 13 Oct it is the fox at
+   *  a desk, a generated photograph). */
   topPicture?: { src: string; alt: string; width: number; height: number };
   children: React.ReactNode;
 }) {

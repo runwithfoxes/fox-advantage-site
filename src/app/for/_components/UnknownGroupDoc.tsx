@@ -373,10 +373,10 @@ export default function UnknownGroupDoc() {
       sections={SECTIONS}
       noRail
       topPicture={{
-        src: "/for/unknown-group/fox-whiteboard.jpg",
-        alt: "The fox standing on a box at a whiteboard, pointing a marker at the word Unknown",
+        src: "/for/unknown-group/fox-desk.jpg",
+        alt: "The fox in a grey hoodie at a desk under a lamp, working through a marketing plan, with a sheet beside him that reads Unknown",
         width: 2400,
-        height: 1029,
+        height: 1028,
       }}
     >
       <div className="ppug">

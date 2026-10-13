@@ -160,13 +160,8 @@
   width: 100%;
   height: auto;
   margin: 0 0 48px;
-  /* the drawing's paper is a shade warmer than the page, so its edges fade out */
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
-    linear-gradient(to bottom, transparent, #000 8%, #000 95%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent),
-    linear-gradient(to bottom, transparent, #000 8%, #000 95%, transparent);
-  mask-composite: intersect;
+  /* a photograph, so it keeps its own square edges. The whiteboard drawing it
+     replaced on 13 Oct faded out at the edges with a mask. */
 }
 .pps-masthead {
   padding: 0 0 30px;
