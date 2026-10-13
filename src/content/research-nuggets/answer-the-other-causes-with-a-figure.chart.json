@@ -1,24 +1,24 @@
 {
  "after": "got a sentence and nothing more (576 of 1,599)",
- "title": "Authors answered 64% of the other causes they named with a figure, and 36% with a sentence only",
- "unit": "percent of the 1,599 times an author named another possible cause of their own result",
+ "title": "When a paper said \"it wasn't the price\", did it show a number?",
+ "unit": "from 389 award papers",
  "ring": {
   "parts": [
    {
-    "label": "Answered with a figure, a chart or a named source",
+    "label": "showed a number or a chart",
     "value": 64,
-    "note": "(1,023 of 1,599)",
+    "note": "(1,023 times)",
     "kind": "main"
    },
    {
-    "label": "Answered with a sentence only",
+    "label": "only said so",
     "value": 36,
-    "note": "(576 of 1,599)",
+    "note": "(576 times)",
     "kind": "pale"
    }
   ],
   "centre": "36%",
-  "centre_label": "a sentence only"
+  "centre_label": "only said so"
  },
- "footnote": "389 papers entered for advertising effectiveness awards, 1980 to 2024. In 309 of them the authors named another possible cause of the result. Each time, we recorded whether the answer pointed to a number, a chart, a model or a source, or was words only. Some of the answers counted as a figure have no number beside them, so 64% is the most it can be and 36% the least."
+ "footnote": "Price is one example. We counted every time a paper named something else that could have caused its result: 1,599 times, in 309 of the 389 papers. Some of the 64% point to a chart or a model with no number beside it, so 64% is the most it can be."
 }

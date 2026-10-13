@@ -235,10 +235,11 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
               {chart.ring.parts.map((p) => (
                 <div key={p.label} className={`${c.ringRow} ${c[p.kind || "main"]}`}>
                   <i />
-                  <span className={c.val}>
-                    {p.value}%{p.note ? <em>{p.note}</em> : null}
-                  </span>
-                  <span className={c.lab}>{p.label}</span>
+                  {/* read as one line: the figure, what it is, then its count */}
+                  <p>
+                    <span className={c.val}>{p.value}%</span> {p.label}
+                    {p.note ? <em> {p.note}</em> : null}
+                  </p>
                 </div>
               ))}
             </div>
