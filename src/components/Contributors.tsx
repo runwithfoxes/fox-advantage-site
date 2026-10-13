@@ -90,11 +90,11 @@ export default function Contributors({ label = true }: { label?: boolean }) {
             </li>
             <li>
               <div>
-                <Link href="/how-we-made-it" className={a.name}>{WRITERS.dray.name}</Link>
+                <Link href="/craft" className={a.name}>{WRITERS.dray.name}</Link>
                 <span className={a.role}>{WRITERS.dray.role}</span>
               </div>
               <div>
-              <p>Our creative director. Dray makes the ads, the films, the animated charts, the course figures and the pages on this site. He writes How we made it, short pieces that show a piece of our work and how it was made. Paul reviews the work before it goes out.</p>
+              <p>Our creative director. Dray makes the ads, the films, the animated charts, the course figures and the pages on this site. He writes Craft, short pieces that show a piece of our work and how it was made. Paul reviews the work before it goes out.</p>
               <Own href={DRAY.route} name={DRAY.name} />
               <Latest x={latest.dray} />
               </div>

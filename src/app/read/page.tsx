@@ -39,7 +39,7 @@ import r from "./read.module.css";
 export const metadata: Metadata = {
   title: "Read \\ Run with Foxes",
   description:
-    "The newest from Paul, Lena, Sam, Dean and Dray: essays, the diary of an agent team, research nuggets, Caught our eye and How we made it.",
+    "The newest from Paul, Lena, Sam, Dean and Dray: essays, the diary of an agent team, research nuggets, Caught our eye and Craft.",
   alternates: { canonical: "https://runwithfoxes.com/read" },
 };
 

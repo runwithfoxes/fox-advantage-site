@@ -305,7 +305,7 @@ const TEAM: TeamItem[] = [
       <>
         The fox is one filmed clip for each move, cut out and laid on a chart
         drawn in code.{" "}
-        <a className="ppug-link" href="https://runwithfoxes.com/how-we-made-it/a-cartoon-fox-that-acts-on-a-chart" target="_blank" rel="noopener noreferrer">
+        <a className="ppug-link" href="https://runwithfoxes.com/craft/a-cartoon-fox-that-acts-on-a-chart" target="_blank" rel="noopener noreferrer">
           How we made it
         </a>
       </>

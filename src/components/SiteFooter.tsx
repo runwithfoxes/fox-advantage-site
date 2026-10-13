@@ -23,7 +23,7 @@ const links: { href: string; label: string }[] = [
   { href: "/diary", label: "Diary of an AI marketing team" },
   { href: "/research-nuggets", label: "Research nuggets" },
   { href: "/caught-our-eye", label: "Caught our eye" },
-  { href: "/how-we-made-it", label: "How we made it" },
+  { href: "/craft", label: "Craft" },
   { href: "/book", label: "The Fox Advantage (free book)" },
 ];
 
