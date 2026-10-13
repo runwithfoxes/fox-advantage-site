@@ -120,6 +120,9 @@ export default function ModulePage() {
               in class.
             </p>
             <p className="mod-standfirst">
+              When I add something new, I put it in <a href="#new" style={{ color: "#3A7CA5", textDecoration: "underline" }}>New from Paul</a>. Look there first.
+            </p>
+            <p className="mod-standfirst">
               I&rsquo;m Paul Dervan. I run a marketing consultancy that mixes old-school
               fundamentals, marketing rigour, creativity, craft and technology.
             </p>
@@ -140,6 +143,47 @@ export default function ModulePage() {
           </header>
 
           <main>
+            {/* New from Paul. Paul, 13 Oct: "We need to call a section in rail called New from Paul and
+                mention that at top of page and put any new things there." The newest row goes first,
+                with the date it was added. A thing stays in its own place on the page as well. */}
+            <article className="mod-item" id="new">
+              <div className="mod-itemtop">
+                <h2 className="mod-h3">New from Paul: anything I add to this page is listed here first.</h2>
+              </div>
+              <p className="mod-body">
+                The newest thing is at the top, with the date I added it.
+              </p>
+              <div className="mod-reading">
+                <span className="mod-readinglbl">Monday 12 October</span>
+                <ul className="mod-frows">
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Claude Code set-up guide
+                    </a>
+                    <span className="mod-fwhat">
+                      You build your agents in Claude Code. This guide is written for your Claude, not for you.
+                      Download it, give the file to Claude in a normal chat, and type: Read this guide and help me
+                      set up Claude Code, one step at a time. You need a paid Claude plan.
+                    </span>
+                    <a className="mod-readinglink" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Download
+                    </a>
+                  </li>
+                  <li className="mod-frow">
+                    <a className="mod-fname" href="https://www.amazon.ie/Marketing-Bottom-Line-Prof-Ambler/dp/0273661949" target="_blank" rel="noopener">
+                      Marketing and the Bottom Line
+                    </a>
+                    <span className="mod-fwhat">
+                      A book by Professor Tim Ambler about how to measure what marketing does for a business. The link goes to Amazon.
+                    </span>
+                    <a className="mod-readinglink" href="https://www.amazon.ie/Marketing-Bottom-Line-Prof-Ambler/dp/0273661949" target="_blank" rel="noopener">
+                      Open
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </article>
+
             {/* Class 1, written out in full because it is taught from this page */}
             <article className="mod-item mk-classitem" id="c1">
               <ClassTop i={0} />
@@ -428,6 +472,15 @@ export default function ModulePage() {
                     </a>
                   </li>
                   <li className="mod-frow">
+                    <a className="mod-fname" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Claude Code set-up guide
+                    </a>
+                    <span className="mod-fwhat">Give this file to Claude and it helps you set up Claude Code, one step at a time.</span>
+                    <a className="mod-readinglink" href="/mkt46310/claude-code-setup-guide.md" download>
+                      Download
+                    </a>
+                  </li>
+                  <li className="mod-frow">
                     <span className="mod-fname">The Attio data</span>
                     <span className="mod-fwhat">A list of made-up companies and people for your agency&rsquo;s CRM.</span>
                     <span className="mk-soon">In November</span>
@@ -469,33 +522,6 @@ export default function ModulePage() {
                     </span>
                     <a className="mod-readinglink" href="https://www.amazon.ie/Marketing-Bottom-Line-Prof-Ambler/dp/0273661949" target="_blank" rel="noopener">
                       Open
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </article>
-
-            <article className="mod-item" id="claude-code">
-              <div className="mod-itemtop">
-                <h2 className="mod-h3">Start here: get Claude Code working on your laptop.</h2>
-              </div>
-              <p className="mod-body">
-                You build your agents in Claude Code. This guide is written for your Claude, not for you.
-                Download it, give the file to Claude in a normal chat, and type: Read this guide and help me
-                set up Claude Code, one step at a time.
-              </p>
-              <div className="mod-reading">
-                <span className="mod-readinglbl">Claude Code</span>
-                <ul className="mod-frows">
-                  <li className="mod-frow">
-                    <a className="mod-fname" href="/mkt46310/claude-code-setup-guide.md" download>
-                      Claude Code set-up guide
-                    </a>
-                    <span className="mod-fwhat">
-                      Takes you from using Claude in a chat to Claude Code on your laptop, with a project folder and a first practice agent. You need a paid Claude plan.
-                    </span>
-                    <a className="mod-readinglink" href="/mkt46310/claude-code-setup-guide.md" download>
-                      Download
                     </a>
                   </li>
                 </ul>
