@@ -93,9 +93,24 @@
   background: #fff6c8;
   padding: 0 4px;
 }
+/* Running costs: body size, plain text, real bullets (Paul, 14 Oct: "the bold
+   v non bold. the words are bigger than the title so is odd") */
 .pptd-costs {
-  margin: 8px 0 0 18px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
   line-height: 1.7;
+  color: var(--pps-text);
+}
+.pptd-costs p {
+  margin: 0 0 8px;
+}
+.pptd-costs ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 20px;
+}
+.pptd-costs li {
+  margin: 4px 0;
 }
 @media (max-width: 899px) {
   .pptd-win .ppug-site-url {
@@ -133,10 +148,7 @@
 .pptd #pricing .ppp-covers-label {
   margin-top: 30px;
 }
-.pptd .pptd-costs {
-  margin-left: 0;
-  padding-left: 0;
-}
+
 @media (min-width: 1000px) {
   .pptd > .pps-section,
   .pptd-show-head {
