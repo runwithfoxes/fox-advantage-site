@@ -20,8 +20,8 @@
 // EUR 99 a month (Paul: "Don't offer for us to host it"). No days or day
 // rates. Running costs are paid by TrustDish directly.
 //
-// HEADLINE, WHAT I PROPOSE and the monitoring cost are placeholders until Paul
-// agrees the words with Jo 2.
+// The headline is Paul's, agreed with Jo 2 on 14 Oct. WHAT I PROPOSE is a
+// placeholder until Paul has read it.
 import { useEffect, useRef, useState } from "react";
 import ProspectShell, { PPSection } from "./ProspectShell";
 import { PricingCards, CloseBox } from "./Pricing";
@@ -31,7 +31,7 @@ import "./unknown-group.css"; // the ppug- styles are shared; nothing in them na
 import "./trustdish.css";
 
 const HUB = "https://trustdish-hub-ec718b.vercel.app";
-const HEADLINE = "[Headline: words still with Paul]";
+const HEADLINE = "What if TrustDish became the place to go for food allergies?";
 
 const SECTIONS = [
   { id: "heard", title: "What I propose" },
@@ -290,6 +290,7 @@ export default function TrustDishDoc() {
       clientName="TrustDish"
       eyebrow="Prepared for Shannen O'Reilly, Sean O'Reilly and Kevin O'Regan"
       title={HEADLINE}
+      titleHl="the place to go for food allergies"
       standfirst={[]}
       sections={SECTIONS}
       noRail
