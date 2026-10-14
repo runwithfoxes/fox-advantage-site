@@ -14,8 +14,9 @@ export type Card = { label: string; title: string; dek: string; day: string; hre
 const STEP = 16;
 
 export default function ReadList({ cards, total }: { cards: Card[]; total: number }) {
-  const pics = cards.filter((c) => c.img).slice(0, 9);
-  /* nine pictures in three rows, as Substack shows them, then one link to everything else (Paul, 12 Oct:
+  const pics = cards.filter((c) => c.img).slice(0, 12);
+  /* twelve pictures in four rows (Paul, 14 Oct 2026: "Maybe we just need 12 on a page, and then the rest can be the
+     smaller ones when you see all"; it was nine, as Substack shows them), then one link to everything else (Paul, 12 Oct:
      "substack show 9, not 3, and then link off to see all after"). A view with fewer than three pictures
      of its own (the diary, today) is a list of type from the start. */
   const leads = pics.length >= 3 ? pics : [];
