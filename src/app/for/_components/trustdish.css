@@ -1,10 +1,8 @@
 /* TrustDish proposal (14 Oct 2026). The prototype is the showcase: full width
    of the page, straight after "01 What I propose". */
 .pptd-show {
-  margin: 8px 0 72px;
-}
-.pptd-show-head {
-  max-width: 760px;
+  margin: 0;
+  padding: 64px 0 0;
 }
 .pptd-k {
   font-family: var(--pps-mono);
@@ -102,5 +100,86 @@
 @media (max-width: 899px) {
   .pptd-win .ppug-site-url {
     display: none;
+  }
+}
+
+/* The whole page uses the full width, the same as the picture, the headline
+   and the prototype (Paul, 14 Oct: "Use the entire page because we're using
+   the entire page elsewhere"). From 1000px each section is two columns: its
+   number and name on the left, its words on the right at a reading measure.
+   The prototype and the agents panel run across both. */
+.pps-root:has(.pptd) .pps-h1 {
+  white-space: normal;
+  font-size: clamp(2.25rem, 4vw, 3.1rem);
+}
+/* The headline is too long for one line at this size, so it wraps across the
+   full column instead of balancing into two short halves. */
+@media (min-width: 1000px) {
+  .pps-root:has(.pptd) .pps-h1 {
+    font-size: 3.1rem;
+    text-wrap: pretty;
+  }
+}
+.pptd #howiwork,
+.pptd #pricing {
+  max-width: none;
+}
+.pptd .ppug-team-fig {
+  min-height: 0;
+}
+.pptd .ppug-siteshot {
+  max-width: 100%;
+}
+.pptd #pricing .ppp-covers-label {
+  margin-top: 30px;
+}
+.pptd .pptd-costs {
+  margin-left: 0;
+  padding-left: 0;
+}
+@media (min-width: 1000px) {
+  .pptd > .pps-section,
+  .pptd-show-head {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    column-gap: 64px;
+    row-gap: 0;
+    align-items: start;
+  }
+  .pptd > .pps-section > * {
+    grid-column: 2;
+    max-width: none;
+  }
+  .pptd > .pps-section > .pps-section-head {
+    grid-column: 1;
+    grid-row: 1 / span 40;
+    margin: 0;
+    position: sticky;
+    top: 84px;
+  }
+  .pptd > .pps-section > .pps-standfirst,
+  .pptd > .pps-section > .pps-hiw-grid {
+    max-width: 760px;
+  }
+  .pptd-show-head > .pptd-k,
+  .pptd-show-head > .pptd-show-t {
+    grid-column: 1;
+  }
+  .pptd-show-head > .pptd-show-s {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+    max-width: 760px;
+  }
+  .pptd-show-t {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  /* the agents panel sits on the same two columns as the sections */
+  .pptd #agents + .ppug-team {
+    margin-top: 40px;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 64px;
   }
 }

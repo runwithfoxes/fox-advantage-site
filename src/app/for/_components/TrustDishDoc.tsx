@@ -35,9 +35,9 @@ const HEADLINE = "What if TrustDish became the place to go for food allergies?";
 
 const SECTIONS = [
   { id: "heard", title: "What I propose" },
+  { id: "agents", title: "The agents behind it" },
   { id: "howiwork", title: "What we do" },
   { id: "pricing", title: "The price" },
-  { id: "agents", title: "The agents behind it" },
 ];
 
 type TeamItem = {
@@ -312,8 +312,16 @@ export default function TrustDishDoc() {
 
         <Showcase />
 
+        <PPSection id="agents" k="02" title="The agents behind it">
+          <p className="pps-standfirst ppug-lede">
+            Four agents run the hub, and the fifth thing is Shannen&apos;s own voice. Move over a name to see it in the
+            prototype.
+          </p>
+        </PPSection>
+        <TeamPanel items={TEAM} />
+
         {/* WHAT WE DO. Paul's own copy, verbatim, as it ships on the ICS page. */}
-        <PPSection id="howiwork" k="02" title="What we do">
+        <PPSection id="howiwork" k="03" title="What we do">
           <p className="pps-hiw-line">Quality first, then automate</p>
           <p className="pps-hiw-by">Paul Dervan, Run with Foxes</p>
           <div className="pps-hiw-grid">
@@ -400,7 +408,7 @@ export default function TrustDishDoc() {
           </div>
         </PPSection>
 
-        <PPSection id="pricing" k="03" title="The price">
+        <PPSection id="pricing" k="04" title="The price">
           <PricingCards
             cards={[
               {
@@ -436,13 +444,6 @@ export default function TrustDishDoc() {
           </ul>
         </PPSection>
 
-        <PPSection id="agents" k="04" title="The agents behind it">
-          <p className="pps-standfirst ppug-lede">
-            Four agents run the hub, and the fifth thing is Shannen&apos;s own voice. Move over a name to see it in the
-            prototype.
-          </p>
-        </PPSection>
-        <TeamPanel items={TEAM} />
         <div className="ppug-end">
           <CloseBox clientName="TrustDish" />
         </div>
