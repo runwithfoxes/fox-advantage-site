@@ -1,0 +1,106 @@
+/* TrustDish proposal (14 Oct 2026). The prototype is the showcase: full width
+   of the page, straight after "01 What I propose". */
+.pptd-show {
+  margin: 8px 0 72px;
+}
+.pptd-show-head {
+  max-width: 760px;
+}
+.pptd-k {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+  margin: 0 0 10px;
+}
+.pptd-show-t {
+  font-family: var(--pps-sans);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0;
+}
+.pptd-show-s {
+  margin: 12px 0 0;
+}
+.pptd-win {
+  margin-top: 26px;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.35);
+}
+.pptd-try,
+.pptd-open {
+  flex: none;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  color: inherit;
+}
+.pptd-try {
+  background: #126833;
+  border-color: #126833;
+  color: #fff;
+}
+.pptd-stage {
+  position: relative;
+  aspect-ratio: 1280 / 800;
+  background: #f7f3ea;
+}
+.pptd-stage video,
+.pptd-stage iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  transition: opacity 0.4s;
+}
+.pptd-stage video {
+  object-fit: cover;
+}
+.pptd-stage iframe {
+  opacity: 0;
+  pointer-events: none;
+}
+.pptd-stage iframe.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pptd-stage video.off {
+  opacity: 0;
+  pointer-events: none;
+}
+.pptd-try-list {
+  font-family: var(--pps-sans);
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  font-size: 15px;
+  color: var(--pps-muted);
+}
+.pptd-try-list a {
+  color: inherit;
+  font-weight: 600;
+  color: #126833;
+}
+.pptd-ph {
+  background: #fff6c8;
+  padding: 0 4px;
+}
+.pptd-costs {
+  margin: 8px 0 0 18px;
+  line-height: 1.7;
+}
+@media (max-width: 899px) {
+  .pptd-win .ppug-site-url {
+    display: none;
+  }
+}

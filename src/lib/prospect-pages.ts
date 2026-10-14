@@ -242,6 +242,17 @@ export const PROSPECT_PAGES: Record<string, ProspectPageConfig> = {
     passwordEnv: "ICS_MEDICAL_PROPOSAL_PASSWORD",
     passwordFallback: "icsproposal26",
   },
+  // Shannen O'Reilly, Sean O'Reilly and Kevin O'Regan, TrustDish. Built 14 Oct
+  // 2026 from the ICS proposal page, with the hub prototype as the showcase.
+  // Not live until Paul says.
+  trustdish: {
+    slug: "trustdish",
+    client: "TrustDish",
+    shortName: "TrustDish",
+    tabTitle: "Run with Foxes for TrustDish",
+    passwordEnv: "TRUSTDISH_PASSWORD",
+    passwordFallback: "trustdish26",
+  },
 };
 
 export function getProspectPage(slug: string): ProspectPageConfig | null {

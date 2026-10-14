@@ -93,4 +93,8 @@ export const PROSPECT_DOCS: Record<string, ComponentType> = {
   // then thirteen examples of agents. The slug is not "ics-medical" because the
   // capabilities page sent on 31 Aug already lives there.
   "ics-medical-proposal": dynamic(() => import("./IcsMedicalProposalDoc"), { ssr: false }),
+  // Shannen O'Reilly, Sean O'Reilly and Kevin O'Regan, TrustDish. Built 14 Oct
+  // 2026: the hub prototype as the showcase, the four agents inside it, one
+  // price for phase one.
+  trustdish: dynamic(() => import("./TrustDishDoc"), { ssr: false }),
 };
