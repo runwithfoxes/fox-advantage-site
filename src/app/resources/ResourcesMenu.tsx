@@ -39,8 +39,9 @@ const DISCOVER: { g: Glyph; t: string; d: string; href: string; n?: keyof Counts
 const LEARN: { t: string; href: string }[] = [
   { t: "AI Fluency for Ambitious Marketers", href: "/course" },
 ];
+/* Paul, 14 Oct 2026: "Get new research by email" came off. It only went back to the homepage, which
+   was confusing. It comes back when there is a sign-up page for it to open. */
 const CONNECT: { t: string; href: string }[] = [
-  { t: "Get new research by email", href: "/#top" },
   { t: "Talk to us", href: "/about" },
 ];
 
