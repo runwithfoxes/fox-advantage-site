@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NextNav from "@/app/home-next/NextNav";
 import EssayJoin from "./EssayJoin";
+import CopyPage from "./CopyPage";
 import j from "./essay-join.module.css";
 import { notFound } from "next/navigation";
 import {
@@ -86,6 +87,7 @@ export default async function EssayPage({
             <div className="essay-meta">{formatEssayDate(essay.date)}</div>
             <h1 className="essay-heading">{essay.title}</h1>
             {essay.dek ? <p className="essay-dek">{essay.dek}</p> : null}
+            <CopyPage title={essay.title} dek={essay.dek} raw={essay.raw || ""} url={`https://runwithfoxes.com/essays/${slug}`} />
           </div>
 
           <div

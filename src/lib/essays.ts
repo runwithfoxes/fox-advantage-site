@@ -61,6 +61,8 @@ export interface Essay {
   dek: string;
   substack?: string;
   content?: string;
+  /* the essay's own markdown, for the Copy this page button */
+  raw?: string;
   /* first image in the body, used as the thumbnail on the index and homepage */
   image?: string | null;
 }
@@ -146,7 +148,7 @@ export async function getEssayContent(slug: string): Promise<Essay | null> {
   );
   const processed = await remark().use(html, { sanitize: false }).process(content);
 
-  return { ...meta, content: processed.toString() };
+  return { ...meta, content: processed.toString(), raw: content };
 }
 
 /** Newer and older neighbours, for the foot of an essay. */
