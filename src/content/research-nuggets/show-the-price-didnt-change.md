@@ -3,6 +3,7 @@ title: "Show the price didn't change"
 date: "2026-10-13"
 dek: "When someone asks what else could explain your result, answer with a number."
 order: 10
+image: "/research-nuggets/cards/show-the-price-didnt-change.jpg"
 ---
 
 When you tell your boss a campaign worked, expect one question. Was it the campaign, or was it something else? A price cut, a promotion, a new shop stocking you, a good summer.
