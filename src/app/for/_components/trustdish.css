@@ -1,0 +1,197 @@
+/* TrustDish proposal (14 Oct 2026). The prototype is the showcase: full width
+   of the page, straight after "01 What I propose". */
+.pptd-show {
+  margin: 0;
+  padding: 64px 0 0;
+}
+.pptd-k {
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  color: var(--pps-sky);
+  margin: 0 0 10px;
+}
+.pptd-show-t {
+  font-family: var(--pps-sans);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  margin: 0;
+}
+.pptd-show-s {
+  margin: 12px 0 0;
+}
+.pptd-win {
+  margin-top: 26px;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.35);
+}
+.pptd-try,
+.pptd-open {
+  flex: none;
+  font-family: var(--pps-mono);
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--pps-border);
+  background: #fff;
+  color: inherit;
+}
+.pptd-try {
+  background: #126833;
+  border-color: #126833;
+  color: #fff;
+}
+.pptd-stage {
+  position: relative;
+  aspect-ratio: 1280 / 800;
+  background: #f7f3ea;
+}
+.pptd-stage video,
+.pptd-stage iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  transition: opacity 0.4s;
+}
+.pptd-stage video {
+  object-fit: cover;
+}
+.pptd-stage iframe {
+  opacity: 0;
+  pointer-events: none;
+}
+.pptd-stage iframe.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pptd-stage video.off {
+  opacity: 0;
+  pointer-events: none;
+}
+.pptd-try-list {
+  font-family: var(--pps-sans);
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  font-size: 15px;
+  color: var(--pps-muted);
+}
+.pptd-try-list a {
+  color: inherit;
+  font-weight: 600;
+  color: #126833;
+}
+.pptd-ph {
+  background: #fff6c8;
+  padding: 0 4px;
+}
+/* Running costs: body size, plain text, real bullets (Paul, 14 Oct: "the bold
+   v non bold. the words are bigger than the title so is odd") */
+.pptd-costs {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pps-text);
+}
+.pptd-costs p {
+  margin: 0 0 8px;
+}
+.pptd-costs ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 20px;
+}
+.pptd-costs li {
+  margin: 4px 0;
+}
+@media (max-width: 899px) {
+  .pptd-win .ppug-site-url {
+    display: none;
+  }
+}
+
+/* The whole page uses the full width, the same as the picture, the headline
+   and the prototype (Paul, 14 Oct: "Use the entire page because we're using
+   the entire page elsewhere"). From 1000px each section is two columns: its
+   number and name on the left, its words on the right at a reading measure.
+   The prototype and the agents panel run across both. */
+.pps-root:has(.pptd) .pps-h1 {
+  white-space: normal;
+  font-size: clamp(2.25rem, 4vw, 3.1rem);
+}
+/* The headline is too long for one line at this size, so it wraps across the
+   full column instead of balancing into two short halves. */
+@media (min-width: 1000px) {
+  .pps-root:has(.pptd) .pps-h1 {
+    font-size: 3.1rem;
+    text-wrap: pretty;
+  }
+}
+.pptd #howiwork,
+.pptd #pricing {
+  max-width: none;
+}
+.pptd .ppug-team-fig {
+  min-height: 0;
+}
+.pptd .ppug-siteshot {
+  max-width: 100%;
+}
+.pptd #pricing .ppp-covers-label {
+  margin-top: 30px;
+}
+
+@media (min-width: 1000px) {
+  .pptd > .pps-section,
+  .pptd-show-head {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    column-gap: 64px;
+    row-gap: 0;
+    align-items: start;
+  }
+  .pptd > .pps-section > * {
+    grid-column: 2;
+    max-width: none;
+  }
+  .pptd > .pps-section > .pps-section-head {
+    grid-column: 1;
+    grid-row: 1 / span 40;
+    margin: 0;
+    position: sticky;
+    top: 84px;
+  }
+  .pptd > .pps-section > .pps-standfirst,
+  .pptd > .pps-section > .pps-hiw-grid {
+    max-width: 760px;
+  }
+  .pptd-show-head > .pptd-k,
+  .pptd-show-head > .pptd-show-t {
+    grid-column: 1;
+  }
+  .pptd-show-head > .pptd-show-s {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+    max-width: 760px;
+  }
+  .pptd-show-t {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  /* the agents panel sits on the same two columns as the sections */
+  .pptd #agents + .ppug-team {
+    margin-top: 40px;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 64px;
+  }
+}
