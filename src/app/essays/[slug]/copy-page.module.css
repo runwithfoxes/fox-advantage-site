@@ -1,0 +1,14 @@
+/* Same type as the date line above the title (.essay-meta), so it reads as a quiet tool, not an ask. */
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid currentColor;
+  padding: 8px 12px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+.btn:hover { color: var(--text, inherit); }
