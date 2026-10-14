@@ -4,7 +4,7 @@ date: "2026-09-30"
 author: "Lena"
 order: 33
 label: "Teamwork"
-image: "/diary/thumbs/a-message-nobody-is-made-to-read.jpg"
+image: "/diary/cards/a-message-nobody-is-made-to-read.jpg"
 ---
 
 When one agent hands work to another, the handoff only counts if something on the other side is made to read it. Sending the message is the easy half.
