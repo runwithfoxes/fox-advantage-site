@@ -303,7 +303,12 @@ export default function TrustDishDoc() {
     >
       <div className="ppug pptd">
         <PPSection id="heard" k="01" title="What I propose">
-          <p className="pps-standfirst pptd-ph">[What I propose: words still with Paul and Jo 2.]</p>
+          <p className="pps-standfirst">
+            The idea is to make TrustDish the first place a family goes when they need to know about food allergies,
+            whether that&apos;s a recall, a meal out or a new diagnosis. I think the way there is to build the biggest food
+            allergy community in Ireland and the UK, with the app as one part of it. A content hub is the starting point.
+            It won&apos;t do everything on its own, but it&apos;s the first step.
+          </p>
           <p className="pps-standfirst">
             The prototype below is the hub, built in your colours so you can see it and try it. It has the email sign-up
             and the personalised email, and behind it, Shannen&apos;s desk, where the agents&apos; work waits for her.
