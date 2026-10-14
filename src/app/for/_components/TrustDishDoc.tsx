@@ -419,14 +419,15 @@ export default function TrustDishDoc() {
           <p className="pps-standfirst">
             You get your own Claude licence. I build it and hand it over to you, and it runs there.
           </p>
-          <p className="ppp-covers-label">Running costs you pay directly, not to us</p>
+          <p className="ppp-covers-label">Running costs you pay directly</p>
+          <p className="pps-standfirst">None of these are paid to Run with Foxes.</p>
           <ul className="pps-standfirst pptd-costs">
             <li>
               <b>Your Claude licence</b>
             </li>
             <li>
-              <b>The tools the listener uses</b> to look for sources all the time{" "}
-              <span className="pptd-ph">[cost to come]</span>
+              <b>The listener&apos;s tools</b>, which look for sources all the time: up to about €100 a month,
+              probably less
             </li>
             <li>
               <b>€50 to €100 a month</b> put aside for image and video generation
