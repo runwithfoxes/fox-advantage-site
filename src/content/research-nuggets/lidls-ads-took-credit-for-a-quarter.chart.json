@@ -1,0 +1,24 @@
+{
+ "after": "£627 million of the £2.56 billion",
+ "title": "How much of Lidl's growth the ads were given",
+ "unit": "Lidl's sales growth in the UK, 2013 to 2017",
+ "split": {
+  "label": "Growth in sales, 2013 to 2017",
+  "count": "£2.56bn",
+  "parts": [
+   {
+    "label": "Given to the ads, about a quarter",
+    "value": 627,
+    "on_bar": "£627m",
+    "kind": "main"
+   },
+   {
+    "label": "New stores and everything else",
+    "value": 1933,
+    "on_bar": "£1.93bn",
+    "kind": "pale"
+   }
+  ]
+ },
+ "footnote": "From Lidl's award paper, IPA Effectiveness Awards, Gold, 2018. The split comes from Lidl's own statistical model."
+}
