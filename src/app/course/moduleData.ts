@@ -2080,7 +2080,7 @@ export const MODULE_3: ModuleDef = {
      16 Oct between midnight and morning while he slept, and carries `placeholder: true`
      until he has read it. The install steps in item 01 are from Anthropic's own desktop
      quickstart (code.claude.com/docs/en/desktop-quickstart), read 16 Oct 2026. */
-  /* ⚠️ DRAFT OPENING, Dray 16 Oct, from the locked blurb and Paul's 15 Oct words. His film
+  /* ⚠️ DRAFT OPENING, Dray 15 Oct, from the locked blurb and Paul's 15 Oct words. His film
      goes above it when he records one (openingVideo, as module 2). */
   opening:
     "Marketing work is usually split between specialists: brand, performance, research, analytics. If a job was outside your area, you paid a specialist or an agency to do it. This module shows that with the help of AI you can now do a lot of this work yourself.\n\nThere are four things in it. The first is a tool: Claude Code, which puts Claude at your computer instead of in a chat window. The other three are kinds of work that used to belong to someone else. Knowledge: becoming the expert in the room on a tool you have never used. Computing: serious segmentation analysis on a real customer file. And a technical skill: building and deploying a website. Each one is harder and longer than the last, and I am honest in each about how long it takes. None of this is a button. It is you, doing work you used to buy, with a colleague who can read, write and run things for you.",
@@ -2092,7 +2092,7 @@ export const MODULE_3: ModuleDef = {
          where it enters, at its gentlest: reading a folder, writing one file, counting one
          thing. The desktop app's Code tab, never the terminal.
          The Kite folder is one zip of everything module 3 serves, with subfolders kept
-         (`tree=1` on the zip route, added 16 Oct), so CLAUDE.md's `data/` and `research/`
+         (`tree=1` on the zip route, added 15 Oct), so CLAUDE.md's `data/` and `research/`
          are real on the learner's disk. Module 2's Kite documents are not in it (that route
          zips one module's files); start-here says they can be dropped into brand/. */
       t: "Give Claude a computer: Claude Code",
@@ -2119,7 +2119,7 @@ export const MODULE_3: ModuleDef = {
          does now." And: "agree with your subject learned and example. we might hold on the
          agent in klaviyo till module 4 as that is system thinking."
          The four Klaviyo files are his own agents' notes, scrubbed of everything private to
-         RWF on 16 Oct (keys, ids, paths, agent names, his numbers, his prices); the scrub
+         RWF on 15 Oct (keys, ids, paths, agent names, his numbers, his prices); the scrub
          report is in the session scratchpad and the sources are the lifecycle-agent skill's
          references and methodology/klaviyo-build-playbook.md. Facts are dated in the files
          because Klaviyo changes. */
@@ -2138,7 +2138,7 @@ export const MODULE_3: ModuleDef = {
       /* ⭐ ITEM 03, COMPUTING. Paul, 15 Oct: "segmentation is hardcore computing."
          Built 7 Aug 2026, rebuilt from the reader's chair the same evening; everything about
          the item is unchanged except the last paragraph, which sent the learner to a Claude
-         Project and now sends them to the Kite folder in Claude Code (16 Oct). The yardstick
+         Project and now sends them to the Kite folder in Claude Code (15 Oct). The yardstick
          chart ({{CHART_YARDSTICK}}, SimilarityScale.tsx) and the recording (KITE_SEGMENT_SESSION)
          are gated by scripts/check-sessions.mjs. Awaiting Paul's prose pass since 7 Aug. */
       t: "Do serious segmentation analysis yourself",
@@ -2207,13 +2207,13 @@ export const MODULE_3: ModuleDef = {
       placeholder: true,
     },
   ],
-  /* ⚠️ DRAFT CLOSING, Dray 16 Oct, in the shape of module 2's closing (short, a line into
+  /* ⚠️ DRAFT CLOSING, Dray 15 Oct, in the shape of module 2's closing (short, a line into
      the next module). Module 4's date is from courseModules.ts and changes if that does. */
   closing:
     "That's module 3. Three kinds of work that used to belong to someone else, and a tool that puts Claude at your computer to do them. Knowledge, computing, and a technical skill. None of them fast the first time, and all of them yours now.\n\nModule 4 is System thinking. It takes the pieces you have built, the website, the Klaviyo expert, the analyst, and shows them working as one system, where the site and the emails run together and the agent that learned Klaviyo now runs it. It opens on Monday 2 November.",
   files: [
     {
-      /* The Kite folder's own two files, 16 Oct 2026. Listing them is what makes them
+      /* The Kite folder's own two files, 15 Oct 2026. Listing them is what makes them
          servable; the whole-module zip in item 01 is built from the lists in this array. */
       title: "The Kite folder, to open in Claude Code",
       blurb:
@@ -2235,7 +2235,7 @@ export const MODULE_3: ModuleDef = {
       ],
     },
     {
-      /* The Klaviyo buckets, 16 Oct 2026: Paul's agents' notes with everything private to
+      /* The Klaviyo buckets, 15 Oct 2026: Paul's agents' notes with everything private to
          RWF taken out. Dated inside because Klaviyo changes. */
       title: "Klaviyo, as my agents learned it",
       blurb:
@@ -2299,7 +2299,7 @@ export const MODULE_3: ModuleDef = {
       ],
     },
     {
-      /* The website path, 16 Oct 2026, from Paul's 15 Oct instructions. The wireframe
+      /* The website path, 15 Oct 2026, from Paul's 15 Oct instructions. The wireframe
          sample joins when ours are cleaned up. */
       title: "The website path, to follow in order",
       blurb:
@@ -2328,7 +2328,7 @@ export const MODULE_3: ModuleDef = {
     {
       /* The research corpus, 7 Aug 2026. TITLE, BLURB AND `what` ARE WORKING COPY,
          awaiting Paul. Counts and the fiction border are gated by
-         scripts/check-research-corpus.mjs. Now step one of the website path (16 Oct). */
+         scripts/check-research-corpus.mjs. Now step one of the website path (15 Oct). */
       title: "Kite's market, to research",
       blurb:
         "The raw material of desk research, generated for Kite's fictional market: forum threads, competitor reviews, Ardline's own pages, the questions people type into search, and the rules for reading them honestly.",

@@ -85,11 +85,11 @@ export async function GET(
     const mayZip = process.env.NODE_ENV === "development" || (await hasAccess());
     if (!mayZip) return new Response("Not found", { status: 404 });
     const zip = new JSZip();
-    /* `?name=Kite` names the folder inside the zip and the zip itself, 16 Oct 2026, so the
+    /* `?name=Kite` names the folder inside the zip and the zip itself, 15 Oct 2026, so the
        learner unzips a folder called Kite rather than module-3. Letters and digits only. */
     const name = new URL(req.url).searchParams.get("name")?.replace(/[^A-Za-z0-9-]/g, "") || null;
     const folder = zip.folder(name ?? path.basename(dir))!;
-    /* ⭐ `?tree=1` KEEPS THE SUBFOLDERS, 16 Oct 2026, for module 3's Kite folder: the
+    /* ⭐ `?tree=1` KEEPS THE SUBFOLDERS, 15 Oct 2026, for module 3's Kite folder: the
        learner opens the zip in Claude Code, and CLAUDE.md there speaks of `data/` and
        `research/`, so they have to be real on disk. Without the flag the zip stays flat,
        which is what module 2's twelve files want for a Claude Project's files panel. */
