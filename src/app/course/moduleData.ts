@@ -2072,7 +2072,7 @@ export const MODULE_3: ModuleDef = {
      have to be terminal. They will need hand holding and files to download."
      The 7 Aug Research item is now step one of the website path (its recording plays there).
      The agent that RUNS Klaviyo is held for module 4 ("that is system thinking").
-     The reasoning and the rulings: course-build/PLAN-2026-10-16-module-3.md and the module 3
+     The reasoning and the rulings: course-build/PLAN-2026-10-15-module-3.md and the module 3
      section of course-build/SKELETON-MODULES-3-6-2026-08-06.md. Paul's words: the wiki for
      15 Oct. Read both before touching these items.
 
