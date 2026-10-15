@@ -52,6 +52,7 @@ const PUBLIC_ROUTES = [
   "/essays",
   "/distinctive",
   "/experts",
+  "/follow",
   "/brand",
   "/info",
   "/marketer-of-the-year",
