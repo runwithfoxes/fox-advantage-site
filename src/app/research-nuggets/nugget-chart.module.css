@@ -100,6 +100,13 @@
 /* at rest the estimate has stepped back: it stays on the page, faint, so the reader still sees what was left out */
 .fig[data-stage="rest"] .limit { opacity: .6; transform: translateY(3px); }
 
+/* panels: the same things measured two ways, side by side, each on its own scale (nugget 12) */
+.panels { display: grid; gap: 28px; }
+.panel { display: grid; gap: 16px; align-content: start; }
+.panelLab { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #1D1B1B; padding-bottom: 8px; border-bottom: 1px solid #E6E6E1; }
+.panel .head { flex-direction: column; align-items: flex-start; gap: 6px; }
+.panel + .panel .bar { transition-delay: .9s; }
+
 /* waiting to come on screen */
 .fig[data-stage="armed"] .bar { width: 0 !important; transition: none; }
 .fig[data-stage="armed"] .limit .bar { border-color: transparent; }
@@ -127,4 +134,5 @@
   .ringTrack, .ringPart { stroke-width: 28; }
   .ringHole { font-size: 28px; }
   .ringLab { font-size: 12px; }
+  .panels { grid-template-columns: minmax(0, 1fr) !important; gap: 24px; }
 }

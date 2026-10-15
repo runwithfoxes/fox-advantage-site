@@ -33,7 +33,7 @@ const LIVE = process.env.VERCEL_ENV === "production";
 const notesDirectory = path.join(process.cwd(), "src/content/research-nuggets");
 
 /** One chart, drawn by src/app/research-nuggets/NuggetChart.tsx. Bars share one scale and are never stacked.
-    A file gives `bars` (with `max`), `squares`, `pairs`, `split` or `rings`, only one of them. */
+    A file gives `bars` (with `max`), `squares`, `pairs`, `split`, `rings` or `panels`, only one of them. */
 export interface NoteChart {
   /** The chart sits straight after the paragraph that holds these words. */
   after: string;
@@ -87,6 +87,11 @@ export interface NoteChart {
       printed in its hole. `label` goes under the ring and `note` (its count) after it. "main" is the
       strong colour, "other" the grey of a comparison. Percentages. */
   rings?: { label: string; value: number; note?: string; kind?: "main" | "other" }[];
+  /** Two or more small panels side by side, each the same things measured a different way, each on its own
+      scale (nugget 12, 15 Oct 2026: an old ad leads on total reach, a new one leads per day). Every panel lists
+      the same things in the same order, so the reader sees the lead change hands. `display` is printed as given.
+      "main" is the strong colour, "other" the grey. The panels draw one after the other. */
+  panels?: { label: string; values: { label: string; value: number; display: string; kind?: "main" | "other" }[] }[];
   /** A full sentence that appears under the chart once the bars are drawn. Never shortened. */
   closing?: string;
   footnote?: string;

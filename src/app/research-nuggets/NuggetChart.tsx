@@ -23,6 +23,9 @@ import c from "./nugget-chart.module.css";
  * A file can give `split`: one bar cut into the parts that add up to it (nugget 09: growth of 18, of which
  * about 7 the other firms also grew and 11 is the difference). The words on each part are the file's.
  *
+ * A file can give `panels`: the same things measured two ways, side by side, each on its own scale (nugget 12,
+ * 15 Oct 2026: the old ad leads on total reach, the new one per day). The second panel draws after the first.
+ *
  * Three rules from Sam's chart files, built in so they cannot be broken by a new file:
  *  - bars are never stacked or added: each has its own row on the same scale;
  *  - a "limit" bar (an estimate that is only an upper limit) is a dashed outline, never solid,
@@ -222,6 +225,30 @@ export default function NuggetChart({ chart, win }: { chart: NoteChart; win: str
           </div>
         ) : null}
 
+        {chart.panels ? (
+          <div className={c.panels} style={{ gridTemplateColumns: `repeat(${chart.panels.length}, minmax(0, 1fr))` }}>
+            {/* each panel on its own scale; the second draws after the first, so the lead is seen to change hands */}
+            {chart.panels.map((pn) => {
+              const top = Math.max(...pn.values.map((v) => v.value)) || 1;
+              return (
+                <div key={pn.label} className={c.panel}>
+                  <p className={c.panelLab}>{pn.label}</p>
+                  {pn.values.map((v) => (
+                    <div key={v.label} className={`${c.row} ${c[v.kind || "main"]}`}>
+                      <div className={c.head}>
+                        <span className={c.lab}>{v.label}</span>
+                        <span className={c.val}>{v.display}</span>
+                      </div>
+                      <span className={c.track}>
+                        <span className={c.bar} style={{ width: `${(v.value / top) * 100}%` }} />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
         {chart.bars ? (
         <div className={c.plot}>
           {chart.bars.map((b) => {
