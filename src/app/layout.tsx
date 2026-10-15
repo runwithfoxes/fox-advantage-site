@@ -47,6 +47,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: KNOWN_HEAD_SCRIPT }} />
+        {/* the feed of every new piece, so a feed reader or a reader's agent finds it from any page
+            (15 Oct 2026). Here and not in metadata.alternates, because a page that sets its own
+            alternates (a canonical) replaces the whole key and would drop this line. */}
+        <link rel="alternate" type="application/rss+xml" title="Run with Foxes" href="https://runwithfoxes.com/feed.xml" />
       </head>
       <body className={`${mono.variable} ${sans.variable} ${serif.variable} antialiased`}>
         <div className="page-wrapper">

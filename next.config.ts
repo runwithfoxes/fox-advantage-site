@@ -24,6 +24,13 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
+      /* Every piece as plain markdown for a reader's agent, at its own address plus .md (15 Oct 2026,
+         see src/lib/feed.ts). A rewrite rather than a route folder because a route cannot end in .md.
+         Rewrites in this list run before the dynamic [slug] pages, so /essays/x.md never reaches them. */
+      {
+        source: "/:section(essays|diary|research-nuggets|caught-our-eye|craft)/:slug([a-z0-9-]+).md",
+        destination: "/md/:section/:slug",
+      },
       /* Campaign entry paths for /course. A rewrite, not a redirect, so the
          address stays as sent and Web Analytics records the entry path as its
          own page. That is how a visit is attributed to a campaign: Vercel does
