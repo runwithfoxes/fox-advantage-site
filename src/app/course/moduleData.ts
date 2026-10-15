@@ -2064,37 +2064,83 @@ export const MODULE_3: ModuleDef = {
   on: "2026-10-19",
   built: false,
   blurb: MODULE_BLURBS[3],
-  /* REVISED 7 Aug 2026 from the second talk with Paul. THREE items now (LTV dropped).
-     One new CMO carries the module by asking questions; each item's output feeds the
-     next; the website hands off to module 4. The ruling doc is
-     course-build/SKELETON-MODULES-3-6-2026-08-06.md (module 3 section rewritten 7 Aug).
-     Read it before touching these items. */
+  /* ⭐⭐ RE-SHAPED 15 OCT 2026, LATE, BY PAUL WITH DRAY. FOUR ITEMS, in this order, each a
+     different kind of work a marketer could not do before: the tool (Claude Code), knowledge
+     (Klaviyo), computing (segmentation), a technical skill (a website). His words: "Klaviyo is
+     knowledge, website is a technical skill I didn't have, not just design, as can build and
+     deploy. And segmentation is hardcore computing." And: "first is Claude Code, which doesn't
+     have to be terminal. They will need hand holding and files to download."
+     The 7 Aug Research item is now step one of the website path (its recording plays there).
+     The agent that RUNS Klaviyo is held for module 4 ("that is system thinking").
+     The reasoning and the rulings: course-build/PLAN-2026-10-16-module-3.md and the module 3
+     section of course-build/SKELETON-MODULES-3-6-2026-08-06.md. Paul's words: the wiki for
+     15 Oct. Read both before touching these items.
+
+     ⚠️ EVERY `text` BELOW THAT IS NOT MARKED AS HIS IS DRAY'S DRAFT FROM HIS WORDS, built
+     16 Oct between midnight and morning while he slept, and carries `placeholder: true`
+     until he has read it. The install steps in item 01 are from Anthropic's own desktop
+     quickstart (code.claude.com/docs/en/desktop-quickstart), read 16 Oct 2026. */
+  /* ⚠️ DRAFT OPENING, Dray 16 Oct, from the locked blurb and Paul's 15 Oct words. His film
+     goes above it when he records one (openingVideo, as module 2). */
+  opening:
+    "Marketing work is usually split between specialists: brand, performance, research, analytics. If a job was outside your area, you paid a specialist or an agency to do it. This module shows that with the help of AI you can now do a lot of this work yourself.\n\nThere are four things in it. The first is a tool: Claude Code, which puts Claude at your computer instead of in a chat window. The other three are kinds of work that used to belong to someone else. Knowledge: becoming the expert in the room on a tool you have never used. Computing: serious segmentation analysis on a real customer file. And a technical skill: building and deploying a website. Each one is harder and longer than the last, and I am honest in each about how long it takes. None of this is a button. It is you, doing work you used to buy, with a colleague who can read, write and run things for you.",
   items: [
     {
-      /* The story: the CMO asks whether THE HOME WORKER should be a fourth segment
-         (a question, not a proposal; nobody is wrong). The similarity check answers:
-         over 92% similar to customers Kite already serves (92.1 computed from
-         course-files/module-3/data/customers.csv, asserted by
-         build-kite-segment-data.py). Kite's three segments are never under the
-         microscope; behaviourally they separate hard (pairwise 28-39). One analysis
-         taught; the rest of the battery appears as passing charts. Three-file kit for
-         the learner, module 1 item 10 pattern. Opening paragraph drafted 7 Aug,
-         awaiting Paul's prose pass. */
-      /* ⭐⭐ REBUILT 7 Aug 2026 (evening) FROM THE READER'S CHAIR, Paul's correction:
-         "put yourself in the shoes of a user coming here." The flow he dictated: sell
-         the value first (serious analytical computing you used to outsource), then the
-         Kite example, then teach what a different segment looks like WITH THE CHART
-         before anything runs, then the recording, short. The reader arrives knowing
-         nothing but "my CMO asked"; every concept is explained at the moment it is
-         needed.
-
-         ⭐ THE HEADING CARRIES THE PROMISE, Paul's ruling this session, refining the
-         6 Aug "discipline names" rule: the discipline is named, inside a sentence
-         about what YOU can now do.
-
-         ⭐ THE GRAB BOX IS GONE: the yardstick chart ({{CHART_YARDSTICK}},
-         SimilarityScale.tsx, numbers generated and asserted) is the item's picture,
-         sitting where the argument earns it rather than as a banner. */
+      /* ⭐ ITEM 01, THE TOOL. Paul, 15 Oct: "first is Claude Code, which doesn't have to be
+         terminal. They will need hand holding and files to download." The course has never
+         taught Claude Code (it was cut from module 1's opening as unexplained), so this is
+         where it enters, at its gentlest: reading a folder, writing one file, counting one
+         thing. The desktop app's Code tab, never the terminal.
+         The Kite folder is one zip of everything module 3 serves, with subfolders kept
+         (`tree=1` on the zip route, added 16 Oct), so CLAUDE.md's `data/` and `research/`
+         are real on the learner's disk. Module 2's Kite documents are not in it (that route
+         zips one module's files); start-here says they can be dropped into brand/. */
+      t: "Give Claude a computer: Claude Code",
+      docs: {
+        dir: "module-3/claude-code",
+        folder: "claude-code/",
+        files: ["start-here", "CLAUDE"],
+        as: "links",
+      },
+      text: "In modules 1 and 2 you talked to Claude in a chat window and dropped files into a project. That got you a long way. For the three things in this module it is not enough, because each of them needs Claude to read a whole folder of files, write files you can open, and run code to count things. That is what Claude Code is. Claude, sitting at your computer.\n\nIt does not mean a terminal. Anthropic's desktop app has a Code tab, and that is all you need. It needs a paid plan: Pro, Max, Team or Enterprise. If you are on the free plan the Code tab will ask you to upgrade.\n\nHere is the whole setup. It takes about fifteen minutes the first time.\n\n1. Download the Claude desktop app for Mac or Windows from Anthropic's own guide and install it. Open it and sign in with the account you already use for Claude.\n\n2. Click the Code tab at the top of the window.\n\n3. Download the Kite folder. It is one zip of every file in this module, in the folders Claude expects. Unzip it somewhere you can find again, like Documents, and call the folder Kite.\n\n4. At the bottom of the Code tab, set Environment to Local, click Select folder and choose your Kite folder. Set the permission mode to Manual. That means Claude asks you before it changes a file or runs anything, and it is the right setting until you are comfortable.\n\n5. Open start-here, which is in the folder and below, and type the three things it tells you to type. The first makes Claude read the folder and tell you what is in it. The second makes it write a file you can open. The third makes it run a few lines of code and count something in the customer file. That is the whole tool: read, write, run.\n\nThe other file, CLAUDE.md, is the note Claude reads every time it opens the folder. It tells Claude what Kite is, how to behave, and which rules files to read before it does anything. You will write one of these for every folder you work in from now on. Open it and read it. It is short, and it is the same analyst you met in module 1.",
+      textLinks: [
+        { phrase: "Anthropic's own guide", href: "https://code.claude.com/docs/en/desktop-quickstart", title: "Get started with the Claude Code desktop app" },
+        { phrase: "Download the Kite folder", href: "/api/course-file/module-3.zip?tree=1&name=Kite&files=claude-code/CLAUDE.md,claude-code/start-here,data/customers.csv,data/segmentation-rules,research/forum-threads,research/reviews,research/ardline-pages,research/search-questions,research/research-rules,klaviyo/learn-a-subject,klaviyo/klaviyo-what-it-is,klaviyo/klaviyo-lifecycle-knowledge,klaviyo/klaviyo-api-and-automation,klaviyo/klaviyo-go-live-checklist,website/website-path,website/category-research,website/design-brief", title: "The Kite folder, every module 3 file", download: true },
+      ],
+      grab: "The Code tab with the Kite folder selected, Environment Local, permission Manual, and start-here's first message typed",
+      placeholder: true,
+    },
+    {
+      /* ⭐ ITEM 02, KNOWLEDGE. Paul, 15 Oct: "show them that they can get really really
+         knowledgeable on a subject and have Claude be their expert on this. For example,
+         Klaviyo is a brilliant tool for lifecycle marketing. I can give them buckets of
+         documentation about it and explain I got this by sending agents to learn all about
+         it, and come back and teach me but also later use API to run it. Which is what it
+         does now." And: "agree with your subject learned and example. we might hold on the
+         agent in klaviyo till module 4 as that is system thinking."
+         The four Klaviyo files are his own agents' notes, scrubbed of everything private to
+         RWF on 16 Oct (keys, ids, paths, agent names, his numbers, his prices); the scrub
+         report is in the session scratchpad and the sources are the lifecycle-agent skill's
+         references and methodology/klaviyo-build-playbook.md. Facts are dated in the files
+         because Klaviyo changes. */
+      t: "Make Claude your expert on a subject",
+      docs: {
+        dir: "module-3/klaviyo",
+        folder: "klaviyo/",
+        files: ["learn-a-subject", "klaviyo-what-it-is", "klaviyo-lifecycle-knowledge", "klaviyo-api-and-automation", "klaviyo-go-live-checklist"],
+        as: "links",
+      },
+      text: "The first kind of work is knowledge. Every marketing team has tools that one person understands and everyone else is afraid of. When that person leaves, or when you move to a tool nobody has used, you hire a specialist or an agency that knows it. That is a lane, and it was drawn by how long it takes to learn a tool properly.\n\nKlaviyo is my example. It is a brilliant tool for lifecycle marketing, the emails that go to people who already know you: welcome, nurture, renewal, win back. I had never used it. So I sent agents to read everything about it, the help centre, the developer documentation, the release notes, and come back and teach me. The notes they wrote are the files below. They are the buckets of documentation I now hand to Claude whenever I need it to be my Klaviyo expert, and later, in module 4, the same notes are what lets it run Klaviyo for me through its API, which is what it does for this course today.\n\nKite's new CMO gives you the same job. Kite is moving its renewal emails onto Klaviyo and nobody in the team has used it. You have a week to be the person who understands it.\n\nThe move is in learn-a-subject. You paste it into Claude Code in your Kite folder, with the Klaviyo files beside it, and it does four things. It reads, and writes its notes as a file. It teaches you, in one page. It answers your questions and tells you where each answer came from. And it writes the test a Klaviyo specialist would set, so you can check what you have learned.\n\nThen do the thing that proves it worked. Ask it something a specialist would know and a beginner would not. Then ask it something it cannot know, like the size of Kite's list. A real expert says it does not know. If it makes up a number, it is not your expert yet.\n\nNow pick the tool in your own job that one person understands and everyone else avoids, and run the same move on it. The notes file it writes is yours to keep, and it grows every time you ask.",
+      grab: "Claude Code in the Kite folder, learn-a-subject pasted in, the notes file being written",
+      placeholder: true,
+    },
+    {
+      /* ⭐ ITEM 03, COMPUTING. Paul, 15 Oct: "segmentation is hardcore computing."
+         Built 7 Aug 2026, rebuilt from the reader's chair the same evening; everything about
+         the item is unchanged except the last paragraph, which sent the learner to a Claude
+         Project and now sends them to the Kite folder in Claude Code (16 Oct). The yardstick
+         chart ({{CHART_YARDSTICK}}, SimilarityScale.tsx) and the recording (KITE_SEGMENT_SESSION)
+         are gated by scripts/check-sessions.mjs. Awaiting Paul's prose pass since 7 Aug. */
       t: "Do serious segmentation analysis yourself",
       docs: {
         dir: "module-3/data",
@@ -2102,63 +2148,132 @@ export const MODULE_3: ModuleDef = {
         files: ["customers.csv", "segmentation-rules"],
         as: "links",
       },
-      text: "There is serious analytical computing behind good marketing, and until now you had to outsource it. Segmentation is a good example. Someone claims a group of customers is a segment, your CMO, an agency deck, a planning meeting, and finding out whether it's true is real data analysis. That was an analyst's job. If you can do that analysis yourself, you're adding value your team used to have to buy in.\n\nLet me show you with an example from Kite, the fictional insurance brand we use through this course. Kite's new CMO has asked a fair question: should the home worker be our fourth segment?\n\nBefore we run anything, here is what a different segment looks like in the data.\n\n{{CHART_YARDSTICK}}\n\nEach bar takes two groups of customers and asks how alike they are, out of 100. The top three bars compare Kite's three segments with each other. They score in the 60s, and that is what genuinely different customers look like: different enough to be worth separate campaigns and separate budgets. The bottom bar compares the proposed segment, home workers, with the rest of Kite's customers. It scores 92. The two groups are nearly identical, which means home workers are not a new group. They are customers Kite already serves, sitting inside the three segments it already has. The recording below shows how the analyst gets to this picture. It takes a few minutes to watch.\n\n{{SESSION_SEGMENT}}\n\nNow run it yourself. The files below are Kite's customer book, 4,000 customers with their renewal behaviour and who works from home, and the segmentation rules the analyst follows. Start a Claude Project, analyst-dna in the instructions, these two in the files, and ask the CMO's question. See whether it lands the same answer. Then bring it a segment claim from your own market.",
+      text: "The second kind of work is computing. There is serious analytical computing behind good marketing, and until now you had to outsource it. Segmentation is a good example. Someone claims a group of customers is a segment, your CMO, an agency deck, a planning meeting, and finding out whether it's true is real data analysis. That was an analyst's job. If you can do that analysis yourself, you're adding value your team used to have to buy in.\n\nLet me show you with an example from Kite, the fictional insurance brand we use through this course. Kite's new CMO has asked a fair question: should the home worker be our fourth segment?\n\nBefore we run anything, here is what a different segment looks like in the data.\n\n{{CHART_YARDSTICK}}\n\nEach bar takes two groups of customers and asks how alike they are, out of 100. The top three bars compare Kite's three segments with each other. They score in the 60s, and that is what genuinely different customers look like: different enough to be worth separate campaigns and separate budgets. The bottom bar compares the proposed segment, home workers, with the rest of Kite's customers. It scores 92. The two groups are nearly identical, which means home workers are not a new group. They are customers Kite already serves, sitting inside the three segments it already has. The recording below shows how the analyst gets to this picture. It takes a few minutes to watch.\n\n{{SESSION_SEGMENT}}\n\nNow run it yourself. The two files below are already in your Kite folder: customers.csv, Kite's customer book, 4,000 customers with their renewal behaviour and who works from home, and segmentation-rules, the ten rules the analyst follows. Open the folder in Claude Code and ask the CMO's question in the words the recording opens with. Claude will write the code, run it on the file and show you the chart. See whether it lands the same answer, and ask it which of the ten rules it used. Then bring it a segment claim from your own market, with your own customer file.",
       session: true,
       placeholder: true,
     },
     {
-      /* Four concrete questions, never "what the market is saying". Ardline is
-         reintroduced at EVERY appearance (learners forget). Ardline mirrors the real
-         category pattern but is assembled from what is generic across seven real
-         insurers; no trait points at any one company. Learners touch only the
-         generated Kite corpus; the real calibration corpus lives in
-         course-build/corpus-real-irish-home-insurance/. Phone interviewer stays in
-         module 6.
-
-         ⭐ BUILT 7 Aug 2026 (evening): the corpus is five files in
-         course-files/module-3/research/, counts gated by
-         scripts/check-research-corpus.mjs, quotes gated by check-sessions.mjs. The
-         recording is KITE_RESEARCH_SESSION. The planted finding mirrors the real
-         category's claims-time white space (research briefing 7 Aug): every number
-         Ardline publishes is about price; its claims page carries no number at all,
-         and the corpus gate asserts both halves of that contrast.
-
-         ⚠️ THE PROSE IS SAMPLE COPY awaiting Paul, modelled on items 01 and module 1
-         item 10. The four-doors toolkit (archives, licensed data, official
-         publications, your own browser; nothing grey) is HIS lesson to write; one
-         sentence stands in for it. */
-      t: "Research",
+      /* ⭐⭐ ITEM 04, THE TECHNICAL SKILL. RE-RULED BY PAUL 15 OCT 2026, three times in one
+         conversation, and the rulings are the item:
+         "i don't think we are teaching them that they can build a website in minutes and it
+         will be good. Our focus is quality and speed. not just speed."
+         "it takes weeks and practice to make a good website. And craft. Lots of craft. My
+         point is that it is possible to do this now. Not that they can do it in a few hours
+         or days. My website is good, very good, and last year I paid a designer to make me
+         one, because I couldn't make one myself. But chucked it out as wanted to build in
+         claude so could get speed later."
+         "We can talk about my website, and this course. All done through claude code. The
+         designer cost about 900 quid, using a designer that specialised in webflow. But I
+         still had to drop images in, move paragraphs of copy around, upload stuff, and
+         design. The mentality was get it live, and don't touch. Now, I've made 1,529 changes
+         and you can also see how often we post essays there."
+         "What might be useful for them is to understand all this and then give them
+         instructions on what to do. So you'd run research to look for generic sea of
+         sameness. You'd identify cliches in category. We can show references to this. You'd
+         look for inspiration from websites you love. You'd screenshot them. I could give them
+         a sample of wireframes they could get inspiration from, we have these but need to
+         clean them up. We'd talk about Next.js and also Vercel. So they see the things they
+         must do. This is not done in a day, but it is the path."
+         ⛔ So: never a promise of hours or a day. ⛔ Not a bland-versus-briefed teaching beat
+         (proposed, refused: "no that is not the lesson. focus").
+         The figures are off the live site repo on 15 Oct 2026 (first commit 19 Feb; 1,529
+         commits; 198 in 1 to 15 Oct; 27 essays, 7 in Sep and 5 in Oct; 37 diary dispatches,
+         24 in Sep and 11 in Oct; 13 research nuggets; 68 book chapters). RE-COUNT ON THE DAY
+         OF PUBLISHING; the counts are in the plan file with the commands.
+         The 7 Aug Research item lives here as step one of the path: its recording
+         (KITE_RESEARCH_SESSION) plays at {{SESSION_RESEARCH}} and its five files are the
+         second list at the foot. The wireframe sample Paul named is NOT here yet: ours need
+         cleaning up first. */
+      t: "Build and deploy a website",
+      /* `moreDocs` renders ABOVE `docs`, so the path is in moreDocs to come first and
+         Kite's market, which only step one needs, sits under it. */
+      moreDocs: {
+        dir: "module-3/website",
+        folder: "website/",
+        files: ["website-path", "category-research", "design-brief"],
+        as: "links",
+        label: "The path",
+      },
       docs: {
         dir: "module-3/research",
         folder: "research/",
-        files: [
-          "forum-threads",
-          "reviews",
-          "ardline-pages",
-          "search-questions",
-          "research-rules",
-        ],
+        files: ["forum-threads", "reviews", "ardline-pages", "search-questions", "research-rules"],
         as: "links",
+        label: "Kite's market, for step one",
       },
-      text: "The CMO's next questions look outward. What do people actually ask when they buy home insurance? What do customers complain about, and where in the journey? What does Ardline, Kite's biggest competitor, promise on its own pages? And where is the gap between the complaints and the promises?\n\nAnswering these used to be a research agency's job, weeks of work and a bill to match. It is now desk work you can do in an afternoon, because the raw material is public: forum threads, reviews, the competitor's own pages, and the questions people type into search. In a real market you would gather it through legitimate doors, archives, licensed data services, official publications and your own browser. Kite's market is fictional, so we built its internet for you: the source files below were written for this course in the register of the real thing.\n\nThe analyst is the same one from module 1, with one more file: research-rules, ten rules that make desk research harder to fool. Watch it count before it characterises, grade every finding out loud, and say what should not travel as fact.\n\n{{SESSION_RESEARCH}}\n\nNow run it yourself. The files below are the four sources and the rules. Start a Claude Project, analyst-dna in the instructions, these in the files, and ask the CMO's four questions. See whether it finds the same gap. Then point the same method at your own market, with real sources this time.",
+      text: "The third kind of work is a technical skill, and I want to be straight about this one. Anybody can get Claude to make a website in minutes. It will be a generic, bland thing that looks like every other site Claude has made. That is not what I am teaching you. A good website takes weeks and practice, and craft, lots of craft. My point is that it is now possible for you to do it, where last year it was not. The speed comes afterwards, and it is worth it.\n\nHere is what happened to me. Last year I paid a designer who specialised in Webflow about 900 quid to make my site, because I could not make one myself. Even then I had to drop the images in, move paragraphs of copy around, upload things and design. The mentality was get it live and don't touch it. I threw it out and built my own in Claude Code, because I wanted the speed later. Since February I have made 1,529 changes to it, 198 of them in the first two weeks of October. There are 27 essays on it, 37 diary pieces, 13 research nuggets and the 68 chapters of my book, and since September something new goes on it every day. The course you are reading is built the same way. Every module page, every figure, every file, built in Claude Code and changed the day I say so. The site stopped being a thing I had made and became a thing I work in.\n\nThat is the lesson. Not a site in an hour. A site that is yours.\n\nSo instead of a recording of a build, I am giving you the path, the things you must do, in order. It is in website-path below, and it is not done in a day.\n\nFirst, research your category for the sea of sameness. Open ten competitor sites and have Claude read them and list the cliches: the words they all use, the pictures they all use, the shape they all share. The output is a list of what not to do. For Kite this step is done for you, because Kite's market is invented and we built its internet: the forum threads, the reviews, Ardline's own pages and the questions people type into search are the files at the foot of this item. The CMO's four questions about that market are the ones a research agency used to charge weeks for. Watch the analyst answer them, and grade every finding out loud.\n\n{{SESSION_RESEARCH}}\n\nThe gap it finds, every number Ardline publishes is about price and its claims page carries no promise at all, is what Kite's site gets built around.\n\nSecond, find three websites you love, usually not in your category, and screenshot them. Write one line each on why. Third, write the design brief, which is a file you fill in: the three sites, the never list, one thing on the page that is only true of your brand, and the words from your messaging framework that every page carries. A site built without this file comes out bland, because that is what a model does when nobody tells it otherwise. Fourth, choose a shape for the homepage. I will add a sample of wireframes to this folder to take inspiration from.\n\nFifth, learn the two tools the way you learned Klaviyo in item 02: Next.js, which the site is built in, and Vercel, which hosts it for nothing at this size. Have Claude explain each to you in a page before it uses either. You do not need to write code. You need to know what a page is, what deploying means, and what it costs.\n\nSixth, build the homepage, only the homepage, and then do the thing that makes the difference: tell Claude what is wrong in plain words, the way you would tell a designer, and keep going until you would show it to your boss. That step is most of the weeks. Seventh, put it on Vercel. From then on every change you accept goes live when you say so. Eighth, write the answers to the questions your research found, in your voice, one page or section each, and approve, edit or skip every one. Ninth, change something every week. That is what the weeks were for.",
       session: true,
+      grab: "Paul's own site in the browser pane of Claude Code, with a change being made",
       placeholder: true,
-      grab: "The research run, four questions becoming graded findings",
-    },
-    {
-      /* The whole item is one penny-drop: find out what your website needs (from the
-         research and the GEO question layer), then just ask AI to build it. Quality
-         AND speed together. Claude Code and Vercel get named (deliberate register
-         decision). The review gate (approve / edit / skip) is one scene, not the
-         headline. NO chatbot here; it moved to module 4. Hands the built site to
-         module 4. */
-      t: "A website",
-      text: "Everything the research found becomes a working website. The questions people ask become answers on the page, written so the machines quoting answers can lift them. Built in hours by describing and judging, and you approve every word before it ships. Quality and speed, together.",
-      placeholder: true,
-      grab: "The Kite site going from research findings to live in hours",
     },
   ],
+  /* ⚠️ DRAFT CLOSING, Dray 16 Oct, in the shape of module 2's closing (short, a line into
+     the next module). Module 4's date is from courseModules.ts and changes if that does. */
+  closing:
+    "That's module 3. Three kinds of work that used to belong to someone else, and a tool that puts Claude at your computer to do them. Knowledge, computing, and a technical skill. None of them fast the first time, and all of them yours now.\n\nModule 4 is System thinking. It takes the pieces you have built, the website, the Klaviyo expert, the analyst, and shows them working as one system, where the site and the emails run together and the agent that learned Klaviyo now runs it. It opens on Monday 2 November.",
   files: [
+    {
+      /* The Kite folder's own two files, 16 Oct 2026. Listing them is what makes them
+         servable; the whole-module zip in item 01 is built from the lists in this array. */
+      title: "The Kite folder, to open in Claude Code",
+      blurb:
+        "The two files that make a folder a place Claude can work in: what to type first, and the note Claude reads every time it opens the folder.",
+      warn: "Kite does not exist. Every file in the folder was invented for this course. Nothing in it is research about any real market.",
+      files: [
+        {
+          name: "start-here",
+          what: "The first ten minutes in Claude Code: the three settings to check and the three things to type, so Claude reads, writes and runs once each.",
+          href: "/api/course-file/module-3/claude-code/start-here.html",
+          take: "/api/course-file/module-3/claude-code/start-here.md",
+        },
+        {
+          name: "CLAUDE",
+          what: "The note Claude reads at the start of every session in the Kite folder: what is in it, how to behave, which rules to read first. The file is called CLAUDE.md on disk, and that name matters.",
+          href: "/api/course-file/module-3/claude-code/CLAUDE.html",
+          take: "/api/course-file/module-3/claude-code/CLAUDE.md",
+        },
+      ],
+    },
+    {
+      /* The Klaviyo buckets, 16 Oct 2026: Paul's agents' notes with everything private to
+         RWF taken out. Dated inside because Klaviyo changes. */
+      title: "Klaviyo, as my agents learned it",
+      blurb:
+        "The notes my agents wrote when I sent them to learn Klaviyo, with everything private to my own account taken out, and the instruction file that makes Claude learn any tool the same way.",
+      warn: "These notes were true when they were written, and the dates are in them. Klaviyo changes. Have Claude check the current documentation before you build anything on a detail here.",
+      files: [
+        {
+          name: "learn-a-subject",
+          what: "The move. Paste it into Claude Code and it reads, teaches, answers and tests, on Klaviyo or on any tool you name.",
+          href: "/api/course-file/module-3/klaviyo/learn-a-subject.html",
+          take: "/api/course-file/module-3/klaviyo/learn-a-subject.md",
+        },
+        {
+          name: "klaviyo-what-it-is",
+          what: "How Klaviyo is put together: profiles, lists, segments, events, flows, campaigns, templates. For someone who has never opened it.",
+          href: "/api/course-file/module-3/klaviyo/klaviyo-what-it-is.html",
+          take: "/api/course-file/module-3/klaviyo/klaviyo-what-it-is.md",
+        },
+        {
+          name: "klaviyo-lifecycle-knowledge",
+          what: "Lifecycle email for any brand: the stages, the flows worth having, frequency, deliverability, what good looks like, with the evidence graded.",
+          href: "/api/course-file/module-3/klaviyo/klaviyo-lifecycle-knowledge.html",
+          take: "/api/course-file/module-3/klaviyo/klaviyo-lifecycle-knowledge.md",
+        },
+        {
+          name: "klaviyo-api-and-automation",
+          what: "How Klaviyo is driven from outside through its API: what can be read and written, and the traps. The file module 4 builds on.",
+          href: "/api/course-file/module-3/klaviyo/klaviyo-api-and-automation.html",
+          take: "/api/course-file/module-3/klaviyo/klaviyo-api-and-automation.md",
+        },
+        {
+          name: "klaviyo-go-live-checklist",
+          what: "The checks before any flow sends to a real person. Works for any brand.",
+          href: "/api/course-file/module-3/klaviyo/klaviyo-go-live-checklist.html",
+          take: "/api/course-file/module-3/klaviyo/klaviyo-go-live-checklist.md",
+        },
+      ],
+    },
     {
       /* Listing these is what makes them servable: the api/course-file whitelist is
          derived from mod.files. TITLE, BLURB AND `what` ARE WORKING COPY, awaiting
@@ -2184,9 +2299,36 @@ export const MODULE_3: ModuleDef = {
       ],
     },
     {
+      /* The website path, 16 Oct 2026, from Paul's 15 Oct instructions. The wireframe
+         sample joins when ours are cleaned up. */
+      title: "The website path, to follow in order",
+      blurb:
+        "The things you must do to build a good website with Claude Code, in order, and the two files you fill in on the way: the category research and the design brief.",
+      files: [
+        {
+          name: "website-path",
+          what: "Nine steps from category research to changing something every week. Not a day's work. The order matters.",
+          href: "/api/course-file/module-3/website/website-path.html",
+          take: "/api/course-file/module-3/website/website-path.md",
+        },
+        {
+          name: "category-research",
+          what: "Step one: find the sea of sameness. What to screenshot, what to paste into Claude Code, what the output has to point at.",
+          href: "/api/course-file/module-3/website/category-research.html",
+          take: "/api/course-file/module-3/website/category-research.md",
+        },
+        {
+          name: "design-brief",
+          what: "Step three: the file you fill in before Claude builds anything. Three sites you love, the never list, one thing only true of you.",
+          href: "/api/course-file/module-3/website/design-brief.html",
+          take: "/api/course-file/module-3/website/design-brief.md",
+        },
+      ],
+    },
+    {
       /* The research corpus, 7 Aug 2026. TITLE, BLURB AND `what` ARE WORKING COPY,
          awaiting Paul. Counts and the fiction border are gated by
-         scripts/check-research-corpus.mjs. */
+         scripts/check-research-corpus.mjs. Now step one of the website path (16 Oct). */
       title: "Kite's market, to research",
       blurb:
         "The raw material of desk research, generated for Kite's fictional market: forum threads, competitor reviews, Ardline's own pages, the questions people type into search, and the rules for reading them honestly.",

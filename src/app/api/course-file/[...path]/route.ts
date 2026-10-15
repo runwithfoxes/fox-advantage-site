@@ -85,9 +85,18 @@ export async function GET(
     const mayZip = process.env.NODE_ENV === "development" || (await hasAccess());
     if (!mayZip) return new Response("Not found", { status: 404 });
     const zip = new JSZip();
-    const folder = zip.folder(path.basename(dir))!;
+    /* `?name=Kite` names the folder inside the zip and the zip itself, 16 Oct 2026, so the
+       learner unzips a folder called Kite rather than module-3. Letters and digits only. */
+    const name = new URL(req.url).searchParams.get("name")?.replace(/[^A-Za-z0-9-]/g, "") || null;
+    const folder = zip.folder(name ?? path.basename(dir))!;
+    /* ⭐ `?tree=1` KEEPS THE SUBFOLDERS, 16 Oct 2026, for module 3's Kite folder: the
+       learner opens the zip in Claude Code, and CLAUDE.md there speaks of `data/` and
+       `research/`, so they have to be real on disk. Without the flag the zip stays flat,
+       which is what module 2's twelve files want for a Claude Project's files panel. */
+    const tree = new URL(req.url).searchParams.get("tree") === "1";
     try {
-      for (const k of members) folder.file(path.basename(k), await readFile(path.join(ROOT, k)));
+      for (const k of members)
+        folder.file(tree ? k.slice(dir.length) : path.basename(k), await readFile(path.join(ROOT, k)));
     } catch {
       console.error(`[course-file] zip member missing on disk under ${dir}`);
       return new Response("Not found", { status: 404 });
@@ -97,7 +106,7 @@ export async function GET(
       headers: {
         "Content-Type": "application/zip",
         "Cache-Control": "private, no-store",
-        "Content-Disposition": `attachment; filename="${path.basename(rel)}"`,
+        "Content-Disposition": `attachment; filename="${name ? `${name}.zip` : path.basename(rel)}"`,
       },
     });
   }

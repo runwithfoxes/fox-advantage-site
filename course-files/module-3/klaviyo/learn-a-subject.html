@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learn a subject: how to make Claude your expert on a tool</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>Learn a subject: how to make Claude your expert on a tool</h1>
+<p>Paste the instructions below into Claude Code when you want it to become your expert on a tool or a subject you do not know well. Klaviyo is the example in the course. It works for any tool with public documentation: an ad platform, a CRM, an analytics tool, a CMS.</p>
+<h2>The move</h2>
+<p>You are not going to read the documentation. Claude is. Your job is to say what you need to know, let it read, make it teach you, and then test it.</p>
+<h2>The instructions</h2>
+<p>Copy everything between the lines and paste it in. Change the words in square brackets.</p>
+<hr>
+<p>I want you to become my expert on [Klaviyo]. I am a marketer. I have never used it. I need to understand it well enough to [plan our renewal emails in it and tell a colleague what to build].</p>
+<p>Do this in four steps, and stop after each one so I can read.</p>
+<p>Step 1. Read. Go and read the official documentation for [Klaviyo]: the help centre, the developer documentation, and the release notes for the last year. Also read anything in the folder <code>[klaviyo/]</code> beside this file. Save what you learn as a file called <code>[klaviyo]-notes.md</code> in this folder, organised by how the tool is put together, not by the order you read things. Mark every fact with the date you found it, because tools change. Where two sources disagree, say so.</p>
+<p>Step 2. Teach me. Write me a one-page briefing, in plain words, that a marketer who has never opened [Klaviyo] could read in ten minutes: what it is for, how it is organised, the five things people get wrong, and the three things it does that most people never use. No jargon without an explanation beside it.</p>
+<p>Step 3. Answer my questions. I will ask you questions one at a time. Answer each from the notes, and tell me where in the notes the answer comes from. If the answer is not in the notes, say so and go and find it rather than guessing.</p>
+<p>Step 4. Test yourself. Write ten questions a [Klaviyo] specialist would expect a competent marketer to answer, with the answers. I will use them to check what I have learned.</p>
+<hr>
+<h2>How you know it worked</h2>
+<p>Ask it something specific that a specialist would know and a beginner would not. For Klaviyo: &quot;What is the difference between a flow and a campaign, and when would I use each for a renewal reminder?&quot; or &quot;What happens to a profile that is in two lists when it unsubscribes from one?&quot; A good expert answers plainly and tells you where it found the answer. A poor one talks in general terms.</p>
+<p>Then ask it something it cannot know, like the size of your own list. It should say it does not know. If it makes up a number, it is not your expert yet.</p>
+<h2>Keep the notes</h2>
+<p>The notes file is the point. It stays in your folder, it grows every time you ask something new, and it is what Claude will read in module 4 when the time comes to have it run the tool for you rather than explain it.</p></main></body></html>

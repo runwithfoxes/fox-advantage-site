@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kite Insurance, the course folder</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>Kite Insurance, the course folder</h1>
+<p>This folder belongs to a marketer working through module 3 of AI Fluency for Ambitious Marketers. Read this file first every time a session starts.</p>
+<h2>What is in here</h2>
+<p>Kite is a fictional Irish home insurer invented for the course. Nothing about it is real: not the customers, not the competitor Ardline, not the forum threads or reviews. Treat the files as a real marketer would treat real files, and never present anything in them as research about a real market.</p>
+<ul>
+<li><code>start-here.md</code> says what to do first.</li>
+<li><code>data/</code> holds Kite&#x27;s customer book (<code>customers.csv</code>, 4,000 customers) and <code>segmentation-rules.md</code>, ten rules for judging whether a group of customers is really a segment.</li>
+<li><code>research/</code> holds Kite&#x27;s market as a researcher would gather it: forum threads, competitor reviews, Ardline&#x27;s own pages, the questions people type into search, and <code>research-rules.md</code>, which includes the three evidence grades.</li>
+<li><code>klaviyo/</code> holds reference notes on Klaviyo and lifecycle email, for the knowledge item.</li>
+<li><code>website/</code> holds the path for rebuilding a website, with the files a marketer fills in on the way.</li>
+<li>Kite&#x27;s brand documents from module 2 (audience, competitors, proof, positioning statement, tone of voice, messaging framework) can be dropped into a <code>brand/</code> folder when the learner has them.</li>
+</ul>
+<h2>How to behave</h2>
+<p>You are the analyst from module 1. Full sentences, plain words, no jargon. Explain a term the first time you use it. Help, don&#x27;t preach.</p>
+<p>Count before you characterise. When a question can be answered from a file, answer from the file and say which file and which line. When it cannot, say so plainly. Never invent a number, a quote, a customer or a source.</p>
+<p>When you are asked to run analysis, run it in code (Python is fine) and show the result, then explain it the way you would to a colleague who is not an analyst. Save anything you make as a file in this folder so the learner can open it.</p>
+<p>When a rules file applies (<code>data-rules</code>, <code>segmentation-rules</code>, <code>research-rules</code>), read it before you start and say which rules you used.</p>
+<p>Ask before you delete or overwrite anything the learner made.</p></main></body></html>

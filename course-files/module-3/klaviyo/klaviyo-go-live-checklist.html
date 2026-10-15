@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>klaviyo-go-live-checklist</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><p>Use this file as the checklist before any Klaviyo flow goes live, for any brand. Last checked against the sources on 19 Jul 2026 (the latest source date); edited 15 Oct 2026. Klaviyo changes, so check the current docs for any step that names a setting or an endpoint.</p>
+<h2>Before you build: know the answers</h2>
+<p>Get a specific answer to each question, and write the answers down. Where you have none, record a gap with an owner, and do not write around it. If an email would promise something you cannot back up, that flow is blocked until you can.</p>
+<ol><li>The offer. What is given or sold, what does the person get and when, what does it cost?</li><li>The audience. Who is it for, and who is it not for?</li><li>The voice. Whose voice do the emails use? Get three real samples of that person&#x27;s writing, any hard bans, and how they sign off.</li><li>The claims. What may you say, with a source for each, and what must you never say?</li><li>The assets. Photos, logos, fonts and brand guidelines: where are they, and what is missing?</li><li>The sources. Which pages and documents should the emails point to, and how does new material arrive?</li><li>The triggers. Which events matter (joined, bought, attended, went quiet) and what happens after each?</li><li>The cadence. How often is too often? Are there fixed dates?</li><li>The recurring value. What lands in the inbox on a rhythm, and who makes it? Ask early, because this question can hold up a whole build.</li><li>The platform. Who owns the account, and is a sending domain verified?</li></ol>
+<p>Read the answers back in plain English and get a yes before you build.</p>
+<h2>Account and deliverability</h2>
+<ol><li>SPF, DKIM and DMARC are set up and aligned, with DMARC at least at p=none.</li><li>One-click unsubscribe is in place.</li><li>The sending domain is verified in Klaviyo, and the sender name and from-address are set.</li><li>Complaint rate is under 0.1 percent and bounce rate under 2 percent.</li><li>A new domain or IP is warming up with the most engaged people first.</li><li>Attribution is set to clicks only with a 5-day email window, before the first real send. Changing it later recalculates all past data.</li></ol>
+<h2>The list and the trigger</h2>
+<ol><li>Opt-in is a deliberate choice. Single opt-in is smoother. Double opt-in gives stronger consent proof and a Klaviyo confirmation email, and loses roughly 10 to 30 percent of sign-ups.</li><li>The trigger metric exists in the account already. Send one test event to create it before building the flow.</li><li>If the flow is triggered by an event, the sign-up route both subscribes the person and sends the event. Joining a list alone will not fire it.</li><li>The profile is created with its properties first, and added to the list second.</li><li>The trigger metric has its own name, not shared with another product or flow.</li></ol>
+<h2>The flow itself</h2>
+<ol><li>The flow exits anyone who has bought since starting it.</li><li>Filters stop two flows sending to the same person, for example cart and checkout.</li><li>Discounts appear only where intended: not in the first abandonment email, and never to existing customers as a first-time offer.</li><li>Links go to the deepest page the person reached, not the homepage.</li><li>Smart sending is set on purpose. Off for welcome flows and back-in-stock alerts. On for low-intent flows. Remember that turning it on for one message can remove the person from the rest of the flow.</li><li>Transactional messages such as order confirmations are in their own flow, with no marketing in them.</li><li>Unengaged profiles are excluded from high-volume flows such as browse abandonment.</li><li>A time delay or split is there only where each path ends in a different message.</li><li>If you build it through the API, the definition is right first time, because a live flow cannot be edited. Smart sending and the template are set at creation.</li></ol>
+<h2>The email</h2>
+<ol><li>Every claim has a source on file.</li><li>Any markdown or placeholder syntax renders correctly. Render one email and read it.</li><li>No placeholder text such as [[PLACEHOLDER - REPLACE BEFORE GOING LIVE]] remains, and the build stops if one does.</li><li>Fonts are web-safe, because Gmail removes web fonts.</li><li>Every link opens the right page. The destination page is live at a real address before the email goes out.</li><li>The email reads well on a phone. Check on a real device or a narrow frame, not a squeezed desktop browser window.</li><li>The sender name reads well in the inbox list and the greeting handles the case the person typed.</li></ol>
+<h2>Go live</h2>
+<ol><li>Push the flow as a draft first. Nothing sends from a draft.</li><li>A named person approves the draft. Nothing goes live without that approval on record.</li><li>Set the flow live.</li><li>Prove it at once with a real sign-up through the real route. Watch for the Received Email event and open the message in a real inbox. Status &quot;live&quot; proves nothing. If nothing arrives within two minutes, delete the flow and rebuild it instead of debugging.</li><li>Remember that people who triggered before go-live do not enter the flow. Only events sent after it went live count. Plan for that.</li><li>Confirm the footer, the sender name and the links in the delivered email.</li><li>Record each sign-up in your own store as well as Klaviyo.</li><li>Delete every test profile and read the list back to zero. Name any test campaign so nobody can schedule it by mistake, because a sent campaign cannot be deleted.</li></ol>
+<h2>After go-live</h2>
+<ol><li>Report revenue as attributed until a holdout has run. Keep 10 to 20 percent of people out of the flow for a period at least as long as the buying cycle, then compare revenue per recipient.</li><li>Watch complaints, bounces, net list growth and flow share of revenue each week. If complaints move toward 0.3 percent, stop and tighten before anything else.</li><li>Suppress people who never engage. Klaviyo bills on all active profiles, so this saves money as well as protecting deliverability.</li><li>Do not judge a flow on opens.</li><li>Review which flows exist, which sends are paused, and which tests are still running.</li></ol></main></body></html>
