@@ -2077,9 +2077,9 @@ export const MODULE_3: ModuleDef = {
      15 Oct. Read both before touching these items.
 
      ⚠️ EVERY `text` BELOW THAT IS NOT MARKED AS HIS IS DRAY'S DRAFT FROM HIS WORDS, built
-     16 Oct between midnight and morning while he slept, and carries `placeholder: true`
+     late on 15 Oct while he slept, and carries `placeholder: true`
      until he has read it. The install steps in item 01 are from Anthropic's own desktop
-     quickstart (code.claude.com/docs/en/desktop-quickstart), read 16 Oct 2026. */
+     quickstart (code.claude.com/docs/en/desktop-quickstart), read 15 Oct 2026. */
   /* ⚠️ DRAFT OPENING, Dray 15 Oct, from the locked blurb and Paul's 15 Oct words. His film
      goes above it when he records one (openingVideo, as module 2). */
   opening:
