@@ -42,7 +42,7 @@ On the worldwide list it was number 37.
 
 ## What came before
 
-Kabaddi is a series of comedy films directed by Ram Babu Gurung. The first came out in 2014 and the fourth, Kabaddi 4: The Final Match, in 2022, by [Wikipedia's page on the series](https://en.wikipedia.org/wiki/Kabaddi_(franchise)). Here are the trailers I could find for each film, with their views as I read them on 13 October. They are not all on the film maker's own channel, so the channel is beside each one.
+Kabaddi is a series of comedy films directed by Ram Babu Gurung. The first came out in 2014 and the fourth, Kabaddi 4: The Final Match, in 2022, by [Wikipedia's page on the series](https://en.wikipedia.org/wiki/Kabaddi_(franchise)). The same page puts what the four films took in cinemas in Nepal at 7.35, 10.35, 7.60 and 21.40 crore rupees, in that order (read 16 October). Here are the trailers I could find for each film, with their views as I read them on 13 October. They are not all on the film maker's own channel, so the channel is beside each one.
 
 <div style="overflow-x:auto;margin:28px 0">
 <table style="border-collapse:collapse;width:100%;font-size:0.86em;font-variant-numeric:tabular-nums">
@@ -57,7 +57,7 @@ Kabaddi is a series of comedy films directed by Ram Babu Gurung. The first came 
 </table>
 </div>
 
-The first 12 Gaun came out on 10 October 2024, by [its Wikipedia page](https://en.wikipedia.org/wiki/12_Gaun). It is directed by Biraj Bhatt, who also acts in it.
+The first 12 Gaun came out on 10 October 2024, by [its Wikipedia page](https://en.wikipedia.org/wiki/12_Gaun). It is directed by Biraj Bhatt, who also acts in it. The page says it took 10.50 crore rupees in Nepal in its first week and 19.93 crore in all (read 16 October).
 
 <div style="overflow-x:auto;margin:28px 0">
 <table style="border-collapse:collapse;width:100%;font-size:0.86em;font-variant-numeric:tabular-nums">
@@ -74,7 +74,6 @@ The first 12 Gaun came out on 10 October 2024, by [its Wikipedia page](https://e
 - Why these countries. Kworb gives the place on each country's list and nothing about who is watching.
 - How many of the views came from each country. YouTube shows one total.
 - Whether either trailer was pushed with paid adverts on YouTube.
-- Whether the older trailers in the tables are the first uploads. Two of the Kabaddi ones are on channels that are not Baasuri Films.
-- How the earlier films did in cinemas. I found no box office figures at a source I could open.
+- Whether the older trailers in the tables are the first uploads. Three of the Kabaddi ones are on channels that are not Baasuri Films.
 
 The picture with this post is the Kabaddi 5 trailer's own cover picture, by Baasuri Films.
