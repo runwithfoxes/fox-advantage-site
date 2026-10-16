@@ -3,6 +3,7 @@ title: "Reverse Engineer Anything"
 date: "2026-10-16"
 dek: "A free tool that lets an AI take apart an app to see how it works. It was downloaded 418 times on 3 October and 103,109 times on 12 October."
 rail: "Reverse Engineer Anything"
+image: "/caught-our-eye/reverse-engineer-anything.jpg"
 ---
 
 REA is a free tool on GitHub. The letters stand for Reverse Engineer Anything. Reverse engineering means taking a finished piece of software apart to work out how it was made. REA hands that job to an AI.
@@ -13,11 +14,7 @@ A word before going further. What a tool can do and what you should do with it a
 
 ## The numbers
 
-These are read on 16 October 2026.
-
-- 277,021 stars on GitHub, and 69,805 copies people have made of the project to work on
-- 32,314 of those stars in a single day, by GitHub's own trending page
-- It has been on GitHub since 14 April 2026
+When I read it on 16 October 2026, REA had 277,021 stars on GitHub, and people had made 69,805 copies of the project to work on. 32,314 of those stars came in a single day, by GitHub's own trending page. It has been on GitHub since 14 April 2026.
 
 For most of that time hardly anyone used it. People install it through npm, which keeps a public count of downloads. It was downloaded 480 times in all of September. Then this happened.
 
@@ -49,7 +46,4 @@ REA is now popular enough to have been copied itself. A project with almost the 
 
 ## What I could not check
 
-- Who morluto is.
-- On which days the stars came in. I read the total, not a count by day.
-- How many downloads came after 12 October. npm had no figures for those days when I read it.
-- Whether the four projects above work as they say, or how much of each the AI did.
+I could not find out who morluto is. I read the total number of stars, not a count by day, so I can't say on which days they came in. I don't know how many downloads came after 12 October either, because npm had no figures for those days when I read it. And I have not checked whether the four projects above work as they say, or how much of each one the AI did.
