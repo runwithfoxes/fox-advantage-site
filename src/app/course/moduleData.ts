@@ -2088,8 +2088,13 @@ export const MODULE_3: ModuleDef = {
      late on 15 Oct while he slept, and carries `placeholder: true`
      until he has read it. The install steps in item 01 are from Anthropic's own desktop
      quickstart (code.claude.com/docs/en/desktop-quickstart), read 15 Oct 2026. */
-  openingVideoPlanned:
-    "Paul to camera with B-roll cut in, as module 2's intro: why marketers can now do work that used to belong to a specialist",
+  /* Paul's intro film, 16 Oct 2026. One wide take cut to 37 seconds, with two motion B-roll clips.
+     Paul: "that's good enough for now". Built in ~/projects/video-pipeline (graphics/src/m3/IntroM3.tsx). */
+  openingVideo: {
+    src: "/course/module-3-intro.mp4",
+    poster: "/course/module-3-intro-poster.jpg",
+    title: "Module 3 intro",
+  },
   /* ⭐ PAUL'S OPENING, his own words, 16 Oct 2026 (sent to Dray in chat). Only dictation slips fixed:
      'Not sure the promotional P' read as 'not just', plural agreement, 'start is in areas'. His film goes above it (openingVideo, as module 2). */
   opening:
