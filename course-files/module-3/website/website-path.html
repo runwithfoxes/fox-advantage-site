@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The website path</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>The website path</h1>
+<p>This is the order of work for a marketer building a good website with Claude Code. It is not a day&#x27;s work. It took weeks the first time for the person who wrote this course, and it will take you weeks too. The speed comes afterwards: once the site is yours in Claude, every change from then on takes minutes.</p>
+<p>Tick each step off before you start the next. The files named here are in the same folder as this one.</p>
+<h2>1. Read the category for the sea of sameness</h2>
+<p>Before you design anything, find out what every site in your category already looks and sounds like. Open ten competitor sites. Save a screenshot of each homepage into <code>research/screenshots/</code>. Then ask Claude to read the screenshots and the home page copy and list the cliches: the words every site uses, the pictures every site uses, the page shapes every site uses. The file <code>category-research.md</code> has the instructions to paste.</p>
+<p>The output is a short list of what not to do. In the course, the Kite research from the research files is this step done: Ardline and the rest all talk about price, and nobody says anything about claims time.</p>
+<h2>2. Find three sites you love</h2>
+<p>They do not have to be in your category. They usually should not be. Screenshot each one, whole page, and save them into <code>design/inspiration/</code>. For each, write one line on what you love about it: the space, the type, the way it moves, the one picture. This is the start of your design brief.</p>
+<h2>3. Write the design brief</h2>
+<p>Fill in <code>design-brief.md</code>. It asks for the three sites, the never list (the things your site will not do), one thing on the page that is only true of your brand, and the words from your messaging framework that every page has to carry. If you did module 2, the brand documents you built there go in the folder beside it. This file is what stops the site coming out bland. A site built with no brief is everyone&#x27;s site.</p>
+<h2>4. Choose a shape</h2>
+<p>Pick a page shape for the homepage from the wireframe samples when they are added to this folder, or draw your own on paper and photograph it. A wireframe is a shape, not a design. It says what goes where and in what order. Ask Claude to trace the shape from your picture before it builds anything, so you both agree on the order of the page.</p>
+<h2>5. Learn the tools the way you learned Klaviyo</h2>
+<p>Use <code>learn-a-subject.md</code> from the Klaviyo folder on two subjects: Next.js, which is what the site is built in, and Vercel, which is where it is hosted. Ask Claude to explain both to you in one page each before it uses either. You do not need to write code. You need to know what a page is, what a component is, what deploying means, and what it costs (nothing, for a site this size).</p>
+<h2>6. Build the first page</h2>
+<p>Ask Claude to build the homepage only, in Next.js, from the design brief, the shape and the messaging framework. Look at it in the browser pane. Then do the thing that makes the difference: tell it what is wrong, in plain words, the way you would tell a designer. The type is too small. The picture is cropped. The second paragraph says nothing. It is the same as every insurer&#x27;s site. Keep going until you would show it to your boss. This step is most of the weeks.</p>
+<h2>7. Put it on Vercel</h2>
+<p>Ask Claude to deploy the site to Vercel. The first time it will walk you through making a free account and connecting it. From then on, every change you accept goes live when you say so. This is the moment the site stops being a thing you had made and becomes a thing you work in.</p>
+<h2>8. Write the answers</h2>
+<p>Take the questions people ask in your category (step 1 found them, and in the course they are in <code>research/search-questions.md</code>) and have Claude draft an answer to each, in your voice, as a page or a section. You approve, edit or skip every one. The approved ones go on the site, written so that the machines quoting answers can lift them with your name attached.</p>
+<h2>9. Change something every week</h2>
+<p>The site is yours now. Add a piece, fix a line, move a picture. Each change takes minutes. That is the point of all the weeks before it.</p></main></body></html>

@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Start here</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+</style></head><body><main><h1>Start here</h1>
+<p>You have opened the Kite folder in Claude Code. This page is the first ten minutes.</p>
+<h2>Before you type anything</h2>
+<p>In the Code tab, check three things at the bottom of the screen.</p>
+<ol><li>Environment says Local. That means Claude is working with the files on your own computer.</li><li>Project folder is this folder, Kite.</li><li>Permission mode is Manual. Claude will ask you before it changes a file or runs a command. Leave it there until you are comfortable.</li></ol>
+<h2>The first three things to say</h2>
+<p>Type each one, press Enter, and read what comes back before you type the next.</p>
+<ol><li>&quot;Read every file in this folder and tell me in plain words what Kite is and what I have to work with.&quot;</li></ol>
+<p>You are checking that Claude can see the folder. It should name the customer file, the rules files and the research files, and it should say Kite is invented.</p>
+<ol><li>&quot;Make a file called notes.md in this folder with three lines: the three things you would check first in customers.csv before trusting any number in it.&quot;</li></ol>
+<p>This is the first time Claude writes a file on your computer. In Manual mode it will show you the file and wait for you to accept it. Open notes.md afterwards and see that it is really there.</p>
+<ol><li>&quot;How many customers are in customers.csv, and how many of them have a yes in the works_from_home column? Count it in code and show me the code.&quot;</li></ol>
+<p>This is the first time Claude runs code for you. It should write a few lines of Python, run them, and give you two numbers. You do not need to read the code. You need to know it ran, and that the answer came from the file and not from a guess.</p>
+<h2>What just happened</h2>
+<p>In module 2 you talked to Claude in a chat window and dropped files into a project. Here Claude is sitting at your computer. It can read a whole folder, write files you can open, and run code to count things. Everything else in this module uses those three moves.</p>
+<h2>If something goes wrong</h2>
+<p>If the Code tab asks you to upgrade, Claude Code needs a paid plan (Pro, Max, Team or Enterprise). If Claude says it cannot see the files, check that the project folder at the bottom of the screen is the Kite folder and not the folder above it. If a step asks for permission you did not expect, say no and ask Claude what it was trying to do. Nothing in this folder matters, so you cannot break anything that cannot be downloaded again.</p></main></body></html>
