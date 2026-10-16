@@ -1,6 +1,7 @@
 ---
 title: "The picture and video tools I use"
 date: "2026-10-16"
+order: 1
 dek: "Which models make our pictures and films, which free tools do the rest, and how Claude Code joins them up."
 rail: "The picture and video tools I use"
 image: "/how-we-made-it/tools-wide.jpg"
