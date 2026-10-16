@@ -3,6 +3,7 @@ title: "Reverse Engineer Anything"
 date: "2026-10-16"
 dek: "A free tool that lets an AI take apart an app to see how it works. It was downloaded 418 times on 3 October and 103,109 times on 12 October."
 rail: "Reverse Engineer Anything"
+image: "/caught-our-eye/reverse-engineer-anything.jpg"
 ---
 
 REA is a free tool on GitHub. The letters stand for Reverse Engineer Anything. Reverse engineering means taking a finished piece of software apart to work out how it was made. REA hands that job to an AI.
