@@ -359,6 +359,10 @@ export type ModuleDef = {
    * Delete it when openingVideo is set.
    */
   openingVideoPlanned?: string;
+  /** Draw openingVideo straight under the title, above the opening paragraphs, instead of after
+   *  them. Paul, 16 Oct 2026, for module 3: "we see the title of the module, we see a video, and
+   *  then there's writing under the video". */
+  openingVideoAtTop?: boolean;
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -2095,6 +2099,7 @@ export const MODULE_3: ModuleDef = {
     poster: "/course/module-3-intro-poster.jpg",
     title: "Module 3 intro",
   },
+  openingVideoAtTop: true,
   /* ⭐ PAUL'S OPENING, his own words, 16 Oct 2026 (sent to Dray in chat). Only dictation slips fixed:
      'Not sure the promotional P' read as 'not just', plural agreement, 'start is in areas'. His film goes above it (openingVideo, as module 2). */
   opening:
