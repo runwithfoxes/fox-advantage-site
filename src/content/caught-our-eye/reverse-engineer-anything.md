@@ -9,7 +9,7 @@ REA is a free tool on GitHub. The letters stand for Reverse Engineer Anything. R
 
 Its own page puts it in one line: "See a feature you like. Understand how it works, down to the binary level." You point your AI at an app on your computer and ask it a question. The example on the page is "Understand how search works in the Notes app, show me the evidence, and build a similar feature for my project." REA opens the app up and gives the AI what it finds, and the AI explains it or writes its own version. [REA on GitHub](https://github.com/morluto/rea).
 
-A word before going further. What a tool can do and what you should do with it are not always the same thing. REA's own page says it is for "lawful research, education, interoperability, software preservation, and analysis of software you own or are authorized to examine." Run with Foxes does not endorse copying anyone's software, or any breach of copyright or other intellectual property. This post shows what is happening, nothing more.
+A word before going further. What a tool can do and what you should do with it are not the same thing. REA's own page says it is for "lawful research, education, interoperability, software preservation, and analysis of software you own or are authorized to examine." Run with Foxes does not endorse copying anyone's software, or any breach of copyright or other intellectual property. This post shows what is happening, nothing more.
 
 ## The numbers
 
@@ -41,9 +41,9 @@ Grand-V, made on 12 October, says it is GTA V running in a web browser and that 
 
 REA was made by a developer who goes by morluto on GitHub. The profile says only "member of technically staff".
 
-Its own examples are old games. One rebuilds DX-Ball, a brick-breaking game for Windows from 1996, one function at a time. It follows what happens when a brick is hit until it finds the sum that decides whether the sound comes out of the left or the right speaker. Another works out how Touhou 4: Lotus Land Story, a game for the Japanese PC-98 computer, aims its rings of bullets at the player. [The examples on REA's site](https://rea.tools/showcase/).
+Two of its own examples are old games. One rebuilds DX-Ball, a brick-breaking game for Windows from 1996, one function at a time. It follows what happens when a brick is hit until it finds the sum that decides whether the sound comes out of the left or the right speaker. Another works out how Touhou 4: Lotus Land Story, a game for the Japanese PC-98 computer, aims its rings of bullets at the player. [The examples on REA's site](https://rea.tools/showcase/).
 
-The jump in downloads came in the same days as the wave of old games rebuilt to play in a web browser, which Kotaku wrote about on 9 October. The owners of those games have pushed back. By 11 October Activision had sent takedown notices for two Call of Duty versions, [XDA reported](https://www.xda-developers.com/activision-hits-vibe-coded-classic-call-of-duty-browser-ports-with-dmca-takedowns/).
+The jump in downloads came in the same days as the wave of old games rebuilt to play in a web browser, which [Kotaku wrote about](https://kotaku.com/we-might-be-cooked-as-these-vibe-coded-web-browser-ports-of-halo-the-simpsons-hit-and-run-and-gta-vice-city-seem-to-work-perfectly-2000743300) on 9 October. The owners of those games have pushed back. On 11 October [XDA reported](https://www.xda-developers.com/activision-hits-vibe-coded-classic-call-of-duty-browser-ports-with-dmca-takedowns/) that Activision had sent takedown notices for several Call of Duty versions, Black Ops and Black Ops II among them. That is according to the developer who made them, Luckey Faraday.
 
 REA is now popular enough to have been copied itself. A project with almost the same name has 596 stars, and REA's page warns people to get it only from its own address.
 
