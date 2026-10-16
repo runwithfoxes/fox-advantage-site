@@ -1067,6 +1067,22 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             title={mod.openingVideo.title}
           />
         )}
+        {/* The space for a film not yet recorded (Paul, 16 Oct 2026). Before the module opens or
+            with ?build only, never an empty frame on a live module. */}
+        {!mod.openingVideo && mod.openingVideoPlanned && (build || !live) && (
+          <div className="mod-win mod-win-banner">
+            <div className="mod-winbar">
+              <span className="mod-lights">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="mod-wintitle">Film to come: {mod.openingVideoPlanned}</span>
+              <span className="mod-winright">film needed</span>
+            </div>
+            <div className="mod-shot" data-ph="" />
+          </div>
+        )}
         {/* The tour of the real Claude project, straight after the intro film (Paul, 24 Sep
             2026). Its caption is the one line that says what it is; the film has no sound. */}
         {mod.tourVideo && (
