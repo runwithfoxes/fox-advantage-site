@@ -59,7 +59,7 @@ export default async function ModulePage({
      on production before Mon 21 Sep; it has no link in until then. Dev sees everything. */
   const opens = MODULES.find((m) => m.n === mod.n)?.on;
   const today = courseToday();
-  if (process.env.NODE_ENV !== "development" && mod.n !== 1 && opens && today < opens) {
+  if (process.env.NODE_ENV !== "development" && process.env.VERCEL_ENV !== "preview" && mod.n !== 1 && opens && today < opens) {
     redirect("/course");
   }
 
@@ -80,7 +80,7 @@ export default async function ModulePage({
      second time here. Since 27 Sep every sign-up sets the identity cookie too, so the lesson's
      behaviour events land on a named profile. ⚠️ A browser holding only the older rwf_access
      cookie has no email on it, so course-event records nothing for that visitor. */
-  const identified = process.env.NODE_ENV === "development" || (await hasAccess());
+  const identified = process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview" || (await hasAccess());
   if (!identified) {
     return (
       <CourseDoor n={mod.n} title={mod.title} when={mod.when} live={!opens || today >= opens} />
