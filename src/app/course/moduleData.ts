@@ -351,6 +351,14 @@ export type ModuleDef = {
     poster: string;
     title: string;
   };
+  /**
+   * ⭐ A SPACE FOR A FILM NOT YET RECORDED, 16 Oct 2026. Paul: "Add a space to do a video
+   * from me with b roll like video for module 2". What the film will be, in a line. Drawn
+   * where openingVideo goes, ONLY before the module opens or with ?build, so a member
+   * never sees an empty frame once the module is live (the 4 Aug placeholder rule).
+   * Delete it when openingVideo is set.
+   */
+  openingVideoPlanned?: string;
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -2080,6 +2088,8 @@ export const MODULE_3: ModuleDef = {
      late on 15 Oct while he slept, and carries `placeholder: true`
      until he has read it. The install steps in item 01 are from Anthropic's own desktop
      quickstart (code.claude.com/docs/en/desktop-quickstart), read 15 Oct 2026. */
+  openingVideoPlanned:
+    "Paul to camera with B-roll cut in, as module 2's intro: why marketers can now do work that used to belong to a specialist",
   /* ⭐ PAUL'S OPENING, his own words, 16 Oct 2026 (sent to Dray in chat). Only dictation slips fixed:
      'Not sure the promotional P' read as 'not just', plural agreement, 'start is in areas'. His film goes above it (openingVideo, as module 2). */
   opening:
