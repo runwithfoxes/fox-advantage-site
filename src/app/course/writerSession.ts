@@ -848,3 +848,118 @@ export const KITE_RESEARCH_SESSION: Turn[] = [
     ],
   },
 ];
+
+/**
+ * ⭐ THE KLAVIYO RECORDING, module 3 item 02, 17 Oct 2026. Paul: "we could create a chat like
+ * we did for the writers, where it simulates asking a question about email and getting really
+ * good answers back." A REAL RUN, not a script: claude -p in a fresh copy of the Kite folder as
+ * the download unzips (CLAUDE.md, data, research, website, klaviyo), no personal settings
+ * (--setting-sources ""), web allowed, three questions in one conversation, the three that
+ * learn-a-subject itself suggests. The raw run is kept word for word in paul-hub
+ * intelligence/course-build/runs/2026-10-17-klaviyo-session-run.txt.
+ * ⚠️ CUT, NEVER REWORDED: whole paragraphs and bullets were dropped for length (Paul cut the
+ * segmentation recording hard for being long); every word kept is the run's own. Backticks
+ * round file names were removed because the window draws bold only.
+ */
+export const KITE_KLAVIYO_SESSION: Turn[] = [
+  {
+    "who": "you",
+    "text": "Kite is moving its renewal emails onto Klaviyo and nobody in the team has used it. The Klaviyo notes my agents wrote are in the klaviyo folder. Read them, and then answer my questions from them, telling me where in the notes each answer comes from. First question: what is the difference between a flow and a campaign, and which would I use for a renewal reminder?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "**Short answer:** a flow is automatic and triggered per person, a campaign is a one-off send to a group on a day you choose. A renewal reminder is a flow."
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "**Flow** (klaviyo/klaviyo-what-it-is.md:35-41). An automatic sequence that starts with a trigger and then runs steps in order: time delays, splits, and emails or SMS. The trigger puts one person into the flow when something happens to them, such as joining a list, a metric firing like Started Checkout, or a catalogue change.",
+          "**Campaign** (klaviyo/klaviyo-what-it-is.md:45). A one-off send to a list or segment. You pick the audience, attach a template, and send now or schedule. Once sent it cannot be deleted."
+        ]
+      },
+      {
+        "kind": "md",
+        "text": "Use a flow. Each customer's renewal date is different, so the message has to fire per person at their moment, which is exactly what a trigger does and what a scheduled group send cannot do. The notes back this in three places:"
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "**Subscription businesses trigger from their own systems** (klaviyo/klaviyo-lifecycle-knowledge.md:27). For software and subscription businesses the triggers come from in-product milestones sent in through the API or webhooks, and the buying unit is an account, not a person. So Kite would send a custom event such as \"Renewal Due\" from its own system, and a flow triggered by that metric sends the reminder (klaviyo/klaviyo-api-and-automation.md:33).",
+          "**The nearest named flow is replenishment** (klaviyo/klaviyo-lifecycle-knowledge.md:41). Triggered by a purchase plus a delay timed a few days before the next expected order, with an exit when they reorder, and any discount held to the last message. A renewal reminder is the same shape with a known date instead of an estimated one.",
+          "**Flows carry the revenue** (klaviyo/klaviyo-lifecycle-knowledge.md:13-15). The notes say build flows before campaigns, citing Klaviyo's benchmark that flows produce around 18 times the revenue per recipient of campaigns. That is marked as a vendor claim."
+        ]
+      },
+      {
+        "kind": "md",
+        "text": "**One caveat.** The notes never use the words \"renewal reminder\". The answer above is drawn from the subscription-business and replenishment sections, which are the closest match. A campaign would only be the right tool for something like a one-off notice to everyone renewing in a given month, and that is my reading rather than something the notes say.\n"
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "What happens to a customer who is in two of our lists when they unsubscribe from one of them?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "**Not in the notes.** The four Klaviyo files only say a profile holds consent (klaviyo/klaviyo-what-it-is.md:13) and that one-click unsubscribe is required (klaviyo/klaviyo-go-live-checklist.md:23). So I went to Klaviyo's own help centre. Both articles below were last updated in March 2026."
+      },
+      {
+        "kind": "md",
+        "text": "**The answer: by default they stop getting email from every list, not just the one they left.**"
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "**Default behaviour is a global unsubscribe.** Klaviyo's unsubscribes article says the person \"will be suppressed for all future emails, regardless of which list(s) the message is sent to\". Consent lives on the profile, not the list, so leaving one list flips the whole profile to unsubscribed for email.",
+          "**Paid plans can switch to list-only unsubscribes.** With the global setting turned off, the person is \"only removed from the list (or lists) that email was sent to\" and \"may still receive emails sent to other lists they have subscribed to\". The account-wide switch is under Settings, then Other, in the Consent section. Each list also has its own version of the switch in its settings. Free accounts cannot change this."
+        ]
+      },
+      {
+        "kind": "md",
+        "text": "**What this means for Kite.** If renewal reminders go out from a flow, they are not tied to a list send, so a global unsubscribe stops them too. If you want someone to be able to drop a newsletter but keep getting renewal notices, you either need the list-only setting on a paid plan and a list-based send, or the manage preferences page rather than the unsubscribe link, which lets a recipient change list membership without unsubscribing. Klaviyo says an unsubscribe page cannot be turned into a preferences form, but a preferences link can be added to it."
+      },
+      {
+        "kind": "md",
+        "text": "I have not added this to the notes. Your learning instructions say the notes should grow with each question, so say the word and I will append it with today's date and sources."
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "Last one. How many people are on Kite's email list, and how many of them are due to renew next month?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "**I don't know either number, and nothing in this folder can tell me.**"
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "**Email list size.** The Klaviyo notes describe how lists work but hold no Kite account data. No Klaviyo account is connected in this session, so I cannot read the list from the platform either. The only place that number lives is in Klaviyo itself, on the list's page or through the lists endpoint described at klaviyo/klaviyo-api-and-automation.md:21.",
+          "**Renewals next month.** The customer book at data/customers.csv has 4,000 customers, but it has no renewal date column and no email address or consent column. It records things like years with Kite, auto-renew status and policies held, so it can tell you who auto-renews, not when. The renewal dates would have to come from Kite's policy system."
+        ]
+      },
+      {
+        "kind": "md",
+        "text": "The 4,000 figure is the size of the customer book, not the email list. Those are different numbers: not every customer has given email consent, and the notes are clear that Klaviyo should only mail people who have (klaviyo/klaviyo-what-it-is.md:13)."
+      },
+      {
+        "kind": "md",
+        "text": "If you want the renewal count, give me a file with policy renewal dates and I will work it out. If you want the list size, it has to come from whoever owns the Klaviyo account."
+      }
+    ]
+  }
+];
