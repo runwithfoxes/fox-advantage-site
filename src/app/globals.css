@@ -1994,6 +1994,12 @@ a.project-card {
     letter-spacing: 2px;
   }
 
+  /* Course module opening only: no fox on a phone. Paul, 17 Oct 2026, on module 3 on his
+     phone: the fox stacked under his film "looks weird... we can just take it off the mobile". */
+  .mod-fox-hero {
+    display: none;
+  }
+
   /* Fox: switch from float-right to centered block above prose on mobile */
   .chapter-fox-hero {
     float: none;

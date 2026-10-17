@@ -1059,7 +1059,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             margin so it sits half out in the gutter and reads as casual rather than as
             a boxed illustration, and a drop-shadow FILTER so the shadow follows the
             fox's outline instead of a rectangle. */}
-        <div className="chapter-fox-hero">
+        <div className="chapter-fox-hero mod-fox-hero">
           <img className="chapter-fox-hero-img" src={`/fox/${fox}`} alt="" />
         </div>
         {/* Paul's opening if the module has one, otherwise its blurb. Splits on a blank
