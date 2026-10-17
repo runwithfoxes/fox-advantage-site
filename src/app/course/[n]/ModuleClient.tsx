@@ -11,6 +11,7 @@ import {
   KITE_DATA_SESSION,
   KITE_SEGMENT_SESSION,
   KITE_RESEARCH_SESSION,
+  KITE_KLAVIYO_SESSION,
 } from "../writerSession";
 import {
   CONTEXT_WITHOUT_SESSION,
@@ -402,6 +403,16 @@ function slotsFor(
     /* ⭐ Module 3's research recording: the CMO's four outward questions answered from
        the generated corpus. Same analyst; the corpus and every count are gated by
        scripts/check-research-corpus.mjs. */
+    /* ⭐ Module 3 item 02: three questions about email put to the Klaviyo notes, a real
+       run (see KITE_KLAVIYO_SESSION). Paul, 17 Oct 2026, in place of the empty screen. */
+    SESSION_KLAVIYO: it.session ? (
+      <ChatWindow
+        onPlay={onPlay}
+        session={KITE_KLAVIYO_SESSION}
+        start={"Three questions about email, answered from the Klaviyo notes."}
+        title="an expert"
+      />
+    ) : undefined,
     SESSION_RESEARCH: it.session ? (
       <ChatWindow
         onPlay={onPlay}
