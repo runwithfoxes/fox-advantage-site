@@ -409,7 +409,7 @@ function slotsFor(
       <ChatWindow
         onPlay={onPlay}
         session={KLAVIYO_PACK_SESSION}
-        start={"Eight questions about email, answered from the Klaviyo pack."}
+        start={"Seven questions about email, answered from the Klaviyo pack."}
         title="an expert"
       />
     ) : undefined,

@@ -9,7 +9,6 @@ Kite is a fictional Irish home insurer invented for the course. Nothing about it
 - `start-here.md` says what to do first.
 - `data/` holds Kite's customer book (`customers.csv`, 4,000 customers) and `segmentation-rules.md`, ten rules for judging whether a group of customers is really a segment.
 - `research/` holds Kite's market as a researcher would gather it: forum threads, competitor reviews, Ardline's own pages, the questions people type into search, and `research-rules.md`, which includes the three evidence grades.
-- `klaviyo/` holds reference notes on Klaviyo and lifecycle email, for the knowledge item.
 - `website/` holds the path for rebuilding a website, with the files a marketer fills in on the way.
 - Kite's brand documents from module 2 (audience, competitors, proof, positioning statement, tone of voice, messaging framework) can be dropped into a `brand/` folder when the learner has them.
 
