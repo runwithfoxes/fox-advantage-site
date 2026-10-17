@@ -852,51 +852,220 @@ export const KITE_RESEARCH_SESSION: Turn[] = [
 /**
  * ⭐ THE KLAVIYO RECORDING, module 3 item 02, 17 Oct 2026. Paul: "we could create a chat like
  * we did for the writers, where it simulates asking a question about email and getting really
- * good answers back." A REAL RUN, not a script: claude -p in a fresh copy of the Kite folder as
- * the download unzips (CLAUDE.md, data, research, website, klaviyo), no personal settings
- * (--setting-sources ""), web allowed, three questions in one conversation, the three that
- * learn-a-subject itself suggests. The raw run is kept word for word in paul-hub
- * intelligence/course-build/runs/2026-10-17-klaviyo-session-run.txt.
- * ⚠️ CUT, NEVER REWORDED: whole paragraphs and bullets were dropped for length (Paul cut the
- * segmentation recording hard for being long); every word kept is the run's own. Backticks
- * round file names were removed because the window draws bold only.
+ * good answers back." A REAL RUN, not a script: claude -p in an empty folder holding only the
+ * Klaviyo pack (klaviyo/, Sam's pack as Cato cleared it at paul-hub d14abdcbd), no personal
+ * settings (--setting-sources ""), web allowed, eight questions in one conversation: Sam's five
+ * that Cato cleared as the yardstick (intelligence/research/klaviyo-knowledge/demo/), then flow
+ * or campaign, two lists, and the list size it cannot know. The raw run and the script are kept
+ * word for word in paul-hub intelligence/course-build/runs/2026-10-17-klaviyo-pack-run.*.
+ * ⚠️ CUT, NEVER REWORDED: whole paragraphs, bullets and the source lists were dropped for
+ * length (the full eight ran about five and a half minutes at 45 characters a second);
+ * every word kept is the run's own. Replaced the 15 Oct notes run the same day.
  */
-export const KITE_KLAVIYO_SESSION: Turn[] = [
+export const KLAVIYO_PACK_SESSION: Turn[] = [
   {
     "who": "you",
-    "text": "Kite is moving its renewal emails onto Klaviyo and nobody in the team has used it. The Klaviyo notes my agents wrote are in the klaviyo folder. Read them, and then answer my questions from them, telling me where in the notes each answer comes from. First question: what is the difference between a flow and a campaign, and which would I use for a renewal reminder?"
+    "text": "The klaviyo folder is a Klaviyo knowledge pack. Read klaviyo/SKILL.md and answer my questions the way it says. First question: how do I set up an abandoned cart email in Klaviyo?"
   },
   {
     "who": "writer",
     "blocks": [
       {
         "kind": "md",
-        "text": "**Short answer:** a flow is automatic and triggered per person, a campaign is a one-off send to a group on a day you choose. A renewal reminder is a flow."
+        "text": "Here's how to set it up, from the pack's 03-flows.md, section \"Abandoned cart and abandoned checkout\"."
+      },
+      {
+        "kind": "md",
+        "text": "**Build two flows, not one.** One flow is triggered by the Started Checkout event, for people who entered their details. The other is triggered by Added to Cart, for people who only put something in the basket. Klaviyo treats checkout as stronger intent, so the timing and message can differ. Both triggers need your store connected to Klaviyo so it sees those events."
+      },
+      {
+        "kind": "md",
+        "text": "**Add the filters that stop the wrong people getting emails.**"
       },
       {
         "kind": "list",
         "ordered": false,
         "items": [
-          "**Flow** (klaviyo/klaviyo-what-it-is.md:35-41). An automatic sequence that starts with a trigger and then runs steps in order: time delays, splits, and emails or SMS. The trigger puts one person into the flow when something happens to them, such as joining a list, a metric firing like Started Checkout, or a catalogue change.",
-          "**Campaign** (klaviyo/klaviyo-what-it-is.md:45). A one-off send to a list or segment. You pick the audience, attach a template, and send now or schedule. Once sent it cannot be deleted."
+          "Both flows need the profile filter \"Placed Order zero times since starting this flow\". This stops reminders once someone buys. Klaviyo says lots of people being skipped for failing this filter is normal and means the flow is working."
         ]
       },
       {
         "kind": "md",
-        "text": "Use a flow. Each customer's renewal date is different, so the message has to fire per person at their moment, which is exactly what a trigger does and what a scheduled group send cannot do. The notes back this in three places:"
+        "text": "**Timing.** Klaviyo's pre-built flow waits 4 hours. Its advice is a first email 2 to 4 hours after checkout starts and a second 20 to 48 hours later. Its beginner course suggests 2 to 3 emails in total. Keep any delay above 1 hour 15 minutes, because some store connections only sync hourly."
+      },
+      {
+        "kind": "md",
+        "text": "**One thing to check.** Many pre-built flow emails have Smart Sending on, which skips the reminder if the person got any marketing email from you in the last 16 hours. Skipped messages are not rescheduled, so a cart reminder can be lost if a campaign went out that morning. Check that setting on each email."
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "What do Gmail and Yahoo require before I send marketing email in bulk?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "This comes from 05-deliverability.md, sections \"Who counts as a bulk sender?\" through \"What spam complaint rate is safe?\"."
+      },
+      {
+        "kind": "md",
+        "text": "**What both require, enforced since February 2024.** The two lists are close to the same."
       },
       {
         "kind": "list",
         "ordered": false,
         "items": [
-          "**Subscription businesses trigger from their own systems** (klaviyo/klaviyo-lifecycle-knowledge.md:27). For software and subscription businesses the triggers come from in-product milestones sent in through the API or webhooks, and the buying unit is an account, not a person. So Kite would send a custom event such as \"Renewal Due\" from its own system, and a flow triggered by that metric sends the reminder (klaviyo/klaviyo-api-and-automation.md:33).",
-          "**The nearest named flow is replenishment** (klaviyo/klaviyo-lifecycle-knowledge.md:41). Triggered by a purchase plus a delay timed a few days before the next expected order, with an exit when they reorder, and any discount held to the last message. A renewal reminder is the same shape with a known date instead of an estimated one.",
-          "**Flows carry the revenue** (klaviyo/klaviyo-lifecycle-knowledge.md:13-15). The notes say build flows before campaigns, citing Klaviyo's benchmark that flows produce around 18 times the revenue per recipient of campaigns. That is marked as a vendor claim."
+          "**Authenticate your domain.** SPF and DKIM must pass, and you need a DMARC record. The weakest DMARC policy, p=none, is enough. The domain in your From address must match the domain that passed SPF or DKIM, which is what \"alignment\" means. Google wants DKIM keys of at least 1024 bits and recommends 2048. In Klaviyo, setting up a dedicated sending domain on a subdomain such as \"send\" is how you get this done, and Klaviyo generates the DNS records for you.",
+          "**Make unsubscribing easy.** Marketing mail needs one-click unsubscribe, which means two hidden header lines, List-Unsubscribe and List-Unsubscribe-Post, that let the inbox show an Unsubscribe button beside your name. A link in the body alone does not satisfy this, and Google says a mailto link does not either. You also need a visible unsubscribe link in the body. Google says to process unsubscribes within 48 hours and Yahoo says within 2 days. Receipts and password resets are exempt from the one-click rule.",
+          "**Keep spam complaints low.** Gmail says keep the rate shown in Google Postmaster Tools below 0.10% and never reach 0.30%. Above 0.1% already hurts inbox delivery, and above 0.3% you lose access to mitigation help. Yahoo says below 0.3%, worked out on mail that reached the inbox. Klaviyo's own targets are tighter, with under 0.01% healthy and above 0.05% needing attention. Klaviyo's reason is that Gmail passes few complaints back to platforms, so the number inside Klaviyo likely runs low. Treat Google's and Yahoo's numbers as the rules and Klaviyo's as a cautious target."
+        ]
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "Can I use Klaviyo from inside Claude?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "Yes. This comes from 07-klaviyo-with-claude.md."
+      },
+      {
+        "kind": "md",
+        "text": "**Klaviyo has a connector for Claude.** It is listed in Claude's connector directory, so no code is needed. Once connected, Claude can read your account and, if you allow it, make changes. Klaviyo's own list of uses covers pulling campaign and flow reports, looking up and updating customer profiles, checking how a list or segment is defined, building email templates and creating campaigns. Klaviyo's example is asking how email revenue compared last month against this month, without exporting a spreadsheet."
+      },
+      {
+        "kind": "md",
+        "text": "**How to connect it.** In Claude, go to Settings, then Connectors, then Browse Connectors. Search for Klaviyo and connect it. Claude asks you to approve its access, then Klaviyo asks you to allow the permissions on your account. You can also start from Klaviyo's side through its App Marketplace. You need a Claude plan, and your Klaviyo login must have the Owner, Admin or Manager role."
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "Which automated emails earn the most, and where should I start?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "This comes from 03-flows.md, sections \"Which flows should I set up first?\" and the per-flow figures that follow."
+      },
+      {
+        "kind": "md",
+        "text": "**On Klaviyo's own numbers, abandoned cart and welcome are well ahead of the rest.** These come from Klaviyo's 2026 report on more than 110,000 of its customers. They are average revenue per recipient for email flows, with the top 10% of senders alongside."
+      },
+      {
+        "kind": "table",
+        "head": [
+          "Flow",
+          "Average",
+          "Top 10%",
+          "Click rate"
+        ],
+        "rows": [
+          [
+            "Abandoned cart",
+            "$6.77",
+            "$13.70",
+            "6.0%"
+          ],
+          [
+            "Welcome series",
+            "$5.75",
+            "$13.27",
+            "6.5%"
+          ],
+          [
+            "Browse abandonment",
+            "$2.08",
+            "$4.32",
+            "5.6%"
+          ],
+          [
+            "Post-purchase",
+            "$1.80",
+            "$2.77",
+            "5.1%"
+          ],
+          [
+            "Win-back",
+            "$0.82",
+            "$1.60",
+            "2.8%"
+          ]
         ]
       },
       {
         "kind": "md",
-        "text": "**One caveat.** The notes never use the words \"renewal reminder\". The answer above is drawn from the subscription-business and replenishment sections, which are the closest match. A campaign would only be the right tool for something like a one-off notice to everyone renewing in a given month, and that is my reading rather than something the notes say.\n"
+        "text": "Two cautions on those figures. They are Klaviyo's, and they are attributed revenue. By default Klaviyo credits an email with a sale if the person opened or clicked it in the 5 days before buying, which is not the same as revenue the email caused. And flows beat campaigns partly because they only go to people who have just shown interest, so the gap shows who is being messaged as much as what the message does. That last point is the pack's reading, not Klaviyo's."
+      },
+      {
+        "kind": "md",
+        "text": "**Where to start.** Klaviyo's beginner course says to build three first: a welcome series, an abandoned cart flow and a win-back flow, then add more once those are live. The pack's reading of Klaviyo's two sources side by side is that welcome and abandoned cart come first on the numbers. Win-back earns the least of the five, and its job is different, keeping in touch with people who have gone quiet rather than earning directly. Browse abandonment is the natural fourth."
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "Can I trust my open rates?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "Not on their own. This comes from 06-measuring-what-works.md, section \"Can I trust open rates?\"."
+      },
+      {
+        "kind": "md",
+        "text": "**Why they are inflated.** An open is recorded when a tiny tracking image in the email loads. Apple Mail Privacy Protection loads those images in advance for Apple Mail users, whether or not the person ever reads the email, so those loads look like opens. Klaviyo marks each open event with a property called Apple Privacy Open, true or false. When it is true, the open came from someone with the feature on, and Klaviyo cannot tell whether they actually read it. Klaviyo also says that in report exports it cannot distinguish a real open from a privacy open."
+      },
+      {
+        "kind": "md",
+        "text": "**What this means in practice.**"
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "Judge by clicks and orders, and treat opens as a rough signal only. Klaviyo itself recommends clicks over opens when picking an A/B test winner for this reason."
+        ]
+      }
+    ]
+  },
+  {
+    "who": "you",
+    "text": "What is the difference between a flow and a campaign, and which would I use for a renewal reminder?"
+  },
+  {
+    "who": "writer",
+    "blocks": [
+      {
+        "kind": "md",
+        "text": "This comes from 03-flows.md, sections \"What is a flow, and how is it different from a campaign?\" and \"Date-based flows\"."
+      },
+      {
+        "kind": "md",
+        "text": "**The difference.** A flow is a set of automated messages that starts when something happens to one person: they join a list, place an order, start a checkout, or reach a date stored on their profile. A campaign is a one-off send that you build and schedule yourself to a list or segment. Klaviyo's Academy puts it as flows reacting to individual behaviour at the moment it happens, and campaigns going to a pre-chosen group at a time you pick. A monthly newsletter or a flash sale is a campaign. A welcome email that goes out when someone signs up is a flow."
+      },
+      {
+        "kind": "md",
+        "text": "**A renewal reminder is a flow.** Each customer's renewal date is their own, so the message should fire off that date rather than off your calendar. Klaviyo does this with a date property trigger. The renewal date is stored on the customer's profile, or on a custom object tied to the profile such as a Renewal Date, and the flow runs off it. Points from the file on how that works:"
+      },
+      {
+        "kind": "list",
+        "ordered": false,
+        "items": [
+          "You choose whether messages start on the date itself or a set time before it, and Klaviyo adds a \"target date\" step marking the day. For a renewal you would usually start before the date, say 30 days out, with a further message nearer the day.",
+          "The flow can repeat yearly, monthly or never, so a yearly subscription can remind the same person each year."
+        ]
       }
     ]
   },
@@ -909,56 +1078,53 @@ export const KITE_KLAVIYO_SESSION: Turn[] = [
     "blocks": [
       {
         "kind": "md",
-        "text": "**Not in the notes.** The four Klaviyo files only say a profile holds consent (klaviyo/klaviyo-what-it-is.md:13) and that one-click unsubscribe is required (klaviyo/klaviyo-go-live-checklist.md:23). So I went to Klaviyo's own help centre. Both articles below were last updated in March 2026."
+        "text": "This comes from 02-lists-segments-and-forms.md, section \"What happens if someone is on two lists and unsubscribes from one?\"."
       },
       {
         "kind": "md",
-        "text": "**The answer: by default they stop getting email from every list, not just the one they left.**"
+        "text": "**By default they are unsubscribed from all your email, not just that list.** Klaviyo treats an unsubscribe as a change to the person's email consent status, which sits on their profile, rather than as a change to one list. Their status becomes Unsubscribed and Klaviyo skips them on every email send, even though they may still be sitting on both lists. Klaviyo calls this the global unsubscribe and recommends leaving it on. Its reasoning is that someone who unsubscribes from one of your emails expects to be gone from all of them, and sending anyway leads to spam complaints."
+      },
+      {
+        "kind": "md",
+        "text": "**Three limits to know.**"
       },
       {
         "kind": "list",
         "ordered": false,
         "items": [
-          "**Default behaviour is a global unsubscribe.** Klaviyo's unsubscribes article says the person \"will be suppressed for all future emails, regardless of which list(s) the message is sent to\". Consent lives on the profile, not the list, so leaving one list flips the whole profile to unsubscribed for email.",
-          "**Paid plans can switch to list-only unsubscribes.** With the global setting turned off, the person is \"only removed from the list (or lists) that email was sent to\" and \"may still receive emails sent to other lists they have subscribed to\". The account-wide switch is under Settings, then Other, in the Consent section. Each list also has its own version of the switch in its settings. Free accounts cannot change this."
+          "On a paid plan you can switch the global behaviour off, for the whole account or for one list. Then a person who unsubscribes from a list-based email is removed only from that list and may still get emails sent to the other list they belong to.",
+          "Even with that setting off, an unsubscribe is always global if the campaign was sent to several lists at once, or if the email was not sent to a list at all, such as a flow email or a campaign sent to a segment.",
+          "None of this touches text or push consent. Those are separate permissions and the person stays subscribed to them."
         ]
-      },
-      {
-        "kind": "md",
-        "text": "**What this means for Kite.** If renewal reminders go out from a flow, they are not tied to a list send, so a global unsubscribe stops them too. If you want someone to be able to drop a newsletter but keep getting renewal notices, you either need the list-only setting on a paid plan and a list-based send, or the manage preferences page rather than the unsubscribe link, which lets a recipient change list membership without unsubscribing. Klaviyo says an unsubscribe page cannot be turned into a preferences form, but a preferences link can be added to it."
-      },
-      {
-        "kind": "md",
-        "text": "I have not added this to the notes. Your learning instructions say the notes should grow with each question, so say the word and I will append it with today's date and sources."
       }
     ]
   },
   {
     "who": "you",
-    "text": "Last one. How many people are on Kite's email list, and how many of them are due to renew next month?"
+    "text": "Last one. How many people are on my email list?"
   },
   {
     "who": "writer",
     "blocks": [
       {
         "kind": "md",
-        "text": "**I don't know either number, and nothing in this folder can tell me.**"
+        "text": "I don't know. The pack describes Klaviyo in general and holds nothing about your account, and I have no connection to your Klaviyo in this session."
+      },
+      {
+        "kind": "md",
+        "text": "Two ways to get the answer:"
       },
       {
         "kind": "list",
         "ordered": false,
         "items": [
-          "**Email list size.** The Klaviyo notes describe how lists work but hold no Kite account data. No Klaviyo account is connected in this session, so I cannot read the list from the platform either. The only place that number lives is in Klaviyo itself, on the list's page or through the lists endpoint described at klaviyo/klaviyo-api-and-automation.md:21.",
-          "**Renewals next month.** The customer book at data/customers.csv has 4,000 customers, but it has no renewal date column and no email address or consent column. It records things like years with Kite, auto-renew status and policies held, so it can tell you who auto-renews, not when. The renewal dates would have to come from Kite's policy system."
+          "**Look in Klaviyo.** Open Audience, then Lists & Segments, and the count is shown beside each list. If you tell me the figure, I can put it next to the benchmarks in the pack.",
+          "**Connect Klaviyo to Claude.** With the connector set up as described in 07-klaviyo-with-claude.md, I could read the list size and your results directly. Setup is in Claude under Settings, then Connectors, and your Klaviyo login needs the Owner, Admin or Manager role. Start with the read-only setting if you want Claude to look but not change anything."
         ]
       },
       {
         "kind": "md",
-        "text": "The 4,000 figure is the size of the customer book, not the email list. Those are different numbers: not every customer has given email consent, and the notes are clear that Klaviyo should only mail people who have (klaviyo/klaviyo-what-it-is.md:13)."
-      },
-      {
-        "kind": "md",
-        "text": "If you want the renewal count, give me a file with policy renewal dates and I will work it out. If you want the list size, it has to come from whoever owns the Klaviyo account."
+        "text": "One thing worth knowing when you check. The number on a list includes people who have unsubscribed or been suppressed but still sit on it. Klaviyo's bill counts only active email profiles, so the list count and the billable count can differ. That is from 02-lists-segments-and-forms.md."
       }
     ]
   }

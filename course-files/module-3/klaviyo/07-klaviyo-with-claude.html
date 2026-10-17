@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Klaviyo with Claude, and Klaviyo's own AI</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+  a { color:var(--sky); overflow-wrap:anywhere; }
+</style></head><body><main><h1>Klaviyo with Claude, and Klaviyo's own AI</h1>
+<p>Checked against Klaviyo's own pages on 17 Oct 2026. This part of Klaviyo changes almost every month, so check the dates below before you rely on them.</p>
+<h2>Can Claude work inside my Klaviyo account?</h2>
+<p>Yes. Klaviyo has a connector for Claude. It is listed in Claude's connector directory, so you don't need any code to set it up. Once it is connected, Claude can read your account and, if you let it, make changes in it. Klaviyo's own list of uses covers pulling campaign and flow reports, looking up and updating customer profiles, checking how a list or segment is defined, building email templates and creating campaigns. Klaviyo's example is asking "how did revenue from email compare last month vs this month" without exporting a spreadsheet. (Source: Klaviyo Help Center, "Frequently Asked Questions About Klaviyo App For Claude", updated 20 Jul 2026, <a href="https://help.klaviyo.com/hc/en-us/articles/51798102561435">https://help.klaviyo.com/hc/en-us/articles/51798102561435</a>)</p>
+<h2>How do I connect it?</h2>
+<p>In Claude, go to Settings, then Connectors, then Browse Connectors. Search for Klaviyo and connect it. Claude asks you to approve its access, and then Klaviyo asks you to allow the permissions on your account. You can also start from Klaviyo's side, by finding Claude in the Klaviyo App Marketplace and installing it. You need a Claude plan, and your Klaviyo login must have the Owner, Admin or Manager role. (Sources: the FAQ above, and Klaviyo developer docs, "Connect to the Klaviyo MCP server", no date shown, <a href="https://developers.klaviyo.com/en/docs/connect_to_the_klaviyo_mcp_server">https://developers.klaviyo.com/en/docs/connect_to_the_klaviyo_mcp_server</a>)</p>
+<p>If you look after more than one Klaviyo account, for example as an agency, add Klaviyo as a custom connector once for each account, using the server address <a href="https://mcp.klaviyo.com/mcp">https://mcp.klaviyo.com/mcp</a> with the account's name added to it. Then switch on only the right one in each chat. Klaviyo says custom connectors need a Pro, Max, Team or Enterprise Claude plan. (Source: the developer page above)</p>
+<h2>Can I stop Claude changing anything?</h2>
+<p>Yes, if you connect it as a custom connector. Klaviyo's server has a setting called read-only. Add read-only=true to the server address, and every tool that could change your account is switched off. There is a second setting that stops Claude reading content your customers wrote, such as reviews, because text like that could carry instructions an AI might wrongly follow. Klaviyo also advises reviewing each action Claude proposes before it runs. If you are learning, start read-only. (Source: the developer page above, "Query parameters")</p>
+<h2>What is the MCP server?</h2>
+<p>MCP is a standard way for AI tools to connect to other software. Klaviyo's MCP server is what sits behind the Claude connector. The same server works with ChatGPT, Cursor and VS Code. Klaviyo first listed it on 25 Jun 2025. The Claude connector joined Anthropic's directory on 22 Jan 2026, and on 11 Aug 2026 Klaviyo added what it called "260+ new MCP tools" covering data, segments, campaigns, flows and product catalogues. (Source: Klaviyo, What's New, entries dated 25 Jun 2025, 22 Jan 2026 and 11 Aug 2026, <a href="https://www.klaviyo.com/whats-new">https://www.klaviyo.com/whats-new</a>)</p>
+<h2>What is Composer?</h2>
+<p>Composer is Klaviyo's own AI marketing agent, built into Klaviyo. It used to be called Marketing Agent, which launched on 24 Sep 2025, and Klaviyo now lists that name as replaced. The new Composer went live on 13 Oct 2026. You describe what you want in plain words, and it does one of two kinds of job. It can analyse and audit, for example "Audit my welcome flow and tell me what needs attention", and it returns a list of what to fix and why. Or it can create, drafting a campaign, a flow or a segment from a goal you describe, for you to review. Klaviyo says Composer does not send or publish anything without your sign-off. It works best on emails built in Klaviyo's drag-and-drop editor and less well on templates that are mostly images. (Sources: Klaviyo Help Center, "Getting started with Composer", updated 14 Oct 2026, <a href="https://help.klaviyo.com/hc/en-us/articles/getting-started-with-composer">https://help.klaviyo.com/hc/en-us/articles/getting-started-with-composer</a> ; What's New, 24 Sep 2025 and 13 Oct 2026)</p>
+<h2>What does Composer cost?</h2>
+<p>Every Klaviyo account gets a free Composer plan with 500 credits a cycle, with nothing to sign up for. The paid plan is $20 a month for 2,000 credits. Klaviyo gives estimated ranges, not fixed prices: analysing data costs about $0.35 to $0.90 of credit, and creating a campaign anything from $0.10 to $10.00, depending on how big and complicated the job is. Questions about support or general information are free. (Source: Klaviyo Help Center, "How your Composer plan works", updated 14 Oct 2026, <a href="https://help.klaviyo.com/hc/en-us/articles/55587298026395">https://help.klaviyo.com/hc/en-us/articles/55587298026395</a>)</p>
+<h2>Composer or Claude: which should I use?</h2>
+<p>They do overlapping jobs, and Klaviyo supports both. Composer lives inside Klaviyo, and Klaviyo says it draws on your account's history and its own benchmarks. Claude with the connector lives where the rest of your work is, so it can put Klaviyo data next to your other files, notes and tools. Klaviyo says both can now answer questions about your data by turning a plain question into a database query using Klaviyo's own definitions of terms like revenue. (Source: Klaviyo, What's New page, highlight "Every agent you use, now fluent in your data", no date shown, checked 17 Oct 2026, <a href="https://www.klaviyo.com/whats-new">https://www.klaviyo.com/whats-new</a>) This is our reading, not Klaviyo's: use Composer for jobs that stay inside Klaviyo, and Claude when the answer needs things Klaviyo doesn't hold.</p>
+</main></body></html>
