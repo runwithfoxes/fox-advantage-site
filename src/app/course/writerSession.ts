@@ -862,6 +862,8 @@ export const KITE_RESEARCH_SESSION: Turn[] = [
  * length (the full eight ran about five and a half minutes at 45 characters a second);
  * every word kept is the run's own. Q8's menu path ("Open Audience, then Lists & Segments...")
  * was cut on Sam's read: it is Claude's own, not in the pack, and unchecked. Replaced the 15 Oct notes run the same day.
+ * Q2 (Gmail and Yahoo bulk sender rules) was dropped whole on Paul's ruling, 17 Oct: four minutes
+ * was too long. Seven questions play; the raw run still holds all eight.
  */
 export const KLAVIYO_PACK_SESSION: Turn[] = [
   {
@@ -897,32 +899,6 @@ export const KLAVIYO_PACK_SESSION: Turn[] = [
       {
         "kind": "md",
         "text": "**One thing to check.** Many pre-built flow emails have Smart Sending on, which skips the reminder if the person got any marketing email from you in the last 16 hours. Skipped messages are not rescheduled, so a cart reminder can be lost if a campaign went out that morning. Check that setting on each email."
-      }
-    ]
-  },
-  {
-    "who": "you",
-    "text": "What do Gmail and Yahoo require before I send marketing email in bulk?"
-  },
-  {
-    "who": "writer",
-    "blocks": [
-      {
-        "kind": "md",
-        "text": "This comes from 05-deliverability.md, sections \"Who counts as a bulk sender?\" through \"What spam complaint rate is safe?\"."
-      },
-      {
-        "kind": "md",
-        "text": "**What both require, enforced since February 2024.** The two lists are close to the same."
-      },
-      {
-        "kind": "list",
-        "ordered": false,
-        "items": [
-          "**Authenticate your domain.** SPF and DKIM must pass, and you need a DMARC record. The weakest DMARC policy, p=none, is enough. The domain in your From address must match the domain that passed SPF or DKIM, which is what \"alignment\" means. Google wants DKIM keys of at least 1024 bits and recommends 2048. In Klaviyo, setting up a dedicated sending domain on a subdomain such as \"send\" is how you get this done, and Klaviyo generates the DNS records for you.",
-          "**Make unsubscribing easy.** Marketing mail needs one-click unsubscribe, which means two hidden header lines, List-Unsubscribe and List-Unsubscribe-Post, that let the inbox show an Unsubscribe button beside your name. A link in the body alone does not satisfy this, and Google says a mailto link does not either. You also need a visible unsubscribe link in the body. Google says to process unsubscribes within 48 hours and Yahoo says within 2 days. Receipts and password resets are exempt from the one-click rule.",
-          "**Keep spam complaints low.** Gmail says keep the rate shown in Google Postmaster Tools below 0.10% and never reach 0.30%. Above 0.1% already hurts inbox delivery, and above 0.3% you lose access to mitigation help. Yahoo says below 0.3%, worked out on mail that reached the inbox. Klaviyo's own targets are tighter, with under 0.01% healthy and above 0.05% needing attention. Klaviyo's reason is that Gmail passes few complaints back to platforms, so the number inside Klaviyo likely runs low. Treat Google's and Yahoo's numbers as the rules and Klaviyo's as a cautious target."
-        ]
       }
     ]
   },
