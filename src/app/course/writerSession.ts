@@ -860,7 +860,8 @@ export const KITE_RESEARCH_SESSION: Turn[] = [
  * word for word in paul-hub intelligence/course-build/runs/2026-10-17-klaviyo-pack-run.*.
  * ⚠️ CUT, NEVER REWORDED: whole paragraphs, bullets and the source lists were dropped for
  * length (the full eight ran about five and a half minutes at 45 characters a second);
- * every word kept is the run's own. Replaced the 15 Oct notes run the same day.
+ * every word kept is the run's own. Q8's menu path ("Open Audience, then Lists & Segments...")
+ * was cut on Sam's read: it is Claude's own, not in the pack, and unchecked. Replaced the 15 Oct notes run the same day.
  */
 export const KLAVIYO_PACK_SESSION: Turn[] = [
   {
@@ -1118,7 +1119,7 @@ export const KLAVIYO_PACK_SESSION: Turn[] = [
         "kind": "list",
         "ordered": false,
         "items": [
-          "**Look in Klaviyo.** Open Audience, then Lists & Segments, and the count is shown beside each list. If you tell me the figure, I can put it next to the benchmarks in the pack.",
+          "**Look in Klaviyo.** If you tell me the figure, I can put it next to the benchmarks in the pack.",
           "**Connect Klaviyo to Claude.** With the connector set up as described in 07-klaviyo-with-claude.md, I could read the list size and your results directly. Setup is in Claude under Settings, then Connectors, and your Klaviyo login needs the Owner, Admin or Manager role. Start with the read-only setting if you want Claude to look but not change anything."
         ]
       },
