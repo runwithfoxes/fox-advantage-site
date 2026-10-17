@@ -2127,7 +2127,7 @@ export const MODULE_3: ModuleDef = {
       text: "Before we start, this is the time to get into Claude Code. Please don't be put off by this. You don't need to be technical. Just persistent. Once you're using Claude Code, then it is the tiniest jump into having agents helping you get work done.\n\nIn modules 1 and 2 you talked to Claude in a chat window and dropped files into a project. That got you a long way. For the three things in this module it is not enough, because each of them needs Claude to read a whole folder of files, write files you can open, and run code to count things. That is what Claude Code is. Claude, sitting at your computer.\n\nThe setup takes about fifteen minutes the first time, and every step is set out below on my own screens. Kite is the practice folder. The point is the last step, where you do the same thing with a folder of your own.",
       textLinks: [
         { phrase: "Anthropic's own guide", href: "https://code.claude.com/docs/en/desktop-quickstart", title: "Get started with the Claude Code desktop app" },
-        { phrase: "Download the Kite folder", href: "/api/course-file/module-3.zip?tree=1&name=Kite&files=claude-code/CLAUDE.md,claude-code/start-here,data/customers.csv,data/segmentation-rules,research/forum-threads,research/reviews,research/ardline-pages,research/search-questions,research/research-rules,klaviyo/learn-a-subject,klaviyo/klaviyo-what-it-is,klaviyo/klaviyo-lifecycle-knowledge,klaviyo/klaviyo-api-and-automation,klaviyo/klaviyo-go-live-checklist,website/website-path,website/category-research,website/design-brief", title: "The Kite folder, every module 3 file", download: true },
+        { phrase: "Download the Kite folder", href: "/api/course-file/module-3.zip?tree=1&name=Kite&files=claude-code/CLAUDE.md,claude-code/start-here,data/customers.csv,data/segmentation-rules,research/forum-threads,research/reviews,research/ardline-pages,research/search-questions,research/research-rules,klaviyo/00-start-here,klaviyo/01-what-klaviyo-is,klaviyo/02-lists-segments-and-forms,klaviyo/03-flows,klaviyo/04-campaigns-and-testing,klaviyo/05-deliverability,klaviyo/06-measuring-what-works,klaviyo/07-klaviyo-with-claude,klaviyo/klaviyo-help-centre-index,klaviyo/SKILL,klaviyo/learn-a-subject,website/website-path,website/category-research,website/design-brief", title: "The Kite folder, every module 3 file", download: true },
       ],
       /* ⭐ THE SETUP, ON PAUL'S OWN SCREEN, 16 Oct 2026. Paul: "I want them to be able to use Claude
          Code that isn't just for Kite... there's a whole bunch of questions you get asked... can you
@@ -2169,7 +2169,7 @@ export const MODULE_3: ModuleDef = {
       docs: {
         dir: "module-3/klaviyo",
         folder: "klaviyo/",
-        files: ["learn-a-subject", "klaviyo-what-it-is", "klaviyo-lifecycle-knowledge", "klaviyo-api-and-automation", "klaviyo-go-live-checklist"],
+        files: ["00-start-here", "01-what-klaviyo-is", "02-lists-segments-and-forms", "03-flows", "04-campaigns-and-testing", "05-deliverability", "06-measuring-what-works", "07-klaviyo-with-claude", "klaviyo-help-centre-index", "SKILL", "learn-a-subject"],
         as: "links",
       },
       text: "The first kind of work is knowledge. Every marketing team has tools that one person understands and everyone else is afraid of. When that person leaves, or when you move to a tool nobody has used, you hire a specialist or an agency that knows it. That is a lane, and it was drawn by how long it takes to learn a tool properly.\n\nKlaviyo is my example. It is a brilliant tool for lifecycle marketing, the emails that go to people who already know you: welcome, nurture, renewal, win back. I had never used it. So I sent agents to read everything about it, the help centre, the developer documentation, the release notes, and come back and teach me. The notes they wrote are the files below. They are the buckets of documentation I now hand to Claude whenever I need it to be my Klaviyo expert, and later, in module 4, the same notes are what lets it run Klaviyo for me through its API, which is what it does for this course today.\n\nKite's new CMO gives you the same job. Kite is moving its renewal emails onto Klaviyo and nobody in the team has used it. You have a week to be the person who understands it.\n\nThe move is in learn-a-subject. You paste it into Claude Code in your Kite folder, with the Klaviyo files beside it, and it does four things. It reads, and writes its notes as a file. It teaches you, in one page. It answers your questions and tells you where each answer came from. And it writes the test a Klaviyo specialist would set, so you can check what you have learned.\n\nThen do the thing that proves it worked. Ask it something a specialist would know and a beginner would not. Then ask it something it cannot know, like the size of Kite's list. A real expert says it does not know. If it makes up a number, it is not your expert yet.\n\nHere is that test in my own Kite folder: two questions a specialist would know, and one it cannot.\n\n{{SESSION_KLAVIYO}}\n\nNow pick the tool in your own job that one person understands and everyone else avoids, and run the same move on it. The notes file it writes is yours to keep, and it grows every time you ask.",
@@ -2280,42 +2280,80 @@ export const MODULE_3: ModuleDef = {
       ],
     },
     {
-      /* The Klaviyo buckets, 15 Oct 2026: Paul's agents' notes with everything private to
-         RWF taken out. Dated inside because Klaviyo changes. */
+      /* The Klaviyo pack, 17 Oct 2026: Sam's pack, cleared by Cato at paul-hub d14abdcbd,
+         replaces the 15 Oct notes. The API file and the go-live checklist stay in the repo
+         for module 4 but are not listed here, so they are not served. `what` lines are
+         taken from the pack's own 00-start-here. TITLE AND BLURB ARE WORKING COPY. */
       title: "Klaviyo, as my agents learned it",
       blurb:
-        "The notes my agents wrote when I sent them to learn Klaviyo, with everything private to my own account taken out, and the instruction file that makes Claude learn any tool the same way.",
-      warn: "These notes were true when they were written, and the dates are in them. Klaviyo changes. Have Claude check the current documentation before you build anything on a detail here.",
+        "The pack my agents wrote when I sent them to learn Klaviyo, with every figure checked against its source, and the instruction file that makes Claude learn any tool the same way.",
+      warn: "Every file is dated 17 Oct 2026. Klaviyo changes. Have Claude open the link and check the live page before you build anything on a detail here.",
       files: [
+        {
+          name: "00-start-here",
+          what: "Read this first. What the pack is, how it was made, and what to keep in mind, including that Klaviyo is built mainly for online shops.",
+          href: "/api/course-file/module-3/klaviyo/00-start-here.html",
+          take: "/api/course-file/module-3/klaviyo/00-start-here.md",
+        },
+        {
+          name: "01-what-klaviyo-is",
+          what: "What Klaviyo is in October 2026, how it is put together, its products and what changed in 2025 and 2026.",
+          href: "/api/course-file/module-3/klaviyo/01-what-klaviyo-is.html",
+          take: "/api/course-file/module-3/klaviyo/01-what-klaviyo-is.md",
+        },
+        {
+          name: "02-lists-segments-and-forms",
+          what: "Who you can email and how people get onto your list.",
+          href: "/api/course-file/module-3/klaviyo/02-lists-segments-and-forms.html",
+          take: "/api/course-file/module-3/klaviyo/02-lists-segments-and-forms.md",
+        },
+        {
+          name: "03-flows",
+          what: "The automated emails: welcome, abandoned cart, browse, after-purchase, win-back and date-based.",
+          href: "/api/course-file/module-3/klaviyo/03-flows.html",
+          take: "/api/course-file/module-3/klaviyo/03-flows.md",
+        },
+        {
+          name: "04-campaigns-and-testing",
+          what: "One-off sends, choosing who gets them, how often, and testing.",
+          href: "/api/course-file/module-3/klaviyo/04-campaigns-and-testing.html",
+          take: "/api/course-file/module-3/klaviyo/04-campaigns-and-testing.md",
+        },
+        {
+          name: "05-deliverability",
+          what: "Getting into the inbox, including the Gmail, Yahoo and Outlook sender rules.",
+          href: "/api/course-file/module-3/klaviyo/05-deliverability.html",
+          take: "/api/course-file/module-3/klaviyo/05-deliverability.md",
+        },
+        {
+          name: "06-measuring-what-works",
+          what: "How to tell what is working, and what the evidence says about common advice.",
+          href: "/api/course-file/module-3/klaviyo/06-measuring-what-works.html",
+          take: "/api/course-file/module-3/klaviyo/06-measuring-what-works.md",
+        },
+        {
+          name: "07-klaviyo-with-claude",
+          what: "Connecting Claude to Klaviyo, and Composer, Klaviyo's own AI.",
+          href: "/api/course-file/module-3/klaviyo/07-klaviyo-with-claude.html",
+          take: "/api/course-file/module-3/klaviyo/07-klaviyo-with-claude.md",
+        },
+        {
+          name: "klaviyo-help-centre-index",
+          what: "Every article in Klaviyo's Help Center, 1,312 on 17 Oct 2026, as links, so Claude can go and read any of them live.",
+          href: "/api/course-file/module-3/klaviyo/klaviyo-help-centre-index.html",
+          take: "/api/course-file/module-3/klaviyo/klaviyo-help-centre-index.md",
+        },
+        {
+          name: "SKILL",
+          what: "Turns the folder into a Claude skill, so Claude uses it whenever you ask about Klaviyo or email marketing.",
+          href: "/api/course-file/module-3/klaviyo/SKILL.html",
+          take: "/api/course-file/module-3/klaviyo/SKILL.md",
+        },
         {
           name: "learn-a-subject",
           what: "The move. Paste it into Claude Code and it reads, teaches, answers and tests, on Klaviyo or on any tool you name.",
           href: "/api/course-file/module-3/klaviyo/learn-a-subject.html",
           take: "/api/course-file/module-3/klaviyo/learn-a-subject.md",
-        },
-        {
-          name: "klaviyo-what-it-is",
-          what: "How Klaviyo is put together: profiles, lists, segments, events, flows, campaigns, templates. For someone who has never opened it.",
-          href: "/api/course-file/module-3/klaviyo/klaviyo-what-it-is.html",
-          take: "/api/course-file/module-3/klaviyo/klaviyo-what-it-is.md",
-        },
-        {
-          name: "klaviyo-lifecycle-knowledge",
-          what: "Lifecycle email for any brand: the stages, the flows worth having, frequency, deliverability, what good looks like, with the evidence graded.",
-          href: "/api/course-file/module-3/klaviyo/klaviyo-lifecycle-knowledge.html",
-          take: "/api/course-file/module-3/klaviyo/klaviyo-lifecycle-knowledge.md",
-        },
-        {
-          name: "klaviyo-api-and-automation",
-          what: "How Klaviyo is driven from outside through its API: what can be read and written, and the traps. The file module 4 builds on.",
-          href: "/api/course-file/module-3/klaviyo/klaviyo-api-and-automation.html",
-          take: "/api/course-file/module-3/klaviyo/klaviyo-api-and-automation.md",
-        },
-        {
-          name: "klaviyo-go-live-checklist",
-          what: "The checks before any flow sends to a real person. Works for any brand.",
-          href: "/api/course-file/module-3/klaviyo/klaviyo-go-live-checklist.html",
-          take: "/api/course-file/module-3/klaviyo/klaviyo-go-live-checklist.md",
         },
       ],
     },

@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Start here: a Klaviyo knowledge pack</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500&family=JetBrains+Mono:wght@400&display=swap"><style>
+  :root { color-scheme: light; --ink:#1D1B1B; --sky:#3A7CA5; --rule:#E0E0DC; --muted:#8A8A85; }
+  body { margin:0; background:#FAFAF8; color:var(--ink);
+         font:17px/1.65 'Source Serif 4',Georgia,serif; }
+  main { max-width:760px; margin:0 auto; padding:64px 32px 120px; }
+
+  /* Space Grotesk 500 for every heading. 500 deliberately, never 600: it holds a page
+     without shouting, and 600 reads too insistent over long copy. */
+  h1,h2,h3 { font-family:'Space Grotesk',system-ui,sans-serif; font-weight:500; }
+  h1 { font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 22px; }
+  h2 { font-size:22px; line-height:1.25; margin:46px 0 12px; }
+  /* ⭐ h3 IS THE MACHINE, NOT A THIRD SERIF SIZE. This is the rule that removes the
+     "when do I drop to a smaller font" judgement call: you do not, you change face. */
+  h3 { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-weight:400;
+       font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+       color:var(--muted); margin:34px 0 10px; }
+
+  p { margin:0 0 18px; }
+  ul,ol { padding-left:22px; margin:0 0 18px; }
+  li { margin-bottom:8px; }
+  li::marker { color:var(--muted); }
+  ul { list-style:square; }        /* square, not disc: the site bans rounded chrome */
+  hr { border:0; border-top:1px solid var(--rule); margin:48px 0; }
+
+  /* ⛔ BLUE, NEVER ORANGE. A hairline rule and the page's own background, so a quotation
+     reads as set apart rather than as a coloured box shouting on a quiet page. */
+  blockquote { margin:24px 0; padding:2px 0 2px 20px; border-left:2px solid var(--sky);
+               color:#44443E; }
+  blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:24px 0; font-size:16px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule);
+           vertical-align:top; }
+  th { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:11px;
+       font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+
+  code { font-family:'JetBrains Mono',ui-monospace,Menlo,monospace; font-size:14px;
+         color:var(--sky); background:none; padding:0; }
+  strong { font-weight:600; }
+  em { font-style:italic; color:inherit; }
+
+  @media (max-width:640px){ main { padding:44px 22px 80px; } h1 { font-size:28px; } }
+  a { color:var(--sky); overflow-wrap:anywhere; }
+</style></head><body><main><h1>Start here: a Klaviyo knowledge pack</h1>
+<p>Checked against Klaviyo's own pages on 17 Oct 2026. Made by Run with Foxes for module 3 of AI Fluency for Ambitious Marketers.</p>
+<h2>What is this folder?</h2>
+<p>It's what a specialist in email and lifecycle marketing knows about Klaviyo, written down as files your Claude can read and answer from. Put the folder somewhere Claude can see it, like a Claude Code folder or a Claude Project, and ask it questions. Then check its answers against the links.</p>
+<p>Klaviyo is the example. The real lesson is the method, so the last file, learn-a-subject.md, gives you the instructions to build the same kind of pack for any tool you don't know yet.</p>
+<h2>What's in it?</h2>
+<p>SKILL.md turns the folder into a Claude skill. Add the folder to your Claude as a skill, and Claude will use it whenever you ask about Klaviyo or email marketing.
+00-start-here.md is this file.
+01-what-klaviyo-is.md covers what Klaviyo is in October 2026, how it's put together, its products and what changed in 2025 and 2026.
+02-lists-segments-and-forms.md covers who you can email and how people get onto your list.
+03-flows.md covers the automated emails: welcome, abandoned cart, browse, after-purchase, win-back and date-based.
+04-campaigns-and-testing.md covers one-off sends, choosing who gets them, how often, and testing.
+05-deliverability.md covers getting into the inbox, including the Gmail, Yahoo and Outlook sender rules.
+06-measuring-what-works.md covers how to tell what's working and what the evidence says about common advice.
+07-klaviyo-with-claude.md covers connecting Claude to Klaviyo, and Composer, Klaviyo's own AI.
+klaviyo-help-centre-index.md lists every article in Klaviyo's Help Center (1,312 on 17 Oct 2026), with links, so Claude can go and read any of them live.
+learn-a-subject.md is the instructions to make your own pack.</p>
+<h2>How was it made?</h2>
+<p>We sent Claude agents to read Klaviyo's own material and the outside evidence, then had them write these notes and checked them. They read all 1,312 English articles in Klaviyo's Help Center, 73 courses from Klaviyo Academy and 19 of its video tutorials, Klaviyo's product release notes back to the start of 2025, its developer and MCP documentation, and the emails Klaviyo sends its own customers. For what works in practice, they read 61 more pages, some Klaviyo's own and most from outside: benchmark reports from Klaviyo, Omnisend, Mailchimp, Litmus and Validity, Google's, Yahoo's and Microsoft's sender rules, and research on retention, loyalty and discounts, including the Ehrenberg-Bass Institute's work and a study of 70 randomised email experiments published in Management Science (we read Stanford's summary of it). About 2.4 million words went in, and roughly 18,000 come out here, plus the list of Help Center links. Our fact-checker, Cato, checks every figure against its source before the pack goes out.</p>
+<h2>What should I keep in mind?</h2>
+<p>Klaviyo is built mainly for online shops. Most of its examples assume a store with products, carts and orders. If you sell insurance, software or a service, the ideas carry over, but some features (abandoned cart, product recommendations) won't fit as they are.</p>
+<p>When a figure is Klaviyo's, the notes say so. Klaviyo's revenue figures are revenue it gives email the credit for, which isn't the same as revenue the email caused. By default, Klaviyo counts a sale if someone opened or clicked an email in the 5 days before (see 06).</p>
+<p>Klaviyo's email price goes up with the number of people you can market to, and text messages are paid per credit (Klaviyo pricing page, checked 17 Oct 2026, <a href="https://www.klaviyo.com/pricing">https://www.klaviyo.com/pricing</a>). So Klaviyo does better when lists are bigger and more gets sent. That's our reading, not Klaviyo's, and it's worth remembering whenever its advice is to send more.</p>
+<p>Email and text work on people who are already on your list. They keep you in front of people who already know you, and 06 sets out the evidence on what that does and doesn't do.</p>
+<p>Tools change. Every section is dated. If a date matters, ask Claude to open the link and check the live page.</p>
+<h2>How do I use it with Claude?</h2>
+<p>Open the folder in Claude Code, or add the files to a Claude Project. Then ask it things like "How would I set up an abandoned cart email?" or "Can I trust my open rates?" Ask it to tell you which file and which link each answer comes from. If the answer isn't in the files, it should say so and go and read the Help Center link instead of guessing. Then ask it something it can't know, like how big your own list is. A good answer is "I don't know."</p>
+</main></body></html>
