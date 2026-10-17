@@ -25,6 +25,10 @@ const links: { href: string; label: string }[] = [
   { href: "/caught-our-eye", label: "Caught our eye" },
   { href: "/craft", label: "Craft" },
   { href: "/book", label: "The Fox Advantage (free book)" },
+  /* The old homepage footer carried these two; the new homepage (29 Sep) uses this footer and
+     lost them until 16 Oct, when Paul asked where the privacy policy had gone. */
+  { href: "/privacy", label: "Privacy" },
+  { href: "/cookies", label: "Cookies" },
 ];
 
 /* `wide` is for the homepage, whose container is 1200px rather than the 820px

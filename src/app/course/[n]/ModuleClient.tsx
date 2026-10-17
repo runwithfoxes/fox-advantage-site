@@ -1290,7 +1290,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                     className="mod-essaylink"
                     onClick={() => setOpen(i)}
                   >
-                    Read full essay
+                    {it.beatsLabel ?? "Read full essay"}
                   </button>
                 )}
 
@@ -1576,7 +1576,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   share a move, and the repetition IS the lesson. */}
               {mod.items[open].beats?.map((b, j) => (
                 <div className="mod-beat" key={j}>
-                  {b.text && <Body text={b.text} ph={b.placeholder} />}
+                  {b.text && <Body text={b.text} ph={b.placeholder} links={mod.items[open].textLinks} />}
                   {/* A prompt inside a beat, 20 Sep 2026: after the words, before the picture. */}
                   {b.prompt && (
                     <PromptBlock
