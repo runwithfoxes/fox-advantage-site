@@ -1040,6 +1040,21 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
             );
           })()}
         </h1>
+        {/* ⭐ MODULE 3'S FILM SITS UNDER THE TITLE. Paul, 16 Oct 2026: "under the title, above the
+            copywriting. So we see the title of the module, we see a video, and then there's writing
+            under the video". A module that sets openingVideoAtTop gets its film here; every other
+            module keeps it after the opening paragraphs. */}
+        {mod.openingVideo && mod.openingVideoAtTop && (
+          // the gap the film gets after paragraphs elsewhere, kept here between it and the writing
+          <div style={{ marginBottom: 36 }}>
+            <OpeningVideo
+              n={mod.n}
+              src={mod.openingVideo.src}
+              poster={mod.openingVideo.poster}
+              title={mod.openingVideo.title}
+            />
+          </div>
+        )}
         {/* Reuses .chapter-fox-hero verbatim: float right, 180px, negative -60px right
             margin so it sits half out in the gutter and reads as casual rather than as
             a boxed illustration, and a drop-shadow FILTER so the shadow follows the
@@ -1059,13 +1074,29 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
         {/* ⭐ PAUL ON CAMERA, straight after his opening paragraphs. Paul, 24 Sep 2026: "let's
             put it on my module 2 at the very top. Just after my opening paragraph." Only a
             module with a film gets anything here; no placeholder frame, ever. */}
-        {mod.openingVideo && (
+        {mod.openingVideo && !mod.openingVideoAtTop && (
           <OpeningVideo
             n={mod.n}
             src={mod.openingVideo.src}
             poster={mod.openingVideo.poster}
             title={mod.openingVideo.title}
           />
+        )}
+        {/* The space for a film not yet recorded (Paul, 16 Oct 2026). Before the module opens or
+            with ?build only, never an empty frame on a live module. */}
+        {!mod.openingVideo && mod.openingVideoPlanned && (build || !live) && (
+          <div className="mod-win mod-win-banner">
+            <div className="mod-winbar">
+              <span className="mod-lights">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="mod-wintitle">Film to come: {mod.openingVideoPlanned}</span>
+              <span className="mod-winright">film needed</span>
+            </div>
+            <div className="mod-shot" data-ph="" />
+          </div>
         )}
         {/* The tour of the real Claude project, straight after the intro film (Paul, 24 Sep
             2026). Its caption is the one line that says what it is; the film has no sound. */}
@@ -1259,7 +1290,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                     className="mod-essaylink"
                     onClick={() => setOpen(i)}
                   >
-                    Read full essay
+                    {it.beatsLabel ?? "Read full essay"}
                   </button>
                 )}
 
@@ -1545,7 +1576,7 @@ export default function ModuleClient({ mod, live = false }: { mod: ModuleDef; li
                   share a move, and the repetition IS the lesson. */}
               {mod.items[open].beats?.map((b, j) => (
                 <div className="mod-beat" key={j}>
-                  {b.text && <Body text={b.text} ph={b.placeholder} />}
+                  {b.text && <Body text={b.text} ph={b.placeholder} links={mod.items[open].textLinks} />}
                   {/* A prompt inside a beat, 20 Sep 2026: after the words, before the picture. */}
                   {b.prompt && (
                     <PromptBlock

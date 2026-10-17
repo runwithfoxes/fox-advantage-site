@@ -184,6 +184,8 @@ export type Item = {
    * opening passage, so the first figure follows it and carries no prose of its own.
    * ⚠️ EVERY `text` HERE IS PAUL'S TO WRITE. Anything standing in for him is marked.
    */
+  /** The words on the button that opens the beats. Defaults to "Read full essay". */
+  beatsLabel?: string;
   beats?: {
     text?: string;
     /** A drawn figure from the library. A beat has this OR `image`, never both. */
@@ -351,6 +353,18 @@ export type ModuleDef = {
     poster: string;
     title: string;
   };
+  /**
+   * ⭐ A SPACE FOR A FILM NOT YET RECORDED, 16 Oct 2026. Paul: "Add a space to do a video
+   * from me with b roll like video for module 2". What the film will be, in a line. Drawn
+   * where openingVideo goes, ONLY before the module opens or with ?build, so a member
+   * never sees an empty frame once the module is live (the 4 Aug placeholder rule).
+   * Delete it when openingVideo is set.
+   */
+  openingVideoPlanned?: string;
+  /** Draw openingVideo straight under the title, above the opening paragraphs, instead of after
+   *  them. Paul, 16 Oct 2026, for module 3: "we see the title of the module, we see a video, and
+   *  then there's writing under the video". */
+  openingVideoAtTop?: boolean;
   /** Where the module's content came from. Optional: only state it when it is a real,
    *  citable thing. Never invent a provenance to fill the meta row. */
   source?: string;
@@ -2080,6 +2094,14 @@ export const MODULE_3: ModuleDef = {
      late on 15 Oct while he slept, and carries `placeholder: true`
      until he has read it. The install steps in item 01 are from Anthropic's own desktop
      quickstart (code.claude.com/docs/en/desktop-quickstart), read 15 Oct 2026. */
+  /* Paul's intro film, 16 Oct 2026. One wide take cut to 37 seconds, with two motion B-roll clips.
+     Paul: "that's good enough for now". Built in ~/projects/video-pipeline (graphics/src/m3/IntroM3.tsx). */
+  openingVideo: {
+    src: "/course/module-3-intro.mp4",
+    poster: "/course/module-3-intro-poster.jpg",
+    title: "Module 3 intro",
+  },
+  openingVideoAtTop: true,
   /* ⭐ PAUL'S OPENING, his own words, 16 Oct 2026 (sent to Dray in chat). Only dictation slips fixed:
      'Not sure the promotional P' read as 'not just', plural agreement, 'start is in areas'. His film goes above it (openingVideo, as module 2). */
   opening:
@@ -2102,12 +2124,32 @@ export const MODULE_3: ModuleDef = {
         files: ["start-here", "CLAUDE"],
         as: "links",
       },
-      text: "Before we start, this is the time to get into Claude Code. Please don't be put off by this. You don't need to be technical. Just persistent. Once you're using Claude Code, then it is the tiniest jump into having agents helping you get work done.\n\nIn modules 1 and 2 you talked to Claude in a chat window and dropped files into a project. That got you a long way. For the three things in this module it is not enough, because each of them needs Claude to read a whole folder of files, write files you can open, and run code to count things. That is what Claude Code is. Claude, sitting at your computer.\n\nIt does not mean a terminal. Anthropic's desktop app has a Code tab, and that is all you need. It needs a paid plan: Pro, Max, Team or Enterprise. If you are on the free plan the Code tab will ask you to upgrade.\n\nHere is the whole setup. It takes about fifteen minutes the first time.\n\n1. Download the Claude desktop app for Mac or Windows from Anthropic's own guide and install it. Open it and sign in with the account you already use for Claude.\n\n2. Click the Code tab at the top of the window.\n\n3. Download the Kite folder. It is one zip of every file in this module, in the folders Claude expects. Unzip it somewhere you can find again, like Documents, and call the folder Kite.\n\n4. At the bottom of the Code tab, set Environment to Local, click Select folder and choose your Kite folder. Set the permission mode to Manual. That means Claude asks you before it changes a file or runs anything, and it is the right setting until you are comfortable.\n\n5. Open start-here, which is in the folder and below, and type the three things it tells you to type. The first makes Claude read the folder and tell you what is in it. The second makes it write a file you can open. The third makes it run a few lines of code and count something in the customer file. That is the whole tool: read, write, run.\n\nThe other file, CLAUDE.md, is the note Claude reads every time it opens the folder. It tells Claude what Kite is, how to behave, and which rules files to read before it does anything. You will write one of these for every folder you work in from now on. Open it and read it. It is short, and it is the same analyst you met in module 1.",
+      text: "Before we start, this is the time to get into Claude Code. Please don't be put off by this. You don't need to be technical. Just persistent. Once you're using Claude Code, then it is the tiniest jump into having agents helping you get work done.\n\nIn modules 1 and 2 you talked to Claude in a chat window and dropped files into a project. That got you a long way. For the three things in this module it is not enough, because each of them needs Claude to read a whole folder of files, write files you can open, and run code to count things. That is what Claude Code is. Claude, sitting at your computer.\n\nThe setup takes about fifteen minutes the first time, and every step is set out below on my own screens. Kite is the practice folder. The point is the last step, where you do the same thing with a folder of your own.",
       textLinks: [
         { phrase: "Anthropic's own guide", href: "https://code.claude.com/docs/en/desktop-quickstart", title: "Get started with the Claude Code desktop app" },
         { phrase: "Download the Kite folder", href: "/api/course-file/module-3.zip?tree=1&name=Kite&files=claude-code/CLAUDE.md,claude-code/start-here,data/customers.csv,data/segmentation-rules,research/forum-threads,research/reviews,research/ardline-pages,research/search-questions,research/research-rules,klaviyo/learn-a-subject,klaviyo/klaviyo-what-it-is,klaviyo/klaviyo-lifecycle-knowledge,klaviyo/klaviyo-api-and-automation,klaviyo/klaviyo-go-live-checklist,website/website-path,website/category-research,website/design-brief", title: "The Kite folder, every module 3 file", download: true },
       ],
-      grab: "The Code tab with the Kite folder selected, Environment Local, permission Manual, and start-here's first message typed",
+      /* ⭐ THE SETUP, ON PAUL'S OWN SCREEN, 16 Oct 2026. Paul: "I want them to be able to use Claude
+         Code that isn't just for Kite... there's a whole bunch of questions you get asked... can you
+         say yes to all those things? We need to be able to help them understand these things."
+         Screens taken in the Claude desktop app 2.42304 on his laptop, on a fresh copy of the Kite
+         folder; his sessions, account and folder paths blurred or cropped out. ⚠️ His own settings
+         and hooks shaped Claude's replies and the "write a file" question (it asked to run a shell
+         command instead of showing the change), so the change screen is described in words only. */
+      /* ⭐ Paul, 17 Oct 2026: the setup is "a really long part of the page", so it is tucked into
+         one window you open and read into, like module 1's full essays. */
+      beatsLabel: "Read the setup, step by step",
+      beats: [
+        { text: "It does not mean a terminal. Anthropic's desktop app has a Code tab, and that is all you need. It needs a paid plan: Pro, Max, Team or Enterprise. If you are on the free plan the Code tab will ask you to upgrade.\n\n1. Download the Claude desktop app for Mac or Windows from Anthropic's own guide. Open it and sign in with the account you already use for Claude.\n\n2. Click the Code button at the top left, the one marked </>. If it asks you to upgrade, that is because Claude Code needs a paid plan: Pro, Max, Team or Enterprise.", image: { src: "/course/module-3/claude-code-01-code.jpg", alt: "The bottom of the Code screen: This computer, Choose a folder, and the permission mode" } },
+        { text: "3. Download the Kite folder. It is one zip of every file in this module, in the folders Claude expects. Unzip it somewhere you can find again, like Documents, and call the folder Kite.\n\n4. Along the bottom of the Code screen are three settings. \"This computer\" means Claude works on the files on your own computer, so leave that as it is. Click Choose, then Open folder, and pick your Kite folder.\n\n5. Claude asks \"Trust this workspace?\". It is asking whether it may read, change and run files in this folder, and only this folder. Say yes to Kite. Later, say yes to folders of your own when you know what is in them. Never pick your whole Documents folder or your home folder, because that hands it everything.", image: { src: "/course/module-3/claude-code-02-trust.jpg", alt: "The Trust this workspace question, with Cancel and Trust workspace" } },
+        { text: "6. The last setting along the bottom is the permission mode. Choose Manual, which means Claude asks before it changes a file or runs anything. The others are for later. Accept edits lets it change files without asking, but it still asks before it runs anything. Plan has it work out what it would do and show you before it does any of it. Auto lets Claude decide for itself, with a safety check running in the background. Bypass is switched off, and you should leave it off.", image: { src: "/course/module-3/claude-code-03-modes.jpg", alt: "The permission menu: Auto, Manual, Accept edits, Plan, and Bypass permissions switched off" } },
+        { text: "7. Type the first message from start-here and press Enter. Claude reads the folder and tells you what is in it. The first time can take a few minutes, so let it work.", prompt: "Read every file in this folder and tell me in plain words what Kite is and what I have to work with.", promptHead: "Your first message" },
+        { text: "8. While it works, Claude will stop and ask \"Allow Claude to run...?\". It wants to run a small command, usually a few lines of code to list or count something. You will see the code, but you do not need to read it. Read the line at the top, which says in plain words what the command is for. If that matches what you asked for, click Allow once. If it does not, click Deny and ask Claude what it was trying to do. When Claude wants to change a file, it shows you the change first and waits for you to accept it.", image: { src: "/course/module-3/claude-code-04-allow.jpg", alt: "Claude asking to run a command, with Deny and Allow once" } },
+        { image: { src: "/course/module-3/claude-code-05-allow-code.jpg", alt: "Claude asking to run a few lines of code that count the customer file" } },
+        { text: "9. Can you just say yes to everything? On Kite, yes, because nothing in it is real and you can always download it again. While you are learning, use Allow once, so you see each thing Claude does. \"Always allow\" means it will not ask you again before that same kind of command in this folder. \"Allow and switch to Auto\" hands the rest of the session over to Auto. Both are fine on a folder of your own once you have watched Claude work in it and trust what it does.", image: { src: "/course/module-3/claude-code-06-allow-choices.jpg", alt: "The Always allow button opened to show Allow once and Allow and switch to Auto" } },
+        { text: "10. Now do it with a folder of your own. Kite is just practice. Make a folder for one real piece of your work, a campaign or a launch, and put in it the files you would give a colleague: the brief, the results, the research. Click New session, then Choose, Open folder, pick your folder, Trust, and Manual. Then send the same first message. From then on, give each piece of work its own folder.", prompt: "Read every file in this folder and tell me in plain words what is here and what I have to work with.", promptHead: "Your first message, in your own folder" },
+        { text: "The other file, CLAUDE.md, is the note Claude reads every time it opens the folder. It tells Claude what Kite is, how to behave, and which rules files to read before it does anything. You will write one of these for every folder you work in from now on. Open it and read it. It is short, and it is the same analyst you met in module 1." },
+      ],
       placeholder: true,
     },
     {
@@ -2131,7 +2173,9 @@ export const MODULE_3: ModuleDef = {
         as: "links",
       },
       text: "The first kind of work is knowledge. Every marketing team has tools that one person understands and everyone else is afraid of. When that person leaves, or when you move to a tool nobody has used, you hire a specialist or an agency that knows it. That is a lane, and it was drawn by how long it takes to learn a tool properly.\n\nKlaviyo is my example. It is a brilliant tool for lifecycle marketing, the emails that go to people who already know you: welcome, nurture, renewal, win back. I had never used it. So I sent agents to read everything about it, the help centre, the developer documentation, the release notes, and come back and teach me. The notes they wrote are the files below. They are the buckets of documentation I now hand to Claude whenever I need it to be my Klaviyo expert, and later, in module 4, the same notes are what lets it run Klaviyo for me through its API, which is what it does for this course today.\n\nKite's new CMO gives you the same job. Kite is moving its renewal emails onto Klaviyo and nobody in the team has used it. You have a week to be the person who understands it.\n\nThe move is in learn-a-subject. You paste it into Claude Code in your Kite folder, with the Klaviyo files beside it, and it does four things. It reads, and writes its notes as a file. It teaches you, in one page. It answers your questions and tells you where each answer came from. And it writes the test a Klaviyo specialist would set, so you can check what you have learned.\n\nThen do the thing that proves it worked. Ask it something a specialist would know and a beginner would not. Then ask it something it cannot know, like the size of Kite's list. A real expert says it does not know. If it makes up a number, it is not your expert yet.\n\nNow pick the tool in your own job that one person understands and everyone else avoids, and run the same move on it. The notes file it writes is yours to keep, and it grows every time you ask.",
-      grab: "Claude Code in the Kite folder, learn-a-subject pasted in, the notes file being written",
+      /* ⭐ Paul, 17 Oct 2026: "find that figure where we show how to connect to other tools and have
+         that when we do the email lifecycle one for Klaviyo." bp-01, the middle man, from module 1. */
+      figure: "bp-01",
       placeholder: true,
     },
     {
